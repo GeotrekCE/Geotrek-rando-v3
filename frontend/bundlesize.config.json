@@ -1,0 +1,8 @@
+{
+  "files": [
+    {
+      "path": "./src/.next/**/*.js",
+      "maxSize": "200 kB"
+    }
+  ]
+}
