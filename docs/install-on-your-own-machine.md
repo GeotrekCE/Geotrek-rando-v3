@@ -4,7 +4,8 @@
 
 You need to have docker installed on your own machine
 
-[docker documentation is right here](https://docs.docker.com/engine/install/)
+[docker documentation for installation is right here](https://docs.docker.com/engine/install/)
+[you will need to follow the post install process as well to be able to download the geotrek container](https://docs.docker.com/engine/install/linux-postinstall/)
 
 ## Pull the container
 
