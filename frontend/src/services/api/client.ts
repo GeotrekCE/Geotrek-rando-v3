@@ -10,7 +10,7 @@ export const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use(
-  async config => {
+  config => {
     // Do something before request is sent
     return config;
   },

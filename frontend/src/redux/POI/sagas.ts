@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { ActionType, getType } from 'typesafe-actions';
-import { getPOIList as getPOIListAction } from './actions';
 import { getPOIList } from 'services/api/POI/getPOIList';
+import { getPOIList as getPOIListAction } from './actions';
 
 export function* getPOIListSaga(action: ActionType<typeof getPOIListAction.request>) {
   try {
