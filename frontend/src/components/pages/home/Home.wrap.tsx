@@ -1,3 +1,4 @@
+import { POIList } from 'domain/POI/POI';
 import { connect } from 'react-redux';
 
 import { Dispatch } from 'redux';
@@ -7,7 +8,7 @@ import { RootState } from 'redux/types';
 import { Home } from './Home';
 
 export type WrapperProps = {
-  POIList: string[];
+  POIList?: POIList | null;
   getPOIList: () => void;
 };
 

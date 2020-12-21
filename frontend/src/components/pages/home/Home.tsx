@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react';
 
 import { Layout } from 'components/Layout/Layout';
 import Button from 'components/Button';
+import Map from 'components/Map';
 import { WrapperProps } from './Home.wrap';
 import {
   Code,
@@ -15,8 +16,9 @@ import {
 
 const HomeUI: FunctionComponent<WrapperProps> = ({ getPOIList, POIList }) => (
   <Layout>
+    <Map points={POIList} />
     <HomeContainer>
-      <Logo alt="forgelogo" src="/logo.png" />
+      <Logo alt="logo" src="/logo.png" />
       <Title>Welcome to Geotrek</Title>
       <HowTo>
         <DescriptionList>

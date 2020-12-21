@@ -2,11 +2,12 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { ActionType, getType } from 'typesafe-actions';
 import { getPOIList } from 'services/api/POI/getPOIList';
 import { getPOIList as getPOIListAction } from './actions';
+import { POIList as POIListType } from '../../domain/POI/POI';
 
 export function* getPOIListSaga(action: ActionType<typeof getPOIListAction.request>) {
   try {
     // eslint-disable-next-line @typescript-eslint/unbound-method, @typescript-eslint/no-unsafe-assignment
-    const POIList: string[] = yield call(getPOIList, action.payload);
+    const POIList: POIListType = yield call(getPOIList, action.payload);
     yield put(getPOIListAction.success({ results: POIList }));
   } catch (error: unknown) {
     let errorMessage = `Error: ${String(error)}`;

@@ -1,4 +1,3 @@
-import nextCookie from 'next-cookies';
 import App, { AppContext, AppInitialProps } from 'next/app';
 
 import { Root } from 'components/pages/_app/Root';

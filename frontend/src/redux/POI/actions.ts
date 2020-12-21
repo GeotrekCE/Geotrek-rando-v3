@@ -1,5 +1,7 @@
 import { createAsyncAction } from 'typesafe-actions';
 
+import { POIList } from '../../domain/POI/POI';
+
 export const getPOIList = createAsyncAction(
   'POI/GET_POI_REQUEST',
   'POI/GET_POI_SUCCESS',
@@ -11,7 +13,7 @@ export const getPOIList = createAsyncAction(
     page_size: number;
   },
   {
-    results: string[];
+    results: POIList;
   },
   {
     errorMessage: string;
