@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'react';
 
 import { Layout } from 'components/Layout/Layout';
-import Button from 'components/Button'
-import { WrapperProps } from './Home.wrap'
+import Button from 'components/Button';
+import { WrapperProps } from './Home.wrap';
 import {
   Code,
   DescriptionLine,
@@ -13,7 +13,7 @@ import {
   Title,
 } from './Home.style';
 
-const HomeUI: FunctionComponent<WrapperProps> = ({getPOIList, POIList}) => (
+const HomeUI: FunctionComponent<WrapperProps> = ({ getPOIList, POIList }) => (
   <Layout>
     <HomeContainer>
       <Logo alt="forgelogo" src="/logo.png" />
@@ -28,8 +28,8 @@ const HomeUI: FunctionComponent<WrapperProps> = ({getPOIList, POIList}) => (
             manage colors, font properties, spacing unit...
           </DescriptionLine>
           <DescriptionLine>
-            The <Code>src/components/AppCrashFallback</Code> that will display when there
-            is a javascript error.
+            The <Code>src/components/AppCrashFallback</Code> that will display when there is a
+            javascript error.
           </DescriptionLine>
           <DescriptionLine>
             Read more about the tools and built-in features in the <Code>README.md</Code>.
