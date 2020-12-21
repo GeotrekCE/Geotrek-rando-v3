@@ -83,101 +83,101 @@ commands:
       - store_artifacts:
           path: << parameters.workspace >>/coverage
 
-  yarn-audit:
-    parameters:
-      workspace:
-        type: string
-    steps:
-      - checkout_merge
-      # yarn-audit is started with a cron.
-      # As such we cannot get the frontend dependencies from the workspace like we do with the other jobs. We need to re-install them.
-      - run:
-          working_directory: << parameters.workspace >>
-          name: Install front dependencies
-          command: yarn
-      - run:
-          working_directory: << parameters.workspace >>
-          name: Check dependencies
-          command: yarn audit-dependencies
+  # yarn-audit:
+  #   parameters:
+  #     workspace:
+  #       type: string
+  #   steps:
+  #     - checkout_merge
+  #     # yarn-audit is started with a cron.
+  #     # As such we cannot get the frontend dependencies from the workspace like we do with the other jobs. We need to re-install them.
+  #     - run:
+  #         working_directory: << parameters.workspace >>
+  #         name: Install front dependencies
+  #         command: yarn
+  #     - run:
+  #         working_directory: << parameters.workspace >>
+  #         name: Check dependencies
+  #         command: yarn audit-dependencies
 
-  deploy:
-    steps:
-      - setup_remote_docker:
-          docker_layer_caching: false
+  # deploy:
+  #   steps:
+  #     - setup_remote_docker:
+  #         docker_layer_caching: false
 
-      - run:
-          name: Install system dependencies
-          command: |
-            apk add bash curl git make openssh python3 py-pip rsync zip gcc python3-dev libc-dev openssl-dev libffi-dev
-            curl -sL https://sentry.io/get-cli/ | bash
+  #     - run:
+  #         name: Install system dependencies
+  #         command: |
+  #           apk add bash curl git make openssh python3 py-pip rsync zip gcc python3-dev libc-dev openssl-dev libffi-dev
+  #           curl -sL https://sentry.io/get-cli/ | bash
 
-      - checkout_merge
+  #     - checkout_merge
 
-      - run:
-          name: Install AWS CLI
-          command: pip install awsebcli awscli
+  #     - run:
+  #         name: Install AWS CLI
+  #         command: pip install awsebcli awscli
 
-      - run:
-          name: Create AWS profile
-          command: |
-            mkdir -p ~/.aws
-            touch ~/.aws/credentials
-            echo "[geotrekrando-deploy]" >> ~/.aws/credentials
-            echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
-            echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
+  #     - run:
+  #         name: Create AWS profile
+  #         command: |
+  #           mkdir -p ~/.aws
+  #           touch ~/.aws/credentials
+  #           echo "[geotrekrando-deploy]" >> ~/.aws/credentials
+  #           echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
+  #           echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
 
-      - run:
-          name: "Sentry: start build"
-          working_directory: devops/deployment
-          command: |
-            [ -z "$SENTRY_AUTH_TOKEN"] || make sentry_start_build tag=$CIRCLE_SHA1
+  #     - run:
+  #         name: "Sentry: start build"
+  #         working_directory: devops/deployment
+  #         command: |
+  #           [ -z "$SENTRY_AUTH_TOKEN"] || make sentry_start_build tag=$CIRCLE_SHA1
 
-      - run:
-          name: Build images
-          working_directory: devops/deployment
-          command: make images
+  #     - run:
+  #         name: Build images
+  #         working_directory: devops/deployment
+  #         command: make images
 
-      - run:
-          name: "Sentry: upload source maps"
-          working_directory: devops/deployment
-          command: |
-            [ -z "$SENTRY_AUTH_TOKEN"] || docker run --rm geotrekrando/frontend:latest bash /root/sentry-upload.sh $SENTRY_ORG $SENTRY_PROJECT $SENTRY_AUTH_TOKEN $CIRCLE_SHA1
+  #     - run:
+  #         name: "Sentry: upload source maps"
+  #         working_directory: devops/deployment
+  #         command: |
+  #           [ -z "$SENTRY_AUTH_TOKEN"] || docker run --rm geotrekrando/frontend:latest bash /root/sentry-upload.sh $SENTRY_ORG $SENTRY_PROJECT $SENTRY_AUTH_TOKEN $CIRCLE_SHA1
 
-      - run:
-          name: Tag images for deployment
-          command: |
-            docker tag geotrekrando/frontend:latest $FRONTEND_REPO_URL:$CIRCLE_SHA1
+  #     - run:
+  #         name: Tag images for deployment
+  #         command: |
+  #           docker tag geotrekrando/frontend:latest $FRONTEND_REPO_URL:$CIRCLE_SHA1
 
-      - run:
-          name: Authenticate with registry
-          command: $(aws ecr get-login --no-include-email --region )
+  #     - run:
+  #         name: Authenticate with registry
+  #         command: $(aws ecr get-login --no-include-email --region )
 
-      - run:
-          name: Push docker images to registry
-          command: |
-            docker push $FRONTEND_REPO_URL:$CIRCLE_SHA1
+  #     - run:
+  #         name: Push docker images to registry
+  #         command: |
+  #           docker push $FRONTEND_REPO_URL:$CIRCLE_SHA1
 
-      - run:
-          name: Build EB archive
-          working_directory: devops/deployment
-          command: make archive.zip tag=$CIRCLE_SHA1
+  #     - run:
+  #         name: Build EB archive
+  #         working_directory: devops/deployment
+  #         command: make archive.zip tag=$CIRCLE_SHA1
 
-      - run:
-          name: "Sentry: finish build"
-          working_directory: devops/deployment
-          command: |
-            [ -z "$SENTRY_AUTH_TOKEN"] || make sentry_finish_build tag=$CIRCLE_SHA1
+  #     - run:
+  #         name: "Sentry: finish build"
+  #         working_directory: devops/deployment
+  #         command: |
+  #           [ -z "$SENTRY_AUTH_TOKEN"] || make sentry_finish_build tag=$CIRCLE_SHA1
 
-      - run:
-          name: Deploy to EB
-          working_directory: devops/deployment
-          command: eb deploy
+  #     - run:
+  #         name: Deploy to EB
+  #         working_directory: devops/deployment
+  #         command: eb deploy
 
-      - run:
-          name: "Sentry: deploy"
-          working_directory: devops/deployment
-          command: |
-            [ -z "$SENTRY_AUTH_TOKEN"] || make sentry_deploy tag=$CIRCLE_SHA1 env=$ENV
+  #     - run:
+  #         name: "Sentry: deploy"
+  #         working_directory: devops/deployment
+  #         command: |
+  #           [ -z "$SENTRY_AUTH_TOKEN"] || make sentry_deploy tag=$CIRCLE_SHA1 env=$ENV
 
 jobs:
   yarn-install-front:
