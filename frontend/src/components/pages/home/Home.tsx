@@ -14,9 +14,14 @@ import {
   Title,
 } from './Home.style';
 
-const HomeUI: FunctionComponent<WrapperProps> = ({ getPOIList, POIList }) => (
+const HomeUI: FunctionComponent<WrapperProps> = ({
+  getPOIList,
+  POIList,
+  getTreksList,
+  TreksList,
+}) => (
   <Layout>
-    <Map points={POIList} />
+    <Map points={POIList} segments={TreksList} />
     <HomeContainer>
       <Logo alt="logo" src="/logo.png" />
       <Title>Welcome to Geotrek</Title>
@@ -36,7 +41,7 @@ const HomeUI: FunctionComponent<WrapperProps> = ({ getPOIList, POIList }) => (
           <DescriptionLine>
             Read more about the tools and built-in features in the <Code>README.md</Code>.
           </DescriptionLine>
-          <Button onClick={() => getPOIList()}>Click me !</Button>
+          <Button onClick={() => Promise.all([getTreksList(), getPOIList()])}>Click me !</Button>
         </DescriptionList>
       </HowTo>
     </HomeContainer>
