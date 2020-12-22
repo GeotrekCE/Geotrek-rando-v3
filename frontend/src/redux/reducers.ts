@@ -1,6 +1,7 @@
 import { combineReducers, Reducer } from 'redux';
 
 import { initialState as POIInitialState, reducer as POIReducer } from './POI';
+import { initialState as TrekInitialState, reducer as TrekReducer } from './Trek';
 import { RootState } from './types';
 
 /**
@@ -13,10 +14,12 @@ import { RootState } from './types';
 
 export const rootInitialState: RootState = {
   POI: POIInitialState,
+  Trek: TrekInitialState,
 };
 
 const rootReducers: Reducer<RootState> = combineReducers({
   POI: POIReducer,
+  Trek: TrekReducer,
 });
 
 export default rootReducers;

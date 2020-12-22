@@ -4,12 +4,14 @@ import { AnyAction } from 'redux';
 import { hydrate } from '../actions';
 import { getPOIList } from './actions';
 
+import { POIList } from '../../domain/POI/POI';
+
 export type POIAction = ActionType<
   typeof getPOIList.request | typeof getPOIList.success | typeof getPOIList.failure | typeof hydrate
 >;
 
 export type POIState = Readonly<{
-  POIList: string[] | null;
+  POIList?: POIList | null;
   getPOIListError: string | null;
 }>;
 

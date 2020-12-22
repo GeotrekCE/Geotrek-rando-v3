@@ -24,19 +24,7 @@ try {
   );
 }
 
-const plugins = [
-  [
-    withCSS,
-    {
-      cssLoaderOptions: {
-        url: false,
-      },
-      cssModules: true,
-    },
-  ],
-  [withImages],
-  [withSourceMaps()],
-];
+const plugins = [[withImages], [withSourceMaps()]];
 
 module.exports = withPlugins(plugins, {
   webpack(config, { isServer }) {

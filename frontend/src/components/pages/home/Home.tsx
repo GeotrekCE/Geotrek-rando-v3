@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react';
 
 import { Layout } from 'components/Layout/Layout';
 import Button from 'components/Button';
+import Map from 'components/Map';
 import { WrapperProps } from './Home.wrap';
 import {
   Code,
@@ -13,10 +14,16 @@ import {
   Title,
 } from './Home.style';
 
-const HomeUI: FunctionComponent<WrapperProps> = ({ getPOIList, POIList }) => (
+const HomeUI: FunctionComponent<WrapperProps> = ({
+  getPOIList,
+  POIList,
+  getTreksList,
+  TreksList,
+}) => (
   <Layout>
+    <Map points={POIList} segments={TreksList} />
     <HomeContainer>
-      <Logo alt="forgelogo" src="/logo.png" />
+      <Logo alt="logo" src="/logo.png" />
       <Title>Welcome to Geotrek</Title>
       <HowTo>
         <DescriptionList>
@@ -34,7 +41,7 @@ const HomeUI: FunctionComponent<WrapperProps> = ({ getPOIList, POIList }) => (
           <DescriptionLine>
             Read more about the tools and built-in features in the <Code>README.md</Code>.
           </DescriptionLine>
-          <Button onClick={() => getPOIList()}>Click me !</Button>
+          <Button onClick={() => Promise.all([getTreksList(), getPOIList()])}>Click me !</Button>
         </DescriptionList>
       </HowTo>
     </HomeContainer>

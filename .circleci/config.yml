@@ -200,7 +200,7 @@ jobs:
     executor: defaults_typescript
     working_directory: ~/geotrekRando
     environment:
-      NODE_ENV: prod
+      NODE_ENV: production
     steps:
       - checkout_merge
       - skip/skip_unchanged:
@@ -219,7 +219,7 @@ jobs:
     executor: defaults_typescript
     working_directory: ~/geotrekRando
     environment:
-      NODE_ENV: prod
+      NODE_ENV: production
     steps:
       - checkout_merge
       - skip/skip_unchanged:

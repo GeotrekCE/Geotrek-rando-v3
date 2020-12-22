@@ -1,19 +1,19 @@
-import { POIList } from 'domain/POI/POI';
+import { TreksList } from 'domain/Trek/Trek';
 import { apiRoutes } from '../apiRoutes';
 import { apiClient } from '../client';
 
-interface getPOIListData {
+interface getTreksListData {
   language: string;
   page: number;
   page_size: number;
 }
 
-export const getPOIList = async (params: getPOIListData): Promise<POIList | undefined> => {
+export const getTreksList = async (params: getTreksListData): Promise<TreksList | undefined> => {
   const result = await apiClient.get<{
     count: number;
     next: string | null;
     previous: string | null;
-    results: POIList;
-  }>(apiRoutes.getPOIList, { params: { ...params, format: 'json' } });
+    results: TreksList;
+  }>(apiRoutes.getTrekList, { params: { ...params, format: 'json' } });
   return result.data.results;
 };
