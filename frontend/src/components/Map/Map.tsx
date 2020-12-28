@@ -3,6 +3,7 @@ import { POIList } from 'domain/POI/POI';
 import { TreksList } from 'domain/Trek/Trek';
 
 import 'leaflet/dist/leaflet.css';
+import { POIIcon } from './POIIcon';
 
 export type PropsType = {
   points?: POIList | null;
@@ -15,7 +16,7 @@ const Map = (props: PropsType) => {
       center={[44.748717, 6.1189669]}
       zoom={13}
       scrollWheelZoom={false}
-      style={{ height: 500, width: 500 }}
+      style={{ height: 500, width: '100%' }}
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -28,6 +29,7 @@ const Map = (props: PropsType) => {
             <Marker
               key={point.id}
               position={[point.geometry.coordinates[1], point.geometry.coordinates[0]]}
+              icon={POIIcon}
             >
               <Popup>
                 A pretty CSS3 popup. <br /> For point {point.geometry.coordinates[1]},{' '}

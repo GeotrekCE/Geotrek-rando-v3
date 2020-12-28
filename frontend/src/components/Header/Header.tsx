@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { routes } from 'services/routes';
 
-import { HeaderContainer, Logo } from './Header.style';
+import { HeaderContainer, Logo, Title } from './Header.style';
 
 export const Header: FunctionComponent = () => {
   return (
@@ -11,6 +11,7 @@ export const Header: FunctionComponent = () => {
       <Link href={routes.HOME}>
         <Logo alt="logo" src="/logo.png" />
       </Link>
+      <Title>Geotrek Rando</Title>
     </HeaderContainer>
   );
 };

@@ -21,7 +21,6 @@ const HomeUI: FunctionComponent<WrapperProps> = ({
   TreksList,
 }) => (
   <Layout>
-    <Map points={POIList} segments={TreksList} />
     <HomeContainer>
       <Logo alt="logo" src="/logo.png" />
       <Title>Welcome to Geotrek</Title>
@@ -35,16 +34,15 @@ const HomeUI: FunctionComponent<WrapperProps> = ({
             manage colors, font properties, spacing unit...
           </DescriptionLine>
           <DescriptionLine>
-            The <Code>src/components/AppCrashFallback</Code> that will display when there is a
-            javascript error.
-          </DescriptionLine>
-          <DescriptionLine>
             Read more about the tools and built-in features in the <Code>README.md</Code>.
           </DescriptionLine>
-          <Button onClick={() => Promise.all([getTreksList(), getPOIList()])}>Click me !</Button>
+          <Button onClick={() => Promise.all([getTreksList(), getPOIList()])}>
+            Click here to load POIs and Treks from the front and display them on the map
+          </Button>
         </DescriptionList>
       </HowTo>
     </HomeContainer>
+    <Map points={POIList} segments={TreksList} />
   </Layout>
 );
 

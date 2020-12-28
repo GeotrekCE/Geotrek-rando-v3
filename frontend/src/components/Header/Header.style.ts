@@ -8,10 +8,15 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   height: ${getSpacing(13)};
-  padding: 0 ${getSpacing(4)};
+  padding: ${getSpacing(10)} ${getSpacing(4)};
 `;
 
 HeaderContainer.displayName = 'HeaderContainer';
+
+export const Title = styled.h1`
+  ${typography.h1}
+`;
+Title.displayName = 'HeaderTitle';
 
 export const Logo = styled.img`
   height: ${getSpacing(9)};

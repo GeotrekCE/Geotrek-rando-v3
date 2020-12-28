@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { borderRadius, colorPalette, getSpacing, typography } from 'stylesheet';
+import { borderRadius, getSpacing, typography } from 'stylesheet';
 
 export const HomeContainer = styled.div`
   display: flex;
@@ -27,7 +27,6 @@ export const HowTo = styled.div`
   max-width: ${getSpacing(120)};
   box-sizing: border-box;
   border-radius: ${borderRadius.large};
-  border: 1px dashed ${colorPalette.greyDark};
 `;
 HowTo.displayName = 'HowTo';
 
