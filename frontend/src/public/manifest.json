@@ -1,0 +1,38 @@
+{
+  "name": "Geotrek-rando",
+  "short_name": "Geotrek-rando",
+  "theme_color": "#2196f3",
+  "background_color": "#2196f3",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/maskable-icon.png",
+      "sizes": "200x200",
+      "purpose": "maskable",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/apple-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/android-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/apple-splashscreen.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/android-splashscreen.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "scope": ".",
+  "start_url": "./"
+}
