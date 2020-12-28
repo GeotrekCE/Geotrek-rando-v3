@@ -3,6 +3,7 @@ const withImages = require('next-images');
 const withCSS = require('@zeit/next-css');
 const withPlugins = require('next-compose-plugins');
 const withSourceMaps = require('@zeit/next-source-maps');
+const withPWA = require('next-pwa');
 const dotenv = require('dotenv-flow');
 const yup = require('yup');
 
@@ -24,7 +25,7 @@ try {
   );
 }
 
-const plugins = [[withImages], [withSourceMaps()]];
+const plugins = [[withPWA], [withImages], [withSourceMaps()]];
 
 module.exports = withPlugins(plugins, {
   webpack(config, { isServer }) {
@@ -35,6 +36,9 @@ module.exports = withPlugins(plugins, {
     }
 
     return config;
+  },
+  pwa: {
+    dest: 'public',
   },
   /**
    * environment variables that will be shared for the client and server-side
