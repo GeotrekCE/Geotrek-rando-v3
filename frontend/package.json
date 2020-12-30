@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
+    "debug": "NODE_OPTIONS='--inspect' next ./src",
     "dev": "next ./src",
     "build": "next build ./src",
     "generate": "plop --plopfile scripts/generators/index.js",
