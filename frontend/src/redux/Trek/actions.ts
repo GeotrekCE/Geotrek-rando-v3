@@ -2,10 +2,10 @@ import { createAsyncAction } from 'typesafe-actions';
 
 import { TreksList } from '../../domain/Trek/Trek';
 
-export const getTreksList = createAsyncAction(
-  'TREK/GET_TREKS_REQUEST',
-  'TREK/GET_TREKS_SUCCESS',
-  'TREK/GET_TREKS_FAILURE',
+const getTreksListServerSide = createAsyncAction(
+  'TREK/SERVER/GET_TREKS_REQUEST',
+  'TREK/SERVER/GET_TREKS_SUCCESS',
+  'TREK/SERVER/GET_TREKS_FAILURE',
 )<
   {
     language: string;
@@ -19,6 +19,29 @@ export const getTreksList = createAsyncAction(
     errorMessage: string;
   }
 >();
+
+const getTreksListClientSide = createAsyncAction(
+  'TREK/CLIENT/GET_TREKS_REQUEST',
+  'TREK/CLIENT/GET_TREKS_SUCCESS',
+  'TREK/CLIENT/GET_TREKS_FAILURE',
+)<
+  {
+    language: string;
+    page: number;
+    page_size: number;
+  },
+  {
+    results: TreksList;
+  },
+  {
+    errorMessage: string;
+  }
+>();
+
+export const getTreksList = {
+  server: getTreksListServerSide,
+  client: getTreksListClientSide,
+};
 
 export default {
   getTreksList,

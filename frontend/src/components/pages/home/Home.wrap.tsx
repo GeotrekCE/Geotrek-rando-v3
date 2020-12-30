@@ -11,21 +11,21 @@ import { RootState } from 'redux/types';
 import { Home } from './Home';
 
 export type WrapperProps = {
-  POIList?: POIList | null;
-  TreksList?: TreksList | null;
+  POIList: POIList | null;
+  treksList: TreksList | null;
   getPOIList: () => void;
   getTreksList: () => void;
 };
 
 const mapStateToProps = (state: RootState) => ({
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   POIList: selectPOIList(state),
-  TreksList: selectTreksList(state),
+  treksList: selectTreksList(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  getPOIList: () => dispatch(getPOIList.request({ language: 'fr', page: 1, page_size: 10 })),
-  getTreksList: () => dispatch(getTreksList.request({ language: 'fr', page: 1, page_size: 10 })),
+  getPOIList: () => dispatch(getPOIList.client.request({ language: 'fr', page: 2, page_size: 10 })),
+  getTreksList: () =>
+    dispatch(getTreksList.client.request({ language: 'fr', page: 2, page_size: 10 })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -3,6 +3,7 @@ export type POI = {
   geometry: {
     coordinates: number[];
   };
+  description: string;
 };
 
 export type POIList = POI[];

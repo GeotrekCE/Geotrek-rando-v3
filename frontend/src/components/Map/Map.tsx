@@ -16,7 +16,7 @@ const Map = (props: PropsType) => {
       center={[44.748717, 6.1189669]}
       zoom={13}
       scrollWheelZoom={false}
-      style={{ height: 500, width: '100%' }}
+      style={{ height: '100%', width: '100%' }}
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

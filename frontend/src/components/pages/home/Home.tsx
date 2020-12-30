@@ -10,7 +10,10 @@ import {
   DescriptionList,
   HomeContainer,
   HowTo,
+  ListContainer,
+  ListMapContainer,
   Logo,
+  MapContainer,
   Title,
 } from './Home.style';
 
@@ -18,7 +21,7 @@ const HomeUI: FunctionComponent<WrapperProps> = ({
   getPOIList,
   POIList,
   getTreksList,
-  TreksList,
+  treksList,
 }) => (
   <Layout>
     <HomeContainer>
@@ -34,15 +37,26 @@ const HomeUI: FunctionComponent<WrapperProps> = ({
             manage colors, font properties, spacing unit...
           </DescriptionLine>
           <DescriptionLine>
-            Read more about the tools and built-in features in the <Code>README.md</Code>.
+            The displayed data come from a server side populated redux store.
           </DescriptionLine>
           <Button onClick={() => Promise.all([getTreksList(), getPOIList()])}>
-            Click here to load POIs and Treks from the front and display them on the map
+            Click here to load POIs and Treks from 2nd page from the front
           </Button>
         </DescriptionList>
       </HowTo>
     </HomeContainer>
-    <Map points={POIList} segments={TreksList} />
+    <ListMapContainer>
+      <ListContainer>
+        <p>Points of Interest</p>
+        {POIList && POIList.map(POI => <p key={POI.id}>{POI.description}</p>)}
+        <br />
+        <p>Treks</p>
+        {treksList && treksList.map(trek => <p key={trek.id}>{trek.description}</p>)}
+      </ListContainer>
+      <MapContainer>
+        <Map points={POIList} segments={treksList} />
+      </MapContainer>
+    </ListMapContainer>
   </Layout>
 );
 

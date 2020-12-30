@@ -7,7 +7,7 @@ import rootReducers, { rootInitialState } from './reducers';
 import rootSagas from './sagas';
 import { RootState } from './types';
 
-type ReduxSagaStore<S> = S & { sagaTask: Task };
+export type ReduxSagaStore<S> = S & { sagaTask: Task };
 
 /* istanbul ignore next */
 const bindMiddleware = (middleware: Middleware[]) => {

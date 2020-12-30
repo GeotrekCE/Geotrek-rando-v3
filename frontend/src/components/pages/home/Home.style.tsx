@@ -48,3 +48,30 @@ export const Code = styled.code`
   padding: ${getSpacing(1)};
 `;
 Code.displayName = 'Code';
+
+export const ListMapContainer = styled.div`
+  flex-direction: row;
+  display: flex;
+  align-items: space-between;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+ListMapContainer.displayName = 'ListMapContainer';
+
+export const ListContainer = styled.div`
+  flex: 1;
+`;
+ListContainer.displayName = 'ListContainer';
+
+export const MapContainer = styled.div`
+  flex: 1;
+
+  @media (max-width: 768px) {
+    height: 500px;
+    width: 100%;
+  }
+`;
+MapContainer.displayName = 'MapContainer';
