@@ -12,7 +12,7 @@ export const getServerSideProps = appWrapper.getServerSideProps(async ({ store }
   store.dispatch(getPOIList.server.request({ language: 'fr', page: 1, page_size: 10 }));
   store.dispatch(END);
   await (store as ReduxSagaStore<typeof store>).sagaTask.toPromise();
-  return { props: { POIList: store.getState().POI.server.POIList } };
+  return;
 });
 
 export default connect((state: RootState) => state)(Home);
