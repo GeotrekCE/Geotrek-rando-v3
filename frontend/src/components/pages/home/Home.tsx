@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { Layout } from 'components/Layout/Layout';
 import Button from 'components/Button';
@@ -15,6 +16,8 @@ import {
   Logo,
   MapContainer,
   Title,
+  TopContainer,
+  WelcomeText,
 } from './Home.style';
 
 const HomeUI: FunctionComponent<WrapperProps> = ({
@@ -25,6 +28,11 @@ const HomeUI: FunctionComponent<WrapperProps> = ({
 }) => (
   <Layout>
     <HomeContainer>
+      <TopContainer>
+        <WelcomeText>
+          <FormattedMessage id="home.welcome-text" />
+        </WelcomeText>
+      </TopContainer>
       <Logo alt="logo" src="/logo.png" />
       <Title>Welcome to Geotrek</Title>
       <HowTo>
