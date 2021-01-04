@@ -73,3 +73,8 @@ export const borderRadius = {
   medium: '4px',
   large: '10px',
 };
+
+export const zIndex = {
+  content: 0,
+  header: 1,
+};
