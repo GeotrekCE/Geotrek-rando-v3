@@ -84,6 +84,7 @@ export const typography = {
 export const borderRadius = {
   medium: '4px',
   large: '10px',
+  card: '16px',
 } as const;
 
 export const zIndex = {
