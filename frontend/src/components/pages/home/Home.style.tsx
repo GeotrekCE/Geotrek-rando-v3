@@ -19,7 +19,7 @@ export const TopContainer = styled.div`
 TopContainer.displayName = 'TopContainer';
 
 export const WelcomeText = styled.h1`
-  ${typography.h1};
+  ${typography.h1}
   font-size: 44px;
   color: ${colorPalette.white};
 `;
