@@ -46,6 +46,7 @@ export const colorPalette = {
   white: '#FFFFFF',
   red: '#FF7373',
   blackTransparent: 'rgba(0, 0, 0, 0.24)',
+  darkPurple: '#534764',
 } as const;
 
 export const fontFamily = {
