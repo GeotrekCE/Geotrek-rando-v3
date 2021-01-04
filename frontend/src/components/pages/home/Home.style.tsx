@@ -15,6 +15,9 @@ export const TopContainer = styled.div`
   padding-left: ${getSpacing(20)};
   padding-right: ${getSpacing(20)};
   background-color: ${colorPalette.amberDark};
+  background-image: url('/images/home-background.jpg');
+  background-size: cover;
+  background-position: center;
 `;
 TopContainer.displayName = 'TopContainer';
 
