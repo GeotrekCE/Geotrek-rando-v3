@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { getSpacing, typography } from 'stylesheet';
+import { getSpacing, typography, zIndex } from 'stylesheet';
 
 export const HeaderContainer = styled.header`
   ${typography.h1}
@@ -9,6 +9,12 @@ export const HeaderContainer = styled.header`
   align-items: center;
   height: ${getSpacing(13)};
   padding: ${getSpacing(10)} ${getSpacing(4)};
+
+  /* Replace background-color later */
+  background-color: grey;
+  position: sticky;
+  top: 0;
+  z-index: ${zIndex.header};
 `;
 
 HeaderContainer.displayName = 'HeaderContainer';
