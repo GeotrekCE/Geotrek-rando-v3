@@ -11,7 +11,7 @@ On this environment, we don't use docker and edploy directly to Vercel in order 
 You need to add a remote to your git repository:
 
 ```bash
-git remote add vercel git@github.com:sraikimaxime/Geotrek-rando-v3.git
+git remote add vercel git@github.com:Weegle99/Geotrek-rando-v3.git
 ```
 
 We performed a fork of geotrek rando on a personal account to benefit from vercel free tier
