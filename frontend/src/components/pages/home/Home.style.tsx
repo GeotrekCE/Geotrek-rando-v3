@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { borderRadius, getSpacing, typography } from 'stylesheet';
+import { borderRadius, getSpacing, typography, zIndex } from 'stylesheet';
 
 export const HomeContainer = styled.div`
   display: flex;
@@ -68,6 +68,7 @@ ListContainer.displayName = 'ListContainer';
 
 export const MapContainer = styled.div`
   flex: 1;
+  z-index: ${zIndex.content};
 
   @media (max-width: 768px) {
     height: 500px;
