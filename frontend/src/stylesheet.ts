@@ -46,12 +46,12 @@ export const colorPalette = {
   white: '#FFFFFF',
   red: '#FF7373',
   blackTransparent: 'rgba(0, 0, 0, 0.24)',
-};
+} as const;
 
 export const fontFamily = {
   main: `'Lato', 'Helvetica', 'Arial', sans-serif`,
   code: 'Monospace',
-};
+} as const;
 
 export const typography = {
   main: css`
@@ -79,14 +79,14 @@ export const typography = {
     font-family: ${fontFamily.code};
     color: ${colorPalette.amberDark};
   `,
-};
+} as const;
 
 export const borderRadius = {
   medium: '4px',
   large: '10px',
-};
+} as const;
 
 export const zIndex = {
   content: 0,
   header: 1,
-};
+} as const;
