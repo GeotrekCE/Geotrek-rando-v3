@@ -1,13 +1,28 @@
 import styled from 'styled-components';
-import { borderRadius, getSpacing, typography, zIndex } from 'stylesheet';
+import { borderRadius, colorPalette, getSpacing, typography, zIndex } from 'stylesheet';
 
 export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: ${getSpacing(10)};
+  align-items: stretch;
 `;
 HomeContainer.displayName = 'HomeContainer';
+
+export const TopContainer = styled.div`
+  text-align: center;
+  height: ${getSpacing(150)};
+  padding-top: ${getSpacing(80)};
+  padding-left: ${getSpacing(20)};
+  padding-right: ${getSpacing(20)};
+  background-color: ${colorPalette.amberDark};
+`;
+TopContainer.displayName = 'TopContainer';
+
+export const WelcomeText = styled.h1`
+  ${typography.h1}
+  font-size: 44px;
+  color: ${colorPalette.white};
+`;
 
 export const Logo = styled.img`
   width: ${getSpacing(32)};
