@@ -25,7 +25,7 @@ export const Root: FunctionComponent<RootProps> = props => (
     hasError={props.hasError}
     eventId={props.errorEventId}
   >
-    <IntlProvider locale="en" messages={locales.en}>
+    <IntlProvider locale="fr" messages={locales.fr}>
       <Head>
         <link rel="manifest" href="/manifest.json" />
 
