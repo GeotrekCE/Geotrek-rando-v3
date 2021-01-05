@@ -18,12 +18,12 @@ const Button = styled.button`
 
   color: ${colorPalette.white};
   background-color: ${props =>
-    props.disabled === true ? colorPalette.greyLight : colorPalette.amberDark};
+    props.disabled === true ? colorPalette.greySoft : colorPalette.primary3};
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
     background-color: ${props =>
-      props.disabled === true ? colorPalette.greyLight : colorPalette.amber};
+      props.disabled === true ? colorPalette.greySoft : colorPalette.primary1};
   }
 `;
 

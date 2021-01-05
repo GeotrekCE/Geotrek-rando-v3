@@ -38,14 +38,16 @@ export const getSpacing = (multiplier: number): string =>
  * As to naming, the best name is the name used by the designer
  */
 export const colorPalette = {
-  greyLight: '#e0e0e0',
-  greyDark: '#222',
-  amber: '#FFC107',
-  amberDark: '#FF8F00',
-  blueLight: '#F4F9FB',
+  primary1: '#AA397D',
+  primary2: '#F5E7EF',
+  primary3: '#791150',
+  greyDarkColored: '#534764',
+  greySoft: '#D7D6D9',
+  warning: '#D77E00',
+  easyOK: '#4FAD79',
+  hardKO: '#E25316',
+  black: '#000000',
   white: '#FFFFFF',
-  red: '#FF7373',
-  blackTransparent: 'rgba(0, 0, 0, 0.24)',
 };
 
 export const fontFamily = {
@@ -59,7 +61,7 @@ export const typography = {
     font-weight: normal;
     font-size: 16px;
     line-height: 1.5;
-    color: ${colorPalette.greyDark};
+    color: ${colorPalette.greyDarkColored};
   `,
   bold: css`
     font-weight: bold;
@@ -77,7 +79,7 @@ export const typography = {
   `,
   code: css`
     font-family: ${fontFamily.code};
-    color: ${colorPalette.amberDark};
+    color: ${colorPalette.primary3};
   `,
 };
 
