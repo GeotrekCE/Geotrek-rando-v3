@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css, FlattenSimpleInterpolation } from 'styled-components';
 
 /**
  * This file is here to ensure UI consistency
@@ -8,6 +8,18 @@ import { css } from 'styled-components';
 
 // This file is where the variables are defined, so we can disable stylelint here
 // stylelint-disable
+
+export const MAX_WIDTH_MOBILE = 640;
+
+export const desktopOnly = (
+  cssProperties: FlattenSimpleInterpolation,
+): FlattenSimpleInterpolation => {
+  return css`
+    @media (min-width: ${MAX_WIDTH_MOBILE}px) {
+      ${cssProperties}
+    }
+  `;
+};
 
 /**
  * App spacing measurement convention
