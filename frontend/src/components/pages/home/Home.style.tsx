@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { borderRadius, colorPalette, getSpacing, typography, zIndex } from 'stylesheet';
+import { ActivitySearchFilter as RawActivitySearchFilter } from 'components/ActivitySearchFilter';
 
 export const HomeContainer = styled.div`
   display: flex;
@@ -94,3 +95,7 @@ export const MapContainer = styled.div`
   }
 `;
 MapContainer.displayName = 'MapContainer';
+
+export const ActivitySearchFilter = styled(RawActivitySearchFilter)`
+  align-self: center;
+`;

@@ -6,9 +6,13 @@ import { Walking } from '../Icons/Walking';
 import { ActivityButton } from './ActivityButton';
 import { ActivitySearchFilterContainer } from './ActivitySearchFilter.style';
 
-export const ActivitySearchFilter: React.FC = () => {
+interface Props {
+  className?: string;
+}
+
+export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
   return (
-    <ActivitySearchFilterContainer>
+    <ActivitySearchFilterContainer className={className}>
       <ActivityButton icon={Walking}>
         <FormattedMessage id="home.walking" />
       </ActivityButton>
