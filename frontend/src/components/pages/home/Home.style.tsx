@@ -22,7 +22,7 @@ export const TopContainer = styled.div`
   padding-top: ${oldGetSpacing(80)};
   padding-left: ${oldGetSpacing(20)};
   padding-right: ${oldGetSpacing(20)};
-  background-color: ${colorPalette.amberDark};
+  background-color: ${colorPalette.primary3};
   background-image: url('/images/home-background.jpg');
   background-size: cover;
   background-position: center;
