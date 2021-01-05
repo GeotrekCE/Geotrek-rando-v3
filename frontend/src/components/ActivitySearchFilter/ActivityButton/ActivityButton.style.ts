@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { colorPalette, oldGetSpacing, typography } from 'stylesheet';
+import { colorPalette, getSpacing, typography } from 'stylesheet';
 
 /**
  * Allows you to properly re-design a HTML button without all the defaults
@@ -26,9 +26,9 @@ export const ActivityButtonContainer = styled.button`
   flex-direction: column;
   align-items: center;
 
-  /* We do a mix of padding and margin to have a pretty hover, padding + margin should add up to 5 */
-  padding: ${oldGetSpacing(2)} ${oldGetSpacing(4)};
-  margin: ${oldGetSpacing(3)} ${oldGetSpacing(1)};
+  /* We do a mix of padding and margin to have a pretty hover, padding + margin should add up to 6 */
+  padding: ${getSpacing(2)} ${getSpacing(5)};
+  margin: ${getSpacing(4)} ${getSpacing(1)};
 
   color: ${colorPalette.darkPurple};
 
@@ -44,7 +44,7 @@ export const Text = styled.span`
   ${typography.main}
   color: ${colorPalette.darkPurple};
 
-  margin-top: ${oldGetSpacing(2)};
+  margin-top: ${getSpacing(2)};
 
   /*
     Will probably be replaced to be responsive
