@@ -26,10 +26,11 @@ export const desktopOnly = (
  * Use the getSpacing function below to compute padding and margin
  * and elements with fixed width/height
  */
-const SPACING_UNIT = 5;
+const OLD_SPACING_UNIT = 5;
 const MEASUREMENT_UNIT = 'px';
-export const getSpacing = (multiplier: number): string =>
-  `${multiplier * SPACING_UNIT}${MEASUREMENT_UNIT}`;
+/** @deprecated - use getSpacing instead */
+export const oldGetSpacing = (multiplier: number): string =>
+  `${multiplier * OLD_SPACING_UNIT}${MEASUREMENT_UNIT}`;
 
 /**
  * Use this palette in your components
