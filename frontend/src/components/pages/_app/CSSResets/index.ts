@@ -52,7 +52,7 @@ const CSSResets = createGlobalStyle`
     html {
         height: 100vh;
         ${typography.main}
-        color: ${colorPalette.greyDark};
+        color: ${colorPalette.greyDarkColored};
     }
     body, #__next {
         height: 100%;

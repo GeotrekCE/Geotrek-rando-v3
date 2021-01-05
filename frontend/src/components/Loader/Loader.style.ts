@@ -30,7 +30,7 @@ export const Dot = styled.div`
   position: absolute;
   width: 5px;
   height: 5px;
-  background: ${colorPalette.amberDark};
+  background: ${colorPalette.primary3};
   border-radius: 50%;
   animation: ${loaderAnimation} 1.2s linear infinite;
 

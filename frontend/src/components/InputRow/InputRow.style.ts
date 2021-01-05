@@ -8,7 +8,7 @@ export const Label = styled.label`
 `;
 
 export const Error = styled.p`
-  color: ${colorPalette.red};
+  color: ${colorPalette.hardKO};
   ${typography.small}
   margin-top: ${getSpacing(1)};
 `;
