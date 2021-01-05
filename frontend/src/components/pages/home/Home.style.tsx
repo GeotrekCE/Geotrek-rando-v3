@@ -1,5 +1,12 @@
 import styled from 'styled-components';
-import { borderRadius, colorPalette, oldGetSpacing, typography, zIndex } from 'stylesheet';
+import {
+  borderRadius,
+  colorPalette,
+  getSpacing,
+  oldGetSpacing,
+  typography,
+  zIndex,
+} from 'stylesheet';
 import { ActivitySearchFilter as RawActivitySearchFilter } from 'components/ActivitySearchFilter';
 
 export const HomeContainer = styled.div`
@@ -98,4 +105,8 @@ MapContainer.displayName = 'MapContainer';
 
 export const ActivitySearchFilter = styled(RawActivitySearchFilter)`
   align-self: center;
+  position: relative;
+
+  /* Approximately half of the activity search filter height */
+  top: -${getSpacing(15)};
 `;
