@@ -11,10 +11,10 @@ const Link = styled.a<LinkAttrs>`
   text-decoration: none;
   cursor: pointer;
   ${typography.bold}
-  color: ${colorPalette.greyDark};
+  color: ${colorPalette.greyDarkColored};
   transition: color 0.3s ease-in-out;
   :hover {
-    color: ${colorPalette.amberDark};
+    color: ${colorPalette.primary3};
   }
 `;
 
