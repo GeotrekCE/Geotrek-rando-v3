@@ -13,6 +13,7 @@ import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 import { Square } from 'components/Icons/Square';
 
+import { FormattedMessage } from 'react-intl';
 import { Information } from './Information';
 import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
 
@@ -56,7 +57,9 @@ export const ResultCard: React.FC<Props> = ({ activityIcon, place, title, tags, 
           </InformationContainer>
         </DetailsLayout>
         <BookingButtonContainer>
-          <Button>Réserver</Button>
+          <Button>
+            <FormattedMessage id="results.book" />
+          </Button>
         </BookingButtonContainer>
       </DetailsContainer>
     </Container>
