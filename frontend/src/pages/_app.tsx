@@ -5,7 +5,7 @@ import { appWrapper } from 'redux/store';
 import { captureException } from 'services/sentry';
 import '../public/fonts.css';
 
-import "tailwindcss/tailwind.css";
+import 'tailwindcss/tailwind.css';
 
 interface AppProps extends AppInitialProps {
   hasError: boolean;

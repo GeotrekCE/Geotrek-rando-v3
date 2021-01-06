@@ -6,7 +6,7 @@ import { FilterBar } from './components/FilterBar';
 export const ResultsUI: React.FC = () => {
   return (
     <Layout>
-      <FilterBar/>
+      <FilterBar />
     </Layout>
   );
 };
