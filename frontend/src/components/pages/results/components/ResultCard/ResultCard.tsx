@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { borderRadius, colorPalette, getSpacing, typography } from 'stylesheet';
 
+import { flexGap } from 'services/cssHelpers';
+
 import { Chip } from 'components/Chip';
 import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
@@ -21,18 +23,18 @@ export const ResultCard: React.FC = () => {
         <Place>Saint-Etienne-du-Valdonnez</Place>
         <Title>Balade au pays des menhirs</Title>
         <TagContainer>
-          <FlexGap gap={getSpacing(2)}>
+          <TagLayout>
             <Chip>En famille</Chip>
             <Chip>Ciel étoilé</Chip>
             <Chip>En famille</Chip>
-          </FlexGap>
+          </TagLayout>
         </TagContainer>
         <InformationContainer>
-          <FlexGap gap={getSpacing(6)}>
+          <InformationLayout>
             <Information icon={Clock}>2h</Information>
             <Information icon={CodeBrackets}>5km</Information>
             <Information icon={TrendingUp}>+360m</Information>
-          </FlexGap>
+          </InformationLayout>
         </InformationContainer>
       </DetailsContainer>
     </Container>
@@ -92,24 +94,16 @@ const TagContainer = styled.div`
   margin-top: ${getSpacing(2)};
 `;
 
-/**
- * Emulates flex-gap which has yet to be implemented on every browser
- * https://coryrylan.com/blog/css-gap-space-with-flexbox
- */
-const FlexGap = styled.div<{ gap: string }>`
-  --gap: ${({ gap }) => gap};
-  display: inline-flex;
-  flex-wrap: wrap;
-  margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
-  width: calc(100% + var(--gap));
-
-  & > * {
-    margin: var(--gap) 0 0 var(--gap);
-  }
+const TagLayout = styled.div`
+  ${flexGap(getSpacing(2))}
 `;
 
 const InformationContainer = styled.div`
   margin-top: ${getSpacing(4)};
+`;
+
+const InformationLayout = styled.div`
+  ${flexGap(getSpacing(4))}
 `;
 
 const ActivityBadge = styled(RawActivityBadge)`
