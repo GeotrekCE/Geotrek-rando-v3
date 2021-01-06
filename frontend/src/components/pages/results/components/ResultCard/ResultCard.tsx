@@ -5,6 +5,8 @@ import { borderRadius, colorPalette, desktopOnly, getSpacing, typography } from 
 import { flexGap } from 'services/cssHelpers';
 
 import { Chip } from 'components/Chip';
+import { Button } from 'components/Button';
+
 import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
@@ -20,22 +22,27 @@ export const ResultCard: React.FC = () => {
         <ActivityBadge icon={Walking} />
       </ImageContainer>
       <DetailsContainer>
-        <Place>Saint-Etienne-du-Valdonnez</Place>
-        <Title>Balade au pays des menhirs</Title>
-        <TagContainer>
-          <TagLayout>
-            <Chip>En famille</Chip>
-            <Chip>Ciel étoilé</Chip>
-            <Chip>En famille</Chip>
-          </TagLayout>
-        </TagContainer>
-        <InformationContainer>
-          <InformationLayout>
-            <Information icon={Clock}>2h</Information>
-            <Information icon={CodeBrackets}>5km</Information>
-            <Information icon={TrendingUp}>+360m</Information>
-          </InformationLayout>
-        </InformationContainer>
+        <DetailsLayout>
+          <Place>Saint-Etienne-du-Valdonnez</Place>
+          <Title>Balade au pays des menhirs</Title>
+          <TagContainer>
+            <TagLayout>
+              <Chip>En famille</Chip>
+              <Chip>Ciel étoilé</Chip>
+              <Chip>En famille</Chip>
+            </TagLayout>
+          </TagContainer>
+          <InformationContainer>
+            <InformationLayout>
+              <Information icon={Clock}>2h</Information>
+              <Information icon={CodeBrackets}>5km</Information>
+              <Information icon={TrendingUp}>+360m</Information>
+            </InformationLayout>
+          </InformationContainer>
+        </DetailsLayout>
+        <BookingButtonContainer>
+          <Button>Réserver</Button>
+        </BookingButtonContainer>
       </DetailsContainer>
     </Container>
   );
@@ -80,7 +87,6 @@ const ImageContainer = styled.div`
 
 const DetailsContainer = styled.div`
   display: flex;
-  flex-direction: column;
 
   padding: ${getSpacing(4)};
 
@@ -95,6 +101,22 @@ const DetailsContainer = styled.div`
       border: 1px solid ${colorPalette.greySoft};
       border-left: none;
       border-radius: 0 ${borderRadius.card} ${borderRadius.card} 0;
+    `,
+  )}
+`;
+
+const DetailsLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const BookingButtonContainer = styled.div`
+  margin-left: ${getSpacing(4)};
+  display: none;
+
+  ${desktopOnly(
+    css`
+      display: block;
     `,
   )}
 `;
