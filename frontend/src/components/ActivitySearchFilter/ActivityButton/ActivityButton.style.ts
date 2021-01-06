@@ -1,23 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { colorPalette, getSpacing, typography } from 'stylesheet';
-
-/**
- * Allows you to properly re-design a HTML button without all the defaults
- */
-const buttonCssResets = css`
-  display: inline-block;
-  border: none;
-  margin: 0;
-  text-decoration: none;
-  cursor: pointer;
-  text-align: center;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-
-  &:focus {
-    outline: 0;
-  }
-`;
+import { buttonCssResets } from 'services/cssHelpers';
 
 export const ActivityButtonContainer = styled.button`
   ${buttonCssResets}
