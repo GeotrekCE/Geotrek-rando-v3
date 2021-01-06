@@ -78,6 +78,7 @@ export const typography = {
   `,
   small: css`
     font-size: 14px;
+    line-height: 18px;
   `,
   h1: css`
     font-family: ${fontFamily.main};
