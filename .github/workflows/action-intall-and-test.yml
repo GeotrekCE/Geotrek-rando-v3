@@ -1,0 +1,28 @@
+name: Install and test
+
+on: pull_request
+
+jobs:
+  install-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache Node Modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        with:
+          path: ./frontend/node_modules
+          key: node-modules-${{ hashFiles('./frontend/yarn.lock') }}
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn
+        working-directory: ./frontend
+      - name: Check types
+        run: yarn tsc
+        working-directory: ./frontend
+      - name: Run tests
+        run: yarn test:coverage
+        working-directory: ./frontend
+      - name: Check linter
+        run: yarn lint
+        working-directory: ./frontend
