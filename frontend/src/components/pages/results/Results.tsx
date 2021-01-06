@@ -5,11 +5,13 @@ import { Walking } from 'components/Icons/Walking';
 import { Layout } from 'components/Layout/Layout';
 import { FilterBar } from './components/FilterBar';
 import { ResultCard } from './components/ResultCard';
+import { SearchResultsMeta } from './components/SearchResultsMeta';
 
 export const ResultsUI: React.FC = () => {
   return (
     <Layout>
       <FilterBar />
+      <SearchResultsMeta />
       <ResultCard
         activityIcon={Walking}
         place="Saint-Etienne-du-Valdonnez"
