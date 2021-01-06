@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Chip } from 'components/Chip';
+
 import { borderRadius, colorPalette, getSpacing, typography } from 'stylesheet';
 
 export const ResultCard: React.FC = () => {
@@ -10,7 +12,13 @@ export const ResultCard: React.FC = () => {
       <DetailsContainer>
         <Place>Saint-Etienne-du-Valdonnez</Place>
         <Title>Balade au pays des menhirs</Title>
-        <TagContainer></TagContainer>
+        <TagContainer>
+          <FlexGap gap={getSpacing(2)}>
+            <Chip>En famille</Chip>
+            <Chip>Ciel étoilé</Chip>
+            <Chip>En famille</Chip>
+          </FlexGap>
+        </TagContainer>
         <InformationContainer></InformationContainer>
       </DetailsContainer>
     </Container>
@@ -63,6 +71,25 @@ const Title = styled.span`
   color: ${colorPalette.primary1};
 `;
 
-const TagContainer = styled.div``;
+const TagContainer = styled.div`
+  display: flex;
+  margin-top: ${getSpacing(2)};
+`;
+
+/**
+ * Emulates flex-gap which has yet to be implemented on every browser
+ * https://coryrylan.com/blog/css-gap-space-with-flexbox
+ */
+const FlexGap = styled.div<{ gap: string }>`
+  --gap: ${({ gap }) => gap};
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
+  width: calc(100% + var(--gap));
+
+  & > * {
+    margin: var(--gap) 0 0 var(--gap);
+  }
+`;
 
 const InformationContainer = styled.div``;
