@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { getSpacing, typography } from 'stylesheet';
+import { oldGetSpacing, typography } from 'stylesheet';
 import BaseButton from 'components/Button';
 
 export const Container = styled.div`
@@ -9,7 +9,7 @@ export const Container = styled.div`
 Container.displayName = 'Container';
 
 export const PageContent = styled.div`
-  padding: ${getSpacing(8)} ${getSpacing(4)};
+  padding: ${oldGetSpacing(8)} ${oldGetSpacing(4)};
 `;
 PageContent.displayName = 'PageContent';
 
@@ -20,10 +20,10 @@ Title.displayName = 'Title';
 
 export const HelperList = styled.ul`
   list-style: disc inside;
-  margin-top: ${getSpacing(2)};
+  margin-top: ${oldGetSpacing(2)};
 `;
 HelperList.displayName = 'HelperList';
 
 export const Button = styled(BaseButton)`
-  padding: ${getSpacing(1)} ${getSpacing(2)};
+  padding: ${oldGetSpacing(1)} ${oldGetSpacing(2)};
 `;

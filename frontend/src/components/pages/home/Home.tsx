@@ -6,6 +6,7 @@ import Button from 'components/Button';
 import Map from 'components/Map';
 import { WrapperProps } from './Home.wrap';
 import {
+  ActivitySearchFilter,
   Code,
   DescriptionLine,
   DescriptionList,
@@ -33,6 +34,7 @@ const HomeUI: FunctionComponent<WrapperProps> = ({
           <FormattedMessage id="home.welcome-text" />
         </WelcomeText>
       </TopContainer>
+      <ActivitySearchFilter />
       <Logo alt="logo" src="/logo.png" />
       <Title>Welcome to Geotrek</Title>
       <HowTo>

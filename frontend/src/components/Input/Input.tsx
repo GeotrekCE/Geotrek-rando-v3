@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { borderRadius, colorPalette, getSpacing, typography } from 'stylesheet';
+import { borderRadius, colorPalette, oldGetSpacing, typography } from 'stylesheet';
 
 const getBorderColor = (hasError: boolean, originalColor: string): string =>
   hasError ? colorPalette.hardKO : originalColor;
@@ -13,7 +13,7 @@ const Input = styled.input<Props>`
   width: 100%;
   height: 60px;
   background-color: ${colorPalette.white};
-  padding: 0 ${getSpacing(3)};
+  padding: 0 ${oldGetSpacing(3)};
   border-radius: ${borderRadius.medium};
   border: 1px solid ${props => getBorderColor(props.hasError, colorPalette.greySoft)};
 

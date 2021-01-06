@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { getSpacing, typography, zIndex } from 'stylesheet';
+import { oldGetSpacing, typography, zIndex } from 'stylesheet';
 
 export const HeaderContainer = styled.header`
   ${typography.h1}
@@ -7,8 +7,8 @@ export const HeaderContainer = styled.header`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: ${getSpacing(13)};
-  padding: ${getSpacing(10)} ${getSpacing(4)};
+  height: ${oldGetSpacing(13)};
+  padding: ${oldGetSpacing(10)} ${oldGetSpacing(4)};
 
   /* Replace background-color later */
   background-color: grey;
@@ -25,7 +25,7 @@ export const Title = styled.h1`
 Title.displayName = 'HeaderTitle';
 
 export const Logo = styled.img`
-  height: ${getSpacing(9)};
+  height: ${oldGetSpacing(9)};
 `;
 
 Logo.displayName = 'Logo';
