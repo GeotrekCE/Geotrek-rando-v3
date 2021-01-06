@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { borderRadius, colorPalette, getSpacing, typography } from 'stylesheet';
 
 import { Chip } from 'components/Chip';
+import { Clock } from 'components/Icons/Clock';
+import { CodeBrackets } from 'components/Icons/CodeBrackets';
+import { TrendingUp } from 'components/Icons/TrendingUp';
 
-import { borderRadius, colorPalette, getSpacing, typography } from 'stylesheet';
+import { Information } from './Information';
 
 export const ResultCard: React.FC = () => {
   return (
@@ -19,7 +23,13 @@ export const ResultCard: React.FC = () => {
             <Chip>En famille</Chip>
           </FlexGap>
         </TagContainer>
-        <InformationContainer></InformationContainer>
+        <InformationContainer>
+          <FlexGap gap={getSpacing(6)}>
+            <Information icon={Clock}>2h</Information>
+            <Information icon={CodeBrackets}>5km</Information>
+            <Information icon={TrendingUp}>+360m</Information>
+          </FlexGap>
+        </InformationContainer>
       </DetailsContainer>
     </Container>
   );
@@ -92,4 +102,6 @@ const FlexGap = styled.div<{ gap: string }>`
   }
 `;
 
-const InformationContainer = styled.div``;
+const InformationContainer = styled.div`
+  margin-top: ${getSpacing(4)};
+`;
