@@ -6,13 +6,17 @@ import { Chip } from 'components/Chip';
 import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
+import { Walking } from 'components/Icons/Walking';
 
 import { Information } from './Information';
+import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
 
 export const ResultCard: React.FC = () => {
   return (
     <Container>
-      <ImageContainer></ImageContainer>
+      <ImageContainer>
+        <ActivityBadge icon={Walking} />
+      </ImageContainer>
       <DetailsContainer>
         <Place>Saint-Etienne-du-Valdonnez</Place>
         <Title>Balade au pays des menhirs</Title>
@@ -53,6 +57,8 @@ const ImageContainer = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+
+  position: relative;
 `;
 
 const DetailsContainer = styled.div`
@@ -104,4 +110,10 @@ const FlexGap = styled.div<{ gap: string }>`
 
 const InformationContainer = styled.div`
   margin-top: ${getSpacing(4)};
+`;
+
+const ActivityBadge = styled(RawActivityBadge)`
+  position: absolute;
+  top: ${getSpacing(4)};
+  left: ${getSpacing(4)};
 `;
