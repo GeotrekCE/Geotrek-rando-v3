@@ -1,17 +1,25 @@
-import { FunctionComponent } from 'react';
+import { FormattedMessage } from 'react-intl';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { oldGetSpacing, typography, zIndex } from 'stylesheet';
-
+import { colorPalette, getSpacing, typography, zIndex } from 'stylesheet';
 import { routes } from 'services/routes';
+import { BurgerMenu } from '../Icons/BurgerMenu';
 
-export const Header: FunctionComponent = () => {
+interface Props {
+  logoPath: string;
+  title: string;
+}
+
+export const Header: React.FC<Props> = ({ logoPath, title }) => {
   return (
     <HeaderContainer>
       <Link href={routes.HOME}>
-        <Logo alt="logo" src="/logo.png" />
+        <Logo alt="logo" src={logoPath} />
       </Link>
-      <Title>Geotrek Rando</Title>
+      <Title>
+        <FormattedMessage id={title} />
+      </Title>
+      <Icon color="white" size={24} />
     </HeaderContainer>
   );
 };
@@ -20,27 +28,24 @@ const HeaderContainer = styled.header`
   ${typography.h1}
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  height: ${oldGetSpacing(13)};
-  padding: ${oldGetSpacing(10)} ${oldGetSpacing(4)};
-
-  /* Replace background-color later */
-  background-color: grey;
+  height: ${getSpacing(11)};
+  padding: ${getSpacing(3)};
+  background-color: ${colorPalette.primary1};
   position: sticky;
   top: 0;
   z-index: ${zIndex.header};
 `;
 
-HeaderContainer.displayName = 'HeaderContainer';
-
 const Title = styled.h1`
-  ${typography.h1}
+  ${typography.main}
+  color: white;
+  flex-grow: 1;
 `;
-Title.displayName = 'HeaderTitle';
 
 const Logo = styled.img`
-  height: ${oldGetSpacing(9)};
+  height: ${getSpacing(9)};
+  margin-right: ${getSpacing(3)};
 `;
 
-Logo.displayName = 'Logo';
+const Icon = styled(BurgerMenu)``;
