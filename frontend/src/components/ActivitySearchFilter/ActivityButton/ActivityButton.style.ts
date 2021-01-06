@@ -30,19 +30,19 @@ export const ActivityButtonContainer = styled.button`
   padding: ${getSpacing(2)} ${getSpacing(5)};
   margin: ${getSpacing(4)} ${getSpacing(1)};
 
-  color: ${colorPalette.darkPurple};
+  color: ${colorPalette.greyDarkColored};
 
   background-color: ${colorPalette.white};
   transition: background-color 150ms;
 
   &:hover {
-    background-color: ${colorPalette.greyLight};
+    color: ${colorPalette.primary3};
   }
 `;
 
 export const Text = styled.span`
   ${typography.main}
-  color: ${colorPalette.darkPurple};
+  color: ${colorPalette.greyDarkColored};
 
   margin-top: ${getSpacing(2)};
 
