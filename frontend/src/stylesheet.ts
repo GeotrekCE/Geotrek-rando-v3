@@ -67,7 +67,7 @@ export const typography = {
     font-family: ${fontFamily.main};
     font-weight: normal;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 21px;
     color: ${colorPalette.greyDarkColored};
   `,
   bold: css`
@@ -78,11 +78,13 @@ export const typography = {
   `,
   small: css`
     font-size: 14px;
+    line-height: 18px;
   `,
   h1: css`
     font-family: ${fontFamily.main};
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
+    line-height: 26px;
   `,
   code: css`
     font-family: ${fontFamily.code};
@@ -92,8 +94,10 @@ export const typography = {
 
 export const borderRadius = {
   medium: '4px',
+  squareButton: '8px',
   large: '10px',
   card: '16px',
+  chip: '20px',
 } as const;
 
 export const zIndex = {

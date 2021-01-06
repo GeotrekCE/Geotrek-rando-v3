@@ -15,5 +15,8 @@
   "page": {
     "back": "Retour",
     "api-to-translate-example": "Ce message est traduit en utilisant directement l'API react-intl"
+  },
+  "results": {
+    "book": "Réserver"
   }
 }

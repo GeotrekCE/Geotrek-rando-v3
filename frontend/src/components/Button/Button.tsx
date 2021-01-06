@@ -1,29 +1,25 @@
-import styled, { css } from 'styled-components';
-import { borderRadius, colorPalette, oldGetSpacing, typography } from 'stylesheet';
+import styled from 'styled-components';
+import { borderRadius, colorPalette, getSpacing, typography } from 'stylesheet';
+import { buttonCssResets } from 'services/cssHelpers';
 
-const Button = styled.button`
-  padding: ${oldGetSpacing(2)} ${oldGetSpacing(4)};
-  ${typography.bold}
-  cursor: ${props => (props.disabled === true ? 'default' : 'pointer')};
-  ${props =>
-    props.disabled === true &&
-    css`
-      pointer-events: none;
-    `}
+export const Button = styled.button`
+  ${buttonCssResets};
 
-  border: none;
-  border-radius: ${borderRadius.medium};
+  padding: ${getSpacing(2)} ${getSpacing(4)};
 
-  text-decoration: none;
+  border: 1px solid ${colorPalette.primary1};
+  border-radius: ${borderRadius.squareButton};
 
-  color: ${colorPalette.white};
-  background-color: ${props =>
-    props.disabled === true ? colorPalette.greySoft : colorPalette.primary3};
+  ${typography.main}
+  color: ${colorPalette.primary1};
+
+  background-color: ${colorPalette.white};
   transition: background-color 0.3s ease-in-out;
 
+  cursor: pointer;
+
   &:hover {
-    background-color: ${props =>
-      props.disabled === true ? colorPalette.greySoft : colorPalette.primary1};
+    background-color: ${colorPalette.primary2};
   }
 `;
 
