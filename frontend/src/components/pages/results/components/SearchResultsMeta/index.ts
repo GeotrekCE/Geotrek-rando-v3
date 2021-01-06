@@ -1,0 +1,1 @@
+export { SearchResultsMeta } from './SearchResultsMeta';
