@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
   borderRadius,
   colorPalette,
+  desktopOnly,
   getSpacing,
   oldGetSpacing,
   typography,
@@ -18,21 +19,26 @@ HomeContainer.displayName = 'HomeContainer';
 
 export const TopContainer = styled.div`
   text-align: center;
-  height: ${oldGetSpacing(150)};
-  padding-top: ${oldGetSpacing(80)};
-  padding-left: ${oldGetSpacing(20)};
-  padding-right: ${oldGetSpacing(20)};
   background-color: ${colorPalette.primary3};
   background-image: url('/images/home-background.jpg');
   background-size: cover;
   background-position: center;
+  padding: ${getSpacing(13)};
+  ${desktopOnly(css`
+    height: ${getSpacing(150)};
+    padding-top: ${getSpacing(85)};
+    padding-left: ${getSpacing(22)};
+    padding-right: ${getSpacing(22)};
+  `)}
 `;
 TopContainer.displayName = 'TopContainer';
 
 export const WelcomeText = styled.h1`
   ${typography.h1}
-  font-size: 44px;
   color: ${colorPalette.white};
+  ${desktopOnly(css`
+    font-size: ${getSpacing(8)};
+  `)}
 `;
 
 export const Logo = styled.img`
