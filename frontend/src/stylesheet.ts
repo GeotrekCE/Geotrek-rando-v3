@@ -95,6 +95,7 @@ export const borderRadius = {
   medium: '4px',
   large: '10px',
   card: '16px',
+  chip: '20px',
 } as const;
 
 export const zIndex = {
