@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { borderRadius, colorPalette, getSpacing, typography } from 'stylesheet';
+import { borderRadius, colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
 
 interface Props {
   children: React.ReactNode;
@@ -11,7 +11,7 @@ interface Props {
 export const Chip: React.FC<Props> = ({ className, children }) => {
   return (
     <ChipContainer className={className}>
-      <ChipText>{children}</ChipText>
+      <span>{children}</span>
     </ChipContainer>
   );
 };
@@ -21,10 +21,11 @@ const ChipContainer = styled.div`
   padding: ${getSpacing(1)} ${getSpacing(2)};
 
   background-color: ${colorPalette.primary2};
-`;
 
-const ChipText = styled.span`
-  ${typography.main}
-
+  ${typography.small}
   color: ${colorPalette.primary3}
+
+  ${desktopOnly(css`
+    ${typography.main}
+  `)}
 `;
