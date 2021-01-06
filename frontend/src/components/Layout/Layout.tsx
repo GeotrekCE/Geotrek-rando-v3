@@ -17,7 +17,7 @@ PageContent.displayName = 'PageContent';
 export const Layout: FunctionComponent = props => {
   return (
     <Container>
-      <Header />
+      <Header logoPath="/logo.png" />
       <PageContent>{props.children}</PageContent>
     </Container>
   );

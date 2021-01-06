@@ -3,6 +3,7 @@ import App, { AppContext, AppInitialProps } from 'next/app';
 import { Root } from 'components/pages/_app/Root';
 import { appWrapper } from 'redux/store';
 import { captureException } from 'services/sentry';
+import '../public/fonts.css';
 
 interface AppProps extends AppInitialProps {
   hasError: boolean;
