@@ -7,38 +7,51 @@ import { flexGap } from 'services/cssHelpers';
 import { Chip } from 'components/Chip';
 import { Button } from 'components/Button';
 
+import { GenericIconProps } from 'components/Icons/types';
 import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
-import { Walking } from 'components/Icons/Walking';
 import { Square } from 'components/Icons/Square';
 
 import { Information } from './Information';
 import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
 
-export const ResultCard: React.FC = () => {
+interface Props {
+  activityIcon: React.FC<GenericIconProps>;
+  place: string;
+  title: string;
+  tags: string[];
+  informations: {
+    duration: string;
+    distance: string;
+    elevation: string;
+    difficulty: string;
+  };
+}
+
+export const ResultCard: React.FC<Props> = ({ activityIcon, place, title, tags, informations }) => {
   return (
     <Container>
       <ImageContainer>
-        <ActivityBadge icon={Walking} />
+        <ActivityBadge icon={activityIcon} />
       </ImageContainer>
       <DetailsContainer>
         <DetailsLayout>
-          <Place>Saint-Etienne-du-Valdonnez</Place>
-          <Title>Balade au pays des menhirs</Title>
+          <Place>{place}</Place>
+          <Title>{title}</Title>
           <TagContainer>
             <TagLayout>
-              <Chip>En famille</Chip>
-              <Chip>Ciel étoilé</Chip>
-              <Chip>En famille</Chip>
+              {tags.map(tag => (
+                <Chip key={tag}>{tag}</Chip>
+              ))}
             </TagLayout>
           </TagContainer>
           <InformationContainer>
             <InformationLayout>
-              <Information icon={Clock}>2h</Information>
-              <Information icon={CodeBrackets}>5km</Information>
-              <Information icon={TrendingUp}>+360m</Information>
-              <DifficultyInformation icon={Square}>Facile</DifficultyInformation>
+              <Information icon={Clock}>{informations.duration}</Information>
+              <Information icon={CodeBrackets}>{informations.distance}</Information>
+              <Information icon={TrendingUp}>{informations.elevation}</Information>
+              <DifficultyInformation icon={Square}>{informations.difficulty}</DifficultyInformation>
             </InformationLayout>
           </InformationContainer>
         </DetailsLayout>
