@@ -58,7 +58,7 @@ export const colorPalette = {
 } as const;
 
 export const fontFamily = {
-  main: `'Lato', 'Helvetica', 'Arial', sans-serif`,
+  main: `'Assistant', 'Helvetica', 'Arial', sans-serif`,
   code: 'Monospace',
 } as const;
 
