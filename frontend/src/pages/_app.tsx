@@ -4,6 +4,8 @@ import { Root } from 'components/pages/_app/Root';
 import { appWrapper } from 'redux/store';
 import { captureException } from 'services/sentry';
 
+import "tailwindcss/tailwind.css";
+
 interface AppProps extends AppInitialProps {
   hasError: boolean;
   errorEventId?: string;
