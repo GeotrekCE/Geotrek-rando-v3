@@ -7,17 +7,16 @@ import { BurgerMenu } from '../Icons/BurgerMenu';
 
 interface Props {
   logoPath: string;
-  title: string;
 }
 
-export const Header: React.FC<Props> = ({ logoPath, title }) => {
+export const Header: React.FC<Props> = ({ logoPath }) => {
   return (
     <HeaderContainer>
       <Link href={routes.HOME}>
         <Logo alt="logo" src={logoPath} />
       </Link>
       <Title>
-        <FormattedMessage id={title} />
+        <FormattedMessage id={'home.title'} />
       </Title>
       <Icon color="white" size={24} />
     </HeaderContainer>
