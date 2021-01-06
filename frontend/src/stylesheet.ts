@@ -94,6 +94,7 @@ export const typography = {
 
 export const borderRadius = {
   medium: '4px',
+  squareButton: '8px',
   large: '10px',
   card: '16px',
   chip: '20px',
