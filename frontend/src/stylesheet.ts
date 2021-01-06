@@ -67,7 +67,7 @@ export const typography = {
     font-family: ${fontFamily.main};
     font-weight: normal;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 21px;
     color: ${colorPalette.greyDarkColored};
   `,
   bold: css`
