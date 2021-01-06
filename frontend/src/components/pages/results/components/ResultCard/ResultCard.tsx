@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import { borderRadius, colorPalette, getSpacing, typography } from 'stylesheet';
+import styled, { css } from 'styled-components';
 
+import { borderRadius, colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
 import { flexGap } from 'services/cssHelpers';
 
 import { Chip } from 'components/Chip';
@@ -45,10 +45,17 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin: ${getSpacing(4)} ${getSpacing(4)};
+  margin: ${getSpacing(4)};
 
   border-radius: ${borderRadius.card};
   overflow: hidden;
+
+  ${desktopOnly(
+    css`
+      flex-direction: row;
+      margin: ${getSpacing(6)};
+    `,
+  )}
 `;
 
 const ImageContainer = styled.div`
@@ -61,6 +68,14 @@ const ImageContainer = styled.div`
   background-position: center center;
 
   position: relative;
+
+  ${desktopOnly(
+    css`
+      height: auto;
+      max-width: ${getSpacing(56)};
+      flex-shrink: 0;
+    `,
+  )}
 `;
 
 const DetailsContainer = styled.div`
@@ -72,6 +87,16 @@ const DetailsContainer = styled.div`
   border: 1px solid ${colorPalette.greySoft};
   border-top: none;
   border-radius: 0 0 ${borderRadius.card} ${borderRadius.card};
+
+  ${desktopOnly(
+    css`
+      padding: ${getSpacing(6)};
+
+      border: 1px solid ${colorPalette.greySoft};
+      border-left: none;
+      border-radius: 0 ${borderRadius.card} ${borderRadius.card} 0;
+    `,
+  )}
 `;
 
 const Place = styled.span`
@@ -87,15 +112,34 @@ const Title = styled.span`
 
   ${typography.h1}
   color: ${colorPalette.primary1};
+
+  ${desktopOnly(
+    css`
+      text-overflow: clip;
+      white-space: normal;
+    `,
+  )}
 `;
 
 const TagContainer = styled.div`
   display: flex;
   margin-top: ${getSpacing(2)};
+
+  ${desktopOnly(
+    css`
+      margin-top: ${getSpacing(4)};
+    `,
+  )}
 `;
 
 const TagLayout = styled.div`
   ${flexGap(getSpacing(2))}
+
+  ${desktopOnly(
+    css`
+      ${flexGap(getSpacing(4))}
+    `,
+  )}
 `;
 
 const InformationContainer = styled.div`
