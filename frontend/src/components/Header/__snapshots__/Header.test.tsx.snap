@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <header
-        class="Header__HeaderContainer-sc-1nln36f-0 geyuOZ"
+        class="Header__HeaderContainer-sc-1nln36f-0 cmRPVk"
       >
         <img
           alt="logo"
@@ -14,7 +14,7 @@ Object {
           src="./logo.png"
         />
         <h1
-          class="Header__Title-sc-1nln36f-1 jefFDJ"
+          class="Header__Title-sc-1nln36f-1 ckwSLs"
         >
           home.title
         </h1>
@@ -39,7 +39,7 @@ Object {
   </body>,
   "container": <div>
     <header
-      class="Header__HeaderContainer-sc-1nln36f-0 geyuOZ"
+      class="Header__HeaderContainer-sc-1nln36f-0 cmRPVk"
     >
       <img
         alt="logo"
@@ -47,7 +47,7 @@ Object {
         src="./logo.png"
       />
       <h1
-        class="Header__Title-sc-1nln36f-1 jefFDJ"
+        class="Header__Title-sc-1nln36f-1 ckwSLs"
       >
         home.title
       </h1>
