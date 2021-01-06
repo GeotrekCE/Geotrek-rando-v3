@@ -75,7 +75,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin: ${getSpacing(4)};
+  margin: ${getSpacing(4)} 0;
 
   border-radius: ${borderRadius.card};
   overflow: hidden;
@@ -83,7 +83,7 @@ const Container = styled.div`
   ${desktopOnly(
     css`
       flex-direction: row;
-      margin: ${getSpacing(6)};
+      margin: ${getSpacing(6)} 0;
     `,
   )}
 `;
