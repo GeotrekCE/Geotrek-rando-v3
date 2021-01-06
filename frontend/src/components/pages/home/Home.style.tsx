@@ -1,5 +1,13 @@
 import styled from 'styled-components';
-import { borderRadius, colorPalette, getSpacing, typography, zIndex } from 'stylesheet';
+import {
+  borderRadius,
+  colorPalette,
+  getSpacing,
+  oldGetSpacing,
+  typography,
+  zIndex,
+} from 'stylesheet';
+import { ActivitySearchFilter as RawActivitySearchFilter } from 'components/ActivitySearchFilter';
 
 export const HomeContainer = styled.div`
   display: flex;
@@ -10,10 +18,10 @@ HomeContainer.displayName = 'HomeContainer';
 
 export const TopContainer = styled.div`
   text-align: center;
-  height: ${getSpacing(150)};
-  padding-top: ${getSpacing(80)};
-  padding-left: ${getSpacing(20)};
-  padding-right: ${getSpacing(20)};
+  height: ${oldGetSpacing(150)};
+  padding-top: ${oldGetSpacing(80)};
+  padding-left: ${oldGetSpacing(20)};
+  padding-right: ${oldGetSpacing(20)};
   background-color: ${colorPalette.amberDark};
   background-image: url('/images/home-background.jpg');
   background-size: cover;
@@ -28,21 +36,21 @@ export const WelcomeText = styled.h1`
 `;
 
 export const Logo = styled.img`
-  width: ${getSpacing(32)};
-  margin-bottom: ${getSpacing(4)};
+  width: ${oldGetSpacing(32)};
+  margin-bottom: ${oldGetSpacing(4)};
 `;
 Logo.displayName = 'Logo';
 
 export const Title = styled.h1`
   ${typography.h1}
-  margin-bottom: ${getSpacing(12)};
+  margin-bottom: ${oldGetSpacing(12)};
 `;
 Title.displayName = 'Title';
 
 export const HowTo = styled.div`
-  padding: ${getSpacing(6)};
+  padding: ${oldGetSpacing(6)};
   width: 100%;
-  max-width: ${getSpacing(120)};
+  max-width: ${oldGetSpacing(120)};
   box-sizing: border-box;
   border-radius: ${borderRadius.large};
 `;
@@ -50,20 +58,20 @@ HowTo.displayName = 'HowTo';
 
 export const DescriptionList = styled.ul`
   list-style: disc;
-  margin-left: ${getSpacing(4)};
+  margin-left: ${oldGetSpacing(4)};
 `;
 DescriptionList.displayName = 'DescriptionList';
 
 export const DescriptionLine = styled.li`
   ${typography.light}
-  padding-left: ${getSpacing(1)};
-  margin-bottom: ${getSpacing(1)};
+  padding-left: ${oldGetSpacing(1)};
+  margin-bottom: ${oldGetSpacing(1)};
 `;
 DescriptionLine.displayName = 'DescriptionLine';
 
 export const Code = styled.code`
   ${typography.code}
-  padding: ${getSpacing(1)};
+  padding: ${oldGetSpacing(1)};
 `;
 Code.displayName = 'Code';
 
@@ -94,3 +102,11 @@ export const MapContainer = styled.div`
   }
 `;
 MapContainer.displayName = 'MapContainer';
+
+export const ActivitySearchFilter = styled(RawActivitySearchFilter)`
+  align-self: center;
+  position: relative;
+
+  /* Approximately half of the activity search filter height */
+  top: -${getSpacing(15)};
+`;

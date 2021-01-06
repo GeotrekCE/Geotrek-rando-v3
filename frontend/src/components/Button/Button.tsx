@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import { borderRadius, colorPalette, getSpacing, typography } from 'stylesheet';
+import { borderRadius, colorPalette, oldGetSpacing, typography } from 'stylesheet';
 
 const Button = styled.button`
-  padding: ${getSpacing(2)} ${getSpacing(4)};
+  padding: ${oldGetSpacing(2)} ${oldGetSpacing(4)};
   ${typography.bold}
   cursor: ${props => (props.disabled === true ? 'default' : 'pointer')};
   ${props =>
