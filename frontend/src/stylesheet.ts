@@ -82,7 +82,8 @@ export const typography = {
   h1: css`
     font-family: ${fontFamily.main};
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
+    line-height: 26px;
   `,
   code: css`
     font-family: ${fontFamily.code};
