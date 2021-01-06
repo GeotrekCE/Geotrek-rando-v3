@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { borderRadius, colorPalette, getSpacing, typography } from 'stylesheet';
 import { buttonCssResets } from 'services/cssHelpers';
 
+export const Button = styled.button`
   ${buttonCssResets};
 
   padding: ${getSpacing(2)} ${getSpacing(4)};
