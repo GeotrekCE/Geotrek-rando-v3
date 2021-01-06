@@ -15,3 +15,21 @@ export const flexGap = (gap: string): FlattenSimpleInterpolation => css`
     margin: var(--gap) 0 0 var(--gap);
   }
 `;
+
+/**
+ * Allows you to properly re-design a HTML button without all the defaults
+ */
+export const buttonCssResets = css`
+  display: inline-block;
+  border: none;
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  &:focus {
+    outline: 0;
+  }
+`;
