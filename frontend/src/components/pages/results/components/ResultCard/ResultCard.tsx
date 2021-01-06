@@ -11,6 +11,7 @@ import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 import { Walking } from 'components/Icons/Walking';
+import { Square } from 'components/Icons/Square';
 
 import { Information } from './Information';
 import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
@@ -37,6 +38,7 @@ export const ResultCard: React.FC = () => {
               <Information icon={Clock}>2h</Information>
               <Information icon={CodeBrackets}>5km</Information>
               <Information icon={TrendingUp}>+360m</Information>
+              <DifficultyInformation icon={Square}>Facile</DifficultyInformation>
             </InformationLayout>
           </InformationContainer>
         </DetailsLayout>
@@ -176,4 +178,15 @@ const ActivityBadge = styled(RawActivityBadge)`
   position: absolute;
   top: ${getSpacing(4)};
   left: ${getSpacing(4)};
+`;
+
+const DifficultyInformation = styled(Information)`
+  color: ${colorPalette.easyOK};
+  display: none;
+
+  ${desktopOnly(
+    css`
+      display: flex;
+    `,
+  )}
 `;

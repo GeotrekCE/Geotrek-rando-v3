@@ -7,11 +7,12 @@ import styled from 'styled-components';
 interface Props {
   icon: React.FC<GenericIconProps>;
   children: React.ReactNode;
+  className?: string;
 }
 
-export const Information: React.FC<Props> = ({ icon: Icon, children }) => {
+export const Information: React.FC<Props> = ({ icon: Icon, children, className }) => {
   return (
-    <Container>
+    <Container className={className}>
       <Icon size={24} />
       <InformationText>{children}</InformationText>
     </Container>
