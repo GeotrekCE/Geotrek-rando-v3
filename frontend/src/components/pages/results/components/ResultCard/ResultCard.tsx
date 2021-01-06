@@ -36,10 +36,13 @@ export const ResultCard: React.FC<Props> = ({ activityIcon, place, title, tags, 
       <ImageContainer>
         <ActivityBadge icon={activityIcon} />
       </ImageContainer>
+
       <DetailsContainer>
         <DetailsLayout>
           <Place>{place}</Place>
+
           <Title>{title}</Title>
+
           <TagContainer>
             <TagLayout>
               {tags.map(tag => (
@@ -47,6 +50,7 @@ export const ResultCard: React.FC<Props> = ({ activityIcon, place, title, tags, 
               ))}
             </TagLayout>
           </TagContainer>
+
           <InformationContainer>
             <InformationLayout>
               <Information icon={Clock}>{informations.duration}</Information>
@@ -56,6 +60,7 @@ export const ResultCard: React.FC<Props> = ({ activityIcon, place, title, tags, 
             </InformationLayout>
           </InformationContainer>
         </DetailsLayout>
+
         <BookingButtonContainer>
           <Button>
             <FormattedMessage id="results.book" />
@@ -126,6 +131,7 @@ const DetailsContainer = styled.div`
 const DetailsLayout = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 const BookingButtonContainer = styled.div`
