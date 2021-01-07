@@ -1,13 +1,6 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import {
-  borderRadius,
-  colorPalette,
-  desktopOnly,
-  getSpacing,
-  typography,
-  zIndex,
-} from 'stylesheet';
+import styled from 'styled-components';
+import { borderRadius, colorPalette, getSpacing, typography, zIndex } from 'stylesheet';
 import { buttonCssResets } from 'services/cssHelpers';
 import { Map } from 'components/Icons/Map';
 import { FormattedMessage } from 'react-intl';
@@ -16,7 +9,7 @@ export const OpenMapButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElemen
   ...nativeButtonProps
 }) => {
   return (
-    <MapButton type="button" {...nativeButtonProps}>
+    <MapButton type="button" {...nativeButtonProps} className="flex desktop:hidden">
       <FormattedMessage id="search.seeMap" />
       <Map size={24} className="ml-1" />
     </MapButton>
@@ -26,7 +19,6 @@ export const OpenMapButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElemen
 const MapButton = styled.button`
   ${buttonCssResets}
 
-  display: flex;
   padding: ${getSpacing(3)} ${getSpacing(4)};
 
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
@@ -49,8 +41,4 @@ const MapButton = styled.button`
   &:hover {
     background-color: ${colorPalette.primary2};
   }
-
-  ${desktopOnly(css`
-    display: none;
-  `)};
 `;
