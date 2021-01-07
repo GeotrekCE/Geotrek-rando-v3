@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 import { colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
 
 import { Link } from 'components/Link';
@@ -19,10 +20,14 @@ export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber, placeName, p
       </div>
 
       <div className="desktop:ml-6">
-        <ResultsNumber>{resultsNumber} résultats trouvés</ResultsNumber>
-        <RankingInfo className="desktop:hidden">Classement par ordre de pertinence</RankingInfo>
+        <ResultsNumber>
+          {resultsNumber} <FormattedMessage id="results.resultsFound" />
+        </ResultsNumber>
+        <RankingInfo className="desktop:hidden">
+          <FormattedMessage id="results.orderedByRelevance" />
+        </RankingInfo>
         <SearchInfo className="hidden desktop:inline">
-          Pour le <Link href={placeUrl}>{placeName}</Link>
+          <FormattedMessage id="results.forThe" /> <Link href={placeUrl}>{placeName}</Link>
         </SearchInfo>
       </div>
     </div>
