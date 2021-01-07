@@ -44,13 +44,31 @@ Object {
           style="position: fixed; right: 0px; z-index: 1100; width: 300px; height: 100%; transform: translate3d(100%, 0, 0); transition: all 0.5s;"
         >
           <div
-            class="bm-menu bg-white"
+            class="bm-menu bg-white p-4"
             style="height: 100%; box-sizing: border-box; overflow: auto;"
           >
             <nav
               class="bm-item-list"
               style="height: 100%;"
-            />
+            >
+              <span
+                class="bm-item py-4 font-bold text-center border-b border-solid border-greySoft outline-none"
+                style="display: block;"
+                tabindex="-1"
+              >
+                Test
+              </span>
+              <span
+                class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+              >
+                Section 1
+              </span>
+              <span
+                class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+              >
+                Section 2
+              </span>
+            </nav>
           </div>
           <div>
             <div
@@ -125,13 +143,31 @@ Object {
         style="position: fixed; right: 0px; z-index: 1100; width: 300px; height: 100%; transform: translate3d(100%, 0, 0); transition: all 0.5s;"
       >
         <div
-          class="bm-menu bg-white"
+          class="bm-menu bg-white p-4"
           style="height: 100%; box-sizing: border-box; overflow: auto;"
         >
           <nav
             class="bm-item-list"
             style="height: 100%;"
-          />
+          >
+            <span
+              class="bm-item py-4 font-bold text-center border-b border-solid border-greySoft outline-none"
+              style="display: block;"
+              tabindex="-1"
+            >
+              Test
+            </span>
+            <span
+              class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+            >
+              Section 1
+            </span>
+            <span
+              class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+            >
+              Section 2
+            </span>
+          </nav>
         </div>
         <div>
           <div
