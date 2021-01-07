@@ -18,7 +18,6 @@
       "components/*": ["components/*"],
       "__fixtures__/*": ["__fixtures__/*"],
       "__mocks__/*": ["__mocks__/*"],
-      "redux/*": ["redux/*"],
       "routes": ["routes"],
       "services/*": ["services/*"],
       "stylesheet": ["stylesheet"],

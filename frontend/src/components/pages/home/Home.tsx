@@ -3,21 +3,16 @@ import { FormattedMessage } from 'react-intl';
 
 import { Layout } from 'components/Layout/Layout';
 import Button from 'components/Button';
-import Map from 'components/Map';
 import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
 import { ActivitySearchFilterMobile } from 'components/ActivitySearchFilterMobile';
 import HomeCard from './components/HomeCard';
-import { WrapperProps } from './Home.wrap';
 import {
   Code,
   DescriptionLine,
   DescriptionList,
   HomeContainer,
   HowTo,
-  ListContainer,
-  ListMapContainer,
   Logo,
-  MapContainer,
   Title,
   TopContainer,
   WelcomeText,
@@ -32,12 +27,7 @@ const activities = [
   { label: 'Gastronomie', value: 'gatronomie' },
 ];
 
-const HomeUI: FunctionComponent<WrapperProps> = ({
-  getPOIList,
-  POIList,
-  getTreksList,
-  treksList,
-}) => (
+const HomeUI: FunctionComponent = () => (
   <Layout>
     <HomeContainer>
       <TopContainer>
@@ -75,7 +65,7 @@ const HomeUI: FunctionComponent<WrapperProps> = ({
             </Button>
           </DescriptionList>
         </HowTo>
-        <ListMapContainer>
+        {/* <ListMapContainer>
           <ListContainer>
             <p>Points of Interest</p>
             {POIList && POIList.map(POI => <p key={POI.id}>{POI.description}</p>)}
@@ -86,7 +76,7 @@ const HomeUI: FunctionComponent<WrapperProps> = ({
           <MapContainer>
             <Map points={POIList} segments={treksList} />
           </MapContainer>
-        </ListMapContainer>
+        </ListMapContainer> */}
       </div>
     </HomeContainer>
   </Layout>
