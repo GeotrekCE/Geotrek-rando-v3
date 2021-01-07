@@ -1,22 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { borderRadius, colorPalette, getSpacing, typography, zIndex } from 'stylesheet';
 import { buttonCssResets } from 'services/cssHelpers';
 import { Map } from 'components/Icons/Map';
 import { FormattedMessage } from 'react-intl';
+import { useScrollDirection } from 'hooks/useScrollDirection';
 
 export const OpenMapButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
   ...nativeButtonProps
 }) => {
+  const scrollDirection = useScrollDirection();
+  const [buttonDisplayState, setButtonDisplayState] = useState<'SHOWN' | 'HIDDEN'>('SHOWN');
+
+  useEffect(() => {
+    setButtonDisplayState(scrollDirection === 'DOWN' ? 'HIDDEN' : 'SHOWN');
+  }, [scrollDirection]);
+
   return (
-    <MapButton type="button" {...nativeButtonProps} className="flex desktop:hidden">
+    <MapButton
+      type="button"
+      displayState={buttonDisplayState}
+      className="flex desktop:hidden"
+      {...nativeButtonProps}
+    >
       <FormattedMessage id="search.seeMap" />
       <Map size={24} className="ml-1" />
     </MapButton>
   );
 };
 
-const MapButton = styled.button`
+const MapButton = styled.button<{ displayState: 'SHOWN' | 'HIDDEN' }>`
   ${buttonCssResets}
 
   padding: ${getSpacing(3)} ${getSpacing(4)};
@@ -29,14 +42,17 @@ const MapButton = styled.button`
 
   position: fixed;
   z-index: ${zIndex.floatingButton};
-  bottom: ${getSpacing(6)};
+  bottom: ${({ displayState: showState }) => (showState === 'HIDDEN' ? '-100px' : getSpacing(6))};
 
   /* Horizontally center the button */
   left: 50%;
   transform: translateX(-50%);
 
   background-color: ${colorPalette.white};
-  transition: background-color 0.3s ease-in-out;
+
+  transition-property: background-color bottom;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
 
   &:hover {
     background-color: ${colorPalette.primary2};
