@@ -11,6 +11,7 @@ module.exports = {
       0: '0',
       1: `${SPACING_UNIT}px`,
       2: `${SPACING_UNIT * 2}px`,
+      2.5: `${SPACING_UNIT * 2.5}px`,
       3: `${SPACING_UNIT * 3}px`,
       4: `${SPACING_UNIT * 4}px`,
       5: `${SPACING_UNIT * 5}px`,
