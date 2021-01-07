@@ -1,7 +1,19 @@
 import { FunctionComponent } from 'react';
+import { SelectableDropdown } from './SelectableDropdown';
 
 export const FilterBar: FunctionComponent = () => {
   return (
-    <div className="desktop:w-full·desktop:py-3·desktop:pl-6·desktop:pr-2·hidden·desktop:flex"></div>
+    <div className="w-full py-3 pl-6 pr-2 hidden desktop:flex shadow">
+      <SelectableDropdown
+        name="difficulties"
+        placeholder="Difficulté"
+        options={[
+          { value: 'veryEasy', label: 'Très facile' },
+          { value: 'easy', label: 'Facile' },
+          { value: 'medium', label: 'Moyen' },
+          { value: 'hard', label: 'Difficile' },
+        ]}
+      />
+    </div>
   );
 };
