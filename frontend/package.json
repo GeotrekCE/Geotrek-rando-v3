@@ -5,6 +5,7 @@
   "scripts": {
     "debug": "NODE_OPTIONS='--inspect' next ./src",
     "dev": "next ./src",
+    "prod": "yarn build && yarn start",
     "build": "next build ./src",
     "generate": "plop --plopfile scripts/generators/index.js",
     "start": "NODE_ENV=production node ./src/server.js",
@@ -51,6 +52,8 @@
     "next-pwa": "^5.0.0",
     "next-redux-wrapper": "^6.0.2",
     "postcss": "^8.2.2",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-preset-env": "^6.7.0",
     "react": "^17.0.1",
     "react-burger-menu": "^3.0.3",
     "react-dom": "^17.0.1",
