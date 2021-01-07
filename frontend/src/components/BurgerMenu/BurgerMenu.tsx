@@ -1,8 +1,6 @@
 import { slide as Slide } from 'react-burger-menu';
 
-export interface Props {}
-
-export const BurgerMenu: React.SFC<Props> = () => {
+export const BurgerMenu = () => {
   return (
     <Slide
       right
