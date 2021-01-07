@@ -2,6 +2,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
 
+import { Link } from 'components/Link';
+
 export const SearchResultsMeta: React.FC = () => {
   return (
     <div className="flex">
@@ -12,6 +14,9 @@ export const SearchResultsMeta: React.FC = () => {
       <div className="desktop:ml-6">
         <ResultsNumber>82 résultats trouvés</ResultsNumber>
         <RankingInfo className="desktop:hidden">Classement par ordre de pertinence</RankingInfo>
+        <SearchInfo className="hidden desktop:inline">
+          Pour le <Link href="/">Val de Gaudemar</Link>
+        </SearchInfo>
       </div>
     </div>
   );
@@ -34,4 +39,8 @@ const ResultsNumber = styled.div`
 const RankingInfo = styled.div`
   ${typography.small}
   margin-top: ${getSpacing(1)};
+`;
+
+const SearchInfo = styled.span`
+  ${typography.main};
 `;
