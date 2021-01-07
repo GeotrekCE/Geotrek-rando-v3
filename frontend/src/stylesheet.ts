@@ -55,6 +55,22 @@ export const colorPalette = {
   red: '#FF7373',
   blackTransparent: 'rgba(0, 0, 0, 0.24)',
   darkPurple: '#534764',
+  filter: {
+    background: '#FFFFFF',
+    color: '#000000',
+    borderColor: '#AA397D',
+    hover: {
+      background: '#F5E7EF',
+      color: '#000000',
+    },
+    selected: {
+      background: '#F5E7EF',
+      color: '#000000',
+    },
+    placeholder: {
+      color: '#534764',
+    },
+  },
 } as const;
 
 export const fontFamily = {
