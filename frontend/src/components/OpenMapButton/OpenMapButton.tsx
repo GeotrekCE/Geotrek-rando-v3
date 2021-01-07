@@ -10,13 +10,14 @@ import {
 } from 'stylesheet';
 import { buttonCssResets } from 'services/cssHelpers';
 import { Map } from 'components/Icons/Map';
+import { FormattedMessage } from 'react-intl';
 
 export const OpenMapButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
   ...nativeButtonProps
 }) => {
   return (
     <MapButton type="button" {...nativeButtonProps}>
-      Voir la carte
+      <FormattedMessage id="search.seeMap" />
       <Map size={24} className="ml-1" />
     </MapButton>
   );
