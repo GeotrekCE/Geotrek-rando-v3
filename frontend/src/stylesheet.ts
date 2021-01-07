@@ -125,5 +125,6 @@ export const borderRadius = {
 
 export const zIndex = {
   content: 0,
-  header: 1,
+  floatingButton: 1,
+  header: 2,
 } as const;
