@@ -63,7 +63,7 @@ export const ResultCard: React.FC<Props> = ({ activityIcon, place, title, tags, 
 
         <BookingButtonContainer>
           <Button>
-            <FormattedMessage id="results.book" />
+            <FormattedMessage id="search.book" />
           </Button>
         </BookingButtonContainer>
       </DetailsContainer>

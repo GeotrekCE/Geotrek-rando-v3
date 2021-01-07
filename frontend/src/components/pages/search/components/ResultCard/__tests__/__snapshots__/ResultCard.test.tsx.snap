@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ResultCard__Container-cct1km-0 bhOJjL"
+        class="ResultCard__Container-sc-1bem01n-0 hAbmkB"
       >
         <div
-          class="ResultCard__ImageContainer-cct1km-1 hBcqhI"
+          class="ResultCard__ImageContainer-sc-1bem01n-1 gEsrUC"
         >
           <div
-            class="ActivityBadge__Container-sc-11f422r-0 hQCoJE ResultCard__ActivityBadge-cct1km-11 eYtRJc"
+            class="ActivityBadge__Container-enmhze-0 dBFDZk ResultCard__ActivityBadge-sc-1bem01n-11 jJUVgC"
           >
             <svg
               fill="none"
@@ -29,26 +29,26 @@ Object {
           </div>
         </div>
         <div
-          class="ResultCard__DetailsContainer-cct1km-2 hAMaUS"
+          class="ResultCard__DetailsContainer-sc-1bem01n-2 igBYVI"
         >
           <div
-            class="ResultCard__DetailsLayout-cct1km-3 bPbkur"
+            class="ResultCard__DetailsLayout-sc-1bem01n-3 igcQDh"
           >
             <span
-              class="ResultCard__Place-cct1km-5 cDmQiy"
+              class="ResultCard__Place-sc-1bem01n-5 jrdCiY"
             >
               Saint-Etienne-du-Valdonnez
             </span>
             <span
-              class="ResultCard__Title-cct1km-6 VgvlK"
+              class="ResultCard__Title-sc-1bem01n-6 beOFCA"
             >
               Balade au pays des menhirs
             </span>
             <div
-              class="ResultCard__TagContainer-cct1km-7 dBMGrR"
+              class="ResultCard__TagContainer-sc-1bem01n-7 hhoXb"
             >
               <div
-                class="ResultCard__TagLayout-cct1km-8 byiiky"
+                class="ResultCard__TagLayout-sc-1bem01n-8 gObNuQ"
               >
                 <div
                   class="Chip__ChipContainer-sc-1wajafu-0 gHWJWu"
@@ -74,13 +74,13 @@ Object {
               </div>
             </div>
             <div
-              class="ResultCard__InformationContainer-cct1km-9 gVihWQ"
+              class="ResultCard__InformationContainer-sc-1bem01n-9 gFWOQi"
             >
               <div
-                class="ResultCard__InformationLayout-cct1km-10 inATfC"
+                class="ResultCard__InformationLayout-sc-1bem01n-10 hNhMuk"
               >
                 <div
-                  class="Information__Container-sc-1mw7hhq-0 kcyBZH"
+                  class="Information__Container-yz43nr-0 irmvhj"
                 >
                   <svg
                     fill="none"
@@ -106,13 +106,13 @@ Object {
                     />
                   </svg>
                   <span
-                    class="Information__InformationText-sc-1mw7hhq-1 kpVHAN"
+                    class="Information__InformationText-yz43nr-1 lpueQp"
                   >
                     2h
                   </span>
                 </div>
                 <div
-                  class="Information__Container-sc-1mw7hhq-0 kcyBZH"
+                  class="Information__Container-yz43nr-0 irmvhj"
                 >
                   <svg
                     fill="none"
@@ -130,13 +130,13 @@ Object {
                     />
                   </svg>
                   <span
-                    class="Information__InformationText-sc-1mw7hhq-1 kpVHAN"
+                    class="Information__InformationText-yz43nr-1 lpueQp"
                   >
                     5km
                   </span>
                 </div>
                 <div
-                  class="Information__Container-sc-1mw7hhq-0 kcyBZH"
+                  class="Information__Container-yz43nr-0 irmvhj"
                 >
                   <svg
                     fill="none"
@@ -161,13 +161,13 @@ Object {
                     />
                   </svg>
                   <span
-                    class="Information__InformationText-sc-1mw7hhq-1 kpVHAN"
+                    class="Information__InformationText-yz43nr-1 lpueQp"
                   >
                     +360m
                   </span>
                 </div>
                 <div
-                  class="Information__Container-sc-1mw7hhq-0 kcyBZH ResultCard__DifficultyInformation-cct1km-12 kUjqTK"
+                  class="Information__Container-yz43nr-0 irmvhj ResultCard__DifficultyInformation-sc-1bem01n-12 fcGxiY"
                 >
                   <svg
                     fill="none"
@@ -182,19 +182,19 @@ Object {
                     />
                   </svg>
                   <span
-                    class="Information__InformationText-sc-1mw7hhq-1 kpVHAN"
+                    class="Information__InformationText-yz43nr-1 lpueQp"
                   />
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="ResultCard__BookingButtonContainer-cct1km-4 eRpIfc"
+            class="ResultCard__BookingButtonContainer-sc-1bem01n-4 fIAzAu"
           >
             <button
               class="Button-sc-1n2k9lu-0 irBQYP"
             >
-              results.book
+              search.book
             </button>
           </div>
         </div>
@@ -203,13 +203,13 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ResultCard__Container-cct1km-0 bhOJjL"
+      class="ResultCard__Container-sc-1bem01n-0 hAbmkB"
     >
       <div
-        class="ResultCard__ImageContainer-cct1km-1 hBcqhI"
+        class="ResultCard__ImageContainer-sc-1bem01n-1 gEsrUC"
       >
         <div
-          class="ActivityBadge__Container-sc-11f422r-0 hQCoJE ResultCard__ActivityBadge-cct1km-11 eYtRJc"
+          class="ActivityBadge__Container-enmhze-0 dBFDZk ResultCard__ActivityBadge-sc-1bem01n-11 jJUVgC"
         >
           <svg
             fill="none"
@@ -226,26 +226,26 @@ Object {
         </div>
       </div>
       <div
-        class="ResultCard__DetailsContainer-cct1km-2 hAMaUS"
+        class="ResultCard__DetailsContainer-sc-1bem01n-2 igBYVI"
       >
         <div
-          class="ResultCard__DetailsLayout-cct1km-3 bPbkur"
+          class="ResultCard__DetailsLayout-sc-1bem01n-3 igcQDh"
         >
           <span
-            class="ResultCard__Place-cct1km-5 cDmQiy"
+            class="ResultCard__Place-sc-1bem01n-5 jrdCiY"
           >
             Saint-Etienne-du-Valdonnez
           </span>
           <span
-            class="ResultCard__Title-cct1km-6 VgvlK"
+            class="ResultCard__Title-sc-1bem01n-6 beOFCA"
           >
             Balade au pays des menhirs
           </span>
           <div
-            class="ResultCard__TagContainer-cct1km-7 dBMGrR"
+            class="ResultCard__TagContainer-sc-1bem01n-7 hhoXb"
           >
             <div
-              class="ResultCard__TagLayout-cct1km-8 byiiky"
+              class="ResultCard__TagLayout-sc-1bem01n-8 gObNuQ"
             >
               <div
                 class="Chip__ChipContainer-sc-1wajafu-0 gHWJWu"
@@ -271,13 +271,13 @@ Object {
             </div>
           </div>
           <div
-            class="ResultCard__InformationContainer-cct1km-9 gVihWQ"
+            class="ResultCard__InformationContainer-sc-1bem01n-9 gFWOQi"
           >
             <div
-              class="ResultCard__InformationLayout-cct1km-10 inATfC"
+              class="ResultCard__InformationLayout-sc-1bem01n-10 hNhMuk"
             >
               <div
-                class="Information__Container-sc-1mw7hhq-0 kcyBZH"
+                class="Information__Container-yz43nr-0 irmvhj"
               >
                 <svg
                   fill="none"
@@ -303,13 +303,13 @@ Object {
                   />
                 </svg>
                 <span
-                  class="Information__InformationText-sc-1mw7hhq-1 kpVHAN"
+                  class="Information__InformationText-yz43nr-1 lpueQp"
                 >
                   2h
                 </span>
               </div>
               <div
-                class="Information__Container-sc-1mw7hhq-0 kcyBZH"
+                class="Information__Container-yz43nr-0 irmvhj"
               >
                 <svg
                   fill="none"
@@ -327,13 +327,13 @@ Object {
                   />
                 </svg>
                 <span
-                  class="Information__InformationText-sc-1mw7hhq-1 kpVHAN"
+                  class="Information__InformationText-yz43nr-1 lpueQp"
                 >
                   5km
                 </span>
               </div>
               <div
-                class="Information__Container-sc-1mw7hhq-0 kcyBZH"
+                class="Information__Container-yz43nr-0 irmvhj"
               >
                 <svg
                   fill="none"
@@ -358,13 +358,13 @@ Object {
                   />
                 </svg>
                 <span
-                  class="Information__InformationText-sc-1mw7hhq-1 kpVHAN"
+                  class="Information__InformationText-yz43nr-1 lpueQp"
                 >
                   +360m
                 </span>
               </div>
               <div
-                class="Information__Container-sc-1mw7hhq-0 kcyBZH ResultCard__DifficultyInformation-cct1km-12 kUjqTK"
+                class="Information__Container-yz43nr-0 irmvhj ResultCard__DifficultyInformation-sc-1bem01n-12 fcGxiY"
               >
                 <svg
                   fill="none"
@@ -379,19 +379,19 @@ Object {
                   />
                 </svg>
                 <span
-                  class="Information__InformationText-sc-1mw7hhq-1 kpVHAN"
+                  class="Information__InformationText-yz43nr-1 lpueQp"
                 />
               </div>
             </div>
           </div>
         </div>
         <div
-          class="ResultCard__BookingButtonContainer-cct1km-4 eRpIfc"
+          class="ResultCard__BookingButtonContainer-sc-1bem01n-4 fIAzAu"
         >
           <button
             class="Button-sc-1n2k9lu-0 irBQYP"
           >
-            results.book
+            search.book
           </button>
         </div>
       </div>

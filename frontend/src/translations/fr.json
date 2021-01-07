@@ -16,7 +16,10 @@
     "back": "Retour",
     "api-to-translate-example": "Ce message est traduit en utilisant directement l'API react-intl"
   },
-  "results": {
-    "book": "Réserver"
+  "search": {
+    "book": "Réserver",
+    "resultsFound": "résultats trouvés",
+    "forThe": "Pour le",
+    "orderedByRelevance": "Classement par ordre de pertinence"
   }
 }

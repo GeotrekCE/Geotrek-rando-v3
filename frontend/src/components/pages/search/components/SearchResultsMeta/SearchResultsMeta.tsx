@@ -21,13 +21,13 @@ export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber, placeName, p
 
       <div className="desktop:ml-6">
         <ResultsNumber>
-          {resultsNumber} <FormattedMessage id="results.resultsFound" />
+          {resultsNumber} <FormattedMessage id="search.resultsFound" />
         </ResultsNumber>
         <RankingInfo className="desktop:hidden">
-          <FormattedMessage id="results.orderedByRelevance" />
+          <FormattedMessage id="search.orderedByRelevance" />
         </RankingInfo>
         <SearchInfo className="hidden desktop:inline">
-          <FormattedMessage id="results.forThe" /> <Link href={placeUrl}>{placeName}</Link>
+          <FormattedMessage id="search.forThe" /> <Link href={placeUrl}>{placeName}</Link>
         </SearchInfo>
       </div>
     </div>

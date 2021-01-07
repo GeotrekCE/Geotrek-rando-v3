@@ -7,7 +7,7 @@ import { FilterBar } from './components/FilterBar';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
 
-export const ResultsUI: React.FC = () => {
+export const SearchUI: React.FC = () => {
   return (
     <Layout>
       <FilterBar />
