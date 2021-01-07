@@ -12,7 +12,7 @@ export const ResultsUI: React.FC = () => {
     <Layout>
       <FilterBar />
       <div className="p-4">
-        <SearchResultsMeta />
+        <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
         <ResultCard
           activityIcon={Walking}
           place="Saint-Etienne-du-Valdonnez"

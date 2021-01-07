@@ -4,7 +4,14 @@ import { colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
 
 import { Link } from 'components/Link';
 
-export const SearchResultsMeta: React.FC = () => {
+interface Props {
+  resultsNumber: number;
+  /* These names are challengeable */
+  placeName: string;
+  placeUrl: string;
+}
+
+export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber, placeName, placeUrl }) => {
   return (
     <div className="flex">
       <div>
@@ -12,10 +19,10 @@ export const SearchResultsMeta: React.FC = () => {
       </div>
 
       <div className="desktop:ml-6">
-        <ResultsNumber>82 résultats trouvés</ResultsNumber>
+        <ResultsNumber>{resultsNumber} résultats trouvés</ResultsNumber>
         <RankingInfo className="desktop:hidden">Classement par ordre de pertinence</RankingInfo>
         <SearchInfo className="hidden desktop:inline">
-          Pour le <Link href="/">Val de Gaudemar</Link>
+          Pour le <Link href={placeUrl}>{placeName}</Link>
         </SearchInfo>
       </div>
     </div>
