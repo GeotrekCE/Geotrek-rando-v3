@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+import { colorPalette } from 'stylesheet';
 
 import { Walking } from 'components/Icons/Walking';
 
@@ -13,6 +15,9 @@ export const SearchUI: React.FC = () => {
       <FilterBar />
       <div className="p-4">
         <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
+
+        <Separator className="w-full mt-6 desktop:block hidden" />
+
         <ResultCard
           activityIcon={Walking}
           place="Saint-Etienne-du-Valdonnez"
@@ -53,3 +58,9 @@ export const SearchUI: React.FC = () => {
     </Layout>
   );
 };
+
+const Separator = styled.hr`
+  background-color: ${colorPalette.greySoft};
+  height: 1px;
+  border: 0;
+`;
