@@ -102,6 +102,12 @@ export const typography = {
     font-size: 20px;
     line-height: 26px;
   `,
+  h2: css`
+    font-family: ${fontFamily.main};
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 42px;
+  `,
   code: css`
     font-family: ${fontFamily.code};
     color: ${colorPalette.primary3};
