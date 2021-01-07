@@ -120,9 +120,11 @@ export const borderRadius = {
   large: '10px',
   card: '16px',
   chip: '20px',
+  roundButton: '50px',
 } as const;
 
 export const zIndex = {
   content: 0,
-  header: 1,
+  floatingButton: 1,
+  header: 2,
 } as const;

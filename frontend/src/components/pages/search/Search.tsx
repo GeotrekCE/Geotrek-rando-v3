@@ -5,6 +5,7 @@ import { colorPalette } from 'stylesheet';
 import { Walking } from 'components/Icons/Walking';
 
 import { Layout } from 'components/Layout/Layout';
+import { OpenMapButton } from 'components/OpenMapButton';
 import { FilterBar } from './components/FilterBar';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
@@ -17,6 +18,8 @@ export const SearchUI: React.FC = () => {
         <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
 
         <Separator className="w-full mt-6 desktop:block hidden" />
+
+        <OpenMapButton />
 
         <ResultCard
           activityIcon={Walking}

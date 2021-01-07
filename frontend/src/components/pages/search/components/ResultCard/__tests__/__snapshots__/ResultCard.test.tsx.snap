@@ -51,21 +51,21 @@ Object {
                 class="ResultCard__TagLayout-sc-1bem01n-8 gObNuQ"
               >
                 <div
-                  class="Chip__ChipContainer-sc-1wajafu-0 gHWJWu"
+                  class="Chip__ChipContainer-sc-1wajafu-0 kWSWgy"
                 >
                   <span>
                     En famille
                   </span>
                 </div>
                 <div
-                  class="Chip__ChipContainer-sc-1wajafu-0 gHWJWu"
+                  class="Chip__ChipContainer-sc-1wajafu-0 kWSWgy"
                 >
                   <span>
                     Ciel étoilé
                   </span>
                 </div>
                 <div
-                  class="Chip__ChipContainer-sc-1wajafu-0 gHWJWu"
+                  class="Chip__ChipContainer-sc-1wajafu-0 kWSWgy"
                 >
                   <span>
                     Beau paysage
@@ -192,7 +192,7 @@ Object {
             class="ResultCard__BookingButtonContainer-sc-1bem01n-4 fIAzAu"
           >
             <button
-              class="Button-sc-1n2k9lu-0 irBQYP"
+              class="Button-sc-1n2k9lu-0 gmGykF"
             >
               search.book
             </button>
@@ -248,21 +248,21 @@ Object {
               class="ResultCard__TagLayout-sc-1bem01n-8 gObNuQ"
             >
               <div
-                class="Chip__ChipContainer-sc-1wajafu-0 gHWJWu"
+                class="Chip__ChipContainer-sc-1wajafu-0 kWSWgy"
               >
                 <span>
                   En famille
                 </span>
               </div>
               <div
-                class="Chip__ChipContainer-sc-1wajafu-0 gHWJWu"
+                class="Chip__ChipContainer-sc-1wajafu-0 kWSWgy"
               >
                 <span>
                   Ciel étoilé
                 </span>
               </div>
               <div
-                class="Chip__ChipContainer-sc-1wajafu-0 gHWJWu"
+                class="Chip__ChipContainer-sc-1wajafu-0 kWSWgy"
               >
                 <span>
                   Beau paysage
@@ -389,7 +389,7 @@ Object {
           class="ResultCard__BookingButtonContainer-sc-1bem01n-4 fIAzAu"
         >
           <button
-            class="Button-sc-1n2k9lu-0 irBQYP"
+            class="Button-sc-1n2k9lu-0 gmGykF"
           >
             search.book
           </button>
