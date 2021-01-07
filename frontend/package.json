@@ -52,6 +52,7 @@
     "next-redux-wrapper": "^6.0.2",
     "postcss": "^8.2.2",
     "react": "^17.0.1",
+    "react-accessible-accordion": "^3.3.3",
     "react-burger-menu": "^3.0.3",
     "react-dom": "^17.0.1",
     "react-intl": "^5.10.6",
@@ -69,6 +70,7 @@
     "yup": "^0.29.3"
   },
   "devDependencies": {
+    "@accessible/accordion": "^2.0.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@types/jest": "^26.0.16",

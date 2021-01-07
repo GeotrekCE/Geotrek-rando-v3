@@ -2,6 +2,54 @@
 # yarn lockfile v1
 
 
+"@accessible/accordion@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@accessible/accordion/-/accordion-2.0.0.tgz#f2c4c79453edfa1efd1762564b0557f1a80cc5e3"
+  integrity sha512-C+PYVeSuDyS05kZ49bYEqzaRhx3kiqCGWkCaurMjog4bKGjFREB20UXvUub1250ZDaqXwslREdBTlppPnYNwtg==
+  dependencies:
+    "@accessible/button" "^1.1.1"
+    "@accessible/use-conditional-focus" "^2.2.0"
+    "@accessible/use-id" "^1.1.0"
+    "@accessible/use-keycode" "^4.0.1"
+    "@react-hook/merged-ref" "^1.1.1"
+    "@react-hook/passive-layout-effect" "^1.0.3"
+    clsx "^1.1.1"
+
+"@accessible/button@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@accessible/button/-/button-1.1.1.tgz#2f98f5c18ff757384a48c949ef177d9ac62b84cc"
+  integrity sha512-O15qkrU+GqXL2OnBjBts6gCLatLxl5eMyfFaEZZU9ZtlFOzbFwFAq6mjy8t9mNemlqxB/Kbcf4I6tv9tsPM3Og==
+  dependencies:
+    "@accessible/use-keycode" "^4.0.1"
+    "@react-hook/merged-ref" "^1.1.1"
+
+"@accessible/tabbable@^1.0.4":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@accessible/tabbable/-/tabbable-1.1.2.tgz#f4a5298f6d594b01368ef70496d643dde1230aec"
+  integrity sha512-FJCKCtewk0x2dAr+KYv+SZOgFoclmsBd7wH3i8oVIr09dCRrliHixMqC2g52lasqk1VNfxPjNue1ebEjlP5S+g==
+
+"@accessible/use-conditional-focus@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@accessible/use-conditional-focus/-/use-conditional-focus-2.2.0.tgz#4ed17d5bc9469730e6f744e04ce29620a892d035"
+  integrity sha512-qSagGuVu1fokfLIfwG0NWT0DsbFwZmtWNQG6E42kTze3/OxA2YzpbH9FUBh+UhHWCmKGR+ZjNdmNl8sCsHoBNg==
+  dependencies:
+    "@accessible/tabbable" "^1.0.4"
+    "@react-hook/event" "^1.1.0"
+
+"@accessible/use-id@^1.1.0":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@accessible/use-id/-/use-id-1.1.1.tgz#66f13e102f4c83fc28723318b0f92c1448769432"
+  integrity sha512-L4njMJhuprxajmCvUlmqDqZK5485WgcBtQvFcDNp7SsJ+keNn0kXP99P3KPoAUiX72k7xcb06sTbLD/ARC7PzA==
+  dependencies:
+    "@react-hook/passive-layout-effect" "^1.2.0"
+
+"@accessible/use-keycode@^4.0.1":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@accessible/use-keycode/-/use-keycode-4.0.2.tgz#e6f064027349428bb9182e467f76ecb87ea2920b"
+  integrity sha512-Qax7qlRJ9p6b9zP90slpyP1Yzdf+W401zj5bgX43bFxBIpJr1Pv4QBAX4Fe9kcD/3DpR5qDA1aTyCxdbJkKdEg==
+  dependencies:
+    "@react-hook/event" "^1.2.2"
+
 "@ampproject/toolbox-core@^1.0.1", "@ampproject/toolbox-core@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@ampproject/toolbox-core/-/toolbox-core-1.1.1.tgz#540c8f3ab0f5d1faa1ba35282cd5f5f3f0e16a76"
@@ -1594,6 +1642,23 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
+
+"@react-hook/event@^1.1.0", "@react-hook/event@^1.2.2":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@react-hook/event/-/event-1.2.3.tgz#cfe86d5cf36f53e85b367ff619990d001b5c82ae"
+  integrity sha512-WMBwLnYY2rubLeecsi4skl1imfx0oiXTgazV/1ByPT6WkmLvxUao3hC+mxps5D/+JK4Fq3uG9OWU/dn5jMtXyg==
+  dependencies:
+    "@react-hook/passive-layout-effect" "^1.2.0"
+
+"@react-hook/merged-ref@^1.1.1":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@react-hook/merged-ref/-/merged-ref-1.3.0.tgz#0f482780e1eefc1abdc964dd3d04680186b07c8a"
+  integrity sha512-9p7fbPZ37n1Cbw37f3EtrcR9TwVjMkoTKwYbG7URO2HDlnOzuNTjsd/VK0/4i52SwKmOa6lBwz6Pr9g0pIyaCg==
+
+"@react-hook/passive-layout-effect@^1.0.3", "@react-hook/passive-layout-effect@^1.2.0":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@react-hook/passive-layout-effect/-/passive-layout-effect-1.2.1.tgz#c06dac2d011f36d61259aa1c6df4f0d5e28bc55e"
+  integrity sha512-IwEphTD75liO8g+6taS+4oqz+nnroocNfWVHWz7j+N+ZO2vYrc6PV1q7GQhuahL0IOR7JccFTsFKQ/mb6iZWAg==
 
 "@react-leaflet/core@^1.0.2":
   version "1.0.2"
@@ -3860,6 +3925,11 @@ clone-regexp@^2.1.0:
   integrity sha512-beMpP7BOtTipFuW8hrJvREQ2DrRu3BE7by0ZpibtfBA+qfHYvMGTc2Yb1JMYPKg/JUw0CHYvpg796aNTSW9z7Q==
   dependencies:
     is-regexp "^2.0.0"
+
+clsx@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.1.tgz#98b3134f9abbdf23b2663491ace13c5c03a73188"
+  integrity sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
 
 co@^4.6.0:
   version "4.6.0"
@@ -9732,6 +9802,11 @@ rc@^1.2.7:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+react-accessible-accordion@^3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/react-accessible-accordion/-/react-accessible-accordion-3.3.3.tgz#387a3f4ab1840b5b6dff9f1f16544f658d5c8e12"
+  integrity sha512-I1Niy21IIyXIzcDuIlTnnN3k8bUux7puq60eyNuwf+lhvftnocn7hLhAz2NycXrZOqBClqi50YBqXlnbOTNrjQ==
 
 react-addons-test-utils@^15.6.2:
   version "15.6.2"
