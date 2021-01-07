@@ -9,7 +9,7 @@ export const SearchResultsMeta: React.FC = () => {
         <Illustration className="hidden desktop:block" src="images/little-forest.png" />
       </div>
 
-      <div className="desktop: ml-6">
+      <div className="desktop:ml-6">
         <ResultsNumber>82 résultats trouvés</ResultsNumber>
         <RankingInfo className="desktop:hidden">Classement par ordre de pertinence</RankingInfo>
       </div>
