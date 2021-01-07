@@ -1,5 +1,5 @@
-import { render } from '../../services/testing/reactTestingLibraryWrapper';
-import { Header } from '.';
+import { render } from '../../../services/testing/reactTestingLibraryWrapper';
+import { Header } from '..';
 
 describe('Header', () => {
   it('EEU I see header in mobile version', () => {
