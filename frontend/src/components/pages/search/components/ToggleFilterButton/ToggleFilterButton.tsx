@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 
 import { colorPalette, typography } from 'stylesheet';
 import { buttonCssResets } from 'services/cssHelpers';
@@ -10,7 +11,9 @@ export const ToggleFilterButton: React.FC = () => {
   return (
     <Button className="flex items-center desktop:hidden">
       <Filter size={16} />
-      <FilterText className="ml-1">Filtrer</FilterText>
+      <FilterText className="ml-1">
+        <FormattedMessage id="search.filter" />
+      </FilterText>
     </Button>
   );
 };
