@@ -7,6 +7,10 @@ module.exports = {
     screens: {
       desktop: '640px',
     },
+    boxShadow: {
+      DEFAULT: '0 0 30px 0 rgba(0, 0, 0, 0.15)',
+      none: 'none',
+    },
     spacing: {
       0: '0',
       1: `${SPACING_UNIT}px`,
