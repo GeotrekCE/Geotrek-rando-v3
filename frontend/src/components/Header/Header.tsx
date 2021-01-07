@@ -1,9 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 import Link from 'next/link';
-import styled from 'styled-components';
-import { colorPalette, getSpacing, typography, zIndex } from 'stylesheet';
 import { routes } from 'services/routes';
-import { BurgerMenu } from '../Icons/BurgerMenu';
+import BurgerMenu from '../BurgerMenu';
 
 interface Props {
   logoPath: string;
@@ -11,40 +9,16 @@ interface Props {
 
 export const Header: React.FC<Props> = ({ logoPath }) => {
   return (
-    <HeaderContainer>
-      <Link href={routes.HOME}>
-        <Logo alt="logo" src={logoPath} />
-      </Link>
-      <Title>
-        <FormattedMessage id={'home.title'} />
-      </Title>
-      <Icon color="white" size={24} />
-    </HeaderContainer>
+    <>
+      <BurgerMenu />
+      <div className="h-11 bg-primary1 flex flex-row items-center sticky top-0 z-10">
+        <Link href={routes.HOME}>
+          <img className="h-9 mx-3" alt="logo" src={logoPath} />
+        </Link>
+        <h1 className="flex-1 text-white">
+          <FormattedMessage id={'home.title'} />
+        </h1>
+      </div>
+    </>
   );
 };
-
-const HeaderContainer = styled.header`
-  ${typography.h1}
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: ${getSpacing(11)};
-  padding: ${getSpacing(3)};
-  background-color: ${colorPalette.primary1};
-  position: sticky;
-  top: 0;
-  z-index: ${zIndex.header};
-`;
-
-const Title = styled.h1`
-  ${typography.main}
-  color: white;
-  flex-grow: 1;
-`;
-
-const Logo = styled.img`
-  height: ${getSpacing(9)};
-  margin-right: ${getSpacing(3)};
-`;
-
-const Icon = styled(BurgerMenu)``;

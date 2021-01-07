@@ -1,0 +1,248 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header EEU I see header in mobile version 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <div
+          class="bm-overlay"
+          style="position: fixed; z-index: 1000; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); opacity: 0; transform: translate3d(100%, 0, 0); transition: opacity 0.3s, transform 0s 0.3s;"
+        />
+        <div>
+          <div
+            class="bm-burger-button fixed w-6 h-6 top-2.5 right-2.5"
+            style="z-index: 1000;"
+          >
+            <button
+              id="react-burger-menu-btn"
+              style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; height: 100%; margin: 0px; padding: 0px; font-size: 0px; background: transparent; cursor: pointer;"
+            >
+              Open Menu
+            </button>
+            <svg
+              class="bm-icon"
+              fill="none"
+              viewBox="0 0 24 25"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3 12h18M3 6h18M3 18h18"
+                stroke="white"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          class="bm-menu-wrap"
+          id=""
+          style="position: fixed; right: 0px; z-index: 1100; width: 300px; height: 100%; transform: translate3d(100%, 0, 0); transition: all 0.5s;"
+        >
+          <div
+            class="bm-menu bg-white"
+            style="height: 100%; box-sizing: border-box; overflow: auto;"
+          >
+            <nav
+              class="bm-item-list"
+              style="height: 100%;"
+            />
+          </div>
+          <div>
+            <div
+              class="bm-cross-button left-5"
+              style="position: absolute; width: 24px; height: 24px; right: 8px; top: 8px;"
+            >
+              <button
+                id="react-burger-cross-btn"
+                style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; height: 100%; margin: 0px; padding: 0px; font-size: 0px; background: transparent; cursor: pointer;"
+                tabindex="-1"
+              >
+                Close Menu
+              </button>
+              <svg
+                class="bm-cross mt-3"
+                fill="none"
+                height="14"
+                viewBox="0 0 14 14"
+                width="14"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M13.707 1.707A1 1 0 0012.293.293L7 5.586 1.707.293A1 1 0 00.293 1.707L5.586 7 .293 12.293a1 1 0 101.414 1.414L7 8.414l5.293 5.293a1 1 0 001.414-1.414L8.414 7l5.293-5.293z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="h-11 bg-primary1 flex flex-row items-center sticky top-0 z-10"
+      >
+        <img
+          alt="logo"
+          class="h-9 mx-3"
+          src="./logo.png"
+        />
+        <h1
+          class="flex-1 text-white"
+        >
+          home.title
+        </h1>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <div
+        class="bm-overlay"
+        style="position: fixed; z-index: 1000; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); opacity: 0; transform: translate3d(100%, 0, 0); transition: opacity 0.3s, transform 0s 0.3s;"
+      />
+      <div>
+        <div
+          class="bm-burger-button fixed w-6 h-6 top-2.5 right-2.5"
+          style="z-index: 1000;"
+        >
+          <button
+            id="react-burger-menu-btn"
+            style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; height: 100%; margin: 0px; padding: 0px; font-size: 0px; background: transparent; cursor: pointer;"
+          >
+            Open Menu
+          </button>
+          <svg
+            class="bm-icon"
+            fill="none"
+            viewBox="0 0 24 25"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 12h18M3 6h18M3 18h18"
+              stroke="white"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        class="bm-menu-wrap"
+        id=""
+        style="position: fixed; right: 0px; z-index: 1100; width: 300px; height: 100%; transform: translate3d(100%, 0, 0); transition: all 0.5s;"
+      >
+        <div
+          class="bm-menu bg-white"
+          style="height: 100%; box-sizing: border-box; overflow: auto;"
+        >
+          <nav
+            class="bm-item-list"
+            style="height: 100%;"
+          />
+        </div>
+        <div>
+          <div
+            class="bm-cross-button left-5"
+            style="position: absolute; width: 24px; height: 24px; right: 8px; top: 8px;"
+          >
+            <button
+              id="react-burger-cross-btn"
+              style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; height: 100%; margin: 0px; padding: 0px; font-size: 0px; background: transparent; cursor: pointer;"
+              tabindex="-1"
+            >
+              Close Menu
+            </button>
+            <svg
+              class="bm-cross mt-3"
+              fill="none"
+              height="14"
+              viewBox="0 0 14 14"
+              width="14"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M13.707 1.707A1 1 0 0012.293.293L7 5.586 1.707.293A1 1 0 00.293 1.707L5.586 7 .293 12.293a1 1 0 101.414 1.414L7 8.414l5.293 5.293a1 1 0 001.414-1.414L8.414 7l5.293-5.293z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="h-11 bg-primary1 flex flex-row items-center sticky top-0 z-10"
+    >
+      <img
+        alt="logo"
+        class="h-9 mx-3"
+        src="./logo.png"
+      />
+      <h1
+        class="flex-1 text-white"
+      >
+        home.title
+      </h1>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
