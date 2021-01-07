@@ -13,7 +13,6 @@ const config: Config.InitialOptions = {
     '^components/(.*)$': '<rootDir>/src/components/$1',
     '^__fixtures__/(.*)$': '<rootDir>/src/__fixtures__/$1',
     '^__mocks__/(.*)$': '<rootDir>/src/__mocks__/$1',
-    '^redux/(.*)$': '<rootDir>/src/redux/$1',
     '^services/(.*)$': '<rootDir>/src/services/$1',
     '^translations/(.*)$': '<rootDir>/src/translations/$1',
     '^stylesheet$': '<rootDir>/src/stylesheet.ts',
