@@ -21,7 +21,8 @@ export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber, placeName, p
 
       <div className="desktop:ml-6">
         <ResultsNumber>
-          {resultsNumber} <FormattedMessage id="search.resultsFound" />
+          {resultsNumber}{' '}
+          <FormattedMessage values={{ count: resultsNumber }} id="search.resultsFound" />
         </ResultsNumber>
         <RankingInfo className="desktop:hidden">
           <FormattedMessage id="search.orderedByRelevance" />
