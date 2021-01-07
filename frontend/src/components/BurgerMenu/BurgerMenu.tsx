@@ -6,10 +6,10 @@ import { Cross } from '../Icons/Cross';
 interface Props {
   title: string;
   sections: string[];
-  subSections: { [key: string]: string[] };
+  subSections?: { [key: string]: string[] };
 }
 
-export const BurgerMenu: React.FC<Props> = ({ title = '', sections = [], subSections = {} }) => {
+export const BurgerMenu: React.FC<Props> = ({ title, sections, subSections = {} }) => {
   return (
     <Slide
       right
