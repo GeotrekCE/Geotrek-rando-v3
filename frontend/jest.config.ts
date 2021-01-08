@@ -30,6 +30,7 @@ const config: Config.InitialOptions = {
     '<rootDir>/src/services/api/client.ts',
     '<rootDir>/src/services/sentry.js',
   ],
+  moduleDirectories: ['node_modules', 'src'],
 };
 
 export default config;
