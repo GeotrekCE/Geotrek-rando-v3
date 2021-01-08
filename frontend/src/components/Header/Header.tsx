@@ -31,7 +31,12 @@ export const Header: React.FC<Props> = ({ logoPath }) => {
 
   return (
     <>
-      <BurgerMenu subSections={subSections} sections={sections} title="Menu" />
+      <BurgerMenu
+        subSections={subSections}
+        sections={sections}
+        title="Menu"
+        displayState={headerState}
+      />
       <Container
         state={headerState}
         className="h-11 bg-primary1 flex flex-row items-center sticky z-header"
