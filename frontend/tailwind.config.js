@@ -25,6 +25,12 @@ module.exports = {
       10: `${SPACING_UNIT * 10}px`,
       11: `${SPACING_UNIT * 11}px`,
     },
+    zIndex: {
+      content: 0,
+      floatingButton: 1,
+      header: 2,
+      sliderMenu: 3,
+    },
     extend: {
       colors: {
         primary1: '#AA397D',
