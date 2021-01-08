@@ -9,6 +9,7 @@ import { NextRouter } from 'next/dist/next-server/lib/router/router';
 
 import flattenMessages from 'services/i18n/intl';
 import enMessages from 'translations/en.json';
+import frMessages from 'translations/fr.json';
 import { RootState } from 'redux/types';
 import configureStore from 'redux/store';
 import { routerMock } from '../routerMock';
@@ -22,10 +23,15 @@ interface RenderOptionsWithWrapperOptions extends RenderOptions {
   wrapperOptions?: WrapperOptions;
 }
 
+const locales = {
+  fr: flattenMessages(frMessages),
+  en: flattenMessages(enMessages),
+};
+
 const render = (
   ui: ReactElement,
   {
-    wrapperOptions: { locale = 'en', initialReduxState, router } = {},
+    wrapperOptions: { locale = 'fr', initialReduxState, router } = {},
     ...renderOptions
   }: RenderOptionsWithWrapperOptions = {},
 ): RenderResult => {
@@ -34,7 +40,7 @@ const render = (
     return (
       <RouterContext.Provider value={routerMock(router)}>
         <Provider store={store}>
-          <IntlProvider locale={locale} messages={flattenMessages(enMessages)}>
+          <IntlProvider locale={locale} messages={locales[locale]}>
             {children}
           </IntlProvider>
         </Provider>

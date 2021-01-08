@@ -1,19 +1,21 @@
-import BurgerMenuSection from 'components/BurgerMenuSection/BurgerMenuSection';
+import React from 'react';
+
 import { slide as Slide } from 'react-burger-menu';
-import { BurgerMenu as BmIcon } from '../Icons/BurgerMenu';
 import { Cross } from '../Icons/Cross';
 
 interface Props {
-  title: string;
-  sections: string[];
-  subSections?: { [key: string]: string[] };
+  menuState: 'DISPLAYED' | 'HIDDEN';
+  handleClose: () => void;
+  title: React.ReactNode;
 }
 
-export const BurgerMenu: React.FC<Props> = ({ title, sections, subSections = {} }) => {
+export const MobileFilterMenu: React.FC<Props> = ({ menuState, handleClose, title }) => {
   return (
     <Slide
+      isOpen={menuState === 'DISPLAYED'}
+      onClose={handleClose}
       right
-      customBurgerIcon={<BmIcon className="text-white" />}
+      customBurgerIcon={false}
       customCrossIcon={<Cross size={14} className="mt-3" />}
       burgerButtonClassName="fixed w-6 h-6 top-2.5 right-2.5"
       burgerBarClassName="bg-white"
@@ -24,11 +26,6 @@ export const BurgerMenu: React.FC<Props> = ({ title, sections, subSections = {} 
       <span className="pb-4 font-bold text-center border-b border-solid border-greySoft outline-none">
         {title}
       </span>
-      {sections.map(section => (
-        <BurgerMenuSection title={section} subSections={subSections[section]} key={section} />
-      ))}
     </Slide>
   );
 };
-
-export default BurgerMenu;
