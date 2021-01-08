@@ -4,19 +4,21 @@ import { FormattedMessage } from 'react-intl';
 import { colorPalette, getSpacing, typography } from 'stylesheet';
 
 import { Walking } from 'components/Icons/Walking';
-
 import { Layout } from 'components/Layout/Layout';
 import { OpenMapButton } from 'components/OpenMapButton';
-import { MobileFilterMenu } from 'components/MobileFilterMenu';
+import { MobileFilterMenu, useOpenFilterMenu } from 'components/MobileFilterMenu';
+
 import { FilterBar } from './components/FilterBar';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
 import { ToggleFilterButton } from './components/ToggleFilterButton';
 
 export const SearchUI: React.FC = () => {
+  const { menuState } = useOpenFilterMenu();
+
   return (
     <Layout>
-      <MobileFilterMenu />
+      <MobileFilterMenu menuState={menuState} />
       <FilterBar />
       <div className="p-4">
         <div className="flex justify-between items-end">
