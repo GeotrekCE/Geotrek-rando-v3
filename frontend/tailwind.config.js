@@ -17,6 +17,7 @@ module.exports = {
       2: `${SPACING_UNIT * 2}px`,
       2.5: `${SPACING_UNIT * 2.5}px`,
       3: `${SPACING_UNIT * 3}px`,
+      3.5: `${SPACING_UNIT * 3.5}px`,
       4: `${SPACING_UNIT * 4}px`,
       5: `${SPACING_UNIT * 5}px`,
       6: `${SPACING_UNIT * 6}px`,
@@ -24,6 +25,8 @@ module.exports = {
       9: `${SPACING_UNIT * 9}px`,
       10: `${SPACING_UNIT * 10}px`,
       11: `${SPACING_UNIT * 11}px`,
+      12: `${SPACING_UNIT * 12}px`,
+      15: `${SPACING_UNIT * 15}px`,
       18: `${SPACING_UNIT * 18}px`,
       21.5: `${SPACING_UNIT * 21.5}px`,
       40: `${SPACING_UNIT * 40}px`,
@@ -35,6 +38,9 @@ module.exports = {
       sliderMenu: 3,
     },
     extend: {
+      boxShadow: {
+        lg: '0 0 30px 0 rgba(0, 0, 0, 0.15)',
+      },
       colors: {
         primary1: '#AA397D',
         primary2: '#F5E7EF',
