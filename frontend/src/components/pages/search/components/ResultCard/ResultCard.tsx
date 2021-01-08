@@ -53,12 +53,12 @@ export const ResultCard: React.FC<Props> = ({ activityIcon, place, title, tags, 
 
           <InformationContainer>
             <InformationLayout>
+              <DifficultyInformation icon={Square}>{informations.difficulty}</DifficultyInformation>
               <Information icon={Clock}>{informations.duration}</Information>
               <Information icon={CodeBrackets}>{informations.distance}</Information>
               <Information icon={TrendingUp} className="desktop:flex hidden">
                 {informations.elevation}
               </Information>
-              <DifficultyInformation icon={Square}>{informations.difficulty}</DifficultyInformation>
             </InformationLayout>
           </InformationContainer>
         </DetailsLayout>

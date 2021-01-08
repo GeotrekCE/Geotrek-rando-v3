@@ -80,7 +80,26 @@ Object {
                 class="ResultCard__InformationLayout-sc-1bem01n-10 hNhMuk"
               >
                 <div
-                  class="Information__Container-yz43nr-0 irmvhj"
+                  class="flex items-center text-primary1 ResultCard__DifficultyInformation-sc-1bem01n-12 hNgDQw "
+                >
+                  <svg
+                    fill="none"
+                    height="24"
+                    viewBox="0 0 24 25"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M23.52 19.68a3.851 3.851 0 01-3.84 3.84H4.32a3.851 3.851 0 01-3.84-3.84V4.32A3.851 3.851 0 014.32.48h15.36a3.851 3.851 0 013.84 3.84v15.36z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <span
+                    class="Information__InformationText-yz43nr-0 dyWCME"
+                  />
+                </div>
+                <div
+                  class="flex items-center text-primary1  "
                 >
                   <svg
                     fill="none"
@@ -106,13 +125,13 @@ Object {
                     />
                   </svg>
                   <span
-                    class="Information__InformationText-yz43nr-1 lpueQp"
+                    class="Information__InformationText-yz43nr-0 dyWCME"
                   >
                     2h
                   </span>
                 </div>
                 <div
-                  class="Information__Container-yz43nr-0 irmvhj"
+                  class="flex items-center text-primary1  "
                 >
                   <svg
                     fill="none"
@@ -130,13 +149,13 @@ Object {
                     />
                   </svg>
                   <span
-                    class="Information__InformationText-yz43nr-1 lpueQp"
+                    class="Information__InformationText-yz43nr-0 dyWCME"
                   >
                     5km
                   </span>
                 </div>
                 <div
-                  class="Information__Container-yz43nr-0 irmvhj"
+                  class="flex items-center text-primary1 desktop:flex hidden "
                 >
                   <svg
                     fill="none"
@@ -161,29 +180,10 @@ Object {
                     />
                   </svg>
                   <span
-                    class="Information__InformationText-yz43nr-1 lpueQp"
+                    class="Information__InformationText-yz43nr-0 dyWCME"
                   >
                     +360m
                   </span>
-                </div>
-                <div
-                  class="Information__Container-yz43nr-0 irmvhj ResultCard__DifficultyInformation-sc-1bem01n-12 fcGxiY"
-                >
-                  <svg
-                    fill="none"
-                    height="24"
-                    viewBox="0 0 24 25"
-                    width="24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M23.52 19.68a3.851 3.851 0 01-3.84 3.84H4.32a3.851 3.851 0 01-3.84-3.84V4.32A3.851 3.851 0 014.32.48h15.36a3.851 3.851 0 013.84 3.84v15.36z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <span
-                    class="Information__InformationText-yz43nr-1 lpueQp"
-                  />
                 </div>
               </div>
             </div>
@@ -277,7 +277,26 @@ Object {
               class="ResultCard__InformationLayout-sc-1bem01n-10 hNhMuk"
             >
               <div
-                class="Information__Container-yz43nr-0 irmvhj"
+                class="flex items-center text-primary1 ResultCard__DifficultyInformation-sc-1bem01n-12 hNgDQw "
+              >
+                <svg
+                  fill="none"
+                  height="24"
+                  viewBox="0 0 24 25"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M23.52 19.68a3.851 3.851 0 01-3.84 3.84H4.32a3.851 3.851 0 01-3.84-3.84V4.32A3.851 3.851 0 014.32.48h15.36a3.851 3.851 0 013.84 3.84v15.36z"
+                    fill="currentColor"
+                  />
+                </svg>
+                <span
+                  class="Information__InformationText-yz43nr-0 dyWCME"
+                />
+              </div>
+              <div
+                class="flex items-center text-primary1  "
               >
                 <svg
                   fill="none"
@@ -303,13 +322,13 @@ Object {
                   />
                 </svg>
                 <span
-                  class="Information__InformationText-yz43nr-1 lpueQp"
+                  class="Information__InformationText-yz43nr-0 dyWCME"
                 >
                   2h
                 </span>
               </div>
               <div
-                class="Information__Container-yz43nr-0 irmvhj"
+                class="flex items-center text-primary1  "
               >
                 <svg
                   fill="none"
@@ -327,13 +346,13 @@ Object {
                   />
                 </svg>
                 <span
-                  class="Information__InformationText-yz43nr-1 lpueQp"
+                  class="Information__InformationText-yz43nr-0 dyWCME"
                 >
                   5km
                 </span>
               </div>
               <div
-                class="Information__Container-yz43nr-0 irmvhj"
+                class="flex items-center text-primary1 desktop:flex hidden "
               >
                 <svg
                   fill="none"
@@ -358,29 +377,10 @@ Object {
                   />
                 </svg>
                 <span
-                  class="Information__InformationText-yz43nr-1 lpueQp"
+                  class="Information__InformationText-yz43nr-0 dyWCME"
                 >
                   +360m
                 </span>
-              </div>
-              <div
-                class="Information__Container-yz43nr-0 irmvhj ResultCard__DifficultyInformation-sc-1bem01n-12 fcGxiY"
-              >
-                <svg
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 25"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M23.52 19.68a3.851 3.851 0 01-3.84 3.84H4.32a3.851 3.851 0 01-3.84-3.84V4.32A3.851 3.851 0 014.32.48h15.36a3.851 3.851 0 013.84 3.84v15.36z"
-                    fill="currentColor"
-                  />
-                </svg>
-                <span
-                  class="Information__InformationText-yz43nr-1 lpueQp"
-                />
               </div>
             </div>
           </div>
