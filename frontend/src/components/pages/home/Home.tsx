@@ -5,6 +5,7 @@ import { Layout } from 'components/Layout/Layout';
 import Button from 'components/Button';
 import Map from 'components/Map';
 import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
+import { ActivitySearchFilterMobile } from 'components/ActivitySearchFilterMobile';
 import HomeCard from './components/HomeCard';
 import { WrapperProps } from './Home.wrap';
 import {
@@ -22,6 +23,15 @@ import {
   WelcomeText,
 } from './Home.style';
 
+const activities = [
+  { label: 'Randonnée', value: 'randonnee' },
+  { label: 'Itinérance', value: 'itinerance' },
+  { label: 'VTT/Vélo', value: 'vtt' },
+  { label: 'Outdoor', value: 'outdoor' },
+  { label: 'Hébergement', value: 'hebergement' },
+  { label: 'Gastronomie', value: 'gatronomie' },
+];
+
 const HomeUI: FunctionComponent<WrapperProps> = ({
   getPOIList,
   POIList,
@@ -35,8 +45,9 @@ const HomeUI: FunctionComponent<WrapperProps> = ({
           <FormattedMessage id="home.welcome-text" />
         </WelcomeText>
       </TopContainer>
-      <div className="px-4 desktop:px-40 space-y-6 desktop:space-y-18 relative -top-6 desktop:-top-18">
-        <ActivitySearchFilter />
+      <div className="px-4 desktop:px-40 relative -top-12 desktop:-top-15 space-y-6 desktop:space-y-18 ">
+        <ActivitySearchFilter className="hidden desktop:flex" activities={activities} />
+        <ActivitySearchFilterMobile className="block desktop:hidden" activities={activities} />
         <HomeCard
           title="Tour des Alpes"
           imagePath="/images/treck-selection.jpg"
