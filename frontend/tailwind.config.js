@@ -24,6 +24,8 @@ module.exports = {
       9: `${SPACING_UNIT * 9}px`,
       10: `${SPACING_UNIT * 10}px`,
       11: `${SPACING_UNIT * 11}px`,
+      18: `${SPACING_UNIT * 18}px`,
+      40: `${SPACING_UNIT * 40}px`,
     },
     extend: {
       colors: {
