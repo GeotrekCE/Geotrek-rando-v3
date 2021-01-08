@@ -78,6 +78,10 @@ export const fontFamily = {
   code: 'Monospace',
 } as const;
 
+export const shadow = {
+  large: `0 0 30px 0 rgba(0, 0, 0, 0.15)`,
+} as const;
+
 export const typography = {
   main: css`
     font-family: ${fontFamily.main};
