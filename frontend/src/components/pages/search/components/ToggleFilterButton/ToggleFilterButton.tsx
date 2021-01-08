@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 
@@ -7,9 +7,11 @@ import { buttonCssResets } from 'services/cssHelpers';
 
 import { Filter } from 'components/Icons/Filter';
 
-export const ToggleFilterButton: React.FC = () => {
+export const ToggleFilterButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
+  ...nativeButtonProps
+}) => {
   return (
-    <Button className="flex items-center desktop:hidden">
+    <Button className="flex items-center desktop:hidden" {...nativeButtonProps}>
       <Filter size={16} />
       <FilterText className="ml-1">
         <FormattedMessage id="search.filter" />
