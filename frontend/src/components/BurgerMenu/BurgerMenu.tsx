@@ -15,7 +15,7 @@ export const BurgerMenu: React.FC<Props> = ({ title, sections, subSections = {} 
       right
       customBurgerIcon={<BmIcon className="text-white" />}
       customCrossIcon={<Cross size={14} className="mt-3" />}
-      burgerButtonClassName="fixed w-6 h-6 top-2.5 right-2.5"
+      burgerButtonClassName="fixed w-6 h-6 top-2.5 right-2.5 desktop:hidden"
       burgerBarClassName="bg-white"
       menuClassName="bg-white p-4"
       crossButtonClassName="left-5"
