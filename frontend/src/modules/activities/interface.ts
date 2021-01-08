@@ -6,11 +6,11 @@ interface RawActivity {
 }
 
 export interface RawUniqueActivity extends RawActivity {
-  name: string;
+  name: { [languageKey: string]: string | null };
 }
 
 export interface RawListActivity extends RawActivity {
-  name: { [languageKey: string]: string | null };
+  name: string;
 }
 
 export interface Activity {
