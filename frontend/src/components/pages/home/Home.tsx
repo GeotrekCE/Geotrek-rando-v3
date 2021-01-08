@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { Layout } from 'components/Layout/Layout';
 import Button from 'components/Button';
 import Map from 'components/Map';
+import HomeCard from './components/HomeCard';
 import { WrapperProps } from './Home.wrap';
 import {
   ActivitySearchFilter,
@@ -35,8 +36,18 @@ const HomeUI: FunctionComponent<WrapperProps> = ({
         </WelcomeText>
       </TopContainer>
       <ActivitySearchFilter />
-      <Logo alt="logo" src="/logo.png" />
-      <Title>Welcome to Geotrek</Title>
+      <div className="p-4">
+        <HomeCard
+          title="Tour des Alpes"
+          imagePath="/images/treck-selection.jpg"
+          subtitle="Un parcours sur 3 jours à découvrir en famille"
+          tag="Sélectionné par le Parc national des Écrins"
+          heightMobile={265}
+          heightDesktop={300}
+        />
+        <Logo alt="logo" src="/logo.png" />
+        <Title>Welcome to Geotrek</Title>
+      </div>
       <HowTo>
         <DescriptionList>
           <DescriptionLine>
