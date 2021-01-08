@@ -14,7 +14,7 @@ import { SearchResultsMeta } from './components/SearchResultsMeta';
 import { ToggleFilterButton } from './components/ToggleFilterButton';
 
 export const SearchUI: React.FC = () => {
-  const { menuState } = useOpenFilterMenu();
+  const { menuState, displayMenu } = useOpenFilterMenu();
 
   return (
     <Layout>
@@ -23,7 +23,7 @@ export const SearchUI: React.FC = () => {
       <div className="p-4">
         <div className="flex justify-between items-end">
           <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
-          <ToggleFilterButton />
+          <ToggleFilterButton onClick={displayMenu} />
         </div>
         <RankingInfo className="desktop:hidden">
           <FormattedMessage id="search.orderedByRelevance" />
