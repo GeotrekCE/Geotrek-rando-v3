@@ -20,5 +20,5 @@ export const fetchActivities = async (
   if (query.page_size !== undefined) {
     apiQuery.page_size = query.page_size;
   }
-  return GeotrekAPI.url('/practices').query(apiQuery).get().json();
+  return GeotrekAPI.url('/practice').query(apiQuery).get().json();
 };
