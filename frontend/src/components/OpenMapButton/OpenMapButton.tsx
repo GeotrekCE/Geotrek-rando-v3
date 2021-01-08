@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { borderRadius, colorPalette, getSpacing, typography, zIndex } from 'stylesheet';
 import { buttonCssResets } from 'services/cssHelpers';
 import { Map } from 'components/Icons/Map';
 import { FormattedMessage } from 'react-intl';
-import { useScrollDirection } from 'hooks/useScrollDirection';
+import { useHideOnScrollDown } from 'hooks/useHideOnScrollDown';
 
 export const OpenMapButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
   ...nativeButtonProps
 }) => {
-  const scrollDirection = useScrollDirection();
-  const [buttonDisplayState, setButtonDisplayState] = useState<'SHOWN' | 'HIDDEN'>('SHOWN');
-
-  useEffect(() => {
-    setButtonDisplayState(scrollDirection === 'DOWN' ? 'HIDDEN' : 'SHOWN');
-  }, [scrollDirection]);
+  const buttonDisplayState = useHideOnScrollDown();
 
   return (
     <MapButton
@@ -29,7 +24,7 @@ export const OpenMapButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElemen
   );
 };
 
-const MapButton = styled.button<{ displayState: 'SHOWN' | 'HIDDEN' }>`
+const MapButton = styled.button<{ displayState: 'DISPLAYED' | 'HIDDEN' }>`
   ${buttonCssResets}
 
   padding: ${getSpacing(3)} ${getSpacing(4)};
