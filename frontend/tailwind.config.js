@@ -35,7 +35,10 @@ module.exports = {
         lg: '0 0 30px 0 rgba(0, 0, 0, 0.15)',
       },
       colors: {
-        primary1: '#AA397D',
+        primary1: {
+          light: '#bd3e8b',
+          DEFAULT: '#AA397D',
+        },
         primary2: '#F5E7EF',
         primary3: '#791150',
         greySoft: '#D7D6D9',
