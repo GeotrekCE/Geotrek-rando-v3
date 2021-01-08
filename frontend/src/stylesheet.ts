@@ -71,6 +71,11 @@ export const colorPalette = {
       color: '#534764',
     },
   },
+  home: {
+    activity: {
+      color: '#534764',
+    },
+  },
 } as const;
 
 export const fontFamily = {
