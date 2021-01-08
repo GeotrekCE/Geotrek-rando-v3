@@ -5,12 +5,14 @@ import { Cross } from '../Icons/Cross';
 
 interface Props {
   menuState: 'DISPLAYED' | 'HIDDEN';
+  handleClose: () => void;
 }
 
-export const MobileFilterMenu: React.FC<Props> = ({ menuState }) => {
+export const MobileFilterMenu: React.FC<Props> = ({ menuState, handleClose }) => {
   return (
     <Slide
       isOpen={menuState === 'DISPLAYED'}
+      onClose={handleClose}
       right
       customBurgerIcon={false}
       customCrossIcon={<Cross size={14} className="mt-3" />}

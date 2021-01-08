@@ -14,11 +14,11 @@ import { SearchResultsMeta } from './components/SearchResultsMeta';
 import { ToggleFilterButton } from './components/ToggleFilterButton';
 
 export const SearchUI: React.FC = () => {
-  const { menuState, displayMenu } = useOpenFilterMenu();
+  const { menuState, displayMenu, hideMenu } = useOpenFilterMenu();
 
   return (
     <Layout>
-      <MobileFilterMenu menuState={menuState} />
+      <MobileFilterMenu menuState={menuState} handleClose={hideMenu} />
       <FilterBar />
       <div className="p-4">
         <div className="flex justify-between items-end">
