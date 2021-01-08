@@ -43,7 +43,7 @@ const HomeUI: FunctionComponent<WrapperProps> = ({
           subtitle="Un parcours sur 3 jours à découvrir en famille"
           tag="Sélectionné par le Parc national des Écrins"
           heightMobile={265}
-          heightDesktop={300}
+          heightDesktop={265}
         />
         <Logo alt="logo" src="/logo.png" />
         <Title>Welcome to Geotrek</Title>
