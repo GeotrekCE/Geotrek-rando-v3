@@ -23,15 +23,15 @@ const HomeCard: React.FC<HomeCardProps> = ({
 }) => {
   return (
     <ImageContainer
-      className="flex flex-col h-65 bg-primary1 rounded-2xl p-4 justify-between items-start"
+      className="flex flex-col h-65 bg-primary1 rounded-2xl p-4 justify-between items-start desktop:p-10"
       imagePath={imagePath}
       heightMobile={heightMobile}
       heightDesktop={heightDesktop}
     >
       <Chip>{tag}</Chip>
       <div className="text-white">
-        <p className="font-bold text-xl">{title}</p>
-        <p>{subtitle}</p>
+        <p className="font-bold text-xl desktop:text-3xl desktop:mb-2">{title}</p>
+        <p className="desktop:text-xl">{subtitle}</p>
       </div>
     </ImageContainer>
   );

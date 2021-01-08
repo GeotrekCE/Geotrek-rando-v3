@@ -8,4 +8,5 @@ export const ActivitySearchFilterContainer = styled.div`
   background-color: ${colorPalette.white};
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.15);
   border-radius: ${borderRadius.card};
+  overflow: scroll;
 `;

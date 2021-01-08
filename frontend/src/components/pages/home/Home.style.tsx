@@ -8,7 +8,6 @@ import {
   typography,
   zIndex,
 } from 'stylesheet';
-import { ActivitySearchFilter as RawActivitySearchFilter } from 'components/ActivitySearchFilter';
 
 export const HomeContainer = styled.div`
   display: flex;
@@ -109,11 +108,3 @@ export const MapContainer = styled.div`
   }
 `;
 MapContainer.displayName = 'MapContainer';
-
-export const ActivitySearchFilter = styled(RawActivitySearchFilter)`
-  align-self: center;
-  position: relative;
-
-  /* Approximately half of the activity search filter height */
-  top: -${getSpacing(15)};
-`;
