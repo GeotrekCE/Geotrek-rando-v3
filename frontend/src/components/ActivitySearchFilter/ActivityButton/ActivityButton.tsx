@@ -1,17 +1,21 @@
 import React from 'react';
 
+import SVG from 'react-inlinesvg';
+import { colorPalette } from 'stylesheet';
 import { ActivityButtonContainer, Text } from './ActivityButton.style';
-import { GenericIconProps } from '../../Icons/types';
 
 interface Props {
-  icon: React.FC<GenericIconProps>;
+  iconUrl: string;
   children: React.ReactNode;
 }
 
-export const ActivityButton: React.FC<Props> = ({ icon: Icon, children }) => {
+const fillSvgWithThemeColor = (svg: string) =>
+  svg.replace(/fill:.*?;/g, `fill: ${colorPalette.home.activity.color};`);
+
+export const ActivityButton: React.FC<Props> = ({ iconUrl, children }) => {
   return (
     <ActivityButtonContainer>
-      <Icon size={48} />
+      <SVG src={iconUrl} preProcessor={fillSvgWithThemeColor} className="desktop:w-12" />
       <Text>{children}</Text>
     </ActivityButtonContainer>
   );
