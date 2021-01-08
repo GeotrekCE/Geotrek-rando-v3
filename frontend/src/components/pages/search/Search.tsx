@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colorPalette } from 'stylesheet';
+import { FormattedMessage } from 'react-intl';
+import { colorPalette, getSpacing, typography } from 'stylesheet';
 
 import { Walking } from 'components/Icons/Walking';
 
@@ -9,13 +10,20 @@ import { OpenMapButton } from 'components/OpenMapButton';
 import { FilterBar } from './components/FilterBar';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
+import { ToggleFilterButton } from './components/ToggleFilterButton';
 
 export const SearchUI: React.FC = () => {
   return (
     <Layout>
       <FilterBar />
       <div className="p-4">
-        <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
+        <div className="flex justify-between items-end">
+          <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
+          <ToggleFilterButton />
+        </div>
+        <RankingInfo className="desktop:hidden">
+          <FormattedMessage id="search.orderedByRelevance" />
+        </RankingInfo>
 
         <Separator className="w-full mt-6 desktop:block hidden" />
 
@@ -66,4 +74,9 @@ const Separator = styled.hr`
   background-color: ${colorPalette.greySoft};
   height: 1px;
   border: 0;
+`;
+
+const RankingInfo = styled.div`
+  ${typography.small}
+  margin-top: ${getSpacing(1)};
 `;
