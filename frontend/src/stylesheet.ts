@@ -128,3 +128,7 @@ export const zIndex = {
   floatingButton: 1,
   header: 2,
 } as const;
+
+export const sizes = {
+  desktopHeader: 96,
+};
