@@ -13,7 +13,7 @@ export const BurgerMenu: React.FC<Props> = ({ title, sections, subSections = {} 
   return (
     <Slide
       right
-      customBurgerIcon={<BmIcon color="white" />}
+      customBurgerIcon={<BmIcon className="text-white" />}
       customCrossIcon={<Cross size={14} className="mt-3" />}
       burgerButtonClassName="fixed w-6 h-6 top-2.5 right-2.5"
       burgerBarClassName="bg-white"
