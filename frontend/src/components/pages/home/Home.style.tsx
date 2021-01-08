@@ -14,6 +14,7 @@ export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  flex-grow: 1;
 `;
 HomeContainer.displayName = 'HomeContainer';
 

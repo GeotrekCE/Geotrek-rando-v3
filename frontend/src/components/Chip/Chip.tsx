@@ -23,10 +23,10 @@ const ChipContainer = styled.div`
   background-color: ${colorPalette.primary2};
 
   ${typography.small}
-  color: ${colorPalette.primary3};
 
   ${desktopOnly(css`
     ${typography.main}
     color: ${colorPalette.primary3};
   `)};
+  color: ${colorPalette.primary3};
 `;
