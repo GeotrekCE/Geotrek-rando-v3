@@ -18,7 +18,11 @@ export const SearchUI: React.FC = () => {
 
   return (
     <Layout>
-      <MobileFilterMenu menuState={menuState} handleClose={hideMenu} />
+      <MobileFilterMenu
+        menuState={menuState}
+        handleClose={hideMenu}
+        title={<FormattedMessage id="search.filter" />}
+      />
       <FilterBar />
       <div className="p-4">
         <div className="flex justify-between items-end">
