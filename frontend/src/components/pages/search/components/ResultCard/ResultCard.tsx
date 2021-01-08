@@ -55,7 +55,9 @@ export const ResultCard: React.FC<Props> = ({ activityIcon, place, title, tags, 
             <InformationLayout>
               <Information icon={Clock}>{informations.duration}</Information>
               <Information icon={CodeBrackets}>{informations.distance}</Information>
-              <Information icon={TrendingUp}>{informations.elevation}</Information>
+              <Information icon={TrendingUp} className="desktop:flex hidden">
+                {informations.elevation}
+              </Information>
               <DifficultyInformation icon={Square}>{informations.difficulty}</DifficultyInformation>
             </InformationLayout>
           </InformationContainer>
@@ -204,11 +206,4 @@ const ActivityBadge = styled(RawActivityBadge)`
 
 const DifficultyInformation = styled(Information)`
   color: ${colorPalette.easyOK};
-  display: none;
-
-  ${desktopOnly(
-    css`
-      display: flex;
-    `,
-  )}
 `;
