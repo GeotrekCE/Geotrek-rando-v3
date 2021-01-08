@@ -10,20 +10,14 @@ interface Props {
   className?: string;
 }
 
-export const Information: React.FC<Props> = ({ icon: Icon, children, className }) => {
+export const Information: React.FC<Props> = ({ icon: Icon, children, className = '' }) => {
   return (
-    <Container className={className}>
+    <div className={`flex items-center text-primary1 ${className} `}>
       <Icon size={24} />
       <InformationText>{children}</InformationText>
-    </Container>
+    </div>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  color: ${colorPalette.primary1};
-`;
 
 const InformationText = styled.span`
   margin-left: ${getSpacing(2)};
