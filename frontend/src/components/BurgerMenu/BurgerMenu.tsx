@@ -21,7 +21,7 @@ export const BurgerMenu: React.FC<Props> = ({ title, sections, subSections = {} 
       crossButtonClassName="left-5"
       crossClassName="bg-greyDarkColored"
     >
-      <span className="py-4 font-bold text-center border-b border-solid border-greySoft outline-none">
+      <span className="pb-4 font-bold text-center border-b border-solid border-greySoft outline-none">
         {title}
       </span>
       {sections.map(section => (
