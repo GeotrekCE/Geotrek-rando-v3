@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "debug": "NODE_OPTIONS='--inspect' next ./src",
-    "dev": "next ./src",
+    "dev": "NODE_ICU_DATA=node_modules/full-icu next ./src",
     "prod": "yarn build && yarn start",
     "build": "next build ./src",
     "generate": "plop --plopfile scripts/generators/index.js",
