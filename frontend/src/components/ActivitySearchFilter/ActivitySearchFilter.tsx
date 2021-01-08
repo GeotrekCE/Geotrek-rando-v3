@@ -1,36 +1,24 @@
+import { Activity } from 'components/ActivitySearchFilterMobile/ActivitySearchFilterMobile';
+import { Link } from 'components/Link';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-
+import { routes } from 'services/routes';
 import { Walking } from '../Icons/Walking';
-
 import { ActivityButton } from './ActivityButton';
-import { ActivitySearchFilterContainer } from './ActivitySearchFilter.style';
-
 interface Props {
   className?: string;
+  activities: Array<Activity>;
 }
 
-export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
+export const ActivitySearchFilter: React.FC<Props> = ({ className, activities }) => {
   return (
-    <ActivitySearchFilterContainer className={className}>
-      <ActivityButton icon={Walking}>
-        <FormattedMessage id="home.walking" />
-      </ActivityButton>
-      <ActivityButton icon={Walking}>
-        <FormattedMessage id="home.walking" />
-      </ActivityButton>
-      <ActivityButton icon={Walking}>
-        <FormattedMessage id="home.walking" />
-      </ActivityButton>
-      <ActivityButton icon={Walking}>
-        <FormattedMessage id="home.walking" />
-      </ActivityButton>
-      <ActivityButton icon={Walking}>
-        <FormattedMessage id="home.walking" />
-      </ActivityButton>
-      <ActivityButton icon={Walking}>
-        <FormattedMessage id="home.walking" />
-      </ActivityButton>
-    </ActivitySearchFilterContainer>
+    <div className={`py-7 bg-white shadow-lg rounded-2xl overflow-scroll ${className ?? ''}`}>
+      {activities.map(activity => (
+        <Link href={routes.SEARCH} key={activity.value}>
+          <ActivityButton icon={Walking} key={activity.value}>
+            {activity.label}
+          </ActivityButton>
+        </Link>
+      ))}
+    </div>
   );
 };
