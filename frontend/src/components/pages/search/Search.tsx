@@ -17,64 +17,66 @@ export const SearchUI: React.FC = () => {
   const { menuState, displayMenu, hideMenu } = useOpenFilterMenu();
 
   return (
-    <Layout>
+    <>
       <MobileFilterMenu
         menuState={menuState}
         handleClose={hideMenu}
         title={<FormattedMessage id="search.filter" />}
       />
-      <FilterBar />
-      <div className="p-4">
-        <div className="flex justify-between items-end">
-          <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
-          <ToggleFilterButton onClick={displayMenu} />
+      <Layout>
+        <FilterBar />
+        <div className="p-4">
+          <div className="flex justify-between items-end">
+            <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
+            <ToggleFilterButton onClick={displayMenu} />
+          </div>
+          <RankingInfo className="desktop:hidden">
+            <FormattedMessage id="search.orderedByRelevance" />
+          </RankingInfo>
+
+          <Separator className="w-full mt-6 desktop:block hidden" />
+
+          <OpenMapButton />
+
+          <ResultCard
+            activityIcon={Walking}
+            place="Saint-Etienne-du-Valdonnez"
+            title="Balade au pays des menhirs"
+            tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
+            informations={{
+              duration: '2h',
+              distance: '5km',
+              elevation: '+360m',
+              difficulty: 'Facile',
+            }}
+          />
+          <ResultCard
+            activityIcon={Walking}
+            place="Saint-Etienne-du-Valdonnez"
+            title="Balade au pays des menhirs"
+            tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
+            informations={{
+              duration: '2h',
+              distance: '5km',
+              elevation: '+360m',
+              difficulty: 'Facile',
+            }}
+          />
+          <ResultCard
+            activityIcon={Walking}
+            place="Saint-Etienne-du-Valdonnez"
+            title="Balade au pays des menhirs"
+            tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
+            informations={{
+              duration: '2h',
+              distance: '5km',
+              elevation: '+360m',
+              difficulty: 'Facile',
+            }}
+          />
         </div>
-        <RankingInfo className="desktop:hidden">
-          <FormattedMessage id="search.orderedByRelevance" />
-        </RankingInfo>
-
-        <Separator className="w-full mt-6 desktop:block hidden" />
-
-        <OpenMapButton />
-
-        <ResultCard
-          activityIcon={Walking}
-          place="Saint-Etienne-du-Valdonnez"
-          title="Balade au pays des menhirs"
-          tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
-          informations={{
-            duration: '2h',
-            distance: '5km',
-            elevation: '+360m',
-            difficulty: 'Facile',
-          }}
-        />
-        <ResultCard
-          activityIcon={Walking}
-          place="Saint-Etienne-du-Valdonnez"
-          title="Balade au pays des menhirs"
-          tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
-          informations={{
-            duration: '2h',
-            distance: '5km',
-            elevation: '+360m',
-            difficulty: 'Facile',
-          }}
-        />
-        <ResultCard
-          activityIcon={Walking}
-          place="Saint-Etienne-du-Valdonnez"
-          title="Balade au pays des menhirs"
-          tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
-          informations={{
-            duration: '2h',
-            distance: '5km',
-            elevation: '+360m',
-            difficulty: 'Facile',
-          }}
-        />
-      </div>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 
