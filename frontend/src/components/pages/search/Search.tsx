@@ -10,13 +10,17 @@ import { OpenMapButton } from 'components/OpenMapButton';
 import { FilterBar } from './components/FilterBar';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
+import { ToggleFilterButton } from './components/ToggleFilterButton';
 
 export const SearchUI: React.FC = () => {
   return (
     <Layout>
       <FilterBar />
       <div className="p-4">
-        <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
+        <div className="flex justify-between items-end">
+          <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
+          <ToggleFilterButton />
+        </div>
         <RankingInfo className="desktop:hidden">
           <FormattedMessage id="search.orderedByRelevance" />
         </RankingInfo>
