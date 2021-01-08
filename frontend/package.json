@@ -67,6 +67,7 @@
     "ts-node": "^9.1.0",
     "typesafe-actions": "^5.1.0",
     "wait-on": "^5.2.0",
+    "wretch": "^1.7.4",
     "yup": "^0.29.3"
   },
   "devDependencies": {
