@@ -1,5 +1,5 @@
 import { FormattedMessage } from 'react-intl';
-import Link from 'next/link';
+import { Link } from 'components/Link';
 import { routes } from 'services/routes';
 import BurgerMenu from '../BurgerMenu';
 
