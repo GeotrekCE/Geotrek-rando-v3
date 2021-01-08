@@ -9,7 +9,7 @@
     "build": "next build ./src",
     "generate": "plop --plopfile scripts/generators/index.js",
     "start": "NODE_ENV=production node ./src/server.js",
-    "test": "NODE_ICU_DATA=node_modules/full-icu jest",
+    "test": "NODE_ICU_DATA=node_modules/full-icu jest --coverage=false",
     "test:coverage": "jest --coverage",
     "tsc": "tsc -p ./src/tsconfig.json",
     "lint": "eslint --ext=jsx,ts,tsx src",
