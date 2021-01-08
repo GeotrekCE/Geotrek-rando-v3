@@ -6,6 +6,11 @@ import '../public/fonts.css';
 
 import 'tailwindcss/tailwind.css';
 
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
+
 interface AppProps extends AppInitialProps {
   hasError: boolean;
   errorEventId?: string;
@@ -34,9 +39,12 @@ class MyApp extends App<AppProps> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { Component, pageProps, hasError, errorEventId } = this.props;
     return (
-      <Root hasError={hasError} errorEventId={errorEventId}>
-        <Component {...pageProps} />
-      </Root>
+      <QueryClientProvider client={queryClient}>
+        <Root hasError={hasError} errorEventId={errorEventId}>
+          <Component {...pageProps} />
+        </Root>
+        <ReactQueryDevtools initialIsOpen={false} />8{' '}
+      </QueryClientProvider>
     );
   }
 }
