@@ -24,9 +24,6 @@ export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber, placeName, p
           {resultsNumber}{' '}
           <FormattedMessage values={{ count: resultsNumber }} id="search.resultsFound" />
         </ResultsNumber>
-        <RankingInfo className="desktop:hidden">
-          <FormattedMessage id="search.orderedByRelevance" />
-        </RankingInfo>
         <SearchInfo className="hidden desktop:inline">
           <FormattedMessage id="search.forThe" /> <Link href={placeUrl}>{placeName}</Link>
         </SearchInfo>
@@ -47,11 +44,6 @@ const ResultsNumber = styled.div`
   ${desktopOnly(css`
     ${typography.h2}
   `)}
-`;
-
-const RankingInfo = styled.div`
-  ${typography.small}
-  margin-top: ${getSpacing(1)};
 `;
 
 const SearchInfo = styled.span`
