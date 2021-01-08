@@ -21,7 +21,6 @@ export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber, placeName, p
 
       <div className="desktop:ml-6">
         <ResultsNumber>
-          {resultsNumber}{' '}
           <FormattedMessage values={{ count: resultsNumber }} id="search.resultsFound" />
         </ResultsNumber>
         <SearchInfo className="hidden desktop:inline">
