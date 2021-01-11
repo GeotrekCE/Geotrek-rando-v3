@@ -23,11 +23,11 @@ interface Props {
 }
 
 export const FilterBar: React.FC<Props> = props => {
-  const [filterBarState, setFilterBarState] = useState<'OPENED' | 'CLOSED'>('CLOSED');
+  const [filterBarState, setFilterBarState] = useState<'EXPANDED' | 'COLLAPSED'>('COLLAPSED');
 
-  const collapsableSectionClassName = `flex mt-4 ${filterBarState === 'CLOSED' ? 'hidden' : ''}`;
+  const collapsableSectionClassName = `flex mt-4 ${filterBarState === 'COLLAPSED' ? 'hidden' : ''}`;
   const containerClassName = `w-full py-3 pl-5 pr-2 hidden desktop:block fixed shadow bg-white z-floatingButton ${
-    filterBarState === 'CLOSED' ? 'h-filterBar' : ''
+    filterBarState === 'COLLAPSED' ? 'h-filterBar' : ''
   }`;
 
   const filterBarDisplayedState = useHideOnScrollDown(sizes.desktopHeader);
@@ -43,7 +43,7 @@ export const FilterBar: React.FC<Props> = props => {
         <Filter />
         <SeeMoreButton
           icon={Plus}
-          onClick={() => setFilterBarState('OPENED')}
+          onClick={() => setFilterBarState('EXPANDED')}
           filterBarState={filterBarState}
         >
           Voir plus
@@ -58,7 +58,7 @@ export const FilterBar: React.FC<Props> = props => {
         <Filter />
         <div
           className="mx-4 text-primary1 cursor-pointer"
-          onClick={() => setFilterBarState('CLOSED')}
+          onClick={() => setFilterBarState('COLLAPSED')}
         >
           <ChevronUp size={44} />
         </div>
@@ -90,8 +90,8 @@ const Container = styled.div<{ displayedState: 'DISPLAYED' | 'HIDDEN' }>`
       : -sizes.desktopHeader - sizes.filterBar}px;
 `;
 
-const SeeMoreButton = styled(Button)<{ filterBarState: 'OPENED' | 'CLOSED' }>`
+const SeeMoreButton = styled(Button)<{ filterBarState: 'EXPANDED' | 'COLLAPSED' }>`
   margin: 0 ${getSpacing(1)};
 
-  ${({ filterBarState }) => filterBarState === 'OPENED' && 'display: none'};
+  ${({ filterBarState }) => filterBarState === 'EXPANDED' && 'display: none'};
 `;
