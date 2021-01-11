@@ -17,8 +17,6 @@ export interface ActivitySearchFilterMobileProps {
   activities: Array<Activity>;
 }
 
-const selectAll = { label: 'Tout voir', value: 'all' };
-
 export const ActivitySearchFilterMobile: React.FC<ActivitySearchFilterMobileProps> = ({
   className,
   activities,
@@ -29,7 +27,7 @@ export const ActivitySearchFilterMobile: React.FC<ActivitySearchFilterMobileProp
     <div className={`${className ?? ''} flex space-x-4 items-center`}>
       <Select
         className="flex-1"
-        options={[...activities, selectAll]}
+        options={activities}
         styles={selectStyles}
         isSearchable={false}
         placeholder={<FormattedMessage id="home.selectPlaceholder" />}
@@ -37,15 +35,17 @@ export const ActivitySearchFilterMobile: React.FC<ActivitySearchFilterMobileProp
       />
       {/* TODO update route with active filter using selected activity */}
       {selectedActivity !== null ? (
-        <Link href={routes.SEARCH}>{validateButton}</Link>
+        <Link href={routes.SEARCH}>
+          <ValidateButton />
+        </Link>
       ) : (
-        validateButton
+        <ValidateButton />
       )}
     </div>
   );
 };
 
-const validateButton = (
+const ValidateButton: React.FC = () => (
   <div className="bg-primary1 hover:bg-primary1-light shadow-lg text-white rounded-lg p-3.5 cursor-pointer transition-all">
     <Arrow size={24} />
   </div>
