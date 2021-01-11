@@ -15,19 +15,38 @@ interface Props {
 
 export const FilterBar: React.FC<Props> = props => {
   return (
-    <div className="w-full py-3 pl-6 pr-2 hidden desktop:flex shadow">
-      {props.availableFilters &&
-        props.availableFilters[TrekFilters.DIFFICULTY].options.length > 0 && (
-          <SelectableDropdown
-            name={TrekFilters.DIFFICULTY}
-            placeholder={props.availableFilters[TrekFilters.DIFFICULTY].label}
-            options={props.availableFilters[TrekFilters.DIFFICULTY].options}
-            setFilterValues={(values: FilterValues) =>
-              props.setFilterValues(TrekFilters.DIFFICULTY, values)
-            }
-            selectedFilters={props.selectedFilters[TrekFilters.DIFFICULTY]}
-          />
-        )}
+    <div className="w-full py-3 pl-5 pr-2 hidden desktop:block shadow">
+      <div className="flex">
+        <Filter />
+        <Filter />
+        <Filter />
+        <Filter />
+        <Filter />
+        <Filter />
+      </div>
+      <div className="flex mt-4">
+        <Filter />
+        <Filter />
+        <Filter />
+        <Filter />
+        <Filter />
+        <Filter />
+      </div>
     </div>
   );
 };
+
+const Filter = () => (
+  <div className="mx-1">
+    <SelectableDropdown
+      name="difficulties"
+      placeholder="Difficulté"
+      options={[
+        { value: 'veryEasy', label: 'Très facile' },
+        { value: 'easy', label: 'Facile' },
+        { value: 'medium', label: 'Moyen' },
+        { value: 'hard', label: 'Difficile' },
+      ]}
+    />
+  </div>
+);
