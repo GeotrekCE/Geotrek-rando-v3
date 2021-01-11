@@ -25,6 +25,7 @@ module.exports = {
       10: `${SPACING_UNIT * 10}px`,
       11: `${SPACING_UNIT * 11}px`,
       18: `${SPACING_UNIT * 18}px`,
+      21.5: `${SPACING_UNIT * 21.5}px`,
       40: `${SPACING_UNIT * 40}px`,
     },
     zIndex: {

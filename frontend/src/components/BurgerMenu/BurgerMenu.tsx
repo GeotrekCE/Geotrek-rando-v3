@@ -7,15 +7,25 @@ interface Props {
   title: string;
   sections: string[];
   subSections?: { [key: string]: string[] };
+  displayState?: 'DISPLAYED' | 'HIDDEN';
 }
 
-export const BurgerMenu: React.FC<Props> = ({ title, sections, subSections = {} }) => {
+export const BurgerMenu: React.FC<Props> = ({
+  title,
+  sections,
+  subSections = {},
+  displayState = 'DISPLAYED',
+}) => {
+  const burgerButtonClassName = `fixed w-6 h-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 ${
+    displayState === 'HIDDEN' ? '-top-21.5' : 'top-2.5'
+  }`;
+
   return (
     <Slide
       right
       customBurgerIcon={<BmIcon className="text-white" />}
       customCrossIcon={<Cross size={14} className="mt-3" />}
-      burgerButtonClassName="fixed w-6 h-6 top-2.5 right-2.5"
+      burgerButtonClassName={burgerButtonClassName}
       burgerBarClassName="bg-white"
       menuClassName="bg-white p-4"
       crossButtonClassName="left-5"
