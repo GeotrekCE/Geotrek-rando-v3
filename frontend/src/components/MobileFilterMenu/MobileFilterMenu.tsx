@@ -1,15 +1,22 @@
 import React from 'react';
-
 import { slide as Slide } from 'react-burger-menu';
-import { Cross } from '../Icons/Cross';
+
+import { Cross } from 'components/Icons/Cross';
+import BurgerMenuSection from 'components/BurgerMenuSection/BurgerMenuSection';
 
 interface Props {
   menuState: 'DISPLAYED' | 'HIDDEN';
   handleClose: () => void;
   title: React.ReactNode;
+  filtersList: string[];
 }
 
-export const MobileFilterMenu: React.FC<Props> = ({ menuState, handleClose, title }) => {
+export const MobileFilterMenu: React.FC<Props> = ({
+  menuState,
+  handleClose,
+  title,
+  filtersList: filtersList,
+}) => {
   return (
     <Slide
       isOpen={menuState === 'DISPLAYED'}
@@ -26,6 +33,9 @@ export const MobileFilterMenu: React.FC<Props> = ({ menuState, handleClose, titl
       <span className="pb-4 font-bold text-center border-b border-solid border-greySoft outline-none">
         {title}
       </span>
+      {filtersList.map(section => (
+        <BurgerMenuSection title={section} key={section} />
+      ))}
     </Slide>
   );
 };
