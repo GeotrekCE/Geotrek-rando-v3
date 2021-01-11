@@ -17,15 +17,6 @@ import {
   WelcomeText,
 } from './Home.style';
 
-const activities = [
-  { label: 'Randonnée', value: 'randonnee' },
-  { label: 'Itinérance', value: 'itinerance' },
-  { label: 'VTT/Vélo', value: 'vtt' },
-  { label: 'Outdoor', value: 'outdoor' },
-  { label: 'Hébergement', value: 'hebergement' },
-  { label: 'Gastronomie', value: 'gatronomie' },
-];
-
 const HomeUI: FunctionComponent = () => (
   <Layout>
     <HomeContainer>
@@ -34,9 +25,10 @@ const HomeUI: FunctionComponent = () => (
           <FormattedMessage id="home.welcome-text" />
         </WelcomeText>
       </TopContainer>
-      <div className="px-4 desktop:px-40 relative -top-12 desktop:-top-15 space-y-6 desktop:space-y-18 ">
-        <ActivitySearchFilter className="hidden desktop:flex" activities={activities} />
-        <ActivitySearchFilterMobile className="block desktop:hidden" activities={activities} />
+      <div className="px-4 desktop:px-40 relative -top-12 desktop:-top-15 space-y-6 desktop:space-y-18">
+        <div className="desktop:flex desktop:justify-center">
+          <ActivitySearchFilter />
+        </div>
         <HomeCard
           title="Tour des Alpes"
           imagePath="/images/treck-selection.jpg"
