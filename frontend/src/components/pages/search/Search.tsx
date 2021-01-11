@@ -15,6 +15,22 @@ import { ToggleFilterButton } from './components/ToggleFilterButton';
 
 export const SearchUI: React.FC = () => {
   const { menuState, displayMenu, hideMenu } = useOpenFilterMenu();
+  const filtersList = [
+    'Lieu',
+    'Activité',
+    'Difficulté',
+    'Durée',
+    'Distance',
+    'Dénivelé',
+    'Thème patrimonial',
+    'Type de parcours',
+    'Accessibilité',
+    'Réservation',
+    'Thèmes',
+    'Communes',
+    'Massif/Vallée',
+    'Destination',
+  ];
 
   return (
     <>
@@ -22,6 +38,8 @@ export const SearchUI: React.FC = () => {
         menuState={menuState}
         handleClose={hideMenu}
         title={<FormattedMessage id="search.filter" />}
+        filtersList={filtersList}
+        closeMenu={hideMenu}
       />
       <Layout>
         <FilterBar />

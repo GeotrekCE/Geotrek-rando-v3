@@ -1,31 +1,47 @@
 import React from 'react';
-
 import { slide as Slide } from 'react-burger-menu';
-import { Cross } from '../Icons/Cross';
+
+import BurgerMenuSection from 'components/BurgerMenuSection/BurgerMenuSection';
+import { CloseButton } from './CloseButton';
 
 interface Props {
   menuState: 'DISPLAYED' | 'HIDDEN';
   handleClose: () => void;
   title: React.ReactNode;
+  filtersList: string[];
+  closeMenu: () => void;
 }
 
-export const MobileFilterMenu: React.FC<Props> = ({ menuState, handleClose, title }) => {
+export const MobileFilterMenu: React.FC<Props> = ({
+  menuState,
+  handleClose,
+  title,
+  filtersList,
+  closeMenu,
+}) => {
   return (
+    /*
+     * The library default behaviour is to have a fixed close icon which
+     * made the icon overlap with the menu content as we scrolled.
+     * To fix this issue we use our own close button which scrolls along
+     * the content and imperatively closes the drawer.
+     */
     <Slide
       isOpen={menuState === 'DISPLAYED'}
       onClose={handleClose}
       right
       customBurgerIcon={false}
-      customCrossIcon={<Cross size={14} className="mt-3" />}
-      burgerButtonClassName="fixed w-6 h-6 top-2.5 right-2.5"
+      customCrossIcon={false}
       burgerBarClassName="bg-white"
       menuClassName="bg-white p-4"
-      crossButtonClassName="left-5"
-      crossClassName="bg-greyDarkColored"
     >
-      <span className="pb-4 font-bold text-center border-b border-solid border-greySoft outline-none">
-        {title}
-      </span>
+      <div className="relative text-center w-full pb-4 font-bold border-b border-solid border-greySoft outline-none">
+        <CloseButton closeMenu={closeMenu} className="absolute left-0" />
+        <span>{title}</span>
+      </div>
+      {filtersList.map(section => (
+        <BurgerMenuSection title={section} key={section} />
+      ))}
     </Slide>
   );
 };
