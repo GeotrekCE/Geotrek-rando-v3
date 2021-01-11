@@ -55,7 +55,7 @@ export const Header: React.FC<Props> = ({ logoPath }) => {
           <FormattedMessage id={'home.title'} />
         </p>
         <InlineMenu
-          className="hidden desktop:flex"
+          className="hidden desktop:flex items-center"
           sections={sectionsDesktop}
           subSections={subSections}
         />
