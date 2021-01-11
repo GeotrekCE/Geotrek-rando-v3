@@ -5,10 +5,10 @@
  */
 
 import { ReactElement } from 'react';
-import { colorPalette } from 'stylesheet';
 import Select, { ValueType } from 'react-select';
 import { DisplayableFilter, FilterValues } from 'modules/filters/interface';
 import { useIntl } from 'react-intl';
+import { colorPalette, sizes } from 'stylesheet';
 
 interface Props {
   name: string;
@@ -31,6 +31,7 @@ const colourStyles = {
     ':hover': {
       borderColor: colorPalette.filter.borderColor,
     },
+    height: sizes.button,
   }),
   option: (styles: any) => {
     return {
