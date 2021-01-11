@@ -7,8 +7,9 @@ import {
 } from 'modules/filters/interface';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { getSpacing } from 'stylesheet';
+import { getSpacing, sizes } from 'stylesheet';
 
+import { useHideOnScrollDown } from 'hooks/useHideOnScrollDown';
 import { Button } from 'components/Button';
 import { Plus } from 'components/Icons/Plus';
 import { ChevronUp } from 'components/Icons/ChevronUp';
@@ -23,13 +24,16 @@ interface Props {
 
 export const FilterBar: React.FC<Props> = props => {
   const [filterBarState, setFilterBarState] = useState<'OPENED' | 'CLOSED'>('CLOSED');
+
   const collapsableSectionClassName = `flex mt-4 ${filterBarState === 'CLOSED' ? 'hidden' : ''}`;
-  const containerClassName = `w-full py-3 pl-5 pr-2 hidden desktop:block fixed shadow bg-white z-sliderMenu ${
+  const containerClassName = `w-full py-3 pl-5 pr-2 hidden desktop:block fixed shadow bg-white z-floatingButton ${
     filterBarState === 'CLOSED' ? 'h-filterBar' : ''
   }`;
 
+  const filterBarDisplayedState = useHideOnScrollDown(sizes.desktopHeader);
+
   return (
-    <div className={containerClassName}>
+    <Container className={containerClassName} displayedState={filterBarDisplayedState}>
       <div className="flex">
         <Filter />
         <Filter />
@@ -59,7 +63,7 @@ export const FilterBar: React.FC<Props> = props => {
           <ChevronUp size={44} />
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
@@ -77,6 +81,14 @@ const Filter = () => (
     />
   </div>
 );
+
+const Container = styled.div<{ displayedState: 'DISPLAYED' | 'HIDDEN' }>`
+  transition: top 0.3s ease-in-out 0.1s;
+  top: ${({ displayedState }) =>
+    displayedState === 'DISPLAYED'
+      ? sizes.desktopHeader
+      : -sizes.desktopHeader - sizes.filterBar}px;
+`;
 
 const SeeMoreButton = styled(Button)<{ filterBarState: 'OPENED' | 'CLOSED' }>`
   margin: 0 ${getSpacing(1)};
