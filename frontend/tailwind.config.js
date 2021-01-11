@@ -48,7 +48,10 @@ module.exports = {
         },
         primary2: '#F5E7EF',
         primary3: '#791150',
-        greySoft: '#D7D6D9',
+        greySoft: {
+          light: '#D7D6D950',
+          DEFAULT: '#D7D6D9',
+        },
         warning: '#D77E00',
         easyOK: '#4FAD79',
         hardKO: '#E25316',
