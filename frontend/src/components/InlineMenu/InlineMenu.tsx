@@ -10,7 +10,7 @@ export interface InlineMenuProps {
 
 const InlineMenu: React.FC<InlineMenuProps> = ({ className, sections, subSections }) => {
   return (
-    <>
+    <div className={className}>
       {sections.map(sectionName => {
         switch (sectionName) {
           case 'En savoir plus':
@@ -22,6 +22,7 @@ const InlineMenu: React.FC<InlineMenuProps> = ({ className, sections, subSection
                 menuClassName={menuClassName}
                 arrowClosed={<ArrowMenu />}
                 arrowOpen={<ArrowMenu />}
+                key={sectionName}
               />
             );
           case 'Langue':
@@ -49,7 +50,7 @@ const InlineMenu: React.FC<InlineMenuProps> = ({ className, sections, subSection
             return <Section name={sectionName} key={sectionName} />;
         }
       })}
-    </>
+    </div>
   );
 };
 
