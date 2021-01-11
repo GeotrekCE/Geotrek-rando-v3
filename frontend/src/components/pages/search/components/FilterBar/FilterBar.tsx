@@ -5,6 +5,7 @@ import {
   SelectedFilters,
   TrekFilters,
 } from 'modules/filters/interface';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { getSpacing } from 'stylesheet';
 
@@ -20,6 +21,9 @@ interface Props {
 }
 
 export const FilterBar: React.FC<Props> = props => {
+  const [filterBarState, setFilterBarState] = useState<'HIDDEN' | 'DISPLAYED'>('HIDDEN');
+  const collapsableSectionClassName = `flex mt-4 ${filterBarState === 'HIDDEN' ? 'hidden' : ''}`;
+
   return (
     <div className="w-full py-3 pl-5 pr-2 hidden desktop:block shadow">
       <div className="flex">
@@ -29,9 +33,11 @@ export const FilterBar: React.FC<Props> = props => {
         <Filter />
         <Filter />
         <Filter />
-        <SeeMoreButton icon={Plus}>Voir plus</SeeMoreButton>
+        <SeeMoreButton icon={Plus} onClick={() => setFilterBarState('DISPLAYED')}>
+          Voir plus
+        </SeeMoreButton>
       </div>
-      <div className="flex mt-4">
+      <div className={collapsableSectionClassName}>
         <Filter />
         <Filter />
         <Filter />
