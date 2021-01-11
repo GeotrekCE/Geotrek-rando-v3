@@ -2,7 +2,6 @@ import { FunctionComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { Layout } from 'components/Layout/Layout';
-import Button from 'components/Button';
 import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
 import { ActivitySearchFilterMobile } from 'components/ActivitySearchFilterMobile';
 import HomeCard from './components/HomeCard';
@@ -60,9 +59,6 @@ const HomeUI: FunctionComponent = () => (
             <DescriptionLine>
               The displayed data come from a server side populated redux store.
             </DescriptionLine>
-            <Button onClick={() => Promise.all([getTreksList(), getPOIList()])}>
-              Click here to load POIs and Treks from 2nd page from the front
-            </Button>
           </DescriptionList>
         </HowTo>
         {/* <ListMapContainer>
