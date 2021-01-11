@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { borderRadius, colorPalette, getSpacing, typography } from 'stylesheet';
+import { borderRadius, colorPalette, getSpacing, sizes, typography } from 'stylesheet';
 import { buttonCssResets } from 'services/cssHelpers';
 
 import { GenericIconProps } from 'components/Icons/types';
@@ -26,6 +26,7 @@ export const StyledButton = styled.button`
   ${buttonCssResets};
 
   padding: ${getSpacing(2)} ${getSpacing(4)};
+  height: ${sizes.button}px;
 
   border: 1px solid ${colorPalette.primary1};
   border-radius: ${borderRadius.squareButton};
