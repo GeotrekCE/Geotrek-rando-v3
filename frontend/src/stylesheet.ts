@@ -140,4 +140,5 @@ export const zIndex = {
 
 export const sizes = {
   desktopHeader: 96,
+  button: 48,
 };
