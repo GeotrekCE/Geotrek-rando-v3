@@ -33,7 +33,11 @@ export const FilterBar: React.FC<Props> = props => {
         <Filter />
         <Filter />
         <Filter />
-        <SeeMoreButton icon={Plus} onClick={() => setFilterBarState('DISPLAYED')}>
+        <SeeMoreButton
+          icon={Plus}
+          onClick={() => setFilterBarState('DISPLAYED')}
+          filterBarState={filterBarState}
+        >
           Voir plus
         </SeeMoreButton>
       </div>
@@ -64,6 +68,8 @@ const Filter = () => (
   </div>
 );
 
-const SeeMoreButton = styled(Button)`
+const SeeMoreButton = styled(Button)<{ filterBarState: 'DISPLAYED' | 'HIDDEN' }>`
   margin: 0 ${getSpacing(1)};
+
+  ${({ filterBarState }) => filterBarState === 'DISPLAYED' && 'display: none'};
 `;
