@@ -49,7 +49,7 @@ export const SearchUI: React.FC = () => {
           setFilterValues={setFilterValues}
           selectedFilters={selectedFilters}
         />
-        <div className="p-4">
+        <div className="p-4 desktop:pt-filterBar desktop:mt-6">
           <div className="flex justify-between items-end">
             <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
             <ToggleFilterButton onClick={displayMenu} />
