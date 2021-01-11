@@ -11,6 +11,7 @@ import { getSpacing } from 'stylesheet';
 
 import { Button } from 'components/Button';
 import { Plus } from 'components/Icons/Plus';
+import { ChevronUp } from 'components/Icons/ChevronUp';
 
 import { SelectableDropdown } from './SelectableDropdown';
 
@@ -48,6 +49,12 @@ export const FilterBar: React.FC<Props> = props => {
         <Filter />
         <Filter />
         <Filter />
+        <div
+          className="mx-4 text-primary1 cursor-pointer"
+          onClick={() => setFilterBarState('HIDDEN')}
+        >
+          <ChevronUp size={44} />
+        </div>
       </div>
     </div>
   );
