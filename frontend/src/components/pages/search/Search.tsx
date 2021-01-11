@@ -39,6 +39,7 @@ export const SearchUI: React.FC = () => {
         handleClose={hideMenu}
         title={<FormattedMessage id="search.filter" />}
         filtersList={filtersList}
+        closeMenu={hideMenu}
       />
       <Layout>
         <FilterBar />
