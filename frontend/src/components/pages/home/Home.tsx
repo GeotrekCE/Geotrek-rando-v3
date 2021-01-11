@@ -24,7 +24,7 @@ const HomeUI: FunctionComponent = () => (
           <FormattedMessage id="home.welcome-text" />
         </WelcomeText>
       </TopContainer>
-      <div className="px-4 desktop:px-40 relative -top-12 desktop:-top-15 space-y-6 desktop:space-y-18">
+      <div className="px-4 desktop:px-40 relative -top-6 desktop:-top-15 space-y-6 desktop:space-y-18">
         <div className="desktop:flex desktop:justify-center">
           <ActivitySearchFilter />
         </div>
