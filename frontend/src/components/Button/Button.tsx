@@ -2,7 +2,27 @@ import styled from 'styled-components';
 import { borderRadius, colorPalette, getSpacing, typography } from 'stylesheet';
 import { buttonCssResets } from 'services/cssHelpers';
 
-export const Button = styled.button`
+import { GenericIconProps } from 'components/Icons/types';
+
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  icon?: React.FC<GenericIconProps>;
+}
+
+export const Button: React.FC<Props> = ({
+  icon: Icon,
+  children,
+  className,
+  ...nativeButtonsProps
+}) => {
+  return (
+    <StyledButton className={`flex items-center ${className ?? ''}`} {...nativeButtonsProps}>
+      {Icon && <Icon size={24} className="mr-1" />}
+      {children}
+    </StyledButton>
+  );
+};
+
+export const StyledButton = styled.button`
   ${buttonCssResets};
 
   padding: ${getSpacing(2)} ${getSpacing(4)};
