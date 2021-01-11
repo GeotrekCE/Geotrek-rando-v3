@@ -5,6 +5,12 @@ import {
   SelectedFilters,
   TrekFilters,
 } from 'modules/filters/interface';
+import styled from 'styled-components';
+import { getSpacing } from 'stylesheet';
+
+import { Button } from 'components/Button';
+import { Plus } from 'components/Icons/Plus';
+
 import { SelectableDropdown } from './SelectableDropdown';
 
 interface Props {
@@ -23,6 +29,7 @@ export const FilterBar: React.FC<Props> = props => {
         <Filter />
         <Filter />
         <Filter />
+        <SeeMoreButton icon={Plus}>Voir plus</SeeMoreButton>
       </div>
       <div className="flex mt-4">
         <Filter />
@@ -50,3 +57,7 @@ const Filter = () => (
     />
   </div>
 );
+
+const SeeMoreButton = styled(Button)`
+  margin: 0 ${getSpacing(1)};
+`;
