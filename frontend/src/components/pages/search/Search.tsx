@@ -98,6 +98,18 @@ export const SearchUI: React.FC = () => {
               difficulty: 'Facile',
             }}
           />
+          <ResultCard
+            activityIcon={Walking}
+            place="Saint-Etienne-du-Valdonnez"
+            title="Balade au pays des menhirs"
+            tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
+            informations={{
+              duration: '2h',
+              distance: '5km',
+              elevation: '+360m',
+              difficulty: 'Facile',
+            }}
+          />
         </div>
       </Layout>
     </>
