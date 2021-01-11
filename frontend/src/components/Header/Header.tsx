@@ -31,7 +31,7 @@ export const Header: React.FC<Props> = ({ logoPath }) => {
       'Sorties accompagnées',
       'Boutique du Parc',
     ],
-    Langue: ['Français'],
+    Langue: ['FR'],
   };
 
   const headerState = useHideOnScrollDown(sizes.desktopHeader);
