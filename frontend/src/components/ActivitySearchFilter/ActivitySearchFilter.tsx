@@ -66,6 +66,7 @@ const selectStyles = {
   valueContainer: (styles: any) => ({
     ...styles,
     padding: 'none',
+    overflow: 'visible',
   }),
   singleValue: (styles: any) => ({
     ...styles,
