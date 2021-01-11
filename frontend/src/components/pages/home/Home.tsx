@@ -3,7 +3,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { Layout } from 'components/Layout/Layout';
 import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
-import { ActivitySearchFilterMobile } from 'components/ActivitySearchFilterMobile';
 import HomeCard from './components/HomeCard';
 import {
   Code,
