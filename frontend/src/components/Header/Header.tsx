@@ -6,6 +6,7 @@ import { desktopOnly, sizes } from 'stylesheet';
 import { Link } from 'components/Link';
 import { Display, useHideOnScrollDown } from 'hooks/useHideOnScrollDown';
 
+import InlineMenu from 'components/InlineMenu';
 import BurgerMenu from '../BurgerMenu';
 
 interface Props {
@@ -13,9 +14,15 @@ interface Props {
 }
 
 export const Header: React.FC<Props> = ({ logoPath }) => {
-  const sections = ['A propos', 'Langue', 'Favoris'];
+  const sectionsMobile = ['En savoir plus', 'Favoris', 'Langue'];
+  const sectionsDesktop = [
+    'Le parc national',
+    'Les maisons du parc',
+    'Infos pratiques',
+    ...sectionsMobile,
+  ];
   const subSections = {
-    'A propos': [
+    'En savoir plus': [
       "Biodiv'Écrins",
       'Le Parc national des Écrins',
       'Transport',
@@ -24,7 +31,7 @@ export const Header: React.FC<Props> = ({ logoPath }) => {
       'Sorties accompagnées',
       'Boutique du Parc',
     ],
-    Langue: ['Français', 'Anglais'],
+    Langue: ['Français'],
   };
 
   const headerState = useHideOnScrollDown(sizes.desktopHeader);
@@ -33,7 +40,7 @@ export const Header: React.FC<Props> = ({ logoPath }) => {
     <>
       <BurgerMenu
         subSections={subSections}
-        sections={sections}
+        sections={sectionsMobile}
         title="Menu"
         displayState={headerState}
       />
@@ -42,11 +49,16 @@ export const Header: React.FC<Props> = ({ logoPath }) => {
         className="h-11 bg-primary1 flex flex-row items-center sticky z-header"
       >
         <Link href={routes.HOME}>
-          <img className="h-9 mx-3" alt="logo" src={logoPath} />
+          <img className="h-9 mx-3 desktop:h-18" alt="logo" src={logoPath} />
         </Link>
-        <h1 className="flex-1 text-white">
+        <p className="flex-1 text-white desktop:text-3xl font-semibold desktop:font-bold desktop:ml-8">
           <FormattedMessage id={'home.title'} />
-        </h1>
+        </p>
+        <InlineMenu
+          className="hidden desktop:flex"
+          sections={sectionsDesktop}
+          subSections={subSections}
+        />
       </Container>
     </>
   );
