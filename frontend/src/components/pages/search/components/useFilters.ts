@@ -1,18 +1,11 @@
-import {
-  BaseFilters,
-  DisplayableAvailableFilters,
-  DisplayableFilter,
-  FilterValues,
-  SelectedFilters,
-  TrekFilters,
-} from 'modules/filters/interface';
-import { getAvailableFilters } from 'modules/filters/utils';
+import { BaseFilters, FilterValues, SelectedFilters, TrekFilters } from 'modules/filters/interface';
+import { getDisplayableAvailableFilters } from 'modules/filters/utils';
 import { useReducer } from 'react';
 import { useQuery } from 'react-query';
 import { filterReducer, setFilterValuesAction } from './filterReducer';
 
 export const useFilter = () => {
-  const { data: availableFilters } = useQuery('filters', getAvailableFilters);
+  const { data: availableFilters } = useQuery('filters', getDisplayableAvailableFilters);
 
   const initialState: SelectedFilters = {
     [BaseFilters.ACTIVITIES]: [],
@@ -32,56 +25,8 @@ export const useFilter = () => {
   const setFilterValues = (filter: BaseFilters | TrekFilters, values: FilterValues) =>
     dispatch(setFilterValuesAction(filter, values));
 
-  const displayableAvailableFilters: DisplayableAvailableFilters = {
-    [BaseFilters.ACTIVITIES]: {
-      label: '',
-      options: [],
-    },
-    [BaseFilters.CITY]: {
-      label: '',
-      options: [],
-    },
-    [BaseFilters.DISTRICT]: {
-      label: '',
-      options: [],
-    },
-    [BaseFilters.THEME]: {
-      label: '',
-      options: [],
-    },
-    [TrekFilters.DIFFICULTY]: {
-      label: availableFilters ? availableFilters[TrekFilters.DIFFICULTY].label : '',
-      options: availableFilters
-        ? Object.keys(availableFilters[TrekFilters.DIFFICULTY].choices).map(difficultyId => ({
-            value: difficultyId,
-            label: availableFilters[TrekFilters.DIFFICULTY].choices[difficultyId].label,
-          }))
-        : [],
-    },
-    [TrekFilters.COURSE_TYPE]: {
-      label: '',
-      options: [],
-    },
-    [TrekFilters.ACCESSIBILITY]: {
-      label: '',
-      options: [],
-    },
-    [TrekFilters.DURATION]: {
-      label: '',
-      options: [],
-    },
-    [TrekFilters.LENGTH]: {
-      label: '',
-      options: [],
-    },
-    [TrekFilters.POSITIVE_ELEVATION]: {
-      label: '',
-      options: [],
-    },
-  };
-
   return {
-    displayableAvailableFilters,
+    availableFilters,
     setFilterValues,
     selectedFilters,
   };
