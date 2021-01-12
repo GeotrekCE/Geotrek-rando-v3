@@ -38,7 +38,18 @@ export const FilterBar: React.FC<Props> = props => {
     <Container className={filterBarContainerClassName} displayedState={filterBarDisplayedState}>
       <div className={`${filterBarExpansionState === 'EXPANDED' ? 'mb-4' : 'h-filterBar'}`}>
         <FiltersLayout>
-          <Filter />
+          {props.availableFilters &&
+            props.availableFilters[TrekFilters.DIFFICULTY].options.length > 0 && (
+              <SelectableDropdown
+                name={TrekFilters.DIFFICULTY}
+                placeholder={props.availableFilters[TrekFilters.DIFFICULTY].label}
+                options={props.availableFilters[TrekFilters.DIFFICULTY].options}
+                setFilterValues={(values: FilterValues) =>
+                  props.setFilterValues(TrekFilters.DIFFICULTY, values)
+                }
+                selectedFilters={props.selectedFilters[TrekFilters.DIFFICULTY]}
+              />
+            )}
           <Filter />
           <Filter />
           <SeeMoreButton
@@ -88,6 +99,9 @@ const Filter = () => (
       { value: 'medium', label: 'Moyen' },
       { value: 'hard', label: 'Difficile' },
     ]}
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    setFilterValues={(values: FilterValues) => {}}
+    selectedFilters={[]}
   />
 );
 
