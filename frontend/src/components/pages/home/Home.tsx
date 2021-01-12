@@ -13,16 +13,15 @@ import {
   Logo,
   Title,
   TopContainer,
-  WelcomeText,
 } from './Home.style';
 
 const HomeUI: FunctionComponent = () => (
   <Layout>
     <HomeContainer>
       <TopContainer>
-        <WelcomeText>
+        <span className="text-white font-bold text-xl desktop:text-5xl desktop:leading-tight">
           <FormattedMessage id="home.welcome-text" />
-        </WelcomeText>
+        </span>
       </TopContainer>
       <div className="px-4 desktop:px-40 relative -top-6 desktop:-top-15 space-y-6 desktop:space-y-18">
         <div className="desktop:flex desktop:justify-center">
