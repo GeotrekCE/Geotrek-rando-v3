@@ -55,7 +55,7 @@
     "no-invalid-this": "off",
     "no-new-wrappers": "error",
     "no-shadow": [
-      "error",
+      "warn",
       {
         "hoist": "all"
       }
