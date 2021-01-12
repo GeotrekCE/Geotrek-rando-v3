@@ -9,5 +9,14 @@ export const useActivitySearchFilter = () => {
 
   const [expandedState, setExpandedState] = useState<'EXPANDED' | 'COLLAPSED'>('COLLAPSED');
 
-  return { activities, expandedState, setExpandedState };
+  const toggleExpandedState = () =>
+    setExpandedState(currentExpandedState =>
+      currentExpandedState === 'EXPANDED' ? 'COLLAPSED' : 'EXPANDED',
+    );
+
+  return {
+    activities,
+    expandedState,
+    toggleExpandedState,
+  };
 };
