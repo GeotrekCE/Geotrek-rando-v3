@@ -8,6 +8,7 @@ import { ReactElement } from 'react';
 import { colorPalette } from 'stylesheet';
 import Select from 'react-select';
 import { DisplayableFilter } from 'modules/filters/interface';
+import { useIntl } from 'react-intl';
 
 interface Props {
   name: string;
@@ -53,13 +54,14 @@ const colourStyles = {
 };
 
 export const SelectableDropdown = (props: Props): ReactElement => {
+  const intl = useIntl();
   return (
     <Select
       options={props.options}
       isClearable={false}
       isSearchable={false}
       name={props.name}
-      placeholder={props.placeholder}
+      placeholder={intl.formatMessage({ id: props.placeholder })}
       isMulti
       classNamePrefix="select"
       closeMenuOnSelect={false}

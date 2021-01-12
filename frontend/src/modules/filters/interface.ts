@@ -45,6 +45,10 @@ export interface DisplayableFilter {
   value: string;
   label: string;
 }
+interface DisplayableAvailableFilter {
+  label: string;
+  options: DisplayableFilter[];
+}
 
 export interface AvailableFilters {
   [BaseFilters.ACTIVITIES]: Filter;
@@ -60,16 +64,16 @@ export interface AvailableFilters {
 }
 
 export interface DisplayableAvailableFilters {
-  [BaseFilters.ACTIVITIES]: DisplayableFilter[];
-  [BaseFilters.CITY]: DisplayableFilter[];
-  [BaseFilters.DISTRICT]: DisplayableFilter[];
-  [BaseFilters.THEME]: DisplayableFilter[];
-  [TrekFilters.DIFFICULTY]: DisplayableFilter[];
-  [TrekFilters.COURSE_TYPE]: DisplayableFilter[];
-  [TrekFilters.ACCESSIBILITY]: DisplayableFilter[];
-  [TrekFilters.DURATION]: DisplayableFilter[];
-  [TrekFilters.LENGTH]: DisplayableFilter[];
-  [TrekFilters.POSITIVE_ELEVATION]: DisplayableFilter[];
+  [BaseFilters.ACTIVITIES]: DisplayableAvailableFilter;
+  [BaseFilters.CITY]: DisplayableAvailableFilter;
+  [BaseFilters.DISTRICT]: DisplayableAvailableFilter;
+  [BaseFilters.THEME]: DisplayableAvailableFilter;
+  [TrekFilters.DIFFICULTY]: DisplayableAvailableFilter;
+  [TrekFilters.COURSE_TYPE]: DisplayableAvailableFilter;
+  [TrekFilters.ACCESSIBILITY]: DisplayableAvailableFilter;
+  [TrekFilters.DURATION]: DisplayableAvailableFilter;
+  [TrekFilters.LENGTH]: DisplayableAvailableFilter;
+  [TrekFilters.POSITIVE_ELEVATION]: DisplayableAvailableFilter;
 }
 
 export interface SelectedFilters {

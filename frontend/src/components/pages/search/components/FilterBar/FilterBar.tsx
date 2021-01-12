@@ -18,8 +18,8 @@ export const FilterBar: React.FC<Props> = props => {
     <div className="w-full py-3 pl-6 pr-2 hidden desktop:flex shadow">
       <SelectableDropdown
         name={TrekFilters.DIFFICULTY}
-        placeholder="Difficulté"
-        options={props.availableFilters[TrekFilters.DIFFICULTY]}
+          placeholder={props.availableFilters[TrekFilters.DIFFICULTY].label}
+          options={props.availableFilters[TrekFilters.DIFFICULTY].options}
         setFilterValues={(values: DisplayableFilter[]) =>
           props.setFilterValues(TrekFilters.DIFFICULTY, values)
         }
