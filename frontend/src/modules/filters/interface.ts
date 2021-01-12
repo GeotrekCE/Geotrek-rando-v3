@@ -1,33 +1,35 @@
-interface Choice {
-  value: string;
-  label: string;
+export interface Choices {
+  [value: string]: {
+    label: string;
+  };
 }
 
-interface RangeChoice {
-  minValue: string;
-  maxValue: string;
-  label: string;
+export interface RangeChoices {
+  [minValue: string]: {
+    maxValue: string;
+    label: string;
+  };
 }
 
 interface BaseFilter {
   status: 'ENABLED' | 'DISABLED'; // From config
   source: 'USER' | 'API';
   label: string;
-  id: string;
 }
 
 export interface Filter extends BaseFilter {
-  choices: Choice[];
+  choices: Choices;
 }
 
 export interface RangeFilter extends BaseFilter {
-  choices: RangeChoice[];
+  choices: RangeChoices;
 }
 
 export enum BaseFilters {
   THEME = 'THEME',
   CITY = 'CITY',
   DISTRICT = 'DISTRICT',
+  ACTIVITIES = 'ACTIVITIES',
 }
 
 export enum TrekFilters {
@@ -42,7 +44,13 @@ export enum RangeFilters {
   POSITIVE_ELEVATION = 'POSITIVE_ELEVATION',
 }
 
+export interface DisplayableFilter {
+  value: string;
+  label: string;
+}
+
 export interface AvailableFilters {
+  [BaseFilters.ACTIVITIES]: Filter;
   [BaseFilters.CITY]: Filter;
   [BaseFilters.DISTRICT]: Filter;
   [BaseFilters.THEME]: Filter;
@@ -54,14 +62,37 @@ export interface AvailableFilters {
   [RangeFilters.POSITIVE_ELEVATION]: RangeFilter;
 }
 
+export interface DisplayableAvailableFilters {
+  [BaseFilters.ACTIVITIES]: DisplayableFilter[];
+  [BaseFilters.CITY]: DisplayableFilter[];
+  [BaseFilters.DISTRICT]: DisplayableFilter[];
+  [BaseFilters.THEME]: DisplayableFilter[];
+  [TrekFilters.DIFFICULTY]: DisplayableFilter[];
+  [TrekFilters.COURSE_TYPE]: DisplayableFilter[];
+  [TrekFilters.ACCESSIBILITY]: DisplayableFilter[];
+  [RangeFilters.DURATION]: DisplayableFilter[];
+  [RangeFilters.LENGTH]: DisplayableFilter[];
+  [RangeFilters.POSITIVE_ELEVATION]: DisplayableFilter[];
+}
+
 export interface SelectedFilters {
-  [BaseFilters.CITY]: Set<string>;
-  [BaseFilters.DISTRICT]: Set<string>;
-  [BaseFilters.THEME]: Set<string>;
-  [TrekFilters.DIFFICULTY]: Set<string>;
-  [TrekFilters.COURSE_TYPE]: Set<string>;
-  [TrekFilters.ACCESSIBILITY]: Set<string>;
-  [RangeFilters.DURATION]: Set<string>;
-  [RangeFilters.LENGTH]: Set<string>;
-  [RangeFilters.POSITIVE_ELEVATION]: Set<string>;
+  [BaseFilters.ACTIVITIES]: DisplayableFilter[];
+  [BaseFilters.CITY]: DisplayableFilter[];
+  [BaseFilters.DISTRICT]: DisplayableFilter[];
+  [BaseFilters.THEME]: DisplayableFilter[];
+  [TrekFilters.DIFFICULTY]: DisplayableFilter[];
+  [TrekFilters.COURSE_TYPE]: DisplayableFilter[];
+  [TrekFilters.ACCESSIBILITY]: DisplayableFilter[];
+  [RangeFilters.DURATION]: DisplayableFilter[];
+  [RangeFilters.LENGTH]: DisplayableFilter[];
+  [RangeFilters.POSITIVE_ELEVATION]: DisplayableFilter[];
+}
+
+// Individual filters interfaces
+
+export interface RawDifficulty {
+  id: number;
+  cirkwi_level: number;
+  label: string;
+  pictogram: string;
 }
