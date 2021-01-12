@@ -6,7 +6,6 @@
 
 ## Screenshots
 
-| Device | Screenshot |
-| ------ | ---------- |
-| Web    |            |
-| Mobile |            |
+### Mobile
+
+### Desktop
