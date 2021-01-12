@@ -57,12 +57,7 @@ export const FilterBar: React.FC<Props> = props => {
         <Filter />
         <Filter />
         <Filter />
-        <div
-          className="mx-4 text-primary1 cursor-pointer"
-          onClick={() => setFilterBarExpansionState('COLLAPSED')}
-        >
-          <ChevronUp size={44} />
-        </div>
+        <CollapseFiltersButton collapseFilters={() => setFilterBarExpansionState('COLLAPSED')} />
       </div>
     </Container>
   );
@@ -96,3 +91,9 @@ const SeeMoreButton = styled(Button)<{ filterBarState: 'EXPANDED' | 'COLLAPSED' 
 
   ${({ filterBarState }) => filterBarState === 'EXPANDED' && 'display: none'};
 `;
+
+const CollapseFiltersButton = ({ collapseFilters }: { collapseFilters: () => void }) => (
+  <div className="mx-4 text-primary1 cursor-pointer" onClick={collapseFilters}>
+    <ChevronUp size={44} />
+  </div>
+);
