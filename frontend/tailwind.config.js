@@ -30,6 +30,7 @@ module.exports = {
       18: `${SPACING_UNIT * 18}px`,
       21.5: `${SPACING_UNIT * 21.5}px`,
       40: `${SPACING_UNIT * 40}px`,
+      filterBar: '72px',
     },
     zIndex: {
       content: 0,

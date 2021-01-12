@@ -27,7 +27,7 @@ const InlineMenu: React.FC<InlineMenuProps> = ({ className, sections, subSection
             );
           case 'Langue':
             return (
-              <div className="flex items-center text-white">
+              <div className="flex items-center text-white" key={sectionName}>
                 <ReactCountryFlag countryCode="FR" className="mr-2" svg />
                 <Dropdown
                   options={subSections.Langue.map(getOptionStyled)}
@@ -41,7 +41,7 @@ const InlineMenu: React.FC<InlineMenuProps> = ({ className, sections, subSection
             );
           case 'Favoris':
             return (
-              <div className="flex items-center text-white">
+              <div className="flex items-center text-white" key={sectionName}>
                 <Heart size={16} className="mr-2" />
                 <Section name={sectionName} />
               </div>

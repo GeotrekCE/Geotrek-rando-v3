@@ -48,7 +48,7 @@ Object {
               class="ResultCard__TagContainer-sc-1bem01n-7 hhoXb"
             >
               <div
-                class="ResultCard__TagLayout-sc-1bem01n-8 gObNuQ"
+                class="ResultCard__TagLayout-sc-1bem01n-8 bZVzLD"
               >
                 <div
                   class="Chip__ChipContainer-sc-1wajafu-0 gAXbHm"
@@ -77,7 +77,7 @@ Object {
               class="ResultCard__InformationContainer-sc-1bem01n-9 gFWOQi"
             >
               <div
-                class="ResultCard__InformationLayout-sc-1bem01n-10 hNhMuk"
+                class="ResultCard__InformationLayout-sc-1bem01n-10 jQpFaS"
               >
                 <div
                   class="flex items-center text-primary1 ResultCard__DifficultyInformation-sc-1bem01n-12 hNgDQw "
@@ -192,7 +192,7 @@ Object {
             class="ResultCard__BookingButtonContainer-sc-1bem01n-4 fIAzAu"
           >
             <button
-              class="Button-sc-1n2k9lu-0 gmGykF"
+              class="Button__StyledButton-sc-1n2k9lu-0 iVmOMb flex items-center "
             >
               Réserver
             </button>
@@ -245,7 +245,7 @@ Object {
             class="ResultCard__TagContainer-sc-1bem01n-7 hhoXb"
           >
             <div
-              class="ResultCard__TagLayout-sc-1bem01n-8 gObNuQ"
+              class="ResultCard__TagLayout-sc-1bem01n-8 bZVzLD"
             >
               <div
                 class="Chip__ChipContainer-sc-1wajafu-0 gAXbHm"
@@ -274,7 +274,7 @@ Object {
             class="ResultCard__InformationContainer-sc-1bem01n-9 gFWOQi"
           >
             <div
-              class="ResultCard__InformationLayout-sc-1bem01n-10 hNhMuk"
+              class="ResultCard__InformationLayout-sc-1bem01n-10 jQpFaS"
             >
               <div
                 class="flex items-center text-primary1 ResultCard__DifficultyInformation-sc-1bem01n-12 hNgDQw "
@@ -389,7 +389,7 @@ Object {
           class="ResultCard__BookingButtonContainer-sc-1bem01n-4 fIAzAu"
         >
           <button
-            class="Button-sc-1n2k9lu-0 gmGykF"
+            class="Button__StyledButton-sc-1n2k9lu-0 iVmOMb flex items-center "
           >
             Réserver
           </button>
