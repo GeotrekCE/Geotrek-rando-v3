@@ -1,7 +1,7 @@
 import {
   BaseFilters,
   DisplayableAvailableFilters,
-  DisplayableFilter,
+  FilterValues,
   SelectedFilters,
   TrekFilters,
 } from 'modules/filters/interface';
@@ -10,7 +10,7 @@ import { SelectableDropdown } from './SelectableDropdown';
 interface Props {
   availableFilters: DisplayableAvailableFilters;
   selectedFilters: SelectedFilters;
-  setFilterValues: (filter: BaseFilters | TrekFilters, values: DisplayableFilter[]) => void;
+  setFilterValues: (filter: BaseFilters | TrekFilters, values: FilterValues) => void;
 }
 
 export const FilterBar: React.FC<Props> = props => {
@@ -21,7 +21,7 @@ export const FilterBar: React.FC<Props> = props => {
           name={TrekFilters.DIFFICULTY}
           placeholder={props.availableFilters[TrekFilters.DIFFICULTY].label}
           options={props.availableFilters[TrekFilters.DIFFICULTY].options}
-          setFilterValues={(values: DisplayableFilter[]) =>
+          setFilterValues={(values: FilterValues) =>
             props.setFilterValues(TrekFilters.DIFFICULTY, values)
           }
           selectedFilters={props.selectedFilters[TrekFilters.DIFFICULTY]}

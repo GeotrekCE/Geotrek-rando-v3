@@ -6,8 +6,8 @@
 
 import { ReactElement } from 'react';
 import { colorPalette } from 'stylesheet';
-import Select from 'react-select';
-import { DisplayableFilter } from 'modules/filters/interface';
+import Select, { ValueType } from 'react-select';
+import { DisplayableFilter, FilterValues } from 'modules/filters/interface';
 import { useIntl } from 'react-intl';
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
     label: string;
   }[];
   placeholder: string;
-  setFilterValues: (values: DisplayableFilter[]) => void;
+  setFilterValues: (values: FilterValues) => void;
   selectedFilters: DisplayableFilter[];
 }
 
@@ -67,8 +67,8 @@ export const SelectableDropdown = (props: Props): ReactElement => {
       closeMenuOnSelect={false}
       styles={colourStyles}
       value={props.selectedFilters}
-      onChange={action => {
-        props.setFilterValues(action as DisplayableFilter[]);
+      onChange={(action: ValueType<DisplayableFilter, true>) => {
+        props.setFilterValues(action);
       }}
     />
   );

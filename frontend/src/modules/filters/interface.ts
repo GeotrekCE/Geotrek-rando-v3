@@ -89,6 +89,10 @@ export interface SelectedFilters {
   [TrekFilters.POSITIVE_ELEVATION]: DisplayableFilter[];
 }
 
+// React select interface
+
+export type FilterValues = ReadonlyArray<DisplayableFilter> | undefined | null;
+
 // Individual filters interfaces
 
 export interface RawDifficulty {
