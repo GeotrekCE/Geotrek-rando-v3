@@ -2,7 +2,6 @@ import {
   BaseFilters,
   DisplayableAvailableFilters,
   DisplayableFilter,
-  RangeFilters,
   SelectedFilters,
   TrekFilters,
 } from 'modules/filters/interface';
@@ -22,17 +21,15 @@ export const useFilter = () => {
     [TrekFilters.DIFFICULTY]: [],
     [TrekFilters.COURSE_TYPE]: [],
     [TrekFilters.ACCESSIBILITY]: [],
-    [RangeFilters.DURATION]: [],
-    [RangeFilters.LENGTH]: [],
-    [RangeFilters.POSITIVE_ELEVATION]: [],
+    [TrekFilters.DURATION]: [],
+    [TrekFilters.LENGTH]: [],
+    [TrekFilters.POSITIVE_ELEVATION]: [],
   };
 
   const [selectedFilters, dispatch] = useReducer(filterReducer, initialState);
 
-  const setFilterValues = (
-    filter: BaseFilters | TrekFilters | RangeFilters,
-    values: DisplayableFilter[],
-  ) => dispatch(setFilterValuesAction(filter, values));
+  const setFilterValues = (filter: BaseFilters | TrekFilters, values: DisplayableFilter[]) =>
+    dispatch(setFilterValuesAction(filter, values));
 
   const displayableAvailableFilters: DisplayableAvailableFilters = {
     [BaseFilters.ACTIVITIES]: [],
@@ -47,9 +44,9 @@ export const useFilter = () => {
       : [],
     [TrekFilters.COURSE_TYPE]: [],
     [TrekFilters.ACCESSIBILITY]: [],
-    [RangeFilters.DURATION]: [],
-    [RangeFilters.LENGTH]: [],
-    [RangeFilters.POSITIVE_ELEVATION]: [],
+    [TrekFilters.DURATION]: [],
+    [TrekFilters.LENGTH]: [],
+    [TrekFilters.POSITIVE_ELEVATION]: [],
   };
 
   return {

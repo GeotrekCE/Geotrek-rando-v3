@@ -2,7 +2,6 @@ import {
   BaseFilters,
   DisplayableAvailableFilters,
   DisplayableFilter,
-  RangeFilters,
   SelectedFilters,
   TrekFilters,
 } from 'modules/filters/interface';
@@ -11,10 +10,7 @@ import { SelectableDropdown } from './SelectableDropdown';
 interface Props {
   availableFilters: DisplayableAvailableFilters;
   selectedFilters: SelectedFilters;
-  setFilterValues: (
-    filter: BaseFilters | TrekFilters | RangeFilters,
-    values: DisplayableFilter[],
-  ) => void;
+  setFilterValues: (filter: BaseFilters | TrekFilters, values: DisplayableFilter[]) => void;
 }
 
 export const FilterBar: React.FC<Props> = props => {

@@ -1,5 +1,5 @@
 import { getDifficulties } from './connector';
-import { AvailableFilters, BaseFilters, RangeFilters, TrekFilters } from './interface';
+import { AvailableFilters, BaseFilters, TrekFilters } from './interface';
 
 export const getAvailableFilters = async (): Promise<AvailableFilters> => {
   const difficulties = await getDifficulties();
@@ -46,22 +46,22 @@ export const getAvailableFilters = async (): Promise<AvailableFilters> => {
       label: `search.filter.${TrekFilters.ACCESSIBILITY}`,
       choices: {},
     },
-    [RangeFilters.DURATION]: {
+    [TrekFilters.DURATION]: {
       status: 'ENABLED',
       source: 'USER',
-      label: `search.filter.${RangeFilters.DURATION}`,
+      label: `search.filter.${TrekFilters.DURATION}`,
       choices: {},
     },
-    [RangeFilters.LENGTH]: {
+    [TrekFilters.LENGTH]: {
       status: 'ENABLED',
       source: 'USER',
-      label: `search.filter.${RangeFilters.LENGTH}`,
+      label: `search.filter.${TrekFilters.LENGTH}`,
       choices: {},
     },
-    [RangeFilters.POSITIVE_ELEVATION]: {
+    [TrekFilters.POSITIVE_ELEVATION]: {
       status: 'ENABLED',
       source: 'USER',
-      label: `search.filter.${RangeFilters.POSITIVE_ELEVATION}`,
+      label: `search.filter.${TrekFilters.POSITIVE_ELEVATION}`,
       choices: {},
     },
   };

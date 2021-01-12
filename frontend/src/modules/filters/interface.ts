@@ -36,9 +36,6 @@ export enum TrekFilters {
   DIFFICULTY = 'DIFFICULTY',
   COURSE_TYPE = 'COURSE_TYPE',
   ACCESSIBILITY = 'ACCESSIBILITY',
-}
-
-export enum RangeFilters {
   DURATION = 'DURATION',
   LENGTH = 'LENGTH',
   POSITIVE_ELEVATION = 'POSITIVE_ELEVATION',
@@ -57,9 +54,9 @@ export interface AvailableFilters {
   [TrekFilters.DIFFICULTY]: Filter;
   [TrekFilters.COURSE_TYPE]: Filter;
   [TrekFilters.ACCESSIBILITY]: Filter;
-  [RangeFilters.DURATION]: RangeFilter;
-  [RangeFilters.LENGTH]: RangeFilter;
-  [RangeFilters.POSITIVE_ELEVATION]: RangeFilter;
+  [TrekFilters.DURATION]: RangeFilter;
+  [TrekFilters.LENGTH]: RangeFilter;
+  [TrekFilters.POSITIVE_ELEVATION]: RangeFilter;
 }
 
 export interface DisplayableAvailableFilters {
@@ -70,9 +67,9 @@ export interface DisplayableAvailableFilters {
   [TrekFilters.DIFFICULTY]: DisplayableFilter[];
   [TrekFilters.COURSE_TYPE]: DisplayableFilter[];
   [TrekFilters.ACCESSIBILITY]: DisplayableFilter[];
-  [RangeFilters.DURATION]: DisplayableFilter[];
-  [RangeFilters.LENGTH]: DisplayableFilter[];
-  [RangeFilters.POSITIVE_ELEVATION]: DisplayableFilter[];
+  [TrekFilters.DURATION]: DisplayableFilter[];
+  [TrekFilters.LENGTH]: DisplayableFilter[];
+  [TrekFilters.POSITIVE_ELEVATION]: DisplayableFilter[];
 }
 
 export interface SelectedFilters {
@@ -83,9 +80,9 @@ export interface SelectedFilters {
   [TrekFilters.DIFFICULTY]: DisplayableFilter[];
   [TrekFilters.COURSE_TYPE]: DisplayableFilter[];
   [TrekFilters.ACCESSIBILITY]: DisplayableFilter[];
-  [RangeFilters.DURATION]: DisplayableFilter[];
-  [RangeFilters.LENGTH]: DisplayableFilter[];
-  [RangeFilters.POSITIVE_ELEVATION]: DisplayableFilter[];
+  [TrekFilters.DURATION]: DisplayableFilter[];
+  [TrekFilters.LENGTH]: DisplayableFilter[];
+  [TrekFilters.POSITIVE_ELEVATION]: DisplayableFilter[];
 }
 
 // Individual filters interfaces

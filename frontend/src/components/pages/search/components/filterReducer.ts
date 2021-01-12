@@ -1,7 +1,6 @@
 import {
   BaseFilters,
   DisplayableFilter,
-  RangeFilters,
   SelectedFilters,
   TrekFilters,
 } from 'modules/filters/interface';
@@ -13,13 +12,13 @@ enum ActionKind {
 type Action = {
   type: ActionKind;
   payload: {
-    filter: BaseFilters | TrekFilters | RangeFilters;
+    filter: BaseFilters | TrekFilters;
     values: DisplayableFilter[] | null;
   };
 };
 
 export const setFilterValuesAction = (
-  filter: BaseFilters | TrekFilters | RangeFilters,
+  filter: BaseFilters | TrekFilters,
   values: DisplayableFilter[] | null,
 ): Action => ({
   type: ActionKind.SetFilterValues,
