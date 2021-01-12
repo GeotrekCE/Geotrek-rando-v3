@@ -113,8 +113,8 @@ interface Props {
 export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
   const { activities, expandedState, setExpandedState } = useActivitySearchFilter();
 
-  const setExpandOrCollapse = (): void =>
-    expandedState === 'EXPANDED' ? setExpandedState('COLLAPSED') : setExpandedState('EXPANDED');
+  const toggleExpandedState = () =>
+    setExpandedState(expandedState === 'EXPANDED' ? 'COLLAPSED' : 'EXPANDED');
 
   const collapseIsNeeded: boolean = activities !== undefined && activities.length > 8;
 
@@ -139,7 +139,7 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
           ))}
         </div>
         {collapseIsNeeded && (
-          <div className="self-end cursor-pointer" onClick={setExpandOrCollapse}>
+          <div className="self-end cursor-pointer" onClick={toggleExpandedState}>
             <ControlCollapseButton expandedState={expandedState} />
           </div>
         )}
