@@ -7,6 +7,7 @@
 import { ReactElement } from 'react';
 import { colorPalette } from 'stylesheet';
 import Select from 'react-select';
+import { DisplayableFilter } from 'modules/filters/interface';
 
 interface Props {
   name: string;
@@ -15,6 +16,8 @@ interface Props {
     label: string;
   }[];
   placeholder: string;
+  setFilterValues: (values: DisplayableFilter[]) => void;
+  selectedFilters: DisplayableFilter[];
 }
 
 const colourStyles = {
@@ -49,16 +52,22 @@ const colourStyles = {
   placeholder: (styles: any) => ({ ...styles, color: colorPalette.filter.placeholder.color }),
 };
 
-export const SelectableDropdown = (props: Props): ReactElement => (
-  <Select
-    options={props.options}
-    isClearable={false}
-    isSearchable={false}
-    name={props.name}
-    placeholder={props.placeholder}
-    isMulti
-    classNamePrefix="select"
-    closeMenuOnSelect={false}
-    styles={colourStyles}
-  />
-);
+export const SelectableDropdown = (props: Props): ReactElement => {
+  return (
+    <Select
+      options={props.options}
+      isClearable={false}
+      isSearchable={false}
+      name={props.name}
+      placeholder={props.placeholder}
+      isMulti
+      classNamePrefix="select"
+      closeMenuOnSelect={false}
+      styles={colourStyles}
+      value={props.selectedFilters}
+      onChange={action => {
+        props.setFilterValues(action as DisplayableFilter[]);
+      }}
+    />
+  );
+};
