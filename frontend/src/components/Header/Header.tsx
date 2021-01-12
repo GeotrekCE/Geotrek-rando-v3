@@ -51,7 +51,7 @@ export const Header: React.FC<Props> = ({ logoPath }) => {
         <Link href={routes.HOME}>
           <img className="h-9 mx-3 desktop:h-18" alt="logo" src={logoPath} />
         </Link>
-        <p className="flex-1 text-white desktop:text-3xl font-semibold desktop:font-bold desktop:ml-8 leading-5">
+        <p className="flex-1 text-white desktop:text-3xl font-semibold desktop:font-bold desktop:ml-8 desktop:leading-5">
           <FormattedMessage id={'home.title'} />
         </p>
         <InlineMenu
