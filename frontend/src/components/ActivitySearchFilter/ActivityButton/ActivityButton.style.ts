@@ -8,11 +8,7 @@ export const ActivityButtonContainer = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  /* We do a mix of padding and margin to have a pretty hover, padding + margin should add up to 6 */
-  padding: ${getSpacing(2)} ${getSpacing(5)};
-  margin: ${getSpacing(4)} ${getSpacing(1)};
-
+  margin-top: ${getSpacing(6)};
   color: ${colorPalette.greyDarkColored};
 
   background-color: ${colorPalette.white};
