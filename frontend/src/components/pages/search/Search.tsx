@@ -32,7 +32,7 @@ export const SearchUI: React.FC = () => {
     'Massif/Vallée',
     'Destination',
   ];
-  const { displayableAvailableFilters, setFilterValues, selectedFilters } = useFilter();
+  const { availableFilters, setFilterValues, selectedFilters } = useFilter();
 
   return (
     <>
@@ -45,7 +45,7 @@ export const SearchUI: React.FC = () => {
       />
       <Layout>
         <FilterBar
-          availableFilters={displayableAvailableFilters}
+          availableFilters={availableFilters}
           setFilterValues={setFilterValues}
           selectedFilters={selectedFilters}
         />
