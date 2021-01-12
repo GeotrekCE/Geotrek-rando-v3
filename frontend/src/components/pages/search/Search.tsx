@@ -12,6 +12,7 @@ import { FilterBar } from './components/FilterBar';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
 import { ToggleFilterButton } from './components/ToggleFilterButton';
+import { useFilter } from './components/useFilters';
 
 export const SearchUI: React.FC = () => {
   const { menuState, displayMenu, hideMenu } = useOpenFilterMenu();
@@ -31,6 +32,7 @@ export const SearchUI: React.FC = () => {
     'Massif/Vallée',
     'Destination',
   ];
+  const { displayableAvailableFilters, setFilterValues, selectedFilters } = useFilter();
 
   return (
     <>
@@ -42,7 +44,11 @@ export const SearchUI: React.FC = () => {
         closeMenu={hideMenu}
       />
       <Layout>
-        <FilterBar />
+        <FilterBar
+          availableFilters={displayableAvailableFilters}
+          setFilterValues={setFilterValues}
+          selectedFilters={selectedFilters}
+        />
         <div className="p-4">
           <div className="flex justify-between items-end">
             <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
