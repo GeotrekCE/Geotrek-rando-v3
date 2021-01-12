@@ -23,6 +23,9 @@
     "forThe": "Pour le",
     "orderedByRelevance": "Classement par ordre de pertinence",
     "seeMap": "Voir la carte",
-    "filter": "Filtrer"
+    "filter": "Filtrer",
+    "filters": {
+      "DIFFICULTY": "Diffficulté"
+    }
   }
 }
