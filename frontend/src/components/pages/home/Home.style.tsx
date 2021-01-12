@@ -23,23 +23,19 @@ export const TopContainer = styled.div`
   background-image: url('/images/home-background.jpg');
   background-size: cover;
   background-position: center;
-  padding: ${getSpacing(13)};
+  display: flex;
+  text-shadow: 1px 1px 2px #00000070, 0 0 20px #00000040;
+  justify-content: center;
+  align-items: center;
+  height: 244px;
+  padding: ${getSpacing(6)};
   ${desktopOnly(css`
-    height: ${getSpacing(150)};
-    padding-top: ${getSpacing(85)};
-    padding-left: ${getSpacing(22)};
-    padding-right: ${getSpacing(22)};
+    height: 80vh;
+    padding-top: 30vh;
+    padding-inline: 15vw;
   `)}
 `;
 TopContainer.displayName = 'TopContainer';
-
-export const WelcomeText = styled.h1`
-  ${typography.h1}
-  color: ${colorPalette.white};
-  ${desktopOnly(css`
-    font-size: ${getSpacing(8)};
-  `)}
-`;
 
 export const Logo = styled.img`
   width: ${oldGetSpacing(32)};
