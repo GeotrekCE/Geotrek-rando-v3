@@ -92,11 +92,17 @@ const Filter = () => (
 );
 
 const Container = styled.div<{ displayedState: 'DISPLAYED' | 'HIDDEN' }>`
-  transition: top 0.3s ease-in-out 0.1s;
+  transition-property: top transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0.1s;
+
   top: ${({ displayedState }) =>
     displayedState === 'DISPLAYED'
       ? sizes.desktopHeader
       : -sizes.desktopHeader - sizes.filterBar}px;
+
+  ${({ displayedState }) => (displayedState === 'HIDDEN' ? 'transform: translateY(-100%)' : '')}
 `;
 
 const FiltersLayout = styled.div`
