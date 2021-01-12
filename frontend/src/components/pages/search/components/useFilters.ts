@@ -2,6 +2,7 @@ import {
   BaseFilters,
   DisplayableAvailableFilters,
   DisplayableFilter,
+  FilterValues,
   SelectedFilters,
   TrekFilters,
 } from 'modules/filters/interface';
@@ -28,7 +29,7 @@ export const useFilter = () => {
 
   const [selectedFilters, dispatch] = useReducer(filterReducer, initialState);
 
-  const setFilterValues = (filter: BaseFilters | TrekFilters, values: DisplayableFilter[]) =>
+  const setFilterValues = (filter: BaseFilters | TrekFilters, values: FilterValues) =>
     dispatch(setFilterValuesAction(filter, values));
 
   const displayableAvailableFilters: DisplayableAvailableFilters = {

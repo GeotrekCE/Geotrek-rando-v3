@@ -1,9 +1,4 @@
-import {
-  BaseFilters,
-  DisplayableFilter,
-  SelectedFilters,
-  TrekFilters,
-} from 'modules/filters/interface';
+import { BaseFilters, FilterValues, SelectedFilters, TrekFilters } from 'modules/filters/interface';
 
 enum ActionKind {
   SetFilterValues = 'SET_FILTER_VALUES',
@@ -13,13 +8,13 @@ type Action = {
   type: ActionKind;
   payload: {
     filter: BaseFilters | TrekFilters;
-    values: DisplayableFilter[] | null;
+    values: FilterValues;
   };
 };
 
 export const setFilterValuesAction = (
   filter: BaseFilters | TrekFilters,
-  values: DisplayableFilter[] | null,
+  values: FilterValues,
 ): Action => ({
   type: ActionKind.SetFilterValues,
   payload: {
