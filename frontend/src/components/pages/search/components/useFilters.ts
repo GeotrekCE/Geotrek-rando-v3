@@ -32,21 +32,51 @@ export const useFilter = () => {
     dispatch(setFilterValuesAction(filter, values));
 
   const displayableAvailableFilters: DisplayableAvailableFilters = {
-    [BaseFilters.ACTIVITIES]: [],
-    [BaseFilters.CITY]: [],
-    [BaseFilters.DISTRICT]: [],
-    [BaseFilters.THEME]: [],
-    [TrekFilters.DIFFICULTY]: availableFilters
-      ? Object.keys(availableFilters[TrekFilters.DIFFICULTY].choices).map(difficultyId => ({
-          value: difficultyId,
-          label: availableFilters[TrekFilters.DIFFICULTY].choices[difficultyId].label,
-        }))
-      : [],
-    [TrekFilters.COURSE_TYPE]: [],
-    [TrekFilters.ACCESSIBILITY]: [],
-    [TrekFilters.DURATION]: [],
-    [TrekFilters.LENGTH]: [],
-    [TrekFilters.POSITIVE_ELEVATION]: [],
+    [BaseFilters.ACTIVITIES]: {
+      label: '',
+      options: [],
+    },
+    [BaseFilters.CITY]: {
+      label: '',
+      options: [],
+    },
+    [BaseFilters.DISTRICT]: {
+      label: '',
+      options: [],
+    },
+    [BaseFilters.THEME]: {
+      label: '',
+      options: [],
+    },
+    [TrekFilters.DIFFICULTY]: {
+      label: availableFilters ? availableFilters[TrekFilters.DIFFICULTY].label : '',
+      options: availableFilters
+        ? Object.keys(availableFilters[TrekFilters.DIFFICULTY].choices).map(difficultyId => ({
+            value: difficultyId,
+            label: availableFilters[TrekFilters.DIFFICULTY].choices[difficultyId].label,
+          }))
+        : [],
+    },
+    [TrekFilters.COURSE_TYPE]: {
+      label: '',
+      options: [],
+    },
+    [TrekFilters.ACCESSIBILITY]: {
+      label: '',
+      options: [],
+    },
+    [TrekFilters.DURATION]: {
+      label: '',
+      options: [],
+    },
+    [TrekFilters.LENGTH]: {
+      label: '',
+      options: [],
+    },
+    [TrekFilters.POSITIVE_ELEVATION]: {
+      label: '',
+      options: [],
+    },
   };
 
   return {
