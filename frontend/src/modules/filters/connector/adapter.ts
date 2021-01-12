@@ -1,4 +1,4 @@
-import { Choices, RawDifficulty } from './interface';
+import { Choices, RawDifficulty } from '../interface';
 
 export const adaptDifficulties = (rawDifficulties: RawDifficulty[]): Choices =>
   rawDifficulties.reduce(

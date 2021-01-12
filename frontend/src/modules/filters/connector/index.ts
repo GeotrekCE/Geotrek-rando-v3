@@ -1,0 +1,1 @@
+export { getDifficulties } from './connector';
