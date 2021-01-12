@@ -110,16 +110,21 @@ interface Props {
   className?: string;
 }
 
+const MAX_VISIBLE_ACTIVITIES = 8;
+
 export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
   const { activities, expandedState, setExpandedState } = useActivitySearchFilter();
 
   const toggleExpandedState = () =>
     setExpandedState(expandedState === 'EXPANDED' ? 'COLLAPSED' : 'EXPANDED');
 
-  const collapseIsNeeded: boolean = activities !== undefined && activities.length > 8;
+  const collapseIsNeeded: boolean =
+    activities !== undefined && activities.length > MAX_VISIBLE_ACTIVITIES;
 
   const visibleActivities: Activity[] | undefined =
-    collapseIsNeeded && expandedState === 'COLLAPSED' ? activities?.slice(0, 8) : activities;
+    collapseIsNeeded && expandedState === 'COLLAPSED'
+      ? activities?.slice(0, MAX_VISIBLE_ACTIVITIES)
+      : activities;
 
   return (
     <>
