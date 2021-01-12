@@ -23,33 +23,34 @@ interface Props {
 }
 
 export const FilterBar: React.FC<Props> = props => {
-  const [filterBarState, setFilterBarState] = useState<'EXPANDED' | 'COLLAPSED'>('COLLAPSED');
-
-  const collapsableSectionClassName = `flex mt-4 ${filterBarState === 'COLLAPSED' ? 'hidden' : ''}`;
-  const containerClassName = `w-full py-3 pl-5 pr-2 hidden desktop:block fixed shadow bg-white z-floatingButton ${
-    filterBarState === 'COLLAPSED' ? 'h-filterBar' : ''
-  }`;
+  const [filterBarExpansionState, setFilterBarExpansionState] = useState<'EXPANDED' | 'COLLAPSED'>(
+    'COLLAPSED',
+  );
 
   const filterBarDisplayedState = useHideOnScrollDown(sizes.desktopHeader);
 
+  const filterBarContainerClassName = `w-full py-3 pl-5 pr-2 hidden desktop:block fixed shadow bg-white z-floatingButton ${
+    filterBarExpansionState === 'COLLAPSED' ? 'h-filterBar' : ''
+  }`;
+  const additionalFiltersSectionClassName = `flex flex-wrap mt-4 ${
+    filterBarExpansionState === 'COLLAPSED' ? 'hidden' : ''
+  }`;
+
   return (
-    <Container className={containerClassName} displayedState={filterBarDisplayedState}>
+    <Container className={filterBarContainerClassName} displayedState={filterBarDisplayedState}>
       <div className="flex">
-        <Filter />
-        <Filter />
-        <Filter />
         <Filter />
         <Filter />
         <Filter />
         <SeeMoreButton
           icon={Plus}
-          onClick={() => setFilterBarState('EXPANDED')}
-          filterBarState={filterBarState}
+          onClick={() => setFilterBarExpansionState('EXPANDED')}
+          filterBarState={filterBarExpansionState}
         >
           Voir plus
         </SeeMoreButton>
       </div>
-      <div className={collapsableSectionClassName}>
+      <div className={additionalFiltersSectionClassName}>
         <Filter />
         <Filter />
         <Filter />
@@ -58,7 +59,7 @@ export const FilterBar: React.FC<Props> = props => {
         <Filter />
         <div
           className="mx-4 text-primary1 cursor-pointer"
-          onClick={() => setFilterBarState('COLLAPSED')}
+          onClick={() => setFilterBarExpansionState('COLLAPSED')}
         >
           <ChevronUp size={44} />
         </div>
