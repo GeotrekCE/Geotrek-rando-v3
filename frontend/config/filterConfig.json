@@ -1,0 +1,54 @@
+{
+  "ACTIVITIES": {
+    "status": "DISABLED",
+    "source": "API"
+  },
+  "CITY": {
+    "status": "DISABLED",
+    "source": "API"
+  },
+  "DISTRICT": {
+    "status": "DISABLED",
+    "source": "API"
+  },
+  "THEME": {
+    "status": "DISABLED",
+    "source": "API"
+  },
+  "DIFFICULTY": {
+    "status": "ENABLED",
+    "source": "API"
+  },
+  "COURSE_TYPE": {
+    "status": "DISABLED",
+    "source": "API"
+  },
+  "ACCESSIBILITY": {
+    "status": "DISABLED",
+    "source": "API"
+  },
+  "DURATION": {
+    "status": "ENABLED",
+    "source": "USER",
+    "choices": [
+      {
+        "minValue": 0,
+        "maxValue": 30,
+        "label": "0 - 30min"
+      },
+      {
+        "minValue": 30,
+        "maxValue": 60,
+        "label": "30min - 1H"
+      }
+    ]
+  },
+  "LENGTH": {
+    "status": "DISABLED",
+    "source": "USER"
+  },
+  "POSITIVE_ELEVATION": {
+    "status": "DISABLED",
+    "source": "USER"
+  }
+}
