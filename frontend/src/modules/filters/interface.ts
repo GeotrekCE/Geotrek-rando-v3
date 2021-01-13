@@ -94,7 +94,7 @@ export type FilterValues = ReadonlyArray<DisplayableFilter> | undefined | null;
 
 // Config file interface
 
-export interface RawFilterConfig {
+export interface RawFilterConfigOld {
   status: string;
   choices?: {
     minValue: number;
@@ -120,16 +120,16 @@ export interface DisabledFilterConfig {
 }
 
 export interface RawFiltersConfig {
-  [BaseFilters.ACTIVITIES]: RawFilterConfig;
-  [BaseFilters.CITY]: RawFilterConfig;
-  [BaseFilters.DISTRICT]: RawFilterConfig;
-  [BaseFilters.THEME]: RawFilterConfig;
-  [TrekFilters.DIFFICULTY]: RawFilterConfig;
-  [TrekFilters.COURSE_TYPE]: RawFilterConfig;
-  [TrekFilters.ACCESSIBILITY]: RawFilterConfig;
-  [TrekFilters.DURATION]: RawFilterConfig;
-  [TrekFilters.LENGTH]: RawFilterConfig;
-  [TrekFilters.POSITIVE_ELEVATION]: RawFilterConfig;
+  [BaseFilters.ACTIVITIES]: RawFilterConfigOld;
+  [BaseFilters.CITY]: RawFilterConfigOld;
+  [BaseFilters.DISTRICT]: RawFilterConfigOld;
+  [BaseFilters.THEME]: RawFilterConfigOld;
+  [TrekFilters.DIFFICULTY]: RawFilterConfigOld;
+  [TrekFilters.COURSE_TYPE]: RawFilterConfigOld;
+  [TrekFilters.ACCESSIBILITY]: RawFilterConfigOld;
+  [TrekFilters.DURATION]: RawFilterConfigOld;
+  [TrekFilters.LENGTH]: RawFilterConfigOld;
+  [TrekFilters.POSITIVE_ELEVATION]: RawFilterConfigOld;
 }
 
 export interface FiltersConfig {

@@ -1,4 +1,4 @@
-import { getConfig } from './config';
+import { getConfigOld } from './config';
 import { getDifficulties } from './connector/index';
 import {
   AvailableFilters,
@@ -10,7 +10,7 @@ import {
 } from './interface';
 
 const getAvailableFilters = async (): Promise<AvailableFilters> => {
-  const config = getConfig();
+  const config = getConfigOld();
 
   const difficulties = await getDifficulties();
 
