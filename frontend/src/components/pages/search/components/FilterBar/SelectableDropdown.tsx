@@ -14,7 +14,7 @@ interface Props {
   name: string;
   options: Option[];
   placeholder: string;
-  // setFilterValues: (values: FilterValues) => void;
+  setFilterSelectedOptions: (options: Option[]) => void;
   selectedFilters: Option[];
 }
 
@@ -65,9 +65,10 @@ export const SelectableDropdown = (props: Props): ReactElement => {
       closeMenuOnSelect={false}
       styles={colourStyles}
       value={props.selectedFilters}
-      // onChange={(action: ValueType<DisplayableFilter, true>) => {
-      //   props.setFilterValues(action);
-      // }}
+      onChange={(action: ValueType<Option, true>) => {
+        const options = action ? [...action] : [];
+        props.setFilterSelectedOptions(options);
+      }}
     />
   );
 };

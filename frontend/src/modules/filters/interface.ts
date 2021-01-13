@@ -160,10 +160,6 @@ export interface RawDuration {
   choices: RawRangeChoice[];
 }
 
-// React select interface
-
-export type FilterValues = ReadonlyArray<Option> | undefined | null;
-
 // Config file interface
 
 export interface Option {

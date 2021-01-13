@@ -1,12 +1,4 @@
-import {
-  BaseFilters,
-  DisplayableAvailableFilter,
-  DisplayableAvailableFilters,
-  DisplayableFilter,
-  FilterValues,
-  SelectedFilters,
-  TrekFilters,
-} from 'modules/filters/interface';
+import { Option } from 'modules/filters/interface';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { getSpacing, sizes } from 'stylesheet';
@@ -22,6 +14,7 @@ import { SelectableDropdown } from './SelectableDropdown';
 
 interface Props {
   filtersState: FilterState[];
+  setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
 }
 
 export const FilterBar: React.FC<Props> = props => {
@@ -44,6 +37,9 @@ export const FilterBar: React.FC<Props> = props => {
                 placeholder={filterState.label}
                 options={filterState.options}
                 selectedFilters={filterState.selectedOptions}
+                setFilterSelectedOptions={(options: Option[]) => {
+                  props.setFilterSelectedOptions(filterState.id, options);
+                }}
               />
             </div>
           ))}
@@ -97,7 +93,7 @@ const Filter = () => (
       { value: 'hard', label: 'Difficile' },
     ]}
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    setFilterValues={(values: FilterValues) => {}}
+    setFilterSelectedOptions={(values: Option[]) => {}}
     selectedFilters={[]}
   />
 );
