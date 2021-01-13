@@ -3,9 +3,6 @@ export interface ActivitySuggestionCardProps {
   imgUrl: string;
 }
 
-const MAX_VISIBLE_CHARACTERS_DESKTOP = 80;
-const MAX_VISIBLE_CHARACTERS_MOBILE = 35;
-
 export const ActivitySuggestionCard: React.FC<ActivitySuggestionCardProps> = ({
   title,
   imgUrl,
@@ -26,32 +23,17 @@ export const ActivitySuggestionCard: React.FC<ActivitySuggestionCardProps> = ({
       >
         <img src={imgUrl}></img>
       </div>
-      <div
-        className="
-        text-primary1 font-bold
-        h-14 desktop:h-18
-        p-4
-        "
-      >
-        <TruncateTitle title={title} />
+      <div className="p-4">
+        <span
+          className="
+            text-primary1 font-bold
+            h-10 desktop:h-14
+            overflow-hidden"
+          style={{ display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 2 }}
+        >
+          {title}
+        </span>
       </div>
     </div>
-  );
-};
-
-const TruncateTitle: React.FC<{ title: string }> = ({ title }) => {
-  const titleDesktop =
-    title.length > MAX_VISIBLE_CHARACTERS_DESKTOP
-      ? title.slice(0, MAX_VISIBLE_CHARACTERS_DESKTOP) + '...'
-      : title;
-  const titleMobile =
-    title.length > MAX_VISIBLE_CHARACTERS_MOBILE
-      ? title.slice(0, MAX_VISIBLE_CHARACTERS_MOBILE) + '...'
-      : title;
-  return (
-    <>
-      <span className="desktop:hidden">{titleMobile}</span>
-      <span className="hidden desktop:block">{titleDesktop}</span>
-    </>
   );
 };
