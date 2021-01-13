@@ -12,6 +12,8 @@ import { ChevronUp } from 'components/Icons/ChevronUp';
 import { FilterState } from 'modules/filters/interface';
 import { SelectableDropdown } from './SelectableDropdown';
 
+const NUMBER_OF_PRIMARY_FILTERS_DISPLAYED = 4;
+
 interface Props {
   filtersState: FilterState[];
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
@@ -30,7 +32,7 @@ export const FilterBar: React.FC<Props> = props => {
     <Container className={filterBarContainerClassName} displayedState={filterBarDisplayedState}>
       <div className={`${filterBarExpansionState === 'EXPANDED' ? 'mb-4' : ''}`}>
         <FiltersLayout>
-          {props.filtersState.map(filterState => (
+          {props.filtersState.slice(0, NUMBER_OF_PRIMARY_FILTERS_DISPLAYED).map(filterState => (
             <div key={filterState.id} className="mr-2">
               <SelectableDropdown
                 name={filterState.id}
@@ -43,8 +45,6 @@ export const FilterBar: React.FC<Props> = props => {
               />
             </div>
           ))}
-          <Filter />
-          <Filter />
           <SeeMoreButton
             icon={Plus}
             onClick={() => setFilterBarExpansionState('EXPANDED')}
@@ -56,25 +56,19 @@ export const FilterBar: React.FC<Props> = props => {
       </div>
       <AdditionalFilters expansionState={filterBarExpansionState}>
         <FiltersLayout>
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
-          <Filter />
+          {props.filtersState.slice(NUMBER_OF_PRIMARY_FILTERS_DISPLAYED).map(filterState => (
+            <div key={filterState.id} className="mr-2">
+              <SelectableDropdown
+                name={filterState.id}
+                placeholder={filterState.label}
+                options={filterState.options}
+                selectedFilters={filterState.selectedOptions}
+                setFilterSelectedOptions={(options: Option[]) => {
+                  props.setFilterSelectedOptions(filterState.id, options);
+                }}
+              />
+            </div>
+          ))}
           <CollapseFiltersButton collapseFilters={() => setFilterBarExpansionState('COLLAPSED')} />
         </FiltersLayout>
       </AdditionalFilters>
