@@ -1,6 +1,8 @@
 import {
   BaseFilters,
+  DisplayableAvailableFilter,
   DisplayableAvailableFilters,
+  DisplayableFilter,
   FilterValues,
   SelectedFilters,
   TrekFilters,
@@ -22,6 +24,32 @@ interface Props {
   selectedFilters: SelectedFilters;
   setFilterValues: (filter: BaseFilters | TrekFilters, values: FilterValues) => void;
 }
+
+const Filter = ({
+  name,
+  availableFilter,
+  setFilterValues,
+  selectedFilters,
+}: {
+  name: string;
+  availableFilter: DisplayableAvailableFilter;
+  setFilterValues: (values: FilterValues) => void;
+  selectedFilters: DisplayableFilter[];
+}) => {
+  if (availableFilter.options.length > 0) {
+    return (
+      <div className="desktop:mr-2">
+        <SelectableDropdown
+          name={name}
+          placeholder={availableFilter.label}
+          options={availableFilter.options}
+          setFilterValues={(values: FilterValues) => setFilterValues(values)}
+          selectedFilters={selectedFilters}
+        />
+      </div>
+    );
+  } else return null;
+};
 
 export const FilterBar: React.FC<Props> = props => {
   const [filterBarExpansionState, setFilterBarExpansionState] = useState<'EXPANDED' | 'COLLAPSED'>(
