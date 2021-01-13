@@ -4,6 +4,7 @@ import { getFiltersConfig } from './config';
 import { getDifficultyFilter } from './connector/connector';
 import { getDistrictFilter } from './district/connector';
 import { Filter, FilterConfig, FilterConfigWithOptions, FilterState } from './interface';
+import { getThemeFilter } from './theme/connector';
 
 const adaptFilterConfigWithOptionsToFilter = (
   filterConfigWithOptions: FilterConfigWithOptions,
@@ -25,6 +26,8 @@ const getFilterOptions = async (filterConfig: FilterConfig): Promise<Filter | nu
       return getCityFilter();
     case 'district':
       return getDistrictFilter();
+    case 'theme':
+      return getThemeFilter();
     default:
       return null;
   }
