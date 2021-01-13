@@ -1,4 +1,5 @@
 import { getConfigOld, getFiltersConfig } from './config';
+import { getDifficultyFilter } from './connector/connector';
 import { getDifficulties } from './connector/index';
 import {
   AvailableFilters,
@@ -25,7 +26,7 @@ const adaptFilterConfigWithOptionsToFilter = (
 const getFilterOptions = async (filterConfig: FilterConfig): Promise<Filter | null> => {
   switch (filterConfig.id) {
     case 'difficulty':
-      return getDifficulties();
+      return getDifficultyFilter();
     default:
       return null;
   }
