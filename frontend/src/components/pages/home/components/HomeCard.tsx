@@ -30,8 +30,8 @@ const HomeCard: React.FC<HomeCardProps> = ({
     >
       <Chip>{tag}</Chip>
       <div className="text-white">
-        <p className="font-bold text-xl desktop:text-3xl desktop:mb-2">{title}</p>
-        <p className="desktop:text-xl">{subtitle}</p>
+        <p className="font-bold text-Mobile-H1 desktop:text-H2 mb-2">{title}</p>
+        <p className="font-bold desktop:text-H4">{subtitle}</p>
       </div>
     </ImageContainer>
   );
