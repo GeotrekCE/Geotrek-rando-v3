@@ -6,10 +6,10 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ResultCard__Container-sc-1bem01n-0 hAbmkB"
+        class="ResultCard__Container-sc-1bem01n-0 hKRytO"
       >
         <div
-          class="ResultCard__ImageContainer-sc-1bem01n-1 gEsrUC"
+          class="ResultCard__ImageContainer-sc-1bem01n-1 dzsbUI"
         >
           <div
             class="ActivityBadge__Container-enmhze-0 dBFDZk ResultCard__ActivityBadge-sc-1bem01n-11 jJUVgC"
@@ -29,7 +29,7 @@ Object {
           </div>
         </div>
         <div
-          class="ResultCard__DetailsContainer-sc-1bem01n-2 igBYVI"
+          class="ResultCard__DetailsContainer-sc-1bem01n-2 dqjwvz"
         >
           <div
             class="ResultCard__DetailsLayout-sc-1bem01n-3 igcQDh"
@@ -45,7 +45,7 @@ Object {
               Balade au pays des menhirs
             </span>
             <div
-              class="ResultCard__TagContainer-sc-1bem01n-7 hhoXb"
+              class="ResultCard__TagContainer-sc-1bem01n-7 hYFbQI"
             >
               <div
                 class="ResultCard__TagLayout-sc-1bem01n-8 bZVzLD"
@@ -203,10 +203,10 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ResultCard__Container-sc-1bem01n-0 hAbmkB"
+      class="ResultCard__Container-sc-1bem01n-0 hKRytO"
     >
       <div
-        class="ResultCard__ImageContainer-sc-1bem01n-1 gEsrUC"
+        class="ResultCard__ImageContainer-sc-1bem01n-1 dzsbUI"
       >
         <div
           class="ActivityBadge__Container-enmhze-0 dBFDZk ResultCard__ActivityBadge-sc-1bem01n-11 jJUVgC"
@@ -226,7 +226,7 @@ Object {
         </div>
       </div>
       <div
-        class="ResultCard__DetailsContainer-sc-1bem01n-2 igBYVI"
+        class="ResultCard__DetailsContainer-sc-1bem01n-2 dqjwvz"
       >
         <div
           class="ResultCard__DetailsLayout-sc-1bem01n-3 igcQDh"
@@ -242,7 +242,7 @@ Object {
             Balade au pays des menhirs
           </span>
           <div
-            class="ResultCard__TagContainer-sc-1bem01n-7 hhoXb"
+            class="ResultCard__TagContainer-sc-1bem01n-7 hYFbQI"
           >
             <div
               class="ResultCard__TagLayout-sc-1bem01n-8 bZVzLD"
