@@ -1,3 +1,4 @@
+import { getActivityFilter } from 'modules/activities/connector';
 import { getFiltersConfig } from './config';
 import { getDifficultyFilter } from './connector/connector';
 import { Filter, FilterConfig, FilterConfigWithOptions, FilterState } from './interface';
@@ -16,6 +17,8 @@ const getFilterOptions = async (filterConfig: FilterConfig): Promise<Filter | nu
   switch (filterConfig.id) {
     case 'difficulty':
       return getDifficultyFilter();
+    case 'activity':
+      return getActivityFilter();
     default:
       return null;
   }
