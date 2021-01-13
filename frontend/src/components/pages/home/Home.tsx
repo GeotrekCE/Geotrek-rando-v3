@@ -15,6 +15,7 @@ import {
   Title,
   TopContainer,
 } from './Home.style';
+import { HomeFooter } from './components/HomeFooter';
 
 const HomeUI: FunctionComponent = () => (
   <Layout>
@@ -83,6 +84,13 @@ const HomeUI: FunctionComponent = () => (
         </ListMapContainer> */}
       </div>
     </HomeContainer>
+    <HomeFooter
+      socialNetworks={[
+        { id: 'facebook', url: 'https://www.facebook.com' },
+        { id: 'twitter', url: 'https://www.twitter.com' },
+        { id: 'youtube', url: 'https://www.youtube.com' },
+      ]}
+    />
   </Layout>
 );
 
