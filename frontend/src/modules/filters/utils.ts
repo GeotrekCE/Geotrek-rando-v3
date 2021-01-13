@@ -1,4 +1,5 @@
 import { getActivityFilter } from 'modules/activities/connector';
+import { getCityFilter } from './city/connector';
 import { getFiltersConfig } from './config';
 import { getDifficultyFilter } from './connector/connector';
 import { Filter, FilterConfig, FilterConfigWithOptions, FilterState } from './interface';
@@ -19,6 +20,8 @@ const getFilterOptions = async (filterConfig: FilterConfig): Promise<Filter | nu
       return getDifficultyFilter();
     case 'activity':
       return getActivityFilter();
+    case 'city':
+      return getCityFilter();
     default:
       return null;
   }
