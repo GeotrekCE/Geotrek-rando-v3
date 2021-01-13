@@ -1,8 +1,8 @@
-// export interface Choices {
-//   [value: string]: {
-//     label: string;
-//   };
-// }
+export interface Choices {
+  [value: string]: {
+    label: string;
+  };
+}
 
 // export interface RangeChoices {
 //   [minValue: string]: {

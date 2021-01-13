@@ -1,7 +1,6 @@
-import { Options } from 'prettier';
-import { RawDifficulty } from '../interface';
+import { Choices, RawDifficulty } from '../interface';
 
-export const adaptDifficulties = (rawDifficulties: RawDifficulty[]): Options =>
+export const adaptDifficulties = (rawDifficulties: RawDifficulty[]): Choices =>
   rawDifficulties.reduce(
     (difficulties, currentRawDifficulty) => ({
       ...difficulties,
