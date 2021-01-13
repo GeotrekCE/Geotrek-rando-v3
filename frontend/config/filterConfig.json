@@ -1,28 +1,10 @@
-{
-  "ACTIVITIES": {
-    "status": "ENABLED"
+[
+  {
+    "id": "difficulty"
   },
-  "CITY": {
-    "status": "DISABLED"
-  },
-  "DISTRICT": {
-    "status": "DISABLED"
-  },
-  "THEME": {
-    "status": "DISABLED"
-  },
-  "DIFFICULTY": {
-    "status": "ENABLED"
-  },
-  "COURSE_TYPE": {
-    "status": "DISABLED"
-  },
-  "ACCESSIBILITY": {
-    "status": "DISABLED"
-  },
-  "DURATION": {
-    "status": "ENABLED",
-    "choices": [
+  {
+    "id": "duration",
+    "options": [
       {
         "minValue": 0,
         "maxValue": 30,
@@ -34,23 +16,5 @@
         "label": "30min - 1H"
       }
     ]
-  },
-  "LENGTH": {
-    "status": "ENABLED",
-    "choices": [
-      {
-        "minValue": 0,
-        "maxValue": 500,
-        "label": "0 - 500m"
-      },
-      {
-        "minValue": 500,
-        "maxValue": 1000,
-        "label": "500m - 1km"
-      }
-    ]
-  },
-  "POSITIVE_ELEVATION": {
-    "status": "DISABLED"
   }
-}
+]

@@ -12,7 +12,7 @@ export const adaptDifficulties = (rawDifficulties: RawDifficulty[]): Choices =>
 export const adaptDifficultyFilter = (rawDifficulties: RawDifficulty[]): Filter => ({
   id: 'difficulty',
   options: rawDifficulties.map(rawDifficulty => ({
-    value: rawDifficulty.id,
+    value: `${rawDifficulty.id}`,
     label: rawDifficulty.label,
   })),
 });
