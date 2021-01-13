@@ -143,3 +143,6 @@ export const sizes = {
   button: 48,
   filterBar: 72,
 };
+
+export const fillSvgWithColor = (color: string) => (svg: string): string =>
+  svg.replace(/fill:.*?;/g, `fill: ${color};`);
