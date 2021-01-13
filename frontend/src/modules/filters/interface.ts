@@ -13,7 +13,6 @@ export interface RangeChoices {
 
 interface BaseFilter {
   status: 'ENABLED' | 'DISABLED'; // From config
-  source: 'USER' | 'API';
   label: string;
 }
 
@@ -45,7 +44,7 @@ export interface DisplayableFilter {
   value: string;
   label: string;
 }
-interface DisplayableAvailableFilter {
+export interface DisplayableAvailableFilter {
   label: string;
   options: DisplayableFilter[];
 }
