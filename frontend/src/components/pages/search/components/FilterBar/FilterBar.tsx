@@ -30,13 +30,11 @@ export const FilterBar: React.FC<Props> = props => {
 
   const filterBarDisplayedState = useHideOnScrollDown(sizes.desktopHeader);
 
-  const filterBarContainerClassName = `w-full py-3 pl-6 pr-2 hidden desktop:block fixed shadow bg-white z-floatingButton ${
-    filterBarExpansionState === 'COLLAPSED' ? 'h-filterBar' : ''
-  }`;
+  const filterBarContainerClassName = `w-full py-3 pl-6 pr-2 hidden desktop:block fixed shadow bg-white z-floatingButton`;
 
   return (
     <Container className={filterBarContainerClassName} displayedState={filterBarDisplayedState}>
-      <div className={`${filterBarExpansionState === 'EXPANDED' ? 'mb-4' : 'h-filterBar'}`}>
+      <div className={`${filterBarExpansionState === 'EXPANDED' ? 'mb-4' : ''}`}>
         <FiltersLayout>
           {props.availableFilters &&
             props.availableFilters[TrekFilters.DIFFICULTY].options.length > 0 && (
