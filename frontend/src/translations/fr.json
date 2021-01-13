@@ -28,7 +28,10 @@
     "filters": {
       "difficulty": "Difficulté",
       "activity": "Activités",
-      "duration": "Durée"
+      "duration": "Durée",
+      "ciy": "Communes",
+      "district": "Districtes",
+      "theme": "Thèmes"
     }
   }
 }

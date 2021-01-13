@@ -6,6 +6,9 @@
     "id": "activity"
   },
   {
+    "id": "theme"
+  },
+  {
     "id": "duration",
     "options": [
       {
