@@ -13,6 +13,7 @@ import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
 import { ToggleFilterButton } from './components/ToggleFilterButton';
 import { useFilter } from './components/useFilters';
+import { useSearchPage } from './useSearchPage';
 
 export const SearchUI: React.FC = () => {
   const { menuState, displayMenu, hideMenu } = useOpenFilterMenu();
@@ -33,6 +34,8 @@ export const SearchUI: React.FC = () => {
     'Destination',
   ];
   const { availableFilters, setFilterValues, selectedFilters } = useFilter();
+
+  const { searchResults, isLoading } = useSearchPage();
 
   return (
     <>
@@ -62,54 +65,18 @@ export const SearchUI: React.FC = () => {
 
           <OpenMapButton />
 
-          <ResultCard
-            activityIcon={Walking}
-            place="Saint-Etienne-du-Valdonnez"
-            title="Balade au pays des menhirs"
-            tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
-            informations={{
-              duration: '2h',
-              distance: '5km',
-              elevation: '+360m',
-              difficulty: 'Facile',
-            }}
-          />
-          <ResultCard
-            activityIcon={Walking}
-            place="Saint-Etienne-du-Valdonnez"
-            title="Balade au pays des menhirs"
-            tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
-            informations={{
-              duration: '2h',
-              distance: '5km',
-              elevation: '+360m',
-              difficulty: 'Facile',
-            }}
-          />
-          <ResultCard
-            activityIcon={Walking}
-            place="Saint-Etienne-du-Valdonnez"
-            title="Balade au pays des menhirs"
-            tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
-            informations={{
-              duration: '2h',
-              distance: '5km',
-              elevation: '+360m',
-              difficulty: 'Facile',
-            }}
-          />
-          <ResultCard
-            activityIcon={Walking}
-            place="Saint-Etienne-du-Valdonnez"
-            title="Balade au pays des menhirs"
-            tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
-            informations={{
-              duration: '2h',
-              distance: '5km',
-              elevation: '+360m',
-              difficulty: 'Facile',
-            }}
-          />
+          {isLoading
+            ? 'LOADING'
+            : searchResults?.results.map(searchResult => (
+                <ResultCard
+                  key={searchResult.title}
+                  activityIcon={Walking}
+                  place={searchResult.place}
+                  title={searchResult.title}
+                  tags={searchResult.tags}
+                  informations={searchResult.informations}
+                />
+              ))}
         </div>
       </Layout>
     </>
