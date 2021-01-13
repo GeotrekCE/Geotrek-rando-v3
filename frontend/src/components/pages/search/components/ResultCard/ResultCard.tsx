@@ -90,6 +90,8 @@ const Container = styled.div`
 
   ${desktopOnly(
     css`
+      // TODO Replace by 100% when we put the map on Search page
+      width: 50%;
       flex-direction: row;
       margin: ${getSpacing(6)} 0;
     `,
@@ -111,13 +113,13 @@ const ImageContainer = styled.div`
     css`
       height: auto;
       max-width: ${getSpacing(56)};
-      flex-shrink: 0;
     `,
   )}
 `;
 
 const DetailsContainer = styled.div`
   display: flex;
+  width: 100%;
 
   padding: ${getSpacing(4)};
 
