@@ -32,7 +32,8 @@
       "ciy": "Communes",
       "district": "Districtes",
       "theme": "Thèmes",
-      "courseType": "Type de parcours"
+      "courseType": "Type de parcours",
+      "accessibility": "Accessibilité"
     }
   }
 }

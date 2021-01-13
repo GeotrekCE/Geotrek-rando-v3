@@ -1,4 +1,5 @@
 import { getActivityFilter } from 'modules/activities/connector';
+import { getAccessibilityFilter } from './accessibility/connector';
 import { getCityFilter } from './city/connector';
 import { getFiltersConfig } from './config';
 import { getDifficultyFilter } from './connector/connector';
@@ -31,6 +32,8 @@ const getFilterOptions = async (filterConfig: FilterConfig): Promise<Filter | nu
       return getThemeFilter();
     case 'courseType':
       return getCourseTypeFilter();
+    case 'accessibility':
+      return getAccessibilityFilter();
     default:
       return null;
   }
