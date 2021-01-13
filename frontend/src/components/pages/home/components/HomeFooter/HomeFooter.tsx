@@ -19,7 +19,7 @@ const socialNetworksIcons: { [key: string]: React.ReactNode } = {
 
 export const HomeFooter: React.FC<HomeFooterProps> = ({ socialNetworks }) => {
   return (
-    <div className="bg-black h-100 flex flex-col">
+    <div className="bg-black h-90 desktop:h-100 flex flex-col">
       <div className="mx-4 desktop:mx-40">
         <div
           className="
