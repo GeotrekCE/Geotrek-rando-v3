@@ -1,35 +1,27 @@
 {
   "ACTIVITIES": {
-    "status": "DISABLED",
-    "source": "API"
+    "status": "ENABLED"
   },
   "CITY": {
-    "status": "DISABLED",
-    "source": "API"
+    "status": "DISABLED"
   },
   "DISTRICT": {
-    "status": "DISABLED",
-    "source": "API"
+    "status": "DISABLED"
   },
   "THEME": {
-    "status": "DISABLED",
-    "source": "API"
+    "status": "DISABLED"
   },
   "DIFFICULTY": {
-    "status": "ENABLED",
-    "source": "API"
+    "status": "ENABLED"
   },
   "COURSE_TYPE": {
-    "status": "DISABLED",
-    "source": "API"
+    "status": "DISABLED"
   },
   "ACCESSIBILITY": {
-    "status": "DISABLED",
-    "source": "API"
+    "status": "DISABLED"
   },
   "DURATION": {
     "status": "ENABLED",
-    "source": "USER",
     "choices": [
       {
         "minValue": 0,
@@ -44,11 +36,21 @@
     ]
   },
   "LENGTH": {
-    "status": "DISABLED",
-    "source": "USER"
+    "status": "ENABLED",
+    "choices": [
+      {
+        "minValue": 0,
+        "maxValue": 500,
+        "label": "0 - 500m"
+      },
+      {
+        "minValue": 500,
+        "maxValue": 1000,
+        "label": "500m - 1km"
+      }
+    ]
   },
   "POSITIVE_ELEVATION": {
-    "status": "DISABLED",
-    "source": "USER"
+    "status": "DISABLED"
   }
 }
