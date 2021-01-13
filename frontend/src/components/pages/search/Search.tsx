@@ -47,11 +47,7 @@ export const SearchUI: React.FC = () => {
         closeMenu={hideMenu}
       />
       <Layout>
-        <FilterBar
-          availableFilters={availableFilters}
-          setFilterValues={setFilterValues}
-          selectedFilters={selectedFilters}
-        />
+        <FilterBar filtersState={filtersState} />
         <div className="p-4 desktop:pt-filterBar desktop:mt-6">
           <div className="flex justify-between items-end">
             <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />

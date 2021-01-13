@@ -37,18 +37,16 @@ export const FilterBar: React.FC<Props> = props => {
     <Container className={filterBarContainerClassName} displayedState={filterBarDisplayedState}>
       <div className={`${filterBarExpansionState === 'EXPANDED' ? 'mb-4' : ''}`}>
         <FiltersLayout>
-          {props.availableFilters &&
-            props.availableFilters[TrekFilters.DIFFICULTY].options.length > 0 && (
+          {props.filtersState.map(filterState => (
+            <div key={filterState.id} className="mr-2">
               <SelectableDropdown
-                name={TrekFilters.DIFFICULTY}
-                placeholder={props.availableFilters[TrekFilters.DIFFICULTY].label}
-                options={props.availableFilters[TrekFilters.DIFFICULTY].options}
-                setFilterValues={(values: FilterValues) =>
-                  props.setFilterValues(TrekFilters.DIFFICULTY, values)
-                }
-                selectedFilters={props.selectedFilters[TrekFilters.DIFFICULTY]}
+                name={filterState.id}
+                placeholder={filterState.label}
+                options={filterState.options}
+                selectedFilters={filterState.selectedOptions}
               />
-            )}
+            </div>
+          ))}
           <Filter />
           <Filter />
           <SeeMoreButton
