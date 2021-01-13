@@ -28,5 +28,35 @@
         "label": "30min - 1H"
       }
     ]
+  },
+  {
+    "id": "positiveElevation",
+    "options": [
+      {
+        "minValue": 0,
+        "maxValue": 500,
+        "label": "0 - 500m"
+      },
+      {
+        "minValue": 500,
+        "maxValue": 1000,
+        "label": "500m - 1km"
+      }
+    ]
+  },
+  {
+    "id": "length",
+    "options": [
+      {
+        "minValue": 0,
+        "maxValue": 5,
+        "label": "0 - 5km"
+      },
+      {
+        "minValue": 5,
+        "maxValue": 10,
+        "label": "5km - 10km"
+      }
+    ]
   }
 ]

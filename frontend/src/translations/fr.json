@@ -33,7 +33,9 @@
       "district": "Districtes",
       "theme": "Thèmes",
       "courseType": "Type de parcours",
-      "accessibility": "Accessibilité"
+      "accessibility": "Accessibilité",
+      "positiveElevation": "Denivelé positif",
+      "length": "Longueur"
     }
   }
 }
