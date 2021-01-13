@@ -2,6 +2,7 @@ import { getActivityFilter } from 'modules/activities/connector';
 import { getCityFilter } from './city/connector';
 import { getFiltersConfig } from './config';
 import { getDifficultyFilter } from './connector/connector';
+import { getDistrictFilter } from './district/connector';
 import { Filter, FilterConfig, FilterConfigWithOptions, FilterState } from './interface';
 
 const adaptFilterConfigWithOptionsToFilter = (
@@ -22,6 +23,8 @@ const getFilterOptions = async (filterConfig: FilterConfig): Promise<Filter | nu
       return getActivityFilter();
     case 'city':
       return getCityFilter();
+    case 'district':
+      return getDistrictFilter();
     default:
       return null;
   }
