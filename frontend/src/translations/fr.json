@@ -27,6 +27,7 @@
     "filter": "Filtrer",
     "filters": {
       "difficulty": "Difficulté",
+      "activity": "Activités",
       "duration": "Durée"
     }
   }

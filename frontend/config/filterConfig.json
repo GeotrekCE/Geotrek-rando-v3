@@ -3,6 +3,9 @@
     "id": "difficulty"
   },
   {
+    "id": "activity"
+  },
+  {
     "id": "duration",
     "options": [
       {
