@@ -35,7 +35,8 @@
       "courseType": "Type de parcours",
       "accessibility": "Accessibilité",
       "positiveElevation": "Denivelé positif",
-      "length": "Longueur"
+      "length": "Longueur",
+      "structure": "Structures"
     }
   }
 }
