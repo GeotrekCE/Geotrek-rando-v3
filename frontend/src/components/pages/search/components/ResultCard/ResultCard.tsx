@@ -23,10 +23,10 @@ interface Props {
   title: string;
   tags: string[];
   informations: {
-    duration: string;
+    duration: string | null;
     distance: string;
     elevation: string;
-    difficulty: string;
+    difficulty: string | null;
   };
 }
 
@@ -53,8 +53,14 @@ export const ResultCard: React.FC<Props> = ({ activityIcon, place, title, tags, 
 
           <InformationContainer>
             <InformationLayout>
-              <DifficultyInformation icon={Square}>{informations.difficulty}</DifficultyInformation>
-              <Information icon={Clock}>{informations.duration}</Information>
+              {informations.difficulty !== null && (
+                <DifficultyInformation icon={Square}>
+                  {informations.difficulty}
+                </DifficultyInformation>
+              )}
+              {informations.duration !== null && (
+                <Information icon={Clock}>{informations.duration}</Information>
+              )}
               <Information icon={CodeBrackets}>{informations.distance}</Information>
               <Information icon={TrendingUp} className="desktop:flex hidden">
                 {informations.elevation}
