@@ -166,7 +166,7 @@ export type FilterValues = ReadonlyArray<Option> | undefined | null;
 
 // Config file interface
 
-interface Option {
+export interface Option {
   label: string;
   value: string;
 }
@@ -187,4 +187,11 @@ export interface FilterConfigWithOptions {
     maxValue: number;
     label: string;
   }[];
+}
+
+export interface FilterState {
+  id: string;
+  label: string;
+  options: Option[];
+  selectedOptions: Option[];
 }

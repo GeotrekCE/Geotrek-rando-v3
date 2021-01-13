@@ -17,39 +17,12 @@ import { Button } from 'components/Button';
 import { Plus } from 'components/Icons/Plus';
 import { ChevronUp } from 'components/Icons/ChevronUp';
 
+import { FilterState } from 'modules/filters/interface';
 import { SelectableDropdown } from './SelectableDropdown';
 
 interface Props {
-  availableFilters: DisplayableAvailableFilters | undefined;
-  selectedFilters: SelectedFilters;
-  setFilterValues: (filter: BaseFilters | TrekFilters, values: FilterValues) => void;
+  filtersState: FilterState[];
 }
-
-const Filter = ({
-  name,
-  availableFilter,
-  setFilterValues,
-  selectedFilters,
-}: {
-  name: string;
-  availableFilter: DisplayableAvailableFilter;
-  setFilterValues: (values: FilterValues) => void;
-  selectedFilters: DisplayableFilter[];
-}) => {
-  if (availableFilter.options.length > 0) {
-    return (
-      <div className="desktop:mr-2">
-        <SelectableDropdown
-          name={name}
-          placeholder={availableFilter.label}
-          options={availableFilter.options}
-          setFilterValues={(values: FilterValues) => setFilterValues(values)}
-          selectedFilters={selectedFilters}
-        />
-      </div>
-    );
-  } else return null;
-};
 
 export const FilterBar: React.FC<Props> = props => {
   const [filterBarExpansionState, setFilterBarExpansionState] = useState<'EXPANDED' | 'COLLAPSED'>(
