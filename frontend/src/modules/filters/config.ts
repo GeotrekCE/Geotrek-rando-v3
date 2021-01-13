@@ -1,15 +1,15 @@
 import {
   BaseFilters,
   FiltersConfig,
+  RangeChoices,
+  RawFilterConfigOld,
   RawFiltersConfig,
   TrekFilters,
-  RangeChoices,
-  RawFilterConfig,
 } from './interface';
 
-import filterConfig from '../../../config/filterConfig.json';
+import filterConfigOld from '../../../config/filterConfig.json';
 
-const getFilterStatus = (rawFilter: RawFilterConfig): 'ENABLED' | 'DISABLED' =>
+const getFilterStatus = (rawFilter: RawFilterConfigOld): 'ENABLED' | 'DISABLED' =>
   rawFilter.status === 'ENABLED' ? 'ENABLED' : 'DISABLED';
 
 const adaptRangeChoice = (
@@ -30,8 +30,8 @@ const adaptRangeChoice = (
     {},
   );
 
-export const getConfig = (): FiltersConfig => {
-  const rawConfig: RawFiltersConfig = filterConfig;
+export const getConfigOld = (): FiltersConfig => {
+  const rawConfig: RawFiltersConfig = filterConfigOld;
   const durationChoices = rawConfig[TrekFilters.DURATION].choices;
   const lengthChoices = rawConfig[TrekFilters.LENGTH].choices;
   const positiveElevation = rawConfig[TrekFilters.POSITIVE_ELEVATION].choices;
