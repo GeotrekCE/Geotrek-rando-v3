@@ -12,6 +12,9 @@
     "id": "courseType"
   },
   {
+    "id": "accessibility"
+  },
+  {
     "id": "duration",
     "options": [
       {
