@@ -29,7 +29,11 @@ module.exports = {
       15: `${SPACING_UNIT * 15}px`,
       18: `${SPACING_UNIT * 18}px`,
       21.5: `${SPACING_UNIT * 21.5}px`,
+      30: `${SPACING_UNIT * 30}px`,
       40: `${SPACING_UNIT * 40}px`,
+      50: `${SPACING_UNIT * 50}px`,
+      60: `${SPACING_UNIT * 60}px`,
+      90: `${SPACING_UNIT * 90}px`,
       filterBar: '72px',
     },
     zIndex: {
@@ -38,20 +42,36 @@ module.exports = {
       header: 2,
       sliderMenu: 3,
     },
+    fontSize: {
+      // [fontSize, lineHeight] // fontSize in px
+      H1: ['2.75rem', '58px'], // 44px
+      H2: ['2rem', '42px'], // 32px
+      H3: ['1.5rem', '31px'], // 24px
+      H4: ['1.25rem', '26px'], // 20px
+      P1: ['1rem', '21px'], // 16px [default]
+      P2: ['0.875rem', '18px'], // 14px
+      P3: ['0.75rem', '16px'], // 12px
+      CTA: ['0,625rem', '13px'], // 10px
+      'Mobile-H1': ['1.25rem', '26px'], // 20px
+      'Mobile-C1': ['1rem', '21px'], // 16px [default]
+      'Mobile-C2': ['0.875rem', '18px'], // 14px
+      'Mobile-C3': ['0.75rem', '16px'], // 12px
+      'Mobile-C1-regular': ['0.75rem', '22px'], // 12px
+    },
     extend: {
       boxShadow: {
         lg: '0 0 30px 0 rgba(0, 0, 0, 0.15)',
       },
       colors: {
         primary1: {
-          light: '#bd3e8b',
           DEFAULT: '#AA397D',
+          light: '#bd3e8b',
         },
         primary2: '#F5E7EF',
         primary3: '#791150',
         greySoft: {
-          light: '#D7D6D950',
           DEFAULT: '#D7D6D9',
+          light: '#D7D6D950',
         },
         warning: '#D77E00',
         easyOK: '#4FAD79',
