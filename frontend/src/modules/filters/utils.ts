@@ -6,6 +6,7 @@ import { getDifficultyFilter } from './connector/connector';
 import { getCourseTypeFilter } from './courseType/connector';
 import { getDistrictFilter } from './district/connector';
 import { Filter, FilterConfig, FilterConfigWithOptions, FilterState } from './interface';
+import { getStructureFilter } from './structures/connector';
 import { getThemeFilter } from './theme/connector';
 
 const adaptFilterConfigWithOptionsToFilter = (
@@ -34,6 +35,8 @@ const getFilterOptions = async (filterConfig: FilterConfig): Promise<Filter | nu
       return getCourseTypeFilter();
     case 'accessibility':
       return getAccessibilityFilter();
+    case 'structures':
+      return getStructureFilter();
     default:
       return null;
   }
