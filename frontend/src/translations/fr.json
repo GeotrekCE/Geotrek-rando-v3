@@ -31,7 +31,8 @@
       "duration": "Durée",
       "ciy": "Communes",
       "district": "Districtes",
-      "theme": "Thèmes"
+      "theme": "Thèmes",
+      "courseType": "Type de parcours"
     }
   }
 }

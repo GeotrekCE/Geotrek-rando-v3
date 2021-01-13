@@ -9,6 +9,9 @@
     "id": "theme"
   },
   {
+    "id": "courseType"
+  },
+  {
     "id": "duration",
     "options": [
       {

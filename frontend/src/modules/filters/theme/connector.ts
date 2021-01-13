@@ -1,7 +1,7 @@
 import { adaptThemeFilter } from './adapter';
-import { fetchThems } from './api';
+import { fetchThemes } from './api';
 
 export const getThemeFilter = async () => {
-  const rawCities = await fetchThems({ language: 'fr' });
+  const rawCities = await fetchThemes({ language: 'fr' });
   return adaptThemeFilter(rawCities.results);
 };
