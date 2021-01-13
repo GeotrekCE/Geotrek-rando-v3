@@ -1,8 +1,9 @@
 import {
   BaseFilters,
+  FilterConfig,
+  FilterConfigWithOptions,
   FiltersConfig,
   RangeChoices,
-  RawFilterConfig,
   RawFilterConfigOld,
   RawFiltersConfig,
   TrekFilters,
@@ -11,7 +12,7 @@ import {
 import filterConfigOld from '../../../config/filterConfig.json';
 import filterConfig from '../../../config/filterConfigV2.json';
 
-export const getFilterConfig = (): RawFilterConfig[] => filterConfig;
+export const getFiltersConfig = (): (FilterConfig | FilterConfigWithOptions)[] => filterConfig;
 
 const getFilterStatus = (rawFilter: RawFilterConfigOld): 'ENABLED' | 'DISABLED' =>
   rawFilter.status === 'ENABLED' ? 'ENABLED' : 'DISABLED';

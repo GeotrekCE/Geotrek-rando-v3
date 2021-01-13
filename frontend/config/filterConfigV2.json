@@ -1,7 +1,10 @@
 [
   {
+    "id": "difficulty"
+  },
+  {
     "id": "duration",
-    "choices": [
+    "options": [
       {
         "minValue": 0,
         "maxValue": 30,

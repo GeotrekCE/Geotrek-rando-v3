@@ -1,67 +1,50 @@
-import { getConfigOld, getFilterConfig } from './config';
+import { getConfigOld, getFiltersConfig } from './config';
 import { getDifficulties } from './connector/index';
 import {
-  AvailableFilter,
   AvailableFilters,
   BaseFilters,
-  Choices,
   DisplayableAvailableFilters,
   DisplayableFilter,
   Filter,
-  RawFilterConfig,
+  FilterConfig,
+  FilterConfigWithOptions,
   TrekFilters,
 } from './interface';
 
-const mapIdToConnector: {
-  [filterId: string]: () => Promise<Choices>;
-} = {
-  difficulty: getDifficulties,
-};
+const adaptFilterConfigWithOptionsToFilter = (
+  filterConfigWithOptions: FilterConfigWithOptions,
+): Filter => ({
+  id: filterConfigWithOptions.id,
+  options: filterConfigWithOptions.options.map(option => ({
+    value: `${option.minValue}`,
+    label: option.label,
+  })),
+});
 
-const getAPIFilters = async (): Promise<AvailableFilter[]> => {
-  const apiFilters: AvailableFilter[] = [];
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  Object.keys(mapIdToConnector).forEach(async filterId => {
-    const choices = await mapIdToConnector[filterId]();
-    apiFilters.push({
-      id: filterId,
-      choices,
-    });
-  });
-  return apiFilters;
-};
-
-const adaptRawFilterConfigToAvailableFilter = async (
-  rawFilterConfig: RawFilterConfig,
-): Promise<AvailableFilter | null> => {
-  if (rawFilterConfig.choices !== undefined) {
-    return {
-      id: rawFilterConfig.id,
-      choices: rawFilterConfig.choices.map(choice => ({
-        value: `${choice.minValue}`,
-        label: choice.label,
-      })),
-    };
+const getFilterOptions = async (filterConfig: FilterConfig): Promise<Filter | null> => {
+  switch (filterConfig.id) {
+    case 'difficulty':
+      return getDifficulties();
+    default:
+      return null;
   }
-  if (mapIdToConnector[rawFilterConfig.id] !== undefined) {
-    return {};
-  }
-  return null;
 };
 
-const getAvailableFilters = async (): Promise<AvailableFilter[]> => {
-  const config = getFilterConfig();
-  const availableFilters: AvailableFilter[] = [];
-  config.forEach(async rawFilterConfig => {
-    const adaptedFilter = await adaptRawFilterConfigToAvailableFilter(rawFilterConfig);
-    if (adaptedFilter !== null) {
-      availableFilters.push(adaptedFilter);
-    }
-  });
-  return availableFilters;
-};
+const isElementNotNull = <ElementType>(element: ElementType | null): element is ElementType =>
+  element !== null;
 
-console.log(getAvailableFilters());
+export const getFilters = async (): Promise<Filter[]> => {
+  const config = getFiltersConfig();
+  const filters = await Promise.all(
+    config.map(filterConfig => {
+      if (filterConfig.options !== undefined) {
+        return adaptFilterConfigWithOptionsToFilter(filterConfig);
+      }
+      return getFilterOptions(filterConfig);
+    }),
+  );
+  return filters.filter(isElementNotNull);
+};
 
 const getAvailableFiltersOld = async (): Promise<AvailableFilters> => {
   const config = getConfigOld();
