@@ -9,9 +9,9 @@ export interface TrekResult {
   title: string;
   tags: number[]; // Should be string[] (call API supplémentaire)
   informations: {
-    duration: number | null; // Should be string (toujours heures)
-    distance: number; // Should be string (toujours mètres)
-    elevation: number; // Should be string (toujours mètres)
+    duration: string | null;
+    distance: string;
+    elevation: string;
     difficulty: string | null;
   };
 }
