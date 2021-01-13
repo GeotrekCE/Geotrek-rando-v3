@@ -1,4 +1,5 @@
-import { getDifficulties } from './connector';
+import { getConfig } from './config';
+import { getDifficulties } from './connector/index';
 import {
   AvailableFilters,
   BaseFilters,
@@ -8,68 +9,48 @@ import {
   TrekFilters,
 } from './interface';
 
-export const getAvailableFilters = async (): Promise<AvailableFilters> => {
+const getAvailableFilters = async (): Promise<AvailableFilters> => {
+  const config = getConfig();
+
   const difficulties = await getDifficulties();
+
   return {
     [BaseFilters.ACTIVITIES]: {
-      status: 'ENABLED',
-      source: 'API',
-      label: `search.filters.${BaseFilters.ACTIVITIES}`,
+      ...config[BaseFilters.ACTIVITIES],
       choices: {},
     },
     [BaseFilters.CITY]: {
-      status: 'ENABLED',
-      source: 'API',
-      label: `search.filters.${BaseFilters.CITY}`,
+      ...config[BaseFilters.CITY],
       choices: {},
     },
     [BaseFilters.DISTRICT]: {
-      status: 'ENABLED',
-      source: 'API',
-      label: `search.filters.${BaseFilters.DISTRICT}`,
+      ...config[BaseFilters.DISTRICT],
       choices: {},
     },
     [BaseFilters.THEME]: {
-      status: 'ENABLED',
-      source: 'API',
-      label: `search.filters.${BaseFilters.THEME}`,
+      ...config[BaseFilters.THEME],
       choices: {},
     },
     [TrekFilters.DIFFICULTY]: {
-      status: 'ENABLED',
-      source: 'API',
-      label: `search.filters.${TrekFilters.DIFFICULTY}`,
+      ...config[TrekFilters.DIFFICULTY],
       choices: difficulties,
     },
     [TrekFilters.COURSE_TYPE]: {
-      status: 'ENABLED',
-      source: 'API',
-      label: `search.filters.${TrekFilters.COURSE_TYPE}`,
+      ...config[TrekFilters.COURSE_TYPE],
       choices: {},
     },
     [TrekFilters.ACCESSIBILITY]: {
-      status: 'ENABLED',
-      source: 'API',
-      label: `search.filters.${TrekFilters.ACCESSIBILITY}`,
+      ...config[TrekFilters.ACCESSIBILITY],
       choices: {},
     },
     [TrekFilters.DURATION]: {
-      status: 'ENABLED',
-      source: 'USER',
-      label: `search.filters.${TrekFilters.DURATION}`,
-      choices: {},
+      ...config[TrekFilters.DURATION],
     },
     [TrekFilters.LENGTH]: {
-      status: 'ENABLED',
-      source: 'USER',
-      label: `search.filters.${TrekFilters.LENGTH}`,
-      choices: {},
+      ...config[TrekFilters.LENGTH],
     },
     [TrekFilters.POSITIVE_ELEVATION]: {
-      status: 'ENABLED',
-      source: 'USER',
-      label: `search.filters.${TrekFilters.POSITIVE_ELEVATION}`,
-      choices: {},
+      ...config[TrekFilters.POSITIVE_ELEVATION],
     },
   };
 };
