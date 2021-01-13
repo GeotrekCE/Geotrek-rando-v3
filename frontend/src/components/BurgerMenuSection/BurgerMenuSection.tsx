@@ -37,7 +37,7 @@ const BurgerMenuSection: React.FC<Props> = ({ title, subSections }) => {
         </AccordionItemHeading>
         <AccordionItemPanel className={openState === 'OPENED' ? classNameBorder : ''}>
           {subSections.map(s => (
-            <p className="text-xs py-2" key={s}>
+            <p className="text-Mobile-C3 py-2" key={s}>
               {s}
             </p>
           ))}

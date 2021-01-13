@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { Layout } from 'components/Layout/Layout';
 import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
 import HomeCard from './components/HomeCard';
+import { HomeSection } from './components/HomeSection';
 import {
   Code,
   DescriptionLine,
@@ -19,12 +20,21 @@ const HomeUI: FunctionComponent = () => (
   <Layout>
     <HomeContainer>
       <TopContainer>
-        <span className="text-white font-bold text-xl desktop:text-5xl desktop:leading-tight">
+        <span className="text-white font-bold text-Mobile-H1 desktop:text-H1 desktop:leading-tight">
           <FormattedMessage id="home.welcome-text" />
         </span>
       </TopContainer>
-      <div className="px-4 desktop:px-40 relative -top-6 desktop:-top-15 space-y-6 desktop:space-y-18">
-        <div className="desktop:flex desktop:justify-center">
+      <div
+        className="
+          relative -top-6 desktop:-top-15
+          px-4 desktop:px-40
+          space-y-6 desktop:space-y-18"
+      >
+        <div
+          className="
+          desktop:flex desktop:justify-center
+          mx-4 desktop:mx-40"
+        >
           <ActivitySearchFilter />
         </div>
         <HomeCard
@@ -34,6 +44,14 @@ const HomeUI: FunctionComponent = () => (
           tag="Sélectionné par le Parc national des Écrins"
           heightMobile={265}
           heightDesktop={265}
+        />
+        <HomeSection
+          title="Randonnées du parc"
+          iconUrl="https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg"
+        />
+        <HomeSection
+          title="Parcours en itinérance"
+          iconUrl="https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-horse.svg"
         />
         <Logo alt="logo" src="/logo.png" />
         <Title>Welcome to Geotrek</Title>
