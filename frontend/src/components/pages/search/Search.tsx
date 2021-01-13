@@ -33,7 +33,7 @@ export const SearchUI: React.FC = () => {
     'Massif/Vallée',
     'Destination',
   ];
-  const { filtersState } = useFilter();
+  const { filtersState, setFilterSelectedOptions } = useFilter();
 
   const { searchResults, isLoading } = useSearchPage();
 
@@ -47,7 +47,10 @@ export const SearchUI: React.FC = () => {
         closeMenu={hideMenu}
       />
       <Layout>
-        <FilterBar filtersState={filtersState} />
+        <FilterBar
+          filtersState={filtersState}
+          setFilterSelectedOptions={setFilterSelectedOptions}
+        />
         <div className="p-4 desktop:pt-filterBar desktop:mt-6">
           <div className="flex justify-between items-end">
             <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
