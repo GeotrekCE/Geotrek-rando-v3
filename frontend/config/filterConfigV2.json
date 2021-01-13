@@ -1,0 +1,17 @@
+[
+  {
+    "id": "duration",
+    "choices": [
+      {
+        "minValue": 0,
+        "maxValue": 30,
+        "label": "0 - 30min"
+      },
+      {
+        "minValue": 30,
+        "maxValue": 60,
+        "label": "30min - 1H"
+      }
+    ]
+  }
+]
