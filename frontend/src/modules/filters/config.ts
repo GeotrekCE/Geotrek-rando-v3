@@ -2,12 +2,16 @@ import {
   BaseFilters,
   FiltersConfig,
   RangeChoices,
+  RawFilterConfig,
   RawFilterConfigOld,
   RawFiltersConfig,
   TrekFilters,
 } from './interface';
 
 import filterConfigOld from '../../../config/filterConfig.json';
+import filterConfig from '../../../config/filterConfigV2.json';
+
+export const getFilterConfig = (): RawFilterConfig[] => filterConfig;
 
 const getFilterStatus = (rawFilter: RawFilterConfigOld): 'ENABLED' | 'DISABLED' =>
   rawFilter.status === 'ENABLED' ? 'ENABLED' : 'DISABLED';

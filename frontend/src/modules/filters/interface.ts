@@ -94,6 +94,20 @@ export type FilterValues = ReadonlyArray<DisplayableFilter> | undefined | null;
 
 // Config file interface
 
+export interface AvailableFilter {
+  id: string;
+  choices: DisplayableFilter[];
+}
+
+export interface RawFilterConfig {
+  id: string;
+  choices?: {
+    minValue: number;
+    maxValue: number;
+    label: string;
+  }[];
+}
+
 export interface RawFilterConfigOld {
   status: string;
   choices?: {

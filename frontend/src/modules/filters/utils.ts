@@ -1,15 +1,69 @@
-import { getConfigOld } from './config';
+import { getConfigOld, getFilterConfig } from './config';
 import { getDifficulties } from './connector/index';
 import {
+  AvailableFilter,
   AvailableFilters,
   BaseFilters,
+  Choices,
   DisplayableAvailableFilters,
   DisplayableFilter,
   Filter,
+  RawFilterConfig,
   TrekFilters,
 } from './interface';
 
-const getAvailableFilters = async (): Promise<AvailableFilters> => {
+const mapIdToConnector: {
+  [filterId: string]: () => Promise<Choices>;
+} = {
+  difficulty: getDifficulties,
+};
+
+const getAPIFilters = async (): Promise<AvailableFilter[]> => {
+  const apiFilters: AvailableFilter[] = [];
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  Object.keys(mapIdToConnector).forEach(async filterId => {
+    const choices = await mapIdToConnector[filterId]();
+    apiFilters.push({
+      id: filterId,
+      choices,
+    });
+  });
+  return apiFilters;
+};
+
+const adaptRawFilterConfigToAvailableFilter = async (
+  rawFilterConfig: RawFilterConfig,
+): Promise<AvailableFilter | null> => {
+  if (rawFilterConfig.choices !== undefined) {
+    return {
+      id: rawFilterConfig.id,
+      choices: rawFilterConfig.choices.map(choice => ({
+        value: `${choice.minValue}`,
+        label: choice.label,
+      })),
+    };
+  }
+  if (mapIdToConnector[rawFilterConfig.id] !== undefined) {
+    return {};
+  }
+  return null;
+};
+
+const getAvailableFilters = async (): Promise<AvailableFilter[]> => {
+  const config = getFilterConfig();
+  const availableFilters: AvailableFilter[] = [];
+  config.forEach(async rawFilterConfig => {
+    const adaptedFilter = await adaptRawFilterConfigToAvailableFilter(rawFilterConfig);
+    if (adaptedFilter !== null) {
+      availableFilters.push(adaptedFilter);
+    }
+  });
+  return availableFilters;
+};
+
+console.log(getAvailableFilters());
+
+const getAvailableFiltersOld = async (): Promise<AvailableFilters> => {
   const config = getConfigOld();
 
   const difficulties = await getDifficulties();
@@ -66,7 +120,7 @@ const adaptAvailableFilters = (
 });
 
 export const getDisplayableAvailableFilters = async (): Promise<DisplayableAvailableFilters> => {
-  const availableFilters = await getAvailableFilters();
+  const availableFilters = await getAvailableFiltersOld();
   return {
     [BaseFilters.ACTIVITIES]: adaptAvailableFilters(availableFilters[BaseFilters.ACTIVITIES]),
     [BaseFilters.CITY]: adaptAvailableFilters(availableFilters[BaseFilters.CITY]),
