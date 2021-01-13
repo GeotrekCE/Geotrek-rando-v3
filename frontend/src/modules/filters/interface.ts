@@ -93,6 +93,59 @@ export interface SelectedFilters {
 
 export type FilterValues = ReadonlyArray<DisplayableFilter> | undefined | null;
 
+// Config file interface
+
+export interface RawFilterConfig {
+  status: string;
+  choices?: {
+    minValue: number;
+    maxValue: number;
+    label: string;
+  }[];
+}
+
+interface EnabledFilterConfig {
+  status: 'ENABLED';
+  label: string;
+}
+
+export interface EnabledRangeFilterConfig {
+  status: 'ENABLED';
+  label: string;
+  choices: RangeChoices;
+}
+
+export interface DisabledFilterConfig {
+  status: 'DISABLED';
+  label: string;
+}
+
+export interface RawFiltersConfig {
+  [BaseFilters.ACTIVITIES]: RawFilterConfig;
+  [BaseFilters.CITY]: RawFilterConfig;
+  [BaseFilters.DISTRICT]: RawFilterConfig;
+  [BaseFilters.THEME]: RawFilterConfig;
+  [TrekFilters.DIFFICULTY]: RawFilterConfig;
+  [TrekFilters.COURSE_TYPE]: RawFilterConfig;
+  [TrekFilters.ACCESSIBILITY]: RawFilterConfig;
+  [TrekFilters.DURATION]: RawFilterConfig;
+  [TrekFilters.LENGTH]: RawFilterConfig;
+  [TrekFilters.POSITIVE_ELEVATION]: RawFilterConfig;
+}
+
+export interface FiltersConfig {
+  [BaseFilters.ACTIVITIES]: DisabledFilterConfig | EnabledFilterConfig;
+  [BaseFilters.CITY]: DisabledFilterConfig | EnabledFilterConfig;
+  [BaseFilters.DISTRICT]: DisabledFilterConfig | EnabledFilterConfig;
+  [BaseFilters.THEME]: DisabledFilterConfig | EnabledFilterConfig;
+  [TrekFilters.DIFFICULTY]: DisabledFilterConfig | EnabledFilterConfig;
+  [TrekFilters.COURSE_TYPE]: DisabledFilterConfig | EnabledFilterConfig;
+  [TrekFilters.ACCESSIBILITY]: DisabledFilterConfig | EnabledFilterConfig;
+  [TrekFilters.DURATION]: DisabledFilterConfig | EnabledRangeFilterConfig;
+  [TrekFilters.LENGTH]: DisabledFilterConfig | EnabledRangeFilterConfig;
+  [TrekFilters.POSITIVE_ELEVATION]: DisabledFilterConfig | EnabledRangeFilterConfig;
+}
+
 // Individual filters interfaces
 
 export interface RawDifficulty {
@@ -100,4 +153,16 @@ export interface RawDifficulty {
   cirkwi_level: number;
   label: string;
   pictogram: string;
+}
+
+interface RawRangeChoice {
+  minValue: number;
+  maxValue: number;
+  label: string;
+}
+
+export interface RawDuration {
+  status: string;
+  source: string;
+  choices: RawRangeChoice[];
 }
