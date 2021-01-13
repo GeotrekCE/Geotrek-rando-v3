@@ -1,37 +1,35 @@
-import { BaseFilters, FilterValues, SelectedFilters, TrekFilters } from 'modules/filters/interface';
+import { FilterState } from 'modules/filters/interface';
 
-enum ActionKind {
+export enum ActionKind {
   SetFilterValues = 'SET_FILTER_VALUES',
+  InitFilterState = 'INIT_FILTER_STATE',
 }
 
-type Action = {
-  type: ActionKind;
-  payload: {
-    filter: BaseFilters | TrekFilters;
-    values: FilterValues;
-  };
+type InitFilterStateAction = {
+  type: ActionKind.InitFilterState;
+  payload: FilterState[];
 };
 
-export const setFilterValuesAction = (
-  filter: BaseFilters | TrekFilters,
-  values: FilterValues,
-): Action => ({
-  type: ActionKind.SetFilterValues,
-  payload: {
-    filter,
-    values,
-  },
-});
+// export const setFilterValuesAction = (
+//   filter: BaseFilters | TrekFilters,
+//   values: FilterValues,
+// ): Action => ({
+//   type: ActionKind.SetFilterValues,
+//   payload: {
+//     filter,
+//     values,
+//   },
+// });
 
-export const filterReducer = (state: SelectedFilters, action: Action): SelectedFilters => {
+export const filterReducer = (
+  state: FilterState[],
+  action: InitFilterStateAction,
+): FilterState[] => {
   const { type, payload } = action;
 
   switch (type) {
-    case ActionKind.SetFilterValues:
-      return {
-        ...state,
-        [payload.filter]: payload.values ?? [],
-      };
+    case ActionKind.InitFilterState:
+      return payload;
     default:
       return state;
   }

@@ -33,7 +33,7 @@ export const SearchUI: React.FC = () => {
     'Massif/Vallée',
     'Destination',
   ];
-  const { availableFilters, setFilterValues, selectedFilters } = useFilter();
+  const { filtersState } = useFilter();
 
   const { searchResults, isLoading } = useSearchPage();
 

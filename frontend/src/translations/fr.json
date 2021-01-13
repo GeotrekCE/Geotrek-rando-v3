@@ -26,8 +26,8 @@
     "seeMap": "Voir la carte",
     "filter": "Filtrer",
     "filters": {
-      "DIFFICULTY": "Diffficulté",
-      "DURATION": "Durée"
+      "difficulty": "Difficulté",
+      "duration": "Durée"
     }
   }
 }

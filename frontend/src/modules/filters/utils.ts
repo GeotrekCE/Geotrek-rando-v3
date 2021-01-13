@@ -8,6 +8,7 @@ import {
   Filter,
   FilterConfig,
   FilterConfigWithOptions,
+  FilterState,
   TrekFilters,
 } from './interface';
 
@@ -33,7 +34,7 @@ const getFilterOptions = async (filterConfig: FilterConfig): Promise<Filter | nu
 const isElementNotNull = <ElementType>(element: ElementType | null): element is ElementType =>
   element !== null;
 
-export const getFilters = async (): Promise<Filter[]> => {
+const getFilters = async (): Promise<Filter[]> => {
   const config = getFiltersConfig();
   const filters = await Promise.all(
     config.map(filterConfig => {
@@ -44,6 +45,15 @@ export const getFilters = async (): Promise<Filter[]> => {
     }),
   );
   return filters.filter(isElementNotNull);
+};
+
+export const getFiltersState = async (): Promise<FilterState[]> => {
+  const filters = await getFilters();
+  return filters.map(filter => ({
+    ...filter,
+    label: `search.filters.${filter.id}`,
+    selectedOptions: [],
+  }));
 };
 
 const getAvailableFiltersOld = async (): Promise<AvailableFilters> => {
