@@ -7,7 +7,7 @@ export interface TrekResult {
   activityIcon: string; // TODO (call API supplémentaire surement)
   place: string;
   title: string;
-  tags: number[]; // Should be string[] (call API supplémentaire)
+  tags: string[];
   informations: {
     duration: string | null;
     distance: string;

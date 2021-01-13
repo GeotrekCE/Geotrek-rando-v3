@@ -9,16 +9,18 @@ const dataUnits = {
 export const adaptTrekResults = ({
   rawTrekResults,
   difficulties,
+  tags,
 }: {
   rawTrekResults: RawTrekResults;
   difficulties: Choices;
+  tags: Choices;
 }): TrekResults => {
   const resultsList = rawTrekResults.results;
   const adaptedResultsList = resultsList.map(rawResult => ({
     activityIcon: 'TODO',
     place: rawResult.departure,
     title: rawResult.name,
-    tags: rawResult.labels,
+    tags: rawResult.labels.map(label => tags[label].label),
     informations: {
       duration: rawResult.duration !== null ? `${rawResult.duration}${dataUnits.time}` : null,
       distance: `${rawResult.length_2d}${dataUnits.distance}`,
