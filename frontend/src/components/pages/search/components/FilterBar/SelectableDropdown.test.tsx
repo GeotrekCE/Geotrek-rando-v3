@@ -1,4 +1,4 @@
-import { DisplayableFilter, FilterValues } from 'modules/filters/interface';
+import { Option } from 'modules/filters/interface';
 import { render } from 'services/testing/reactTestingLibraryWrapper';
 import { SelectableDropdown } from './SelectableDropdown';
 
@@ -18,7 +18,7 @@ test('SelectableDropdown shoudl render properly', () => {
         },
       ]}
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      setFilterValues={(values: FilterValues) => {}}
+      setFilterSelectedOptions={(values: Option[]) => {}}
       selectedFilters={[
         {
           label: 'Très Facile',
