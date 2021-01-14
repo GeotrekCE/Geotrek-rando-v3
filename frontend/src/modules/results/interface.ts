@@ -30,7 +30,7 @@ export interface RawTrekResult {
   departure: string;
   difficulty: number | null;
   duration: number | null;
-  labels: number[];
+  themes: number[];
   length_2d: number;
   name: string;
 }

@@ -3,7 +3,7 @@ import { APIQuery } from 'services/api/interface';
 import { RawTrekResults } from './interface';
 
 const fieldsParams = {
-  fields: 'departure,name,labels,duration,length_2d,ascent,difficulty',
+  fields: 'departure,name,themes,duration,length_2d,ascent,difficulty',
 };
 
 export const fetchTrekResults = (query: APIQuery): Promise<RawTrekResults> =>
