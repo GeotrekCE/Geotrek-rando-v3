@@ -11,7 +11,14 @@ test('AAU, I can see a ResultCard', () => {
       place="Saint-Etienne-du-Valdonnez"
       title="Balade au pays des menhirs"
       tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
-      informations={{ duration: '2h', distance: '5km', elevation: '+360m', difficulty: '' }}
+      thumbnailUri="images/hiking-cover.jpg"
+      informations={{
+        duration: '2h',
+        distance: '5km',
+        elevation: '+360m',
+        difficulty: '',
+        reservationSystem: 1,
+      }}
     />,
   );
 
