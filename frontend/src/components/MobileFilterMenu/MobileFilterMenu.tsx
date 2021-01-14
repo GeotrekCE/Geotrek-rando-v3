@@ -8,7 +8,7 @@ interface Props {
   menuState: 'DISPLAYED' | 'HIDDEN';
   handleClose: () => void;
   title: React.ReactNode;
-  filtersList: string[];
+  filtersList: { id: string; label: string; onSelect: () => void }[];
   closeMenu: () => void;
 }
 
@@ -39,8 +39,8 @@ export const MobileFilterMenu: React.FC<Props> = ({
         <CloseButton closeMenu={closeMenu} className="absolute left-0" />
         <span>{title}</span>
       </div>
-      {filtersList.map(section => (
-        <BurgerMenuSection title={section} key={section} />
+      {filtersList.map(filter => (
+        <BurgerMenuSection title={filter.label} key={filter.id} onClick={filter.onSelect} />
       ))}
     </Slide>
   );
