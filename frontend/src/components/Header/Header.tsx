@@ -8,6 +8,7 @@ import { Display, useHideOnScrollDown } from 'hooks/useHideOnScrollDown';
 
 import InlineMenu from 'components/InlineMenu';
 import BurgerMenu from '../BurgerMenu';
+import { useHeader } from './useHeader';
 
 interface Props {
   logoPath: string;
