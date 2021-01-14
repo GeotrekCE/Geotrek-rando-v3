@@ -1,6 +1,5 @@
 import { ChevronDown } from 'components/Icons/ChevronDown';
 import { MoreHorizontal } from 'components/Icons/MoreHorizontal';
-import { Link } from 'components/Link';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { routes } from 'services/routes';
@@ -38,11 +37,13 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
         {activities !== undefined && (
           <div className="flex content-evenly flex-wrap flex-1">
             {visibleActivitiesIds?.map(activityId => (
-              <Link href={`${routes.SEARCH}?activity=${activityId}`} key={activityId}>
-                <ActivityButton iconUrl={activities[activityId].pictogram} key={activityId}>
-                  <span>{activities[activityId].name}</span>
-                </ActivityButton>
-              </Link>
+              <ActivityButton
+                iconUrl={activities[activityId].pictogram}
+                href={`${routes.SEARCH}?activity=${activityId}`}
+                key={activityId}
+              >
+                <span>{activities[activityId].name}</span>
+              </ActivityButton>
             ))}
           </div>
         )}
