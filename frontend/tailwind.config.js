@@ -36,6 +36,7 @@ module.exports = {
       90: `${SPACING_UNIT * 90}px`,
       100: `${SPACING_UNIT * 100}px`,
       filterBar: '72px',
+      activitySearchFilter: '865px',
     },
     zIndex: {
       content: 0,
