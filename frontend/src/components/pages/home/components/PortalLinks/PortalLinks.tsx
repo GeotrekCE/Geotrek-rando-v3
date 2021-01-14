@@ -22,7 +22,7 @@ export const PortalLinks: React.FC<PortalLinksProps> = ({ name, links }) => {
 
   return (
     <>
-      <div className="hidden desktop:flex flex-col text-greySoft">
+      <div className="hidden desktop:flex flex-col text-greySoft ml-3">
         <PortalLinksTitle name={name} />
         <PortalLinksDesktopContent links={links} />
       </div>
