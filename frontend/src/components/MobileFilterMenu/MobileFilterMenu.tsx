@@ -2,6 +2,7 @@ import React from 'react';
 import { slide as Slide } from 'react-burger-menu';
 
 import BurgerMenuSection from 'components/BurgerMenuSection/BurgerMenuSection';
+import { Cross } from 'components/Icons/Cross';
 import { CloseButton } from './CloseButton';
 
 interface Props {
@@ -36,7 +37,7 @@ export const MobileFilterMenu: React.FC<Props> = ({
       menuClassName="bg-white p-4"
     >
       <div className="relative text-center w-full pb-4 font-bold border-b border-solid border-greySoft outline-none">
-        <CloseButton closeMenu={closeMenu} className="absolute left-0" />
+        <CloseButton onClick={closeMenu} className="absolute left-0" icon={<Cross size={24} />} />
         <span>{title}</span>
       </div>
       {filtersList.map(filter => (

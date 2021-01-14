@@ -2,17 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { buttonCssResets } from 'services/cssHelpers';
-import { Cross } from 'components/Icons/Cross';
 
 interface Props {
-  closeMenu: () => void;
+  onClick: () => void;
+  icon: React.ReactNode;
   className?: string;
 }
 
-export const CloseButton: React.FC<Props> = ({ closeMenu, className }) => {
+export const CloseButton: React.FC<Props> = ({ onClick, className, icon }) => {
   return (
-    <Button type="button" onClick={closeMenu} className={className}>
-      <Cross size={24} />
+    <Button type="button" onClick={onClick} className={className}>
+      {icon}
     </Button>
   );
 };
