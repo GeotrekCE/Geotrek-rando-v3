@@ -1,4 +1,5 @@
 import { ActivityChoices } from 'modules/activities/interface';
+import { DifficultyChoices } from 'modules/filters/connector/interface';
 import { Choices } from 'modules/filters/interface';
 import { RawTrekResults, TrekResults } from './interface';
 import { formatDistance } from './utils';
@@ -18,7 +19,7 @@ export const adaptTrekResults = ({
   activities,
 }: {
   rawTrekResults: RawTrekResults;
-  difficulties: Choices;
+  difficulties: DifficultyChoices;
   themes: Choices;
   activities: ActivityChoices;
 }): TrekResults => {
@@ -34,7 +35,13 @@ export const adaptTrekResults = ({
       duration: rawResult.duration !== null ? `${rawResult.duration}${dataUnits.time}` : null,
       distance: `${formatDistance(rawResult.length_2d)}`,
       elevation: `${rawResult.ascent}${dataUnits.distance}`,
-      difficulty: rawResult.difficulty !== null ? difficulties[rawResult.difficulty].label : null,
+      difficulty:
+        rawResult.difficulty !== null
+          ? {
+              label: difficulties[rawResult.difficulty].label,
+              pictogramUri: difficulties[rawResult.difficulty].pictogramUri,
+            }
+          : null,
       reservationSystem: rawResult.reservation_system,
     },
   }));

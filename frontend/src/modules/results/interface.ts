@@ -16,9 +16,14 @@ export interface TrekResult {
     duration: string | null;
     distance: string;
     elevation: string;
-    difficulty: string | null;
+    difficulty: Difficulty | null;
     reservationSystem: number | null; // Todo should be string | null
   };
+}
+
+interface Difficulty {
+  label: string;
+  pictogramUri: string;
 }
 
 // API response
