@@ -1,3 +1,4 @@
+import { LeftArrow } from 'components/Icons/LeftArrow';
 import React from 'react';
 import { slide as Slide } from 'react-burger-menu';
 import { useIntl } from 'react-intl';
@@ -35,7 +36,11 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
       menuClassName="bg-white p-4"
     >
       <div className="relative text-center w-full pb-4 font-bold border-b border-solid border-greySoft outline-none">
-        <CloseButton closeMenu={closeMenu} className="absolute left-0" />
+        <CloseButton
+          onClick={closeMenu}
+          className="absolute left-0"
+          icon={<LeftArrow size={24} />}
+        />
         {filterId !== null && (
           <span>{intl.formatMessage({ id: `search.filters.${filterId}` })}</span>
         )}
