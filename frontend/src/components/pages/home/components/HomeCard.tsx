@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MAX_WIDTH_MOBILE } from 'stylesheet';
+import { colorPalette, MAX_WIDTH_MOBILE } from 'stylesheet';
 import { Chip } from 'components/Chip';
 
 interface ImageContainerProps {
@@ -38,7 +38,12 @@ const HomeCard: React.FC<HomeCardProps> = ({
 };
 
 const ImageContainer = styled.div<ImageContainerProps>`
-  background-image: url(${props => props.imagePath});
+  background-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      ${colorPalette.home.gradientOnImages} 100%
+    ),
+    url(${props => props.imagePath});
   background-size: cover;
   background-position: center;
   height: ${props => props.heightMobile}px;
