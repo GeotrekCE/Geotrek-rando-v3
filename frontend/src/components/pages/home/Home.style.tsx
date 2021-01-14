@@ -17,10 +17,10 @@ export const HomeContainer = styled.div`
 `;
 HomeContainer.displayName = 'HomeContainer';
 
-export const TopContainer = styled.div`
+export const TopContainer = styled.div<{ backgroundUrl: string }>`
   text-align: center;
   background-color: ${colorPalette.primary3};
-  background-image: url('/images/home-background.jpg');
+  background-image: ${props => `url(${props.backgroundUrl})`};
   background-size: cover;
   background-position: center;
   display: flex;
