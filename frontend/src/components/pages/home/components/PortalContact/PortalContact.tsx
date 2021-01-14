@@ -38,12 +38,16 @@ export const PortalContact: React.FC<PortalContactProps> = ({
       <div className="desktop:hidden text-greySoft">
         <div
           className={`
-          flex justify-between pb-2.5 outline-none
+          flex justify-between items-center pb-2.5 outline-none
           ${openState === 'CLOSED' ? 'border-b border-solid border-greySoft' : ''}`}
           onClick={updatePanelState}
         >
           <PortalContactTitle name={name} />
-          {openState === 'OPENED' ? <Minus size={24} /> : <Plus size={24} />}
+          {openState === 'OPENED' ? (
+            <Minus size={24} className="flex-shrink-0" />
+          ) : (
+            <Plus size={24} className="flex-shrink-0" />
+          )}
         </div>
         <PortalContactContent
           className={openState === 'CLOSED' ? 'hidden' : 'block'}
