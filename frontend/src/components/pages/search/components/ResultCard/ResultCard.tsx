@@ -27,6 +27,7 @@ interface Props {
     distance: string;
     elevation: string;
     difficulty: string | null;
+    reservationSystem: number | null;
   };
 }
 
@@ -69,11 +70,13 @@ export const ResultCard: React.FC<Props> = ({ activityIcon, place, title, tags, 
           </InformationContainer>
         </DetailsLayout>
 
-        <BookingButtonContainer>
-          <Button>
-            <FormattedMessage id="search.book" />
-          </Button>
-        </BookingButtonContainer>
+        {informations.reservationSystem !== null && (
+          <BookingButtonContainer>
+            <Button>
+              <FormattedMessage id="search.book" />
+            </Button>
+          </BookingButtonContainer>
+        )}
       </DetailsContainer>
     </Container>
   );
