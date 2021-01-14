@@ -47,21 +47,23 @@ export const Header: React.FC<Props> = ({ logoPath }) => {
       />
       <Container
         state={headerState}
-        className="h-11 bg-primary1 flex flex-row items-center sticky z-header"
+        className="h-11 bg-primary1 flex flex-row items-center sticky z-header px-3"
       >
-        <Link href={routes.HOME}>
-          <img className="h-9 mx-3 desktop:h-18" alt="logo" src={logoPath} />
-        </Link>
+        <div className="flex-shrink-0">
+          <Link href={routes.HOME}>
+            <img className="h-9 desktop:h-18 mr-3" alt="logo" src={logoPath} />
+          </Link>
+        </div>
         <p
           className="
-          flex-1 desktop:ml-8 text-white
+          flex-auto text-white
           desktop:text-H2 desktop:leading-8
           font-semibold desktop:font-bold"
         >
           <FormattedMessage id={'home.title'} />
         </p>
         <InlineMenu
-          className="hidden desktop:flex items-center"
+          className="hidden desktop:flex items-center flex-auto justify-between"
           sections={sectionsDesktop}
           subSections={subSections}
         />
