@@ -1,2 +1,2 @@
 export { MobileFilterMenu } from './MobileFilterMenu';
-export { useOpenFilterMenu } from './useOpenFilterMenu';
+export { useFilterMenu } from './useFilterMenu';
