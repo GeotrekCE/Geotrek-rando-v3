@@ -8,6 +8,7 @@ export interface TrekResult {
   place: string;
   title: string;
   tags: string[];
+  thumbnailUri: string;
   informations: {
     duration: string | null;
     distance: string;
@@ -35,4 +36,15 @@ export interface RawTrekResult {
   length_2d: number;
   name: string;
   reservation_system: null | number;
+  attachments: Attachment[];
+}
+
+export interface Attachment {
+  author: string;
+  backend: string;
+  thumbnail: string;
+  legend: string;
+  title: string;
+  url: string;
+  type: string;
 }

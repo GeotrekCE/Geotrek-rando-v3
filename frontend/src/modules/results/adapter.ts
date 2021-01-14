@@ -7,6 +7,9 @@ const dataUnits = {
   time: 'h',
 };
 
+const fallbackImgUri =
+  'https://www.ecrins-parcnational.fr/sites/ecrins-parcnational.com/themes/ecrinparcnational/logo.png';
+
 export const adaptTrekResults = ({
   rawTrekResults,
   difficulties,
@@ -22,6 +25,7 @@ export const adaptTrekResults = ({
     place: rawResult.departure,
     title: rawResult.name,
     tags: rawResult.themes.map(themeId => themes[themeId].label),
+    thumbnailUri: rawResult.attachments.length > 0 ? rawResult.attachments[0].url : fallbackImgUri,
     informations: {
       duration: rawResult.duration !== null ? `${rawResult.duration}${dataUnits.time}` : null,
       distance: `${formatDistance(rawResult.length_2d)}`,
