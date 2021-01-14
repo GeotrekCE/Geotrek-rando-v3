@@ -6,7 +6,12 @@ import { colorPalette, getSpacing, typography } from 'stylesheet';
 import { Walking } from 'components/Icons/Walking';
 import { Layout } from 'components/Layout/Layout';
 import { OpenMapButton } from 'components/OpenMapButton';
-import { MobileFilterMenu, useFilterMenu } from 'components/MobileFilterMenu';
+import {
+  MobileFilterMenu,
+  MobileFilterSubMenu,
+  useFilterMenu,
+  useFilterSubMenu,
+} from 'components/MobileFilterMenu';
 
 import { FilterBar } from './components/FilterBar';
 import { ResultCard } from './components/ResultCard';
@@ -18,15 +23,11 @@ import { useSearchPage } from './useSearchPage';
 export const SearchUI: React.FC = () => {
   const { filtersState, setFilterSelectedOptions } = useFilter();
 
-  const {
-    menuState,
-    displayMenu,
-    hideMenu,
-    subMenuState,
-    hideSubMenu,
-    displaySubMenu,
-    filtersList,
-  } = useFilterMenu(filtersState);
+  const { subMenuState, selectFilter, hideSubMenu, currentFilterId } = useFilterSubMenu();
+  const { menuState, displayMenu, hideMenu, filtersList } = useFilterMenu(
+    filtersState,
+    selectFilter,
+  );
 
   const { searchResults, isLoading } = useSearchPage();
 
@@ -39,12 +40,11 @@ export const SearchUI: React.FC = () => {
         filtersList={filtersList}
         closeMenu={hideMenu}
       />
-      <MobileFilterMenu
+      <MobileFilterSubMenu
         menuState={subMenuState}
-        handleClose={hideMenu}
-        title={<FormattedMessage id="search.filter" />}
-        filtersList={filtersList}
-        closeMenu={hideMenu}
+        handleClose={hideSubMenu}
+        filterId={currentFilterId}
+        closeMenu={hideSubMenu}
       />
       <Layout>
         <FilterBar
