@@ -1,3 +1,4 @@
+import { getActivities } from 'modules/activities/connector';
 import { getDifficulties } from 'modules/filters/connector';
 import { getThemes } from 'modules/filters/theme/connector';
 import { adaptTrekResults } from './adapter';
@@ -8,11 +9,12 @@ import { TrekResults } from './interface';
 const resultsNumber = 5;
 
 export const getTrekResults = async (): Promise<TrekResults> => {
-  const [rawTrekResults, difficulties, themes] = await Promise.all([
+  const [rawTrekResults, difficulties, themes, activities] = await Promise.all([
     fetchTrekResults({ language: 'fr', page_size: resultsNumber }),
     getDifficulties(),
     getThemes(),
+    getActivities(),
   ]);
 
-  return adaptTrekResults({ rawTrekResults, difficulties, themes });
+  return adaptTrekResults({ rawTrekResults, difficulties, themes, activities });
 };

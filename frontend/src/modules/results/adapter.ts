@@ -1,3 +1,4 @@
+import { ActivityChoices } from 'modules/activities/interface';
 import { Choices } from 'modules/filters/interface';
 import { RawTrekResults, TrekResults } from './interface';
 import { formatDistance } from './utils';
@@ -14,10 +15,12 @@ export const adaptTrekResults = ({
   rawTrekResults,
   difficulties,
   themes,
+  activities,
 }: {
   rawTrekResults: RawTrekResults;
   difficulties: Choices;
   themes: Choices;
+  activities: ActivityChoices;
 }): TrekResults => {
   const resultsList = rawTrekResults.results;
   const adaptedResultsList = resultsList.map(rawResult => ({
@@ -26,7 +29,7 @@ export const adaptTrekResults = ({
     title: rawResult.name,
     tags: rawResult.themes.map(themeId => themes[themeId].label),
     thumbnailUri: rawResult?.thumbnail?.url || fallbackImgUri,
-    practice: rawResult.practice,
+    practice: activities[rawResult.practice],
     informations: {
       duration: rawResult.duration !== null ? `${rawResult.duration}${dataUnits.time}` : null,
       distance: `${formatDistance(rawResult.length_2d)}`,

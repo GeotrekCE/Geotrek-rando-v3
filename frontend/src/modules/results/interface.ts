@@ -1,3 +1,5 @@
+import { Activity } from 'modules/activities/interface';
+
 export interface TrekResults {
   resultsNumber: number;
   results: TrekResult[];
@@ -9,7 +11,7 @@ export interface TrekResult {
   title: string;
   tags: string[];
   thumbnailUri: string;
-  practice: number; // should be an object
+  practice: Activity; // should be an object
   informations: {
     duration: string | null;
     distance: string;
