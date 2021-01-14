@@ -84,6 +84,7 @@ export const SearchUI: React.FC = () => {
                   place={searchResult.place}
                   title={searchResult.title}
                   tags={searchResult.tags}
+                  thumbnailUri={searchResult.thumbnailUri}
                   informations={searchResult.informations}
                 />
               ))}

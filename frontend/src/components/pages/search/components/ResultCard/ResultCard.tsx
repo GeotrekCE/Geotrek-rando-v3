@@ -22,6 +22,7 @@ interface Props {
   place: string;
   title: string;
   tags: string[];
+  thumbnailUri: string;
   informations: {
     duration: string | null;
     distance: string;
@@ -31,10 +32,17 @@ interface Props {
   };
 }
 
-export const ResultCard: React.FC<Props> = ({ activityIcon, place, title, tags, informations }) => {
+export const ResultCard: React.FC<Props> = ({
+  activityIcon,
+  place,
+  title,
+  tags,
+  thumbnailUri,
+  informations,
+}) => {
   return (
     <Container>
-      <ImageContainer>
+      <ImageContainer imageUri={thumbnailUri}>
         <ActivityBadge icon={activityIcon} />
       </ImageContainer>
 
@@ -101,14 +109,15 @@ const Container = styled.div`
   )}
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.div<{ imageUri: string }>`
   height: ${getSpacing(31)};
   width: 100%;
 
-  background-image: url('images/hiking-cover.jpg');
+  background-image: url(${({ imageUri }) => imageUri});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  background-color: black;
 
   position: relative;
 
