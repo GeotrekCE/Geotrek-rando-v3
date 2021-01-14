@@ -57,7 +57,7 @@ const InlineMenu: React.FC<InlineMenuProps> = ({ className, sections, subSection
 const menuClassName =
   'bg-white text-greyDarkColored rounded-2xl border border-solid border-greySoft overflow-hidden absolute py-2';
 
-const controlClassName = 'pt-4 pb-2 mr-8 mb-1 text-white cursor-pointer flex';
+const controlClassName = 'pt-4 pb-2 mb-2 mr-1 text-white cursor-pointer flex items-center';
 
 const getOptionStyled = (subSection: string): Option => {
   return {
@@ -67,11 +67,11 @@ const getOptionStyled = (subSection: string): Option => {
   };
 };
 
-const ArrowMenu: React.FC = () => <ChevronDown className="ml-2" size={24} />;
+const ArrowMenu: React.FC = () => <ChevronDown className="ml-1" size={24} />;
 
 const Section: React.FC<{ name: string }> = ({ name }) => (
   <span
-    className="pt-3 pb-2 mr-8 text-white
+    className="pt-3 pb-2 mr-2 text-white
     border-b-4 hover:border-white border-transparent border-solid
     cursor-pointer duration-500 transition-all"
   >
