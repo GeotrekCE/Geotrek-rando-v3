@@ -1,11 +1,11 @@
 import { Filter } from 'modules/filters/interface';
-import { adaptActivityFilter } from './adapter';
+import { adaptActivities, adaptActivityFilter } from './adapter';
 import { fetchActivities } from './api';
-import { Activity } from './interface';
+import { ActivityChoices } from './interface';
 
-export const getActivities = async (): Promise<Activity[]> => {
+export const getActivities = async (): Promise<ActivityChoices> => {
   const rawActivities = await fetchActivities({ language: 'fr' });
-  return rawActivities.results;
+  return adaptActivities(rawActivities.results);
 };
 
 export const getActivityFilter = async (): Promise<Filter> => {

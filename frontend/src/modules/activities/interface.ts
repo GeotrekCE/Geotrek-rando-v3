@@ -17,3 +17,10 @@ export interface Activity {
   pictogram: string;
   name: string;
 }
+
+export interface ActivityChoices {
+  [value: string]: {
+    name: string;
+    pictogram: string;
+  };
+}
