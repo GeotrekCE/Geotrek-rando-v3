@@ -2,6 +2,7 @@ import { LogoButton } from 'components/LogoButton';
 import { Twitter } from 'components/Icons/Twitter';
 import { Facebook } from 'components/Icons/Facebook';
 import { YouTube } from 'components/Icons/YouTube';
+import { PortalContact } from '../PortalContact';
 
 interface SocialNetwork {
   id: string;
@@ -18,8 +19,9 @@ const socialNetworksIcons: { [key: string]: React.ReactNode } = {
 };
 
 export const HomeFooter: React.FC<HomeFooterProps> = ({ socialNetworks }) => {
+  // TODO déplacer les logos dans un composant à part ?
   return (
-    <div className="bg-black h-90 desktop:h-100 flex flex-col">
+    <div className="bg-black flex flex-col">
       <div className="mx-4 desktop:mx-40">
         <div
           className="
@@ -39,6 +41,19 @@ export const HomeFooter: React.FC<HomeFooterProps> = ({ socialNetworks }) => {
               <LogoButton>{getSocialNetworkIcon(socialNetwork.id)}</LogoButton>
             </a>
           ))}
+        </div>
+        <div
+          className="
+          flex flex-col desktop:block
+          pt-3 pb-10 desktop:pt-10 desktop:pb-18"
+        >
+          <PortalContact
+            name="Parc National des Écrins"
+            addressLine1="Domaine de Charance"
+            addressLine2="05000 Gap"
+            number="04 92 40 20 10"
+            mail="lesecrins@parcnational.com"
+          />
         </div>
       </div>
     </div>
