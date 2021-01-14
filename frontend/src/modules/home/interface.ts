@@ -21,7 +21,7 @@ interface Menu {
 
 interface PictureAndText {
   pictureUrl: string;
-  text: string;
+  shouldDisplayText: boolean;
 }
 
 export interface HomePageConfig {
