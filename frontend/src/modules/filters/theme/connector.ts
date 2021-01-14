@@ -3,8 +3,8 @@ import { adaptThemeFilter, adaptThemes } from './adapter';
 import { fetchThemes } from './api';
 
 export const getThemeFilter = async () => {
-  const rawCities = await fetchThemes({ language: 'fr' });
-  return adaptThemeFilter(rawCities.results);
+  const rawThemeFilter = await fetchThemes({ language: 'fr' });
+  return adaptThemeFilter(rawThemeFilter.results);
 };
 
 export const getThemes = async (): Promise<Choices> => {
