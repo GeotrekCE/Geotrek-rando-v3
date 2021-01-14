@@ -67,22 +67,10 @@ Object {
                 class="ResultCard__InformationLayout-sc-1bem01n-10 jQpFaS"
               >
                 <div
-                  class="flex items-center text-primary1 ResultCard__DifficultyInformation-sc-1bem01n-12 hNgDQw "
+                  class="flex items-center text-primary1  "
                 >
-                  <svg
-                    fill="none"
-                    height="24"
-                    viewBox="0 0 24 25"
-                    width="24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M23.52 19.68a3.851 3.851 0 01-3.84 3.84H4.32a3.851 3.851 0 01-3.84-3.84V4.32A3.851 3.851 0 014.32.48h15.36a3.851 3.851 0 013.84 3.84v15.36z"
-                      fill="currentColor"
-                    />
-                  </svg>
                   <span
-                    class="Information__InformationText-yz43nr-0 dyWCME"
+                    class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
                   />
                 </div>
                 <div
@@ -112,7 +100,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="Information__InformationText-yz43nr-0 dyWCME"
+                    class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
                   >
                     2h
                   </span>
@@ -136,7 +124,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="Information__InformationText-yz43nr-0 dyWCME"
+                    class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
                   >
                     5km
                   </span>
@@ -167,7 +155,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="Information__InformationText-yz43nr-0 dyWCME"
+                    class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
                   >
                     +360m
                   </span>
@@ -251,22 +239,10 @@ Object {
               class="ResultCard__InformationLayout-sc-1bem01n-10 jQpFaS"
             >
               <div
-                class="flex items-center text-primary1 ResultCard__DifficultyInformation-sc-1bem01n-12 hNgDQw "
+                class="flex items-center text-primary1  "
               >
-                <svg
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 25"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M23.52 19.68a3.851 3.851 0 01-3.84 3.84H4.32a3.851 3.851 0 01-3.84-3.84V4.32A3.851 3.851 0 014.32.48h15.36a3.851 3.851 0 013.84 3.84v15.36z"
-                    fill="currentColor"
-                  />
-                </svg>
                 <span
-                  class="Information__InformationText-yz43nr-0 dyWCME"
+                  class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
                 />
               </div>
               <div
@@ -296,7 +272,7 @@ Object {
                   />
                 </svg>
                 <span
-                  class="Information__InformationText-yz43nr-0 dyWCME"
+                  class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
                 >
                   2h
                 </span>
@@ -320,7 +296,7 @@ Object {
                   />
                 </svg>
                 <span
-                  class="Information__InformationText-yz43nr-0 dyWCME"
+                  class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
                 >
                   5km
                 </span>
@@ -351,7 +327,7 @@ Object {
                   />
                 </svg>
                 <span
-                  class="Information__InformationText-yz43nr-0 dyWCME"
+                  class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
                 >
                   +360m
                 </span>

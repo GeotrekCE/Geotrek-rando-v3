@@ -12,8 +12,7 @@ import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 
 import { FormattedMessage } from 'react-intl';
-import { Information } from './Information';
-import { DifficultyInformation } from './DifficultyInformation';
+import { LocalIconInformation, RemoteIconInformation } from './Information';
 import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
 
 interface Props {
@@ -62,17 +61,19 @@ export const ResultCard: React.FC<Props> = ({
           <InformationContainer>
             <InformationLayout>
               {informations.difficulty !== null && (
-                <DifficultyInformation iconUri={informations.difficulty.pictogramUri}>
+                <RemoteIconInformation iconUri={informations.difficulty.pictogramUri}>
                   {informations.difficulty.label}
-                </DifficultyInformation>
+                </RemoteIconInformation>
               )}
               {informations.duration !== null && (
-                <Information icon={Clock}>{informations.duration}</Information>
+                <LocalIconInformation icon={Clock}>{informations.duration}</LocalIconInformation>
               )}
-              <Information icon={CodeBrackets}>{informations.distance}</Information>
-              <Information icon={TrendingUp} className="desktop:flex hidden">
+              <LocalIconInformation icon={CodeBrackets}>
+                {informations.distance}
+              </LocalIconInformation>
+              <LocalIconInformation icon={TrendingUp} className="desktop:flex hidden">
                 {informations.elevation}
-              </Information>
+              </LocalIconInformation>
             </InformationLayout>
           </InformationContainer>
         </DetailsLayout>
