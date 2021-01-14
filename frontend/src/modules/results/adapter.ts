@@ -1,5 +1,6 @@
 import { Choices } from 'modules/filters/interface';
 import { RawTrekResults, TrekResults } from './interface';
+import { formatDistance } from './utils';
 
 const dataUnits = {
   distance: 'm',
@@ -23,7 +24,7 @@ export const adaptTrekResults = ({
     tags: rawResult.themes.map(themeId => themes[themeId].label),
     informations: {
       duration: rawResult.duration !== null ? `${rawResult.duration}${dataUnits.time}` : null,
-      distance: `${rawResult.length_2d}${dataUnits.distance}`,
+      distance: `${formatDistance(rawResult.length_2d)}`,
       elevation: `${rawResult.ascent}${dataUnits.distance}`,
       difficulty: rawResult.difficulty !== null ? difficulties[rawResult.difficulty].label : null,
       reservationSystem: rawResult.reservation_system,
