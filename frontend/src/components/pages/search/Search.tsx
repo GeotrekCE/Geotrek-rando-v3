@@ -25,23 +25,8 @@ export const SearchUI: React.FC = () => {
     subMenuState,
     hideSubMenu,
     displaySubMenu,
-  } = useFilterMenu();
-  const filtersList = [
-    'Lieu',
-    'Activité',
-    'Difficulté',
-    'Durée',
-    'Distance',
-    'Dénivelé',
-    'Thème patrimonial',
-    'Type de parcours',
-    'Accessibilité',
-    'Réservation',
-    'Thèmes',
-    'Communes',
-    'Massif/Vallée',
-    'Destination',
-  ];
+    filtersList,
+  } = useFilterMenu(filtersState);
 
   const { searchResults, isLoading } = useSearchPage();
 
