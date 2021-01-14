@@ -1,4 +1,5 @@
 import { PortalContact } from '../PortalContact';
+import { PortalLinks } from '../PortalLinks';
 import { SocialNetworks } from '../SocialNetworks';
 
 export const HomeFooter: React.FC = () => {
@@ -14,15 +15,25 @@ export const HomeFooter: React.FC = () => {
         />
         <div
           className="
-          flex flex-col desktop:block
-          pt-3 pb-10 desktop:pt-10 desktop:pb-18"
+          flex flex-col desktop:flex-row justify-between
+          pt-2.5 pb-10 desktop:pt-10 desktop:pb-18"
         >
           <PortalContact
             name="Parc National des Écrins"
             addressLine1="Domaine de Charance"
             addressLine2="05000 Gap"
             number="04 92 40 20 10"
-            mail="lesecrins@parcnational.com"
+            mail="info@ecrins-parcnational.fr"
+          />
+          <PortalLinks
+            name="Informations complémentaires"
+            links={[
+              { label: 'Liens', url: '/liens-internet' },
+              { label: 'Comment venir', url: '/venir-dans-les-ecrins' },
+              { label: 'Mentions légales', url: '/mentions-legales' },
+              { label: 'Plan du site', url: '/sitemap' },
+              { label: "Règles d'accessibilité", url: '/regles-d-accessibilite' },
+            ]}
           />
         </div>
       </div>

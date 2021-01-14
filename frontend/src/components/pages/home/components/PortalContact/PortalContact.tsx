@@ -50,7 +50,9 @@ export const PortalContact: React.FC<PortalContactProps> = ({
           )}
         </div>
         <PortalContactContent
-          className={openState === 'CLOSED' ? 'hidden' : 'block'}
+          className={
+            openState === 'CLOSED' ? 'hidden' : 'block border-b border-solid border-greySoft'
+          }
           addressLine1={addressLine1}
           addressLine2={addressLine2}
           number={number}
@@ -80,8 +82,8 @@ const PortalContactContent: React.FC<PortalContactContentProps> = ({
   mail,
 }) => {
   return (
-    <div className={`flex flex-col ${className}`}>
-      <div className="mb-4">
+    <div className={`flex flex-col ${className} pb-4 text-Mobile-C3 desktop:text-P1`}>
+      <div className="mb-3">
         <p>{addressLine1}</p>
         <p>{addressLine2}</p>
       </div>
