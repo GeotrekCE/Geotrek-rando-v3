@@ -20,11 +20,16 @@ HomeContainer.displayName = 'HomeContainer';
 export const TopContainer = styled.div<{ backgroundUrl: string }>`
   text-align: center;
   background-color: ${colorPalette.primary3};
-  background-image: ${props => `url(${props.backgroundUrl})`};
+  background-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      ${colorPalette.home.gradientOnImages} 100%
+    ),
+    ${props => `url(${props.backgroundUrl})`};
   background-size: cover;
   background-position: center;
   display: flex;
-  text-shadow: 1px 1px 2px #00000070, 0 0 20px #00000040;
+  text-shadow: 0 0 20px ${colorPalette.home.shadowOnImages};
   justify-content: center;
   align-items: center;
   height: 244px;
