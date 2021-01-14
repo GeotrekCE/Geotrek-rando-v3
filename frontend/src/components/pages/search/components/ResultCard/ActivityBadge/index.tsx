@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import SVG from 'react-inlinesvg';
 
-import { GenericIconProps } from 'components/Icons/types';
 import { colorPalette, getSpacing } from 'stylesheet';
 
 interface Props {
-  icon: React.FC<GenericIconProps>;
+  iconUri: string;
   className?: string;
 }
 
-export const ActivityBadge: React.FC<Props> = ({ icon: Icon, className }) => {
+export const ActivityBadge: React.FC<Props> = ({ iconUri, className }) => {
   return (
     <Container className={className}>
-      <Icon size={21} />
+      <SVG src={iconUri} className="desktop:w-5" />
     </Container>
   );
 };
@@ -22,8 +22,10 @@ const Container = styled.div`
   height: ${getSpacing(8)};
   border-radius: 50%;
 
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   border: 2px solid ${colorPalette.white};
   background-color: ${colorPalette.primary1};

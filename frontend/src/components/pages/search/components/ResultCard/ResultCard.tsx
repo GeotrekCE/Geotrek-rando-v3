@@ -7,7 +7,6 @@ import { flexGap } from 'services/cssHelpers';
 import { Chip } from 'components/Chip';
 import { Button } from 'components/Button';
 
-import { GenericIconProps } from 'components/Icons/types';
 import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
@@ -18,11 +17,11 @@ import { Information } from './Information';
 import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
 
 interface Props {
-  activityIcon: React.FC<GenericIconProps>;
   place: string;
   title: string;
   tags: string[];
   thumbnailUri: string;
+  badgeIconUri: string;
   informations: {
     duration: string | null;
     distance: string;
@@ -33,17 +32,17 @@ interface Props {
 }
 
 export const ResultCard: React.FC<Props> = ({
-  activityIcon,
   place,
   title,
   tags,
   thumbnailUri,
+  badgeIconUri,
   informations,
 }) => {
   return (
     <Container>
       <ImageContainer imageUri={thumbnailUri}>
-        <ActivityBadge icon={activityIcon} />
+        <ActivityBadge iconUri={badgeIconUri} />
       </ImageContainer>
 
       <DetailsContainer>
