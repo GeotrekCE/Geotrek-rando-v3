@@ -89,13 +89,7 @@ const HomeUI: FunctionComponent = () => {
         </ListMapContainer> */}
         </div>
       </HomeContainer>
-      <HomeFooter
-        socialNetworks={[
-          { id: 'facebook', url: 'https://www.facebook.com' },
-          { id: 'twitter', url: 'https://www.twitter.com' },
-          { id: 'youtube', url: 'https://www.youtube.com' },
-        ]}
-      />
+      <HomeFooter />
     </Layout>
   );
 };
