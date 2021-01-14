@@ -34,9 +34,8 @@ const ActivitySearchFilterMobile: React.FC<{ className?: string; activities: Act
         placeholder={<FormattedMessage id="home.selectPlaceholder" />}
         onChange={activity => updateSelectedActivity(activity?.value ?? null)}
       />
-      {/* TODO update route with active filter using selected activity */}
       {selectedActivity !== null ? (
-        <Link href={routes.SEARCH}>
+        <Link href={`${routes.SEARCH}?activity=${selectedActivity}`}>
           <ValidateButton />
         </Link>
       ) : (
@@ -126,14 +125,13 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
   return (
     <>
       <div
-        className={`px-3 pb-6 bg-white shadow-lg rounded-2xl hidden self-center desktop:flex${
+        className={`px-3 pb-6 bg-white shadow-lg rounded-2xl hidden self-center max-w-activitySearchFilter desktop:flex${
           className ?? ''
         }`}
-        style={{ maxWidth: '865px' }}
       >
         <div className="flex content-evenly flex-wrap flex-1">
           {visibleActivities?.map(activity => (
-            <Link href={routes.SEARCH} key={activity.id}>
+            <Link href={`${routes.SEARCH}?activity=${activity.id}`} key={activity.id}>
               <ActivityButton iconUrl={activity.pictogram} key={activity.id}>
                 <span>{activity.name}</span>
               </ActivityButton>
