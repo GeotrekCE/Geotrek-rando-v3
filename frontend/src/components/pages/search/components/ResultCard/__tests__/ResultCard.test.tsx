@@ -8,7 +8,7 @@ test('AAU, I can see a ResultCard', () => {
       place="Saint-Etienne-du-Valdonnez"
       title="Balade au pays des menhirs"
       tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
-      thumbnailUri="images/hiking-cover.jpg"
+      thumbnailUri=""
       badgeIconUri=""
       informations={{
         duration: '2h',
