@@ -13,6 +13,7 @@ export interface TrekResult {
     distance: string;
     elevation: string;
     difficulty: string | null;
+    reservationSystem: number | null; // Todo should be string | null
   };
 }
 
@@ -33,4 +34,5 @@ export interface RawTrekResult {
   themes: number[];
   length_2d: number;
   name: string;
+  reservation_system: null | number;
 }

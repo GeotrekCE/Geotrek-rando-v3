@@ -26,6 +26,7 @@ export const adaptTrekResults = ({
       distance: `${rawResult.length_2d}${dataUnits.distance}`,
       elevation: `${rawResult.ascent}${dataUnits.distance}`,
       difficulty: rawResult.difficulty !== null ? difficulties[rawResult.difficulty].label : null,
+      reservationSystem: rawResult.reservation_system,
     },
   }));
 
