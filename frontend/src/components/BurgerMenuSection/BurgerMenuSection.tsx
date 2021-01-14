@@ -12,9 +12,10 @@ import { useBurgerMenuSection } from './useBurgerMenuSection';
 export interface Props {
   title: string;
   subSections?: string[];
+  onClick?: () => void;
 }
 
-const BurgerMenuSection: React.FC<Props> = ({ title, subSections }) => {
+const BurgerMenuSection: React.FC<Props> = ({ title, subSections, onClick }) => {
   const classNameTitle = 'flex items-center pt-4 pb-4 font-bold outline-none';
   const classNameBorder = 'border-b pb-2 border-solid border-greySoft';
   const openIcon = <Plus size={24} />;
@@ -23,7 +24,6 @@ const BurgerMenuSection: React.FC<Props> = ({ title, subSections }) => {
   const updatePanelState = (openPanelIds: string[]) => {
     openPanelIds.length > 0 ? setOpenState('OPENED') : setOpenState('CLOSED');
   };
-
   return subSections && subSections.length > 0 ? (
     <Accordion allowZeroExpanded onChange={updatePanelState}>
       <AccordionItem>
@@ -45,7 +45,9 @@ const BurgerMenuSection: React.FC<Props> = ({ title, subSections }) => {
       </AccordionItem>
     </Accordion>
   ) : (
-    <span className={`${classNameTitle} ${classNameBorder}`}>{title}</span>
+    <span onClick={onClick} className={`${classNameTitle} ${classNameBorder}`}>
+      {title}
+    </span>
   );
 };
 
