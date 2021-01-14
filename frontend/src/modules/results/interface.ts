@@ -36,15 +36,12 @@ export interface RawTrekResult {
   length_2d: number;
   name: string;
   reservation_system: null | number;
-  attachments: Attachment[];
+  thumbnail: Thumbnail;
 }
 
-export interface Attachment {
+export interface Thumbnail {
   author: string;
-  backend: string;
-  thumbnail: string;
-  legend: string;
   title: string;
+  legend: string;
   url: string;
-  type: string;
 }

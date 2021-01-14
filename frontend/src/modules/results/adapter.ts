@@ -25,7 +25,7 @@ export const adaptTrekResults = ({
     place: rawResult.departure,
     title: rawResult.name,
     tags: rawResult.themes.map(themeId => themes[themeId].label),
-    thumbnailUri: rawResult.attachments.length > 0 ? rawResult.attachments[0].url : fallbackImgUri,
+    thumbnailUri: rawResult?.thumbnail?.url || fallbackImgUri,
     informations: {
       duration: rawResult.duration !== null ? `${rawResult.duration}${dataUnits.time}` : null,
       distance: `${formatDistance(rawResult.length_2d)}`,
