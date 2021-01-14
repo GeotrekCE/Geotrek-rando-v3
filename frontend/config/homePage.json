@@ -1,13 +1,4 @@
 {
-  "header": {
-    "logo": "",
-    "structureName": "Parc national des écrins",
-    "menu": {
-      "primaryItemsNumber": 3,
-      "items": [],
-      "supportedLanguage": ["fr"]
-    }
-  },
   "pictureAndText": {
     "pictureUrl": "https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg",
     "shouldDisplayText": true
