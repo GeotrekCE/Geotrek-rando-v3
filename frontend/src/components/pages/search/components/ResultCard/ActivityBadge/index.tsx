@@ -12,7 +12,7 @@ interface Props {
 export const ActivityBadge: React.FC<Props> = ({ iconUri, className }) => {
   return (
     <Container className={className}>
-      <SVG src={iconUri} className="desktop:w-5" />
+      <SVG src={iconUri} className="w-5" />
     </Container>
   );
 };

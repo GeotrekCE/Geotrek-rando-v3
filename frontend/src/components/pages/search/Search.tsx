@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { colorPalette, getSpacing, typography } from 'stylesheet';
 
-import { Walking } from 'components/Icons/Walking';
 import { Layout } from 'components/Layout/Layout';
 import { OpenMapButton } from 'components/OpenMapButton';
 import {
@@ -80,11 +79,11 @@ export const SearchUI: React.FC = () => {
             : searchResults?.results.map(searchResult => (
                 <ResultCard
                   key={searchResult.title}
-                  activityIcon={Walking}
                   place={searchResult.place}
                   title={searchResult.title}
                   tags={searchResult.tags}
                   thumbnailUri={searchResult.thumbnailUri}
+                  badgeIconUri={searchResult.practice.pictogram}
                   informations={searchResult.informations}
                 />
               ))}
