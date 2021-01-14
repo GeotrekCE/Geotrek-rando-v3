@@ -14,7 +14,7 @@ test('AAU, I can see a ResultCard', () => {
         duration: '2h',
         distance: '5km',
         elevation: '+360m',
-        difficulty: '',
+        difficulty: { label: '', pictogramUri: '' },
         reservationSystem: 1,
       }}
     />,

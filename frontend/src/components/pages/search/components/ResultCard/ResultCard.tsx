@@ -10,10 +10,10 @@ import { Button } from 'components/Button';
 import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
-import { Square } from 'components/Icons/Square';
 
 import { FormattedMessage } from 'react-intl';
 import { Information } from './Information';
+import { DifficultyInformation } from './DifficultyInformation';
 import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
 
 interface Props {
@@ -26,7 +26,7 @@ interface Props {
     duration: string | null;
     distance: string;
     elevation: string;
-    difficulty: string | null;
+    difficulty: { label: string; pictogramUri: string } | null;
     reservationSystem: number | null;
   };
 }
@@ -62,8 +62,8 @@ export const ResultCard: React.FC<Props> = ({
           <InformationContainer>
             <InformationLayout>
               {informations.difficulty !== null && (
-                <DifficultyInformation icon={Square}>
-                  {informations.difficulty}
+                <DifficultyInformation iconUri={informations.difficulty.pictogramUri}>
+                  {informations.difficulty.label}
                 </DifficultyInformation>
               )}
               {informations.duration !== null && (
@@ -225,8 +225,4 @@ const ActivityBadge = styled(RawActivityBadge)`
   position: absolute;
   top: ${getSpacing(4)};
   left: ${getSpacing(4)};
-`;
-
-const DifficultyInformation = styled(Information)`
-  color: ${colorPalette.easyOK};
 `;
