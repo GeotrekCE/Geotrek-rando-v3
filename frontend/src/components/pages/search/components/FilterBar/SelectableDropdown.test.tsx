@@ -6,7 +6,7 @@ test('SelectableDropdown shoudl render properly', () => {
   const component = render(
     <SelectableDropdown
       name="activities"
-      placeholder="search.filters.DIFFICULTY"
+      placeholder="search.filters.difficulty"
       options={[
         {
           label: 'Très Facile',
