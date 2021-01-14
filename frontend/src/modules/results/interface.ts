@@ -9,6 +9,7 @@ export interface TrekResult {
   title: string;
   tags: string[];
   thumbnailUri: string;
+  practice: number; // should be an object
   informations: {
     duration: string | null;
     distance: string;
@@ -37,6 +38,7 @@ export interface RawTrekResult {
   name: string;
   reservation_system: null | number;
   thumbnail: Thumbnail;
+  practice: number;
 }
 
 export interface Thumbnail {
