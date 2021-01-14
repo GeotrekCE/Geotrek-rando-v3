@@ -1,10 +1,14 @@
-import { Choices, Filter, RawDifficulty } from '../interface';
+import { Filter, RawDifficulty } from '../interface';
+import { DifficultyChoices } from './interface';
 
-export const adaptDifficulties = (rawDifficulties: RawDifficulty[]): Choices =>
-  rawDifficulties.reduce(
+export const adaptDifficulties = (rawDifficulties: RawDifficulty[]): DifficultyChoices =>
+  rawDifficulties.reduce<DifficultyChoices>(
     (difficulties, currentRawDifficulty) => ({
       ...difficulties,
-      [`${currentRawDifficulty.id}`]: { label: currentRawDifficulty.label },
+      [`${currentRawDifficulty.id}`]: {
+        label: currentRawDifficulty.label,
+        pictogramUri: currentRawDifficulty.pictogram,
+      },
     }),
     {},
   );

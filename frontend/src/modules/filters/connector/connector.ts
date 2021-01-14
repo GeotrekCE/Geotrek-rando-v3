@@ -1,8 +1,9 @@
 import { adaptDifficulties, adaptDifficultyFilter } from './adapter';
 import { fetchDifficulties } from './api';
-import { Choices, Filter } from '../interface';
+import { Filter } from '../interface';
+import { DifficultyChoices } from './interface';
 
-export const getDifficulties = async (): Promise<Choices> => {
+export const getDifficulties = async (): Promise<DifficultyChoices> => {
   const rawDifficulties = await fetchDifficulties({ language: 'fr' });
   return adaptDifficulties(rawDifficulties.results);
 };
