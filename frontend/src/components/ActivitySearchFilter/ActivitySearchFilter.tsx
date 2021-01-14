@@ -1,7 +1,6 @@
 import { ChevronDown } from 'components/Icons/ChevronDown';
 import { MoreHorizontal } from 'components/Icons/MoreHorizontal';
 import { Link } from 'components/Link';
-import { Activity } from 'modules/activities/interface';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { routes } from 'services/routes';
@@ -20,12 +19,14 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
   const { activities, expandedState, toggleExpandedState } = useActivitySearchFilter();
 
   const collapseIsNeeded: boolean =
-    activities !== undefined && activities.length > MAX_VISIBLE_ACTIVITIES;
+    activities !== undefined && Object.keys(activities).length > MAX_VISIBLE_ACTIVITIES;
 
-  const visibleActivities: Activity[] | undefined =
-    collapseIsNeeded && expandedState === 'COLLAPSED'
-      ? activities?.slice(0, MAX_VISIBLE_ACTIVITIES)
-      : activities;
+  const visibleActivitiesIds: string[] | undefined =
+    activities !== undefined
+      ? collapseIsNeeded && expandedState === 'COLLAPSED'
+        ? Object.keys(activities).slice(0, MAX_VISIBLE_ACTIVITIES)
+        : Object.keys(activities)
+      : undefined;
 
   return (
     <>
@@ -34,15 +35,17 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
           className ?? ''
         }`}
       >
-        <div className="flex content-evenly flex-wrap flex-1">
-          {visibleActivities?.map(activity => (
-            <Link href={`${routes.SEARCH}?activity=${activity.id}`} key={activity.id}>
-              <ActivityButton iconUrl={activity.pictogram} key={activity.id}>
-                <span>{activity.name}</span>
-              </ActivityButton>
-            </Link>
-          ))}
-        </div>
+        {activities !== undefined && (
+          <div className="flex content-evenly flex-wrap flex-1">
+            {visibleActivitiesIds?.map(activityId => (
+              <Link href={`${routes.SEARCH}?activity=${activityId}`} key={activityId}>
+                <ActivityButton iconUrl={activities[activityId].pictogram} key={activityId}>
+                  <span>{activities[activityId].name}</span>
+                </ActivityButton>
+              </Link>
+            ))}
+          </div>
+        )}
         {collapseIsNeeded && (
           <div className="self-end cursor-pointer" onClick={toggleExpandedState}>
             <ControlCollapseButton expandedState={expandedState} />
@@ -50,7 +53,7 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
         )}
       </div>
       <div className="block desktop:hidden">
-        <ActivitySearchFilterMobile activities={activities ?? []} />
+        <ActivitySearchFilterMobile activities={activities ?? {}} />
       </div>
     </>
   );

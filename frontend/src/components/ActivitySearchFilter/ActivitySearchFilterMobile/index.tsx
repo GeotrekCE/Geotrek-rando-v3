@@ -5,20 +5,22 @@ import { FormattedMessage } from 'react-intl';
 import { colorPalette, getSpacing, shadow } from 'stylesheet';
 import { routes } from 'services/routes';
 
-import { Activity } from 'modules/activities/interface';
+import { ActivityChoices } from 'modules/activities/interface';
 import { Arrow } from 'components/Icons/Arrow';
 import { Link } from 'components/Link';
 
 import { useActivitySearchFilterMobile } from './useActivitySearchFilterMobile';
 
-const adaptActivityForSelect = (activity: Activity): { value: string; label: string } => ({
-  value: `${activity.id}`,
-  label: activity.name,
+const adaptActivityForSelect = (activities: ActivityChoices) => (
+  activityId: string,
+): { value: string; label: string } => ({
+  value: activityId,
+  label: activities[activityId].name,
 });
 
 export const ActivitySearchFilterMobile: React.FC<{
   className?: string;
-  activities: Activity[];
+  activities: ActivityChoices;
 }> = ({ className, activities }) => {
   const { selectedActivity, updateSelectedActivity } = useActivitySearchFilterMobile();
 
@@ -26,7 +28,7 @@ export const ActivitySearchFilterMobile: React.FC<{
     <div className={`${className ?? ''} flex space-x-4 items-center`}>
       <Select
         className="flex-1"
-        options={activities.map(adaptActivityForSelect)}
+        options={Object.keys(activities).map(adaptActivityForSelect(activities))}
         styles={selectStyles}
         isSearchable={false}
         placeholder={<FormattedMessage id="home.selectPlaceholder" />}
