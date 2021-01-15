@@ -43,7 +43,7 @@ class MyApp extends App<AppProps> {
         <Root hasError={hasError} errorEventId={errorEventId}>
           <Component {...pageProps} />
         </Root>
-        <ReactQueryDevtools initialIsOpen={false} />8{' '}
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     );
   }
