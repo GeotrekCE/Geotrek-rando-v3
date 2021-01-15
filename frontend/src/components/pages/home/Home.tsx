@@ -19,7 +19,7 @@ import { HomeFooter } from './components/HomeFooter';
 import { useHome } from './useHome';
 
 const HomeUI: FunctionComponent = () => {
-  const { config } = useHome();
+  const { config, activitySuggestions } = useHome();
   return (
     <Layout>
       <HomeContainer>
@@ -54,10 +54,12 @@ const HomeUI: FunctionComponent = () => {
           <HomeSection
             title="Randonnées du parc"
             iconUrl="https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg"
+            activitySuggestions={activitySuggestions}
           />
           <HomeSection
             title="Parcours en itinérance"
             iconUrl="https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-horse.svg"
+            activitySuggestions={activitySuggestions}
           />
           <Logo alt="logo" src="/logo.png" />
           <Title>Welcome to Geotrek</Title>

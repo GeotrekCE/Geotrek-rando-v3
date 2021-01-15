@@ -1,3 +1,4 @@
+import { ActivitySuggestion } from 'modules/activitySuggestions/interface';
 import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import { ActivitySuggestionCard } from '../ActivitySuggestionCard';
@@ -5,9 +6,14 @@ import { ActivitySuggestionCard } from '../ActivitySuggestionCard';
 export interface HomeSectionProps {
   title: string;
   iconUrl: string;
+  activitySuggestions?: ActivitySuggestion[];
 }
 
-export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl }) => {
+export const HomeSection: React.FC<HomeSectionProps> = ({
+  title,
+  iconUrl,
+  activitySuggestions,
+}) => {
   return (
     <div
       className="
@@ -24,12 +30,14 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl }) => {
         <span className="text-H4 desktop:text-H2 font-bold">{title}</span>
       </div>
       <div className="flex space-x-6 overflow-hidden">
-        <ActivitySuggestionCard
-          title="Randonnée des Écrins - Le massif des Écrins est un grand massif montagneux des Alpes françaises situé dans les Hautes-Alpes et en Isère.
-        Il abrite d'importants glaciers, tant en nombre qu'en taille et possède deux sommets de plus de 4 000 mètres.
-        Il était autrefois également nommé massif du Pelvoux."
-          imgUrl="images/hiking-cover.jpg"
-        />
+        {activitySuggestions !== undefined &&
+          activitySuggestions.map((activitySuggestion, i) => (
+            <ActivitySuggestionCard
+              key={i}
+              title={activitySuggestion.title}
+              imgUrl={activitySuggestion.imgUrl}
+            />
+          ))}
       </div>
     </div>
   );
