@@ -1,21 +1,9 @@
 [
   {
-    "id": "difficulty"
-  },
-  {
     "id": "activity"
   },
   {
-    "id": "theme"
-  },
-  {
-    "id": "courseType"
-  },
-  {
-    "id": "accessibility"
-  },
-  {
-    "id": "structures"
+    "id": "difficulty"
   },
   {
     "id": "duration",
@@ -61,5 +49,17 @@
         "label": "5km - 10km"
       }
     ]
+  },
+  {
+    "id": "courseType"
+  },
+  {
+    "id": "accessibility"
+  },
+  {
+    "id": "structures"
+  },
+  {
+    "id": "theme"
   }
 ]
