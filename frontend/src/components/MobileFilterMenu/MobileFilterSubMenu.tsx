@@ -58,7 +58,9 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
       {filterState?.options.map(option => (
         <span
           key={option.value}
-          className="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+          className={`flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft ${
+            isOptionSelected(option) ? 'text-primary1' : ''
+          }`}
           onClick={() => (isOptionSelected(option) ? deSelectOption(option) : selectOption(option))}
         >
           {option.label}
