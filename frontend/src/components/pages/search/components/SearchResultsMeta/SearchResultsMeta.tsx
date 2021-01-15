@@ -6,7 +6,7 @@ import { colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
 import { Link } from 'components/Link';
 
 interface Props {
-  resultsNumber: number;
+  resultsNumber: number | undefined;
   /* These names are challengeable */
   placeName: string;
   placeUrl: string;
