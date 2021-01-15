@@ -1,5 +1,5 @@
 import { ActivityChoices } from 'modules/activities/interface';
-import { DifficultyChoices } from 'modules/filters/connector/interface';
+import { DifficultyChoices } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
 import { RawTrekResults, TrekResults } from './interface';
 import { formatDistance } from './utils';

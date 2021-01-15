@@ -1,5 +1,5 @@
 import { getActivities } from 'modules/activities/connector';
-import { getDifficulties } from 'modules/filters/connector';
+import { getDifficulties } from 'modules/filters/difficulties';
 import { getThemes } from 'modules/filters/theme/connector';
 import { QueryFilterState } from 'components/pages/search/utils';
 
