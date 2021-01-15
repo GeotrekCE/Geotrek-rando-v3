@@ -75,7 +75,9 @@ describe('Search page', () => {
       </QueryClientProvider>,
     );
 
-    await waitForElementToBeRemoved(() => page.queryByText('LOADING'));
+    await waitForElementToBeRemoved(() =>
+      page.queryByText('Loading... (to replace with proper design)'),
+    );
 
     const textIsPresent = (text: string) => {
       page.getByText(text);

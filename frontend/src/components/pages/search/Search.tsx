@@ -61,33 +61,35 @@ export const SearchUI: React.FC = () => {
           filtersState={filtersState}
           setFilterSelectedOptions={setFilterSelectedOptions}
         />
-        <div className="p-4 desktop:pt-filterBar desktop:mt-6">
-          <div className="flex justify-between items-end">
-            <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
-            <ToggleFilterButton onClick={displayMenu} />
+        {isLoading ? (
+          'Loading... (to replace with proper design)'
+        ) : (
+          <div className="p-4 desktop:pt-filterBar desktop:mt-6">
+            <div className="flex justify-between items-end">
+              <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
+              <ToggleFilterButton onClick={displayMenu} />
+            </div>
+            <RankingInfo className="desktop:hidden">
+              <FormattedMessage id="search.orderedByRelevance" />
+            </RankingInfo>
+
+            <Separator className="w-full mt-6 desktop:block hidden" />
+
+            <OpenMapButton />
+
+            {searchResults?.results.map(searchResult => (
+              <ResultCard
+                key={searchResult.title}
+                place={searchResult.place}
+                title={searchResult.title}
+                tags={searchResult.tags}
+                thumbnailUri={searchResult.thumbnailUri}
+                badgeIconUri={searchResult.practice.pictogram}
+                informations={searchResult.informations}
+              />
+            ))}
           </div>
-          <RankingInfo className="desktop:hidden">
-            <FormattedMessage id="search.orderedByRelevance" />
-          </RankingInfo>
-
-          <Separator className="w-full mt-6 desktop:block hidden" />
-
-          <OpenMapButton />
-
-          {isLoading
-            ? 'LOADING'
-            : searchResults?.results.map(searchResult => (
-                <ResultCard
-                  key={searchResult.title}
-                  place={searchResult.place}
-                  title={searchResult.title}
-                  tags={searchResult.tags}
-                  thumbnailUri={searchResult.thumbnailUri}
-                  badgeIconUri={searchResult.practice.pictogram}
-                  informations={searchResult.informations}
-                />
-              ))}
-        </div>
+        )}
       </Layout>
     </>
   );
