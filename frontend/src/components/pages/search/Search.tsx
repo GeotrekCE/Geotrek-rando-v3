@@ -23,7 +23,13 @@ import { useSearchPage } from './useSearchPage';
 export const SearchUI: React.FC = () => {
   const { filtersState, setFilterSelectedOptions } = useFilter();
 
-  const { subMenuState, selectFilter, hideSubMenu, currentFilterId } = useFilterSubMenu();
+  const {
+    subMenuState,
+    selectFilter,
+    hideSubMenu,
+    currentFilterId,
+    currentFilterState,
+  } = useFilterSubMenu(filtersState);
   const { menuState, displayMenu, hideMenu, filtersList } = useFilterMenu(
     filtersState,
     selectFilter,
@@ -45,6 +51,7 @@ export const SearchUI: React.FC = () => {
         handleClose={hideSubMenu}
         filterId={currentFilterId}
         closeMenu={hideSubMenu}
+        filterState={currentFilterState}
       />
       <Layout>
         <FilterBar

@@ -1,4 +1,5 @@
 import { LeftArrow } from 'components/Icons/LeftArrow';
+import { FilterState } from 'modules/filters/interface';
 import React from 'react';
 import { slide as Slide } from 'react-burger-menu';
 import { useIntl } from 'react-intl';
@@ -10,6 +11,7 @@ interface Props {
   handleClose: () => void;
   filterId: string | null;
   closeMenu: () => void;
+  filterState: FilterState | null;
 }
 
 export const MobileFilterSubMenu: React.FC<Props> = ({
@@ -17,6 +19,7 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   handleClose,
   closeMenu,
   filterId,
+  filterState,
 }) => {
   const intl = useIntl();
   return (
@@ -45,7 +48,14 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
           <span>{intl.formatMessage({ id: `search.filters.${filterId}` })}</span>
         )}
       </div>
-      {/* {filtersList.map(filter => null)} */}
+      {filterState?.options.map(option => (
+        <span
+          key={option.value}
+          className="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+        >
+          {option.label}
+        </span>
+      ))}
     </Slide>
   );
 };
