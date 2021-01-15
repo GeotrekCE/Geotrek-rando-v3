@@ -20,6 +20,15 @@ export const useFilterSubMenu = (
     }
   };
 
+  const deSelectOption = (option: Option) => {
+    if (currentFilterId !== null && currentFilterState) {
+      const newSelectedOptions = currentFilterState.selectedOptions.filter(
+        opt => opt.value !== option.value,
+      );
+      setFilterSelectedOptions(currentFilterId, [...newSelectedOptions]);
+    }
+  };
+
   return {
     currentFilterId,
     subMenuState,
@@ -27,5 +36,6 @@ export const useFilterSubMenu = (
     selectFilter,
     currentFilterState,
     selectOption,
+    deSelectOption,
   };
 };
