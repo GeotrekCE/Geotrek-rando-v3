@@ -2,6 +2,7 @@ import { LeftArrow } from 'components/Icons/LeftArrow';
 import { FilterState } from 'modules/filters/interface';
 import React from 'react';
 import { slide as Slide } from 'react-burger-menu';
+import { Option } from 'react-dropdown';
 import { useIntl } from 'react-intl';
 
 import { CloseButton } from './CloseButton';
@@ -12,6 +13,7 @@ interface Props {
   filterId: string | null;
   closeMenu: () => void;
   filterState: FilterState | null;
+  selectOption: (option: Option) => void;
 }
 
 export const MobileFilterSubMenu: React.FC<Props> = ({
@@ -20,6 +22,7 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   closeMenu,
   filterId,
   filterState,
+  selectOption,
 }) => {
   const intl = useIntl();
   return (
@@ -52,6 +55,7 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
         <span
           key={option.value}
           className="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+          onClick={() => selectOption(option)}
         >
           {option.label}
         </span>
