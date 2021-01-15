@@ -29,7 +29,8 @@ export const SearchUI: React.FC = () => {
     hideSubMenu,
     currentFilterId,
     currentFilterState,
-  } = useFilterSubMenu(filtersState);
+    selectOption,
+  } = useFilterSubMenu(filtersState, setFilterSelectedOptions);
   const { menuState, displayMenu, hideMenu, filtersList } = useFilterMenu(
     filtersState,
     selectFilter,
@@ -52,6 +53,7 @@ export const SearchUI: React.FC = () => {
         filterId={currentFilterId}
         closeMenu={hideSubMenu}
         filterState={currentFilterState}
+        selectOption={selectOption}
       />
       <Layout>
         <FilterBar
