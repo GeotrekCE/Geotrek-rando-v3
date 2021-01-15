@@ -66,7 +66,11 @@ export const SearchUI: React.FC = () => {
         ) : (
           <div className="p-4 desktop:pt-filterBar desktop:mt-6">
             <div className="flex justify-between items-end">
-              <SearchResultsMeta resultsNumber={82} placeName="Val de Gaudemart" placeUrl="/" />
+              <SearchResultsMeta
+                resultsNumber={searchResults?.resultsNumber}
+                placeName="Val de Gaudemart"
+                placeUrl="/"
+              />
               <ToggleFilterButton onClick={displayMenu} />
             </div>
             <RankingInfo className="desktop:hidden">
