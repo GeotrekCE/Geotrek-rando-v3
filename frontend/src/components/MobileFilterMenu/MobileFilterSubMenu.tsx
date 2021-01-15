@@ -1,8 +1,7 @@
 import { LeftArrow } from 'components/Icons/LeftArrow';
-import { FilterState } from 'modules/filters/interface';
+import { FilterState, Option } from 'modules/filters/interface';
 import React from 'react';
 import { slide as Slide } from 'react-burger-menu';
-import { Option } from 'react-dropdown';
 import { useIntl } from 'react-intl';
 
 import { CloseButton } from './CloseButton';
@@ -14,6 +13,7 @@ interface Props {
   closeMenu: () => void;
   filterState: FilterState | null;
   selectOption: (option: Option) => void;
+  deSelectOption: (option: Option) => void;
 }
 
 export const MobileFilterSubMenu: React.FC<Props> = ({
@@ -23,8 +23,12 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   filterId,
   filterState,
   selectOption,
+  deSelectOption,
 }) => {
   const intl = useIntl();
+  const selectedOptionsValue = filterState?.selectedOptions.map(({ value }) => value);
+  const isOptionSelected = (option: Option) =>
+    selectedOptionsValue ? selectedOptionsValue.includes(option.value) : false;
   return (
     /*
      * The library default behaviour is to have a fixed close icon which
@@ -55,7 +59,7 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
         <span
           key={option.value}
           className="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
-          onClick={() => selectOption(option)}
+          onClick={() => (isOptionSelected(option) ? deSelectOption(option) : selectOption(option))}
         >
           {option.label}
         </span>
