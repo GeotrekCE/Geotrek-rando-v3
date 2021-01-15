@@ -36,7 +36,7 @@ export const SearchUI: React.FC = () => {
     selectFilter,
   );
 
-  const { searchResults, isLoading } = useSearchPage();
+  const { searchResults, isLoading } = useSearchPage(filtersState);
 
   return (
     <>
