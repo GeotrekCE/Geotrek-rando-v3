@@ -1,3 +1,4 @@
+import { Check } from 'components/Icons/Check';
 import { LeftArrow } from 'components/Icons/LeftArrow';
 import { FilterState, Option } from 'modules/filters/interface';
 import React from 'react';
@@ -5,6 +6,34 @@ import { slide as Slide } from 'react-burger-menu';
 import { useIntl } from 'react-intl';
 
 import { CloseButton } from './CloseButton';
+
+const OptionItem = ({
+  option,
+  isSelected,
+  selectOption,
+  deSelectOption,
+}: {
+  option: Option;
+  isSelected: boolean;
+  selectOption: (optionToSelect: Option) => void;
+  deSelectOption: (optionToDeselect: Option) => void;
+}) => {
+  const onClick = () => (isSelected ? deSelectOption(option) : selectOption(option));
+  return (
+    <div className="flex justify-between border-b border-solid border-greySoft items-center">
+      <span
+        key={option.value}
+        className={`flex items-center pt-4 pb-4 font-bold outline-none pb-2 ${
+          isSelected ? 'text-primary1' : ''
+        }`}
+        onClick={onClick}
+      >
+        {option.label}
+      </span>
+      {isSelected && <Check size={24} />}
+    </div>
+  );
+};
 
 interface Props {
   menuState: 'DISPLAYED' | 'HIDDEN';
@@ -56,15 +85,13 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
         )}
       </div>
       {filterState?.options.map(option => (
-        <span
+        <OptionItem
           key={option.value}
-          className={`flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft ${
-            isOptionSelected(option) ? 'text-primary1' : ''
-          }`}
-          onClick={() => (isOptionSelected(option) ? deSelectOption(option) : selectOption(option))}
-        >
-          {option.label}
-        </span>
+          option={option}
+          isSelected={isOptionSelected(option)}
+          selectOption={selectOption}
+          deSelectOption={deSelectOption}
+        />
       ))}
     </Slide>
   );
