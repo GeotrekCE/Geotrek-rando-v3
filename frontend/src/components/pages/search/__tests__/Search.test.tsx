@@ -39,30 +39,23 @@ describe('Search page', () => {
   it('should display result cards', async () => {
     process.env.REACT_APP_API_BASE_URL = 'https://geotrekdemo.ecrins-parcnational.fr/api/v2';
 
-    nock(process.env.REACT_APP_API_BASE_URL)
-      .get('/trek')
-      .query({
+    // Only called by results
+    mockRoute({
+      route: '/trek',
+      mockData: mockTrekResponse,
+      additionalQueries: {
         fields:
           'departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,thumbnail,practice',
-        language: 'fr',
         page_size: 5,
-      })
-      .reply(200, mockTrekResponse);
+      },
+    });
 
-    nock(process.env.REACT_APP_API_BASE_URL)
-      .get('/difficulty')
-      .query({ language: 'fr' })
-      .times(2)
-      .reply(200, mockDifficultyResponse);
-
-    nock(process.env.REACT_APP_API_BASE_URL)
-      .get('/theme')
-      .query({ language: 'fr' })
-      .times(2)
-      .reply(200, mockThemeResponse);
-
+    // Called by both filterBar and results
+    mockRoute({ route: '/difficulty', mockData: mockDifficultyResponse, times: 2 });
     mockRoute({ route: '/theme', mockData: mockThemeResponse, times: 2 });
     mockRoute({ route: '/practice', mockData: mockPracticeResponse, times: 2 });
+
+    // Only called by filterBar
     mockRoute({ route: '/route', mockData: mockRouteResponse });
     mockRoute({ route: '/accessibility', mockData: mockAccessibilityResponse });
     mockRoute({ route: '/structure', mockData: mockStructureResponse });
@@ -75,11 +68,14 @@ describe('Search page', () => {
       </QueryClientProvider>,
     );
 
-    await waitForElementToBeRemoved(() => page.queryByText('LOADING'));
+    await waitForElementToBeRemoved(() =>
+      page.queryByText('Loading... (to replace with proper design)'),
+    );
 
     const textIsPresent = (text: string) => {
       page.getByText(text);
     };
+
     const texts = [
       'Molines-en-Champsaur',
       'Col de Font Froide',
@@ -91,7 +87,6 @@ describe('Search page', () => {
       '15,2km',
       '1457m',
     ];
-
     texts.forEach(textIsPresent);
   });
 });
