@@ -1,4 +1,4 @@
-import { Filter } from '../interface';
+import { Choices, Filter } from '../interface';
 import { RawTheme } from './interface';
 
 export const adaptThemeFilter = (rawThemes: RawTheme[]): Filter => ({
@@ -8,3 +8,12 @@ export const adaptThemeFilter = (rawThemes: RawTheme[]): Filter => ({
     label: rawTheme.label,
   })),
 });
+
+export const adaptThemes = (rawThemes: RawTheme[]): Choices =>
+  rawThemes.reduce(
+    (themes, currentRawTheme) => ({
+      ...themes,
+      [`${currentRawTheme.id}`]: { label: currentRawTheme.label },
+    }),
+    {},
+  );

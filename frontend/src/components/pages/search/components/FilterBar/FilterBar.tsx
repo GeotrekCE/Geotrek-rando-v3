@@ -79,7 +79,7 @@ export const FilterBar: React.FC<Props> = props => {
 const Filter = () => (
   <SelectableDropdown
     name="difficulties"
-    placeholder="search.filters.DIFFICULTY"
+    placeholder="search.filters.difficulty"
     options={[
       { value: 'veryEasy', label: 'Très facile' },
       { value: 'easy', label: 'Facile' },

@@ -7,34 +7,41 @@ import { flexGap } from 'services/cssHelpers';
 import { Chip } from 'components/Chip';
 import { Button } from 'components/Button';
 
-import { GenericIconProps } from 'components/Icons/types';
 import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
-import { Square } from 'components/Icons/Square';
 
 import { FormattedMessage } from 'react-intl';
-import { Information } from './Information';
+import { LocalIconInformation, RemoteIconInformation } from './Information';
 import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
 
 interface Props {
-  activityIcon: React.FC<GenericIconProps>;
   place: string;
   title: string;
   tags: string[];
+  thumbnailUri: string;
+  badgeIconUri: string;
   informations: {
     duration: string | null;
     distance: string;
     elevation: string;
-    difficulty: string | null;
+    difficulty: { label: string; pictogramUri: string } | null;
+    reservationSystem: number | null;
   };
 }
 
-export const ResultCard: React.FC<Props> = ({ activityIcon, place, title, tags, informations }) => {
+export const ResultCard: React.FC<Props> = ({
+  place,
+  title,
+  tags,
+  thumbnailUri,
+  badgeIconUri,
+  informations,
+}) => {
   return (
     <Container>
-      <ImageContainer>
-        <ActivityBadge icon={activityIcon} />
+      <ImageContainer imageUri={thumbnailUri}>
+        <ActivityBadge iconUri={badgeIconUri} />
       </ImageContainer>
 
       <DetailsContainer>
@@ -54,26 +61,30 @@ export const ResultCard: React.FC<Props> = ({ activityIcon, place, title, tags, 
           <InformationContainer>
             <InformationLayout>
               {informations.difficulty !== null && (
-                <DifficultyInformation icon={Square}>
-                  {informations.difficulty}
-                </DifficultyInformation>
+                <RemoteIconInformation iconUri={informations.difficulty.pictogramUri}>
+                  {informations.difficulty.label}
+                </RemoteIconInformation>
               )}
               {informations.duration !== null && (
-                <Information icon={Clock}>{informations.duration}</Information>
+                <LocalIconInformation icon={Clock}>{informations.duration}</LocalIconInformation>
               )}
-              <Information icon={CodeBrackets}>{informations.distance}</Information>
-              <Information icon={TrendingUp} className="desktop:flex hidden">
+              <LocalIconInformation icon={CodeBrackets}>
+                {informations.distance}
+              </LocalIconInformation>
+              <LocalIconInformation icon={TrendingUp} className="desktop:flex hidden">
                 {informations.elevation}
-              </Information>
+              </LocalIconInformation>
             </InformationLayout>
           </InformationContainer>
         </DetailsLayout>
 
-        <BookingButtonContainer>
-          <Button>
-            <FormattedMessage id="search.book" />
-          </Button>
-        </BookingButtonContainer>
+        {informations.reservationSystem !== null && (
+          <BookingButtonContainer>
+            <Button>
+              <FormattedMessage id="search.book" />
+            </Button>
+          </BookingButtonContainer>
+        )}
       </DetailsContainer>
     </Container>
   );
@@ -98,14 +109,15 @@ const Container = styled.div`
   )}
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.div<{ imageUri: string }>`
   height: ${getSpacing(31)};
   width: 100%;
 
-  background-image: url('images/hiking-cover.jpg');
+  background-image: url(${({ imageUri }) => imageUri});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  background-color: black;
 
   position: relative;
 
@@ -214,8 +226,4 @@ const ActivityBadge = styled(RawActivityBadge)`
   position: absolute;
   top: ${getSpacing(4)};
   left: ${getSpacing(4)};
-`;
-
-const DifficultyInformation = styled(Information)`
-  color: ${colorPalette.easyOK};
 `;

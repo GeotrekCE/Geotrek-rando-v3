@@ -1,3 +1,5 @@
+import { Activity } from 'modules/activities/interface';
+
 export interface TrekResults {
   resultsNumber: number;
   results: TrekResult[];
@@ -8,12 +10,20 @@ export interface TrekResult {
   place: string;
   title: string;
   tags: string[];
+  thumbnailUri: string;
+  practice: Activity; // should be an object
   informations: {
     duration: string | null;
     distance: string;
     elevation: string;
-    difficulty: string | null;
+    difficulty: Difficulty | null;
+    reservationSystem: number | null; // Todo should be string | null
   };
+}
+
+interface Difficulty {
+  label: string;
+  pictogramUri: string;
 }
 
 // API response
@@ -30,7 +40,17 @@ export interface RawTrekResult {
   departure: string;
   difficulty: number | null;
   duration: number | null;
-  labels: number[];
+  themes: number[];
   length_2d: number;
   name: string;
+  reservation_system: null | number;
+  thumbnail: Thumbnail;
+  practice: number;
+}
+
+export interface Thumbnail {
+  author: string;
+  title: string;
+  legend: string;
+  url: string;
 }

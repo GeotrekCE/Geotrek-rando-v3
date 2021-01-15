@@ -13,7 +13,10 @@ export interface RawListActivity extends RawActivity {
 }
 
 export interface Activity {
-  id: number;
   pictogram: string;
   name: string;
+}
+
+export interface ActivityChoices {
+  [value: string]: Activity;
 }
