@@ -2,6 +2,7 @@ import nock from 'nock';
 import 'isomorphic-fetch';
 import { render, waitForElementToBeRemoved } from 'services/testing/reactTestingLibraryWrapper';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { getApiUrl } from 'services/envLoader';
 import { SearchUI } from '../Search';
 
 import {
@@ -28,7 +29,7 @@ const mockRoute = ({
   additionalQueries?: any;
   times?: number;
 }) => {
-  nock(process.env.REACT_APP_API_BASE_URL)
+  nock(getApiUrl())
     .get(route)
     .query({ language: 'fr', ...additionalQueries })
     .times(times)
@@ -37,8 +38,6 @@ const mockRoute = ({
 
 describe('Search page', () => {
   it('should display result cards', async () => {
-    process.env.REACT_APP_API_BASE_URL = 'https://geotrekdemo.ecrins-parcnational.fr/api/v2';
-
     // Only called by results
     mockRoute({
       route: '/trek',
