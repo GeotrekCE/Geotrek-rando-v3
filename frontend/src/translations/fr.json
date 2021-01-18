@@ -26,6 +26,8 @@
     "orderedByRelevance": "Classement par ordre de pertinence",
     "seeMap": "Voir la carte",
     "filter": "Filtrer",
+    "reload": "Recharger",
+    "anErrorOccured": "Une erreur est survenue",
     "filters": {
       "difficulty": "Difficulté",
       "activity": "Activités",

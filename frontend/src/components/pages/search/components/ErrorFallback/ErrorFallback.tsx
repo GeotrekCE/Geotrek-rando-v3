@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 
 import { Reload } from 'components/Icons/Reload';
 
@@ -8,11 +9,15 @@ import { buttonCssResets } from 'services/cssHelpers';
 
 export const ErrorFallback: React.FC = () => {
   return (
-    <Container className="flex flex-col flex-1 items-center mt-4">
-      <div className="text-H1 text-center">Une erreur est survenue</div>
+    <Container className="flex flex-col flex-1 items-center">
+      <div className="text-H1 text-center">
+        <FormattedMessage id="search.anErrorOccured" />
+      </div>
       <ReloadButton className="flex flex-col items-center">
         <Reload size={48} />
-        <span>Recharger</span>
+        <span>
+          <FormattedMessage id="search.reload" />
+        </span>
       </ReloadButton>
     </Container>
   );
