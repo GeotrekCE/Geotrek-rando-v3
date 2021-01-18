@@ -15,14 +15,13 @@ export const ActivitySuggestionCard: React.FC<ActivitySuggestionCardProps> = ({
       w-50 desktop:w-90
       rounded-2xl overflow-hidden"
     >
-      <div
+      <img
+        src={imgUrl}
         className="
         bg-greySoft
         h-30 desktop:h-60
         overflow-hidden bg-cover"
-      >
-        <img src={imgUrl}></img>
-      </div>
+      />
       <div className="p-4">
         <span
           className="
