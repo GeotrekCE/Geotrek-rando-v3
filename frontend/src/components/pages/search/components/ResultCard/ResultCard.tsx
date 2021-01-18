@@ -192,13 +192,9 @@ const TagContainer = styled.div`
   display: flex;
   margin-top: ${getSpacing(2)};
 
-  /* To have a consistent height when there are no tags */
-  min-height: 29px;
-
   ${desktopOnly(
     css`
       margin-top: ${getSpacing(4)};
-      min-height: 26px;
     `,
   )}
 `;
