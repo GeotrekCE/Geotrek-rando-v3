@@ -87,6 +87,7 @@ export const fontFamily = {
 
 export const shadow = {
   large: `0 0 30px 0 rgba(0, 0, 0, 0.15)`,
+  small: `0 0 4px ${colorPalette.greySoft}`,
 } as const;
 
 export const typography = {

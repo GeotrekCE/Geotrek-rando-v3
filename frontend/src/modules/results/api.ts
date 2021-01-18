@@ -4,7 +4,7 @@ import { RawTrekResults } from './interface';
 
 const fieldsParams = {
   fields:
-    'departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,thumbnail,practice',
+    'id,departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,thumbnail,practice',
 };
 
 export const fetchTrekResults = (query: APIQuery): Promise<RawTrekResults> =>

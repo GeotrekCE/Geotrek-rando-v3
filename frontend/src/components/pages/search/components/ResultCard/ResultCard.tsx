@@ -1,11 +1,19 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { borderRadius, colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
+import {
+  borderRadius,
+  colorPalette,
+  desktopOnly,
+  getSpacing,
+  shadow,
+  typography,
+} from 'stylesheet';
 import { flexGap } from 'services/cssHelpers';
 
 import { Chip } from 'components/Chip';
 import { Button } from 'components/Button';
+import { Link } from 'components/Link';
 
 import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
@@ -14,8 +22,10 @@ import { TrendingUp } from 'components/Icons/TrendingUp';
 import { FormattedMessage } from 'react-intl';
 import { LocalIconInformation, RemoteIconInformation } from './Information';
 import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
+import { useResultCard } from './useResultCard';
 
 interface Props {
+  id: number;
   place: string;
   title: string;
   tags: string[];
@@ -31,6 +41,7 @@ interface Props {
 }
 
 export const ResultCard: React.FC<Props> = ({
+  id,
   place,
   title,
   tags,
@@ -38,54 +49,57 @@ export const ResultCard: React.FC<Props> = ({
   badgeIconUri,
   informations,
 }) => {
+  const { detailsPageUrl } = useResultCard(id, title);
   return (
     <Container>
       <ImageContainer imageUri={thumbnailUri}>
         <ActivityBadge iconUri={badgeIconUri} />
       </ImageContainer>
 
-      <DetailsContainer>
-        <DetailsLayout>
-          <Place>{place}</Place>
+      <Link href={detailsPageUrl} testId={`Link-ResultCard-${id}`} className="w-full">
+        <DetailsContainer>
+          <DetailsLayout>
+            <Place>{place}</Place>
 
-          <Title>{title}</Title>
+            <Title>{title}</Title>
 
-          <TagContainer>
-            <TagLayout>
-              {tags.map(tag => (
-                <Chip key={tag}>{tag}</Chip>
-              ))}
-            </TagLayout>
-          </TagContainer>
+            <TagContainer>
+              <TagLayout>
+                {tags.map(tag => (
+                  <Chip key={tag}>{tag}</Chip>
+                ))}
+              </TagLayout>
+            </TagContainer>
 
-          <InformationContainer>
-            <InformationLayout>
-              {informations.difficulty !== null && (
-                <RemoteIconInformation iconUri={informations.difficulty.pictogramUri}>
-                  {informations.difficulty.label}
-                </RemoteIconInformation>
-              )}
-              {informations.duration !== null && (
-                <LocalIconInformation icon={Clock}>{informations.duration}</LocalIconInformation>
-              )}
-              <LocalIconInformation icon={CodeBrackets}>
-                {informations.distance}
-              </LocalIconInformation>
-              <LocalIconInformation icon={TrendingUp} className="desktop:flex hidden">
-                {informations.elevation}
-              </LocalIconInformation>
-            </InformationLayout>
-          </InformationContainer>
-        </DetailsLayout>
+            <InformationContainer>
+              <InformationLayout>
+                {informations.difficulty !== null && (
+                  <RemoteIconInformation iconUri={informations.difficulty.pictogramUri}>
+                    {informations.difficulty.label}
+                  </RemoteIconInformation>
+                )}
+                {informations.duration !== null && (
+                  <LocalIconInformation icon={Clock}>{informations.duration}</LocalIconInformation>
+                )}
+                <LocalIconInformation icon={CodeBrackets}>
+                  {informations.distance}
+                </LocalIconInformation>
+                <LocalIconInformation icon={TrendingUp} className="desktop:flex hidden">
+                  {informations.elevation}
+                </LocalIconInformation>
+              </InformationLayout>
+            </InformationContainer>
+          </DetailsLayout>
 
-        {informations.reservationSystem !== null && (
-          <BookingButtonContainer>
-            <Button>
-              <FormattedMessage id="search.book" />
-            </Button>
-          </BookingButtonContainer>
-        )}
-      </DetailsContainer>
+          {informations.reservationSystem !== null && (
+            <BookingButtonContainer>
+              <Button>
+                <FormattedMessage id="search.book" />
+              </Button>
+            </BookingButtonContainer>
+          )}
+        </DetailsContainer>
+      </Link>
     </Container>
   );
 };
@@ -93,9 +107,11 @@ export const ResultCard: React.FC<Props> = ({
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-
+  cursor: pointer;
   margin: ${getSpacing(4)} 0;
-
+  &:hover {
+    box-shadow: ${shadow.small};
+  }
   border-radius: ${borderRadius.card};
   overflow: hidden;
 

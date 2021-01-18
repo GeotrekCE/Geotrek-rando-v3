@@ -92,6 +92,7 @@ export const SearchUI: React.FC = () => {
               {searchResults?.results.map(searchResult => (
                 <ResultCard
                   key={searchResult.title}
+                  id={searchResult.id}
                   place={searchResult.place}
                   title={searchResult.title}
                   tags={searchResult.tags}
