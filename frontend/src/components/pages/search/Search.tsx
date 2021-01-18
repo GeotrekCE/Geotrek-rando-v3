@@ -66,7 +66,10 @@ export const SearchUI: React.FC = () => {
         <div className="p-4 desktop:pt-filterBar desktop:mt-6 w-1/2 relative">
           <Loader
             loaded={!isLoading}
-            options={{ top: `${sizes.desktopHeader + sizes.filterBar}px` }}
+            options={{
+              top: `${sizes.desktopHeader + sizes.filterBar}px`,
+              color: colorPalette.primary1,
+            }}
           >
             <div className="flex justify-between items-end">
               <SearchResultsMeta
