@@ -14,7 +14,7 @@ interface Props {
 export const ErrorFallback: React.FC<Props> = ({ refetch }) => {
   return (
     <Container className="flex flex-col flex-1 items-center">
-      <div className="text-H1 text-center">
+      <div className="text-H2 text-center">
         <FormattedMessage id="search.anErrorOccured" />
       </div>
       <ReloadButton className="flex flex-col items-center" onClick={refetch}>
