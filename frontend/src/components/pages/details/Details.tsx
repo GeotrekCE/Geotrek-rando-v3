@@ -13,11 +13,11 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
       <div className="flex flex-1">
         <div className="flex flex-col desktop:w-3/5">
           <div className="overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop">
-            <img src={details?.imgUrl} className="bg-cover w-full bg-center" />
+            <img src={details?.imgUrl} className="bg-cover w-full h-full bg-center" />
           </div>
           <div
             className="px-4 py-4 desktop:px-18 desktop:py-0
-            desktop:relative -top-9
+            desktop:relative desktop:-top-9
             flex flex-col"
           >
             {details?.practice?.pictogram !== undefined && (
@@ -31,7 +31,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
             </span>
           </div>
         </div>
-        <div className="desktop:flex-1 bg-greySoft" />
+        <div className="desktop:flex-1 bg-greySoft h-screen" />
       </div>
     </Layout>
   );
