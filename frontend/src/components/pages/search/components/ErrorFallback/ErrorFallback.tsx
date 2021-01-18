@@ -7,13 +7,17 @@ import { Reload } from 'components/Icons/Reload';
 import { getSpacing, sizes } from 'stylesheet';
 import { buttonCssResets } from 'services/cssHelpers';
 
-export const ErrorFallback: React.FC = () => {
+interface Props {
+  refetch: () => void;
+}
+
+export const ErrorFallback: React.FC<Props> = ({ refetch }) => {
   return (
     <Container className="flex flex-col flex-1 items-center">
       <div className="text-H1 text-center">
         <FormattedMessage id="search.anErrorOccured" />
       </div>
-      <ReloadButton className="flex flex-col items-center">
+      <ReloadButton className="flex flex-col items-center" onClick={refetch}>
         <Reload size={48} />
         <span>
           <FormattedMessage id="search.reload" />

@@ -39,7 +39,7 @@ export const SearchUI: React.FC = () => {
     selectFilter,
   );
 
-  const { searchResults, isLoading, isError } = useSearchPage(filtersState);
+  const { searchResults, isLoading, isError, refetch } = useSearchPage(filtersState);
 
   return (
     <>
@@ -75,7 +75,7 @@ export const SearchUI: React.FC = () => {
               }}
             >
               {isError ? (
-                <ErrorFallback />
+                <ErrorFallback refetch={refetch} />
               ) : (
                 <>
                   <div className="flex justify-between items-end">
