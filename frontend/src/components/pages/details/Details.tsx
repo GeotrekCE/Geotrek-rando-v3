@@ -3,12 +3,11 @@ import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import { useDetails } from './useDetails';
 interface Props {
-  detailsId: string;
+  detailsId: string | string[] | undefined;
 }
 
 export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
-  const id = detailsId.split('-')[1];
-  const { details } = useDetails(id);
+  const { details } = useDetails(detailsId);
   return (
     <Layout>
       <div className="flex flex-1">
