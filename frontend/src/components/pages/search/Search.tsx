@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import Loader from 'react-loader';
-import { colorPalette, getSpacing, sizes, typography } from 'stylesheet';
+import { colorPalette, getSpacing, sizes, typography, zIndex } from 'stylesheet';
 
 import { Layout } from 'components/Layout/Layout';
 import { OpenMapButton } from 'components/OpenMapButton';
@@ -70,6 +70,7 @@ export const SearchUI: React.FC = () => {
               options={{
                 top: `${sizes.desktopHeader + sizes.filterBar}px`,
                 color: colorPalette.primary1,
+                zIndex: zIndex.loader,
               }}
             >
               <div className="flex justify-between items-end">
