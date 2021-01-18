@@ -12,6 +12,7 @@ export const useSearchPage = (filtersState: FilterState[]) => {
   const { data: searchResults, isLoading, isError, refetch } = useQuery<TrekResults, Error>(
     ['trekResults', parsedFiltersState],
     () => getTrekResults(parsedFiltersState),
+    { retry: false },
   );
 
   return { searchResults, isLoading, isError, refetch };
