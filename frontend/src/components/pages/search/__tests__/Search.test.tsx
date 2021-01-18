@@ -69,9 +69,7 @@ describe('Search page', () => {
       </QueryClientProvider>,
     );
 
-    await waitForElementToBeRemoved(() =>
-      page.queryByText('Loading... (to replace with proper design)'),
-    );
+    await waitForElementToBeRemoved(() => page.queryByRole('progressbar'));
 
     const textIsPresent = (text: string) => {
       page.getByText(text);

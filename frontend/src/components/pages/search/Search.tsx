@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
-import { colorPalette, getSpacing, typography } from 'stylesheet';
+import Loader from 'react-loader';
+import { colorPalette, getSpacing, sizes, typography } from 'stylesheet';
 
 import { Layout } from 'components/Layout/Layout';
 import { OpenMapButton } from 'components/OpenMapButton';
@@ -62,10 +63,11 @@ export const SearchUI: React.FC = () => {
           filtersState={filtersState}
           setFilterSelectedOptions={setFilterSelectedOptions}
         />
-        {isLoading ? (
-          'Loading... (to replace with proper design)'
-        ) : (
-          <div className="p-4 desktop:pt-filterBar desktop:mt-6 w-1/2">
+        <div className="p-4 desktop:pt-filterBar desktop:mt-6 w-1/2 relative">
+          <Loader
+            loaded={!isLoading}
+            options={{ top: `${sizes.desktopHeader + sizes.filterBar}px` }}
+          >
             <div className="flex justify-between items-end">
               <SearchResultsMeta
                 resultsNumber={searchResults?.resultsNumber}
@@ -93,8 +95,8 @@ export const SearchUI: React.FC = () => {
                 informations={searchResult.informations}
               />
             ))}
-          </div>
-        )}
+          </Loader>
+        </div>
       </Layout>
     </>
   );
