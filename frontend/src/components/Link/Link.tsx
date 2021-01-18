@@ -4,12 +4,16 @@ import { colorPalette, typography } from 'stylesheet';
 
 interface Props extends NextLinkProps {
   children: React.ReactNode;
+  className?: string;
+  testId?: string;
 }
 
-export const Link: React.FC<Props> = ({ children, ...nextLinkProps }) => {
+export const Link: React.FC<Props> = ({ children, className, testId, ...nextLinkProps }) => {
   return (
     <NextLink passHref {...nextLinkProps}>
-      <StyledLink>{children}</StyledLink>
+      <StyledLink className={className} data-testid={testId}>
+        {children}
+      </StyledLink>
     </NextLink>
   );
 };
