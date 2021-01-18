@@ -45,7 +45,7 @@ describe('Search page', () => {
       mockData: mockTrekResponse,
       additionalQueries: {
         fields:
-          'departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,thumbnail,practice',
+          'id,departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,thumbnail,practice',
         page_size: 5,
       },
       times: 2,
