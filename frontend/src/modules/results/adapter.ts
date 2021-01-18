@@ -25,6 +25,7 @@ export const adaptTrekResults = ({
 }): TrekResults => {
   const resultsList = rawTrekResults.results;
   const adaptedResultsList = resultsList.map(rawResult => ({
+    id: rawResult.id,
     activityIcon: 'TODO',
     place: rawResult.departure,
     title: rawResult.name,

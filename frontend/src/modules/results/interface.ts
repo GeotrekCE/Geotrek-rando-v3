@@ -6,6 +6,7 @@ export interface TrekResults {
 }
 
 export interface TrekResult {
+  id: number;
   activityIcon: string; // TODO (call API supplémentaire surement)
   place: string;
   title: string;
@@ -36,6 +37,7 @@ export interface RawTrekResults {
 }
 
 export interface RawTrekResult {
+  id: number;
   ascent: number;
   departure: string;
   difficulty: number | null;
