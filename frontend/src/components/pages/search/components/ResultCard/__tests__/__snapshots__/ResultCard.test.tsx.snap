@@ -1,12 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AAU, I can see a ResultCard 1`] = `
+exports[`Results Card AAU, I can see a ResultCard 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
         class="ResultCard__Container-sc-1bem01n-0 cfSIkO"
+        class="ResultCard__Container-sc-1bem01n-0 jEYgED"
       >
         <div
           class="ResultCard__ImageContainer-sc-1bem01n-1 kSeVBL"
@@ -15,6 +16,191 @@ Object {
             class="ActivityBadge__Container-enmhze-0 eVVswV ResultCard__ActivityBadge-sc-1bem01n-11 jJUVgC"
           />
         </div>
+        <a
+          class="Link__StyledLink-oanbk8-0 hVMYzp w-full"
+          data-testid="temp-testid"
+          href="/details-2-Balade%20au%20pays%20des%20menhirs"
+          role="link"
+        >
+          <div
+            class="ResultCard__DetailsContainer-sc-1bem01n-2 dqjwvz"
+          >
+            <div
+              class="ResultCard__DetailsLayout-sc-1bem01n-3 igcQDh"
+            >
+              <span
+                class="ResultCard__Place-sc-1bem01n-5 jrdCiY"
+              >
+                Saint-Etienne-du-Valdonnez
+              </span>
+              <span
+                class="ResultCard__Title-sc-1bem01n-6 beOFCA"
+              >
+                Balade au pays des menhirs
+              </span>
+              <div
+                class="ResultCard__TagContainer-sc-1bem01n-7 hYFbQI"
+              >
+                <div
+                  class="ResultCard__TagLayout-sc-1bem01n-8 bZVzLD"
+                >
+                  <div
+                    class="Chip__ChipContainer-sc-1wajafu-0 gAXbHm"
+                  >
+                    <span>
+                      En famille
+                    </span>
+                  </div>
+                  <div
+                    class="Chip__ChipContainer-sc-1wajafu-0 gAXbHm"
+                  >
+                    <span>
+                      Ciel étoilé
+                    </span>
+                  </div>
+                  <div
+                    class="Chip__ChipContainer-sc-1wajafu-0 gAXbHm"
+                  >
+                    <span>
+                      Beau paysage
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="ResultCard__InformationContainer-sc-1bem01n-9 gFWOQi"
+              >
+                <div
+                  class="ResultCard__InformationLayout-sc-1bem01n-10 jQpFaS"
+                >
+                  <div
+                    class="flex items-center text-primary1  "
+                  >
+                    <span
+                      class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
+                    />
+                  </div>
+                  <div
+                    class="flex items-center text-primary1  "
+                  >
+                    <svg
+                      fill="none"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M12 6v6l4 2"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                    </svg>
+                    <span
+                      class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
+                    >
+                      2h
+                    </span>
+                  </div>
+                  <div
+                    class="flex items-center text-primary1  "
+                  >
+                    <svg
+                      fill="none"
+                      height="24"
+                      viewBox="0 0 24 25"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M16 18l6-6-6-6M8 6l-6 6 6 6"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                    </svg>
+                    <span
+                      class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
+                    >
+                      5km
+                    </span>
+                  </div>
+                  <div
+                    class="flex items-center text-primary1 desktop:flex hidden "
+                  >
+                    <svg
+                      fill="none"
+                      height="24"
+                      viewBox="0 0 24 25"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M23 6l-9.5 9.5-5-5L1 18"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M17 6h6v6"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                    </svg>
+                    <span
+                      class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
+                    >
+                      +360m
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="ResultCard__BookingButtonContainer-sc-1bem01n-4 fIAzAu"
+            >
+              <button
+                class="Button__StyledButton-sc-1n2k9lu-0 iVmOMb flex items-center "
+              >
+                Réserver
+              </button>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ResultCard__Container-sc-1bem01n-0 jEYgED"
+    >
+      <div
+        class="ResultCard__ImageContainer-sc-1bem01n-1 kSeVBL"
+      >
+        <div
+          class="ActivityBadge__Container-enmhze-0 eVVswV ResultCard__ActivityBadge-sc-1bem01n-11 jJUVgC"
+        />
+      </div>
+      <a
+        class="Link__StyledLink-oanbk8-0 hVMYzp w-full"
+        data-testid="temp-testid"
+        href="/details-2-Balade%20au%20pays%20des%20menhirs"
+        role="link"
+      >
         <div
           class="ResultCard__DetailsContainer-sc-1bem01n-2 dqjwvz"
         >
@@ -345,6 +531,7 @@ Object {
           </button>
         </div>
       </div>
+      </a>
     </div>
   </div>,
   "debug": [Function],
