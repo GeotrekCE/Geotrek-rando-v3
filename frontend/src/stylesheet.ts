@@ -136,8 +136,10 @@ export const borderRadius = {
 
 export const zIndex = {
   content: 0,
+  loader: 1,
   floatingButton: 1,
   header: 2,
+  sliderMenu: 3,
 } as const;
 
 export const sizes = {

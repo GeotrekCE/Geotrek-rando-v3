@@ -101,8 +101,7 @@ const Container = styled.div`
 
   ${desktopOnly(
     css`
-      // TODO Replace by 100% when we put the map on Search page
-      width: 50%;
+      width: 100%;
       flex-direction: row;
       margin: ${getSpacing(6)} 0;
     `,
@@ -193,13 +192,9 @@ const TagContainer = styled.div`
   display: flex;
   margin-top: ${getSpacing(2)};
 
-  /* To have a consistent height when there are no tags */
-  min-height: 29px;
-
   ${desktopOnly(
     css`
       margin-top: ${getSpacing(4)};
-      min-height: 26px;
     `,
   )}
 `;

@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
-import { colorPalette, getSpacing, typography } from 'stylesheet';
+import Loader from 'react-loader';
+import { colorPalette, getSpacing, sizes, typography, zIndex } from 'stylesheet';
 
 import { Layout } from 'components/Layout/Layout';
 import { OpenMapButton } from 'components/OpenMapButton';
@@ -62,39 +63,47 @@ export const SearchUI: React.FC = () => {
           filtersState={filtersState}
           setFilterSelectedOptions={setFilterSelectedOptions}
         />
-        {isLoading ? (
-          'Loading... (to replace with proper design)'
-        ) : (
-          <div className="p-4 desktop:pt-filterBar desktop:mt-6">
-            <div className="flex justify-between items-end">
-              <SearchResultsMeta
-                resultsNumber={searchResults?.resultsNumber}
-                placeName="Val de Gaudemart"
-                placeUrl="/"
-              />
-              <ToggleFilterButton onClick={displayMenu} />
-            </div>
-            <RankingInfo className="desktop:hidden">
-              <FormattedMessage id="search.orderedByRelevance" />
-            </RankingInfo>
+        <div className="flex flex-col desktop:flex-row">
+          <div className="p-4 desktop:pt-filterBar desktop:mt-6 relative flex-1">
+            <Loader
+              loaded={!isLoading}
+              options={{
+                top: `${sizes.desktopHeader + sizes.filterBar}px`,
+                color: colorPalette.primary1,
+                zIndex: zIndex.loader,
+              }}
+            >
+              <div className="flex justify-between items-end">
+                <SearchResultsMeta
+                  resultsNumber={searchResults?.resultsNumber}
+                  placeName="Val de Gaudemart"
+                  placeUrl="/"
+                />
+                <ToggleFilterButton onClick={displayMenu} />
+              </div>
+              <RankingInfo className="desktop:hidden">
+                <FormattedMessage id="search.orderedByRelevance" />
+              </RankingInfo>
 
-            <Separator className="w-full mt-6 desktop:block hidden" />
+              <Separator className="w-full mt-6 desktop:block hidden" />
 
-            <OpenMapButton />
+              <OpenMapButton />
 
-            {searchResults?.results.map(searchResult => (
-              <ResultCard
-                key={searchResult.title}
-                place={searchResult.place}
-                title={searchResult.title}
-                tags={searchResult.tags}
-                thumbnailUri={searchResult.thumbnailUri}
-                badgeIconUri={searchResult.practice.pictogram}
-                informations={searchResult.informations}
-              />
-            ))}
+              {searchResults?.results.map(searchResult => (
+                <ResultCard
+                  key={searchResult.title}
+                  place={searchResult.place}
+                  title={searchResult.title}
+                  tags={searchResult.tags}
+                  thumbnailUri={searchResult.thumbnailUri}
+                  badgeIconUri={searchResult.practice.pictogram}
+                  informations={searchResult.informations}
+                />
+              ))}
+            </Loader>
           </div>
-        )}
+          <div className="flex-1"></div>
+        </div>
       </Layout>
     </>
   );
