@@ -37,6 +37,8 @@ module.exports = {
       100: `${SPACING_UNIT * 100}px`,
       filterBar: '72px',
       activitySearchFilter: '865px',
+      coverDetailsDesktop: '550px',
+      coverDetailsMobile: '145px',
     },
     zIndex: {
       content: 0,
@@ -64,6 +66,7 @@ module.exports = {
     extend: {
       boxShadow: {
         lg: '0 0 30px 0 rgba(0, 0, 0, 0.15)',
+        md: '0 0 20px rgba(0, 0, 0, 0.15)',
       },
       colors: {
         primary1: {
