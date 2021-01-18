@@ -2,11 +2,15 @@ import { render } from 'services/testing/reactTestingLibraryWrapper';
 
 import { ResultCard } from '../ResultCard';
 
-test('AAU, I can see a ResultCard', () => {
+describe('Results Card', () => {
+  const id = 2;
+  const title = 'Balade au pays des menhirs';
+
   const component = render(
     <ResultCard
+      id={id}
       place="Saint-Etienne-du-Valdonnez"
-      title="Balade au pays des menhirs"
+      title={title}
       tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
       thumbnailUri=""
       badgeIconUri=""
@@ -19,6 +23,11 @@ test('AAU, I can see a ResultCard', () => {
       }}
     />,
   );
-
-  expect(component).toMatchSnapshot();
+  it('AAU, I can see a ResultCard', () => expect(component).toMatchSnapshot());
+  it.only('AAU, I will be redirected to the right details page', async () => {
+    const links = await component.findAllByTestId(`Link-ResultCard-${id}`);
+    links.forEach(link =>
+      expect(link).toHaveAttribute('href', `/details-${id}-${encodeURI(title)}`),
+    );
+  });
 });
