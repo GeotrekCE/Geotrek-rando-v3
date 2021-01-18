@@ -31,12 +31,13 @@ export const SearchUI: React.FC = () => {
     selectOption,
     deSelectOption,
   } = useFilterSubMenu(filtersState, setFilterSelectedOptions);
+
   const { menuState, displayMenu, hideMenu, filtersList } = useFilterMenu(
     filtersState,
     selectFilter,
   );
 
-  const { searchResults, isLoading } = useSearchPage();
+  const { searchResults, isLoading } = useSearchPage(filtersState);
 
   return (
     <>

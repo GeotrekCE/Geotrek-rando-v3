@@ -48,12 +48,13 @@ describe('Search page', () => {
           'departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,thumbnail,practice',
         page_size: 5,
       },
+      times: 2,
     });
 
     // Called by both filterBar and results
-    mockRoute({ route: '/difficulty', mockData: mockDifficultyResponse, times: 2 });
-    mockRoute({ route: '/theme', mockData: mockThemeResponse, times: 2 });
-    mockRoute({ route: '/practice', mockData: mockPracticeResponse, times: 2 });
+    mockRoute({ route: '/difficulty', mockData: mockDifficultyResponse, times: 3 });
+    mockRoute({ route: '/theme', mockData: mockThemeResponse, times: 3 });
+    mockRoute({ route: '/practice', mockData: mockPracticeResponse, times: 3 });
 
     // Only called by filterBar
     mockRoute({ route: '/route', mockData: mockRouteResponse });

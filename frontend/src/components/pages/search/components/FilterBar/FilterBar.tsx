@@ -76,22 +76,6 @@ export const FilterBar: React.FC<Props> = props => {
   );
 };
 
-const Filter = () => (
-  <SelectableDropdown
-    name="difficulties"
-    placeholder="search.filters.difficulty"
-    options={[
-      { value: 'veryEasy', label: 'Très facile' },
-      { value: 'easy', label: 'Facile' },
-      { value: 'medium', label: 'Moyen' },
-      { value: 'hard', label: 'Difficile' },
-    ]}
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    setFilterSelectedOptions={(values: Option[]) => {}}
-    selectedFilters={[]}
-  />
-);
-
 const Container = styled.div<{ displayedState: 'DISPLAYED' | 'HIDDEN' }>`
   transition-property: top transform;
   transition-duration: 0.3s;

@@ -2,7 +2,7 @@ import { getActivityFilter } from 'modules/activities/connector';
 import { getAccessibilityFilter } from './accessibility/connector';
 import { getCityFilter } from './city/connector';
 import { getFiltersConfig } from './config';
-import { getDifficultyFilter } from './connector/connector';
+import { getDifficultyFilter } from './difficulties/connector';
 import { getCourseTypeFilter } from './courseType/connector';
 import { getDistrictFilter } from './district/connector';
 import { Filter, FilterConfig, FilterConfigWithOptions, FilterState } from './interface';
