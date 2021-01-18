@@ -19,6 +19,7 @@ import { SearchResultsMeta } from './components/SearchResultsMeta';
 import { ToggleFilterButton } from './components/ToggleFilterButton';
 import { useFilter } from './components/useFilters';
 import { useSearchPage } from './useSearchPage';
+import { ErrorFallback } from './components/ErrorFallback';
 
 export const SearchUI: React.FC = () => {
   const { filtersState, setFilterSelectedOptions } = useFilter();
@@ -38,7 +39,7 @@ export const SearchUI: React.FC = () => {
     selectFilter,
   );
 
-  const { searchResults, isLoading } = useSearchPage(filtersState);
+  const { searchResults, isLoading, isError, refetch } = useSearchPage(filtersState);
 
   return (
     <>
@@ -73,34 +74,40 @@ export const SearchUI: React.FC = () => {
                 zIndex: zIndex.loader,
               }}
             >
-              <div className="flex justify-between items-end">
-                <SearchResultsMeta
-                  resultsNumber={searchResults?.resultsNumber}
-                  placeName="Val de Gaudemart"
-                  placeUrl="/"
-                />
-                <ToggleFilterButton onClick={displayMenu} />
-              </div>
-              <RankingInfo className="desktop:hidden">
-                <FormattedMessage id="search.orderedByRelevance" />
-              </RankingInfo>
+              {isError ? (
+                <ErrorFallback refetch={refetch} />
+              ) : (
+                <>
+                  <div className="flex justify-between items-end">
+                    <SearchResultsMeta
+                      resultsNumber={searchResults?.resultsNumber}
+                      placeName="Val de Gaudemart"
+                      placeUrl="/"
+                    />
+                    <ToggleFilterButton onClick={displayMenu} />
+                  </div>
+                  <RankingInfo className="desktop:hidden">
+                    <FormattedMessage id="search.orderedByRelevance" />
+                  </RankingInfo>
 
-              <Separator className="w-full mt-6 desktop:block hidden" />
+                  <Separator className="w-full mt-6 desktop:block hidden" />
 
-              <OpenMapButton />
+                  <OpenMapButton />
 
-              {searchResults?.results.map(searchResult => (
-                <ResultCard
-                  key={searchResult.title}
-                  id={searchResult.id}
-                  place={searchResult.place}
-                  title={searchResult.title}
-                  tags={searchResult.tags}
-                  thumbnailUri={searchResult.thumbnailUri}
-                  badgeIconUri={searchResult.practice.pictogram}
-                  informations={searchResult.informations}
-                />
-              ))}
+                  {searchResults?.results.map(searchResult => (
+                    <ResultCard
+                      key={searchResult.title}
+                      id={searchResult.id}
+                      place={searchResult.place}
+                      title={searchResult.title}
+                      tags={searchResult.tags}
+                      thumbnailUri={searchResult.thumbnailUri}
+                      badgeIconUri={searchResult.practice.pictogram}
+                      informations={searchResult.informations}
+                    />
+                  ))}
+                </>
+              )}
             </Loader>
           </div>
           <div className="flex-1"></div>

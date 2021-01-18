@@ -9,10 +9,11 @@ import { parseFilters } from './utils';
 export const useSearchPage = (filtersState: FilterState[]) => {
   const parsedFiltersState = parseFilters(filtersState);
 
-  const { data: searchResults, isLoading } = useQuery<TrekResults, Error>(
+  const { data: searchResults, isLoading, isError, refetch } = useQuery<TrekResults, Error>(
     ['trekResults', parsedFiltersState],
     () => getTrekResults(parsedFiltersState),
+    { retry: false },
   );
 
-  return { searchResults, isLoading };
+  return { searchResults, isLoading, isError, refetch };
 };
