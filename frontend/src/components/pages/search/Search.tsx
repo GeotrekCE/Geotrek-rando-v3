@@ -65,7 +65,7 @@ export const SearchUI: React.FC = () => {
         {isLoading ? (
           'Loading... (to replace with proper design)'
         ) : (
-          <div className="p-4 desktop:pt-filterBar desktop:mt-6">
+          <div className="p-4 desktop:pt-filterBar desktop:mt-6 w-1/2">
             <div className="flex justify-between items-end">
               <SearchResultsMeta
                 resultsNumber={searchResults?.resultsNumber}

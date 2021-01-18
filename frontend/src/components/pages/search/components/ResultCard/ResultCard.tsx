@@ -101,8 +101,7 @@ const Container = styled.div`
 
   ${desktopOnly(
     css`
-      // TODO Replace by 100% when we put the map on Search page
-      width: 50%;
+      width: 100%;
       flex-direction: row;
       margin: ${getSpacing(6)} 0;
     `,
