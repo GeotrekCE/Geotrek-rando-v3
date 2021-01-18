@@ -40,6 +40,7 @@ module.exports = {
     },
     zIndex: {
       content: 0,
+      loader: 1,
       floatingButton: 1,
       header: 2,
       sliderMenu: 3,
