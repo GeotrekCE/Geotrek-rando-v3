@@ -1,3 +1,4 @@
 import wretch from 'wretch';
+import { getApiUrl } from '../envLoader';
 
-export const GeotrekAPI = wretch('https://geotrekdemo.ecrins-parcnational.fr/api/v2');
+export const GeotrekAPI = wretch(getApiUrl());
