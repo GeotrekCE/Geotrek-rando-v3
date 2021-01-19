@@ -9,6 +9,7 @@ export const adaptResults = ({
   activities: ActivityChoices;
 }): Details => ({
   title: rawDetails.name,
+  place: rawDetails.departure,
   imgUrl: rawDetails.thumbnail.url,
   practice: activities[rawDetails.practice],
 });
