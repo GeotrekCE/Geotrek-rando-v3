@@ -101,4 +101,11 @@ describe('extractNextPageId', () => {
     const expected = '910';
     expect(output).toBe(expected);
   });
+
+  it('should return null if nextPageUrl is null', () => {
+    const input = null;
+    const output = extractNextPageId(input);
+    const expected = null;
+    expect(output).toBe(expected);
+  });
 });

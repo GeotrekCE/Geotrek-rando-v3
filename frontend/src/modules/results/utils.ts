@@ -40,7 +40,12 @@ export const formatFiltersToUrlParams = (
   );
 
 /** Extracts nextPageId from nextPageUrl */
-export const extractNextPageId = (nextPageUrl: string): string | undefined => {
+export const extractNextPageId = (nextPageUrl: string | null): string | null => {
+  if (nextPageUrl === null) return null;
+
   const regex = /page=[0-9]*/;
-  return regex.exec(nextPageUrl)?.[0].replace('page=', '');
+  const matches = regex.exec(nextPageUrl);
+  if (matches !== null) return matches[0].replace('page=', '');
+
+  return null;
 };
