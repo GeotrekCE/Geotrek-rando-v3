@@ -1,6 +1,7 @@
 import { Layout } from 'components/Layout/Layout';
 import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
+import { DetailsSection } from './components/DetailsSection/DetailsSection';
 import { useDetails } from './useDetails';
 interface Props {
   detailsId: string | string[] | undefined;
@@ -31,9 +32,15 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
             >
               {details?.place}
             </span>
-            <span className="text-primary1 text-mobile-H1 desktop:text-H1 font-bold">
+            <span className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold">
               {details?.title}
             </span>
+            {details?.transport !== undefined && (
+              <DetailsSection titleId="details.transport" text={details?.transport} />
+            )}
+            {details?.access_parking !== undefined && (
+              <DetailsSection titleId="details.access_parking" text={details?.access_parking} />
+            )}
           </div>
         </div>
         <div className="desktop:flex-1 bg-greySoft h-screen" />
