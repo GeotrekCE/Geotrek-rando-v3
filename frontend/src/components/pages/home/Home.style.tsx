@@ -1,13 +1,5 @@
 import styled, { css } from 'styled-components';
-import {
-  borderRadius,
-  colorPalette,
-  desktopOnly,
-  getSpacing,
-  oldGetSpacing,
-  typography,
-  zIndex,
-} from 'stylesheet';
+import { colorPalette, desktopOnly, getSpacing, zIndex } from 'stylesheet';
 
 export const HomeContainer = styled.div`
   display: flex;
@@ -42,46 +34,6 @@ export const TopContainer = styled.div<{ backgroundUrl: string }>`
 `;
 TopContainer.displayName = 'TopContainer';
 
-export const Logo = styled.img`
-  width: ${oldGetSpacing(32)};
-  margin-bottom: ${oldGetSpacing(4)};
-`;
-Logo.displayName = 'Logo';
-
-export const Title = styled.h1`
-  ${typography.h1}
-  margin-bottom: ${oldGetSpacing(12)};
-`;
-Title.displayName = 'Title';
-
-export const HowTo = styled.div`
-  padding: ${oldGetSpacing(6)};
-  width: 100%;
-  max-width: ${oldGetSpacing(120)};
-  box-sizing: border-box;
-  border-radius: ${borderRadius.large};
-`;
-HowTo.displayName = 'HowTo';
-
-export const DescriptionList = styled.ul`
-  list-style: disc;
-  margin-left: ${oldGetSpacing(4)};
-`;
-DescriptionList.displayName = 'DescriptionList';
-
-export const DescriptionLine = styled.li`
-  ${typography.light}
-  padding-left: ${oldGetSpacing(1)};
-  margin-bottom: ${oldGetSpacing(1)};
-`;
-DescriptionLine.displayName = 'DescriptionLine';
-
-export const Code = styled.code`
-  ${typography.code}
-  padding: ${oldGetSpacing(1)};
-`;
-Code.displayName = 'Code';
-
 export const ListMapContainer = styled.div`
   flex-direction: row;
   display: flex;
@@ -93,11 +45,6 @@ export const ListMapContainer = styled.div`
   }
 `;
 ListMapContainer.displayName = 'ListMapContainer';
-
-export const ListContainer = styled.div`
-  flex: 1;
-`;
-ListContainer.displayName = 'ListContainer';
 
 export const MapContainer = styled.div`
   flex: 1;

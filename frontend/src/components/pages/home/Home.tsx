@@ -5,16 +5,7 @@ import { Layout } from 'components/Layout/Layout';
 import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
 import HomeCard from './components/HomeCard';
 import { HomeSection } from './components/HomeSection';
-import {
-  Code,
-  DescriptionLine,
-  DescriptionList,
-  HomeContainer,
-  HowTo,
-  Logo,
-  Title,
-  TopContainer,
-} from './Home.style';
+import { HomeContainer, TopContainer } from './Home.style';
 import { HomeFooter } from './components/HomeFooter';
 import { useHome } from './useHome';
 
@@ -61,22 +52,7 @@ const HomeUI: FunctionComponent = () => {
             iconUrl="https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-horse.svg"
             activitySuggestions={activitySuggestions}
           />
-          <Logo alt="logo" src="/logo.png" />
-          <Title>Welcome to Geotrek</Title>
-          <HowTo>
-            <DescriptionList>
-              <DescriptionLine>
-                To create a page or a component, run <Code>yarn generate</Code>.
-              </DescriptionLine>
-              <DescriptionLine>
-                The style is centralized in the <Code>src/stylesheet.ts</Code>. From there, you can
-                manage colors, font properties, spacing unit...
-              </DescriptionLine>
-              <DescriptionLine>
-                The displayed data come from a server side populated redux store.
-              </DescriptionLine>
-            </DescriptionList>
-          </HowTo>
+
           {/* <ListMapContainer>
           <ListContainer>
             <p>Points of Interest</p>
