@@ -11,10 +11,17 @@ import { formatInfiniteQuery, parseFilters } from './utils';
 export const useSearchPage = (filtersState: FilterState[]) => {
   const parsedFiltersState = parseFilters(filtersState);
 
-  const { data, isLoading, isError, refetch, fetchNextPage } = useInfiniteQuery<TrekResults, Error>(
+  const { data, isLoading, isError, refetch, fetchNextPage, hasNextPage } = useInfiniteQuery<
+    TrekResults,
+    Error
+  >(
     ['trekResults', parsedFiltersState],
     ({ pageParam }) => getTrekResults(parsedFiltersState, pageParam),
-    { retry: false, getNextPageParam: lastPageResult => lastPageResult.nextPageId },
+    {
+      retry: false,
+      // hasNextPage will be set to false if getNextPageParam returns undefined
+      getNextPageParam: lastPageResult => lastPageResult.nextPageId ?? undefined,
+    },
   );
 
   /** Used to detect when to load next page */
@@ -23,6 +30,7 @@ export const useSearchPage = (filtersState: FilterState[]) => {
   useIntersectionObserver({
     target: loadNextPageRef,
     onIntersect: fetchNextPage,
+    enabled: hasNextPage,
   });
 
   return { searchResults: formatInfiniteQuery(data), isLoading, isError, refetch, loadNextPageRef };
