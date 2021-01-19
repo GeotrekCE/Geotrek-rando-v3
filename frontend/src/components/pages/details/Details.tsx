@@ -11,12 +11,14 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
   return (
     <Layout>
       <div className="flex flex-1">
-        <div className="flex flex-col desktop:w-3/5">
-          <div className="overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop">
-            <img src={details?.imgUrl} className="bg-cover w-full h-full bg-center" />
-          </div>
+        <div className="flex flex-col w-full desktop:w-3/5">
+          <img
+            src={details?.imgUrl}
+            className="object-cover object-center overflow-hidden
+            h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+          />
           <div
-            className="px-4 py-4 desktop:px-18 desktop:py-0
+            className="px-4 desktop:px-18 desktop:py-0
             desktop:relative desktop:-top-9
             flex flex-col"
           >
@@ -24,9 +26,12 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
               <ActivityLogo src={details?.practice?.pictogram} />
             )}
             <span
-              className="text-primary1 text-mobile-H1 desktop:text-H1 font-bold
-              desktop:mt-12"
+              className="text-Mobile-C2 desktop:text-P1
+              mt-4 desktop:mt-12"
             >
+              {details?.place}
+            </span>
+            <span className="text-primary1 text-mobile-H1 desktop:text-H1 font-bold">
               {details?.title}
             </span>
           </div>
