@@ -6,6 +6,9 @@ export interface RawDetails {
   departure: string;
   thumbnail: Thumbnail;
   practice: number;
+  public_transport: string;
+  access: string;
+  advised_parking: string;
 }
 
 export interface Details {
@@ -13,4 +16,6 @@ export interface Details {
   place: string;
   imgUrl: string;
   practice: Activity;
+  transport: string;
+  access_parking: string;
 }
