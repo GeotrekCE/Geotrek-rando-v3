@@ -11,10 +11,15 @@ import { formatInfiniteQuery, parseFilters } from './utils';
 export const useSearchPage = (filtersState: FilterState[]) => {
   const parsedFiltersState = parseFilters(filtersState);
 
-  const { data, isLoading, isError, refetch, fetchNextPage, hasNextPage } = useInfiniteQuery<
-    TrekResults,
-    Error
-  >(
+  const {
+    data,
+    isLoading,
+    isError,
+    refetch,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery<TrekResults, Error>(
     ['trekResults', parsedFiltersState],
     ({ pageParam }) => getTrekResults(parsedFiltersState, pageParam),
     {
@@ -31,7 +36,15 @@ export const useSearchPage = (filtersState: FilterState[]) => {
     target: loadNextPageRef,
     onIntersect: fetchNextPage,
     enabled: hasNextPage,
+    threshold: 0.1,
   });
 
-  return { searchResults: formatInfiniteQuery(data), isLoading, isError, refetch, loadNextPageRef };
+  return {
+    searchResults: formatInfiniteQuery(data),
+    isLoading,
+    isError,
+    refetch,
+    loadNextPageRef,
+    isFetchingNextPage,
+  };
 };
