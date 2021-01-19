@@ -39,7 +39,9 @@ export const SearchUI: React.FC = () => {
     selectFilter,
   );
 
-  const { searchResults, isLoading, isError, refetch } = useSearchPage(filtersState);
+  const { searchResults, isLoading, isError, refetch, loadNextPageRef } = useSearchPage(
+    filtersState,
+  );
 
   return (
     <>
@@ -106,6 +108,7 @@ export const SearchUI: React.FC = () => {
                       informations={searchResult.informations}
                     />
                   ))}
+                  <div ref={loadNextPageRef}>If you see me next page is loading</div>
                 </>
               )}
             </Loader>
