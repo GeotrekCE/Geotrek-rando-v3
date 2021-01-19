@@ -1,4 +1,11 @@
-import { parseFilter, parseFilters, parseSelectedOptions } from '../utils';
+import { TrekResults } from 'modules/results/interface';
+import {
+  concatResultsPages,
+  formatInfiniteQuery,
+  parseFilter,
+  parseFilters,
+  parseSelectedOptions,
+} from '../utils';
 
 const MockFilterState = {
   id: 'difficulty',
@@ -52,6 +59,41 @@ const MockSelectedOptions = [
   { value: '5', label: 'Très difficile' },
 ];
 
+const mockTrekResult = {
+  id: 2,
+  activityIcon: 'TODO',
+  place: 'Molines-en-Champsaur',
+  title: 'Col de Font Froide',
+  tags: ['Faune', 'Géologie', 'Archéologie et histoire'],
+  thumbnailUri:
+    'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
+  practice: {
+    name: 'Pédestre',
+    pictogram: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg',
+  },
+  informations: {
+    duration: '7h',
+    distance: '15,2km',
+    elevation: '1457m',
+    difficulty: {
+      label: 'Difficile',
+      pictogramUri: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/difficulty-4.svg',
+    },
+    reservationSystem: null,
+  },
+};
+
+const mockInfiniteQueryPage = {
+  resultsNumber: 6,
+  nextPageId: '2',
+  results: [mockTrekResult, mockTrekResult],
+};
+
+const mockInfiniteQueryData = {
+  pageParams: [undefined],
+  pages: [mockInfiniteQueryPage, mockInfiniteQueryPage],
+};
+
 describe('parseSelectedOptions', () => {
   it('should properly transform a selected options array from filterStates', () => {
     const input = MockSelectedOptions;
@@ -91,6 +133,50 @@ describe('parseFilters', () => {
         selectedOptions: ['2', '4'],
       },
     ];
+    expect(output).toStrictEqual(expected);
+  });
+});
+
+describe('concatResultsPages', () => {
+  it('should return null if the pages array is empty', () => {
+    const input: TrekResults[] = [];
+    const output = concatResultsPages(input);
+    const expected = null;
+
+    expect(output).toStrictEqual(expected);
+  });
+
+  it('should concat all results from different pages', () => {
+    const input = [mockInfiniteQueryPage, mockInfiniteQueryPage];
+    const output = concatResultsPages(input);
+    const expected = {
+      resultsNumber: 6,
+      nextPageId: '2',
+      results: [mockTrekResult, mockTrekResult, mockTrekResult, mockTrekResult],
+    };
+
+    expect(output).toStrictEqual(expected);
+  });
+});
+
+describe('formatInfiniteQuery', () => {
+  it('should return null if infiniteQueryData is undefined', () => {
+    const input = undefined;
+    const output = formatInfiniteQuery(input);
+    const expected = null;
+
+    expect(output).toStrictEqual(expected);
+  });
+
+  it('should concat all results from different pages', () => {
+    const input = mockInfiniteQueryData;
+    const output = formatInfiniteQuery(input);
+    const expected = {
+      resultsNumber: 6,
+      nextPageId: '2',
+      results: [mockTrekResult, mockTrekResult, mockTrekResult, mockTrekResult],
+    };
+
     expect(output).toStrictEqual(expected);
   });
 });
