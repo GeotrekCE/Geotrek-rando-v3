@@ -11,11 +11,15 @@ import { formatFiltersToUrlParams } from './utils';
 // TODO it should come from the config
 const resultsNumber = 5;
 
-export const getTrekResults = async (filtersState: QueryFilterState[]): Promise<TrekResults> => {
+export const getTrekResults = async (
+  filtersState: QueryFilterState[],
+  pageNumber = 1,
+): Promise<TrekResults> => {
   const [rawTrekResults, difficulties, themes, activities] = await Promise.all([
     fetchTrekResults({
       language: 'fr',
       page_size: resultsNumber,
+      page: pageNumber,
       ...formatFiltersToUrlParams(filtersState),
     }),
     getDifficulties(),
