@@ -3,6 +3,7 @@ import 'isomorphic-fetch';
 import { render, waitForElementToBeRemoved } from 'services/testing/reactTestingLibraryWrapper';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { getApiUrl } from 'services/envLoader';
+import { setupIntersectionObserverMock } from 'services/testing/utils';
 import { SearchUI } from '../Search';
 
 import {
@@ -46,6 +47,7 @@ describe('Search page', () => {
         fields:
           'id,departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,thumbnail,practice',
         page_size: 5,
+        page: 1,
       },
       times: 2,
     });
@@ -59,6 +61,8 @@ describe('Search page', () => {
     mockRoute({ route: '/route', mockData: mockRouteResponse });
     mockRoute({ route: '/accessibility', mockData: mockAccessibilityResponse });
     mockRoute({ route: '/structure', mockData: mockStructureResponse });
+
+    setupIntersectionObserverMock();
 
     const queryClient = new QueryClient();
 
