@@ -5,7 +5,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
-      desktop: '640px',
+      desktop: '1024px',
     },
     boxShadow: {
       DEFAULT: '0 0 30px 0 rgba(0, 0, 0, 0.15)',
