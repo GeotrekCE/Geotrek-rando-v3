@@ -2,6 +2,10 @@ import { GeotrekAPI } from 'services/api/client';
 import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawListActivity } from './interface';
 
+export const fetchActivity = (query: APIQuery, id: number): Promise<RawListActivity> => {
+  return GeotrekAPI.url(`/practice/${id}/`).query(query).get().json();
+};
+
 export const fetchActivities = (query: APIQuery): Promise<APIResponseForList<RawListActivity>> => {
   return GeotrekAPI.url('/practice').query(query).get().json();
 };
