@@ -38,3 +38,9 @@ export const formatFiltersToUrlParams = (
         : queryParameters,
     {},
   );
+
+/** Extracts nextPageId from nextPageUrl */
+export const extractNextPageId = (nextPageUrl: string): string | undefined => {
+  const regex = /page=[0-9]*/;
+  return regex.exec(nextPageUrl)?.[0].replace('page=', '');
+};

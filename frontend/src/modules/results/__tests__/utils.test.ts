@@ -1,4 +1,9 @@
-import { formatDistance, formatFiltersToUrlParams, formatSelectedFilter } from '../utils';
+import {
+  extractNextPageId,
+  formatDistance,
+  formatFiltersToUrlParams,
+  formatSelectedFilter,
+} from '../utils';
 
 describe('formatDistance', () => {
   it('should add m after distances', () => {
@@ -69,5 +74,31 @@ describe('formFiltersToUrlParams', () => {
     const output = formatFiltersToUrlParams(input);
     const expected = { difficulty2: '1,3,4', difficulty3: '2,4' };
     expect(output).toStrictEqual(expected);
+  });
+});
+
+describe('extractNextPageId', () => {
+  it('should correctly parse next Page urls when page params is surrounded by other params', () => {
+    const input =
+      'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=id%2Cdeparture%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cthumbnail%2Cpractice&language=fr&page=2&page_size=5';
+    const output = extractNextPageId(input);
+    const expected = '2';
+    expect(output).toBe(expected);
+  });
+
+  it('should correctly parse next Page urls when page is the last param', () => {
+    const input =
+      'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=id%2Cdeparture%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cthumbnail%2Cpractice&language=fr&page=5';
+    const output = extractNextPageId(input);
+    const expected = '5';
+    expect(output).toBe(expected);
+  });
+
+  it('should correctly parse next Page urls when page param value has multiple digits', () => {
+    const input =
+      'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=id%2Cdeparture%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cthumbnail%2Cpractice&language=fr&page=910&page_size=5';
+    const output = extractNextPageId(input);
+    const expected = '910';
+    expect(output).toBe(expected);
   });
 });
