@@ -9,7 +9,7 @@ import { css, FlattenSimpleInterpolation } from 'styled-components';
 // This file is where the variables are defined, so we can disable stylelint here
 // stylelint-disable
 
-export const MAX_WIDTH_MOBILE = 640;
+export const MAX_WIDTH_MOBILE = 1024;
 
 export const desktopOnly = (
   cssProperties: FlattenSimpleInterpolation,
