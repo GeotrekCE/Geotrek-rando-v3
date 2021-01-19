@@ -47,5 +47,5 @@ export const extractNextPageId = (nextPageUrl: string | null): string | null => 
   const matches = regex.exec(nextPageUrl);
   if (matches !== null) return matches[0].replace('page=', '');
 
-  return null;
+  throw Error('results adapter could not parse nextPageUrl to extract nextPageId');
 };

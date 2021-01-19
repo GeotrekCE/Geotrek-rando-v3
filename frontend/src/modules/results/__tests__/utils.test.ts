@@ -108,4 +108,8 @@ describe('extractNextPageId', () => {
     const expected = null;
     expect(output).toBe(expected);
   });
+
+  it('should throw an error if it cant find the next page id', () => {
+    expect(() => extractNextPageId('toto')).toThrow();
+  });
 });
