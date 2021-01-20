@@ -9,7 +9,12 @@ export const useFilterMenu = (
   menuState: 'DISPLAYED' | 'HIDDEN';
   displayMenu: () => void;
   hideMenu: () => void;
-  filtersList: { id: string; label: string; onSelect: () => void }[];
+  filtersList: {
+    id: string;
+    label: string;
+    onSelect: () => void;
+    selectedFiltersLabels: string[];
+  }[];
   activeFiltersNumber: number;
 } => {
   const [menuState, setMenuState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
@@ -21,6 +26,7 @@ export const useFilterMenu = (
     id: filterState.id,
     label: intl.formatMessage({ id: filterState.label }),
     onSelect: () => selectFilter(filterState.id),
+    selectedFiltersLabels: filterState.selectedOptions.map(option => option.label),
   }));
 
   const activeFiltersNumber = filtersState.reduce((selectedFiltersNb, currentFilter) => {
