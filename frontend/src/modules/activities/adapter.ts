@@ -1,5 +1,5 @@
 import { Filter } from 'modules/filters/interface';
-import { ActivityChoices, RawListActivity } from './interface';
+import { Activity, ActivityChoices, RawListActivity } from './interface';
 
 export const adaptActivityFilter = (rawActivities: RawListActivity[]): Filter => ({
   id: 'activity',
@@ -7,6 +7,11 @@ export const adaptActivityFilter = (rawActivities: RawListActivity[]): Filter =>
     value: `${rawActivity.id}`,
     label: rawActivity.name,
   })),
+});
+
+export const adaptActivity = (rawActivity: RawListActivity): Activity => ({
+  pictogram: rawActivity.pictogram,
+  name: rawActivity.name,
 });
 
 export const adaptActivities = (rawActivities: RawListActivity[]): ActivityChoices =>

@@ -41,5 +41,9 @@
       "length": "Longueur",
       "structure": "Structures"
     }
+  },
+  "details": {
+    "transport": "Transport",
+    "access_parking": "Accès routiers et parkings"
   }
 }

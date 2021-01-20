@@ -1,4 +1,4 @@
-interface RawActivity {
+export interface RawActivity {
   id: number;
   order: null;
   pictogram: string;

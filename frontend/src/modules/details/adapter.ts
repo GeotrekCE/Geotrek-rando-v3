@@ -1,14 +1,22 @@
-import { ActivityChoices } from 'modules/activities/interface';
+import { Activity } from 'modules/activities/interface';
 import { Details, RawDetails } from './interface';
 
 export const adaptResults = ({
   rawDetails,
-  activities,
+  activity,
 }: {
   rawDetails: RawDetails;
-  activities: ActivityChoices;
-}): Details => ({
-  title: rawDetails.name,
-  imgUrl: rawDetails.thumbnail.url,
-  practice: activities[rawDetails.practice],
-});
+  activity: Activity;
+}): Details => {
+  return {
+    title: rawDetails.name,
+    place: rawDetails.departure,
+    imgUrl: rawDetails.thumbnail.url,
+    practice: activity,
+    transport: rawDetails.public_transport,
+    access_parking:
+      rawDetails.access.length > 0 && rawDetails.advised_parking.length > 0
+        ? `${rawDetails.access}\n${rawDetails.advised_parking}`
+        : `${rawDetails.access}${rawDetails.advised_parking}`,
+  };
+};
