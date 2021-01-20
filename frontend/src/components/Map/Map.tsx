@@ -1,9 +1,8 @@
-import { MapContainer, Marker, Polyline, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import { POIList } from 'domain/POI/POI';
 import { TreksList } from 'domain/Trek/Trek';
 
 import 'leaflet/dist/leaflet.css';
-import { POIIcon } from './POIIcon';
 
 export type PropsType = {
   points?: POIList | null;
@@ -22,7 +21,7 @@ const Map = (props: PropsType) => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {props.points &&
+      {/* {props.points &&
         props.points.length > 0 &&
         props.points.map(point => {
           return (
@@ -51,7 +50,7 @@ const Map = (props: PropsType) => {
               color={'red'}
             />
           );
-        })}
+        })} */}
     </MapContainer>
   );
 };
