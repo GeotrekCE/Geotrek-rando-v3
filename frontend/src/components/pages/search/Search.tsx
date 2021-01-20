@@ -87,7 +87,7 @@ export const SearchUI: React.FC = () => {
               >
                 <div className="flex justify-between items-end">
                   <SearchResultsMeta
-                    resultsNumber={searchResults?.resultsNumber}
+                    resultsNumber={searchResults?.resultsNumber ?? 0}
                     placeName="Val de Gaudemart"
                     placeUrl="/"
                   />
