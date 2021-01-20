@@ -4,11 +4,10 @@ import { routes } from 'services/routes';
 import { desktopOnly, sizes } from 'stylesheet';
 
 import { Link } from 'components/Link';
-import { Display, useHideOnScrollDown } from 'hooks/useHideOnScrollDown';
+import { Display } from 'hooks/useHideOnScrollDown';
 
 import InlineMenu from 'components/InlineMenu';
 import BurgerMenu from '../BurgerMenu';
-import { useHeader } from './useHeader';
 
 interface Props {
   logoPath: string;
@@ -34,8 +33,11 @@ export const Header: React.FC<Props> = ({ logoPath }) => {
     ],
     Langue: ['FR'],
   };
-
-  const headerState = useHideOnScrollDown(sizes.desktopHeader);
+  /**
+   * Disabled for now to handle the map on the search page
+   */
+  // const headerState = useHideOnScrollDown(sizes.desktopHeader);
+  const headerState = 'DISPLAYED';
 
   return (
     <>
