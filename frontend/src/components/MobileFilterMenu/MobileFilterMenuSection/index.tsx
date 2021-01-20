@@ -11,15 +11,21 @@ export const MobileFilterMenuSection: React.FC<Props> = ({
   onClick,
   selectedFiltersLabels,
 }) => {
-  const classNameTitle = 'flex items-center pt-4 pb-4 font-bold outline-none';
+  const classNameTitle = 'pt-4 pb-4 outline-none';
   const classNameBorder = 'border-b pb-2 border-solid border-greySoft';
 
+  const hasSelectedValues = selectedFiltersLabels.length > 0;
+
   return (
-    <div>
-      <span onClick={onClick} className={`${classNameTitle} ${classNameBorder}`}>
+    <div onClick={onClick} className={`${classNameTitle} ${classNameBorder}`}>
+      <div
+        className={`font-bold text-Mobile-C1 ${
+          hasSelectedValues ? 'text-primary1' : 'text-greyDarkColored'
+        }`}
+      >
         {title}
-      </span>
-      <span>{selectedFiltersLabels?.[0]}</span>
+      </div>
+      <div className="mt-2 text-Mobile-C3">{selectedFiltersLabels?.[0]}</div>
     </div>
   );
 };
