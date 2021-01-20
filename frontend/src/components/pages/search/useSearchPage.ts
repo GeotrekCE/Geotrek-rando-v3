@@ -22,6 +22,11 @@ export const useSearchPage = (filtersState: FilterState[]) => {
     ({ pageParam }) => getTrekResults(parsedFiltersState, pageParam),
     {
       retry: false,
+      // We already have a fallback component to allow the user to refetch
+      // Leaving these on induced issues with our refetching only next page strategy
+      // When it refetched on reconnect/focus the infinite scroll then stopped working
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
       // hasNextPage will be set to false if getNextPageParam returns undefined
       getNextPageParam: lastPageResult => lastPageResult.nextPageId ?? undefined,
     },
