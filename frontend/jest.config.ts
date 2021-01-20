@@ -3,7 +3,7 @@ import type { Config } from '@jest/types';
 const TEST_REGEX = '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|js?|tsx?|ts?)$';
 
 const config: Config.InitialOptions = {
-  setupFilesAfterEnv: ['<rootDir>/jestAfterEnv.setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/jestAfterEnv.setup.tsx'],
   testRegex: TEST_REGEX,
   transform: {
     '^.+\\.tsx?$': 'babel-jest',
