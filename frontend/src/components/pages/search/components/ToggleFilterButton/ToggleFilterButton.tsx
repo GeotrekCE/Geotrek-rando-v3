@@ -19,9 +19,9 @@ export const ToggleFilterButton: React.FC<Props> = ({
   return (
     <Button className="flex items-center desktop:hidden" {...nativeButtonProps}>
       {activeFiltersNumber === 0 ? (
-        <Filter size={16} />
+        <Filter size={16} className="mr-2" />
       ) : (
-        <NumberBadge>{activeFiltersNumber}</NumberBadge>
+        <NumberBadge className="mr-1">{activeFiltersNumber}</NumberBadge>
       )}
       <FilterText className="ml-1">
         <FormattedMessage id="search.filter" />
