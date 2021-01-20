@@ -32,7 +32,7 @@ describe('Results Card', () => {
     const component = render(resultCard);
     const links = await component.findAllByTestId(`Link-ResultCard-${id}`);
     links.forEach(link =>
-      expect(link).toHaveAttribute('href', `/details-${id}-${encodeURI(title)}`),
+      expect(link).toHaveAttribute('href', `/details-${id}-Balade-au-pays-des-menhirs`),
     );
   });
 });

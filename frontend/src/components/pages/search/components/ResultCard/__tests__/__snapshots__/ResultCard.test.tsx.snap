@@ -18,7 +18,7 @@ Object {
         <a
           class="Link__StyledLink-oanbk8-0 hVMYzp w-full"
           data-testid="Link-ResultCard-2"
-          href="/details-2-Balade%20au%20pays%20des%20menhirs"
+          href="/details-2-Balade-au-pays-des-menhirs"
         >
           <div
             class="ResultCard__DetailsContainer-sc-1bem01n-2 fUsdSO"
@@ -196,7 +196,7 @@ Object {
       <a
         class="Link__StyledLink-oanbk8-0 hVMYzp w-full"
         data-testid="Link-ResultCard-2"
-        href="/details-2-Balade%20au%20pays%20des%20menhirs"
+        href="/details-2-Balade-au-pays-des-menhirs"
       >
         <div
           class="ResultCard__DetailsContainer-sc-1bem01n-2 fUsdSO"
