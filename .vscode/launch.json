@@ -20,6 +20,7 @@
         "--coverage=false",
         "${fileBasenameNoExtension}"
       ],
+      "env": { "DEBUG": "nock.*" },
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "disableOptimisticBPs": true,
