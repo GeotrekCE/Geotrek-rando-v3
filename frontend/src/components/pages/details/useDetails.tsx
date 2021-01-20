@@ -10,5 +10,6 @@ export const useDetails = (detailsUrl: string | string[] | undefined) => {
   const { data } = useQuery<Details, Error>('details', () => getDetails(id), {
     enabled: isUrlString(detailsUrl),
   });
+
   return { details: data };
 };

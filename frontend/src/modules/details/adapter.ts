@@ -18,5 +18,7 @@ export const adaptResults = ({
       rawDetails.access.length > 0 && rawDetails.advised_parking.length > 0
         ? `${rawDetails.access}\n${rawDetails.advised_parking}`
         : `${rawDetails.access}${rawDetails.advised_parking}`,
+    description_teaser: rawDetails.description_teaser,
+    description: rawDetails.ambiance,
   };
 };

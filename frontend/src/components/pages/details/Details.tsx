@@ -1,20 +1,19 @@
 import { Layout } from 'components/Layout/Layout';
-import { Details } from 'modules/details/interface';
 import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import { DetailsSection } from './components/DetailsSection/DetailsSection';
 import { useDetails } from './useDetails';
+import { checkAndParse } from './utils';
 interface Props {
   detailsId: string | string[] | undefined;
 }
 
-const fieldIsValid = (field: string | undefined): field is string =>
-  field !== undefined && field.length > 0;
-
 export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
   const { details } = useDetails(detailsId);
-  const transport = details?.transport;
-  const access_parking = details?.access_parking;
+  const [hasTransport, transport] = checkAndParse(details, 'transport');
+  const [hasAccess, access] = checkAndParse(details, 'access_parking');
+  const [hasTeaser, description_teaser] = checkAndParse(details, 'description_teaser');
+  const [hasDescription, description] = checkAndParse(details, 'description');
   return (
     <Layout>
       <div className="flex flex-1">
@@ -41,11 +40,21 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
             <span className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold">
               {details?.title}
             </span>
-            {fieldIsValid(transport) && (
-              <DetailsSection titleId="details.transport" text={transport} />
+            <div
+              className="py-4 desktop:py-12
+              border-solid border-greySoft border-b"
+            >
+              {hasTeaser && (
+                <p className="text-Mobile-C1 desktop:text-H4 font-bold">{description_teaser}</p>
+              )}
+              {hasDescription && hasTeaser && <br />}
+              {hasDescription && <p className="text-Mobile-C1 desktop:text-P1">{description}</p>}
+            </div>
+            {hasTransport && (
+              <DetailsSection titleId="details.transport">{transport}</DetailsSection>
             )}
-            {fieldIsValid(access_parking) && (
-              <DetailsSection titleId="details.access_parking" text={access_parking} />
+            {hasAccess && (
+              <DetailsSection titleId="details.access_parking">{access}</DetailsSection>
             )}
           </div>
         </div>

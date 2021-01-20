@@ -18,7 +18,8 @@ describe('Details', () => {
       .get(`/trek/${idToTest}/`)
       .query({
         language: 'fr',
-        fields: 'name,departure,thumbnail,practice,public_transport,access,advised_parking',
+        fields:
+          'name,departure,thumbnail,practice,public_transport,access,advised_parking,description_teaser,ambiance',
       })
       .reply(200, rawDetailsMock);
 
@@ -31,7 +32,7 @@ describe('Details', () => {
 
     const component = render(
       <QueryClientProvider client={queryClient}>
-        <DetailsUI detailsId={`details-${idToTest}-Col de Font Froide`} />
+        <DetailsUI detailsId={`details-${idToTest}-Col-de-Font-Froide`} />
       </QueryClientProvider>,
     );
     await component.findByText(titleToTest);
