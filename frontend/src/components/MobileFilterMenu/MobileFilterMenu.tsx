@@ -1,9 +1,10 @@
 import React from 'react';
 import { slide as Slide } from 'react-burger-menu';
 
-import BurgerMenuSection from 'components/BurgerMenuSection/BurgerMenuSection';
 import { Cross } from 'components/Icons/Cross';
+
 import { CloseButton } from './CloseButton';
+import { MobileFilterMenuSection } from './MobileFilterMenuSection';
 
 interface Props {
   menuState: 'DISPLAYED' | 'HIDDEN';
@@ -41,7 +42,7 @@ export const MobileFilterMenu: React.FC<Props> = ({
         <span>{title}</span>
       </div>
       {filtersList.map(filter => (
-        <BurgerMenuSection title={filter.label} key={filter.id} onClick={filter.onSelect} />
+        <MobileFilterMenuSection title={filter.label} key={filter.id} onClick={filter.onSelect} />
       ))}
     </Slide>
   );
