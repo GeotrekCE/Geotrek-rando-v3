@@ -85,56 +85,53 @@ export const SearchUI: React.FC = () => {
                   zIndex: zIndex.loader,
                 }}
               >
-                {isError ? (
-                  <ErrorFallback refetch={refetch} />
-                ) : (
-                  <>
-                    <div className="flex justify-between items-end">
-                      <SearchResultsMeta
-                        resultsNumber={searchResults?.resultsNumber}
-                        placeName="Val de Gaudemart"
-                        placeUrl="/"
-                      />
-                      <ToggleFilterButton onClick={displayMenu} />
+                <div className="flex justify-between items-end">
+                  <SearchResultsMeta
+                    resultsNumber={searchResults?.resultsNumber}
+                    placeName="Val de Gaudemart"
+                    placeUrl="/"
+                  />
+                  <ToggleFilterButton onClick={displayMenu} />
+                </div>
+                <RankingInfo className="desktop:hidden">
+                  <FormattedMessage id="search.orderedByRelevance" />
+                </RankingInfo>
+
+                <Separator className="w-full mt-6 desktop:block hidden" />
+
+                <OpenMapButton />
+
+                <InfiniteScroll
+                  dataLength={searchResults?.results.length ?? 0}
+                  next={fetchNextPage}
+                  hasMore={hasNextPage ?? false}
+                  loader={
+                    <div className="relative my-10 h-10">
+                      <Loader
+                        loaded={!isFetchingNextPage}
+                        options={{
+                          color: colorPalette.primary1,
+                          zIndex: zIndex.loader,
+                        }}
+                      ></Loader>
                     </div>
-                    <RankingInfo className="desktop:hidden">
-                      <FormattedMessage id="search.orderedByRelevance" />
-                    </RankingInfo>
-
-                    <Separator className="w-full mt-6 desktop:block hidden" />
-
-                    <OpenMapButton />
-
-                    <InfiniteScroll
-                      dataLength={searchResults?.results.length ?? 0}
-                      next={fetchNextPage}
-                      hasMore={hasNextPage ?? false}
-                      loader={
-                        <div className="relative my-10 h-10">
-                          <Loader
-                            loaded={!isFetchingNextPage}
-                            options={{
-                              color: colorPalette.primary1,
-                              zIndex: zIndex.loader,
-                            }}
-                          ></Loader>
-                        </div>
-                      }
-                    >
-                      {searchResults?.results.map(searchResult => (
-                        <ResultCard
-                          key={searchResult.title}
-                          id={searchResult.id}
-                          place={searchResult.place}
-                          title={searchResult.title}
-                          tags={searchResult.tags}
-                          thumbnailUri={searchResult.thumbnailUri}
-                          badgeIconUri={searchResult.practice.pictogram}
-                          informations={searchResult.informations}
-                        />
-                      ))}
-                    </InfiniteScroll>
-                  </>
+                  }
+                >
+                  {searchResults?.results.map(searchResult => (
+                    <ResultCard
+                      key={searchResult.title}
+                      id={searchResult.id}
+                      place={searchResult.place}
+                      title={searchResult.title}
+                      tags={searchResult.tags}
+                      thumbnailUri={searchResult.thumbnailUri}
+                      badgeIconUri={searchResult.practice.pictogram}
+                      informations={searchResult.informations}
+                    />
+                  ))}
+                </InfiniteScroll>
+                {isError && (
+                  <ErrorFallback refetch={searchResults === null ? refetch : fetchNextPage} />
                 )}
               </Loader>
             </div>
