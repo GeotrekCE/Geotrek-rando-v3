@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import Loader from 'react-loader';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { colorPalette, getSpacing, sizes, typography, zIndex } from 'stylesheet';
 
 import { Layout } from 'components/Layout/Layout';
@@ -44,8 +45,9 @@ export const SearchUI: React.FC = () => {
     isLoading,
     isError,
     refetch,
-    loadNextPageRef,
     isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
   } = useSearchPage(filtersState);
 
   return (
@@ -101,30 +103,35 @@ export const SearchUI: React.FC = () => {
 
                   <OpenMapButton />
 
-                  {searchResults?.results.map(searchResult => (
-                    <ResultCard
-                      key={searchResult.title}
-                      id={searchResult.id}
-                      place={searchResult.place}
-                      title={searchResult.title}
-                      tags={searchResult.tags}
-                      thumbnailUri={searchResult.thumbnailUri}
-                      badgeIconUri={searchResult.practice.pictogram}
-                      informations={searchResult.informations}
-                    />
-                  ))}
-
-                  <div className="relative">
-                    <Loader
-                      loaded={!isFetchingNextPage}
-                      options={{
-                        color: colorPalette.primary1,
-                        zIndex: zIndex.loader,
-                      }}
-                    >
-                      <div ref={loadNextPageRef}> </div>
-                    </Loader>
-                  </div>
+                  <InfiniteScroll
+                    dataLength={searchResults?.results.length ?? 0}
+                    next={fetchNextPage}
+                    hasMore={hasNextPage ?? false}
+                    loader={
+                      <div className="relative">
+                        <Loader
+                          loaded={!isFetchingNextPage}
+                          options={{
+                            color: colorPalette.primary1,
+                            zIndex: zIndex.loader,
+                          }}
+                        ></Loader>
+                      </div>
+                    }
+                  >
+                    {searchResults?.results.map(searchResult => (
+                      <ResultCard
+                        key={searchResult.title}
+                        id={searchResult.id}
+                        place={searchResult.place}
+                        title={searchResult.title}
+                        tags={searchResult.tags}
+                        thumbnailUri={searchResult.thumbnailUri}
+                        badgeIconUri={searchResult.practice.pictogram}
+                        informations={searchResult.informations}
+                      />
+                    ))}
+                  </InfiniteScroll>
                 </>
               )}
             </Loader>

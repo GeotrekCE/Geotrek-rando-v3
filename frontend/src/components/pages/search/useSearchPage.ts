@@ -1,7 +1,5 @@
-import { useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
 
-import { useIntersectionObserver } from 'hooks/useIntersectionObserver';
 import { getTrekResults } from 'modules/results/connector';
 import { TrekResults } from 'modules/results/interface';
 import { FilterState } from 'modules/filters/interface';
@@ -29,22 +27,13 @@ export const useSearchPage = (filtersState: FilterState[]) => {
     },
   );
 
-  /** Used to detect when to load next page */
-  const loadNextPageRef = useRef<HTMLDivElement>(null);
-
-  useIntersectionObserver({
-    target: loadNextPageRef,
-    onIntersect: fetchNextPage,
-    enabled: hasNextPage,
-    threshold: 0.1,
-  });
-
   return {
     searchResults: formatInfiniteQuery(data),
     isLoading,
     isError,
     refetch,
-    loadNextPageRef,
     isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
   };
 };
