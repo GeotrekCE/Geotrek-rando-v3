@@ -9,13 +9,19 @@ export interface RawDetails {
   public_transport: string;
   access: string;
   advised_parking: string;
+  description_teaser: string;
+  description: string;
 }
 
-export interface Details {
+export interface DetailsString {
   title: string;
   place: string;
   imgUrl: string;
-  practice: Activity;
   transport: string;
   access_parking: string;
+  description_teaser: string;
+  description: string;
+}
+export interface Details extends DetailsString {
+  practice: Activity;
 }
