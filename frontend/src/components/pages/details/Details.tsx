@@ -3,12 +3,13 @@ import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import { DetailsSection } from './components/DetailsSection/DetailsSection';
 import { useDetails } from './useDetails';
+import { checkAndParse } from './utils';
 interface Props {
   detailsId: string | string[] | undefined;
 }
 
 export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
-  const { details, checkAndParse } = useDetails(detailsId);
+  const { details } = useDetails(detailsId);
   const [hasTransport, transport] = checkAndParse(details, 'transport');
   const [hasAccess, access] = checkAndParse(details, 'access_parking');
   const [hasTeaser, description_teaser] = checkAndParse(details, 'description_teaser');
