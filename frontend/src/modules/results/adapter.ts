@@ -1,8 +1,8 @@
 import { ActivityChoices } from 'modules/activities/interface';
 import { DifficultyChoices } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
-import { RawTrekResults, TrekResults } from './interface';
-import { formatDistance } from './utils';
+import { RawTrekResults, TrekResult, TrekResults } from './interface';
+import { extractNextPageId, formatDistance } from './utils';
 
 const dataUnits = {
   distance: 'm',
@@ -24,7 +24,7 @@ export const adaptTrekResults = ({
   activities: ActivityChoices;
 }): TrekResults => {
   const resultsList = rawTrekResults.results;
-  const adaptedResultsList = resultsList.map(rawResult => ({
+  const adaptedResultsList: TrekResult[] = resultsList.map(rawResult => ({
     id: rawResult.id,
     activityIcon: 'TODO',
     place: rawResult.departure,
@@ -49,6 +49,7 @@ export const adaptTrekResults = ({
 
   return {
     resultsNumber: rawTrekResults.count,
+    nextPageId: extractNextPageId(rawTrekResults.next),
     results: adaptedResultsList,
   };
 };

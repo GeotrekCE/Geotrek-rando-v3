@@ -1,19 +1,39 @@
-import { useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 
 import { getTrekResults } from 'modules/results/connector';
 import { TrekResults } from 'modules/results/interface';
 import { FilterState } from 'modules/filters/interface';
 
-import { parseFilters } from './utils';
+import { formatInfiniteQuery, parseFilters } from './utils';
 
 export const useSearchPage = (filtersState: FilterState[]) => {
   const parsedFiltersState = parseFilters(filtersState);
 
-  const { data: searchResults, isLoading, isError, refetch } = useQuery<TrekResults, Error>(
+  const {
+    data,
+    isLoading,
+    isError,
+    refetch,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery<TrekResults, Error>(
     ['trekResults', parsedFiltersState],
-    () => getTrekResults(parsedFiltersState),
-    { retry: false },
+    ({ pageParam }) => getTrekResults(parsedFiltersState, pageParam),
+    {
+      retry: false,
+      // hasNextPage will be set to false if getNextPageParam returns undefined
+      getNextPageParam: lastPageResult => lastPageResult.nextPageId ?? undefined,
+    },
   );
 
-  return { searchResults, isLoading, isError, refetch };
+  return {
+    searchResults: formatInfiniteQuery(data),
+    isLoading,
+    isError,
+    refetch,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+  };
 };

@@ -2,6 +2,7 @@ import { Activity } from 'modules/activities/interface';
 
 export interface TrekResults {
   resultsNumber: number;
+  nextPageId: string | null;
   results: TrekResult[];
 }
 

@@ -46,6 +46,7 @@ describe('Search page', () => {
         fields:
           'id,departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,thumbnail,practice',
         page_size: 5,
+        page: 1,
       },
       times: 2,
     });

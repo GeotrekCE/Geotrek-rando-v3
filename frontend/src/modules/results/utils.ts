@@ -38,3 +38,14 @@ export const formatFiltersToUrlParams = (
         : queryParameters,
     {},
   );
+
+/** Extracts nextPageId from nextPageUrl */
+export const extractNextPageId = (nextPageUrl: string | null): string | null => {
+  if (nextPageUrl === null) return null;
+
+  const regex = /page=[0-9]*/;
+  const matches = regex.exec(nextPageUrl);
+  if (matches !== null) return matches[0].replace('page=', '');
+
+  throw Error('results adapter could not parse nextPageUrl to extract nextPageId');
+};
