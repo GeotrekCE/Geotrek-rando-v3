@@ -10,6 +10,7 @@ export const useFilterMenu = (
   displayMenu: () => void;
   hideMenu: () => void;
   filtersList: { id: string; label: string; onSelect: () => void }[];
+  activeFiltersNumber: number;
 } => {
   const [menuState, setMenuState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMenu = () => setMenuState('DISPLAYED');
@@ -22,10 +23,16 @@ export const useFilterMenu = (
     onSelect: () => selectFilter(filterState.id),
   }));
 
+  const activeFiltersNumber = filtersState.reduce((selectedFiltersNb, currentFilter) => {
+    if (currentFilter.selectedOptions.length > 0) return selectedFiltersNb + 1;
+    return selectedFiltersNb;
+  }, 0);
+
   return {
     menuState,
     displayMenu,
     hideMenu,
     filtersList,
+    activeFiltersNumber,
   };
 };
