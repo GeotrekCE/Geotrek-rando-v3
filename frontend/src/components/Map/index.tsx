@@ -2,7 +2,10 @@ import dynamic from 'next/dynamic';
 import { POIList } from 'domain/POI/POI';
 import { TreksList } from 'domain/Trek/Trek';
 
-const MapDynamicComponent = (props: { points?: POIList | null; segments?: TreksList | null }) => {
+export const MapDynamicComponent = (props: {
+  points?: POIList | null;
+  segments?: TreksList | null;
+}) => {
   const Map = dynamic(() => import('./Map'), {
     // eslint-disable-next-line react/display-name
     loading: () => <p>Loading a map</p>,
@@ -10,5 +13,3 @@ const MapDynamicComponent = (props: { points?: POIList | null; segments?: TreksL
   });
   return <Map {...props} />;
 };
-
-export default MapDynamicComponent;
