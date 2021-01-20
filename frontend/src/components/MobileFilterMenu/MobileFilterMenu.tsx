@@ -10,7 +10,12 @@ interface Props {
   menuState: 'DISPLAYED' | 'HIDDEN';
   handleClose: () => void;
   title: React.ReactNode;
-  filtersList: { id: string; label: string; onSelect: () => void }[];
+  filtersList: {
+    id: string;
+    label: string;
+    onSelect: () => void;
+    selectedFiltersLabels: string[];
+  }[];
   closeMenu: () => void;
 }
 
@@ -42,7 +47,12 @@ export const MobileFilterMenu: React.FC<Props> = ({
         <span>{title}</span>
       </div>
       {filtersList.map(filter => (
-        <MobileFilterMenuSection title={filter.label} key={filter.id} onClick={filter.onSelect} />
+        <MobileFilterMenuSection
+          title={filter.label}
+          key={filter.id}
+          onClick={filter.onSelect}
+          selectedFiltersLabels={filter.selectedFiltersLabels}
+        />
       ))}
     </Slide>
   );
