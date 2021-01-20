@@ -25,7 +25,13 @@ export const MobileFilterMenuSection: React.FC<Props> = ({
       >
         {title}
       </div>
-      <div className="mt-2 text-Mobile-C3">{selectedFiltersLabels?.[0]}</div>
+      <div
+        className={`text-Mobile-C3 overflow-ellipsis whitespace-nowrap overflow-hidden ${
+          hasSelectedValues ? 'mt-2' : ''
+        }`}
+      >
+        {selectedFiltersLabels.join(', ')}
+      </div>
     </div>
   );
 };
