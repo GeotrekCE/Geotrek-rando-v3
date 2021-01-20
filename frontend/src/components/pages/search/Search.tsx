@@ -36,7 +36,7 @@ export const SearchUI: React.FC = () => {
     deSelectOption,
   } = useFilterSubMenu(filtersState, setFilterSelectedOptions);
 
-  const { menuState, displayMenu, hideMenu, filtersList } = useFilterMenu(
+  const { menuState, displayMenu, hideMenu, filtersList, activeFiltersNumber } = useFilterMenu(
     filtersState,
     selectFilter,
   );
@@ -91,7 +91,10 @@ export const SearchUI: React.FC = () => {
                     placeName="Val de Gaudemart"
                     placeUrl="/"
                   />
-                  <ToggleFilterButton onClick={displayMenu} />
+                  <ToggleFilterButton
+                    onClick={displayMenu}
+                    activeFiltersNumber={activeFiltersNumber}
+                  />
                 </div>
                 <RankingInfo className="desktop:hidden">
                   <FormattedMessage id="search.orderedByRelevance" />
