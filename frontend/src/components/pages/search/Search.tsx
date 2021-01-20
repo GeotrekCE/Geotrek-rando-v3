@@ -106,7 +106,7 @@ export const SearchUI: React.FC = () => {
                   next={fetchNextPage}
                   hasMore={hasNextPage ?? false}
                   loader={
-                    <div className="relative my-10 h-10">
+                    <div className={`relative my-10 ${isFetchingNextPage ? 'h-10' : ''}`}>
                       <Loader
                         loaded={!isFetchingNextPage}
                         options={{
