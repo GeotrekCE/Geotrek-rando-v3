@@ -6,13 +6,23 @@ import { colorPalette, typography } from 'stylesheet';
 import { buttonCssResets } from 'services/cssHelpers';
 
 import { Filter } from 'components/Icons/Filter';
+import { NumberBadge } from '../NumberBadge';
 
-export const ToggleFilterButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  activeFiltersNumber: number;
+}
+
+export const ToggleFilterButton: React.FC<Props> = ({
+  activeFiltersNumber,
   ...nativeButtonProps
 }) => {
   return (
     <Button className="flex items-center desktop:hidden" {...nativeButtonProps}>
-      <Filter size={16} />
+      {activeFiltersNumber === 0 ? (
+        <Filter size={16} className="mr-2" />
+      ) : (
+        <NumberBadge className="mr-1">{activeFiltersNumber}</NumberBadge>
+      )}
       <FilterText className="ml-1">
         <FormattedMessage id="search.filter" />
       </FilterText>

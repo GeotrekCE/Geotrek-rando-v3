@@ -1,0 +1,1 @@
+export { NumberBadge } from './NumberBadge';
