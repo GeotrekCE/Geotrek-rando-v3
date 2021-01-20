@@ -10,7 +10,7 @@ export interface RawDetails {
   access: string;
   advised_parking: string;
   description_teaser: string;
-  description: string;
+  ambiance: string;
 }
 
 export interface DetailsString {

@@ -19,7 +19,7 @@ describe('Details', () => {
       .query({
         language: 'fr',
         fields:
-          'name,departure,thumbnail,practice,public_transport,access,advised_parking,description_teaser,description',
+          'name,departure,thumbnail,practice,public_transport,access,advised_parking,description_teaser,ambiance',
       })
       .reply(200, rawDetailsMock);
 

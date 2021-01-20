@@ -19,6 +19,6 @@ export const adaptResults = ({
         ? `${rawDetails.access}\n${rawDetails.advised_parking}`
         : `${rawDetails.access}${rawDetails.advised_parking}`,
     description_teaser: rawDetails.description_teaser,
-    description: rawDetails.description,
+    description: rawDetails.ambiance,
   };
 };
