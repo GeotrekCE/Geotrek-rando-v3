@@ -23,5 +23,9 @@
   "[json]": {
     "editor.tabSize": 2
   },
-  "eslint.workingDirectories": ["frontend"]
+  "eslint.workingDirectories": [
+    "frontend"
+  ],
+  "jestrunner.jestCommand": "yarn test --watch",
+  "jestrunner.projectPath": "frontend"
 }

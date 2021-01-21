@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "stylelint.vscode-stylelint",
-    "ms-vsliveshare.vsliveshare"
+    "ms-vsliveshare.vsliveshare",
+    "firsttris.vscode-jest-runner"
   ]
 }
