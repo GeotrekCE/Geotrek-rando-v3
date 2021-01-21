@@ -8,9 +8,13 @@ import { Details, RawDetails } from './interface';
 export const adaptResults = ({
   rawDetails,
   activity,
+  difficulty,
+  themes,
 }: {
   rawDetails: RawDetails;
   activity: Activity;
+  difficulty: Difficulty | null;
+  themes: Choices;
 }): Details => {
   return {
     title: rawDetails.name,
@@ -24,5 +28,12 @@ export const adaptResults = ({
         : `${rawDetails.access}${rawDetails.advised_parking}`,
     description_teaser: rawDetails.description_teaser,
     description: rawDetails.ambiance,
+    tags: rawDetails.themes.map(themeId => themes[themeId].label),
+    informations: {
+      duration: rawDetails.duration !== null ? `${rawDetails.duration}${dataUnits.time}` : null,
+      distance: `${formatDistance(rawDetails.length_2d)}`,
+      elevation: `+${rawDetails.ascent}${dataUnits.distance}`,
+      difficulty,
+    },
   };
 };
