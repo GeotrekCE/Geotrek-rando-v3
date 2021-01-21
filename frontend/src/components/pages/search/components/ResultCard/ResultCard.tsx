@@ -20,7 +20,7 @@ import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 
 import { FormattedMessage } from 'react-intl';
-import { LocalIconInformation, RemoteIconInformation } from './Information';
+import { LocalIconInformation, RemoteIconInformation } from 'components/Information';
 import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
 import { useResultCard } from './useResultCard';
 
