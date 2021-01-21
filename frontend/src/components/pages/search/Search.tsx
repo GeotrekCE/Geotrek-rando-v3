@@ -20,7 +20,7 @@ import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
 import { ToggleFilterButton } from './components/ToggleFilterButton';
 import { useFilter } from './components/useFilters';
-import { useSearchPage } from './useSearchPage';
+import { useTrekResults } from './hooks/useTrekResults';
 import { ErrorFallback } from './components/ErrorFallback';
 
 export const SearchUI: React.FC = () => {
@@ -49,7 +49,7 @@ export const SearchUI: React.FC = () => {
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
-  } = useSearchPage(filtersState);
+  } = useTrekResults(filtersState);
 
   return (
     <>
