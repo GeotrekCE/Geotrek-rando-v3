@@ -1,5 +1,6 @@
 import { Thumbnail } from 'modules/results/interface';
 import { Activity } from 'modules/activities/interface';
+import { Difficulty } from 'modules/filters/difficulties/interface';
 
 export interface RawDetails {
   name: string;

@@ -1,4 +1,8 @@
 import { Activity } from 'modules/activities/interface';
+import { Choices } from 'modules/filters/interface';
+import { dataUnits } from 'modules/results/adapter';
+import { Difficulty } from 'modules/filters/difficulties/interface';
+import { formatDistance } from 'modules/results/utils';
 import { Details, RawDetails } from './interface';
 
 export const adaptResults = ({
