@@ -3,3 +3,8 @@ export interface RawTheme {
   label: string;
   pictogram: string;
 }
+
+export interface Theme {
+  value: string;
+  label: string;
+}
