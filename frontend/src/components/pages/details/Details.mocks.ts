@@ -15,6 +15,7 @@ export const rawDetails = {
   practice: 4,
   public_transport:
     'Entre Gap et La Motte-en-Champsaur, possibilit&eacute; de correspondance avec le car Gap-Grenoble.',
+  route: 1,
   themes: [11, 1, 7],
   thumbnail: {
     author: 'Dominique Vincent - PNE',
@@ -37,4 +38,10 @@ export const rawDifficulty = {
   cirkwi_level: 1,
   label: 'Très facile',
   pictogram: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/difficulty-1.svg',
+};
+
+export const rawRoute = {
+  id: 1,
+  pictogram: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/route-loop.svg',
+  route: 'Boucle',
 };
