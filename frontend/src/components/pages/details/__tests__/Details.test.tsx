@@ -3,8 +3,9 @@ import { render } from 'services/testing/reactTestingLibraryWrapper';
 import 'isomorphic-fetch';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { getApiUrl } from 'services/envLoader';
+import { mockThemeResponse } from 'components/pages/search/mocks';
 import { DetailsUI } from '../';
-import { rawActivity, rawDetails as rawDetailsMock } from '../Details.mocks';
+import { rawActivity, rawDetails as rawDetailsMock, rawDifficulty } from '../Details.mocks';
 
 describe('Details', () => {
   const idToTest = 2;
@@ -19,7 +20,7 @@ describe('Details', () => {
       .query({
         language: 'fr',
         fields:
-          'name,departure,thumbnail,practice,public_transport,access,advised_parking,description_teaser,ambiance',
+          'name,departure,thumbnail,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty',
       })
       .reply(200, rawDetailsMock);
 
@@ -29,6 +30,20 @@ describe('Details', () => {
         language: 'fr',
       })
       .reply(200, rawActivity);
+
+    nock(getApiUrl())
+      .get(`/difficulty/${rawDetailsMock.difficulty}/`)
+      .query({
+        language: 'fr',
+      })
+      .reply(200, rawDifficulty);
+
+    nock(getApiUrl())
+      .get(`/theme`)
+      .query({
+        language: 'fr',
+      })
+      .reply(200, mockThemeResponse);
 
     const component = render(
       <QueryClientProvider client={queryClient}>
