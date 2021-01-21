@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { Layout } from 'components/Layout/Layout';
 import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
@@ -12,9 +12,13 @@ import { useHome } from './useHome';
 
 const HomeUI: FunctionComponent = () => {
   const { config, activitySuggestions } = useHome();
+  const intl = useIntl();
   return (
     <div>
-      <PageHead />
+      <PageHead
+        title={intl.formatMessage({ id: 'home.title' })}
+        description={intl.formatMessage({ id: 'home.description' })}
+      />
       <Layout>
         <HomeContainer>
           <TopContainer backgroundUrl={config.pictureAndText.pictureUrl}>

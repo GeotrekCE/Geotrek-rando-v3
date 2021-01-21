@@ -33,7 +33,6 @@ export const Root: FunctionComponent<RootProps> = props => (
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Geotrek-rando" />
-        <meta name="description" content="Geotrek rando" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-TileColor" content="#2B5797" />
