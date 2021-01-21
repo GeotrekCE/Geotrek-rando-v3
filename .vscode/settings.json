@@ -13,7 +13,6 @@
     "source.fixAll.stylelint": false,
     "source.fixAll.eslint": true,
     "editor.formatOnSave": true
-
   },
 
   "[typescript]": {
@@ -23,9 +22,9 @@
   "[json]": {
     "editor.tabSize": 2
   },
-  "eslint.workingDirectories": [
-    "frontend"
-  ],
-  "jestrunner.jestCommand": "yarn test --watch",
-  "jestrunner.projectPath": "frontend"
+  "eslint.workingDirectories": ["frontend"],
+  "jestrunner.jestCommand": "yarn test",
+  "jestrunner.projectPath": "frontend",
+  "jestrunner.runOptions": ["--watch", "--coverage=false"],
+  "jestrunner.jestPath": "node_modules/jest/bin/jest"
 }
