@@ -1,5 +1,7 @@
 import { Thumbnail } from 'modules/results/interface';
 import { Activity } from 'modules/activities/interface';
+import { Difficulty } from 'modules/filters/difficulties/interface';
+import { CourseType } from 'modules/filters/courseType/interface';
 
 export interface RawDetails {
   name: string;
@@ -11,17 +13,36 @@ export interface RawDetails {
   advised_parking: string;
   description_teaser: string;
   ambiance: string;
+  themes: number[];
+  difficulty: number | null;
+  duration: number | null;
+  length_2d: number;
+  ascent: number;
+  route: number;
 }
 
-export interface DetailsString {
-  title: string;
-  place: string;
-  imgUrl: string;
+// Fields parsed with react-html-parser in page
+export interface DetailsHtml {
   transport: string;
   access_parking: string;
   description_teaser: string;
   description: string;
 }
-export interface Details extends DetailsString {
+
+export interface DetailsInformationString {
+  duration: string | null;
+  distance: string;
+  elevation: string;
+}
+export interface DetailsInformation extends DetailsInformationString {
+  difficulty: Difficulty | null;
+  courseType: CourseType | null;
+}
+export interface Details extends DetailsHtml {
   practice: Activity;
+  title: string;
+  place: string;
+  imgUrl: string;
+  tags: string[];
+  informations: DetailsInformation;
 }

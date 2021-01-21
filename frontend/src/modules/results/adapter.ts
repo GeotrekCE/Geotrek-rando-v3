@@ -4,7 +4,7 @@ import { Choices } from 'modules/filters/interface';
 import { RawTrekResults, TrekResult, TrekResults } from './interface';
 import { extractNextPageId, formatDistance } from './utils';
 
-const dataUnits = {
+export const dataUnits = {
   distance: 'm',
   time: 'h',
 };
@@ -35,7 +35,7 @@ export const adaptTrekResults = ({
     informations: {
       duration: rawResult.duration !== null ? `${rawResult.duration}${dataUnits.time}` : null,
       distance: `${formatDistance(rawResult.length_2d)}`,
-      elevation: `${rawResult.ascent}${dataUnits.distance}`,
+      elevation: `+${rawResult.ascent}${dataUnits.distance}`,
       difficulty:
         rawResult.difficulty !== null
           ? {

@@ -74,7 +74,7 @@ const mockTrekResult = {
   informations: {
     duration: '7h',
     distance: '15,2km',
-    elevation: '1457m',
+    elevation: '+1457m',
     difficulty: {
       label: 'Difficile',
       pictogramUri: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/difficulty-4.svg',

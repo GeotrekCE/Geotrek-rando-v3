@@ -4,3 +4,6 @@ import { RawTheme } from './interface';
 
 export const fetchThemes = (query: APIQuery): Promise<APIResponseForList<RawTheme>> =>
   GeotrekAPI.url('/theme').query(query).get().json();
+
+export const fetchTheme = (query: APIQuery, id: number): Promise<RawTheme> =>
+  GeotrekAPI.url(`/theme/${id}`).query(query).get().json();
