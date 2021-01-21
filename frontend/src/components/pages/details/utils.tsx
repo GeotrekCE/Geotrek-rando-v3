@@ -1,18 +1,17 @@
 import styled from 'styled-components';
 import parse from 'html-react-parser';
-import { Details, DetailsHtml, DetailsInformation } from 'modules/details/interface';
+import { Details, DetailsHtml, DetailsInformationString } from 'modules/details/interface';
 import { Difficulty } from 'modules/filters/difficulties/interface';
 
 export const checkInformation = (
   details: Details | undefined,
-  informationField: keyof DetailsInformation,
+  informationField: keyof DetailsInformationString,
 ): [boolean, string | Difficulty] => {
   const isValid =
     details !== undefined &&
     details.informations !== undefined &&
     details.informations[informationField] !== null;
-  const defaultValue = informationField === 'difficulty' ? { label: '', pictogramUri: '' } : '';
-  const content = details?.informations[informationField] ?? defaultValue;
+  const content = details?.informations[informationField] ?? '';
   return [isValid, content];
 };
 

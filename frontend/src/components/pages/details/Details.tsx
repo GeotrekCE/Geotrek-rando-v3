@@ -23,9 +23,12 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
     details !== undefined && details.tags !== undefined && details.tags.length > 0,
     details !== undefined && details.tags !== undefined ? details.tags : [],
   ];
-  const hasDifficulty = checkInformation(details, 'difficulty')[0];
+  const hasDifficulty = !!details?.informations?.difficulty;
   const difficultyIcon = details?.informations?.difficulty?.pictogramUri ?? '';
   const difficultyLabel = details?.informations?.difficulty?.label ?? '';
+  const hasCourseType = !!details?.informations?.courseType;
+  const courseTypeIcon = details?.informations?.courseType?.pictogramUri ?? '';
+  const courseTypeLabel = details?.informations?.courseType?.label ?? '';
   const [hasDuration, duration] = checkInformation(details, 'duration');
   const [hasElevation, elevation] = checkInformation(details, 'elevation');
   const [hasDistance, distance] = checkInformation(details, 'distance');
@@ -85,6 +88,15 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 <LocalIconInformation icon={TrendingUp} className={classNameInformation}>
                   {elevation}
                 </LocalIconInformation>
+              )}
+              {hasCourseType && (
+                <RemoteIconInformation
+                  iconUri={courseTypeIcon}
+                  className={classNameInformation}
+                  color={colorPalette.primary1}
+                >
+                  {courseTypeLabel}
+                </RemoteIconInformation>
               )}
             </div>
             <div
