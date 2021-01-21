@@ -84,7 +84,7 @@ describe('Search page', () => {
       'Difficile',
       '7h',
       '15,2km',
-      '1457m',
+      '+1457m',
     ];
     texts.forEach(textIsPresent);
   });
