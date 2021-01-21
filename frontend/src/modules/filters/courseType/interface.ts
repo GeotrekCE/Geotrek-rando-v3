@@ -3,3 +3,8 @@ export interface RawCourseType {
   pictogram: string;
   route: string;
 }
+
+export interface CourseType {
+  label: string;
+  pictogramUri: string;
+}
