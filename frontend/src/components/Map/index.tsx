@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic';
-import { POIList } from 'domain/POI/POI';
 import { TreksList } from 'domain/Trek/Trek';
+import { MapResults } from 'modules/mapResults/interface';
 
 export const MapDynamicComponent = (props: {
-  points?: POIList | null;
+  points?: MapResults;
   segments?: TreksList | null;
 }) => {
   const Map = dynamic(() => import('./Map'), {

@@ -1,11 +1,14 @@
-import { MapContainer, TileLayer } from 'react-leaflet';
-import { POIList } from 'domain/POI/POI';
+import React from 'react';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+
+import { MapResults } from 'modules/mapResults/interface';
 import { TreksList } from 'domain/Trek/Trek';
+import { POIIcon } from './POIIcon';
 
 import 'leaflet/dist/leaflet.css';
 
 export type PropsType = {
-  points?: POIList | null;
+  points?: MapResults;
   segments?: TreksList | null;
 };
 
@@ -21,6 +24,15 @@ const Map = (props: PropsType) => {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      {props.points !== undefined &&
+        props.points.map(
+          point =>
+            point.location !== null && (
+              <Marker key={point.id} position={[point.location.y, point.location.x]} icon={POIIcon}>
+                <Popup>Id de la rando: {point.id}</Popup>
+              </Marker>
+            ),
+        )}
       {/* {props.points &&
         props.points.length > 0 &&
         props.points.map(point => {

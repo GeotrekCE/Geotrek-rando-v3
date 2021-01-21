@@ -152,7 +152,7 @@ export const SearchUI: React.FC = () => {
             </div>
           </div>
           <div className="w-1/2 z-content mt-filterBar fixed h-full right-0">
-            <MapDynamicComponent />
+            <MapDynamicComponent points={mapResults} />
           </div>
         </div>
       </Layout>
