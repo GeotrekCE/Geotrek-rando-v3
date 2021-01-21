@@ -1,3 +1,5 @@
+import { RawMapResult, RawMapResults } from './interface';
+
 export const formatLocation = (rawLocation: number[] | null): { x: number; y: number } | null =>
   rawLocation === null
     ? null
@@ -10,3 +12,9 @@ export const formatLocation = (rawLocation: number[] | null): { x: number; y: nu
 export const computePageCount = (pageSize: number, resultsCount: number): number => {
   return Math.floor(resultsCount / pageSize) + (resultsCount % pageSize === 0 ? 0 : 1);
 };
+
+export const concatMapResults = (rawMapResults: RawMapResults[]): RawMapResult[] =>
+  rawMapResults.reduce<RawMapResult[]>(
+    (rawResults, currentResult) => [...rawResults, ...currentResult.results],
+    [],
+  );
