@@ -75,7 +75,7 @@ Object {
                     class="flex items-center text-primary1  "
                   >
                     <span
-                      class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
+                      class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
                     />
                   </div>
                   <div
@@ -105,7 +105,7 @@ Object {
                       />
                     </svg>
                     <span
-                      class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
+                      class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
                     >
                       2h
                     </span>
@@ -129,7 +129,7 @@ Object {
                       />
                     </svg>
                     <span
-                      class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
+                      class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
                     >
                       5km
                     </span>
@@ -160,7 +160,7 @@ Object {
                       />
                     </svg>
                     <span
-                      class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
+                      class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
                     >
                       +360m
                     </span>
@@ -253,7 +253,7 @@ Object {
                   class="flex items-center text-primary1  "
                 >
                   <span
-                    class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
+                    class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
                   />
                 </div>
                 <div
@@ -283,7 +283,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
+                    class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
                   >
                     2h
                   </span>
@@ -307,7 +307,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
+                    class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
                   >
                     5km
                   </span>
@@ -338,7 +338,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="BaseInformation__InformationText-sc-1875fg2-0 kJPrHA"
+                    class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
                   >
                     +360m
                   </span>
