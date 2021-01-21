@@ -139,20 +139,11 @@ export const SearchUI: React.FC = () => {
                 {isError && (
                   <ErrorFallback refetch={searchResults === null ? refetch : fetchNextPage} />
                 )}
-                {mapResults !== undefined &&
-                  mapResults.map(mapResult => (
-                    <div key={mapResult.id}>
-                      <div>id: {mapResult.id}</div>
-                      <div>
-                        loc: {mapResult.location?.x} {mapResult.location?.y}
-                      </div>
-                    </div>
-                  ))}
               </Loader>
             </div>
           </div>
           <div className="w-1/2 z-content mt-filterBar fixed h-full right-0">
-            <MapDynamicComponent />
+            <MapDynamicComponent points={mapResults} />
           </div>
         </div>
       </Layout>
