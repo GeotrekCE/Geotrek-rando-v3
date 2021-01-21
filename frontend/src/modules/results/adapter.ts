@@ -4,7 +4,7 @@ import { Choices } from 'modules/filters/interface';
 import { RawTrekResults, TrekResult, TrekResults } from './interface';
 import { extractNextPageId, formatDistance } from './utils';
 
-const dataUnits = {
+export const dataUnits = {
   distance: 'm',
   time: 'h',
 };
