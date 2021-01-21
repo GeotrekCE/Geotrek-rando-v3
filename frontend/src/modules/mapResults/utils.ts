@@ -18,3 +18,8 @@ export const concatMapResults = (rawMapResults: RawMapResults[]): RawMapResult[]
     (rawResults, currentResult) => [...rawResults, ...currentResult.results],
     [],
   );
+
+/** Generates an array with the numbers of the pages in it */
+export const generatePageNumbersArray = (pageSize: number, resultsCount: number): number[] => {
+  return Array.from(Array(computePageCount(pageSize, resultsCount)), (e, i) => i + 1);
+};

@@ -1,4 +1,9 @@
-import { computePageCount, concatMapResults, formatLocation } from '../utils';
+import {
+  computePageCount,
+  concatMapResults,
+  formatLocation,
+  generatePageNumbersArray,
+} from '../utils';
 
 const MockRawMapResults = [
   {
@@ -35,6 +40,17 @@ describe('concatMapResults', () => {
     const input = [MockRawMapResultsResponse, MockRawMapResultsResponse];
     const output = concatMapResults(input);
     const expected = [...MockRawMapResults, ...MockRawMapResults];
+
+    expect(output).toStrictEqual(expected);
+  });
+});
+
+describe('generatePageNumbersArray', () => {
+  it('should generate an array with the right pages numbers', () => {
+    const pageSize = 5;
+    const resultsCount = 15;
+    const output = generatePageNumbersArray(pageSize, resultsCount);
+    const expected = [1, 2, 3];
 
     expect(output).toStrictEqual(expected);
   });
