@@ -3,17 +3,20 @@ import { Choices } from 'modules/filters/interface';
 import { dataUnits } from 'modules/results/adapter';
 import { Difficulty } from 'modules/filters/difficulties/interface';
 import { formatDistance } from 'modules/results/utils';
+import { CourseType } from 'modules/filters/courseType/interface';
 import { Details, RawDetails } from './interface';
 
 export const adaptResults = ({
   rawDetails,
   activity,
   difficulty,
+  courseType,
   themes,
 }: {
   rawDetails: RawDetails;
   activity: Activity;
   difficulty: Difficulty | null;
+  courseType: CourseType | null;
   themes: Choices;
 }): Details => {
   return {
@@ -34,6 +37,7 @@ export const adaptResults = ({
       distance: `${formatDistance(rawDetails.length_2d)}`,
       elevation: `+${rawDetails.ascent}${dataUnits.distance}`,
       difficulty,
+      courseType,
     },
   };
 };
