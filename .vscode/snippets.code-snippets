@@ -1,0 +1,48 @@
+{
+  "Import function to test + add a corresponding describe": {
+    "prefix": "test",
+    "body": [
+      "import { ${2:thingToTest} } from '${1:path}'",
+      "",
+      "describe('${2:thingToTest}', () => {",
+      "  it('should ${3:dowhat}', () => {",
+      "    const input = ${4:input};",
+      "    const output = ${2:thingToTest}(input);",
+      "    const expected = ${5:expected};",
+      "",
+      "    expect(output).toBe(expected);",
+      "  })",
+      "})",
+      ""
+    ],
+    "description": "Create a describe with a first it in it"
+  },
+  "Create a describe with a first it in it": {
+    "prefix": "describe ",
+    "body": [
+      "describe('${1:thingToTest}', () => {",
+      "  it('should ${2:dowhat}', () => {",
+      "    const input = ${3:input};",
+      "    const output = ${1:output}(input);",
+      "    const expected = ${4:expected};",
+      "",
+      "    expect(output).toBe(expected);",
+      "  })",
+      "})"
+    ],
+    "description": "Create a describe with a first it in it"
+  },
+  "Create a it": {
+    "prefix": "it",
+    "body": [
+      "it('should ${1:dowhat}', () => {",
+      "  const input = ${2:input};",
+      "  const output = ${3:thingToTest}(input);",
+      "  const expected = ${4:expected};",
+      "",
+      "  expect(output).toBe(expected);",
+      "})"
+    ],
+    "description": "Create a it"
+  }
+}

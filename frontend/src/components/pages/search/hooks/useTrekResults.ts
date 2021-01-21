@@ -4,9 +4,9 @@ import { getTrekResults } from 'modules/results/connector';
 import { TrekResults } from 'modules/results/interface';
 import { FilterState } from 'modules/filters/interface';
 
-import { formatInfiniteQuery, parseFilters } from './utils';
+import { formatInfiniteQuery, parseFilters } from '../utils';
 
-export const useSearchPage = (filtersState: FilterState[]) => {
+export const useTrekResults = (filtersState: FilterState[]) => {
   const parsedFiltersState = parseFilters(filtersState);
 
   const {
