@@ -1,9 +1,14 @@
 import { Layout } from 'components/Layout/Layout';
+import { Chip } from 'components/Chip';
+import { Clock } from 'components/Icons/Clock';
+import { TrendingUp } from 'components/Icons/TrendingUp';
+import { CodeBrackets } from 'components/Icons/CodeBrackets';
+import { LocalIconInformation, RemoteIconInformation } from 'components/Information';
 import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import { DetailsSection } from './components/DetailsSection/DetailsSection';
 import { useDetails } from './useDetails';
-import { checkAndParse } from './utils';
+import { checkAndParse, checkInformation } from './utils';
 interface Props {
   detailsId: string | string[] | undefined;
 }
@@ -14,6 +19,17 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
   const [hasAccess, access] = checkAndParse(details, 'access_parking');
   const [hasTeaser, description_teaser] = checkAndParse(details, 'description_teaser');
   const [hasDescription, description] = checkAndParse(details, 'description');
+  const [hasTags, tags] = [
+    details !== undefined && details.tags !== undefined && details.tags.length > 0,
+    details !== undefined && details.tags !== undefined ? details.tags : [],
+  ];
+  const hasDifficulty = checkInformation(details, 'difficulty')[0];
+  const difficultyIcon = details?.informations?.difficulty?.pictogramUri ?? '';
+  const difficultyLabel = details?.informations?.difficulty?.label ?? '';
+  const [hasDuration, duration] = checkInformation(details, 'duration');
+  const [hasElevation, elevation] = checkInformation(details, 'elevation');
+  const [hasDistance, distance] = checkInformation(details, 'distance');
+
   return (
     <Layout>
       <div className="flex flex-1">
@@ -40,6 +56,37 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
             <span className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold">
               {details?.title}
             </span>
+            {hasTags && (
+              <div className="flex space-x-2 desktop:space-x-4 flex-wrap">
+                {tags.map(tag => (
+                  <Chip className="mt-4 desktop:mt-6" key={tag}>
+                    {tag}
+                  </Chip>
+                ))}
+              </div>
+            )}
+            <div className="flex flex-wrap">
+              {hasDifficulty && (
+                <RemoteIconInformation iconUri={difficultyIcon} className={classNameInformation}>
+                  {difficultyLabel}
+                </RemoteIconInformation>
+              )}
+              {hasDuration && (
+                <LocalIconInformation icon={Clock} className={classNameInformation}>
+                  {duration}
+                </LocalIconInformation>
+              )}
+              {hasDistance && (
+                <LocalIconInformation icon={CodeBrackets} className={classNameInformation}>
+                  {distance}
+                </LocalIconInformation>
+              )}
+              {hasElevation && (
+                <LocalIconInformation icon={TrendingUp} className={classNameInformation}>
+                  {elevation}
+                </LocalIconInformation>
+              )}
+            </div>
             <div
               className="py-4 desktop:py-12
               border-solid border-greySoft border-b"
@@ -63,6 +110,8 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
     </Layout>
   );
 };
+
+const classNameInformation = 'mr-6 mt-3 desktop:mt-4';
 
 const ActivityLogo: React.FC<{ src: string }> = ({ src }) => (
   <div
