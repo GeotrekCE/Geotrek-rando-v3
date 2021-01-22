@@ -130,7 +130,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
   );
 };
 
-const classNameInformation = 'mr-6 mt-3 desktop:mt-4';
+const classNameInformation = 'mr-6 mt-3 desktop:mt-4 text-primary1';
 
 const ActivityLogo: React.FC<{ src: string }> = ({ src }) => (
   <div
