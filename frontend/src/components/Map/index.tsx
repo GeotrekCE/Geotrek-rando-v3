@@ -5,6 +5,7 @@ import { MapResults } from 'modules/mapResults/interface';
 export const MapDynamicComponent = (props: {
   points?: MapResults;
   segments?: TreksList | null;
+  hideMap?: () => void;
 }) => {
   const Map = dynamic(() => import('./Map'), {
     ssr: false,
