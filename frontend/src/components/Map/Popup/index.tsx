@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Popup as LeafletPopup } from 'react-leaflet';
+import { FormattedMessage } from 'react-intl';
 
 import { desktopOnly, getSpacing } from 'stylesheet';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
@@ -18,7 +19,9 @@ export const Popup: React.FC = () => {
           Balade au pays des menhirs de Brocéliandes avec un titre très long
         </Title>
         <Button className="hidden desktop:block">
-          <span className="text-center w-full">Voir le résultat</span>
+          <span className="text-center w-full">
+            <FormattedMessage id="search.map.seeResult" />
+          </span>
         </Button>
       </div>
     </StyledPopup>
