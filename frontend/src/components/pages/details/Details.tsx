@@ -9,6 +9,7 @@ import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import { DetailsSection } from './components/DetailsSection/DetailsSection';
 import { useDetails } from './useDetails';
 import { checkAndParse, checkInformation } from './utils';
+import { DetailsSteps } from './components/DetailsSteps';
 interface Props {
   detailsId: string | string[] | undefined;
 }
@@ -116,6 +117,30 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
               {hasDescription && hasTeaser && <br />}
               {hasDescription && <p className="text-Mobile-C1 desktop:text-P1">{description}</p>}
             </div>
+            <DetailsSteps
+              steps={[
+                {
+                  title: 'Titre lorem ipsum',
+                  text:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit orci ac faucibus faucibus adipiscing neque. Ornare ultrices ridiculus purus imperdiet ac. In viverra magna quis quis. Erat nisi, viverra bibendum massa. Maecenas amet mollis pretium odio metus sit libero. Scelerisque euismod vel bibendum vel leo fames quis at. Pellentesque in mauris nisl volutpat potenti. ',
+                },
+                {
+                  title: 'Titre lorem ipsum',
+                  text:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit orci ac faucibus faucibus adipiscing neque. Ornare ultrices ridiculus purus imperdiet ac. In viverra magna quis quis. Erat nisi, viendum vel leo fames quis at. Pellentesque in mauris nisl volutpat potenti. ',
+                },
+                {
+                  title: 'Titre lorem ipsum',
+                  text:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit orci ac faucibus faucibus amod vel bibendum vel leo fames quis at. Pellentesque in mauris nisl volutpat potenti. ',
+                },
+                {
+                  title: 'Titre lorem ipsum',
+                  text:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit orci ac faucibus faucibus adipiscing neque. Ornare ultrices ridiculus purus imperdiet ac. In viverra magna quis quis. Erat nisi, viverra bibendum massa. Maecenas amet mollis pretium odio metus sit libero. Scelerisque euismod vel bibendum vel leo fames quis at. Pellentesque in mauris nisl volutpat potenti. ',
+                },
+              ]}
+            />
             {hasTransport && (
               <DetailsSection titleId="details.transport">{transport}</DetailsSection>
             )}
