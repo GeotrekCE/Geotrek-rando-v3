@@ -20,7 +20,9 @@ module.exports = {
       3.5: `${SPACING_UNIT * 3.5}px`,
       4: `${SPACING_UNIT * 4}px`,
       5: `${SPACING_UNIT * 5}px`,
+      5.5: `${SPACING_UNIT * 5.5}px`,
       6: `${SPACING_UNIT * 6}px`,
+      7: `${SPACING_UNIT * 7}px`,
       8: `${SPACING_UNIT * 8}px`,
       9: `${SPACING_UNIT * 9}px`,
       10: `${SPACING_UNIT * 10}px`,
@@ -64,6 +66,9 @@ module.exports = {
       'Mobile-C1-regular': ['0.75rem', '22px'], // 12px
     },
     extend: {
+      borderWidth: {
+        3: '3px',
+      },
       boxShadow: {
         lg: '0 0 30px 0 rgba(0, 0, 0, 0.15)',
         md: '0 0 20px rgba(0, 0, 0, 0.15)',
