@@ -2,6 +2,7 @@ import { Thumbnail } from 'modules/results/interface';
 import { Activity } from 'modules/activities/interface';
 import { Difficulty } from 'modules/filters/difficulties/interface';
 import { CourseType } from 'modules/filters/courseType/interface';
+import { Network } from 'modules/networks/interface';
 
 export interface RawDetails {
   name: string;
@@ -19,6 +20,7 @@ export interface RawDetails {
   length_2d: number;
   ascent: number;
   route: number;
+  networks: number[];
 }
 
 // Fields parsed with react-html-parser in page
@@ -37,6 +39,7 @@ export interface DetailsInformationString {
 export interface DetailsInformation extends DetailsInformationString {
   difficulty: Difficulty | null;
   courseType: CourseType | null;
+  networks: Network[];
 }
 export interface Details extends DetailsHtml {
   practice: Activity;

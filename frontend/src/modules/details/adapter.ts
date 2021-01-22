@@ -4,6 +4,7 @@ import { dataUnits } from 'modules/results/adapter';
 import { Difficulty } from 'modules/filters/difficulties/interface';
 import { formatDistance } from 'modules/results/utils';
 import { CourseType } from 'modules/filters/courseType/interface';
+import { NetworkDictionnary } from 'modules/networks/interface';
 import { Details, RawDetails } from './interface';
 
 export const adaptResults = ({
@@ -11,12 +12,14 @@ export const adaptResults = ({
   activity,
   difficulty,
   courseType,
+  networks,
   themes,
 }: {
   rawDetails: RawDetails;
   activity: Activity;
   difficulty: Difficulty | null;
   courseType: CourseType | null;
+  networks: NetworkDictionnary;
   themes: Choices;
 }): Details => {
   return {
@@ -36,6 +39,7 @@ export const adaptResults = ({
       duration: rawDetails.duration !== null ? `${rawDetails.duration}${dataUnits.time}` : null,
       distance: `${formatDistance(rawDetails.length_2d)}`,
       elevation: `+${rawDetails.ascent}${dataUnits.distance}`,
+      networks: rawDetails.networks.map(networkId => networks[networkId]),
       difficulty,
       courseType,
     },
