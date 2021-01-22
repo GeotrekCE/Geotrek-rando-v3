@@ -44,11 +44,7 @@ const Map: React.FC<PropsType> = props => {
                   position={[point.location.y, point.location.x]}
                   icon={POIIcon}
                 >
-                  <Popup
-                    place="Saint-Etienne-du-Valdonnez"
-                    title="Balade au pays des menhirs de Brocéliandes avec un titre très long"
-                    imageUrl="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/501/019264_hd_1.jpg"
-                  />
+                  <Popup id={point.id} />
                 </Marker>
               ),
           )}
