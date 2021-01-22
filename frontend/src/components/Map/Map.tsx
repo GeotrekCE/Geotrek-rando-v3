@@ -13,10 +13,15 @@ import { MapButton } from './components/MapButton';
 export type PropsType = {
   points?: MapResults;
   segments?: TreksList | null;
-  hideMap: () => void;
+  hideMap?: () => void;
 };
 
 const Map: React.FC<PropsType> = props => {
+  const hideMap = () => {
+    if (props.hideMap) {
+      props.hideMap();
+    }
+  };
   return (
     <>
       <MapContainer
@@ -47,7 +52,7 @@ const Map: React.FC<PropsType> = props => {
               ),
           )}
       </MapContainer>
-      <MapButton icon={<ArrowLeft size={24} />} />
+      <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
     </>
   );
 };
