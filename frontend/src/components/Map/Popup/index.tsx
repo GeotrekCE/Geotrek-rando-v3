@@ -4,6 +4,7 @@ import { Popup as LeafletPopup } from 'react-leaflet';
 
 import { desktopOnly, getSpacing } from 'stylesheet';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
+import { Button as RawButton } from 'components/Button';
 
 export const Popup: React.FC = () => {
   return (
@@ -16,6 +17,9 @@ export const Popup: React.FC = () => {
         <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">
           Balade au pays des menhirs de Brocéliandes avec un titre très long
         </Title>
+        <Button className="hidden desktop:block">
+          <span className="text-center w-full">Voir le résultat</span>
+        </Button>
       </div>
     </StyledPopup>
   );
@@ -25,6 +29,12 @@ const desktopWidth = 288;
 const desktopImgHeight = 122;
 const mobileWidth = 215;
 const mobileImgHeight = 133;
+
+const Button = styled(RawButton)`
+  margin-top: ${getSpacing(4)};
+  width: 100%;
+  text-align: center;
+`;
 
 const Title = styled.span`
   ${textEllipsisAfterNLines(2)}
