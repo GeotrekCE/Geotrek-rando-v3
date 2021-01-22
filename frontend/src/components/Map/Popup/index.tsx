@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Popup as LeafletPopup } from 'react-leaflet';
 import { FormattedMessage } from 'react-intl';
 import Loader from 'react-loader';
 
-import { desktopOnly, getSpacing } from 'stylesheet';
+import { colorPalette, desktopOnly, getSpacing } from 'stylesheet';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import { Button as RawButton } from 'components/Button';
 
@@ -15,11 +15,17 @@ interface Props {
 }
 
 export const Popup: React.FC<Props> = ({ id }) => {
-  const { isLoading, trekPopupResult } = useTrekPopupResult(id.toString());
+  const [shouldFetchData, setShouldFetchData] = useState<boolean>(false);
+  const { isLoading, trekPopupResult } = useTrekPopupResult(id.toString(), shouldFetchData);
 
   return (
-    <StyledPopup closeButton={false}>
-      <Loader loaded={!isLoading}>
+    <StyledPopup closeButton={false} onOpen={() => setShouldFetchData(true)}>
+      <Loader
+        loaded={!isLoading}
+        options={{
+          color: colorPalette.primary1,
+        }}
+      >
         <div className="flex flex-col">
           <CoverImage src={trekPopupResult?.imgUrl} />
           <div className="p-4">
@@ -65,7 +71,11 @@ const Title = styled.span`
 const StyledPopup = styled(LeafletPopup)`
   .leaflet-popup-content {
     margin: 0;
+
+    // Show the loader properly
     position: relative;
+    min-height: 120px;
+    min-width: 120px;
   }
 
   .leaflet-popup-content-wrapper {
