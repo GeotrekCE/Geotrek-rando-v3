@@ -6,9 +6,9 @@ import { Map } from 'components/Icons/Map';
 import { FormattedMessage } from 'react-intl';
 import { useHideOnScrollDown } from 'hooks/useHideOnScrollDown';
 
-export const OpenMapButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
-  ...nativeButtonProps
-}) => {
+export const OpenMapButton: React.FC<
+  React.ButtonHTMLAttributes<HTMLButtonElement> & { displayMap: () => void }
+> = ({ displayMap, ...nativeButtonProps }) => {
   const buttonDisplayState = useHideOnScrollDown();
 
   return (
@@ -17,6 +17,7 @@ export const OpenMapButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElemen
       displayState={buttonDisplayState}
       className="flex desktop:hidden"
       {...nativeButtonProps}
+      onClick={displayMap}
     >
       <FormattedMessage id="search.seeMap" />
       <Map size={24} className="ml-1" />

@@ -50,6 +50,9 @@ export const SearchUI: React.FC = () => {
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
+    mobileMapState,
+    displayMobileMap,
+    hideMobileMap,
   } = useTrekResults(filtersState);
 
   const { mapResults } = useMapResults();
@@ -78,7 +81,7 @@ export const SearchUI: React.FC = () => {
           setFilterSelectedOptions={setFilterSelectedOptions}
         />
         <div className="flex flex-row">
-          <div className="flex flex-col w-1/2">
+          <div className="flex flex-col w-full desktop:w-1/2">
             <div className="p-4 desktop:pt-filterBar desktop:mt-6 relative flex-1">
               <Loader
                 loaded={!isLoading}
@@ -105,7 +108,7 @@ export const SearchUI: React.FC = () => {
 
                 <Separator className="w-full mt-6 desktop:block hidden" />
 
-                <OpenMapButton />
+                <OpenMapButton displayMap={displayMobileMap} />
 
                 <InfiniteScroll
                   dataLength={searchResults?.results.length ?? 0}
@@ -142,11 +145,18 @@ export const SearchUI: React.FC = () => {
               </Loader>
             </div>
           </div>
-          <div className="w-1/2 z-content mt-filterBar fixed h-full right-0">
+
+          <div className="hidden desktop:flex desktop:z-content desktop:h-full desktop:fixed desktop:right-0 desktop:w-1/2 desktop:top-headerAndfilterBar">
             <MapDynamicComponent points={mapResults} />
           </div>
         </div>
       </Layout>
+      <MobileMapContainer
+        className="desktop:hidden fixed right-0 left-0 h-full z-map"
+        displayState={mobileMapState}
+      >
+        <MapDynamicComponent />
+      </MobileMapContainer>
     </>
   );
 };
@@ -160,4 +170,9 @@ const Separator = styled.hr`
 const RankingInfo = styled.div`
   ${typography.small}
   margin-top: ${getSpacing(1)};
+`;
+
+const MobileMapContainer = styled.div<{ displayState: 'DISPLAYED' | 'HIDDEN' }>`
+  transition: top 0.3s ease-in-out 0.1s;
+  top: ${({ displayState }) => (displayState === 'DISPLAYED' ? 0 : 100)}%;
 `;
