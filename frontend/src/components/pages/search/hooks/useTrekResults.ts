@@ -1,4 +1,5 @@
 import { useInfiniteQuery } from 'react-query';
+import { useState } from 'react';
 
 import { getTrekResults } from 'modules/results/connector';
 import { TrekResults } from 'modules/results/interface';
@@ -7,6 +8,10 @@ import { FilterState } from 'modules/filters/interface';
 import { formatInfiniteQuery, parseFilters } from '../utils';
 
 export const useTrekResults = (filtersState: FilterState[]) => {
+  const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
+  const displayMobileMap = () => setMobileMapState('DISPLAYED');
+  const hideMobileMap = () => setMobileMapState('HIDDEN');
+
   const parsedFiltersState = parseFilters(filtersState);
 
   const {
@@ -40,5 +45,8 @@ export const useTrekResults = (filtersState: FilterState[]) => {
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
+    mobileMapState,
+    displayMobileMap,
+    hideMobileMap,
   };
 };
