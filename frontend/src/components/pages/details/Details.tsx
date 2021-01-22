@@ -23,6 +23,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
     details !== undefined && details.tags !== undefined && details.tags.length > 0,
     details !== undefined && details.tags !== undefined ? details.tags : [],
   ];
+  const hasNetworks = details?.informations?.networks;
   const hasDifficulty = !!details?.informations?.difficulty;
   const difficultyIcon = details?.informations?.difficulty?.pictogramUri ?? '';
   const difficultyLabel = details?.informations?.difficulty?.label ?? '';
@@ -90,14 +91,20 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 </LocalIconInformation>
               )}
               {hasCourseType && (
-                <RemoteIconInformation
-                  iconUri={courseTypeIcon}
-                  className={classNameInformation}
-                  color={colorPalette.primary1}
-                >
+                <RemoteIconInformation iconUri={courseTypeIcon} className={classNameInformation}>
                   {courseTypeLabel}
                 </RemoteIconInformation>
               )}
+              {hasNetworks &&
+                details?.informations.networks.map((network, i) => (
+                  <RemoteIconInformation
+                    iconUri={network.pictogramUri}
+                    className={classNameInformation}
+                    key={i}
+                  >
+                    {network.label}
+                  </RemoteIconInformation>
+                ))}
             </div>
             <div
               className="py-4 desktop:py-12

@@ -6,6 +6,7 @@ import { getApiUrl } from 'services/envLoader';
 import { mockThemeResponse } from 'components/pages/search/mocks';
 import { DetailsUI } from '../';
 import {
+  mockNetworksResponse,
   rawActivity,
   rawDetails as rawDetailsMock,
   rawDifficulty,
@@ -25,7 +26,7 @@ describe('Details', () => {
       .query({
         language: 'fr',
         fields:
-          'name,departure,thumbnail,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route',
+          'name,departure,thumbnail,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks',
       })
       .reply(200, rawDetailsMock);
 
@@ -56,6 +57,13 @@ describe('Details', () => {
         language: 'fr',
       })
       .reply(200, mockThemeResponse);
+
+    nock(getApiUrl())
+      .get(`/network`)
+      .query({
+        language: 'fr',
+      })
+      .reply(200, mockNetworksResponse);
 
     const component = render(
       <QueryClientProvider client={queryClient}>
