@@ -10,6 +10,9 @@ export const Popup: React.FC = () => {
     <StyledPopup closeButton={false}>
       <CoverImage src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/501/019264_hd_1.jpg" />
       <div className="p-4">
+        <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:inline">
+          Saint-Etienne-du-Valdonnez
+        </span>
         <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">
           Balade au pays des menhirs de Brocéliandes avec un titre très long
         </Title>
