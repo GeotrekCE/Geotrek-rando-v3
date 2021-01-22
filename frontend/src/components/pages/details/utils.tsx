@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import parse from 'html-react-parser';
 import { Details, DetailsHtml, DetailsInformationString } from 'modules/details/interface';
 import { Difficulty } from 'modules/filters/difficulties/interface';
+import { getSpacing } from 'stylesheet';
 
 export const checkInformation = (
   details: Details | undefined,
@@ -33,10 +34,20 @@ const HtmlText = styled.span`
   & > p > em {
     font-style: italic;
   }
-  & > b {
+  & > strong {
     font-weight: bold;
   }
-  & > p > b {
+  & > p > strong {
     font-weight: bold;
+  }
+  & > ul {
+    margin-top: ${getSpacing(2)};
+    margin-bottom: ${getSpacing(2)};
+  }
+  & > ul > li {
+    padding-left: ${getSpacing(2)};
+    display: list-item;
+    list-style-type: disc;
+    list-style-position: inside;
   }
 `;
