@@ -1,9 +1,10 @@
 import React from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 
 import { MapResults } from 'modules/mapResults/interface';
 import { TreksList } from 'domain/Trek/Trek';
 import { POIIcon } from './POIIcon';
+import { Popup } from './Popup';
 
 import 'leaflet/dist/leaflet.css';
 
@@ -12,7 +13,7 @@ export type PropsType = {
   segments?: TreksList | null;
 };
 
-const Map = (props: PropsType) => {
+const Map: React.FC<PropsType> = props => {
   return (
     <MapContainer
       center={[44.748717, 6.1189669]}
@@ -29,7 +30,7 @@ const Map = (props: PropsType) => {
           point =>
             point.location !== null && (
               <Marker key={point.id} position={[point.location.y, point.location.x]} icon={POIIcon}>
-                <Popup>Id de la rando: {point.id}</Popup>
+                <Popup></Popup>
               </Marker>
             ),
         )}
