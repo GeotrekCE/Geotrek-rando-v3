@@ -12,10 +12,11 @@ export const rawDetails = {
   duration: 7.0,
   length_2d: 15205.4,
   name: 'Col de Font Froide',
+  networks: [6, 2],
   practice: 4,
   public_transport:
     'Entre Gap et La Motte-en-Champsaur, possibilit&eacute; de correspondance avec le car Gap-Grenoble.',
-  route: 1,
+  route: 2,
   themes: [11, 1, 7],
   thumbnail: {
     author: 'Dominique Vincent - PNE',
@@ -44,4 +45,37 @@ export const rawRoute = {
   id: 1,
   pictogram: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/route-loop.svg',
   route: 'Boucle',
+};
+
+export const mockNetworksResponse = {
+  count: 5,
+  next: null,
+  previous: null,
+  results: [
+    {
+      id: 6,
+      label: 'GR',
+      pictogram: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/network-GR.svg',
+    },
+    {
+      id: 3,
+      label: 'GRP',
+      pictogram: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/network-GRP.svg',
+    },
+    {
+      id: 2,
+      label: 'PR',
+      pictogram: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/network-PR.svg',
+    },
+    {
+      id: 5,
+      label: 'Piste équestre',
+      pictogram: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/network-horse.svg',
+    },
+    {
+      id: 4,
+      label: 'VTT',
+      pictogram: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/network-VTT.svg',
+    },
+  ],
 };
