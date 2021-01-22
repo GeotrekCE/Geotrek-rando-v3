@@ -33,6 +33,7 @@ export const StyledButton = styled.button`
 
   ${typography.main}
   color: ${colorPalette.primary1};
+  font-weight: 600;
 
   background-color: ${colorPalette.white};
   transition: background-color 0.3s ease-in-out;

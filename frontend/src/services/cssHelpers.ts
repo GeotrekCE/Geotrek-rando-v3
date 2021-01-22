@@ -33,3 +33,10 @@ export const buttonCssResets = css`
     outline: 0;
   }
 `;
+
+export const textEllipsisAfterNLines = (lines: number): FlattenSimpleInterpolation => css`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: ${lines};
+  overflow: hidden;
+`;

@@ -41,6 +41,9 @@
       "positiveElevation": "Denivelé positif",
       "length": "Longueur",
       "structure": "Structures"
+    },
+    "map": {
+      "seeResult": "Voir le résultat"
     }
   },
   "details": {

@@ -172,7 +172,7 @@ Object {
               class="ResultCard__BookingButtonContainer-sc-1bem01n-4 lbJTDf"
             >
               <button
-                class="Button__StyledButton-sc-1n2k9lu-0 iVmOMb flex items-center "
+                class="Button__StyledButton-sc-1n2k9lu-0 erZiqq flex items-center "
               >
                 Réserver
               </button>
@@ -350,7 +350,7 @@ Object {
             class="ResultCard__BookingButtonContainer-sc-1bem01n-4 lbJTDf"
           >
             <button
-              class="Button__StyledButton-sc-1n2k9lu-0 iVmOMb flex items-center "
+              class="Button__StyledButton-sc-1n2k9lu-0 erZiqq flex items-center "
             >
               Réserver
             </button>
