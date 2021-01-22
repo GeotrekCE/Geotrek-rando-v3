@@ -26,11 +26,17 @@ export const checkAndParse = (
   return [isValid, styledHtmlContent];
 };
 
-const HtmlText = styled.div`
+const HtmlText = styled.span`
   & > em {
     font-style: italic;
   }
   & > p > em {
     font-style: italic;
+  }
+  & > b {
+    font-weight: bold;
+  }
+  & > p > b {
+    font-weight: bold;
   }
 `;
