@@ -7,17 +7,19 @@ import { desktopOnly, getSpacing } from 'stylesheet';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import { Button as RawButton } from 'components/Button';
 
-export const Popup: React.FC = () => {
+interface Props {
+  place: string;
+  title: string;
+  imageUrl: string;
+}
+
+export const Popup: React.FC<Props> = ({ place, title, imageUrl }) => {
   return (
     <StyledPopup closeButton={false}>
-      <CoverImage src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/501/019264_hd_1.jpg" />
+      <CoverImage src={imageUrl} />
       <div className="p-4">
-        <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:inline">
-          Saint-Etienne-du-Valdonnez
-        </span>
-        <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">
-          Balade au pays des menhirs de Brocéliandes avec un titre très long
-        </Title>
+        <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:inline">{place}</span>
+        <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">{title}</Title>
         <Button className="hidden desktop:block">
           <span className="text-center w-full">
             <FormattedMessage id="search.map.seeResult" />
