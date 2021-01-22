@@ -46,6 +46,7 @@ module.exports = {
       floatingButton: 1,
       header: 2,
       sliderMenu: 3,
+      map: 1000,
     },
     fontSize: {
       // [fontSize, lineHeight] // fontSize in px
