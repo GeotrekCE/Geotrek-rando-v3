@@ -47,6 +47,7 @@ module.exports = {
       header: 2,
       sliderMenu: 3,
       map: 1000,
+      mapButton: 1500,
     },
     fontSize: {
       // [fontSize, lineHeight] // fontSize in px
