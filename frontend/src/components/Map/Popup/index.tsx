@@ -1,13 +1,17 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Popup as LeafletPopup } from 'react-leaflet';
+
 import { desktopOnly, getSpacing } from 'stylesheet';
+import { textEllipsisAfterNLines } from 'services/cssHelpers';
 
 export const Popup: React.FC = () => {
   return (
     <StyledPopup closeButton={false}>
       <CoverImage src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/501/019264_hd_1.jpg" />
-      <div>Coucou</div>
+      <div className="p-4 text-Mobile-C1 text-primary1 font-bold">
+        <Title>Balade au pays des menhirs de Brocéliandes avec un titre très long</Title>
+      </div>
     </StyledPopup>
   );
 };
@@ -16,6 +20,10 @@ const desktopWidth = 288;
 const desktopImgHeight = 122;
 const mobileWidth = 215;
 const mobileImgHeight = 133;
+
+const Title = styled.span`
+  ${textEllipsisAfterNLines(2)}
+`;
 
 const StyledPopup = styled(LeafletPopup)`
   .leaflet-popup-content {
