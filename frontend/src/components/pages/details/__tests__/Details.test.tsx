@@ -26,7 +26,7 @@ describe('Details', () => {
       .query({
         language: 'fr',
         fields:
-          'name,departure,thumbnail,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks',
+          'name,departure,thumbnail,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description',
       })
       .reply(200, rawDetailsMock);
 
@@ -72,5 +72,6 @@ describe('Details', () => {
     );
     await component.findByText(titleToTest);
     await component.findByText(placeToTest);
+    await component.findByText('Une autre étape');
   });
 });
