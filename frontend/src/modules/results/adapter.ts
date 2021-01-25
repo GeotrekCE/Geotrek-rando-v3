@@ -9,8 +9,7 @@ export const dataUnits = {
   time: 'h',
 };
 
-const fallbackImgUri =
-  'https://www.ecrins-parcnational.fr/sites/ecrins-parcnational.com/themes/ecrinparcnational/logo.png';
+const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
 
 export const adaptTrekResults = ({
   rawTrekResults,

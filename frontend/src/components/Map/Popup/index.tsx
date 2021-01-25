@@ -1,31 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Popup as LeafletPopup } from 'react-leaflet';
 import { FormattedMessage } from 'react-intl';
+import Loader from 'react-loader';
 
-import { desktopOnly, getSpacing } from 'stylesheet';
+import { colorPalette, desktopOnly, getSpacing } from 'stylesheet';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import { Button as RawButton } from 'components/Button';
 
+import { useTrekPopupResult } from '../hooks/useTrekPopupResult';
+
 interface Props {
-  place: string;
-  title: string;
-  imageUrl: string;
+  id: number;
 }
 
-export const Popup: React.FC<Props> = ({ place, title, imageUrl }) => {
+export const Popup: React.FC<Props> = ({ id }) => {
+  const [shouldFetchData, setShouldFetchData] = useState<boolean>(false);
+  const { isLoading, trekPopupResult } = useTrekPopupResult(id.toString(), shouldFetchData);
+
   return (
-    <StyledPopup closeButton={false}>
-      <CoverImage src={imageUrl} />
-      <div className="p-4">
-        <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:inline">{place}</span>
-        <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">{title}</Title>
-        <Button className="hidden desktop:block">
-          <span className="text-center w-full">
-            <FormattedMessage id="search.map.seeResult" />
-          </span>
-        </Button>
-      </div>
+    <StyledPopup closeButton={false} onOpen={() => setShouldFetchData(true)}>
+      <Loader
+        loaded={!isLoading}
+        options={{
+          color: colorPalette.primary1,
+        }}
+      >
+        <div className="flex flex-col">
+          <CoverImage src={trekPopupResult?.imgUrl} />
+          <div className="p-4">
+            <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:inline">
+              {trekPopupResult?.place}
+            </span>
+            <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">
+              {trekPopupResult?.title}
+            </Title>
+            <Button className="hidden desktop:block">
+              <span className="text-center w-full">
+                <FormattedMessage id="search.map.seeResult" />
+              </span>
+            </Button>
+          </div>
+        </div>
+      </Loader>
     </StyledPopup>
   );
 };
@@ -55,8 +72,10 @@ const StyledPopup = styled(LeafletPopup)`
   .leaflet-popup-content {
     margin: 0;
 
-    display: flex;
-    flex-direction: column;
+    // Show the loader properly
+    position: relative;
+    min-height: 120px;
+    min-width: 120px;
   }
 
   .leaflet-popup-content-wrapper {
