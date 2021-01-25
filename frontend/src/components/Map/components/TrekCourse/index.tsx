@@ -1,6 +1,8 @@
 import React from 'react';
 import { Polyline } from 'react-leaflet';
 
+import { colorPalette } from 'stylesheet';
+
 import { useTrekGeometry } from '../../hooks/useTrekGeometry';
 
 interface TrekCourseProps {
@@ -15,7 +17,7 @@ export const TrekCourse: React.FC<TrekCourseProps> = ({ id }) => {
       {trekGeometry !== undefined && (
         <Polyline
           positions={trekGeometry.geometry.map(coordinates => [coordinates.y, coordinates.x])}
-          color={'red'}
+          color={colorPalette.primary1}
         />
       )}
     </>
