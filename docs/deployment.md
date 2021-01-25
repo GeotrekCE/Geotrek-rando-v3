@@ -40,6 +40,7 @@ On this environment, we deploy the pwa as a regular geotrek-rando administrator 
 
 You need to have docker installed
 You need to have access to the GeotrekCE organization
+You need to have permissions on the packages -> go to [this url](https://github.com/orgs/GeotrekCE/packages/container/geotrek-rando-v3%2Fgeotrek-rando/settings)
 
 ### Build the container
 
