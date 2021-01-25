@@ -8,21 +8,20 @@ import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import { DetailsSection } from './components/DetailsSection/DetailsSection';
 import { useDetails } from './useDetails';
-import { checkAndParseToList, checkAndParseToString, checkInformation } from './utils';
-import { DetailsSteps } from './components/DetailsSteps';
+import { checkAndParseToList, checkAndParseToText, checkInformation } from './utils';
+import { DetailsDescription } from './components/DetailsDescription';
 interface Props {
   detailsId: string | string[] | undefined;
 }
 
 export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
   const { details } = useDetails(detailsId);
-  const [hasTransport, transport] = checkAndParseToString(details, 'transport');
-  const [hasAccess, access] = checkAndParseToString(details, 'access_parking');
-  const [hasTeaser, description_teaser] = checkAndParseToString(details, 'description_teaser');
-  const [hasDescription, description] = checkAndParseToString(details, 'description');
-  const [hasFullDescription, introFullDescription, stepsFullDescription] = checkAndParseToList(
-    details,
-    'description_full',
+  const [hasTransport, transport] = checkAndParseToText(details, 'transport');
+  const [hasAccess, access] = checkAndParseToText(details, 'access_parking');
+  const [hasTeaser, description_teaser] = checkAndParseToText(details, 'description_teaser');
+  const [hasAmbiance, ambiance] = checkAndParseToText(details, 'ambiance');
+  const [hasDescription, introDescription, stepsDescription] = checkAndParseToList(
+    details?.description,
   );
   const [hasTags, tags] = [
     details !== undefined && details.tags !== undefined && details.tags.length > 0,
@@ -118,13 +117,11 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
               {hasTeaser && (
                 <div className="text-Mobile-C1 desktop:text-H4 font-bold">{description_teaser}</div>
               )}
-              {hasDescription && hasTeaser && <br />}
-              {hasDescription && (
-                <div className="text-Mobile-C1 desktop:text-P1">{description}</div>
-              )}
+              {hasAmbiance && hasTeaser && <br />}
+              {hasAmbiance && <div className="text-Mobile-C1 desktop:text-P1">{ambiance}</div>}
             </div>
-            {hasFullDescription && (
-              <DetailsSteps intro={introFullDescription} steps={stepsFullDescription} />
+            {hasDescription && (
+              <DetailsDescription intro={introDescription} steps={stepsDescription} />
             )}
             {hasTransport && (
               <DetailsSection titleId="details.transport">{transport}</DetailsSection>

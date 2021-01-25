@@ -29,8 +29,8 @@ export interface DetailsHtml {
   transport: string;
   access_parking: string;
   description_teaser: string;
+  ambiance: string;
   description: string;
-  description_full: string;
 }
 
 export interface DetailsInformationString {

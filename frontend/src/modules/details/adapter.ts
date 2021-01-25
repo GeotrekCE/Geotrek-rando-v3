@@ -33,8 +33,8 @@ export const adaptResults = ({
         ? `${rawDetails.access}\n${rawDetails.advised_parking}`
         : `${rawDetails.access}${rawDetails.advised_parking}`,
     description_teaser: rawDetails.description_teaser,
-    description: rawDetails.ambiance,
-    description_full: rawDetails.description,
+    ambiance: rawDetails.ambiance,
+    description: rawDetails.description,
     tags: rawDetails.themes.map(themeId => themes[themeId].label),
     informations: {
       duration: rawDetails.duration !== null ? `${rawDetails.duration}${dataUnits.time}` : null,
