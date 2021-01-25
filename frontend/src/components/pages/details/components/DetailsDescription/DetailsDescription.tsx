@@ -13,7 +13,7 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({ steps, i
     border-solid border-greySoft border-b"
     >
       <p className="text-Mobile-H1 desktop:text-H2 font-bold">
-        <FormattedMessage id="details.full_description" />
+        <FormattedMessage id="details.description" />
       </p>
       {intro && <div className="mt-4 desktop:mt-6">{intro}</div>}
       <div className="flex flex-col my-4 desktop:my-6">

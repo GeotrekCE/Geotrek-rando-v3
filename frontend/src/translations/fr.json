@@ -47,8 +47,13 @@
     }
   },
   "details": {
+    "insight": "Aperçu",
+    "poi": "Patrimoines",
+    "description": "Description",
+    "practicalInformations": "Infos pratiques",
+    "accessibility": "Accessibilité",
+    "toSee": "À voir aussi",
     "transport": "Transport",
-    "access_parking": "Accès routiers et parkings",
-    "full_description": "La description"
+    "access_parking": "Accès routiers et parkings"
   }
 }

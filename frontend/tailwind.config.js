@@ -14,6 +14,7 @@ module.exports = {
     spacing: {
       0: '0',
       1: `${SPACING_UNIT}px`,
+      1.5: `${SPACING_UNIT * 1.5}px`,
       2: `${SPACING_UNIT * 2}px`,
       2.5: `${SPACING_UNIT * 2.5}px`,
       3: `${SPACING_UNIT * 3}px`,
@@ -42,6 +43,7 @@ module.exports = {
       activitySearchFilter: '865px',
       coverDetailsDesktop: '550px',
       coverDetailsMobile: '145px',
+      desktopHeader: '96px',
     },
     zIndex: {
       content: 0,
