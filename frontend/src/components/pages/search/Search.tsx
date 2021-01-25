@@ -147,6 +147,7 @@ export const SearchUI: React.FC = () => {
           </div>
 
           <div className="hidden desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-1/2 desktop:top-headerAndFilterBar">
+            <MapDynamicComponent points={mapResults} type="DESKTOP" />
           </div>
         </div>
       </Layout>
@@ -154,7 +155,7 @@ export const SearchUI: React.FC = () => {
         className="desktop:hidden fixed right-0 left-0 h-full z-map"
         displayState={mobileMapState}
       >
-        <MapDynamicComponent hideMap={hideMobileMap} />
+        <MapDynamicComponent hideMap={hideMobileMap} type="MOBILE" />
       </MobileMapContainer>
     </>
   );

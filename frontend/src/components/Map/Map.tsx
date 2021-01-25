@@ -14,6 +14,7 @@ export type PropsType = {
   points?: MapResults;
   segments?: TreksList | null;
   hideMap?: () => void;
+  type: 'DESKTOP' | 'MOBILE';
 };
 
 const Map: React.FC<PropsType> = props => {
@@ -29,7 +30,7 @@ const Map: React.FC<PropsType> = props => {
         zoom={13}
         scrollWheelZoom={false}
         style={{ height: '100%', width: '100%' }}
-        zoomControl={false}
+        zoomControl={props.type === 'DESKTOP'}
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
