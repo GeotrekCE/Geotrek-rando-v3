@@ -89,6 +89,13 @@ const StyledPopup = styled(LeafletPopup)`
       width: ${desktopWidth}px;
     `)};
   }
+
+  // Removes native leaflet popup triangle below the content
+  // https://stackoverflow.com/a/51457598/14707543
+  .leaflet-popup-tip {
+    background: rgba(0, 0, 0, 0) !important;
+    box-shadow: none !important;
+  }
 `;
 
 const CoverImage = styled.img`
