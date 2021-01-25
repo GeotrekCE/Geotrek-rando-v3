@@ -3,7 +3,6 @@ import parse from 'html-react-parser';
 import { Details, DetailsHtml, DetailsInformationString } from 'modules/details/interface';
 import { Difficulty } from 'modules/filters/difficulties/interface';
 import { getSpacing } from 'stylesheet';
-import { ignoredYellowBox } from 'console';
 
 export const checkInformation = (
   details: Details | undefined,
@@ -17,7 +16,7 @@ export const checkInformation = (
   return [isValid, content];
 };
 
-export const checkAndParseToString = (
+export const checkAndParseToText = (
   details: Details | undefined,
   field: keyof DetailsHtml,
 ): [boolean, JSX.Element] => {
@@ -35,14 +34,12 @@ const matchSingle = (regex: RegExp, text: string): string => {
 };
 
 export const checkAndParseToList = (
-  details: Details | undefined,
-  field: keyof DetailsHtml,
+  description?: string,
 ): [boolean, JSX.Element | undefined, JSX.Element[] | undefined] => {
-  const isValid =
-    details !== undefined && details[field] !== undefined && details[field].length > 0;
+  const isValid = description !== undefined && description.length > 0;
   if (!isValid) return [false, undefined, undefined];
 
-  const fullText = details !== undefined ? details[field] : '';
+  const fullText = description ?? '';
 
   let intro = matchSingle(/(.*?)<ol>/, fullText);
   intro = intro.length === 0 ? fullText : intro;
