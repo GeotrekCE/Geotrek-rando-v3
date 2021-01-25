@@ -8,7 +8,7 @@ import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import { DetailsSection } from './components/DetailsSection/DetailsSection';
 import { useDetails } from './useDetails';
-import { checkAndParse, checkInformation } from './utils';
+import { checkAndParseToList, checkAndParseToString, checkInformation } from './utils';
 import { DetailsSteps } from './components/DetailsSteps';
 interface Props {
   detailsId: string | string[] | undefined;
@@ -16,10 +16,14 @@ interface Props {
 
 export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
   const { details } = useDetails(detailsId);
-  const [hasTransport, transport] = checkAndParse(details, 'transport');
-  const [hasAccess, access] = checkAndParse(details, 'access_parking');
-  const [hasTeaser, description_teaser] = checkAndParse(details, 'description_teaser');
-  const [hasDescription, description] = checkAndParse(details, 'description');
+  const [hasTransport, transport] = checkAndParseToString(details, 'transport');
+  const [hasAccess, access] = checkAndParseToString(details, 'access_parking');
+  const [hasTeaser, description_teaser] = checkAndParseToString(details, 'description_teaser');
+  const [hasDescription, description] = checkAndParseToString(details, 'description');
+  const [hasFullDescription, introFullDescription, stepsFullDescription] = checkAndParseToList(
+    details,
+    'description_full',
+  );
   const [hasTags, tags] = [
     details !== undefined && details.tags !== undefined && details.tags.length > 0,
     details !== undefined && details.tags !== undefined ? details.tags : [],
@@ -46,7 +50,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
           />
           <div
             className="px-4 desktop:px-18 desktop:py-0
-            desktop:relative desktop:-top-9 bg-white
+            desktop:relative desktop:-top-9
             flex flex-col"
           >
             {details?.practice?.pictogram !== undefined && (
@@ -112,35 +116,16 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
               border-solid border-greySoft border-b"
             >
               {hasTeaser && (
-                <p className="text-Mobile-C1 desktop:text-H4 font-bold">{description_teaser}</p>
+                <div className="text-Mobile-C1 desktop:text-H4 font-bold">{description_teaser}</div>
               )}
               {hasDescription && hasTeaser && <br />}
-              {hasDescription && <p className="text-Mobile-C1 desktop:text-P1">{description}</p>}
+              {hasDescription && (
+                <div className="text-Mobile-C1 desktop:text-P1">{description}</div>
+              )}
             </div>
-            <DetailsSteps
-              steps={[
-                {
-                  title: 'Titre lorem ipsum',
-                  text:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit orci ac faucibus faucibus adipiscing neque. Ornare ultrices ridiculus purus imperdiet ac. In viverra magna quis quis. Erat nisi, viverra bibendum massa. Maecenas amet mollis pretium odio metus sit libero. Scelerisque euismod vel bibendum vel leo fames quis at. Pellentesque in mauris nisl volutpat potenti. ',
-                },
-                {
-                  title: 'Titre lorem ipsum',
-                  text:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit orci ac faucibus faucibus adipiscing neque. Ornare ultrices ridiculus purus imperdiet ac. In viverra magna quis quis. Erat nisi, viendum vel leo fames quis at. Pellentesque in mauris nisl volutpat potenti. ',
-                },
-                {
-                  title: 'Titre lorem ipsum',
-                  text:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit orci ac faucibus faucibus amod vel bibendum vel leo fames quis at. Pellentesque in mauris nisl volutpat potenti. ',
-                },
-                {
-                  title: 'Titre lorem ipsum',
-                  text:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit orci ac faucibus faucibus adipiscing neque. Ornare ultrices ridiculus purus imperdiet ac. In viverra magna quis quis. Erat nisi, viverra bibendum massa. Maecenas amet mollis pretium odio metus sit libero. Scelerisque euismod vel bibendum vel leo fames quis at. Pellentesque in mauris nisl volutpat potenti. ',
-                },
-              ]}
-            />
+            {hasFullDescription && (
+              <DetailsSteps intro={introFullDescription} steps={stepsFullDescription} />
+            )}
             {hasTransport && (
               <DetailsSection titleId="details.transport">{transport}</DetailsSection>
             )}
