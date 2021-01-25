@@ -5,10 +5,12 @@ import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapResults } from 'modules/mapResults/interface';
 import { TreksList } from 'domain/Trek/Trek';
 import { TrekIcon } from './TrekIcon';
+import { ActiveTrekIcon } from './ActiveTrekIcon';
 import { Popup } from './Popup';
 
 import 'leaflet/dist/leaflet.css';
 import { MapButton } from './components/MapButton';
+import { useSelectedMarker } from './hooks/useSelectedMarker';
 
 export type PropsType = {
   points?: MapResults;
@@ -22,6 +24,9 @@ const Map: React.FC<PropsType> = props => {
       props.hideMap();
     }
   };
+
+  const { isSelectedMarker, setSelectedMarkerId } = useSelectedMarker();
+
   return (
     <>
       <MapContainer
@@ -42,9 +47,9 @@ const Map: React.FC<PropsType> = props => {
                 <Marker
                   key={point.id}
                   position={[point.location.y, point.location.x]}
-                  icon={TrekIcon}
+                  icon={isSelectedMarker(point.id) ? ActiveTrekIcon : TrekIcon}
                 >
-                  <Popup id={point.id} />
+                  <Popup id={point.id} handleOpen={() => setSelectedMarkerId(point.id)} />
                 </Marker>
               ),
           )}

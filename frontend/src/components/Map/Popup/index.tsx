@@ -12,14 +12,22 @@ import { useTrekPopupResult } from '../hooks/useTrekPopupResult';
 
 interface Props {
   id: number;
+  handleOpen: () => void;
 }
 
-export const Popup: React.FC<Props> = ({ id }) => {
+export const Popup: React.FC<Props> = ({ id, handleOpen }) => {
   const [shouldFetchData, setShouldFetchData] = useState<boolean>(false);
   const { isLoading, trekPopupResult } = useTrekPopupResult(id.toString(), shouldFetchData);
 
   return (
-    <StyledPopup closeButton={false} onOpen={() => setShouldFetchData(true)} offset={[0, -12]}>
+    <StyledPopup
+      closeButton={false}
+      onOpen={() => {
+        setShouldFetchData(true);
+        handleOpen();
+      }}
+      offset={[0, -12]}
+    >
       <Loader
         loaded={!isLoading}
         options={{
