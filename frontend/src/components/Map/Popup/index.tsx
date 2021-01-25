@@ -19,7 +19,7 @@ export const Popup: React.FC<Props> = ({ id }) => {
   const { isLoading, trekPopupResult } = useTrekPopupResult(id.toString(), shouldFetchData);
 
   return (
-    <StyledPopup closeButton={false} onOpen={() => setShouldFetchData(true)}>
+    <StyledPopup closeButton={false} onOpen={() => setShouldFetchData(true)} offset={[0, -12]}>
       <Loader
         loaded={!isLoading}
         options={{
