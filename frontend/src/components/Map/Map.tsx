@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, Polyline, TileLayer } from 'react-leaflet';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapResults } from 'modules/mapResults/interface';
@@ -11,6 +11,7 @@ import { Popup } from './components/Popup';
 import 'leaflet/dist/leaflet.css';
 import { MapButton } from './components/MapButton';
 import { useSelectedMarker } from './hooks/useSelectedMarker';
+import { TrekCourse } from './components/TrekCourse';
 
 export type PropsType = {
   points?: MapResults;
@@ -26,7 +27,12 @@ const Map: React.FC<PropsType> = props => {
     }
   };
 
-  const { isSelectedMarker, setSelectedMarkerId, resetSelectedMarker } = useSelectedMarker();
+  const {
+    isSelectedMarker,
+    setSelectedMarkerId,
+    resetSelectedMarker,
+    selectedMarkerId,
+  } = useSelectedMarker();
 
   return (
     <>
@@ -58,6 +64,7 @@ const Map: React.FC<PropsType> = props => {
                 </Marker>
               ),
           )}
+        <TrekCourse id={selectedMarkerId} />
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
     </>
