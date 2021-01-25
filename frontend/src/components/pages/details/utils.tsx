@@ -3,6 +3,7 @@ import parse from 'html-react-parser';
 import { Details, DetailsHtml, DetailsInformationString } from 'modules/details/interface';
 import { Difficulty } from 'modules/filters/difficulties/interface';
 import { getSpacing } from 'stylesheet';
+import { ignoredYellowBox } from 'console';
 
 export const checkInformation = (
   details: Details | undefined,
@@ -16,7 +17,7 @@ export const checkInformation = (
   return [isValid, content];
 };
 
-export const checkAndParse = (
+export const checkAndParseToString = (
   details: Details | undefined,
   field: keyof DetailsHtml,
 ): [boolean, JSX.Element] => {
@@ -27,7 +28,35 @@ export const checkAndParse = (
   return [isValid, styledHtmlContent];
 };
 
-const HtmlText = styled.span`
+const matchSingle = (regex: RegExp, text: string): string => {
+  const reg = RegExp(regex).exec(text);
+  if (reg !== null) return reg[1];
+  return '';
+};
+
+export const checkAndParseToList = (
+  details: Details | undefined,
+  field: keyof DetailsHtml,
+): [boolean, JSX.Element | undefined, JSX.Element[] | undefined] => {
+  const isValid =
+    details !== undefined && details[field] !== undefined && details[field].length > 0;
+  if (!isValid) return [false, undefined, undefined];
+
+  const fullText = details !== undefined ? details[field] : '';
+
+  let intro = matchSingle(/(.*?)<ol>/, fullText);
+  intro = intro.length === 0 ? fullText : intro;
+  const styledIntro = intro.length > 0 ? <HtmlText>{parse(intro)}</HtmlText> : undefined;
+
+  const list = fullText.match(/<li>(.*?)<\/li>/g);
+  const styledList = list
+    ? list?.map((l, i) => <HtmlText key={i}>{parse(matchSingle(/<li>(.*?)<\/li>/, l))}</HtmlText>)
+    : undefined;
+
+  return [isValid, styledIntro, styledList];
+};
+
+const HtmlText = styled.div`
   & > em {
     font-style: italic;
   }
