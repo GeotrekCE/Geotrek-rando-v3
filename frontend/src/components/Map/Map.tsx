@@ -4,7 +4,7 @@ import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapResults } from 'modules/mapResults/interface';
 import { TreksList } from 'domain/Trek/Trek';
-import { POIIcon } from './POIIcon';
+import { TrekIcon } from './TrekIcon';
 import { Popup } from './Popup';
 
 import 'leaflet/dist/leaflet.css';
@@ -42,7 +42,7 @@ const Map: React.FC<PropsType> = props => {
                 <Marker
                   key={point.id}
                   position={[point.location.y, point.location.x]}
-                  icon={POIIcon}
+                  icon={TrekIcon}
                 >
                   <Popup id={point.id} />
                 </Marker>
