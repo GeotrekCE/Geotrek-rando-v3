@@ -48,6 +48,7 @@
   },
   "details": {
     "transport": "Transport",
-    "access_parking": "Accès routiers et parkings"
+    "access_parking": "Accès routiers et parkings",
+    "steps": "Les étapes"
   }
 }
