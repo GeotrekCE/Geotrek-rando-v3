@@ -46,7 +46,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
           />
           <div
             className="px-4 desktop:px-18 desktop:py-0
-            desktop:relative desktop:-top-9
+            desktop:relative desktop:-top-9 bg-white
             flex flex-col"
           >
             {details?.practice?.pictogram !== undefined && (
@@ -62,9 +62,9 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
               {details?.title}
             </span>
             {hasTags && (
-              <div className="flex space-x-2 desktop:space-x-4 flex-wrap">
+              <div className="flex flex-wrap">
                 {tags.map(tag => (
-                  <Chip className="mt-4 desktop:mt-6" key={tag}>
+                  <Chip className="mt-4 desktop:mt-6 mr-2 desktop:mr-4" key={tag}>
                     {tag}
                   </Chip>
                 ))}
