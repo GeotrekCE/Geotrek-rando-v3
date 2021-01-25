@@ -1,8 +1,4 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-
-import { borderRadius, colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
-
 interface Props {
   children: React.ReactNode;
   className?: string;
@@ -10,23 +6,13 @@ interface Props {
 
 export const Chip: React.FC<Props> = ({ className, children }) => {
   return (
-    <ChipContainer className={className}>
+    <div
+      className={`rounded-chip py-1 px-2
+      bg-primary2 text-primary3
+      text-Mobile-C2 desktop:text-P1
+      ${className ?? ''}`}
+    >
       <span>{children}</span>
-    </ChipContainer>
+    </div>
   );
 };
-
-const ChipContainer = styled.div`
-  border-radius: ${borderRadius.chip};
-  padding: ${getSpacing(1)} ${getSpacing(2)};
-
-  background-color: ${colorPalette.primary2};
-
-  ${typography.small}
-
-  ${desktopOnly(css`
-    ${typography.main}
-    color: ${colorPalette.primary3};
-  `)};
-  color: ${colorPalette.primary3};
-`;

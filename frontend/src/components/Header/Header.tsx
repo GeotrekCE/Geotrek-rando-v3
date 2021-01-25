@@ -1,10 +1,7 @@
 import { FormattedMessage } from 'react-intl';
-import styled, { css } from 'styled-components';
 import { routes } from 'services/routes';
-import { desktopOnly, sizes } from 'stylesheet';
 
 import { Link } from 'components/Link';
-import { Display } from 'hooks/useHideOnScrollDown';
 
 import InlineMenu from 'components/InlineMenu';
 import BurgerMenu from '../BurgerMenu';
@@ -47,38 +44,29 @@ export const Header: React.FC<Props> = ({ logoPath }) => {
         title="Menu"
         displayState={headerState}
       />
-      <Container
-        state={headerState}
-        className="h-11 bg-primary1 flex flex-row items-center sticky z-header px-3"
+      <div
+        className={`h-11 desktop:h-desktopHeader sticky z-header
+        ${headerState === 'DISPLAYED' ? 'top-0' : '-top-desktopHeader'} transition-all duration-300
+        bg-primary1
+        flex items-center px-3`}
       >
-        <div className="flex-shrink-0">
-          <Link href={routes.HOME}>
-            <img className="h-9 desktop:h-18 mr-3" alt="logo" src={logoPath} />
-          </Link>
-        </div>
-        <p
-          className="
-          flex-auto text-white
-          desktop:text-H2 desktop:leading-8
-          font-semibold desktop:font-bold"
-        >
-          <FormattedMessage id={'home.title'} />
-        </p>
+        <Link href={routes.HOME} className="flex items-center flex-auto">
+          <img className="h-9 desktop:h-18 mr-3" alt="logo" src={logoPath} />
+          <p
+            className="
+              flex-auto text-white
+              desktop:text-H2 desktop:leading-8
+              font-semibold desktop:font-bold"
+          >
+            <FormattedMessage id={'home.title'} />
+          </p>
+        </Link>
         <InlineMenu
           className="hidden desktop:flex items-center flex-auto justify-between"
           sections={sectionsDesktop}
           subSections={subSections}
         />
-      </Container>
+      </div>
     </>
   );
 };
-
-const Container = styled.div<{ state: Display }>`
-  ${desktopOnly(css`
-    height: ${sizes.desktopHeader}px;
-  `)}
-
-  transition: top 0.3s ease-in-out 0.1s;
-  top: ${({ state }) => (state === 'DISPLAYED' ? 0 : -sizes.desktopHeader)}px;
-`;

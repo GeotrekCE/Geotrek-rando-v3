@@ -1,7 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
-import { colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
 
 import { Link } from 'components/Link';
 
@@ -16,35 +14,25 @@ export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber, placeName, p
   return (
     <div className="flex">
       <div>
-        <Illustration className="hidden desktop:block" src="images/little-forest.png" />
+        <img className="hidden desktop:block h-16 w-16" src="images/little-forest.png" />
       </div>
 
       <div className="desktop:ml-6">
-        <ResultsNumber>
+        <div className="text-Mobile-H1 desktop:text-H2 font-bold">
           <FormattedMessage values={{ count: resultsNumber }} id="search.resultsFound" />
-        </ResultsNumber>
-        <SearchInfo className="hidden desktop:inline">
-          <FormattedMessage id="search.forThe" /> <Link href={placeUrl}>{placeName}</Link>
-        </SearchInfo>
+        </div>
+        <div className="hidden desktop:inline">
+          <FormattedMessage id="search.forThe" />
+          <Link
+            className="text-primary1 hover:text-primary3
+            ml-1
+            cursor-pointer transition-all duration-300"
+            href={placeUrl}
+          >
+            {placeName}
+          </Link>
+        </div>
       </div>
     </div>
   );
 };
-
-const Illustration = styled.img`
-  height: ${getSpacing(16)};
-  width: ${getSpacing(16)};
-`;
-
-const ResultsNumber = styled.div`
-  ${typography.h1};
-  color: ${colorPalette.darkPurple};
-
-  ${desktopOnly(css`
-    ${typography.h2}
-  `)}
-`;
-
-const SearchInfo = styled.span`
-  ${typography.main};
-`;

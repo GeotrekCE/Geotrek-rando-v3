@@ -1,15 +1,4 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-
-import {
-  borderRadius,
-  colorPalette,
-  desktopOnly,
-  getSpacing,
-  shadow,
-  typography,
-} from 'stylesheet';
-import { flexGap } from 'services/cssHelpers';
 
 import { Chip } from 'components/Chip';
 import { Button } from 'components/Button';
@@ -51,190 +40,76 @@ export const ResultCard: React.FC<Props> = ({
 }) => {
   const { detailsPageUrl } = useResultCard(id, title);
   return (
-    <Container>
-      <ImageContainer imageUri={thumbnailUri}>
-        <ActivityBadge iconUri={badgeIconUri} />
-      </ImageContainer>
+    <Link
+      href={detailsPageUrl}
+      testId={`Link-ResultCard-${id}`}
+      className="flex flex-col desktop:flex-row
+      my-4 desktop:my-6
+      desktop:h-50
+      rounded-resultCard overflow-hidden
+      border border-greySoft border-solid
+      cursor-pointer hover:shadow-sm transition-all"
+    >
+      <div className="relative flex-none desktop:w-2/5">
+        <img
+          src={thumbnailUri}
+          className="object-cover object-center h-30 desktop:h-full w-full bg-primary2"
+        />
+        <RawActivityBadge className="absolute top-4 left-4 bg-primary1" iconUri={badgeIconUri} />
+      </div>
 
-      <Link href={detailsPageUrl} testId={`Link-ResultCard-${id}`} className="w-full">
-        <DetailsContainer>
-          <DetailsLayout>
-            <Place>{place}</Place>
-
-            <Title>{title}</Title>
-
-            <TagContainer>
-              <TagLayout>
-                {tags.map(tag => (
-                  <Chip key={tag}>{tag}</Chip>
-                ))}
-              </TagLayout>
-            </TagContainer>
-
-            <InformationContainer>
-              <InformationLayout>
-                {informations.difficulty !== null && (
-                  <RemoteIconInformation iconUri={informations.difficulty.pictogramUri}>
-                    {informations.difficulty.label}
-                  </RemoteIconInformation>
-                )}
-                {informations.duration !== null && (
-                  <LocalIconInformation icon={Clock}>{informations.duration}</LocalIconInformation>
-                )}
-                <LocalIconInformation icon={CodeBrackets}>
-                  {informations.distance}
-                </LocalIconInformation>
-                <LocalIconInformation icon={TrendingUp} className="desktop:flex hidden">
-                  {informations.elevation}
-                </LocalIconInformation>
-              </InformationLayout>
-            </InformationContainer>
-          </DetailsLayout>
-
+      <div className="flex flex-col p-4 desktop:p-6 w-full overflow-auto">
+        <div className="flex justify-between">
+          <span className="text-Mobile-C2 desktop:text-P1 truncate">{place}</span>
           {informations.reservationSystem !== null && (
-            <BookingButtonContainer>
-              <Button>
+            <div className="ml-4 hidden desktop:block">
+              <Button className="h-9">
                 <FormattedMessage id="search.book" />
               </Button>
-            </BookingButtonContainer>
+            </div>
           )}
-        </DetailsContainer>
-      </Link>
-    </Container>
+        </div>
+        <span
+          className={`text-Mobile-H1 desktop:H4 text-primary1 font-bold truncate ${
+            informations.reservationSystem !== null ? 'desktop:relative -top-2' : ''
+          }`}
+        >
+          {title}
+        </span>
+        <div className="flex flex-wrap">
+          {tags.map(tag => (
+            <Chip className="mt-2 desktop:mt-4 mr-2 desktop:mr-4" key={tag}>
+              {tag}
+            </Chip>
+          ))}
+        </div>
+        <div className="flex flex-wrap">
+          {informations.difficulty !== null && (
+            <RemoteIconInformation
+              iconUri={informations.difficulty.pictogramUri}
+              className={informationClassName}
+            >
+              {informations.difficulty.label}
+            </RemoteIconInformation>
+          )}
+          {informations.duration !== null && (
+            <LocalIconInformation icon={Clock} className={informationClassName}>
+              {informations.duration}
+            </LocalIconInformation>
+          )}
+          <LocalIconInformation icon={CodeBrackets} className={informationClassName}>
+            {informations.distance}
+          </LocalIconInformation>
+          <LocalIconInformation
+            icon={TrendingUp}
+            className={`${informationClassName} desktop:flex hidden`}
+          >
+            {informations.elevation}
+          </LocalIconInformation>
+        </div>
+      </div>
+    </Link>
   );
 };
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  margin: ${getSpacing(4)} 0;
-  &:hover {
-    box-shadow: ${shadow.small};
-  }
-  border-radius: ${borderRadius.card};
-  overflow: hidden;
-
-  ${desktopOnly(
-    css`
-      width: 100%;
-      flex-direction: row;
-      margin: ${getSpacing(6)} 0;
-    `,
-  )}
-`;
-
-const ImageContainer = styled.div<{ imageUri: string }>`
-  height: ${getSpacing(31)};
-  width: 100%;
-
-  background-image: url(${({ imageUri }) => imageUri});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-color: black;
-
-  position: relative;
-
-  ${desktopOnly(
-    css`
-      height: auto;
-      max-width: ${getSpacing(56)};
-    `,
-  )}
-`;
-
-const DetailsContainer = styled.div`
-  display: flex;
-  width: 100%;
-
-  padding: ${getSpacing(4)};
-
-  border: 1px solid ${colorPalette.greySoft};
-  border-top: none;
-  border-radius: 0 0 ${borderRadius.card} ${borderRadius.card};
-
-  ${desktopOnly(
-    css`
-      padding: ${getSpacing(6)};
-
-      border: 1px solid ${colorPalette.greySoft};
-      border-left: none;
-      border-radius: 0 ${borderRadius.card} ${borderRadius.card} 0;
-    `,
-  )}
-`;
-
-const DetailsLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
-const BookingButtonContainer = styled.div`
-  margin-left: ${getSpacing(4)};
-  display: none;
-
-  ${desktopOnly(
-    css`
-      display: block;
-    `,
-  )}
-`;
-
-const Place = styled.span`
-  ${typography.small}
-`;
-
-const Title = styled.span`
-  margin-top: ${getSpacing(1)};
-
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-
-  ${typography.h1}
-  color: ${colorPalette.primary1};
-
-  ${desktopOnly(
-    css`
-      text-overflow: clip;
-      white-space: normal;
-    `,
-  )}
-`;
-
-const TagContainer = styled.div`
-  display: flex;
-  margin-top: ${getSpacing(2)};
-
-  ${desktopOnly(
-    css`
-      margin-top: ${getSpacing(4)};
-    `,
-  )}
-`;
-
-const TagLayout = styled.div`
-  ${flexGap(getSpacing(2))}
-
-  ${desktopOnly(
-    css`
-      ${flexGap(getSpacing(4))}
-    `,
-  )}
-`;
-
-const InformationContainer = styled.div`
-  margin-top: ${getSpacing(4)};
-`;
-
-const InformationLayout = styled.div`
-  ${flexGap(getSpacing(4))}
-`;
-
-const ActivityBadge = styled(RawActivityBadge)`
-  position: absolute;
-  top: ${getSpacing(4)};
-  left: ${getSpacing(4)};
-`;
+const informationClassName = 'mr-6 mt-3 desktop:mt-4 text-primary1';

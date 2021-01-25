@@ -106,8 +106,6 @@ export const SearchUI: React.FC = () => {
                   <FormattedMessage id="search.orderedByRelevance" />
                 </RankingInfo>
 
-                <Separator className="w-full mt-6 desktop:block hidden" />
-
                 <OpenMapButton displayMap={displayMobileMap} />
 
                 <InfiniteScroll
@@ -162,12 +160,6 @@ export const SearchUI: React.FC = () => {
     </>
   );
 };
-
-const Separator = styled.hr`
-  background-color: ${colorPalette.greySoft};
-  height: 1px;
-  border: 0;
-`;
 
 const RankingInfo = styled.div`
   ${typography.small}

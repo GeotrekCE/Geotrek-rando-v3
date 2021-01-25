@@ -17,26 +17,20 @@ export const ToggleFilterButton: React.FC<Props> = ({
   ...nativeButtonProps
 }) => {
   return (
-    <Button className="flex items-center desktop:hidden" {...nativeButtonProps}>
+    <button
+      className="flex items-center desktop:hidden text-primary1
+      hover:text-primary1-light transition-all duration-300
+      focus:outline-none"
+      {...nativeButtonProps}
+    >
       {activeFiltersNumber === 0 ? (
         <Filter size={16} className="mr-2" />
       ) : (
         <NumberBadge className="mr-1">{activeFiltersNumber}</NumberBadge>
       )}
-      <FilterText className="ml-1">
+      <span className="ml-1 font-bold">
         <FormattedMessage id="search.filter" />
-      </FilterText>
-    </Button>
+      </span>
+    </button>
   );
 };
-
-const Button = styled.button`
-  ${buttonCssResets}
-  color: ${colorPalette.primary1};
-`;
-
-const FilterText = styled.span`
-  ${typography.main};
-  ${typography.bold};
-  color: ${colorPalette.primary1};
-`;
