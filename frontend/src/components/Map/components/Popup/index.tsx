@@ -8,7 +8,7 @@ import { colorPalette, desktopOnly, getSpacing } from 'stylesheet';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import { Button as RawButton } from 'components/Button';
 
-import { useTrekPopupResult } from '../hooks/useTrekPopupResult';
+import { useTrekPopupResult } from '../../hooks/useTrekPopupResult';
 
 interface Props {
   id: number;

@@ -6,7 +6,7 @@ import { MapResults } from 'modules/mapResults/interface';
 import { TreksList } from 'domain/Trek/Trek';
 import { TrekIcon } from './TrekIcon';
 import { ActiveTrekIcon } from './ActiveTrekIcon';
-import { Popup } from './Popup';
+import { Popup } from './components/Popup';
 
 import 'leaflet/dist/leaflet.css';
 import { MapButton } from './components/MapButton';
