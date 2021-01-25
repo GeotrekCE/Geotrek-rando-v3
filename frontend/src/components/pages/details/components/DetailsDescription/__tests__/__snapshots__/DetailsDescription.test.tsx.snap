@@ -11,7 +11,7 @@ Object {
         <p
           class="text-Mobile-H1 desktop:text-H2 font-bold"
         >
-          La description
+          Description
         </p>
         <div
           class="mt-4 desktop:mt-6"
@@ -103,7 +103,7 @@ Object {
       <p
         class="text-Mobile-H1 desktop:text-H2 font-bold"
       >
-        La description
+        Description
       </p>
       <div
         class="mt-4 desktop:mt-6"
