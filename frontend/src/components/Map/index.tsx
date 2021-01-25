@@ -6,6 +6,7 @@ export const MapDynamicComponent = (props: {
   points?: MapResults;
   segments?: TreksList | null;
   hideMap?: () => void;
+  type: 'DESKTOP' | 'MOBILE';
 }) => {
   const Map = dynamic(() => import('./Map'), {
     ssr: false,
