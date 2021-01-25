@@ -16,7 +16,7 @@ export const checkInformation = (
   return [isValid, content];
 };
 
-export const checkAndParse = (
+export const checkAndParseToText = (
   details: Details | undefined,
   field: keyof DetailsHtml,
 ): [boolean, JSX.Element] => {
@@ -27,7 +27,33 @@ export const checkAndParse = (
   return [isValid, styledHtmlContent];
 };
 
-const HtmlText = styled.span`
+const matchSingle = (regex: RegExp, text: string): string => {
+  const reg = RegExp(regex).exec(text);
+  if (reg !== null) return reg[1];
+  return '';
+};
+
+export const checkAndParseToList = (
+  description?: string,
+): [boolean, JSX.Element | undefined, JSX.Element[] | undefined] => {
+  const isValid = description !== undefined && description.length > 0;
+  if (!isValid) return [false, undefined, undefined];
+
+  const fullText = description ?? '';
+
+  let intro = matchSingle(/(.*?)<ol>/, fullText);
+  intro = intro.length === 0 ? fullText : intro;
+  const styledIntro = intro.length > 0 ? <HtmlText>{parse(intro)}</HtmlText> : undefined;
+
+  const list = fullText.match(/<li>(.*?)<\/li>/g);
+  const styledList = list
+    ? list?.map((l, i) => <HtmlText key={i}>{parse(matchSingle(/<li>(.*?)<\/li>/, l))}</HtmlText>)
+    : undefined;
+
+  return [isValid, styledIntro, styledList];
+};
+
+const HtmlText = styled.div`
   & > em {
     font-style: italic;
   }

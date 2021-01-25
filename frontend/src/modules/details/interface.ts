@@ -21,6 +21,7 @@ export interface RawDetails {
   ascent: number;
   route: number;
   networks: number[];
+  description: string;
 }
 
 // Fields parsed with react-html-parser in page
@@ -28,6 +29,7 @@ export interface DetailsHtml {
   transport: string;
   access_parking: string;
   description_teaser: string;
+  ambiance: string;
   description: string;
 }
 

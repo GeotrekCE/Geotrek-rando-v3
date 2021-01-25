@@ -44,5 +44,23 @@
       "})"
     ],
     "description": "Create a it"
+  },
+  "Create a functionnal component": {
+    "prefix": "fc",
+    "body": [
+      "interface  ${1}Props {",
+      " $2",
+      "}",
+      "",
+      "export const $1: React.FC<${1}Props>:( { $3 } ) => {",
+      "  return($4);",
+      "}"
+    ],
+    "description": "Create a functionnal component with props"
+  },
+  "Create index": {
+    "prefix": "ifc",
+    "body": ["export { $1 } from './$1';"],
+    "description": "Create index for FC export"
   }
 }

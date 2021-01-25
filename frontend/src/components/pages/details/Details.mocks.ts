@@ -8,6 +8,8 @@ export const rawDetails = {
   departure: 'Molines-en-Champsaur',
   description_teaser:
     'A partir du hameau patrimonial de Molines cette randonn&eacute;e alpine permet de d&eacute;couvrir le glacier rocheux de Font Froide.',
+  description:
+    'Test introduction<br /><ol>\r\n<li>Une étape</li>\r\n<li>Une autre étape</li>\r\n<li>Pour finir</li>\r\n</ol>',
   difficulty: 4,
   duration: 7.0,
   length_2d: 15205.4,

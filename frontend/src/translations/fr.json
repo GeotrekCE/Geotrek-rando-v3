@@ -49,6 +49,6 @@
   "details": {
     "transport": "Transport",
     "access_parking": "Accès routiers et parkings",
-    "steps": "Les étapes"
+    "full_description": "La description"
   }
 }

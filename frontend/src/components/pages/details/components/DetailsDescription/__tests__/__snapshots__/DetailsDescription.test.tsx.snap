@@ -1,0 +1,242 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailsDescription should display a well parsed description Element 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="flex flex-col pt-6 desktop:pt-12 border-solid border-greySoft border-b"
+      >
+        <p
+          class="text-Mobile-H1 desktop:text-H2 font-bold"
+        >
+          La description
+        </p>
+        <div
+          class="mt-4 desktop:mt-6"
+        >
+          <div
+            class="utils__HtmlText-sc-16l79i-0 eKOoYs"
+          >
+            Test introduction
+            <br />
+          </div>
+        </div>
+        <div
+          class="flex flex-col my-4 desktop:my-6"
+        >
+          <div>
+            <div
+              class="h-8 w-8 desktop:h-12 desktop:w-12 rounded-full flex items-center justify-center border-solid border-primary1 border-3 text-P1 desktop:text-H4 font-bold text-primary1 shadow-md"
+            >
+              1
+            </div>
+            <div
+              class="border-solid border-primary1 border-l-3
+              ml-3.5 desktop:ml-5.5
+              pl-8 desktop:pl-12"
+            >
+              <div
+                class="relative -top-7 desktop:-top-9"
+              >
+                <div
+                  class="utils__HtmlText-sc-16l79i-0 eKOoYs"
+                >
+                  Une étape
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div
+              class="h-8 w-8 desktop:h-12 desktop:w-12 rounded-full flex items-center justify-center border-solid border-primary1 border-3 text-P1 desktop:text-H4 font-bold text-primary1 shadow-md"
+            >
+              2
+            </div>
+            <div
+              class="border-solid border-primary1 border-l-3
+              ml-3.5 desktop:ml-5.5
+              pl-8 desktop:pl-12"
+            >
+              <div
+                class="relative -top-7 desktop:-top-9"
+              >
+                <div
+                  class="utils__HtmlText-sc-16l79i-0 eKOoYs"
+                >
+                  Une autre étape
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div
+              class="h-8 w-8 desktop:h-12 desktop:w-12 rounded-full flex items-center justify-center border-solid border-primary1 border-3 text-P1 desktop:text-H4 font-bold text-primary1 shadow-md"
+            >
+              3
+            </div>
+            <div
+              class="
+              ml-3.5 desktop:ml-5.5
+              pl-8 desktop:pl-12"
+            >
+              <div
+                class="relative -top-7 desktop:-top-9"
+              >
+                <div
+                  class="utils__HtmlText-sc-16l79i-0 eKOoYs"
+                >
+                  Pour finir
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="flex flex-col pt-6 desktop:pt-12 border-solid border-greySoft border-b"
+    >
+      <p
+        class="text-Mobile-H1 desktop:text-H2 font-bold"
+      >
+        La description
+      </p>
+      <div
+        class="mt-4 desktop:mt-6"
+      >
+        <div
+          class="utils__HtmlText-sc-16l79i-0 eKOoYs"
+        >
+          Test introduction
+          <br />
+        </div>
+      </div>
+      <div
+        class="flex flex-col my-4 desktop:my-6"
+      >
+        <div>
+          <div
+            class="h-8 w-8 desktop:h-12 desktop:w-12 rounded-full flex items-center justify-center border-solid border-primary1 border-3 text-P1 desktop:text-H4 font-bold text-primary1 shadow-md"
+          >
+            1
+          </div>
+          <div
+            class="border-solid border-primary1 border-l-3
+              ml-3.5 desktop:ml-5.5
+              pl-8 desktop:pl-12"
+          >
+            <div
+              class="relative -top-7 desktop:-top-9"
+            >
+              <div
+                class="utils__HtmlText-sc-16l79i-0 eKOoYs"
+              >
+                Une étape
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            class="h-8 w-8 desktop:h-12 desktop:w-12 rounded-full flex items-center justify-center border-solid border-primary1 border-3 text-P1 desktop:text-H4 font-bold text-primary1 shadow-md"
+          >
+            2
+          </div>
+          <div
+            class="border-solid border-primary1 border-l-3
+              ml-3.5 desktop:ml-5.5
+              pl-8 desktop:pl-12"
+          >
+            <div
+              class="relative -top-7 desktop:-top-9"
+            >
+              <div
+                class="utils__HtmlText-sc-16l79i-0 eKOoYs"
+              >
+                Une autre étape
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            class="h-8 w-8 desktop:h-12 desktop:w-12 rounded-full flex items-center justify-center border-solid border-primary1 border-3 text-P1 desktop:text-H4 font-bold text-primary1 shadow-md"
+          >
+            3
+          </div>
+          <div
+            class="
+              ml-3.5 desktop:ml-5.5
+              pl-8 desktop:pl-12"
+          >
+            <div
+              class="relative -top-7 desktop:-top-9"
+            >
+              <div
+                class="utils__HtmlText-sc-16l79i-0 eKOoYs"
+              >
+                Pour finir
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

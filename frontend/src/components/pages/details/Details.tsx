@@ -8,18 +8,21 @@ import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import { DetailsSection } from './components/DetailsSection/DetailsSection';
 import { useDetails } from './useDetails';
-import { checkAndParse, checkInformation } from './utils';
-import { DetailsSteps } from './components/DetailsSteps';
+import { checkAndParseToList, checkAndParseToText, checkInformation } from './utils';
+import { DetailsDescription } from './components/DetailsDescription';
 interface Props {
   detailsId: string | string[] | undefined;
 }
 
 export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
   const { details } = useDetails(detailsId);
-  const [hasTransport, transport] = checkAndParse(details, 'transport');
-  const [hasAccess, access] = checkAndParse(details, 'access_parking');
-  const [hasTeaser, description_teaser] = checkAndParse(details, 'description_teaser');
-  const [hasDescription, description] = checkAndParse(details, 'description');
+  const [hasTransport, transport] = checkAndParseToText(details, 'transport');
+  const [hasAccess, access] = checkAndParseToText(details, 'access_parking');
+  const [hasTeaser, description_teaser] = checkAndParseToText(details, 'description_teaser');
+  const [hasAmbiance, ambiance] = checkAndParseToText(details, 'ambiance');
+  const [hasDescription, introDescription, stepsDescription] = checkAndParseToList(
+    details?.description,
+  );
   const [hasTags, tags] = [
     details !== undefined && details.tags !== undefined && details.tags.length > 0,
     details !== undefined && details.tags !== undefined ? details.tags : [],
@@ -62,9 +65,9 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
               {details?.title}
             </span>
             {hasTags && (
-              <div className="flex space-x-2 desktop:space-x-4 flex-wrap">
+              <div className="flex flex-wrap">
                 {tags.map(tag => (
-                  <Chip className="mt-4 desktop:mt-6" key={tag}>
+                  <Chip className="mt-4 desktop:mt-6 mr-2 desktop:mr-4" key={tag}>
                     {tag}
                   </Chip>
                 ))}
@@ -112,35 +115,14 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
               border-solid border-greySoft border-b"
             >
               {hasTeaser && (
-                <p className="text-Mobile-C1 desktop:text-H4 font-bold">{description_teaser}</p>
+                <div className="text-Mobile-C1 desktop:text-H4 font-bold">{description_teaser}</div>
               )}
-              {hasDescription && hasTeaser && <br />}
-              {hasDescription && <p className="text-Mobile-C1 desktop:text-P1">{description}</p>}
+              {hasAmbiance && hasTeaser && <br />}
+              {hasAmbiance && <div className="text-Mobile-C1 desktop:text-P1">{ambiance}</div>}
             </div>
-            <DetailsSteps
-              steps={[
-                {
-                  title: 'Titre lorem ipsum',
-                  text:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit orci ac faucibus faucibus adipiscing neque. Ornare ultrices ridiculus purus imperdiet ac. In viverra magna quis quis. Erat nisi, viverra bibendum massa. Maecenas amet mollis pretium odio metus sit libero. Scelerisque euismod vel bibendum vel leo fames quis at. Pellentesque in mauris nisl volutpat potenti. ',
-                },
-                {
-                  title: 'Titre lorem ipsum',
-                  text:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit orci ac faucibus faucibus adipiscing neque. Ornare ultrices ridiculus purus imperdiet ac. In viverra magna quis quis. Erat nisi, viendum vel leo fames quis at. Pellentesque in mauris nisl volutpat potenti. ',
-                },
-                {
-                  title: 'Titre lorem ipsum',
-                  text:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit orci ac faucibus faucibus amod vel bibendum vel leo fames quis at. Pellentesque in mauris nisl volutpat potenti. ',
-                },
-                {
-                  title: 'Titre lorem ipsum',
-                  text:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit orci ac faucibus faucibus adipiscing neque. Ornare ultrices ridiculus purus imperdiet ac. In viverra magna quis quis. Erat nisi, viverra bibendum massa. Maecenas amet mollis pretium odio metus sit libero. Scelerisque euismod vel bibendum vel leo fames quis at. Pellentesque in mauris nisl volutpat potenti. ',
-                },
-              ]}
-            />
+            {hasDescription && (
+              <DetailsDescription intro={introDescription} steps={stepsDescription} />
+            )}
             {hasTransport && (
               <DetailsSection titleId="details.transport">{transport}</DetailsSection>
             )}
