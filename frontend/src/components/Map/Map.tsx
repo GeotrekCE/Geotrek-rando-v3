@@ -4,8 +4,8 @@ import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapResults } from 'modules/mapResults/interface';
 import { TreksList } from 'domain/Trek/Trek';
-import { TrekIcon } from './TrekIcon';
-import { ActiveTrekIcon } from './ActiveTrekIcon';
+import { TrekIcon } from './Markers/TrekIcon';
+import { ActiveTrekIcon } from './Markers/ActiveTrekIcon';
 import { Popup } from './components/Popup';
 
 import 'leaflet/dist/leaflet.css';
