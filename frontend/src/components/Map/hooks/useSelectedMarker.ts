@@ -6,5 +6,5 @@ export const useSelectedMarker = () => {
   const isSelectedMarker = (markerId: number): boolean => selectedMarkerId === markerId;
   const resetSelectedMarker = () => setSelectedMarkerId(null);
 
-  return { isSelectedMarker, setSelectedMarkerId, resetSelectedMarker };
+  return { isSelectedMarker, setSelectedMarkerId, resetSelectedMarker, selectedMarkerId };
 };
