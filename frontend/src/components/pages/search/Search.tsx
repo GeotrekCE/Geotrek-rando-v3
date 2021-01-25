@@ -152,7 +152,9 @@ export const SearchUI: React.FC = () => {
         </div>
       </Layout>
       <MobileMapContainer
-        className="desktop:hidden fixed right-0 left-0 h-full z-map"
+        className={`desktop:hidden fixed right-0 left-0 h-full z-map ${
+          mobileMapState === 'HIDDEN' ? 'hidden' : 'flex'
+        }`}
         displayState={mobileMapState}
       >
         <MapDynamicComponent hideMap={hideMobileMap} type="MOBILE" />
