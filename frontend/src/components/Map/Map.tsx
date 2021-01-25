@@ -4,8 +4,8 @@ import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapResults } from 'modules/mapResults/interface';
 import { TreksList } from 'domain/Trek/Trek';
-import { TrekIcon } from './Markers/TrekIcon';
-import { ActiveTrekIcon } from './Markers/ActiveTrekIcon';
+import { TrekMarker } from './Markers/TrekMarker';
+import { ActiveTrekMarker } from './Markers/ActiveTrekMarker';
 import { Popup } from './components/Popup';
 
 import 'leaflet/dist/leaflet.css';
@@ -47,7 +47,7 @@ const Map: React.FC<PropsType> = props => {
                 <Marker
                   key={point.id}
                   position={[point.location.y, point.location.x]}
-                  icon={isSelectedMarker(point.id) ? ActiveTrekIcon : TrekIcon}
+                  icon={isSelectedMarker(point.id) ? ActiveTrekMarker : TrekMarker}
                 >
                   <Popup
                     id={point.id}
