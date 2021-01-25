@@ -4,11 +4,13 @@ import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapResults } from 'modules/mapResults/interface';
 import { TreksList } from 'domain/Trek/Trek';
-import { POIIcon } from './POIIcon';
-import { Popup } from './Popup';
+import { TrekMarker } from './Markers/TrekMarker';
+import { ActiveTrekMarker } from './Markers/ActiveTrekMarker';
+import { Popup } from './components/Popup';
 
 import 'leaflet/dist/leaflet.css';
 import { MapButton } from './components/MapButton';
+import { useSelectedMarker } from './hooks/useSelectedMarker';
 
 export type PropsType = {
   points?: MapResults;
@@ -23,6 +25,9 @@ const Map: React.FC<PropsType> = props => {
       props.hideMap();
     }
   };
+
+  const { isSelectedMarker, setSelectedMarkerId, resetSelectedMarker } = useSelectedMarker();
+
   return (
     <>
       <MapContainer
@@ -43,9 +48,13 @@ const Map: React.FC<PropsType> = props => {
                 <Marker
                   key={point.id}
                   position={[point.location.y, point.location.x]}
-                  icon={POIIcon}
+                  icon={isSelectedMarker(point.id) ? ActiveTrekMarker : TrekMarker}
                 >
-                  <Popup id={point.id} />
+                  <Popup
+                    id={point.id}
+                    handleOpen={() => setSelectedMarkerId(point.id)}
+                    handleClose={resetSelectedMarker}
+                  />
                 </Marker>
               ),
           )}

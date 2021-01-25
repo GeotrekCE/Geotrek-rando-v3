@@ -8,18 +8,28 @@ import { colorPalette, desktopOnly, getSpacing } from 'stylesheet';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import { Button as RawButton } from 'components/Button';
 
-import { useTrekPopupResult } from '../hooks/useTrekPopupResult';
+import { useTrekPopupResult } from '../../hooks/useTrekPopupResult';
 
 interface Props {
   id: number;
+  handleOpen: () => void;
+  handleClose: () => void;
 }
 
-export const Popup: React.FC<Props> = ({ id }) => {
+export const Popup: React.FC<Props> = ({ id, handleOpen, handleClose }) => {
   const [shouldFetchData, setShouldFetchData] = useState<boolean>(false);
   const { isLoading, trekPopupResult } = useTrekPopupResult(id.toString(), shouldFetchData);
 
   return (
-    <StyledPopup closeButton={false} onOpen={() => setShouldFetchData(true)}>
+    <StyledPopup
+      closeButton={false}
+      onOpen={() => {
+        setShouldFetchData(true);
+        handleOpen();
+      }}
+      onClose={handleClose}
+      offset={[0, -12]}
+    >
       <Loader
         loaded={!isLoading}
         options={{
@@ -88,6 +98,13 @@ const StyledPopup = styled(LeafletPopup)`
     ${desktopOnly(css`
       width: ${desktopWidth}px;
     `)};
+  }
+
+  // Removes native leaflet popup triangle below the content
+  // https://stackoverflow.com/a/51457598/14707543
+  .leaflet-popup-tip {
+    background: rgba(0, 0, 0, 0) !important;
+    box-shadow: none !important;
   }
 `;
 

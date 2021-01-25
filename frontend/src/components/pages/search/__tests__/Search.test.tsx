@@ -1,8 +1,11 @@
-import nock from 'nock';
 import 'isomorphic-fetch';
-import { render, waitForElementToBeRemoved } from 'services/testing/reactTestingLibraryWrapper';
+import nock from 'nock';
 import { QueryClient, QueryClientProvider } from 'react-query';
+
+import { render, waitForElementToBeRemoved } from 'services/testing/reactTestingLibraryWrapper';
 import { getApiUrl } from 'services/envLoader';
+import { mockResultsRoute } from 'modules/results/mocks';
+
 import { SearchUI } from '../Search';
 
 import {
@@ -39,17 +42,7 @@ const mockRoute = ({
 describe('Search page', () => {
   it('should display result cards', async () => {
     // Only called by results
-    mockRoute({
-      route: '/trek',
-      mockData: mockTrekResponse,
-      additionalQueries: {
-        fields:
-          'id,departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,thumbnail,practice',
-        page_size: 5,
-        page: 1,
-      },
-      times: 2,
-    });
+    mockResultsRoute(2);
 
     // Called by both filterBar and results
     mockRoute({ route: '/difficulty', mockData: mockDifficultyResponse, times: 3 });
