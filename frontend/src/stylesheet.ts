@@ -1,4 +1,10 @@
 import { css, FlattenSimpleInterpolation } from 'styled-components';
+// @ts-ignore
+import resolveConfig from 'tailwindcss/resolveConfig';
+import tailwindConfig from '../tailwind.config.js';
+
+const fullConfig = resolveConfig(tailwindConfig);
+const { theme } = fullConfig;
 
 /**
  * This file is here to ensure UI consistency
@@ -9,13 +15,13 @@ import { css, FlattenSimpleInterpolation } from 'styled-components';
 // This file is where the variables are defined, so we can disable stylelint here
 // stylelint-disable
 
-export const MAX_WIDTH_MOBILE = 1024;
+export const MAX_WIDTH_MOBILE = theme.screens.desktop;
 
 export const desktopOnly = (
   cssProperties: FlattenSimpleInterpolation,
 ): FlattenSimpleInterpolation => {
   return css`
-    @media (min-width: ${MAX_WIDTH_MOBILE}px) {
+    @media (min-width: ${MAX_WIDTH_MOBILE}) {
       ${cssProperties}
     }
   `;
@@ -28,7 +34,7 @@ export const desktopOnly = (
  */
 const OLD_SPACING_UNIT = 5;
 const MEASUREMENT_UNIT = 'px';
-/** @deprecated - use getSpacing instead */
+
 export const oldGetSpacing = (multiplier: number): string =>
   `${multiplier * OLD_SPACING_UNIT}${MEASUREMENT_UNIT}`;
 
@@ -42,83 +48,81 @@ export const getSpacing = (multiplier: number): string =>
  * As to naming, the best name is the name used by the designer
  */
 export const colorPalette = {
-  primary1: '#AA397D',
-  primary2: '#F5E7EF',
-  primary3: '#791150',
-  greyDarkColored: '#534764',
-  greySoft: '#D7D6D9',
-  warning: '#D77E00',
-  easyOK: '#4FAD79',
-  hardKO: '#E25316',
-  black: '#000000',
-  white: '#FFFFFF',
-  red: '#FF7373',
-  blackTransparent: 'rgba(0, 0, 0, 0.24)',
-  darkPurple: '#534764',
+  primary1: theme.colors.primary1,
+  primary2: theme.colors.primary2,
+  primary3: theme.colors.primary3,
+  greyDarkColored: theme.colors.greyDarkColored,
+  greySoft: theme.colors.greySoft,
+  warning: theme.colors.warning,
+  easyOK: theme.colors.easyOK,
+  hardKO: theme.colors.hardKO,
+  black: theme.colors.black,
+  white: theme.colors.white,
+  red: theme.colors.red,
+  blackTransparent: theme.colors.blackTransparent,
+  darkPurple: theme.colors.greyDarkColored,
   filter: {
-    background: '#FFFFFF',
-    color: '#000000',
-    borderColor: '#AA397D',
+    background: theme.colors.white,
+    color: theme.colors.black,
+    borderColor: theme.colors.primary1,
     hover: {
-      background: '#F5E7EF',
-      color: '#000000',
+      background: theme.colors.primary2,
+      color: theme.colors.black,
     },
     selected: {
-      background: '#F5E7EF',
-      color: '#000000',
+      background: theme.colors.primary2,
+      color: theme.colors.black,
     },
     placeholder: {
-      color: '#534764',
+      color: theme.colors.greyDarkColored,
     },
   },
   home: {
     activity: {
-      color: '#534764',
+      color: theme.colors.greyDarkColored,
     },
-    gradientOnImages: '#27041970',
-    shadowOnImages: '#27041970',
+    gradientOnImages: theme.colors.darkTransparent,
+    shadowOnImages: theme.colors.darkTransparent,
   },
 } as const;
 
 export const fontFamily = {
-  main: `'Assistant', 'Helvetica', 'Arial', sans-serif`,
-  code: 'Monospace',
+  main: theme.fontFamily.main,
+  code: theme.fontFamily.code,
 } as const;
 
 export const shadow = {
-  large: `0 0 30px 0 rgba(0, 0, 0, 0.15)`,
-  small: `0 0 4px ${colorPalette.greySoft}`,
+  large: theme.boxShadow.lg,
+  small: theme.boxShadow.sm,
 } as const;
 
 export const typography = {
   main: css`
     font-family: ${fontFamily.main};
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 21px;
+    font-weight: ${theme.fontWeight.normal};
+    font-size: ${theme.fontSize.P1[0]};
+    line-height: ${theme.fontSize.P1[1]};
     color: ${colorPalette.greyDarkColored};
   `,
   bold: css`
-    font-weight: bold;
+    font-weight: ${theme.fontWeight.bold};
   `,
   light: css`
-    font-weight: lighter;
+    font-weight: ${theme.fontWeight.light};
   `,
   small: css`
-    font-size: 14px;
-    line-height: 18px;
+    font-size: ${theme.fontSize.P2[0]};
+    line-height: ${theme.fontSize.P2[1]};
   `,
   h1: css`
-    font-family: ${fontFamily.main};
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 26px;
+    font-weight: ${theme.fontWeight.bold};
+    font-size: ${theme.fontSize.H1[0]};
+    line-height: ${theme.fontSize.H1[1]};
   `,
   h2: css`
-    font-family: ${fontFamily.main};
-    font-weight: bold;
-    font-size: 32px;
-    line-height: 42px;
+    font-weight: ${theme.fontWeight.bold};
+    font-size: ${theme.fontSize.H2[0]};
+    line-height: ${theme.fontSize.H2[1]};
   `,
   code: css`
     font-family: ${fontFamily.code};
@@ -127,27 +131,16 @@ export const typography = {
 } as const;
 
 export const borderRadius = {
-  medium: '4px',
-  squareButton: '8px',
-  large: '10px',
-  card: '16px',
-  chip: '20px',
-  roundButton: '50px',
+  ...theme.borderRadius,
 } as const;
 
 export const zIndex = {
-  content: 0,
-  loader: 1,
-  floatingButton: 1,
-  header: 2,
-  sliderMenu: 3,
+  ...theme.zIndex,
 } as const;
 
-export const sizes = {
-  desktopHeader: 96,
-  button: 48,
-  filterBar: 72,
-};
+export const sizes: { [key: string]: string } = {
+  ...theme.spacing,
+} as const;
 
 export const fillSvgWithColor = (color: string) => (svg: string): string =>
   svg.replace(/fill:.*?;/g, `fill: ${color};`);
