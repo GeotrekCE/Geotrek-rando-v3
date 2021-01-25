@@ -146,8 +146,7 @@ export const SearchUI: React.FC = () => {
             </div>
           </div>
 
-          <div className="hidden desktop:flex desktop:z-content desktop:h-full desktop:fixed desktop:right-0 desktop:w-1/2 desktop:top-headerAndfilterBar">
-            <MapDynamicComponent points={mapResults} />
+          <div className="hidden desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-1/2 desktop:top-headerAndFilterBar">
           </div>
         </div>
       </Layout>

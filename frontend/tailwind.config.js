@@ -38,6 +38,7 @@ module.exports = {
       90: `${SPACING_UNIT * 90}px`,
       100: `${SPACING_UNIT * 100}px`,
       filterBar: '72px',
+      headerAndFilterBar: '168px',
       activitySearchFilter: '865px',
       coverDetailsDesktop: '550px',
       coverDetailsMobile: '145px',
