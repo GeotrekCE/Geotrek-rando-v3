@@ -10,6 +10,7 @@ import { DetailsSection } from './components/DetailsSection/DetailsSection';
 import { useDetails } from './useDetails';
 import { checkAndParseToList, checkAndParseToText, checkInformation } from './utils';
 import { DetailsDescription } from './components/DetailsDescription';
+import { DetailsHeader } from './components/DetailsHeader/DetailsHeader';
 interface Props {
   detailsId: string | string[] | undefined;
 }
@@ -40,6 +41,16 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
 
   return (
     <Layout>
+      <DetailsHeader
+        sections={[
+          'insight',
+          'poi',
+          ...(hasDescription ? ['description'] : []),
+          ...(hasTransport || hasAccess ? ['practical_informations'] : []),
+          'accessibility',
+          'toSee',
+        ]}
+      />
       <div className="flex flex-1">
         <div className="flex flex-col w-full desktop:w-3/5">
           <img
