@@ -25,7 +25,7 @@ const Map: React.FC<PropsType> = props => {
     }
   };
 
-  const { isSelectedMarker, setSelectedMarkerId } = useSelectedMarker();
+  const { isSelectedMarker, setSelectedMarkerId, resetSelectedMarker } = useSelectedMarker();
 
   return (
     <>
@@ -49,7 +49,11 @@ const Map: React.FC<PropsType> = props => {
                   position={[point.location.y, point.location.x]}
                   icon={isSelectedMarker(point.id) ? ActiveTrekIcon : TrekIcon}
                 >
-                  <Popup id={point.id} handleOpen={() => setSelectedMarkerId(point.id)} />
+                  <Popup
+                    id={point.id}
+                    handleOpen={() => setSelectedMarkerId(point.id)}
+                    handleClose={resetSelectedMarker}
+                  />
                 </Marker>
               ),
           )}
