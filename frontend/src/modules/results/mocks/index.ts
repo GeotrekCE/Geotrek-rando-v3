@@ -1,6 +1,6 @@
 import { mockRoute } from 'services/testing/utils';
 
-export const mockResultsResponse = {
+export const mockResultsResponse = () => ({
   count: 4,
   next:
     'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=departure%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cthumbnail%2Cpractice&language=fr&page=2&page_size=1',
@@ -25,12 +25,12 @@ export const mockResultsResponse = {
       },
     },
   ],
-};
+});
 
 export const mockResultsRoute = (times: number): void =>
   mockRoute({
     route: '/trek',
-    mockData: mockResultsResponse,
+    mockData: mockResultsResponse(),
     additionalQueries: {
       fields:
         'id,departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,thumbnail,practice',
