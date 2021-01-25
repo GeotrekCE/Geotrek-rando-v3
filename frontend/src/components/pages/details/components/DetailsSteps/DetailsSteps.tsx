@@ -1,35 +1,35 @@
 import { FormattedMessage } from 'react-intl';
 
 interface DetailsDescriptionProps {
-  steps: Array<{ title: string; text: string }>;
+  intro: JSX.Element | undefined;
+  steps: Array<JSX.Element> | undefined;
 }
 
-export const DetailsSteps: React.FC<DetailsDescriptionProps> = ({ steps }) => {
+export const DetailsSteps: React.FC<DetailsDescriptionProps> = ({ steps, intro }) => {
   return (
     <div
       className="flex flex-col
-    py-6 desktop:py-12
+    pt-6 desktop:pt-12
     border-solid border-greySoft border-b"
     >
       <p className="text-Mobile-H1 desktop:text-H2 font-bold">
-        <FormattedMessage id="details.steps" />
+        <FormattedMessage id="details.full_description" />
       </p>
-      <div className="flex flex-col mt-4 desktop:mt-6">
-        {steps.map((step, i) => (
-          <>
-            <Step number={i + 1} />
-            <div
-              className={`${i < steps.length - 1 ? 'border-solid border-primary1 border-l-3' : ''}
+      {intro && <div className="mt-4 desktop:mt-6">{intro}</div>}
+      <div className="flex flex-col my-4 desktop:my-6">
+        {steps &&
+          steps.map((step, i) => (
+            <div key={i}>
+              <Step number={i + 1} />
+              <div
+                className={`${i < steps.length - 1 ? 'border-solid border-primary1 border-l-3' : ''}
               ml-3.5 desktop:ml-5.5
               pl-8 desktop:pl-12`}
-            >
-              <div className="relative -top-7 desktop:-top-9">
-                <span className="text-Mobile-C1 desktop:text-H4 font-bold">{step.title}</span>
-                <p className="mt-2">{step.text}</p>
+              >
+                <div className="relative -top-7 desktop:-top-9">{step}</div>
               </div>
             </div>
-          </>
-        ))}
+          ))}
       </div>
     </div>
   );
