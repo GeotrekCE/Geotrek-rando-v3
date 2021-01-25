@@ -46,7 +46,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
           'insight',
           'poi',
           ...(hasDescription ? ['description'] : []),
-          ...(hasTransport || hasAccess ? ['practical_informations'] : []),
+          ...(hasTransport || hasAccess ? ['practicalInformations'] : []),
           'accessibility',
           'toSee',
         ]}
