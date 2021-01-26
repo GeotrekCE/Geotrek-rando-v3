@@ -10,7 +10,7 @@ Object {
       >
         <div>
           <img
-            class="SearchResultsMeta__Illustration-sc-18aa4n-0 gNcjBr hidden desktop:block"
+            class="hidden desktop:block h-16 w-16"
             src="images/little-forest.png"
           />
         </div>
@@ -18,22 +18,21 @@ Object {
           class="desktop:ml-6"
         >
           <div
-            class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 fEWifg"
+            class="text-Mobile-H1 desktop:text-H2 font-bold"
           >
             0 résultat trouvé
           </div>
-          <span
-            class="SearchResultsMeta__SearchInfo-sc-18aa4n-2 ldqHAr hidden desktop:inline"
+          <div
+            class="hidden desktop:inline"
           >
             Pour le
-             
             <a
-              class="Link__StyledLink-oanbk8-0 hVMYzp"
+              class="text-primary1 hover:text-primary3 ml-1 cursor-pointer transition-all duration-300"
               href="/"
             >
               Paris
             </a>
-          </span>
+          </div>
         </div>
       </div>
     </div>
@@ -44,7 +43,7 @@ Object {
     >
       <div>
         <img
-          class="SearchResultsMeta__Illustration-sc-18aa4n-0 gNcjBr hidden desktop:block"
+          class="hidden desktop:block h-16 w-16"
           src="images/little-forest.png"
         />
       </div>
@@ -52,22 +51,21 @@ Object {
         class="desktop:ml-6"
       >
         <div
-          class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 fEWifg"
+          class="text-Mobile-H1 desktop:text-H2 font-bold"
         >
           0 résultat trouvé
         </div>
-        <span
-          class="SearchResultsMeta__SearchInfo-sc-18aa4n-2 ldqHAr hidden desktop:inline"
+        <div
+          class="hidden desktop:inline"
         >
           Pour le
-           
           <a
-            class="Link__StyledLink-oanbk8-0 hVMYzp"
+            class="text-primary1 hover:text-primary3 ml-1 cursor-pointer transition-all duration-300"
             href="/"
           >
             Paris
           </a>
-        </span>
+        </div>
       </div>
     </div>
   </div>,
@@ -135,7 +133,7 @@ Object {
       >
         <div>
           <img
-            class="SearchResultsMeta__Illustration-sc-18aa4n-0 gNcjBr hidden desktop:block"
+            class="hidden desktop:block h-16 w-16"
             src="images/little-forest.png"
           />
         </div>
@@ -143,22 +141,21 @@ Object {
           class="desktop:ml-6"
         >
           <div
-            class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 fEWifg"
+            class="text-Mobile-H1 desktop:text-H2 font-bold"
           >
             1 résultat trouvé
           </div>
-          <span
-            class="SearchResultsMeta__SearchInfo-sc-18aa4n-2 ldqHAr hidden desktop:inline"
+          <div
+            class="hidden desktop:inline"
           >
             Pour le
-             
             <a
-              class="Link__StyledLink-oanbk8-0 hVMYzp"
+              class="text-primary1 hover:text-primary3 ml-1 cursor-pointer transition-all duration-300"
               href="/"
             >
               Paris
             </a>
-          </span>
+          </div>
         </div>
       </div>
     </div>
@@ -169,7 +166,7 @@ Object {
     >
       <div>
         <img
-          class="SearchResultsMeta__Illustration-sc-18aa4n-0 gNcjBr hidden desktop:block"
+          class="hidden desktop:block h-16 w-16"
           src="images/little-forest.png"
         />
       </div>
@@ -177,22 +174,21 @@ Object {
         class="desktop:ml-6"
       >
         <div
-          class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 fEWifg"
+          class="text-Mobile-H1 desktop:text-H2 font-bold"
         >
           1 résultat trouvé
         </div>
-        <span
-          class="SearchResultsMeta__SearchInfo-sc-18aa4n-2 ldqHAr hidden desktop:inline"
+        <div
+          class="hidden desktop:inline"
         >
           Pour le
-           
           <a
-            class="Link__StyledLink-oanbk8-0 hVMYzp"
+            class="text-primary1 hover:text-primary3 ml-1 cursor-pointer transition-all duration-300"
             href="/"
           >
             Paris
           </a>
-        </span>
+        </div>
       </div>
     </div>
   </div>,
@@ -260,7 +256,7 @@ Object {
       >
         <div>
           <img
-            class="SearchResultsMeta__Illustration-sc-18aa4n-0 gNcjBr hidden desktop:block"
+            class="hidden desktop:block h-16 w-16"
             src="images/little-forest.png"
           />
         </div>
@@ -268,22 +264,21 @@ Object {
           class="desktop:ml-6"
         >
           <div
-            class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 fEWifg"
+            class="text-Mobile-H1 desktop:text-H2 font-bold"
           >
             123 résultats trouvés
           </div>
-          <span
-            class="SearchResultsMeta__SearchInfo-sc-18aa4n-2 ldqHAr hidden desktop:inline"
+          <div
+            class="hidden desktop:inline"
           >
             Pour le
-             
             <a
-              class="Link__StyledLink-oanbk8-0 hVMYzp"
+              class="text-primary1 hover:text-primary3 ml-1 cursor-pointer transition-all duration-300"
               href="/"
             >
               Paris
             </a>
-          </span>
+          </div>
         </div>
       </div>
     </div>
@@ -294,7 +289,7 @@ Object {
     >
       <div>
         <img
-          class="SearchResultsMeta__Illustration-sc-18aa4n-0 gNcjBr hidden desktop:block"
+          class="hidden desktop:block h-16 w-16"
           src="images/little-forest.png"
         />
       </div>
@@ -302,22 +297,21 @@ Object {
         class="desktop:ml-6"
       >
         <div
-          class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 fEWifg"
+          class="text-Mobile-H1 desktop:text-H2 font-bold"
         >
           123 résultats trouvés
         </div>
-        <span
-          class="SearchResultsMeta__SearchInfo-sc-18aa4n-2 ldqHAr hidden desktop:inline"
+        <div
+          class="hidden desktop:inline"
         >
           Pour le
-           
           <a
-            class="Link__StyledLink-oanbk8-0 hVMYzp"
+            class="text-primary1 hover:text-primary3 ml-1 cursor-pointer transition-all duration-300"
             href="/"
           >
             Paris
           </a>
-        </span>
+        </div>
       </div>
     </div>
   </div>,
