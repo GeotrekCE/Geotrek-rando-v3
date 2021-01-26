@@ -59,7 +59,7 @@ export const checkAndParseToList = (
   return [isValid, styledIntro, styledConclusion, styledList];
 };
 
-const HtmlText = styled.div`
+export const HtmlText = styled.div`
   & > em {
     font-style: italic;
   }

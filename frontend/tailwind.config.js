@@ -13,6 +13,7 @@ module.exports = {
     },
     spacing: {
       0: '0',
+      '1p': '1px',
       1: `${SPACING_UNIT}px`,
       1.5: `${SPACING_UNIT * 1.5}px`,
       2: `${SPACING_UNIT * 2}px`,
@@ -77,6 +78,7 @@ module.exports = {
       boxShadow: {
         lg: '0 0 30px 0 rgba(0, 0, 0, 0.15)',
         md: '0 0 20px rgba(0, 0, 0, 0.15)',
+        sm: '0 0 4px rgba(0, 0, 0, 0.15)',
       },
       colors: {
         primary1: {
