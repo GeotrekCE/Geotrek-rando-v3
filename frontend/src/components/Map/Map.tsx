@@ -10,6 +10,7 @@ import { Popup } from './components/Popup';
 
 import 'leaflet/dist/leaflet.css';
 import { MapButton } from './components/MapButton';
+import { FilterButton } from './components/FilterButton';
 import { useSelectedMarker } from './hooks/useSelectedMarker';
 import { TrekCourse } from './components/TrekCourse';
 
@@ -67,6 +68,7 @@ const Map: React.FC<PropsType> = props => {
         <TrekCourse id={selectedMarkerId} />
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
+      <FilterButton openFilterMenu={() => null} hasFilters={false} />
     </>
   );
 };
