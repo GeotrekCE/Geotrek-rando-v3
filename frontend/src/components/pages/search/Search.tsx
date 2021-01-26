@@ -86,7 +86,7 @@ export const SearchUI: React.FC = () => {
               <Loader
                 loaded={!isLoading}
                 options={{
-                  top: `${sizes.desktopHeader + sizes.filterBar}px`,
+                  top: sizes.desktopHeaderAndFilter,
                   color: colorPalette.primary1,
                   zIndex: zIndex.loader,
                 }}

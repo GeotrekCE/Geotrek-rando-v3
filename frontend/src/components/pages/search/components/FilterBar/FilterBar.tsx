@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { getSpacing, sizes } from 'stylesheet';
 import { flexGap } from 'services/cssHelpers';
 
-import { useHideOnScrollDown } from 'hooks/useHideOnScrollDown';
 import { Button } from 'components/Button';
 import { Plus } from 'components/Icons/Plus';
 import { ChevronUp } from 'components/Icons/ChevronUp';
@@ -87,9 +86,7 @@ const Container = styled.div<{ displayedState: 'DISPLAYED' | 'HIDDEN' }>`
   transition-delay: 0.1s;
 
   top: ${({ displayedState }) =>
-    displayedState === 'DISPLAYED'
-      ? sizes.desktopHeader
-      : -sizes.desktopHeader - sizes.filterBar}px;
+    displayedState === 'DISPLAYED' ? sizes.desktopHeader : '-' + sizes.desktopHeaderAndFilter};
 
   ${({ displayedState }) => (displayedState === 'HIDDEN' ? 'transform: translateY(-100%)' : '')}
 `;

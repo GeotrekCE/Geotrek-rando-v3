@@ -51,6 +51,7 @@ module.exports = {
       coverDetailsDesktop: '550px',
       coverDetailsMobile: '145px',
       desktopHeader: '96px',
+      desktopHeaderAndFilter: `${96 + 72}px`,
       button: '48px',
     },
     zIndex: {

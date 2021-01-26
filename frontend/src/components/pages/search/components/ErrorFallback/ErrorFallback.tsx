@@ -28,7 +28,7 @@ export const ErrorFallback: React.FC<Props> = ({ refetch }) => {
 };
 
 const Container = styled.div`
-  margin-top: ${sizes.desktopHeader + sizes.filterBar};
+  margin-top: ${sizes.desktopHeaderAndFilter};
 `;
 
 const ReloadButton = styled.button`
