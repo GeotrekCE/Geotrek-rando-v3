@@ -49,6 +49,8 @@
   "details": {
     "insight": "Aperçu",
     "poi": "Patrimoines",
+    "readMore": "lire la suite",
+    "readLess": "lire moins",
     "description": "Description",
     "practicalInformations": "Infos pratiques",
     "accessibility": "Accessibilité",
