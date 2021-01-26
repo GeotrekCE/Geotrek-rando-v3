@@ -7,6 +7,8 @@ export const MapDynamicComponent = (props: {
   segments?: TreksList | null;
   hideMap?: () => void;
   type: 'DESKTOP' | 'MOBILE';
+  openFilterMenu?: () => void;
+  hasFilters?: boolean;
 }) => {
   const Map = dynamic(() => import('./Map'), {
     ssr: false,
