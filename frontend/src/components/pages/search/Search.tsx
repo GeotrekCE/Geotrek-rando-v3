@@ -157,7 +157,12 @@ export const SearchUI: React.FC = () => {
         }`}
         displayState={mobileMapState}
       >
-        <MapDynamicComponent hideMap={hideMobileMap} type="MOBILE" />
+        <MapDynamicComponent
+          hideMap={hideMobileMap}
+          type="MOBILE"
+          openFilterMenu={displayMenu}
+          hasFilters={activeFiltersNumber > 0}
+        />
       </MobileMapContainer>
     </>
   );

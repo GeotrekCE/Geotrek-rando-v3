@@ -19,6 +19,8 @@ export type PropsType = {
   segments?: TreksList | null;
   hideMap?: () => void;
   type: 'DESKTOP' | 'MOBILE';
+  openFilterMenu?: () => void;
+  hasFilters?: boolean;
 };
 
 const Map: React.FC<PropsType> = props => {
@@ -68,7 +70,7 @@ const Map: React.FC<PropsType> = props => {
         <TrekCourse id={selectedMarkerId} />
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
-      <FilterButton openFilterMenu={() => null} hasFilters={false} />
+      <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
     </>
   );
 };

@@ -2,11 +2,14 @@ import { Filter } from 'components/Icons/Filter';
 import { MapButton } from '../MapButton';
 
 interface Props {
-  openFilterMenu: () => void;
-  hasFilters: boolean;
+  openFilterMenu?: () => void;
+  hasFilters?: boolean;
 }
 
-export const FilterButton: React.FC<Props> = ({ openFilterMenu, hasFilters }) => {
+export const FilterButton: React.FC<Props> = ({
+  openFilterMenu = () => null,
+  hasFilters = false,
+}) => {
   return (
     <MapButton
       className={`desktop:hidden left-auto right-8 ${hasFilters ? 'bg-primary1' : ''}`}
