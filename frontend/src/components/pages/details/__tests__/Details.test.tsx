@@ -22,17 +22,18 @@ describe('Details', () => {
   const queryClient = new QueryClient();
 
   it('details.description is well parsed', () => {
-    const [isValid, text, list] = checkAndParseToList(
-      'Test introduction<br /><ol>\r\n<li>Une étape</li>\r\n<li>Une autre étape</li>\r\n<li>Pour finir</li>\r\n</ol>',
-    ) as [boolean, JSX.Element, JSX.Element[]];
+    const [isValid, intro, conclusion, list] = checkAndParseToList(
+      'Test introduction<br /><ol>\r\n<li>Une étape</li>\r\n<li>Une autre étape</li>\r\n<li>Dernière étape</li>\r\n</ol>Conclusion',
+    ) as [boolean, JSX.Element, JSX.Element, JSX.Element[]];
     expect(isValid).toBe(true);
-    expect(text).toBeDefined();
+    expect(intro).toBeDefined();
     expect(list).toBeDefined();
     expect(list).toHaveLength(3);
     render(list[0]).getByText('Une étape');
     render(list[1]).getByText('Une autre étape');
-    render(list[2]).getByText('Pour finir');
-    render(text).getByText('Test introduction');
+    render(list[2]).getByText('Dernière étape');
+    render(intro).getByText('Test introduction');
+    render(conclusion).getByText('Conclusion');
   });
 
   it('AAU, I can see details of the trek', async () => {

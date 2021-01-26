@@ -2,10 +2,15 @@ import { FormattedMessage } from 'react-intl';
 
 interface DetailsDescriptionProps {
   intro?: JSX.Element;
+  conclusion?: JSX.Element;
   steps?: Array<JSX.Element>;
 }
 
-export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({ steps, intro }) => {
+export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
+  steps,
+  intro,
+  conclusion,
+}) => {
   return (
     <div
       className="flex flex-col
@@ -30,6 +35,7 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({ steps, i
               </div>
             </div>
           ))}
+        {conclusion && <div className="mb-4 desktop:mb-6">{conclusion}</div>}
       </div>
     </div>
   );
