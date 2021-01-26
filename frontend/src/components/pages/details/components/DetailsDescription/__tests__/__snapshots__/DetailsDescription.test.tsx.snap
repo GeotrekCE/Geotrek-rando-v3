@@ -19,8 +19,11 @@ Object {
           <div
             class="utils__HtmlText-sc-16l79i-0 eKOoYs"
           >
-            Test introduction
-            <br />
+            <p>
+              Du parking remonter la vallée du Sélé par le sentier qui suit la rive gauche du torrent de Celse Nière. Après une longue montée en faux plat, le sentier remonte des lacets raides jusqu'à la jonction avec le sentier du refuge du Sélé (1993 m).
+            </p>
+            
+
           </div>
         </div>
         <div
@@ -43,7 +46,7 @@ Object {
                 <div
                   class="utils__HtmlText-sc-16l79i-0 eKOoYs"
                 >
-                  Une étape
+                  Prendre à droite le sentier du refuge du Pelvoux qui serpente au milieu des éboulis et de petites barres rocheuses, puis se poursuit en lacets dans des pentes d'herbe et de rochers peu inclinées. Le refuge est invisible jusqu'à l'arrivée mais l'approche est signalée par des cairns (tas de pierres).
                 </div>
               </div>
             </div>
@@ -53,28 +56,6 @@ Object {
               class="h-8 w-8 desktop:h-12 desktop:w-12 rounded-full flex items-center justify-center border-solid border-primary1 border-3 text-P1 desktop:text-H4 font-bold text-primary1 shadow-md"
             >
               2
-            </div>
-            <div
-              class="border-solid border-primary1 border-l-3
-              ml-3.5 desktop:ml-5.5
-              pl-8 desktop:pl-12"
-            >
-              <div
-                class="relative -top-7 desktop:-top-9"
-              >
-                <div
-                  class="utils__HtmlText-sc-16l79i-0 eKOoYs"
-                >
-                  Une autre étape
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div
-              class="h-8 w-8 desktop:h-12 desktop:w-12 rounded-full flex items-center justify-center border-solid border-primary1 border-3 text-P1 desktop:text-H4 font-bold text-primary1 shadow-md"
-            >
-              3
             </div>
             <div
               class="
@@ -87,9 +68,21 @@ Object {
                 <div
                   class="utils__HtmlText-sc-16l79i-0 eKOoYs"
                 >
-                  Pour finir
+                  Emprunter le même itinéraire en sens inverse pour le retour.
                 </div>
               </div>
+            </div>
+          </div>
+          <div
+            class="mb-4 desktop:mb-6"
+          >
+            <div
+              class="utils__HtmlText-sc-16l79i-0 eKOoYs"
+            >
+              <br />
+              Et ensuite vous êtes arrivés ! ;-)
+              <br />
+              Sympa ce petit tour, non ?
             </div>
           </div>
         </div>
@@ -111,8 +104,11 @@ Object {
         <div
           class="utils__HtmlText-sc-16l79i-0 eKOoYs"
         >
-          Test introduction
-          <br />
+          <p>
+            Du parking remonter la vallée du Sélé par le sentier qui suit la rive gauche du torrent de Celse Nière. Après une longue montée en faux plat, le sentier remonte des lacets raides jusqu'à la jonction avec le sentier du refuge du Sélé (1993 m).
+          </p>
+          
+
         </div>
       </div>
       <div
@@ -135,7 +131,7 @@ Object {
               <div
                 class="utils__HtmlText-sc-16l79i-0 eKOoYs"
               >
-                Une étape
+                Prendre à droite le sentier du refuge du Pelvoux qui serpente au milieu des éboulis et de petites barres rocheuses, puis se poursuit en lacets dans des pentes d'herbe et de rochers peu inclinées. Le refuge est invisible jusqu'à l'arrivée mais l'approche est signalée par des cairns (tas de pierres).
               </div>
             </div>
           </div>
@@ -145,28 +141,6 @@ Object {
             class="h-8 w-8 desktop:h-12 desktop:w-12 rounded-full flex items-center justify-center border-solid border-primary1 border-3 text-P1 desktop:text-H4 font-bold text-primary1 shadow-md"
           >
             2
-          </div>
-          <div
-            class="border-solid border-primary1 border-l-3
-              ml-3.5 desktop:ml-5.5
-              pl-8 desktop:pl-12"
-          >
-            <div
-              class="relative -top-7 desktop:-top-9"
-            >
-              <div
-                class="utils__HtmlText-sc-16l79i-0 eKOoYs"
-              >
-                Une autre étape
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div
-            class="h-8 w-8 desktop:h-12 desktop:w-12 rounded-full flex items-center justify-center border-solid border-primary1 border-3 text-P1 desktop:text-H4 font-bold text-primary1 shadow-md"
-          >
-            3
           </div>
           <div
             class="
@@ -179,9 +153,21 @@ Object {
               <div
                 class="utils__HtmlText-sc-16l79i-0 eKOoYs"
               >
-                Pour finir
+                Emprunter le même itinéraire en sens inverse pour le retour.
               </div>
             </div>
+          </div>
+        </div>
+        <div
+          class="mb-4 desktop:mb-6"
+        >
+          <div
+            class="utils__HtmlText-sc-16l79i-0 eKOoYs"
+          >
+            <br />
+            Et ensuite vous êtes arrivés ! ;-)
+            <br />
+            Sympa ce petit tour, non ?
           </div>
         </div>
       </div>
