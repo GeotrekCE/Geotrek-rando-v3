@@ -35,22 +35,28 @@ const matchSingle = (regex: RegExp, text: string): string => {
 
 export const checkAndParseToList = (
   description?: string,
-): [boolean, JSX.Element | undefined, JSX.Element[] | undefined] => {
+): [boolean, JSX.Element | undefined, JSX.Element | undefined, JSX.Element[] | undefined] => {
   const isValid = description !== undefined && description.length > 0;
-  if (!isValid) return [false, undefined, undefined];
+  if (!isValid) return [false, undefined, undefined, undefined];
 
   const fullText = description ?? '';
 
-  let intro = matchSingle(/(.*?)<ol>/, fullText);
+  let intro = matchSingle(/((.|[\r\n])*?)<ol>/, fullText);
   intro = intro.length === 0 ? fullText : intro;
   const styledIntro = intro.length > 0 ? <HtmlText>{parse(intro)}</HtmlText> : undefined;
 
-  const list = fullText.match(/<li>(.*?)<\/li>/g);
+  const conclusion = matchSingle(/<\/ol>((.|[\r\n])*)/, fullText);
+  const styledConclusion =
+    conclusion.length > 0 ? <HtmlText>{parse(conclusion)}</HtmlText> : undefined;
+
+  const list = fullText.match(/<li>((.|[\r\n])*?)<\/li>/g);
   const styledList = list
-    ? list?.map((l, i) => <HtmlText key={i}>{parse(matchSingle(/<li>(.*?)<\/li>/, l))}</HtmlText>)
+    ? list?.map((l, i) => (
+        <HtmlText key={i}>{parse(matchSingle(/<li>((.|[\r\n])*?)<\/li>/, l))}</HtmlText>
+      ))
     : undefined;
 
-  return [isValid, styledIntro, styledList];
+  return [isValid, styledIntro, styledConclusion, styledList];
 };
 
 const HtmlText = styled.div`

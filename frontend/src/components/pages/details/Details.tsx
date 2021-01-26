@@ -21,9 +21,12 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
   const [hasAccess, access] = checkAndParseToText(details, 'access_parking');
   const [hasTeaser, description_teaser] = checkAndParseToText(details, 'description_teaser');
   const [hasAmbiance, ambiance] = checkAndParseToText(details, 'ambiance');
-  const [hasDescription, introDescription, stepsDescription] = checkAndParseToList(
-    details?.description,
-  );
+  const [
+    hasDescription,
+    introDescription,
+    conclusionDescription,
+    stepsDescription,
+  ] = checkAndParseToList(details?.description);
   const [hasTags, tags] = [
     details !== undefined && details.tags !== undefined && details.tags.length > 0,
     details !== undefined && details.tags !== undefined ? details.tags : [],
@@ -132,7 +135,11 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
               {hasAmbiance && <div className="text-Mobile-C1 desktop:text-P1">{ambiance}</div>}
             </div>
             {hasDescription && (
-              <DetailsDescription intro={introDescription} steps={stepsDescription} />
+              <DetailsDescription
+                intro={introDescription}
+                steps={stepsDescription}
+                conclusion={conclusionDescription}
+              />
             )}
             {hasTransport && (
               <DetailsSection titleId="details.transport">{transport}</DetailsSection>
