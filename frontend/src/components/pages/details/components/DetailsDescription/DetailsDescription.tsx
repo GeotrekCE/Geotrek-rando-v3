@@ -4,18 +4,21 @@ interface DetailsDescriptionProps {
   intro?: JSX.Element;
   conclusion?: JSX.Element;
   steps?: Array<JSX.Element>;
+  className?: string;
 }
 
 export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
   steps,
   intro,
   conclusion,
+  className,
 }) => {
   return (
     <div
-      className="flex flex-col
+      className={`flex flex-col
     pt-6 desktop:pt-12
-    border-solid border-greySoft border-b"
+    border-solid border-greySoft border-b
+    ${className ?? ''}`}
     >
       <p className="text-Mobile-H1 desktop:text-H2 font-bold">
         <FormattedMessage id="details.description" />
