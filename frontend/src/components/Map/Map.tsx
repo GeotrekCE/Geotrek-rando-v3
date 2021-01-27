@@ -80,7 +80,7 @@ const Map: React.FC<PropsType> = props => {
                     position={[point.location.y, point.location.x]}
                     icon={
                       isSelectedMarker(point.id)
-                        ? ActiveTrekMarker
+                        ? TrekMarker(point.practice.pictogram)
                         : TrekMarker(point.practice.pictogram)
                     }
                   >
