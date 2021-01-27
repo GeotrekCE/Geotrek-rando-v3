@@ -52,7 +52,13 @@ const Map: React.FC<PropsType> = props => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <MarkerClusterGroup iconCreateFunction={ClusterMarker}>
+        {/* https://github.com/Leaflet/Leaflet.markercluster#all-options */}
+        <MarkerClusterGroup
+          iconCreateFunction={ClusterMarker}
+          maxClusterRadius={(zoom: number) => (zoom <= 13 ? 40 : 20)}
+          disableClusteringAtZoom={15}
+          spiderfyOnMaxZoom={false}
+        >
           {props.points !== undefined &&
             props.points.map(
               point =>
