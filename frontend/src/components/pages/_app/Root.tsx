@@ -45,6 +45,10 @@ export const Root: FunctionComponent<RootProps> = props => (
         <link rel="mask-icon" href="/images/logo.png" color="#5bbad5" />
         <link rel="shortcut icon" href="/images/logo.png" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+        <meta
+          name="google-site-verification"
+          content="eKAyxwaXAobFWQcJen0mnZ8T3CpLoN45JysXeNkRf38"
+        />
 
         {/* <meta name="twitter:card" content="summary" />
         <meta name="twitter:url" content="localhost" />
