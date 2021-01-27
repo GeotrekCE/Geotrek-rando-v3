@@ -1,4 +1,5 @@
 import { QueryFilterState } from 'components/pages/search/utils';
+import { getActivities } from 'modules/activities/connector';
 import { formatFiltersToUrlParams } from 'modules/results/utils';
 
 import { adaptMapResults } from './adapter';
@@ -28,5 +29,7 @@ export const getMapResults = async (filtersState: QueryFilterState[]): Promise<M
     ),
   );
 
-  return adaptMapResults(mapResults);
+  const activities = await getActivities();
+
+  return adaptMapResults({ mapResults, activities });
 };

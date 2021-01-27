@@ -78,7 +78,11 @@ const Map: React.FC<PropsType> = props => {
                   <Marker
                     key={point.id}
                     position={[point.location.y, point.location.x]}
-                    icon={isSelectedMarker(point.id) ? ActiveTrekMarker : TrekMarker}
+                    icon={
+                      isSelectedMarker(point.id)
+                        ? TrekMarker(point.practice.pictogram)
+                        : TrekMarker(point.practice.pictogram)
+                    }
                   >
                     <Popup
                       id={point.id}
