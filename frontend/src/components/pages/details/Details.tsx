@@ -1,18 +1,20 @@
+import SVG from 'react-inlinesvg';
+import { colorPalette, fillSvgWithColor } from 'stylesheet';
+
 import { Layout } from 'components/Layout/Layout';
 import { Chip } from 'components/Chip';
 import { Clock } from 'components/Icons/Clock';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { LocalIconInformation, RemoteIconInformation } from 'components/Information';
-import SVG from 'react-inlinesvg';
-import { colorPalette, fillSvgWithColor } from 'stylesheet';
-import { Separator } from 'components/Separator';
+import { MapDynamicComponent } from 'components/Map';
+
 import { DetailsSection } from './components/DetailsSection/DetailsSection';
-import { useDetails } from './useDetails';
-import { checkAndParseToList, checkAndParseToText, checkInformation } from './utils';
 import { DetailsDescription } from './components/DetailsDescription';
 import { DetailsHeader } from './components/DetailsHeader/DetailsHeader';
 import { DetailsCardSection } from './components/DetailsCardSection';
+import { checkAndParseToList, checkAndParseToText, checkInformation } from './utils';
+import { useDetails } from './useDetails';
 interface Props {
   detailsId: string | string[] | undefined;
 }
@@ -166,7 +168,9 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
             )}
           </div>
         </div>
-        <div className="desktop:flex-1 bg-greySoft" />
+        <div className="hidden desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar">
+          <MapDynamicComponent type="DESKTOP" />
+        </div>
       </div>
     </Layout>
   );

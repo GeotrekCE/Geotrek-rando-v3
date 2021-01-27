@@ -28,11 +28,9 @@ describe('Results Card', () => {
     expect(component).toMatchSnapshot();
   });
 
-  it('AAU, I will be redirected to the right details page', async () => {
+  it('AAU, I will be redirected to the right details page', () => {
     const component = render(resultCard);
-    const links = await component.findAllByTestId(`Link-ResultCard-${id}`);
-    links.forEach(link =>
-      expect(link).toHaveAttribute('href', `/details-${id}-Balade-au-pays-des-menhirs`),
-    );
+    const link = component.getByRole('link');
+    expect(link).toHaveAttribute('href', `/details-${id}-Balade-au-pays-des-menhirs`);
   });
 });
