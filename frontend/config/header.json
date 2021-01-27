@@ -1,9 +1,13 @@
 {
   "logo": "",
-  "structureName": "Parc National des Écrins",
   "menu": {
     "primaryItemsNumber": 3,
-    "items": [],
-    "supportedLanguage": ["fr"]
+    "items": [
+      {
+        "translationId": "nationalParkSite",
+        "url": ""
+      }
+    ],
+    "supportedLanguages": ["fr"]
   }
 }

@@ -1,5 +1,5 @@
 interface MenuItem {
-  name: string;
+  translationId: string;
   url: string;
 }
 
