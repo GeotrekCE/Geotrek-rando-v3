@@ -8,13 +8,13 @@ import { TrendingUp } from 'components/Icons/TrendingUp';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { LocalIconInformation, RemoteIconInformation } from 'components/Information';
 import { MapDynamicComponent } from 'components/Map';
-
 import { DetailsSection } from './components/DetailsSection/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
 import { DetailsHeader } from './components/DetailsHeader/DetailsHeader';
 import { DetailsCardSection } from './components/DetailsCardSection';
 import { checkAndParseToList, checkAndParseToText, checkInformation } from './utils';
 import { useDetails } from './useDetails';
+import { DetailsCardProps } from './components/DetailsCard/DetailsCard';
 interface Props {
   detailsId: string | string[] | undefined;
 }
@@ -45,6 +45,19 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
   const [hasDuration, duration] = checkInformation(details, 'duration');
   const [hasElevation, elevation] = checkInformation(details, 'elevation');
   const [hasDistance, distance] = checkInformation(details, 'distance');
+
+  const detailsCardFakeProps: DetailsCardProps = {
+    name: 'Refuge des Souffles',
+    place: 'Valgaudemar',
+    iconUri:
+      'https://www.ffcam.fr/csx/scripts/resizer.php?filename=STADATA_FFCAM%2Fimg1%2Ffb%2F02%2Fi4zpipyr8sx&mime=image%252Fjpeg&originalname=logo+140+ans+opacit%C3%A9+100%25+web.jpg&geometry=410x%3E',
+    description:
+      "Le refuge des Souffles est un beau chalet en bois, niché au milieu des derniers mélèzes de la forêt de Lautier. Ce point de passage incontournable des randonneurs et adeptes de la contemplation est située au-dessus de Villard-Loubière, au c?ur des Ecrins C'est un refuge récent qui offre une capacité de trente couchages dans de petits dortoirs équipés de couettes, une salle à manger conviviale, des douches chaudes et de grandes terrasses aménagées. Ah ! la fin d'après-midi sur les chaises longues en savourant un thé à la menthe tout en observant le col de Vaurze, dominé par la cime d'Orgière. Un vrai bonheur !",
+    logoUri:
+      'https://ffcam.fr/csx/scripts/resizer.php?filename=CHARTE%2FlogoL%2F8d%2F67%2F269f0f2549c50899b61197cfaf5e7574&mime=image%252Fpng&originalname=ffcam_logo_desktop.png&geometry=235x90%3E',
+    thumbnailUri:
+      'https://refugedessouffles.ffcam.fr/csx/scripts/resizer.php?filename=FFCAMMEDIAS%2Ffile%2Fcd%2F89%2F619&mime=image%252Fjpeg&originalname=download.jpeg&geometry=420x%3E',
+  };
 
   return (
     <Layout>
@@ -139,6 +152,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
             </DetailsSection>
             {details?.pois && details.pois.length > 0 && (
               <DetailsCardSection
+                titleId="details.poi"
                 detailsCards={details.pois.map(poi => ({
                   name: poi.name ?? '',
                   description: poi.description,
@@ -166,6 +180,17 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 {access}
               </DetailsSection>
             )}
+            {
+              <DetailsCardSection
+                titleId="details.aroundMe"
+                detailsCards={[
+                  detailsCardFakeProps,
+                  detailsCardFakeProps,
+                  detailsCardFakeProps,
+                  detailsCardFakeProps,
+                ]}
+              />
+            }
           </div>
         </div>
         <div className="hidden desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar">

@@ -5,13 +5,17 @@ import { DetailsCard, DetailsCardProps } from '../DetailsCard/DetailsCard';
 
 interface DetailsCardSectionProps {
   detailsCards: DetailsCardProps[];
+  titleId: string;
 }
 
-export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({ detailsCards }) => {
+export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
+  detailsCards,
+  titleId,
+}) => {
   return (
     <div className="mt-6 desktop:mt-12">
       <div className={`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild}`}>
-        <FormattedMessage id={'details.poi'} />
+        <FormattedMessage id={titleId} />
       </div>
       <div
         className="flex desktop:flex-col items-stretch
@@ -26,6 +30,8 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({ detailsC
             description={card.description}
             thumbnailUri={card.thumbnailUri}
             iconUri={card.iconUri}
+            place={card.place}
+            logoUri={card.logoUri}
           />
         ))}
       </div>

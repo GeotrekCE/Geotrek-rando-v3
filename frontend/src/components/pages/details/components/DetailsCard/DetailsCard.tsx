@@ -1,4 +1,3 @@
-import { ActivityBadge } from 'components/pages/search/components/ResultCard/ActivityBadge';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import parse from 'html-react-parser';
 import { HtmlText } from 'components/pages/details/utils';
@@ -8,9 +7,11 @@ import { useDetailsCard } from './useDetailsCard';
 
 export interface DetailsCardProps {
   name: string;
+  place?: string;
   description?: string;
   thumbnailUri?: string;
   iconUri?: string;
+  logoUri?: string;
 }
 
 export const DetailsCard: React.FC<DetailsCardProps> = ({
@@ -18,6 +19,8 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   description,
   thumbnailUri,
   iconUri,
+  place,
+  logoUri,
 }) => {
   const { truncateState, toggleTruncateState } = useDetailsCard();
   const descriptionStyled =
@@ -28,16 +31,25 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
     );
   return (
     <div
-      className="mx-1
+      className={`mx-1
       w-60 desktop:w-auto
       flex-none
       border-greySoft border border-solid
       rounded-2xl overflow-hidden
       flex flex-col desktop:flex-row
       desktop:mb-6
-      hover:shadow-sm transition-all"
+      hover:shadow-sm transition-all
+      relative
+      ${truncateState === 'TRUNCATE' ? 'desktop:h-50' : ''}
+      `}
     >
-      <div className="relative flex-none desktop:w-2/5">
+      {logoUri !== undefined && (
+        <img
+          className="hidden desktop:absolute h-12 object-cover object-center right-6 top-6"
+          src={logoUri}
+        />
+      )}
+      <div className="flex-none desktop:w-2/5">
         <img
           src={thumbnailUri}
           className="h-50 w-60 desktop:w-full desktop:h-full
@@ -47,16 +59,15 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         {iconUri !== null && iconUri !== undefined && (
           <img
             className="absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm object-cover object-center"
-            src={'https://geotrekdemo.ecrins-parcnational.fr/media/upload/poi-fauna.png'}
+            src={iconUri}
           />
         )}
       </div>
       <div
-        className={`flex flex-col
-        p-2 desktop:pl-6 desktop:pr-8 ${
-          truncateState === 'TRUNCATE' ? 'desktop:py-15' : 'desktop:py-6'
-        }`}
+        className={`flex flex-col relative
+        p-2 desktop:p-6 desktop:my-auto`}
       >
+        {place !== undefined && <p>{place}</p>}
         <p className="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold">{name}</p>
         {description !== undefined && (
           <div
