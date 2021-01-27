@@ -38,6 +38,6 @@ const DownloadButton: React.FC<{ url: string }> = ({ url }) => (
   text-primary1 font-bold
   hover:border-primary1-light hover:shadow-sm hover:text-primary1-light transition-all"
   >
-    Télécharger
+    <FormattedMessage id={'details.download'} />
   </div>
 );
