@@ -2,6 +2,8 @@ import { DivIcon } from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
 import styled from 'styled-components';
 
+import { BaseMarker } from './BaseMarker';
+
 const markerHeight = 44;
 const markerWidth = 36;
 // We emulate a padding on the pictogram by centering it thanks to the "horizontal padding"
@@ -18,6 +20,7 @@ const ActivityPictogram = styled.img`
 const ActivityMarker: React.FC<{ pictogramUrl: string }> = ({ pictogramUrl }) => {
   return (
     <div className="relative">
+      <BaseMarker className="absolute" />
       <ActivityPictogram className="absolute" src={pictogramUrl} />
     </div>
   );
