@@ -15,6 +15,11 @@ const Round = styled.div`
   display: grid;
   place-items: center;
   color: ${colorPalette.primary1};
+
+  transition: transform 150ms;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const Cluster: React.FC<{ number: number }> = ({ number }) => {
