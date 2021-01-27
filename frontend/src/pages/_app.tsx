@@ -1,6 +1,7 @@
 import App, { AppContext, AppInitialProps } from 'next/app';
 
 import { Root } from 'components/pages/_app/Root';
+import { Hydrate } from 'react-query/hydration';
 import { captureException } from 'services/sentry';
 import '../public/fonts.css';
 
@@ -40,10 +41,12 @@ class MyApp extends App<AppProps> {
     const { Component, pageProps, hasError, errorEventId } = this.props;
     return (
       <QueryClientProvider client={queryClient}>
-        <Root hasError={hasError} errorEventId={errorEventId}>
-          <Component {...pageProps} />
-        </Root>
-        <ReactQueryDevtools initialIsOpen={false} />
+        <Hydrate state={pageProps.dehydratedState}>
+          <Root hasError={hasError} errorEventId={errorEventId}>
+            <Component {...pageProps} />
+          </Root>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </Hydrate>
       </QueryClientProvider>
     );
   }
