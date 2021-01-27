@@ -55,7 +55,7 @@ export const SearchUI: React.FC = () => {
     hideMobileMap,
   } = useTrekResults(filtersState);
 
-  const { mapResults } = useMapResults();
+  const { mapResults } = useMapResults(filtersState);
 
   return (
     <>
