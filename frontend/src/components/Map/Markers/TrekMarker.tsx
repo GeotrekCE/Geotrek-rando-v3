@@ -1,5 +1,6 @@
 import { DivIcon } from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
+import styled from 'styled-components';
 
 const markerHeight = 44;
 const markerWidth = 36;
@@ -7,20 +8,17 @@ const markerWidth = 36;
 const markerHorizontalPadding = 6;
 const markerTopPadding = 7;
 
+const ActivityPictogram = styled.img`
+  width: ${markerWidth - 2 * markerHorizontalPadding}px;
+  height: auto;
+  left: ${markerHorizontalPadding}px;
+  top: ${markerTopPadding}px;
+`;
+
 const ActivityMarker: React.FC<{ pictogramUrl: string }> = ({ pictogramUrl }) => {
   return (
     <div className="relative">
-      <img src="/icons/active-map-marker.svg" className="absolute" />
-      <img
-        src={pictogramUrl}
-        className="absolute"
-        style={{
-          width: markerWidth - 2 * markerHorizontalPadding,
-          height: 'auto',
-          left: markerHorizontalPadding,
-          top: markerTopPadding,
-        }}
-      />
+      <ActivityPictogram className="absolute" src={pictogramUrl} />
     </div>
   );
 };
