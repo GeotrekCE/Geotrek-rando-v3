@@ -39,6 +39,16 @@ const Map: React.FC<PropsType> = props => {
     selectedMarkerId,
   } = useSelectedMarker();
 
+  /**
+   * Above this zoom level the cluster radius will be highZoomClusterRadius, below it will be lowZoomClusterRadius
+   * We discriminate to be able to better see individual markers in high zoom if possible
+   */
+  const clusterRadiusThreshold = 13;
+  const lowZoomClusterRadius = 40;
+  const highZoomClusterRadius = 20;
+  /** Above this zoom level there won't be clustering, the user better sees its trek course on the map when clicking on the marker */
+  const clusteringMaxZoom = 15;
+
   return (
     <>
       <MapContainer
@@ -55,8 +65,10 @@ const Map: React.FC<PropsType> = props => {
         {/* https://github.com/Leaflet/Leaflet.markercluster#all-options */}
         <MarkerClusterGroup
           iconCreateFunction={ClusterMarker}
-          maxClusterRadius={(zoom: number) => (zoom <= 13 ? 40 : 20)}
-          disableClusteringAtZoom={15}
+          maxClusterRadius={(zoom: number) =>
+            zoom <= clusterRadiusThreshold ? lowZoomClusterRadius : highZoomClusterRadius
+          }
+          disableClusteringAtZoom={clusteringMaxZoom}
           spiderfyOnMaxZoom={false}
         >
           {props.points !== undefined &&
