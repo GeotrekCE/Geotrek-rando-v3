@@ -4,6 +4,7 @@ import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import { Layout } from 'components/Layout/Layout';
 import { Chip } from 'components/Chip';
 import { Clock } from 'components/Icons/Clock';
+import { Printer } from 'components/Icons/Printer';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { LocalIconInformation, RemoteIconInformation } from 'components/Information';
@@ -15,6 +16,7 @@ import { DetailsCardSection } from './components/DetailsCardSection';
 import { checkAndParseToList, checkAndParseToText, checkInformation } from './utils';
 import { useDetails } from './useDetails';
 import { DetailsCardProps } from './components/DetailsCard/DetailsCard';
+import { DetailsButton } from './components/DetailsButton';
 interface Props {
   detailsId: string | string[] | undefined;
 }
@@ -58,6 +60,8 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
     thumbnailUri:
       'https://refugedessouffles.ffcam.fr/csx/scripts/resizer.php?filename=FFCAMMEDIAS%2Ffile%2Fcd%2F89%2F619&mime=image%252Fjpeg&originalname=download.jpeg&geometry=420x%3E',
   };
+  const downloadUrl =
+    'https://trello.com/c/8k8tcpPx/200-2-eqtu-web-je-vois-les-boutons-t%C3%A9l%C3%A9charger';
 
   return (
     <Layout>
@@ -70,6 +74,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
           'accessibility',
           'toSee',
         ]}
+        downloadUrl={downloadUrl}
       />
       <div className="flex flex-1">
         <div className="flex flex-col w-full desktop:w-3/5">
@@ -84,9 +89,18 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
             flex flex-col"
           >
             <div className={`${marginDetailsChild} flex flex-col`}>
-              {details?.practice?.pictogram !== undefined && (
-                <ActivityLogo src={details?.practice?.pictogram} />
-              )}
+              <div className="flex justify-between items-center">
+                {details?.practice?.pictogram !== undefined && (
+                  <ActivityLogo src={details?.practice?.pictogram} />
+                )}
+                <div className="hidden desktop:flex">
+                  {downloadUrl !== undefined && (
+                    <DetailsButton url={downloadUrl}>
+                      <Printer size={30} />
+                    </DetailsButton>
+                  )}
+                </div>
+              </div>
               <span
                 className="text-Mobile-C2 desktop:text-P1
                 mt-4 desktop:mt-12"
