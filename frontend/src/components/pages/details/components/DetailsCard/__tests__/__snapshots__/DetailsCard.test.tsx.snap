@@ -6,21 +6,23 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="mx-1 w-60 desktop:w-auto border-greySoft border border-solid rounded-2xl overflow-hidden flex flex-col desktop:flex-row hover:shadow-sm transition-all"
+        class="mx-1 w-60 desktop:w-auto flex-none border-greySoft border border-solid rounded-2xl overflow-hidden flex flex-col desktop:flex-row desktop:mb-6 hover:shadow-sm transition-all"
       >
         <div
           class="relative flex-none desktop:w-2/5"
         >
           <img
-            class="object-cover object-center h-50 w-60 desktop:h-full desktop:w-full bg-primary2"
+            class="h-50 w-60 desktop:w-full desktop:h-full object-cover object-center bg-greySoft"
             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
           />
-          <div
-            class="ActivityBadge__Container-enmhze-0 eVVswV absolute top-4 left-4 bg-primary1"
+          <img
+            class="absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm object-cover object-center"
+            src="https://geotrekdemo.ecrins-parcnational.fr/media/upload/poi-fauna.png"
           />
         </div>
         <div
-          class="flex flex-col my-auto flex-auto p-2 desktop:pl-6 desktop:pr-8 desktop:py-6"
+          class="flex flex-col
+        p-2 desktop:pl-6 desktop:pr-8 desktop:py-15"
         >
           <p
             class="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
@@ -49,21 +51,23 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="mx-1 w-60 desktop:w-auto border-greySoft border border-solid rounded-2xl overflow-hidden flex flex-col desktop:flex-row hover:shadow-sm transition-all"
+      class="mx-1 w-60 desktop:w-auto flex-none border-greySoft border border-solid rounded-2xl overflow-hidden flex flex-col desktop:flex-row desktop:mb-6 hover:shadow-sm transition-all"
     >
       <div
         class="relative flex-none desktop:w-2/5"
       >
         <img
-          class="object-cover object-center h-50 w-60 desktop:h-full desktop:w-full bg-primary2"
+          class="h-50 w-60 desktop:w-full desktop:h-full object-cover object-center bg-greySoft"
           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
         />
-        <div
-          class="ActivityBadge__Container-enmhze-0 eVVswV absolute top-4 left-4 bg-primary1"
+        <img
+          class="absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm object-cover object-center"
+          src="https://geotrekdemo.ecrins-parcnational.fr/media/upload/poi-fauna.png"
         />
       </div>
       <div
-        class="flex flex-col my-auto flex-auto p-2 desktop:pl-6 desktop:pr-8 desktop:py-6"
+        class="flex flex-col
+        p-2 desktop:pl-6 desktop:pr-8 desktop:py-15"
       >
         <p
           class="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"

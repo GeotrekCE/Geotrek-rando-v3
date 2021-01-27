@@ -5,6 +5,7 @@ import { Difficulty } from 'modules/filters/difficulties/interface';
 import { formatDistance } from 'modules/results/utils';
 import { CourseType } from 'modules/filters/courseType/interface';
 import { NetworkDictionnary } from 'modules/networks/interface';
+import { Poi } from 'modules/poi/interface';
 import { Details, RawDetails } from './interface';
 
 export const adaptResults = ({
@@ -14,6 +15,7 @@ export const adaptResults = ({
   courseType,
   networks,
   themes,
+  pois,
 }: {
   rawDetails: RawDetails;
   activity: Activity;
@@ -21,6 +23,7 @@ export const adaptResults = ({
   courseType: CourseType | null;
   networks: NetworkDictionnary;
   themes: Choices;
+  pois: Poi[];
 }): Details => {
   return {
     title: rawDetails.name,
@@ -44,5 +47,6 @@ export const adaptResults = ({
       difficulty,
       courseType,
     },
+    pois,
   };
 };

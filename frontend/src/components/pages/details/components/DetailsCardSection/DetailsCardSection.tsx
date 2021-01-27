@@ -1,4 +1,6 @@
+import { Separator } from 'components/Separator';
 import { FormattedMessage } from 'react-intl';
+import { marginDetailsChild } from '../../Details';
 import { DetailsCard, DetailsCardProps } from '../DetailsCard/DetailsCard';
 
 interface DetailsCardSectionProps {
@@ -7,13 +9,15 @@ interface DetailsCardSectionProps {
 
 export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({ detailsCards }) => {
   return (
-    <div className="my-6 desktop:my-12 overflow-scroll">
-      <div className="text-Mobile-H1 desktop:text-H2 font-bold">
+    <div className="mt-6 desktop:mt-12">
+      <div className={`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild}`}>
         <FormattedMessage id={'details.poi'} />
       </div>
       <div
-        className="flex desktop:flex-col desktop:space-y-6 mt-4
-        items-start desktop:items-stretch"
+        className="flex desktop:flex-col items-stretch
+        overflow-scroll desktop:max-h-detailsCardSection flex-nowrap
+        pb-5 mt-4 mb-2 desktop:mb-0
+        px-4 desktop:pl-18 desktop:pr-9 desktop:mr-9"
       >
         {detailsCards.map((card, i) => (
           <DetailsCard
@@ -24,6 +28,9 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({ detailsC
             iconUri={card.iconUri}
           />
         ))}
+      </div>
+      <div className={marginDetailsChild}>
+        <Separator />
       </div>
     </div>
   );

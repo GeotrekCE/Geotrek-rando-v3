@@ -64,112 +64,115 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
             h-coverDetailsMobile desktop:h-coverDetailsDesktop"
           />
           <div
-            className="px-4 desktop:px-18 desktop:py-0
+            className="desktop:py-0
             desktop:relative desktop:-top-9
             flex flex-col"
           >
-            {details?.practice?.pictogram !== undefined && (
-              <ActivityLogo src={details?.practice?.pictogram} />
-            )}
-            <span
-              className="text-Mobile-C2 desktop:text-P1
-              mt-4 desktop:mt-12"
-            >
-              {details?.place}
-            </span>
-            <span className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold">
-              {details?.title}
-            </span>
-            {hasTags && (
+            <div className={`${marginDetailsChild} flex flex-col`}>
+              {details?.practice?.pictogram !== undefined && (
+                <ActivityLogo src={details?.practice?.pictogram} />
+              )}
+              <span
+                className="text-Mobile-C2 desktop:text-P1
+                mt-4 desktop:mt-12"
+              >
+                {details?.place}
+              </span>
+              <span className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold">
+                {details?.title}
+              </span>
+              {hasTags && (
+                <div className="flex flex-wrap">
+                  {tags.map(tag => (
+                    <Chip className="mt-4 desktop:mt-6 mr-2 desktop:mr-4" key={tag}>
+                      {tag}
+                    </Chip>
+                  ))}
+                </div>
+              )}
               <div className="flex flex-wrap">
-                {tags.map(tag => (
-                  <Chip className="mt-4 desktop:mt-6 mr-2 desktop:mr-4" key={tag}>
-                    {tag}
-                  </Chip>
-                ))}
-              </div>
-            )}
-            <div className="flex flex-wrap">
-              {hasDifficulty && (
-                <RemoteIconInformation iconUri={difficultyIcon} className={classNameInformation}>
-                  {difficultyLabel}
-                </RemoteIconInformation>
-              )}
-              {hasDuration && (
-                <LocalIconInformation icon={Clock} className={classNameInformation}>
-                  {duration}
-                </LocalIconInformation>
-              )}
-              {hasDistance && (
-                <LocalIconInformation icon={CodeBrackets} className={classNameInformation}>
-                  {distance}
-                </LocalIconInformation>
-              )}
-              {hasElevation && (
-                <LocalIconInformation icon={TrendingUp} className={classNameInformation}>
-                  {elevation}
-                </LocalIconInformation>
-              )}
-              {hasCourseType && (
-                <RemoteIconInformation iconUri={courseTypeIcon} className={classNameInformation}>
-                  {courseTypeLabel}
-                </RemoteIconInformation>
-              )}
-              {hasNetworks &&
-                details?.informations.networks.map((network, i) => (
-                  <RemoteIconInformation
-                    iconUri={network.pictogramUri}
-                    className={classNameInformation}
-                    key={i}
-                  >
-                    {network.label}
+                {hasDifficulty && (
+                  <RemoteIconInformation iconUri={difficultyIcon} className={classNameInformation}>
+                    {difficultyLabel}
                   </RemoteIconInformation>
-                ))}
+                )}
+                {hasDuration && (
+                  <LocalIconInformation icon={Clock} className={classNameInformation}>
+                    {duration}
+                  </LocalIconInformation>
+                )}
+                {hasDistance && (
+                  <LocalIconInformation icon={CodeBrackets} className={classNameInformation}>
+                    {distance}
+                  </LocalIconInformation>
+                )}
+                {hasElevation && (
+                  <LocalIconInformation icon={TrendingUp} className={classNameInformation}>
+                    {elevation}
+                  </LocalIconInformation>
+                )}
+                {hasCourseType && (
+                  <RemoteIconInformation iconUri={courseTypeIcon} className={classNameInformation}>
+                    {courseTypeLabel}
+                  </RemoteIconInformation>
+                )}
+                {hasNetworks &&
+                  details?.informations.networks.map((network, i) => (
+                    <RemoteIconInformation
+                      iconUri={network.pictogramUri}
+                      className={classNameInformation}
+                      key={i}
+                    >
+                      {network.label}
+                    </RemoteIconInformation>
+                  ))}
+              </div>
             </div>
-            <div
-              className="py-4 desktop:py-12
-              border-solid border-greySoft border-b"
-            >
+            <DetailsSection className={marginDetailsChild}>
               {hasTeaser && (
                 <div className="text-Mobile-C1 desktop:text-H4 font-bold">{description_teaser}</div>
               )}
               {hasAmbiance && hasTeaser && <br />}
               {hasAmbiance && <div className="text-Mobile-C1 desktop:text-P1">{ambiance}</div>}
-            </div>
-            <DetailsCardSection
-              detailsCards={[
-                {
-                  name: 'Église St Louis',
-                  thumbnailUri:
-                    'https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg',
-                  iconUri:
-                    'https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg',
-                  description:
-                    "<span>Pour esp&eacute;rer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand d&eacute;nivel&eacute; afin d'arriver sur son terrain de pr&eacute;dilection &agrave; plus de 2000 m voire 3000 m d'altitude avant le lever du jour et l&agrave;, entendre le chant guttural&nbsp;caract&eacute;ristique qui trahit sa pr&eacute;sence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors l&agrave;, quel bonheur&nbsp;! Le lagop&egrave;de alpin est l'esp&egrave;ce arctique par excellence, menac&eacute;e entre autre par le r&eacute;chauffement climatique. Il fait partie des esp&egrave;ces &agrave; prot&eacute;ger dans le c&oelig;ur du Parc national des Ecrins.</span>",
-                },
-              ]}
-            />
-            <Separator className="mt-6" />
+            </DetailsSection>
+            {details?.pois && details.pois.length > 0 && (
+              <DetailsCardSection
+                detailsCards={details.pois.map(poi => ({
+                  name: poi.name ?? '',
+                  description: poi.description,
+                  thumbnailUri: poi.thumbnailUri,
+                  iconUri: poi.type.pictogramUri,
+                }))}
+              />
+            )}
+            <div className={marginDetailsChild}></div>
             {hasDescription && (
               <DetailsDescription
                 intro={introDescription}
                 steps={stepsDescription}
                 conclusion={conclusionDescription}
+                className={marginDetailsChild}
               />
             )}
             {hasTransport && (
-              <DetailsSection titleId="details.transport">{transport}</DetailsSection>
+              <DetailsSection titleId="details.transport" className={marginDetailsChild}>
+                {transport}
+              </DetailsSection>
             )}
             {hasAccess && (
-              <DetailsSection titleId="details.access_parking">{access}</DetailsSection>
+              <DetailsSection titleId="details.access_parking" className={marginDetailsChild}>
+                {access}
+              </DetailsSection>
             )}
           </div>
         </div>
-        <div className="desktop:flex-1 bg-greySoft h-screen" />
+        <div className="desktop:flex-1 bg-greySoft" />
       </div>
     </Layout>
   );
 };
+
+export const marginDetailsChild = 'mx-4 desktop:mx-18' as const;
 
 const classNameInformation = 'mr-6 mt-3 desktop:mt-4 text-primary1';
 
