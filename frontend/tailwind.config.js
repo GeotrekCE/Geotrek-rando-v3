@@ -46,6 +46,7 @@ module.exports = {
       coverDetailsMobile: '145px',
       desktopHeader: '96px',
       detailsCardSection: '700px',
+      headerAndDetailsRecapBar: '149px',
     },
     zIndex: {
       content: 0,
