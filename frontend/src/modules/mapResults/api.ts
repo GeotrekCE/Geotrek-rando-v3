@@ -3,7 +3,7 @@ import { APIQuery } from 'services/api/interface';
 import { RawMapResults } from './interface';
 
 const fieldsParams = {
-  fields: 'id,parking_location',
+  fields: 'id,parking_location,practice',
 };
 
 export const fetchMapResults = (query: APIQuery): Promise<RawMapResults> =>

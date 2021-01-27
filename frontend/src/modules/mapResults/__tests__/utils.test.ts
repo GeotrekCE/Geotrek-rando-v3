@@ -9,22 +9,27 @@ const MockRawMapResults = [
   {
     id: 2,
     parking_location: [6.1231119, 44.7475257],
+    practice: 1,
   },
   {
     id: 501,
     parking_location: [6.116054, 44.7465199],
+    practice: 1,
   },
   {
     id: 582,
     parking_location: [6.0860825, 44.7155137],
+    practice: 1,
   },
   {
     id: 586,
     parking_location: [6.1234998, 44.7481277],
+    practice: 1,
   },
   {
     id: 592,
     parking_location: [6.0668896, 44.7318421],
+    practice: 1,
   },
 ];
 
