@@ -4,6 +4,8 @@ import 'isomorphic-fetch';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { getApiUrl } from 'services/envLoader';
 import { mockThemeResponse } from 'components/pages/search/mocks';
+import { mockPoiTypeRoute } from 'modules/poiType/mock';
+import { mockPoiRoute } from 'modules/poi/mock';
 import { DetailsUI } from '../';
 import {
   mockNetworksResponse,
@@ -42,7 +44,7 @@ describe('Details', () => {
       .query({
         language: 'fr',
         fields:
-          'name,departure,thumbnail,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description',
+          'id,name,departure,thumbnail,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description',
       })
       .reply(200, rawDetailsMock);
 
@@ -81,6 +83,9 @@ describe('Details', () => {
       })
       .reply(200, mockNetworksResponse);
 
+    mockPoiTypeRoute(1);
+    mockPoiRoute(1, rawDetailsMock.id);
+
     const component = render(
       <QueryClientProvider client={queryClient}>
         <DetailsUI detailsId={`details-${idToTest}-Col-de-Font-Froide`} />
@@ -88,6 +93,7 @@ describe('Details', () => {
     );
     await component.findByText(titleToTest);
     await component.findByText(placeToTest);
-    await component.findByText('Une autre étape');
+    await component.findAllByText('Lagopède alpin');
+    await component.findAllByText('Refuge de la Lavey');
   });
 });
