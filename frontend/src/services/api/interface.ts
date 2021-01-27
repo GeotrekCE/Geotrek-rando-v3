@@ -11,4 +11,5 @@ export interface APIQuery {
   omit?: string;
   page?: number;
   page_size?: number;
+  trek?: number;
 }
