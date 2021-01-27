@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapResults } from 'modules/mapResults/interface';
@@ -50,23 +51,25 @@ const Map: React.FC<PropsType> = props => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {props.points !== undefined &&
-          props.points.map(
-            point =>
-              point.location !== null && (
-                <Marker
-                  key={point.id}
-                  position={[point.location.y, point.location.x]}
-                  icon={isSelectedMarker(point.id) ? ActiveTrekMarker : TrekMarker}
-                >
-                  <Popup
-                    id={point.id}
-                    handleOpen={() => setSelectedMarkerId(point.id)}
-                    handleClose={resetSelectedMarker}
-                  />
-                </Marker>
-              ),
-          )}
+        <MarkerClusterGroup>
+          {props.points !== undefined &&
+            props.points.map(
+              point =>
+                point.location !== null && (
+                  <Marker
+                    key={point.id}
+                    position={[point.location.y, point.location.x]}
+                    icon={isSelectedMarker(point.id) ? ActiveTrekMarker : TrekMarker}
+                  >
+                    <Popup
+                      id={point.id}
+                      handleOpen={() => setSelectedMarkerId(point.id)}
+                      handleClose={resetSelectedMarker}
+                    />
+                  </Marker>
+                ),
+            )}
+        </MarkerClusterGroup>
         <TrekCourse id={selectedMarkerId} />
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
