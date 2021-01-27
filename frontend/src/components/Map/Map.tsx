@@ -14,6 +14,7 @@ import { MapButton } from './components/MapButton';
 import { FilterButton } from './components/FilterButton';
 import { useSelectedMarker } from './hooks/useSelectedMarker';
 import { TrekCourse } from './components/TrekCourse';
+import { ClusterMarker } from './Markers/Cluster';
 
 export type PropsType = {
   points?: MapResults;
@@ -51,7 +52,7 @@ const Map: React.FC<PropsType> = props => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <MarkerClusterGroup>
+        <MarkerClusterGroup iconCreateFunction={ClusterMarker}>
           {props.points !== undefined &&
             props.points.map(
               point =>
