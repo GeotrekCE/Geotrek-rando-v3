@@ -3,8 +3,10 @@ import { Activity } from 'modules/activities/interface';
 import { Difficulty } from 'modules/filters/difficulties/interface';
 import { CourseType } from 'modules/filters/courseType/interface';
 import { Network } from 'modules/networks/interface';
+import { Poi } from 'modules/poi/interface';
 
 export interface RawDetails {
+  id: number;
   name: string;
   departure: string;
   thumbnail: Thumbnail;
@@ -50,4 +52,5 @@ export interface Details extends DetailsHtml {
   imgUrl: string;
   tags: string[];
   informations: DetailsInformation;
+  pois: Poi[];
 }
