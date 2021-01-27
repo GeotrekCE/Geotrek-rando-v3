@@ -1,7 +1,10 @@
 import { getHeaderConfig } from 'modules/header/utills';
+import { useIntl } from 'react-intl';
 
 export const useHeader = () => {
   const config = getHeaderConfig();
 
-  return { config };
+  const intl = useIntl();
+
+  return { config, intl };
 };

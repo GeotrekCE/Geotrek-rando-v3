@@ -1,4 +1,4 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import styled, { css } from 'styled-components';
 import { routes } from 'services/routes';
 import { desktopOnly, sizes } from 'stylesheet';
@@ -8,31 +8,26 @@ import { Display } from 'hooks/useHideOnScrollDown';
 
 import InlineMenu from 'components/InlineMenu';
 import BurgerMenu from '../BurgerMenu';
+import { useHeader } from './useHeader';
 
 interface Props {
   logoPath: string;
 }
 
 export const Header: React.FC<Props> = ({ logoPath }) => {
-  const sectionsMobile = ['En savoir plus', 'Favoris', 'Langue'];
-  const sectionsDesktop = [
-    'Le parc national',
-    'Les maisons du parc',
-    'Infos pratiques',
-    ...sectionsMobile,
-  ];
+  const { config, intl } = useHeader();
+
+  const sectionsDesktop = config.menu.items
+    .slice(0, config.menu.primaryItemsNumber)
+    .map(item => intl.formatMessage({ id: item.translationId }));
   const subSections = {
-    'En savoir plus': [
-      "Biodiv'Écrins",
-      'Le Parc national des Écrins',
-      'Transport',
-      'Votre avis ?',
-      'Les Maisons du parc',
-      'Sorties accompagnées',
-      'Boutique du Parc',
-    ],
-    Langue: ['FR'],
+    [intl.formatMessage({ id: 'header.seeMore' })]: config.menu.items
+      .slice(config.menu.primaryItemsNumber)
+      .map(item => intl.formatMessage({ id: item.translationId })),
   };
+  const sectionsMobile = ['seeMore', 'favorites', 'language'].map(item =>
+    intl.formatMessage({ id: item }),
+  );
   /**
    * Disabled for now to handle the map on the search page
    */
@@ -53,7 +48,7 @@ export const Header: React.FC<Props> = ({ logoPath }) => {
       >
         <div className="flex-shrink-0">
           <Link href={routes.HOME}>
-            <img className="h-9 desktop:h-18 mr-3" alt="logo" src={logoPath} />
+            <img className="h-9 desktop:h-18 mr-3" alt="logo" src={config.logo} />
           </Link>
         </div>
         <p
