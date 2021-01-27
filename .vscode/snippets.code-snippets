@@ -62,5 +62,26 @@
     "prefix": "ifc",
     "body": ["export { $1 } from './$1';"],
     "description": "Create index for FC export"
+  },
+  "Template for module mocks": {
+    "prefix": "modulemock",
+    "body": [
+      "import { mockRoute } from 'services/testing/utils';",
+      "",
+      "export const mock${1:moduleName}Response = () => ({});",
+      "",
+      "export const mock${1:moduleName}Route = (times: number): void =>",
+      "  mockRoute({",
+      "    route: '/${2:route}',",
+      "    mockData: mock${1:moduleName}Response(),",
+      "    additionalQueries: {",
+      "      fields: '${3:apiFields}',",
+      "      page_size: ${4:5},",
+      "    },",
+      "    times,",
+      "  });",
+      ""
+    ],
+    "description": "Template for module mocks"
   }
 }
