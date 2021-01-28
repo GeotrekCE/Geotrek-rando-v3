@@ -16,7 +16,6 @@ import { DetailsHeader } from './components/DetailsHeader/DetailsHeader';
 import { DetailsCardSection } from './components/DetailsCardSection';
 import { checkAndParseToList, checkAndParseToText, checkInformation } from './utils';
 import { useDetails } from './useDetails';
-import { DetailsCardProps } from './components/DetailsCard/DetailsCard';
 import { DetailsButton } from './components/DetailsButton';
 interface Props {
   detailsId: string | string[] | undefined;
@@ -49,17 +48,6 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
   const [hasElevation, elevation] = checkInformation(details, 'elevation');
   const [hasDistance, distance] = checkInformation(details, 'distance');
 
-  const detailsCardFakeProps: DetailsCardProps = {
-    name: 'Refuge des Souffles',
-    place: 'Valgaudemar',
-    iconUri: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/route-return.svg',
-    description:
-      "Le refuge des Souffles est un beau chalet en bois, niché au milieu des derniers mélèzes de la forêt de Lautier. Ce point de passage incontournable des randonneurs et adeptes de la contemplation est située au-dessus de Villard-Loubière, au c?ur des Ecrins C'est un refuge récent qui offre une capacité de trente couchages dans de petits dortoirs équipés de couettes, une salle à manger conviviale, des douches chaudes et de grandes terrasses aménagées. Ah ! la fin d'après-midi sur les chaises longues en savourant un thé à la menthe tout en observant le col de Vaurze, dominé par la cime d'Orgière. Un vrai bonheur !",
-    logoUri:
-      'https://ffcam.fr/csx/scripts/resizer.php?filename=CHARTE%2FlogoL%2F8d%2F67%2F269f0f2549c50899b61197cfaf5e7574&mime=image%252Fpng&originalname=ffcam_logo_desktop.png&geometry=235x90%3E',
-    thumbnailUri:
-      'https://refugedessouffles.ffcam.fr/csx/scripts/resizer.php?filename=FFCAMMEDIAS%2Ffile%2Fcd%2F89%2F619&mime=image%252Fjpeg&originalname=download.jpeg&geometry=420x%3E',
-  };
   const downloadUrl =
     'https://trello.com/c/8k8tcpPx/200-2-eqtu-web-je-vois-les-boutons-t%C3%A9l%C3%A9charger';
 
@@ -204,17 +192,19 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 {access}
               </DetailsSection>
             )}
-            {
+            {details?.touristicContents && details.touristicContents.length > 0 && (
               <DetailsCardSection
                 titleId="details.aroundMe"
-                detailsCards={[
-                  detailsCardFakeProps,
-                  detailsCardFakeProps,
-                  detailsCardFakeProps,
-                  detailsCardFakeProps,
-                ]}
+                detailsCards={details.touristicContents.map(touristicContent => ({
+                  name: touristicContent.name ?? '',
+                  place: touristicContent.category.label,
+                  description: touristicContent.description,
+                  thumbnailUri: touristicContent.thumbnailUri,
+                  iconUri: touristicContent.category.pictogramUri,
+                  logoUri: touristicContent.logoUri,
+                }))}
               />
-            }
+            )}
           </div>
         </div>
         <div className="hidden desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar">
