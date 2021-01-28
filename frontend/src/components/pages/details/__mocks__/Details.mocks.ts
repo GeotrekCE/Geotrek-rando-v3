@@ -28,6 +28,7 @@ export const rawDetails = {
       [6.1224501, 44.747319, 1258],
     ],
   },
+  parking_location: [6.1222924, 44.7471252, 1257],
   attachments: [
     {
       author: 'Parc national des Ecrins',

@@ -3,7 +3,7 @@ import { Difficulty } from 'modules/filters/difficulties/interface';
 import { CourseType } from 'modules/filters/courseType/interface';
 import { Network } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
-import { RawGeometry } from 'modules/interface';
+import { RawCoordinate, RawGeometry } from 'modules/interface';
 import { RawAttachment } from 'modules/activitySuggestions/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 
@@ -27,6 +27,7 @@ export interface RawDetails {
   networks: number[];
   description: string;
   geometry: RawGeometry;
+  parking_location: RawCoordinate;
 }
 
 // Fields parsed with react-html-parser in page
@@ -66,4 +67,5 @@ export interface Details extends DetailsHtml {
   trekDeparture: Coordinate;
   trekArrival: Coordinate;
   touristicContents: TouristicContent[];
+  parkingLocation: Coordinate;
 }

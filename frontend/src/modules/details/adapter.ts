@@ -65,5 +65,9 @@ export const adaptResults = ({
       y: rawDetails.geometry.coordinates[rawDetails.geometry.coordinates.length - 1][1],
     },
     touristicContents,
+    parkingLocation: {
+      x: rawDetails.parking_location[0],
+      y: rawDetails.parking_location[1],
+    },
   };
 };
