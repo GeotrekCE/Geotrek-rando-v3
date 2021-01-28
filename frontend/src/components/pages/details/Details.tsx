@@ -51,8 +51,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
   const detailsCardFakeProps: DetailsCardProps = {
     name: 'Refuge des Souffles',
     place: 'Valgaudemar',
-    iconUri:
-      'https://www.ffcam.fr/csx/scripts/resizer.php?filename=STADATA_FFCAM%2Fimg1%2Ffb%2F02%2Fi4zpipyr8sx&mime=image%252Fjpeg&originalname=logo+140+ans+opacit%C3%A9+100%25+web.jpg&geometry=410x%3E',
+    iconUri: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/route-return.svg',
     description:
       "Le refuge des Souffles est un beau chalet en bois, niché au milieu des derniers mélèzes de la forêt de Lautier. Ce point de passage incontournable des randonneurs et adeptes de la contemplation est située au-dessus de Villard-Loubière, au c?ur des Ecrins C'est un refuge récent qui offre une capacité de trente couchages dans de petits dortoirs équipés de couettes, une salle à manger conviviale, des douches chaudes et de grandes terrasses aménagées. Ah ! la fin d'après-midi sur les chaises longues en savourant un thé à la menthe tout en observant le col de Vaurze, dominé par la cime d'Orgière. Un vrai bonheur !",
     logoUri:
