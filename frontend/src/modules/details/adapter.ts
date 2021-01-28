@@ -48,5 +48,17 @@ export const adaptResults = ({
       courseType,
     },
     pois,
+    trekGeometry: rawDetails.geometry.coordinates.map(rawCoordinates => ({
+      x: rawCoordinates[0],
+      y: rawCoordinates[1],
+    })),
+    trekDeparture: {
+      x: rawDetails.geometry.coordinates[0][0],
+      y: rawDetails.geometry.coordinates[0][1],
+    },
+    trekArrival: {
+      x: rawDetails.geometry.coordinates[rawDetails.geometry.coordinates.length - 1][0],
+      y: rawDetails.geometry.coordinates[rawDetails.geometry.coordinates.length - 1][1],
+    },
   };
 };

@@ -4,6 +4,7 @@ import { Difficulty } from 'modules/filters/difficulties/interface';
 import { CourseType } from 'modules/filters/courseType/interface';
 import { Network } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
+import { RawGeometry } from 'modules/interface';
 
 export interface RawDetails {
   id: number;
@@ -24,6 +25,7 @@ export interface RawDetails {
   route: number;
   networks: number[];
   description: string;
+  geometry: RawGeometry;
 }
 
 // Fields parsed with react-html-parser in page
@@ -45,6 +47,12 @@ export interface DetailsInformation extends DetailsInformationString {
   courseType: CourseType | null;
   networks: Network[];
 }
+
+interface Coordinate {
+  x: number;
+  y: number;
+}
+
 export interface Details extends DetailsHtml {
   practice: Activity;
   title: string;
@@ -53,4 +61,7 @@ export interface Details extends DetailsHtml {
   tags: string[];
   informations: DetailsInformation;
   pois: Poi[];
+  trekGeometry: Coordinate[];
+  trekDeparture: Coordinate;
+  trekArrival: Coordinate;
 }
