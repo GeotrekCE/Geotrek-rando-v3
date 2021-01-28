@@ -47,7 +47,7 @@ const colourStyles = {
       padding: '4px 0',
       backgroundColor: colorPalette.filter.selected.background,
       ':before': {
-        content: "' '",
+        content: data.pictogramUrl !== undefined ? "' '" : '',
         background: data.pictogramUrl !== undefined ? `url(${data.pictogramUrl})` : '',
         display: 'block',
         marginRight: 2,
