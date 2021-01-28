@@ -62,7 +62,7 @@ describe('Search page', () => {
       </QueryClientProvider>,
     );
 
-    await waitForElementToBeRemoved(() => page.queryByRole('progressbar'));
+    await waitForElementToBeRemoved(() => page.queryByRole('progressbar'), { timeout: 5000 });
 
     const textIsPresent = (text: string) => {
       page.getByText(text);
