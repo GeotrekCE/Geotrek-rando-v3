@@ -6,6 +6,7 @@ export const adaptActivityFilter = (rawActivities: RawListActivity[]): Filter =>
   options: rawActivities.map(rawActivity => ({
     value: `${rawActivity.id}`,
     label: rawActivity.name,
+    pictogramUrl: rawActivity.pictogram,
   })),
 });
 

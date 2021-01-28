@@ -30,6 +30,7 @@ export interface RawDuration {
 export interface Option {
   label: string;
   value: string;
+  pictogramUrl?: string;
 }
 export interface Filter {
   id: string;
