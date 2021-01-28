@@ -16,13 +16,18 @@ export const mockResultsResponse = () => ({
       practice: 4,
       reservation_system: null,
       themes: [1, 7, 11],
-      thumbnail: {
-        author: 'Dominique Vincent - PNE',
-        title: 'le-depart-du-hameau-de-molines',
-        legend: 'Le départ du hameau de Molines',
-        url:
-          'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
-      },
+      attachments: [
+        {
+          author: 'Parc national des Ecrins',
+          backend: 'Attachment',
+          thumbnail: '',
+          legend: 'Présentation Rando Ecrins',
+          title: '',
+          url:
+            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
+          type: 'image',
+        },
+      ],
     },
   ],
 });
@@ -33,7 +38,7 @@ export const mockResultsRoute = (times: number): void =>
     mockData: mockResultsResponse(),
     additionalQueries: {
       fields:
-        'id,departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,thumbnail,practice',
+        'id,departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,attachments,practice',
       page_size: 5,
       page: 1,
     },

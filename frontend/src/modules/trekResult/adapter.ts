@@ -1,3 +1,4 @@
+import { getThumbnail } from 'modules/utils/adapter';
 import {
   RawTrekGeometryResult,
   RawTrekPopupResult,
@@ -11,7 +12,7 @@ export const adaptTrekPopupResults = (rawDetails: RawTrekPopupResult): TrekPopup
   return {
     title: rawDetails.name,
     place: rawDetails.departure,
-    imgUrl: rawDetails.thumbnail.url || fallbackImgUri,
+    imgUrl: getThumbnail(rawDetails.attachments) ?? fallbackImgUri,
   };
 };
 
