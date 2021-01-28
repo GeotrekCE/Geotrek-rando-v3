@@ -26,7 +26,7 @@ Object {
             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
           />
           <div
-            class="absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-primary1 bg-white"
+            class="absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white bg-primary1 border-2 border-white border-solid"
           />
         </div>
         <div
@@ -80,7 +80,7 @@ Object {
           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
         />
         <div
-          class="absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-primary1 bg-white"
+          class="absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white bg-primary1 border-2 border-white border-solid"
         />
       </div>
       <div

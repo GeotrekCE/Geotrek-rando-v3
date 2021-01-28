@@ -12,4 +12,5 @@ export interface APIQuery {
   page?: number;
   page_size?: number;
   trek?: number;
+  near_trek?: number;
 }

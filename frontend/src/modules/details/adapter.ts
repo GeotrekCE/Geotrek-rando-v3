@@ -7,6 +7,7 @@ import { formatDistance } from 'modules/results/utils';
 import { CourseType } from 'modules/filters/courseType/interface';
 import { NetworkDictionnary } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
+import { TouristicContent } from 'modules/touristicContent/interface';
 import { Details, RawDetails } from './interface';
 
 export const adaptResults = ({
@@ -17,6 +18,7 @@ export const adaptResults = ({
   networks,
   themes,
   pois,
+  touristicContents,
 }: {
   rawDetails: RawDetails;
   activity: Activity;
@@ -25,6 +27,7 @@ export const adaptResults = ({
   networks: NetworkDictionnary;
   themes: Choices;
   pois: Poi[];
+  touristicContents: TouristicContent[];
 }): Details => {
   return {
     title: rawDetails.name,
@@ -61,5 +64,6 @@ export const adaptResults = ({
       x: rawDetails.geometry.coordinates[rawDetails.geometry.coordinates.length - 1][0],
       y: rawDetails.geometry.coordinates[rawDetails.geometry.coordinates.length - 1][1],
     },
+    touristicContents,
   };
 };
