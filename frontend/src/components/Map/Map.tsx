@@ -9,6 +9,7 @@ import { colorPalette } from 'stylesheet';
 import { TrekMarker } from './Markers/TrekMarker';
 import { ArrivalMarker } from './Markers/ArrivalMarker';
 import { DepartureMarker } from './Markers/DepartureMarker';
+import { ParkingMarker } from './Markers/ParkingMarker';
 
 import { Popup } from './components/Popup';
 import { MapButton } from './components/MapButton';
@@ -26,6 +27,7 @@ export type PropsType = {
   hasFilters?: boolean;
   arrivalLocation?: { x: number; y: number };
   departureLocation?: { x: number; y: number };
+  parkingLocation?: { x: number; y: number };
   shouldUseClusters?: boolean;
   shouldUsePopups?: boolean;
 };
@@ -91,6 +93,12 @@ const Map: React.FC<PropsType> = props => {
             <Marker
               position={[props.departureLocation.y, props.departureLocation.x]}
               icon={DepartureMarker}
+            />
+          )}
+          {props.parkingLocation !== undefined && (
+            <Marker
+              position={[props.parkingLocation.y, props.parkingLocation.x]}
+              icon={ParkingMarker}
             />
           )}
         </ClusterContainer>
