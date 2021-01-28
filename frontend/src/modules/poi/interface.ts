@@ -1,17 +1,17 @@
+import { RawAttachment } from 'modules/activitySuggestions/interface';
 import { PoiType } from 'modules/poiType/interface';
-import { Thumbnail } from 'modules/results/interface';
 
 export interface RawPoi {
   name: string;
   description: string;
-  pictures: Thumbnail[];
   type: number;
   trek: number;
+  attachments: RawAttachment[];
 }
 
 export interface Poi {
   name: string;
   description?: string;
-  thumbnailUri?: string;
+  thumbnailUri: string | null;
   type: PoiType;
 }

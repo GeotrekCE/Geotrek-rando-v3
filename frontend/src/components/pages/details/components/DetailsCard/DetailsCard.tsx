@@ -9,7 +9,7 @@ export interface DetailsCardProps {
   name: string;
   place?: string;
   description?: string;
-  thumbnailUri?: string;
+  thumbnailUri: string | null;
   iconUri?: string;
   logoUri?: string;
 }
@@ -50,12 +50,19 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         />
       )}
       <div className="flex-none desktop:w-2/5">
-        <img
-          src={thumbnailUri}
-          className="h-50 w-60 desktop:w-full desktop:h-full
+        {thumbnailUri !== null ? (
+          <img
+            src={thumbnailUri}
+            className="h-50 w-60 desktop:w-full desktop:h-full
           object-cover object-center
            bg-greySoft"
-        />
+          />
+        ) : (
+          <div
+            className="h-50 w-60 desktop:w-full desktop:h-full
+         bg-greySoft"
+          />
+        )}
         {iconUri !== null && iconUri !== undefined && <CardIcon iconUri={iconUri} />}
       </div>
       <div

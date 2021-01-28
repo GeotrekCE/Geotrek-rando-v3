@@ -1,5 +1,6 @@
 import { Activity } from 'modules/activities/interface';
 import { Choices } from 'modules/filters/interface';
+import { getThumbnail } from 'modules/utils/adapter';
 import { dataUnits } from 'modules/results/adapter';
 import { Difficulty } from 'modules/filters/difficulties/interface';
 import { formatDistance } from 'modules/results/utils';
@@ -28,7 +29,7 @@ export const adaptResults = ({
   return {
     title: rawDetails.name,
     place: rawDetails.departure,
-    imgUrl: rawDetails.thumbnail.url,
+    imgUrl: getThumbnail(rawDetails.attachments),
     practice: activity,
     transport: rawDetails.public_transport,
     access_parking:

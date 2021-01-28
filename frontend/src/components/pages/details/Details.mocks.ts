@@ -21,13 +21,6 @@ export const rawDetails = {
     'Entre Gap et La Motte-en-Champsaur, possibilit&eacute; de correspondance avec le car Gap-Grenoble.',
   route: 2,
   themes: [11, 1, 7],
-  thumbnail: {
-    author: 'Dominique Vincent - PNE',
-    title: 'le-depart-du-hameau-de-molines',
-    legend: 'Le départ du hameau de Molines',
-    url:
-      'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
-  },
   geometry: {
     type: 'LineString',
     coordinates: [
@@ -35,6 +28,18 @@ export const rawDetails = {
       [6.1224501, 44.747319, 1258],
     ],
   },
+  attachments: [
+    {
+      author: 'Parc national des Ecrins',
+      backend: 'Attachment',
+      thumbnail: '',
+      legend: 'Présentation Rando Ecrins',
+      title: '',
+      url:
+        'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
+      type: 'image',
+    },
+  ],
 };
 
 export const rawActivity = {

@@ -1,4 +1,3 @@
-import { fetchPoiTypes } from 'modules/poiType/api';
 import { getPoiTypes } from 'modules/poiType/connector';
 import { adaptPoi } from './adapter';
 import { fetchPois } from './api';

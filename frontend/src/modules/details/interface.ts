@@ -1,16 +1,16 @@
-import { Thumbnail } from 'modules/results/interface';
 import { Activity } from 'modules/activities/interface';
 import { Difficulty } from 'modules/filters/difficulties/interface';
 import { CourseType } from 'modules/filters/courseType/interface';
 import { Network } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
 import { RawGeometry } from 'modules/interface';
+import { RawAttachment } from 'modules/activitySuggestions/interface';
 
 export interface RawDetails {
   id: number;
   name: string;
   departure: string;
-  thumbnail: Thumbnail;
+  attachments: RawAttachment[];
   practice: number;
   public_transport: string;
   access: string;
@@ -57,7 +57,7 @@ export interface Details extends DetailsHtml {
   practice: Activity;
   title: string;
   place: string;
-  imgUrl: string;
+  imgUrl: string | null;
   tags: string[];
   informations: DetailsInformation;
   pois: Poi[];

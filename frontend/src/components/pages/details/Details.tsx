@@ -83,11 +83,16 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
           relative -top-detailsHeaderMobile desktop:top-0
           desktop:w-3/5"
         >
-          <img
-            src={details?.imgUrl}
-            className="object-cover object-center overflow-hidden
-            h-coverDetailsMobile desktop:h-coverDetailsDesktop"
-          />
+          {details?.imgUrl !== null ? (
+            <img
+              src={details?.imgUrl}
+              className="object-cover object-center overflow-hidden
+          h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+            />
+          ) : (
+            <div className="h-coverDetailsMobile desktop:h-coverDetailsDesktop" />
+          )}
+
           <div
             className="desktop:py-0
             desktop:relative desktop:-top-9
