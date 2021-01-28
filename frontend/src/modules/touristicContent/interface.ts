@@ -1,8 +1,8 @@
-import { Attachment } from 'domain/Trek/Trek';
+import { RawAttachment } from 'modules/activitySuggestions/interface';
 import { TouristicContentCategory } from 'modules/touristicContentCategory/interface';
 
 export interface RawTouristicContent {
-  attachments: Attachment[];
+  attachments: RawAttachment[];
   name: string;
   category: number;
   description_teaser: string;
