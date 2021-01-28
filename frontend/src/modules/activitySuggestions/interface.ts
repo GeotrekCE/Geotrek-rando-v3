@@ -1,11 +1,19 @@
-import { Thumbnail } from '../results/interface';
+export interface RawAttachment {
+  author: string;
+  backend: string;
+  thumbnail: string;
+  legend: string;
+  title: string;
+  url: string;
+  type: string;
+}
 
 export interface RawActivitySuggestion {
   name: string;
-  thumbnail: Thumbnail;
+  attachments: RawAttachment[];
 }
 
 export interface ActivitySuggestion {
   title: string;
-  imgUrl: string;
+  imgUrl: string | null;
 }
