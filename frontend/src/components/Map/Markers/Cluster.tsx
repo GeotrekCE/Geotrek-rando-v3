@@ -11,10 +11,10 @@ interface ClusterType {
 
 const Round = styled.div`
   border-radius: 50%;
-  background-color: ${colorPalette.white};
+  background-color: ${colorPalette.primary1};
   display: grid;
   place-items: center;
-  color: ${colorPalette.primary1};
+  color: ${colorPalette.white};
 
   transition: transform 150ms;
   &:hover {
