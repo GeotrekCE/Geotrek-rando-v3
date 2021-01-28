@@ -1,5 +1,5 @@
 import SVG from 'react-inlinesvg';
-import { colorPalette, fillSvgWithColor } from 'stylesheet';
+import { colorPalette, fillSvgWithColor, sizes } from 'stylesheet';
 
 import { Layout } from 'components/Layout/Layout';
 import { Chip } from 'components/Chip';
@@ -9,6 +9,7 @@ import { TrendingUp } from 'components/Icons/TrendingUp';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { LocalIconInformation, RemoteIconInformation } from 'components/Information';
 import { MapDynamicComponent } from 'components/Map';
+import { useShowOnScrollPosition } from 'hooks/useShowOnScrollPosition';
 import { DetailsSection } from './components/DetailsSection/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
 import { DetailsHeader } from './components/DetailsHeader/DetailsHeader';
@@ -75,8 +76,13 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
         ]}
         downloadUrl={downloadUrl}
       />
+      {details?.title !== undefined && <DetailsHeaderMobile title={details?.title} />}
       <div className="flex flex-1">
-        <div className="flex flex-col w-full desktop:w-3/5">
+        <div
+          className="flex flex-col w-full
+          relative -top-detailsHeaderMobile desktop:top-0
+          desktop:w-3/5"
+        >
           <img
             src={details?.imgUrl}
             className="object-cover object-center overflow-hidden
@@ -228,3 +234,24 @@ const ActivityLogo: React.FC<{ src: string }> = ({ src }) => (
     <SVG src={src} preProcessor={fillSvgWithColor(colorPalette.white)} height={53} width={53} />
   </div>
 );
+
+interface DetailsHeaderMobileProps {
+  title: string;
+}
+
+const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title: name }) => {
+  const displayState = useShowOnScrollPosition(sizes.mobileDetailsTitle);
+  return (
+    <div
+      className={`py-3 px-4
+      text-P2 font-bold text-primary1
+      shadow-md bg-white
+      ${displayState === 'DISPLAYED' ? 'top-mobileHeader sticky' : '-top-mobileHeader'}
+      desktop:hidden z-headerDetails truncate
+      transition-all duration-500
+      `}
+    >
+      {name}
+    </div>
+  );
+};

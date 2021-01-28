@@ -91,7 +91,7 @@ describe('Details', () => {
         <DetailsUI detailsId={`details-${idToTest}-Col-de-Font-Froide`} />
       </QueryClientProvider>,
     );
-    await component.findByText(titleToTest);
+    await component.findAllByText(titleToTest);
     await component.findByText(placeToTest);
     await component.findAllByText('Lagopède alpin');
     await component.findAllByText('Refuge de la Lavey');
