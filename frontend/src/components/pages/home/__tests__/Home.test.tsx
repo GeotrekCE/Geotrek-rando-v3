@@ -14,7 +14,7 @@ describe('Home page', () => {
     nock(getApiUrl())
       .get('/trek')
       .query({
-        fields: 'name,thumbnail',
+        fields: 'name,attachments',
         language: 'fr',
         page_size: 5,
       })
