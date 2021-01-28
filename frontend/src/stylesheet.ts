@@ -147,6 +147,7 @@ export const sizes = {
   desktopHeader: 96,
   button: 48,
   filterBar: 72,
+  mobileDetailsTitle: 230,
 };
 
 export const fillSvgWithColor = (color: string) => (svg: string): string =>
