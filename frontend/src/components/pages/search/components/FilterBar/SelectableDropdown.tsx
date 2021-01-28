@@ -30,7 +30,7 @@ const colourStyles = {
     },
     height: sizes.button,
   }),
-  option: (styles: any) => {
+  option: (styles: any, { data }: { data: Option }) => {
     return {
       ...styles,
       backgroundColor: colorPalette.filter.background,
@@ -38,6 +38,20 @@ const colourStyles = {
       ':hover': {
         backgroundColor: colorPalette.filter.hover.background,
         color: colorPalette.filter.hover.color,
+      },
+      display: 'flex',
+      alignItems: 'center',
+      ':before': {
+        content: data.pictogramUrl !== undefined ? '" "' : '',
+        background: data.pictogramUrl !== undefined ? `url(${data.pictogramUrl})` : '',
+        display: 'block',
+        marginRight: 8,
+        marginLeft: 4,
+        width: 24,
+        height: 24,
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
       },
     };
   },
@@ -47,7 +61,7 @@ const colourStyles = {
       padding: '4px 0',
       backgroundColor: colorPalette.filter.selected.background,
       ':before': {
-        content: data.pictogramUrl !== undefined ? "' '" : '',
+        content: data.pictogramUrl !== undefined ? '" "' : '',
         background: data.pictogramUrl !== undefined ? `url(${data.pictogramUrl})` : '',
         display: 'block',
         marginRight: 2,
