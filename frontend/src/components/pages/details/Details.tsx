@@ -247,7 +247,7 @@ const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title: name }
       text-P2 font-bold text-primary1
       shadow-md bg-white
       ${displayState === 'DISPLAYED' ? 'top-mobileHeader sticky' : '-top-mobileHeader'}
-      desktop:hidden z-headerDetails
+      desktop:hidden z-headerDetails truncate
       transition-all duration-500
       `}
     >
