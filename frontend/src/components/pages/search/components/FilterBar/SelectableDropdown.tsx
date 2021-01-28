@@ -41,10 +41,22 @@ const colourStyles = {
       },
     };
   },
-  multiValue: (styles: any) => {
+  multiValue: (styles: any, { data }: { data: Option }) => {
     return {
       ...styles,
+      padding: '4px 0',
       backgroundColor: colorPalette.filter.selected.background,
+      ':before': {
+        content: "' '",
+        background: data.pictogramUrl !== undefined ? `url(${data.pictogramUrl})` : '',
+        display: 'block',
+        marginRight: 2,
+        marginLeft: 4,
+        width: 24,
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      },
     };
   },
   input: (styles: any) => ({ ...styles, backgroundColor: 'black' }),
