@@ -21,6 +21,7 @@ export const useScrollDirection = (
 ): ScrollDirections => {
   const [scrollDirection, setScrollDirection] = useState<ScrollDirections>(null);
   let previousPosition: number;
+  let previousScrollDirection: ScrollDirections = null;
 
   // Necessary to avoid errors with Nextjs
   if (typeof window !== 'undefined') {
@@ -29,10 +30,16 @@ export const useScrollDirection = (
 
   const handleScrolling = () => {
     const currentPosition = window.scrollY;
-    setScrollDirection(
-      computeScrollDirection(currentPosition, previousPosition, scrollDetectionThreshold),
+    const currentScrollDirection = computeScrollDirection(
+      currentPosition,
+      previousPosition,
+      scrollDetectionThreshold,
     );
+    if (previousScrollDirection !== currentScrollDirection) {
+      setScrollDirection(currentScrollDirection);
+    }
     previousPosition = currentPosition;
+    previousScrollDirection = currentScrollDirection;
   };
 
   useEffect(() => {

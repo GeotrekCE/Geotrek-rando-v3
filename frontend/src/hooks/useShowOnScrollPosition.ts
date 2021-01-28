@@ -6,17 +6,23 @@ export type Display = 'DISPLAYED' | 'HIDDEN';
  * Returns "DISPLAYED" if the scroll position is above minScrollPosition, "HIDDEN" otherwise
  */
 export const useShowOnScrollPosition = (minScrollPosition: number): Display => {
-  let initialPosition = 0;
+  let previousPosition = 0;
   // Necessary to avoid errors with Nextjs
   if (typeof window !== 'undefined') {
-    initialPosition = window.scrollY;
+    previousPosition = window.scrollY;
   }
   const [displayState, setDisplayState] = useState<Display>(
-    initialPosition > minScrollPosition ? 'DISPLAYED' : 'HIDDEN',
+    previousPosition > minScrollPosition ? 'DISPLAYED' : 'HIDDEN',
   );
 
   const handleScrolling = () => {
-    setDisplayState(window.scrollY > minScrollPosition ? 'DISPLAYED' : 'HIDDEN');
+    const currentPosition = window.scrollY;
+    if (currentPosition > minScrollPosition && previousPosition <= minScrollPosition) {
+      setDisplayState('DISPLAYED');
+    } else if (currentPosition <= minScrollPosition && previousPosition > minScrollPosition) {
+      setDisplayState('HIDDEN');
+    }
+    previousPosition = currentPosition;
   };
 
   useEffect(() => {
