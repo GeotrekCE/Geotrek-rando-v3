@@ -217,6 +217,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
             type="DESKTOP"
             arrivalLocation={details?.trekArrival}
             departureLocation={details?.trekDeparture}
+            segments={details?.trekGeometry}
           />
         </div>
       </div>
