@@ -3,7 +3,7 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawPoi } from './interface';
 
 const fieldsParams = {
-  fields: 'name,description,pictures,type',
+  fields: 'name,description,attachments,type',
 };
 
 export const fetchPois = (query: APIQuery): Promise<APIResponseForList<RawPoi>> =>
