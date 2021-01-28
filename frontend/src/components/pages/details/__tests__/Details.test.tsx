@@ -6,6 +6,8 @@ import { getApiUrl } from 'services/envLoader';
 import { mockThemeResponse } from 'components/pages/search/mocks';
 import { mockPoiTypeRoute } from 'modules/poiType/mock';
 import { mockPoiRoute } from 'modules/poi/mock';
+import { mockTouristicContentRoute } from 'modules/touristicContent/mock';
+import { mockTouristicContentCategoryRoute } from 'modules/touristicContentCategory/mock';
 import { DetailsUI } from '../';
 import {
   mockNetworksResponse,
@@ -86,6 +88,9 @@ describe('Details', () => {
     mockPoiTypeRoute(1);
     mockPoiRoute(1, rawDetailsMock.id);
 
+    mockTouristicContentCategoryRoute(1);
+    mockTouristicContentRoute(1, rawDetailsMock.id);
+
     const component = render(
       <QueryClientProvider client={queryClient}>
         <DetailsUI detailsId={`details-${idToTest}-Col-de-Font-Froide`} />
@@ -95,5 +100,9 @@ describe('Details', () => {
     await component.findByText(placeToTest);
     await component.findAllByText('Lagopède alpin');
     await component.findAllByText('Refuge de la Lavey');
+    await component.findByText('Auberge Gaillard');
+    await component.findByText(
+      "L'auberge propose, dans un hameau de montagne en bout de route, en pleine nature, un hébergement de séjour, nuitée, demi-pension et pension complète dans un décor de la vie d'antan et d'aujourd'hui.",
+    );
   });
 });
