@@ -4,10 +4,10 @@ import 'isomorphic-fetch';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { getApiUrl } from 'services/envLoader';
 import { mockThemeResponse } from 'components/pages/search/mocks';
-import { mockPoiTypeRoute } from 'modules/poiType/mock';
-import { mockPoiRoute } from 'modules/poi/mock';
-import { mockTouristicContentRoute } from 'modules/touristicContent/mock';
-import { mockTouristicContentCategoryRoute } from 'modules/touristicContentCategory/mock';
+import { mockPoiTypeRoute } from 'modules/poiType/mocks';
+import { mockPoiRoute } from 'modules/poi/mocks';
+import { mockTouristicContentRoute } from 'modules/touristicContent/mocks';
+import { mockTouristicContentCategoryRoute } from 'modules/touristicContentCategory/mocks';
 import { DetailsUI } from '../';
 import {
   mockNetworksResponse,
