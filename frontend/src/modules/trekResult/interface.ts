@@ -1,4 +1,5 @@
 import { Thumbnail } from 'modules/results/interface';
+import { RawGeometry } from 'modules/interface';
 
 export interface RawTrekPopupResult {
   name: string;
@@ -12,15 +13,8 @@ export interface TrekPopupResult {
   imgUrl: string;
 }
 
-type RawCoordinate = number[];
-
-interface Geometry {
-  type: string;
-  coordinates: RawCoordinate[];
-}
-
 export interface RawTrekGeometryResult {
-  geometry: Geometry;
+  geometry: RawGeometry;
 }
 
 interface Coordinate {

@@ -28,6 +28,13 @@ export const rawDetails = {
     url:
       'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
   },
+  geometry: {
+    type: 'LineString',
+    coordinates: [
+      [6.1222924, 44.7471252, 1257],
+      [6.1224501, 44.747319, 1258],
+    ],
+  },
 };
 
 export const rawActivity = {

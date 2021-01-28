@@ -11,10 +11,10 @@ interface ClusterType {
 
 const Round = styled.div`
   border-radius: 50%;
-  background-color: ${colorPalette.white};
+  background-color: ${colorPalette.primary1};
   display: grid;
   place-items: center;
-  color: ${colorPalette.primary1};
+  color: ${colorPalette.white};
 
   transition: transform 150ms;
   &:hover {
@@ -30,7 +30,7 @@ const Cluster: React.FC<{ number: number }> = ({ number }) => {
   );
 };
 
-export const ClusterMarker = (cluster: ClusterType) =>
+export const ClusterMarker = (cluster: ClusterType): DivIcon =>
   new DivIcon({
     iconSize: [40, 40],
     // point of the icon which will correspond to marker's location

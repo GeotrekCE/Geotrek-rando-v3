@@ -1,15 +1,7 @@
 import dynamic from 'next/dynamic';
-import { TreksList } from 'domain/Trek/Trek';
-import { MapResults } from 'modules/mapResults/interface';
+import { PropsType as MapProps } from './Map';
 
-export const MapDynamicComponent = (props: {
-  points?: MapResults;
-  segments?: TreksList | null;
-  hideMap?: () => void;
-  type: 'DESKTOP' | 'MOBILE';
-  openFilterMenu?: () => void;
-  hasFilters?: boolean;
-}) => {
+export const MapDynamicComponent: React.FC<MapProps> = props => {
   const Map = dynamic(() => import('./Map'), {
     ssr: false,
   });
