@@ -1,10 +1,11 @@
+import { RawAttachment } from 'modules/activitySuggestions/interface';
 import { Thumbnail } from 'modules/results/interface';
 import { RawGeometry } from 'modules/interface';
 
 export interface RawTrekPopupResult {
   name: string;
   departure: string;
-  thumbnail: Thumbnail;
+  attachments: RawAttachment[];
 }
 
 export interface TrekPopupResult {

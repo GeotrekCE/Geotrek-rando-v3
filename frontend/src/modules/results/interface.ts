@@ -1,4 +1,5 @@
 import { Activity } from 'modules/activities/interface';
+import { RawAttachment } from 'modules/activitySuggestions/interface';
 
 export interface TrekResults {
   resultsNumber: number;
@@ -47,7 +48,7 @@ export interface RawTrekResult {
   length_2d: number;
   name: string;
   reservation_system: null | number;
-  thumbnail: Thumbnail;
+  attachments: RawAttachment[];
   practice: number;
 }
 

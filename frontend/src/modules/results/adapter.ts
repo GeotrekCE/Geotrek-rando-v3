@@ -1,6 +1,7 @@
 import { ActivityChoices } from 'modules/activities/interface';
 import { DifficultyChoices } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
+import { getThumbnail } from 'modules/utils/adapter';
 import { RawTrekResults, TrekResult, TrekResults } from './interface';
 import { extractNextPageId, formatDistance } from './utils';
 
@@ -29,7 +30,7 @@ export const adaptTrekResults = ({
     place: rawResult.departure,
     title: rawResult.name,
     tags: rawResult.themes.map(themeId => themes[themeId].label),
-    thumbnailUri: rawResult?.thumbnail?.url || fallbackImgUri,
+    thumbnailUri: getThumbnail(rawResult.attachments) ?? fallbackImgUri,
     practice: activities[rawResult.practice],
     informations: {
       duration: rawResult.duration !== null ? `${rawResult.duration}${dataUnits.time}` : null,

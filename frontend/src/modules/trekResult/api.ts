@@ -3,7 +3,7 @@ import { APIQuery } from 'services/api/interface';
 import { RawTrekGeometryResult, RawTrekPopupResult } from './interface';
 
 const fieldsParams = {
-  fields: 'name,departure,thumbnail',
+  fields: 'name,departure,attachments',
 };
 
 export const fetchTrekPopupResult = (query: APIQuery, id: string): Promise<RawTrekPopupResult> =>

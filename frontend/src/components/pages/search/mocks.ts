@@ -14,13 +14,18 @@ export const mockTrekResponse = {
       practice: 4,
       reservation_system: null,
       themes: [1, 7, 11],
-      thumbnail: {
-        author: 'Dominique Vincent - PNE',
-        title: 'le-depart-du-hameau-de-molines',
-        legend: 'Le départ du hameau de Molines',
-        url:
-          'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
-      },
+      attachments: [
+        {
+          author: 'Parc national des Ecrins',
+          backend: 'Attachment',
+          thumbnail: '',
+          legend: 'Présentation Rando Ecrins',
+          title: '',
+          url:
+            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
+          type: 'image',
+        },
+      ],
     },
   ],
 };

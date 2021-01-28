@@ -47,7 +47,6 @@ export interface Trek {
   source: number[];
   structure: number;
   themes: number[];
-  thumbnail: Thumbnail;
   update_datetime: string;
   url: string;
 }
