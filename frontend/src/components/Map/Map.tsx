@@ -5,9 +5,10 @@ import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapResults } from 'modules/mapResults/interface';
 import { TreksList } from 'domain/Trek/Trek';
-import { TrekMarker } from './Markers/TrekMarker';
-import { ActiveTrekMarker } from './Markers/ActiveTrekMarker';
 import { Popup } from './components/Popup';
+import { TrekMarker } from './Markers/TrekMarker';
+import { ArrivalMarker } from './Markers/ArrivalMarker';
+import { DepartureMarker } from './Markers/DepartureMarker';
 
 import 'leaflet/dist/leaflet.css';
 import { MapButton } from './components/MapButton';
@@ -23,6 +24,8 @@ export type PropsType = {
   type: 'DESKTOP' | 'MOBILE';
   openFilterMenu?: () => void;
   hasFilters?: boolean;
+  arrivalLocation?: { x: number; y: number };
+  departureLocation?: { x: number; y: number };
 };
 
 const Map: React.FC<PropsType> = props => {
@@ -92,6 +95,18 @@ const Map: React.FC<PropsType> = props => {
                   </Marker>
                 ),
             )}
+          {props.arrivalLocation !== undefined && (
+            <Marker
+              position={[props.arrivalLocation.y, props.arrivalLocation.x]}
+              icon={ArrivalMarker}
+            />
+          )}
+          {props.departureLocation !== undefined && (
+            <Marker
+              position={[props.departureLocation.y, props.departureLocation.x]}
+              icon={DepartureMarker}
+            />
+          )}
         </MarkerClusterGroup>
         <TrekCourse id={selectedMarkerId} />
       </MapContainer>

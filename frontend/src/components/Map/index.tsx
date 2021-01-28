@@ -9,6 +9,8 @@ export const MapDynamicComponent = (props: {
   type: 'DESKTOP' | 'MOBILE';
   openFilterMenu?: () => void;
   hasFilters?: boolean;
+  arrivalLocation?: { x: number; y: number };
+  departureLocation?: { x: number; y: number };
 }) => {
   const Map = dynamic(() => import('./Map'), {
     ssr: false,
