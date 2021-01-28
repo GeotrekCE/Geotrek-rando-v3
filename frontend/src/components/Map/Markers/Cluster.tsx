@@ -30,7 +30,7 @@ const Cluster: React.FC<{ number: number }> = ({ number }) => {
   );
 };
 
-export const ClusterMarker = (cluster: ClusterType) =>
+export const ClusterMarker = (cluster: ClusterType): DivIcon =>
   new DivIcon({
     iconSize: [40, 40],
     // point of the icon which will correspond to marker's location
