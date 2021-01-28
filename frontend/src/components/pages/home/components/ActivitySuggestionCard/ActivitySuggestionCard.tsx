@@ -7,7 +7,6 @@ export const ActivitySuggestionCard: React.FC<ActivitySuggestionCardProps> = ({
   title,
   imgUrl,
 }) => {
-  // console.log('🚀 ~ file: ActivitySuggestionCard.tsx ~ line 10 ~ imgUrl', imgUrl);
   return (
     <div
       className="

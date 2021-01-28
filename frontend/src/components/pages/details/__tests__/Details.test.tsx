@@ -13,7 +13,7 @@ import {
   rawDetails as rawDetailsMock,
   rawDifficulty,
   rawRoute,
-} from '../Details.mocks';
+} from '../__mocks__/Details.mocks';
 import { checkAndParseToList } from '../utils';
 
 describe('Details', () => {
