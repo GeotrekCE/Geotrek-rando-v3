@@ -3,8 +3,8 @@ import parse from 'html-react-parser';
 import { HtmlText } from 'components/pages/details/utils';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
+import SVG from 'react-inlinesvg';
 import { useDetailsCard } from './useDetailsCard';
-
 export interface DetailsCardProps {
   name: string;
   place?: string;
@@ -56,12 +56,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           object-cover object-center
            bg-greySoft"
         />
-        {iconUri !== null && iconUri !== undefined && (
-          <img
-            className="absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm object-cover object-center"
-            src={iconUri}
-          />
-        )}
+        {iconUri !== null && iconUri !== undefined && <CardIcon iconUri={iconUri} />}
       </div>
       <div
         className={`flex flex-col relative
@@ -89,6 +84,19 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
       </div>
     </div>
   );
+};
+
+const CardIcon: React.FC<{ iconUri: string }> = ({ iconUri }) => {
+  const classNameContainer =
+    'absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-primary1 bg-white';
+  if (RegExp(/(.*).svg/).test(iconUri)) {
+    return (
+      <div className={classNameContainer}>
+        <SVG src={iconUri} className="fill-current h-full w-full p-1" />
+      </div>
+    );
+  }
+  return <img className={`object-cover object-center ${classNameContainer}`} src={iconUri} />;
 };
 
 const TruncatedHtmlText = styled(HtmlText)`
