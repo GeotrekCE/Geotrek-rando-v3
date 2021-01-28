@@ -5,6 +5,7 @@ import { Network } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
 import { RawGeometry } from 'modules/interface';
 import { RawAttachment } from 'modules/activitySuggestions/interface';
+import { TouristicContent } from 'modules/touristicContent/interface';
 
 export interface RawDetails {
   id: number;
@@ -64,4 +65,5 @@ export interface Details extends DetailsHtml {
   trekGeometry: Coordinate[];
   trekDeparture: Coordinate;
   trekArrival: Coordinate;
+  touristicContents: TouristicContent[];
 }
