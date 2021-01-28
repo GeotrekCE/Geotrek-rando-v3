@@ -27,6 +27,7 @@ export type PropsType = {
   arrivalLocation?: { x: number; y: number };
   departureLocation?: { x: number; y: number };
   shouldUseClusters?: boolean;
+  shouldUsePopups?: boolean;
 };
 
 const Map: React.FC<PropsType> = props => {
@@ -70,11 +71,13 @@ const Map: React.FC<PropsType> = props => {
                         : TrekMarker(point.practice.pictogram)
                     }
                   >
-                    <Popup
-                      id={point.id}
-                      handleOpen={() => setSelectedMarkerId(point.id)}
-                      handleClose={resetSelectedMarker}
-                    />
+                    {(props.shouldUsePopups ?? false) && (
+                      <Popup
+                        id={point.id}
+                        handleOpen={() => setSelectedMarkerId(point.id)}
+                        handleClose={resetSelectedMarker}
+                      />
+                    )}
                   </Marker>
                 ),
             )}

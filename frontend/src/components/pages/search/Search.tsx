@@ -147,7 +147,12 @@ export const SearchUI: React.FC = () => {
           </div>
 
           <div className="hidden desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-1/2 desktop:top-headerAndFilterBar">
-            <MapDynamicComponent points={mapResults} type="DESKTOP" shouldUseClusters />
+            <MapDynamicComponent
+              points={mapResults}
+              type="DESKTOP"
+              shouldUseClusters
+              shouldUsePopups
+            />
           </div>
         </div>
       </Layout>
@@ -163,6 +168,7 @@ export const SearchUI: React.FC = () => {
           openFilterMenu={displayMenu}
           hasFilters={activeFiltersNumber > 0}
           shouldUseClusters
+          shouldUsePopups
         />
       </MobileMapContainer>
     </>
