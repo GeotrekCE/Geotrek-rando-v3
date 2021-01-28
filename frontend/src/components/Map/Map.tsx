@@ -1,21 +1,21 @@
 import React from 'react';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
-import MarkerClusterGroup from 'react-leaflet-markercluster';
+import 'leaflet/dist/leaflet.css';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapResults } from 'modules/mapResults/interface';
 import { TreksList } from 'domain/Trek/Trek';
-import { Popup } from './components/Popup';
+
 import { TrekMarker } from './Markers/TrekMarker';
 import { ArrivalMarker } from './Markers/ArrivalMarker';
 import { DepartureMarker } from './Markers/DepartureMarker';
 
-import 'leaflet/dist/leaflet.css';
+import { Popup } from './components/Popup';
 import { MapButton } from './components/MapButton';
 import { FilterButton } from './components/FilterButton';
-import { useSelectedMarker } from './hooks/useSelectedMarker';
 import { TrekCourse } from './components/TrekCourse';
-import { ClusterMarker } from './Markers/Cluster';
+import { ClusterContainer } from './components/ClusterContainer';
+import { useSelectedMarker } from './hooks/useSelectedMarker';
 
 export type PropsType = {
   points?: MapResults;
@@ -42,16 +42,6 @@ const Map: React.FC<PropsType> = props => {
     selectedMarkerId,
   } = useSelectedMarker();
 
-  /**
-   * Above this zoom level the cluster radius will be highZoomClusterRadius, below it will be lowZoomClusterRadius
-   * We discriminate to be able to better see individual markers in high zoom if possible
-   */
-  const clusterRadiusThreshold = 13;
-  const lowZoomClusterRadius = 40;
-  const highZoomClusterRadius = 20;
-  /** Above this zoom level there won't be clustering, the user better sees its trek course on the map when clicking on the marker */
-  const clusteringMaxZoom = 15;
-
   return (
     <>
       <MapContainer
@@ -65,15 +55,7 @@ const Map: React.FC<PropsType> = props => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {/* https://github.com/Leaflet/Leaflet.markercluster#all-options */}
-        <MarkerClusterGroup
-          iconCreateFunction={ClusterMarker}
-          maxClusterRadius={(zoom: number) =>
-            zoom <= clusterRadiusThreshold ? lowZoomClusterRadius : highZoomClusterRadius
-          }
-          disableClusteringAtZoom={clusteringMaxZoom}
-          spiderfyOnMaxZoom={false}
-        >
+        <ClusterContainer enabled>
           {props.points !== undefined &&
             props.points.map(
               point =>
@@ -107,7 +89,7 @@ const Map: React.FC<PropsType> = props => {
               icon={DepartureMarker}
             />
           )}
-        </MarkerClusterGroup>
+        </ClusterContainer>
         <TrekCourse id={selectedMarkerId} />
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
