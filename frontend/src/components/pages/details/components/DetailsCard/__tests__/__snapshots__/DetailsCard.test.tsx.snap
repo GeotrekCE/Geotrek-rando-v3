@@ -25,9 +25,8 @@ Object {
             class="h-50 w-60 desktop:w-full desktop:h-full object-cover object-center bg-greySoft"
             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
           />
-          <img
-            class="absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm object-cover object-center"
-            src="https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg"
+          <div
+            class="absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-primary1 bg-white"
           />
         </div>
         <div
@@ -80,9 +79,8 @@ Object {
           class="h-50 w-60 desktop:w-full desktop:h-full object-cover object-center bg-greySoft"
           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
         />
-        <img
-          class="absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm object-cover object-center"
-          src="https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg"
+        <div
+          class="absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-primary1 bg-white"
         />
       </div>
       <div
