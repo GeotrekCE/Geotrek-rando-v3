@@ -26,6 +26,7 @@ export type PropsType = {
   hasFilters?: boolean;
   arrivalLocation?: { x: number; y: number };
   departureLocation?: { x: number; y: number };
+  shouldUseClusters?: boolean;
 };
 
 const Map: React.FC<PropsType> = props => {
@@ -55,7 +56,7 @@ const Map: React.FC<PropsType> = props => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <ClusterContainer enabled>
+        <ClusterContainer enabled={props.shouldUseClusters ?? false}>
           {props.points !== undefined &&
             props.points.map(
               point =>
