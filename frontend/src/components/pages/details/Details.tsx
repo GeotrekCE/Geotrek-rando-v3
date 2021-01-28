@@ -213,7 +213,11 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
           </div>
         </div>
         <div className="hidden desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar">
-          <MapDynamicComponent type="DESKTOP" />
+          <MapDynamicComponent
+            type="DESKTOP"
+            arrivalLocation={details?.trekArrival}
+            departureLocation={details?.trekDeparture}
+          />
         </div>
       </div>
     </Layout>
