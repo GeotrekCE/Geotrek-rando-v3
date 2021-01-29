@@ -71,5 +71,7 @@ export const adaptResults = ({
       y: rawDetails.parking_location[1],
     },
     pdfUri: rawDetails.pdf,
+    gpxUri: rawDetails.gpx,
+    kmlUri: rawDetails.kml,
   };
 };

@@ -13,6 +13,8 @@ export const rawDetails = {
     'A partir du hameau patrimonial de Molines cette randonn&eacute;e alpine permet de d&eacute;couvrir le glacier rocheux de Font Froide.',
   difficulty: 4,
   duration: 7.0,
+  gpx: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/treks/2/col-de-font-froide.gpx',
+  kml: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/treks/2/col-de-font-froide.kml',
   length_2d: 15205.4,
   name: 'Col de Font Froide',
   networks: [6, 2],

@@ -4,6 +4,7 @@ import { colorPalette, fillSvgWithColor, sizes } from 'stylesheet';
 import { Layout } from 'components/Layout/Layout';
 import { Chip } from 'components/Chip';
 import { Clock } from 'components/Icons/Clock';
+import { Download } from 'components/Icons/Download';
 import { Printer } from 'components/Icons/Printer';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
@@ -17,6 +18,7 @@ import { DetailsCardSection } from './components/DetailsCardSection';
 import { checkAndParseToList, checkAndParseToText, checkInformation } from './utils';
 import { useDetails } from './useDetails';
 import { DetailsButton } from './components/DetailsButton';
+import { DetailsButtonDropdown } from './components/DetailsButtonDropdown/DetailsButtonDropdown';
 interface Props {
   detailsId: string | string[] | undefined;
 }
@@ -88,11 +90,21 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 {details?.practice?.pictogram !== undefined && (
                   <ActivityLogo src={details?.practice?.pictogram} />
                 )}
-                <div className="hidden desktop:flex">
+                <div className="hidden desktop:flex space-x-4">
                   {details?.pdfUri !== undefined && (
                     <DetailsButton url={details.pdfUri}>
                       <Printer size={30} />
                     </DetailsButton>
+                  )}
+                  {(details?.gpxUri !== undefined || details?.kmlUri !== undefined) && (
+                    <DetailsButtonDropdown
+                      options={[
+                        { label: 'GPX', value: details.gpxUri },
+                        { label: 'KML', value: details.kmlUri },
+                      ]}
+                    >
+                      <Download className="text-primary1 m-2" size={30} />
+                    </DetailsButtonDropdown>
                   )}
                 </div>
               </div>

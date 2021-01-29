@@ -29,6 +29,8 @@ export interface RawDetails {
   geometry: RawGeometry;
   parking_location: RawCoordinate;
   pdf: string;
+  gpx: string;
+  kml: string;
 }
 
 // Fields parsed with react-html-parser in page
@@ -70,4 +72,6 @@ export interface Details extends DetailsHtml {
   touristicContents: TouristicContent[];
   parkingLocation: Coordinate;
   pdfUri: string;
+  gpxUri: string;
+  kmlUri: string;
 }
