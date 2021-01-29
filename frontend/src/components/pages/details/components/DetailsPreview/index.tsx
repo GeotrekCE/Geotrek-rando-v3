@@ -1,0 +1,1 @@
+export { DetailsPreview } from './DetailsPreview';
