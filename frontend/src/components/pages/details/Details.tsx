@@ -48,9 +48,6 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
   const [hasElevation, elevation] = checkInformation(details, 'elevation');
   const [hasDistance, distance] = checkInformation(details, 'distance');
 
-  const downloadUrl =
-    'https://trello.com/c/8k8tcpPx/200-2-eqtu-web-je-vois-les-boutons-t%C3%A9l%C3%A9charger';
-
   return (
     <Layout>
       <DetailsHeader
@@ -62,7 +59,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
           'accessibility',
           'toSee',
         ]}
-        downloadUrl={downloadUrl}
+        downloadUrl={details?.pdfUri}
       />
       {details?.title !== undefined && <DetailsHeaderMobile title={details?.title} />}
       <div className="flex flex-1">
@@ -92,8 +89,8 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                   <ActivityLogo src={details?.practice?.pictogram} />
                 )}
                 <div className="hidden desktop:flex">
-                  {downloadUrl !== undefined && (
-                    <DetailsButton url={downloadUrl}>
+                  {details?.pdfUri !== undefined && (
+                    <DetailsButton url={details.pdfUri}>
                       <Printer size={30} />
                     </DetailsButton>
                   )}

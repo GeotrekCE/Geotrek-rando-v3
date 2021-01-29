@@ -69,5 +69,6 @@ export const adaptResults = ({
       x: rawDetails.parking_location[0],
       y: rawDetails.parking_location[1],
     },
+    pdfUri: rawDetails.pdf,
   };
 };

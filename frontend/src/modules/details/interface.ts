@@ -28,6 +28,7 @@ export interface RawDetails {
   description: string;
   geometry: RawGeometry;
   parking_location: RawCoordinate;
+  pdf: string;
 }
 
 // Fields parsed with react-html-parser in page
@@ -68,4 +69,5 @@ export interface Details extends DetailsHtml {
   trekArrival: Coordinate;
   touristicContents: TouristicContent[];
   parkingLocation: Coordinate;
+  pdfUri: string;
 }
