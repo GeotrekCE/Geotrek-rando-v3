@@ -26,7 +26,9 @@ const OptionItem = ({
     >
       <div className="flex items-center">
         {option.pictogramUrl !== undefined && (
-          <div className="bg-greyDarkColored mr-2 rounded-full p-1">
+          <div
+            className={`mr-2 rounded-full p-1 ${isSelected ? 'bg-primary1' : 'bg-greyDarkColored'}`}
+          >
             <img src={option.pictogramUrl} className="w-5 h-5" />
           </div>
         )}
