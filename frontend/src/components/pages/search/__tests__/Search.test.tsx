@@ -16,7 +16,6 @@ import {
   mockRouteResponse,
   mockStructureResponse,
   mockThemeResponse,
-  mockTrekResponse,
 } from '../mocks';
 
 /** Mock a server route with nock */
