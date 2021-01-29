@@ -20,13 +20,15 @@ const OptionItem = ({
 }) => {
   const onClick = () => (isSelected ? deSelectOption(option) : selectOption(option));
   return (
-    <div className="flex justify-between border-b border-solid border-greySoft items-center">
+    <div
+      className="flex justify-between border-b border-solid border-greySoft items-center"
+      onClick={onClick}
+    >
       <span
         key={option.value}
         className={`flex items-center pt-4 pb-4 font-bold outline-none pb-2 ${
           isSelected ? 'text-primary1' : ''
         }`}
-        onClick={onClick}
       >
         {option.label}
       </span>
