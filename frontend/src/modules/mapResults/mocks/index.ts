@@ -1,4 +1,5 @@
 import { mockRoute } from 'services/testing/utils';
+import { mockActivitiesRoute } from 'modules/activities/__mocks__';
 
 export const mockMapResultsResponse = () => ({
   count: 5,
@@ -51,4 +52,7 @@ export const mockMapResultsRoute = (times: number): void => {
     },
     times,
   });
+
+  // Each of the two calls above call activities route
+  mockActivitiesRoute(2);
 };

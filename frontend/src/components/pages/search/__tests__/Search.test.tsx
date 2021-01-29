@@ -57,7 +57,6 @@ describe('Search page', () => {
 
     // Called once on page init then a 2nd time when filters initialize
     mockMapResultsRoute(2);
-    mockRoute({ route: '/practice', mockData: mockPracticeResponse, times: 2 });
 
     const queryClient = new QueryClient();
 
