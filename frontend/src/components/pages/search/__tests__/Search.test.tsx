@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { render, waitForElementToBeRemoved } from 'services/testing/reactTestingLibraryWrapper';
 import { getApiUrl } from 'services/envLoader';
 import { mockResultsRoute } from 'modules/results/mocks';
+import { mockMapResultsRoute } from 'modules/mapResults/mocks';
 
 import { SearchUI } from '../Search';
 
@@ -54,6 +55,10 @@ describe('Search page', () => {
     mockRoute({ route: '/accessibility', mockData: mockAccessibilityResponse });
     mockRoute({ route: '/structure', mockData: mockStructureResponse });
 
+    // Called once on page init then a 2nd time when filters initialize
+    mockMapResultsRoute(2);
+    mockRoute({ route: '/practice', mockData: mockPracticeResponse, times: 2 });
+
     const queryClient = new QueryClient();
 
     const page = render(
@@ -62,7 +67,8 @@ describe('Search page', () => {
       </QueryClientProvider>,
     );
 
-    await waitForElementToBeRemoved(() => page.queryByRole('progressbar'), { timeout: 5000 });
+    // Wait for results loader + map loader
+    await waitForElementToBeRemoved(() => page.queryAllByRole('progressbar'), { timeout: 5000 });
 
     const textIsPresent = (text: string) => {
       page.getByText(text);
