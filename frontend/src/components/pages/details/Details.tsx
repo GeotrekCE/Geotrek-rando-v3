@@ -24,7 +24,7 @@ interface Props {
 }
 
 export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
-  const { details } = useDetails(detailsId);
+  const { details, sectionRefs } = useDetails(detailsId);
   const [hasTransport, transport] = checkAndParseToText(details, 'transport');
   const [hasAccess, access] = checkAndParseToText(details, 'access_parking');
   const [hasTeaser, description_teaser] = checkAndParseToText(details, 'description_teaser');
@@ -54,7 +54,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
     <Layout>
       <DetailsHeader
         sections={[
-          'insight',
+          'preview',
           'poi',
           ...(hasDescription ? ['description'] : []),
           ...(hasTransport || hasAccess ? ['practicalInformations'] : []),
@@ -85,7 +85,10 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
             desktop:relative desktop:-top-9
             flex flex-col"
           >
-            <div className={`${marginDetailsChild} flex flex-col`}>
+            <div
+              className={`${marginDetailsChild} flex flex-col`}
+              ref={element => (sectionRefs.current.preview = element)}
+            >
               <div className="flex justify-between items-center">
                 {details?.practice?.pictogram !== undefined && (
                   <ActivityLogo src={details?.practice?.pictogram} />
@@ -172,24 +175,30 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
               {hasAmbiance && <div className="text-Mobile-C1 desktop:text-P1">{ambiance}</div>}
             </DetailsSection>
             {details?.pois && details.pois.length > 0 && (
-              <DetailsCardSection
-                titleId="details.poi"
-                detailsCards={details.pois.map(poi => ({
-                  name: poi.name ?? '',
-                  description: poi.description,
-                  thumbnailUri: poi.thumbnailUri,
-                  iconUri: poi.type.pictogramUri,
-                }))}
-              />
+              <>
+                <div ref={e => (sectionRefs.current.poi = e)} />
+                <DetailsCardSection
+                  titleId="details.poi"
+                  detailsCards={details.pois.map(poi => ({
+                    name: poi.name ?? '',
+                    description: poi.description,
+                    thumbnailUri: poi.thumbnailUri,
+                    iconUri: poi.type.pictogramUri,
+                  }))}
+                />
+              </>
             )}
             <div className={marginDetailsChild}></div>
             {hasDescription && (
-              <DetailsDescription
-                intro={introDescription}
-                steps={stepsDescription}
-                conclusion={conclusionDescription}
-                className={marginDetailsChild}
-              />
+              <>
+                <div ref={e => (sectionRefs.current.description = e)} />
+                <DetailsDescription
+                  intro={introDescription}
+                  steps={stepsDescription}
+                  conclusion={conclusionDescription}
+                  className={marginDetailsChild}
+                />
+              </>
             )}
             {hasTransport && (
               <DetailsSection titleId="details.transport" className={marginDetailsChild}>
@@ -202,17 +211,20 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
               </DetailsSection>
             )}
             {details?.touristicContents && details.touristicContents.length > 0 && (
-              <DetailsCardSection
-                titleId="details.aroundMe"
-                detailsCards={details.touristicContents.map(touristicContent => ({
-                  name: touristicContent.name ?? '',
-                  place: touristicContent.category.label,
-                  description: touristicContent.description,
-                  thumbnailUri: touristicContent.thumbnailUri,
-                  iconUri: touristicContent.category.pictogramUri,
-                  logoUri: touristicContent.logoUri,
-                }))}
-              />
+              <>
+                <div ref={e => (sectionRefs.current.toSee = e)} />
+                <DetailsCardSection
+                  titleId="details.aroundMe"
+                  detailsCards={details.touristicContents.map(touristicContent => ({
+                    name: touristicContent.name ?? '',
+                    place: touristicContent.category.label,
+                    description: touristicContent.description,
+                    thumbnailUri: touristicContent.thumbnailUri,
+                    iconUri: touristicContent.category.pictogramUri,
+                    logoUri: touristicContent.logoUri,
+                  }))}
+                />
+              </>
             )}
           </div>
         </div>
