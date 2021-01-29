@@ -11,6 +11,7 @@
     "start": "NODE_ENV=production node ./src/server.js",
     "test": "NODE_ICU_DATA=node_modules/full-icu jest --coverage=false --runInBand",
     "test:coverage": "NODE_ICU_DATA=node_modules/full-icu jest --coverage --runInBand",
+    "test:compact": "DEBUG_PRINT_LIMIT=50 yarn test",
     "tsc": "tsc -p ./src/tsconfig.json",
     "lint": "eslint --ext=jsx,ts,tsx src",
     "lint:fix": "eslint --ext=jsx,ts,tsx src --fix",
