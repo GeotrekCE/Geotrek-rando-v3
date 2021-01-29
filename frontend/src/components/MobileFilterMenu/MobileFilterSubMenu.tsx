@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 import { Check } from 'components/Icons/Check';
 import { LeftArrow } from 'components/Icons/LeftArrow';
 import { FilterState, Option } from 'modules/filters/interface';
@@ -26,25 +28,33 @@ const OptionItem = ({
     >
       <div className="flex items-center">
         {option.pictogramUrl !== undefined && (
-          <div
+          <Picto
             className={`mr-2 rounded-full p-1 ${isSelected ? 'bg-primary1' : 'bg-greyDarkColored'}`}
           >
             <img src={option.pictogramUrl} className="w-5 h-5" />
-          </div>
+          </Picto>
         )}
-        <span
+        <Label
           key={option.value}
           className={`flex items-center pt-4 pb-4 font-bold outline-none pb-2 ${
-            isSelected ? 'text-primary1' : ''
+            isSelected ? 'text-primary1' : 'text-greyDarkColored'
           }`}
         >
           {option.label}
-        </span>
+        </Label>
       </div>
       {isSelected && <Check size={24} />}
     </div>
   );
 };
+
+const Label = styled.span`
+  transition: color 150ms ease-in-out;
+`;
+
+const Picto = styled.div`
+  transition: background-color 150ms ease-in-out;
+`;
 
 interface Props {
   menuState: 'DISPLAYED' | 'HIDDEN';
