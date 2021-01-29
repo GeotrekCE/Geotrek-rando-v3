@@ -46,7 +46,7 @@ describe('Details', () => {
       .query({
         language: 'fr',
         fields:
-          'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location',
+          'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf',
       })
       .reply(200, rawDetailsMock);
 
@@ -104,5 +104,7 @@ describe('Details', () => {
     await component.findByText(
       "L'auberge propose, dans un hameau de montagne en bout de route, en pleine nature, un hébergement de séjour, nuitée, demi-pension et pension complète dans un décor de la vie d'antan et d'aujourd'hui.",
     );
+    const download = await component.findByText('Télécharger');
+    expect(download).toHaveAttribute('href', rawDetailsMock.pdf);
   });
 });

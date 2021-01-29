@@ -16,6 +16,7 @@ export const rawDetails = {
   length_2d: 15205.4,
   name: 'Col de Font Froide',
   networks: [6, 2],
+  pdf: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/treks/592/test-09032020_booklet.pdf',
   practice: 4,
   public_transport:
     'Entre Gap et La Motte-en-Champsaur, possibilit&eacute; de correspondance avec le car Gap-Grenoble.',
