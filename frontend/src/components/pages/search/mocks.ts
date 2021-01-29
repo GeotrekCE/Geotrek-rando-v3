@@ -1,35 +1,3 @@
-export const mockTrekResponse = {
-  count: 4,
-  next:
-    'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=departure%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cthumbnail%2Cpractice&language=fr&page=2&page_size=1',
-  previous: null,
-  results: [
-    {
-      ascent: 1457,
-      departure: 'Molines-en-Champsaur',
-      difficulty: 4,
-      duration: 7,
-      length_2d: 15205.4,
-      name: 'Col de Font Froide',
-      practice: 4,
-      reservation_system: null,
-      themes: [1, 7, 11],
-      attachments: [
-        {
-          author: 'Parc national des Ecrins',
-          backend: 'Attachment',
-          thumbnail: '',
-          legend: 'Présentation Rando Ecrins',
-          title: '',
-          url:
-            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
-          type: 'image',
-        },
-      ],
-    },
-  ],
-};
-
 export const mockDifficultyResponse = {
   count: 5,
   next: null,

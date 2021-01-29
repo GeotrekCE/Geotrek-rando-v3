@@ -1,4 +1,5 @@
 import { mockRoute } from 'services/testing/utils';
+import { mockActivitiesRoute } from 'modules/activities/__mocks__';
 
 export const mockMapResultsResponse = () => ({
   count: 5,
@@ -34,7 +35,7 @@ export const mockMapResultsRoute = (times: number): void => {
     route: '/trek',
     mockData: mockMapResultsResponse(),
     additionalQueries: {
-      fields: 'id,parking_location',
+      fields: 'id,parking_location,practice',
       page_size: 5,
     },
     times,
@@ -45,10 +46,13 @@ export const mockMapResultsRoute = (times: number): void => {
     route: '/trek',
     mockData: mockMapResultsResponse(),
     additionalQueries: {
-      fields: 'id,parking_location',
+      fields: 'id,parking_location,practice',
       page_size: 5,
       page: 1,
     },
     times,
   });
+
+  // Each of the two calls above call activities route
+  mockActivitiesRoute(2);
 };
