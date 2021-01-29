@@ -8,11 +8,13 @@ import { parseFilters } from '../utils';
 export const useMapResults = (filtersState: FilterState[]) => {
   const parsedFiltersState = parseFilters(filtersState);
 
-  const { data: mapResults } = useQuery<MapResults, Error>(['mapResults', parsedFiltersState], () =>
-    getMapResults(parsedFiltersState),
+  const { data: mapResults, isLoading: isMapLoading } = useQuery<MapResults, Error>(
+    ['mapResults', parsedFiltersState],
+    () => getMapResults(parsedFiltersState),
   );
 
   return {
     mapResults,
+    isMapLoading,
   };
 };
