@@ -21,20 +21,24 @@ const OptionItem = ({
   const onClick = () => (isSelected ? deSelectOption(option) : selectOption(option));
   return (
     <div
-      className="flex justify-start border-b border-solid border-greySoft items-center"
+      className="flex justify-between border-b border-solid border-greySoft items-center"
       onClick={onClick}
     >
-      {option.pictogramUrl !== undefined && (
-        <img src={option.pictogramUrl} className="bg-red mr-2" />
-      )}
-      <span
-        key={option.value}
-        className={`flex items-center pt-4 pb-4 font-bold outline-none pb-2 ${
-          isSelected ? 'text-primary1' : ''
-        }`}
-      >
-        {option.label}
-      </span>
+      <div className="flex items-center">
+        {option.pictogramUrl !== undefined && (
+          <div className="bg-greyDarkColored mr-2 rounded-full p-1">
+            <img src={option.pictogramUrl} className="w-5 h-5" />
+          </div>
+        )}
+        <span
+          key={option.value}
+          className={`flex items-center pt-4 pb-4 font-bold outline-none pb-2 ${
+            isSelected ? 'text-primary1' : ''
+          }`}
+        >
+          {option.label}
+        </span>
+      </div>
       {isSelected && <Check size={24} />}
     </div>
   );
