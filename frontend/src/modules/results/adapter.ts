@@ -2,6 +2,7 @@ import { ActivityChoices } from 'modules/activities/interface';
 import { DifficultyChoices } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
 import { getThumbnail } from 'modules/utils/adapter';
+import { formatHours } from 'modules/utils/time';
 import { RawTrekResults, TrekResult, TrekResults } from './interface';
 import { extractNextPageId, formatDistance } from './utils';
 
@@ -33,7 +34,7 @@ export const adaptTrekResults = ({
     thumbnailUri: getThumbnail(rawResult.attachments) ?? fallbackImgUri,
     practice: activities[rawResult.practice],
     informations: {
-      duration: rawResult.duration !== null ? `${rawResult.duration}${dataUnits.time}` : null,
+      duration: rawResult.duration !== null ? formatHours(rawResult.duration) : null,
       distance: `${formatDistance(rawResult.length_2d)}`,
       elevation: `+${rawResult.ascent}${dataUnits.distance}`,
       difficulty:

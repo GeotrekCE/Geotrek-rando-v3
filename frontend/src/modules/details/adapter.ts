@@ -8,6 +8,7 @@ import { CourseType } from 'modules/filters/courseType/interface';
 import { NetworkDictionnary } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
+import { formatHours } from 'modules/utils/time';
 import { Details, RawDetails } from './interface';
 
 export const adaptResults = ({
@@ -44,7 +45,7 @@ export const adaptResults = ({
     description: rawDetails.description,
     tags: rawDetails.themes.map(themeId => themes[themeId].label),
     informations: {
-      duration: rawDetails.duration !== null ? `${rawDetails.duration}${dataUnits.time}` : null,
+      duration: rawDetails.duration !== null ? formatHours(rawDetails.duration) : null,
       distance: `${formatDistance(rawDetails.length_2d)}`,
       elevation: `+${rawDetails.ascent}${dataUnits.distance}`,
       networks: rawDetails.networks.map(networkId => networks[networkId]),

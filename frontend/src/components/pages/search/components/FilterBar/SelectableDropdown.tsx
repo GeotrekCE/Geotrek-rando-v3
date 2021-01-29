@@ -42,7 +42,7 @@ const colourStyles = {
       display: 'flex',
       alignItems: 'center',
       ':before': {
-        content: data.pictogramUrl !== undefined ? '" "' : '',
+        content: data.pictogramUrl !== undefined ? '" "' : undefined,
         background: data.pictogramUrl !== undefined ? `url(${data.pictogramUrl})` : '',
         display: 'block',
         marginRight: 8,
@@ -61,7 +61,7 @@ const colourStyles = {
       padding: '4px 0',
       backgroundColor: colorPalette.filter.selected.background,
       ':before': {
-        content: data.pictogramUrl !== undefined ? '" "' : '',
+        content: data.pictogramUrl !== undefined ? '" "' : undefined,
         background: data.pictogramUrl !== undefined ? `url(${data.pictogramUrl})` : '',
         display: 'block',
         marginRight: 2,
