@@ -35,7 +35,7 @@ export const scrollTo = (ele: HTMLDivElement): void => {
 
 export const useDetails = (detailsUrl: string | string[] | undefined) => {
   const id = isUrlString(detailsUrl) ? detailsUrl.split('-')[1] : '';
-  const { data } = useQuery<Details, Error>('details', () => getDetails(id), {
+  const { data, refetch } = useQuery<Details, Error>('details', () => getDetails(id), {
     enabled: isUrlString(detailsUrl),
   });
 
@@ -69,5 +69,5 @@ export const useDetails = (detailsUrl: string | string[] | undefined) => {
     };
   }, [visibleSection]);
 
-  return { details: data, sectionRefs };
+  return { details: data, refetch, sectionRefs };
 };
