@@ -16,7 +16,7 @@ import {
   rawDifficulty,
   rawRoute,
 } from '../__mocks__/Details.mocks';
-import { checkAndParseToList } from '../utils';
+import { parseHtmlToList } from '../utils';
 
 describe('Details', () => {
   const idToTest = 2;
@@ -26,10 +26,9 @@ describe('Details', () => {
   const queryClient = new QueryClient();
 
   it('details.description is well parsed', () => {
-    const [isValid, intro, conclusion, list] = checkAndParseToList(
+    const [intro, conclusion, list] = parseHtmlToList(
       'Test introduction<br /><ol>\r\n<li>Une étape</li>\r\n<li>Une autre étape</li>\r\n<li>Dernière étape</li>\r\n</ol>Conclusion',
-    ) as [boolean, JSX.Element, JSX.Element, JSX.Element[]];
-    expect(isValid).toBe(true);
+    ) as [JSX.Element, JSX.Element, JSX.Element[]];
     expect(intro).toBeDefined();
     expect(list).toBeDefined();
     expect(list).toHaveLength(3);
