@@ -1,4 +1,4 @@
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import styled, { css } from 'styled-components';
 import { routes } from 'services/routes';
 import { desktopOnly, sizes } from 'stylesheet';
@@ -10,21 +10,16 @@ import InlineMenu from 'components/InlineMenu';
 import BurgerMenu from '../BurgerMenu';
 import { useHeader } from './useHeader';
 
-interface Props {
-  logoPath: string;
-}
-
-export const Header: React.FC<Props> = ({ logoPath }) => {
+export const Header: React.FC = () => {
   const { config, intl } = useHeader();
 
   const sectionsDesktop = config.menu.items
     .slice(0, config.menu.primaryItemsNumber)
-    .map(item => intl.formatMessage({ id: item.translationId }));
-  const subSections = {
-    [intl.formatMessage({ id: 'header.seeMore' })]: config.menu.items
-      .slice(config.menu.primaryItemsNumber)
-      .map(item => intl.formatMessage({ id: item.translationId })),
-  };
+    .map(item => ({ name: intl.formatMessage({ id: item.translationId }), url: item.url }));
+  const subSections = config.menu.items
+    .slice(config.menu.primaryItemsNumber)
+    .map(item => ({ name: intl.formatMessage({ id: item.translationId }), url: item.url }));
+
   const sectionsMobile = ['seeMore', 'favorites', 'language'].map(item =>
     intl.formatMessage({ id: item }),
   );
@@ -36,12 +31,12 @@ export const Header: React.FC<Props> = ({ logoPath }) => {
 
   return (
     <>
-      <BurgerMenu
+      {/* <BurgerMenu
         subSections={subSections}
         sections={sectionsMobile}
         title="Menu"
         displayState={headerState}
-      />
+      /> */}
       <Container
         state={headerState}
         className="h-11 bg-primary1 flex flex-row items-center sticky z-header px-3"
@@ -63,6 +58,8 @@ export const Header: React.FC<Props> = ({ logoPath }) => {
           className="hidden desktop:flex items-center flex-auto justify-between"
           sections={sectionsDesktop}
           subSections={subSections}
+          shouldDisplayFavorites={config.menu.shouldDisplayFavorite}
+          supportedLanguages={config.menu.supportedLanguages}
         />
       </Container>
     </>

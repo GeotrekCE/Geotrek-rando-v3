@@ -6,11 +6,11 @@ interface MenuItem {
 interface Menu {
   primaryItemsNumber: number;
   items: MenuItem[];
-  supportedLanguage: string[];
+  shouldDisplayFavorite: boolean;
+  supportedLanguages: string[];
 }
 
 export interface HeaderConfig {
   logo: string;
-  structureName: string;
   menu: Menu;
 }

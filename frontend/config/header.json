@@ -28,6 +28,7 @@
         "url": "https://www.ecrins-parcnational.fr/"
       }
     ],
+    "shouldDisplayFavorite": true,
     "supportedLanguages": ["fr"]
   }
 }
