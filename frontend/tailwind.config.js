@@ -1,3 +1,6 @@
+// eslint-disable-next-line
+const customColors = require('./customization/theme/colors.json');
+
 const SPACING_UNIT = 4;
 
 module.exports = {
@@ -104,6 +107,7 @@ module.exports = {
         red: '#FF7373',
         blackTransparent: 'rgba(0, 0, 0, 0.24)',
         greyDarkColored: '#534764',
+        ...customColors,
       },
     },
   },
