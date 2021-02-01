@@ -1,18 +1,6 @@
 import styled from 'styled-components';
 import parse from 'html-react-parser';
-import { Details, DetailsHtml } from 'modules/details/interface';
 import { getSpacing } from 'stylesheet';
-
-export const checkAndParseToText = (
-  details: Details | undefined,
-  field: keyof DetailsHtml,
-): [boolean, JSX.Element] => {
-  const isValid =
-    details !== undefined && details[field] !== undefined && details[field].length > 0;
-  const parsedHtmlContent = details !== undefined ? parse(details[field] ?? '') : '';
-  const styledHtmlContent = <HtmlText>{parsedHtmlContent}</HtmlText>;
-  return [isValid, styledHtmlContent];
-};
 
 const matchSingle = (regex: RegExp, text: string): string => {
   const reg = RegExp(regex).exec(text);
@@ -21,12 +9,12 @@ const matchSingle = (regex: RegExp, text: string): string => {
 };
 
 export const parseHtmlToList = (
-  description: string,
+  stringHtml: string,
 ): [JSX.Element | undefined, JSX.Element | undefined, JSX.Element[] | undefined] => {
-  const isValid = description.length > 0;
+  const isValid = stringHtml.length > 0;
   if (!isValid) return [undefined, undefined, undefined];
 
-  const fullText = description ?? '';
+  const fullText = stringHtml ?? '';
 
   let intro = matchSingle(/((.|[\r\n])*?)<ol>/, fullText);
   intro = intro.length === 0 ? fullText : intro;
