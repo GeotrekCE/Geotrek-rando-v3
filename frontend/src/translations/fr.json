@@ -1,5 +1,7 @@
 {
   "header": {
+    "menu": "Menu",
+    "language": "Langue",
     "seeMore": "En savoir plus",
     "favorites": "Favoris",
     "nationalPark": "Le parc national",

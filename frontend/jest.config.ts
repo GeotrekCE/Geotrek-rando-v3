@@ -16,6 +16,7 @@ const config: Config.InitialOptions = {
     '^services/(.*)$': '<rootDir>/src/services/$1',
     '^translations/(.*)$': '<rootDir>/src/translations/$1',
     '^stylesheet$': '<rootDir>/src/stylesheet.ts',
+    '^customization(.*)$': '<rootDir>/customization/$1',
   },
   testPathIgnorePatterns: ['<rootDir>/src/.next/', '<rootDir>/node_modules/', '<rootDir>/cypress/'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],

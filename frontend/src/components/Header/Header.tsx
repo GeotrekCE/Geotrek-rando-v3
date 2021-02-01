@@ -19,10 +19,6 @@ export const Header: React.FC = () => {
   const subSections = config.menu.items
     .slice(config.menu.primaryItemsNumber)
     .map(item => ({ name: intl.formatMessage({ id: item.translationId }), url: item.url }));
-
-  const sectionsMobile = ['seeMore', 'favorites', 'language'].map(item =>
-    intl.formatMessage({ id: item }),
-  );
   /**
    * Disabled for now to handle the map on the search page
    */
@@ -31,12 +27,7 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      <BurgerMenu
-        subSections={subSections}
-        sections={sectionsMobile}
-        title="Menu"
-        displayState={headerState}
-      />
+      <BurgerMenu config={config.menu} displayState={headerState} />
       <Container
         state={headerState}
         className="h-11 bg-primary1 flex flex-row items-center sticky z-header px-3"

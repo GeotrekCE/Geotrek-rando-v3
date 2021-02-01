@@ -3,7 +3,7 @@ interface MenuItem {
   url: string;
 }
 
-interface Menu {
+export interface MenuConfig {
   primaryItemsNumber: number;
   items: MenuItem[];
   shouldDisplayFavorite: boolean;
@@ -12,5 +12,5 @@ interface Menu {
 
 export interface HeaderConfig {
   logo: string;
-  menu: Menu;
+  menu: MenuConfig;
 }
