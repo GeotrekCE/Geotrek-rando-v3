@@ -9,6 +9,7 @@ import { NetworkDictionnary } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { formatHours } from 'modules/utils/time';
+import { CityDictionnary } from 'modules/city/interface';
 import { Details, RawDetails } from './interface';
 
 const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
@@ -22,6 +23,7 @@ export const adaptResults = ({
   themes,
   pois,
   touristicContents,
+  cityDictionnary,
 }: {
   rawDetails: RawDetails;
   activity: Activity;
@@ -31,10 +33,11 @@ export const adaptResults = ({
   themes: Choices;
   pois: Poi[];
   touristicContents: TouristicContent[];
+  cityDictionnary: CityDictionnary;
 }): Details => {
   return {
     title: rawDetails.name,
-    place: rawDetails.departure,
+    place: rawDetails.cities.length > 0 ? cityDictionnary[rawDetails.cities[0]].name : undefined,
     imgUrl: getThumbnail(rawDetails.attachments) ?? fallbackImgUri,
     practice: activity,
     transport: rawDetails.public_transport,

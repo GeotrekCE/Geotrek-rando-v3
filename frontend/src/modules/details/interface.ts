@@ -31,6 +31,7 @@ export interface RawDetails {
   pdf: string;
   gpx: string;
   kml: string;
+  cities: string[];
 }
 
 // Fields parsed with react-html-parser in page
@@ -59,7 +60,7 @@ interface Coordinate {
 export interface Details extends DetailsHtml {
   practice: Activity;
   title: string;
-  place: string;
+  place?: string;
   imgUrl: string | null;
   tags: string[];
   informations: DetailsInformation;
