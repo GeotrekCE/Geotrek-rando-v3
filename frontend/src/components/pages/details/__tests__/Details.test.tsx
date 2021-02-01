@@ -8,6 +8,7 @@ import { mockPoiTypeRoute } from 'modules/poiType/mocks';
 import { mockPoiRoute } from 'modules/poi/mocks';
 import { mockTouristicContentRoute } from 'modules/touristicContent/mocks';
 import { mockTouristicContentCategoryRoute } from 'modules/touristicContentCategory/mocks';
+import { mockCityRoute } from 'modules/city/mocks';
 import { DetailsUI } from '../';
 import {
   mockNetworksResponse,
@@ -21,7 +22,6 @@ import { parseHtmlToList } from '../utils';
 describe('Details', () => {
   const idToTest = 2;
   const titleToTest = 'Col de Font Froide';
-  const placeToTest = 'Molines-en-Champsaur';
 
   const queryClient = new QueryClient();
 
@@ -45,7 +45,7 @@ describe('Details', () => {
       .query({
         language: 'fr',
         fields:
-          'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml',
+          'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,cities',
       })
       .reply(200, rawDetailsMock);
 
@@ -90,13 +90,15 @@ describe('Details', () => {
     mockTouristicContentCategoryRoute(1);
     mockTouristicContentRoute(1, rawDetailsMock.id);
 
+    mockCityRoute(1);
+
     const component = render(
       <QueryClientProvider client={queryClient}>
         <DetailsUI detailsId={`details-${idToTest}-Col-de-Font-Froide`} />
       </QueryClientProvider>,
     );
     await component.findAllByText(titleToTest);
-    await component.findByText(placeToTest);
+    await component.findByText('La Motte-en-Champsaur');
     await component.findAllByText('Lagopède alpin');
     await component.findAllByText('Refuge de la Lavey');
     await component.findByText('Auberge Gaillard');
