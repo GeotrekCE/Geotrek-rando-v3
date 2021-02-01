@@ -75,6 +75,7 @@ const Title = styled.span`
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    display: block;
   `)}
 `;
 

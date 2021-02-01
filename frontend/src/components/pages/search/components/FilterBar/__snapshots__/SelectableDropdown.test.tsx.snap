@@ -15,7 +15,7 @@ Object {
             class="select__value-container select__value-container--is-multi select__value-container--has-value css-g1d714-ValueContainer"
           >
             <div
-              class="css-14ynwnm-multiValue select__multi-value"
+              class="css-1ptfxct-multiValue select__multi-value"
             >
               <div
                 class="css-12jo7m5 select__multi-value__label"
@@ -94,7 +94,7 @@ Object {
           class="select__value-container select__value-container--is-multi select__value-container--has-value css-g1d714-ValueContainer"
         >
           <div
-            class="css-14ynwnm-multiValue select__multi-value"
+            class="css-1ptfxct-multiValue select__multi-value"
           >
             <div
               class="css-12jo7m5 select__multi-value__label"

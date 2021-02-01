@@ -52,6 +52,10 @@ const colourStyles = {
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
+        borderRadius: '50%',
+        padding: 4,
+        backgroundColor: colorPalette.primary1,
+        backgroundOrigin: 'content-box',
       },
     };
   },
@@ -70,6 +74,10 @@ const colourStyles = {
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
+        borderRadius: '50%',
+        padding: 4,
+        backgroundColor: colorPalette.primary1,
+        backgroundOrigin: 'content-box',
       },
     };
   },
