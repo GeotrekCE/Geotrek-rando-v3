@@ -1,0 +1,1 @@
+export { DetailsTopIcons } from './DetailsTopIcons';

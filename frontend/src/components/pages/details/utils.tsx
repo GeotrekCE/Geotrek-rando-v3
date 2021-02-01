@@ -1,31 +1,6 @@
 import styled from 'styled-components';
 import parse from 'html-react-parser';
-import { Details, DetailsHtml, DetailsInformationString } from 'modules/details/interface';
-import { Difficulty } from 'modules/filters/difficulties/interface';
 import { getSpacing } from 'stylesheet';
-
-export const checkInformation = (
-  details: Details | undefined,
-  informationField: keyof DetailsInformationString,
-): [boolean, string | Difficulty] => {
-  const isValid =
-    details !== undefined &&
-    details.informations !== undefined &&
-    details.informations[informationField] !== null;
-  const content = details?.informations[informationField] ?? '';
-  return [isValid, content];
-};
-
-export const checkAndParseToText = (
-  details: Details | undefined,
-  field: keyof DetailsHtml,
-): [boolean, JSX.Element] => {
-  const isValid =
-    details !== undefined && details[field] !== undefined && details[field].length > 0;
-  const parsedHtmlContent = details !== undefined ? parse(details[field] ?? '') : '';
-  const styledHtmlContent = <HtmlText>{parsedHtmlContent}</HtmlText>;
-  return [isValid, styledHtmlContent];
-};
 
 const matchSingle = (regex: RegExp, text: string): string => {
   const reg = RegExp(regex).exec(text);
@@ -33,13 +8,13 @@ const matchSingle = (regex: RegExp, text: string): string => {
   return '';
 };
 
-export const checkAndParseToList = (
-  description?: string,
-): [boolean, JSX.Element | undefined, JSX.Element | undefined, JSX.Element[] | undefined] => {
-  const isValid = description !== undefined && description.length > 0;
-  if (!isValid) return [false, undefined, undefined, undefined];
+export const parseHtmlToList = (
+  stringHtml: string,
+): [JSX.Element | undefined, JSX.Element | undefined, JSX.Element[] | undefined] => {
+  const isValid = stringHtml.length > 0;
+  if (!isValid) return [undefined, undefined, undefined];
 
-  const fullText = description ?? '';
+  const fullText = stringHtml ?? '';
 
   let intro = matchSingle(/((.|[\r\n])*?)<ol>/, fullText);
   intro = intro.length === 0 ? fullText : intro;
@@ -56,7 +31,7 @@ export const checkAndParseToList = (
       ))
     : undefined;
 
-  return [isValid, styledIntro, styledConclusion, styledList];
+  return [styledIntro, styledConclusion, styledList];
 };
 
 export const HtmlText = styled.div`

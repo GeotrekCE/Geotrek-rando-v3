@@ -1,1 +1,1 @@
-export { DetailsButtonDropdown as DetailsButton } from './DetailsButtonDropdown';
+export { DetailsButtonDropdown } from './DetailsButtonDropdown';

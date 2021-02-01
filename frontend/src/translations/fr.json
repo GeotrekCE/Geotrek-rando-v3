@@ -47,10 +47,10 @@
     }
   },
   "details": {
-    "insight": "Aperçu",
+    "preview": "Aperçu",
     "download": "Télécharger",
     "poi": "Patrimoines",
-    "aroundMe": "À découvrir à proximité",
+    "touristicContent": "À découvrir à proximité",
     "readMore": "lire la suite",
     "readLess": "lire moins",
     "description": "Description",

@@ -1,18 +1,16 @@
 import { FormattedMessage } from 'react-intl';
+import { parseHtmlToList } from '../../utils';
 
 interface DetailsDescriptionProps {
-  intro?: JSX.Element;
-  conclusion?: JSX.Element;
-  steps?: Array<JSX.Element>;
+  descriptionHtml: string;
   className?: string;
 }
 
 export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
-  steps,
-  intro,
-  conclusion,
+  descriptionHtml,
   className,
 }) => {
+  const [intro, conclusion, steps] = parseHtmlToList(descriptionHtml);
   return (
     <div
       className={`flex flex-col
@@ -23,7 +21,7 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
       <p className="text-Mobile-H1 desktop:text-H2 font-bold">
         <FormattedMessage id="details.description" />
       </p>
-      {intro && <div className="mt-4 desktop:mt-6">{intro}</div>}
+      {intro !== undefined && <div className="mt-4 desktop:mt-6">{intro}</div>}
       <div className="flex flex-col my-4 desktop:my-6">
         {steps &&
           steps.map((step, i) => (
@@ -38,7 +36,7 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
               </div>
             </div>
           ))}
-        {conclusion && <div className="mb-4 desktop:mb-6">{conclusion}</div>}
+        {conclusion !== undefined && <div className="mb-4 desktop:mb-6">{conclusion}</div>}
       </div>
     </div>
   );

@@ -42,15 +42,13 @@ export interface DetailsHtml {
   description: string;
 }
 
-export interface DetailsInformationString {
-  duration: string | null;
-  distance: string;
-  elevation: string;
-}
-export interface DetailsInformation extends DetailsInformationString {
-  difficulty: Difficulty | null;
-  courseType: CourseType | null;
-  networks: Network[];
+export interface DetailsInformation {
+  duration?: string;
+  distance?: string;
+  elevation?: string;
+  difficulty?: Difficulty;
+  courseType?: CourseType;
+  networks?: Network[];
 }
 
 interface Coordinate {

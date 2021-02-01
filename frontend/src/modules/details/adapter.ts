@@ -11,6 +11,8 @@ import { TouristicContent } from 'modules/touristicContent/interface';
 import { formatHours } from 'modules/utils/time';
 import { Details, RawDetails } from './interface';
 
+const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
+
 export const adaptResults = ({
   rawDetails,
   activity,
@@ -33,7 +35,7 @@ export const adaptResults = ({
   return {
     title: rawDetails.name,
     place: rawDetails.departure,
-    imgUrl: getThumbnail(rawDetails.attachments),
+    imgUrl: getThumbnail(rawDetails.attachments) ?? fallbackImgUri,
     practice: activity,
     transport: rawDetails.public_transport,
     access_parking:
@@ -45,12 +47,12 @@ export const adaptResults = ({
     description: rawDetails.description,
     tags: rawDetails.themes.map(themeId => themes[themeId].label),
     informations: {
-      duration: rawDetails.duration !== null ? formatHours(rawDetails.duration) : null,
+      duration: rawDetails.duration !== null ? formatHours(rawDetails.duration) : undefined,
       distance: `${formatDistance(rawDetails.length_2d)}`,
       elevation: `+${rawDetails.ascent}${dataUnits.distance}`,
       networks: rawDetails.networks.map(networkId => networks[networkId]),
-      difficulty,
-      courseType,
+      difficulty: difficulty !== null ? difficulty : undefined,
+      courseType: courseType !== null ? courseType : undefined,
     },
     pois,
     trekGeometry: rawDetails.geometry.coordinates.map(rawCoordinates => ({
