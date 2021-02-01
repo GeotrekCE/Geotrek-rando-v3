@@ -7791,6 +7791,11 @@ lazy-ass@^1.6.0:
   resolved "https://registry.yarnpkg.com/lazy-ass/-/lazy-ass-1.6.0.tgz#7999655e8646c17f089fdd187d150d3324d54513"
   integrity sha1-eZllXoZGwX8In90YfRUNMyTVRRM=
 
+leaflet-textpath@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/leaflet-textpath/-/leaflet-textpath-1.2.3.tgz#0adef3a2d438c1c781f4e1154b8fa2f963cfd8a7"
+  integrity sha512-mPb5m2MlihNkLlo762j8S8FJCUyLvDU2fJTjjmDWKfqqyUQkV3ca3IzrxwsfzYz2DXrV2ytCVHb5+DjQymF+8w==
+
 leaflet.markercluster@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.4.1.tgz#b53f2c4f2ca7306ddab1dbb6f1861d5e8aa6c5e5"
@@ -10272,6 +10277,13 @@ react-leaflet-markercluster@^3.0.0-rc1:
     leaflet "^1.6.0"
     leaflet.markercluster "^1.4.1"
     react-leaflet "^3.0.0"
+
+react-leaflet-textpath@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-leaflet-textpath/-/react-leaflet-textpath-2.0.0.tgz#a83b81d0d50d93f277b9cd884c0b1bd103bd33be"
+  integrity sha512-xo+ML9Z23KUm2E2LiZKutGfIrM6bcNYbnXEFK4d/hrrOzICjpfJVVQEsbBcu3Hpza83ziMjEZSWLwJKtHH4d/Q==
+  dependencies:
+    leaflet-textpath "^1.2.3"
 
 react-leaflet@^3.0.0, react-leaflet@^3.0.5:
   version "3.0.5"
