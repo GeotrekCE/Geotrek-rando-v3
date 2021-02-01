@@ -56,18 +56,186 @@ Object {
                 style="display: block;"
                 tabindex="-1"
               >
-                Test
+                Menu
               </span>
+              <div
+                class="accordion"
+                data-accordion-component="Accordion"
+              >
+                <div
+                  class="accordion__item"
+                  data-accordion-component="AccordionItem"
+                >
+                  <div
+                    aria-level="3"
+                    class="accordion__heading"
+                    data-accordion-component="AccordionItemHeading"
+                    role="heading"
+                  >
+                    <div
+                      aria-controls="accordion__panel-raa-0"
+                      aria-disabled="false"
+                      aria-expanded="false"
+                      class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+                      data-accordion-component="AccordionItemButton"
+                      id="accordion__heading-raa-0"
+                      role="button"
+                      tabindex="0"
+                    >
+                      <span
+                        class="flex-grow"
+                      >
+                        En savoir plus
+                      </span>
+                      <svg
+                        fill="none"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12 5v14M5 12h14"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div
+                    aria-labelledby="accordion__heading-raa-0"
+                    class=""
+                    data-accordion-component="AccordionItemPanel"
+                    hidden=""
+                    id="accordion__panel-raa-0"
+                    role="region"
+                  >
+                    <p
+                      class="text-Mobile-C3 py-2"
+                    >
+                      <a
+                        href="https://www.ecrins-parcnational.fr/"
+                      >
+                        Le parc national
+                      </a>
+                    </p>
+                    <p
+                      class="text-Mobile-C3 py-2"
+                    >
+                      <a
+                        href="https://www.ecrins-parcnational.fr/"
+                      >
+                        Les maisons du parc
+                      </a>
+                    </p>
+                    <p
+                      class="text-Mobile-C3 py-2"
+                    >
+                      <a
+                        href="https://www.ecrins-parcnational.fr/"
+                      >
+                        Informations pratiques
+                      </a>
+                    </p>
+                    <p
+                      class="text-Mobile-C3 py-2"
+                    >
+                      <a
+                        href="https://www.ecrins-parcnational.fr/"
+                      >
+                        Biodidv'Ecrins
+                      </a>
+                    </p>
+                    <p
+                      class="text-Mobile-C3 py-2"
+                    >
+                      <a
+                        href="https://www.ecrins-parcnational.fr/"
+                      >
+                        Transport
+                      </a>
+                    </p>
+                    <p
+                      class="text-Mobile-C3 py-2"
+                    >
+                      <a
+                        href="https://www.ecrins-parcnational.fr/"
+                      >
+                        Votre avis ?
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
               <span
                 class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
               >
-                Section 1
+                Favoris
               </span>
-              <span
-                class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+              <div
+                class="accordion"
+                data-accordion-component="Accordion"
               >
-                Section 2
-              </span>
+                <div
+                  class="accordion__item"
+                  data-accordion-component="AccordionItem"
+                >
+                  <div
+                    aria-level="3"
+                    class="accordion__heading"
+                    data-accordion-component="AccordionItemHeading"
+                    role="heading"
+                  >
+                    <div
+                      aria-controls="accordion__panel-raa-1"
+                      aria-disabled="false"
+                      aria-expanded="false"
+                      class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+                      data-accordion-component="AccordionItemButton"
+                      id="accordion__heading-raa-1"
+                      role="button"
+                      tabindex="0"
+                    >
+                      <span
+                        class="flex-grow"
+                      >
+                        Langue
+                      </span>
+                      <svg
+                        fill="none"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12 5v14M5 12h14"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div
+                    aria-labelledby="accordion__heading-raa-1"
+                    class=""
+                    data-accordion-component="AccordionItemPanel"
+                    hidden=""
+                    id="accordion__panel-raa-1"
+                    role="region"
+                  >
+                    <p
+                      class="text-Mobile-C3 py-2"
+                    >
+                      FR
+                    </p>
+                  </div>
+                </div>
+              </div>
             </nav>
           </div>
           <div>
@@ -155,18 +323,186 @@ Object {
               style="display: block;"
               tabindex="-1"
             >
-              Test
+              Menu
             </span>
+            <div
+              class="accordion"
+              data-accordion-component="Accordion"
+            >
+              <div
+                class="accordion__item"
+                data-accordion-component="AccordionItem"
+              >
+                <div
+                  aria-level="3"
+                  class="accordion__heading"
+                  data-accordion-component="AccordionItemHeading"
+                  role="heading"
+                >
+                  <div
+                    aria-controls="accordion__panel-raa-0"
+                    aria-disabled="false"
+                    aria-expanded="false"
+                    class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+                    data-accordion-component="AccordionItemButton"
+                    id="accordion__heading-raa-0"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span
+                      class="flex-grow"
+                    >
+                      En savoir plus
+                    </span>
+                    <svg
+                      fill="none"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 5v14M5 12h14"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  aria-labelledby="accordion__heading-raa-0"
+                  class=""
+                  data-accordion-component="AccordionItemPanel"
+                  hidden=""
+                  id="accordion__panel-raa-0"
+                  role="region"
+                >
+                  <p
+                    class="text-Mobile-C3 py-2"
+                  >
+                    <a
+                      href="https://www.ecrins-parcnational.fr/"
+                    >
+                      Le parc national
+                    </a>
+                  </p>
+                  <p
+                    class="text-Mobile-C3 py-2"
+                  >
+                    <a
+                      href="https://www.ecrins-parcnational.fr/"
+                    >
+                      Les maisons du parc
+                    </a>
+                  </p>
+                  <p
+                    class="text-Mobile-C3 py-2"
+                  >
+                    <a
+                      href="https://www.ecrins-parcnational.fr/"
+                    >
+                      Informations pratiques
+                    </a>
+                  </p>
+                  <p
+                    class="text-Mobile-C3 py-2"
+                  >
+                    <a
+                      href="https://www.ecrins-parcnational.fr/"
+                    >
+                      Biodidv'Ecrins
+                    </a>
+                  </p>
+                  <p
+                    class="text-Mobile-C3 py-2"
+                  >
+                    <a
+                      href="https://www.ecrins-parcnational.fr/"
+                    >
+                      Transport
+                    </a>
+                  </p>
+                  <p
+                    class="text-Mobile-C3 py-2"
+                  >
+                    <a
+                      href="https://www.ecrins-parcnational.fr/"
+                    >
+                      Votre avis ?
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
             <span
               class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
             >
-              Section 1
+              Favoris
             </span>
-            <span
-              class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+            <div
+              class="accordion"
+              data-accordion-component="Accordion"
             >
-              Section 2
-            </span>
+              <div
+                class="accordion__item"
+                data-accordion-component="AccordionItem"
+              >
+                <div
+                  aria-level="3"
+                  class="accordion__heading"
+                  data-accordion-component="AccordionItemHeading"
+                  role="heading"
+                >
+                  <div
+                    aria-controls="accordion__panel-raa-1"
+                    aria-disabled="false"
+                    aria-expanded="false"
+                    class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+                    data-accordion-component="AccordionItemButton"
+                    id="accordion__heading-raa-1"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span
+                      class="flex-grow"
+                    >
+                      Langue
+                    </span>
+                    <svg
+                      fill="none"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 5v14M5 12h14"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  aria-labelledby="accordion__heading-raa-1"
+                  class=""
+                  data-accordion-component="AccordionItemPanel"
+                  hidden=""
+                  id="accordion__panel-raa-1"
+                  role="region"
+                >
+                  <p
+                    class="text-Mobile-C3 py-2"
+                  >
+                    FR
+                  </p>
+                </div>
+              </div>
+            </div>
           </nav>
         </div>
         <div>
