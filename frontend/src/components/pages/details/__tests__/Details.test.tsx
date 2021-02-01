@@ -16,7 +16,7 @@ import {
   rawDetails as rawDetailsMock,
   rawDifficulty,
   rawRoute,
-} from '../__mocks__/Details.mocks';
+} from '../mocks/Details.mocks';
 import { parseHtmlToList } from '../utils';
 
 describe('Details', () => {
