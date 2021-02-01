@@ -4,8 +4,28 @@
     "primaryItemsNumber": 3,
     "items": [
       {
-        "translationId": "nationalParkSite",
-        "url": ""
+        "translationId": "header.nationalPark",
+        "url": "https://www.ecrins-parcnational.fr/"
+      },
+      {
+        "translationId": "header.parcHouses",
+        "url": "https://www.ecrins-parcnational.fr/"
+      },
+      {
+        "translationId": "header.usefulInformations",
+        "url": "https://www.ecrins-parcnational.fr/"
+      },
+      {
+        "translationId": "header.biodiv",
+        "url": "https://www.ecrins-parcnational.fr/"
+      },
+      {
+        "translationId": "header.transportation",
+        "url": "https://www.ecrins-parcnational.fr/"
+      },
+      {
+        "translationId": "header.yourOpinion",
+        "url": "https://www.ecrins-parcnational.fr/"
       }
     ],
     "supportedLanguages": ["fr"]
