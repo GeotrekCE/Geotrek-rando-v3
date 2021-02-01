@@ -1,11 +1,10 @@
 import React from 'react';
-import { MapContainer, Marker, Polyline, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapResults } from 'modules/mapResults/interface';
 
-import { colorPalette } from 'stylesheet';
 import { TrekMarker } from './Markers/TrekMarker';
 import { ArrivalMarker } from './Markers/ArrivalMarker';
 import { DepartureMarker } from './Markers/DepartureMarker';
@@ -17,6 +16,7 @@ import { FilterButton } from './components/FilterButton';
 import { TrekCourse } from './components/TrekCourse';
 import { ClusterContainer } from './components/ClusterContainer';
 import { useSelectedMarker } from './hooks/useSelectedMarker';
+import { DecoratedPolyline } from './components/DecoratedPolyline';
 
 export type PropsType = {
   points?: MapResults;
@@ -102,12 +102,7 @@ const Map: React.FC<PropsType> = props => {
             />
           )}
         </ClusterContainer>
-        {props.segments && (
-          <Polyline
-            positions={props.segments.map(coordinates => [coordinates.y, coordinates.x])}
-            color={colorPalette.primary1}
-          />
-        )}
+        {props.segments && <DecoratedPolyline positions={props.segments} />}
         <TrekCourse id={selectedMarkerId} />
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
