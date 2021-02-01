@@ -5,7 +5,9 @@ import { TrendingUp } from 'components/Icons/TrendingUp';
 import { DetailsInformation } from 'modules/details/interface';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { LocalIconInformation } from 'components/Information/LocalIconInformation';
-import { DetailsSection } from '../DetailsSection';
+import parse from 'html-react-parser';
+import { Separator } from 'components/Separator';
+import { HtmlText } from '../../utils';
 
 interface DetailsPreviewProps {
   ambiance?: string;
@@ -66,7 +68,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             iconUri={informations.courseType.pictogramUri}
             className={classNameInformation}
           >
-            {informations.courseType.pictogramUri}
+            {informations.courseType.label}
           </RemoteIconInformation>
         )}
         {informations.networks &&
@@ -80,13 +82,18 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             </RemoteIconInformation>
           ))}
       </div>
-      <DetailsSection>
-        {teaser !== undefined && (
-          <div className="text-Mobile-C1 desktop:text-H4 font-bold">{teaser}</div>
-        )}
-        {teaser !== undefined && ambiance !== undefined && <br />}
-        {ambiance !== undefined && <div className="text-Mobile-C1 desktop:text-P1">{ambiance}</div>}
-      </DetailsSection>
+      {teaser !== undefined && (
+        <div className="text-Mobile-C1 desktop:text-H4 font-bold mt-6 desktop:mt-9">
+          <HtmlText>{parse(teaser)}</HtmlText>
+        </div>
+      )}
+      {teaser !== undefined && ambiance !== undefined && <br />}
+      {ambiance !== undefined && (
+        <div className="text-Mobile-C1 desktop:text-P1">
+          <HtmlText>{parse(ambiance)}</HtmlText>
+        </div>
+      )}
+      <Separator className="mt-6 desktop:mt-12" />
     </div>
   );
 };
