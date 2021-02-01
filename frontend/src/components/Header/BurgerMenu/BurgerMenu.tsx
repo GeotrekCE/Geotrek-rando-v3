@@ -1,7 +1,7 @@
-import BurgerMenuSection from 'components/BurgerMenuSection/BurgerMenuSection';
 import { slide as Slide } from 'react-burger-menu';
-import { BurgerMenu as BmIcon } from '../Icons/BurgerMenu';
-import { Cross } from '../Icons/Cross';
+import { BurgerMenuSection } from '../BurgerMenuSection/BurgerMenuSection';
+import { BurgerMenu as BmIcon } from '../../Icons/BurgerMenu';
+import { Cross } from '../../Icons/Cross';
 
 interface Props {
   title: string;
@@ -41,5 +41,3 @@ export const BurgerMenu: React.FC<Props> = ({
     </Slide>
   );
 };
-
-export default BurgerMenu;
