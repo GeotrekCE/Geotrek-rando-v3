@@ -150,6 +150,7 @@ export const sizes = {
   mobileDetailsTitle: 230,
   detailsHeaderDesktop: 55,
   coverDetailsDesktop: 550,
+  topIconsDetailsDesktop: 72,
   scrollOffsetBeforeElement: 36,
 };
 

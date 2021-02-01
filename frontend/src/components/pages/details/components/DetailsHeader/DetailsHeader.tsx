@@ -11,11 +11,13 @@ interface DetailsHeaderProps {
 
 const scrollTo = (element: HTMLDivElement | undefined | null) => {
   if (element !== null && element !== undefined) {
+    // offsetTop : offset to the closest relative parent
     const adjustedPosition =
       element.offsetTop +
-      window.innerHeight -
-      (sizes.desktopHeader + sizes.detailsHeaderDesktop) -
-      sizes.scrollOffsetBeforeElement;
+      sizes.coverDetailsDesktop +
+      sizes.desktopHeader -
+      sizes.detailsHeaderDesktop -
+      sizes.topIconsDetailsDesktop;
     window.scrollTo({ top: adjustedPosition, behavior: 'smooth' });
   }
 };
