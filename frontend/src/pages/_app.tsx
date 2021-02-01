@@ -4,7 +4,7 @@ import { Root } from 'components/pages/_app/Root';
 import { Hydrate } from 'react-query/hydration';
 import { captureException } from 'services/sentry';
 import '../public/fonts.css';
-
+import 'customization/theme/style.css';
 import 'tailwindcss/tailwind.css';
 
 import { ReactQueryDevtools } from 'react-query/devtools';

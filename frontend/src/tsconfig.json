@@ -21,7 +21,8 @@
       "routes": ["routes"],
       "services/*": ["services/*"],
       "stylesheet": ["stylesheet"],
-      "translations/*": ["translations/*"]
+      "translations/*": ["translations/*"],
+      "customization/*": ["../customization/*"]
     }
   },
   "exclude": ["node_modules"],
