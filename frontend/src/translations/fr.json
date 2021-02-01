@@ -1,7 +1,13 @@
 {
   "header": {
     "seeMore": "En savoir plus",
-    "favorites": "Favoris"
+    "favorites": "Favoris",
+    "nationalPark": "Le parc national",
+    "parcHouses": "Les maisons du parc",
+    "usefulInformations": "Informations pratiques",
+    "biodiv": "Biodidv'Ecrins",
+    "transportation": "Transport",
+    "yourOpinion": "Votre avis ?"
   },
   "home": {
     "title": "Parc National des Écrins",
