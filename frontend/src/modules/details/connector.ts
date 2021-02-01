@@ -1,4 +1,5 @@
 import { getActivity } from 'modules/activities/connector';
+import { getCities } from 'modules/city/connector';
 import { getCourseType } from 'modules/filters/courseType/connector';
 import { getDifficulty } from 'modules/filters/difficulties/connector';
 import { getThemes } from 'modules/filters/theme/connector';
@@ -19,6 +20,7 @@ export const getDetails = async (id: string): Promise<Details> => {
     themes,
     pois,
     touristicContents,
+    cityDictionnary,
   ] = await Promise.all([
     getActivity(rawDetails.practice),
     getDifficulty(rawDetails.difficulty),
@@ -27,6 +29,7 @@ export const getDetails = async (id: string): Promise<Details> => {
     getThemes(),
     getPois(rawDetails.id),
     getTouristicContents(rawDetails.id),
+    getCities(),
   ]);
   return adaptResults({
     rawDetails,
@@ -37,5 +40,6 @@ export const getDetails = async (id: string): Promise<Details> => {
     themes,
     pois,
     touristicContents,
+    cityDictionnary,
   });
 };
