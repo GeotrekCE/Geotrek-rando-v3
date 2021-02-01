@@ -9,6 +9,12 @@ jest.mock('./src/components/Map', () => ({
   MapDynamicComponent: () => null,
 }));
 
+jest.mock('./src/modules/utils/api.config.ts', () => ({
+  getApiCallsConfig: () => ({
+    searchResultsPageSize: 5,
+  }),
+}));
+
 // API calls should always be mocked else we might have inconsistencies
 // depending on our testing environment
 nock.disableNetConnect();
