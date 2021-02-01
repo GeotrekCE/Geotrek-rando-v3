@@ -5,8 +5,8 @@ import {
   AccordionItemHeading,
   AccordionItemPanel,
 } from 'react-accessible-accordion';
-import { Plus } from '../Icons/Plus';
-import { Minus } from '../Icons/Minus';
+import { Plus } from '../../Icons/Plus';
+import { Minus } from '../../Icons/Minus';
 import { useBurgerMenuSection } from './useBurgerMenuSection';
 
 export interface Props {
@@ -15,7 +15,7 @@ export interface Props {
   onClick?: () => void;
 }
 
-const BurgerMenuSection: React.FC<Props> = ({ title, subSections, onClick }) => {
+export const BurgerMenuSection: React.FC<Props> = ({ title, subSections, onClick }) => {
   const classNameTitle = 'flex items-center pt-4 pb-4 font-bold outline-none';
   const classNameBorder = 'border-b pb-2 border-solid border-greySoft';
   const openIcon = <Plus size={24} />;
@@ -50,5 +50,3 @@ const BurgerMenuSection: React.FC<Props> = ({ title, subSections, onClick }) => 
     </span>
   );
 };
-
-export default BurgerMenuSection;

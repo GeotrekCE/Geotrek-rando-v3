@@ -7,7 +7,7 @@ import { Link } from 'components/Link';
 import { Display } from 'hooks/useHideOnScrollDown';
 
 import InlineMenu from 'components/InlineMenu';
-import BurgerMenu from '../BurgerMenu';
+import { BurgerMenu } from './BurgerMenu';
 import { useHeader } from './useHeader';
 
 export const Header: React.FC = () => {
@@ -31,12 +31,12 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      {/* <BurgerMenu
+      <BurgerMenu
         subSections={subSections}
         sections={sectionsMobile}
         title="Menu"
         displayState={headerState}
-      /> */}
+      />
       <Container
         state={headerState}
         className="h-11 bg-primary1 flex flex-row items-center sticky z-header px-3"

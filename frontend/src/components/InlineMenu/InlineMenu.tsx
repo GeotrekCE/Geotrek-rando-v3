@@ -40,17 +40,16 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
         menuClassName={menuClassName}
         arrowClosed={<ArrowMenu />}
         arrowOpen={<ArrowMenu />}
-        key="seeMore"
         value={{
           label: intl.formatMessage({ id: 'header.seeMore' }),
           value: '',
         }}
-        onChange={option => {
+        onChange={(option: { value: string | undefined }) => {
           window.open(option.value);
         }}
       />
       {shouldDisplayFavorites && (
-        <div className="flex items-center text-white" key="favorites">
+        <div className="flex items-center text-white">
           <Heart size={16} className="mr-2" />
           <Section name={intl.formatMessage({ id: 'header.favorites' })} />
         </div>
@@ -89,7 +88,7 @@ const Section: React.FC<{ name: string; url?: string }> = ({ name, url }) => (
     border-b-4 hover:border-white border-transparent border-solid
     cursor-pointer duration-500 transition-all"
   >
-    {url !== undefined ? <a href={url}>{name}</a> : { name }}
+    {url !== undefined ? <a href={url}>{name}</a> : name}
   </div>
 );
 
