@@ -6,11 +6,12 @@ import { IntlProvider } from 'react-intl';
 import { flattenMessages } from 'services/i18n/intl';
 import enMessages from 'translations/en.json';
 import frMessages from 'translations/fr.json';
+import customFrMessages from 'customization/translations/fr.json';
 import CSSResets from './CSSResets';
 import { ErrorBoundary } from './ErrorBoundary';
 
 const locales = {
-  fr: flattenMessages(frMessages),
+  fr: { ...flattenMessages(frMessages), ...flattenMessages(customFrMessages) },
   en: flattenMessages(enMessages),
 };
 
