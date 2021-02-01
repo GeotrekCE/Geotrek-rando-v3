@@ -1,16 +1,16 @@
 import { QueryFilterState } from 'components/pages/search/utils';
 import { getActivities } from 'modules/activities/connector';
 import { formatFiltersToUrlParams } from 'modules/results/utils';
+import { getApiCallsConfig } from 'modules/utils/api.config';
 
 import { adaptMapResults } from './adapter';
 import { fetchMapResults } from './api';
 import { MapResults } from './interface';
 import { generatePageNumbersArray } from './utils';
 
-// TODO it should come from the config
-const resultsNumber = 5;
-
 export const getMapResults = async (filtersState: QueryFilterState[]): Promise<MapResults> => {
+  const resultsNumber = getApiCallsConfig().searchResultsPageSize;
+
   const formattedFiltersToUrlParams = formatFiltersToUrlParams(filtersState);
   const rawMapResults = await fetchMapResults({
     language: 'fr',
