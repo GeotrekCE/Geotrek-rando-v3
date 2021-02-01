@@ -14,8 +14,9 @@ const scrollTo = (element: HTMLDivElement | undefined | null) => {
     const adjustedPosition =
       element.offsetTop +
       window.innerHeight -
-      (sizes.desktopHeader + sizes.detailsHeaderDesktop) -
-      sizes.scrollOffsetBeforeElement;
+      sizes.coverDetailsDesktop +
+      sizes.desktopHeader +
+      sizes.detailsHeaderDesktop;
     window.scrollTo({ top: adjustedPosition, behavior: 'smooth' });
   }
 };
