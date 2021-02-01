@@ -10,9 +10,11 @@ interface DecoratedPolylineProps {
 export const DecoratedPolyline: React.FC<DecoratedPolylineProps> = ({ positions }) => {
   return (
     <TextPath
-      text=" > "
+      text="  >  "
       repeat
-      attributes={{ 'font-size': 20 }}
+      center
+      offset={6}
+      attributes={{ 'font-size': 10 }}
       positions={positions.map(coordinates => [coordinates.y, coordinates.x])}
       color={colorPalette.primary1}
     />
