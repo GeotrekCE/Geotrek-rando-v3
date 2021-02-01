@@ -1,11 +1,30 @@
+import { MutableRefObject } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { sizes } from 'stylesheet';
+import { DetailsHeaderSection } from '../../useDetails';
+import { useDetailsHeader } from './useDetailsHeader';
 
 interface DetailsHeaderProps {
-  sections: string[];
+  sectionsReferences: MutableRefObject<DetailsHeaderSection>;
   downloadUrl?: string;
 }
 
-export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ sections, downloadUrl }) => {
+const scrollTo = (element: HTMLDivElement | undefined | null) => {
+  if (element !== null && element !== undefined) {
+    const adjustedPosition =
+      element.offsetTop +
+      window.innerHeight -
+      (sizes.desktopHeader + sizes.detailsHeaderDesktop) -
+      sizes.scrollOffsetBeforeElement;
+    window.scrollTo({ top: adjustedPosition, behavior: 'smooth' });
+  }
+};
+
+export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
+  sectionsReferences,
+  downloadUrl,
+}) => {
+  const { detailsHeaderSection } = useDetailsHeader(sectionsReferences);
   return (
     <div
       className="hidden desktop:flex justify-between
@@ -14,14 +33,15 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ sections, download
       shadow-md bg-white"
     >
       <div className="flex space-x-12 pb-2.5 pt-4">
-        {sections.map(s => (
+        {(Object.keys(detailsHeaderSection) as Array<keyof DetailsHeaderSection>).map(sectionId => (
           <div
-            key={s}
+            onClick={() => scrollTo(detailsHeaderSection[sectionId])}
+            key={sectionId}
             className="hover:text-primary1
-          pb-1 border-b-2 hover:border-primary1 border-transparent border-solid
-          cursor-pointer transition-all duration-300"
+            pb-1 border-b-2 hover:border-primary1 border-transparent border-solid
+            cursor-pointer transition-all duration-300"
           >
-            <FormattedMessage id={`details.${s}`} />
+            <FormattedMessage id={`details.${sectionId}`} />
           </div>
         ))}
       </div>
