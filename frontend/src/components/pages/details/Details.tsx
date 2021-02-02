@@ -15,6 +15,7 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from './components/DetailsTopIcons';
 import { HtmlText } from './utils';
 import { DetailsSource } from './components/DetailsSource';
+import { useHighlightedSection } from './hooks/useHighlightedSection';
 
 interface Props {
   detailsId: string | string[] | undefined;
@@ -31,7 +32,13 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
     setPracticalInformationsRef,
     setPreviewRef,
     setTouristicContentsRef,
+    sectionsPositions,
   } = useDetails(detailsId);
+
+  const { visibleSection } = useHighlightedSection({
+    sectionsPositions,
+    headerHeight: sizes.detailsHeaderDesktop + sizes.desktopHeader,
+  });
 
   return (
     <Layout>
