@@ -7,6 +7,7 @@ import { RawCoordinate, RawGeometry } from 'modules/interface';
 import { RawAttachment } from 'modules/activitySuggestions/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { Accessibility } from 'modules/accessibility/interface';
+import { Source } from 'modules/source/interface';
 
 export interface RawDetails {
   id: number;
@@ -35,6 +36,7 @@ export interface RawDetails {
   cities: string[];
   disabled_infrastructure: string;
   accessibilities: number[];
+  source: number[];
 }
 
 // Fields parsed with react-html-parser in page
@@ -78,4 +80,5 @@ export interface Details extends DetailsHtml {
   gpxUri: string;
   kmlUri: string;
   accessibilities: Accessibility[];
+  sources: Source[];
 }

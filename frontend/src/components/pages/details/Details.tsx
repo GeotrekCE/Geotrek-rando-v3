@@ -14,6 +14,7 @@ import { useDetails } from './useDetails';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from './components/DetailsTopIcons';
 import { HtmlText } from './utils';
+import { DetailsSource } from './components/DetailsSource';
 interface Props {
   detailsId: string | string[] | undefined;
 }
@@ -133,6 +134,20 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                       </div>
                     </DetailsSection>
                   </div>
+                )}
+                {details.sources.length > 0 && (
+                  <DetailsSection titleId="details.source" className={marginDetailsChild}>
+                    <div>
+                      {details.sources.map((source, i) => (
+                        <DetailsSource
+                          key={i}
+                          name={source.name}
+                          website={source.website}
+                          pictogramUri={source.pictogramUri}
+                        />
+                      ))}
+                    </div>
+                  </DetailsSection>
                 )}
                 {details.touristicContents.length > 0 && (
                   <div ref={element => (sectionsReferences.current.touristicContent = element)}>
