@@ -30,6 +30,12 @@ const plugins = [[withPWA], [withImages], [withSourceMaps()]];
 module.exports = withPlugins(plugins, {
   webpack(config, { isServer }) {
     config.resolve.modules.push(path.resolve('./src'));
+    config.module.rules.push({
+      test: /\.(html)$/,
+      use: {
+        loader: 'html-loader',
+      },
+    });
 
     if (!isServer) {
       config.resolve.alias['@sentry/node'] = '@sentry/browser';
