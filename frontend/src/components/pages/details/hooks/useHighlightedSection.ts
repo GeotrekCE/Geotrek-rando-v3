@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react';
 import { DetailsSectionsPosition } from '../useDetails';
 
-export const useHighlightedSection = ({
+/**
+ * Returns the id of the section currently on screen
+ */
+export const useOnScreenSection = ({
   sectionsPositions,
-  headerHeight,
+  scrollOffset,
 }: {
   sectionsPositions: DetailsSectionsPosition;
-  headerHeight: number;
+  /** If you increase this value the detection of the next element on screen will be triggered earlier in top to bottom scrolling */
+  scrollOffset: number;
 }) => {
   const [visibleSection, setVisibleSection] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + headerHeight;
+      const scrollPosition = window.scrollY + scrollOffset;
 
       const sectionOnScreen =
         // First check that the scroll position is between the top and bottom of elements

@@ -15,7 +15,7 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from './components/DetailsTopIcons';
 import { HtmlText } from './utils';
 import { DetailsSource } from './components/DetailsSource';
-import { useHighlightedSection } from './hooks/useHighlightedSection';
+import { useOnScreenSection } from './hooks/useHighlightedSection';
 
 interface Props {
   detailsId: string | string[] | undefined;
@@ -36,10 +36,10 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
     sectionsPositions,
   } = useDetails(detailsId);
 
-  const { visibleSection } = useHighlightedSection({
+  const { visibleSection } = useOnScreenSection({
     sectionsPositions,
     // We add a -200 offset so that the highlighted section doesn't change right as the top of it get out of the screen (it switches when 200 pixel of it got out of the screen)
-    headerHeight:
+    scrollOffset:
       sizes.detailsHeaderDesktop + sizes.desktopHeader - sizes.scrollOffsetBeforeElement - 200,
   });
 
