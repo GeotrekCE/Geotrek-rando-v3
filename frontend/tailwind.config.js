@@ -35,6 +35,7 @@ module.exports = {
       12: `${SPACING_UNIT * 12}px`,
       15: `${SPACING_UNIT * 15}px`,
       18: `${SPACING_UNIT * 18}px`,
+      20: `${SPACING_UNIT * 20}px`,
       21.5: `${SPACING_UNIT * 21.5}px`,
       30: `${SPACING_UNIT * 30}px`,
       40: `${SPACING_UNIT * 40}px`,
