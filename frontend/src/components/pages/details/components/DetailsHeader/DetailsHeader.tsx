@@ -30,7 +30,7 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
   return (
     <div
       className="hidden desktop:flex justify-between
-      sticky top-desktopHeader z-header
+      sticky top-desktopHeader z-subHeader
       px-12
       shadow-md bg-white"
     >
