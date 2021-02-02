@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 import { MapDynamicComponent } from 'components/Map';
 import { useShowOnScrollPosition } from 'hooks/useShowOnScrollPosition';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
+import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -115,7 +116,24 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     )}
                   </div>
                 )}
-
+                {(details.disabledInfrastructure || details.accessibilities.length > 0) && (
+                  <div ref={element => (sectionsReferences.current.accessibility = element)}>
+                    <DetailsSection titleId="details.accessibility" className={marginDetailsChild}>
+                      <HtmlText>{parse(details.disabledInfrastructure)}</HtmlText>
+                      <div className="flex">
+                        {details.accessibilities.map((accessibility, i) => (
+                          <RemoteIconInformation
+                            key={i}
+                            iconUri={accessibility.pictogramUri}
+                            className="mr-6 mt-3 desktop:mt-4 text-primary"
+                          >
+                            {accessibility.name}
+                          </RemoteIconInformation>
+                        ))}
+                      </div>
+                    </DetailsSection>
+                  </div>
+                )}
                 {details.touristicContents.length > 0 && (
                   <div ref={element => (sectionsReferences.current.touristicContent = element)}>
                     <DetailsCardSection
