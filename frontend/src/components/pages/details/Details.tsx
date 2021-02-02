@@ -89,6 +89,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                   practice={details.practice}
                   kmlUri={details.kmlUri}
                 />
+
                 <div ref={setPreviewRef}>
                   <DetailsPreview
                     className={marginDetailsChild}
@@ -100,6 +101,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     ambiance={details.ambiance}
                   />
                 </div>
+
                 {details.pois.length > 0 && (
                   <div ref={setPoisRef}>
                     <DetailsCardSection
@@ -113,6 +115,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     />
                   </div>
                 )}
+
                 {details.description && (
                   <div ref={setDescriptionRef}>
                     <DetailsDescription
@@ -121,6 +124,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     />
                   </div>
                 )}
+
                 {(details.transport || details.access_parking) && (
                   <div ref={setPracticalInformationsRef}>
                     {details.transport && (
@@ -138,6 +142,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     )}
                   </div>
                 )}
+
                 {(details.disabledInfrastructure || details.accessibilities.length > 0) && (
                   <div ref={element => (sectionsReferences.current.accessibility = element)}>
                     <DetailsSection titleId="details.accessibility" className={marginDetailsChild}>
@@ -156,6 +161,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     </DetailsSection>
                   </div>
                 )}
+
                 {details.sources.length > 0 && (
                   <DetailsSection titleId="details.source" className={marginDetailsChild}>
                     <div>
@@ -170,6 +176,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     </div>
                   </DetailsSection>
                 )}
+
                 {details.touristicContents.length > 0 && (
                   <div ref={setTouristicContentsRef}>
                     <DetailsCardSection
@@ -187,6 +194,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 )}
               </div>
             </div>
+
             <div className="hidden desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar">
               <MapDynamicComponent
                 type="DESKTOP"
