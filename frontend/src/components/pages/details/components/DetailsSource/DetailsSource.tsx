@@ -3,14 +3,14 @@ import { colorPalette, fillSvgWithColor } from 'stylesheet';
 
 interface DetailsSourceProps {
   name: string;
-  pictogramUri?: string;
-  website?: string;
+  pictogramUri: string;
+  website: string;
 }
 
 export const DetailsSource: React.FC<DetailsSourceProps> = ({ name, pictogramUri, website }) => {
   return (
     <div className="flex flex-col desktop:flex-row">
-      {pictogramUri !== undefined && (
+      {pictogramUri !== null && (
         <div
           className="w-30 h-20 desktop:mr-6
           grid place-items-center

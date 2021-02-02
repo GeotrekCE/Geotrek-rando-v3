@@ -3,11 +3,10 @@ export interface RawSource {
   website: string;
   pictogram: string;
 }
-
 export interface Source {
   name: string;
-  website?: string;
-  pictogramUri?: string;
+  website: string;
+  pictogramUri: string;
 }
 
 export interface SourceDictionnary {
