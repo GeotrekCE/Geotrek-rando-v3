@@ -123,6 +123,7 @@ export const rawDetails = {
   public_transport:
     'Entre Gap et La Motte-en-Champsaur, possibilit&eacute; de correspondance avec le car Gap-Grenoble.',
   route: 2,
+  source: [1],
   themes: [11, 1, 7],
 };
 
