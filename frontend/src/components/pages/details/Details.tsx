@@ -32,6 +32,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
     setPracticalInformationsRef,
     setPreviewRef,
     setTouristicContentsRef,
+    setAccessibilityRef,
     sectionsPositions,
   } = useDetails(detailsId);
 
@@ -141,7 +142,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                   <div ref={element => (sectionsReferences.current.accessibility = element)}>
                     <DetailsSection titleId="details.accessibility" className={marginDetailsChild}>
                       <HtmlText>{parse(details.disabledInfrastructure)}</HtmlText>
-                      <div className="flex">
+                      <div className="flex" ref={setAccessibilityRef}>
                         {details.accessibilities.map((accessibility, i) => (
                           <RemoteIconInformation
                             key={i}

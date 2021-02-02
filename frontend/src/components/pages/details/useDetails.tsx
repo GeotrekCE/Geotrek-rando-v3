@@ -85,6 +85,17 @@ export const useDetails = (detailsUrl: string | string[] | undefined) => {
     }
   }, []);
 
+  const setAccessibilityRef = useCallback((node: HTMLDivElement | null) => {
+    const sectionName = 'accessibility';
+    if (node !== null) {
+      sectionsReferences.current[sectionName] = node;
+      setSectionsPositions(currentSectionsPositions => ({
+        ...currentSectionsPositions,
+        [sectionName]: getDimensions(node),
+      }));
+    }
+  }, []);
+
   const setTouristicContentsRef = useCallback((node: HTMLDivElement | null) => {
     const sectionName = 'touristicContent';
     if (node !== null) {
@@ -106,6 +117,7 @@ export const useDetails = (detailsUrl: string | string[] | undefined) => {
     setDescriptionRef,
     setPracticalInformationsRef,
     setTouristicContentsRef,
+    setAccessibilityRef,
     sectionsPositions,
   };
 };
