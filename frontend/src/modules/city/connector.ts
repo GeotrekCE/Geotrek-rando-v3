@@ -1,4 +1,4 @@
-import { generatePageNumbersArray } from 'modules/mapResults/utils';
+import { generatePageNumbersArray } from 'modules/utils/connector';
 import { getApiCallsConfig } from 'modules/utils/api.config';
 import { adaptCities, adaptCitiesSinglePage } from './adapter';
 import { fetchCities } from './api';
