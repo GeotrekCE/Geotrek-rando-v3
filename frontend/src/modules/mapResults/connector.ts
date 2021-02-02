@@ -3,10 +3,10 @@ import { getActivities } from 'modules/activities/connector';
 import { formatFiltersToUrlParams } from 'modules/results/utils';
 import { getApiCallsConfig } from 'modules/utils/api.config';
 
+import { generatePageNumbersArray } from 'modules/utils/connector';
 import { adaptMapResults } from './adapter';
 import { fetchMapResults } from './api';
 import { MapResults } from './interface';
-import { generatePageNumbersArray } from './utils';
 
 export const getMapResults = async (filtersState: QueryFilterState[]): Promise<MapResults> => {
   const resultsNumber = getApiCallsConfig().searchResultsPageSize;
