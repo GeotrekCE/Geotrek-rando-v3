@@ -57,7 +57,11 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
         )
       ) : (
         <div>
-          <DetailsHeader sectionsReferences={sectionsReferences} downloadUrl={details.pdfUri} />
+          <DetailsHeader
+            sectionsReferences={sectionsReferences}
+            downloadUrl={details.pdfUri}
+            currentSectionId={visibleSection}
+          />
           {details.title !== undefined && <DetailsHeaderMobile title={details.title} />}
           <div className="flex flex-1">
             <div
