@@ -3,22 +3,24 @@ import { colorPalette, fillSvgWithColor } from 'stylesheet';
 
 interface DetailsSourceProps {
   name: string;
-  pictogramUri: string;
-  website: string;
+  pictogramUri?: string;
+  website?: string;
 }
 
 export const DetailsSource: React.FC<DetailsSourceProps> = ({ name, pictogramUri, website }) => {
   return (
     <div className="flex flex-col desktop:flex-row">
-      <div
-        className="w-30 h-20
+      {pictogramUri !== undefined && (
+        <div
+          className="w-30 h-20 desktop:mr-6
           grid place-items-center
           bg-primary1 border-solid border border-primary1
           rounded-2xl overflow-hidden"
-      >
-        <SourceIcon pictogramUri={pictogramUri} />
-      </div>
-      <div className="mt-2 desktop:ml-6 desktop:my-auto flex flex-col">
+        >
+          <SourceIcon pictogramUri={pictogramUri} />
+        </div>
+      )}
+      <div className="mt-2 desktop:my-auto flex flex-col">
         <span className="text-Mobile-C1 desktop:text-H4 mb-1 font-bold">{name}</span>
         <a
           href={website}
@@ -26,7 +28,7 @@ export const DetailsSource: React.FC<DetailsSourceProps> = ({ name, pictogramUri
           rel="noopener noreferrer"
           className="text-primary1 underline
           text-P2 desktop:text-P1
-          focus:text-primary1-light"
+          hover:text-primary1-light"
         >
           <span>{website}</span>
         </a>
