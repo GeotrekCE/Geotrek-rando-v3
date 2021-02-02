@@ -2,9 +2,8 @@ import { useQuery } from 'react-query';
 import { Details } from 'modules/details/interface';
 import { getDetails } from 'modules/details/connector';
 import { useRef } from 'react';
+import { isUrlString } from 'modules/utils/string';
 
-const isUrlString = (url: string | string[] | undefined): url is string =>
-  url !== undefined && typeof url === 'string';
 export interface DetailsHeaderSection {
   preview?: HTMLDivElement | null;
   poi?: HTMLDivElement | null;
@@ -16,9 +15,13 @@ export interface DetailsHeaderSection {
 
 export const useDetails = (detailsUrl: string | string[] | undefined) => {
   const id = isUrlString(detailsUrl) ? detailsUrl.split('-')[1] : '';
-  const { data, refetch, isLoading } = useQuery<Details, Error>('details', () => getDetails(id), {
-    enabled: isUrlString(detailsUrl),
-  });
+  const { data, refetch, isLoading } = useQuery<Details, Error>(
+    `details-${id}`,
+    () => getDetails(id),
+    {
+      enabled: isUrlString(detailsUrl),
+    },
+  );
 
   const sectionsReferences = useRef<DetailsHeaderSection>({});
 
