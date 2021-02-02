@@ -74,6 +74,10 @@ Object {
                   <div
                     class="flex items-center text-primary1  "
                   >
+                    <img
+                      class="object-cover object-center w-6 h-6"
+                      src=""
+                    />
                     <span
                       class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
                     />
@@ -252,6 +256,10 @@ Object {
                 <div
                   class="flex items-center text-primary1  "
                 >
+                  <img
+                    class="object-cover object-center w-6 h-6"
+                    src=""
+                  />
                   <span
                     class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
                   />
