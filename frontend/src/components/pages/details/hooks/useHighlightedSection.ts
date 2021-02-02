@@ -10,21 +10,14 @@ export const useHighlightedSection = ({
 }) => {
   const [visibleSection, setVisibleSection] = useState<string | null>(null);
 
-  const sections = (Object.keys(sectionsPositions) as (keyof typeof sectionsPositions)[]).reduce<
-    { section: string; positions: { top: number; bottom: number } | undefined }[]
-  >(
-    (prev, sectionName) => [
-      ...prev,
-      { section: sectionName, positions: sectionsPositions[sectionName] },
-    ],
-    [],
-  );
-
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + headerHeight;
 
-      const sectionOnScreen = sections.find(({ positions }) => {
+      const sectionOnScreen = (Object.keys(
+        sectionsPositions,
+      ) as (keyof typeof sectionsPositions)[]).find(sectionId => {
+        const positions = sectionsPositions[sectionId];
         if (positions) {
           const { top, bottom } = positions;
           if (top === undefined || bottom === undefined) return false;
@@ -32,8 +25,8 @@ export const useHighlightedSection = ({
         }
       });
 
-      if (sectionOnScreen && sectionOnScreen.section !== visibleSection) {
-        setVisibleSection(sectionOnScreen.section);
+      if (sectionOnScreen !== visibleSection) {
+        setVisibleSection(sectionOnScreen ?? null);
       }
     };
 
@@ -41,7 +34,7 @@ export const useHighlightedSection = ({
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [sections]);
+  }, [sectionsPositions]);
 
   return { visibleSection };
 };
