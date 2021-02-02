@@ -15,12 +15,23 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from './components/DetailsTopIcons';
 import { HtmlText } from './utils';
 import { DetailsSource } from './components/DetailsSource';
+
 interface Props {
   detailsId: string | string[] | undefined;
 }
 
 export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
-  const { details, refetch, isLoading, sectionsReferences } = useDetails(detailsId);
+  const {
+    details,
+    refetch,
+    isLoading,
+    sectionsReferences,
+    setDescriptionRef,
+    setPoisRef,
+    setPracticalInformationsRef,
+    setPreviewRef,
+    setTouristicContentsRef,
+  } = useDetails(detailsId);
 
   return (
     <Layout>
@@ -66,7 +77,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                   practice={details.practice}
                   kmlUri={details.kmlUri}
                 />
-                <div ref={element => (sectionsReferences.current.preview = element)}>
+                <div ref={setPreviewRef}>
                   <DetailsPreview
                     className={marginDetailsChild}
                     informations={details.informations}
@@ -78,7 +89,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                   />
                 </div>
                 {details.pois.length > 0 && (
-                  <div ref={element => (sectionsReferences.current.poi = element)}>
+                  <div ref={setPoisRef}>
                     <DetailsCardSection
                       titleId="details.poi"
                       detailsCards={details.pois.map(poi => ({
@@ -91,7 +102,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                   </div>
                 )}
                 {details.description && (
-                  <div ref={element => (sectionsReferences.current.description = element)}>
+                  <div ref={setDescriptionRef}>
                     <DetailsDescription
                       descriptionHtml={details.description}
                       className={marginDetailsChild}
@@ -99,9 +110,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                   </div>
                 )}
                 {(details.transport || details.access_parking) && (
-                  <div
-                    ref={element => (sectionsReferences.current.practicalInformations = element)}
-                  >
+                  <div ref={setPracticalInformationsRef}>
                     {details.transport && (
                       <DetailsSection titleId="details.transport" className={marginDetailsChild}>
                         <HtmlText>{parse(details.transport)}</HtmlText>
@@ -150,7 +159,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                   </DetailsSection>
                 )}
                 {details.touristicContents.length > 0 && (
-                  <div ref={element => (sectionsReferences.current.touristicContent = element)}>
+                  <div ref={setTouristicContentsRef}>
                     <DetailsCardSection
                       titleId="details.touristicContent"
                       detailsCards={details.touristicContents.map(touristicContent => ({
