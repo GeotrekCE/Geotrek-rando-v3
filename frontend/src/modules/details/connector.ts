@@ -1,3 +1,4 @@
+import { getAccessibilities } from 'modules/accessibility/connector';
 import { getActivity } from 'modules/activities/connector';
 import { getCities } from 'modules/city/connector';
 import { getCourseType } from 'modules/filters/courseType/connector';
@@ -21,6 +22,7 @@ export const getDetails = async (id: string): Promise<Details> => {
     pois,
     touristicContents,
     cityDictionnary,
+    accessibilityDictionnary,
   ] = await Promise.all([
     getActivity(rawDetails.practice),
     getDifficulty(rawDetails.difficulty),
@@ -30,6 +32,7 @@ export const getDetails = async (id: string): Promise<Details> => {
     getPois(rawDetails.id),
     getTouristicContents(rawDetails.id),
     getCities(),
+    getAccessibilities(),
   ]);
   return adaptResults({
     rawDetails,
@@ -41,5 +44,6 @@ export const getDetails = async (id: string): Promise<Details> => {
     pois,
     touristicContents,
     cityDictionnary,
+    accessibilityDictionnary,
   });
 };
