@@ -38,7 +38,9 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
 
   const { visibleSection } = useHighlightedSection({
     sectionsPositions,
-    headerHeight: sizes.detailsHeaderDesktop + sizes.desktopHeader,
+    // We add a -200 offset so that the highlighted section doesn't change right as the top of it get out of the screen (it switches when 200 pixel of it got out of the screen)
+    headerHeight:
+      sizes.detailsHeaderDesktop + sizes.desktopHeader - sizes.scrollOffsetBeforeElement - 200,
   });
 
   return (
