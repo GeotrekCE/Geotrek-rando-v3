@@ -1,5 +1,9 @@
 import { FunctionComponent } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import parse from 'html-react-parser';
+
+import homeTopHtml from 'customization/html/homeTop.html';
+import homeBottomHtml from 'customization/html/homeBottom.html';
 
 import { Layout } from 'components/Layout/Layout';
 import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
@@ -49,6 +53,7 @@ const HomeUI: FunctionComponent = () => {
               heightMobile={265}
               heightDesktop={265}
             />
+            {parse(homeTopHtml)}
             <HomeSection
               title="Randonnées du parc"
               iconUrl="https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg"
@@ -59,19 +64,7 @@ const HomeUI: FunctionComponent = () => {
               iconUrl="https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-horse.svg"
               activitySuggestions={activitySuggestions}
             />
-
-            {/* <ListMapContainer>
-          <ListContainer>
-            <p>Points of Interest</p>
-            {POIList && POIList.map(POI => <p key={POI.id}>{POI.description}</p>)}
-            <br />
-            <p>Treks</p>
-            {treksList && treksList.map(trek => <p key={trek.id}>{trek.description}</p>)}
-          </ListContainer>
-          <MapContainer>
-            <Map points={POIList} segments={treksList} />
-          </MapContainer>
-        </ListMapContainer> */}
+            {parse(homeBottomHtml)}
           </div>
         </HomeContainer>
         <HomeFooter />
