@@ -1,9 +1,5 @@
-import {
-  computePageCount,
-  concatMapResults,
-  formatLocation,
-  generatePageNumbersArray,
-} from '../utils';
+import { computePageCount, generatePageNumbersArray } from 'modules/utils/connector';
+import { concatMapResults, formatLocation } from '../utils';
 
 const MockRawMapResults = [
   {

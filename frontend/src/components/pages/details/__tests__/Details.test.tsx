@@ -9,6 +9,7 @@ import { mockPoiRoute } from 'modules/poi/mocks';
 import { mockTouristicContentRoute } from 'modules/touristicContent/mocks';
 import { mockTouristicContentCategoryRoute } from 'modules/touristicContentCategory/mocks';
 import { mockCityRoute } from 'modules/city/mocks';
+import { mockAccessibilitiesRoute } from 'modules/accessibility/mocks';
 import { DetailsUI } from '../';
 import {
   mockNetworksResponse,
@@ -45,7 +46,7 @@ describe('Details', () => {
       .query({
         language: 'fr',
         fields:
-          'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,cities',
+          'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,cities,disabled_infrastructure,accessibilities',
       })
       .reply(200, rawDetailsMock);
 
@@ -91,6 +92,7 @@ describe('Details', () => {
     mockTouristicContentRoute(1, rawDetailsMock.id);
 
     mockCityRoute(1);
+    mockAccessibilitiesRoute(1);
 
     const component = render(
       <QueryClientProvider client={queryClient}>
@@ -107,5 +109,7 @@ describe('Details', () => {
     );
     const download = await component.findByText('Télécharger');
     expect(download).toHaveAttribute('href', rawDetailsMock.pdf);
+    await component.findAllByText('Accessibilité');
+    await component.findByText('Poussette');
   });
 });

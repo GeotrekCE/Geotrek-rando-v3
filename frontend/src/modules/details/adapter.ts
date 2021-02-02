@@ -10,6 +10,7 @@ import { Poi } from 'modules/poi/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { formatHours } from 'modules/utils/time';
 import { CityDictionnary } from 'modules/city/interface';
+import { AccessibilityDictionnary } from 'modules/accessibility/interface';
 import { Details, RawDetails } from './interface';
 
 const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
@@ -24,6 +25,7 @@ export const adaptResults = ({
   pois,
   touristicContents,
   cityDictionnary,
+  accessibilityDictionnary,
 }: {
   rawDetails: RawDetails;
   activity: Activity;
@@ -34,10 +36,14 @@ export const adaptResults = ({
   pois: Poi[];
   touristicContents: TouristicContent[];
   cityDictionnary: CityDictionnary;
+  accessibilityDictionnary: AccessibilityDictionnary;
 }): Details => {
   return {
     title: rawDetails.name,
-    place: rawDetails.cities.length > 0 ? cityDictionnary[rawDetails.cities[0]].name : undefined,
+    place:
+      rawDetails.cities.length > 0 && cityDictionnary[rawDetails.cities[0]] !== undefined
+        ? cityDictionnary[rawDetails.cities[0]].name
+        : rawDetails.departure,
     imgUrl: getThumbnail(rawDetails.attachments) ?? fallbackImgUri,
     practice: activity,
     transport: rawDetails.public_transport,
@@ -78,5 +84,10 @@ export const adaptResults = ({
     pdfUri: rawDetails.pdf,
     gpxUri: rawDetails.gpx,
     kmlUri: rawDetails.kml,
+    disabledInfrastructure: rawDetails.disabled_infrastructure,
+    accessibilities:
+      rawDetails.accessibilities !== undefined && rawDetails.accessibilities !== null
+        ? rawDetails.accessibilities.map(accessId => accessibilityDictionnary[accessId])
+        : [],
   };
 };

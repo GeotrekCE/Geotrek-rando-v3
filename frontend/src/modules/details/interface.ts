@@ -6,6 +6,7 @@ import { Poi } from 'modules/poi/interface';
 import { RawCoordinate, RawGeometry } from 'modules/interface';
 import { RawAttachment } from 'modules/activitySuggestions/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
+import { Accessibility } from 'modules/accessibility/interface';
 
 export interface RawDetails {
   id: number;
@@ -32,6 +33,8 @@ export interface RawDetails {
   gpx: string;
   kml: string;
   cities: string[];
+  disabled_infrastructure: string;
+  accessibilities: number[];
 }
 
 // Fields parsed with react-html-parser in page
@@ -41,6 +44,7 @@ export interface DetailsHtml {
   description_teaser: string;
   ambiance: string;
   description: string;
+  disabledInfrastructure: string;
 }
 
 export interface DetailsInformation {
@@ -73,4 +77,5 @@ export interface Details extends DetailsHtml {
   pdfUri: string;
   gpxUri: string;
   kmlUri: string;
+  accessibilities: Accessibility[];
 }
