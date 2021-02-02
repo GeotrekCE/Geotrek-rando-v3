@@ -11,6 +11,7 @@ import { TouristicContent } from 'modules/touristicContent/interface';
 import { formatHours } from 'modules/utils/time';
 import { CityDictionnary } from 'modules/city/interface';
 import { AccessibilityDictionnary } from 'modules/accessibility/interface';
+import { SourceDictionnary } from 'modules/source/interface';
 import { Details, RawDetails } from './interface';
 
 const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
@@ -26,6 +27,7 @@ export const adaptResults = ({
   touristicContents,
   cityDictionnary,
   accessibilityDictionnary,
+  sourceDictionnary,
 }: {
   rawDetails: RawDetails;
   activity: Activity;
@@ -37,6 +39,7 @@ export const adaptResults = ({
   touristicContents: TouristicContent[];
   cityDictionnary: CityDictionnary;
   accessibilityDictionnary: AccessibilityDictionnary;
+  sourceDictionnary: SourceDictionnary;
 }): Details => {
   return {
     title: rawDetails.name,
@@ -88,6 +91,10 @@ export const adaptResults = ({
     accessibilities:
       rawDetails.accessibilities !== undefined && rawDetails.accessibilities !== null
         ? rawDetails.accessibilities.map(accessId => accessibilityDictionnary[accessId])
+        : [],
+    sources:
+      rawDetails.source !== undefined && rawDetails.source !== null
+        ? rawDetails.source.map(sourceId => sourceDictionnary[sourceId])
         : [],
   };
 };

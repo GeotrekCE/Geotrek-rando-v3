@@ -6,6 +6,7 @@ import { getDifficulty } from 'modules/filters/difficulties/connector';
 import { getThemes } from 'modules/filters/theme/connector';
 import { getNetworks } from 'modules/networks/connector';
 import { getPois } from 'modules/poi/connector';
+import { getSources } from 'modules/source/connector';
 import { getTouristicContents } from 'modules/touristicContent/connector';
 import { adaptResults } from './adapter';
 import { fetchDetails } from './api';
@@ -23,6 +24,7 @@ export const getDetails = async (id: string): Promise<Details> => {
     touristicContents,
     cityDictionnary,
     accessibilityDictionnary,
+    sourceDictionnary,
   ] = await Promise.all([
     getActivity(rawDetails.practice),
     getDifficulty(rawDetails.difficulty),
@@ -33,6 +35,7 @@ export const getDetails = async (id: string): Promise<Details> => {
     getTouristicContents(rawDetails.id),
     getCities(),
     getAccessibilities(),
+    getSources(),
   ]);
   return adaptResults({
     rawDetails,
@@ -45,5 +48,6 @@ export const getDetails = async (id: string): Promise<Details> => {
     touristicContents,
     cityDictionnary,
     accessibilityDictionnary,
+    sourceDictionnary,
   });
 };
