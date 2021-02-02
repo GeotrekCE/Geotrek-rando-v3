@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { getSpacing, sizes } from 'stylesheet';
 import { flexGap } from 'services/cssHelpers';
 
-import { useHideOnScrollDown } from 'hooks/useHideOnScrollDown';
 import { Button } from 'components/Button';
 import { Plus } from 'components/Icons/Plus';
 import { ChevronUp } from 'components/Icons/ChevronUp';
@@ -30,7 +29,7 @@ export const FilterBar: React.FC<Props> = props => {
   // const filterBarDisplayedState = useHideOnScrollDown(sizes.desktopHeader);
   const filterBarDisplayedState = 'DISPLAYED';
 
-  const filterBarContainerClassName = `w-full py-3 pl-6 pr-2 hidden desktop:block fixed shadow bg-white z-floatingButton`;
+  const filterBarContainerClassName = `w-full py-3 pl-6 pr-2 hidden desktop:block fixed shadow bg-white z-subHeader`;
 
   return (
     <Container className={filterBarContainerClassName} displayedState={filterBarDisplayedState}>
