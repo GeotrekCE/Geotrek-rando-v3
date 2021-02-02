@@ -8,6 +8,7 @@ const config: Config.InitialOptions = {
   transform: {
     '^.+\\.tsx?$': 'babel-jest',
     '^.+\\.jsx?$': 'babel-jest',
+    '^.+\\.html?$': 'html-loader-jest',
   },
   moduleNameMapper: {
     '^components/(.*)$': '<rootDir>/src/components/$1',
