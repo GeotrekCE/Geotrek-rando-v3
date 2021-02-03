@@ -63,6 +63,7 @@
     "preview": "Présentation",
     "download": "Télécharger",
     "poi": "Patrimoines",
+    "poiFullTitle": "{count, plural, =0 {Pas de patrimoine} one {Le # patrimoine à découvrir} other {Les # patrimoines à découvrir}}",
     "source": "Source",
     "touristicContent": "À proximité",
     "readMore": "lire la suite",
