@@ -15,12 +15,33 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from './components/DetailsTopIcons';
 import { HtmlText } from './utils';
 import { DetailsSource } from './components/DetailsSource';
+import { useOnScreenSection } from './hooks/useHighlightedSection';
+
 interface Props {
   detailsId: string | string[] | undefined;
 }
 
 export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
-  const { details, refetch, isLoading, sectionsReferences } = useDetails(detailsId);
+  const {
+    details,
+    refetch,
+    isLoading,
+    sectionsReferences,
+    setDescriptionRef,
+    setPoisRef,
+    setPracticalInformationsRef,
+    setPreviewRef,
+    setTouristicContentsRef,
+    setAccessibilityRef,
+    sectionsPositions,
+  } = useDetails(detailsId);
+
+  const { visibleSection } = useOnScreenSection({
+    sectionsPositions,
+    // We add a -200 offset so that the highlighted section doesn't change right as the top of it get out of the screen (it switches when 200 pixel of it got out of the screen)
+    scrollOffset:
+      sizes.detailsHeaderDesktop + sizes.desktopHeader - sizes.scrollOffsetBeforeElement - 200,
+  });
 
   return (
     <Layout>
@@ -39,7 +60,11 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
         )
       ) : (
         <div>
-          <DetailsHeader sectionsReferences={sectionsReferences} downloadUrl={details.pdfUri} />
+          <DetailsHeader
+            sectionsReferences={sectionsReferences}
+            downloadUrl={details.pdfUri}
+            currentSectionId={visibleSection}
+          />
           {details.title !== undefined && <DetailsHeaderMobile title={details.title} />}
           <div className="flex flex-1">
             <div
@@ -66,7 +91,8 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                   practice={details.practice}
                   kmlUri={details.kmlUri}
                 />
-                <div ref={element => (sectionsReferences.current.preview = element)}>
+
+                <div ref={setPreviewRef}>
                   <DetailsPreview
                     className={marginDetailsChild}
                     informations={details.informations}
@@ -77,8 +103,9 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     ambiance={details.ambiance}
                   />
                 </div>
+
                 {details.pois.length > 0 && (
-                  <div ref={element => (sectionsReferences.current.poi = element)}>
+                  <div ref={setPoisRef}>
                     <DetailsCardSection
                       titleId="details.poi"
                       detailsCards={details.pois.map(poi => ({
@@ -90,18 +117,18 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     />
                   </div>
                 )}
+
                 {details.description && (
-                  <div ref={element => (sectionsReferences.current.description = element)}>
+                  <div ref={setDescriptionRef}>
                     <DetailsDescription
                       descriptionHtml={details.description}
                       className={marginDetailsChild}
                     />
                   </div>
                 )}
+
                 {(details.transport || details.access_parking) && (
-                  <div
-                    ref={element => (sectionsReferences.current.practicalInformations = element)}
-                  >
+                  <div ref={setPracticalInformationsRef}>
                     {details.transport && (
                       <DetailsSection titleId="details.transport" className={marginDetailsChild}>
                         <HtmlText>{parse(details.transport)}</HtmlText>
@@ -117,11 +144,12 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     )}
                   </div>
                 )}
+
                 {(details.disabledInfrastructure || details.accessibilities.length > 0) && (
                   <div ref={element => (sectionsReferences.current.accessibility = element)}>
                     <DetailsSection titleId="details.accessibility" className={marginDetailsChild}>
                       <HtmlText>{parse(details.disabledInfrastructure)}</HtmlText>
-                      <div className="flex">
+                      <div className="flex" ref={setAccessibilityRef}>
                         {details.accessibilities.map((accessibility, i) => (
                           <RemoteIconInformation
                             key={i}
@@ -135,6 +163,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     </DetailsSection>
                   </div>
                 )}
+
                 {details.sources.length > 0 && (
                   <DetailsSection titleId="details.source" className={marginDetailsChild}>
                     <div>
@@ -149,8 +178,9 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     </div>
                   </DetailsSection>
                 )}
+
                 {details.touristicContents.length > 0 && (
-                  <div ref={element => (sectionsReferences.current.touristicContent = element)}>
+                  <div ref={setTouristicContentsRef}>
                     <DetailsCardSection
                       titleId="details.touristicContent"
                       detailsCards={details.touristicContents.map(touristicContent => ({
@@ -166,6 +196,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 )}
               </div>
             </div>
+
             <div className="hidden desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar">
               <MapDynamicComponent
                 type="DESKTOP"

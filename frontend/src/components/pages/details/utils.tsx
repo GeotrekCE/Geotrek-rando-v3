@@ -58,3 +58,16 @@ export const HtmlText = styled.div`
     list-style-position: inside;
   }
 `;
+
+/** Computes an element top pixel and bottom pixel position */
+export const getDimensions = (htmlElement: HTMLElement | null): { top: number; bottom: number } => {
+  if (htmlElement === null) return { top: 0, bottom: 0 };
+  const { height } = htmlElement.getBoundingClientRect();
+  const elementTopPosition = htmlElement.offsetTop;
+  const elementBotttomPosition = elementTopPosition + height;
+
+  return {
+    top: elementTopPosition,
+    bottom: elementBotttomPosition,
+  };
+};

@@ -7,6 +7,7 @@ import { useDetailsHeader } from './useDetailsHeader';
 interface DetailsHeaderProps {
   sectionsReferences: MutableRefObject<DetailsHeaderSection>;
   downloadUrl?: string;
+  currentSectionId: string | null;
 }
 
 const scrollTo = (element: HTMLDivElement | undefined | null) => {
@@ -25,6 +26,7 @@ const scrollTo = (element: HTMLDivElement | undefined | null) => {
 export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
   sectionsReferences,
   downloadUrl,
+  currentSectionId,
 }) => {
   const { detailsHeaderSection } = useDetailsHeader(sectionsReferences);
   return (
@@ -39,9 +41,11 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
           <div
             onClick={() => scrollTo(detailsHeaderSection[sectionId])}
             key={sectionId}
-            className="hover:text-primary1
+            className={`hover:text-primary1
             pb-1 border-b-2 hover:border-primary1 border-transparent border-solid
-            cursor-pointer transition-all duration-300"
+            cursor-pointer transition-all duration-300 ${
+              currentSectionId === sectionId ? 'text-primary1 border-primary1' : ''
+            }`}
           >
             <FormattedMessage id={`details.${sectionId}`} />
           </div>
