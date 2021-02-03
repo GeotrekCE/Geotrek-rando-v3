@@ -49,7 +49,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
     // position is relative, therefore its childrens' boundingClientRect are computed
     // relative to the relative parent.
     scrollOffset:
-      (sectionsContainerRef.current?.getBoundingClientRect().top ?? 0) -
+      (sectionsContainerRef.current?.offsetTop ?? 0) -
       sizes.desktopHeader -
       sizes.detailsHeaderDesktop,
   });
