@@ -12,7 +12,6 @@ import { ParkingMarker } from '../Markers/ParkingMarker';
 
 import { MapButton } from '../components/MapButton';
 import { FilterButton } from '../components/FilterButton';
-import { ClusterContainer } from '../components/ClusterContainer';
 import { DecoratedPolyline } from '../components/DecoratedPolyline';
 
 export type PropsType = {
@@ -25,7 +24,6 @@ export type PropsType = {
   arrivalLocation?: { x: number; y: number };
   departureLocation?: { x: number; y: number };
   parkingLocation?: { x: number; y: number };
-  shouldUseClusters?: boolean;
   shouldUsePopups?: boolean;
   elementOnScreen: DetailsSections | null;
 };
@@ -50,38 +48,45 @@ const DetailsMap: React.FC<PropsType> = props => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <ClusterContainer enabled={props.shouldUseClusters ?? false}>
-          {props.poiPoints !== undefined &&
-            props.poiPoints.map(
-              point =>
-                point.location !== null && (
-                  <Marker
-                    key={point.name}
-                    position={[point.location.y, point.location.x]}
-                    icon={TrekMarker(point.pictogramUri)}
-                  ></Marker>
-                ),
+        {props.elementOnScreen === 'preview' && (
+          <>
+            {props.arrivalLocation !== undefined && (
+              <Marker
+                position={[props.arrivalLocation.y, props.arrivalLocation.x]}
+                icon={ArrivalMarker}
+              />
             )}
-          {props.arrivalLocation !== undefined && (
-            <Marker
-              position={[props.arrivalLocation.y, props.arrivalLocation.x]}
-              icon={ArrivalMarker}
-            />
-          )}
-          {props.departureLocation !== undefined && (
-            <Marker
-              position={[props.departureLocation.y, props.departureLocation.x]}
-              icon={DepartureMarker}
-            />
-          )}
-          {props.parkingLocation !== undefined && (
-            <Marker
-              position={[props.parkingLocation.y, props.parkingLocation.x]}
-              icon={ParkingMarker}
-            />
-          )}
-        </ClusterContainer>
-        {props.segments && <DecoratedPolyline positions={props.segments} />}
+            {props.departureLocation !== undefined && (
+              <Marker
+                position={[props.departureLocation.y, props.departureLocation.x]}
+                icon={DepartureMarker}
+              />
+            )}
+            {props.parkingLocation !== undefined && (
+              <Marker
+                position={[props.parkingLocation.y, props.parkingLocation.x]}
+                icon={ParkingMarker}
+              />
+            )}
+            {props.segments && <DecoratedPolyline positions={props.segments} />}
+          </>
+        )}
+
+        {props.elementOnScreen === 'poi' && (
+          <>
+            {props.poiPoints !== undefined &&
+              props.poiPoints.map(
+                point =>
+                  point.location !== null && (
+                    <Marker
+                      key={point.name}
+                      position={[point.location.y, point.location.x]}
+                      icon={TrekMarker(point.pictogramUri)}
+                    />
+                  ),
+              )}
+          </>
+        )}
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
