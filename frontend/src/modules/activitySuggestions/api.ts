@@ -1,15 +1,16 @@
 import { GeotrekAPI } from 'services/api/client';
-import { APIQuery, APIResponseForList } from 'services/api/interface';
+import { APIQuery } from 'services/api/interface';
 import { RawActivitySuggestion } from './interface';
 
 const fieldsParams = {
-  fields: 'name,attachments',
+  fields: 'name,attachments,id',
 };
 
-export const fetchActivitySuggestions = (
+export const fetchActivitySuggestion = (
+  id: string,
   query: APIQuery,
-): Promise<APIResponseForList<RawActivitySuggestion>> =>
-  GeotrekAPI.url('/trek')
+): Promise<RawActivitySuggestion> =>
+  GeotrekAPI.url(`/trek/${id}`)
     .query({ ...query, ...fieldsParams })
     .get()
     .json();

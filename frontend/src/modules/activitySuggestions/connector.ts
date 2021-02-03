@@ -1,13 +1,23 @@
-import { adaptResults } from './adapter';
-import { fetchActivitySuggestions } from './api';
-import { ActivitySuggestion } from './interface';
+import { adaptActivitySuggestion } from './adapter';
+import { fetchActivitySuggestion } from './api';
+import { ActivitySuggestionDictionnary } from './interface';
 
-const SUGGESTION_NUMBER = 5;
+export const getActivitySuggestions = async (
+  ids: string[],
+): Promise<ActivitySuggestionDictionnary> => {
+  const rawSuggestions = await Promise.all(
+    ids.map(id =>
+      fetchActivitySuggestion(id, {
+        language: 'fr',
+      }),
+    ),
+  );
 
-export const getActivitySuggestions = async (): Promise<ActivitySuggestion[]> => {
-  const rawResults = await fetchActivitySuggestions({
-    language: 'fr',
-    page_size: SUGGESTION_NUMBER,
-  });
-  return adaptResults(rawResults.results);
+  return rawSuggestions.reduce(
+    (activitySuggestionDictionnary, currentRawSuggestion) => ({
+      ...activitySuggestionDictionnary,
+      [currentRawSuggestion.id]: adaptActivitySuggestion(currentRawSuggestion),
+    }),
+    {},
+  );
 };

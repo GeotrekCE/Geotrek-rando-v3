@@ -9,6 +9,7 @@ export interface RawAttachment {
 }
 
 export interface RawActivitySuggestion {
+  id: string;
   name: string;
   attachments: RawAttachment[];
 }
@@ -16,4 +17,8 @@ export interface RawActivitySuggestion {
 export interface ActivitySuggestion {
   title: string;
   imgUrl: string | null;
+}
+
+export interface ActivitySuggestionDictionnary {
+  [activitySuggestionId: string]: ActivitySuggestion;
 }

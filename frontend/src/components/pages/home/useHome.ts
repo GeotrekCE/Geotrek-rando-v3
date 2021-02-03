@@ -1,14 +1,29 @@
 import { getHomePageConfig } from 'modules/home/utils';
-import { ActivitySuggestion } from 'modules/activitySuggestions/interface';
+import { ActivitySuggestionDictionnary } from 'modules/activitySuggestions/interface';
 import { getActivitySuggestions } from 'modules/activitySuggestions/connector';
 import { useQuery } from 'react-query';
+import { DisplayableSuggestionCategory } from 'modules/home/interface';
 
 export const useHome = () => {
-  const { data: activitySuggestions } = useQuery<ActivitySuggestion[], Error>(
-    'activitySuggestions',
-    getActivitySuggestions,
-  );
   const homePageConfig = getHomePageConfig();
 
-  return { config: homePageConfig, activitySuggestions };
+  const activitySuggestionIds: string[] = homePageConfig.suggestions.reduce<string[]>(
+    (suggestionIds, currentSuggestion) => [...suggestionIds, ...currentSuggestion.ids],
+    [],
+  );
+
+  const { data: activitySuggestionDictionnary } = useQuery<ActivitySuggestionDictionnary, Error>(
+    'activitySuggestions',
+    () => getActivitySuggestions(activitySuggestionIds),
+  );
+  const activitySuggestionCateogries: DisplayableSuggestionCategory[] =
+    activitySuggestionDictionnary !== undefined
+      ? homePageConfig.suggestions.map(suggestion => ({
+          titleTranslationId: suggestion.titleTranslationId,
+          iconUrl: suggestion.iconUrl,
+          suggestions: suggestion.ids.map(id => activitySuggestionDictionnary[id]),
+        }))
+      : [];
+
+  return { config: homePageConfig, activitySuggestionCateogries };
 };
