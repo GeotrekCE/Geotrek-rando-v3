@@ -3,6 +3,7 @@ import { Details } from 'modules/details/interface';
 import { getDetails } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
 import { useCallback, useRef, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { getDimensions } from './utils';
 
 export interface DetailsHeaderSection {
@@ -107,6 +108,8 @@ export const useDetails = (detailsUrl: string | string[] | undefined) => {
     }
   }, []);
 
+  const intl = useIntl();
+
   return {
     details: data,
     refetch,
@@ -119,5 +122,6 @@ export const useDetails = (detailsUrl: string | string[] | undefined) => {
     setTouristicContentsRef,
     setAccessibilityRef,
     sectionsPositions,
+    intl,
   };
 };
