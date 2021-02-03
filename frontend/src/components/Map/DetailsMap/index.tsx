@@ -5,6 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapResults } from 'modules/mapResults/interface';
 
+import { DetailsSections } from 'components/pages/details/useDetails';
 import { TrekMarker } from '../Markers/TrekMarker';
 import { ArrivalMarker } from '../Markers/ArrivalMarker';
 import { DepartureMarker } from '../Markers/DepartureMarker';
@@ -30,6 +31,7 @@ export type PropsType = {
   parkingLocation?: { x: number; y: number };
   shouldUseClusters?: boolean;
   shouldUsePopups?: boolean;
+  elementOnScreen: DetailsSections | null;
 };
 
 const DetailsMap: React.FC<PropsType> = props => {

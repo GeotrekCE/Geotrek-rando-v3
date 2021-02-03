@@ -243,6 +243,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 departureLocation={details.trekDeparture}
                 parkingLocation={details.parkingLocation}
                 segments={details.trekGeometry}
+                elementOnScreen={visibleSection}
               />
             </div>
           </div>
