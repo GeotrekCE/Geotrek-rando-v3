@@ -5,7 +5,6 @@ import 'leaflet/dist/leaflet.css';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 
 import { DetailsSections } from 'components/pages/details/useDetails';
-import { TrekMarker } from '../Markers/TrekMarker';
 import { ArrivalMarker } from '../Markers/ArrivalMarker';
 import { DepartureMarker } from '../Markers/DepartureMarker';
 import { ParkingMarker } from '../Markers/ParkingMarker';
@@ -13,6 +12,8 @@ import { ParkingMarker } from '../Markers/ParkingMarker';
 import { MapButton } from '../components/MapButton';
 import { FilterButton } from '../components/FilterButton';
 import { DecoratedPolyline } from '../components/DecoratedPolyline';
+
+import { POIMarkers } from './POIMarkers';
 
 export type PropsType = {
   poiPoints?: { location: { x: number; y: number }; pictogramUri: string; name: string }[];
@@ -72,21 +73,7 @@ const DetailsMap: React.FC<PropsType> = props => {
           </>
         )}
 
-        {props.elementOnScreen === 'poi' && (
-          <>
-            {props.poiPoints !== undefined &&
-              props.poiPoints.map(
-                point =>
-                  point.location !== null && (
-                    <Marker
-                      key={point.name}
-                      position={[point.location.y, point.location.x]}
-                      icon={TrekMarker(point.pictogramUri)}
-                    />
-                  ),
-              )}
-          </>
-        )}
+        {props.elementOnScreen === 'poi' && <POIMarkers poiPoints={props.poiPoints} />}
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
