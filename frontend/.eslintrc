@@ -50,7 +50,7 @@
     "eqeqeq": ["error", "smart"],
     "guard-for-in": "error",
     "no-bitwise": "error",
-    "no-console": "error",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
     "no-eval": "error",
     "no-invalid-this": "off",
     "no-new-wrappers": "error",
