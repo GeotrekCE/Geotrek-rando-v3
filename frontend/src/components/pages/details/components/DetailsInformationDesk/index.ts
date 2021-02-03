@@ -1,0 +1,1 @@
+export { DetailsInformationDesk } from './DetailsInformationDesk';
