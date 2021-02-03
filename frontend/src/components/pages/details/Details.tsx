@@ -17,6 +17,7 @@ import { HtmlText } from './utils';
 import { DetailsSource } from './components/DetailsSource';
 import { useOnScreenSection } from './hooks/useHighlightedSection';
 
+import { DetailsInformationDesk } from './components/DetailsInformationDesk';
 interface Props {
   detailsId: string | string[] | undefined;
 }
@@ -126,9 +127,36 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     />
                   </div>
                 )}
-
-                {(details.transport || details.access_parking) && (
+                {(details.informationDesks.length > 0 ||
+                  details.transport ||
+                  details.access_parking) && (
                   <div ref={setPracticalInformationsRef}>
+                    {details.informationDesks.length > 0 && (
+                      <DetailsSection
+                        titleId="details.informationDesks"
+                        className={marginDetailsChild}
+                      >
+                        {details.informationDesks.map((informationDesk, i) => (
+                          <DetailsInformationDesk
+                            key={i}
+                            className={
+                              i < details.informationDesks.length - 1
+                                ? 'mb-8 desktop:mb-12'
+                                : undefined
+                            }
+                            name={informationDesk.name}
+                            street={informationDesk.street}
+                            postalCode={informationDesk.postalCode}
+                            municipality={informationDesk.municipality}
+                            website={informationDesk.website}
+                            email={informationDesk.email}
+                            phone={informationDesk.phone}
+                            description={informationDesk.description}
+                            type={informationDesk.type}
+                          />
+                        ))}
+                      </DetailsSection>
+                    )}
                     {details.transport && (
                       <DetailsSection titleId="details.transport" className={marginDetailsChild}>
                         <HtmlText>{parse(details.transport)}</HtmlText>
