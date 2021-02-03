@@ -14,7 +14,11 @@ export const mockInformationDeskResponse = () => ({
       phone: '04 92 55 25 19',
       postal_code: '05800',
       street: 'Ancien Asile Saint-Paul',
-      type: [1],
+      type: {
+        id: 1,
+        label: 'Maisons du parc',
+        pictogram: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/desktype-info.svg',
+      },
       website: 'http://www.ecrins-parcnational.fr',
     },
   ],
@@ -25,7 +29,7 @@ export const mockInformationDeskRoute = (times: number): void =>
     route: '/informationdesk',
     mockData: mockInformationDeskResponse(),
     additionalQueries: {
-      fields: 'name,street,postal_code,municipality,website,phone,pictogram,description,type',
+      fields: 'name,street,postal_code,municipality,website,email,phone,description,type',
     },
     times,
   });
