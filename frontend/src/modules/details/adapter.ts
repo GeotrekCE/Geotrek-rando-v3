@@ -13,8 +13,8 @@ import { CityDictionnary } from 'modules/city/interface';
 import { AccessibilityDictionnary } from 'modules/accessibility/interface';
 import { SourceDictionnary } from 'modules/source/interface';
 import { InformationDeskDictionnary } from 'modules/informationDesk/interface';
-import { Details, RawDetails } from './interface';
 import { LabelDictionnary } from 'modules/label/interface';
+import { Details, RawDetails } from './interface';
 
 const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
 
