@@ -143,7 +143,8 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     />
                   </div>
                 )}
-                {(details.labels.length > 0 || details.advice !== null) && (
+                {(details.labels.length > 0 ||
+                  (details.advice !== null && details.advice.length > 0)) && (
                   <DetailsSection titleId="details.recommandations" className={marginDetailsChild}>
                     {details.labels.map((label, i) => (
                       <DetailsLabel
@@ -155,7 +156,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                         className={i < details.labels.length - 1 ? 'mb-4 desktop:mb-6' : ''}
                       />
                     ))}
-                    {details.advice !== null && (
+                    {details.advice !== null && details.advice.length > 0 && (
                       <DetailsAdvice text={details.advice} className="mt-4 desktop:mt-6" />
                     )}
                   </DetailsSection>
