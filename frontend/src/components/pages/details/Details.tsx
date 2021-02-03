@@ -242,7 +242,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 arrivalLocation={details.trekArrival}
                 departureLocation={details.trekDeparture}
                 parkingLocation={details.parkingLocation}
-                segments={details.trekGeometry}
+                trekGeometry={details.trekGeometry}
                 elementOnScreen={visibleSection}
                 poiPoints={details.pois.map(poi => ({
                   location: { x: poi.geometry.x, y: poi.geometry.y },

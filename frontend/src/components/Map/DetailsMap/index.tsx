@@ -1,23 +1,20 @@
 import React from 'react';
-import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 
 import { DetailsSections } from 'components/pages/details/useDetails';
-import { ArrivalMarker } from '../Markers/ArrivalMarker';
-import { DepartureMarker } from '../Markers/DepartureMarker';
-import { ParkingMarker } from '../Markers/ParkingMarker';
 
 import { MapButton } from '../components/MapButton';
 import { FilterButton } from '../components/FilterButton';
-import { DecoratedPolyline } from '../components/DecoratedPolyline';
 
 import { POIMarkers } from './POIMarkers';
+import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
 
 export type PropsType = {
   poiPoints?: { location: { x: number; y: number }; pictogramUri: string; name: string }[];
-  segments?: { x: number; y: number }[];
+  trekGeometry?: { x: number; y: number }[];
   hideMap?: () => void;
   type: 'DESKTOP' | 'MOBILE';
   openFilterMenu?: () => void;
@@ -51,25 +48,12 @@ const DetailsMap: React.FC<PropsType> = props => {
         />
         {props.elementOnScreen === 'preview' && (
           <>
-            {props.arrivalLocation !== undefined && (
-              <Marker
-                position={[props.arrivalLocation.y, props.arrivalLocation.x]}
-                icon={ArrivalMarker}
-              />
-            )}
-            {props.departureLocation !== undefined && (
-              <Marker
-                position={[props.departureLocation.y, props.departureLocation.x]}
-                icon={DepartureMarker}
-              />
-            )}
-            {props.parkingLocation !== undefined && (
-              <Marker
-                position={[props.parkingLocation.y, props.parkingLocation.x]}
-                icon={ParkingMarker}
-              />
-            )}
-            {props.segments && <DecoratedPolyline positions={props.segments} />}
+            <TrekMarkersAndCourse
+              arrivalLocation={props.arrivalLocation}
+              departureLocation={props.departureLocation}
+              parkingLocation={props.parkingLocation}
+              trekGeometry={props.trekGeometry}
+            />
           </>
         )}
 
