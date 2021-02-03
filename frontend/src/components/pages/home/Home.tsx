@@ -15,7 +15,7 @@ import { HomeFooter } from './components/HomeFooter';
 import { useHome } from './useHome';
 
 const HomeUI: FunctionComponent = () => {
-  const { config, activitySuggestionCateogries } = useHome();
+  const { config, activitySuggestionCategories } = useHome();
   const intl = useIntl();
   return (
     <div>
@@ -54,7 +54,7 @@ const HomeUI: FunctionComponent = () => {
               heightDesktop={265}
             />
             {parse(homeTopHtml)}
-            {activitySuggestionCateogries.map(suggestionCategory => (
+            {activitySuggestionCategories.map(suggestionCategory => (
               <HomeSection
                 title={intl.formatMessage({ id: suggestionCategory.titleTranslationId })}
                 iconUrl={suggestionCategory.iconUrl}
