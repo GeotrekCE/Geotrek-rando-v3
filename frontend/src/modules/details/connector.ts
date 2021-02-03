@@ -14,44 +14,49 @@ import { fetchDetails } from './api';
 import { Details } from './interface';
 
 export const getDetails = async (id: string): Promise<Details> => {
-  const rawDetails = await fetchDetails({ language: 'fr' }, id);
-  // Typescript limit for Promise.all is for 10 promises
-  const [
-    activity,
-    difficulty,
-    courseType,
-    networks,
-    themes,
-    pois,
-    touristicContents,
-    cityDictionnary,
-    accessibilityDictionnary,
-    sourceDictionnary,
-  ] = await Promise.all([
-    getActivity(rawDetails.practice),
-    getDifficulty(rawDetails.difficulty),
-    getCourseType(rawDetails.route),
-    getNetworks(),
-    getThemes(),
-    getPois(rawDetails.id),
-    getTouristicContents(rawDetails.id),
-    getCities(),
-    getAccessibilities(),
-    getSources(),
-  ]);
-  const [informationDeskDictionnary] = await Promise.all([getInformationDesks()]);
-  return adaptResults({
-    rawDetails,
-    activity,
-    difficulty,
-    courseType,
-    networks,
-    themes,
-    pois,
-    touristicContents,
-    cityDictionnary,
-    accessibilityDictionnary,
-    sourceDictionnary,
-    informationDeskDictionnary,
-  });
+  try {
+    const rawDetails = await fetchDetails({ language: 'fr' }, id);
+    // Typescript limit for Promise.all is for 10 promises
+    const [
+      activity,
+      difficulty,
+      courseType,
+      networks,
+      themes,
+      pois,
+      touristicContents,
+      cityDictionnary,
+      accessibilityDictionnary,
+      sourceDictionnary,
+    ] = await Promise.all([
+      getActivity(rawDetails.practice),
+      getDifficulty(rawDetails.difficulty),
+      getCourseType(rawDetails.route),
+      getNetworks(),
+      getThemes(),
+      getPois(rawDetails.id),
+      getTouristicContents(rawDetails.id),
+      getCities(),
+      getAccessibilities(),
+      getSources(),
+    ]);
+    const [informationDeskDictionnary] = await Promise.all([getInformationDesks()]);
+    return adaptResults({
+      rawDetails,
+      activity,
+      difficulty,
+      courseType,
+      networks,
+      themes,
+      pois,
+      touristicContents,
+      cityDictionnary,
+      accessibilityDictionnary,
+      sourceDictionnary,
+      informationDeskDictionnary,
+    });
+  } catch (e) {
+    console.error('Error in details/connector', e);
+    throw e;
+  }
 };
