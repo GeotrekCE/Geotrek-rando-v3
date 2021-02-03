@@ -15,6 +15,7 @@ import { Details } from './interface';
 
 export const getDetails = async (id: string): Promise<Details> => {
   const rawDetails = await fetchDetails({ language: 'fr' }, id);
+  // Typescript limit for Promise.all is for 10 promises
   const [
     activity,
     difficulty,
@@ -26,7 +27,6 @@ export const getDetails = async (id: string): Promise<Details> => {
     cityDictionnary,
     accessibilityDictionnary,
     sourceDictionnary,
-    informationDeskDictionnary,
   ] = await Promise.all([
     getActivity(rawDetails.practice),
     getDifficulty(rawDetails.difficulty),
@@ -38,8 +38,8 @@ export const getDetails = async (id: string): Promise<Details> => {
     getCities(),
     getAccessibilities(),
     getSources(),
-    getInformationDesks(),
   ]);
+  const [informationDeskDictionnary] = await Promise.all([getInformationDesks()]);
   return adaptResults({
     rawDetails,
     activity,
