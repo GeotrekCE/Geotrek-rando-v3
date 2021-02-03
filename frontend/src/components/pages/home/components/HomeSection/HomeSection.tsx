@@ -29,7 +29,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
         />
         <span className="text-H4 desktop:text-H2 font-bold">{title}</span>
       </div>
-      <div className="flex space-x-6 overflow-hidden">
+      <div className="flex space-x-6 overflow-x-scroll">
         {activitySuggestions !== undefined &&
           activitySuggestions.map((activitySuggestion, i) => (
             <ActivitySuggestionCard
