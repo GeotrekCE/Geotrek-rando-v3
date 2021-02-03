@@ -3,7 +3,6 @@ import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
-import { MapResults } from 'modules/mapResults/interface';
 
 import { DetailsSections } from 'components/pages/details/useDetails';
 import { TrekMarker } from '../Markers/TrekMarker';
@@ -11,16 +10,13 @@ import { ArrivalMarker } from '../Markers/ArrivalMarker';
 import { DepartureMarker } from '../Markers/DepartureMarker';
 import { ParkingMarker } from '../Markers/ParkingMarker';
 
-import { Popup } from '../components/Popup';
 import { MapButton } from '../components/MapButton';
 import { FilterButton } from '../components/FilterButton';
-import { TrekCourse } from '../components/TrekCourse';
 import { ClusterContainer } from '../components/ClusterContainer';
-import { useSelectedMarker } from '../hooks/useSelectedMarker';
 import { DecoratedPolyline } from '../components/DecoratedPolyline';
 
 export type PropsType = {
-  points?: MapResults;
+  poiPoints?: { location: { x: number; y: number }; pictogramUri: string; name: string }[];
   segments?: { x: number; y: number }[];
   hideMap?: () => void;
   type: 'DESKTOP' | 'MOBILE';
@@ -41,13 +37,6 @@ const DetailsMap: React.FC<PropsType> = props => {
     }
   };
 
-  const {
-    isSelectedMarker,
-    setSelectedMarkerId,
-    resetSelectedMarker,
-    selectedMarkerId,
-  } = useSelectedMarker();
-
   return (
     <>
       <MapContainer
@@ -62,27 +51,15 @@ const DetailsMap: React.FC<PropsType> = props => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <ClusterContainer enabled={props.shouldUseClusters ?? false}>
-          {props.points !== undefined &&
-            props.points.map(
+          {props.poiPoints !== undefined &&
+            props.poiPoints.map(
               point =>
                 point.location !== null && (
                   <Marker
-                    key={point.id}
+                    key={point.name}
                     position={[point.location.y, point.location.x]}
-                    icon={
-                      isSelectedMarker(point.id)
-                        ? TrekMarker(point.practice.pictogram)
-                        : TrekMarker(point.practice.pictogram)
-                    }
-                  >
-                    {(props.shouldUsePopups ?? false) && (
-                      <Popup
-                        id={point.id}
-                        handleOpen={() => setSelectedMarkerId(point.id)}
-                        handleClose={resetSelectedMarker}
-                      />
-                    )}
-                  </Marker>
+                    icon={TrekMarker(point.pictogramUri)}
+                  ></Marker>
                 ),
             )}
           {props.arrivalLocation !== undefined && (
@@ -105,7 +82,6 @@ const DetailsMap: React.FC<PropsType> = props => {
           )}
         </ClusterContainer>
         {props.segments && <DecoratedPolyline positions={props.segments} />}
-        <TrekCourse id={selectedMarkerId} />
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
