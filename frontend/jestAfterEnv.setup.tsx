@@ -6,7 +6,8 @@ jest.mock('./src/services/envLoader.ts', () => ({
 }));
 
 jest.mock('./src/components/Map', () => ({
-  MapDynamicComponent: () => null,
+  SearchMapDynamicComponent: () => null,
+  DetailsMapDynamicComponent: () => null,
 }));
 
 jest.mock('./src/modules/utils/api.config.ts', () => ({

@@ -14,7 +14,7 @@ import {
   useFilterSubMenu,
 } from 'components/MobileFilterMenu';
 
-import { MapDynamicComponent } from 'components/Map';
+import { SearchMapDynamicComponent } from 'components/Map';
 import { FilterBar } from './components/FilterBar';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
@@ -161,7 +161,7 @@ export const SearchUI: React.FC = () => {
                 scale: 2,
               }}
             />
-            <MapDynamicComponent
+            <SearchMapDynamicComponent
               points={mapResults}
               type="DESKTOP"
               shouldUseClusters
@@ -176,7 +176,7 @@ export const SearchUI: React.FC = () => {
         }`}
         displayState={mobileMapState}
       >
-        <MapDynamicComponent
+        <SearchMapDynamicComponent
           hideMap={hideMobileMap}
           type="MOBILE"
           openFilterMenu={displayMenu}
