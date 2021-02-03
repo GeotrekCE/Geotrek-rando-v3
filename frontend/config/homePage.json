@@ -5,5 +5,17 @@
   },
   "activityBar": {
     "shouldDisplay": true
-  }
+  },
+  "suggestions": [
+    {
+      "titleTranslationId": "home.parcWalking",
+      "iconUrl": "https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg",
+      "ids": ["2"]
+    },
+    {
+      "titleTranslationId": "home.parcWalking",
+      "iconUrl": "https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg",
+      "ids": ["501", "582"]
+    }
+  ]
 }

@@ -1,8 +1,9 @@
 import { getThumbnail } from 'modules/utils/adapter';
 import { ActivitySuggestion, RawActivitySuggestion } from './interface';
 
-export const adaptResults = (rawActivities: RawActivitySuggestion[]): ActivitySuggestion[] =>
-  rawActivities.map(rawActivity => ({
-    title: rawActivity.name,
-    imgUrl: getThumbnail(rawActivity.attachments),
-  }));
+export const adaptActivitySuggestion = (
+  rawActivitySuggestion: RawActivitySuggestion,
+): ActivitySuggestion => ({
+  title: rawActivitySuggestion.name,
+  imgUrl: getThumbnail(rawActivitySuggestion.attachments),
+});

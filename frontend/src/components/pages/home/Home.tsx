@@ -15,7 +15,7 @@ import { HomeFooter } from './components/HomeFooter';
 import { useHome } from './useHome';
 
 const HomeUI: FunctionComponent = () => {
-  const { config, activitySuggestions } = useHome();
+  const { config, activitySuggestionCateogries } = useHome();
   const intl = useIntl();
   return (
     <div>
@@ -54,16 +54,14 @@ const HomeUI: FunctionComponent = () => {
               heightDesktop={265}
             />
             {parse(homeTopHtml)}
-            <HomeSection
-              title="Randonnées du parc"
-              iconUrl="https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg"
-              activitySuggestions={activitySuggestions}
-            />
-            <HomeSection
-              title="Parcours en itinérance"
-              iconUrl="https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-horse.svg"
-              activitySuggestions={activitySuggestions}
-            />
+            {activitySuggestionCateogries.map(suggestionCategory => (
+              <HomeSection
+                title={intl.formatMessage({ id: suggestionCategory.titleTranslationId })}
+                iconUrl={suggestionCategory.iconUrl}
+                key={suggestionCategory.titleTranslationId}
+                activitySuggestions={suggestionCategory.suggestions}
+              />
+            ))}
             {parse(homeBottomHtml)}
           </div>
         </HomeContainer>
