@@ -1,21 +1,17 @@
 import { Separator } from 'components/Separator';
-import { FormattedMessage } from 'react-intl';
 import { marginDetailsChild } from '../../Details';
 import { DetailsCard, DetailsCardProps } from '../DetailsCard/DetailsCard';
 
 interface DetailsCardSectionProps {
   detailsCards: DetailsCardProps[];
-  titleId: string;
+  title: string;
 }
 
-export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
-  detailsCards,
-  titleId,
-}) => {
+export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({ detailsCards, title }) => {
   return (
     <div className="mt-6 desktop:mt-12">
       <div className={`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild}`}>
-        <FormattedMessage id={titleId} />
+        {title}
       </div>
       <div
         className="flex desktop:flex-col items-stretch
