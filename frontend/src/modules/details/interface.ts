@@ -8,6 +8,7 @@ import { RawAttachment } from 'modules/activitySuggestions/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { Accessibility } from 'modules/accessibility/interface';
 import { Source } from 'modules/source/interface';
+import { InformationDesk } from 'modules/informationDesk/interface';
 
 export interface RawDetails {
   id: number;
@@ -37,6 +38,7 @@ export interface RawDetails {
   disabled_infrastructure: string;
   accessibilities: number[];
   source: number[];
+  information_desks: number[];
 }
 
 // Fields parsed with react-html-parser in page
@@ -81,4 +83,5 @@ export interface Details extends DetailsHtml {
   kmlUri: string;
   accessibilities: Accessibility[];
   sources: Source[];
+  informationDesks: InformationDesk[];
 }

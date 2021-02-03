@@ -113,6 +113,7 @@ export const rawDetails = {
     ],
   },
   gpx: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/treks/2/col-de-font-froide.gpx',
+  information_desks: [1],
   kml: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/treks/2/col-de-font-froide.kml',
   length_2d: 15205.4,
   name: 'Col de Font Froide',

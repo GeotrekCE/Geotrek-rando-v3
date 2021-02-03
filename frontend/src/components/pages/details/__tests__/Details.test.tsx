@@ -11,6 +11,7 @@ import { mockTouristicContentCategoryRoute } from 'modules/touristicContentCateg
 import { mockCityRoute } from 'modules/city/mocks';
 import { mockAccessibilitiesRoute } from 'modules/accessibility/mocks';
 import { mockSourceRoute } from 'modules/source/mocks';
+import { mockInformationDeskRoute } from 'modules/informationDesk/mocks';
 import { DetailsUI } from '../';
 import {
   mockNetworksResponse,
@@ -47,7 +48,7 @@ describe('Details', () => {
       .query({
         language: 'fr',
         fields:
-          'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,cities,disabled_infrastructure,accessibilities,source',
+          'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,cities,disabled_infrastructure,accessibilities,source,information_desks',
       })
       .reply(200, rawDetailsMock);
 
@@ -95,6 +96,7 @@ describe('Details', () => {
     mockCityRoute(1);
     mockAccessibilitiesRoute(1);
     mockSourceRoute(1);
+    mockInformationDeskRoute(1);
 
     const component = render(
       <QueryClientProvider client={queryClient}>
