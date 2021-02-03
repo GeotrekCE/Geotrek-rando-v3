@@ -8,3 +8,9 @@ export interface RawGeometry {
 export interface APICallsConfig {
   searchResultsPageSize: number;
 }
+
+export interface Coordinate {
+  x: number;
+  y: number;
+  z: number;
+}
