@@ -5,6 +5,7 @@ import { MapDynamicComponent } from 'components/Map';
 import { useShowOnScrollPosition } from 'hooks/useShowOnScrollPosition';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
+import { useRef } from 'react';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -36,11 +37,20 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
     sectionsPositions,
   } = useDetails(detailsId);
 
+  /** Ref of the parent of all sections */
+  const sectionsContainerRef = useRef<HTMLDivElement>(null);
+
   const { visibleSection } = useOnScreenSection({
     sectionsPositions,
-    // We add a -200 offset so that the highlighted section doesn't change right as the top of it get out of the screen (it switches when 200 pixel of it got out of the screen)
+    // The scroll offset is the height above the sections' container minus the headers size
+    // (we want the element detection to trigger when an element top reaches the header's bottom not the windows' top)
+    // Note that this scrollOffset is necessary because the sections' container
+    // position is relative, therefore its childrens' boundingClientRect are computed
+    // relative to the relative parent.
     scrollOffset:
-      sizes.detailsHeaderDesktop + sizes.desktopHeader - sizes.scrollOffsetBeforeElement - 200,
+      (sectionsContainerRef.current?.getBoundingClientRect().top ?? 0) -
+      sizes.desktopHeader -
+      sizes.detailsHeaderDesktop,
   });
 
   return (
@@ -83,6 +93,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 className="desktop:py-0
                 desktop:relative desktop:-top-9
                 flex flex-col"
+                ref={sectionsContainerRef}
               >
                 <DetailsTopIcons
                   className={marginDetailsChild}
