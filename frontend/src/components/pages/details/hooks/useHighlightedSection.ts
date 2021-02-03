@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { sizes } from 'stylesheet';
-import { DetailsSectionsPosition } from '../useDetails';
+import { DetailsSections, DetailsSectionsPosition } from '../useDetails';
 
 /**
  * Returns the id of the section currently on screen
@@ -16,8 +16,8 @@ export const useOnScreenSection = ({
    * has a position: relative.
    */
   scrollOffset: number;
-}): { visibleSection: string | null } => {
-  const [visibleSection, setVisibleSection] = useState<string | null>(null);
+}): { visibleSection: DetailsSections | null } => {
+  const [visibleSection, setVisibleSection] = useState<DetailsSections | null>(null);
 
   /** Number between 0 and 1, indicates which portion of the screen should the element take to appear on screen */
   const screenProportionToTriggerElementHighlight = 2 / 3;
