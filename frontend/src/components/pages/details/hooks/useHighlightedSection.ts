@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { sizes } from 'stylesheet';
 import { DetailsSectionsPosition } from '../useDetails';
 
 /**
@@ -9,16 +10,31 @@ export const useOnScreenSection = ({
   scrollOffset,
 }: {
   sectionsPositions: DetailsSectionsPosition;
-  // Height of the page not taken into account when computing the sections'
-  // bounding clients rect. This happens when the container of the sections
-  // has a position: relative.
+  /**
+   * Height of the page not taken into account when computing the sections'
+   * bounding clients rect. This happens when the container of the sections
+   * has a position: relative.
+   */
   scrollOffset: number;
 }): { visibleSection: string | null } => {
   const [visibleSection, setVisibleSection] = useState<string | null>(null);
 
+  /** Number between 0 and 1, indicates which portion of the screen should the element take to appear on screen */
+  const screenProportionToTriggerElementHighlight = 2 / 3;
+
+  /** Height of the windows minus the headers */
+  let visibleScreenHeight = 0;
+  // Necessary check because we use Nextjs
+  if (typeof window !== 'undefined') {
+    visibleScreenHeight = window.innerHeight - sizes.desktopHeader - sizes.detailsHeaderDesktop;
+  }
+
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY - scrollOffset;
+      const scrollPosition =
+        window.scrollY -
+        scrollOffset +
+        (1 - screenProportionToTriggerElementHighlight) * visibleScreenHeight;
 
       const sectionOnScreen =
         // First check that the scroll position is between the top and bottom of elements
