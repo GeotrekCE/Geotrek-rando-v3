@@ -16,4 +16,9 @@ export const adaptPoi = ({
     description: rawPoi.description,
     thumbnailUri: getThumbnail(rawPoi.attachments) ?? fallbackImgUri,
     type: poiTypes[rawPoi.type],
+    geometry: {
+      x: rawPoi.geometry.coordinates[0],
+      y: rawPoi.geometry.coordinates[1],
+      z: rawPoi.geometry.coordinates[2],
+    },
   }));
