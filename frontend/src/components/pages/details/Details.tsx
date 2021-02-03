@@ -18,6 +18,8 @@ import { DetailsSource } from './components/DetailsSource';
 import { useOnScreenSection } from './hooks/useHighlightedSection';
 
 import { DetailsInformationDesk } from './components/DetailsInformationDesk';
+import { DetailsLabel } from './components/DetailsLabel';
+import { DetailsAdvice } from './components/DetailsAdvice';
 interface Props {
   detailsId: string | string[] | undefined;
 }
@@ -118,7 +120,6 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     />
                   </div>
                 )}
-
                 {details.description && (
                   <div ref={setDescriptionRef}>
                     <DetailsDescription
@@ -126,6 +127,23 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                       className={marginDetailsChild}
                     />
                   </div>
+                )}
+                {(details.labels.length > 0 || details.advice !== null) && (
+                  <DetailsSection titleId="details.recommandations" className={marginDetailsChild}>
+                    {details.labels.map((label, i) => (
+                      <DetailsLabel
+                        key={i}
+                        id={label.id}
+                        name={label.name}
+                        advice={label.advice}
+                        pictogramUri={label.pictogramUri}
+                        className={i < details.labels.length - 1 ? 'mb-4 desktop:mb-6' : ''}
+                      />
+                    ))}
+                    {details.advice !== null && (
+                      <DetailsAdvice text={details.advice} className="mt-4 desktop:mt-6" />
+                    )}
+                  </DetailsSection>
                 )}
                 {(details.informationDesks.length > 0 ||
                   details.transport ||
