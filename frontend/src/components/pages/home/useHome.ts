@@ -16,7 +16,7 @@ export const useHome = () => {
     `activitySuggestions-${activitySuggestionIds.join('-')}`,
     () => getActivitySuggestions(activitySuggestionIds),
   );
-  const activitySuggestionCateogries: DisplayableSuggestionCategory[] =
+  const activitySuggestionCategories: DisplayableSuggestionCategory[] =
     activitySuggestionDictionnary !== undefined
       ? homePageConfig.suggestions.map(suggestion => ({
           titleTranslationId: suggestion.titleTranslationId,
@@ -25,5 +25,5 @@ export const useHome = () => {
         }))
       : [];
 
-  return { config: homePageConfig, activitySuggestionCateogries };
+  return { config: homePageConfig, activitySuggestionCategories };
 };

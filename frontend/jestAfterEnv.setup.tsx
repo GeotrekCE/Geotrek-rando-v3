@@ -55,3 +55,23 @@ jest.mock('./src/modules/header/utills.ts', () => ({
     },
   }),
 }));
+
+jest.mock('./src/modules/home/utils.ts', () => ({
+  getHomePageConfig: () => ({
+    pictureAndText: {
+      pictureUrl: 'https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg',
+      shouldDisplayText: true,
+    },
+    activityBar: {
+      shouldDisplay: true,
+    },
+    suggestions: [
+      {
+        titleTranslationId: 'home.parcWalking',
+        iconUrl:
+          'https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg',
+        ids: ['2'],
+      },
+    ],
+  }),
+}));

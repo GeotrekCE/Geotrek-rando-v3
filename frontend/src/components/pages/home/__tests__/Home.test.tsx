@@ -12,11 +12,10 @@ describe('Home page', () => {
   const queryClient = new QueryClient();
   it('AAU, I can see an activity suggestion', async () => {
     nock(getApiUrl())
-      .get('/trek')
+      .get('/trek/2')
       .query({
-        fields: 'name,attachments',
+        fields: 'name,attachments,id',
         language: 'fr',
-        page_size: 5,
       })
       .reply(200, mockActivitySuggestionsResponse);
 
