@@ -1,6 +1,5 @@
 import { RawAttachment } from 'modules/activitySuggestions/interface';
-import { Thumbnail } from 'modules/results/interface';
-import { RawGeometry } from 'modules/interface';
+import { Coordinate, RawSegmentGeometry } from 'modules/interface';
 
 export interface RawTrekPopupResult {
   name: string;
@@ -15,13 +14,7 @@ export interface TrekPopupResult {
 }
 
 export interface RawTrekGeometryResult {
-  geometry: RawGeometry;
-}
-
-interface Coordinate {
-  x: number;
-  y: number;
-  z: number;
+  geometry: RawSegmentGeometry;
 }
 
 export interface TrekGeometryResult {

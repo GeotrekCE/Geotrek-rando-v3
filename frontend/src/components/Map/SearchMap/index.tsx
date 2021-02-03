@@ -5,18 +5,18 @@ import 'leaflet/dist/leaflet.css';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapResults } from 'modules/mapResults/interface';
 
-import { TrekMarker } from './Markers/TrekMarker';
-import { ArrivalMarker } from './Markers/ArrivalMarker';
-import { DepartureMarker } from './Markers/DepartureMarker';
-import { ParkingMarker } from './Markers/ParkingMarker';
+import { TrekMarker } from '../Markers/TrekMarker';
+import { ArrivalMarker } from '../Markers/ArrivalMarker';
+import { DepartureMarker } from '../Markers/DepartureMarker';
+import { ParkingMarker } from '../Markers/ParkingMarker';
 
-import { Popup } from './components/Popup';
-import { MapButton } from './components/MapButton';
-import { FilterButton } from './components/FilterButton';
-import { TrekCourse } from './components/TrekCourse';
-import { ClusterContainer } from './components/ClusterContainer';
-import { useSelectedMarker } from './hooks/useSelectedMarker';
-import { DecoratedPolyline } from './components/DecoratedPolyline';
+import { Popup } from '../components/Popup';
+import { MapButton } from '../components/MapButton';
+import { FilterButton } from '../components/FilterButton';
+import { TrekCourse } from '../components/TrekCourse';
+import { ClusterContainer } from '../components/ClusterContainer';
+import { useSelectedMarker } from '../hooks/useSelectedMarker';
+import { DecoratedPolyline } from '../components/DecoratedPolyline';
 
 export type PropsType = {
   points?: MapResults;
@@ -32,7 +32,7 @@ export type PropsType = {
   shouldUsePopups?: boolean;
 };
 
-const Map: React.FC<PropsType> = props => {
+const SearchMap: React.FC<PropsType> = props => {
   const hideMap = () => {
     if (props.hideMap) {
       props.hideMap();
@@ -111,4 +111,4 @@ const Map: React.FC<PropsType> = props => {
   );
 };
 
-export default Map;
+export default SearchMap;

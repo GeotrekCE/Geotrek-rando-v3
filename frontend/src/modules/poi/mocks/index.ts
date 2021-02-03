@@ -34,8 +34,21 @@ export const mockPois = () => ({
         },
       ],
       type: 3,
+      geometry: {
+        type: 'Point',
+        coordinates: [6.2061167, 44.8985958, 1787],
+      },
     },
-    { description: 'Test refuge', name: 'Refuge de la Lavey', attachments: [], type: 8 },
+    {
+      description: 'Test refuge',
+      name: 'Refuge de la Lavey',
+      attachments: [],
+      type: 8,
+      geometry: {
+        type: 'Point',
+        coordinates: [6.1667321, 44.7604322, 2409],
+      },
+    },
   ],
 });
 
@@ -45,7 +58,7 @@ export const mockPoiRoute = (times: number, trekId: number): void =>
     mockData: mockPois(),
     additionalQueries: {
       trek: trekId,
-      fields: 'name,description,attachments,type',
+      fields: 'name,description,attachments,type,geometry',
     },
     times,
   });

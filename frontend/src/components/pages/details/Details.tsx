@@ -1,7 +1,7 @@
 import { Layout } from 'components/Layout/Layout';
 import Loader from 'react-loader';
 import parse from 'html-react-parser';
-import { MapDynamicComponent } from 'components/Map';
+import { DetailsMapDynamicComponent } from 'components/Map';
 import { useShowOnScrollPosition } from 'hooks/useShowOnScrollPosition';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
@@ -255,12 +255,18 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
             </div>
 
             <div className="hidden desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar">
-              <MapDynamicComponent
+              <DetailsMapDynamicComponent
                 type="DESKTOP"
                 arrivalLocation={details.trekArrival}
                 departureLocation={details.trekDeparture}
                 parkingLocation={details.parkingLocation}
-                segments={details.trekGeometry}
+                trekGeometry={details.trekGeometry}
+                elementOnScreen={visibleSection}
+                poiPoints={details.pois.map(poi => ({
+                  location: { x: poi.geometry.x, y: poi.geometry.y },
+                  pictogramUri: poi.type.pictogramUri,
+                  name: poi.name,
+                }))}
               />
             </div>
           </div>

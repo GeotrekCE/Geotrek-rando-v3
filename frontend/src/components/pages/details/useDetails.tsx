@@ -14,6 +14,8 @@ export interface DetailsHeaderSection {
   touristicContent?: HTMLDivElement | null;
 }
 
+export type DetailsSections = keyof DetailsHeaderSection;
+
 interface SectionPosition {
   top: number;
   bottom: number;

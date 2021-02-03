@@ -3,7 +3,7 @@ import { Difficulty } from 'modules/filters/difficulties/interface';
 import { CourseType } from 'modules/filters/courseType/interface';
 import { Network } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
-import { RawCoordinate, RawGeometry } from 'modules/interface';
+import { RawCoordinate, RawSegmentGeometry } from 'modules/interface';
 import { RawAttachment } from 'modules/activitySuggestions/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { Accessibility } from 'modules/accessibility/interface';
@@ -30,7 +30,7 @@ export interface RawDetails {
   route: number;
   networks: number[];
   description: string;
-  geometry: RawGeometry;
+  geometry: RawSegmentGeometry;
   parking_location: RawCoordinate;
   pdf: string;
   gpx: string;
