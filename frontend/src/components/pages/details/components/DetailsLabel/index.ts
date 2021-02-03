@@ -1,0 +1,1 @@
+export { DetailsLabel } from './DetailsLabel';
