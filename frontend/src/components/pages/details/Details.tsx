@@ -38,6 +38,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
     setTouristicContentsRef,
     setAccessibilityRef,
     sectionsPositions,
+    intl,
   } = useDetails(detailsId);
 
   /** Ref of the parent of all sections */
@@ -121,7 +122,10 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 {details.pois.length > 0 && (
                   <div ref={setPoisRef}>
                     <DetailsCardSection
-                      titleId="details.poi"
+                      title={intl.formatMessage(
+                        { id: 'details.poiFullTitle' },
+                        { count: details.pois.length },
+                      )}
                       detailsCards={details.pois.map(poi => ({
                         name: poi.name ?? '',
                         description: poi.description,
@@ -239,7 +243,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 {details.touristicContents.length > 0 && (
                   <div ref={setTouristicContentsRef}>
                     <DetailsCardSection
-                      titleId="details.touristicContent"
+                      title={intl.formatMessage({ id: 'details.touristicContent' })}
                       detailsCards={details.touristicContents.map(touristicContent => ({
                         name: touristicContent.name ?? '',
                         place: touristicContent.category.label,
