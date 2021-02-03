@@ -1,15 +1,10 @@
-import { fetchInformationDeskTypes } from 'modules/informationDeskType/api';
-import { getInformationDeskTypes } from 'modules/informationDeskType/connector';
 import { adaptInformationDesks } from './adapter';
+import { fetchInformationDesks } from './api';
 import { InformationDeskDictionnary } from './interface';
 
 export const getInformationDesks = async (): Promise<InformationDeskDictionnary> => {
-  const [rawInformationDesks, informationDeskTypes] = await Promise.all([
-    fetchInformationDeskTypes({ language: 'fr' }),
-    getInformationDeskTypes(),
-  ]);
+  const rawInformationDesks = await fetchInformationDesks({ language: 'fr' });
   return adaptInformationDesks({
-    rawInformationDesksResults: rawInformationDesks.results,
-    informationDeskTypes,
+    rawInformationDesks: rawInformationDesks.results,
   });
 };

@@ -1,4 +1,4 @@
-import { InformationDeskType } from 'modules/informationDeskType/interface';
+import { InformationDeskType, RawInformationDeskType } from 'modules/informationDeskType/interface';
 
 export interface RawInformationDesk {
   name: string;
@@ -6,9 +6,10 @@ export interface RawInformationDesk {
   postal_code: string;
   municipality: string;
   website: string;
+  email: string;
   phone: string;
   description: string;
-  type: number;
+  type: RawInformationDeskType;
 }
 
 export interface InformationDesk {
@@ -17,6 +18,7 @@ export interface InformationDesk {
   postalCode: string;
   municipality: string;
   website: string;
+  email: string;
   phone: string;
   description: string;
   type: InformationDeskType;
