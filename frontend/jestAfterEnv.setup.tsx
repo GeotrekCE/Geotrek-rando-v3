@@ -67,7 +67,7 @@ jest.mock('./src/modules/home/utils.ts', () => ({
     },
     suggestions: [
       {
-        titleTranslationId: 'home.parcWalking',
+        titleTranslationId: 'home.territoryTreks',
         iconUrl:
           'https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg',
         ids: ['2'],
