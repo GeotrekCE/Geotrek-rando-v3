@@ -13,7 +13,7 @@ export const useHome = () => {
   );
 
   const { data: activitySuggestionDictionnary } = useQuery<ActivitySuggestionDictionnary, Error>(
-    'activitySuggestions',
+    `activitySuggestions-${activitySuggestionIds.join('-')}`,
     () => getActivitySuggestions(activitySuggestionIds),
   );
   const activitySuggestionCateogries: DisplayableSuggestionCategory[] =
