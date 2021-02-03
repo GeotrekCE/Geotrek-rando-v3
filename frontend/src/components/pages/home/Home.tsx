@@ -16,6 +16,11 @@ import { useHome } from './useHome';
 
 const HomeUI: FunctionComponent = () => {
   const { config, activitySuggestionCategories } = useHome();
+
+  const contentContainerClassname = `relative px-4 desktop:px-40 space-y-6 desktop:space-y-18 ${
+    config.activityBar.shouldDisplay ? '-top-6 desktop:-top-15' : 'pt-6 desktop:pt-18'
+  }`;
+
   const intl = useIntl();
   return (
     <div>
@@ -32,19 +37,17 @@ const HomeUI: FunctionComponent = () => {
               </span>
             )}
           </TopContainer>
-          <div
-            className="
-          relative -top-6 desktop:-top-15
-          px-4 desktop:px-40
-          space-y-6 desktop:space-y-18"
-          >
-            <div
-              className="
+          <div className={contentContainerClassname}>
+            {config.activityBar.shouldDisplay && (
+              <div
+                className="
           desktop:flex desktop:justify-center
           mx-4 desktop:mx-40"
-            >
-              <ActivitySearchFilter />
-            </div>
+              >
+                <ActivitySearchFilter />
+              </div>
+            )}
+
             <HomeCard
               title="Tour des Alpes"
               imagePath="/images/treck-selection.jpg"
