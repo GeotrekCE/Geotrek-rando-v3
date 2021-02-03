@@ -3,6 +3,8 @@ export const rawDetails = {
   access:
     "A La Fare en Champsaur (N 85), prendre la direction de Saint-Bonnet puis de La Motte (D23). Traverser La Motte et continuer jusqu'au hameau de Molines.",
   accessibilities: [2],
+  advice:
+    "Pour d'autres informations, se reporter aux recommandations sp&eacute;cifiques de chaque &eacute;tape.",
   advised_parking: 'Parking de Molines (avant le hameau en été)',
   ambiance:
     "<p>&laquo; Un petit matin de juillet, &agrave; la sortie de la for&ecirc;t, un vent froid descend du glacier rocheux de Font Froide. C'est de l&agrave; aussi que provient l'eau glaciale de la source dit Font (fontaine) froide. D&eacute;cid&eacute;ment, ce col porte bien son nom. Mais rapidement, l'ascension r&eacute;chauffe les muscles et le corps tout entier. Le col est en vue lorsqu'un sifflement aigu fait sursauter ; un magnifique bouquetin m&acirc;le se l&egrave;ve m&eacute;content &agrave; deux pas de nous et s'en va tranquillement &raquo;.</p>\r\n<p><em>Dominique Vincent, garde monitrice, lors d'un comptage bouquetins.</em></p>",
@@ -115,6 +117,7 @@ export const rawDetails = {
   gpx: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/treks/2/col-de-font-froide.gpx',
   information_desks: [1],
   kml: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/treks/2/col-de-font-froide.kml',
+  labels: [1],
   length_2d: 15205.4,
   name: 'Col de Font Froide',
   networks: [6, 2],

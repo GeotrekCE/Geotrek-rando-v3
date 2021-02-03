@@ -13,6 +13,7 @@ import { CityDictionnary } from 'modules/city/interface';
 import { AccessibilityDictionnary } from 'modules/accessibility/interface';
 import { SourceDictionnary } from 'modules/source/interface';
 import { InformationDeskDictionnary } from 'modules/informationDesk/interface';
+import { LabelDictionnary } from 'modules/label/interface';
 import { Details, RawDetails } from './interface';
 
 const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
@@ -30,6 +31,7 @@ export const adaptResults = ({
   accessibilityDictionnary,
   sourceDictionnary,
   informationDeskDictionnary,
+  labelsDictionnary,
 }: {
   rawDetails: RawDetails;
   activity: Activity;
@@ -43,6 +45,7 @@ export const adaptResults = ({
   accessibilityDictionnary: AccessibilityDictionnary;
   sourceDictionnary: SourceDictionnary;
   informationDeskDictionnary: InformationDeskDictionnary;
+  labelsDictionnary: LabelDictionnary;
 }): Details => {
   try {
     return {
@@ -104,6 +107,11 @@ export const adaptResults = ({
         rawDetails.information_desks !== undefined && rawDetails.information_desks !== null
           ? rawDetails.information_desks.map(deskId => informationDeskDictionnary[deskId])
           : [],
+      labels:
+        rawDetails.labels !== undefined && rawDetails.labels !== null
+          ? rawDetails.labels.map(labelId => labelsDictionnary[labelId])
+          : [],
+      advice: rawDetails.advice,
     };
   } catch (e) {
     console.error('Error in details/adapter', e);

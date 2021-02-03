@@ -5,6 +5,7 @@ import { getCourseType } from 'modules/filters/courseType/connector';
 import { getDifficulty } from 'modules/filters/difficulties/connector';
 import { getThemes } from 'modules/filters/theme/connector';
 import { getInformationDesks } from 'modules/informationDesk/connector';
+import { getLabels } from 'modules/label/connector';
 import { getNetworks } from 'modules/networks/connector';
 import { getPois } from 'modules/poi/connector';
 import { getSources } from 'modules/source/connector';
@@ -40,7 +41,10 @@ export const getDetails = async (id: string): Promise<Details> => {
       getAccessibilities(),
       getSources(),
     ]);
-    const [informationDeskDictionnary] = await Promise.all([getInformationDesks()]);
+    const [informationDeskDictionnary, labelsDictionnary] = await Promise.all([
+      getInformationDesks(),
+      getLabels(),
+    ]);
     return adaptResults({
       rawDetails,
       activity,
@@ -54,6 +58,7 @@ export const getDetails = async (id: string): Promise<Details> => {
       accessibilityDictionnary,
       sourceDictionnary,
       informationDeskDictionnary,
+      labelsDictionnary,
     });
   } catch (e) {
     console.error('Error in details/connector', e);
