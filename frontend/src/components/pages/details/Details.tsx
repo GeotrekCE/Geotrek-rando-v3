@@ -257,9 +257,6 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     />
                   </div>
                 )}
-                <div className="p-10">
-                  <DetailsCardCarousel height={200} thumbnailUris={details.pois[0].thumbnailUris} />
-                </div>
               </div>
             </div>
 
