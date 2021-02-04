@@ -19,11 +19,21 @@ export interface APICallsConfig {
   searchResultsPageSize: number;
 }
 
+/** @deprecated please use Coordinate2D or Coordinate3D instead */
 export interface Coordinate {
   x: number;
   y: number;
   z: number;
 }
+export interface Coordinate2D {
+  x: number;
+  y: number;
+}
+
+export interface Coordinate3D extends Coordinate2D {
+  z: number;
+}
+
 export interface RawAttachment {
   author: string;
   backend: string;
