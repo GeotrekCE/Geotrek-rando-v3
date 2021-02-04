@@ -45,22 +45,6 @@
     ]
   },
   {
-    "id": "positiveElevation",
-    "type": "MULTIPLE",
-    "options": [
-      {
-        "minValue": 0,
-        "maxValue": 500,
-        "label": "0 - 500m"
-      },
-      {
-        "minValue": 500,
-        "maxValue": 1000,
-        "label": "500m - 1km"
-      }
-    ]
-  },
-  {
     "id": "length",
     "type": "MULTIPLE",
     "options": [
@@ -73,6 +57,22 @@
         "minValue": 5,
         "maxValue": 10,
         "label": "5km - 10km"
+      }
+    ]
+  },
+  {
+    "id": "positiveElevation",
+    "type": "MULTIPLE",
+    "options": [
+      {
+        "minValue": 0,
+        "maxValue": 500,
+        "label": "0 - 500m"
+      },
+      {
+        "minValue": 500,
+        "maxValue": 1000,
+        "label": "500m - 1km"
       }
     ]
   },
