@@ -1,12 +1,15 @@
+import { APIResponseForList } from 'services/api/interface';
 import { mockRoute } from 'services/testing/utils';
+import { RawTrekResult } from '../interface';
 
-export const mockResultsResponse = () => ({
+export const mockResultsResponse = (): APIResponseForList<RawTrekResult> => ({
   count: 4,
   next:
     'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=departure%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cthumbnail%2Cpractice&language=fr&page=2&page_size=1',
   previous: null,
   results: [
     {
+      id: 1,
       ascent: 1457,
       departure: 'Molines-en-Champsaur',
       difficulty: 4,
