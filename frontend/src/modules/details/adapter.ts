@@ -112,6 +112,11 @@ export const adaptResults = ({
           ? rawDetails.labels.map(labelId => labelsDictionnary[labelId])
           : [],
       advice: rawDetails.advice,
+      pointsReference:
+        rawDetails.points_reference?.coordinates.map(rawCoordinates => ({
+          x: rawCoordinates[0],
+          y: rawCoordinates[1],
+        })) ?? null,
     };
   } catch (e) {
     console.error('Error in details/adapter', e);
