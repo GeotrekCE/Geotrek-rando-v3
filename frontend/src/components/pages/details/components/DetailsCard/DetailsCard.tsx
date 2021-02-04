@@ -6,11 +6,12 @@ import { FormattedMessage } from 'react-intl';
 import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import { useDetailsCard } from './useDetailsCard';
+import { DetailsCardCarousel } from '../DetailsCardCarousel';
 export interface DetailsCardProps {
   name: string;
   place?: string;
   description?: string;
-  thumbnailUri: string | null;
+  thumbnailUris: string[];
   iconUri?: string;
   logoUri?: string;
 }
@@ -18,7 +19,7 @@ export interface DetailsCardProps {
 export const DetailsCard: React.FC<DetailsCardProps> = ({
   name,
   description,
-  thumbnailUri,
+  thumbnailUris,
   iconUri,
   place,
   logoUri,
@@ -51,17 +52,19 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         />
       )}
       <div className="flex-none desktop:w-2/5">
-        {thumbnailUri !== null ? (
-          <img
-            src={thumbnailUri}
-            className="h-50 w-60 desktop:w-full desktop:h-full
-          object-cover object-center
-           bg-greySoft"
+        {thumbnailUris.length > 1 ? (
+          <DetailsCardCarousel
+            thumbnailUris={thumbnailUris}
+            height={truncateState === 'TRUNCATE' ? 198 : 512}
           />
         ) : (
-          <div
-            className="h-50 w-60 desktop:w-full desktop:h-full
-         bg-greySoft"
+          <img
+            src={thumbnailUris[0]}
+            className={`h-50 w-60 ${
+              truncateState === 'TRUNCATE' ? 'desktop:h-198' : 'desktop:h-512'
+            }
+            object-cover object-center
+            bg-greySoft`}
           />
         )}
         {iconUri !== null && iconUri !== undefined && <CardIcon iconUri={iconUri} />}

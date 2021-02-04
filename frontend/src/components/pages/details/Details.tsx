@@ -21,6 +21,7 @@ import { useOnScreenSection } from './hooks/useHighlightedSection';
 import { DetailsInformationDesk } from './components/DetailsInformationDesk';
 import { DetailsLabel } from './components/DetailsLabel';
 import { DetailsAdvice } from './components/DetailsAdvice';
+import { DetailsCardCarousel } from './components/DetailsCardCarousel';
 interface Props {
   detailsId: string | string[] | undefined;
 }
@@ -129,7 +130,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                       detailsCards={details.pois.map(poi => ({
                         name: poi.name ?? '',
                         description: poi.description,
-                        thumbnailUri: poi.thumbnailUri,
+                        thumbnailUris: poi.thumbnailUris,
                         iconUri: poi.type.pictogramUri,
                       }))}
                     />
@@ -249,13 +250,16 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                         name: touristicContent.name ?? '',
                         place: touristicContent.category.label,
                         description: touristicContent.description,
-                        thumbnailUri: touristicContent.thumbnailUri,
+                        thumbnailUris: touristicContent.thumbnailUris,
                         iconUri: touristicContent.category.pictogramUri,
                         logoUri: touristicContent.logoUri,
                       }))}
                     />
                   </div>
                 )}
+                <div className="p-10">
+                  <DetailsCardCarousel height={200} thumbnailUris={details.pois[0].thumbnailUris} />
+                </div>
               </div>
             </div>
 
