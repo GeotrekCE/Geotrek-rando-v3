@@ -1,6 +1,7 @@
 import Slider, { CustomArrowProps } from 'react-slick';
 import styled from 'styled-components';
 import { colorPalette, getSpacing } from 'stylesheet';
+import { CardSingleImage } from '../DetailsCard';
 
 interface DetailsCardCarouselProps {
   thumbnailUris: string[];
@@ -11,7 +12,6 @@ export const DetailsCardCarousel: React.FC<DetailsCardCarouselProps> = ({
   thumbnailUris,
   height,
 }) => {
-  const thumbnailUrisShort = thumbnailUris.length > 8 ? thumbnailUris.slice(0, 8) : thumbnailUris;
   return (
     <Slider
       dots
@@ -22,8 +22,8 @@ export const DetailsCardCarousel: React.FC<DetailsCardCarouselProps> = ({
       appendDots={styledDotsStyledComponent}
       swipe={false}
     >
-      {thumbnailUrisShort.map((thumbnailUri, i) => (
-        <img key={i} src={thumbnailUri} className={`object-cover object-center h-${height}`} />
+      {thumbnailUris.map((thumbnailUri, i) => (
+        <CardSingleImage key={i} src={thumbnailUri} height={height} />
       ))}
     </Slider>
   );
@@ -64,10 +64,10 @@ const styledDotsStyledComponent = (dots: JSX.Element) => (
 const StyledDots = styled.div`
   overflow: hidden;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 0 24px;
   bottom: ${getSpacing(5)};
+  padding: 0 ${getSpacing(8)};
+  max-height: ${getSpacing(6)};
   color: white;
   & > ul > li {
     margin: 0;
