@@ -10,6 +10,7 @@ const adaptInformationDesk = (rawInformationDesk: RawInformationDesk): Informati
   email: rawInformationDesk.email,
   phone: rawInformationDesk.phone,
   description: rawInformationDesk.description,
+  photoUrl: rawInformationDesk.photo_url,
   type: adaptInformationDeskType(rawInformationDesk.type),
 });
 
@@ -19,7 +20,7 @@ export const adaptInformationDesks = ({
   rawInformationDesks: RawInformationDesk[];
 }): InformationDeskDictionnary =>
   rawInformationDesks.reduce(
-    (InformationDesks, currentInformationDesk, currentIndex) => ({
+    (InformationDesks, currentInformationDesk) => ({
       ...InformationDesks,
       [currentInformationDesk.id]: adaptInformationDesk(currentInformationDesk),
     }),

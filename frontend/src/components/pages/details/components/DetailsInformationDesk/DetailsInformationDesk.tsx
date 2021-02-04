@@ -21,13 +21,14 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
   email,
   phone,
   description,
+  photoUrl,
   type,
 }) => {
   const { truncateState, toggleTruncateState } = useDetailsInformationDesk();
   return (
     <div className={`flex ${className ?? ''}`}>
-      <div className="h-20 w-20 flex-shrink-0 hidden desktop:block">
-        <InformationDeskIcon pictogramUri={type.pictogramUri} />
+      <div className="h-25 w-25 flex-shrink-0 hidden desktop:block">
+        <InformationDeskIcon pictogramUri={photoUrl ?? type.pictogramUri} />
       </div>
       <div className="desktop:px-4">
         <p className="font-bold">{name}</p>
@@ -77,9 +78,14 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
 
 const InformationDeskIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri }) => {
   if (RegExp(/(.*).svg/).test(pictogramUri)) {
-    return <SVG src={pictogramUri} className="h-18 m-1" />;
+    return <SVG src={pictogramUri} className="h-18 w-18 m-1" />;
   }
-  return <img className="object-center object-contain h-18" src={pictogramUri} />;
+  return (
+    <img
+      className="object-cover object-contain h-full w-full rounded-full overflow-hidden"
+      src={pictogramUri}
+    />
+  );
 };
 
 const TruncatedHtmlText = styled(HtmlText)`

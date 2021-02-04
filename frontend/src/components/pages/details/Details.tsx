@@ -187,6 +187,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                             email={informationDesk.email}
                             phone={informationDesk.phone}
                             description={informationDesk.description}
+                            photoUrl={informationDesk.photoUrl}
                             type={informationDesk.type}
                           />
                         ))}

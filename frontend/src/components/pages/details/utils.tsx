@@ -35,6 +35,12 @@ export const parseHtmlToList = (
 };
 
 export const HtmlText = styled.div`
+  & > b {
+    font-weight: bold;
+  }
+  & > a > b {
+    font-weight: bold;
+  }
   & > em {
     font-style: italic;
   }
