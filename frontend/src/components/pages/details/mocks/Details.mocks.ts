@@ -1,4 +1,6 @@
-export const rawDetails = {
+import { RawDetails, RawDetailsProperties } from 'modules/details/interface';
+
+export const rawDetailsProperties: RawDetailsProperties = {
   id: 2,
   access:
     "A La Fare en Champsaur (N 85), prendre la direction de Saint-Bonnet puis de La Motte (D23). Traverser La Motte et continuer jusqu'au hameau de Molines.",
@@ -106,14 +108,6 @@ export const rawDetails = {
   difficulty: 4,
   disabled_infrastructure: '',
   duration: 7.0,
-  geometry: {
-    type: 'LineString',
-    coordinates: [
-      [6.1222924, 44.7471252, 1257.0],
-      [6.1224501, 44.747319, 1258.0],
-      [6.1225601, 44.7474217, 1258.0],
-    ],
-  },
   gpx: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/treks/2/col-de-font-froide.gpx',
   information_desks: [1],
   kml: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/treks/2/col-de-font-froide.kml',
@@ -129,6 +123,21 @@ export const rawDetails = {
   route: 2,
   source: [1],
   themes: [11, 1, 7],
+  points_reference: null,
+};
+
+export const rawDetails: RawDetails = {
+  type: 'Feature',
+  geometry: {
+    type: 'LineString',
+    coordinates: [
+      [6.1222924, 44.7471252, 1257.0],
+      [6.1224501, 44.747319, 1258.0],
+      [6.1225601, 44.7474217, 1258.0],
+    ],
+  },
+  bbox: [6.1222924, 44.7471252, 1257.0],
+  properties: rawDetailsProperties,
 };
 
 export const rawActivity = {

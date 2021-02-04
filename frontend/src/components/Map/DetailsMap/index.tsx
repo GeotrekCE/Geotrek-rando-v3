@@ -26,6 +26,7 @@ export type PropsType = {
   parkingLocation?: { x: number; y: number };
   shouldUsePopups?: boolean;
   elementOnScreen: DetailsSections | null;
+  bbox: { corner1: { x: number; y: number }; corner2: { x: number; y: number } };
 };
 
 const DetailsMap: React.FC<PropsType> = props => {
@@ -38,11 +39,13 @@ const DetailsMap: React.FC<PropsType> = props => {
   return (
     <>
       <MapContainer
-        center={[44.748717, 6.1189669]}
-        zoom={13}
         scrollWheelZoom={false}
         style={{ height: '100%', width: '100%' }}
         zoomControl={props.type === 'DESKTOP'}
+        bounds={[
+          [props.bbox.corner1.y, props.bbox.corner1.x],
+          [props.bbox.corner2.y, props.bbox.corner2.x],
+        ]}
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

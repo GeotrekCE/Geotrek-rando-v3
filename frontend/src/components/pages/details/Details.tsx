@@ -275,6 +275,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                   name: poi.name,
                 }))}
                 pointsReference={details.pointsReference}
+                bbox={details.bbox}
               />
             </div>
           </div>

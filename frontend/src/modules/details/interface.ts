@@ -12,6 +12,13 @@ import { InformationDesk } from 'modules/informationDesk/interface';
 import { Label } from 'modules/label/interface';
 
 export interface RawDetails {
+  type: string;
+  bbox: number[];
+  geometry: RawSegmentGeometry;
+  properties: RawDetailsProperties;
+}
+
+export interface RawDetailsProperties {
   id: number;
   name: string;
   departure: string;
@@ -30,7 +37,6 @@ export interface RawDetails {
   route: number;
   networks: number[];
   description: string;
-  geometry: RawSegmentGeometry;
   parking_location: RawCoordinate;
   pdf: string;
   gpx: string;
@@ -70,6 +76,11 @@ interface Coordinate {
   y: number;
 }
 
+interface Bbox {
+  corner1: Coordinate;
+  corner2: Coordinate;
+}
+
 export interface Details extends DetailsHtml {
   practice: Activity;
   title: string;
@@ -91,4 +102,5 @@ export interface Details extends DetailsHtml {
   informationDesks: InformationDesk[];
   labels: Label[];
   pointsReference: Coordinate[] | null;
+  bbox: Bbox;
 }
