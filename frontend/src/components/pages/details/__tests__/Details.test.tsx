@@ -50,25 +50,26 @@ describe('Details', () => {
         language: 'fr',
         fields:
           'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,cities,disabled_infrastructure,accessibilities,source,information_desks,labels,advice,points_reference',
+        format: 'geojson',
       })
       .reply(200, rawDetailsMock);
 
     nock(getApiUrl())
-      .get(`/practice/${rawDetailsMock.practice}/`)
+      .get(`/practice/${rawDetailsMock.properties.practice}/`)
       .query({
         language: 'fr',
       })
       .reply(200, rawActivity);
 
     nock(getApiUrl())
-      .get(`/difficulty/${rawDetailsMock.difficulty}/`)
+      .get(`/difficulty/${rawDetailsMock.properties.difficulty as number}/`)
       .query({
         language: 'fr',
       })
       .reply(200, rawDifficulty);
 
     nock(getApiUrl())
-      .get(`/route/${rawDetailsMock.route}/`)
+      .get(`/route/${rawDetailsMock.properties.route}/`)
       .query({
         language: 'fr',
       })
@@ -89,10 +90,10 @@ describe('Details', () => {
       .reply(200, mockNetworksResponse);
 
     mockPoiTypeRoute(1);
-    mockPoiRoute(1, rawDetailsMock.id);
+    mockPoiRoute(1, rawDetailsMock.properties.id);
 
     mockTouristicContentCategoryRoute(1);
-    mockTouristicContentRoute(1, rawDetailsMock.id);
+    mockTouristicContentRoute(1, rawDetailsMock.properties.id);
 
     mockCityRoute(1);
     mockAccessibilitiesRoute(1);
@@ -114,7 +115,7 @@ describe('Details', () => {
       "L'auberge propose, dans un hameau de montagne en bout de route, en pleine nature, un hébergement de séjour, nuitée, demi-pension et pension complète dans un décor de la vie d'antan et d'aujourd'hui.",
     );
     const download = await component.findByText('Télécharger');
-    expect(download).toHaveAttribute('href', rawDetailsMock.pdf);
+    expect(download).toHaveAttribute('href', rawDetailsMock.properties.pdf);
     await component.findAllByText('Accessibilité');
     await component.findByText('Poussette');
     await component.findByText('Source');
