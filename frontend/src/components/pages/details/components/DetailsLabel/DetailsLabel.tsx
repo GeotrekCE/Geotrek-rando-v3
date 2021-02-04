@@ -20,18 +20,13 @@ export const DetailsLabel: React.FC<DetailsLabelProps> = ({
       rounded-2xl border-2 border-solid border-warning
       ${className ?? ''}`}
     >
-      <div className="mr-2 desktop:mr-4 flex-shrink-0">
-        {pictogramUri !== null ? (
-          <LabelIcon pictogramUri={pictogramUri} />
-        ) : (
-          <div className="w-6 h-6 desktop:h-12 desktop:w-12">
-            <AlertTriangle />
-          </div>
-        )}
+      <div className="mr-2 desktop:mr-3 flex-shrink-0 w-6 h-6 desktop:h-12 desktop:w-12">
+        {pictogramUri !== null ? <LabelIcon pictogramUri={pictogramUri} /> : <AlertTriangle />}
       </div>
       <div className="text-greyDarkColored text-Mobile-C2 desktop:text-P1 desktop:font-bold">
-        <HtmlText>{parse(name)}</HtmlText>
-        <br className="hidden desktop:block" />
+        <div className="text-P1 desktop:text-H4 text-warning font-bold">
+          <HtmlText>{parse(name)}</HtmlText>
+        </div>
         <HtmlText>{parse(advice)}</HtmlText>
       </div>
     </div>
@@ -40,7 +35,7 @@ export const DetailsLabel: React.FC<DetailsLabelProps> = ({
 
 const LabelIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri }) => {
   if (RegExp(/(.*).svg/).test(pictogramUri)) {
-    return <SVG src={pictogramUri} className="w-6 desktop:w-10" />;
+    return <SVG src={pictogramUri} className="w-6 h-6 desktop:w-10 desktop:h-10" />;
   }
   return (
     <img
