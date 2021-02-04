@@ -11,10 +11,12 @@ import { FilterButton } from '../components/FilterButton';
 
 import { POIMarkers } from './POIMarkers';
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
+import { PointsReference } from './PointsReference';
 
 export type PropsType = {
   poiPoints?: { location: { x: number; y: number }; pictogramUri: string; name: string }[];
   trekGeometry?: { x: number; y: number }[];
+  pointsReference?: { x: number; y: number }[] | null;
   hideMap?: () => void;
   type: 'DESKTOP' | 'MOBILE';
   openFilterMenu?: () => void;
@@ -52,6 +54,8 @@ const DetailsMap: React.FC<PropsType> = props => {
           parkingLocation={props.parkingLocation}
           trekGeometry={props.trekGeometry}
         />
+
+        <PointsReference pointsReference={props.pointsReference ?? undefined} />
 
         {props.elementOnScreen === 'poi' && <POIMarkers poiPoints={props.poiPoints} />}
       </MapContainer>
