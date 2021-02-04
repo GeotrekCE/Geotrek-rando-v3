@@ -18,6 +18,7 @@ import { ClusterContainer } from '../components/ClusterContainer';
 import { useSelectedMarker } from '../hooks/useSelectedMarker';
 import { DecoratedPolyline } from '../components/DecoratedPolyline';
 import { getMapConfig } from '../config';
+import { Credits } from '../components/Credits';
 
 export type PropsType = {
   points?: MapResults;
@@ -57,11 +58,9 @@ const SearchMap: React.FC<PropsType> = props => {
         scrollWheelZoom={false}
         style={{ height: '100%', width: '100%' }}
         zoomControl={props.type === 'DESKTOP'}
+        attributionControl={false}
       >
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <ClusterContainer enabled={props.shouldUseClusters ?? false}>
           {props.points !== undefined &&
             props.points.map(
@@ -110,6 +109,7 @@ const SearchMap: React.FC<PropsType> = props => {
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
+      <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
     </>
   );
 };
