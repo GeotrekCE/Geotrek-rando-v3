@@ -14,7 +14,7 @@ export interface RawPoi {
 export interface Poi {
   name: string;
   description?: string;
-  thumbnailUri: string | null;
+  thumbnailUris: string[];
   type: PoiType;
   geometry: Coordinate;
 }

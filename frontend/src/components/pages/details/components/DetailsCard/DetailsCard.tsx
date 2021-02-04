@@ -4,13 +4,21 @@ import { HtmlText } from 'components/pages/details/utils';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import SVG from 'react-inlinesvg';
-import { colorPalette, fillSvgWithColor } from 'stylesheet';
+import {
+  borderRadius,
+  colorPalette,
+  fillSvgWithColor,
+  getSpacing,
+  MAX_WIDTH_MOBILE,
+  shadow,
+} from 'stylesheet';
 import { useDetailsCard } from './useDetailsCard';
+import { DetailsCardCarousel } from '../DetailsCardCarousel';
 export interface DetailsCardProps {
   name: string;
   place?: string;
   description?: string;
-  thumbnailUri: string | null;
+  thumbnailUris: string[];
   iconUri?: string;
   logoUri?: string;
 }
@@ -18,12 +26,12 @@ export interface DetailsCardProps {
 export const DetailsCard: React.FC<DetailsCardProps> = ({
   name,
   description,
-  thumbnailUri,
+  thumbnailUris,
   iconUri,
   place,
   logoUri,
 }) => {
-  const { truncateState, toggleTruncateState } = useDetailsCard();
+  const { truncateState, toggleTruncateState, heightState, detailsCardRef } = useDetailsCard();
   const descriptionStyled =
     truncateState === 'TRUNCATE' ? (
       <TruncatedHtmlText>{parse(description ?? '')}</TruncatedHtmlText>
@@ -31,19 +39,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
       <HtmlText>{parse(description ?? '')}</HtmlText>
     );
   return (
-    <div
-      className={`mx-1
-      w-60 desktop:w-auto
-      flex-none
-      border-greySoft border border-solid
-      rounded-2xl overflow-hidden
-      flex flex-col desktop:flex-row
-      desktop:mb-6
-      hover:shadow-sm transition-all
-      relative
-      ${truncateState === 'TRUNCATE' ? 'desktop:h-50' : ''}
-      `}
-    >
+    <DetailsCardContainer height={heightState}>
       {logoUri !== undefined && (
         <img
           className="hidden desktop:absolute h-12 object-cover object-center right-6 top-6"
@@ -51,22 +47,15 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         />
       )}
       <div className="flex-none desktop:w-2/5">
-        {thumbnailUri !== null ? (
-          <img
-            src={thumbnailUri}
-            className="h-50 w-60 desktop:w-full desktop:h-full
-          object-cover object-center
-           bg-greySoft"
-          />
+        {thumbnailUris.length > 1 ? (
+          <DetailsCardCarousel thumbnailUris={thumbnailUris} height={heightState} />
         ) : (
-          <div
-            className="h-50 w-60 desktop:w-full desktop:h-full
-         bg-greySoft"
-          />
+          <CardSingleImage src={thumbnailUris[0]} height={heightState} />
         )}
         {iconUri !== null && iconUri !== undefined && <CardIcon iconUri={iconUri} />}
       </div>
       <div
+        ref={detailsCardRef}
         className={`flex flex-col relative
         p-2 desktop:p-6 desktop:my-auto`}
       >
@@ -90,9 +79,44 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           </div>
         )}
       </div>
-    </div>
+    </DetailsCardContainer>
   );
 };
+
+const DetailsCardContainer = styled.div<{ height: number }>`
+  margin: 0 ${getSpacing(1)};
+  height: auto;
+  width: ${getSpacing(60)};
+  flex: none;
+  border: solid ${colorPalette.greySoft} 1px;
+  border-radius: ${borderRadius.card};
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  transition-property: all;
+  transition-duration: 500ms;
+  &:hover {
+    box-shadow: ${shadow.small};
+  }
+  @media (min-width: ${MAX_WIDTH_MOBILE}px) {
+    height: ${props => props.height}px;
+    width: auto;
+    flex-direction: row;
+    margin-bottom: ${getSpacing(6)};
+  }
+`;
+
+export const CardSingleImage = styled.img<{ height: number }>`
+  height: ${getSpacing(50)};
+  width: ${getSpacing(60)};
+  object-fit: cover;
+  object-position: center;
+  @media (min-width: ${MAX_WIDTH_MOBILE}px) {
+    height: ${props => props.height}px;
+    width: 100%;
+  }
+`;
 
 const CardIcon: React.FC<{ iconUri: string }> = ({ iconUri }) => {
   const classNameContainer =

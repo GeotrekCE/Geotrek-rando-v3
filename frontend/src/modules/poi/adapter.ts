@@ -1,8 +1,6 @@
 import { PoiTypeDictionnary } from 'modules/poiType/interface';
-import { getThumbnail } from 'modules/utils/adapter';
+import { getThumbnails } from 'modules/utils/adapter';
 import { Poi, RawPoi } from './interface';
-
-const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
 
 export const adaptPoi = ({
   rawPoisResults,
@@ -14,7 +12,7 @@ export const adaptPoi = ({
   rawPoisResults.map(rawPoi => ({
     name: rawPoi.name,
     description: rawPoi.description,
-    thumbnailUri: getThumbnail(rawPoi.attachments) ?? fallbackImgUri,
+    thumbnailUris: getThumbnails(rawPoi.attachments),
     type: poiTypes[rawPoi.type],
     geometry: {
       x: rawPoi.geometry.coordinates[0],

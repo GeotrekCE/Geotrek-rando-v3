@@ -14,7 +14,7 @@ Object {
           class="mr-2 desktop:mr-3 flex-shrink-0 w-6 h-6 desktop:h-12 desktop:w-12"
         />
         <div
-          class="text-greyDarkColored text-Mobile-C2 desktop:text-P1 desktop:font-bold"
+          class="text-greyDarkColored text-Mobile-C2 desktop:text-P1"
         >
           <div
             class="text-P1 desktop:text-H4 text-warning font-bold"
@@ -44,7 +44,7 @@ Object {
         class="mr-2 desktop:mr-3 flex-shrink-0 w-6 h-6 desktop:h-12 desktop:w-12"
       />
       <div
-        class="text-greyDarkColored text-Mobile-C2 desktop:text-P1 desktop:font-bold"
+        class="text-greyDarkColored text-Mobile-C2 desktop:text-P1"
       >
         <div
           class="text-P1 desktop:text-H4 text-warning font-bold"

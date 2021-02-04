@@ -23,7 +23,7 @@ export const DetailsLabel: React.FC<DetailsLabelProps> = ({
       <div className="mr-2 desktop:mr-3 flex-shrink-0 w-6 h-6 desktop:h-12 desktop:w-12">
         {pictogramUri !== null ? <LabelIcon pictogramUri={pictogramUri} /> : <AlertTriangle />}
       </div>
-      <div className="text-greyDarkColored text-Mobile-C2 desktop:text-P1 desktop:font-bold">
+      <div className="text-greyDarkColored text-Mobile-C2 desktop:text-P1">
         <div className="text-P1 desktop:text-H4 text-warning font-bold">
           <HtmlText>{parse(name)}</HtmlText>
         </div>

@@ -1,8 +1,6 @@
 import { TouristicContentCategoryDictionnary } from 'modules/touristicContentCategory/interface';
-import { getThumbnail } from 'modules/utils/adapter';
+import { getThumbnails } from 'modules/utils/adapter';
 import { RawTouristicContent, TouristicContent } from './interface';
-
-const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png'; // TODO to put in configuration file
 
 export const adaptTouristicContent = ({
   rawTouristicContent,
@@ -14,6 +12,6 @@ export const adaptTouristicContent = ({
   rawTouristicContent.map(rawTouristicObject => ({
     name: rawTouristicObject.name,
     description: rawTouristicObject.description_teaser,
-    thumbnailUri: getThumbnail(rawTouristicObject.attachments) ?? fallbackImgUri,
+    thumbnailUris: getThumbnails(rawTouristicObject.attachments),
     category: touristicContentCategories[rawTouristicObject.category],
   }));
