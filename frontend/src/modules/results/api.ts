@@ -1,13 +1,15 @@
 import { GeotrekAPI } from 'services/api/client';
-import { APIQuery } from 'services/api/interface';
-import { RawTrekResults } from './interface';
+import { APIQuery, APIResponseForList } from 'services/api/interface';
+import { RawTrekResult } from './interface';
 
 const fieldsParams = {
   fields:
     'id,departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,attachments,practice',
 };
 
-export const fetchTrekResults = (query: APIQuery): Promise<RawTrekResults> =>
+export const fetchTrekResults = (
+  query: APIQuery,
+): Promise<APIResponseForList<Partial<RawTrekResult>>> =>
   GeotrekAPI.url('/trek')
     .query({ ...query, ...fieldsParams })
     .get()

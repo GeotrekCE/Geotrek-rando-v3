@@ -3,7 +3,17 @@ import { parseFilters } from 'components/pages/search/utils';
 import { getFiltersState } from 'modules/filters/utils';
 import { getTrekResults } from 'modules/results/connector';
 import { QueryClient } from 'react-query';
-import { dehydrate } from 'react-query/hydration';
+import { dehydrate, DehydratedState } from 'react-query/hydration';
+
+const sanitizeState = (unsafeState: DehydratedState): DehydratedState => {
+  const state = unsafeState;
+  //@ts-ignore
+  if (state.queries[0].state.data.pageParams[0] === undefined) {
+    //@ts-ignore
+    state.queries[0].state.data.pageParams[0] = null;
+  }
+  return { ...state };
+};
 
 export const getServerSideProps = async () => {
   const queryClient = new QueryClient();
@@ -15,10 +25,13 @@ export const getServerSideProps = async () => {
     getTrekResults(parsedInitialFiltersState, 1),
   );
 
+  const unsafeState = dehydrate(queryClient);
+  const safeState = sanitizeState(unsafeState);
+
   return {
     props: {
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
-      initialFiltersState: JSON.parse(JSON.stringify(initialFiltersState)),
+      dehydratedState: safeState,
+      initialFiltersState,
     },
   };
 };

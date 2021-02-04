@@ -6,6 +6,8 @@ export const fetchActivity = (query: APIQuery, id: number): Promise<RawListActiv
   return GeotrekAPI.url(`/practice/${id}/`).query(query).get().json();
 };
 
-export const fetchActivities = (query: APIQuery): Promise<APIResponseForList<RawListActivity>> => {
+export const fetchActivities = (
+  query: APIQuery,
+): Promise<APIResponseForList<Partial<RawListActivity>>> => {
   return GeotrekAPI.url('/practice').query(query).get().json();
 };

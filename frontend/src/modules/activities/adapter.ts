@@ -1,9 +1,16 @@
 import { Filter } from 'modules/filters/interface';
 import { Activity, ActivityChoices, RawListActivity } from './interface';
 
-export const adaptActivityFilter = (rawActivities: RawListActivity[]): Filter => ({
+const isCompleteRawListActivity = (
+  rawActivity: Partial<RawListActivity>,
+): rawActivity is RawListActivity =>
+  rawActivity.name !== undefined &&
+  rawActivity.pictogram !== undefined &&
+  rawActivity.id !== undefined;
+
+export const adaptActivityFilter = (rawActivities: Partial<RawListActivity>[]): Filter => ({
   id: 'activity',
-  options: rawActivities.map(rawActivity => ({
+  options: rawActivities.filter(isCompleteRawListActivity).map(rawActivity => ({
     value: `${rawActivity.id}`,
     label: rawActivity.name,
     pictogramUrl: rawActivity.pictogram,
@@ -15,14 +22,14 @@ export const adaptActivity = (rawActivity: RawListActivity): Activity => ({
   name: rawActivity.name,
 });
 
-export const adaptActivities = (rawActivities: RawListActivity[]): ActivityChoices =>
-  rawActivities.reduce(
-    (activities, currentRawActivity) => ({
+export const adaptActivities = (rawActivities: Partial<RawListActivity>[]): ActivityChoices =>
+  rawActivities.filter(isCompleteRawListActivity).reduce(
+    (activities, { name, pictogram, id }) => ({
       ...activities,
-      [`${currentRawActivity.id}`]: {
-        name: currentRawActivity.name,
-        pictogram: currentRawActivity.pictogram,
+      [id]: {
+        name,
+        pictogram,
       },
     }),
-    {},
+    {} as ActivityChoices,
   );
