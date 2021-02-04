@@ -10,6 +10,7 @@ import { Accessibility } from 'modules/accessibility/interface';
 import { Source } from 'modules/source/interface';
 import { InformationDesk } from 'modules/informationDesk/interface';
 import { Label } from 'modules/label/interface';
+import { TrekResult } from 'modules/results/interface';
 
 export interface RawDetails {
   type: string;
@@ -49,6 +50,7 @@ export interface RawDetailsProperties {
   labels: number[];
   advice: string;
   points_reference: RawMultiPointGeometry | null;
+  children: number[];
 }
 
 // Fields parsed with react-html-parser in page
@@ -103,4 +105,5 @@ export interface Details extends DetailsHtml {
   labels: Label[];
   pointsReference: Coordinate[] | null;
   bbox: Bbox;
+  children: TrekResult[];
 }

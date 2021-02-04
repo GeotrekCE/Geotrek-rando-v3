@@ -8,6 +8,7 @@ import { getInformationDesks } from 'modules/informationDesk/connector';
 import { getLabels } from 'modules/label/connector';
 import { getNetworks } from 'modules/networks/connector';
 import { getPois } from 'modules/poi/connector';
+import { getTrekResultsById } from 'modules/results/connector';
 import { getSources } from 'modules/source/connector';
 import { getTouristicContents } from 'modules/touristicContent/connector';
 import { adaptResults } from './adapter';
@@ -41,9 +42,10 @@ export const getDetails = async (id: string): Promise<Details> => {
       getAccessibilities(),
       getSources(),
     ]);
-    const [informationDeskDictionnary, labelsDictionnary] = await Promise.all([
+    const [informationDeskDictionnary, labelsDictionnary, children] = await Promise.all([
       getInformationDesks(),
       getLabels(),
+      getTrekResultsById(rawDetails.children),
     ]);
     return adaptResults({
       rawDetails,
@@ -59,6 +61,7 @@ export const getDetails = async (id: string): Promise<Details> => {
       sourceDictionnary,
       informationDeskDictionnary,
       labelsDictionnary,
+      children,
     });
   } catch (e) {
     console.error('Error in details/connector', e);

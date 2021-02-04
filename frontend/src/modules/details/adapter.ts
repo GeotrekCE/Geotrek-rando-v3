@@ -14,6 +14,7 @@ import { AccessibilityDictionnary } from 'modules/accessibility/interface';
 import { SourceDictionnary } from 'modules/source/interface';
 import { InformationDeskDictionnary } from 'modules/informationDesk/interface';
 import { LabelDictionnary } from 'modules/label/interface';
+import { TrekResult } from 'modules/results/interface';
 import { Details, RawDetails } from './interface';
 
 const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
@@ -32,6 +33,7 @@ export const adaptResults = ({
   sourceDictionnary,
   informationDeskDictionnary,
   labelsDictionnary,
+  children,
 }: {
   rawDetails: RawDetails;
   activity: Activity;
@@ -46,6 +48,7 @@ export const adaptResults = ({
   sourceDictionnary: SourceDictionnary;
   informationDeskDictionnary: InformationDeskDictionnary;
   labelsDictionnary: LabelDictionnary;
+  children: TrekResult[];
 }): Details => {
   try {
     return {
@@ -124,6 +127,7 @@ export const adaptResults = ({
           y: rawCoordinates[1],
         })) ?? null,
       bbox: { corner1: { x: bbox[0], y: bbox[1] }, corner2: { x: bbox[2], y: bbox[3] } },
+      children,
     };
   } catch (e) {
     console.error('Error in details/adapter', e);
