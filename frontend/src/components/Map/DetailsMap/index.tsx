@@ -46,16 +46,12 @@ const DetailsMap: React.FC<PropsType> = props => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {props.elementOnScreen === 'preview' && (
-          <>
-            <TrekMarkersAndCourse
-              arrivalLocation={props.arrivalLocation}
-              departureLocation={props.departureLocation}
-              parkingLocation={props.parkingLocation}
-              trekGeometry={props.trekGeometry}
-            />
-          </>
-        )}
+        <TrekMarkersAndCourse
+          arrivalLocation={props.arrivalLocation}
+          departureLocation={props.departureLocation}
+          parkingLocation={props.parkingLocation}
+          trekGeometry={props.trekGeometry}
+        />
 
         {props.elementOnScreen === 'poi' && <POIMarkers poiPoints={props.poiPoints} />}
       </MapContainer>
