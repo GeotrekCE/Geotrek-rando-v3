@@ -7,7 +7,7 @@ export interface RawTouristicContent {
   name: string;
   category: number;
   description_teaser: string;
-  geometry: RawPointGeometry;
+  geometry: RawPointGeometry | null;
 }
 
 export interface TouristicContent {
@@ -16,5 +16,5 @@ export interface TouristicContent {
   thumbnailUris: string[];
   logoUri?: string;
   category: TouristicContentCategory;
-  geometry: Coordinate2D;
+  geometry: Coordinate2D | null;
 }

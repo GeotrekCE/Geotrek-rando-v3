@@ -15,5 +15,7 @@ export const adaptTouristicContent = ({
     description: rawTouristicObject.description_teaser,
     thumbnailUris: getThumbnails(rawTouristicObject.attachments),
     category: touristicContentCategories[rawTouristicObject.category],
-    geometry: adaptGeometry2D(rawTouristicObject.geometry.coordinates),
+    geometry: rawTouristicObject.geometry
+      ? adaptGeometry2D(rawTouristicObject.geometry.coordinates)
+      : null,
   }));

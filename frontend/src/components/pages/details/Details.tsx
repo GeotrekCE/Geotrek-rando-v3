@@ -294,11 +294,17 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 }))}
                 pointsReference={details.pointsReference}
                 bbox={details.bbox}
-                touristicContentPoints={details.touristicContents.map(touristicContent => ({
-                  location: { x: touristicContent.geometry.x, y: touristicContent.geometry.y },
-                  pictogramUri: touristicContent.category.pictogramUri,
-                  name: touristicContent.name,
-                }))}
+                touristicContentPoints={details.touristicContents
+                  .filter(touristicContent => touristicContent.geometry !== null)
+                  .map(touristicContent => ({
+                    location: {
+                      // We filtered null geometry 3 lines above so it's ok to cast the type
+                      x: (touristicContent.geometry as { x: number; y: number }).x,
+                      y: (touristicContent.geometry as { x: number; y: number }).y,
+                    },
+                    pictogramUri: touristicContent.category.pictogramUri,
+                    name: touristicContent.name,
+                  }))}
               />
             </div>
           </div>
