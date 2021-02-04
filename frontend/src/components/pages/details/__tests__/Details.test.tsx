@@ -118,6 +118,5 @@ describe('Details', () => {
     await component.findAllByText('Accessibilité');
     await component.findByText('Poussette');
     await component.findByText('Source');
-    await component.findByText('Apidae');
   });
 });

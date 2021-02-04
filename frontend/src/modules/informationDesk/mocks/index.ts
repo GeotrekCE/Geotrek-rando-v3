@@ -6,6 +6,7 @@ export const mockInformationDeskResponse = () => ({
   previous: null,
   results: [
     {
+      id: 1,
       description:
         "Information, documentation et un espace d'accueil avec des expositions permanente et temporaires. La maison du Parc est labellis&eacute;e &laquo;Tourisme et handicap&raquo;. Entr&eacute;e libre. Toutes les animations du Parc sont gratuites sauf mention contraire.",
       email: 'valgaudemar@ecrins-parcnational.fr',
@@ -29,7 +30,7 @@ export const mockInformationDeskRoute = (times: number): void =>
     route: '/informationdesk',
     mockData: mockInformationDeskResponse(),
     additionalQueries: {
-      fields: 'name,street,postal_code,municipality,website,email,phone,description,type',
+      fields: 'id,name,street,postal_code,municipality,website,email,phone,description,type',
     },
     times,
   });

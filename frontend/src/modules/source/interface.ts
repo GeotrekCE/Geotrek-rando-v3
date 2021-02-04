@@ -1,4 +1,5 @@
 export interface RawSource {
+  id: number;
   name: string;
   website: string;
   pictogram: string;
