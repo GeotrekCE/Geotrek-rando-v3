@@ -55,7 +55,9 @@ const DetailsMap: React.FC<PropsType> = props => {
           trekGeometry={props.trekGeometry}
         />
 
-        <PointsReference pointsReference={props.pointsReference ?? undefined} />
+        {props.elementOnScreen === 'description' && (
+          <PointsReference pointsReference={props.pointsReference ?? undefined} />
+        )}
 
         {props.elementOnScreen === 'poi' && <POIMarkers poiPoints={props.poiPoints} />}
       </MapContainer>
