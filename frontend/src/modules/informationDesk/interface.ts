@@ -10,6 +10,7 @@ export interface RawInformationDesk {
   email: string;
   phone: string;
   description: string;
+  photo_url: string;
   type: RawInformationDeskType;
 }
 
@@ -22,6 +23,7 @@ export interface InformationDesk {
   email: string;
   phone: string;
   description: string;
+  photoUrl: string;
   type: InformationDeskType;
 }
 

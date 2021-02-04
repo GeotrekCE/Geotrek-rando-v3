@@ -13,6 +13,8 @@ export const mockInformationDeskResponse = () => ({
       municipality: 'La Chapelle-en-Valgaudemar',
       name: 'Maison du Parc du Valgaudemar',
       phone: '04 92 55 25 19',
+      photo_url:
+        'https://geotrekdemo.ecrins-parcnational.fr/media/upload/mdpvalgau.jpg.150x150_q85.jpg',
       postal_code: '05800',
       street: 'Ancien Asile Saint-Paul',
       type: {
@@ -30,7 +32,8 @@ export const mockInformationDeskRoute = (times: number): void =>
     route: '/informationdesk',
     mockData: mockInformationDeskResponse(),
     additionalQueries: {
-      fields: 'id,name,street,postal_code,municipality,website,email,phone,description,type',
+      fields:
+        'id,name,street,postal_code,municipality,website,email,phone,description,photo_url,type',
     },
     times,
   });
