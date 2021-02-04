@@ -1,0 +1,1 @@
+export { DetailsCardCarousel } from './DetailsCardCarousel';
