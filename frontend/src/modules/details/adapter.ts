@@ -19,7 +19,7 @@ import { Details, RawDetails } from './interface';
 const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
 
 export const adaptResults = ({
-  rawDetails,
+  rawDetails: { properties: rawDetailsProperties, geometry },
   activity,
   difficulty,
   courseType,
@@ -49,71 +49,77 @@ export const adaptResults = ({
 }): Details => {
   try {
     return {
-      title: rawDetails.name,
+      title: rawDetailsProperties.name,
       place:
-        rawDetails.cities.length > 0 && cityDictionnary[rawDetails.cities[0]] !== undefined
-          ? cityDictionnary[rawDetails.cities[0]].name
-          : rawDetails.departure,
-      imgUrl: getThumbnail(rawDetails.attachments) ?? fallbackImgUri,
+        rawDetailsProperties.cities.length > 0 &&
+        cityDictionnary[rawDetailsProperties.cities[0]] !== undefined
+          ? cityDictionnary[rawDetailsProperties.cities[0]].name
+          : rawDetailsProperties.departure,
+      imgUrl: getThumbnail(rawDetailsProperties.attachments) ?? fallbackImgUri,
       practice: activity,
-      transport: rawDetails.public_transport,
+      transport: rawDetailsProperties.public_transport,
       access_parking:
-        rawDetails.access.length > 0 && rawDetails.advised_parking.length > 0
-          ? `${rawDetails.access}\n${rawDetails.advised_parking}`
-          : `${rawDetails.access}${rawDetails.advised_parking}`,
-      description_teaser: rawDetails.description_teaser,
-      ambiance: rawDetails.ambiance,
-      description: rawDetails.description,
-      tags: rawDetails.themes.map(themeId => themes[themeId].label),
+        rawDetailsProperties.access.length > 0 && rawDetailsProperties.advised_parking.length > 0
+          ? `${rawDetailsProperties.access}\n${rawDetailsProperties.advised_parking}`
+          : `${rawDetailsProperties.access}${rawDetailsProperties.advised_parking}`,
+      description_teaser: rawDetailsProperties.description_teaser,
+      ambiance: rawDetailsProperties.ambiance,
+      description: rawDetailsProperties.description,
+      tags: rawDetailsProperties.themes.map(themeId => themes[themeId].label),
       informations: {
-        duration: rawDetails.duration !== null ? formatHours(rawDetails.duration) : undefined,
-        distance: `${formatDistance(rawDetails.length_2d)}`,
-        elevation: `+${rawDetails.ascent}${dataUnits.distance}`,
-        networks: rawDetails.networks.map(networkId => networks[networkId]),
+        duration:
+          rawDetailsProperties.duration !== null
+            ? formatHours(rawDetailsProperties.duration)
+            : undefined,
+        distance: `${formatDistance(rawDetailsProperties.length_2d)}`,
+        elevation: `+${rawDetailsProperties.ascent}${dataUnits.distance}`,
+        networks: rawDetailsProperties.networks.map(networkId => networks[networkId]),
         difficulty: difficulty !== null ? difficulty : undefined,
         courseType: courseType !== null ? courseType : undefined,
       },
       pois,
-      trekGeometry: rawDetails.geometry.coordinates.map(rawCoordinates => ({
+      trekGeometry: geometry.coordinates.map(rawCoordinates => ({
         x: rawCoordinates[0],
         y: rawCoordinates[1],
       })),
       trekDeparture: {
-        x: rawDetails.geometry.coordinates[0][0],
-        y: rawDetails.geometry.coordinates[0][1],
+        x: geometry.coordinates[0][0],
+        y: geometry.coordinates[0][1],
       },
       trekArrival: {
-        x: rawDetails.geometry.coordinates[rawDetails.geometry.coordinates.length - 1][0],
-        y: rawDetails.geometry.coordinates[rawDetails.geometry.coordinates.length - 1][1],
+        x: geometry.coordinates[geometry.coordinates.length - 1][0],
+        y: geometry.coordinates[geometry.coordinates.length - 1][1],
       },
       touristicContents,
       parkingLocation: {
-        x: rawDetails.parking_location[0],
-        y: rawDetails.parking_location[1],
+        x: rawDetailsProperties.parking_location[0],
+        y: rawDetailsProperties.parking_location[1],
       },
-      pdfUri: rawDetails.pdf,
-      gpxUri: rawDetails.gpx,
-      kmlUri: rawDetails.kml,
-      disabledInfrastructure: rawDetails.disabled_infrastructure,
+      pdfUri: rawDetailsProperties.pdf,
+      gpxUri: rawDetailsProperties.gpx,
+      kmlUri: rawDetailsProperties.kml,
+      disabledInfrastructure: rawDetailsProperties.disabled_infrastructure,
       accessibilities:
-        rawDetails.accessibilities !== undefined && rawDetails.accessibilities !== null
-          ? rawDetails.accessibilities.map(accessId => accessibilityDictionnary[accessId])
+        rawDetailsProperties.accessibilities !== undefined &&
+        rawDetailsProperties.accessibilities !== null
+          ? rawDetailsProperties.accessibilities.map(accessId => accessibilityDictionnary[accessId])
           : [],
       sources:
-        rawDetails.source !== undefined && rawDetails.source !== null
-          ? rawDetails.source.map(sourceId => sourceDictionnary[sourceId])
+        rawDetailsProperties.source !== undefined && rawDetailsProperties.source !== null
+          ? rawDetailsProperties.source.map(sourceId => sourceDictionnary[sourceId])
           : [],
       informationDesks:
-        rawDetails.information_desks !== undefined && rawDetails.information_desks !== null
-          ? rawDetails.information_desks.map(deskId => informationDeskDictionnary[deskId])
+        rawDetailsProperties.information_desks !== undefined &&
+        rawDetailsProperties.information_desks !== null
+          ? rawDetailsProperties.information_desks.map(deskId => informationDeskDictionnary[deskId])
           : [],
       labels:
-        rawDetails.labels !== undefined && rawDetails.labels !== null
-          ? rawDetails.labels.map(labelId => labelsDictionnary[labelId])
+        rawDetailsProperties.labels !== undefined && rawDetailsProperties.labels !== null
+          ? rawDetailsProperties.labels.map(labelId => labelsDictionnary[labelId])
           : [],
-      advice: rawDetails.advice,
+      advice: rawDetailsProperties.advice,
       pointsReference:
-        rawDetails.points_reference?.coordinates.map(rawCoordinates => ({
+        rawDetailsProperties.points_reference?.coordinates.map(rawCoordinates => ({
           x: rawCoordinates[0],
           y: rawCoordinates[1],
         })) ?? null,
