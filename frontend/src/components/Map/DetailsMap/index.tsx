@@ -6,6 +6,7 @@ import { ArrowLeft } from 'components/Icons/ArrowLeft';
 
 import { DetailsSections } from 'components/pages/details/useDetails';
 
+import { Coordinate2D } from 'modules/interface';
 import { MapButton } from '../components/MapButton';
 import { FilterButton } from '../components/FilterButton';
 
@@ -15,17 +16,23 @@ import { PointsReference } from './PointsReference';
 import { getMapConfig } from '../config';
 import { Credits } from '../components/Credits';
 
+interface PointWithIcon {
+  location: { x: number; y: number };
+  pictogramUri: string;
+  name: string;
+}
+
 export type PropsType = {
-  poiPoints?: { location: { x: number; y: number }; pictogramUri: string; name: string }[];
-  trekGeometry?: { x: number; y: number }[];
-  pointsReference?: { x: number; y: number }[] | null;
+  poiPoints?: PointWithIcon[];
+  trekGeometry?: Coordinate2D[];
+  pointsReference?: Coordinate2D[] | null;
   hideMap?: () => void;
   type: 'DESKTOP' | 'MOBILE';
   openFilterMenu?: () => void;
   hasFilters?: boolean;
-  arrivalLocation?: { x: number; y: number };
-  departureLocation?: { x: number; y: number };
-  parkingLocation?: { x: number; y: number };
+  arrivalLocation?: Coordinate2D;
+  departureLocation?: Coordinate2D;
+  parkingLocation?: Coordinate2D;
   shouldUsePopups?: boolean;
   elementOnScreen: DetailsSections | null;
   bbox: { corner1: { x: number; y: number }; corner2: { x: number; y: number } };
