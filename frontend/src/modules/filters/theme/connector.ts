@@ -13,7 +13,7 @@ export const getThemeFilter = async () => {
   return adaptThemeFilter(rawThemeFilter.results);
 };
 
-export const getThemes = async (): Promise<Choices> => {
+export const getThemes = async (): Promise<Partial<Choices>> => {
   const rawThemes = await fetchThemes({ language: 'fr' });
   return adaptThemes(rawThemes.results);
 };
