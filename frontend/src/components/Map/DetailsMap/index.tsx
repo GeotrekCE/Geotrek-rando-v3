@@ -11,10 +11,12 @@ import { FilterButton } from '../components/FilterButton';
 
 import { POIMarkers } from './POIMarkers';
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
+import { PointsReference } from './PointsReference';
 
 export type PropsType = {
   poiPoints?: { location: { x: number; y: number }; pictogramUri: string; name: string }[];
   trekGeometry?: { x: number; y: number }[];
+  pointsReference?: { x: number; y: number }[] | null;
   hideMap?: () => void;
   type: 'DESKTOP' | 'MOBILE';
   openFilterMenu?: () => void;
@@ -46,15 +48,15 @@ const DetailsMap: React.FC<PropsType> = props => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {props.elementOnScreen === 'preview' && (
-          <>
-            <TrekMarkersAndCourse
-              arrivalLocation={props.arrivalLocation}
-              departureLocation={props.departureLocation}
-              parkingLocation={props.parkingLocation}
-              trekGeometry={props.trekGeometry}
-            />
-          </>
+        <TrekMarkersAndCourse
+          arrivalLocation={props.arrivalLocation}
+          departureLocation={props.departureLocation}
+          parkingLocation={props.parkingLocation}
+          trekGeometry={props.trekGeometry}
+        />
+
+        {props.elementOnScreen === 'description' && (
+          <PointsReference pointsReference={props.pointsReference ?? undefined} />
         )}
 
         {props.elementOnScreen === 'poi' && <POIMarkers poiPoints={props.poiPoints} />}

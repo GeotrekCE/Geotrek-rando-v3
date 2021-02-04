@@ -10,6 +10,11 @@ export interface RawPointGeometry {
   coordinates: RawCoordinate;
 }
 
+export interface RawMultiPointGeometry {
+  type: 'MultiPoint';
+  coordinates: RawCoordinate[];
+}
+
 export interface APICallsConfig {
   searchResultsPageSize: number;
 }

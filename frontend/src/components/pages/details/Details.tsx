@@ -272,6 +272,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                   pictogramUri: poi.type.pictogramUri,
                   name: poi.name,
                 }))}
+                pointsReference={details.pointsReference}
               />
             </div>
           </div>

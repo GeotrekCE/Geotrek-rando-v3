@@ -49,7 +49,7 @@ describe('Details', () => {
       .query({
         language: 'fr',
         fields:
-          'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,cities,disabled_infrastructure,accessibilities,source,information_desks,labels,advice',
+          'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,cities,disabled_infrastructure,accessibilities,source,information_desks,labels,advice,points_reference',
       })
       .reply(200, rawDetailsMock);
 
