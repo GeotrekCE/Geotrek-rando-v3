@@ -9,7 +9,7 @@ import { DetailsSections } from 'components/pages/details/useDetails';
 import { MapButton } from '../components/MapButton';
 import { FilterButton } from '../components/FilterButton';
 
-import { POIMarkers } from './POIMarkers';
+import { MarkersWithIcon } from './MarkersWithIcon';
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
 import { PointsReference } from './PointsReference';
 import { getMapConfig } from '../config';
@@ -64,7 +64,7 @@ const DetailsMap: React.FC<PropsType> = props => {
           <PointsReference pointsReference={props.pointsReference ?? undefined} />
         )}
 
-        {props.elementOnScreen === 'poi' && <POIMarkers poiPoints={props.poiPoints} />}
+        {props.elementOnScreen === 'poi' && <MarkersWithIcon points={props.poiPoints} />}
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />

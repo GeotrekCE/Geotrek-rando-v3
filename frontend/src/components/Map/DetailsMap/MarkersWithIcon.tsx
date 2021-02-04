@@ -4,14 +4,14 @@ import 'leaflet/dist/leaflet.css';
 import { TrekMarker } from '../Markers/TrekMarker';
 
 export type PropsType = {
-  poiPoints?: { location: { x: number; y: number }; pictogramUri: string; name: string }[];
+  points?: { location: { x: number; y: number }; pictogramUri: string; name: string }[];
 };
 
-export const POIMarkers: React.FC<PropsType> = props => {
+export const MarkersWithIcon: React.FC<PropsType> = props => {
   return (
     <>
-      {props.poiPoints !== undefined &&
-        props.poiPoints.map(
+      {props.points !== undefined &&
+        props.points.map(
           point =>
             point.location !== null && (
               <Marker
