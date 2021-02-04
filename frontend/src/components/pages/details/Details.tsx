@@ -289,6 +289,11 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 }))}
                 pointsReference={details.pointsReference}
                 bbox={details.bbox}
+                touristicContentPoints={details.touristicContents.map(touristicContent => ({
+                  location: { x: touristicContent.geometry.x, y: touristicContent.geometry.y },
+                  pictogramUri: touristicContent.category.pictogramUri,
+                  name: touristicContent.name,
+                }))}
               />
             </div>
           </div>

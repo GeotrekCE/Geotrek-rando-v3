@@ -24,6 +24,7 @@ interface PointWithIcon {
 
 export type PropsType = {
   poiPoints?: PointWithIcon[];
+  touristicContentPoints?: PointWithIcon[];
   trekGeometry?: Coordinate2D[];
   pointsReference?: Coordinate2D[] | null;
   hideMap?: () => void;
@@ -72,6 +73,10 @@ const DetailsMap: React.FC<PropsType> = props => {
         )}
 
         {props.elementOnScreen === 'poi' && <MarkersWithIcon points={props.poiPoints} />}
+
+        {props.elementOnScreen === 'touristicContent' && (
+          <MarkersWithIcon points={props.touristicContentPoints} />
+        )}
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
