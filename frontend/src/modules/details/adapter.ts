@@ -19,7 +19,7 @@ import { Details, RawDetails } from './interface';
 const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
 
 export const adaptResults = ({
-  rawDetails: { properties: rawDetailsProperties, geometry },
+  rawDetails: { properties: rawDetailsProperties, geometry, bbox },
   activity,
   difficulty,
   courseType,
@@ -123,6 +123,7 @@ export const adaptResults = ({
           x: rawCoordinates[0],
           y: rawCoordinates[1],
         })) ?? null,
+      bbox: { corner1: { x: bbox[0], y: bbox[1] }, corner2: { x: bbox[2], y: bbox[3] } },
     };
   } catch (e) {
     console.error('Error in details/adapter', e);

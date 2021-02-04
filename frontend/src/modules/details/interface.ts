@@ -13,7 +13,7 @@ import { Label } from 'modules/label/interface';
 
 export interface RawDetails {
   type: string;
-  bbox: RawCoordinate;
+  bbox: number[];
   geometry: RawSegmentGeometry;
   properties: RawDetailsProperties;
 }
@@ -76,6 +76,11 @@ interface Coordinate {
   y: number;
 }
 
+interface Bbox {
+  corner1: Coordinate;
+  corner2: Coordinate;
+}
+
 export interface Details extends DetailsHtml {
   practice: Activity;
   title: string;
@@ -97,4 +102,5 @@ export interface Details extends DetailsHtml {
   informationDesks: InformationDesk[];
   labels: Label[];
   pointsReference: Coordinate[] | null;
+  bbox: Bbox;
 }
