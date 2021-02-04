@@ -21,7 +21,7 @@ export const adaptInformationDesks = ({
   rawInformationDesks.reduce(
     (InformationDesks, currentInformationDesk, currentIndex) => ({
       ...InformationDesks,
-      [currentIndex + 1]: adaptInformationDesk(currentInformationDesk),
+      [currentInformationDesk.id]: adaptInformationDesk(currentInformationDesk),
     }),
     {},
   );

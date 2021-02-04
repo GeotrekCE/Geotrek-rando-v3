@@ -1,6 +1,7 @@
 import { InformationDeskType, RawInformationDeskType } from 'modules/informationDeskType/interface';
 
 export interface RawInformationDesk {
+  id: number;
   name: string;
   street: string;
   postal_code: string;
