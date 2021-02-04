@@ -45,15 +45,16 @@
     "filters": {
       "difficulty": "Difficulté",
       "activity": "Randonnées",
+      "service": "Services",
+      "city": "Commune",
       "duration": "Durée",
-      "ciy": "Communes",
-      "district": "Districtes",
+      "district": "District",
       "theme": "Thèmes",
       "courseType": "Type de parcours",
       "accessibility": "Accessibilité",
       "positiveElevation": "Denivelé positif",
       "length": "Longueur",
-      "structure": "Structures"
+      "structure": "Structure"
     },
     "map": {
       "seeResult": "Afficher le détail"

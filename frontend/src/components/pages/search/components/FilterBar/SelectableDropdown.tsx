@@ -16,6 +16,7 @@ interface Props {
   placeholder: string;
   setFilterSelectedOptions: (options: Option[]) => void;
   selectedFilters: Option[];
+  filterType: 'SINGLE' | 'MULTIPLE';
 }
 
 const colourStyles = {
@@ -85,22 +86,28 @@ const colourStyles = {
   placeholder: (styles: any) => ({ ...styles, color: colorPalette.filter.placeholder.color }),
 };
 
+const computeAction = (action: ValueType<Option, true>): Option[] => {
+  if (action === undefined || action === null) return [];
+  if (action.length >= 0) return [...action];
+  return [action];
+};
+
 export const SelectableDropdown = (props: Props): ReactElement => {
   const intl = useIntl();
   return (
     <Select
       options={props.options}
-      isClearable={false}
+      isClearable={props.filterType === 'SINGLE'}
       isSearchable={false}
       name={props.name}
       placeholder={intl.formatMessage({ id: props.placeholder })}
-      isMulti
       classNamePrefix="select"
       closeMenuOnSelect={false}
+      isMulti={props.filterType === 'MULTIPLE' ? true : undefined}
       styles={colourStyles}
       value={props.selectedFilters}
       onChange={(action: ValueType<Option, true>) => {
-        const options = action ? [...action] : [];
+        const options = computeAction(action);
         props.setFilterSelectedOptions(options);
       }}
     />

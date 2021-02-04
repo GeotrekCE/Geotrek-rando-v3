@@ -2,9 +2,10 @@ import { Option } from 'modules/filters/interface';
 import { render } from 'services/testing/reactTestingLibraryWrapper';
 import { SelectableDropdown } from './SelectableDropdown';
 
-test('SelectableDropdown shoudl render properly', () => {
+test('SelectableDropdown should render properly', () => {
   const component = render(
     <SelectableDropdown
+      filterType="MULTIPLE"
       name="activities"
       placeholder="search.filters.difficulty"
       options={[

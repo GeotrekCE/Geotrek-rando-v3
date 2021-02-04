@@ -1,5 +1,5 @@
 import { Difficulty } from './interface';
-import { Filter, RawDifficulty } from '../interface';
+import { FilterWithoutType, RawDifficulty } from '../interface';
 import { DifficultyChoices } from './interface';
 
 const isRawDifficultyComplete = (
@@ -24,7 +24,9 @@ export const adaptDifficulties = (rawDifficulties: Partial<RawDifficulty>[]): Di
     {},
   );
 
-export const adaptDifficultyFilter = (rawDifficulties: Partial<RawDifficulty>[]): Filter => ({
+export const adaptDifficultyFilter = (
+  rawDifficulties: Partial<RawDifficulty>[],
+): FilterWithoutType => ({
   id: 'difficulty',
   options: rawDifficulties.filter(isRawDifficultyComplete).map(rawDifficulty => ({
     value: `${rawDifficulty.id}`,

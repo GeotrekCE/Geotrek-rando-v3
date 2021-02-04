@@ -1,4 +1,4 @@
-import { Filter } from 'modules/filters/interface';
+import { FilterWithoutType } from 'modules/filters/interface';
 import { Activity, ActivityChoices, RawListActivity } from './interface';
 
 const isCompleteRawListActivity = (
@@ -8,7 +8,9 @@ const isCompleteRawListActivity = (
   rawActivity.pictogram !== undefined &&
   rawActivity.id !== undefined;
 
-export const adaptActivityFilter = (rawActivities: Partial<RawListActivity>[]): Filter => ({
+export const adaptActivityFilter = (
+  rawActivities: Partial<RawListActivity>[],
+): FilterWithoutType => ({
   id: 'activity',
   options: rawActivities.filter(isCompleteRawListActivity).map(rawActivity => ({
     value: `${rawActivity.id}`,
