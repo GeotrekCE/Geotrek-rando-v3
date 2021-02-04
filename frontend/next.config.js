@@ -6,6 +6,7 @@ const withSourceMaps = require('@zeit/next-source-maps');
 const withPWA = require('next-pwa');
 const dotenv = require('dotenv-flow');
 const yup = require('yup');
+const runtimeCachingStrategy = require('./cache');
 
 const schema = yup.object().shape({
   REACT_APP_API_BASE_URL: yup.string().required(),
@@ -45,6 +46,7 @@ module.exports = withPlugins(plugins, {
   },
   pwa: {
     dest: 'public',
+    runtimeCaching: runtimeCachingStrategy,
   },
   /**
    * environment variables that will be shared for the client and server-side
