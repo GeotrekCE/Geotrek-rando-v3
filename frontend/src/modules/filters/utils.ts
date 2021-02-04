@@ -73,6 +73,7 @@ export const getFiltersState = async (): Promise<FilterState[]> => {
   return filters.map(filter => ({
     ...filter,
     label: `search.filters.${filter.id}`,
+    status: 'ENABLED',
     selectedOptions: [],
   }));
 };
