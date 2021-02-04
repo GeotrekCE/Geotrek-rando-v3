@@ -1,4 +1,4 @@
-import { Choices, Filter } from '../interface';
+import { Choices, FilterWithoutType } from '../interface';
 import { RawTheme, Theme } from './interface';
 
 const isRawThemeComplete = (rawTheme: Partial<RawTheme>): rawTheme is RawTheme =>
@@ -9,7 +9,7 @@ export const adaptTheme = (rawTheme: RawTheme): Theme => ({
   label: rawTheme.label,
 });
 
-export const adaptThemeFilter = (rawThemes: Partial<RawTheme>[]): Filter => ({
+export const adaptThemeFilter = (rawThemes: Partial<RawTheme>[]): FilterWithoutType => ({
   id: 'theme',
   options: rawThemes.filter(isRawThemeComplete).map(adaptTheme),
 });

@@ -1,7 +1,7 @@
-import { Filter } from '../interface';
+import { FilterWithoutType } from '../interface';
 import { CourseType, RawCourseType } from './interface';
 
-export const adaptCourseType = (rawCourseTypes: RawCourseType[]): Filter => ({
+export const adaptCourseType = (rawCourseTypes: RawCourseType[]): FilterWithoutType => ({
   id: 'courseType',
   options: rawCourseTypes.map(rawCourseType => ({
     value: `${rawCourseType.id}`,

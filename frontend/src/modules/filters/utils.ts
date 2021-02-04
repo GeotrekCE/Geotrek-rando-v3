@@ -5,7 +5,7 @@ import { getFiltersConfig } from './config';
 import { getDifficultyFilter } from './difficulties/connector';
 import { getCourseTypeFilter } from './courseType/connector';
 import { getDistrictFilter } from './district/connector';
-import { Filter, FilterConfig, FilterConfigWithOptions, FilterState } from './interface';
+import { Filter, FilterConfigWithOptions, FilterState, FilterWithoutType } from './interface';
 import { getStructureFilter } from './structures/connector';
 import { getThemeFilter } from './theme/connector';
 
@@ -13,14 +13,15 @@ const adaptFilterConfigWithOptionsToFilter = (
   filterConfigWithOptions: FilterConfigWithOptions,
 ): Filter => ({
   id: filterConfigWithOptions.id,
+  type: filterConfigWithOptions.type,
   options: filterConfigWithOptions.options.map(option => ({
     value: `${option.minValue}`,
     label: option.label,
   })),
 });
 
-const getFilterOptions = async (filterConfig: FilterConfig): Promise<Filter | null> => {
-  switch (filterConfig.id) {
+const getFilterOptions = async (filterId: string): Promise<FilterWithoutType | null> => {
+  switch (filterId) {
     case 'difficulty':
       return getDifficultyFilter();
     case 'activity':
@@ -35,7 +36,7 @@ const getFilterOptions = async (filterConfig: FilterConfig): Promise<Filter | nu
       return getCourseTypeFilter();
     case 'accessibility':
       return getAccessibilityFilter();
-    case 'structures':
+    case 'structure':
       return getStructureFilter();
     default:
       return null;
@@ -45,6 +46,15 @@ const getFilterOptions = async (filterConfig: FilterConfig): Promise<Filter | nu
 const isElementNotNull = <ElementType>(element: ElementType | null): element is ElementType =>
   element !== null;
 
+const getFilterAndAddType = async (
+  filterId: string,
+  filterType: 'SINGLE' | 'MULTIPLE',
+): Promise<Filter | null> => {
+  const filter = await getFilterOptions(filterId);
+  if (filter === null) return null;
+  return { ...filter, type: filterType };
+};
+
 const getFilters = async (): Promise<Filter[]> => {
   const config = getFiltersConfig();
   const filters = await Promise.all(
@@ -52,7 +62,7 @@ const getFilters = async (): Promise<Filter[]> => {
       if (filterConfig.options !== undefined) {
         return adaptFilterConfigWithOptionsToFilter(filterConfig);
       }
-      return getFilterOptions(filterConfig);
+      return getFilterAndAddType(filterConfig.id, filterConfig.type);
     }),
   );
   return filters.filter(isElementNotNull);

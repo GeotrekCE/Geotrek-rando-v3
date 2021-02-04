@@ -11,7 +11,7 @@ import { ChevronUp } from 'components/Icons/ChevronUp';
 import { FilterState } from 'modules/filters/interface';
 import { SelectableDropdown } from './SelectableDropdown';
 
-const NUMBER_OF_PRIMARY_FILTERS_DISPLAYED = 4;
+const NUMBER_OF_PRIMARY_FILTERS_DISPLAYED = 6;
 
 interface Props {
   filtersState: FilterState[];
@@ -45,6 +45,7 @@ export const FilterBar: React.FC<Props> = props => {
                 setFilterSelectedOptions={(options: Option[]) => {
                   props.setFilterSelectedOptions(filterState.id, options);
                 }}
+                filterType={filterState.type}
               />
             </div>
           ))}
@@ -69,6 +70,7 @@ export const FilterBar: React.FC<Props> = props => {
                 setFilterSelectedOptions={(options: Option[]) => {
                   props.setFilterSelectedOptions(filterState.id, options);
                 }}
+                filterType={filterState.type}
               />
             </div>
           ))}

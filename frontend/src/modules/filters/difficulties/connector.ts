@@ -1,7 +1,6 @@
 import { Difficulty } from './interface';
 import { adaptDifficulties, adaptDifficulty, adaptDifficultyFilter } from './adapter';
 import { fetchDifficulties, fetchDifficulty } from './api';
-import { Filter } from '../interface';
 import { DifficultyChoices } from './interface';
 
 export const getDifficulties = async (): Promise<DifficultyChoices> => {
@@ -17,7 +16,7 @@ export const getDifficulty = async (id: number | null): Promise<Difficulty | nul
   return adaptDifficulty(rawDifficulty);
 };
 
-export const getDifficultyFilter = async (): Promise<Filter> => {
+export const getDifficultyFilter = async () => {
   const rawDifficulties = await fetchDifficulties({ language: 'fr' });
   return adaptDifficultyFilter(rawDifficulties.results);
 };

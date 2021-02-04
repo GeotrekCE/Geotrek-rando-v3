@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SelectableDropdown shoudl render properly 1`] = `
+exports[`SelectableDropdown should render properly 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>

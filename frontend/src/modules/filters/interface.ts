@@ -32,18 +32,24 @@ export interface Option {
   value: string;
   pictogramUrl?: string;
 }
-export interface Filter {
+
+export interface FilterWithoutType {
   id: string;
   options: Option[];
+}
+export interface Filter extends FilterWithoutType {
+  type: 'SINGLE' | 'MULTIPLE';
 }
 
 export interface FilterConfig {
   id: string;
+  type: 'SINGLE' | 'MULTIPLE';
   options: undefined;
 }
 
 export interface FilterConfigWithOptions {
   id: string;
+  type: 'SINGLE' | 'MULTIPLE';
   options: {
     minValue: number;
     maxValue: number;
@@ -54,6 +60,7 @@ export interface FilterConfigWithOptions {
 export interface FilterState {
   id: string;
   label: string;
+  type: 'SINGLE' | 'MULTIPLE';
   options: Option[];
   selectedOptions: Option[];
 }
