@@ -17,6 +17,7 @@ import { TrekCourse } from '../components/TrekCourse';
 import { ClusterContainer } from '../components/ClusterContainer';
 import { useSelectedMarker } from '../hooks/useSelectedMarker';
 import { DecoratedPolyline } from '../components/DecoratedPolyline';
+import { getMapConfig } from '../config';
 
 export type PropsType = {
   points?: MapResults;
@@ -39,6 +40,8 @@ const SearchMap: React.FC<PropsType> = props => {
     }
   };
 
+  const mapConfig = getMapConfig();
+
   const {
     isSelectedMarker,
     setSelectedMarkerId,
@@ -49,7 +52,7 @@ const SearchMap: React.FC<PropsType> = props => {
   return (
     <>
       <MapContainer
-        center={[44.748717, 6.1189669]}
+        center={mapConfig.searchMapCenter}
         zoom={13}
         scrollWheelZoom={false}
         style={{ height: '100%', width: '100%' }}
