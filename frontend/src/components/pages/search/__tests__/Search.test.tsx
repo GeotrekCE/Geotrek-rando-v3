@@ -61,7 +61,7 @@ describe('Search page', () => {
 
     const page = render(
       <QueryClientProvider client={queryClient}>
-        <SearchUI />
+        <SearchUI initialFiltersState={[]} />
       </QueryClientProvider>,
     );
 
