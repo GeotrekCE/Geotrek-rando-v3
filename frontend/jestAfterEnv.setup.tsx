@@ -76,3 +76,13 @@ jest.mock('./src/modules/home/utils.ts', () => ({
     ],
   }),
 }));
+
+window.matchMedia =
+  window.matchMedia ||
+  function () {
+    return {
+      matches: false,
+      addListener: function () {},
+      removeListener: function () {},
+    };
+  };
