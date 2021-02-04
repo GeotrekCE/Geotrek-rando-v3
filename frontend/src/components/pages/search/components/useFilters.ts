@@ -1,12 +1,8 @@
 import { FilterState, Option } from 'modules/filters/interface';
-import { getFiltersState } from 'modules/filters/utils';
-import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useState } from 'react';
 
-export const useFilter = () => {
-  const { data } = useQuery('filters', getFiltersState);
-
-  const [filtersState, setFiltersState] = useState<FilterState[]>([]);
+export const useFilter = (initialFiltersState: FilterState[]) => {
+  const [filtersState, setFiltersState] = useState<FilterState[]>(initialFiltersState);
 
   const setFilterSelectedOptions = (filterId: string, options: Option[]) => {
     setFiltersState(currentState =>
@@ -21,12 +17,6 @@ export const useFilter = () => {
       }),
     );
   };
-
-  useEffect(() => {
-    if (data !== undefined) {
-      setFiltersState(data);
-    }
-  }, [data]);
 
   return {
     filtersState,

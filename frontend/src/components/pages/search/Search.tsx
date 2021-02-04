@@ -14,6 +14,7 @@ import {
   useFilterSubMenu,
 } from 'components/MobileFilterMenu';
 
+import { FilterState } from 'modules/filters/interface';
 import { SearchMapDynamicComponent } from 'components/Map';
 import { FilterBar } from './components/FilterBar';
 import { ResultCard } from './components/ResultCard';
@@ -24,8 +25,12 @@ import { useTrekResults } from './hooks/useTrekResults';
 import { useMapResults } from './hooks/useMapResults';
 import { ErrorFallback } from './components/ErrorFallback';
 
-export const SearchUI: React.FC = () => {
-  const { filtersState, setFilterSelectedOptions } = useFilter();
+interface Props {
+  initialFiltersState: FilterState[];
+}
+
+export const SearchUI: React.FC<Props> = ({ initialFiltersState }) => {
+  const { filtersState, setFilterSelectedOptions } = useFilter(initialFiltersState);
 
   const {
     subMenuState,
