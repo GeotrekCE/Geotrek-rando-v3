@@ -6,6 +6,8 @@ import { captureException } from 'services/sentry';
 import '../public/fonts.css';
 import 'customization/theme/style.css';
 import 'tailwindcss/tailwind.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClient, QueryClientProvider } from 'react-query';
