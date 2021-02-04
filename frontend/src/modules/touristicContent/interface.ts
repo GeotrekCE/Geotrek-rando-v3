@@ -11,7 +11,7 @@ export interface RawTouristicContent {
 export interface TouristicContent {
   name: string;
   description?: string;
-  thumbnailUri: string;
+  thumbnailUris: string[];
   logoUri?: string;
   category: TouristicContentCategory;
 }
