@@ -11,19 +11,20 @@ Object {
       "
       >
         <div
-          class="mr-2 desktop:mr-4 flex-shrink-0"
+          class="mr-2 desktop:mr-3 flex-shrink-0 w-6 h-6 desktop:h-12 desktop:w-12"
         />
         <div
           class="text-greyDarkColored text-Mobile-C2 desktop:text-P1 desktop:font-bold"
         >
           <div
-            class="utils__HtmlText-sc-16l79i-0 eKOoYs"
+            class="text-P1 desktop:text-H4 text-warning font-bold"
           >
-            En coeur de parc
+            <div
+              class="utils__HtmlText-sc-16l79i-0 eKOoYs"
+            >
+              En coeur de parc
+            </div>
           </div>
-          <br
-            class="hidden desktop:block"
-          />
           <div
             class="utils__HtmlText-sc-16l79i-0 eKOoYs"
           >
@@ -40,19 +41,20 @@ Object {
       "
     >
       <div
-        class="mr-2 desktop:mr-4 flex-shrink-0"
+        class="mr-2 desktop:mr-3 flex-shrink-0 w-6 h-6 desktop:h-12 desktop:w-12"
       />
       <div
         class="text-greyDarkColored text-Mobile-C2 desktop:text-P1 desktop:font-bold"
       >
         <div
-          class="utils__HtmlText-sc-16l79i-0 eKOoYs"
+          class="text-P1 desktop:text-H4 text-warning font-bold"
         >
-          En coeur de parc
+          <div
+            class="utils__HtmlText-sc-16l79i-0 eKOoYs"
+          >
+            En coeur de parc
+          </div>
         </div>
-        <br
-          class="hidden desktop:block"
-        />
         <div
           class="utils__HtmlText-sc-16l79i-0 eKOoYs"
         >
