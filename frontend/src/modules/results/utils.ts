@@ -86,7 +86,7 @@ const getMinAndMaxDifficulty = (difficulties: string[]) => {
 
 const formatFilter = (filterState: QueryFilterState) => {
   const config = getFiltersConfig();
-  if (filterState.id === 'duration' || filterState.id === 'length') {
+  if (filterState.id === 'duration' || filterState.id === 'length' || filterState.id === 'ascent') {
     return getMinAndMaxValueFromConfig({ queryFilterState: filterState, config });
   }
   if (filterState.id === 'difficulty') {
