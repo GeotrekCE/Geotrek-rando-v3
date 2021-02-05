@@ -5,9 +5,9 @@ export type RawCoordinate2D = [number, number];
 
 export type RawCoordinate3D = [number, number, number];
 
-export interface RawSegmentGeometry {
-  type: string;
-  coordinates: RawCoordinate[];
+export interface RawLineStringGeometry {
+  type: 'LineString';
+  coordinates: RawCoordinate2D[];
 }
 
 export interface RawPointGeometry {

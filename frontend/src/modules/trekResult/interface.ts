@@ -1,5 +1,5 @@
 import { RawAttachment } from 'modules/interface';
-import { Coordinate, RawSegmentGeometry } from 'modules/interface';
+import { Coordinate, RawLineStringGeometry } from 'modules/interface';
 
 export interface RawTrekPopupResult {
   name: string;
@@ -14,7 +14,7 @@ export interface TrekPopupResult {
 }
 
 export interface RawTrekGeometryResult {
-  geometry: RawSegmentGeometry;
+  geometry: RawLineStringGeometry;
 }
 
 export interface TrekGeometryResult {

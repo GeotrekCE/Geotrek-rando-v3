@@ -7,8 +7,8 @@ import {
   Attachment,
   RawAttachment,
   RawCoordinate,
+  RawLineStringGeometry,
   RawMultiPointGeometry,
-  RawSegmentGeometry,
 } from 'modules/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { Accessibility } from 'modules/accessibility/interface';
@@ -20,7 +20,7 @@ import { TrekResult } from 'modules/results/interface';
 export interface RawDetails {
   type: string;
   bbox: number[];
-  geometry: RawSegmentGeometry;
+  geometry: RawLineStringGeometry;
   properties: RawDetailsProperties;
 }
 
