@@ -20,6 +20,11 @@ export interface RawMultiPointGeometry {
   coordinates: RawCoordinate[];
 }
 
+export interface RawPolygonGeometry {
+  type: 'Polygon';
+  coordinates: RawCoordinate2D[][];
+}
+
 export interface APICallsConfig {
   searchResultsPageSize: number;
 }
