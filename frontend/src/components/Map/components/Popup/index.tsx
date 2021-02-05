@@ -7,7 +7,9 @@ import Loader from 'react-loader';
 import { colorPalette, desktopOnly, getSpacing } from 'stylesheet';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import { Button as RawButton } from 'components/Button';
+import { generateResultDetailsUrl } from 'components/pages/search/utils';
 
+import Link from 'components/Link';
 import { useTrekPopupResult } from '../../hooks/useTrekPopupResult';
 
 interface Props {
@@ -36,22 +38,26 @@ export const Popup: React.FC<Props> = ({ id, handleOpen, handleClose }) => {
           color: colorPalette.primary1,
         }}
       >
-        <div className="flex flex-col">
-          <CoverImage src={trekPopupResult?.imgUrl} />
-          <div className="p-4">
-            <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:inline">
-              {trekPopupResult?.place}
-            </span>
-            <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">
-              {trekPopupResult?.title}
-            </Title>
-            <Button className="hidden desktop:block">
-              <span className="text-center w-full">
-                <FormattedMessage id="search.map.seeResult" />
+        {trekPopupResult !== undefined && (
+          <div className="flex flex-col">
+            <CoverImage src={trekPopupResult.imgUrl} />
+            <div className="p-4">
+              <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:inline">
+                {trekPopupResult.place}
               </span>
-            </Button>
+              <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">
+                {trekPopupResult.title}
+              </Title>
+              <Link href={generateResultDetailsUrl(id, trekPopupResult.title)}>
+                <Button className="hidden desktop:block" type="button">
+                  <span className="text-center w-full">
+                    <FormattedMessage id="search.map.seeResult" />
+                  </span>
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
+        )}
       </Loader>
     </StyledPopup>
   );

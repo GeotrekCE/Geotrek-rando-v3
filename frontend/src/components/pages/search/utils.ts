@@ -1,5 +1,6 @@
 import { InfiniteData } from 'react-query';
 
+import { routes } from 'services/routes';
 import { FilterState, Option } from 'modules/filters/interface';
 import { TrekResult, TrekResults } from 'modules/results/interface';
 
@@ -50,4 +51,12 @@ export const formatInfiniteQuery = (
     return null;
   }
   return concatResultsPages(infiniteQueryData?.pages);
+};
+
+/** Generates the details page url related to a result */
+export const generateResultDetailsUrl = (id: number, title: string) => {
+  const titleWithNoSpace = title.replace(/ /g, '-');
+  const detailsPageUrl = `${routes.DETAILS}-${id}-${encodeURI(titleWithNoSpace)}`;
+
+  return detailsPageUrl;
 };
