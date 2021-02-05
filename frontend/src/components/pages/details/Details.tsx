@@ -87,13 +87,28 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
               relative -top-detailsHeaderMobile desktop:top-0
               desktop:w-3/5"
             >
-              {details.imgUrl !== null && (
+              <div className="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop">
+                {((details.img.legend && details.img.legend.length > 0) ||
+                  (details.img.author && details.img.author.length > 0)) && (
+                  <div
+                    className="absolute top-0 w-full text-center
+                      hidden desktop:block truncate
+                    bg-black bg-opacity-40
+                    text-white text-opacity-90 py-4 text-P2"
+                  >
+                    <span>{details.img.legend}</span>
+                    {details.img.legend &&
+                      details.img.legend.length > 0 &&
+                      details.img.author &&
+                      details.img.author.length > 0 && <span>{' - '}</span>}
+                    <span>{details.img.author}</span>
+                  </div>
+                )}
                 <img
-                  src={details.imgUrl}
-                  className="object-cover object-center overflow-hidden
-                    h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                  src={details.img.url}
+                  className="object-cover object-center overflow-hidden h-full w-full"
                 />
-              )}
+              </div>
               <div
                 className="desktop:py-0
                 desktop:relative desktop:-top-9
