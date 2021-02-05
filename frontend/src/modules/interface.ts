@@ -20,6 +20,11 @@ export interface RawPointGeometry2D {
   coordinates: RawCoordinate2D;
 }
 
+export interface RawPointGeometry3D {
+  type: 'Point';
+  coordinates: RawCoordinate3D;
+}
+
 export interface RawMultiPointGeometry {
   type: 'MultiPoint';
   coordinates: RawCoordinate[];

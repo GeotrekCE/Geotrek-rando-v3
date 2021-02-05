@@ -1,6 +1,5 @@
-import { Coordinate3D, RawAttachment } from 'modules/interface';
+import { Coordinate3D, RawAttachment, RawPointGeometry3D } from 'modules/interface';
 import { PoiType } from 'modules/poiType/interface';
-import { Coordinate, RawPointGeometry2D } from 'modules/interface';
 
 export interface RawPoi {
   name: string;
@@ -8,7 +7,7 @@ export interface RawPoi {
   type: number;
   trek: number;
   attachments: RawAttachment[];
-  geometry: RawPointGeometry2D;
+  geometry: RawPointGeometry3D;
 }
 
 export interface Poi {
