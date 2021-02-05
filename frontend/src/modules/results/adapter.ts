@@ -3,6 +3,7 @@ import { DifficultyChoices } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
 import { getThumbnail } from 'modules/utils/adapter';
 import { formatHours } from 'modules/utils/time';
+import { APIResponseForList } from 'services/api/interface';
 import { RawTrekResult, RawTrekResults, TrekResult, TrekResults } from './interface';
 import { extractNextPageId, formatDistance } from './utils';
 
@@ -34,7 +35,7 @@ export const adaptTrekResultList = ({
   themes,
   activities,
 }: {
-  resultsList: RawTrekResult[];
+  resultsList: Partial<RawTrekResult>[];
   difficulties: DifficultyChoices;
   themes: Choices;
   activities: ActivityChoices;
@@ -68,7 +69,7 @@ export const adaptTrekResults = ({
   themes,
   activities,
 }: {
-  rawTrekResults: RawTrekResults;
+  rawTrekResults: APIResponseForList<Partial<RawTrekResult>>;
   difficulties: DifficultyChoices;
   themes: Choices;
   activities: ActivityChoices;
