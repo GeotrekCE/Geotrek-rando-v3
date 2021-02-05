@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 
 import {
   borderRadius,
@@ -14,15 +15,14 @@ import { flexGap } from 'services/cssHelpers';
 import { Chip } from 'components/Chip';
 import { Button } from 'components/Button';
 import { Link } from 'components/Link';
+import { LocalIconInformation, RemoteIconInformation } from 'components/Information';
 
 import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 
-import { FormattedMessage } from 'react-intl';
-import { LocalIconInformation, RemoteIconInformation } from 'components/Information';
+import { generateResultDetailsUrl } from '../../utils';
 import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
-import { useResultCard } from './useResultCard';
 
 interface Props {
   id: number;
@@ -51,7 +51,8 @@ export const ResultCard: React.FC<Props> = ({
   informations,
   className,
 }) => {
-  const { detailsPageUrl } = useResultCard(id, title);
+  const detailsPageUrl = generateResultDetailsUrl(id, title);
+
   return (
     <Container className={className}>
       <ImageContainer imageUri={thumbnailUri}>
