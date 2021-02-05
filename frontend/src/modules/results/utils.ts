@@ -70,10 +70,27 @@ const getMinAndMaxValueFromConfig = ({
   };
 };
 
+const getMinAndMaxDifficulty = (difficulties: string[]) => {
+  let min = parseInt(difficulties[0], 10);
+  let max = parseInt(difficulties[0], 10);
+  difficulties.forEach(difficulty => {
+    const intDifficulty = parseInt(difficulty, 10);
+    min = Math.min(min, intDifficulty);
+    max = Math.max(max, intDifficulty);
+  });
+  return {
+    difficulty_min: min.toString(),
+    difficulty_max: max.toString(),
+  };
+};
+
 const formatFilter = (filterState: QueryFilterState) => {
   const config = getFiltersConfig();
   if (filterState.id === 'duration') {
     return getMinAndMaxValueFromConfig({ queryFilterState: filterState, config });
+  }
+  if (filterState.id === 'difficulty') {
+    return getMinAndMaxDifficulty(filterState.selectedOptions);
   }
   return {
     [filterState.id]: formatSelectedFilter(filterState.selectedOptions),
