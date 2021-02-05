@@ -297,11 +297,9 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 touristicContentPoints={details.touristicContents
                   .filter(touristicContent => touristicContent.geometry !== null)
                   .map(touristicContent => ({
-                    location: {
-                      // We filtered null geometry 3 lines above so it's ok to cast the type
-                      x: (touristicContent.geometry as { x: number; y: number }).x,
-                      y: (touristicContent.geometry as { x: number; y: number }).y,
-                    },
+                    // It's ok to ignore this rule, we filtered null values 2 lines above
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    geometry: touristicContent.geometry!,
                     pictogramUri: touristicContent.category.pictogramUri,
                     name: touristicContent.name,
                   }))}

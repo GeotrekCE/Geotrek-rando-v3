@@ -6,13 +6,19 @@ import { ArrowLeft } from 'components/Icons/ArrowLeft';
 
 import { DetailsSections } from 'components/pages/details/useDetails';
 
-import { Coordinate2D } from 'modules/interface';
+import {
+  Coordinate2D,
+  LineStringGeometry,
+  PointGeometry,
+  PolygonGeometry,
+} from 'modules/interface';
 import { MapButton } from '../components/MapButton';
 import { FilterButton } from '../components/FilterButton';
 
 import { MarkersWithIcon } from './MarkersWithIcon';
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
 import { PointsReference } from './PointsReference';
+import { TouristicContent } from './TouristicContent';
 import { getMapConfig } from '../config';
 import { Credits } from '../components/Credits';
 
@@ -22,9 +28,15 @@ interface PointWithIcon {
   name: string;
 }
 
+export interface TouristicContentGeometry {
+  geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
+  pictogramUri: string;
+  name: string;
+}
+
 export type PropsType = {
   poiPoints?: PointWithIcon[];
-  touristicContentPoints?: PointWithIcon[];
+  touristicContentPoints?: TouristicContentGeometry[];
   trekGeometry?: Coordinate2D[];
   pointsReference?: Coordinate2D[] | null;
   hideMap?: () => void;
@@ -75,7 +87,7 @@ const DetailsMap: React.FC<PropsType> = props => {
         {props.elementOnScreen === 'poi' && <MarkersWithIcon points={props.poiPoints} />}
 
         {props.elementOnScreen === 'touristicContent' && (
-          <MarkersWithIcon points={props.touristicContentPoints} />
+          <TouristicContent contents={props.touristicContentPoints} />
         )}
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
