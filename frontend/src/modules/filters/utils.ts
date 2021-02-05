@@ -24,7 +24,7 @@ const getFilterOptions = async (filterId: string): Promise<FilterWithoutType | n
   switch (filterId) {
     case 'difficulty':
       return getDifficultyFilter();
-    case 'activity':
+    case 'practice':
       return getActivityFilter();
     case 'city':
       return getCityFilter();

@@ -11,7 +11,7 @@ const isCompleteRawListActivity = (
 export const adaptActivityFilter = (
   rawActivities: Partial<RawListActivity>[],
 ): FilterWithoutType => ({
-  id: 'activity',
+  id: 'practice',
   options: rawActivities.filter(isCompleteRawListActivity).map(rawActivity => ({
     value: `${rawActivity.id}`,
     label: rawActivity.name,
