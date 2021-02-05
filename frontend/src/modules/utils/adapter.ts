@@ -34,6 +34,22 @@ export const getAttachment = (rawAttachments: RawAttachment[]): Attachment => {
   return attachment;
 };
 
+export const getAttachments = (rawAttachments: RawAttachment[]): Attachment[] => {
+  const attachments = rawAttachments
+    .filter(
+      rawAttachment =>
+        rawAttachment.type === 'image' &&
+        rawAttachment.url !== null &&
+        rawAttachment.url.length > 0,
+    )
+    .map(rawAttachmentImg => ({
+      url: rawAttachmentImg.url,
+      legend: rawAttachmentImg.legend,
+      author: rawAttachmentImg.author,
+    }));
+  return attachments.length > 0 ? attachments : [fallbackAttachment];
+};
+
 export const getThumbnails = (rawAttachments: RawAttachment[]): string[] => {
   const thumbnails = rawAttachments
     .filter(

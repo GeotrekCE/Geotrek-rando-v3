@@ -1,0 +1,592 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailsCoverCarousel should display a DetailsCoverCarousel 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="slick-slider relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
+        dir="ltr"
+      >
+        <div
+          class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledLeftArrow-sc-1mnjwq0-2 hNSumv bnQTKM slick-arrow slick-prev"
+        />
+        <div
+          class="slick-list"
+        >
+          <div
+            class="slick-track"
+            style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
+          >
+            <div
+              aria-hidden="true"
+              class="slick-slide slick-cloned"
+              data-index="-1"
+              style="width: 0px;"
+              tabindex="-1"
+            >
+              <div>
+                <div
+                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                >
+                  <div
+                    class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                  >
+                    <span>
+                      Arrivée au col de Font Froide
+                    </span>
+                    <span>
+                       - 
+                    </span>
+                    <span>
+                      Dominique Vincent - PNE
+                    </span>
+                  </div>
+                  <img
+                    class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              aria-hidden="false"
+              class="slick-slide slick-active slick-current"
+              data-index="0"
+              style="outline: none; width: 0px;"
+              tabindex="-1"
+            >
+              <div>
+                <div
+                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                >
+                  <div
+                    class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                  >
+                    <span>
+                      Lac
+                    </span>
+                    <span>
+                       - 
+                    </span>
+                    <span>
+                      admin
+                    </span>
+                  </div>
+                  <img
+                    class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              aria-hidden="true"
+              class="slick-slide"
+              data-index="1"
+              style="outline: none; width: 0px;"
+              tabindex="-1"
+            >
+              <div>
+                <div
+                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                >
+                  <div
+                    class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                  >
+                    <span>
+                      Marmotte
+                    </span>
+                    <span>
+                       - 
+                    </span>
+                    <span>
+                      admin
+                    </span>
+                  </div>
+                  <img
+                    class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              aria-hidden="true"
+              class="slick-slide"
+              data-index="2"
+              style="outline: none; width: 0px;"
+              tabindex="-1"
+            >
+              <div>
+                <div
+                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                >
+                  <div
+                    class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                  >
+                    <span>
+                      Arrivée au col de Font Froide
+                    </span>
+                    <span>
+                       - 
+                    </span>
+                    <span>
+                      Dominique Vincent - PNE
+                    </span>
+                  </div>
+                  <img
+                    class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              aria-hidden="true"
+              class="slick-slide slick-cloned"
+              data-index="3"
+              style="width: 0px;"
+              tabindex="-1"
+            >
+              <div>
+                <div
+                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                >
+                  <div
+                    class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                  >
+                    <span>
+                      Lac
+                    </span>
+                    <span>
+                       - 
+                    </span>
+                    <span>
+                      admin
+                    </span>
+                  </div>
+                  <img
+                    class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              aria-hidden="true"
+              class="slick-slide slick-cloned"
+              data-index="4"
+              style="width: 0px;"
+              tabindex="-1"
+            >
+              <div>
+                <div
+                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                >
+                  <div
+                    class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                  >
+                    <span>
+                      Marmotte
+                    </span>
+                    <span>
+                       - 
+                    </span>
+                    <span>
+                      admin
+                    </span>
+                  </div>
+                  <img
+                    class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              aria-hidden="true"
+              class="slick-slide slick-cloned"
+              data-index="5"
+              style="width: 0px;"
+              tabindex="-1"
+            >
+              <div>
+                <div
+                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                >
+                  <div
+                    class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                  >
+                    <span>
+                      Arrivée au col de Font Froide
+                    </span>
+                    <span>
+                       - 
+                    </span>
+                    <span>
+                      Dominique Vincent - PNE
+                    </span>
+                  </div>
+                  <img
+                    class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 hNSumv krsGZP slick-arrow slick-next"
+        />
+        <div
+          class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 vTDvn slick-dots"
+        >
+          <ul>
+            <li
+              class="slick-active"
+            >
+              <button>
+                1
+              </button>
+            </li>
+            <li
+              class=""
+            >
+              <button>
+                2
+              </button>
+            </li>
+            <li
+              class=""
+            >
+              <button>
+                3
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="slick-slider relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
+      dir="ltr"
+    >
+      <div
+        class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledLeftArrow-sc-1mnjwq0-2 hNSumv bnQTKM slick-arrow slick-prev"
+      />
+      <div
+        class="slick-list"
+      >
+        <div
+          class="slick-track"
+          style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
+        >
+          <div
+            aria-hidden="true"
+            class="slick-slide slick-cloned"
+            data-index="-1"
+            style="width: 0px;"
+            tabindex="-1"
+          >
+            <div>
+              <div
+                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+              >
+                <div
+                  class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                >
+                  <span>
+                    Arrivée au col de Font Froide
+                  </span>
+                  <span>
+                     - 
+                  </span>
+                  <span>
+                    Dominique Vincent - PNE
+                  </span>
+                </div>
+                <img
+                  class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            aria-hidden="false"
+            class="slick-slide slick-active slick-current"
+            data-index="0"
+            style="outline: none; width: 0px;"
+            tabindex="-1"
+          >
+            <div>
+              <div
+                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+              >
+                <div
+                  class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                >
+                  <span>
+                    Lac
+                  </span>
+                  <span>
+                     - 
+                  </span>
+                  <span>
+                    admin
+                  </span>
+                </div>
+                <img
+                  class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            class="slick-slide"
+            data-index="1"
+            style="outline: none; width: 0px;"
+            tabindex="-1"
+          >
+            <div>
+              <div
+                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+              >
+                <div
+                  class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                >
+                  <span>
+                    Marmotte
+                  </span>
+                  <span>
+                     - 
+                  </span>
+                  <span>
+                    admin
+                  </span>
+                </div>
+                <img
+                  class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            class="slick-slide"
+            data-index="2"
+            style="outline: none; width: 0px;"
+            tabindex="-1"
+          >
+            <div>
+              <div
+                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+              >
+                <div
+                  class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                >
+                  <span>
+                    Arrivée au col de Font Froide
+                  </span>
+                  <span>
+                     - 
+                  </span>
+                  <span>
+                    Dominique Vincent - PNE
+                  </span>
+                </div>
+                <img
+                  class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            class="slick-slide slick-cloned"
+            data-index="3"
+            style="width: 0px;"
+            tabindex="-1"
+          >
+            <div>
+              <div
+                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+              >
+                <div
+                  class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                >
+                  <span>
+                    Lac
+                  </span>
+                  <span>
+                     - 
+                  </span>
+                  <span>
+                    admin
+                  </span>
+                </div>
+                <img
+                  class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            class="slick-slide slick-cloned"
+            data-index="4"
+            style="width: 0px;"
+            tabindex="-1"
+          >
+            <div>
+              <div
+                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+              >
+                <div
+                  class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                >
+                  <span>
+                    Marmotte
+                  </span>
+                  <span>
+                     - 
+                  </span>
+                  <span>
+                    admin
+                  </span>
+                </div>
+                <img
+                  class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            class="slick-slide slick-cloned"
+            data-index="5"
+            style="width: 0px;"
+            tabindex="-1"
+          >
+            <div>
+              <div
+                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+              >
+                <div
+                  class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                >
+                  <span>
+                    Arrivée au col de Font Froide
+                  </span>
+                  <span>
+                     - 
+                  </span>
+                  <span>
+                    Dominique Vincent - PNE
+                  </span>
+                </div>
+                <img
+                  class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 hNSumv krsGZP slick-arrow slick-next"
+      />
+      <div
+        class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 vTDvn slick-dots"
+      >
+        <ul>
+          <li
+            class="slick-active"
+          >
+            <button>
+              1
+            </button>
+          </li>
+          <li
+            class=""
+          >
+            <button>
+              2
+            </button>
+          </li>
+          <li
+            class=""
+          >
+            <button>
+              3
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

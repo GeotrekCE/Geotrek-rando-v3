@@ -92,7 +92,7 @@ export interface Details extends DetailsHtml {
   practice: Activity;
   title: string;
   place?: string;
-  img: Attachment;
+  imgs: Attachment[];
   tags: string[];
   informations: DetailsInformation;
   pois: Poi[];

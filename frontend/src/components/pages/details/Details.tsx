@@ -22,6 +22,8 @@ import { DetailsInformationDesk } from './components/DetailsInformationDesk';
 import { DetailsLabel } from './components/DetailsLabel';
 import { DetailsAdvice } from './components/DetailsAdvice';
 import { DetailsChildrenSection } from './components/DetailsChildrenSection';
+import { DetailsCoverCarousel } from './components/DetailsCoverCarousel';
+import { ImageWithLegend } from './components/DetailsCoverCarousel/DetailsCoverCarousel';
 interface Props {
   detailsId: string | string[] | undefined;
 }
@@ -87,27 +89,12 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
               relative -top-detailsHeaderMobile desktop:top-0
               desktop:w-3/5"
             >
-              <div className="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop">
-                {((details.img.legend && details.img.legend.length > 0) ||
-                  (details.img.author && details.img.author.length > 0)) && (
-                  <div
-                    className="absolute top-0 w-full text-center
-                      hidden desktop:block truncate
-                    bg-black bg-opacity-40
-                    text-white text-opacity-90 py-4 text-P2"
-                  >
-                    <span>{details.img.legend}</span>
-                    {details.img.legend &&
-                      details.img.legend.length > 0 &&
-                      details.img.author &&
-                      details.img.author.length > 0 && <span>{' - '}</span>}
-                    <span>{details.img.author}</span>
-                  </div>
+              <div className="h-coverDetailsMobile desktop:h-coverDetailsDesktop">
+                {details.imgs.length > 1 ? (
+                  <DetailsCoverCarousel attachments={details.imgs} />
+                ) : (
+                  <ImageWithLegend attachment={details.imgs[0]} />
                 )}
-                <img
-                  src={details.img.url}
-                  className="object-cover object-center overflow-hidden h-full w-full"
-                />
               </div>
               <div
                 className="desktop:py-0
