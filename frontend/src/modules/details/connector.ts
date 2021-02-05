@@ -45,7 +45,7 @@ export const getDetails = async (id: string): Promise<Details> => {
     const [informationDeskDictionnary, labelsDictionnary, children] = await Promise.all([
       getInformationDesks(),
       getLabels(),
-      getTrekResultsById(rawDetails.children),
+      getTrekResultsById(rawDetails.properties.children),
     ]);
     return adaptResults({
       rawDetails,
