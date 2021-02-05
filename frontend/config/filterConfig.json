@@ -33,13 +33,23 @@
     "options": [
       {
         "minValue": 0,
-        "maxValue": 30,
-        "label": "0 - 30min"
+        "maxValue": 1,
+        "label": "0 - 1h"
       },
       {
-        "minValue": 30,
-        "maxValue": 60,
-        "label": "30min - 1H"
+        "minValue": 1,
+        "maxValue": 2,
+        "label": "1h - 2h"
+      },
+      {
+        "minValue": 2,
+        "maxValue": 5,
+        "label": "2h - 5h"
+      },
+      {
+        "minValue": 5,
+        "maxValue": 10,
+        "label": "5h - 10h"
       }
     ]
   },
