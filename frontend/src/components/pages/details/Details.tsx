@@ -21,7 +21,7 @@ import { useOnScreenSection } from './hooks/useHighlightedSection';
 import { DetailsInformationDesk } from './components/DetailsInformationDesk';
 import { DetailsLabel } from './components/DetailsLabel';
 import { DetailsAdvice } from './components/DetailsAdvice';
-import { DetailsCardCarousel } from './components/DetailsCardCarousel';
+import { DetailsChildrenSection } from './components/DetailsChildrenSection';
 interface Props {
   detailsId: string | string[] | undefined;
 }
@@ -119,6 +119,16 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     ambiance={details.ambiance}
                   />
                 </div>
+
+                {details.children.length > 0 && (
+                  <DetailsChildrenSection
+                    trekChildren={details.children}
+                    title={intl.formatMessage(
+                      { id: 'details.children' },
+                      { count: details.children.length },
+                    )}
+                  />
+                )}
 
                 {details.pois.length > 0 && (
                   <div ref={setPoisRef}>

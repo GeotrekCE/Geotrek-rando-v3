@@ -13,14 +13,14 @@ import { mockAccessibilitiesRoute } from 'modules/accessibility/mocks';
 import { mockSourceRoute } from 'modules/source/mocks';
 import { mockInformationDeskRoute } from 'modules/informationDesk/mocks';
 import { mockLabelRoute } from 'modules/label/mocks';
-import { DetailsUI } from '../';
 import {
   mockNetworksResponse,
   rawActivity,
   rawDetails as rawDetailsMock,
   rawDifficulty,
   rawRoute,
-} from '../mocks/Details.mocks';
+} from 'modules/details/mocks/mocks';
+import { DetailsUI } from '../';
 import { parseHtmlToList } from '../utils';
 
 describe('Details', () => {
@@ -49,7 +49,7 @@ describe('Details', () => {
       .query({
         language: 'fr',
         fields:
-          'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,cities,disabled_infrastructure,accessibilities,source,information_desks,labels,advice,points_reference',
+          'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,cities,disabled_infrastructure,accessibilities,source,information_desks,labels,advice,points_reference,children',
         format: 'geojson',
       })
       .reply(200, rawDetailsMock);

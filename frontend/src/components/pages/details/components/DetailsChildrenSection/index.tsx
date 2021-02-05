@@ -1,0 +1,1 @@
+export { DetailsChildrenSection } from './DetailsChildrenSection';

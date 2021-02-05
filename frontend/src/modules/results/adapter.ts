@@ -29,6 +29,40 @@ const isRawTrekResultComplete = (
   rawTrekResult.reservation_system !== undefined &&
   rawTrekResult.themes !== undefined;
 
+export const adaptTrekResultList = ({
+  resultsList,
+  difficulties,
+  themes,
+  activities,
+}: {
+  resultsList: Partial<RawTrekResult>[];
+  difficulties: DifficultyChoices;
+  themes: Choices;
+  activities: ActivityChoices;
+}): TrekResult[] =>
+  resultsList.filter(isRawTrekResultComplete).map(rawResult => ({
+    id: rawResult.id,
+    activityIcon: 'TODO',
+    place: rawResult.departure,
+    title: rawResult.name,
+    tags: rawResult.themes.map(themeId => themes[themeId].label),
+    thumbnailUri: getThumbnail(rawResult.attachments) ?? fallbackImgUri,
+    practice: activities[rawResult.practice],
+    informations: {
+      duration: rawResult.duration !== null ? formatHours(rawResult.duration) : null,
+      distance: `${formatDistance(rawResult.length_2d)}`,
+      elevation: `+${rawResult.ascent}${dataUnits.distance}`,
+      difficulty:
+        rawResult.difficulty !== null
+          ? {
+              label: difficulties[rawResult.difficulty].label,
+              pictogramUri: difficulties[rawResult.difficulty].pictogramUri,
+            }
+          : null,
+      reservationSystem: rawResult.reservation_system,
+    },
+  }));
+
 export const adaptTrekResults = ({
   rawTrekResults,
   difficulties,
@@ -41,30 +75,12 @@ export const adaptTrekResults = ({
   activities: ActivityChoices;
 }): TrekResults => {
   const resultsList = rawTrekResults.results;
-  const adaptedResultsList: TrekResult[] = resultsList
-    .filter(isRawTrekResultComplete)
-    .map(rawResult => ({
-      id: rawResult.id,
-      activityIcon: 'TODO',
-      place: rawResult.departure,
-      title: rawResult.name,
-      tags: rawResult.themes.map(themeId => themes[themeId].label),
-      thumbnailUri: getThumbnail(rawResult.attachments) ?? fallbackImgUri,
-      practice: activities[rawResult.practice],
-      informations: {
-        duration: rawResult.duration !== null ? formatHours(rawResult.duration) : null,
-        distance: `${formatDistance(rawResult.length_2d)}`,
-        elevation: `+${rawResult.ascent}${dataUnits.distance}`,
-        difficulty:
-          rawResult.difficulty !== null
-            ? {
-                label: difficulties[rawResult.difficulty].label,
-                pictogramUri: difficulties[rawResult.difficulty].pictogramUri,
-              }
-            : null,
-        reservationSystem: rawResult.reservation_system,
-      },
-    }));
+  const adaptedResultsList: TrekResult[] = adaptTrekResultList({
+    resultsList,
+    difficulties,
+    themes,
+    activities,
+  });
 
   return {
     resultsNumber: rawTrekResults.count || 0,
