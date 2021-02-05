@@ -1,4 +1,4 @@
-import { RawAttachment } from 'modules/activitySuggestions/interface';
+import { RawAttachment } from 'modules/interface';
 import { TouristicContentCategory } from 'modules/touristicContentCategory/interface';
 
 export interface RawTouristicContent {
