@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from 'react-query';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { getTrekResults } from 'modules/results/connector';
 import { TrekResults } from 'modules/results/interface';
@@ -7,12 +7,24 @@ import { FilterState } from 'modules/filters/interface';
 
 import { formatInfiniteQuery, parseFilters } from '../utils';
 
+const computeFilterHash = (filtersState: FilterState[]) =>
+  filtersState
+    .map(filterState =>
+      [
+        filterState.id,
+        ...filterState.selectedOptions.map(selectedOption => selectedOption.value),
+      ].join(''),
+    )
+    .join('');
+
 export const useTrekResults = (filtersState: FilterState[]) => {
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
   const hideMobileMap = () => setMobileMapState('HIDDEN');
 
   const parsedFiltersState = parseFilters(filtersState);
+
+  const filterHash = useRef(computeFilterHash(filtersState));
 
   const {
     data,
@@ -36,6 +48,14 @@ export const useTrekResults = (filtersState: FilterState[]) => {
       getNextPageParam: lastPageResult => lastPageResult.nextPageId ?? undefined,
     },
   );
+
+  useEffect(() => {
+    const currentFilterHash = computeFilterHash(filtersState);
+    if (currentFilterHash !== filterHash.current) {
+      filterHash.current = currentFilterHash;
+      void refetch();
+    }
+  }, [filtersState]);
 
   return {
     searchResults: formatInfiniteQuery(data),
