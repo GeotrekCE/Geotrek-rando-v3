@@ -1,12 +1,4 @@
-export interface RawAttachment {
-  author: string;
-  backend: string;
-  thumbnail: string;
-  legend: string;
-  title: string;
-  url: string;
-  type: string;
-}
+import { RawAttachment } from 'modules/interface';
 
 export interface RawActivitySuggestion {
   id: string;

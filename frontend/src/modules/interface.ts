@@ -24,3 +24,18 @@ export interface Coordinate {
   y: number;
   z: number;
 }
+export interface RawAttachment {
+  author: string;
+  backend: string;
+  thumbnail: string;
+  legend: string;
+  title: string;
+  url: string;
+  type: string;
+}
+
+export interface Attachment {
+  author: string;
+  legend: string;
+  url: string;
+}

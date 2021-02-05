@@ -1,7 +1,13 @@
-import { RawAttachment } from 'modules/activitySuggestions/interface';
+import { Attachment, RawAttachment } from 'modules/interface';
 import { APIResponseForList } from 'services/api/interface';
 
 const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
+
+const fallbackAttachment: Attachment = {
+  url: fallbackImgUri,
+  author: 'Default Author',
+  legend: 'Default legend',
+};
 
 export const getThumbnail = (rawAttachments: RawAttachment[]): string | null => {
   let thumbnail: string | null = null;
@@ -11,6 +17,21 @@ export const getThumbnail = (rawAttachments: RawAttachment[]): string | null => 
     }
   });
   return thumbnail;
+};
+
+export const getAttachment = (rawAttachments: RawAttachment[]): Attachment => {
+  const rawAttachmentImg = rawAttachments.find(
+    rawAttachment =>
+      rawAttachment.type === 'image' && rawAttachment.url !== null && rawAttachment.url.length > 0,
+  );
+  const attachment = rawAttachmentImg
+    ? {
+        url: rawAttachmentImg.url,
+        legend: rawAttachmentImg.legend,
+        author: rawAttachmentImg.author,
+      }
+    : fallbackAttachment;
+  return attachment;
 };
 
 export const getThumbnails = (rawAttachments: RawAttachment[]): string[] => {

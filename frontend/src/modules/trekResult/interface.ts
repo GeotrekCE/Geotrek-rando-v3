@@ -1,4 +1,4 @@
-import { RawAttachment } from 'modules/activitySuggestions/interface';
+import { RawAttachment } from 'modules/interface';
 import { Coordinate, RawSegmentGeometry } from 'modules/interface';
 
 export interface RawTrekPopupResult {

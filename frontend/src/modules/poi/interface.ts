@@ -1,4 +1,4 @@
-import { RawAttachment } from 'modules/activitySuggestions/interface';
+import { RawAttachment } from 'modules/interface';
 import { PoiType } from 'modules/poiType/interface';
 import { Coordinate, RawPointGeometry } from 'modules/interface';
 

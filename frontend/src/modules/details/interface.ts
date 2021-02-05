@@ -3,8 +3,13 @@ import { Difficulty } from 'modules/filters/difficulties/interface';
 import { CourseType } from 'modules/filters/courseType/interface';
 import { Network } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
-import { RawCoordinate, RawMultiPointGeometry, RawSegmentGeometry } from 'modules/interface';
-import { RawAttachment } from 'modules/activitySuggestions/interface';
+import {
+  Attachment,
+  RawAttachment,
+  RawCoordinate,
+  RawMultiPointGeometry,
+  RawSegmentGeometry,
+} from 'modules/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { Accessibility } from 'modules/accessibility/interface';
 import { Source } from 'modules/source/interface';
@@ -87,7 +92,7 @@ export interface Details extends DetailsHtml {
   practice: Activity;
   title: string;
   place?: string;
-  imgUrl: string | null;
+  img: Attachment;
   tags: string[];
   informations: DetailsInformation;
   pois: Poi[];

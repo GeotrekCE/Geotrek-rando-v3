@@ -1,5 +1,5 @@
 import { Activity } from 'modules/activities/interface';
-import { RawAttachment } from 'modules/activitySuggestions/interface';
+import { RawAttachment } from 'modules/interface';
 
 export interface TrekResults {
   resultsNumber: number;
