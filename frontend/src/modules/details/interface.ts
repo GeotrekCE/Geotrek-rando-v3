@@ -7,7 +7,7 @@ import {
   Attachment,
   RawAttachment,
   RawCoordinate,
-  RawLineStringGeometry2D,
+  RawLineStringGeometry3D,
   RawMultiPointGeometry,
 } from 'modules/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
@@ -20,7 +20,7 @@ import { TrekResult } from 'modules/results/interface';
 export interface RawDetails {
   type: string;
   bbox: number[];
-  geometry: RawLineStringGeometry2D;
+  geometry: RawLineStringGeometry3D;
   properties: RawDetailsProperties;
 }
 

@@ -10,6 +10,11 @@ export interface RawLineStringGeometry2D {
   coordinates: RawCoordinate2D[];
 }
 
+export interface RawLineStringGeometry3D {
+  type: 'LineString';
+  coordinates: RawCoordinate3D[];
+}
+
 export interface RawPointGeometry {
   type: 'Point';
   coordinates: RawCoordinate2D;
