@@ -31,6 +31,7 @@ interface Props {
   tags: string[];
   thumbnailUri: string;
   badgeIconUri: string;
+  className?: string;
   informations: {
     duration: string | null;
     distance: string;
@@ -48,10 +49,11 @@ export const ResultCard: React.FC<Props> = ({
   thumbnailUri,
   badgeIconUri,
   informations,
+  className,
 }) => {
   const { detailsPageUrl } = useResultCard(id, title);
   return (
-    <Container>
+    <Container className={className}>
       <ImageContainer imageUri={thumbnailUri}>
         <ActivityBadge iconUri={badgeIconUri} />
       </ImageContainer>
@@ -106,9 +108,9 @@ export const ResultCard: React.FC<Props> = ({
 
 const Container = styled.div`
   display: flex;
+  flex: none;
   flex-direction: column;
   cursor: pointer;
-  margin: ${getSpacing(4)} 0;
   &:hover {
     box-shadow: ${shadow.small};
   }
@@ -119,7 +121,6 @@ const Container = styled.div`
     css`
       width: 100%;
       flex-direction: row;
-      margin: ${getSpacing(6)} 0;
     `,
   )}
 `;

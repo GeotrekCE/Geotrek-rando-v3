@@ -141,6 +141,7 @@ export const SearchUI: React.FC<Props> = ({ initialFiltersState }) => {
                       thumbnailUri={searchResult.thumbnailUri}
                       badgeIconUri={searchResult.practice.pictogram}
                       informations={searchResult.informations}
+                      className="my-4 desktop:my-6"
                     />
                   ))}
                 </InfiniteScroll>
