@@ -54,7 +54,7 @@ const SearchMap: React.FC<PropsType> = props => {
     <>
       <MapContainer
         center={mapConfig.searchMapCenter as [number, number]}
-        zoom={13}
+        zoom={mapConfig.searchMapZoom}
         scrollWheelZoom={false}
         style={{ height: '100%', width: '100%' }}
         zoomControl={props.type === 'DESKTOP'}
