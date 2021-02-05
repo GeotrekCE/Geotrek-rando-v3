@@ -1,6 +1,6 @@
 import { Activity } from 'modules/activities/interface';
 import { Choices } from 'modules/filters/interface';
-import { getAttachment } from 'modules/utils/adapter';
+import { getAttachments } from 'modules/utils/adapter';
 import { dataUnits } from 'modules/results/adapter';
 import { Difficulty } from 'modules/filters/difficulties/interface';
 import { formatDistance } from 'modules/results/utils';
@@ -56,7 +56,7 @@ export const adaptResults = ({
         cityDictionnary[rawDetailsProperties.cities[0]] !== undefined
           ? cityDictionnary[rawDetailsProperties.cities[0]].name
           : rawDetailsProperties.departure,
-      img: getAttachment(rawDetailsProperties.attachments),
+      imgs: getAttachments(rawDetailsProperties.attachments),
       practice: activity,
       transport: rawDetailsProperties.public_transport,
       access_parking:
