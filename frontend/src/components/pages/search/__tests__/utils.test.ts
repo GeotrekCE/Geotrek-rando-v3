@@ -1,3 +1,4 @@
+import { FilterState } from 'modules/filters/interface';
 import { TrekResults } from 'modules/results/interface';
 import {
   concatResultsPages,
@@ -8,7 +9,7 @@ import {
   parseSelectedOptions,
 } from '../utils';
 
-const MockFilterState = {
+const MockFilterState: FilterState = {
   id: 'difficulty',
   options: [
     { value: '1', label: 'Très facile' },
@@ -22,8 +23,10 @@ const MockFilterState = {
     { value: '3', label: 'Intermédiaire' },
     { value: '4', label: 'Difficile' },
   ],
+  type: 'MULTIPLE',
+  status: 'ENABLED',
 };
-const MockFilterState2 = {
+const MockFilterState2: FilterState = {
   id: 'difficulty2',
   options: [
     { value: '2', label: 'Facile' },
@@ -37,8 +40,10 @@ const MockFilterState2 = {
     { value: '3', label: 'Intermédiaire' },
     { value: '4', label: 'Difficile' },
   ],
+  type: 'MULTIPLE',
+  status: 'ENABLED',
 };
-const MockFilterState3 = {
+const MockFilterState3: FilterState = {
   id: 'difficulty3',
   options: [
     { value: '1', label: 'Très facile' },
@@ -52,6 +57,8 @@ const MockFilterState3 = {
     { value: '2', label: 'Facile' },
     { value: '4', label: 'Difficile' },
   ],
+  type: 'MULTIPLE',
+  status: 'ENABLED',
 };
 
 const MockSelectedOptions = [
