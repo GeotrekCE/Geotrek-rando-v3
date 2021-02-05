@@ -12,7 +12,7 @@ export interface RawLineStringGeometry {
 
 export interface RawPointGeometry {
   type: 'Point';
-  coordinates: RawCoordinate;
+  coordinates: RawCoordinate2D;
 }
 
 export interface RawMultiPointGeometry {
@@ -58,4 +58,19 @@ export interface Attachment {
   author: string;
   legend: string;
   url: string;
+}
+
+export interface LineStringGeometry {
+  type: 'LineString';
+  coordinates: Coordinate2D[];
+}
+
+export interface PointGeometry {
+  type: 'Point';
+  coordinates: Coordinate2D;
+}
+
+export interface PolygonGeometry {
+  type: 'Polygon';
+  coordinates: Coordinate2D[][];
 }
