@@ -49,7 +49,7 @@ export const Popup: React.FC<Props> = ({ id, handleOpen, handleClose }) => {
                 {trekPopupResult.title}
               </Title>
               <Link href={generateResultDetailsUrl(id, trekPopupResult.title)}>
-                <Button className="hidden desktop:block" type="button">
+                <Button type="button">
                   <span className="text-center w-full">
                     <FormattedMessage id="search.map.seeResult" />
                   </span>
