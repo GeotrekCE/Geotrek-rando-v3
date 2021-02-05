@@ -42,17 +42,9 @@ describe('formFiltersToUrlParams', () => {
         id: 'difficulty',
         selectedOptions: ['3', '4'],
       },
-      {
-        id: 'difficulty2',
-        selectedOptions: ['1', '3', '4'],
-      },
-      {
-        id: 'difficulty3',
-        selectedOptions: ['2', '4'],
-      },
     ];
     const output = formatFiltersToUrlParams(input);
-    const expected = { difficulty: '3,4', difficulty2: '1,3,4', difficulty3: '2,4' };
+    const expected = { difficulty_min: '3', difficulty_max: '4' };
     expect(output).toStrictEqual(expected);
   });
 
