@@ -10,7 +10,7 @@ Object {
         dir="ltr"
       >
         <div
-          class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledLeftArrow-sc-1mnjwq0-2 cMPeDc bnQTKM slick-arrow slick-prev"
+          class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledLeftArrow-sc-1mnjwq0-2 hNSumv bnQTKM slick-arrow slick-prev"
         />
         <div
           class="slick-list"
@@ -239,10 +239,10 @@ Object {
           </div>
         </div>
         <div
-          class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 cMPeDc krsGZP slick-arrow slick-next"
+          class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 hNSumv krsGZP slick-arrow slick-next"
         />
         <div
-          class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 ghPGTS slick-dots"
+          class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 vTDvn slick-dots"
         >
           <ul>
             <li
@@ -277,7 +277,7 @@ Object {
       dir="ltr"
     >
       <div
-        class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledLeftArrow-sc-1mnjwq0-2 cMPeDc bnQTKM slick-arrow slick-prev"
+        class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledLeftArrow-sc-1mnjwq0-2 hNSumv bnQTKM slick-arrow slick-prev"
       />
       <div
         class="slick-list"
@@ -506,10 +506,10 @@ Object {
         </div>
       </div>
       <div
-        class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 cMPeDc krsGZP slick-arrow slick-next"
+        class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 hNSumv krsGZP slick-arrow slick-next"
       />
       <div
-        class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 ghPGTS slick-dots"
+        class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 vTDvn slick-dots"
       >
         <ul>
           <li
