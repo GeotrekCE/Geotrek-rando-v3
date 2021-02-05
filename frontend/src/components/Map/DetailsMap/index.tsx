@@ -12,6 +12,8 @@ import { FilterButton } from '../components/FilterButton';
 import { POIMarkers } from './POIMarkers';
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
 import { PointsReference } from './PointsReference';
+import { getMapConfig } from '../config';
+import { Credits } from '../components/Credits';
 
 export type PropsType = {
   poiPoints?: { location: { x: number; y: number }; pictogramUri: string; name: string }[];
@@ -36,6 +38,8 @@ const DetailsMap: React.FC<PropsType> = props => {
     }
   };
 
+  const mapConfig = getMapConfig();
+
   return (
     <>
       <MapContainer
@@ -46,6 +50,7 @@ const DetailsMap: React.FC<PropsType> = props => {
           [props.bbox.corner1.y, props.bbox.corner1.x],
           [props.bbox.corner2.y, props.bbox.corner2.x],
         ]}
+        attributionControl={false}
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -66,6 +71,7 @@ const DetailsMap: React.FC<PropsType> = props => {
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
+      <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
     </>
   );
 };

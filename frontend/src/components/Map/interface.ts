@@ -1,3 +1,4 @@
 export interface MapConfig {
-  searchMapCenter: [number, number];
+  searchMapCenter: number[];
+  mapCredits: string;
 }
