@@ -1,6 +1,6 @@
 import { Activity } from 'modules/activities/interface';
 import { Choices } from 'modules/filters/interface';
-import { getThumbnail } from 'modules/utils/adapter';
+import { getAttachment } from 'modules/utils/adapter';
 import { dataUnits } from 'modules/results/adapter';
 import { Difficulty } from 'modules/filters/difficulties/interface';
 import { formatDistance } from 'modules/results/utils';
@@ -16,8 +16,6 @@ import { InformationDeskDictionnary } from 'modules/informationDesk/interface';
 import { LabelDictionnary } from 'modules/label/interface';
 import { TrekResult } from 'modules/results/interface';
 import { Details, RawDetails } from './interface';
-
-const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
 
 export const adaptResults = ({
   rawDetails: { properties: rawDetailsProperties, geometry, bbox },
@@ -58,7 +56,7 @@ export const adaptResults = ({
         cityDictionnary[rawDetailsProperties.cities[0]] !== undefined
           ? cityDictionnary[rawDetailsProperties.cities[0]].name
           : rawDetailsProperties.departure,
-      imgUrl: getThumbnail(rawDetailsProperties.attachments) ?? fallbackImgUri,
+      img: getAttachment(rawDetailsProperties.attachments),
       practice: activity,
       transport: rawDetailsProperties.public_transport,
       access_parking:
