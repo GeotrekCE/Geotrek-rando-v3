@@ -13,32 +13,42 @@ export const getTrekResults = async (
   filtersState: QueryFilterState[],
   pageNumber = 1,
 ): Promise<TrekResults> => {
-  const [rawTrekResults, difficulties, themes, activities] = await Promise.all([
-    fetchTrekResults({
-      language: 'fr',
-      page_size: getApiCallsConfig().searchResultsPageSize,
-      page: pageNumber,
-      ...formatFiltersToUrlParams(filtersState),
-    }),
-    getDifficulties(),
-    getThemes(),
-    getActivities(),
-  ]);
+  try {
+    const [rawTrekResults, difficulties, themes, activities] = await Promise.all([
+      fetchTrekResults({
+        language: 'fr',
+        page_size: getApiCallsConfig().searchResultsPageSize,
+        page: pageNumber,
+        ...formatFiltersToUrlParams(filtersState),
+      }),
+      getDifficulties(),
+      getThemes(),
+      getActivities(),
+    ]);
 
-  return adaptTrekResults({ rawTrekResults, difficulties, themes, activities });
+    return adaptTrekResults({ rawTrekResults, difficulties, themes, activities });
+  } catch (e) {
+    console.error('Error in connector / results', e);
+    throw e;
+  }
 };
 
 export const getTrekResultsById = async (trekIds: number[]): Promise<TrekResult[]> => {
-  if (trekIds === null || trekIds.length === 0) {
-    return [];
+  try {
+    if (trekIds === null || trekIds === undefined || trekIds.length === 0) {
+      return [];
+    }
+    const [difficulties, themes, activities] = await Promise.all([
+      getDifficulties(),
+      getThemes(),
+      getActivities(),
+    ]);
+    const rawTrekResults = await Promise.all(
+      trekIds.map(trekId => fetchTrekResult({ language: 'fr' }, trekId)),
+    );
+    return adaptTrekResultList({ resultsList: rawTrekResults, difficulties, themes, activities });
+  } catch (e) {
+    console.error('Error in results connector', e);
+    throw e;
   }
-  const [difficulties, themes, activities] = await Promise.all([
-    getDifficulties(),
-    getThemes(),
-    getActivities(),
-  ]);
-  const rawTrekResults = await Promise.all(
-    trekIds.map(trekId => fetchTrekResult({ language: 'fr' }, trekId)),
-  );
-  return adaptTrekResultList({ resultsList: rawTrekResults, difficulties, themes, activities });
 };
