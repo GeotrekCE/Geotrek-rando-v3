@@ -1,4 +1,5 @@
 {
   "searchMapCenter": [44.748717, 6.1189669],
-  "mapCredits": "OpenStreetMap"
+  "mapCredits": "OpenTopoMap",
+  "mapLayerUrl": "https://a.tile.opentopomap.org/{z}/{x}/{y}.png"
 }
