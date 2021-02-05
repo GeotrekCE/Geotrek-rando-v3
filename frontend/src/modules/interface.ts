@@ -1,4 +1,9 @@
+/** @deprecated please use RawCoordinate2D or RawCoordinate3D instead */
 export type RawCoordinate = number[];
+
+export type RawCoordinate2D = [number, number];
+
+export type RawCoordinate3D = [number, number, number];
 
 export interface RawSegmentGeometry {
   type: string;
