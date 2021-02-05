@@ -257,6 +257,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                   <div ref={setTouristicContentsRef}>
                     <DetailsCardSection
                       title={intl.formatMessage({ id: 'details.touristicContent' })}
+                      displayBadge
                       detailsCards={details.touristicContents.map(touristicContent => ({
                         name: touristicContent.name ?? '',
                         place: touristicContent.category.label,
