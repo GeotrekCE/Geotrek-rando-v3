@@ -16,7 +16,11 @@ export const useFilterSubMenu = (
 
   const selectOption = (option: Option) => {
     if (currentFilterId !== null && currentFilterState) {
-      setFilterSelectedOptions(currentFilterId, [...currentFilterState.selectedOptions, option]);
+      if (currentFilterState.type === 'SINGLE') {
+        setFilterSelectedOptions(currentFilterId, [option]);
+      } else {
+        setFilterSelectedOptions(currentFilterId, [...currentFilterState.selectedOptions, option]);
+      }
     }
   };
 
