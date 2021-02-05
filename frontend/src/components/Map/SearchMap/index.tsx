@@ -60,7 +60,7 @@ const SearchMap: React.FC<PropsType> = props => {
         zoomControl={props.type === 'DESKTOP'}
         attributionControl={false}
       >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <TileLayer url={mapConfig.mapLayerUrl} />
         <ClusterContainer enabled={props.shouldUseClusters ?? false}>
           {props.points !== undefined &&
             props.points.map(
