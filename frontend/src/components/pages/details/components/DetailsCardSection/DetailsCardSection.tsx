@@ -3,15 +3,23 @@ import { marginDetailsChild } from '../../Details';
 import { DetailsCard, DetailsCardProps } from '../DetailsCard/DetailsCard';
 
 interface DetailsCardSectionProps {
+  displayBadge?: boolean;
   detailsCards: DetailsCardProps[];
   title: string;
 }
 
-export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({ detailsCards, title }) => {
+export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
+  detailsCards,
+  title,
+  displayBadge = false,
+}) => {
   return (
     <div className="mt-6 desktop:mt-12">
-      <div className={`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild}`}>
+      <div
+        className={`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild} flex items-center`}
+      >
         {title}
+        {displayBadge && <Badge label={detailsCards.length} />}
       </div>
       <div
         className="flex desktop:flex-col items-stretch
@@ -34,6 +42,26 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({ detailsC
       <div className={marginDetailsChild}>
         <Separator />
       </div>
+    </div>
+  );
+};
+
+interface BadgeProps {
+  label: number;
+}
+
+export const Badge: React.FC<BadgeProps> = ({ label }) => {
+  return (
+    <div
+      className="h-8 w-8
+      ml-3
+      rounded-lg
+      grid place-items-center
+      border-solid border-primary1 border-3 shadow-sm
+      text-P1 desktop:text-H4 font-bold text-primary1
+      "
+    >
+      {label}
     </div>
   );
 };
