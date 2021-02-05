@@ -185,6 +185,7 @@ export const SearchUI: React.FC<Props> = ({ initialFiltersState }) => {
         <SearchMapDynamicComponent
           hideMap={hideMobileMap}
           type="MOBILE"
+          points={mapResults}
           openFilterMenu={displayMenu}
           hasFilters={activeFiltersNumber > 0}
           shouldUseClusters
