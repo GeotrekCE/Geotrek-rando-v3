@@ -15,7 +15,7 @@ export interface RawLineStringGeometry3D {
   coordinates: RawCoordinate3D[];
 }
 
-export interface RawPointGeometry {
+export interface RawPointGeometry2D {
   type: 'Point';
   coordinates: RawCoordinate2D;
 }

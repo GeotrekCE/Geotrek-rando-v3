@@ -4,7 +4,7 @@ import {
   PointGeometry,
   PolygonGeometry,
   RawLineStringGeometry2D,
-  RawPointGeometry,
+  RawPointGeometry2D,
   RawPolygonGeometry,
 } from 'modules/interface';
 import { TouristicContentCategory } from 'modules/touristicContentCategory/interface';
@@ -14,7 +14,7 @@ export interface RawTouristicContent {
   name: string;
   category: number;
   description_teaser: string;
-  geometry: RawPointGeometry | RawPolygonGeometry | RawLineStringGeometry2D | null;
+  geometry: RawPointGeometry2D | RawPolygonGeometry | RawLineStringGeometry2D | null;
 }
 
 export interface TouristicContent {
