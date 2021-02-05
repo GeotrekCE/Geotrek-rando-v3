@@ -42,7 +42,7 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
   );
 };
 
-const Step: React.FC<{ number: number }> = ({ number }) => (
+export const Step: React.FC<{ number: number }> = ({ number }) => (
   <div
     className="h-8 w-8 desktop:h-12 desktop:w-12
     rounded-full
