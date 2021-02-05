@@ -3,7 +3,7 @@ import {
   PointGeometry,
   PolygonGeometry,
   RawCoordinate2D,
-  RawLineStringGeometry,
+  RawLineStringGeometry2D,
   RawPointGeometry,
   RawPolygonGeometry,
 } from 'modules/interface';
@@ -15,7 +15,7 @@ export const adaptGeometry2D = (geometry: RawCoordinate2D): { x: number; y: numb
 
 /** Adapt any type of raw geometry */
 export const adaptGeometry = (
-  geometry: RawPolygonGeometry | RawLineStringGeometry | RawPointGeometry,
+  geometry: RawPolygonGeometry | RawLineStringGeometry2D | RawPointGeometry,
 ): PolygonGeometry | LineStringGeometry | PointGeometry => {
   switch (geometry.type) {
     case 'Polygon':

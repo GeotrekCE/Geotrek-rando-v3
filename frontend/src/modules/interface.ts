@@ -5,7 +5,7 @@ export type RawCoordinate2D = [number, number];
 
 export type RawCoordinate3D = [number, number, number];
 
-export interface RawLineStringGeometry {
+export interface RawLineStringGeometry2D {
   type: 'LineString';
   coordinates: RawCoordinate2D[];
 }
