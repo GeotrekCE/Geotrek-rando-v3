@@ -5,8 +5,7 @@
   },
   {
     "id": "service",
-    "type": "MULTIPLE",
-    "options": []
+    "type": "MULTIPLE"
   },
   {
     "id": "theme",
