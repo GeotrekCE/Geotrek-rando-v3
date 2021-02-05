@@ -1,4 +1,6 @@
 import { QueryFilterState } from 'components/pages/search/utils';
+import { getFiltersConfig } from 'modules/filters/config';
+import { FilterConfig, FilterConfigWithOptions } from 'modules/filters/interface';
 
 export const formatDistance = (distance: number): string => {
   if (distance >= 1000) {
@@ -14,12 +16,69 @@ const roundWithDecimals = (number: number, decimals = 1) => {
   }).format(number);
 };
 
+// We must initialize our vaariable min and max so min is greater than any possible value and max is lower than any possible values
+const MIN_VALUE = 99999;
+const MAX_VALUE = -1;
 /**
  * Formats an array of selected options into a value understandable by the API
  * @param selectedOptions Array of selected options
  */
 export const formatSelectedFilter = (selectedOptions: string[]): string =>
   selectedOptions.join(',');
+
+const getMinAndMaxValueFromSelectedOptions = (options: string[]) =>
+  options.reduce(
+    (currentMinAndMax, currentOption) => ({
+      min:
+        currentMinAndMax.min === null
+          ? parseInt(currentOption, 10)
+          : Math.min(currentMinAndMax.min, parseInt(currentOption, 10)),
+      max:
+        currentMinAndMax.max === null
+          ? parseInt(currentOption, 10)
+          : Math.max(currentMinAndMax.max, parseInt(currentOption, 10)),
+    }),
+    { min: MIN_VALUE, max: MAX_VALUE },
+  );
+
+const getMinAndMaxValueFromConfig = ({
+  config,
+  queryFilterState,
+}: {
+  config: (FilterConfig | FilterConfigWithOptions)[];
+  queryFilterState: QueryFilterState;
+}): { [filterId: string]: string } => {
+  const filterId = queryFilterState.id;
+  const filterConfig = config.find(element => element.id === filterId);
+  if (filterConfig === undefined || filterConfig.options === undefined) return {};
+  const { min: minSelectedValue, max: maxSelectedValue } = getMinAndMaxValueFromSelectedOptions(
+    queryFilterState.selectedOptions,
+  );
+  let min = '';
+  let max = '';
+  filterConfig.options.forEach(option => {
+    if (option.minValue === minSelectedValue) {
+      min = option.minValue.toString();
+    }
+    if (option.minValue === maxSelectedValue) {
+      max = option.maxValue.toString();
+    }
+  });
+  return {
+    [`${filterId}_min`]: min,
+    [`${filterId}_max`]: max,
+  };
+};
+
+const formatFilter = (filterState: QueryFilterState) => {
+  const config = getFiltersConfig();
+  if (filterState.id === 'duration') {
+    return getMinAndMaxValueFromConfig({ queryFilterState: filterState, config });
+  }
+  return {
+    [filterState.id]: formatSelectedFilter(filterState.selectedOptions),
+  };
+};
 
 /**
  * Formats an array of Filters to an object of query parameters
@@ -28,16 +87,17 @@ export const formatSelectedFilter = (selectedOptions: string[]): string =>
 export const formatFiltersToUrlParams = (
   filtersState: QueryFilterState[],
 ): { [key: string]: string } =>
-  filtersState.reduce<{ [key: string]: string }>(
-    (queryParameters, currentFilterState) =>
-      currentFilterState.selectedOptions.length > 0
-        ? {
-            ...queryParameters,
-            [currentFilterState.id]: formatSelectedFilter(currentFilterState.selectedOptions),
-          }
-        : queryParameters,
-    {},
-  );
+  filtersState.reduce<{ [key: string]: string }>((queryParameters, currentFilterState) => {
+    if (currentFilterState.selectedOptions.length > 0) {
+      const filter = formatFilter(currentFilterState);
+      return {
+        ...queryParameters,
+        ...filter,
+      };
+    } else {
+      return queryParameters;
+    }
+  }, {});
 
 /** Extracts nextPageId from nextPageUrl */
 export const extractNextPageId = (nextPageUrl: string | null): string | null => {
