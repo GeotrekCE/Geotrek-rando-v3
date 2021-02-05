@@ -148,6 +148,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     />
                   </div>
                 )}
+
                 {details.description && (
                   <div ref={setDescriptionRef}>
                     <DetailsDescription
@@ -156,6 +157,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     />
                   </div>
                 )}
+
                 {(details.labels.length > 0 ||
                   (details.advice !== null && details.advice.length > 0)) && (
                   <DetailsSection titleId="details.recommandations" className={marginDetailsChild}>
@@ -174,6 +176,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     )}
                   </DetailsSection>
                 )}
+
                 {(details.informationDesks.length > 0 ||
                   details.transport ||
                   details.access_parking) && (
@@ -205,11 +208,13 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                         ))}
                       </DetailsSection>
                     )}
+
                     {details.transport && (
                       <DetailsSection titleId="details.transport" className={marginDetailsChild}>
                         <HtmlText>{parse(details.transport)}</HtmlText>
                       </DetailsSection>
                     )}
+
                     {details.access_parking && (
                       <DetailsSection
                         titleId="details.access_parking"
@@ -222,10 +227,10 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 )}
 
                 {(details.disabledInfrastructure || details.accessibilities.length > 0) && (
-                  <div ref={element => (sectionsReferences.current.accessibility = element)}>
+                  <div ref={setAccessibilityRef}>
                     <DetailsSection titleId="details.accessibility" className={marginDetailsChild}>
                       <HtmlText>{parse(details.disabledInfrastructure)}</HtmlText>
-                      <div className="flex" ref={setAccessibilityRef}>
+                      <div className="flex">
                         {details.accessibilities.map((accessibility, i) => (
                           <RemoteIconInformation
                             key={i}
@@ -289,6 +294,15 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                 }))}
                 pointsReference={details.pointsReference}
                 bbox={details.bbox}
+                touristicContentPoints={details.touristicContents
+                  .filter(touristicContent => touristicContent.geometry !== null)
+                  .map(touristicContent => ({
+                    // It's ok to ignore this rule, we filtered null values 2 lines above
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    geometry: touristicContent.geometry!,
+                    pictogramUri: touristicContent.category.pictogramUri,
+                    name: touristicContent.name,
+                  }))}
               />
             </div>
           </div>

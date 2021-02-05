@@ -1,13 +1,28 @@
+/** @deprecated please use RawCoordinate2D or RawCoordinate3D instead */
 export type RawCoordinate = number[];
 
-export interface RawSegmentGeometry {
-  type: string;
-  coordinates: RawCoordinate[];
+export type RawCoordinate2D = [number, number];
+
+export type RawCoordinate3D = [number, number, number];
+
+export interface RawLineStringGeometry2D {
+  type: 'LineString';
+  coordinates: RawCoordinate2D[];
 }
 
-export interface RawPointGeometry {
+export interface RawLineStringGeometry3D {
+  type: 'LineString';
+  coordinates: RawCoordinate3D[];
+}
+
+export interface RawPointGeometry2D {
   type: 'Point';
-  coordinates: RawCoordinate;
+  coordinates: RawCoordinate2D;
+}
+
+export interface RawPointGeometry3D {
+  type: 'Point';
+  coordinates: RawCoordinate3D;
 }
 
 export interface RawMultiPointGeometry {
@@ -15,15 +30,30 @@ export interface RawMultiPointGeometry {
   coordinates: RawCoordinate[];
 }
 
+export interface RawPolygonGeometry {
+  type: 'Polygon';
+  coordinates: RawCoordinate2D[][];
+}
+
 export interface APICallsConfig {
   searchResultsPageSize: number;
 }
 
+/** @deprecated please use Coordinate2D or Coordinate3D instead */
 export interface Coordinate {
   x: number;
   y: number;
   z: number;
 }
+export interface Coordinate2D {
+  x: number;
+  y: number;
+}
+
+export interface Coordinate3D extends Coordinate2D {
+  z: number;
+}
+
 export interface RawAttachment {
   author: string;
   backend: string;
@@ -38,4 +68,19 @@ export interface Attachment {
   author: string;
   legend: string;
   url: string;
+}
+
+export interface LineStringGeometry {
+  type: 'LineString';
+  coordinates: Coordinate2D[];
+}
+
+export interface PointGeometry {
+  type: 'Point';
+  coordinates: Coordinate2D;
+}
+
+export interface PolygonGeometry {
+  type: 'Polygon';
+  coordinates: Coordinate2D[][];
 }

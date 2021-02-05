@@ -3,7 +3,7 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawTouristicContent } from './interface';
 
 const fieldsParams = {
-  fields: 'attachments,name,category,description_teaser',
+  fields: 'attachments,name,category,description_teaser,geometry',
 };
 
 export const fetchTouristicContent = (

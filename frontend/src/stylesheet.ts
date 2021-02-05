@@ -78,6 +78,9 @@ export const colorPalette = {
     gradientOnImages: '#27041970',
     shadowOnImages: '#27041970',
   },
+  map: {
+    touristicContentLines: 'orange',
+  },
 } as const;
 
 export const fontFamily = {

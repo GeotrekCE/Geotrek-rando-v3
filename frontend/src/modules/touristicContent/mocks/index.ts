@@ -422,6 +422,10 @@ export const mockTouristicContentResponse = () => ({
       website: 'http://www.gites-de-france-hautes-alpes.com/fiche-hebergement-4161.html',
       reservation_system: null,
       reservation_id: '',
+      geometry: {
+        type: 'Point',
+        coordinates: [6.336837, 45.042721],
+      },
     },
   ],
 });
@@ -431,7 +435,7 @@ export const mockTouristicContentRoute = (times: number, nearTrekId: number): vo
     route: '/touristiccontent',
     mockData: mockTouristicContentResponse(),
     additionalQueries: {
-      fields: 'attachments,name,category,description_teaser',
+      fields: 'attachments,name,category,description_teaser,geometry',
       near_trek: nearTrekId,
     },
     times,
