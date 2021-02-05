@@ -2,6 +2,7 @@ import { TrekResults } from 'modules/results/interface';
 import {
   concatResultsPages,
   formatInfiniteQuery,
+  generateResultDetailsUrl,
   parseFilter,
   parseFilters,
   parseSelectedOptions,
@@ -178,5 +179,16 @@ describe('formatInfiniteQuery', () => {
     };
 
     expect(output).toStrictEqual(expected);
+  });
+});
+
+describe('generateResultDetailsUrl', () => {
+  it('should correctly generate an url', () => {
+    const id = 2;
+    const title = 'Col de Font Froide';
+    const output = generateResultDetailsUrl(id, title);
+    const expected = '/details-2-Col-de-Font-Froide';
+
+    expect(output).toBe(expected);
   });
 });
