@@ -96,8 +96,8 @@
     ]
   },
   {
-    "id": "courseType",
-    "type": "MULTIPLE"
+    "id": "route",
+    "type": "SINGLE"
   },
   {
     "id": "accessibility",

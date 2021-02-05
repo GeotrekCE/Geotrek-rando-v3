@@ -32,7 +32,7 @@ const getFilterOptions = async (filterId: string): Promise<FilterWithoutType | n
       return getDistrictFilter();
     case 'theme':
       return getThemeFilter();
-    case 'courseType':
+    case 'route':
       return getCourseTypeFilter();
     case 'accessibility':
       return getAccessibilityFilter();
