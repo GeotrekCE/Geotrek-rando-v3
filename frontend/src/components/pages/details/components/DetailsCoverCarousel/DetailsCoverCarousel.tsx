@@ -1,6 +1,6 @@
 import Slider, { CustomArrowProps } from 'react-slick';
-import styled from 'styled-components';
-import { colorPalette, getSpacing } from 'stylesheet';
+import styled, { css } from 'styled-components';
+import { colorPalette, desktopOnly, getSpacing } from 'stylesheet';
 import { Attachment } from 'modules/interface';
 
 interface DetailsCoverCarouselProps {
@@ -86,7 +86,7 @@ const StyledArrow = styled.div`
   justify-content: center;
   align-items: center;
   opacity: 0.75;
-  padding: 0 ${getSpacing(15)};
+  padding: 0 ${getSpacing(7)};
   transition-property: opacity;
   transition-duration: 200ms;
   &:hover {
@@ -94,8 +94,18 @@ const StyledArrow = styled.div`
   }
   &::before {
     text-shadow: 0 0 4px ${colorPalette.greyDarkColored};
-    font-size: 30px;
+    font-size: 24px;
+    ${desktopOnly(
+      css`
+        font-size: 30px;
+      `,
+    )}
   }
+  ${desktopOnly(
+    css`
+      padding: 0 ${getSpacing(15)};
+    `,
+  )}
 `;
 const StyledRightArrow = styled(StyledArrow)`
   right: 0;
@@ -115,7 +125,7 @@ const StyledDots = styled.div`
   overflow: hidden;
   display: flex;
   justify-content: center;
-  bottom: ${getSpacing(5)};
+  bottom: ${getSpacing(3)};
   padding: 0 ${getSpacing(8)};
   max-height: ${getSpacing(6)};
   color: white;
@@ -135,4 +145,9 @@ const StyledDots = styled.div`
     opacity: 1;
     text-shadow: 0 0 4px ${colorPalette.greyDarkColored};
   }
+  ${desktopOnly(
+    css`
+      bottom: ${getSpacing(5)};
+    `,
+  )}
 `;
