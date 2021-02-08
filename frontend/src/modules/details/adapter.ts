@@ -15,7 +15,7 @@ import { SourceDictionnary } from 'modules/source/interface';
 import { InformationDeskDictionnary } from 'modules/informationDesk/interface';
 import { LabelDictionnary } from 'modules/label/interface';
 import { TrekResult } from 'modules/results/interface';
-import { Details, RawDetails } from './interface';
+import { Details, RawDetails, TrekChild } from './interface';
 
 export const adaptResults = ({
   rawDetails: { properties: rawDetailsProperties, geometry, bbox },
@@ -71,12 +71,12 @@ export const adaptResults = ({
         duration:
           rawDetailsProperties.duration !== null
             ? formatHours(rawDetailsProperties.duration)
-            : undefined,
+            : null,
         distance: `${formatDistance(rawDetailsProperties.length_2d)}`,
         elevation: `+${rawDetailsProperties.ascent}${dataUnits.distance}`,
         networks: rawDetailsProperties.networks.map(networkId => networks[networkId]),
-        difficulty: difficulty !== null ? difficulty : undefined,
-        courseType: courseType !== null ? courseType : undefined,
+        difficulty,
+        courseType,
       },
       pois,
       trekGeometry: geometry.coordinates.map(rawCoordinates => ({
@@ -132,3 +132,16 @@ export const adaptResults = ({
     throw e;
   }
 };
+
+export const adaptChildren = ({
+  childrenIds,
+  childrenNames,
+}: {
+  childrenIds: string[];
+  childrenNames: string[];
+}): TrekChild[] =>
+  childrenIds.map((childId, childIndex) => ({
+    id: `${childId}`,
+    name: childrenNames[childIndex],
+    rank: childIndex + 1,
+  }));

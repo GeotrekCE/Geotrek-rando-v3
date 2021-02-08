@@ -70,12 +70,12 @@ export interface DetailsHtml {
 }
 
 export interface DetailsInformation {
-  duration?: string;
-  distance?: string;
-  elevation?: string;
-  difficulty?: Difficulty;
-  courseType?: CourseType;
-  networks?: Network[];
+  duration: string | null;
+  distance: string | null;
+  elevation: string | null;
+  difficulty: Difficulty | null;
+  courseType: CourseType | null;
+  networks: Network[];
 }
 
 interface Coordinate {
@@ -111,4 +111,18 @@ export interface Details extends DetailsHtml {
   pointsReference: Coordinate[] | null;
   bbox: Bbox;
   children: TrekResult[];
+}
+
+export interface RawTrekChildIds {
+  children: string[];
+}
+
+export interface RawTrekName {
+  name: string;
+}
+
+export interface TrekChild {
+  id: string;
+  rank: number;
+  name: string;
 }
