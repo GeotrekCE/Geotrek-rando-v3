@@ -1,6 +1,6 @@
 import { Separator } from 'components/Separator';
 import styled from 'styled-components';
-import { colorPalette, getSpacing, sizes } from 'stylesheet';
+import { scrollBar, sizes } from 'stylesheet';
 import { marginDetailsChild } from '../../Details';
 import { DetailsCard, DetailsCardProps } from '../DetailsCard/DetailsCard';
 
@@ -73,12 +73,10 @@ const offsetTopForTitle = 70;
 
 const ScrollContainer = styled.div`
   &::-webkit-scrollbar {
-    width: ${getSpacing(2)};
+    ${scrollBar.root}
   }
   &::-webkit-scrollbar-thumb {
-    background-color: ${colorPalette.greySoft};
-    opacity: 0.5;
-    border-radius: ${getSpacing(2)};
+    ${scrollBar.thumb}
   }
   max-height: calc(
     100vh - ${sizes.desktopHeader + sizes.detailsHeaderDesktop + offsetTopForTitle}px

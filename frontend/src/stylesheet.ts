@@ -157,5 +157,19 @@ export const sizes = {
   scrollOffsetBeforeElement: 36,
 };
 
+export const scrollBar = {
+  root: css`
+    height: ${getSpacing(2)};
+    ${desktopOnly(css`
+      width: ${getSpacing(2)};
+    `)}
+  `,
+  thumb: css`
+    background-color: ${colorPalette.greySoft};
+    opacity: 0.7;
+    border-radius: ${getSpacing(2)};
+  `,
+} as const;
+
 export const fillSvgWithColor = (color: string) => (svg: string): string =>
   svg.replace(/fill:.*?;/g, `fill: ${color};`);
