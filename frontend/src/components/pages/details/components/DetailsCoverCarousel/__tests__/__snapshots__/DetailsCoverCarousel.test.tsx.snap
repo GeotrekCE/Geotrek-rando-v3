@@ -10,7 +10,7 @@ Object {
         dir="ltr"
       >
         <div
-          class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledLeftArrow-sc-1mnjwq0-2 hNSumv bnQTKM slick-arrow slick-prev"
+          class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledLeftArrow-sc-1mnjwq0-2 exGurw bnQTKM slick-arrow slick-prev"
         />
         <div
           class="slick-list"
@@ -28,23 +28,20 @@ Object {
             >
               <div>
                 <div
-                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                  class="relative"
                 >
                   <div
-                    class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                    class="w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
+          bg-black bg-opacity-40
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
                   >
                     <span>
-                      Arrivée au col de Font Froide
-                    </span>
-                    <span>
-                       - 
-                    </span>
-                    <span>
-                      Dominique Vincent - PNE
+                      Arrivée au col de Font Froide - Dominique Vincent - PNE
                     </span>
                   </div>
                   <img
-                    class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
                     src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
                   />
                 </div>
@@ -59,23 +56,20 @@ Object {
             >
               <div>
                 <div
-                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                  class="relative"
                 >
                   <div
-                    class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                    class="w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
+          bg-black bg-opacity-40
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
                   >
                     <span>
-                      Lac
-                    </span>
-                    <span>
-                       - 
-                    </span>
-                    <span>
-                      admin
+                      Lac - admin
                     </span>
                   </div>
                   <img
-                    class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
                     src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                   />
                 </div>
@@ -90,23 +84,20 @@ Object {
             >
               <div>
                 <div
-                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                  class="relative"
                 >
                   <div
-                    class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                    class="w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
+          bg-black bg-opacity-40
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
                   >
                     <span>
-                      Marmotte
-                    </span>
-                    <span>
-                       - 
-                    </span>
-                    <span>
-                      admin
+                      Marmotte - admin
                     </span>
                   </div>
                   <img
-                    class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
                     src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG"
                   />
                 </div>
@@ -121,23 +112,20 @@ Object {
             >
               <div>
                 <div
-                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                  class="relative"
                 >
                   <div
-                    class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                    class="w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
+          bg-black bg-opacity-40
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
                   >
                     <span>
-                      Arrivée au col de Font Froide
-                    </span>
-                    <span>
-                       - 
-                    </span>
-                    <span>
-                      Dominique Vincent - PNE
+                      Arrivée au col de Font Froide - Dominique Vincent - PNE
                     </span>
                   </div>
                   <img
-                    class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
                     src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
                   />
                 </div>
@@ -152,23 +140,20 @@ Object {
             >
               <div>
                 <div
-                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                  class="relative"
                 >
                   <div
-                    class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                    class="w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
+          bg-black bg-opacity-40
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
                   >
                     <span>
-                      Lac
-                    </span>
-                    <span>
-                       - 
-                    </span>
-                    <span>
-                      admin
+                      Lac - admin
                     </span>
                   </div>
                   <img
-                    class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
                     src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                   />
                 </div>
@@ -183,23 +168,20 @@ Object {
             >
               <div>
                 <div
-                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                  class="relative"
                 >
                   <div
-                    class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                    class="w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
+          bg-black bg-opacity-40
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
                   >
                     <span>
-                      Marmotte
-                    </span>
-                    <span>
-                       - 
-                    </span>
-                    <span>
-                      admin
+                      Marmotte - admin
                     </span>
                   </div>
                   <img
-                    class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
                     src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG"
                   />
                 </div>
@@ -214,23 +196,20 @@ Object {
             >
               <div>
                 <div
-                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                  class="relative"
                 >
                   <div
-                    class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                    class="w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
+          bg-black bg-opacity-40
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
                   >
                     <span>
-                      Arrivée au col de Font Froide
-                    </span>
-                    <span>
-                       - 
-                    </span>
-                    <span>
-                      Dominique Vincent - PNE
+                      Arrivée au col de Font Froide - Dominique Vincent - PNE
                     </span>
                   </div>
                   <img
-                    class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
                     src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
                   />
                 </div>
@@ -239,10 +218,10 @@ Object {
           </div>
         </div>
         <div
-          class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 hNSumv krsGZP slick-arrow slick-next"
+          class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 exGurw krsGZP slick-arrow slick-next"
         />
         <div
-          class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 vTDvn slick-dots"
+          class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 dxjCuq slick-dots"
         >
           <ul>
             <li
@@ -277,7 +256,7 @@ Object {
       dir="ltr"
     >
       <div
-        class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledLeftArrow-sc-1mnjwq0-2 hNSumv bnQTKM slick-arrow slick-prev"
+        class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledLeftArrow-sc-1mnjwq0-2 exGurw bnQTKM slick-arrow slick-prev"
       />
       <div
         class="slick-list"
@@ -295,23 +274,20 @@ Object {
           >
             <div>
               <div
-                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                class="relative"
               >
                 <div
-                  class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                  class="w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
+          bg-black bg-opacity-40
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
                 >
                   <span>
-                    Arrivée au col de Font Froide
-                  </span>
-                  <span>
-                     - 
-                  </span>
-                  <span>
-                    Dominique Vincent - PNE
+                    Arrivée au col de Font Froide - Dominique Vincent - PNE
                   </span>
                 </div>
                 <img
-                  class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
                   src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
                 />
               </div>
@@ -326,23 +302,20 @@ Object {
           >
             <div>
               <div
-                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                class="relative"
               >
                 <div
-                  class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                  class="w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
+          bg-black bg-opacity-40
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
                 >
                   <span>
-                    Lac
-                  </span>
-                  <span>
-                     - 
-                  </span>
-                  <span>
-                    admin
+                    Lac - admin
                   </span>
                 </div>
                 <img
-                  class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
                   src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                 />
               </div>
@@ -357,23 +330,20 @@ Object {
           >
             <div>
               <div
-                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                class="relative"
               >
                 <div
-                  class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                  class="w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
+          bg-black bg-opacity-40
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
                 >
                   <span>
-                    Marmotte
-                  </span>
-                  <span>
-                     - 
-                  </span>
-                  <span>
-                    admin
+                    Marmotte - admin
                   </span>
                 </div>
                 <img
-                  class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
                   src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG"
                 />
               </div>
@@ -388,23 +358,20 @@ Object {
           >
             <div>
               <div
-                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                class="relative"
               >
                 <div
-                  class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                  class="w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
+          bg-black bg-opacity-40
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
                 >
                   <span>
-                    Arrivée au col de Font Froide
-                  </span>
-                  <span>
-                     - 
-                  </span>
-                  <span>
-                    Dominique Vincent - PNE
+                    Arrivée au col de Font Froide - Dominique Vincent - PNE
                   </span>
                 </div>
                 <img
-                  class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
                   src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
                 />
               </div>
@@ -419,23 +386,20 @@ Object {
           >
             <div>
               <div
-                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                class="relative"
               >
                 <div
-                  class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                  class="w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
+          bg-black bg-opacity-40
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
                 >
                   <span>
-                    Lac
-                  </span>
-                  <span>
-                     - 
-                  </span>
-                  <span>
-                    admin
+                    Lac - admin
                   </span>
                 </div>
                 <img
-                  class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
                   src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                 />
               </div>
@@ -450,23 +414,20 @@ Object {
           >
             <div>
               <div
-                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                class="relative"
               >
                 <div
-                  class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                  class="w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
+          bg-black bg-opacity-40
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
                 >
                   <span>
-                    Marmotte
-                  </span>
-                  <span>
-                     - 
-                  </span>
-                  <span>
-                    admin
+                    Marmotte - admin
                   </span>
                 </div>
                 <img
-                  class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
                   src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG"
                 />
               </div>
@@ -481,23 +442,20 @@ Object {
           >
             <div>
               <div
-                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                class="relative"
               >
                 <div
-                  class="absolute top-0 w-full text-center hidden desktop:block truncate bg-black bg-opacity-40 text-white text-opacity-90 py-4 text-P2"
+                  class="w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
+          bg-black bg-opacity-40
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
                 >
                   <span>
-                    Arrivée au col de Font Froide
-                  </span>
-                  <span>
-                     - 
-                  </span>
-                  <span>
-                    Dominique Vincent - PNE
+                    Arrivée au col de Font Froide - Dominique Vincent - PNE
                   </span>
                 </div>
                 <img
-                  class="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
                   src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
                 />
               </div>
@@ -506,10 +464,10 @@ Object {
         </div>
       </div>
       <div
-        class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 hNSumv krsGZP slick-arrow slick-next"
+        class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 exGurw krsGZP slick-arrow slick-next"
       />
       <div
-        class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 vTDvn slick-dots"
+        class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 dxjCuq slick-dots"
       >
         <ul>
           <li
