@@ -6,6 +6,7 @@ import { useShowOnScrollPosition } from 'hooks/useShowOnScrollPosition';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { useRef } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -183,9 +184,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
                   </DetailsSection>
                 )}
 
-                {(details.informationDesks.length > 0 ||
-                  details.transport ||
-                  details.access_parking) && (
+                {(details.informationDesks.length > 0 || details.transport || details.access) && (
                   <div ref={setPracticalInformationsRef}>
                     {details.informationDesks.length > 0 && (
                       <DetailsSection
@@ -221,12 +220,20 @@ export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
                       </DetailsSection>
                     )}
 
-                    {details.access_parking && (
+                    {(details.access || details.parking) && (
                       <DetailsSection
                         titleId="details.access_parking"
                         className={marginDetailsChild}
                       >
-                        <HtmlText>{parse(details.access_parking)}</HtmlText>
+                        {details.access && <HtmlText>{parse(details.access)}</HtmlText>}
+                        {details.parking && (
+                          <div className="mt-4">
+                            <p className="font-bold desktop:text-H4">
+                              {`${intl.formatMessage({ id: 'details.stationnement' })} :`}
+                            </p>
+                            <HtmlText>{parse(details.parking)}</HtmlText>
+                          </div>
+                        )}
                       </DetailsSection>
                     )}
                   </div>
