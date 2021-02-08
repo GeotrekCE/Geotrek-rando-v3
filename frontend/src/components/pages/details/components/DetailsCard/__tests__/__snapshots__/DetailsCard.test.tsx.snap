@@ -13,7 +13,7 @@ Object {
           class="flex-none desktop:w-2/5"
         >
           <img
-            class="DetailsCard__CardSingleImage-sc-1paweiv-1 jaegam"
+            class="DetailsCard__CardSingleImage-sc-1paweiv-1 pZZG"
             height="200"
             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
           />
@@ -59,7 +59,7 @@ Object {
         class="flex-none desktop:w-2/5"
       >
         <img
-          class="DetailsCard__CardSingleImage-sc-1paweiv-1 jaegam"
+          class="DetailsCard__CardSingleImage-sc-1paweiv-1 pZZG"
           height="200"
           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
         />

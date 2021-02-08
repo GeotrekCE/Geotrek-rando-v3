@@ -48,7 +48,7 @@ module.exports = {
       headerAndFilterBar: '168px',
       activitySearchFilter: '865px',
       coverDetailsDesktop: '550px',
-      coverDetailsMobile: '145px',
+      coverDetailsMobile: '35vh',
       desktopHeader: '96px',
       mobileHeader: '44px',
       detailsHeaderMobile: '42px',

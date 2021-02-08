@@ -31,11 +31,11 @@ interface ImageWithLegendProps {
 }
 
 export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({ attachment }) => (
-  <div className="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop">
+  <div className="relative">
     <Legend author={attachment.author} legend={attachment.legend} />
     <img
       src={attachment.url}
-      className="object-cover object-center overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+      className="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
     />
   </div>
 );
@@ -50,18 +50,17 @@ const Legend: React.FC<LegendProps> = ({ author, legend }) => {
     (legend !== null && legend.length > 0) || (author !== null && author.length > 0);
   const hasLegendAndAuthor =
     legend !== null && legend.length > 0 && author !== null && author.length > 0;
+  const fullText = `${legend}${hasLegendAndAuthor ? ' - ' : ''}${author}`;
   if (hasLegendOrAuthor) {
     return (
       hasLegendOrAuthor && (
         <div
-          className="absolute top-0 w-full text-center
-            hidden desktop:block truncate
+          className={`w-full text-center h-6 desktop:h-10 truncate
+          absolute bottom-0 desktop:top-0
           bg-black bg-opacity-40
-          text-white text-opacity-90 py-4 text-P2"
+          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2`}
         >
-          <span>{legend}</span>
-          {hasLegendAndAuthor && <span>{' - '}</span>}
-          <span>{author}</span>
+          <span>{fullText}</span>
         </div>
       )
     );
@@ -86,15 +85,15 @@ const StyledArrow = styled.div`
   justify-content: center;
   align-items: center;
   opacity: 0.75;
-  padding: 0 ${getSpacing(7)};
+  padding: 0 ${getSpacing(4)};
   transition-property: opacity;
-  transition-duration: 200ms;
+  transition-duration: 300ms;
   &:hover {
     opacity: 1;
   }
   &::before {
     text-shadow: 0 0 4px ${colorPalette.greyDarkColored};
-    font-size: 24px;
+    font-size: 20px;
     ${desktopOnly(
       css`
         font-size: 30px;
@@ -103,7 +102,7 @@ const StyledArrow = styled.div`
   }
   ${desktopOnly(
     css`
-      padding: 0 ${getSpacing(15)};
+      padding: 0 ${getSpacing(8)};
     `,
   )}
 `;
@@ -125,7 +124,7 @@ const StyledDots = styled.div`
   overflow: hidden;
   display: flex;
   justify-content: center;
-  bottom: ${getSpacing(3)};
+  bottom: ${getSpacing(6)};
   padding: 0 ${getSpacing(8)};
   max-height: ${getSpacing(6)};
   color: white;
@@ -147,7 +146,7 @@ const StyledDots = styled.div`
   }
   ${desktopOnly(
     css`
-      bottom: ${getSpacing(5)};
+      bottom: ${getSpacing(6)};
     `,
   )}
 `;

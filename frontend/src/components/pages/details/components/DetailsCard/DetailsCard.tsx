@@ -111,7 +111,7 @@ export const CardSingleImage = styled.img<{ height: number }>`
   height: ${getSpacing(50)};
   width: ${getSpacing(60)};
   object-fit: cover;
-  object-position: center;
+  object-position: top;
   @media (min-width: ${MAX_WIDTH_MOBILE}px) {
     height: ${props => props.height}px;
     width: 100%;
