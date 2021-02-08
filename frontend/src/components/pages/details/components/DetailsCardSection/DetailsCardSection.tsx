@@ -1,4 +1,6 @@
 import { Separator } from 'components/Separator';
+import styled from 'styled-components';
+import { colorPalette, getSpacing, sizes } from 'stylesheet';
 import { marginDetailsChild } from '../../Details';
 import { DetailsCard, DetailsCardProps } from '../DetailsCard/DetailsCard';
 
@@ -21,9 +23,10 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
         {title}
         {displayBadge && <Badge label={detailsCards.length} />}
       </div>
-      <div
+      <ScrollContainer
         className="flex desktop:flex-col items-stretch
-        overflow-scroll desktop:max-h-detailsCardSection flex-nowrap
+        overflow-x-scroll desktop:overflow-x-hidden
+        overflow-y-hidden desktop:overflow-y-scroll flex-nowrap
         pb-5 mt-4 mb-2 desktop:mb-0
         px-4 desktop:pl-18 desktop:pr-9 desktop:mr-9"
       >
@@ -38,7 +41,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
             logoUri={card.logoUri}
           />
         ))}
-      </div>
+      </ScrollContainer>
       <div className={marginDetailsChild}>
         <Separator />
       </div>
@@ -65,3 +68,19 @@ export const Badge: React.FC<BadgeProps> = ({ label }) => {
     </div>
   );
 };
+
+const offsetTopForTitle = 70;
+
+const ScrollContainer = styled.div`
+  &::-webkit-scrollbar {
+    width: ${getSpacing(2)};
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${colorPalette.greySoft};
+    opacity: 0.5;
+    border-radius: ${getSpacing(2)};
+  }
+  max-height: calc(
+    100vh - ${sizes.desktopHeader + sizes.detailsHeaderDesktop + offsetTopForTitle}px
+  );
+`;

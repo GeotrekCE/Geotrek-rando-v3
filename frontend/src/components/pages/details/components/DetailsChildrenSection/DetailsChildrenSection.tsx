@@ -2,7 +2,7 @@ import { Separator } from 'components/Separator';
 import { TrekResult } from 'modules/results/interface';
 import { ResultCard } from 'components/pages/search/components/ResultCard';
 import styled from 'styled-components';
-import { sizes } from 'stylesheet';
+import { colorPalette, getSpacing, sizes } from 'stylesheet';
 import { Step } from '../DetailsDescription';
 import { marginDetailsChild } from '../../Details';
 import { generateChildrenDetailsUrl } from '../../utils';
@@ -69,6 +69,14 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
 const offsetTopForTitle = 130;
 
 const ScrollContainer = styled.div`
+  &::-webkit-scrollbar {
+    width: ${getSpacing(2)};
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${colorPalette.greySoft};
+    opacity: 0.5;
+    border-radius: ${getSpacing(2)};
+  }
   max-height: calc(
     100vh - ${sizes.desktopHeader + sizes.detailsHeaderDesktop + offsetTopForTitle}px
   );
