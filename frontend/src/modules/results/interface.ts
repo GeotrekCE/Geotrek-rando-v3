@@ -1,15 +1,18 @@
 import { Activity } from 'modules/activities/interface';
 import { RawAttachment } from 'modules/interface';
+import { TouristicContent } from 'modules/touristicContent/interface';
 
-export interface TrekResults {
+export interface SearchResults {
   resultsNumber: number;
   nextPages: {
     treks: number | null;
+    touristicContents: number | null;
   };
-  results: TrekResult[];
+  results: (TrekResult | TouristicContent)[];
 }
 
 export interface TrekResult {
+  type: 'TREK';
   id: number;
   activityIcon: string; // TODO (call API supplémentaire surement)
   place: string;

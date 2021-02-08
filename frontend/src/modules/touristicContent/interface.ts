@@ -18,6 +18,7 @@ export interface RawTouristicContent {
 }
 
 export interface TouristicContent {
+  type: 'TOURISTIC_CONTENT';
   name: string;
   description?: string;
   thumbnailUris: string[];

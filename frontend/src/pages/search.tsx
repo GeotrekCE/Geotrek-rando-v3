@@ -22,7 +22,7 @@ export const getServerSideProps = async () => {
   const parsedInitialFiltersState = parseFilters(initialFiltersState);
 
   await queryClient.prefetchInfiniteQuery(['trekResults', parsedInitialFiltersState], () =>
-    getSearchResults(parsedInitialFiltersState, { treks: 1 }),
+    getSearchResults(parsedInitialFiltersState, { treks: 1, touristicContents: 1 }),
   );
 
   const unsafeState = dehydrate(queryClient);

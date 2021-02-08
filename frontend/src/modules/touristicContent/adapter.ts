@@ -11,6 +11,7 @@ export const adaptTouristicContent = ({
   touristicContentCategories: TouristicContentCategoryDictionnary;
 }): TouristicContent[] =>
   rawTouristicContent.map(rawTouristicObject => ({
+    type: 'TOURISTIC_CONTENT',
     name: rawTouristicObject.name,
     description: rawTouristicObject.description_teaser,
     thumbnailUris: getThumbnails(rawTouristicObject.attachments),

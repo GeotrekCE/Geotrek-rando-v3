@@ -2,7 +2,7 @@ import { useInfiniteQuery } from 'react-query';
 import { useEffect, useRef, useState } from 'react';
 
 import { getSearchResults } from 'modules/results/connector';
-import { TrekResults } from 'modules/results/interface';
+import { SearchResults } from 'modules/results/interface';
 import { FilterState } from 'modules/filters/interface';
 
 import { formatInfiniteQuery, parseFilters } from '../utils';
@@ -30,11 +30,12 @@ export const useTrekResults = (filtersState: FilterState[]) => {
     data,
     isLoading,
     isError,
+    error,
     refetch,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery<TrekResults, Error>(
+  } = useInfiniteQuery<SearchResults, Error>(
     ['trekResults', parsedFiltersState],
     ({ pageParam }) => getSearchResults(parsedFiltersState, pageParam),
     {
@@ -46,7 +47,10 @@ export const useTrekResults = (filtersState: FilterState[]) => {
       refetchOnWindowFocus: false,
       // hasNextPage will be set to false if getNextPageParam returns undefined
       getNextPageParam: lastPageResult =>
-        lastPageResult.nextPages.treks !== null ? lastPageResult.nextPages : undefined,
+        lastPageResult.nextPages.treks !== null ||
+        lastPageResult.nextPages.touristicContents !== null
+          ? lastPageResult.nextPages
+          : undefined,
     },
   );
 

@@ -1,5 +1,5 @@
 import { FilterState } from 'modules/filters/interface';
-import { TrekResults } from 'modules/results/interface';
+import { SearchResults } from 'modules/results/interface';
 import {
   concatResultsPages,
   formatInfiniteQuery,
@@ -147,7 +147,7 @@ describe('parseFilters', () => {
 
 describe('concatResultsPages', () => {
   it('should return null if the pages array is empty', () => {
-    const input: TrekResults[] = [];
+    const input: SearchResults[] = [];
     const output = concatResultsPages(input);
     const expected = null;
 

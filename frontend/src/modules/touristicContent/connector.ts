@@ -15,3 +15,14 @@ export const getTouristicContentsNearTrek = async (
     touristicContentCategories,
   });
 };
+
+export const getTouristicContents = async (): Promise<TouristicContent[]> => {
+  const [rawTouristicContentResult, touristicContentCategories] = await Promise.all([
+    fetchTouristicContent({ language: 'fr' }),
+    getTouristicContentCategories(),
+  ]);
+  return adaptTouristicContent({
+    rawTouristicContent: rawTouristicContentResult.results,
+    touristicContentCategories,
+  });
+};
