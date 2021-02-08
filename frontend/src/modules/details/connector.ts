@@ -11,6 +11,7 @@ import { getPois } from 'modules/poi/connector';
 import { getTrekResultsById } from 'modules/results/connector';
 import { getSources } from 'modules/source/connector';
 import { getTouristicContents } from 'modules/touristicContent/connector';
+import { getTouristicContentsNearTrek } from 'modules/touristicContent/connector';
 import { adaptChildren, adaptResults } from './adapter';
 import { fetchDetails, fetchTrekChildren, fetchTrekName } from './api';
 import { Details, TrekChild } from './interface';
@@ -37,7 +38,7 @@ export const getDetails = async (id: string): Promise<Details> => {
       getNetworks(),
       getThemes(),
       getPois(rawDetails.properties.id),
-      getTouristicContents(rawDetails.properties.id),
+      getTouristicContentsNearTrek(rawDetails.properties.id),
       getCities(),
       getAccessibilities(),
       getSources(),
