@@ -34,13 +34,13 @@ export const concatResultsPages = (resultsPages: TrekResults[]): TrekResults | n
   if (resultsPages.length === 0) return null;
 
   const resultsNumber = resultsPages[0].resultsNumber;
-  const nextPageId = resultsPages[0].nextPageId;
+  const nextPages = resultsPages[0].nextPages;
   const results = resultsPages.reduce<TrekResult[]>(
     (resultsAcc, currentPage) => resultsAcc.concat(currentPage.results),
     [],
   );
 
-  return { resultsNumber, results, nextPageId };
+  return { resultsNumber, results, nextPages };
 };
 
 /** Formats the data of useInfiniteQuery to make it interpretable by the Search page */

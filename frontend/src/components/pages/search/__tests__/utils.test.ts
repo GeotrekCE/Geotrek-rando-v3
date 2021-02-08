@@ -93,7 +93,7 @@ const mockTrekResult = {
 
 const mockInfiniteQueryPage = {
   resultsNumber: 6,
-  nextPageId: '2',
+  nextPages: { treks: 2 },
   results: [mockTrekResult, mockTrekResult],
 };
 
@@ -159,7 +159,7 @@ describe('concatResultsPages', () => {
     const output = concatResultsPages(input);
     const expected = {
       resultsNumber: 6,
-      nextPageId: '2',
+      nextPages: { treks: 2 },
       results: [mockTrekResult, mockTrekResult, mockTrekResult, mockTrekResult],
     };
 
@@ -181,7 +181,7 @@ describe('formatInfiniteQuery', () => {
     const output = formatInfiniteQuery(input);
     const expected = {
       resultsNumber: 6,
-      nextPageId: '2',
+      nextPages: { treks: 2 },
       results: [mockTrekResult, mockTrekResult, mockTrekResult, mockTrekResult],
     };
 

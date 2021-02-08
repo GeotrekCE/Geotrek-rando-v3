@@ -84,7 +84,9 @@ export const adaptTrekResults = ({
 
   return {
     resultsNumber: rawTrekResults.count || 0,
-    nextPageId: extractNextPageId(rawTrekResults.next),
+    nextPages: {
+      treks: extractNextPageId(rawTrekResults.next),
+    },
     results: adaptedResultsList,
   };
 };
