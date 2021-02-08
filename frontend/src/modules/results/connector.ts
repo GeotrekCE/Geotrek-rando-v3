@@ -9,7 +9,12 @@ import { TouristicContent } from 'modules/touristicContent/interface';
 import { adaptTouristicContent } from 'modules/touristicContent/adapter';
 
 import { adaptTrekResultList } from './adapter';
-import { fetchTrekResult, fetchTrekResults } from './api';
+import {
+  fetchTouristicContentResultsNumber,
+  fetchTrekResult,
+  fetchTrekResults,
+  fetchTrekResultsNumber,
+} from './api';
 import { SearchResults, TrekResult } from './interface';
 import { extractNextPageId, formatFiltersToUrlParams } from './utils';
 
@@ -23,6 +28,8 @@ export const getSearchResults = async (
   try {
     let nextTreksPage: number | null = null;
     let nextTouristicContentsPage: number | null = null;
+    let treksCount: number | null = null;
+    let touristicContentsCount: number | null = null;
     const results: (TrekResult | TouristicContent)[] = [];
 
     if (pages.treks !== null) {
@@ -44,6 +51,7 @@ export const getSearchResults = async (
         activities,
       });
       nextTreksPage = extractNextPageId(rawTrekResults.next);
+      treksCount = rawTrekResults.count;
       results.push(...adaptedResultsList);
     }
     if (pages.touristicContents !== null) {
@@ -59,12 +67,33 @@ export const getSearchResults = async (
         rawTouristicContent: rawTouristicContents.results,
         touristicContentCategories,
       });
-      (nextTouristicContentsPage = extractNextPageId(rawTouristicContents.next)),
-        results.push(...adaptedTouristicContentsList);
+      nextTouristicContentsPage = extractNextPageId(rawTouristicContents.next);
+      touristicContentsCount = rawTouristicContents.count;
+      results.push(...adaptedTouristicContentsList);
+    }
+
+    if (treksCount === null) {
+      treksCount = (
+        await fetchTrekResultsNumber({
+          language: 'fr',
+          page_size: 1,
+          page: 1,
+          ...formatFiltersToUrlParams(filtersState),
+        })
+      ).count;
+    }
+    if (touristicContentsCount === null) {
+      touristicContentsCount = (
+        await fetchTouristicContentResultsNumber({
+          language: 'fr',
+          page_size: 1,
+          page: 1,
+        })
+      ).count;
     }
 
     return {
-      resultsNumber: 0,
+      resultsNumber: treksCount + touristicContentsCount,
       nextPages: {
         treks: nextTreksPage,
         touristicContents: nextTouristicContentsPage,

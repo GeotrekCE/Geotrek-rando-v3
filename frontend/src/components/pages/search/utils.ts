@@ -3,6 +3,7 @@ import { InfiniteData } from 'react-query';
 import { routes } from 'services/routes';
 import { FilterState, Option } from 'modules/filters/interface';
 import { TrekResult, SearchResults } from 'modules/results/interface';
+import { TouristicContent } from 'modules/touristicContent/interface';
 
 /**
  * Interface of an objet representing a filter state informations
@@ -35,7 +36,7 @@ export const concatResultsPages = (resultsPages: SearchResults[]): SearchResults
 
   const resultsNumber = resultsPages[0].resultsNumber;
   const nextPages = resultsPages[0].nextPages;
-  const results = resultsPages.reduce<TrekResult[]>(
+  const results = resultsPages.reduce<(TrekResult | TouristicContent)[]>(
     (resultsAcc, currentPage) => resultsAcc.concat(currentPage.results),
     [],
   );
