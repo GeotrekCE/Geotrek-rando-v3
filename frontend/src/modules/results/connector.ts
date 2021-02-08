@@ -9,7 +9,7 @@ import { fetchTrekResult, fetchTrekResults } from './api';
 import { TrekResult, TrekResults } from './interface';
 import { formatFiltersToUrlParams } from './utils';
 
-export const getTrekResults = async (
+export const getSearchResults = async (
   filtersState: QueryFilterState[],
   pages: {
     treks: number | null;

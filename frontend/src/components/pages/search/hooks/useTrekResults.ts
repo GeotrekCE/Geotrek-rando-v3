@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from 'react-query';
 import { useEffect, useRef, useState } from 'react';
 
-import { getTrekResults } from 'modules/results/connector';
+import { getSearchResults } from 'modules/results/connector';
 import { TrekResults } from 'modules/results/interface';
 import { FilterState } from 'modules/filters/interface';
 
@@ -36,7 +36,7 @@ export const useTrekResults = (filtersState: FilterState[]) => {
     isFetchingNextPage,
   } = useInfiniteQuery<TrekResults, Error>(
     ['trekResults', parsedFiltersState],
-    ({ pageParam }) => getTrekResults(parsedFiltersState, pageParam),
+    ({ pageParam }) => getSearchResults(parsedFiltersState, pageParam),
     {
       retry: false,
       // We already have a fallback component to allow the user to refetch
