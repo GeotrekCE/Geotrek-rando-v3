@@ -1,10 +1,16 @@
 import { ActivityChoices } from 'modules/activities/interface';
 import { DifficultyChoices } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
+import { adaptTouristicContent } from 'modules/touristicContent/adapter';
+import { RawTouristicContent, TouristicContent } from 'modules/touristicContent/interface';
+import {
+  TouristicContentCategory,
+  TouristicContentCategoryDictionnary,
+} from 'modules/touristicContentCategory/interface';
 import { getThumbnail } from 'modules/utils/adapter';
 import { formatHours } from 'modules/utils/time';
 import { APIResponseForList } from 'services/api/interface';
-import { RawTrekResult, RawTrekResults, TrekResult, TrekResults } from './interface';
+import { RawTrekResult, RawTrekResults, TrekResult, SearchResults } from './interface';
 import { extractNextPageId, formatDistance } from './utils';
 
 export const dataUnits = {
@@ -41,6 +47,7 @@ export const adaptTrekResultList = ({
   activities: ActivityChoices;
 }): TrekResult[] =>
   resultsList.filter(isRawTrekResultComplete).map(rawResult => ({
+    type: 'TREK',
     id: rawResult.id,
     activityIcon: 'TODO',
     place: rawResult.departure,
@@ -63,17 +70,21 @@ export const adaptTrekResultList = ({
     },
   }));
 
-export const adaptTrekResults = ({
+export const adaptSearchResults = ({
   rawTrekResults,
   difficulties,
   themes,
   activities,
+  rawTouristicContents,
+  touristicContentCategories,
 }: {
   rawTrekResults: APIResponseForList<Partial<RawTrekResult>>;
   difficulties: DifficultyChoices;
   themes: Choices;
   activities: ActivityChoices;
-}): TrekResults => {
+  rawTouristicContents: APIResponseForList<RawTouristicContent>;
+  touristicContentCategories: TouristicContentCategoryDictionnary;
+}): SearchResults => {
   const resultsList = rawTrekResults.results;
   const adaptedResultsList: TrekResult[] = adaptTrekResultList({
     resultsList,
@@ -82,11 +93,25 @@ export const adaptTrekResults = ({
     activities,
   });
 
+  const adaptedTouristicContentsList: TouristicContent[] = adaptTouristicContent({
+    rawTouristicContent: rawTouristicContents.results,
+    touristicContentCategories,
+  });
+
+  let count = 0;
+  if (rawTrekResults.count) {
+    count += rawTrekResults.count;
+  }
+  if (rawTouristicContents.count) {
+    count += rawTouristicContents.count;
+  }
+
   return {
-    resultsNumber: rawTrekResults.count || 0,
+    resultsNumber: count,
     nextPages: {
       treks: extractNextPageId(rawTrekResults.next),
+      touristicContents: extractNextPageId(rawTouristicContents.next),
     },
-    results: adaptedResultsList,
+    results: [...adaptedResultsList, ...adaptedTouristicContentsList],
   };
 };

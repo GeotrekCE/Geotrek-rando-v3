@@ -25,6 +25,7 @@ import { useTrekResults } from './hooks/useTrekResults';
 import { useMapResults } from './hooks/useMapResults';
 import { ErrorFallback } from './components/ErrorFallback';
 import { generateResultDetailsUrl } from './utils';
+import { DetailsCard } from '../details/components/DetailsCard';
 
 interface Props {
   initialFiltersState: FilterState[];
@@ -132,20 +133,35 @@ export const SearchUI: React.FC<Props> = ({ initialFiltersState }) => {
                     </div>
                   }
                 >
-                  {searchResults?.results.map(searchResult => (
-                    <ResultCard
-                      key={searchResult.title}
-                      id={searchResult.id}
-                      place={searchResult.place}
-                      title={searchResult.title}
-                      tags={searchResult.tags}
-                      thumbnailUri={searchResult.thumbnailUri}
-                      badgeIconUri={searchResult.practice.pictogram}
-                      informations={searchResult.informations}
-                      redirectionUrl={generateResultDetailsUrl(searchResult.id, searchResult.title)}
-                      className="my-4 desktop:my-6"
-                    />
-                  ))}
+                  {searchResults?.results.map(searchResult =>
+                    searchResult.type === 'TREK' ? (
+                      <ResultCard
+                        key={searchResult.title}
+                        id={searchResult.id}
+                        place={searchResult.place}
+                        title={searchResult.title}
+                        tags={searchResult.tags}
+                        thumbnailUri={searchResult.thumbnailUri}
+                        badgeIconUri={searchResult.practice.pictogram}
+                        informations={searchResult.informations}
+                        redirectionUrl={generateResultDetailsUrl(
+                          searchResult.id,
+                          searchResult.title,
+                        )}
+                        className="my-4 desktop:my-6"
+                      />
+                    ) : (
+                      <DetailsCard
+                        key={searchResult.name}
+                        name={searchResult.name}
+                        description={searchResult.description}
+                        thumbnailUris={searchResult.thumbnailUris}
+                        iconUri={searchResult.category.pictogramUri}
+                        place={searchResult.category.label}
+                        logoUri={searchResult.logoUri}
+                      />
+                    ),
+                  )}
                 </InfiniteScroll>
                 {isError && (
                   <ErrorFallback refetch={searchResults === null ? refetch : fetchNextPage} />
