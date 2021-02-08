@@ -3,7 +3,6 @@ import { TrekResult } from 'modules/results/interface';
 import { ResultCard } from 'components/pages/search/components/ResultCard';
 import styled from 'styled-components';
 import { scrollBar, sizes } from 'stylesheet';
-import { Step } from '../DetailsDescription';
 import { marginDetailsChild } from '../../Details';
 import { generateChildrenDetailsUrl } from '../../utils';
 
@@ -79,3 +78,16 @@ const ScrollContainer = styled.div`
     100vh - ${sizes.desktopHeader + sizes.detailsHeaderDesktop + offsetTopForTitle}px
   );
 `;
+
+const Step: React.FC<{ number: number }> = ({ number }) => (
+  <div
+    className="h-8 w-8 desktop:h-12 desktop:w-12
+    rounded-full
+    flex items-center justify-center
+    border-solid border-primary1 border-3
+    text-P1 desktop:text-H4 font-bold text-primary1
+    shadow-md"
+  >
+    {number}
+  </div>
+);
