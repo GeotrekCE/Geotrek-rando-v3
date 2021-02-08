@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import parse from 'html-react-parser';
 import { getSpacing } from 'stylesheet';
+import { generateResultDetailsUrl } from '../search/utils';
 
 const matchSingle = (regex: RegExp, text: string): string => {
   const reg = RegExp(regex).exec(text);
@@ -76,4 +77,9 @@ export const getDimensions = (htmlElement: HTMLElement | null): { top: number; b
     top: elementTopPosition,
     bottom: elementBotttomPosition,
   };
+};
+
+export const generateChildrenDetailsUrl = (id: number, title: string, parentId: string): string => {
+  const detailsUrl = generateResultDetailsUrl(id, title);
+  return `${detailsUrl}?parentId=${parentId}`;
 };

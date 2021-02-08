@@ -5,15 +5,18 @@ import styled from 'styled-components';
 import { sizes } from 'stylesheet';
 import { Step } from '../DetailsDescription';
 import { marginDetailsChild } from '../../Details';
+import { generateChildrenDetailsUrl } from '../../utils';
 
 interface DetailsChildrenSectionProps {
   trekChildren: TrekResult[];
   title: string;
+  trekId: string;
 }
 
 export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
   trekChildren,
   title,
+  trekId,
 }) => {
   return (
     <div className="mt-6 desktop:mt-12">
@@ -49,6 +52,7 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
                   thumbnailUri={trekChild.thumbnailUri}
                   badgeIconUri={trekChild.practice.pictogram}
                   informations={trekChild.informations}
+                  redirectionUrl={generateChildrenDetailsUrl(trekChild.id, trekChild.title, trekId)}
                 />
               </div>
             </div>

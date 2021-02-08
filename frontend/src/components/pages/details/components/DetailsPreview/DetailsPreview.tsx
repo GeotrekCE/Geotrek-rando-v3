@@ -2,7 +2,7 @@ import { Clock } from 'components/Icons/Clock';
 import { Chip } from 'components/Chip';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
-import { DetailsInformation } from 'modules/details/interface';
+import { DetailsInformation, TrekChild } from 'modules/details/interface';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { LocalIconInformation } from 'components/Information/LocalIconInformation';
 import parse from 'html-react-parser';
@@ -16,7 +16,9 @@ interface DetailsPreviewProps {
   place?: string;
   tags: string[];
   teaser?: string;
-  title?: string;
+  title: string;
+  trekFamily?: TrekChild[];
+  id: string;
 }
 
 export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
@@ -27,11 +29,23 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   tags,
   teaser,
   title,
+  trekFamily,
+  id,
 }) => {
+  // trekRank & trekRankLabel are only defined if trek is part of an itinerance
+  const trekRank = trekFamily?.find(trek => trek.id === id);
+  const trekRankLabel = trekRank !== undefined ? `${trekRank.rank}. ` : '';
   return (
     <div className={`${className ?? ''} flex flex-col mt-4 desktop:mt-12`}>
+      {trekFamily && (
+        <div className="my-4 text-P2">
+          {trekFamily.map(trekChild => (
+            <p key={trekChild.id}>{`${trekChild.rank}. ${trekChild.name}`}</p>
+          ))}
+        </div>
+      )}
       <span className="text-Mobile-C2 desktop:text-P1">{place}</span>
-      <span className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold">{title}</span>
+      <span className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold">{`${trekRankLabel}${title}`}</span>
       <div className="flex flex-wrap">
         {tags.map(tag => (
           <Chip className="mt-4 desktop:mt-6 mr-2 desktop:mr-4" key={tag}>
@@ -48,22 +62,22 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             {informations.difficulty.label}
           </RemoteIconInformation>
         )}
-        {informations.duration !== undefined && (
+        {informations.duration !== null && (
           <LocalIconInformation icon={Clock} className={classNameInformation}>
             {informations.duration}
           </LocalIconInformation>
         )}
-        {informations.distance !== undefined && (
+        {informations.distance !== null && (
           <LocalIconInformation icon={CodeBrackets} className={classNameInformation}>
             {informations.distance}
           </LocalIconInformation>
         )}
-        {informations.elevation !== undefined && (
+        {informations.elevation !== null && (
           <LocalIconInformation icon={TrendingUp} className={classNameInformation}>
             {informations.elevation}
           </LocalIconInformation>
         )}
-        {informations.courseType && (
+        {informations.courseType !== null && (
           <RemoteIconInformation
             iconUri={informations.courseType.pictogramUri}
             className={classNameInformation}
@@ -71,7 +85,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             {informations.courseType.label}
           </RemoteIconInformation>
         )}
-        {informations.networks &&
+        {informations.networks.length > 0 &&
           informations.networks.map((network, i) => (
             <RemoteIconInformation
               iconUri={network.pictogramUri}

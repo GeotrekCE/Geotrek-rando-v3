@@ -24,6 +24,7 @@ import { useFilter } from './components/useFilters';
 import { useTrekResults } from './hooks/useTrekResults';
 import { useMapResults } from './hooks/useMapResults';
 import { ErrorFallback } from './components/ErrorFallback';
+import { generateResultDetailsUrl } from './utils';
 
 interface Props {
   initialFiltersState: FilterState[];
@@ -141,6 +142,7 @@ export const SearchUI: React.FC<Props> = ({ initialFiltersState }) => {
                       thumbnailUri={searchResult.thumbnailUri}
                       badgeIconUri={searchResult.practice.pictogram}
                       informations={searchResult.informations}
+                      redirectionUrl={generateResultDetailsUrl(searchResult.id, searchResult.title)}
                       className="my-4 desktop:my-6"
                     />
                   ))}

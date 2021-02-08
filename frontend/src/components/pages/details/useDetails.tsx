@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
-import { Details } from 'modules/details/interface';
-import { getDetails } from 'modules/details/connector';
+import { Details, TrekChild } from 'modules/details/interface';
+import { getDetails, getTrekChildren } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
 import { useCallback, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -31,13 +31,25 @@ export interface DetailsSectionsPosition {
   touristicContent?: SectionPosition;
 }
 
-export const useDetails = (detailsUrl: string | string[] | undefined) => {
+export const useDetails = (
+  detailsUrl: string | string[] | undefined,
+  parentId: string | string[] | undefined,
+) => {
   const id = isUrlString(detailsUrl) ? detailsUrl.split('-')[1] : '';
   const { data, refetch, isLoading } = useQuery<Details, Error>(
     `details-${id}`,
     () => getDetails(id),
     {
       enabled: isUrlString(detailsUrl),
+    },
+  );
+
+  const parentIdString = isUrlString(parentId) ? parentId : '';
+  const { data: trekFamily } = useQuery<TrekChild[], Error>(
+    `trekFamily-${parentIdString}`,
+    () => getTrekChildren(isUrlString(parentId) ? parentId : ''),
+    {
+      enabled: isUrlString(parentId),
     },
   );
 
@@ -113,7 +125,9 @@ export const useDetails = (detailsUrl: string | string[] | undefined) => {
   const intl = useIntl();
 
   return {
+    id,
     details: data,
+    trekFamily,
     refetch,
     isLoading,
     sectionsReferences,

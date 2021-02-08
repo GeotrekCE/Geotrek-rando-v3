@@ -1,6 +1,6 @@
 import { GeotrekAPI } from 'services/api/client';
 import { APIQuery } from 'services/api/interface';
-import { RawDetails } from './interface';
+import { RawDetails, RawTrekChildIds, RawTrekName } from './interface';
 
 const fieldsParams = {
   fields:
@@ -18,4 +18,18 @@ export const fetchDetails = (query: APIQuery, id: string): Promise<RawDetails> =
     console.error('Error in details/api', e);
     throw e;
   }
+};
+
+export const fetchTrekChildren = (query: APIQuery, id: string): Promise<RawTrekChildIds> => {
+  return GeotrekAPI.url(`/trek/${id}/`)
+    .query({ ...query, fields: 'children' })
+    .get()
+    .json();
+};
+
+export const fetchTrekName = (query: APIQuery, id: string): Promise<RawTrekName> => {
+  return GeotrekAPI.url(`/trek/${id}/`)
+    .query({ ...query, fields: 'name' })
+    .get()
+    .json();
 };

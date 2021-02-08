@@ -24,9 +24,9 @@ export const getServerSideProps = async (context: {
 
 const Details = () => {
   const router = useRouter();
-  const { detailsId } = router.query;
+  const { detailsId, parentId } = router.query;
 
-  return <DetailsUI detailsId={detailsId} />;
+  return <DetailsUI detailsId={detailsId} parentId={parentId} />;
 };
 
 export default Details;

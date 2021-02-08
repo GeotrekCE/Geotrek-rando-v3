@@ -26,11 +26,14 @@ import { DetailsCoverCarousel } from './components/DetailsCoverCarousel';
 import { ImageWithLegend } from './components/DetailsCoverCarousel/DetailsCoverCarousel';
 interface Props {
   detailsId: string | string[] | undefined;
+  parentId?: string | string[];
 }
 
-export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
+export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
   const {
+    id,
     details,
+    trekFamily,
     refetch,
     isLoading,
     sectionsReferences,
@@ -42,7 +45,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
     setAccessibilityRef,
     sectionsPositions,
     intl,
-  } = useDetails(detailsId);
+  } = useDetails(detailsId, parentId);
 
   /** Ref of the parent of all sections */
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
@@ -119,12 +122,15 @@ export const DetailsUI: React.FC<Props> = ({ detailsId }) => {
                     title={details.title}
                     teaser={details.description_teaser}
                     ambiance={details.ambiance}
+                    trekFamily={trekFamily}
+                    id={id}
                   />
                 </div>
 
                 {details.children.length > 0 && (
                   <DetailsChildrenSection
                     trekChildren={details.children}
+                    trekId={id}
                     title={intl.formatMessage(
                       { id: 'details.children' },
                       { count: details.children.length },

@@ -11,9 +11,9 @@ import { getPois } from 'modules/poi/connector';
 import { getTrekResultsById } from 'modules/results/connector';
 import { getSources } from 'modules/source/connector';
 import { getTouristicContents } from 'modules/touristicContent/connector';
-import { adaptResults } from './adapter';
-import { fetchDetails } from './api';
-import { Details } from './interface';
+import { adaptChildren, adaptResults } from './adapter';
+import { fetchDetails, fetchTrekChildren, fetchTrekName } from './api';
+import { Details, TrekChild } from './interface';
 
 export const getDetails = async (id: string): Promise<Details> => {
   try {
@@ -63,6 +63,29 @@ export const getDetails = async (id: string): Promise<Details> => {
       labelsDictionnary,
       children,
     });
+  } catch (e) {
+    console.error('Error in details/connector', e);
+    throw e;
+  }
+};
+
+export const getTrekChildren = async (parentId: string): Promise<TrekChild[]> => {
+  try {
+    const childrenIdsResult = await fetchTrekChildren({ language: 'fr' }, parentId);
+    const childrenNames = await Promise.all(
+      childrenIdsResult.children.map(childId => getName(childId)),
+    );
+    return adaptChildren({ childrenIds: childrenIdsResult.children, childrenNames });
+  } catch (e) {
+    console.error('Error in details/connector', e);
+    throw e;
+  }
+};
+
+export const getName = async (id: string): Promise<string> => {
+  try {
+    const result = await fetchTrekName({ language: 'fr' }, id);
+    return result.name;
   } catch (e) {
     console.error('Error in details/connector', e);
     throw e;

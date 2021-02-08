@@ -39,6 +39,7 @@ interface Props {
     difficulty: { label: string; pictogramUri: string } | null;
     reservationSystem: number | null;
   };
+  redirectionUrl: string;
 }
 
 export const ResultCard: React.FC<Props> = ({
@@ -50,16 +51,15 @@ export const ResultCard: React.FC<Props> = ({
   badgeIconUri,
   informations,
   className,
+  redirectionUrl,
 }) => {
-  const detailsPageUrl = generateResultDetailsUrl(id, title);
-
   return (
     <Container className={className}>
       <ImageContainer imageUri={thumbnailUri}>
         <ActivityBadge iconUri={badgeIconUri} />
       </ImageContainer>
 
-      <Link href={detailsPageUrl} testId={`Link-ResultCard-${id}`} className="w-full">
+      <Link href={redirectionUrl} testId={`Link-ResultCard-${id}`} className="w-full">
         <DetailsContainer>
           <DetailsLayout>
             <Place>{place}</Place>
