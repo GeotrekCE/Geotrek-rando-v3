@@ -59,10 +59,8 @@ export const adaptResults = ({
       imgs: getAttachments(rawDetailsProperties.attachments),
       practice: activity,
       transport: rawDetailsProperties.public_transport,
-      access_parking:
-        rawDetailsProperties.access.length > 0 && rawDetailsProperties.advised_parking.length > 0
-          ? `${rawDetailsProperties.access}\n${rawDetailsProperties.advised_parking}`
-          : `${rawDetailsProperties.access}${rawDetailsProperties.advised_parking}`,
+      access: rawDetailsProperties.access,
+      parking: rawDetailsProperties.advised_parking,
       description_teaser: rawDetailsProperties.description_teaser,
       ambiance: rawDetailsProperties.ambiance,
       description: rawDetailsProperties.description,

@@ -61,7 +61,8 @@ export interface RawDetailsProperties {
 // Fields parsed with react-html-parser in page
 export interface DetailsHtml {
   transport: string;
-  access_parking: string;
+  access: string;
+  parking: string;
   description_teaser: string;
   ambiance: string;
   description: string;
