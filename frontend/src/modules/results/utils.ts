@@ -117,12 +117,12 @@ export const formatFiltersToUrlParams = (
   }, {});
 
 /** Extracts nextPageId from nextPageUrl */
-export const extractNextPageId = (nextPageUrl: string | null): string | null => {
+export const extractNextPageId = (nextPageUrl: string | null): number | null => {
   if (nextPageUrl === null) return null;
 
   const regex = /page=[0-9]*/;
   const matches = regex.exec(nextPageUrl);
-  if (matches !== null) return matches[0].replace('page=', '');
+  if (matches !== null) return parseInt(matches[0].replace('page=', ''), 10);
 
   throw Error('results adapter could not parse nextPageUrl to extract nextPageId');
 };

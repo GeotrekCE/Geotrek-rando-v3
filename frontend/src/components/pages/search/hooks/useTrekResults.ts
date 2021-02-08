@@ -45,7 +45,8 @@ export const useTrekResults = (filtersState: FilterState[]) => {
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
       // hasNextPage will be set to false if getNextPageParam returns undefined
-      getNextPageParam: lastPageResult => lastPageResult.nextPageId ?? undefined,
+      getNextPageParam: lastPageResult =>
+        lastPageResult.nextPages.treks !== null ? lastPageResult.nextPages : undefined,
     },
   );
 

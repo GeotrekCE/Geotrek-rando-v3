@@ -3,7 +3,9 @@ import { RawAttachment } from 'modules/interface';
 
 export interface TrekResults {
   resultsNumber: number;
-  nextPageId: string | null;
+  nextPages: {
+    treks: number | null;
+  };
   results: TrekResult[];
 }
 
