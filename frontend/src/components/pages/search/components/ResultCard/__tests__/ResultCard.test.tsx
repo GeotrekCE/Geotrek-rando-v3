@@ -5,6 +5,7 @@ import { ResultCard } from '../ResultCard';
 describe('Results Card', () => {
   const id = 2;
   const title = 'Balade au pays des menhirs';
+  const urlToTest = `/details-${id}-Balade-au-pays-des-menhirs`;
   const resultCard = (
     <ResultCard
       id={id}
@@ -20,6 +21,7 @@ describe('Results Card', () => {
         difficulty: { label: '', pictogramUri: '' },
         reservationSystem: 1,
       }}
+      redirectionUrl={urlToTest}
     />
   );
 
@@ -31,6 +33,6 @@ describe('Results Card', () => {
   it('AAU, I will be redirected to the right details page', () => {
     const component = render(resultCard);
     const link = component.getByRole('link');
-    expect(link).toHaveAttribute('href', `/details-${id}-Balade-au-pays-des-menhirs`);
+    expect(link).toHaveAttribute('href', urlToTest);
   });
 });
