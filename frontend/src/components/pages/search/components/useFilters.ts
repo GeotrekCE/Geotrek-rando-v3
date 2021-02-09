@@ -55,6 +55,34 @@ const computeFilterStateWithTypes = ({
   ].filter(isFilterStateNotNull);
 };
 
+const trekSpecificFilters = [
+  'difficulty',
+  'duration',
+  'length',
+  'ascent',
+  'route',
+  'accessibility',
+];
+const touristicContentSpecificFilters = ['type1', 'type2'];
+const commonFilters = ['practice', 'service', 'theme', 'city', 'district', 'structure'];
+
+const removeIrrelevantFilters = (currentState: FilterState[]): FilterState[] => {
+  const areTrekOptionsSelected = currentState[0].selectedOptions.length > 0;
+  const areTouristicContentOptionsSelected = currentState[1].selectedOptions.length > 0;
+  if (areTrekOptionsSelected && areTouristicContentOptionsSelected) {
+    return currentState.filter(({ id }) => commonFilters.includes(id));
+  }
+  if (areTrekOptionsSelected) {
+    return currentState.filter(({ id }) => [...commonFilters, ...trekSpecificFilters].includes(id));
+  }
+  if (areTouristicContentOptionsSelected) {
+    return currentState.filter(({ id }) =>
+      [...commonFilters, ...touristicContentSpecificFilters].includes(id),
+    );
+  }
+  return currentState;
+};
+
 export const useFilter = (
   initialFiltersState: FilterState[],
   touristicContentCategoryMapping: TouristicContentCategoryMapping,
@@ -71,7 +99,7 @@ export const useFilter = (
               touristicContentCategoryMapping,
             })
           : currentState;
-      return filterStateWithTypes.map(filterState => {
+      const newFiltersState = filterStateWithTypes.map(filterState => {
         if (filterState.id === filterId) {
           return {
             ...filterState,
@@ -80,6 +108,8 @@ export const useFilter = (
         }
         return filterState;
       });
+      const filtersStateWithoutIrrelvantFilters = removeIrrelevantFilters(newFiltersState);
+      return filtersStateWithoutIrrelvantFilters;
     });
   };
 
