@@ -2,6 +2,7 @@ import { SearchUI } from 'components/pages/search';
 import { parseFilters } from 'components/pages/search/utils';
 import { getFiltersState } from 'modules/filters/utils';
 import { getSearchResults } from 'modules/results/connector';
+import { getTouristicContentCategoryHashMap } from 'modules/touristicContentCategory/connector';
 import { QueryClient } from 'react-query';
 import { dehydrate, DehydratedState } from 'react-query/hydration';
 
@@ -21,6 +22,8 @@ export const getServerSideProps = async () => {
   const initialFiltersState = await getFiltersState();
   const parsedInitialFiltersState = parseFilters(initialFiltersState);
 
+  const touristicContentHashMap = await getTouristicContentCategoryHashMap();
+
   await queryClient.prefetchInfiniteQuery(['trekResults', parsedInitialFiltersState], () =>
     getSearchResults(parsedInitialFiltersState, { treks: 1, touristicContents: 1 }),
   );
@@ -32,6 +35,7 @@ export const getServerSideProps = async () => {
     props: {
       dehydratedState: safeState,
       initialFiltersState,
+      touristicContentHashMap,
     },
   };
 };
