@@ -3,7 +3,7 @@ import { getActivities } from 'modules/activities/connector';
 import { getDifficulties } from 'modules/filters/difficulties';
 import { getThemes } from 'modules/filters/theme/connector';
 import { QueryFilterState } from 'components/pages/search/utils';
-import { fetchTouristicContent } from 'modules/touristicContent/api';
+import { fetchTouristicContentResult } from 'modules/touristicContent/api';
 import { getApiCallsConfig } from 'modules/utils/api.config';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { adaptTouristicContent } from 'modules/touristicContent/adapter';
@@ -69,7 +69,7 @@ export const getSearchResults = async (
 
     const getToursticContentsPromise =
       pages.touristicContents !== null
-        ? fetchTouristicContent({
+        ? fetchTouristicContentResult({
             language: 'fr',
             page_size: getApiCallsConfig().searchResultsPageSize,
             page: pages.touristicContents ?? undefined,
