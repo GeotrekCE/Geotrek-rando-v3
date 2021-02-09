@@ -40,13 +40,11 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   const { truncateState, toggleTruncateState, heightState, detailsCardRef } = useDetailsCard();
   const descriptionStyled =
     truncateState === 'TRUNCATE' ? (
-      <TruncatedHtmlText className="text-greyDarkColored mt-1 desktop:mt-4">
+      <TruncatedHtmlText className="text-greyDarkColored">
         {parse(description ?? '')}
       </TruncatedHtmlText>
     ) : (
-      <HtmlText className="text-greyDarkColored mt-1 desktop:mt-4">
-        {parse(description ?? '')}
-      </HtmlText>
+      <HtmlText className="text-greyDarkColored">{parse(description ?? '')}</HtmlText>
     );
   return (
     <DetailsCardContainer height={heightState} className={className}>
@@ -79,9 +77,9 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         </OptionalLink>
         {description !== undefined && (
           <div
-            className="
+            className="mt-1 desktop:mt-4
             flex flex-col desktop:flex-row desktop:items-end
-            text-Mobile-C2 desktop:text-P1"
+            text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <OptionalLink redirectionUrl={redirectionUrl}>{descriptionStyled}</OptionalLink>
             <span
