@@ -19,7 +19,7 @@ export interface TouristicContentTypeValue {
   pictogram: string | null;
 }
 
-export interface TouristicContentCategoryHashMap {
+export interface TouristicContentCategoryMapping {
   [id: number]: {
     type1: { id: string; label: string; values: Option[] };
     type2: { id: string; label: string; values: Option[] };

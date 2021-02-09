@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { colorPalette, getSpacing, sizes, typography, zIndex } from 'stylesheet';
 
 import { Layout } from 'components/Layout/Layout';
-import { TouristicContentCategoryHashMap } from 'modules/touristicContentCategory/interface';
+import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
 import { OpenMapButton } from 'components/OpenMapButton';
 import {
   MobileFilterMenu,
@@ -30,7 +30,7 @@ import { DetailsCard } from '../details/components/DetailsCard';
 
 interface Props {
   initialFiltersState: FilterState[];
-  touristicContentHashMap: TouristicContentCategoryHashMap;
+  touristicContentHashMap: TouristicContentCategoryMapping;
 }
 
 export const SearchUI: React.FC<Props> = ({ initialFiltersState, touristicContentHashMap }) => {

@@ -3,7 +3,7 @@ import {
   RawTouristicContentCategory,
   TouristicContentCategory,
   TouristicContentCategoryDictionnary,
-  TouristicContentCategoryHashMap,
+  TouristicContentCategoryMapping,
 } from './interface';
 
 const adaptTouristicContentCategory = (
@@ -36,7 +36,7 @@ export const adaptTouristicContentCategoryFilter = (
 
 export const adaptTouristicContentCategoryHashMap = (
   rawTouristicContentCategories: RawTouristicContentCategory[],
-): TouristicContentCategoryHashMap =>
+): TouristicContentCategoryMapping =>
   rawTouristicContentCategories.reduce(
     (hashMap, currentTouristicContentCategory) => ({
       ...hashMap,
