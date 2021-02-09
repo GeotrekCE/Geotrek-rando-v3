@@ -47,3 +47,23 @@ export const mockResultsRoute = (times: number): void =>
     },
     times,
   });
+
+export const mockTouristicContentResultsResponse = (): APIResponseForList<RawTrekResult> => ({
+  count: 4,
+  next:
+    'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=departure%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cthumbnail%2Cpractice&language=fr&page=2&page_size=1',
+  previous: null,
+  results: [],
+});
+
+export const mockTouristicContentResultsRoute = (times: number): void =>
+  mockRoute({
+    route: '/touristiccontent',
+    mockData: mockTouristicContentResultsResponse(),
+    additionalQueries: {
+      fields: 'attachments,name,category,description_teaser',
+      page_size: 5,
+      page: 1,
+    },
+    times,
+  });

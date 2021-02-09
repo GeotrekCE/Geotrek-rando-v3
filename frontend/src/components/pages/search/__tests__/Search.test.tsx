@@ -1,10 +1,11 @@
 import 'isomorphic-fetch';
+import { mockTouristicContentCategoryRoute } from 'modules/touristicContentCategory/mocks';
 import nock from 'nock';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { render, waitForElementToBeRemoved } from 'services/testing/reactTestingLibraryWrapper';
 import { getApiUrl } from 'services/envLoader';
-import { mockResultsRoute } from 'modules/results/mocks';
+import { mockResultsRoute, mockTouristicContentResultsRoute } from 'modules/results/mocks';
 import { mockMapResultsRoute } from 'modules/mapResults/mocks';
 
 import { SearchUI } from '../Search';
@@ -43,6 +44,26 @@ describe('Search page', () => {
   it('should display result cards', async () => {
     // Only called by results
     mockResultsRoute(2);
+    mockTouristicContentResultsRoute(2);
+
+    mockRoute({
+      route: '/trek',
+      mockData: { next: null, previous: null, results: [], count: 0 },
+      additionalQueries: {
+        fields: 'id',
+        page_size: 1,
+        page: 1,
+      },
+    });
+    mockRoute({
+      route: '/touristiccontent',
+      mockData: { next: null, previous: null, results: [], count: 0 },
+      additionalQueries: {
+        fields: 'id',
+        page_size: 1,
+        page: 1,
+      },
+    });
 
     // Called by both filterBar and results
     mockRoute({ route: '/difficulty', mockData: mockDifficultyResponse, times: 3 });
@@ -53,6 +74,7 @@ describe('Search page', () => {
     mockRoute({ route: '/route', mockData: mockRouteResponse });
     mockRoute({ route: '/accessibility', mockData: mockAccessibilityResponse });
     mockRoute({ route: '/structure', mockData: mockStructureResponse });
+    mockTouristicContentCategoryRoute(1);
 
     // Called once on page init then a 2nd time when filters initialize
     mockMapResultsRoute(2);

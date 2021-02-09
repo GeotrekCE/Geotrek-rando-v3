@@ -13,3 +13,15 @@ export const fetchTouristicContent = (
     .query({ ...query, ...fieldsParams })
     .get()
     .json();
+
+const fieldsParamsResult = {
+  fields: 'attachments,name,category,description_teaser',
+};
+
+export const fetchTouristicContentResult = (
+  query: APIQuery,
+): Promise<APIResponseForList<RawTouristicContent>> =>
+  GeotrekAPI.url(`/touristiccontent`)
+    .query({ ...query, ...fieldsParamsResult })
+    .get()
+    .json();
