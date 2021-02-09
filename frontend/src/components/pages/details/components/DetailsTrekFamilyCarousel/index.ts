@@ -1,0 +1,1 @@
+export { DetailsTrekFamilyCarousel } from './DetailsTrekFamilyCarousel';
