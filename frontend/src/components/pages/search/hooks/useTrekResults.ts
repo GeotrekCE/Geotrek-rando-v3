@@ -30,14 +30,14 @@ export const useTrekResults = (filtersState: FilterState[]) => {
     data,
     isLoading,
     isError,
-    error,
     refetch,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery<SearchResults, Error>(
     ['trekResults', parsedFiltersState],
-    ({ pageParam }) => getSearchResults(parsedFiltersState, pageParam),
+    ({ pageParam = { treks: 1, touristicContents: 1 } }) =>
+      getSearchResults(parsedFiltersState, pageParam),
     {
       retry: false,
       // We already have a fallback component to allow the user to refetch
@@ -60,7 +60,7 @@ export const useTrekResults = (filtersState: FilterState[]) => {
       filterHash.current = currentFilterHash;
       void refetch();
     }
-  }, [filtersState]);
+  }, [filtersState, refetch]);
 
   return {
     searchResults: formatInfiniteQuery(data),

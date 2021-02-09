@@ -32,7 +32,7 @@ export const fetchTrekResultsNumber = (
 export const fetchTouristicContentResultsNumber = (
   query: APIQuery,
 ): Promise<APIResponseForList<{ id: number }>> =>
-  GeotrekAPI.url('/touristicContent')
+  GeotrekAPI.url('/touristiccontent')
     .query({ ...query, fields: 'id' })
     .get()
     .json();

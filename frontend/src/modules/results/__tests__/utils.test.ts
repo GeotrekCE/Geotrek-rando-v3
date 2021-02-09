@@ -1,8 +1,8 @@
 import {
   extractNextPageId,
   formatDistance,
-  formatFiltersToUrlParams,
   formatSelectedFilter,
+  formatTrekFiltersToUrlParams,
 } from '../utils';
 
 describe('formatDistance', () => {
@@ -43,7 +43,7 @@ describe('formFiltersToUrlParams', () => {
         selectedOptions: ['3', '4'],
       },
     ];
-    const output = formatFiltersToUrlParams(input);
+    const output = formatTrekFiltersToUrlParams(input);
     const expected = { difficulty_min: '3', difficulty_max: '4' };
     expect(output).toStrictEqual(expected);
   });
@@ -63,7 +63,7 @@ describe('formFiltersToUrlParams', () => {
         selectedOptions: ['2', '4'],
       },
     ];
-    const output = formatFiltersToUrlParams(input);
+    const output = formatTrekFiltersToUrlParams(input);
     const expected = { difficulty2: '1,3,4', difficulty3: '2,4' };
     expect(output).toStrictEqual(expected);
   });
@@ -74,7 +74,7 @@ describe('extractNextPageId', () => {
     const input =
       'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=id%2Cdeparture%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cthumbnail%2Cpractice&language=fr&page=2&page_size=5';
     const output = extractNextPageId(input);
-    const expected = '2';
+    const expected = 2;
     expect(output).toBe(expected);
   });
 
@@ -82,7 +82,7 @@ describe('extractNextPageId', () => {
     const input =
       'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=id%2Cdeparture%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cthumbnail%2Cpractice&language=fr&page=5';
     const output = extractNextPageId(input);
-    const expected = '5';
+    const expected = 5;
     expect(output).toBe(expected);
   });
 
@@ -90,7 +90,7 @@ describe('extractNextPageId', () => {
     const input =
       'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=id%2Cdeparture%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cthumbnail%2Cpractice&language=fr&page=910&page_size=5';
     const output = extractNextPageId(input);
-    const expected = '910';
+    const expected = 910;
     expect(output).toBe(expected);
   });
 
