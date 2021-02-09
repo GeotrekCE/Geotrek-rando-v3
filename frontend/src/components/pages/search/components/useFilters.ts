@@ -1,5 +1,5 @@
 import { FilterState, Option } from 'modules/filters/interface';
-import { TouristicContentCategoryHashMap } from 'modules/touristicContentCategory/interface';
+import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
 import { useState } from 'react';
 
 const getTypeFilterStateForService = ({
@@ -9,7 +9,7 @@ const getTypeFilterStateForService = ({
 }: {
   serviceId: string;
   type: 'type1' | 'type2';
-  hashMap: TouristicContentCategoryHashMap;
+  hashMap: TouristicContentCategoryMapping;
 }): FilterState | null =>
   hashMap[parseInt(serviceId, 10)][type].label === ''
     ? null
@@ -32,7 +32,7 @@ const computeFilterStateWithTypes = ({
 }: {
   currentState: FilterState[];
   options: Option[];
-  hashMap: TouristicContentCategoryHashMap;
+  hashMap: TouristicContentCategoryMapping;
 }): FilterState[] => {
   const filtersStateWithoutTypes = currentState.filter(
     filterState => filterState.id !== 'type1' && filterState.id !== 'type2',
@@ -57,7 +57,7 @@ const computeFilterStateWithTypes = ({
 
 export const useFilter = (
   initialFiltersState: FilterState[],
-  touristicContentHashMap: TouristicContentCategoryHashMap,
+  touristicContentHashMap: TouristicContentCategoryMapping,
 ) => {
   const [filtersState, setFiltersState] = useState<FilterState[]>(initialFiltersState);
 
