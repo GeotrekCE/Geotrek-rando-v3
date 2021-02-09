@@ -30,13 +30,16 @@ import { DetailsCard } from '../details/components/DetailsCard';
 
 interface Props {
   initialFiltersState: FilterState[];
-  touristicContentHashMap: TouristicContentCategoryMapping;
+  touristicContentCategoryMapping: TouristicContentCategoryMapping;
 }
 
-export const SearchUI: React.FC<Props> = ({ initialFiltersState, touristicContentHashMap }) => {
+export const SearchUI: React.FC<Props> = ({
+  initialFiltersState,
+  touristicContentCategoryMapping,
+}) => {
   const { filtersState, setFilterSelectedOptions } = useFilter(
     initialFiltersState,
-    touristicContentHashMap,
+    touristicContentCategoryMapping,
   );
 
   const {

@@ -57,7 +57,7 @@ const computeFilterStateWithTypes = ({
 
 export const useFilter = (
   initialFiltersState: FilterState[],
-  touristicContentHashMap: TouristicContentCategoryMapping,
+  touristicContentCategoryMapping: TouristicContentCategoryMapping,
 ) => {
   const [filtersState, setFiltersState] = useState<FilterState[]>(initialFiltersState);
 
@@ -68,7 +68,7 @@ export const useFilter = (
           ? computeFilterStateWithTypes({
               currentState,
               options,
-              touristicContentCategoryMapping: touristicContentHashMap,
+              touristicContentCategoryMapping,
             })
           : currentState;
       return filterStateWithTypes.map(filterState => {

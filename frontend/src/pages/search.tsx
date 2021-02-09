@@ -22,7 +22,7 @@ export const getServerSideProps = async () => {
   const initialFiltersState = await getFiltersState();
   const parsedInitialFiltersState = parseFilters(initialFiltersState);
 
-  const touristicContentHashMap = await getTouristicContentCategoryHashMap();
+  const touristicContentCategoryMapping = await getTouristicContentCategoryHashMap();
 
   await queryClient.prefetchInfiniteQuery(['trekResults', parsedInitialFiltersState], () =>
     getSearchResults(parsedInitialFiltersState, { treks: 1, touristicContents: 1 }),
@@ -35,7 +35,7 @@ export const getServerSideProps = async () => {
     props: {
       dehydratedState: safeState,
       initialFiltersState,
-      touristicContentHashMap,
+      touristicContentCategoryMapping,
     },
   };
 };
