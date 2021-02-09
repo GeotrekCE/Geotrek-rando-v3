@@ -159,6 +159,7 @@ export const SearchUI: React.FC<Props> = ({ initialFiltersState }) => {
                         iconUri={searchResult.category.pictogramUri}
                         place={searchResult.category.label}
                         logoUri={searchResult.logoUri}
+                        className="w-full"
                       />
                     ),
                   )}

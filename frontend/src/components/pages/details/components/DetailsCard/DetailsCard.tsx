@@ -21,6 +21,7 @@ export interface DetailsCardProps {
   thumbnailUris: string[];
   iconUri?: string;
   logoUri?: string;
+  className?: string;
 }
 
 export const DetailsCard: React.FC<DetailsCardProps> = ({
@@ -30,6 +31,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   iconUri,
   place,
   logoUri,
+  className,
 }) => {
   const { truncateState, toggleTruncateState, heightState, detailsCardRef } = useDetailsCard();
   const descriptionStyled =
@@ -39,7 +41,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
       <HtmlText>{parse(description ?? '')}</HtmlText>
     );
   return (
-    <DetailsCardContainer height={heightState}>
+    <DetailsCardContainer height={heightState} className={className}>
       {logoUri !== undefined && (
         <img
           className="hidden desktop:absolute h-12 object-cover object-center right-6 top-6"
@@ -86,7 +88,6 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
 const DetailsCardContainer = styled.div<{ height: number }>`
   margin: 0 ${getSpacing(1)};
   height: auto;
-  width: ${getSpacing(60)};
   flex: none;
   border: solid ${colorPalette.greySoft} 1px;
   border-radius: ${borderRadius.card};

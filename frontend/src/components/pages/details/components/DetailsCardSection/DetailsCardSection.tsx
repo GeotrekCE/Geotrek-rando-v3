@@ -39,6 +39,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
             iconUri={card.iconUri}
             place={card.place}
             logoUri={card.logoUri}
+            className="w-60"
           />
         ))}
       </ScrollContainer>
