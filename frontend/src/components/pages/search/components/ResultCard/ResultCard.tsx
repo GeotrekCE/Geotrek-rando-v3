@@ -21,7 +21,6 @@ import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 
-import { generateResultDetailsUrl } from '../../utils';
 import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
 
 interface Props {
@@ -170,7 +169,10 @@ const DetailsContainer = styled.div`
 const DetailsLayout = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: ${getSpacing(50)};
+  ${desktopOnly(css`
+    width: 100%;
+  `)}
 `;
 
 const BookingButtonContainer = styled.div`
