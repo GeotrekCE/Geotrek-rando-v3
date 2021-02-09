@@ -20,7 +20,7 @@ interface DetailsPreviewProps {
   title: string;
   trekFamily?: TrekChild[];
   id: string;
-  parentId: string;
+  parentId?: string;
 }
 
 export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
@@ -40,7 +40,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   const trekRankLabel = trekRank !== undefined ? `${trekRank.rank}. ` : '';
   return (
     <div className={`${className ?? ''} flex flex-col mt-4 desktop:mt-12`}>
-      {trekFamily && (
+      {trekFamily && parentId && (
         <DetailsTrekFamilyCarousel parentId={parentId} trekChildren={trekFamily} trekId={id} />
       )}
       <span className="text-Mobile-C2 desktop:text-P1">{place}</span>
