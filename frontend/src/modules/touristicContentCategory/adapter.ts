@@ -3,6 +3,7 @@ import {
   RawTouristicContentCategory,
   TouristicContentCategory,
   TouristicContentCategoryDictionnary,
+  TouristicContentCategoryHashMap,
 } from './interface';
 
 const adaptTouristicContentCategory = (
@@ -32,3 +33,23 @@ export const adaptTouristicContentCategoryFilter = (
     label: rawTouristicContentCategorie.label,
   })),
 });
+
+export const adaptTouristicContentCategoryHashMap = (
+  rawTouristicContentCategories: RawTouristicContentCategory[],
+): TouristicContentCategoryHashMap =>
+  rawTouristicContentCategories.reduce(
+    (hashMap, currentTouristicContentCategory) => ({
+      ...hashMap,
+      [currentTouristicContentCategory.id]: {
+        type1: {
+          id: currentTouristicContentCategory.types[0].id,
+          label: currentTouristicContentCategory.types[0].label,
+          values: currentTouristicContentCategory.types[0].values.map(({ id, label }) => ({
+            value: id,
+            label,
+          })),
+        },
+      },
+    }),
+    {},
+  );
