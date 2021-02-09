@@ -1,3 +1,5 @@
+import { Option } from '../filters/interface';
+
 export interface RawTouristicContentCategory {
   id: number;
   pictogram: string;
@@ -15,6 +17,13 @@ export interface TouristicContentTypeValue {
   id: number;
   label: string;
   pictogram: string | null;
+}
+
+export interface TouristicContentCategoryHashMap {
+  [id: number]: {
+    type1: { id: string; label: string; values: Option[] };
+    type2: { id: string; label: string; values: Option[] };
+  };
 }
 
 export interface TouristicContentCategory {
