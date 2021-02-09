@@ -1,5 +1,5 @@
 import { FilterState } from 'modules/filters/interface';
-import { SearchResults } from 'modules/results/interface';
+import { SearchResults, TrekResult } from 'modules/results/interface';
 import {
   concatResultsPages,
   formatInfiniteQuery,
@@ -67,8 +67,9 @@ const MockSelectedOptions = [
   { value: '5', label: 'Très difficile' },
 ];
 
-const mockTrekResult = {
+const mockTrekResult: TrekResult = {
   id: 2,
+  type: 'TREK',
   activityIcon: 'TODO',
   place: 'Molines-en-Champsaur',
   title: 'Col de Font Froide',
@@ -93,7 +94,7 @@ const mockTrekResult = {
 
 const mockInfiniteQueryPage = {
   resultsNumber: 6,
-  nextPages: { treks: 2 },
+  nextPages: { treks: 2, touristicContents: 2 },
   results: [mockTrekResult, mockTrekResult],
 };
 
@@ -159,7 +160,7 @@ describe('concatResultsPages', () => {
     const output = concatResultsPages(input);
     const expected = {
       resultsNumber: 6,
-      nextPages: { treks: 2 },
+      nextPages: { treks: 2, touristicContents: 2 },
       results: [mockTrekResult, mockTrekResult, mockTrekResult, mockTrekResult],
     };
 
@@ -181,7 +182,7 @@ describe('formatInfiniteQuery', () => {
     const output = formatInfiniteQuery(input);
     const expected = {
       resultsNumber: 6,
-      nextPages: { treks: 2 },
+      nextPages: { treks: 2, touristicContents: 2 },
       results: [mockTrekResult, mockTrekResult, mockTrekResult, mockTrekResult],
     };
 

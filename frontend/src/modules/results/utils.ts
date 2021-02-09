@@ -101,10 +101,16 @@ const formatFilter = (filterState: QueryFilterState) => {
  * Formats an array of Filters to an object of query parameters
  * @param filtersState Array of filters
  */
-export const formatFiltersToUrlParams = (
+export const formatTrekFiltersToUrlParams = (
   filtersState: QueryFilterState[],
 ): { [key: string]: string } =>
   filtersState.reduce<{ [key: string]: string }>((queryParameters, currentFilterState) => {
+    if (
+      currentFilterState.id === 'service' ||
+      currentFilterState.id === 'type1' ||
+      currentFilterState.id === 'type2'
+    )
+      return queryParameters;
     if (currentFilterState.selectedOptions.length > 0) {
       const filter = formatFilter(currentFilterState);
       return {
@@ -115,6 +121,21 @@ export const formatFiltersToUrlParams = (
       return queryParameters;
     }
   }, {});
+
+export const formatTouristicContentFiltersToUrlParams = (
+  filtersState: QueryFilterState[],
+): { [key: string]: string } => {
+  const types = filtersState.reduce<string[]>((currentTypes, currentFilterState) => {
+    if (currentFilterState.id === 'service') {
+      if (currentFilterState.selectedOptions.length > 0) {
+        return [...currentTypes, ...currentFilterState.selectedOptions];
+      }
+    }
+    return currentTypes;
+  }, []);
+  if (types.length === 0) return {};
+  return { types: types.join(',') };
+};
 
 /** Extracts nextPageId from nextPageUrl */
 export const extractNextPageId = (nextPageUrl: string | null): number | null => {

@@ -1,3 +1,4 @@
+import { getTouristicContentCategoryFilter } from 'modules/touristicContentCategory/connector';
 import { getActivityFilter } from 'modules/activities/connector';
 import { getAccessibilityFilter } from './accessibility/connector';
 import { getCityFilter } from './city/connector';
@@ -38,6 +39,8 @@ const getFilterOptions = async (filterId: string): Promise<FilterWithoutType | n
       return getAccessibilityFilter();
     case 'structure':
       return getStructureFilter();
+    case 'service':
+      return getTouristicContentCategoryFilter();
     default:
       return null;
   }

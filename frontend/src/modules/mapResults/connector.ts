@@ -1,6 +1,6 @@
 import { QueryFilterState } from 'components/pages/search/utils';
 import { getActivities } from 'modules/activities/connector';
-import { formatFiltersToUrlParams } from 'modules/results/utils';
+import { formatTrekFiltersToUrlParams } from 'modules/results/utils';
 import { getApiCallsConfig } from 'modules/utils/api.config';
 
 import { generatePageNumbersArray } from 'modules/utils/connector';
@@ -11,7 +11,7 @@ import { MapResults } from './interface';
 export const getMapResults = async (filtersState: QueryFilterState[]): Promise<MapResults> => {
   const resultsNumber = getApiCallsConfig().searchResultsPageSize;
 
-  const formattedFiltersToUrlParams = formatFiltersToUrlParams(filtersState);
+  const formattedFiltersToUrlParams = formatTrekFiltersToUrlParams(filtersState);
   const rawMapResults = await fetchMapResults({
     language: 'fr',
     page_size: resultsNumber,

@@ -16,7 +16,11 @@ import {
   fetchTrekResultsNumber,
 } from './api';
 import { SearchResults, TrekResult } from './interface';
-import { extractNextPageId, formatFiltersToUrlParams } from './utils';
+import {
+  extractNextPageId,
+  formatTouristicContentFiltersToUrlParams,
+  formatTrekFiltersToUrlParams,
+} from './utils';
 
 export const getSearchResults = async (
   filtersState: QueryFilterState[],
@@ -26,71 +30,89 @@ export const getSearchResults = async (
   },
 ): Promise<SearchResults> => {
   try {
-    let nextTreksPage: number | null = null;
-    let nextTouristicContentsPage: number | null = null;
-    let treksCount: number | null = null;
-    let touristicContentsCount: number | null = null;
-    const results: (TrekResult | TouristicContent)[] = [];
+    const trekFilters = formatTrekFiltersToUrlParams(filtersState);
+    const touristicContentFilter = formatTouristicContentFiltersToUrlParams(filtersState);
 
-    if (pages.treks !== null) {
-      const [rawTrekResults, difficulties, themes, activities] = await Promise.all([
-        fetchTrekResults({
-          language: 'fr',
-          page_size: getApiCallsConfig().searchResultsPageSize,
-          page: pages.treks ?? undefined,
-          ...formatFiltersToUrlParams(filtersState),
-        }),
-        getDifficulties(),
-        getThemes(),
-        getActivities(),
-      ]);
-      const adaptedResultsList: TrekResult[] = adaptTrekResultList({
-        resultsList: rawTrekResults.results,
-        difficulties,
-        themes,
-        activities,
-      });
-      nextTreksPage = extractNextPageId(rawTrekResults.next);
-      treksCount = rawTrekResults.count;
-      results.push(...adaptedResultsList);
-    }
-    if (pages.touristicContents !== null) {
-      const [rawTouristicContents, touristicContentCategories] = await Promise.all([
-        fetchTouristicContent({
-          language: 'fr',
-          page_size: getApiCallsConfig().searchResultsPageSize,
-          page: pages.touristicContents ?? undefined,
-        }),
-        getTouristicContentCategories(),
-      ]);
-      const adaptedTouristicContentsList: TouristicContent[] = adaptTouristicContent({
-        rawTouristicContent: rawTouristicContents.results,
-        touristicContentCategories,
-      });
-      nextTouristicContentsPage = extractNextPageId(rawTouristicContents.next);
-      touristicContentsCount = rawTouristicContents.count;
-      results.push(...adaptedTouristicContentsList);
-    }
+    // We get the treks and touristic content counts on their own call to handle the "null" next page edge case
 
-    if (treksCount === null) {
-      treksCount = (
-        await fetchTrekResultsNumber({
-          language: 'fr',
-          page_size: 1,
-          page: 1,
-          ...formatFiltersToUrlParams(filtersState),
-        })
-      ).count;
-    }
-    if (touristicContentsCount === null) {
-      touristicContentsCount = (
-        await fetchTouristicContentResultsNumber({
-          language: 'fr',
-          page_size: 1,
-          page: 1,
-        })
-      ).count;
-    }
+    const [{ count: treksCount }, { count: touristicContentsCount }] = await Promise.all([
+      fetchTrekResultsNumber({
+        language: 'fr',
+        page_size: 1,
+        page: 1,
+        ...trekFilters,
+      }),
+      fetchTouristicContentResultsNumber({
+        language: 'fr',
+        page_size: 1,
+        page: 1,
+        ...touristicContentFilter,
+      }),
+    ]);
+
+    // Then we prepare the content queries with empty array if the page is null, meaning we reached the end of the pagination for this ressource
+
+    const getTreksResultsPromise =
+      pages.treks !== null
+        ? fetchTrekResults({
+            language: 'fr',
+            page_size: getApiCallsConfig().searchResultsPageSize,
+            page: pages.treks ?? undefined,
+            ...trekFilters,
+          })
+        : Promise.resolve({
+            count: treksCount, // We keep the treks counts event if the query only concerns the touristic content
+            next: null,
+            previous: null,
+            results: [],
+          });
+
+    const getToursticContentsPromise =
+      pages.touristicContents !== null
+        ? fetchTouristicContent({
+            language: 'fr',
+            page_size: getApiCallsConfig().searchResultsPageSize,
+            page: pages.touristicContents ?? undefined,
+            ...touristicContentFilter,
+          })
+        : Promise.resolve({
+            count: touristicContentsCount, // We keep the touristic content counts event if the query only concerns the treks
+            next: null,
+            previous: null,
+            results: [],
+          });
+
+    // Then we perform the actual call, querying the required hashmaps by the way
+
+    const [
+      rawTrekResults,
+      difficulties,
+      themes,
+      activities,
+      rawTouristicContents,
+      touristicContentCategories,
+    ] = await Promise.all([
+      getTreksResultsPromise,
+      getDifficulties(), // Todo: Find a way to store this hashmap to avoid calling this every time
+      getThemes(), // Todo: Find a way to store this hashmap to avoid calling this every time
+      getActivities(), // Todo: Find a way to store this hashmap to avoid calling this every time
+      getToursticContentsPromise,
+      getTouristicContentCategories(), // Todo: Find a way to store this hashmap to avoid calling this every time
+    ]);
+    const adaptedResultsList: TrekResult[] = adaptTrekResultList({
+      resultsList: rawTrekResults.results,
+      difficulties,
+      themes,
+      activities,
+    });
+
+    const adaptedTouristicContentsList: TouristicContent[] = adaptTouristicContent({
+      rawTouristicContent: rawTouristicContents.results,
+      touristicContentCategories,
+    });
+
+    const nextTreksPage = extractNextPageId(rawTrekResults.next);
+    const nextTouristicContentsPage = extractNextPageId(rawTouristicContents.next);
 
     return {
       resultsNumber: treksCount + touristicContentsCount,
@@ -98,7 +120,7 @@ export const getSearchResults = async (
         treks: nextTreksPage,
         touristicContents: nextTouristicContentsPage,
       },
-      results,
+      results: [...adaptedResultsList, ...adaptedTouristicContentsList],
     };
   } catch (e) {
     console.error('Error in connector / results', e);

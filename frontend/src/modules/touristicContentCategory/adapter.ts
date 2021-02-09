@@ -1,3 +1,4 @@
+import { FilterWithoutType } from 'modules/filters/interface';
 import {
   RawTouristicContentCategory,
   TouristicContentCategory,
@@ -21,3 +22,13 @@ export const adaptTouristicContentCategories = (
     }),
     {},
   );
+
+export const adaptTouristicContentCategoryFilter = (
+  rawTouristicContentCategories: RawTouristicContentCategory[],
+): FilterWithoutType => ({
+  id: 'service',
+  options: rawTouristicContentCategories.map(rawTouristicContentCategorie => ({
+    value: `${rawTouristicContentCategorie.id}`,
+    label: rawTouristicContentCategorie.label,
+  })),
+});
