@@ -49,6 +49,14 @@ export const adaptTouristicContentCategoryHashMap = (
             label,
           })),
         },
+        type2: {
+          id: currentTouristicContentCategory.types[1].id,
+          label: currentTouristicContentCategory.types[1].label,
+          values: currentTouristicContentCategory.types[1].values.map(({ id, label }) => ({
+            value: id,
+            label,
+          })),
+        },
       },
     }),
     {},

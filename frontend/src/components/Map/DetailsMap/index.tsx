@@ -63,7 +63,7 @@ const DetailsMap: React.FC<PropsType> = props => {
   return (
     <>
       <MapContainer
-        scrollWheelZoom={false}
+        scrollWheelZoom
         style={{ height: '100%', width: '100%' }}
         zoomControl={props.type === 'DESKTOP'}
         bounds={[
