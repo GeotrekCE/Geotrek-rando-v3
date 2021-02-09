@@ -46,7 +46,12 @@ export const getDimensions = (htmlElement: HTMLElement | null): { top: number; b
   };
 };
 
-export const generateChildrenDetailsUrl = (id: number, title: string, parentId: string): string => {
+/** Generates the details page url for a trek part of an itinerance */
+export const generateChildrenDetailsUrl = (
+  id: string | number,
+  title: string,
+  parentId: string,
+): string => {
   const detailsUrl = generateResultDetailsUrl(id, title);
   return `${detailsUrl}?parentId=${parentId}`;
 };
