@@ -16,6 +16,7 @@ export const DetailsTrekFamilyCarousel: React.FC<DetailsTrekFamilyCarouselProps>
   trekId,
   parentId,
 }) => {
+  const currentTrekChild = trekChildren.find(trek => trek.id === trekId);
   return (
     <Slider
       speed={500}
@@ -24,9 +25,9 @@ export const DetailsTrekFamilyCarousel: React.FC<DetailsTrekFamilyCarouselProps>
       prevArrow={<PrevArrow />}
       swipe={false}
       slidesToShow={3}
-      slidesToScroll={1}
-      initialSlide={0}
-      className="mb-3 desktop:mb-6 mr-10 ml-8"
+      slidesToScroll={2}
+      initialSlide={currentTrekChild ? currentTrekChild.rank : 0}
+      className="mb-3 desktop:mb-6 mx-5 desktop:mr-10 desktop:ml-8"
     >
       {trekChildren.map((trekChild, i) => (
         <div key={i} className="outline-none">
@@ -95,12 +96,16 @@ const StyledArrow = styled.div`
   }
 `;
 const StyledRightArrow = styled(StyledArrow)`
-  right: -${getSpacing(8)};
+  right: -${getSpacing(6)};
+  ${desktopOnly(css`
+    right: -${getSpacing(8)};
+  `)}
 `;
 
 const StyledLeftArrow = styled(StyledArrow)`
-  left: -${getSpacing(8)};
+  left: -${getSpacing(6)};
   &::before {
+    left: -${getSpacing(8)};
     transform: rotate(180deg);
   }
 `;
