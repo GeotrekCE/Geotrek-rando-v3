@@ -95,14 +95,13 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             </RemoteIconInformation>
           ))}
       </div>
-      {teaser !== undefined && (
+      {teaser !== undefined && teaser.length > 0 && (
         <div className="text-Mobile-C1 desktop:text-H4 font-bold mt-6 desktop:mt-9">
           <HtmlText>{parse(teaser)}</HtmlText>
         </div>
       )}
-      {teaser !== undefined && ambiance !== undefined && <br />}
-      {ambiance !== undefined && (
-        <div className="text-Mobile-C1 desktop:text-P1">
+      {ambiance !== undefined && ambiance.length > 0 && (
+        <div className="text-Mobile-C1 desktop:text-P1 mt-4 desktop:mt-8">
           <HtmlText>{parse(ambiance)}</HtmlText>
         </div>
       )}
@@ -111,4 +110,4 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   );
 };
 
-const classNameInformation = 'mr-6 mt-3 desktop:mt-4 text-primary1';
+const classNameInformation = 'mr-3 desktop:mr-6 mt-3 desktop:mt-4 text-primary1';
