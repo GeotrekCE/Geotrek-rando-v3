@@ -1,5 +1,8 @@
 import { FormattedMessage } from 'react-intl';
-import { parseHtmlToList } from '../../utils';
+import styled, { css } from 'styled-components';
+import { colorPalette, desktopOnly, getSpacing, shadow, typography } from 'stylesheet';
+import parse from 'html-react-parser';
+import { HtmlText } from '../../utils';
 
 interface DetailsDescriptionProps {
   descriptionHtml: string;
@@ -10,7 +13,6 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
   descriptionHtml,
   className,
 }) => {
-  const [intro, conclusion, steps] = parseHtmlToList(descriptionHtml);
   return (
     <div
       className={`flex flex-col
@@ -21,36 +23,68 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
       <p className="text-Mobile-H1 desktop:text-H2 font-bold">
         <FormattedMessage id="details.description" />
       </p>
-      {intro !== undefined && <div className="mt-4 desktop:mt-6">{intro}</div>}
-      <div className="flex flex-col my-4 desktop:my-6">
-        {steps &&
-          steps.map((step, i) => (
-            <div key={i}>
-              <Step number={i + 1} />
-              <div
-                className={`${i < steps.length - 1 ? 'border-solid border-primary1 border-l-3' : ''}
-              ml-3.5 desktop:ml-5.5
-              pl-8 desktop:pl-12`}
-              >
-                <div className="relative -top-7 desktop:-top-9">{step}</div>
-              </div>
-            </div>
-          ))}
-        {conclusion !== undefined && <div className="mb-4 desktop:mb-6">{conclusion}</div>}
+      <div className="mt-3 desktop:mt-4 mb-6 desktop:mb-12">
+        <StyledListWithSteps>{parse(descriptionHtml)}</StyledListWithSteps>
       </div>
     </div>
   );
 };
 
-export const Step: React.FC<{ number: number }> = ({ number }) => (
-  <div
-    className="h-8 w-8 desktop:h-12 desktop:w-12
-    rounded-full
-    flex items-center justify-center
-    border-solid border-primary1 border-3
-    text-P1 desktop:text-H4 font-bold text-primary1
-    shadow-md"
-  >
-    {number}
-  </div>
-);
+const StyledListWithSteps = styled(HtmlText)`
+  & > ol {
+    position: relative;
+    list-style: none;
+    counter-reset: item;
+    margin: ${getSpacing(2)} 0;
+    ${desktopOnly(css`
+      margin: ${getSpacing(4)} 0;
+    `)}
+  }
+  & > ol::before {
+    content: ' ';
+    background-color: ${colorPalette.primary1};
+    width: 3px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 14px;
+    z-index: -1;
+    ${desktopOnly(css`
+      left: 22px;
+    `)}
+  }
+  & > ol > li {
+    counter-increment: item;
+    display: flex;
+    align-items: center;
+    padding-top: ${getSpacing(4)};
+    ${desktopOnly(css`
+      padding-top: ${getSpacing(10)};
+    `)}
+  }
+  & > ol > li:first-child {
+    padding: 0;
+  }
+  & > ol > li::before {
+    content: counter(item);
+    border-radius: 100%;
+    width: ${getSpacing(8)};
+    height: ${getSpacing(8)};
+    flex: none;
+    margin-right: ${getSpacing(3.5)};
+    border: solid 3px ${colorPalette.primary1};
+    font-weight: bold;
+    color: ${colorPalette.primary1};
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: ${shadow.medium};
+    ${desktopOnly(css`
+      width: ${getSpacing(12)};
+      height: ${getSpacing(12)};
+      margin-right: ${getSpacing(5.5)};
+      ${typography.h4}
+    `)}
+  }
+`;

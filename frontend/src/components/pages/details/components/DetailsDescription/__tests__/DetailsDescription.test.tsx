@@ -1,6 +1,5 @@
 import { render } from 'services/testing/reactTestingLibraryWrapper';
 import { DetailsDescription } from '../DetailsDescription';
-import { parseHtmlToList } from '../../../utils';
 describe('DetailsDescription', () => {
   it('should display a well parsed description Element', () => {
     const descriptionStringHtml =

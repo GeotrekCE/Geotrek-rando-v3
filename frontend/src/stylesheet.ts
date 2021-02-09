@@ -90,6 +90,7 @@ export const fontFamily = {
 
 export const shadow = {
   large: `0 0 30px 0 rgba(0, 0, 0, 0.15)`,
+  medium: '0 0 20px rgba(0, 0, 0, 0.15)',
   small: `0 0 4px ${colorPalette.greySoft}`,
 } as const;
 
@@ -122,6 +123,12 @@ export const typography = {
     font-weight: bold;
     font-size: 32px;
     line-height: 42px;
+  `,
+  h4: css`
+    font-family: ${fontFamily.main};
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 26px;
   `,
   code: css`
     font-family: ${fontFamily.code};
