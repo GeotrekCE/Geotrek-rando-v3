@@ -125,16 +125,36 @@ export const formatTrekFiltersToUrlParams = (
 export const formatTouristicContentFiltersToUrlParams = (
   filtersState: QueryFilterState[],
 ): { [key: string]: string } => {
-  const types = filtersState.reduce<string[]>((currentTypes, currentFilterState) => {
-    if (currentFilterState.id === 'service') {
-      if (currentFilterState.selectedOptions.length > 0) {
-        return [...currentTypes, ...currentFilterState.selectedOptions];
+  const filters = filtersState.reduce<{ types: string[]; categories: string[] }>(
+    (currentFilters, currentFilterState) => {
+      if (currentFilterState.id === 'type1' || currentFilterState.id === 'type2') {
+        if (currentFilterState.selectedOptions.length > 0) {
+          return {
+            ...currentFilters,
+            types: [...currentFilters.types, ...currentFilterState.selectedOptions],
+          };
+        }
       }
-    }
-    return currentTypes;
-  }, []);
-  if (types.length === 0) return {};
-  return { types: types.join(',') };
+      if (currentFilterState.id === 'service') {
+        if (currentFilterState.selectedOptions.length > 0) {
+          return {
+            ...currentFilters,
+            categories: currentFilterState.selectedOptions,
+          };
+        }
+      }
+      return currentFilters;
+    },
+    { types: [], categories: [] },
+  );
+  const joinedFilters: { [key: string]: string } = {};
+  if (filters.types.length > 0) {
+    joinedFilters.types = filters.types.join(',');
+  }
+  if (filters.categories.length > 0) {
+    joinedFilters.categories = filters.categories.join(',');
+  }
+  return joinedFilters;
 };
 
 /** Extracts nextPageId from nextPageUrl */
