@@ -38,8 +38,8 @@ export const adaptTouristicContentCategoryHashMap = (
   rawTouristicContentCategories: RawTouristicContentCategory[],
 ): TouristicContentCategoryMapping =>
   rawTouristicContentCategories.reduce(
-    (hashMap, currentTouristicContentCategory) => ({
-      ...hashMap,
+    (touristicContentCategoryMapping, currentTouristicContentCategory) => ({
+      ...touristicContentCategoryMapping,
       [currentTouristicContentCategory.id]: {
         type1: {
           id: currentTouristicContentCategory.types[0].id,
