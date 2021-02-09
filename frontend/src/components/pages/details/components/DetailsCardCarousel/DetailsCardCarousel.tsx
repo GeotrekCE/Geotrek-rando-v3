@@ -41,7 +41,7 @@ const NextArrow = (props: CustomArrowProps) => {
 
 const StyledArrow = styled.div`
   z-index: 10;
-  top: 85%;
+  top: calc(100% - 30px);
   &::before {
     opacity: 1;
     text-shadow: 0 0 4px ${colorPalette.greyDarkColored};
@@ -65,7 +65,7 @@ const StyledDots = styled.div`
   overflow: hidden;
   display: flex;
   justify-content: center;
-  bottom: ${getSpacing(5)};
+  bottom: 22px;
   padding: 0 ${getSpacing(8)};
   max-height: ${getSpacing(6)};
   color: white;

@@ -10,6 +10,7 @@ import {
 import { TouristicContentCategory } from 'modules/touristicContentCategory/interface';
 
 export interface RawTouristicContent {
+  id: string;
   attachments: RawAttachment[];
   name: string;
   category: number;
@@ -18,6 +19,7 @@ export interface RawTouristicContent {
 }
 
 export interface TouristicContent {
+  id: string;
   type: 'TOURISTIC_CONTENT';
   name: string;
   description?: string;

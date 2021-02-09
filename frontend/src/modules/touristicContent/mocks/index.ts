@@ -435,7 +435,7 @@ export const mockTouristicContentRoute = (times: number, nearTrekId: number): vo
     route: '/touristiccontent',
     mockData: mockTouristicContentResponse(),
     additionalQueries: {
-      fields: 'attachments,name,category,description_teaser,geometry',
+      fields: 'id,attachments,name,category,description_teaser,geometry',
       near_trek: nearTrekId,
     },
     times,

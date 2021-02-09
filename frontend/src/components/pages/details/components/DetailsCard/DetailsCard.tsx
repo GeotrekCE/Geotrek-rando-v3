@@ -3,6 +3,7 @@ import parse from 'html-react-parser';
 import { HtmlText } from 'components/pages/details/utils';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'components/Link';
 import SVG from 'react-inlinesvg';
 import {
   borderRadius,
@@ -15,6 +16,7 @@ import {
 import { useDetailsCard } from './useDetailsCard';
 import { DetailsCardCarousel } from '../DetailsCardCarousel';
 export interface DetailsCardProps {
+  id?: string;
   name: string;
   place?: string;
   description?: string;
@@ -22,6 +24,7 @@ export interface DetailsCardProps {
   iconUri?: string;
   logoUri?: string;
   className?: string;
+  redirectionUrl?: string;
 }
 
 export const DetailsCard: React.FC<DetailsCardProps> = ({
@@ -32,13 +35,16 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   place,
   logoUri,
   className,
+  redirectionUrl,
 }) => {
   const { truncateState, toggleTruncateState, heightState, detailsCardRef } = useDetailsCard();
   const descriptionStyled =
     truncateState === 'TRUNCATE' ? (
-      <TruncatedHtmlText>{parse(description ?? '')}</TruncatedHtmlText>
+      <TruncatedHtmlText className="text-greyDarkColored">
+        {parse(description ?? '')}
+      </TruncatedHtmlText>
     ) : (
-      <HtmlText>{parse(description ?? '')}</HtmlText>
+      <HtmlText className="text-greyDarkColored">{parse(description ?? '')}</HtmlText>
     );
   return (
     <DetailsCardContainer height={heightState} className={className}>
@@ -61,15 +67,21 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         className={`flex flex-col relative
         p-2 desktop:p-6 desktop:my-auto`}
       >
-        {place !== undefined && <p>{place}</p>}
-        <p className="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold">{name}</p>
+        {place !== undefined && (
+          <OptionalLink redirectionUrl={redirectionUrl}>
+            <p className="text-greyDarkColored">{place}</p>
+          </OptionalLink>
+        )}
+        <OptionalLink redirectionUrl={redirectionUrl}>
+          <p className="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold">{name}</p>
+        </OptionalLink>
         {description !== undefined && (
           <div
             className="mt-1 desktop:mt-4
             flex flex-col desktop:flex-row desktop:items-end
-            text-Mobile-C2 desktop:text-P1"
+            text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
-            {descriptionStyled}
+            <OptionalLink redirectionUrl={redirectionUrl}>{descriptionStyled}</OptionalLink>
             <span
               className="text-primary1 underline cursor-pointer flex-shrink-0 desktop:ml-1"
               onClick={toggleTruncateState}
@@ -82,6 +94,19 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         )}
       </div>
     </DetailsCardContainer>
+  );
+};
+
+interface OptionalLinkProps {
+  redirectionUrl?: string;
+  children: React.ReactNode;
+}
+
+const OptionalLink: React.FC<OptionalLinkProps> = ({ redirectionUrl, children }) => {
+  return redirectionUrl !== undefined ? (
+    <Link href={redirectionUrl}>{children}</Link>
+  ) : (
+    <>{children}</>
   );
 };
 

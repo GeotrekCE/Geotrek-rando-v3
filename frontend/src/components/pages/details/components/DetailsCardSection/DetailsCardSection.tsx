@@ -8,12 +8,14 @@ interface DetailsCardSectionProps {
   displayBadge?: boolean;
   detailsCards: DetailsCardProps[];
   title: string;
+  generateUrlFunction?: (id: string | number, title: string) => string;
 }
 
 export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
   detailsCards,
   title,
   displayBadge = false,
+  generateUrlFunction,
 }) => {
   return (
     <div className="mt-6 desktop:mt-12">
@@ -33,6 +35,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
         {detailsCards.map((card, i) => (
           <DetailsCard
             key={i}
+            id={card.id}
             name={card.name}
             description={card.description}
             thumbnailUris={card.thumbnailUris}
@@ -40,6 +43,11 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
             place={card.place}
             logoUri={card.logoUri}
             className="w-60"
+            redirectionUrl={
+              generateUrlFunction && card.id !== undefined
+                ? generateUrlFunction(card.id, card.name)
+                : undefined
+            }
           />
         ))}
       </ScrollContainer>

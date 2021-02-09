@@ -6,7 +6,6 @@ import { useShowOnScrollPosition } from 'hooks/useShowOnScrollPosition';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { useRef } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -15,7 +14,7 @@ import { DetailsCardSection } from './components/DetailsCardSection';
 import { useDetails } from './useDetails';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from './components/DetailsTopIcons';
-import { HtmlText } from './utils';
+import { generateTouristicContentUrl, HtmlText } from './utils';
 import { DetailsSource } from './components/DetailsSource';
 import { useOnScreenSection } from './hooks/useHighlightedSection';
 
@@ -280,7 +279,9 @@ export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
                     <DetailsCardSection
                       title={intl.formatMessage({ id: 'details.touristicContent' })}
                       displayBadge
+                      generateUrlFunction={generateTouristicContentUrl}
                       detailsCards={details.touristicContents.map(touristicContent => ({
+                        id: touristicContent.id,
                         name: touristicContent.name ?? '',
                         place: touristicContent.category.label,
                         description: touristicContent.description,
