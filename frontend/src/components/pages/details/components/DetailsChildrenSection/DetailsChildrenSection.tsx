@@ -25,9 +25,11 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
       <ScrollContainer
         className="flex desktop:flex-col
         desktop:pl-18 desktop:pr-9 desktop:mr-9 desktop:pt-10
-        mt-4 mb-4 desktop:mb-0 px-4 pb-2
+        mt-4 mb-4 desktop:mb-0 px-4
         items-stretch
-        overflow-scroll flex-nowrap max-h-screen
+        overflow-x-scroll desktop:overflow-x-hidden
+        overflow-y-hidden desktop:overflow-y-scroll
+        flex-nowrap max-h-screen
         "
       >
         {trekChildren.map((trekChild, i) => (
