@@ -15,7 +15,7 @@ export const fetchTouristicContent = (
     .json();
 
 const fieldsParamsResult = {
-  fields: 'attachments,name,category,description_teaser',
+  fields: 'id,attachments,name,category,description_teaser',
 };
 
 export const fetchTouristicContentResult = (
