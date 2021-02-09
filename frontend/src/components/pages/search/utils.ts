@@ -2,7 +2,7 @@ import { InfiniteData } from 'react-query';
 
 import { routes } from 'services/routes';
 import { FilterState, Option } from 'modules/filters/interface';
-import { TrekResult, SearchResults } from 'modules/results/interface';
+import { SearchResults, TrekResult } from 'modules/results/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 
 /**
