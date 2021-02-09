@@ -5,19 +5,19 @@ import { useState } from 'react';
 const getTypeFilterStateForService = ({
   serviceId,
   type,
-  hashMap,
+  touristicContentCategoryMapping,
 }: {
   serviceId: string;
   type: 'type1' | 'type2';
-  hashMap: TouristicContentCategoryMapping;
+  touristicContentCategoryMapping: TouristicContentCategoryMapping;
 }): FilterState | null =>
-  hashMap[parseInt(serviceId, 10)][type].label === ''
+  touristicContentCategoryMapping[parseInt(serviceId, 10)][type].label === ''
     ? null
     : {
         id: type,
-        label: hashMap[parseInt(serviceId, 10)][type].label,
+        label: touristicContentCategoryMapping[parseInt(serviceId, 10)][type].label,
         selectedOptions: [],
-        options: hashMap[parseInt(serviceId, 10)][type].values,
+        options: touristicContentCategoryMapping[parseInt(serviceId, 10)][type].values,
         status: 'ENABLED',
         type: 'MULTIPLE',
       };
@@ -28,11 +28,11 @@ const isFilterStateNotNull = (filterState: FilterState | null): filterState is F
 const computeFilterStateWithTypes = ({
   currentState,
   options,
-  hashMap,
+  touristicContentCategoryMapping,
 }: {
   currentState: FilterState[];
   options: Option[];
-  hashMap: TouristicContentCategoryMapping;
+  touristicContentCategoryMapping: TouristicContentCategoryMapping;
 }): FilterState[] => {
   const filtersStateWithoutTypes = currentState.filter(
     filterState => filterState.id !== 'type1' && filterState.id !== 'type2',
@@ -45,12 +45,12 @@ const computeFilterStateWithTypes = ({
     getTypeFilterStateForService({
       serviceId: options[0].value,
       type: 'type1',
-      hashMap,
+      touristicContentCategoryMapping,
     }),
     getTypeFilterStateForService({
       serviceId: options[0].value,
       type: 'type2',
-      hashMap,
+      touristicContentCategoryMapping,
     }),
   ].filter(isFilterStateNotNull);
 };
@@ -68,7 +68,7 @@ export const useFilter = (
           ? computeFilterStateWithTypes({
               currentState,
               options,
-              hashMap: touristicContentHashMap,
+              touristicContentCategoryMapping: touristicContentHashMap,
             })
           : currentState;
       return filterStateWithTypes.map(filterState => {
