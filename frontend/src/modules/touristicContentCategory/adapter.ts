@@ -6,11 +6,12 @@ import {
   TouristicContentCategoryMapping,
 } from './interface';
 
-const adaptTouristicContentCategory = (
+export const adaptTouristicContentCategory = (
   rawCat: RawTouristicContentCategory,
 ): TouristicContentCategory => ({
   label: rawCat.label,
   pictogramUri: rawCat.pictogram,
+  types: rawCat.types,
 });
 
 export const adaptTouristicContentCategories = (

@@ -1,10 +1,11 @@
 import {
   adaptTouristicContentCategories,
+  adaptTouristicContentCategory,
   adaptTouristicContentCategoryFilter,
   adaptTouristicContentCategoryHashMap,
 } from './adapter';
-import { fetchTouristicContentCategories } from './api';
-import { TouristicContentCategoryDictionnary } from './interface';
+import { fetchTouristicContentCategories, fetchTouristicContentCategory } from './api';
+import { TouristicContentCategory, TouristicContentCategoryDictionnary } from './interface';
 
 export const getTouristicContentCategories = async (): Promise<TouristicContentCategoryDictionnary> => {
   const rawTouristicContentCats = await fetchTouristicContentCategories({ language: 'fr' });
@@ -19,4 +20,11 @@ export const getTouristicContentCategoryFilter = async () => {
 export const getTouristicContentCategoryHashMap = async () => {
   const rawTouristicContentCategories = await fetchTouristicContentCategories({ language: 'fr' });
   return adaptTouristicContentCategoryHashMap(rawTouristicContentCategories.results);
+};
+
+export const getTouristicContentCategory = async (
+  id: number,
+): Promise<TouristicContentCategory> => {
+  const rawTouristicContentCategory = await fetchTouristicContentCategory({ language: 'fr' }, id);
+  return adaptTouristicContentCategory(rawTouristicContentCategory);
 };

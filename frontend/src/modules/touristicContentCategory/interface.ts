@@ -29,6 +29,7 @@ export interface TouristicContentCategoryMapping {
 export interface TouristicContentCategory {
   label: string;
   pictogramUri: string;
+  types: TouristicContentType[];
 }
 
 export interface TouristicContentCategoryDictionnary {
