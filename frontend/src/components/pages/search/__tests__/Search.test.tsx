@@ -83,7 +83,7 @@ describe('Search page', () => {
 
     const page = render(
       <QueryClientProvider client={queryClient}>
-        <SearchUI initialFiltersState={[]} />
+        <SearchUI initialFiltersState={[]} touristicContentCategoryMapping={{}} />
       </QueryClientProvider>,
     );
 
