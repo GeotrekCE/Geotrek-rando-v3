@@ -162,7 +162,7 @@ export const SearchUI: React.FC<Props> = ({
                       <DetailsCard
                         key={searchResult.name}
                         name={searchResult.name}
-                        description={searchResult.description}
+                        description={searchResult.descriptionTeaser}
                         thumbnailUris={searchResult.thumbnailUris}
                         iconUri={searchResult.category.pictogramUri}
                         place={searchResult.category.label}
