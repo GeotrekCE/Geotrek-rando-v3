@@ -3,14 +3,11 @@ import { DifficultyChoices } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
 import { adaptTouristicContent } from 'modules/touristicContent/adapter';
 import { RawTouristicContent, TouristicContent } from 'modules/touristicContent/interface';
-import {
-  TouristicContentCategory,
-  TouristicContentCategoryDictionnary,
-} from 'modules/touristicContentCategory/interface';
+import { TouristicContentCategoryDictionnary } from 'modules/touristicContentCategory/interface';
 import { getThumbnail } from 'modules/utils/adapter';
 import { formatHours } from 'modules/utils/time';
 import { APIResponseForList } from 'services/api/interface';
-import { RawTrekResult, RawTrekResults, TrekResult, SearchResults } from './interface';
+import { RawTrekResult, SearchResults, TrekResult } from './interface';
 import { extractNextPageId, formatDistance } from './utils';
 
 export const dataUnits = {
