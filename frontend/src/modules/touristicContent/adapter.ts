@@ -1,7 +1,22 @@
-import { TouristicContentCategoryDictionnary } from 'modules/touristicContentCategory/interface';
-import { getThumbnails } from 'modules/utils/adapter';
+import { CityDictionnary } from 'modules/city/interface';
+import { Choices } from 'modules/filters/interface';
+import { SourceDictionnary } from 'modules/source/interface';
+import {
+  TouristicContentCategory,
+  TouristicContentCategoryDictionnary,
+} from 'modules/touristicContentCategory/interface';
+import { getAttachments, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
-import { RawTouristicContent, TouristicContent } from './interface';
+import {
+  RawTouristicContent,
+  RawTouristicContentDetails,
+  TouristicContent,
+  TouristicContentDetails,
+  TouristicContentDetailsType,
+} from './interface';
+
+const DEFAULT_LOGO_URI =
+  'https://www.ecrins-parcnational.fr/sites/ecrins-parcnational.com/files/page/12952/14211espritparc-nationalecrinshd_0.jpg';
 
 export const adaptTouristicContent = ({
   rawTouristicContent,
@@ -14,8 +29,54 @@ export const adaptTouristicContent = ({
     id: rawTouristicObject.id,
     type: 'TOURISTIC_CONTENT',
     name: rawTouristicObject.name,
-    description: rawTouristicObject.description_teaser,
+    descriptionTeaser: rawTouristicObject.description_teaser,
     thumbnailUris: getThumbnails(rawTouristicObject.attachments),
     category: touristicContentCategories[rawTouristicObject.category],
     geometry: rawTouristicObject.geometry ? adaptGeometry(rawTouristicObject.geometry) : null,
+    logoUri: rawTouristicObject.approved ? DEFAULT_LOGO_URI : '',
   }));
+
+export const adaptTouristicContentDetails = ({
+  rawTCD,
+  touristicContentCategory,
+  sourceDictionnary,
+  cityDictionnary,
+  themeDictionnary,
+}: {
+  rawTCD: RawTouristicContentDetails;
+  touristicContentCategory: TouristicContentCategory;
+  sourceDictionnary: SourceDictionnary;
+  cityDictionnary: CityDictionnary;
+  themeDictionnary: Choices;
+}): TouristicContentDetails => ({
+  id: rawTCD.id,
+  type: 'TOURISTIC_CONTENT',
+  name: rawTCD.name,
+  descriptionTeaser: rawTCD.description_teaser,
+  thumbnailUris: getThumbnails(rawTCD.attachments),
+  category: touristicContentCategory,
+  geometry: rawTCD.geometry ? adaptGeometry(rawTCD.geometry) : null,
+  attachments: getAttachments(rawTCD.attachments),
+  description: rawTCD.description,
+  sources: rawTCD.source !== null ? rawTCD.source.map(sourceId => sourceDictionnary[sourceId]) : [],
+  contact: rawTCD.contact,
+  email: rawTCD.email,
+  website: rawTCD.website,
+  place: rawTCD.cities.length > 0 ? cityDictionnary[rawTCD.cities[0]].name : '',
+  themes:
+    rawTCD.themes !== null ? rawTCD.themes.map(themeId => themeDictionnary[themeId].label) : [],
+  pdf: rawTCD.pdf,
+  types: Object.keys(rawTCD.types).reduce<TouristicContentDetailsType[]>((adaptedTypes, typeId) => {
+    const adaptedType = adaptTouristicType(typeId, touristicContentCategory);
+    if (adaptedType) {
+      adaptedTypes.push(adaptedType);
+    }
+    return adaptedTypes;
+  }, []),
+  logoUri: rawTCD.approved ? DEFAULT_LOGO_URI : '',
+});
+
+const adaptTouristicType = (typeId: string, touristicContentCategory: TouristicContentCategory) => {
+  const type = touristicContentCategory.types.find(t => `${t.id}` === typeId);
+  return type && { label: type.label, values: type.values.map(value => value.label) };
+};
