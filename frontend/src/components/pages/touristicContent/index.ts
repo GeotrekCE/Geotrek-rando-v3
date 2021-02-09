@@ -1,1 +1,1 @@
-export { TouristicContentUI } from './TouristicContent';
+export { TouristicContentUI } from './TouristicContentUI';
