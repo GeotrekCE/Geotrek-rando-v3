@@ -48,7 +48,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
     );
   return (
     <DetailsCardContainer height={heightState} className={className}>
-      {logoUri !== undefined && (
+      {logoUri !== undefined && logoUri !== null && logoUri.length > 0 && (
         <img
           className="hidden desktop:absolute h-12 object-cover object-center right-6 top-6"
           src={logoUri}
