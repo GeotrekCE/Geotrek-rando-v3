@@ -7,6 +7,7 @@ import { RemoteIconInformation } from 'components/Information/RemoteIconInformat
 import { LocalIconInformation } from 'components/Information/LocalIconInformation';
 import parse from 'html-react-parser';
 import { Separator } from 'components/Separator';
+import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { HtmlText } from '../../utils';
 
 interface DetailsPreviewProps {
@@ -19,6 +20,7 @@ interface DetailsPreviewProps {
   title: string;
   trekFamily?: TrekChild[];
   id: string;
+  parentId: string;
 }
 
 export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
@@ -31,6 +33,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   title,
   trekFamily,
   id,
+  parentId,
 }) => {
   // trekRank & trekRankLabel are only defined if trek is part of an itinerance
   const trekRank = trekFamily?.find(trek => trek.id === id);
@@ -38,11 +41,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   return (
     <div className={`${className ?? ''} flex flex-col mt-4 desktop:mt-12`}>
       {trekFamily && (
-        <div className="my-4 text-P2">
-          {trekFamily.map(trekChild => (
-            <p key={trekChild.id}>{`${trekChild.rank}. ${trekChild.name}`}</p>
-          ))}
-        </div>
+        <DetailsTrekFamilyCarousel parentId={parentId} trekChildren={trekFamily} trekId={id} />
       )}
       <span className="text-Mobile-C2 desktop:text-P1">{place}</span>
       <span className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold">{`${trekRankLabel}${title}`}</span>
