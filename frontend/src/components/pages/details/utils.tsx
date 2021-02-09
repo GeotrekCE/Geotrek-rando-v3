@@ -1,3 +1,4 @@
+import { routes } from 'services/routes';
 import styled from 'styled-components';
 import { getSpacing } from 'stylesheet';
 import { generateResultDetailsUrl } from '../search/utils';
@@ -49,4 +50,9 @@ export const getDimensions = (htmlElement: HTMLElement | null): { top: number; b
 export const generateChildrenDetailsUrl = (id: number, title: string, parentId: string): string => {
   const detailsUrl = generateResultDetailsUrl(id, title);
   return `${detailsUrl}?parentId=${parentId}`;
+};
+
+export const generateTouristicContentUrl = (id: number | string, title: string): string => {
+  const titleWithNoSpace = title.replace(/ /g, '-');
+  return `${routes.TOURISTIC_CONTENT}/${id}-${encodeURI(titleWithNoSpace)}`;
 };
