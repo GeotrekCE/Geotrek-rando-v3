@@ -37,11 +37,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({ touristi
         )
       ) : (
         <div className="flex flex-1">
-          <div
-            className="flex flex-col w-full
-              relative -top-detailsHeaderMobile desktop:top-0
-              desktop:w-3/5"
-          >
+          <div className="flex flex-col w-full desktop:w-3/5">
             <div className="h-coverDetailsMobile desktop:h-coverDetailsDesktop">
               {touristicContent.attachments.length > 1 ? (
                 <DetailsCoverCarousel attachments={touristicContent.attachments} />
