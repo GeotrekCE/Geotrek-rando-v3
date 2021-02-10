@@ -16,7 +16,6 @@ export const DetailsTrekFamilyCarousel: React.FC<DetailsTrekFamilyCarouselProps>
   trekId,
   parentId,
 }) => {
-  const currentTrekChild = trekChildren.find(trek => trek.id === trekId);
   return (
     <Slider
       speed={500}
@@ -26,7 +25,6 @@ export const DetailsTrekFamilyCarousel: React.FC<DetailsTrekFamilyCarouselProps>
       swipe={false}
       slidesToShow={3}
       slidesToScroll={2}
-      initialSlide={currentTrekChild ? Math.max(currentTrekChild.rank - 2, 0) : 0}
       className="mb-3 desktop:mb-6 mx-7 desktop:mr-10 desktop:ml-8"
     >
       {trekChildren.map((trekChild, i) => (
@@ -87,8 +85,8 @@ const StyledArrow = styled.div`
     flex: none;
     border-radius: ${getSpacing(4)};
     border: 1px solid ${colorPalette.greySoft};
-    font-size: 26px;
-    margin-bottom: 4px;
+    font-size: ${getSpacing(6.5)};
+    margin-bottom: ${getSpacing(1)};
     ${desktopOnly(css`
       font-size: 31px;
       height: 39px;
