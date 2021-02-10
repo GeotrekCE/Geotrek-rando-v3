@@ -35,23 +35,20 @@ export const FilterBar: React.FC<Props> = props => {
     <Container className={filterBarContainerClassName} displayedState={filterBarDisplayedState}>
       <div className={`${filterBarExpansionState === 'EXPANDED' ? 'mb-4' : ''}`}>
         <FiltersLayout>
-          {props.filtersState.slice(0, NUMBER_OF_PRIMARY_FILTERS_DISPLAYED).map(
-            filterState =>
-              filterState.status === 'ENABLED' && (
-                <div key={filterState.id} className="mr-2">
-                  <SelectableDropdown
-                    name={filterState.id}
-                    placeholder={filterState.label}
-                    options={filterState.options}
-                    selectedFilters={filterState.selectedOptions}
-                    setFilterSelectedOptions={(options: Option[]) => {
-                      props.setFilterSelectedOptions(filterState.id, options);
-                    }}
-                    filterType={filterState.type}
-                  />
-                </div>
-              ),
-          )}
+          {props.filtersState.slice(0, NUMBER_OF_PRIMARY_FILTERS_DISPLAYED).map(filterState => (
+            <div key={filterState.id} className="mr-2">
+              <SelectableDropdown
+                name={filterState.id}
+                placeholder={filterState.label}
+                options={filterState.options}
+                selectedFilters={filterState.selectedOptions}
+                setFilterSelectedOptions={(options: Option[]) => {
+                  props.setFilterSelectedOptions(filterState.id, options);
+                }}
+                filterType={filterState.type}
+              />
+            </div>
+          ))}
           <SeeMoreButton
             icon={Plus}
             onClick={() => setFilterBarExpansionState('EXPANDED')}
@@ -63,23 +60,20 @@ export const FilterBar: React.FC<Props> = props => {
       </div>
       <AdditionalFilters expansionState={filterBarExpansionState}>
         <FiltersLayout>
-          {props.filtersState.slice(NUMBER_OF_PRIMARY_FILTERS_DISPLAYED).map(
-            filterState =>
-              filterState.status === 'ENABLED' && (
-                <div key={filterState.id} className="mr-2">
-                  <SelectableDropdown
-                    name={filterState.id}
-                    placeholder={filterState.label}
-                    options={filterState.options}
-                    selectedFilters={filterState.selectedOptions}
-                    setFilterSelectedOptions={(options: Option[]) => {
-                      props.setFilterSelectedOptions(filterState.id, options);
-                    }}
-                    filterType={filterState.type}
-                  />
-                </div>
-              ),
-          )}
+          {props.filtersState.slice(NUMBER_OF_PRIMARY_FILTERS_DISPLAYED).map(filterState => (
+            <div key={filterState.id} className="mr-2">
+              <SelectableDropdown
+                name={filterState.id}
+                placeholder={filterState.label}
+                options={filterState.options}
+                selectedFilters={filterState.selectedOptions}
+                setFilterSelectedOptions={(options: Option[]) => {
+                  props.setFilterSelectedOptions(filterState.id, options);
+                }}
+                filterType={filterState.type}
+              />
+            </div>
+          ))}
           <CollapseFiltersButton collapseFilters={() => setFilterBarExpansionState('COLLAPSED')} />
         </FiltersLayout>
       </AdditionalFilters>
