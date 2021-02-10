@@ -61,7 +61,6 @@ export interface FilterState {
   id: string;
   label: string;
   type: 'SINGLE' | 'MULTIPLE';
-  status: 'ENABLED' | 'DISABLED';
   options: Option[];
   selectedOptions: Option[];
 }
