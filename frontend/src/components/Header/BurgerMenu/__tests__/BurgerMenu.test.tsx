@@ -8,35 +8,26 @@ test('AAU, I can see a BurgerMenu', () => {
       displayState="DISPLAYED"
       config={{
         primaryItemsNumber: 3,
-        items: [
-          {
-            translationId: 'header.nationalPark',
-            url: 'https://www.ecrins-parcnational.fr/',
-          },
-          {
-            translationId: 'header.parcHouses',
-            url: 'https://www.ecrins-parcnational.fr/',
-          },
-          {
-            translationId: 'header.usefulInformations',
-            url: 'https://www.ecrins-parcnational.fr/',
-          },
-          {
-            translationId: 'header.biodiv',
-            url: 'https://www.ecrins-parcnational.fr/',
-          },
-          {
-            translationId: 'header.transportation',
-            url: 'https://www.ecrins-parcnational.fr/',
-          },
-          {
-            translationId: 'header.yourOpinion',
-            url: 'https://www.ecrins-parcnational.fr/',
-          },
-        ],
         shouldDisplayFavorite: true,
         supportedLanguages: ['fr'],
       }}
+      menuItems={[
+        {
+          title: 'NationalPark',
+          url: 'https://www.ecrins-parcnational.fr/',
+          order: 1,
+        },
+        {
+          title: 'Maisons du Parc',
+          url: 'https://www.ecrins-parcnational.fr/',
+          order: 2,
+        },
+        {
+          title: 'Informations utiles',
+          url: 'https://www.ecrins-parcnational.fr/',
+          order: 3,
+        },
+      ]}
     />,
   );
   expect(component).toMatchSnapshot();

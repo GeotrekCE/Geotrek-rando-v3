@@ -118,7 +118,7 @@ Object {
                       <a
                         href="https://www.ecrins-parcnational.fr/"
                       >
-                        Le parc national
+                        NationalPark
                       </a>
                     </p>
                     <p
@@ -127,7 +127,7 @@ Object {
                       <a
                         href="https://www.ecrins-parcnational.fr/"
                       >
-                        Les maisons du parc
+                        Maisons du Parc
                       </a>
                     </p>
                     <p
@@ -136,34 +136,7 @@ Object {
                       <a
                         href="https://www.ecrins-parcnational.fr/"
                       >
-                        Informations pratiques
-                      </a>
-                    </p>
-                    <p
-                      class="text-Mobile-C3 py-2"
-                    >
-                      <a
-                        href="https://www.ecrins-parcnational.fr/"
-                      >
-                        Biodidv'Ecrins
-                      </a>
-                    </p>
-                    <p
-                      class="text-Mobile-C3 py-2"
-                    >
-                      <a
-                        href="https://www.ecrins-parcnational.fr/"
-                      >
-                        Transport
-                      </a>
-                    </p>
-                    <p
-                      class="text-Mobile-C3 py-2"
-                    >
-                      <a
-                        href="https://www.ecrins-parcnational.fr/"
-                      >
-                        Votre avis ?
+                        Informations utiles
                       </a>
                     </p>
                   </div>
@@ -385,7 +358,7 @@ Object {
                     <a
                       href="https://www.ecrins-parcnational.fr/"
                     >
-                      Le parc national
+                      NationalPark
                     </a>
                   </p>
                   <p
@@ -394,7 +367,7 @@ Object {
                     <a
                       href="https://www.ecrins-parcnational.fr/"
                     >
-                      Les maisons du parc
+                      Maisons du Parc
                     </a>
                   </p>
                   <p
@@ -403,34 +376,7 @@ Object {
                     <a
                       href="https://www.ecrins-parcnational.fr/"
                     >
-                      Informations pratiques
-                    </a>
-                  </p>
-                  <p
-                    class="text-Mobile-C3 py-2"
-                  >
-                    <a
-                      href="https://www.ecrins-parcnational.fr/"
-                    >
-                      Biodidv'Ecrins
-                    </a>
-                  </p>
-                  <p
-                    class="text-Mobile-C3 py-2"
-                  >
-                    <a
-                      href="https://www.ecrins-parcnational.fr/"
-                    >
-                      Transport
-                    </a>
-                  </p>
-                  <p
-                    class="text-Mobile-C3 py-2"
-                  >
-                    <a
-                      href="https://www.ecrins-parcnational.fr/"
-                    >
-                      Votre avis ?
+                      Informations utiles
                     </a>
                   </p>
                 </div>
