@@ -13,7 +13,6 @@ import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { HtmlText } from '../../utils';
 
 interface DetailsPreviewInformation extends DetailsInformation {
-  touristicContentCategory?: TouristicContentCategory;
   types?: TouristicContentDetailsType[];
   logoUri?: string;
 }
@@ -51,7 +50,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       {trekFamily && parentId && (
         <DetailsTrekFamilyCarousel parentId={parentId} trekChildren={trekFamily} trekId={id} />
       )}
-      {informations.logoUri !== undefined && (
+      {informations.logoUri !== undefined && informations.logoUri.length > 0 && (
         <img
           className="hidden desktop:block absolute top-0 right-0 h-30 w-30 object-contain object-center"
           src={informations.logoUri}
@@ -67,15 +66,6 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         ))}
       </div>
       <div className="flex flex-wrap">
-        {informations.touristicContentCategory !== undefined && (
-          <RemoteIconInformation
-            iconUri={informations.touristicContentCategory.pictogramUri}
-            className={classNameInformation}
-            backgroundColor="primary1"
-          >
-            {informations.touristicContentCategory.label}
-          </RemoteIconInformation>
-        )}
         {informations.difficulty && (
           <RemoteIconInformation
             iconUri={informations.difficulty.pictogramUri}

@@ -37,11 +37,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({ touristi
         )
       ) : (
         <div className="flex flex-1">
-          <div
-            className="flex flex-col w-full
-              relative -top-detailsHeaderMobile desktop:top-0
-              desktop:w-3/5"
-          >
+          <div className="flex flex-col w-full desktop:w-3/5">
             <div className="h-coverDetailsMobile desktop:h-coverDetailsDesktop">
               {touristicContent.attachments.length > 1 ? (
                 <DetailsCoverCarousel attachments={touristicContent.attachments} />
@@ -71,7 +67,6 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({ touristi
                   difficulty: null,
                   courseType: null,
                   networks: [],
-                  touristicContentCategory: touristicContent.category,
                   types: touristicContent.types,
                   logoUri: touristicContent.logoUri,
                 }}
@@ -85,18 +80,23 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({ touristi
               <DetailsSection titleId="touristicContent.contact" className={marginDetailsChild}>
                 <HtmlText>{parse(touristicContent.contact)}</HtmlText>
                 {touristicContent.email !== null && touristicContent.email.length > 0 && (
-                  <a
-                    href={`mailto:${touristicContent.email}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary1 underline hover:text-primary1-light"
-                  >
-                    {touristicContent.email}
-                  </a>
+                  <div className="mt-2 desktop:mt-4">
+                    <FormattedMessage id="touristicContent.email" />
+                    <span>{` :`}</span>
+                    <a
+                      href={`mailto:${touristicContent.email}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary1 underline hover:text-primary1-light"
+                    >
+                      <p>{touristicContent.email}</p>
+                    </a>
+                  </div>
                 )}
                 {touristicContent.website !== null && touristicContent.website.length > 0 && (
                   <div className="mt-2 desktop:mt-4">
                     <FormattedMessage id="touristicContent.website" />
+                    <span>{` :`}</span>
                     <a
                       href={touristicContent.website}
                       target="_blank"
