@@ -46,7 +46,7 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
             {website}
           </p>
         </a>
-        <a href={`mailto:${website}`} target="_blank" rel="noopener noreferrer">
+        <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">
           <p
             className="
             text-primary1 underline
