@@ -7,13 +7,21 @@ import { RemoteIconInformation } from 'components/Information/RemoteIconInformat
 import { LocalIconInformation } from 'components/Information/LocalIconInformation';
 import parse from 'html-react-parser';
 import { Separator } from 'components/Separator';
+import { TouristicContentCategory } from 'modules/touristicContentCategory/interface';
+import { TouristicContentDetailsType } from 'modules/touristicContent/interface';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { HtmlText } from '../../utils';
+
+interface DetailsPreviewInformation extends DetailsInformation {
+  touristicContentCategory?: TouristicContentCategory;
+  types?: TouristicContentDetailsType[];
+  logoUri?: string;
+}
 
 interface DetailsPreviewProps {
   ambiance?: string;
   className?: string;
-  informations: DetailsInformation;
+  informations: DetailsPreviewInformation;
   place?: string;
   tags: string[];
   teaser?: string;
@@ -39,9 +47,15 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   const trekRank = trekFamily?.find(trek => trek.id === id);
   const trekRankLabel = trekRank !== undefined ? `${trekRank.rank}. ` : '';
   return (
-    <div className={`${className ?? ''} flex flex-col mt-4 desktop:mt-12`}>
+    <div className={`${className ?? ''} flex flex-col mt-4 desktop:mt-12 relative`}>
       {trekFamily && parentId && (
         <DetailsTrekFamilyCarousel parentId={parentId} trekChildren={trekFamily} trekId={id} />
+      )}
+      {informations.logoUri !== undefined && (
+        <img
+          className="hidden desktop:block absolute top-0 right-0 h-30 w-30 object-contain object-center"
+          src={informations.logoUri}
+        />
       )}
       <span className="text-Mobile-C2 desktop:text-P1">{place}</span>
       <span className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold">{`${trekRankLabel}${title}`}</span>
@@ -53,6 +67,15 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         ))}
       </div>
       <div className="flex flex-wrap">
+        {informations.touristicContentCategory !== undefined && (
+          <RemoteIconInformation
+            iconUri={informations.touristicContentCategory.pictogramUri}
+            className={classNameInformation}
+            backgroundColor="primary1"
+          >
+            {informations.touristicContentCategory.label}
+          </RemoteIconInformation>
+        )}
         {informations.difficulty && (
           <RemoteIconInformation
             iconUri={informations.difficulty.pictogramUri}
@@ -95,6 +118,16 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             </RemoteIconInformation>
           ))}
       </div>
+      {informations.types !== undefined && informations.types.length > 0 && (
+        <div className="mt-2 desktop:mt-4 text-Mobile-C2 desktop:text-P1">
+          {informations.types.map((type, i, allTypes) => (
+            <div key={i} className={`${i < allTypes.length - 1 ? 'mb-1 desktop:mb-2' : ''}`}>
+              <span className="font-bold">{`${type.label} : `}</span>
+              <span>{type.values.join(', ')}</span>
+            </div>
+          ))}
+        </div>
+      )}
       {teaser !== undefined && teaser.length > 0 && (
         <div className="text-Mobile-C1 desktop:text-H4 font-bold mt-6 desktop:mt-9">
           <HtmlText>{parse(teaser)}</HtmlText>
