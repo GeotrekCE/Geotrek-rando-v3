@@ -10,7 +10,7 @@ Object {
         dir="ltr"
       >
         <div
-          class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledLeftArrow-x6kdlh-2 iBdXPY fEzUsS slick-arrow slick-prev slick-disabled"
+          class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledLeftArrow-x6kdlh-2 AeKXR fEzUsS slick-arrow slick-prev slick-disabled"
         />
         <div
           class="slick-list"
@@ -214,7 +214,7 @@ Object {
           </div>
         </div>
         <div
-          class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledRightArrow-x6kdlh-1 iBdXPY fbNmge slick-arrow slick-next"
+          class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledRightArrow-x6kdlh-1 AeKXR fbNmge slick-arrow slick-next"
         />
       </div>
     </div>
@@ -225,7 +225,7 @@ Object {
       dir="ltr"
     >
       <div
-        class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledLeftArrow-x6kdlh-2 iBdXPY fEzUsS slick-arrow slick-prev slick-disabled"
+        class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledLeftArrow-x6kdlh-2 AeKXR fEzUsS slick-arrow slick-prev slick-disabled"
       />
       <div
         class="slick-list"
@@ -429,7 +429,7 @@ Object {
         </div>
       </div>
       <div
-        class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledRightArrow-x6kdlh-1 iBdXPY fbNmge slick-arrow slick-next"
+        class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledRightArrow-x6kdlh-1 AeKXR fbNmge slick-arrow slick-next"
       />
     </div>
   </div>,
