@@ -4,7 +4,7 @@ import { computeFiltersToDisplay } from '../utils';
 
 const initialFiltersState: FilterState[] = [
   {
-    id: 'practice',
+    id: 'practices',
     options: [
       {
         value: '3',
@@ -13,7 +13,7 @@ const initialFiltersState: FilterState[] = [
       },
     ],
     type: 'MULTIPLE',
-    label: 'search.filters.practice',
+    label: 'search.filters.practices',
     selectedOptions: [],
   },
   {
@@ -159,7 +159,7 @@ const touristicContentSpecificFiltersState: FilterState[] = [
 
 const filtersState: FilterState[] = [
   {
-    id: 'practice',
+    id: 'practices',
     options: [
       {
         value: '3',
@@ -168,7 +168,7 @@ const filtersState: FilterState[] = [
       },
     ],
     type: 'MULTIPLE',
-    label: 'search.filters.practice',
+    label: 'search.filters.practices',
     selectedOptions: [],
   },
   {
@@ -244,7 +244,7 @@ const trekSpecificFilters = [
   'accessibility',
 ];
 const touristicContentSpecificFilters = ['type1', 'type2'];
-const commonFilters = ['practice', 'service', 'theme', 'city', 'district', 'structure'];
+const commonFilters = ['practices', 'service', 'theme', 'city', 'district', 'structure'];
 
 describe('computeFiltersToDisplay', () => {
   it('should return state with treks if service is =0 and user select one practice', () => {
@@ -260,7 +260,7 @@ describe('computeFiltersToDisplay', () => {
           value: '0',
         },
       ],
-      selectedFilterId: 'practice',
+      selectedFilterId: 'practices',
       touristicContentCategoryMapping,
     }).map(({ id }) => id);
     [...commonFilters, ...trekSpecificFilters].forEach(id => expect(displayedIds.includes(id)));
@@ -284,7 +284,7 @@ describe('computeFiltersToDisplay', () => {
           value: '0',
         },
       ],
-      selectedFilterId: 'practice',
+      selectedFilterId: 'practices',
       touristicContentCategoryMapping,
     }).map(({ id }) => id);
     commonFilters.forEach(id => expect(displayedIds.includes(id)));
@@ -303,7 +303,7 @@ describe('computeFiltersToDisplay', () => {
       currentFiltersState: currentState,
       initialFiltersState,
       optionsSelected: [],
-      selectedFilterId: 'practice',
+      selectedFilterId: 'practices',
       touristicContentCategoryMapping,
     }).map(({ id }) => id);
     commonFilters.forEach(id => expect(displayedIds.includes(id)));
@@ -327,7 +327,7 @@ describe('computeFiltersToDisplay', () => {
       currentFiltersState: currentState,
       initialFiltersState,
       optionsSelected: [],
-      selectedFilterId: 'practice',
+      selectedFilterId: 'practices',
       touristicContentCategoryMapping,
     }).map(({ id }) => id);
     [...commonFilters, ...touristicContentSpecificFilters].forEach(id =>

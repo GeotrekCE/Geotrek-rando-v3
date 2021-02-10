@@ -101,7 +101,11 @@ export const SelectableDropdown = (props: Props): ReactElement => {
       isClearable={props.filterType === 'SINGLE'}
       isSearchable={false}
       name={props.name}
-      placeholder={intl.formatMessage({ id: props.placeholder })}
+      placeholder={
+        props.name === 'type1' || props.name === 'type2'
+          ? props.placeholder
+          : intl.formatMessage({ id: props.placeholder })
+      }
       classNamePrefix="select"
       closeMenuOnSelect={false}
       isMulti={props.filterType === 'MULTIPLE' ? true : undefined}

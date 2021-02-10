@@ -1,3 +1,4 @@
+import { PRACTICE_ID } from 'modules/filters/constant';
 import { FilterWithoutType } from 'modules/filters/interface';
 import { Activity, ActivityChoices, RawListActivity } from './interface';
 
@@ -11,7 +12,7 @@ const isCompleteRawListActivity = (
 export const adaptActivityFilter = (
   rawActivities: Partial<RawListActivity>[],
 ): FilterWithoutType => ({
-  id: 'practice',
+  id: PRACTICE_ID,
   options: rawActivities.filter(isCompleteRawListActivity).map(rawActivity => ({
     value: `${rawActivity.id}`,
     label: rawActivity.name,
