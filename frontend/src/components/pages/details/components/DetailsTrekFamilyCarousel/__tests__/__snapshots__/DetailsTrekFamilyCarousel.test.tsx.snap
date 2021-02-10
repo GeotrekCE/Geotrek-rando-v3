@@ -6,11 +6,11 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="slick-slider mb-3 desktop:mb-6 mx-7 desktop:mr-10 desktop:ml-8 slick-initialized"
+        class="slick-slider my-1.5 desktop:my-3 mx-7 desktop:mr-10 desktop:ml-8 slick-initialized"
         dir="ltr"
       >
         <div
-          class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledLeftArrow-x6kdlh-2 AeKXR fEzUsS slick-arrow slick-prev slick-disabled"
+          class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledLeftArrow-x6kdlh-2 bdpjmD fEzUsS slick-arrow slick-prev slick-disabled"
         />
         <div
           class="slick-list"
@@ -28,7 +28,7 @@ Object {
             >
               <div>
                 <div
-                  class="outline-none"
+                  class="outline-none align-middle py-1"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
                 >
@@ -60,7 +60,7 @@ Object {
             >
               <div>
                 <div
-                  class="outline-none"
+                  class="outline-none align-middle py-1"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
                 >
@@ -92,7 +92,7 @@ Object {
             >
               <div>
                 <div
-                  class="outline-none"
+                  class="outline-none align-middle py-1"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
                 >
@@ -124,7 +124,7 @@ Object {
             >
               <div>
                 <div
-                  class="outline-none"
+                  class="outline-none align-middle py-1"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
                 >
@@ -156,7 +156,7 @@ Object {
             >
               <div>
                 <div
-                  class="outline-none"
+                  class="outline-none align-middle py-1"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
                 >
@@ -188,7 +188,7 @@ Object {
             >
               <div>
                 <div
-                  class="outline-none"
+                  class="outline-none align-middle py-1"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
                 >
@@ -214,18 +214,18 @@ Object {
           </div>
         </div>
         <div
-          class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledRightArrow-x6kdlh-1 AeKXR fbNmge slick-arrow slick-next"
+          class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledRightArrow-x6kdlh-1 bdpjmD fbNmge slick-arrow slick-next"
         />
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="slick-slider mb-3 desktop:mb-6 mx-7 desktop:mr-10 desktop:ml-8 slick-initialized"
+      class="slick-slider my-1.5 desktop:my-3 mx-7 desktop:mr-10 desktop:ml-8 slick-initialized"
       dir="ltr"
     >
       <div
-        class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledLeftArrow-x6kdlh-2 AeKXR fEzUsS slick-arrow slick-prev slick-disabled"
+        class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledLeftArrow-x6kdlh-2 bdpjmD fEzUsS slick-arrow slick-prev slick-disabled"
       />
       <div
         class="slick-list"
@@ -243,7 +243,7 @@ Object {
           >
             <div>
               <div
-                class="outline-none"
+                class="outline-none align-middle py-1"
                 style="width: 100%; display: inline-block;"
                 tabindex="-1"
               >
@@ -275,7 +275,7 @@ Object {
           >
             <div>
               <div
-                class="outline-none"
+                class="outline-none align-middle py-1"
                 style="width: 100%; display: inline-block;"
                 tabindex="-1"
               >
@@ -307,7 +307,7 @@ Object {
           >
             <div>
               <div
-                class="outline-none"
+                class="outline-none align-middle py-1"
                 style="width: 100%; display: inline-block;"
                 tabindex="-1"
               >
@@ -339,7 +339,7 @@ Object {
           >
             <div>
               <div
-                class="outline-none"
+                class="outline-none align-middle py-1"
                 style="width: 100%; display: inline-block;"
                 tabindex="-1"
               >
@@ -371,7 +371,7 @@ Object {
           >
             <div>
               <div
-                class="outline-none"
+                class="outline-none align-middle py-1"
                 style="width: 100%; display: inline-block;"
                 tabindex="-1"
               >
@@ -403,7 +403,7 @@ Object {
           >
             <div>
               <div
-                class="outline-none"
+                class="outline-none align-middle py-1"
                 style="width: 100%; display: inline-block;"
                 tabindex="-1"
               >
@@ -429,7 +429,7 @@ Object {
         </div>
       </div>
       <div
-        class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledRightArrow-x6kdlh-1 AeKXR fbNmge slick-arrow slick-next"
+        class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledRightArrow-x6kdlh-1 bdpjmD fbNmge slick-arrow slick-next"
       />
     </div>
   </div>,
