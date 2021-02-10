@@ -73,7 +73,7 @@ export const adaptTouristicContentDetails = ({
     }
     return adaptedTypes;
   }, []),
-  logoUri: rawTCD.approved ? DEFAULT_LOGO_URI : '',
+  logoUri: rawTCD.approved === true ? DEFAULT_LOGO_URI : '',
 });
 
 const adaptTouristicType = (typeId: string, touristicContentCategory: TouristicContentCategory) => {

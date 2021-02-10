@@ -1,6 +1,8 @@
 import { Layout } from 'components/Layout/Layout';
 import Loader from 'react-loader';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
+import parse from 'html-react-parser';
+import { FormattedMessage } from 'react-intl';
 import { useTouristicContent } from './useTouristicContent';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { DetailsSection } from '../details/components/DetailsSection';
@@ -10,6 +12,7 @@ import { DetailsSource } from '../details/components/DetailsSource';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { marginDetailsChild } from '../details/Details';
+import { HtmlText } from '../details/utils';
 
 interface TouristicContentUIProps {
   touristicContentUrl: string | string[] | undefined;
@@ -68,6 +71,9 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({ touristi
                   difficulty: null,
                   courseType: null,
                   networks: [],
+                  touristicContentCategory: touristicContent.category,
+                  types: touristicContent.types,
+                  logoUri: touristicContent.logoUri,
                 }}
                 place={touristicContent.place}
                 tags={touristicContent.themes}
@@ -76,6 +82,33 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({ touristi
                 ambiance={touristicContent.description}
                 id={id}
               />
+              <DetailsSection titleId="touristicContent.contact" className={marginDetailsChild}>
+                <HtmlText>{parse(touristicContent.contact)}</HtmlText>
+                {touristicContent.email !== null && touristicContent.email.length > 0 && (
+                  <a
+                    href={`mailto:${touristicContent.email}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary1 underline hover:text-primary1-light"
+                  >
+                    {touristicContent.email}
+                  </a>
+                )}
+                {touristicContent.website !== null && touristicContent.website.length > 0 && (
+                  <div className="mt-2 desktop:mt-4">
+                    <FormattedMessage id="touristicContent.website" />
+                    <a
+                      href={touristicContent.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary1 underline
+                      hover:text-primary1-light"
+                    >
+                      <p>{touristicContent.website}</p>
+                    </a>
+                  </div>
+                )}
+              </DetailsSection>
               {touristicContent.sources.length > 0 && (
                 <DetailsSection titleId="details.source" className={marginDetailsChild}>
                   <div>

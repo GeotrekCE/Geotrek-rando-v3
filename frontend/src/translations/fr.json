@@ -81,5 +81,9 @@
     "transport": "Transport",
     "stationnement": "Stationnement",
     "access_parking": "Accès routiers et parkings"
+  },
+  "touristicContent": {
+    "contact": "Contact",
+    "website": "Site internet"
   }
 }
