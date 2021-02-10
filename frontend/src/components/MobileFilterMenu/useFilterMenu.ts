@@ -22,11 +22,11 @@ export const useFilterMenu = (
   const hideMenu = () => setMenuState('HIDDEN');
 
   const intl = useIntl();
-  const filtersList = filtersState.map(filterState => ({
-    id: filterState.id,
-    label: intl.formatMessage({ id: filterState.label }),
-    onSelect: () => selectFilter(filterState.id),
-    selectedFiltersLabels: filterState.selectedOptions.map(option => option.label),
+  const filtersList = filtersState.map(({ id, label, selectedOptions }) => ({
+    id,
+    label: id === 'type1' || id === 'type2' ? label : intl.formatMessage({ id: label }),
+    onSelect: () => selectFilter(id),
+    selectedFiltersLabels: selectedOptions.map(option => option.label),
   }));
 
   const activeFiltersNumber = filtersState.reduce((selectedFiltersNb, currentFilter) => {

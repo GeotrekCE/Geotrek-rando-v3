@@ -102,7 +102,11 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
           icon={<LeftArrow size={24} />}
         />
         {filterId !== null && (
-          <span>{intl.formatMessage({ id: `search.filters.${filterId}` })}</span>
+          <span>
+            {filterId === 'type1' || filterId === 'type2'
+              ? filterState?.label
+              : intl.formatMessage({ id: `search.filters.${filterId}` })}
+          </span>
         )}
       </div>
       {filterState?.options.map(option => (
