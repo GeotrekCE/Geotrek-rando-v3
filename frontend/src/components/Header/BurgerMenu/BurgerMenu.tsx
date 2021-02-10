@@ -1,5 +1,5 @@
 import { slide as Slide } from 'react-burger-menu';
-import { MenuConfig } from 'modules/header/interface';
+import { MenuConfig, MenuItem } from 'modules/header/interface';
 import { useIntl } from 'react-intl';
 import { BurgerMenuSection } from '../BurgerMenuSection/BurgerMenuSection';
 import { BurgerMenu as BmIcon } from '../../Icons/BurgerMenu';
@@ -7,10 +7,11 @@ import { Cross } from '../../Icons/Cross';
 
 interface Props {
   config: MenuConfig;
+  menuItems?: MenuItem[];
   displayState?: 'DISPLAYED' | 'HIDDEN';
 }
 
-export const BurgerMenu: React.FC<Props> = ({ config, displayState = 'DISPLAYED' }) => {
+export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 'DISPLAYED' }) => {
   const burgerButtonClassName = `fixed w-6 h-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 ${
     displayState === 'HIDDEN' ? '-top-21.5' : 'top-2.5'
   }`;
@@ -32,10 +33,9 @@ export const BurgerMenu: React.FC<Props> = ({ config, displayState = 'DISPLAYED'
       <span className="pb-4 font-bold text-center border-b border-solid border-greySoft outline-none">
         {intl.formatMessage({ id: 'header.menu' })}
       </span>
-      <BurgerMenuSection
-        title={intl.formatMessage({ id: 'header.seeMore' })}
-        items={config.items}
-      />
+      {menuItems && (
+        <BurgerMenuSection title={intl.formatMessage({ id: 'header.seeMore' })} items={menuItems} />
+      )}
       {config.shouldDisplayFavorite && (
         <BurgerMenuSection title={intl.formatMessage({ id: 'header.favorites' })} />
       )}
