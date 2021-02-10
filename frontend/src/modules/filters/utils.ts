@@ -16,7 +16,7 @@ import {
 } from './interface';
 import { getStructureFilter } from './structures/connector';
 import { getThemeFilter } from './theme/connector';
-import { PRACTICE_ID } from './constant';
+import { PRACTICE_ID, THEME_ID } from './constant';
 
 const adaptFilterConfigWithOptionsToFilter = (
   filterConfigWithOptions: FilterConfigWithOptions,
@@ -39,7 +39,7 @@ const getFilterOptions = async (filterId: string): Promise<FilterWithoutType | n
       return getCityFilter();
     case 'district':
       return getDistrictFilter();
-    case 'theme':
+    case THEME_ID:
       return getThemeFilter();
     case 'route':
       return getCourseTypeFilter();
