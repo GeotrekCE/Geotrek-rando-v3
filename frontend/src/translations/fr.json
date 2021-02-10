@@ -84,6 +84,7 @@
   },
   "touristicContent": {
     "contact": "Contact",
+    "email": "Courriel",
     "website": "Site internet"
   }
 }
