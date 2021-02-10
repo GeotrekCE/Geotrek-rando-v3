@@ -61,7 +61,7 @@ export const mockTouristicContentResultsRoute = (times: number): void =>
     route: '/touristiccontent',
     mockData: mockTouristicContentResultsResponse(),
     additionalQueries: {
-      fields: 'attachments,name,category,description_teaser',
+      fields: 'id,attachments,name,category,description_teaser',
       page_size: 5,
       page: 1,
     },

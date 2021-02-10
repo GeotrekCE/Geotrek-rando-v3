@@ -284,7 +284,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
                         id: touristicContent.id,
                         name: touristicContent.name ?? '',
                         place: touristicContent.category.label,
-                        description: touristicContent.description,
+                        description: touristicContent.descriptionTeaser,
                         thumbnailUris: touristicContent.thumbnailUris,
                         iconUri: touristicContent.category.pictogramUri,
                         logoUri: touristicContent.logoUri,
