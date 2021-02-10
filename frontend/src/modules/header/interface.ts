@@ -1,6 +1,7 @@
-interface MenuItem {
-  translationId: string;
+export interface MenuItem {
+  title: string;
   url: string;
+  order: number;
 }
 
 export interface MenuConfig {
