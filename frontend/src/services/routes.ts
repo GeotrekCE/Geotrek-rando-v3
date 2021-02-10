@@ -2,5 +2,5 @@ export const routes = {
   HOME: '/',
   SEARCH: '/search',
   DETAILS: '/details',
-  TOURISTIC_CONTENT: '/touristic-content',
+  TOURISTIC_CONTENT: '/service',
 } as const;
