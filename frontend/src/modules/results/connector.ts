@@ -22,6 +22,13 @@ import {
   formatTrekFiltersToUrlParams,
 } from './utils';
 
+const emptyResultPromise = Promise.resolve({
+  count: 0,
+  next: null,
+  previous: null,
+  results: [],
+});
+
 export const getSearchResults = async (
   filtersState: QueryFilterState[],
   pages: {
@@ -30,24 +37,39 @@ export const getSearchResults = async (
   },
 ): Promise<SearchResults> => {
   try {
+    const practiceFilter = filtersState.find(({ id }) => id === 'practice');
+    const isPracticeSelected = practiceFilter ? practiceFilter.selectedOptions.length > 0 : false;
+    const serviceFilter = filtersState.find(({ id }) => id === 'service');
+    const isServiceSelected = serviceFilter ? serviceFilter.selectedOptions.length > 0 : false;
+
+    const shouldFetchTreks = !isServiceSelected || isPracticeSelected;
+    const shouldFetchTouristicContents = !isPracticeSelected || isServiceSelected;
+
     const trekFilters = formatTrekFiltersToUrlParams(filtersState);
     const touristicContentFilter = formatTouristicContentFiltersToUrlParams(filtersState);
 
     // We get the treks and touristic content counts on their own call to handle the "null" next page edge case
 
+    const getTreksCountPromise = shouldFetchTreks
+      ? fetchTrekResultsNumber({
+          language: 'fr',
+          page_size: 1,
+          page: 1,
+          ...trekFilters,
+        })
+      : emptyResultPromise;
+    const getTouristicContentsCountPromise = shouldFetchTouristicContents
+      ? fetchTouristicContentResultsNumber({
+          language: 'fr',
+          page_size: 1,
+          page: 1,
+          ...touristicContentFilter,
+        })
+      : emptyResultPromise;
+
     const [{ count: treksCount }, { count: touristicContentsCount }] = await Promise.all([
-      fetchTrekResultsNumber({
-        language: 'fr',
-        page_size: 1,
-        page: 1,
-        ...trekFilters,
-      }),
-      fetchTouristicContentResultsNumber({
-        language: 'fr',
-        page_size: 1,
-        page: 1,
-        ...touristicContentFilter,
-      }),
+      getTreksCountPromise,
+      getTouristicContentsCountPromise,
     ]);
 
     // Then we prepare the content queries with empty array if the page is null, meaning we reached the end of the pagination for this ressource
@@ -92,11 +114,11 @@ export const getSearchResults = async (
       rawTouristicContents,
       touristicContentCategories,
     ] = await Promise.all([
-      getTreksResultsPromise,
+      shouldFetchTreks ? getTreksResultsPromise : emptyResultPromise,
       getDifficulties(), // Todo: Find a way to store this hashmap to avoid calling this every time
       getThemes(), // Todo: Find a way to store this hashmap to avoid calling this every time
       getActivities(), // Todo: Find a way to store this hashmap to avoid calling this every time
-      getToursticContentsPromise,
+      shouldFetchTouristicContents ? getToursticContentsPromise : emptyResultPromise,
       getTouristicContentCategories(), // Todo: Find a way to store this hashmap to avoid calling this every time
     ]);
     const adaptedResultsList: TrekResult[] = adaptTrekResultList({
