@@ -146,7 +146,8 @@ const StyledDots = styled.div`
   }
   ${desktopOnly(
     css`
-      bottom: ${getSpacing(6)};
+      bottom: ${getSpacing(8)};
+      padding: 0 ${getSpacing(50)};
     `,
   )}
 `;
