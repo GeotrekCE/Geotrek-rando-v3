@@ -1,8 +1,6 @@
 import { generateFlatPageUrl } from 'modules/header/utills';
 import { RawFlatPage } from './interface';
-import { MenuItem } from '../header/interface';
-
-const DEFAULT_ORDER_VALUE = 100000;
+import { MenuItem, OrderableMenuItem } from '../header/interface';
 
 const adaptFlatPageToMenuItem = (rawFlatPage: RawFlatPage): MenuItem => ({
   url:
@@ -10,10 +8,16 @@ const adaptFlatPageToMenuItem = (rawFlatPage: RawFlatPage): MenuItem => ({
       ? rawFlatPage.external_url
       : generateFlatPageUrl(rawFlatPage.id, rawFlatPage.title),
   title: rawFlatPage.title,
-  order: rawFlatPage.order ?? DEFAULT_ORDER_VALUE,
+  order: rawFlatPage.order,
 });
 
-export const adaptFlatPages = (rawFlatPages: RawFlatPage[]): MenuItem[] =>
-  rawFlatPages
-    .map(adaptFlatPageToMenuItem)
+export const adaptFlatPages = (rawFlatPages: RawFlatPage[]): MenuItem[] => {
+  const menuItemsUnsorted = rawFlatPages.map(adaptFlatPageToMenuItem);
+  const menuItemsNullOrder = menuItemsUnsorted.filter(menuItem => menuItem.order === null);
+  const menuItemsWithOrder = menuItemsUnsorted
+    .filter(isOrderableMenuItem)
     .sort((menuItemA, menuItemB) => menuItemA.order - menuItemB.order);
+  return [...menuItemsWithOrder, ...menuItemsNullOrder];
+};
+
+const isOrderableMenuItem = (item: MenuItem): item is OrderableMenuItem => item.order !== null;
