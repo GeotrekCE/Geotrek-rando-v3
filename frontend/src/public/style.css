@@ -1,0 +1,31 @@
+.leaflet-map {
+  height: 65%;
+  max-height: 100vh;
+}
+
+.elevation-div {
+  height: 25%;
+  font: 12px/1.5 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.lightblue-theme.elevation-control.elevation .background {
+  background-color: rgb(255, 255, 255);
+}
+
+.lightblue-theme.elevation-control.elevation .axis line,
+.lightblue-theme.elevation-control.elevation .axis path {
+  stroke: #000;
+}
+
+.lightblue-theme.elevation-control.elevation .grid .tick line {
+  stroke: rgba(0, 0, 0, 0.2);
+}
+
+.lightblue-theme.elevation-control.elevation .mouse-drag {
+  fill: #aa397d3d;
+}
+
+.lightblue-theme.elevation-control.elevation .area {
+  fill: #aa397d94 !important;
+  stroke: #aa397d !important;
+}

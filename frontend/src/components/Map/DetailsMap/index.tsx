@@ -21,6 +21,7 @@ import { PointsReference } from './PointsReference';
 import { TouristicContent } from './TouristicContent';
 import { getMapConfig } from '../config';
 import { Credits } from '../components/Credits';
+import { AltimetricProfile } from '../components/AltimetricProfile';
 
 interface PointWithIcon {
   location: { x: number; y: number };
@@ -38,6 +39,7 @@ export type PropsType = {
   poiPoints?: PointWithIcon[];
   touristicContentPoints?: TouristicContentGeometry[];
   trekGeometry?: Coordinate2D[];
+  trekGeoJSON: string;
   pointsReference?: Coordinate2D[] | null;
   hideMap?: () => void;
   type: 'DESKTOP' | 'MOBILE';
@@ -89,6 +91,7 @@ const DetailsMap: React.FC<PropsType> = props => {
         {props.elementOnScreen === 'touristicContent' && (
           <TouristicContent contents={props.touristicContentPoints} />
         )}
+        <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />

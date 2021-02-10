@@ -81,6 +81,9 @@ export const adaptResults = ({
         x: rawCoordinates[0],
         y: rawCoordinates[1],
       })),
+      trekGeoJSON: `{"name":"letrek.geojson","type":"FeatureCollection","features":[{"type":"Feature","geometry":${JSON.stringify(
+        geometry,
+      )},"properties":null}]}`,
       trekDeparture: {
         x: geometry.coordinates[0][0],
         y: geometry.coordinates[0][1],
