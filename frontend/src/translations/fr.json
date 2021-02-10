@@ -80,7 +80,12 @@
     "toSee": "À voir aussi",
     "transport": "Transport",
     "stationnement": "Stationnement",
-    "access_parking": "Accès routiers et parkings"
+    "access_parking": "Accès routiers et parkings",
+    "altimetricProfile": {
+      "totalLength": "Longueur totale",
+      "minElevation": "Elevation min",
+      "maxElevation": "Elevation max"
+    }
   },
   "touristicContent": {
     "contact": "Contact",

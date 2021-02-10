@@ -98,6 +98,7 @@ export interface Details extends DetailsHtml {
   informations: DetailsInformation;
   pois: Poi[];
   trekGeometry: Coordinate[];
+  trekGeoJSON: string;
   trekDeparture: Coordinate;
   trekArrival: Coordinate;
   touristicContents: TouristicContent[];

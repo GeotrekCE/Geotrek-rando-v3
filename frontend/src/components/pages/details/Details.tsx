@@ -165,6 +165,9 @@ export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
                     />
                   </div>
                 )}
+                <div className="px-12">
+                  <div id="altimetric-profile"></div>
+                </div>
 
                 {(details.labels.length > 0 ||
                   (details.advice !== null && details.advice.length > 0)) && (
@@ -302,6 +305,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
                 departureLocation={details.trekDeparture}
                 parkingLocation={details.parkingLocation}
                 trekGeometry={details.trekGeometry}
+                trekGeoJSON={details.trekGeoJSON}
                 elementOnScreen={visibleSection}
                 poiPoints={details.pois.map(poi => ({
                   location: { x: poi.geometry.x, y: poi.geometry.y },

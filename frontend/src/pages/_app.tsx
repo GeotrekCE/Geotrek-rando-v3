@@ -8,6 +8,7 @@ import 'customization/theme/style.css';
 import 'tailwindcss/tailwind.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import '../public/style.css';
 
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClient, QueryClientProvider } from 'react-query';
