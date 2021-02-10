@@ -1,10 +1,16 @@
-import { CITY_ID, PRACTICE_ID, THEME_ID } from 'modules/filters/constant';
+import {
+  CITY_ID,
+  DISTRICT_ID,
+  PRACTICE_ID,
+  STRUCTURE_ID,
+  THEME_ID,
+} from 'modules/filters/constant';
 import { FilterState, Option } from 'modules/filters/interface';
 import { computeFiltersToDisplay } from 'modules/filters/utils';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
 import { useState } from 'react';
 
-const commonFilters = [PRACTICE_ID, 'service', THEME_ID, CITY_ID, 'district', 'structure'];
+const commonFilters = [PRACTICE_ID, 'service', THEME_ID, CITY_ID, DISTRICT_ID, STRUCTURE_ID];
 
 export const useFilter = (
   initialFiltersState: FilterState[],

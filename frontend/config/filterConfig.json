@@ -16,11 +16,11 @@
     "type": "SINGLE"
   },
   {
-    "id": "district",
+    "id": "districts",
     "type": "SINGLE"
   },
   {
-    "id": "structure",
+    "id": "structures",
     "type": "SINGLE"
   },
   {
@@ -96,11 +96,11 @@
     ]
   },
   {
-    "id": "route",
+    "id": "routes",
     "type": "SINGLE"
   },
   {
-    "id": "accessibility",
+    "id": "accessibilities",
     "type": "MULTIPLE"
   }
 ]
