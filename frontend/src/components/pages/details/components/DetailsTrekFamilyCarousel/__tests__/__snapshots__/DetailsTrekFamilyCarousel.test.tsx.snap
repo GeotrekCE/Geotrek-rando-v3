@@ -6,11 +6,11 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="slick-slider mb-3 desktop:mb-6 mx-5 desktop:mr-10 desktop:ml-8 slick-initialized"
+        class="slick-slider mb-3 desktop:mb-6 mx-7 desktop:mr-10 desktop:ml-8 slick-initialized"
         dir="ltr"
       >
         <div
-          class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledLeftArrow-x6kdlh-2 hmIVsp fKEHfL slick-arrow slick-prev"
+          class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledLeftArrow-x6kdlh-2 AeKXR fEzUsS slick-arrow slick-prev slick-disabled"
         />
         <div
           class="slick-list"
@@ -20,8 +20,8 @@ Object {
             style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
           >
             <div
-              aria-hidden="true"
-              class="slick-slide slick-current"
+              aria-hidden="false"
+              class="slick-slide slick-active slick-current"
               data-index="0"
               style="outline: none; width: 0px;"
               tabindex="-1"
@@ -52,8 +52,8 @@ Object {
               </div>
             </div>
             <div
-              aria-hidden="true"
-              class="slick-slide"
+              aria-hidden="false"
+              class="slick-slide slick-active"
               data-index="1"
               style="outline: none; width: 0px;"
               tabindex="-1"
@@ -116,8 +116,8 @@ Object {
               </div>
             </div>
             <div
-              aria-hidden="false"
-              class="slick-slide slick-active"
+              aria-hidden="true"
+              class="slick-slide"
               data-index="3"
               style="outline: none; width: 0px;"
               tabindex="-1"
@@ -148,8 +148,8 @@ Object {
               </div>
             </div>
             <div
-              aria-hidden="false"
-              class="slick-slide slick-active"
+              aria-hidden="true"
+              class="slick-slide"
               data-index="4"
               style="outline: none; width: 0px;"
               tabindex="-1"
@@ -214,18 +214,18 @@ Object {
           </div>
         </div>
         <div
-          class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledRightArrow-x6kdlh-1 hmIVsp jFVmiq slick-arrow slick-next"
+          class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledRightArrow-x6kdlh-1 AeKXR fbNmge slick-arrow slick-next"
         />
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="slick-slider mb-3 desktop:mb-6 mx-5 desktop:mr-10 desktop:ml-8 slick-initialized"
+      class="slick-slider mb-3 desktop:mb-6 mx-7 desktop:mr-10 desktop:ml-8 slick-initialized"
       dir="ltr"
     >
       <div
-        class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledLeftArrow-x6kdlh-2 hmIVsp fKEHfL slick-arrow slick-prev"
+        class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledLeftArrow-x6kdlh-2 AeKXR fEzUsS slick-arrow slick-prev slick-disabled"
       />
       <div
         class="slick-list"
@@ -235,8 +235,8 @@ Object {
           style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
         >
           <div
-            aria-hidden="true"
-            class="slick-slide slick-current"
+            aria-hidden="false"
+            class="slick-slide slick-active slick-current"
             data-index="0"
             style="outline: none; width: 0px;"
             tabindex="-1"
@@ -267,8 +267,8 @@ Object {
             </div>
           </div>
           <div
-            aria-hidden="true"
-            class="slick-slide"
+            aria-hidden="false"
+            class="slick-slide slick-active"
             data-index="1"
             style="outline: none; width: 0px;"
             tabindex="-1"
@@ -331,8 +331,8 @@ Object {
             </div>
           </div>
           <div
-            aria-hidden="false"
-            class="slick-slide slick-active"
+            aria-hidden="true"
+            class="slick-slide"
             data-index="3"
             style="outline: none; width: 0px;"
             tabindex="-1"
@@ -363,8 +363,8 @@ Object {
             </div>
           </div>
           <div
-            aria-hidden="false"
-            class="slick-slide slick-active"
+            aria-hidden="true"
+            class="slick-slide"
             data-index="4"
             style="outline: none; width: 0px;"
             tabindex="-1"
@@ -429,7 +429,7 @@ Object {
         </div>
       </div>
       <div
-        class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledRightArrow-x6kdlh-1 hmIVsp jFVmiq slick-arrow slick-next"
+        class="DetailsTrekFamilyCarousel__StyledArrow-x6kdlh-0 DetailsTrekFamilyCarousel__StyledRightArrow-x6kdlh-1 AeKXR fbNmge slick-arrow slick-next"
       />
     </div>
   </div>,
