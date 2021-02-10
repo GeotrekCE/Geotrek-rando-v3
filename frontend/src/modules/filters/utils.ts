@@ -16,6 +16,7 @@ import {
 } from './interface';
 import { getStructureFilter } from './structures/connector';
 import { getThemeFilter } from './theme/connector';
+import { PRACTICE_ID } from './constant';
 
 const adaptFilterConfigWithOptionsToFilter = (
   filterConfigWithOptions: FilterConfigWithOptions,
@@ -32,7 +33,7 @@ const getFilterOptions = async (filterId: string): Promise<FilterWithoutType | n
   switch (filterId) {
     case 'difficulty':
       return getDifficultyFilter();
-    case 'practice':
+    case PRACTICE_ID:
       return getActivityFilter();
     case 'city':
       return getCityFilter();
@@ -60,7 +61,10 @@ const getFilterAndAddType = async (
   filterId: string,
   filterType: 'SINGLE' | 'MULTIPLE',
 ): Promise<Filter | null> => {
+  console.log('🚀 ~ file: utils.ts ~ line 63 ~ filterId', filterId);
+
   const filter = await getFilterOptions(filterId);
+  console.log('🚀 ~ file: utils.ts ~ line 66 ~ filter', filter);
   if (filter === null) return null;
   return { ...filter, type: filterType };
 };

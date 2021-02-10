@@ -2,6 +2,7 @@ import { getTouristicContentCategories } from 'modules/touristicContentCategory/
 import { getActivities } from 'modules/activities/connector';
 import { getDifficulties } from 'modules/filters/difficulties';
 import { getThemes } from 'modules/filters/theme/connector';
+import { PRACTICE_ID } from 'modules/filters/constant';
 import { QueryFilterState } from 'components/pages/search/utils';
 import { fetchTouristicContentResult } from 'modules/touristicContent/api';
 import { getApiCallsConfig } from 'modules/utils/api.config';
@@ -37,7 +38,7 @@ export const getSearchResults = async (
   },
 ): Promise<SearchResults> => {
   try {
-    const practiceFilter = filtersState.find(({ id }) => id === 'practice');
+    const practiceFilter = filtersState.find(({ id }) => id === PRACTICE_ID);
     const isPracticeSelected = practiceFilter ? practiceFilter.selectedOptions.length > 0 : false;
     const serviceFilter = filtersState.find(({ id }) => id === 'service');
     const isServiceSelected = serviceFilter ? serviceFilter.selectedOptions.length > 0 : false;
