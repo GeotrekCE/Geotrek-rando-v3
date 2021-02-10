@@ -17,35 +17,35 @@ const initialFiltersState: FilterState[] = [
     selectedOptions: [],
   },
   {
-    id: 'service',
+    id: 'categories',
     options: [{ value: '1', label: '' }],
     type: 'MULTIPLE',
-    label: 'search.filters.service',
+    label: 'search.filters.categories',
     selectedOptions: [],
   },
   {
-    id: 'theme',
+    id: 'themes',
     options: [{ value: '5', label: '' }],
     type: 'MULTIPLE',
     label: 'search.filters.theme',
     selectedOptions: [],
   },
   {
-    id: 'city',
+    id: 'cities',
     options: [{ value: '05004', label: '' }],
     type: 'SINGLE',
     label: 'search.filters.city',
     selectedOptions: [],
   },
   {
-    id: 'district',
+    id: 'districts',
     options: [{ value: '0', label: '' }],
     type: 'SINGLE',
     label: 'search.filters.district',
     selectedOptions: [],
   },
   {
-    id: 'structure',
+    id: 'structures',
     options: [{ value: '1', label: '' }],
     type: 'SINGLE',
     label: 'search.filters.structure',
@@ -80,14 +80,14 @@ const initialFiltersState: FilterState[] = [
     selectedOptions: [],
   },
   {
-    id: 'route',
+    id: 'routes',
     options: [{ value: '1', label: '' }],
     type: 'SINGLE',
     label: 'search.filters.structure',
     selectedOptions: [],
   },
   {
-    id: 'accessibility',
+    id: 'accessibilities',
     options: [{ value: '1', label: '' }],
     type: 'SINGLE',
     label: 'search.filters.structure',
@@ -125,14 +125,14 @@ const trekSpecificFiltersState: FilterState[] = [
     selectedOptions: [],
   },
   {
-    id: 'route',
+    id: 'routes',
     options: [{ value: '1', label: '' }],
     type: 'SINGLE',
     label: 'search.filters.structure',
     selectedOptions: [],
   },
   {
-    id: 'accessibility',
+    id: 'accessibilities',
     options: [{ value: '1', label: '' }],
     type: 'SINGLE',
     label: 'search.filters.structure',
@@ -172,35 +172,35 @@ const filtersState: FilterState[] = [
     selectedOptions: [],
   },
   {
-    id: 'service',
+    id: 'categories',
     options: [{ value: '1', label: 'Hébergements' }],
     type: 'MULTIPLE',
-    label: 'search.filters.service',
+    label: 'search.filters.categories',
     selectedOptions: [],
   },
   {
-    id: 'theme',
+    id: 'themes',
     options: [{ value: '5', label: 'Architecture' }],
     type: 'MULTIPLE',
     label: 'search.filters.theme',
     selectedOptions: [],
   },
   {
-    id: 'city',
+    id: 'cities',
     options: [{ value: '05004', label: 'Ancelle' }],
     type: 'SINGLE',
     label: 'search.filters.city',
     selectedOptions: [],
   },
   {
-    id: 'district',
+    id: 'districts',
     options: [{ value: '3', label: 'Briançonnais' }],
     type: 'SINGLE',
     label: 'search.filters.district',
     selectedOptions: [],
   },
   {
-    id: 'structure',
+    id: 'structures',
     options: [{ value: '1', label: 'PNE' }],
     type: 'SINGLE',
     label: 'search.filters.structure',
@@ -240,14 +240,14 @@ const trekSpecificFilters = [
   'duration',
   'length',
   'ascent',
-  'route',
-  'accessibility',
+  'routes',
+  'accessibilities',
 ];
 const touristicContentSpecificFilters = ['type1', 'type2'];
-const commonFilters = ['practices', 'service', 'theme', 'city', 'district', 'structure'];
+const commonFilters = ['practices', 'categories', 'themes', 'cities', 'districts', 'structures'];
 
 describe('computeFiltersToDisplay', () => {
-  it('should return state with treks if service is =0 and user select one practice', () => {
+  it('should return state with treks if categories is =0 and user select one practice', () => {
     const currentState = [...filtersState];
     currentState[0].selectedOptions = [];
     currentState[1].selectedOptions = [];
@@ -264,9 +264,10 @@ describe('computeFiltersToDisplay', () => {
       touristicContentCategoryMapping,
     }).map(({ id }) => id);
     [...commonFilters, ...trekSpecificFilters].forEach(id => expect(displayedIds.includes(id)));
+
     expect(displayedIds.length).toEqual([...commonFilters, ...trekSpecificFilters].length);
   });
-  it('should return state without TC if service is =1 and user select one practice', () => {
+  it('should return state without TC if categories is =1 and user select one practice', () => {
     const currentState = [...filtersState, ...touristicContentSpecificFiltersState];
     currentState[0].selectedOptions = [];
     currentState[1].selectedOptions = [
@@ -290,7 +291,7 @@ describe('computeFiltersToDisplay', () => {
     commonFilters.forEach(id => expect(displayedIds.includes(id)));
     expect(displayedIds.length).toEqual(commonFilters.length);
   });
-  it('should return state without treks if service is =0 and user unselect all practices', () => {
+  it('should return state without treks if categories is =0 and user unselect all practices', () => {
     const currentState = [...filtersState, ...trekSpecificFiltersState];
     currentState[0].selectedOptions = [
       {
@@ -309,7 +310,7 @@ describe('computeFiltersToDisplay', () => {
     commonFilters.forEach(id => expect(displayedIds.includes(id)));
     expect(displayedIds.length).toEqual(commonFilters.length);
   });
-  it('should return state with TC if service is =1 and user unselect all practices', () => {
+  it('should return state with TC if categories is =1 and user unselect all practices', () => {
     const currentState = [...filtersState];
     currentState[0].selectedOptions = [
       {
@@ -337,7 +338,7 @@ describe('computeFiltersToDisplay', () => {
       [...commonFilters, ...touristicContentSpecificFilters].length,
     );
   });
-  it('should return state with TC if practices is =0 and user select one service', () => {
+  it('should return state with TC if practices is =0 and user select one categories', () => {
     const currentState = [...filtersState];
     currentState[0].selectedOptions = [];
     currentState[1].selectedOptions = [];
@@ -350,7 +351,7 @@ describe('computeFiltersToDisplay', () => {
           value: '0',
         },
       ],
-      selectedFilterId: 'service',
+      selectedFilterId: 'categories',
       touristicContentCategoryMapping,
     }).map(({ id }) => id);
     [...commonFilters, ...touristicContentSpecificFilters].forEach(id =>
@@ -360,7 +361,7 @@ describe('computeFiltersToDisplay', () => {
       [...commonFilters, ...touristicContentSpecificFilters].length,
     );
   });
-  it('should return state without treks if practices is >=1 and user select one service instead of zero', () => {
+  it('should return state without treks if practices is >=1 and user select one categories instead of zero', () => {
     const currentState = [...filtersState, ...trekSpecificFiltersState];
     currentState[0].selectedOptions = [
       {
@@ -378,7 +379,7 @@ describe('computeFiltersToDisplay', () => {
           value: '0',
         },
       ],
-      selectedFilterId: 'service',
+      selectedFilterId: 'categories',
       touristicContentCategoryMapping,
     }).map(({ id }) => id);
     commonFilters.forEach(id => expect(displayedIds.includes(id)));
@@ -406,7 +407,7 @@ describe('computeFiltersToDisplay', () => {
           value: '1',
         },
       ],
-      selectedFilterId: 'service',
+      selectedFilterId: 'categories',
       touristicContentCategoryMapping,
     }).map(({ id }) => id);
     commonFilters.forEach(id => expect(displayedIds.includes(id)));
@@ -434,7 +435,7 @@ describe('computeFiltersToDisplay', () => {
           value: '0',
         },
       ],
-      selectedFilterId: 'service',
+      selectedFilterId: 'categories',
       touristicContentCategoryMapping,
     }).map(({ id }) => id);
     [...commonFilters, ...touristicContentSpecificFilters].forEach(id =>
@@ -444,7 +445,7 @@ describe('computeFiltersToDisplay', () => {
       [...commonFilters, ...touristicContentSpecificFilters].length,
     );
   });
-  it('should return state without TC if practices is =0 and user select zero service instead of one', () => {
+  it('should return state without TC if practices is =0 and user select zero categories instead of one', () => {
     const currentState = [...filtersState, ...touristicContentSpecificFiltersState];
     currentState[0].selectedOptions = [];
     currentState[1].selectedOptions = [
@@ -457,7 +458,7 @@ describe('computeFiltersToDisplay', () => {
       currentFiltersState: currentState,
       initialFiltersState,
       optionsSelected: [],
-      selectedFilterId: 'service',
+      selectedFilterId: 'categories',
       touristicContentCategoryMapping,
     }).map(({ id }) => id);
     commonFilters.forEach(id => expect(displayedIds.includes(id)));
@@ -481,7 +482,7 @@ describe('computeFiltersToDisplay', () => {
       currentFiltersState: currentState,
       initialFiltersState,
       optionsSelected: [],
-      selectedFilterId: 'service',
+      selectedFilterId: 'categories',
       touristicContentCategoryMapping,
     }).map(({ id }) => id);
     [...commonFilters, ...trekSpecificFilters].forEach(id => expect(displayedIds.includes(id)));

@@ -1,5 +1,6 @@
 import { QueryFilterState } from 'components/pages/search/utils';
 import { getFiltersConfig } from 'modules/filters/config';
+import { CATEGORY_ID } from 'modules/filters/constant';
 import { FilterConfig, FilterConfigWithOptions } from 'modules/filters/interface';
 
 export const formatDistance = (distance: number): string => {
@@ -106,7 +107,7 @@ export const formatTrekFiltersToUrlParams = (
 ): { [key: string]: string } =>
   filtersState.reduce<{ [key: string]: string }>((queryParameters, currentFilterState) => {
     if (
-      currentFilterState.id === 'service' ||
+      currentFilterState.id === CATEGORY_ID ||
       currentFilterState.id === 'type1' ||
       currentFilterState.id === 'type2'
     )
@@ -135,7 +136,7 @@ export const formatTouristicContentFiltersToUrlParams = (
           };
         }
       }
-      if (currentFilterState.id === 'service') {
+      if (currentFilterState.id === CATEGORY_ID) {
         if (currentFilterState.selectedOptions.length > 0) {
           return {
             ...currentFilters,

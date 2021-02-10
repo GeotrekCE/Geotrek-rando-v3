@@ -18,6 +18,7 @@ import { getStructureFilter } from './structures/connector';
 import { getThemeFilter } from './theme/connector';
 import {
   ACCESSIBILITY_ID,
+  CATEGORY_ID,
   CITY_ID,
   DISTRICT_ID,
   PRACTICE_ID,
@@ -55,7 +56,7 @@ const getFilterOptions = async (filterId: string): Promise<FilterWithoutType | n
       return getAccessibilityFilter();
     case STRUCTURE_ID:
       return getStructureFilter();
-    case 'service':
+    case CATEGORY_ID:
       return getTouristicContentCategoryFilter();
     default:
       return null;
@@ -92,7 +93,7 @@ const trekSpecificFilters = [
   'duration',
   'length',
   'ascent',
-  'route',
+  ROUTE_ID,
   ACCESSIBILITY_ID,
 ];
 const touristicContentSpecificFilters = ['type1', 'type2'];
@@ -149,7 +150,7 @@ export const computeFiltersToDisplay = ({
     currentFiltersState[1].selectedOptions.length;
   const numberOfOptionsSelected = optionsSelected.length;
 
-  if (selectedFilterId === 'practice') {
+  if (selectedFilterId === PRACTICE_ID) {
     if (numberOfOptionsSelected === 1 && currentNumberOfPracticeOptionsSelected === 0) {
       if (currentNumberOfTouristicContentOptionsSelected === 0) {
         return [...currentFiltersState, ...getTreksFiltersState(initialFiltersState)];
@@ -175,7 +176,7 @@ export const computeFiltersToDisplay = ({
       }
     }
   }
-  if (selectedFilterId === 'service') {
+  if (selectedFilterId === CATEGORY_ID) {
     if (numberOfOptionsSelected === 1 && currentNumberOfTouristicContentOptionsSelected === 0) {
       if (currentNumberOfPracticeOptionsSelected === 0) {
         return [
