@@ -48,13 +48,13 @@
       "service": "Services",
       "cities": "Commune",
       "duration": "Durée",
-      "district": "Secteur",
+      "districts": "Secteur",
       "themes": "Thèmes",
-      "route": "Type de parcours",
-      "accessibility": "Accessibilité",
+      "routes": "Type de parcours",
+      "accessibilities": "Accessibilité",
       "ascent": "Denivelé positif",
       "length": "Longueur",
-      "structure": "Structure"
+      "structures": "Structure"
     },
     "map": {
       "seeResult": "Afficher le détail"

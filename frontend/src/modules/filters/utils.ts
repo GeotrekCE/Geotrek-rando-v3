@@ -16,7 +16,15 @@ import {
 } from './interface';
 import { getStructureFilter } from './structures/connector';
 import { getThemeFilter } from './theme/connector';
-import { CITY_ID, PRACTICE_ID, THEME_ID } from './constant';
+import {
+  ACCESSIBILITY_ID,
+  CITY_ID,
+  DISTRICT_ID,
+  PRACTICE_ID,
+  ROUTE_ID,
+  STRUCTURE_ID,
+  THEME_ID,
+} from './constant';
 
 const adaptFilterConfigWithOptionsToFilter = (
   filterConfigWithOptions: FilterConfigWithOptions,
@@ -37,15 +45,15 @@ const getFilterOptions = async (filterId: string): Promise<FilterWithoutType | n
       return getActivityFilter();
     case CITY_ID:
       return getCityFilter();
-    case 'district':
+    case DISTRICT_ID:
       return getDistrictFilter();
     case THEME_ID:
       return getThemeFilter();
-    case 'route':
+    case ROUTE_ID:
       return getCourseTypeFilter();
-    case 'accessibility':
+    case ACCESSIBILITY_ID:
       return getAccessibilityFilter();
-    case 'structure':
+    case STRUCTURE_ID:
       return getStructureFilter();
     case 'service':
       return getTouristicContentCategoryFilter();
@@ -61,10 +69,7 @@ const getFilterAndAddType = async (
   filterId: string,
   filterType: 'SINGLE' | 'MULTIPLE',
 ): Promise<Filter | null> => {
-  console.log('🚀 ~ file: utils.ts ~ line 63 ~ filterId', filterId);
-
   const filter = await getFilterOptions(filterId);
-  console.log('🚀 ~ file: utils.ts ~ line 66 ~ filter', filter);
   if (filter === null) return null;
   return { ...filter, type: filterType };
 };
@@ -88,7 +93,7 @@ const trekSpecificFilters = [
   'length',
   'ascent',
   'route',
-  'accessibility',
+  ACCESSIBILITY_ID,
 ];
 const touristicContentSpecificFilters = ['type1', 'type2'];
 
