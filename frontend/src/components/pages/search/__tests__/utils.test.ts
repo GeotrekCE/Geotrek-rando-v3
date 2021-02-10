@@ -24,7 +24,6 @@ const MockFilterState: FilterState = {
     { value: '4', label: 'Difficile' },
   ],
   type: 'MULTIPLE',
-  status: 'ENABLED',
 };
 const MockFilterState2: FilterState = {
   id: 'difficulty2',
@@ -41,7 +40,6 @@ const MockFilterState2: FilterState = {
     { value: '4', label: 'Difficile' },
   ],
   type: 'MULTIPLE',
-  status: 'ENABLED',
 };
 const MockFilterState3: FilterState = {
   id: 'difficulty3',
@@ -58,7 +56,6 @@ const MockFilterState3: FilterState = {
     { value: '4', label: 'Difficile' },
   ],
   type: 'MULTIPLE',
-  status: 'ENABLED',
 };
 
 const MockSelectedOptions = [
