@@ -6,7 +6,6 @@ export interface MenuItem {
 
 export interface MenuConfig {
   primaryItemsNumber: number;
-  items: MenuItem[];
   shouldDisplayFavorite: boolean;
   supportedLanguages: string[];
 }
