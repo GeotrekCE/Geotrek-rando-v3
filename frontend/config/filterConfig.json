@@ -12,7 +12,7 @@
     "type": "MULTIPLE"
   },
   {
-    "id": "city",
+    "id": "cities",
     "type": "SINGLE"
   },
   {
