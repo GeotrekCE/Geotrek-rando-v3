@@ -11,14 +11,10 @@ import { BurgerMenu } from './BurgerMenu';
 import { useHeader } from './useHeader';
 
 export const Header: React.FC = () => {
-  const { config, intl } = useHeader();
+  const { config, menuItems } = useHeader();
 
-  const sectionsDesktop = config.menu.items
-    .slice(0, config.menu.primaryItemsNumber)
-    .map(item => ({ name: intl.formatMessage({ id: item.translationId }), url: item.url }));
-  const subSections = config.menu.items
-    .slice(config.menu.primaryItemsNumber)
-    .map(item => ({ name: intl.formatMessage({ id: item.translationId }), url: item.url }));
+  const sectionsDesktop = menuItems?.slice(0, config.menu.primaryItemsNumber);
+  const subSections = menuItems?.slice(config.menu.primaryItemsNumber);
   /**
    * Disabled for now to handle the map on the search page
    */
@@ -27,7 +23,7 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      <BurgerMenu config={config.menu} displayState={headerState} />
+      <BurgerMenu config={config.menu} displayState={headerState} menuItems={menuItems} />
       <Container
         state={headerState}
         className="h-11 bg-primary1 flex flex-row items-center sticky z-header px-3"
@@ -45,13 +41,15 @@ export const Header: React.FC = () => {
         >
           <FormattedMessage id={'home.title'} />
         </p>
-        <InlineMenu
-          className="hidden desktop:flex items-center flex-auto justify-between"
-          sections={sectionsDesktop}
-          subSections={subSections}
-          shouldDisplayFavorites={config.menu.shouldDisplayFavorite}
-          supportedLanguages={config.menu.supportedLanguages}
-        />
+        {(sectionsDesktop || subSections) && (
+          <InlineMenu
+            className="hidden desktop:flex items-center flex-auto justify-end"
+            sections={sectionsDesktop}
+            subSections={subSections}
+            shouldDisplayFavorites={config.menu.shouldDisplayFavorite}
+            supportedLanguages={config.menu.supportedLanguages}
+          />
+        )}
       </Container>
     </>
   );
