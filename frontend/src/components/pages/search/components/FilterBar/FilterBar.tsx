@@ -1,5 +1,4 @@
 import { Option } from 'modules/filters/interface';
-import { useState } from 'react';
 import styled from 'styled-components';
 import { getSpacing, sizes } from 'stylesheet';
 import { flexGap } from 'services/cssHelpers';
@@ -16,13 +15,11 @@ const NUMBER_OF_PRIMARY_FILTERS_DISPLAYED = 6;
 interface Props {
   filtersState: FilterState[];
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
+  filterBarExpansionState: 'EXPANDED' | 'COLLAPSED';
+  setFilterBarExpansionState: (state: 'EXPANDED' | 'COLLAPSED') => void;
 }
 
 export const FilterBar: React.FC<Props> = props => {
-  const [filterBarExpansionState, setFilterBarExpansionState] = useState<'EXPANDED' | 'COLLAPSED'>(
-    'COLLAPSED',
-  );
-
   /**
    * Disabled for now to handle the map on the search page
    */
@@ -33,7 +30,7 @@ export const FilterBar: React.FC<Props> = props => {
 
   return (
     <Container className={filterBarContainerClassName} displayedState={filterBarDisplayedState}>
-      <div className={`${filterBarExpansionState === 'EXPANDED' ? 'mb-4' : ''}`}>
+      <div className={`${props.filterBarExpansionState === 'EXPANDED' ? 'mb-4' : ''}`}>
         <FiltersLayout>
           {props.filtersState.slice(0, NUMBER_OF_PRIMARY_FILTERS_DISPLAYED).map(filterState => (
             <div key={filterState.id} className="mr-2">
@@ -51,14 +48,14 @@ export const FilterBar: React.FC<Props> = props => {
           ))}
           <SeeMoreButton
             icon={Plus}
-            onClick={() => setFilterBarExpansionState('EXPANDED')}
-            filterBarState={filterBarExpansionState}
+            onClick={() => props.setFilterBarExpansionState('EXPANDED')}
+            filterBarState={props.filterBarExpansionState}
           >
             Voir plus
           </SeeMoreButton>
         </FiltersLayout>
       </div>
-      <AdditionalFilters expansionState={filterBarExpansionState}>
+      <AdditionalFilters expansionState={props.filterBarExpansionState}>
         <FiltersLayout>
           {props.filtersState.slice(NUMBER_OF_PRIMARY_FILTERS_DISPLAYED).map(filterState => (
             <div key={filterState.id} className="mr-2">
@@ -74,7 +71,9 @@ export const FilterBar: React.FC<Props> = props => {
               />
             </div>
           ))}
-          <CollapseFiltersButton collapseFilters={() => setFilterBarExpansionState('COLLAPSED')} />
+          <CollapseFiltersButton
+            collapseFilters={() => props.setFilterBarExpansionState('COLLAPSED')}
+          />
         </FiltersLayout>
       </AdditionalFilters>
     </Container>

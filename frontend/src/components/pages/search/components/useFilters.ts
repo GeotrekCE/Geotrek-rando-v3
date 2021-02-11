@@ -12,6 +12,10 @@ export const useFilter = (
     initialFiltersStateWithSelectedOptions,
   );
 
+  const [filterBarExpansionState, setFilterBarExpansionState] = useState<'EXPANDED' | 'COLLAPSED'>(
+    'COLLAPSED',
+  );
+
   const setFilterSelectedOptions = (filterId: string, options: Option[]) => {
     setFiltersState(currentState => {
       const currentStateWithRelevantFilters = computeFiltersToDisplay({
@@ -36,5 +40,7 @@ export const useFilter = (
   return {
     filtersState,
     setFilterSelectedOptions,
+    filterBarExpansionState,
+    setFilterBarExpansionState,
   };
 };
