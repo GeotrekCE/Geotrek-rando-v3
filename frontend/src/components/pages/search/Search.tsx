@@ -39,7 +39,12 @@ export const SearchUI: React.FC<Props> = ({
   touristicContentCategoryMapping,
   initialFiltersStateWithSelectedOptions,
 }) => {
-  const { filtersState, setFilterSelectedOptions } = useFilter(
+  const {
+    filtersState,
+    setFilterSelectedOptions,
+    filterBarExpansionState,
+    setFilterBarExpansionState,
+  } = useFilter(
     initialFiltersState,
     touristicContentCategoryMapping,
     initialFiltersStateWithSelectedOptions,
@@ -97,6 +102,8 @@ export const SearchUI: React.FC<Props> = ({
         <FilterBar
           filtersState={filtersState}
           setFilterSelectedOptions={setFilterSelectedOptions}
+          filterBarExpansionState={filterBarExpansionState}
+          setFilterBarExpansionState={setFilterBarExpansionState}
         />
         <div className="flex flex-row">
           <div className="flex flex-col w-full desktop:w-1/2">
