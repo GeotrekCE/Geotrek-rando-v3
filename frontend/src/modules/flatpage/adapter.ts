@@ -1,5 +1,6 @@
 import { generateFlatPageUrl } from 'modules/header/utills';
-import { RawFlatPage } from './interface';
+import { SourceDictionnary } from 'modules/source/interface';
+import { FlatPageDetails, RawFlatPage, RawFlatPageDetails } from './interface';
 import { MenuItem, OrderableMenuItem } from '../header/interface';
 
 const adaptFlatPageToMenuItem = (rawFlatPage: RawFlatPage): MenuItem => ({
@@ -21,3 +22,16 @@ export const adaptFlatPages = (rawFlatPages: RawFlatPage[]): MenuItem[] => {
 };
 
 const isOrderableMenuItem = (item: MenuItem): item is OrderableMenuItem => item.order !== null;
+
+export const adaptFlatPageDetails = ({
+  rawFlatPageDetails,
+  sourceDictionnary,
+}: {
+  rawFlatPageDetails: RawFlatPageDetails;
+  sourceDictionnary: SourceDictionnary;
+}): FlatPageDetails => ({
+  id: rawFlatPageDetails.id,
+  title: rawFlatPageDetails.title,
+  content: rawFlatPageDetails.content,
+  sources: rawFlatPageDetails.source.map(sourceId => sourceDictionnary[sourceId]),
+});
