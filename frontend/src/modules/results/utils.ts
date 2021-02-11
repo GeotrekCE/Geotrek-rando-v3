@@ -1,6 +1,12 @@
 import { QueryFilterState } from 'components/pages/search/utils';
 import { getFiltersConfig } from 'modules/filters/config';
-import { CATEGORY_ID } from 'modules/filters/constant';
+import {
+  CATEGORY_ID,
+  CITY_ID,
+  DISTRICT_ID,
+  STRUCTURE_ID,
+  THEME_ID,
+} from 'modules/filters/constant';
 import { FilterConfig, FilterConfigWithOptions } from 'modules/filters/interface';
 
 export const formatDistance = (distance: number): string => {
@@ -123,39 +129,52 @@ export const formatTrekFiltersToUrlParams = (
     }
   }, {});
 
+const commonFiltersWithoutTrekSelector = [
+  CATEGORY_ID,
+  THEME_ID,
+  CITY_ID,
+  DISTRICT_ID,
+  STRUCTURE_ID,
+];
+
 export const formatTouristicContentFiltersToUrlParams = (
   filtersState: QueryFilterState[],
 ): { [key: string]: string } => {
-  const filters = filtersState.reduce<{ types: string[]; categories: string[] }>(
+  const filters = filtersState.reduce<{ [key: string]: string[] }>(
     (currentFilters, currentFilterState) => {
       if (currentFilterState.id === 'type1' || currentFilterState.id === 'type2') {
         if (currentFilterState.selectedOptions.length > 0) {
           return {
             ...currentFilters,
-            types: [...currentFilters.types, ...currentFilterState.selectedOptions],
+            types: [
+              // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+              ...(currentFilters.types ? currentFilters.types : []),
+              ...currentFilterState.selectedOptions,
+            ],
           };
         }
       }
-      if (currentFilterState.id === CATEGORY_ID) {
-        if (currentFilterState.selectedOptions.length > 0) {
-          return {
-            ...currentFilters,
-            categories: currentFilterState.selectedOptions,
-          };
-        }
+      if (
+        commonFiltersWithoutTrekSelector.includes(currentFilterState.id) &&
+        currentFilterState.selectedOptions.length > 0
+      ) {
+        return {
+          ...currentFilters,
+          [currentFilterState.id]: currentFilterState.selectedOptions,
+        };
       }
       return currentFilters;
     },
-    { types: [], categories: [] },
+    {},
   );
-  const joinedFilters: { [key: string]: string } = {};
-  if (filters.types.length > 0) {
-    joinedFilters.types = filters.types.join(',');
-  }
-  if (filters.categories.length > 0) {
-    joinedFilters.categories = filters.categories.join(',');
-  }
-  return joinedFilters;
+
+  return Object.keys(filters).reduce(
+    (joinedFilters, key) => ({
+      ...joinedFilters,
+      [key]: filters[key].join(','),
+    }),
+    {},
+  );
 };
 
 /** Extracts nextPageId from nextPageUrl */
