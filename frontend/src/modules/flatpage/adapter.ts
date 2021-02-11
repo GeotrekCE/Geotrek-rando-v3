@@ -34,4 +34,8 @@ export const adaptFlatPageDetails = ({
   title: rawFlatPageDetails.title,
   content: rawFlatPageDetails.content,
   sources: rawFlatPageDetails.source.map(sourceId => sourceDictionnary[sourceId]),
+  attachment:
+    rawFlatPageDetails.id % 2 === 0
+      ? 'http://www.grand-tour-ecrins.fr/custom/images/pages/pne_028853.jpg'
+      : '',
 });
