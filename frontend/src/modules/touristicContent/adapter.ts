@@ -66,17 +66,30 @@ export const adaptTouristicContentDetails = ({
   themes:
     rawTCD.themes !== null ? rawTCD.themes.map(themeId => themeDictionnary[themeId].label) : [],
   pdf: rawTCD.pdf,
-  types: Object.keys(rawTCD.types).reduce<TouristicContentDetailsType[]>((adaptedTypes, typeId) => {
-    const adaptedType = adaptTouristicType(typeId, touristicContentCategory);
-    if (adaptedType) {
-      adaptedTypes.push(adaptedType);
-    }
-    return adaptedTypes;
-  }, []),
+  types: Object.entries(rawTCD.types).reduce<TouristicContentDetailsType[]>(
+    (adaptedTypes, typeEntry) => {
+      const adaptedType = adaptTouristicType(typeEntry, touristicContentCategory);
+      if (adaptedType) {
+        adaptedTypes.push(adaptedType);
+      }
+      return adaptedTypes;
+    },
+    [],
+  ),
   logoUri: rawTCD.approved === true ? DEFAULT_LOGO_URI : '',
 });
 
-const adaptTouristicType = (typeId: string, touristicContentCategory: TouristicContentCategory) => {
-  const type = touristicContentCategory.types.find(t => `${t.id}` === typeId);
-  return type && { label: type.label, values: type.values.map(value => value.label) };
+const adaptTouristicType = (
+  typeEntry: [string, number[]],
+  touristicContentCategory: TouristicContentCategory,
+) => {
+  const type = touristicContentCategory.types.find(t => `${t.id}` === typeEntry[0]);
+  return (
+    type && {
+      label: type.label,
+      values: typeEntry[1].map(
+        valueId => type.values.find(v => v.id === valueId)?.label ?? `${valueId}`,
+      ),
+    }
+  );
 };
