@@ -7,15 +7,16 @@ import { FilterState } from 'modules/filters/interface';
 
 import { formatInfiniteQuery, parseFilters } from '../utils';
 
-const computeFilterHash = (filtersState: FilterState[]) =>
-  filtersState
-    .map(filterState =>
-      [
-        filterState.id,
-        ...filterState.selectedOptions.map(selectedOption => selectedOption.value),
-      ].join(''),
-    )
-    .join('');
+const computeUrl = (filtersState: FilterState[]) =>
+  `search?${filtersState
+    .reduce<string[]>((selectedOptions, { id, selectedOptions: currentlySelectedOptions }) => {
+      if (currentlySelectedOptions.length === 0) return selectedOptions;
+      return [
+        ...selectedOptions,
+        `${id}=${currentlySelectedOptions.map(({ value }) => value).join(',')}`,
+      ];
+    }, [])
+    .join('&')}`;
 
 export const useTrekResults = (filtersState: FilterState[]) => {
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
@@ -24,7 +25,7 @@ export const useTrekResults = (filtersState: FilterState[]) => {
 
   const parsedFiltersState = parseFilters(filtersState);
 
-  const filterHash = useRef(computeFilterHash(filtersState));
+  const filterUrl = useRef(computeUrl(filtersState));
 
   const {
     data,
@@ -55,9 +56,10 @@ export const useTrekResults = (filtersState: FilterState[]) => {
   );
 
   useEffect(() => {
-    const currentFilterHash = computeFilterHash(filtersState);
-    if (currentFilterHash !== filterHash.current) {
-      filterHash.current = currentFilterHash;
+    const url = computeUrl(filtersState);
+    if (url !== filterUrl.current) {
+      filterUrl.current = url;
+      window.history.replaceState(null, '', url);
       void refetch();
     }
   }, [filtersState, refetch]);
