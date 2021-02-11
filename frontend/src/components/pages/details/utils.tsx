@@ -1,36 +1,93 @@
 import { routes } from 'services/routes';
-import styled from 'styled-components';
-import { getSpacing } from 'stylesheet';
+import styled, { css } from 'styled-components';
+import { colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
 import { generateResultDetailsUrl } from '../search/utils';
 
 export const HtmlText = styled.div`
-  & > b {
+  a {
+    color: ${colorPalette.primary1};
+    transition-property: all;
+    transition-duration: 300ms;
+    &:hover {
+      color: ${colorPalette.primary1_light};
+    }
+  }
+  h1 {
+    ${typography.h2}
+    ${desktopOnly(css`
+      ${typography.h1}
+    `)}
+  }
+  h2 {
+    ${typography.h3}
+    ${desktopOnly(css`
+      ${typography.h2}
+    `)}
+  }
+  h3 {
+    ${typography.h4}
+    ${desktopOnly(css`
+      ${typography.h3}
+    `)}
+  }
+  p {
+    margin-bottom: ${getSpacing(2)};
+    ${desktopOnly(css`
+      margin-bottom: ${getSpacing(4)};
+    `)}
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin: ${getSpacing(2)} 0;
+    ${desktopOnly(css`
+      margin: ${getSpacing(4)} 0;
+    `)}
+  }
+  img {
+    border-radius: ${getSpacing(4)};
+    max-height: 75vh;
+    width: auto;
+    margin: ${getSpacing(1)} auto;
+  }
+
+  b {
     font-weight: bold;
   }
-  & > a > b {
-    font-weight: bold;
-  }
-  & > em {
+
+  em {
     font-style: italic;
+    ${typography.small}
+    ${desktopOnly(css`
+      ${typography.main}
+    `)}
   }
-  & > p > em {
-    font-style: italic;
+  h6 {
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: ${getSpacing(2)};
+    ${desktopOnly(css`
+      margin-bottom: ${getSpacing(4)};
+    `)}
   }
-  & > strong {
+
+  strong {
     font-weight: bold;
   }
-  & > p > strong {
-    font-weight: bold;
-  }
-  & > ul {
+  ul {
     margin-top: ${getSpacing(2)};
     margin-bottom: ${getSpacing(2)};
   }
-  & > ul > li {
+  ul > li {
     padding-left: ${getSpacing(2)};
     display: list-item;
     list-style-type: disc;
     list-style-position: inside;
+    ${desktopOnly(css`
+      margin-bottom: ${getSpacing(1)};
+    `)}
   }
 `;
 
