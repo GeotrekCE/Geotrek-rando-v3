@@ -5,17 +5,17 @@ import {
   AccordionItemHeading,
   AccordionItemPanel,
 } from 'react-accessible-accordion';
+import { MenuItem } from 'modules/header/interface';
 import { Plus } from '../../Icons/Plus';
 import { Minus } from '../../Icons/Minus';
 import { useBurgerMenuSection } from './useBurgerMenuSection';
 
 export interface Props {
   title: string;
-  items?: ({ translationId: string; url: string } | string)[];
+  items?: Array<string | MenuItem>;
 }
 
-const isItemString = (item: { translationId: string; url: string } | string): item is string =>
-  typeof item === 'string';
+const isItemString = (item: MenuItem | string): item is string => typeof item === 'string';
 
 export const BurgerMenuSection: React.FC<Props> = ({ title, items }) => {
   const classNameTitle = 'flex items-center pt-4 pb-4 font-bold outline-none';
@@ -38,14 +38,14 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items }) => {
           </AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel className={openState === 'OPENED' ? classNameBorder : ''}>
-          {items.map(item =>
+          {items.map((item, i) =>
             isItemString(item) ? (
-              <p className="text-Mobile-C3 py-2" key={item}>
+              <p className="text-Mobile-C3 py-2" key={i}>
                 {item.toUpperCase()}
               </p>
             ) : (
-              <p className="text-Mobile-C3 py-2" key={item.translationId}>
-                <a href={item.url}>{intl.formatMessage({ id: item.translationId })}</a>
+              <p className="text-Mobile-C3 py-2" key={i}>
+                <a href={item.url}>{item.title}</a>
               </p>
             ),
           )}

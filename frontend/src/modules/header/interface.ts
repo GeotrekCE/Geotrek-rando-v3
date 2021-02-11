@@ -1,11 +1,16 @@
-interface MenuItem {
-  translationId: string;
+export interface MenuItem {
+  title: string;
   url: string;
+  order: number | null;
 }
 
+export interface OrderableMenuItem {
+  title: string;
+  url: string;
+  order: number;
+}
 export interface MenuConfig {
   primaryItemsNumber: number;
-  items: MenuItem[];
   shouldDisplayFavorite: boolean;
   supportedLanguages: string[];
 }
