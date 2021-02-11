@@ -31,15 +31,18 @@ import { DetailsCard } from '../details/components/DetailsCard';
 interface Props {
   initialFiltersState: FilterState[];
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
+  initialFiltersStateWithSelectedOptions: FilterState[];
 }
 
 export const SearchUI: React.FC<Props> = ({
   initialFiltersState,
   touristicContentCategoryMapping,
+  initialFiltersStateWithSelectedOptions,
 }) => {
   const { filtersState, setFilterSelectedOptions } = useFilter(
     initialFiltersState,
     touristicContentCategoryMapping,
+    initialFiltersStateWithSelectedOptions,
   );
 
   const {

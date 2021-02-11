@@ -98,6 +98,15 @@ const trekSpecificFilters = [
 ];
 const touristicContentSpecificFilters = ['type1', 'type2'];
 
+export const commonFilters = [
+  PRACTICE_ID,
+  CATEGORY_ID,
+  THEME_ID,
+  CITY_ID,
+  DISTRICT_ID,
+  STRUCTURE_ID,
+];
+
 export const getFiltersState = async (): Promise<FilterState[]> => {
   const filters = await getFilters();
   return filters.map(filter => ({
@@ -221,4 +230,79 @@ export const computeFiltersToDisplay = ({
     }
   }
   return currentFiltersState;
+};
+
+const getInitialFiltersStateWithRelevantFilters = ({
+  initialFiltersState,
+  initialOptions,
+  touristicContentCategoryMapping,
+}: {
+  initialFiltersState: FilterState[];
+  initialOptions: { [filterId: string]: string[] | undefined };
+  touristicContentCategoryMapping: TouristicContentCategoryMapping;
+}): FilterState[] => {
+  const initialStateWithOnlyCommon = initialFiltersState.filter(({ id }) =>
+    commonFilters.includes(id),
+  );
+  const practices = initialOptions[PRACTICE_ID];
+  const services = initialOptions[CATEGORY_ID];
+  if (practices !== undefined && practices.length > 0 && services === undefined) {
+    return [...initialStateWithOnlyCommon, ...getTreksFiltersState(initialFiltersState)];
+  }
+  if (practices === undefined && services !== undefined && services.length === 1) {
+    return [
+      ...initialStateWithOnlyCommon,
+      ...getTypesFiltersState({
+        serviceId: services[0],
+        touristicContentCategoryMapping,
+      }),
+    ];
+  }
+  return initialStateWithOnlyCommon;
+};
+
+const sanitizeInitialOptions = (initialOptions: {
+  [filterId: string]: string;
+}): { [filterId: string]: string[] } =>
+  Object.keys(initialOptions).reduce(
+    (sanitizedOptions, key) => ({
+      ...sanitizedOptions,
+      ...(initialOptions[key] === '' ? {} : { [key]: initialOptions[key].split(',') }),
+    }),
+    {},
+  );
+
+export const getInitialFiltersStateWithSelectedOptions = ({
+  initialFiltersState,
+  initialOptions,
+  touristicContentCategoryMapping,
+}: {
+  initialFiltersState: FilterState[];
+  initialOptions: { [filterId: string]: string };
+  touristicContentCategoryMapping: TouristicContentCategoryMapping;
+}): FilterState[] => {
+  const sanitizedInitialOptions = sanitizeInitialOptions(initialOptions);
+  const initialFiltersStateWithRelevantFilters = getInitialFiltersStateWithRelevantFilters({
+    initialFiltersState,
+    initialOptions: sanitizedInitialOptions,
+    touristicContentCategoryMapping,
+  });
+  return initialFiltersStateWithRelevantFilters.reduce<FilterState[]>(
+    (initialStateWithSelectedOptions, currentFilterState) => {
+      const selectedOptionsIds = sanitizedInitialOptions[currentFilterState.id];
+      if (selectedOptionsIds === undefined) {
+        return [...initialStateWithSelectedOptions, currentFilterState];
+      }
+      return [
+        ...initialStateWithSelectedOptions,
+        {
+          ...currentFilterState,
+          selectedOptions: currentFilterState.options.filter(({ value }) =>
+            selectedOptionsIds.includes(value),
+          ),
+        },
+      ];
+    },
+    [],
+  );
 };

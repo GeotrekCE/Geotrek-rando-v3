@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { colorPalette, getSpacing, shadow } from 'stylesheet';
 import { routes } from 'services/routes';
+import { PRACTICE_ID } from 'modules/filters/constant';
 
 import { ActivityChoices } from 'modules/activities/interface';
 import { Arrow } from 'components/Icons/Arrow';
@@ -34,9 +35,8 @@ export const ActivitySearchFilterMobile: React.FC<{
         placeholder={<FormattedMessage id="home.selectPlaceholder" />}
         onChange={activity => updateSelectedActivity(activity?.value ?? null)}
       />
-      {/* TODO update route with active filter using selected activity */}
       {selectedActivity !== null ? (
-        <Link href={`${routes.SEARCH}?activity=${selectedActivity}`}>
+        <Link href={`${routes.SEARCH}?${PRACTICE_ID}=${selectedActivity}`}>
           <ValidateButton />
         </Link>
       ) : (
