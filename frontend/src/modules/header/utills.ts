@@ -8,6 +8,11 @@ export const getHeaderConfig = (): HeaderConfig => ({
   ...structureHeaderConfig,
 });
 
+export const isInternalFlatPageUrl = (url: string): boolean => {
+  if (url === undefined) return false;
+  return url.includes(`${routes.FLAT_PAGE}/`);
+};
+
 export const generateFlatPageUrl = (id: number, title: string): string => {
   const titleWithNoSpace = title.replace(/ /g, '-');
   return `${routes.FLAT_PAGE}/${id}-${encodeURI(titleWithNoSpace)}`;
