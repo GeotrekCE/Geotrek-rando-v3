@@ -45,6 +45,7 @@ module.exports = {
       60: `${SPACING_UNIT * 60}px`,
       90: `${SPACING_UNIT * 90}px`,
       100: `${SPACING_UNIT * 100}px`,
+      '10vw': '10vw',
       filterBar: '72px',
       headerAndFilterBar: '168px',
       activitySearchFilter: '865px',
