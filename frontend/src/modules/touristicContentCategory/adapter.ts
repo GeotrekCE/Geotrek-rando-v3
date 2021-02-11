@@ -33,6 +33,7 @@ export const adaptTouristicContentCategoryFilter = (
   options: rawTouristicContentCategories.map(rawTouristicContentCategorie => ({
     value: `${rawTouristicContentCategorie.id}`,
     label: rawTouristicContentCategorie.label,
+    pictogramUrl: rawTouristicContentCategorie.pictogram,
   })),
 });
 
