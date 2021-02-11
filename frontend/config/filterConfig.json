@@ -13,15 +13,15 @@
   },
   {
     "id": "cities",
-    "type": "SINGLE"
+    "type": "MULTIPLE"
   },
   {
     "id": "districts",
-    "type": "SINGLE"
+    "type": "MULTIPLE"
   },
   {
     "id": "structures",
-    "type": "SINGLE"
+    "type": "MULTIPLE"
   },
   {
     "id": "difficulty",
@@ -97,7 +97,7 @@
   },
   {
     "id": "routes",
-    "type": "SINGLE"
+    "type": "MULTIPLE"
   },
   {
     "id": "accessibilities",
