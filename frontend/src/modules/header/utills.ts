@@ -10,7 +10,7 @@ export const getHeaderConfig = (): HeaderConfig => ({
 
 export const isInternalFlatPageUrl = (url: string): boolean => {
   if (url === undefined) return false;
-  return url.includes(`${routes.FLAT_PAGE}/`);
+  return url.indexOf(`${routes.FLAT_PAGE}/`) === 0;
 };
 
 export const generateFlatPageUrl = (id: number, title: string): string => {
