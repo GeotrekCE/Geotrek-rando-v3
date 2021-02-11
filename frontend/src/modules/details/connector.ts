@@ -10,7 +10,6 @@ import { getNetworks } from 'modules/networks/connector';
 import { getPois } from 'modules/poi/connector';
 import { getTrekResultsById } from 'modules/results/connector';
 import { getSources } from 'modules/source/connector';
-import { getTouristicContents } from 'modules/touristicContent/connector';
 import { getTouristicContentsNearTrek } from 'modules/touristicContent/connector';
 import { adaptChildren, adaptResults } from './adapter';
 import { fetchDetails, fetchTrekChildren, fetchTrekName } from './api';

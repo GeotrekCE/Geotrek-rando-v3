@@ -24,7 +24,7 @@ const colourStyles = {
     ...styles,
     backgroundColor: 'white',
     boxShadow: 'none',
-    minWidth: '180px',
+    minWidth: '130px',
     borderColor: colorPalette.filter.borderColor,
     ':hover': {
       borderColor: colorPalette.filter.borderColor,
