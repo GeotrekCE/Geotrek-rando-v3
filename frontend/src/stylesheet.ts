@@ -43,6 +43,7 @@ export const getSpacing = (multiplier: number): string =>
  */
 export const colorPalette = {
   primary1: '#AA397D',
+  primary1_light: '#bd3e8b',
   primary2: '#F5E7EF',
   primary3: '#791150',
   greyDarkColored: '#534764',
@@ -123,6 +124,12 @@ export const typography = {
     font-weight: bold;
     font-size: 32px;
     line-height: 42px;
+  `,
+  h3: css`
+    font-family: ${fontFamily.main};
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 31px;
   `,
   h4: css`
     font-family: ${fontFamily.main};
