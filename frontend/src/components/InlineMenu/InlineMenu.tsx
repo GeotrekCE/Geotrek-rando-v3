@@ -1,9 +1,10 @@
 import { ChevronDown } from 'components/Icons/ChevronDown';
 import { Heart } from 'components/Icons/Heart';
-import Dropdown from 'react-dropdown';
+import Dropdown, { Option } from 'react-dropdown';
 import ReactCountryFlag from 'react-country-flag';
 import { useIntl } from 'react-intl';
 import { MenuItem } from 'modules/header/interface';
+import { isInternalFlatPageUrl } from 'modules/header/utills';
 export interface InlineMenuProps {
   className?: string;
   shouldDisplayFavorites: boolean;
@@ -11,6 +12,14 @@ export interface InlineMenuProps {
   subSections?: MenuItem[];
   supportedLanguages: string[];
 }
+
+const openInCurrentTab = (url: string) => {
+  window.open(url, '_self');
+};
+
+const openInNewTab = (url: string) => {
+  window.open(url);
+};
 
 const InlineMenu: React.FC<InlineMenuProps> = ({
   className,
@@ -39,9 +48,11 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
             label: intl.formatMessage({ id: 'header.seeMore' }),
             value: '',
           }}
-          onChange={(option: { value: string | undefined }) => {
-            window.open(option.value);
-          }}
+          onChange={option =>
+            isInternalFlatPageUrl(option.value)
+              ? openInCurrentTab(option.value)
+              : openInNewTab(option.value)
+          }
         />
       )}
 
