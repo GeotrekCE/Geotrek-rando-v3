@@ -53,10 +53,12 @@ export const HtmlText = styled.div`
     margin: ${getSpacing(1)} auto;
   }
   iframe {
+    margin-top: ${getSpacing(5)};
     width: 100%;
     height: auto;
     ${desktopOnly(css`
       height: 70vh;
+      margin-top: ${getSpacing(7)};
     `)}
   }
 
