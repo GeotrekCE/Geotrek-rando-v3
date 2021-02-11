@@ -12,8 +12,14 @@ export const useFilter = (
     initialFiltersStateWithSelectedOptions,
   );
 
+  const practices = initialFiltersStateWithSelectedOptions[0];
+  const services = initialFiltersStateWithSelectedOptions[1];
+  const isPracticeOrCategorySelected =
+    (practices.selectedOptions.length > 0 && services.selectedOptions.length === 0) ||
+    (practices.selectedOptions.length === 0 && services.selectedOptions.length === 1);
+
   const [filterBarExpansionState, setFilterBarExpansionState] = useState<'EXPANDED' | 'COLLAPSED'>(
-    'COLLAPSED',
+    isPracticeOrCategorySelected ? 'EXPANDED' : 'COLLAPSED',
   );
 
   const setFilterSelectedOptions = (filterId: string, options: Option[]) => {
