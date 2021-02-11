@@ -3,6 +3,7 @@ import { MoreHorizontal } from 'components/Icons/MoreHorizontal';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { routes } from 'services/routes';
+import { PRACTICE_ID } from 'modules/filters/constant';
 
 import { ActivityButton } from './ActivityButton';
 import { useActivitySearchFilter } from './useActivitySearchFilter';
@@ -39,7 +40,7 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
             {visibleActivitiesIds?.map(activityId => (
               <ActivityButton
                 iconUrl={activities[activityId].pictogram}
-                href={`${routes.SEARCH}?activity=${activityId}`}
+                href={`${routes.SEARCH}?${PRACTICE_ID}=${activityId}`}
                 key={activityId}
               >
                 <span>{activities[activityId].name}</span>
