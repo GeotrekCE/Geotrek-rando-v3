@@ -1,8 +1,7 @@
 import { Layout } from 'components/Layout/Layout';
 import Loader from 'react-loader';
-import { colorPalette, getSpacing, sizes, zIndex } from 'stylesheet';
+import { colorPalette, sizes, zIndex } from 'stylesheet';
 import parse from 'html-react-parser';
-import styled from 'styled-components';
 import { Separator } from 'components/Separator';
 import { useFlatPage } from './useFlatPage';
 import { DetailsSection } from '../details/components/DetailsSection';
@@ -32,40 +31,34 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
           <ErrorFallback refetch={refetch} />
         )
       ) : (
-        <div className="px-10vw pb-10vw">
+        <div className="px-4 desktop:px-10vw pb-10vw">
           <div className="flex justify-center py-6 desktop:py-12">
             <p className="text-Mobile-H1 desktop:text-H1 font-bold text-primary1">
               {flatPage.title}
             </p>
           </div>
           {flatPage.content !== null && flatPage.content.length > 0 && (
-            <>
-              <div className="mb-6 desktop:mb-12">
-                <FlatPageHtmlText>{parse(flatPage.content)}</FlatPageHtmlText>
-              </div>
-              <Separator />
-            </>
+            <HtmlText>{parse(flatPage.content)}</HtmlText>
           )}
           {flatPage.sources.length > 0 && (
-            <DetailsSection titleId="details.source">
-              <div>
-                {flatPage.sources.map((source, i) => (
-                  <DetailsSource
-                    key={i}
-                    name={source.name}
-                    website={source.website}
-                    pictogramUri={source.pictogramUri}
-                  />
-                ))}
-              </div>
-            </DetailsSection>
+            <>
+              <Separator />
+              <DetailsSection titleId="details.source">
+                <div>
+                  {flatPage.sources.map((source, i) => (
+                    <DetailsSource
+                      key={i}
+                      name={source.name}
+                      website={source.website}
+                      pictogramUri={source.pictogramUri}
+                    />
+                  ))}
+                </div>
+              </DetailsSection>
+            </>
           )}
         </div>
       )}
     </Layout>
   );
 };
-
-const FlatPageHtmlText = styled(HtmlText)`
-  padding-bottom: ${getSpacing(12)};
-`;
