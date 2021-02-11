@@ -9,7 +9,7 @@ Object {
         class=" css-2b097c-container"
       >
         <div
-          class="select__control css-mdoago-control"
+          class="select__control css-f16mow-control"
         >
           <div
             class="select__value-container select__value-container--is-multi select__value-container--has-value css-g1d714-ValueContainer"
@@ -88,7 +88,7 @@ Object {
       class=" css-2b097c-container"
     >
       <div
-        class="select__control css-mdoago-control"
+        class="select__control css-f16mow-control"
       >
         <div
           class="select__value-container select__value-container--is-multi select__value-container--has-value css-g1d714-ValueContainer"
