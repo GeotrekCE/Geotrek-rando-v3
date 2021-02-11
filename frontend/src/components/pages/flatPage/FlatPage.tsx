@@ -37,9 +37,9 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
             <div className="relative coverDetailsMobile desktop:h-coverDetailsDesktop text-center">
               <img src={flatPage.attachment} className="h-full w-full object-top object-cover" />
               <TextWithShadow
-                className="text-Mobile-H1 desktop:text-H1
+                className="text-H3 desktop:text-H1
                 font-bold text-white
-                absolute bottom-0 top-50percent right-0 left-0
+                absolute bottom-0 top-0 right-0 left-0 flex items-center justify-center
                 bg-gradient-to-t from-gradientOnImages"
               >
                 {flatPage.title}
@@ -49,7 +49,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
           <div className="px-4 desktop:px-10vw py-4 desktop:py-10">
             {(flatPage.attachment == null || flatPage.attachment.length === 0) && (
               <div className="flex justify-center py-6 desktop:py-12">
-                <p className="text-Mobile-H1 desktop:text-H1 font-bold text-primary1">
+                <p className="text-H3 desktop:text-H1 font-bold text-primary1 text-center">
                   {flatPage.title}
                 </p>
               </div>
