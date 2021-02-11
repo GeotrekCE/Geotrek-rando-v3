@@ -1,3 +1,4 @@
+import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
 import { FilterState, Option } from 'modules/filters/interface';
 import { computeFiltersToDisplay } from 'modules/filters/utils';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
@@ -22,7 +23,28 @@ export const useFilter = (
     isPracticeOrCategorySelected ? 'EXPANDED' : 'COLLAPSED',
   );
 
+  const expandFilterBarIfNecessary = (filterId: string, numberOfOptionsSelected: number) => {
+    if (
+      filterId === PRACTICE_ID &&
+      numberOfOptionsSelected === 1 &&
+      filtersState[0].selectedOptions.length === 0 &&
+      filtersState[1].selectedOptions.length === 0 &&
+      filterBarExpansionState === 'COLLAPSED'
+    ) {
+      setFilterBarExpansionState('EXPANDED');
+    }
+    if (
+      filterId === CATEGORY_ID &&
+      numberOfOptionsSelected === 1 &&
+      filtersState[0].selectedOptions.length === 0 &&
+      filterBarExpansionState === 'COLLAPSED'
+    ) {
+      setFilterBarExpansionState('EXPANDED');
+    }
+  };
+
   const setFilterSelectedOptions = (filterId: string, options: Option[]) => {
+    expandFilterBarIfNecessary(filterId, options.length);
     setFiltersState(currentState => {
       const currentStateWithRelevantFilters = computeFiltersToDisplay({
         currentFiltersState: currentState,

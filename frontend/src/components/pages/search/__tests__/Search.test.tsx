@@ -84,9 +84,39 @@ describe('Search page', () => {
     const page = render(
       <QueryClientProvider client={queryClient}>
         <SearchUI
-          initialFiltersState={[]}
+          initialFiltersState={[
+            {
+              id: 'practices',
+              label: 'Practices',
+              options: [],
+              selectedOptions: [],
+              type: 'MULTIPLE',
+            },
+            {
+              id: 'categories',
+              label: 'Categories',
+              options: [],
+              selectedOptions: [],
+              type: 'MULTIPLE',
+            },
+          ]}
           touristicContentCategoryMapping={{}}
-          initialFiltersStateWithSelectedOptions={[]}
+          initialFiltersStateWithSelectedOptions={[
+            {
+              id: 'practices',
+              label: 'Practices',
+              options: [],
+              selectedOptions: [],
+              type: 'MULTIPLE',
+            },
+            {
+              id: 'categories',
+              label: 'Categories',
+              options: [],
+              selectedOptions: [],
+              type: 'MULTIPLE',
+            },
+          ]}
         />
       </QueryClientProvider>,
     );
