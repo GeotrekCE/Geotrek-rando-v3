@@ -1,4 +1,4 @@
-import { ChevronDown } from 'components/Icons/ChevronUp';
+import { ChevronDown } from 'components/Icons/ChevronDown';
 import { Florist } from 'components/Icons/Florist';
 import { Sliders } from 'components/Icons/Sliders';
 import { Visibility } from 'components/Map/DetailsMap/useDetailsMap';
