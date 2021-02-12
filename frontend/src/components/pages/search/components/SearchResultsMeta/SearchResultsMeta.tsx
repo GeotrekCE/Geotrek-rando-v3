@@ -3,16 +3,11 @@ import styled, { css } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
 
-import { Link } from 'components/Link';
-
 interface Props {
   resultsNumber: number | undefined;
-  /* These names are challengeable */
-  placeName: string;
-  placeUrl: string;
 }
 
-export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber, placeName, placeUrl }) => {
+export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber }) => {
   return (
     <div className="flex">
       <div>
@@ -23,9 +18,6 @@ export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber, placeName, p
         <ResultsNumber>
           <FormattedMessage values={{ count: resultsNumber }} id="search.resultsFound" />
         </ResultsNumber>
-        <SearchInfo className="hidden desktop:inline">
-          <FormattedMessage id="search.forThe" /> <Link href={placeUrl}>{placeName}</Link>
-        </SearchInfo>
       </div>
     </div>
   );

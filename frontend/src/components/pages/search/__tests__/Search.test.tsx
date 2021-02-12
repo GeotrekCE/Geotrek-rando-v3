@@ -8,6 +8,7 @@ import { getApiUrl } from 'services/envLoader';
 import { mockResultsRoute, mockTouristicContentResultsRoute } from 'modules/results/mocks';
 import { mockMapResultsRoute } from 'modules/mapResults/mocks';
 
+import { mockCityRoute } from 'modules/city/mocks';
 import { SearchUI } from '../Search';
 
 import {
@@ -41,7 +42,7 @@ const mockRoute = ({
 };
 
 describe('Search page', () => {
-  it('should display result cards', async () => {
+  it.only('should display result cards', async () => {
     // Only called by results
     mockResultsRoute(2);
     mockTouristicContentResultsRoute(2);
@@ -67,7 +68,7 @@ describe('Search page', () => {
 
     // Called by both filterBar and results
     mockRoute({ route: '/difficulty', mockData: mockDifficultyResponse, times: 3 });
-    mockRoute({ route: '/theme', mockData: mockThemeResponse, times: 3 });
+    mockRoute({ route: '/theme', mockData: mockThemeResponse, times: 6 });
     mockRoute({ route: '/practice', mockData: mockPracticeResponse, times: 3 });
 
     // Only called by filterBar
@@ -75,6 +76,7 @@ describe('Search page', () => {
     mockRoute({ route: '/accessibility', mockData: mockAccessibilityResponse });
     mockRoute({ route: '/structure', mockData: mockStructureResponse });
     mockTouristicContentCategoryRoute(1);
+    mockCityRoute(2);
 
     // Called once on page init then a 2nd time when filters initialize
     mockMapResultsRoute(2);
