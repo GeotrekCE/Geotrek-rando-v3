@@ -1,5 +1,6 @@
 import React from 'react';
 import { slide as Slide } from 'react-burger-menu';
+import { useIntl } from 'react-intl';
 
 import { Cross } from 'components/Icons/Cross';
 
@@ -17,6 +18,7 @@ interface Props {
     selectedFiltersLabels: string[];
   }[];
   closeMenu: () => void;
+  resetFilter: () => void;
 }
 
 export const MobileFilterMenu: React.FC<Props> = ({
@@ -25,7 +27,9 @@ export const MobileFilterMenu: React.FC<Props> = ({
   title,
   filtersList,
   closeMenu,
+  resetFilter,
 }) => {
+  const intl = useIntl();
   return (
     /*
      * The library default behaviour is to have a fixed close icon which
@@ -45,6 +49,12 @@ export const MobileFilterMenu: React.FC<Props> = ({
       <div className="relative text-center w-full pb-4 font-bold border-b border-solid border-greySoft outline-none">
         <CloseButton onClick={closeMenu} className="absolute left-0" icon={<Cross size={24} />} />
         <span>{title}</span>
+        <span
+          onClick={resetFilter}
+          className="underline text-primary1 font-normal text-P2 cursor-pointer absolute right-0 mt-2p"
+        >
+          {intl.formatMessage({ id: 'search.filters.clearAll' }).toUpperCase()}
+        </span>
       </div>
       {filtersList.map(filter => (
         <MobileFilterMenuSection
