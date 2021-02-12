@@ -124,6 +124,10 @@ export const useDetails = (
 
   const intl = useIntl();
 
+  const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
+  const displayMobileMap = () => setMobileMapState('DISPLAYED');
+  const hideMobileMap = () => setMobileMapState('HIDDEN');
+
   return {
     id,
     parentIdString,
@@ -140,5 +144,8 @@ export const useDetails = (
     setAccessibilityRef,
     sectionsPositions,
     intl,
+    mobileMapState,
+    displayMobileMap,
+    hideMobileMap,
   };
 };
