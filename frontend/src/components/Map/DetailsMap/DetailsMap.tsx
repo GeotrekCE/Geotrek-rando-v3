@@ -22,6 +22,7 @@ import { getMapConfig } from '../config';
 import { Credits } from '../components/Credits';
 import { AltimetricProfile } from '../components/AltimetricProfile';
 import { ControlSection } from '../components/ControlSection';
+import { useDetailsMap } from './useDetailsMap';
 
 interface PointWithIcon {
   location: { x: number; y: number };
@@ -53,7 +54,7 @@ export type PropsType = {
   bbox: { corner1: { x: number; y: number }; corner2: { x: number; y: number } };
 };
 
-const DetailsMap: React.FC<PropsType> = props => {
+export const DetailsMap: React.FC<PropsType> = props => {
   const hideMap = () => {
     if (props.hideMap) {
       props.hideMap();
@@ -61,6 +62,7 @@ const DetailsMap: React.FC<PropsType> = props => {
   };
 
   const mapConfig = getMapConfig();
+  const { poiMobileVisibility, togglePoiVisibility } = useDetailsMap();
 
   return (
     <>
@@ -86,7 +88,9 @@ const DetailsMap: React.FC<PropsType> = props => {
           <PointsReference pointsReference={props.pointsReference ?? undefined} />
         )}
 
-        {props.elementOnScreen === 'poi' && <MarkersWithIcon points={props.poiPoints} />}
+        {(props.elementOnScreen === 'poi' || poiMobileVisibility === 'DISPLAYED') && (
+          <MarkersWithIcon points={props.poiPoints} />
+        )}
 
         {props.elementOnScreen === 'touristicContent' && (
           <TouristicContent contents={props.touristicContentPoints} />
@@ -96,9 +100,8 @@ const DetailsMap: React.FC<PropsType> = props => {
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <ControlSection
         className="desktop:hidden"
-        poiControl
-        descriptionControl
-        touristicContentControl
+        poiVisibility={props.poiPoints && props.poiPoints.length > 0 ? poiMobileVisibility : null}
+        togglePoiVisibility={togglePoiVisibility}
       />
       <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
     </>
