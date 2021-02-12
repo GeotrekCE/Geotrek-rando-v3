@@ -26,7 +26,7 @@ export const FilterBar: React.FC<Props> = props => {
   // const filterBarDisplayedState = useHideOnScrollDown(sizes.desktopHeader);
   const filterBarDisplayedState = 'DISPLAYED';
 
-  const filterBarContainerClassName = `w-full py-3 pl-6 pr-2 hidden desktop:block fixed shadow bg-white z-subHeader`;
+  const filterBarContainerClassName = `w-full py-3 pl-6 pr-2 hidden desktop:block fixed shadow bg-white z-subHeader text-P2`;
 
   return (
     <Container className={filterBarContainerClassName} displayedState={filterBarDisplayedState}>
