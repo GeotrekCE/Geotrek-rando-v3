@@ -62,7 +62,14 @@ export const DetailsMap: React.FC<PropsType> = props => {
   };
 
   const mapConfig = getMapConfig();
-  const { poiMobileVisibility, togglePoiVisibility } = useDetailsMap();
+  const {
+    poiMobileVisibility,
+    togglePoiVisibility,
+    referencePointsMobileVisibility,
+    toggleReferencePointsVisibility,
+    touristicContentMobileVisibility,
+    toggleTouristicContentVisibility,
+  } = useDetailsMap();
 
   return (
     <>
@@ -84,7 +91,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
           trekGeometry={props.trekGeometry}
         />
 
-        {props.elementOnScreen === 'description' && (
+        {(props.elementOnScreen === 'description' ||
+          referencePointsMobileVisibility === 'DISPLAYED') && (
           <PointsReference pointsReference={props.pointsReference ?? undefined} />
         )}
 
@@ -92,7 +100,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
           <MarkersWithIcon points={props.poiPoints} />
         )}
 
-        {props.elementOnScreen === 'touristicContent' && (
+        {(props.elementOnScreen === 'touristicContent' ||
+          touristicContentMobileVisibility === 'DISPLAYED') && (
           <TouristicContent contents={props.touristicContentPoints} />
         )}
         <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />
@@ -101,7 +110,19 @@ export const DetailsMap: React.FC<PropsType> = props => {
       <ControlSection
         className="desktop:hidden"
         poiVisibility={props.poiPoints && props.poiPoints.length > 0 ? poiMobileVisibility : null}
+        referencePointsVisibility={
+          props.pointsReference && props.pointsReference.length > 0
+            ? referencePointsMobileVisibility
+            : null
+        }
+        touristicContentVisibility={
+          props.touristicContentPoints && props.touristicContentPoints.length > 0
+            ? touristicContentMobileVisibility
+            : null
+        }
         togglePoiVisibility={togglePoiVisibility}
+        toggleReferencePointsVisibility={toggleReferencePointsVisibility}
+        toggleTouristicContentVisibility={toggleTouristicContentVisibility}
       />
       <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
     </>
