@@ -3,7 +3,7 @@ import { Marker, Polygon, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { colorPalette } from 'stylesheet';
 import { TrekMarker } from '../Markers/TrekMarker';
-import { TouristicContentGeometry } from '.';
+import { TouristicContentGeometry } from './DetailsMap';
 
 export type PropsType = {
   contents?: TouristicContentGeometry[];
