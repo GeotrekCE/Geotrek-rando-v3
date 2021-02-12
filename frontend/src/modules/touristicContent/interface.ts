@@ -20,6 +20,17 @@ export interface RawTouristicContent {
   approved: boolean;
 }
 
+export interface RawTouristicContentResult {
+  id: string;
+  attachments: RawAttachment[];
+  name: string;
+  category: number;
+  description_teaser: string;
+  themes: number[];
+  types: Record<number, number[]>;
+  cities: number[];
+}
+
 export interface RawTouristicContentDetails extends RawTouristicContent {
   description: string;
   source: number[];
@@ -34,13 +45,23 @@ export interface RawTouristicContentDetails extends RawTouristicContent {
 
 export interface TouristicContent {
   id: string;
-  type: 'TOURISTIC_CONTENT';
   name: string;
   descriptionTeaser: string;
   thumbnailUris: string[];
   category: TouristicContentCategory;
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry | null;
   logoUri: string;
+}
+
+export interface TouristicContentResult {
+  id: string;
+  type: 'TOURISTIC_CONTENT';
+  name: string;
+  thumbnailUris: string[];
+  category: TouristicContentCategory;
+  place: string;
+  themes: string[];
+  types: TouristicContentDetailsType[];
 }
 
 export interface TouristicContentDetails extends TouristicContent {

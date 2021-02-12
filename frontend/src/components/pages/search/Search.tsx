@@ -154,8 +154,9 @@ export const SearchUI: React.FC<Props> = ({
                   {searchResults?.results.map(searchResult =>
                     searchResult.type === 'TREK' ? (
                       <ResultCard
+                        type={searchResult.type}
                         key={searchResult.title}
-                        id={searchResult.id}
+                        id={`${searchResult.id}`}
                         place={searchResult.place}
                         title={searchResult.title}
                         tags={searchResult.tags}
@@ -169,15 +170,18 @@ export const SearchUI: React.FC<Props> = ({
                         className="my-4 desktop:my-6"
                       />
                     ) : (
-                      <DetailsCard
+                      <ResultCard
+                        type={searchResult.type}
                         key={searchResult.name}
-                        name={searchResult.name}
-                        description={searchResult.descriptionTeaser}
-                        thumbnailUris={searchResult.thumbnailUris}
-                        iconUri={searchResult.category.pictogramUri}
-                        place={searchResult.category.label}
-                        logoUri={searchResult.logoUri}
-                        className="w-full"
+                        id={searchResult.id}
+                        place={searchResult.place}
+                        title={searchResult.name}
+                        tags={searchResult.themes}
+                        thumbnailUri={searchResult.thumbnailUris[0]}
+                        badgeIconUri={searchResult.category.pictogramUri}
+                        informations={searchResult.types}
+                        redirectionUrl={''}
+                        className="my-4 desktop:my-6"
                       />
                     ),
                   )}

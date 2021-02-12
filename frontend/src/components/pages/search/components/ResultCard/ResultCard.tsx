@@ -16,6 +16,7 @@ import { Chip } from 'components/Chip';
 import { Button } from 'components/Button';
 import { Link } from 'components/Link';
 import { LocalIconInformation, RemoteIconInformation } from 'components/Information';
+import { TouristicContentDetailsType } from 'modules/touristicContent/interface';
 
 import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
@@ -23,14 +24,19 @@ import { TrendingUp } from 'components/Icons/TrendingUp';
 
 import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
 
-interface Props {
-  id: number;
+interface BaseProps {
+  id: string;
   place: string;
   title: string;
   tags: string[];
   thumbnailUri: string;
   badgeIconUri: string;
   className?: string;
+  redirectionUrl: string;
+}
+
+interface TrekProps extends BaseProps {
+  type: 'TREK';
   informations: {
     duration: string | null;
     distance: string;
@@ -38,20 +44,18 @@ interface Props {
     difficulty: { label: string; pictogramUri: string } | null;
     reservationSystem: number | null;
   };
-  redirectionUrl: string;
 }
 
-export const ResultCard: React.FC<Props> = ({
-  id,
-  place,
-  title,
-  tags,
-  thumbnailUri,
-  badgeIconUri,
-  informations,
-  className,
-  redirectionUrl,
-}) => {
+interface TouristicContentProps extends BaseProps {
+  type: 'TOURISTIC_CONTENT';
+  informations: TouristicContentDetailsType[];
+}
+
+const isTrek = (content: TrekProps | TouristicContentProps): content is TrekProps =>
+  content.type === 'TREK';
+
+export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => {
+  const { id, place, title, tags, thumbnailUri, badgeIconUri, className, redirectionUrl } = props;
   return (
     <Container className={className}>
       <ImageContainer imageUri={thumbnailUri}>
@@ -72,28 +76,44 @@ export const ResultCard: React.FC<Props> = ({
                 ))}
               </TagLayout>
             </TagContainer>
-
-            <InformationContainer>
-              <InformationLayout>
-                {informations.difficulty !== null && (
-                  <RemoteIconInformation iconUri={informations.difficulty.pictogramUri}>
-                    {informations.difficulty.label}
-                  </RemoteIconInformation>
+            {isTrek(props) ? (
+              <InformationContainer>
+                <InformationLayout>
+                  {props.informations.difficulty !== null && (
+                    <RemoteIconInformation iconUri={props.informations.difficulty.pictogramUri}>
+                      {props.informations.difficulty.label}
+                    </RemoteIconInformation>
+                  )}
+                  {props.informations.duration !== null && (
+                    <LocalIconInformation icon={Clock}>
+                      {props.informations.duration}
+                    </LocalIconInformation>
+                  )}
+                  <LocalIconInformation icon={CodeBrackets}>
+                    {props.informations.distance}
+                  </LocalIconInformation>
+                  <LocalIconInformation icon={TrendingUp} className="desktop:flex hidden">
+                    {props.informations.elevation}
+                  </LocalIconInformation>
+                </InformationLayout>
+              </InformationContainer>
+            ) : (
+              <InformationContainer>
+                {props.informations.map(
+                  ({ label, values }) =>
+                    values.length > 0 && (
+                      <div key={label}>
+                        <span className="font-bold">{`${label} : `}</span>
+                        {values.map(value => (
+                          <span key={value}>{value}</span>
+                        ))}
+                      </div>
+                    ),
                 )}
-                {informations.duration !== null && (
-                  <LocalIconInformation icon={Clock}>{informations.duration}</LocalIconInformation>
-                )}
-                <LocalIconInformation icon={CodeBrackets}>
-                  {informations.distance}
-                </LocalIconInformation>
-                <LocalIconInformation icon={TrendingUp} className="desktop:flex hidden">
-                  {informations.elevation}
-                </LocalIconInformation>
-              </InformationLayout>
-            </InformationContainer>
+              </InformationContainer>
+            )}
           </DetailsLayout>
-
-          {informations.reservationSystem !== null && (
+          {isTrek(props) && props.informations.reservationSystem !== null && (
             <BookingButtonContainer>
               <Button>
                 <FormattedMessage id="search.book" />
