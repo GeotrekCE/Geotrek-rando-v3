@@ -37,7 +37,6 @@
     "book": "Réserver",
     "resultsFound": "{count, plural, =0 {# résultat trouvé} one {# résultat trouvé} other {# résultats trouvés}}",
     "forThe": "Pour le",
-    "orderedByRelevance": "Classement par ordre de pertinence",
     "seeMap": "Voir la carte",
     "filter": "Filtrer",
     "reload": "Recharger",

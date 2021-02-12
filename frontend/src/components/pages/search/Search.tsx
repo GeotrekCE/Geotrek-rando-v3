@@ -117,19 +117,12 @@ export const SearchUI: React.FC<Props> = ({
                 }}
               >
                 <div className="flex justify-between items-end">
-                  <SearchResultsMeta
-                    resultsNumber={searchResults?.resultsNumber ?? 0}
-                    placeName="Val de Gaudemart"
-                    placeUrl="/"
-                  />
+                  <SearchResultsMeta resultsNumber={searchResults?.resultsNumber ?? 0} />
                   <ToggleFilterButton
                     onClick={displayMenu}
                     activeFiltersNumber={activeFiltersNumber}
                   />
                 </div>
-                <RankingInfo className="desktop:hidden">
-                  <FormattedMessage id="search.orderedByRelevance" />
-                </RankingInfo>
 
                 <Separator className="w-full mt-6 desktop:block hidden" />
 
