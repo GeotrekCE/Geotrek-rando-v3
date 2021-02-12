@@ -1,3 +1,4 @@
+import { useIntl } from 'react-intl';
 import { Option } from 'modules/filters/interface';
 import styled from 'styled-components';
 import { getSpacing, sizes } from 'stylesheet';
@@ -9,7 +10,6 @@ import { ChevronUp } from 'components/Icons/ChevronUp';
 
 import { FilterState } from 'modules/filters/interface';
 import { SelectableDropdown } from './SelectableDropdown';
-import { useIntl } from 'react-intl';
 
 const NUMBER_OF_PRIMARY_FILTERS_DISPLAYED = 6;
 

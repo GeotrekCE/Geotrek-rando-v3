@@ -88,6 +88,7 @@ export const SearchUI: React.FC<Props> = ({
         title={<FormattedMessage id="search.filter" />}
         filtersList={filtersList}
         closeMenu={hideMenu}
+        resetFilter={resetFilters}
       />
       <MobileFilterSubMenu
         menuState={subMenuState}
