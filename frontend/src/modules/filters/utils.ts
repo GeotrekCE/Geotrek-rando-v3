@@ -298,7 +298,7 @@ export const getInitialFiltersStateWithSelectedOptions = ({
         {
           ...currentFilterState,
           selectedOptions: currentFilterState.options.filter(({ value }) =>
-            selectedOptionsIds.includes(value),
+            selectedOptionsIds.includes(`${value}`),
           ),
         },
       ];
