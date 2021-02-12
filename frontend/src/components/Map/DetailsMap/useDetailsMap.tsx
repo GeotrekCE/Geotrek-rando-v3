@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export type Visibility = 'DISPLAYED' | 'HIDDEN';
+export type Visibility = 'DISPLAYED' | 'HIDDEN' | null;
 
 export const useDetailsMap = () => {
   const [poiMobileVisibility, setPoiVisibility] = useState<Visibility>('HIDDEN');

@@ -24,7 +24,7 @@ export const ControlSection: React.FC<ControlSectionProps> = ({
       )}
       {controlSectionState === 'EXPANDED' && (
         <>
-          {poiVisibility !== undefined && (
+          {poiVisibility !== null && (
             <ControlButton
               icon={<Florist size={24} />}
               onClick={tooglePoiVisibility}

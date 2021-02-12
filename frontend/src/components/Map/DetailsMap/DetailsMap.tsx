@@ -100,7 +100,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <ControlSection
         className="desktop:hidden"
-        poiVisibility={poiMobileVisibility}
+        poiVisibility={props.poiPoints && props.poiPoints.length > 0 ? poiMobileVisibility : null}
         tooglePoiVisibility={tooglePoiVisibility}
       />
       <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
