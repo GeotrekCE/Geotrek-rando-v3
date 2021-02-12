@@ -13,7 +13,6 @@ import {
   PolygonGeometry,
 } from 'modules/interface';
 import { MapButton } from '../components/MapButton';
-import { FilterButton } from '../components/FilterButton';
 
 import { MarkersWithIcon } from './MarkersWithIcon';
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
@@ -22,6 +21,7 @@ import { TouristicContent } from './TouristicContent';
 import { getMapConfig } from '../config';
 import { Credits } from '../components/Credits';
 import { AltimetricProfile } from '../components/AltimetricProfile';
+import { ControlSection } from '../components/ControlSection';
 
 interface PointWithIcon {
   location: { x: number; y: number };
@@ -94,7 +94,12 @@ const DetailsMap: React.FC<PropsType> = props => {
         <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
-      <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
+      <ControlSection
+        className="desktop:hidden"
+        poiControl
+        descriptionControl
+        touristicContentControl
+      />
       <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
     </>
   );

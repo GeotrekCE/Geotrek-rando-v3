@@ -244,7 +244,7 @@ const RankingInfo = styled.div`
   margin-top: ${getSpacing(1)};
 `;
 
-const MobileMapContainer = styled.div<{ displayState: 'DISPLAYED' | 'HIDDEN' }>`
+export const MobileMapContainer = styled.div<{ displayState: 'DISPLAYED' | 'HIDDEN' }>`
   transition: top 0.3s ease-in-out 0.1s;
   top: ${({ displayState }) => (displayState === 'DISPLAYED' ? 0 : 100)}%;
 `;
