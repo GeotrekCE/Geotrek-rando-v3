@@ -1,15 +1,22 @@
 interface ControlButtonProps {
   icon: React.ReactNode;
   className?: string;
+  active?: boolean;
   onClick?: () => void;
 }
 
-export const ControlButton: React.FC<ControlButtonProps> = ({ icon, className, onClick }) => {
+export const ControlButton: React.FC<ControlButtonProps> = ({
+  icon,
+  className,
+  onClick,
+  active = false,
+}) => {
   return (
     <div
-      className={`h-10 w-10 rounded-lg shadow-md bg-white z-mapButton flex justify-center items-center text-greyDarkColored mb-3 ${
-        className ?? ''
-      }`}
+      className={`h-10 w-10 rounded-lg shadow-md z-mapButton
+      ${active ? 'bg-primary1 text-white' : 'bg-white text-greyDarkColored'}
+      flex justify-center items-center mb-3
+      ${className ?? ''}`}
       onClick={onClick}
     >
       {icon}
