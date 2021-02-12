@@ -4,6 +4,7 @@ import ReactCountryFlag from 'react-country-flag';
 import { useIntl } from 'react-intl';
 import { MenuItem } from 'modules/header/interface';
 import { isInternalFlatPageUrl } from 'modules/header/utills';
+import { ChevronDown } from 'components/Icons/ChevronDown';
 export interface InlineMenuProps {
   className?: string;
   shouldDisplayFavorites: boolean;
@@ -43,10 +44,18 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
           menuClassName={menuClassName}
           placeholderClassName="hidden"
           arrowClosed={
-            <div className={sectionClassName}>{intl.formatMessage({ id: 'header.seeMore' })}</div>
+            <SectionWithArrow
+              name={intl.formatMessage({
+                id: 'header.seeMore',
+              })}
+            />
           }
           arrowOpen={
-            <div className={sectionClassName}>{intl.formatMessage({ id: 'header.seeMore' })}</div>
+            <SectionWithArrow
+              name={intl.formatMessage({
+                id: 'header.seeMore',
+              })}
+            />
           }
           onChange={option =>
             isInternalFlatPageUrl(option.value)
@@ -73,10 +82,8 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
           controlClassName={controlClassName}
           menuClassName={menuClassName}
           placeholderClassName="hidden"
-          arrowClosed={
-            <div className={sectionClassName}>{supportedLanguages[0].toUpperCase()}</div>
-          }
-          arrowOpen={<div className={sectionClassName}>{supportedLanguages[0].toUpperCase()}</div>}
+          arrowClosed={<SectionWithArrow name={supportedLanguages[0].toUpperCase()} />}
+          arrowOpen={<SectionWithArrow name={supportedLanguages[0].toUpperCase()} />}
         />
       </div>
     </div>
@@ -91,6 +98,13 @@ const controlClassName = 'pt-4 pb-2 mb-2 mr-4 text-white cursor-pointer flex ite
 const optionClassName = 'hover:bg-greySoft-light focus:bg-greySoft cursor-pointer px-5 py-2';
 
 const sectionClassName = 'pt-3 pb-2 mr-6 text-white cursor-pointer';
+
+const SectionWithArrow: React.FC<{ name: string }> = ({ name }) => (
+  <div className={`${sectionClassName} flex items-center`}>
+    {name}
+    <ChevronDown size={16} className="flex-shrink-0 ml-1" />
+  </div>
+);
 
 const Section: React.FC<{ name: string; url?: string }> = ({ name, url }) => (
   <div
