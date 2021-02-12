@@ -1,6 +1,6 @@
 import { Activity } from 'modules/activities/interface';
 import { RawAttachment } from 'modules/interface';
-import { TouristicContent } from 'modules/touristicContent/interface';
+import { TouristicContentResult } from 'modules/touristicContent/interface';
 
 export interface SearchResults {
   resultsNumber: number;
@@ -8,7 +8,7 @@ export interface SearchResults {
     treks: number | null;
     touristicContents: number | null;
   };
-  results: (TrekResult | TouristicContent)[];
+  results: (TrekResult | TouristicContentResult)[];
 }
 
 export interface TrekResult {

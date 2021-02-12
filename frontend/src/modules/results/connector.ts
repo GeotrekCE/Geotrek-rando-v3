@@ -6,8 +6,9 @@ import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
 import { QueryFilterState } from 'components/pages/search/utils';
 import { fetchTouristicContentResult } from 'modules/touristicContent/api';
 import { getApiCallsConfig } from 'modules/utils/api.config';
-import { TouristicContent } from 'modules/touristicContent/interface';
-import { adaptTouristicContent } from 'modules/touristicContent/adapter';
+import { TouristicContentResult } from 'modules/touristicContent/interface';
+import { getCities } from 'modules/city/connector';
+import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
 
 import { adaptTrekResultList } from './adapter';
 import {
@@ -114,6 +115,8 @@ export const getSearchResults = async (
       activities,
       rawTouristicContents,
       touristicContentCategories,
+      themeDictionnary,
+      cityDictionnary,
     ] = await Promise.all([
       shouldFetchTreks ? getTreksResultsPromise : emptyResultPromise,
       getDifficulties(), // Todo: Find a way to store this hashmap to avoid calling this every time
@@ -121,6 +124,8 @@ export const getSearchResults = async (
       getActivities(), // Todo: Find a way to store this hashmap to avoid calling this every time
       shouldFetchTouristicContents ? getToursticContentsPromise : emptyResultPromise,
       getTouristicContentCategories(), // Todo: Find a way to store this hashmap to avoid calling this every time
+      getThemes(),
+      getCities(),
     ]);
     const adaptedResultsList: TrekResult[] = adaptTrekResultList({
       resultsList: rawTrekResults.results,
@@ -129,9 +134,11 @@ export const getSearchResults = async (
       activities,
     });
 
-    const adaptedTouristicContentsList: TouristicContent[] = adaptTouristicContent({
+    const adaptedTouristicContentsList: TouristicContentResult[] = adaptTouristicContentResult({
       rawTouristicContent: rawTouristicContents.results,
       touristicContentCategories,
+      themeDictionnary,
+      cityDictionnary,
     });
 
     const nextTreksPage = extractNextPageId(rawTrekResults.next);

@@ -1,6 +1,10 @@
 import { GeotrekAPI } from 'services/api/client';
 import { APIQuery, APIResponseForList } from 'services/api/interface';
-import { RawTouristicContent, RawTouristicContentDetails } from './interface';
+import {
+  RawTouristicContent,
+  RawTouristicContentDetails,
+  RawTouristicContentResult,
+} from './interface';
 
 const fieldsParams = {
   fields: 'id,attachments,name,category,description_teaser,geometry',
@@ -28,12 +32,12 @@ export const fetchTouristicContentDetails = (
     .json();
 
 const fieldsParamsResult = {
-  fields: 'id,attachments,name,category,description_teaser',
+  fields: 'id,attachments,name,category,description_teaser,themes,types,cities',
 };
 
 export const fetchTouristicContentResult = (
   query: APIQuery,
-): Promise<APIResponseForList<RawTouristicContent>> =>
+): Promise<APIResponseForList<RawTouristicContentResult>> =>
   GeotrekAPI.url(`/touristiccontent`)
     .query({ ...query, ...fieldsParamsResult })
     .get()

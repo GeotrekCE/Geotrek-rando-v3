@@ -46,7 +46,8 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
             >
               <div className="relative desktop:-top-20">
                 <ResultCard
-                  id={trekChild.id}
+                  id={`${trekChild.id}`}
+                  type="TREK"
                   place={trekChild.place}
                   title={trekChild.title}
                   tags={trekChild.tags}

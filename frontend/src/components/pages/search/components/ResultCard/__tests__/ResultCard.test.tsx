@@ -3,12 +3,13 @@ import { render } from 'services/testing/reactTestingLibraryWrapper';
 import { ResultCard } from '../ResultCard';
 
 describe('Results Card', () => {
-  const id = 2;
+  const id = '2';
   const title = 'Balade au pays des menhirs';
   const urlToTest = `/details-${id}-Balade-au-pays-des-menhirs`;
   const resultCard = (
     <ResultCard
       id={id}
+      type="TREK"
       place="Saint-Etienne-du-Valdonnez"
       title={title}
       tags={['En famille', 'Ciel étoilé', 'Beau paysage']}

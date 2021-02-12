@@ -10,9 +10,11 @@ import { adaptGeometry } from 'modules/utils/geometry';
 import {
   RawTouristicContent,
   RawTouristicContentDetails,
+  RawTouristicContentResult,
   TouristicContent,
   TouristicContentDetails,
   TouristicContentDetailsType,
+  TouristicContentResult,
 } from './interface';
 
 const DEFAULT_LOGO_URI =
@@ -36,6 +38,48 @@ export const adaptTouristicContent = ({
     logoUri: rawTouristicObject.approved ? DEFAULT_LOGO_URI : '',
   }));
 
+export const adaptTouristicContentResult = ({
+  rawTouristicContent,
+  touristicContentCategories,
+  themeDictionnary,
+  cityDictionnary,
+}: {
+  rawTouristicContent: RawTouristicContentResult[];
+  touristicContentCategories: TouristicContentCategoryDictionnary;
+  themeDictionnary: Choices;
+  cityDictionnary: CityDictionnary;
+}): TouristicContentResult[] =>
+  rawTouristicContent.map(rawTouristicObject => ({
+    id: rawTouristicObject.id,
+    type: 'TOURISTIC_CONTENT',
+    name: rawTouristicObject.name,
+    descriptionTeaser: rawTouristicObject.description_teaser,
+    thumbnailUris: getThumbnails(rawTouristicObject.attachments),
+    category: touristicContentCategories[rawTouristicObject.category],
+    logoUri: '',
+    place:
+      rawTouristicObject.cities.length > 0
+        ? cityDictionnary[rawTouristicObject.cities[0]].name
+        : '',
+    themes:
+      rawTouristicObject.themes !== null
+        ? rawTouristicObject.themes.map(themeId => themeDictionnary[themeId].label)
+        : [],
+    types: Object.entries(rawTouristicObject.types).reduce<TouristicContentDetailsType[]>(
+      (adaptedTypes, typeEntry) => {
+        const adaptedType = adaptTouristicType(
+          typeEntry,
+          touristicContentCategories[rawTouristicObject.category],
+        );
+        if (adaptedType) {
+          adaptedTypes.push(adaptedType);
+        }
+        return adaptedTypes;
+      },
+      [],
+    ),
+  }));
+
 export const adaptTouristicContentDetails = ({
   rawTCD,
   touristicContentCategory,
@@ -50,7 +94,6 @@ export const adaptTouristicContentDetails = ({
   themeDictionnary: Choices;
 }): TouristicContentDetails => ({
   id: rawTCD.id,
-  type: 'TOURISTIC_CONTENT',
   name: rawTCD.name,
   descriptionTeaser: rawTCD.description_teaser,
   thumbnailUris: getThumbnails(rawTCD.attachments),
