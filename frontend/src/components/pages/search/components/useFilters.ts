@@ -1,6 +1,6 @@
 import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
 import { FilterState, Option } from 'modules/filters/interface';
-import { computeFiltersToDisplay } from 'modules/filters/utils';
+import { commonFilters, computeFiltersToDisplay } from 'modules/filters/utils';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
 import { useState } from 'react';
 
@@ -65,10 +65,16 @@ export const useFilter = (
     });
   };
 
+  const resetFilters = () => {
+    setFiltersState(initialFiltersState.filter(({ id }) => commonFilters.includes(id)));
+    setFilterBarExpansionState('COLLAPSED');
+  };
+
   return {
     filtersState,
     setFilterSelectedOptions,
     filterBarExpansionState,
     setFilterBarExpansionState,
+    resetFilters,
   };
 };

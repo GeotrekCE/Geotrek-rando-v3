@@ -53,7 +53,8 @@
       "accessibilities": "Accessibilité",
       "ascent": "Denivelé positif",
       "length": "Longueur",
-      "structures": "Structure"
+      "structures": "Structure",
+      "clearAll": "Tout effacer"
     },
     "map": {
       "seeResult": "Afficher le détail"
