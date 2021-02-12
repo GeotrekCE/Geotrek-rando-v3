@@ -26,7 +26,6 @@ import { useTrekResults } from './hooks/useTrekResults';
 import { useMapResults } from './hooks/useMapResults';
 import { ErrorFallback } from './components/ErrorFallback';
 import { generateResultDetailsUrl } from './utils';
-import { DetailsCard } from '../details/components/DetailsCard';
 
 interface Props {
   initialFiltersState: FilterState[];
@@ -44,6 +43,7 @@ export const SearchUI: React.FC<Props> = ({
     setFilterSelectedOptions,
     filterBarExpansionState,
     setFilterBarExpansionState,
+    resetFilters,
   } = useFilter(
     initialFiltersState,
     touristicContentCategoryMapping,
@@ -104,6 +104,7 @@ export const SearchUI: React.FC<Props> = ({
           setFilterSelectedOptions={setFilterSelectedOptions}
           filterBarExpansionState={filterBarExpansionState}
           setFilterBarExpansionState={setFilterBarExpansionState}
+          resetFilters={resetFilters}
         />
         <div className="flex flex-row">
           <div className="flex flex-col w-full desktop:w-1/2">

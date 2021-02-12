@@ -9,6 +9,7 @@ import { ChevronUp } from 'components/Icons/ChevronUp';
 
 import { FilterState } from 'modules/filters/interface';
 import { SelectableDropdown } from './SelectableDropdown';
+import { useIntl } from 'react-intl';
 
 const NUMBER_OF_PRIMARY_FILTERS_DISPLAYED = 6;
 
@@ -17,6 +18,7 @@ interface Props {
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
   filterBarExpansionState: 'EXPANDED' | 'COLLAPSED';
   setFilterBarExpansionState: (state: 'EXPANDED' | 'COLLAPSED') => void;
+  resetFilters: () => void;
 }
 
 export const FilterBar: React.FC<Props> = props => {
@@ -27,6 +29,8 @@ export const FilterBar: React.FC<Props> = props => {
   const filterBarDisplayedState = 'DISPLAYED';
 
   const filterBarContainerClassName = `w-full py-3 pl-6 pr-2 hidden desktop:block fixed shadow bg-white z-subHeader text-P2`;
+
+  const intl = useIntl();
 
   return (
     <Container className={filterBarContainerClassName} displayedState={filterBarDisplayedState}>
@@ -53,6 +57,11 @@ export const FilterBar: React.FC<Props> = props => {
           >
             Voir plus
           </SeeMoreButton>
+          <div className="flex items-center cursor-pointer" onClick={props.resetFilters}>
+            <span className="underline text-primary1 font-bold">
+              {intl.formatMessage({ id: 'search.filters.clearAll' }).toUpperCase()}
+            </span>
+          </div>
         </FiltersLayout>
       </div>
       <AdditionalFilters expansionState={props.filterBarExpansionState}>
