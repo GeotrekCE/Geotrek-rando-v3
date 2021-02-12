@@ -62,7 +62,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
   };
 
   const mapConfig = getMapConfig();
-  const { poiMobileVisibility, tooglePoiVisibility } = useDetailsMap();
+  const { poiMobileVisibility, togglePoiVisibility } = useDetailsMap();
 
   return (
     <>
@@ -101,7 +101,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
       <ControlSection
         className="desktop:hidden"
         poiVisibility={props.poiPoints && props.poiPoints.length > 0 ? poiMobileVisibility : null}
-        tooglePoiVisibility={tooglePoiVisibility}
+        togglePoiVisibility={togglePoiVisibility}
       />
       <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
     </>

@@ -1,4 +1,4 @@
-import { ChevronUp } from 'components/Icons/ChevronUp';
+import { ChevronDown } from 'components/Icons/ChevronUp';
 import { Florist } from 'components/Icons/Florist';
 import { Sliders } from 'components/Icons/Sliders';
 import { Visibility } from 'components/Map/DetailsMap/useDetailsMap';
@@ -7,13 +7,13 @@ import { useControlSection } from './useControlSection';
 
 interface ControlSectionProps {
   poiVisibility?: Visibility;
-  tooglePoiVisibility?: () => void;
+  togglePoiVisibility?: () => void;
   className?: string;
 }
 
 export const ControlSection: React.FC<ControlSectionProps> = ({
   poiVisibility,
-  tooglePoiVisibility,
+  togglePoiVisibility,
   className,
 }) => {
   const { controlSectionState, expandControlSection, collapseControlSection } = useControlSection();
@@ -24,14 +24,14 @@ export const ControlSection: React.FC<ControlSectionProps> = ({
       )}
       {controlSectionState === 'EXPANDED' && (
         <>
+          <ControlButton icon={<ChevronDown size={24} />} onClick={collapseControlSection} />
           {poiVisibility !== null && (
             <ControlButton
               icon={<Florist size={24} />}
-              onClick={tooglePoiVisibility}
+              onClick={togglePoiVisibility}
               active={poiVisibility === 'DISPLAYED'}
             />
           )}
-          <ControlButton icon={<ChevronUp size={24} />} onClick={collapseControlSection} />
         </>
       )}
     </div>
