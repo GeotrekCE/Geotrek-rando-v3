@@ -93,14 +93,14 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
 const menuClassName =
   'bg-white text-greyDarkColored rounded-2xl border border-solid border-greySoft overflow-hidden absolute py-2 -ml-2 top-18';
 
-const controlClassName = 'pt-4 pb-2 mb-2 mr-4 text-white cursor-pointer flex items-center';
+const controlClassName = 'pt-4 pb-2 mb-2 text-white cursor-pointer flex items-center';
 
 const optionClassName = 'hover:bg-greySoft-light focus:bg-greySoft cursor-pointer px-5 py-2';
 
-const sectionClassName = 'pt-3 pb-2 mr-6 text-white cursor-pointer';
+const sectionClassName = 'pt-3 pb-2 mr-5 text-white cursor-pointer truncate';
 
 const SectionWithArrow: React.FC<{ name: string }> = ({ name }) => (
-  <div className={`${sectionClassName} flex items-center`}>
+  <div className={`${sectionClassName} flex items-center flex-shrink-0 mb-1 `}>
     {name}
     <ChevronDown size={16} className="flex-shrink-0 ml-1" />
   </div>
