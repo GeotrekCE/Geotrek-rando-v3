@@ -97,10 +97,10 @@ const controlClassName = 'pt-4 pb-2 mb-2 text-white cursor-pointer flex items-ce
 
 const optionClassName = 'hover:bg-greySoft-light focus:bg-greySoft cursor-pointer px-5 py-2';
 
-const sectionClassName = 'pt-3 pb-2 mr-5 text-white cursor-pointer truncate';
+const sectionClassName = 'pt-3 pb-2 mr-5 text-white cursor-pointer';
 
 const SectionWithArrow: React.FC<{ name: string }> = ({ name }) => (
-  <div className={`${sectionClassName} flex items-center flex-shrink-0 mb-1 `}>
+  <div className={`${sectionClassName} flex items-center flex-shrink-0 mb-1 whitespace-nowrap`}>
     {name}
     <ChevronDown size={16} className="flex-shrink-0 ml-1" />
   </div>
