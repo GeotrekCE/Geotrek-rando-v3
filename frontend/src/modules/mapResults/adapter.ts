@@ -1,12 +1,12 @@
 import { ActivityChoices } from 'modules/activities/interface';
-import { MapResults, RawMapResults } from './interface';
+import { MapResults, RawTrekMapResults } from './interface';
 import { concatMapResults, formatLocation } from './utils';
 
 export const adaptMapResults = ({
   mapResults,
   activities,
 }: {
-  mapResults: RawMapResults[];
+  mapResults: RawTrekMapResults[];
   activities: ActivityChoices;
 }): MapResults =>
   concatMapResults(mapResults).map(rawMapResult => ({

@@ -1,4 +1,4 @@
-import { RawMapResult, RawMapResults } from './interface';
+import { RawTrekMapResult, RawTrekMapResults } from './interface';
 
 export const formatLocation = (rawLocation: number[] | null): { x: number; y: number } | null =>
   rawLocation === null
@@ -8,8 +8,8 @@ export const formatLocation = (rawLocation: number[] | null): { x: number; y: nu
         y: rawLocation[1],
       };
 
-export const concatMapResults = (rawMapResults: RawMapResults[]): RawMapResult[] =>
-  rawMapResults.reduce<RawMapResult[]>(
+export const concatMapResults = (rawMapResults: RawTrekMapResults[]): RawTrekMapResult[] =>
+  rawMapResults.reduce<RawTrekMapResult[]>(
     (rawResults, currentResult) => [...rawResults, ...currentResult.results],
     [],
   );

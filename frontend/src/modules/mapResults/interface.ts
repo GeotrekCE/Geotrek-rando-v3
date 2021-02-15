@@ -6,13 +6,13 @@ export type MapResults = {
   practice: Activity;
 }[];
 
-export interface RawMapResults {
+export interface RawTrekMapResults {
   count: number;
   next: string | null;
-  results: RawMapResult[];
+  results: RawTrekMapResult[];
 }
 
-export interface RawMapResult {
+export interface RawTrekMapResult {
   id: number;
   parking_location: number[] | null;
   practice: number;
