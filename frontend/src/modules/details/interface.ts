@@ -84,7 +84,7 @@ interface Coordinate {
   y: number;
 }
 
-interface Bbox {
+export interface Bbox {
   corner1: Coordinate;
   corner2: Coordinate;
 }
