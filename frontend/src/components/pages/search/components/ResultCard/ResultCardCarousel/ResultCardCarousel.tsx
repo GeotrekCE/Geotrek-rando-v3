@@ -1,6 +1,6 @@
 import Slider, { CustomArrowProps } from 'react-slick';
-import styled from 'styled-components';
-import { colorPalette, getSpacing, sizes } from 'stylesheet';
+import styled, { css } from 'styled-components';
+import { colorPalette, desktopOnly, getSpacing, sizes } from 'stylesheet';
 import { ActivityBadge } from '../ActivityBadge';
 
 interface ResultCardCarouselProps {
@@ -13,7 +13,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
   iconUri,
 }) => {
   return (
-    <div className="overflow-hidden h-full flex-shrink-0 w-resultCardDesktop">
+    <div className="overflow-hidden h-auto w-full flex-shrink-0 desktop:w-resultCardDesktop">
       <StyledSlider
         dots
         infinite
@@ -29,7 +29,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
               src={thumbnailUri}
               className="object-cover object-top overflow-hidden
               h-resultCardMobile w-full
-              desktop:h-full desktop:w-resultCardDesktop"
+              desktop:h-full"
             />
             <ActivityBadge iconUri={iconUri} className="absolute top-4 left-4" />
           </div>
@@ -41,7 +41,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
 
 const StyledSlider = styled(Slider)`
   height: 100%;
-  width: ${sizes.resultCardDesktop}px;
+  width: auto;
   .slick-container,
   .slick-slider,
   .slick-list,
@@ -52,6 +52,11 @@ const StyledSlider = styled(Slider)`
   .slick-slide > div {
     height: 100%;
   }
+  ${desktopOnly(
+    css`
+      width: ${sizes.resultCardDesktop}px;
+    `,
+  )}
 `;
 
 const PrevArrow = (props: CustomArrowProps) => {
