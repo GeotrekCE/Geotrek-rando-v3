@@ -85,7 +85,7 @@ const StyledArrow = styled.div`
   justify-content: center;
   align-items: center;
   opacity: 0.75;
-  padding: 0 ${getSpacing(4)};
+  padding: 0 ${getSpacing(5)};
   transition-property: opacity;
   transition-duration: 300ms;
   &:hover {
