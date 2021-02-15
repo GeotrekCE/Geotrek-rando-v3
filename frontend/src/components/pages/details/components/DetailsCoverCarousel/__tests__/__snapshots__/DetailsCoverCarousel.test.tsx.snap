@@ -10,7 +10,7 @@ Object {
         dir="ltr"
       >
         <div
-          class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledLeftArrow-sc-1mnjwq0-2 exGurw bnQTKM slick-arrow slick-prev"
+          class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledLeftArrow-sc-1mnjwq0-2 bRtnyF bnQTKM slick-arrow slick-prev"
         />
         <div
           class="slick-list"
@@ -218,7 +218,7 @@ Object {
           </div>
         </div>
         <div
-          class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 exGurw krsGZP slick-arrow slick-next"
+          class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 bRtnyF krsGZP slick-arrow slick-next"
         />
         <div
           class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 gSqOFW slick-dots"
@@ -256,7 +256,7 @@ Object {
       dir="ltr"
     >
       <div
-        class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledLeftArrow-sc-1mnjwq0-2 exGurw bnQTKM slick-arrow slick-prev"
+        class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledLeftArrow-sc-1mnjwq0-2 bRtnyF bnQTKM slick-arrow slick-prev"
       />
       <div
         class="slick-list"
@@ -464,7 +464,7 @@ Object {
         </div>
       </div>
       <div
-        class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 exGurw krsGZP slick-arrow slick-next"
+        class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 bRtnyF krsGZP slick-arrow slick-next"
       />
       <div
         class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 gSqOFW slick-dots"
