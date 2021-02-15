@@ -1,8 +1,8 @@
 import { Separator } from 'components/Separator';
 import { TrekResult } from 'modules/results/interface';
 import { ResultCard } from 'components/pages/search/components/ResultCard';
-import styled from 'styled-components';
-import { scrollBar, sizes } from 'stylesheet';
+import styled, { css } from 'styled-components';
+import { desktopOnly, scrollBar, sizes } from 'stylesheet';
 import { marginDetailsChild } from '../../Details';
 import { generateChildrenDetailsUrl } from '../../utils';
 
@@ -55,6 +55,7 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
                   badgeIconUri={trekChild.practice.pictogram}
                   informations={trekChild.informations}
                   redirectionUrl={generateChildrenDetailsUrl(trekChild.id, trekChild.title, trekId)}
+                  className="w-60 desktop:w-auto"
                 />
               </div>
             </div>
@@ -77,9 +78,11 @@ const ScrollContainer = styled.div`
   &::-webkit-scrollbar-thumb {
     ${scrollBar.thumb}
   }
-  max-height: calc(
-    100vh - ${sizes.desktopHeader + sizes.detailsHeaderDesktop + offsetTopForTitle}px
-  );
+  ${desktopOnly(css`
+    max-height: calc(
+      100vh - ${sizes.desktopHeader + sizes.detailsHeaderDesktop + offsetTopForTitle}px
+    );
+  `)}
 `;
 
 const Step: React.FC<{ number: number }> = ({ number }) => (
