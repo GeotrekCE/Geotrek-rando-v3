@@ -19,7 +19,7 @@ const touristicContentFieldsParams = {
 export const fetchTouristicContentMapResults = (
   query: APIQuery,
 ): Promise<RawTouristicContentMapResults> =>
-  GeotrekAPI.url('/trek')
+  GeotrekAPI.url('/touristiccontent')
     .query({ ...query, ...touristicContentFieldsParams })
     .get()
     .json();
