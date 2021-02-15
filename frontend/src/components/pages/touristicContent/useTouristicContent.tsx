@@ -1,6 +1,7 @@
 import { getTouristicContentDetails } from 'modules/touristicContent/connector';
 import { TouristicContentDetails } from 'modules/touristicContent/interface';
 import { isUrlString } from 'modules/utils/string';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 
 export const useTouristicContent = (touristicContentUrl: string | string[] | undefined) => {
@@ -12,5 +13,16 @@ export const useTouristicContent = (touristicContentUrl: string | string[] | und
       enabled: isUrlString(touristicContentUrl),
     },
   );
-  return { id, touristicContent: data, refetch, isLoading };
+  const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
+  const displayMobileMap = () => setMobileMapState('DISPLAYED');
+  const hideMobileMap = () => setMobileMapState('HIDDEN');
+  return {
+    id,
+    touristicContent: data,
+    refetch,
+    isLoading,
+    mobileMapState,
+    displayMobileMap,
+    hideMobileMap,
+  };
 };
