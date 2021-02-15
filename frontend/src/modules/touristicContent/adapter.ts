@@ -93,23 +93,29 @@ export const adaptTouristicContentDetails = ({
   cityDictionnary: CityDictionnary;
   themeDictionnary: Choices;
 }): TouristicContentDetails => ({
-  id: rawTCD.id,
-  name: rawTCD.name,
-  descriptionTeaser: rawTCD.description_teaser,
-  thumbnailUris: getThumbnails(rawTCD.attachments),
+  id: rawTCD.properties.id,
+  name: rawTCD.properties.name,
+  descriptionTeaser: rawTCD.properties.description_teaser,
+  thumbnailUris: getThumbnails(rawTCD.properties.attachments),
   category: touristicContentCategory,
   geometry: rawTCD.geometry ? adaptGeometry(rawTCD.geometry) : null,
-  attachments: getAttachments(rawTCD.attachments),
-  description: rawTCD.description,
-  sources: rawTCD.source !== null ? rawTCD.source.map(sourceId => sourceDictionnary[sourceId]) : [],
-  contact: rawTCD.contact,
-  email: rawTCD.email,
-  website: rawTCD.website,
-  place: rawTCD.cities.length > 0 ? cityDictionnary[rawTCD.cities[0]].name : '',
+  attachments: getAttachments(rawTCD.properties.attachments),
+  description: rawTCD.properties.description,
+  sources:
+    rawTCD.properties.source !== null
+      ? rawTCD.properties.source.map(sourceId => sourceDictionnary[sourceId])
+      : [],
+  contact: rawTCD.properties.contact,
+  email: rawTCD.properties.email,
+  website: rawTCD.properties.website,
+  place:
+    rawTCD.properties.cities.length > 0 ? cityDictionnary[rawTCD.properties.cities[0]].name : '',
   themes:
-    rawTCD.themes !== null ? rawTCD.themes.map(themeId => themeDictionnary[themeId].label) : [],
-  pdf: rawTCD.pdf,
-  types: Object.entries(rawTCD.types).reduce<TouristicContentDetailsType[]>(
+    rawTCD.properties.themes !== null
+      ? rawTCD.properties.themes.map(themeId => themeDictionnary[themeId].label)
+      : [],
+  pdf: rawTCD.properties.pdf,
+  types: Object.entries(rawTCD.properties.types).reduce<TouristicContentDetailsType[]>(
     (adaptedTypes, typeEntry) => {
       const adaptedType = adaptTouristicType(typeEntry, touristicContentCategory);
       if (adaptedType) {
@@ -119,7 +125,11 @@ export const adaptTouristicContentDetails = ({
     },
     [],
   ),
-  logoUri: rawTCD.approved === true ? DEFAULT_LOGO_URI : '',
+  logoUri: rawTCD.properties.approved === true ? DEFAULT_LOGO_URI : '',
+  bbox: {
+    corner1: { x: rawTCD.bbox[0], y: rawTCD.bbox[1] },
+    corner2: { x: rawTCD.bbox[2], y: rawTCD.bbox[3] },
+  },
 });
 
 const adaptTouristicType = (

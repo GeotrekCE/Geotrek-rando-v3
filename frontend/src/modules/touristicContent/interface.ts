@@ -1,3 +1,4 @@
+import { Bbox } from 'modules/details/interface';
 import { Attachment, RawAttachment } from 'modules/interface';
 import {
   LineStringGeometry,
@@ -31,7 +32,7 @@ export interface RawTouristicContentResult {
   cities: number[];
 }
 
-export interface RawTouristicContentDetails extends RawTouristicContent {
+interface RawTouristicContentDetailsProperties extends RawTouristicContent {
   description: string;
   source: number[];
   contact: string;
@@ -41,6 +42,14 @@ export interface RawTouristicContentDetails extends RawTouristicContent {
   themes: number[];
   types: Record<number, number[]>;
   pdf: string;
+  bbox: number[];
+}
+
+export interface RawTouristicContentDetails {
+  type: string;
+  bbox: number[];
+  geometry: RawPointGeometry2D | RawPolygonGeometry | RawLineStringGeometry2D | null;
+  properties: RawTouristicContentDetailsProperties;
 }
 
 export interface TouristicContent {
@@ -75,6 +84,7 @@ export interface TouristicContentDetails extends TouristicContent {
   themes: string[];
   pdf: string;
   types: TouristicContentDetailsType[];
+  bbox: Bbox;
 }
 
 export interface TouristicContentDetailsType {

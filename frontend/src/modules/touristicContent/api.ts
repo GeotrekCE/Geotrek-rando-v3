@@ -20,6 +20,7 @@ export const fetchTouristicContent = (
 
 const fieldsParamsDetails = {
   fields: `${fieldsParams.fields},description,source,contact,email,website,cities,themes,types,pdf,approved`,
+  format: 'geojson',
 };
 
 export const fetchTouristicContentDetails = (

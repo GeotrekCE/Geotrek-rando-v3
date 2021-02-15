@@ -47,7 +47,7 @@ export const getTouristicContentDetails = async (id: string): Promise<TouristicC
       getThemes(),
     ]);
     const touristicContentCategory = await getTouristicContentCategory(
-      rawTouristicContentDetails.category,
+      rawTouristicContentDetails.properties.category,
     );
     return adaptTouristicContentDetails({
       rawTCD: rawTouristicContentDetails,
