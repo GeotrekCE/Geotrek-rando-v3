@@ -77,38 +77,42 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({ touristi
                 ambiance={touristicContent.description}
                 id={id}
               />
-              <DetailsSection titleId="touristicContent.contact" className={marginDetailsChild}>
-                <HtmlText>{parse(touristicContent.contact)}</HtmlText>
-                {touristicContent.email !== null && touristicContent.email.length > 0 && (
-                  <div className="mt-2 desktop:mt-4">
-                    <FormattedMessage id="touristicContent.email" />
-                    <span>{` :`}</span>
-                    <a
-                      href={`mailto:${touristicContent.email}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary1 underline hover:text-primary1-light"
-                    >
-                      <p>{touristicContent.email}</p>
-                    </a>
-                  </div>
-                )}
-                {touristicContent.website !== null && touristicContent.website.length > 0 && (
-                  <div className="mt-2 desktop:mt-4">
-                    <FormattedMessage id="touristicContent.website" />
-                    <span>{` :`}</span>
-                    <a
-                      href={touristicContent.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary1 underline
+              {(!!touristicContent.contact?.length ||
+                !!touristicContent.email?.length ||
+                !!touristicContent.website?.length) && (
+                <DetailsSection titleId="touristicContent.contact" className={marginDetailsChild}>
+                  <HtmlText>{parse(touristicContent.contact)}</HtmlText>
+                  {!!touristicContent.email?.length && (
+                    <div className="mt-2 desktop:mt-4">
+                      <FormattedMessage id="touristicContent.email" />
+                      <span>{` :`}</span>
+                      <a
+                        href={`mailto:${touristicContent.email}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary1 underline hover:text-primary1-light"
+                      >
+                        <p>{touristicContent.email}</p>
+                      </a>
+                    </div>
+                  )}
+                  {!!touristicContent.website?.length && (
+                    <div className="mt-2 desktop:mt-4">
+                      <FormattedMessage id="touristicContent.website" />
+                      <span>{` :`}</span>
+                      <a
+                        href={touristicContent.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary1 underline
                       hover:text-primary1-light"
-                    >
-                      <p>{touristicContent.website}</p>
-                    </a>
-                  </div>
-                )}
-              </DetailsSection>
+                      >
+                        <p>{touristicContent.website}</p>
+                      </a>
+                    </div>
+                  )}
+                </DetailsSection>
+              )}
               {touristicContent.sources.length > 0 && (
                 <DetailsSection titleId="details.source" className={marginDetailsChild}>
                   <div>
