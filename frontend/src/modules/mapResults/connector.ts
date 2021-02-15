@@ -5,11 +5,12 @@ import {
   formatTouristicContentFiltersToUrlParams,
   formatTrekFiltersToUrlParams,
 } from 'modules/results/utils';
+import { getTouristicContentCategories } from 'modules/touristicContentCategory/connector';
 import { getApiCallsConfig } from 'modules/utils/api.config';
 
 import { generatePageNumbersArray } from 'modules/utils/connector';
-import { adaptMapResults } from './adapter';
-import { fetchTrekMapResults } from './api';
+import { adaptTouristicContentMapResults, adaptTrekMapResults } from './adapter';
+import { fetchTouristicContentMapResults, fetchTrekMapResults } from './api';
 import { MapResults } from './interface';
 
 const emptyResultPromise = Promise.resolve({
@@ -53,7 +54,32 @@ export const getMapResults = async (filtersState: QueryFilterState[]): Promise<M
         ),
       );
       const activities = await getActivities();
-      mapResults.push(...adaptMapResults({ mapResults: mapTrekResults, activities }));
+      mapResults.push(...adaptTrekMapResults({ mapResults: mapTrekResults, activities }));
+    }
+
+    if (shouldFetchTouristicContents) {
+      const rawMapResults = await fetchTouristicContentMapResults({
+        language: 'fr',
+        page_size: resultsNumber,
+        ...touristicContentFilter,
+      });
+      const mapTouristicContentResults = await Promise.all(
+        generatePageNumbersArray(resultsNumber, rawMapResults.count).map(pageNumber =>
+          fetchTouristicContentMapResults({
+            language: 'fr',
+            page_size: resultsNumber,
+            page: pageNumber,
+            ...touristicContentFilter,
+          }),
+        ),
+      );
+      const touristicContentCategories = await getTouristicContentCategories();
+      mapResults.push(
+        ...adaptTouristicContentMapResults({
+          mapResults: mapTouristicContentResults,
+          touristicContentCategories,
+        }),
+      );
     }
 
     return mapResults;
