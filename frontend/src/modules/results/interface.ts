@@ -18,7 +18,7 @@ export interface TrekResult {
   place: string;
   title: string;
   tags: string[];
-  thumbnailUri: string;
+  thumbnailUris: string[];
   practice: Activity; // should be an object
   informations: {
     duration: string | null;

@@ -1,7 +1,7 @@
 import { ActivityChoices } from 'modules/activities/interface';
 import { DifficultyChoices } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
-import { getThumbnail } from 'modules/utils/adapter';
+import { getThumbnails } from 'modules/utils/adapter';
 import { formatHours } from 'modules/utils/time';
 import { RawTrekResult, TrekResult } from './interface';
 import { formatDistance } from './utils';
@@ -10,8 +10,6 @@ export const dataUnits = {
   distance: 'm',
   time: 'h',
 };
-
-const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
 
 const isRawTrekResultComplete = (
   rawTrekResult: Partial<RawTrekResult>,
@@ -46,7 +44,7 @@ export const adaptTrekResultList = ({
     place: rawResult.departure,
     title: rawResult.name,
     tags: rawResult.themes.map(themeId => themes[themeId].label),
-    thumbnailUri: getThumbnail(rawResult.attachments) ?? fallbackImgUri,
+    thumbnailUris: getThumbnails(rawResult.attachments),
     practice: activities[rawResult.practice],
     informations: {
       duration: rawResult.duration !== null ? formatHours(rawResult.duration) : null,
