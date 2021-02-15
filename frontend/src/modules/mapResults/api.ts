@@ -6,7 +6,7 @@ const fieldsParams = {
   fields: 'id,parking_location,practice',
 };
 
-export const fetchMapResults = (query: APIQuery): Promise<RawMapResults> =>
+export const fetchTrekMapResults = (query: APIQuery): Promise<RawMapResults> =>
   GeotrekAPI.url('/trek')
     .query({ ...query, ...fieldsParams })
     .get()

@@ -9,7 +9,7 @@ import { getApiCallsConfig } from 'modules/utils/api.config';
 
 import { generatePageNumbersArray } from 'modules/utils/connector';
 import { adaptMapResults } from './adapter';
-import { fetchMapResults } from './api';
+import { fetchTrekMapResults } from './api';
 import { MapResults } from './interface';
 
 const emptyResultPromise = Promise.resolve({
@@ -37,14 +37,14 @@ export const getMapResults = async (filtersState: QueryFilterState[]): Promise<M
     const mapResults: MapResults = [];
 
     if (shouldFetchTreks) {
-      const rawMapResults = await fetchMapResults({
+      const rawMapResults = await fetchTrekMapResults({
         language: 'fr',
         page_size: resultsNumber,
         ...trekFilters,
       });
       const mapTrekResults = await Promise.all(
         generatePageNumbersArray(resultsNumber, rawMapResults.count).map(pageNumber =>
-          fetchMapResults({
+          fetchTrekMapResults({
             language: 'fr',
             page_size: resultsNumber,
             page: pageNumber,
