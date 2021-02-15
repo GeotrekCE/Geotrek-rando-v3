@@ -13,7 +13,7 @@ describe('Results Card', () => {
       place="Saint-Etienne-du-Valdonnez"
       title={title}
       tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
-      thumbnailUri=""
+      thumbnailUris={['']}
       badgeIconUri=""
       informations={{
         duration: '2h',

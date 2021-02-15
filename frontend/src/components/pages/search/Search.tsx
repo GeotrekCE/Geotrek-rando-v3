@@ -155,14 +155,14 @@ export const SearchUI: React.FC<Props> = ({
                         place={searchResult.place}
                         title={searchResult.title}
                         tags={searchResult.tags}
-                        thumbnailUri={searchResult.thumbnailUri}
+                        thumbnailUris={searchResult.thumbnailUris}
                         badgeIconUri={searchResult.practice.pictogram}
                         informations={searchResult.informations}
                         redirectionUrl={generateResultDetailsUrl(
                           searchResult.id,
                           searchResult.title,
                         )}
-                        className="my-4 desktop:my-6"
+                        className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
                       />
                     ) : (
                       <ResultCard
@@ -172,11 +172,11 @@ export const SearchUI: React.FC<Props> = ({
                         place={searchResult.place}
                         title={searchResult.name}
                         tags={searchResult.themes}
-                        thumbnailUri={searchResult.thumbnailUris[0]}
+                        thumbnailUris={searchResult.thumbnailUris}
                         badgeIconUri={searchResult.category.pictogramUri}
                         informations={searchResult.types}
                         redirectionUrl={''}
-                        className="my-4 desktop:my-6"
+                        className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-40" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
                       />
                     ),
                   )}

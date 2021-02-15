@@ -6,10 +6,10 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ResultCard__Container-sc-1bem01n-0 gcqwff"
+        class="ResultCard__Container-sc-1bem01n-0 gIkssD"
       >
         <div
-          class="ResultCard__ImageContainer-sc-1bem01n-1 HmCWK"
+          class="ResultCard__ImageContainer-sc-1bem01n-1 iwpCHS"
         >
           <div
             class="ActivityBadge__Container-enmhze-0 eVVswV ResultCard__ActivityBadge-sc-1bem01n-11 jJUVgC"
@@ -21,13 +21,13 @@ Object {
           href="/details-2-Balade-au-pays-des-menhirs"
         >
           <div
-            class="ResultCard__DetailsContainer-sc-1bem01n-2 fUsdSO"
+            class="ResultCard__DetailsContainer-sc-1bem01n-2 iopLXu"
           >
             <div
-              class="ResultCard__DetailsLayout-sc-1bem01n-3 bTiYnn"
+              class="ResultCard__DetailsLayout-sc-1bem01n-3 igcQDh"
             >
               <span
-                class="ResultCard__Place-sc-1bem01n-5 jrdCiY"
+                class="ResultCard__Place-sc-1bem01n-5 cBEUzg"
               >
                 Saint-Etienne-du-Valdonnez
               </span>
@@ -69,7 +69,7 @@ Object {
                 class="ResultCard__InformationContainer-sc-1bem01n-9 gFWOQi"
               >
                 <div
-                  class="ResultCard__InformationLayout-sc-1bem01n-10 jQpFaS"
+                  class="ResultCard__InformationLayout-sc-1bem01n-10 hKiLFh"
                 >
                   <div
                     class="flex items-center text-primary1  "
@@ -188,10 +188,10 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ResultCard__Container-sc-1bem01n-0 gcqwff"
+      class="ResultCard__Container-sc-1bem01n-0 gIkssD"
     >
       <div
-        class="ResultCard__ImageContainer-sc-1bem01n-1 HmCWK"
+        class="ResultCard__ImageContainer-sc-1bem01n-1 iwpCHS"
       >
         <div
           class="ActivityBadge__Container-enmhze-0 eVVswV ResultCard__ActivityBadge-sc-1bem01n-11 jJUVgC"
@@ -203,13 +203,13 @@ Object {
         href="/details-2-Balade-au-pays-des-menhirs"
       >
         <div
-          class="ResultCard__DetailsContainer-sc-1bem01n-2 fUsdSO"
+          class="ResultCard__DetailsContainer-sc-1bem01n-2 iopLXu"
         >
           <div
-            class="ResultCard__DetailsLayout-sc-1bem01n-3 bTiYnn"
+            class="ResultCard__DetailsLayout-sc-1bem01n-3 igcQDh"
           >
             <span
-              class="ResultCard__Place-sc-1bem01n-5 jrdCiY"
+              class="ResultCard__Place-sc-1bem01n-5 cBEUzg"
             >
               Saint-Etienne-du-Valdonnez
             </span>
@@ -251,7 +251,7 @@ Object {
               class="ResultCard__InformationContainer-sc-1bem01n-9 gFWOQi"
             >
               <div
-                class="ResultCard__InformationLayout-sc-1bem01n-10 jQpFaS"
+                class="ResultCard__InformationLayout-sc-1bem01n-10 hKiLFh"
               >
                 <div
                   class="flex items-center text-primary1  "

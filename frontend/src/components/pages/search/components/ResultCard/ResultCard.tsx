@@ -8,6 +8,7 @@ import {
   desktopOnly,
   getSpacing,
   shadow,
+  sizes,
   typography,
 } from 'stylesheet';
 import { flexGap } from 'services/cssHelpers';
@@ -23,13 +24,14 @@ import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 
 import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
+import { ResultCardCarousel } from './ResultCardCarousel';
 
 interface BaseProps {
   id: string;
   place: string;
   title: string;
   tags: string[];
-  thumbnailUri: string;
+  thumbnailUris: string[];
   badgeIconUri: string;
   className?: string;
   redirectionUrl: string;
@@ -55,12 +57,16 @@ const isTrek = (content: TrekProps | TouristicContentProps): content is TrekProp
   content.type === 'TREK';
 
 export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => {
-  const { id, place, title, tags, thumbnailUri, badgeIconUri, className, redirectionUrl } = props;
+  const { id, place, title, tags, thumbnailUris, badgeIconUri, className, redirectionUrl } = props;
   return (
     <Container className={className}>
-      <ImageContainer imageUri={thumbnailUri}>
-        <ActivityBadge iconUri={badgeIconUri} />
-      </ImageContainer>
+      {thumbnailUris.length > 1 ? (
+        <ResultCardCarousel thumbnailUris={thumbnailUris} iconUri={badgeIconUri} />
+      ) : (
+        <ImageContainer imageUri={thumbnailUris[0]}>
+          <ActivityBadge iconUri={badgeIconUri} />
+        </ImageContainer>
+      )}
 
       <Link href={redirectionUrl} testId={`Link-ResultCard-${id}`} className="w-full">
         <DetailsContainer>
@@ -102,7 +108,7 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => 
                 {props.informations.map(
                   ({ label, values }) =>
                     values.length > 0 && (
-                      <div key={label}>
+                      <div key={label} className="text-greyDarkColored">
                         <span className="font-bold">{`${label} : `}</span>
                         {values.map(value => (
                           <span key={value}>{value}</span>
@@ -135,18 +141,20 @@ const Container = styled.div`
     box-shadow: ${shadow.small};
   }
   border-radius: ${borderRadius.card};
+  border: 1px solid ${colorPalette.greySoft};
   overflow: hidden;
+
+  align-items: stretch;
 
   ${desktopOnly(
     css`
-      width: 100%;
       flex-direction: row;
     `,
   )}
 `;
 
 const ImageContainer = styled.div<{ imageUri: string }>`
-  height: ${getSpacing(31)};
+  height: ${sizes.resultCardMobile};
   width: 100%;
 
   background-image: url(${({ imageUri }) => imageUri});
@@ -160,7 +168,7 @@ const ImageContainer = styled.div<{ imageUri: string }>`
   ${desktopOnly(
     css`
       height: auto;
-      max-width: ${getSpacing(56)};
+      max-width: ${sizes.resultCardDesktop}px;
     `,
   )}
 `;
@@ -171,17 +179,9 @@ const DetailsContainer = styled.div`
 
   padding: ${getSpacing(4)};
 
-  border: 1px solid ${colorPalette.greySoft};
-  border-top: none;
-  border-radius: 0 0 ${borderRadius.card} ${borderRadius.card};
-
   ${desktopOnly(
     css`
       padding: ${getSpacing(6)};
-
-      border: 1px solid ${colorPalette.greySoft};
-      border-left: none;
-      border-radius: 0 ${borderRadius.card} ${borderRadius.card} 0;
     `,
   )}
 `;
@@ -189,10 +189,7 @@ const DetailsContainer = styled.div`
 const DetailsLayout = styled.div`
   display: flex;
   flex-direction: column;
-  width: ${getSpacing(50)};
-  ${desktopOnly(css`
-    width: 100%;
-  `)}
+  width: 100%;
 `;
 
 const BookingButtonContainer = styled.div`
@@ -207,6 +204,7 @@ const BookingButtonContainer = styled.div`
 `;
 
 const Place = styled.span`
+  color: ${colorPalette.greyDarkColored};
   ${typography.small}
 `;
 
@@ -254,7 +252,12 @@ const InformationContainer = styled.div`
 `;
 
 const InformationLayout = styled.div`
-  ${flexGap(getSpacing(4))}
+  ${flexGap(getSpacing(2))}
+  ${desktopOnly(
+    css`
+      ${flexGap(getSpacing(4))}
+    `,
+  )}
 `;
 
 const ActivityBadge = styled(RawActivityBadge)`

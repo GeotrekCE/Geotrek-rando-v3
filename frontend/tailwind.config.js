@@ -57,6 +57,8 @@ module.exports = {
       detailsHeaderMobile: '42px',
       detailsCardSection: '700px',
       headerAndDetailsRecapBar: '149px',
+      resultCardDesktop: '224px',
+      resultCardMobile: '27vh',
     },
     zIndex: {
       content: 0,

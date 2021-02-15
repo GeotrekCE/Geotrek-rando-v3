@@ -169,6 +169,8 @@ export const sizes = {
   coverDetailsDesktop: 550,
   topIconsDetailsDesktop: 72,
   scrollOffsetBeforeElement: 36,
+  resultCardDesktop: 224,
+  resultCardMobile: '27vh',
 };
 
 export const scrollBar = {
