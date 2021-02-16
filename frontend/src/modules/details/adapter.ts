@@ -15,7 +15,8 @@ import { SourceDictionnary } from 'modules/source/interface';
 import { InformationDeskDictionnary } from 'modules/informationDesk/interface';
 import { LabelDictionnary } from 'modules/label/interface';
 import { TrekResult } from 'modules/results/interface';
-import { Details, RawDetails, TrekChild } from './interface';
+import { RawLineStringGeometry3D } from 'modules/interface';
+import { Details, RawDetails, TrekChild, TrekChildGeometry } from './interface';
 
 export const adaptResults = ({
   rawDetails: { properties: rawDetailsProperties, geometry, bbox },
@@ -32,6 +33,7 @@ export const adaptResults = ({
   informationDeskDictionnary,
   labelsDictionnary,
   children,
+  childrenGeometry,
 }: {
   rawDetails: RawDetails;
   activity: Activity;
@@ -47,6 +49,7 @@ export const adaptResults = ({
   informationDeskDictionnary: InformationDeskDictionnary;
   labelsDictionnary: LabelDictionnary;
   children: TrekResult[];
+  childrenGeometry: TrekChildGeometry[];
 }): Details => {
   try {
     return {
@@ -126,7 +129,10 @@ export const adaptResults = ({
           y: rawCoordinates[1],
         })) ?? null,
       bbox: { corner1: { x: bbox[0], y: bbox[1] }, corner2: { x: bbox[2], y: bbox[3] } },
-      children,
+      children: children.map(child => ({
+        ...child,
+        geometry: childrenGeometry.find(childGeometry => childGeometry.id === `${child.id}`),
+      })),
     };
   } catch (e) {
     console.error('Error in details/adapter', e);
@@ -146,3 +152,11 @@ export const adaptChildren = ({
     name: childrenNames[childIndex],
     rank: childIndex + 1,
   }));
+
+export const adaptTrekChildGeometry = (
+  id: string,
+  geometry: RawLineStringGeometry3D,
+): TrekChildGeometry => ({
+  id,
+  departure: { x: geometry.coordinates[0][0], y: geometry.coordinates[0][1] },
+});
