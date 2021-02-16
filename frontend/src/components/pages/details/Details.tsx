@@ -374,6 +374,15 @@ export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
               }))}
               pointsReference={details.pointsReference}
               bbox={details.bbox}
+              trekChildrenGeometry={details.children.reduce<TrekChildGeometry[]>(
+                (children, currentChild) => {
+                  if (currentChild.geometry) {
+                    children.push(currentChild.geometry);
+                  }
+                  return children;
+                },
+                [],
+              )}
               touristicContentPoints={details.touristicContents
                 .filter(touristicContent => touristicContent.geometry !== null)
                 .map(touristicContent => ({
