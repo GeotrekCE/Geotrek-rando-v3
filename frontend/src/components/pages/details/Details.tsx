@@ -176,9 +176,12 @@ export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
                       />
                     </div>
                   )}
-                  <div className="px-12">
+                  <DetailsSection
+                    titleId="details.altimetricProfile.title"
+                    className={marginDetailsChild}
+                  >
                     <div id="altimetric-profile"></div>
-                  </div>
+                  </DetailsSection>
 
                   {(details.labels.length > 0 ||
                     (details.advice !== null && details.advice.length > 0)) && (
