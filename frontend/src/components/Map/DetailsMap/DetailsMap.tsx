@@ -113,7 +113,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           touristicContentMobileVisibility === 'DISPLAYED') && (
           <TouristicContent contents={props.touristicContentPoints} />
         )}
-        <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />
+        {props.type === 'DESKTOP' && <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />}
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <ControlSection
