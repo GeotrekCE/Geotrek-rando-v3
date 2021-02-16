@@ -171,6 +171,7 @@ export const sizes = {
   scrollOffsetBeforeElement: 36,
   resultCardDesktop: 224,
   resultCardMobile: '27vh',
+  headerAndFilterbar: 168,
 };
 
 export const scrollBar = {

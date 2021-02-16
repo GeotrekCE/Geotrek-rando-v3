@@ -7,6 +7,7 @@ import { flexGap } from 'services/cssHelpers';
 import { Button } from 'components/Button';
 import { Plus } from 'components/Icons/Plus';
 import { ChevronUp } from 'components/Icons/ChevronUp';
+import { commonFilters } from 'modules/filters/utils';
 
 import { FilterState } from 'modules/filters/interface';
 import { SelectableDropdown } from './SelectableDropdown';
@@ -28,61 +29,79 @@ export const FilterBar: React.FC<Props> = props => {
   // const filterBarDisplayedState = useHideOnScrollDown(sizes.desktopHeader);
   const filterBarDisplayedState = 'DISPLAYED';
 
-  const filterBarContainerClassName = `w-full py-3 pl-6 pr-2 hidden desktop:block fixed shadow bg-white z-subHeader text-P2`;
+  const filterBarContainerClassName = `w-full py-3 pl-6 pr-2 hidden desktop:flex shadow bg-white z-subHeader text-P2 mr-2 flex-col`;
 
   const intl = useIntl();
+
+  const shouldDisplayMoreButton =
+    props.filtersState.filter(({ id }) => !commonFilters.includes(id)).length > 0;
 
   return (
     <Container className={filterBarContainerClassName} displayedState={filterBarDisplayedState}>
       <div className={`${props.filterBarExpansionState === 'EXPANDED' ? 'mb-4' : ''}`}>
         <FiltersLayout>
-          {props.filtersState.slice(0, NUMBER_OF_PRIMARY_FILTERS_DISPLAYED).map(filterState => (
-            <div key={filterState.id} className="mr-2">
-              <SelectableDropdown
-                name={filterState.id}
-                placeholder={filterState.label}
-                options={filterState.options}
-                selectedFilters={filterState.selectedOptions}
-                setFilterSelectedOptions={(options: Option[]) => {
-                  props.setFilterSelectedOptions(filterState.id, options);
-                }}
-                filterType={filterState.type}
-              />
+          {props.filtersState
+            .filter(({ id }) => commonFilters.includes(id))
+            .map(filterState => (
+              <div key={filterState.id} className="mr-2">
+                <SelectableDropdown
+                  name={filterState.id}
+                  placeholder={filterState.label}
+                  options={filterState.options}
+                  selectedFilters={filterState.selectedOptions}
+                  setFilterSelectedOptions={(options: Option[]) => {
+                    props.setFilterSelectedOptions(filterState.id, options);
+                  }}
+                  filterType={filterState.type}
+                />
+              </div>
+            ))}
+          {shouldDisplayMoreButton && (
+            <SeeMoreButton
+              icon={Plus}
+              onClick={() => props.setFilterBarExpansionState('EXPANDED')}
+              filterBarState={props.filterBarExpansionState}
+            >
+              Voir plus
+            </SeeMoreButton>
+          )}
+          {props.filterBarExpansionState === 'COLLAPSED' && (
+            <div className="flex items-center cursor-pointer" onClick={props.resetFilters}>
+              <span className="underline text-primary1 font-bold">
+                {intl.formatMessage({ id: 'search.filters.clearAll' }).toUpperCase()}
+              </span>
             </div>
-          ))}
-          <SeeMoreButton
-            icon={Plus}
-            onClick={() => props.setFilterBarExpansionState('EXPANDED')}
-            filterBarState={props.filterBarExpansionState}
-          >
-            Voir plus
-          </SeeMoreButton>
-          <div className="flex items-center cursor-pointer" onClick={props.resetFilters}>
-            <span className="underline text-primary1 font-bold">
-              {intl.formatMessage({ id: 'search.filters.clearAll' }).toUpperCase()}
-            </span>
-          </div>
+          )}
         </FiltersLayout>
       </div>
       <AdditionalFilters expansionState={props.filterBarExpansionState}>
         <FiltersLayout>
-          {props.filtersState.slice(NUMBER_OF_PRIMARY_FILTERS_DISPLAYED).map(filterState => (
-            <div key={filterState.id} className="mr-2">
-              <SelectableDropdown
-                name={filterState.id}
-                placeholder={filterState.label}
-                options={filterState.options}
-                selectedFilters={filterState.selectedOptions}
-                setFilterSelectedOptions={(options: Option[]) => {
-                  props.setFilterSelectedOptions(filterState.id, options);
-                }}
-                filterType={filterState.type}
-              />
-            </div>
-          ))}
+          {props.filtersState
+            .filter(({ id }) => !commonFilters.includes(id))
+            .map(filterState => (
+              <div key={filterState.id} className="mr-2">
+                <SelectableDropdown
+                  name={filterState.id}
+                  placeholder={filterState.label}
+                  options={filterState.options}
+                  selectedFilters={filterState.selectedOptions}
+                  setFilterSelectedOptions={(options: Option[]) => {
+                    props.setFilterSelectedOptions(filterState.id, options);
+                  }}
+                  filterType={filterState.type}
+                />
+              </div>
+            ))}
           <CollapseFiltersButton
             collapseFilters={() => props.setFilterBarExpansionState('COLLAPSED')}
           />
+          {props.filterBarExpansionState === 'EXPANDED' && (
+            <div className="flex items-center cursor-pointer" onClick={props.resetFilters}>
+              <span className="underline text-primary1 font-bold">
+                {intl.formatMessage({ id: 'search.filters.clearAll' }).toUpperCase()}
+              </span>
+            </div>
+          )}
         </FiltersLayout>
       </AdditionalFilters>
     </Container>
@@ -100,7 +119,7 @@ const Container = styled.div<{ displayedState: 'DISPLAYED' | 'HIDDEN' }>`
       ? sizes.desktopHeader
       : -sizes.desktopHeader - sizes.filterBar}px;
 
-  ${({ displayedState }) => (displayedState === 'HIDDEN' ? 'transform: translateY(-100%)' : '')}
+  ${({ displayedState }) => (displayedState === 'HIDDEN' ? 'transform: translateY(-100%)' : '')};
 `;
 
 const FiltersLayout = styled.div`
