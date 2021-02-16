@@ -15,7 +15,7 @@ export interface TrekResult {
   type: 'TREK';
   id: number;
   activityIcon: string; // TODO (call API supplémentaire surement)
-  place: string;
+  place: string | null;
   title: string;
   tags: string[];
   thumbnailUris: string[];
@@ -50,6 +50,7 @@ export interface RawTrekResult {
   difficulty: number | null;
   duration: number | null;
   themes: number[];
+  cities: string[];
   length_2d: number;
   name: string;
   reservation_system: null | number;

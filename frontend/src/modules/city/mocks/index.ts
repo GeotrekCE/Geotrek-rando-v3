@@ -18,6 +18,7 @@ export const mockCityResponse = () => ({
       id: '38052',
       name: "Le Bourg-d'Oisans",
     },
+    { id: '05045', name: 'Molines-en-Champsaur' },
   ],
 });
 

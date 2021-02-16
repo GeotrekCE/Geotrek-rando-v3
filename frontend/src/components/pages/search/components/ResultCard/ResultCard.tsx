@@ -28,7 +28,7 @@ import { ResultCardCarousel } from './ResultCardCarousel';
 
 interface BaseProps {
   id: string;
-  place: string;
+  place: string | null;
   title: string;
   tags: string[];
   thumbnailUris: string[];
@@ -71,7 +71,7 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => 
       <Link href={redirectionUrl} testId={`Link-ResultCard-${id}`} className="w-full">
         <DetailsContainer>
           <DetailsLayout>
-            <Place>{place}</Place>
+            {place !== null && <Place>{place}</Place>}
 
             <Title>{title}</Title>
 
