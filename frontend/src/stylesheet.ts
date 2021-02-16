@@ -116,8 +116,8 @@ export const typography = {
   h1: css`
     font-family: ${fontFamily.main};
     font-weight: bold;
-    font-size: 20px;
-    line-height: 26px;
+    font-size: 44px;
+    line-height: 58px;
   `,
   h2: css`
     font-family: ${fontFamily.main};

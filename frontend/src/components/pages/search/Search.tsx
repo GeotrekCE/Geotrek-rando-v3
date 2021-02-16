@@ -176,7 +176,7 @@ export const SearchUI: React.FC<Props> = ({
                         badgeIconUri={searchResult.category.pictogramUri}
                         informations={searchResult.types}
                         redirectionUrl={''}
-                        className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-40" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
+                        className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
                       />
                     ),
                   )}

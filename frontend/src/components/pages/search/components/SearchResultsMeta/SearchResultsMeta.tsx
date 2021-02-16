@@ -29,7 +29,7 @@ const Illustration = styled.img`
 `;
 
 const ResultsNumber = styled.div`
-  ${typography.h1};
+  ${typography.h3};
   color: ${colorPalette.darkPurple};
 
   ${desktopOnly(css`

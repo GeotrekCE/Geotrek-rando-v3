@@ -5,6 +5,7 @@ import { Network } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
 import {
   Attachment,
+  Coordinate2D,
   RawAttachment,
   RawCoordinate,
   RawLineStringGeometry3D,
@@ -79,16 +80,21 @@ export interface DetailsInformation {
   networks: Network[];
 }
 
-interface Coordinate {
-  x: number;
-  y: number;
-}
-
 export interface Bbox {
-  corner1: Coordinate;
-  corner2: Coordinate;
+  corner1: Coordinate2D;
+  corner2: Coordinate2D;
 }
 
+export interface TrekResultWithGeometry extends TrekResult {
+  geometry?: TrekChildGeometry;
+}
+export interface RawTrekChildGeometry {
+  geometry: RawLineStringGeometry3D;
+}
+export interface TrekChildGeometry {
+  id: string;
+  departure: Coordinate2D;
+}
 export interface Details extends DetailsHtml {
   practice: Activity;
   title: string;
@@ -97,12 +103,12 @@ export interface Details extends DetailsHtml {
   tags: string[];
   informations: DetailsInformation;
   pois: Poi[];
-  trekGeometry: Coordinate[];
+  trekGeometry: Coordinate2D[];
   trekGeoJSON: string;
-  trekDeparture: Coordinate;
-  trekArrival: Coordinate;
+  trekDeparture: Coordinate2D;
+  trekArrival: Coordinate2D;
   touristicContents: TouristicContent[];
-  parkingLocation: Coordinate;
+  parkingLocation: Coordinate2D;
   pdfUri: string;
   gpxUri: string;
   kmlUri: string;
@@ -110,9 +116,9 @@ export interface Details extends DetailsHtml {
   sources: Source[];
   informationDesks: InformationDesk[];
   labels: Label[];
-  pointsReference: Coordinate[] | null;
+  pointsReference: Coordinate2D[] | null;
   bbox: Bbox;
-  children: TrekResult[];
+  children: TrekResultWithGeometry[];
 }
 
 export interface RawTrekChildIds {

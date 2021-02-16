@@ -1,6 +1,6 @@
 import { GeotrekAPI } from 'services/api/client';
 import { APIQuery } from 'services/api/interface';
-import { RawDetails, RawTrekChildIds, RawTrekName } from './interface';
+import { RawDetails, RawTrekChildGeometry, RawTrekChildIds, RawTrekName } from './interface';
 
 const fieldsParams = {
   fields:
@@ -30,6 +30,13 @@ export const fetchTrekChildren = (query: APIQuery, id: string): Promise<RawTrekC
 export const fetchTrekName = (query: APIQuery, id: string): Promise<RawTrekName> => {
   return GeotrekAPI.url(`/trek/${id}/`)
     .query({ ...query, fields: 'name' })
+    .get()
+    .json();
+};
+
+export const fetchTrekGeometry = (query: APIQuery, id: string): Promise<RawTrekChildGeometry> => {
+  return GeotrekAPI.url(`/trek/${id}/`)
+    .query({ ...query, format: 'geojson' })
     .get()
     .json();
 };
