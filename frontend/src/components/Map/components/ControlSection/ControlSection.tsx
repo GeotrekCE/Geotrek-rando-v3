@@ -4,10 +4,13 @@ import { MapPin } from 'components/Icons/MapPin';
 import { Florist } from 'components/Icons/Florist';
 import { Sliders } from 'components/Icons/Sliders';
 import { Visibility } from 'components/Map/DetailsMap/useDetailsMap';
+import { Point } from 'components/Icons/Point';
 import { ControlButton } from '../ControlButton';
 import { useControlSection } from './useControlSection';
 
 interface ControlSectionProps {
+  trekChildrenVisibility?: Visibility;
+  toggleTrekChildrenVisibility?: () => void;
   poiVisibility?: Visibility;
   togglePoiVisibility?: () => void;
   referencePointsVisibility?: Visibility;
@@ -18,6 +21,8 @@ interface ControlSectionProps {
 }
 
 export const ControlSection: React.FC<ControlSectionProps> = ({
+  trekChildrenVisibility,
+  toggleTrekChildrenVisibility,
   poiVisibility,
   togglePoiVisibility,
   referencePointsVisibility,
@@ -35,6 +40,13 @@ export const ControlSection: React.FC<ControlSectionProps> = ({
       {controlSectionState === 'EXPANDED' && (
         <>
           <ControlButton icon={<ChevronUp size={24} />} onClick={collapseControlSection} />
+          {trekChildrenVisibility !== null && (
+            <ControlButton
+              icon={<Flag size={24} />}
+              onClick={toggleTrekChildrenVisibility}
+              active={trekChildrenVisibility === 'DISPLAYED'}
+            />
+          )}
           {poiVisibility !== null && (
             <ControlButton
               icon={<Florist size={24} />}
@@ -44,7 +56,7 @@ export const ControlSection: React.FC<ControlSectionProps> = ({
           )}
           {referencePointsVisibility !== null && (
             <ControlButton
-              icon={<Flag size={24} />}
+              icon={<Point size={20} />}
               onClick={toggleReferencePointsVisibility}
               active={referencePointsVisibility === 'DISPLAYED'}
             />
