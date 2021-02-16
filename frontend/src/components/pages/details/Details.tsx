@@ -8,6 +8,7 @@ import { useShowOnScrollPosition } from 'hooks/useShowOnScrollPosition';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { useRef } from 'react';
+import { TrekChildGeometry } from 'modules/details/interface';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -41,6 +42,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
     isLoading,
     sectionsReferences,
     setDescriptionRef,
+    setChildrenRef,
     setPoisRef,
     setPracticalInformationsRef,
     setPreviewRef,
@@ -137,14 +139,16 @@ export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
                   </div>
 
                   {details.children.length > 0 && (
-                    <DetailsChildrenSection
-                      trekChildren={details.children}
-                      trekId={id}
-                      title={intl.formatMessage(
-                        { id: 'details.children' },
-                        { count: details.children.length },
-                      )}
-                    />
+                    <div ref={setChildrenRef}>
+                      <DetailsChildrenSection
+                        trekChildren={details.children}
+                        trekId={id}
+                        title={intl.formatMessage(
+                          { id: 'details.childrenFullTitle' },
+                          { count: details.children.length },
+                        )}
+                      />
+                    </div>
                   )}
 
                   {details.pois.length > 0 && (
@@ -327,6 +331,15 @@ export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
                   }))}
                   pointsReference={details.pointsReference}
                   bbox={details.bbox}
+                  trekChildrenGeometry={details.children.reduce<TrekChildGeometry[]>(
+                    (children, currentChild) => {
+                      if (currentChild.geometry) {
+                        children.push(currentChild.geometry);
+                      }
+                      return children;
+                    },
+                    [],
+                  )}
                   touristicContentPoints={details.touristicContents
                     .filter(touristicContent => touristicContent.geometry !== null)
                     .map(touristicContent => ({

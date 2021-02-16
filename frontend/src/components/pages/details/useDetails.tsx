@@ -8,6 +8,7 @@ import { getDimensions } from './utils';
 
 export interface DetailsHeaderSection {
   preview?: HTMLDivElement | null;
+  children?: HTMLDivElement | null;
   poi?: HTMLDivElement | null;
   description?: HTMLDivElement | null;
   practicalInformations?: HTMLDivElement | null;
@@ -58,6 +59,17 @@ export const useDetails = (
 
   const setPreviewRef = useCallback((node: HTMLDivElement | null) => {
     const sectionName = 'preview';
+    if (node !== null) {
+      sectionsReferences.current[sectionName] = node;
+      setSectionsPositions(currentSectionsPositions => ({
+        ...currentSectionsPositions,
+        [sectionName]: getDimensions(node),
+      }));
+    }
+  }, []);
+
+  const setChildrenRef = useCallback((node: HTMLDivElement | null) => {
+    const sectionName = 'children';
     if (node !== null) {
       sectionsReferences.current[sectionName] = node;
       setSectionsPositions(currentSectionsPositions => ({
@@ -137,6 +149,7 @@ export const useDetails = (
     isLoading,
     sectionsReferences,
     setPreviewRef,
+    setChildrenRef,
     setPoisRef,
     setDescriptionRef,
     setPracticalInformationsRef,
