@@ -12,6 +12,7 @@ import {
   PointGeometry,
   PolygonGeometry,
 } from 'modules/interface';
+import { TrekChildGeometry } from 'modules/details/interface';
 import { MapButton } from '../components/MapButton';
 
 import { MarkersWithIcon } from './MarkersWithIcon';
@@ -23,6 +24,7 @@ import { Credits } from '../components/Credits';
 import { AltimetricProfile } from '../components/AltimetricProfile';
 import { ControlSection } from '../components/ControlSection';
 import { useDetailsMap } from './useDetailsMap';
+import { TrekChildren } from './TrekChildren';
 
 interface PointWithIcon {
   location: { x: number; y: number };
@@ -51,7 +53,8 @@ export type PropsType = {
   parkingLocation?: Coordinate2D;
   shouldUsePopups?: boolean;
   elementOnScreen: DetailsSections | null;
-  bbox: { corner1: { x: number; y: number }; corner2: { x: number; y: number } };
+  bbox: { corner1: Coordinate2D; corner2: Coordinate2D };
+  trekChildrenGeometry?: TrekChildGeometry[];
 };
 
 export const DetailsMap: React.FC<PropsType> = props => {
@@ -90,6 +93,10 @@ export const DetailsMap: React.FC<PropsType> = props => {
           parkingLocation={props.parkingLocation}
           trekGeometry={props.trekGeometry}
         />
+
+        {props.elementOnScreen === 'children' && (
+          <TrekChildren trekChildrenGeometry={props.trekChildrenGeometry} />
+        )}
 
         {(props.elementOnScreen === 'description' ||
           referencePointsMobileVisibility === 'DISPLAYED') && (
