@@ -132,6 +132,7 @@ export const getSearchResults = async (
       difficulties,
       themes,
       activities,
+      cityDictionnary,
     });
 
     const adaptedTouristicContentsList: TouristicContentResult[] = adaptTouristicContentResult({
@@ -163,15 +164,22 @@ export const getTrekResultsById = async (trekIds: number[]): Promise<TrekResult[
     if (trekIds === null || trekIds === undefined || trekIds.length === 0) {
       return [];
     }
-    const [difficulties, themes, activities] = await Promise.all([
+    const [difficulties, themes, activities, cityDictionnary] = await Promise.all([
       getDifficulties(),
       getThemes(),
       getActivities(),
+      getCities(),
     ]);
     const rawTrekResults = await Promise.all(
       trekIds.map(trekId => fetchTrekResult({ language: 'fr' }, trekId)),
     );
-    return adaptTrekResultList({ resultsList: rawTrekResults, difficulties, themes, activities });
+    return adaptTrekResultList({
+      resultsList: rawTrekResults,
+      difficulties,
+      themes,
+      activities,
+      cityDictionnary,
+    });
   } catch (e) {
     console.error('Error in results connector', e);
     throw e;

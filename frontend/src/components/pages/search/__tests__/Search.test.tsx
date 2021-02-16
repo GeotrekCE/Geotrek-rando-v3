@@ -42,7 +42,7 @@ const mockRoute = ({
 };
 
 describe('Search page', () => {
-  it.only('should display result cards', async () => {
+  it('should display result cards', async () => {
     // Only called by results
     mockResultsRoute(2);
     mockTouristicContentResultsRoute(2);
@@ -76,7 +76,7 @@ describe('Search page', () => {
     mockRoute({ route: '/accessibility', mockData: mockAccessibilityResponse });
     mockRoute({ route: '/structure', mockData: mockStructureResponse });
     mockTouristicContentCategoryRoute(1);
-    mockCityRoute(2);
+    mockCityRoute(3);
 
     // Called once on page init then a 2nd time when filters initialize
     mockMapResultsRoute(2);

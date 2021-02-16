@@ -1,4 +1,5 @@
 import { ActivityChoices } from 'modules/activities/interface';
+import { CityDictionnary } from 'modules/city/interface';
 import { DifficultyChoices } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
 import { getThumbnails } from 'modules/utils/adapter';
@@ -31,17 +32,19 @@ export const adaptTrekResultList = ({
   difficulties,
   themes,
   activities,
+  cityDictionnary,
 }: {
   resultsList: Partial<RawTrekResult>[];
   difficulties: DifficultyChoices;
   themes: Choices;
   activities: ActivityChoices;
+  cityDictionnary: CityDictionnary;
 }): TrekResult[] =>
   resultsList.filter(isRawTrekResultComplete).map(rawResult => ({
     type: 'TREK',
     id: rawResult.id,
     activityIcon: 'TODO',
-    place: rawResult.departure,
+    place: rawResult.cities.length > 0 ? cityDictionnary[rawResult.cities[0]].name : null,
     title: rawResult.name,
     tags: rawResult.themes.map(themeId => themes[themeId].label),
     thumbnailUris: getThumbnails(rawResult.attachments),
