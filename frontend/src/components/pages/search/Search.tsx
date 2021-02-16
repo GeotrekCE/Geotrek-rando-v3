@@ -26,6 +26,7 @@ import { useTrekResults } from './hooks/useTrekResults';
 import { useMapResults } from './hooks/useMapResults';
 import { ErrorFallback } from './components/ErrorFallback';
 import { generateResultDetailsUrl } from './utils';
+import { generateTouristicContentUrl } from '../details/utils';
 
 interface Props {
   initialFiltersState: FilterState[];
@@ -181,7 +182,10 @@ export const SearchUI: React.FC<Props> = ({
                           thumbnailUris={searchResult.thumbnailUris}
                           badgeIconUri={searchResult.category.pictogramUri}
                           informations={searchResult.types}
-                          redirectionUrl={''}
+                          redirectionUrl={generateTouristicContentUrl(
+                            searchResult.id,
+                            searchResult.name,
+                          )}
                           className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
                         />
                       ),
