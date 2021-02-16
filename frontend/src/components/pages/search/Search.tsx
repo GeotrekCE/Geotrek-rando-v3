@@ -117,9 +117,10 @@ export const SearchUI: React.FC<Props> = ({
                 <Loader
                   loaded={!isLoading}
                   options={{
-                    top: `${sizes.desktopHeader + sizes.filterBar}px`,
+                    top: '40px',
                     color: colorPalette.primary1,
                     zIndex: zIndex.loader,
+                    position: 'relative',
                   }}
                 >
                   <div className="flex justify-between items-end">
@@ -139,7 +140,7 @@ export const SearchUI: React.FC<Props> = ({
                     next={fetchNextPage}
                     hasMore={hasNextPage ?? false}
                     loader={
-                      <div className={`relative my-10 ${isFetchingNextPage ? 'h-10' : ''}`}>
+                      <div className={` my-10 ${isFetchingNextPage ? 'h-10' : ''}`}>
                         <Loader
                           loaded={!isFetchingNextPage}
                           options={{
