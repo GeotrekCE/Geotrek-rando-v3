@@ -215,7 +215,7 @@ const Title = styled.span`
   overflow: hidden;
   white-space: nowrap;
 
-  ${typography.h1}
+  ${typography.h3}
   color: ${colorPalette.primary1};
 
   ${desktopOnly(
