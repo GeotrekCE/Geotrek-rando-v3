@@ -83,6 +83,7 @@
     "stationnement": "Stationnement",
     "access_parking": "Accès routiers et parkings",
     "altimetricProfile": {
+      "title":"Profil altimétrique",
       "totalLength": "Longueur totale",
       "minElevation": "Elevation min",
       "maxElevation": "Elevation max"

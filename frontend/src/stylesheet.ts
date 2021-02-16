@@ -80,7 +80,7 @@ export const colorPalette = {
     shadowOnImages: '#27041970',
   },
   map: {
-    touristicContentLines: 'orange',
+    touristicContentLines: '#D65600',
   },
 } as const;
 

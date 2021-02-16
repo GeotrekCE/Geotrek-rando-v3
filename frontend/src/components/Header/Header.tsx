@@ -28,19 +28,19 @@ export const Header: React.FC = () => {
         state={headerState}
         className="h-11 bg-primary1 flex flex-row items-center sticky z-header px-3"
       >
-        <div className="flex-shrink-0">
-          <Link href={routes.HOME}>
-            <img className="h-9 desktop:h-18 mr-3" alt="logo" src={config.logo} />
-          </Link>
-        </div>
-        <p
-          className="
-          flex-auto text-white
-          desktop:text-H2 desktop:leading-8
-          font-semibold desktop:font-bold"
-        >
-          <FormattedMessage id={'home.title'} />
-        </p>
+        <Link href={routes.HOME} className="flex items-center">
+          <div className="flex-shrink-0">
+            <img className="h-9 desktop:h-18 mr-3 rounded-md" alt="logo" src={config.logo} />
+          </div>
+          <p
+            className="
+            flex-auto text-white
+            desktop:text-H2 desktop:leading-8
+            font-semibold desktop:font-bold"
+          >
+            <FormattedMessage id={'home.title'} />
+          </p>
+        </Link>
         {(sectionsDesktop || subSections) && (
           <InlineMenu
             className="hidden desktop:flex items-center flex-auto justify-end"

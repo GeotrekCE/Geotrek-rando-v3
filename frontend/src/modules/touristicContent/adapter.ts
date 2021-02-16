@@ -118,7 +118,7 @@ export const adaptTouristicContentDetails = ({
   types: Object.entries(rawTCD.properties.types).reduce<TouristicContentDetailsType[]>(
     (adaptedTypes, typeEntry) => {
       const adaptedType = adaptTouristicType(typeEntry, touristicContentCategory);
-      if (adaptedType) {
+      if (adaptedType && adaptedType.values.length > 0) {
         adaptedTypes.push(adaptedType);
       }
       return adaptedTypes;

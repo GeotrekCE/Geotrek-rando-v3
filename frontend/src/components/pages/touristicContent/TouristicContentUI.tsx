@@ -144,7 +144,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({ touristi
             </div>
             <div
               className="hidden desktop:flex desktop:z-content desktop:w-2/5
-            desktop:bottom-0 desktop:fixed desktop:right-0 desktop:top-0"
+              desktop:bottom-0 desktop:fixed desktop:right-0 desktop:top-desktopHeader"
             >
               <TouristicContentMapDynamicComponent
                 type="DESKTOP"
