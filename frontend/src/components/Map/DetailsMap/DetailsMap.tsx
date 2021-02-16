@@ -66,6 +66,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
 
   const mapConfig = getMapConfig();
   const {
+    trekChildrenMobileVisibility,
+    toggleTrekChildrenVisibility,
     poiMobileVisibility,
     togglePoiVisibility,
     referencePointsMobileVisibility,
@@ -94,7 +96,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           trekGeometry={props.trekGeometry}
         />
 
-        {props.elementOnScreen === 'children' && (
+        {(props.elementOnScreen === 'children' || trekChildrenMobileVisibility === 'DISPLAYED') && (
           <TrekChildren trekChildrenGeometry={props.trekChildrenGeometry} />
         )}
 
@@ -116,6 +118,11 @@ export const DetailsMap: React.FC<PropsType> = props => {
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <ControlSection
         className="desktop:hidden"
+        trekChildrenVisibility={
+          props.trekChildrenGeometry && props.trekChildrenGeometry.length > 0
+            ? trekChildrenMobileVisibility
+            : null
+        }
         poiVisibility={props.poiPoints && props.poiPoints.length > 0 ? poiMobileVisibility : null}
         referencePointsVisibility={
           props.pointsReference && props.pointsReference.length > 0
@@ -127,6 +134,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
             ? touristicContentMobileVisibility
             : null
         }
+        toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
         togglePoiVisibility={togglePoiVisibility}
         toggleReferencePointsVisibility={toggleReferencePointsVisibility}
         toggleTouristicContentVisibility={toggleTouristicContentVisibility}
