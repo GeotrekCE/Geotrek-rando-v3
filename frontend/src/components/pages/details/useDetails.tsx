@@ -25,6 +25,7 @@ interface SectionPosition {
 
 export interface DetailsSectionsPosition {
   preview?: SectionPosition;
+  children?: SectionPosition;
   poi?: SectionPosition;
   description?: SectionPosition;
   practicalInformations?: SectionPosition;
