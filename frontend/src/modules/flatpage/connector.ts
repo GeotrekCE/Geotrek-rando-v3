@@ -4,8 +4,8 @@ import { adaptFlatPageDetails, adaptFlatPages } from './adapter';
 import { fetchFlatPageDetails, fetchFlatPages } from './api';
 import { FlatPageDetails } from './interface';
 
-export const getFlatPages = async (): Promise<MenuItem[]> => {
-  const rawFlatPages = await fetchFlatPages({ language: 'fr' });
+export const getFlatPages = async (language?: string): Promise<MenuItem[]> => {
+  const rawFlatPages = await fetchFlatPages({ language: language ?? 'fr' });
   return adaptFlatPages(rawFlatPages.results);
 };
 
