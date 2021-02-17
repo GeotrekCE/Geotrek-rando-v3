@@ -10,6 +10,7 @@ test('AAU, I can see a BurgerMenu', () => {
         primaryItemsNumber: 3,
         shouldDisplayFavorite: true,
         supportedLanguages: ['fr'],
+        defaultLanguage: 'fr',
       }}
       menuItems={[
         {
