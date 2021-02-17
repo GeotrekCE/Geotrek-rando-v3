@@ -55,12 +55,13 @@ const Legend: React.FC<LegendProps> = ({ author, legend }) => {
     return (
       hasLegendOrAuthor && (
         <div
-          className={`w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2`}
+          className={`w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2`}
         >
-          <span>{fullText}</span>
+          <span className="ml-15 truncate">{fullText}</span>
         </div>
       )
     );
@@ -124,8 +125,8 @@ const StyledDots = styled.div`
   overflow: hidden;
   display: flex;
   justify-content: center;
-  bottom: ${getSpacing(6)};
-  padding: 0 ${getSpacing(8)};
+  bottom: ${getSpacing(5)};
+  padding: 0 ${getSpacing(20)};
   max-height: ${getSpacing(6)};
   color: white;
   & > ul > li {
@@ -146,7 +147,7 @@ const StyledDots = styled.div`
   }
   ${desktopOnly(
     css`
-      bottom: ${getSpacing(8)};
+      bottom: ${getSpacing(4)};
       padding: 0 ${getSpacing(50)};
     `,
   )}
