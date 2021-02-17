@@ -1,6 +1,6 @@
 {
   "home": {
-    "welcome-text": "L’écoguide numérique et local qui fabrique mes découvertes au Parc national des Ecrins.",
+    "welcome-text": "Welcome to Park des Écrins",
     "use-a-link": "Or use a link",
     "get-started": "To get started, edit",
     "save-to-reload": "and save to reload.",
@@ -8,10 +8,90 @@
     "generate-component": "To create a page or a simple component, run: ",
     "generate-module": "To add business logic, add a file in ./redux with your reducers/actions/sagas/selectors/constants/...",
     "click-me": "Click me",
-    "readme": "Look at the README.md to discover the awesome npm commands we added"
+    "readme": "Look at the README.md to discover the awesome npm commands we added",
+    "title": "Ecrins National Park",
+    "description": "Ecrin National Park official website",
+    "selectPlaceholder": "Select an activity",
+    "seeMore": "See more",
+    "mailTo": "Send an email",
+    "walking": "Trek",
+    "territoryTreks": "Territory treks"
   },
   "page": {
     "back": "Back",
     "api-to-translate-example": "This message is translated using directly react-intl API"
+  },
+  "header": {
+    "menu": "Menu",
+    "language": "Language",
+    "seeMore": "Find out more",
+    "favorites": "Favorites",
+    "nationalPark": "National Park",
+    "parcHouses": "Park Houses",
+    "usefulInformations": "Practical Informations",
+    "biodiv": "Biodidv'Ecrins",
+    "transportation": "Transportation",
+    "yourOpinion": "Your opinion"
+  },
+  "search": {
+    "book": "Book",
+    "resultsFound": "{count, plural, =0 {# result found} one {# result found} other {# results found}}",
+    "forThe": "For the",
+    "seeMap": "Display Map",
+    "filter": "Filter",
+    "reload": "Reload",
+    "anErrorOccured": "An error occured",
+    "filters": {
+      "difficulty": "Difficulty",
+      "practices": "Practice",
+      "categories": "Service",
+      "cities": "Citiy",
+      "duration": "Duration",
+      "districts": "District",
+      "themes": "Theme",
+      "routes": "Type",
+      "accessibilities": "Accessibility",
+      "ascent": "Ascent",
+      "length": "Length",
+      "structures": "Structure",
+      "clearAll": "Clear all"
+    },
+    "map": {
+      "seeResult": "Display details"
+    }
+  },
+  "details": {
+    "preview": "Preview",
+    "download": "Download",
+    "children": "Steps",
+    "childrenFullTitle": "{count, plural, =0 {No step} one {# step} other {# steps}}",
+    "poi": "Points of interest",
+    "poiFullTitle": "{count, plural, =0 {No point of interest} one {# point of interest} other {# points of interest}}",
+    "source": "Source",
+    "touristicContent": "See around",
+    "readMore": "read more",
+    "knowMore": "Find out more",
+    "readLess": "read less",
+    "close": "Close",
+    "description": "Description",
+    "recommandations": "Recommandations",
+    "informationDesks": "Information sesks",
+    "practicalInformations": "Practical informations",
+    "accessibility": "Accessibility",
+    "toSee": "Discover more",
+    "transport": "Transport",
+    "stationnement": "Parking",
+    "access_parking": "Access and parking",
+    "altimetricProfile": {
+      "title": "Altimetric profile",
+      "totalLength": "Total length",
+      "minElevation": "Min elevation",
+      "maxElevation": "Max elevation"
+    }
+  },
+  "touristicContent": {
+    "contact": "Contact",
+    "email": "Email",
+    "website": "Website"
   }
 }

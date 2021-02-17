@@ -29,35 +29,39 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
       : undefined;
 
   return (
-    <>
-      <div
-        className={`px-3 pb-6 bg-white shadow-lg rounded-2xl hidden self-center max-w-activitySearchFilter desktop:flex${
-          className ?? ''
-        }`}
-      >
-        {activities !== undefined && (
-          <div className="flex content-evenly flex-wrap flex-1">
-            {visibleActivitiesIds?.map(activityId => (
-              <ActivityButton
-                iconUrl={activities[activityId].pictogram}
-                href={`${routes.SEARCH}?${PRACTICE_ID}=${activityId}`}
-                key={activityId}
-              >
-                <span>{activities[activityId].name}</span>
-              </ActivityButton>
-            ))}
+    <div>
+      {activities !== undefined && (
+        <>
+          <div
+            className={`px-3 pb-6 bg-white shadow-lg rounded-2xl hidden self-center max-w-activitySearchFilter desktop:flex${
+              className ?? ''
+            }`}
+          >
+            {activities !== undefined && (
+              <div className="flex content-evenly flex-wrap flex-1">
+                {visibleActivitiesIds?.map(activityId => (
+                  <ActivityButton
+                    iconUrl={activities[activityId].pictogram}
+                    href={`${routes.SEARCH}?${PRACTICE_ID}=${activityId}`}
+                    key={activityId}
+                  >
+                    <span>{activities[activityId].name}</span>
+                  </ActivityButton>
+                ))}
+              </div>
+            )}
+            {collapseIsNeeded && (
+              <div className="self-end cursor-pointer" onClick={toggleExpandedState}>
+                <ControlCollapseButton expandedState={expandedState} />
+              </div>
+            )}
           </div>
-        )}
-        {collapseIsNeeded && (
-          <div className="self-end cursor-pointer" onClick={toggleExpandedState}>
-            <ControlCollapseButton expandedState={expandedState} />
+          <div className="block desktop:hidden">
+            <ActivitySearchFilterMobile activities={activities ?? {}} />
           </div>
-        )}
-      </div>
-      <div className="block desktop:hidden">
-        <ActivitySearchFilterMobile activities={activities ?? {}} />
-      </div>
-    </>
+        </>
+      )}
+    </div>
   );
 };
 

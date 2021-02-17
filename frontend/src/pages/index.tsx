@@ -20,7 +20,7 @@ export const getServerSideProps = async () => {
     getActivitySuggestions(activitySuggestionIds),
   );
 
-  await queryClient.prefetchQuery('homeActivities', getActivities);
+  await queryClient.prefetchQuery('homeActivities', () => getActivities());
 
   return {
     props: {

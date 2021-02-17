@@ -2,10 +2,14 @@ import { useState } from 'react';
 import { ActivityChoices } from 'modules/activities/interface';
 import { useQuery } from 'react-query';
 
+import { useLanguageContext } from 'services/languageContext';
 import { getActivities } from '../../modules/activities/connector';
 
 export const useActivitySearchFilter = () => {
-  const { data: activities } = useQuery<ActivityChoices, Error>('homeActivities', getActivities);
+  const { language } = useLanguageContext();
+  const { data: activities } = useQuery<ActivityChoices, Error>('homeActivities', () =>
+    getActivities(language),
+  );
 
   const [expandedState, setExpandedState] = useState<'EXPANDED' | 'COLLAPSED'>('COLLAPSED');
 
