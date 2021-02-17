@@ -8,7 +8,6 @@ import homeBottomHtml from 'customization/html/homeBottom.html';
 import { Layout } from 'components/Layout/Layout';
 import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
 import { PageHead } from 'components/PageHead';
-import { useLanguageContext } from 'services/languageContext';
 import HomeCard from './components/HomeCard';
 import { HomeSection } from './components/HomeSection';
 import { HomeContainer, TopContainer } from './Home.style';
@@ -16,8 +15,7 @@ import { HomeFooter } from './components/HomeFooter';
 import { useHome } from './useHome';
 
 const HomeUI: FunctionComponent = () => {
-  const { language } = useLanguageContext();
-  const { config, activitySuggestionCategories } = useHome(language);
+  const { config, activitySuggestionCategories } = useHome();
 
   const contentContainerClassname = `relative px-4 desktop:px-40 space-y-6 desktop:space-y-18 ${
     config.activityBar.shouldDisplay ? '-top-6 desktop:-top-15' : 'pt-6 desktop:pt-18'

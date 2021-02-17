@@ -5,7 +5,6 @@ import { FormattedMessage } from 'react-intl';
 import { routes } from 'services/routes';
 import { PRACTICE_ID } from 'modules/filters/constant';
 
-import { useLanguageContext } from 'services/languageContext';
 import { ActivityButton } from './ActivityButton';
 import { useActivitySearchFilter } from './useActivitySearchFilter';
 import { ActivitySearchFilterMobile } from './ActivitySearchFilterMobile';
@@ -17,8 +16,7 @@ interface Props {
 const MAX_VISIBLE_ACTIVITIES = 8;
 
 export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
-  const { language } = useLanguageContext();
-  const { activities, expandedState, toggleExpandedState } = useActivitySearchFilter(language);
+  const { activities, expandedState, toggleExpandedState } = useActivitySearchFilter();
 
   const collapseIsNeeded: boolean =
     activities !== undefined && Object.keys(activities).length > MAX_VISIBLE_ACTIVITIES;

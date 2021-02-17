@@ -7,13 +7,11 @@ import { Link } from 'components/Link';
 import { Display } from 'hooks/useHideOnScrollDown';
 
 import InlineMenu from 'components/InlineMenu';
-import { useLanguageContext } from 'services/languageContext';
 import { BurgerMenu } from './BurgerMenu';
 import { useHeader } from './useHeader';
 
 export const Header: React.FC = () => {
-  const { language } = useLanguageContext();
-  const { config, menuItems } = useHeader(language);
+  const { config, menuItems } = useHeader();
 
   const sectionsDesktop = menuItems?.slice(0, config.menu.primaryItemsNumber);
   const subSections = menuItems?.slice(config.menu.primaryItemsNumber);
