@@ -4,8 +4,10 @@ import { useQuery } from 'react-query';
 
 import { getActivities } from '../../modules/activities/connector';
 
-export const useActivitySearchFilter = () => {
-  const { data: activities } = useQuery<ActivityChoices, Error>('homeActivities', getActivities);
+export const useActivitySearchFilter = (language: string) => {
+  const { data: activities } = useQuery<ActivityChoices, Error>('homeActivities', () =>
+    getActivities(language),
+  );
 
   const [expandedState, setExpandedState] = useState<'EXPANDED' | 'COLLAPSED'>('COLLAPSED');
 

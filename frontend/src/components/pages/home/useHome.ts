@@ -4,7 +4,7 @@ import { getActivitySuggestions } from 'modules/activitySuggestions/connector';
 import { useQuery } from 'react-query';
 import { DisplayableSuggestionCategory } from 'modules/home/interface';
 
-export const useHome = () => {
+export const useHome = (language: string) => {
   const homePageConfig = getHomePageConfig();
 
   const activitySuggestionIds: string[] = homePageConfig.suggestions.reduce<string[]>(
@@ -14,7 +14,7 @@ export const useHome = () => {
 
   const { data: activitySuggestionDictionnary } = useQuery<ActivitySuggestionDictionnary, Error>(
     `activitySuggestions-${activitySuggestionIds.join('-')}`,
-    () => getActivitySuggestions(activitySuggestionIds),
+    () => getActivitySuggestions(activitySuggestionIds, language),
   );
   const activitySuggestionCategories: DisplayableSuggestionCategory[] =
     activitySuggestionDictionnary !== undefined
