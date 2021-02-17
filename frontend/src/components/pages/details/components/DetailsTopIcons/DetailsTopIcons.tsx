@@ -27,21 +27,19 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
   if (kmlUri !== undefined) dropdownButtonOptions.push({ label: 'KML', value: kmlUri });
 
   return (
-    <div className={`${className ?? ''} flex flex-col`}>
-      <div className="flex justify-between items-center">
-        {practice !== undefined && <ActivityLogo src={practice.pictogram} />}
-        <div className="hidden desktop:flex space-x-4">
-          {pdfUri !== undefined && (
-            <DetailsButton url={pdfUri}>
-              <Printer size={30} />
-            </DetailsButton>
-          )}
-          {dropdownButtonOptions.length > 0 && (
-            <DetailsButtonDropdown options={dropdownButtonOptions}>
-              <Download className="text-primary1 m-2" size={30} />
-            </DetailsButtonDropdown>
-          )}
-        </div>
+    <div className="flex justify-between items-center mx-4 desktop:mx-12">
+      {practice !== undefined && <ActivityLogo src={practice.pictogram} />}
+      <div className="hidden desktop:flex space-x-4">
+        {pdfUri !== undefined && (
+          <DetailsButton url={pdfUri}>
+            <Printer size={30} />
+          </DetailsButton>
+        )}
+        {dropdownButtonOptions.length > 0 && (
+          <DetailsButtonDropdown options={dropdownButtonOptions}>
+            <Download className="text-primary1 m-2" size={30} />
+          </DetailsButtonDropdown>
+        )}
       </div>
     </div>
   );
@@ -49,11 +47,16 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
 
 const ActivityLogo: React.FC<{ src: string }> = ({ src }) => (
   <div
-    className="h-18 w-18 rounded-full
-      hidden desktop:flex items-center justify-center
+    className="h-12 w-12 desktop:h-18 desktop:w-18 rounded-full
+      flex items-center justify-center
       shadow-md
     bg-primary1"
   >
-    <SVG src={src} preProcessor={fillSvgWithColor(colorPalette.white)} height={53} width={53} />
+    <div className="desktop:hidden">
+      <SVG src={src} preProcessor={fillSvgWithColor(colorPalette.white)} height={40} width={40} />
+    </div>
+    <div className="hidden desktop:block">
+      <SVG src={src} preProcessor={fillSvgWithColor(colorPalette.white)} height={53} width={53} />
+    </div>
   </div>
 );

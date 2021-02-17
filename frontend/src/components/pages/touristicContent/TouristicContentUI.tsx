@@ -60,7 +60,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({ touristi
               </div>
               <div
                 className="desktop:py-0
-                desktop:relative desktop:-top-9
+                relative -top-6 desktop:-top-9
                 flex flex-col"
               >
                 <DetailsTopIcons
