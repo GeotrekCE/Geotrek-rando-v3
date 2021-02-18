@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { Check } from 'components/Icons/Check';
-import { LeftArrow } from 'components/Icons/LeftArrow';
+import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { FilterState, Option } from 'modules/filters/interface';
 import React from 'react';
 import { slide as Slide } from 'react-burger-menu';
@@ -99,7 +99,7 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
         <CloseButton
           onClick={closeMenu}
           className="absolute left-0"
-          icon={<LeftArrow size={24} />}
+          icon={<ArrowLeft size={24} />}
         />
         {filterId !== null && (
           <span>
