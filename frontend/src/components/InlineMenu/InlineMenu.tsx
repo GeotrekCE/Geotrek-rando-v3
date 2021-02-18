@@ -3,8 +3,9 @@ import Dropdown from 'react-dropdown';
 import ReactCountryFlag from 'react-country-flag';
 import { useIntl } from 'react-intl';
 import { MenuItem } from 'modules/header/interface';
-import { isInternalFlatPageUrl } from 'modules/header/utills';
 import { ChevronDown } from 'components/Icons/ChevronDown';
+import { useRouter } from 'next/router';
+import { isInternalFlatPageUrl, switchToLanguage } from 'services/routeUtils';
 export interface InlineMenuProps {
   className?: string;
   shouldDisplayFavorites: boolean;
@@ -29,6 +30,7 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
   supportedLanguages,
 }) => {
   const intl = useIntl();
+  const router = useRouter();
   return (
     <div className={className}>
       {sections &&
@@ -72,18 +74,26 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
         </div>
       )}
       <div className="flex items-center text-white" key="language">
-        <ReactCountryFlag countryCode="FR" className="mr-2" svg />
+        {router.locale !== undefined && (
+          <ReactCountryFlag
+            countryCode={router.locale === 'en' ? 'GB' : router.locale.toUpperCase()}
+            className="mr-2"
+            svg
+          />
+        )}
         <Dropdown
           options={supportedLanguages.map(language => ({
             value: language,
             label: language.toUpperCase(),
             className: optionClassName,
           }))}
+          onChange={option => switchToLanguage(router, option.value)}
           controlClassName={controlClassName}
           menuClassName={menuClassName}
-          placeholderClassName="hidden"
-          arrowClosed={<SectionWithArrow name={supportedLanguages[0].toUpperCase()} />}
-          arrowOpen={<SectionWithArrow name={supportedLanguages[0].toUpperCase()} />}
+          placeholder={router.locale?.toUpperCase()}
+          placeholderClassName={`${sectionClassName} mb-1`}
+          arrowClosed={<SectionWithArrow name={''} />}
+          arrowOpen={<SectionWithArrow name={''} />}
         />
       </div>
     </div>
