@@ -20,9 +20,13 @@ import { HtmlText } from '../details/utils';
 
 interface TouristicContentUIProps {
   touristicContentUrl: string | string[] | undefined;
+  language: string;
 }
 
-export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({ touristicContentUrl }) => {
+export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
+  touristicContentUrl,
+  language,
+}) => {
   const {
     id,
     touristicContent,
@@ -31,7 +35,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({ touristi
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-  } = useTouristicContent(touristicContentUrl);
+  } = useTouristicContent(touristicContentUrl, language);
   return (
     <Layout>
       {touristicContent === undefined ? (

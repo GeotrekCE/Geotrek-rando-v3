@@ -10,6 +10,8 @@ import { RemoteIconInformation } from 'components/Information/RemoteIconInformat
 import { useMemo, useRef } from 'react';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { Footer } from 'components/Footer';
+import { isRessourceMissing } from 'services/routeUtils';
+import { routes } from 'services/routes';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -33,9 +35,10 @@ import { VisibleSectionProvider } from './VisibleSectionContext';
 interface Props {
   detailsId: string | string[] | undefined;
   parentId?: string | string[];
+  language: string;
 }
 
-export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId }) => {
+export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, language }) => {
   const {
     id,
     parentIdString,
@@ -43,6 +46,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId }
     trekFamily,
     refetch,
     isLoading,
+    error,
     sectionsReferences,
     setDescriptionRef,
     setChildrenRef,
@@ -53,10 +57,11 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId }
     setAccessibilityRef,
     sectionsPositions,
     intl,
+    router,
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-  } = useDetails(detailsId, parentId);
+  } = useDetails(detailsId, parentId, language);
 
   /** Ref of the parent of all sections */
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
@@ -74,18 +79,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId }
       sizes.detailsHeaderDesktop,
   });
 
-  // const { setBounds } = useEventHandlerContext();
-
-  // const initialBounds: Bounds | undefined =
-  //   details === undefined
-  //     ? undefined
-  //     : [
-  //         [details.bbox.corner1.y, details.bbox.corner1.x],
-  //         [details.bbox.corner2.y, details.bbox.corner2.x],
-  //       ];
-
-  // setBounds(initialBounds);
-
   return useMemo(
     () => (
       <>
@@ -99,6 +92,8 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId }
                 zIndex: zIndex.loader,
               }}
             />
+          ) : isRessourceMissing(error) ? (
+            router.push(routes.HOME)
           ) : (
             <ErrorFallback refetch={refetch} />
           )
