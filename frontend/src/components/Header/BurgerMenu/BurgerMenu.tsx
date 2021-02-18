@@ -42,7 +42,7 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
       )}
       <BurgerMenuSection
         title={intl.formatMessage({ id: 'header.language' })}
-        items={config.supportedLanguages}
+        languages={config.supportedLanguages}
       />
       <BurgerMenuSection
         title={intl.formatMessage({ id: 'header.goToSearch' })}
