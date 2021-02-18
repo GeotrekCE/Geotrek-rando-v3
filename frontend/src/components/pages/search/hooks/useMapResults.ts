@@ -5,12 +5,12 @@ import { MapResults } from 'modules/mapResults/interface';
 import { FilterState } from 'modules/filters/interface';
 import { parseFilters } from '../utils';
 
-export const useMapResults = (filtersState: FilterState[]) => {
+export const useMapResults = (filtersState: FilterState[], language: string) => {
   const parsedFiltersState = parseFilters(filtersState);
 
   const { data: mapResults, isLoading: isMapLoading } = useQuery<MapResults, Error>(
     ['mapResults', parsedFiltersState],
-    () => getMapResults(parsedFiltersState),
+    () => getMapResults(parsedFiltersState, language),
   );
 
   return {
