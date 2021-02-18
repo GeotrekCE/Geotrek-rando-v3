@@ -4,6 +4,7 @@ import { getDetails, getTrekChildren } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
 import { useCallback, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 import { getDimensions } from './utils';
 
 export interface DetailsHeaderSection {
@@ -36,11 +37,12 @@ export interface DetailsSectionsPosition {
 export const useDetails = (
   detailsUrl: string | string[] | undefined,
   parentId: string | string[] | undefined,
+  language: string,
 ) => {
   const id = isUrlString(detailsUrl) ? detailsUrl.split('-')[1] : '';
-  const { data, refetch, isLoading } = useQuery<Details, Error>(
+  const { data, refetch, isLoading, error } = useQuery<Details, Error>(
     `details-${id}`,
-    () => getDetails(id),
+    () => getDetails(id, language),
     {
       enabled: isUrlString(detailsUrl),
     },
@@ -49,7 +51,7 @@ export const useDetails = (
   const parentIdString = isUrlString(parentId) ? parentId : '';
   const { data: trekFamily } = useQuery<TrekChild[], Error>(
     `trekFamily-${parentIdString}`,
-    () => getTrekChildren(isUrlString(parentId) ? parentId : ''),
+    () => getTrekChildren(isUrlString(parentId) ? parentId : '', language),
     {
       enabled: isUrlString(parentId),
     },
@@ -136,6 +138,7 @@ export const useDetails = (
   }, []);
 
   const intl = useIntl();
+  const router = useRouter();
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
@@ -148,6 +151,7 @@ export const useDetails = (
     trekFamily,
     refetch,
     isLoading,
+    error,
     sectionsReferences,
     setPreviewRef,
     setChildrenRef,
@@ -158,6 +162,7 @@ export const useDetails = (
     setAccessibilityRef,
     sectionsPositions,
     intl,
+    router,
     mobileMapState,
     displayMobileMap,
     hideMobileMap,

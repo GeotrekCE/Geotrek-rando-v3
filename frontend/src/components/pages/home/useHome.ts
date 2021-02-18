@@ -3,7 +3,8 @@ import { ActivitySuggestionDictionnary } from 'modules/activitySuggestions/inter
 import { getActivitySuggestions } from 'modules/activitySuggestions/connector';
 import { useQuery } from 'react-query';
 import { DisplayableSuggestionCategory } from 'modules/home/interface';
-import { useLanguageContext } from 'services/languageContext';
+import { getDefaultLanguage } from 'modules/header/utills';
+import { useRouter } from 'next/router';
 
 export const useHome = () => {
   const homePageConfig = getHomePageConfig();
@@ -12,7 +13,7 @@ export const useHome = () => {
     (suggestionIds, currentSuggestion) => [...suggestionIds, ...currentSuggestion.ids],
     [],
   );
-  const { language } = useLanguageContext();
+  const language = useRouter().locale ?? getDefaultLanguage();
   const { data: activitySuggestionDictionnary } = useQuery<ActivitySuggestionDictionnary, Error>(
     `activitySuggestions-${activitySuggestionIds.join('-')}`,
     () => getActivitySuggestions(activitySuggestionIds, language),

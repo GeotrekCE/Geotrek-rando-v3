@@ -4,11 +4,14 @@ import { isUrlString } from 'modules/utils/string';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 
-export const useTouristicContent = (touristicContentUrl: string | string[] | undefined) => {
+export const useTouristicContent = (
+  touristicContentUrl: string | string[] | undefined,
+  language: string,
+) => {
   const id = isUrlString(touristicContentUrl) ? touristicContentUrl.split('-')[0] : '';
   const { data, refetch, isLoading } = useQuery<TouristicContentDetails, Error>(
     `touristicContentDetails-${id}`,
-    () => getTouristicContentDetails(id),
+    () => getTouristicContentDetails(id, language),
     {
       enabled: isUrlString(touristicContentUrl),
     },
