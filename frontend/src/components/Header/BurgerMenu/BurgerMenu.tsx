@@ -1,6 +1,7 @@
 import { slide as Slide } from 'react-burger-menu';
 import { MenuConfig, MenuItem } from 'modules/header/interface';
 import { useIntl } from 'react-intl';
+import { routes } from 'services/routes';
 import { BurgerMenuSection } from '../BurgerMenuSection/BurgerMenuSection';
 import { BurgerMenu as BmIcon } from '../../Icons/BurgerMenu';
 import { Cross } from '../../Icons/Cross';
@@ -42,6 +43,10 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
       <BurgerMenuSection
         title={intl.formatMessage({ id: 'header.language' })}
         items={config.supportedLanguages}
+      />
+      <BurgerMenuSection
+        title={intl.formatMessage({ id: 'header.goToSearch' })}
+        onClick={() => window.open(routes.SEARCH, '_self')}
       />
     </Slide>
   );

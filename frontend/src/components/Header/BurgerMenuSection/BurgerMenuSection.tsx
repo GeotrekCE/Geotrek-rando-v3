@@ -13,11 +13,12 @@ import { useBurgerMenuSection } from './useBurgerMenuSection';
 export interface Props {
   title: string;
   items?: Array<string | MenuItem>;
+  onClick?: () => void;
 }
 
 const isItemString = (item: MenuItem | string): item is string => typeof item === 'string';
 
-export const BurgerMenuSection: React.FC<Props> = ({ title, items }) => {
+export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick }) => {
   const classNameTitle = 'flex items-center pt-4 pb-4 font-bold outline-none';
   const classNameBorder = 'border-b pb-2 border-solid border-greySoft';
   const openIcon = <Plus size={24} />;
@@ -53,6 +54,8 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items }) => {
       </AccordionItem>
     </Accordion>
   ) : (
-    <span className={`${classNameTitle} ${classNameBorder}`}>{title}</span>
+    <span className={`${classNameTitle} ${classNameBorder}`} onClick={onClick}>
+      {title}
+    </span>
   );
 };
