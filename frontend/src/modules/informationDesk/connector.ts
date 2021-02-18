@@ -2,9 +2,11 @@ import { adaptInformationDesks } from './adapter';
 import { fetchInformationDesks } from './api';
 import { InformationDeskDictionnary } from './interface';
 
-export const getInformationDesks = async (): Promise<InformationDeskDictionnary> => {
+export const getInformationDesks = async (
+  language: string,
+): Promise<InformationDeskDictionnary> => {
   try {
-    const rawInformationDesks = await fetchInformationDesks({ language: 'fr' });
+    const rawInformationDesks = await fetchInformationDesks({ language });
     return adaptInformationDesks({
       rawInformationDesks: rawInformationDesks.results,
     });

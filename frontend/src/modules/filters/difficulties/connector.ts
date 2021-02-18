@@ -3,20 +3,23 @@ import { adaptDifficulties, adaptDifficulty, adaptDifficultyFilter } from './ada
 import { fetchDifficulties, fetchDifficulty } from './api';
 import { DifficultyChoices } from './interface';
 
-export const getDifficulties = async (): Promise<DifficultyChoices> => {
-  const rawDifficulties = await fetchDifficulties({ language: 'fr' });
+export const getDifficulties = async (language: string): Promise<DifficultyChoices> => {
+  const rawDifficulties = await fetchDifficulties({ language });
   return adaptDifficulties(rawDifficulties.results);
 };
 
-export const getDifficulty = async (id: number | null): Promise<Difficulty | null> => {
+export const getDifficulty = async (
+  id: number | null,
+  language: string,
+): Promise<Difficulty | null> => {
   if (id === null) {
     return null;
   }
-  const rawDifficulty = await fetchDifficulty({ language: 'fr' }, id);
+  const rawDifficulty = await fetchDifficulty({ language }, id);
   return adaptDifficulty(rawDifficulty);
 };
 
-export const getDifficultyFilter = async () => {
-  const rawDifficulties = await fetchDifficulties({ language: 'fr' });
+export const getDifficultyFilter = async (language: string) => {
+  const rawDifficulties = await fetchDifficulties({ language }); //TODO
   return adaptDifficultyFilter(rawDifficulties.results);
 };

@@ -13,6 +13,9 @@ export const fetchDetails = (query: APIQuery, id: string): Promise<RawDetails> =
     return GeotrekAPI.url(`/trek/${id}/`)
       .query({ ...query, ...fieldsParams })
       .get()
+      .notFound(() => {
+        throw new Error('RESSOURCE_NOT_FOUND');
+      })
       .json();
   } catch (e) {
     console.error('Error in details/api', e);
