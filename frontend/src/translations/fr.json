@@ -4,6 +4,7 @@
     "language": "Langue",
     "seeMore": "En savoir plus",
     "favorites": "Favoris",
+    "goToSearch": "Recherche",
     "nationalPark": "Le parc national",
     "parcHouses": "Les maisons du parc",
     "usefulInformations": "Informations pratiques",
@@ -83,7 +84,7 @@
     "stationnement": "Stationnement",
     "access_parking": "Accès routiers et parkings",
     "altimetricProfile": {
-      "title":"Profil altimétrique",
+      "title": "Profil altimétrique",
       "totalLength": "Longueur totale",
       "minElevation": "Elevation min",
       "maxElevation": "Elevation max"
