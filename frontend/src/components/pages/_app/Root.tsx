@@ -7,7 +7,8 @@ import { flattenMessages } from 'services/i18n/intl';
 import enMessages from 'translations/en.json';
 import frMessages from 'translations/fr.json';
 import customFrMessages from 'customization/translations/fr.json';
-import { useLanguageContext } from 'services/languageContext';
+import { getDefaultLanguage } from 'modules/header/utills';
+import { useRouter } from 'next/router';
 import CSSResets from './CSSResets';
 import { ErrorBoundary } from './ErrorBoundary';
 
@@ -22,7 +23,8 @@ interface RootProps {
 }
 
 export const Root: FunctionComponent<RootProps> = props => {
-  const { language } = useLanguageContext();
+  const router = useRouter();
+  const language = router.locale ?? getDefaultLanguage();
   return (
     <ErrorBoundary
       FallbackComponent={AppCrashFallback}
