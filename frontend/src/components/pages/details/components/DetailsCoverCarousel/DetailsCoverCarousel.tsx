@@ -61,7 +61,7 @@ const Legend: React.FC<LegendProps> = ({ author, legend }) => {
           bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
           text-white text-opacity-90 text-Mobile-C3 desktop:text-P2`}
         >
-          <span className="ml-15 truncate">{fullText}</span>
+          <span className="mx-15 truncate">{fullText}</span>
         </div>
       )
     );
