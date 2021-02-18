@@ -7,6 +7,7 @@ const withPWA = require('next-pwa');
 const dotenv = require('dotenv-flow');
 const yup = require('yup');
 const runtimeCachingStrategy = require('./cache');
+const headerConfig = require('./config/header.json');
 
 const schema = yup.object().shape({
   REACT_APP_API_BASE_URL: yup.string().required(),
@@ -56,5 +57,9 @@ module.exports = withPlugins(plugins, {
     ENVIRONMENT: process.env.ENVIRONMENT,
     SENTRY_DSN: process.env.SENTRY_DSN,
     VERSION: process.env.VERSION,
+  },
+  i18n: {
+    locales: headerConfig.menu.supportedLanguages,
+    defaultLocale: headerConfig.menu.defaultLanguage,
   },
 });
