@@ -20,10 +20,11 @@ import { TouristicContent, TouristicContentDetails } from './interface';
 
 export const getTouristicContentsNearTrek = async (
   nearTrekId: number,
+  language: string,
 ): Promise<TouristicContent[]> => {
   const [rawTouristicContentResult, touristicContentCategories] = await Promise.all([
-    fetchTouristicContent({ language: 'fr', near_trek: nearTrekId }),
-    getTouristicContentCategories(),
+    fetchTouristicContent({ language, near_trek: nearTrekId }),
+    getTouristicContentCategories(language),
   ]);
   return adaptTouristicContent({
     rawTouristicContent: rawTouristicContentResult.results,
@@ -31,10 +32,10 @@ export const getTouristicContentsNearTrek = async (
   });
 };
 
-export const getTouristicContents = async (): Promise<TouristicContent[]> => {
+export const getTouristicContents = async (language: string): Promise<TouristicContent[]> => {
   const [rawTouristicContentResult, touristicContentCategories] = await Promise.all([
-    fetchTouristicContent({ language: 'fr' }),
-    getTouristicContentCategories(),
+    fetchTouristicContent({ language }),
+    getTouristicContentCategories(language),
   ]);
   return adaptTouristicContent({
     rawTouristicContent: rawTouristicContentResult.results,
@@ -42,7 +43,10 @@ export const getTouristicContents = async (): Promise<TouristicContent[]> => {
   });
 };
 
-export const getTouristicContentDetails = async (id: string): Promise<TouristicContentDetails> => {
+export const getTouristicContentDetails = async (
+  id: string,
+  language: string,
+): Promise<TouristicContentDetails> => {
   try {
     const [
       rawTouristicContentDetails,
@@ -50,13 +54,14 @@ export const getTouristicContentDetails = async (id: string): Promise<TouristicC
       cityDictionnary,
       themeDictionnary,
     ] = await Promise.all([
-      fetchTouristicContentDetails({ language: 'fr' }, id),
-      getSources(),
-      getCities(),
-      getThemes(),
+      fetchTouristicContentDetails({ language }, id),
+      getSources(language),
+      getCities(language),
+      getThemes(language),
     ]);
     const touristicContentCategory = await getTouristicContentCategory(
       rawTouristicContentDetails.properties.category,
+      language,
     );
     return adaptTouristicContentDetails({
       rawTCD: rawTouristicContentDetails,

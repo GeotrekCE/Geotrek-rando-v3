@@ -38,26 +38,29 @@ const adaptFilterConfigWithOptionsToFilter = (
   })),
 });
 
-const getFilterOptions = async (filterId: string): Promise<FilterWithoutType | null> => {
+const getFilterOptions = async (
+  filterId: string,
+  language: string,
+): Promise<FilterWithoutType | null> => {
   switch (filterId) {
     case 'difficulty':
-      return getDifficultyFilter();
+      return getDifficultyFilter(language);
     case PRACTICE_ID:
-      return getActivityFilter();
+      return getActivityFilter(language);
     case CITY_ID:
-      return getCityFilter();
+      return getCityFilter(language);
     case DISTRICT_ID:
-      return getDistrictFilter();
+      return getDistrictFilter(language);
     case THEME_ID:
-      return getThemeFilter();
+      return getThemeFilter(language);
     case ROUTE_ID:
-      return getCourseTypeFilter();
+      return getCourseTypeFilter(language);
     case ACCESSIBILITY_ID:
-      return getAccessibilityFilter();
+      return getAccessibilityFilter(language);
     case STRUCTURE_ID:
-      return getStructureFilter();
+      return getStructureFilter(language);
     case CATEGORY_ID:
-      return getTouristicContentCategoryFilter();
+      return getTouristicContentCategoryFilter(language);
     default:
       return null;
   }
@@ -69,20 +72,21 @@ const isElementNotNull = <ElementType>(element: ElementType | null): element is 
 const getFilterAndAddType = async (
   filterId: string,
   filterType: 'SINGLE' | 'MULTIPLE',
+  language: string,
 ): Promise<Filter | null> => {
-  const filter = await getFilterOptions(filterId);
+  const filter = await getFilterOptions(filterId, language);
   if (filter === null) return null;
   return { ...filter, type: filterType };
 };
 
-const getFilters = async (): Promise<Filter[]> => {
+const getFilters = async (language: string): Promise<Filter[]> => {
   const config = getFiltersConfig();
   const filters = await Promise.all(
     config.map(filterConfig => {
       if (filterConfig.options !== undefined) {
         return adaptFilterConfigWithOptionsToFilter(filterConfig);
       }
-      return getFilterAndAddType(filterConfig.id, filterConfig.type);
+      return getFilterAndAddType(filterConfig.id, filterConfig.type, language);
     }),
   );
   return filters.filter(isElementNotNull);
@@ -107,8 +111,8 @@ export const commonFilters = [
   STRUCTURE_ID,
 ];
 
-export const getFiltersState = async (): Promise<FilterState[]> => {
-  const filters = await getFilters();
+export const getFiltersState = async (language: string): Promise<FilterState[]> => {
+  const filters = await getFilters(language);
   return filters.map(filter => ({
     ...filter,
     label: `search.filters.${filter.id}`,

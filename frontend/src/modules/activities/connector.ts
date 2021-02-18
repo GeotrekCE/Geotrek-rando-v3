@@ -9,18 +9,18 @@ import {
 import { fetchActivities, fetchActivity } from './api';
 import { Activity, ActivityChoices, ActivityFilter } from './interface';
 
-export const getActivities = async (language?: string): Promise<ActivityChoices> => {
-  const rawActivities = await fetchActivities({ language: language ?? 'fr' });
+export const getActivities = async (language: string): Promise<ActivityChoices> => {
+  const rawActivities = await fetchActivities({ language });
   return adaptActivities(rawActivities.results);
 };
 
-export const getActivityFilter = async () => {
-  const rawActivities = await fetchActivities({ language: 'fr' });
+export const getActivityFilter = async (language: string) => {
+  const rawActivities = await fetchActivities({ language });
   return adaptActivityFilter(rawActivities.results);
 };
 
-export const getActivity = async (id: number): Promise<Activity> => {
-  const rawActivity = await fetchActivity({ language: 'fr' }, id);
+export const getActivity = async (id: number, language: string): Promise<Activity> => {
+  const rawActivity = await fetchActivity({ language }, id);
   return adaptActivity(rawActivity);
 };
 

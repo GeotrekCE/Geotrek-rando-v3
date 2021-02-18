@@ -4,16 +4,19 @@ import { adaptFlatPageDetails, adaptFlatPages } from './adapter';
 import { fetchFlatPageDetails, fetchFlatPages } from './api';
 import { FlatPageDetails } from './interface';
 
-export const getFlatPages = async (language?: string): Promise<MenuItem[]> => {
-  const rawFlatPages = await fetchFlatPages({ language: language ?? 'fr' });
+export const getFlatPages = async (language: string): Promise<MenuItem[]> => {
+  const rawFlatPages = await fetchFlatPages({ language });
   return adaptFlatPages(rawFlatPages.results);
 };
 
-export const getFlatPageDetails = async (id: string): Promise<FlatPageDetails> => {
+export const getFlatPageDetails = async (
+  id: string,
+  language: string,
+): Promise<FlatPageDetails> => {
   try {
     const [rawFlatPageDetails, sourceDictionnary] = await Promise.all([
-      fetchFlatPageDetails({ language: 'fr' }, id),
-      getSources(),
+      fetchFlatPageDetails({ language }, id),
+      getSources(language),
     ]);
     return adaptFlatPageDetails({
       rawFlatPageDetails,

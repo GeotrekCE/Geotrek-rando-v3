@@ -37,6 +37,7 @@ export const getSearchResults = async (
     treks: number | null;
     touristicContents: number | null;
   },
+  language: string,
 ): Promise<SearchResults> => {
   try {
     const practiceFilter = filtersState.find(({ id }) => id === PRACTICE_ID);
@@ -54,7 +55,7 @@ export const getSearchResults = async (
 
     const getTreksCountPromise = shouldFetchTreks
       ? fetchTrekResultsNumber({
-          language: 'fr',
+          language,
           page_size: 1,
           page: 1,
           ...trekFilters,
@@ -62,7 +63,7 @@ export const getSearchResults = async (
       : emptyResultPromise;
     const getTouristicContentsCountPromise = shouldFetchTouristicContents
       ? fetchTouristicContentResultsNumber({
-          language: 'fr',
+          language,
           page_size: 1,
           page: 1,
           ...touristicContentFilter,
@@ -79,7 +80,7 @@ export const getSearchResults = async (
     const getTreksResultsPromise =
       pages.treks !== null
         ? fetchTrekResults({
-            language: 'fr',
+            language,
             page_size: getApiCallsConfig().searchResultsPageSize,
             page: pages.treks ?? undefined,
             ...trekFilters,
@@ -94,7 +95,7 @@ export const getSearchResults = async (
     const getToursticContentsPromise =
       pages.touristicContents !== null
         ? fetchTouristicContentResult({
-            language: 'fr',
+            language,
             page_size: getApiCallsConfig().searchResultsPageSize,
             page: pages.touristicContents ?? undefined,
             ...touristicContentFilter,
@@ -119,13 +120,13 @@ export const getSearchResults = async (
       cityDictionnary,
     ] = await Promise.all([
       shouldFetchTreks ? getTreksResultsPromise : emptyResultPromise,
-      getDifficulties(), // Todo: Find a way to store this hashmap to avoid calling this every time
-      getThemes(), // Todo: Find a way to store this hashmap to avoid calling this every time
-      getActivities(), // Todo: Find a way to store this hashmap to avoid calling this every time
+      getDifficulties(language), // Todo: Find a way to store this hashmap to avoid calling this every time
+      getThemes(language), // Todo: Find a way to store this hashmap to avoid calling this every time
+      getActivities(language), // Todo: Find a way to store this hashmap to avoid calling this every time
       shouldFetchTouristicContents ? getToursticContentsPromise : emptyResultPromise,
-      getTouristicContentCategories(), // Todo: Find a way to store this hashmap to avoid calling this every time
-      getThemes(),
-      getCities(),
+      getTouristicContentCategories(language), // Todo: Find a way to store this hashmap to avoid calling this every time
+      getThemes(language),
+      getCities(language),
     ]);
     const adaptedResultsList: TrekResult[] = adaptTrekResultList({
       resultsList: rawTrekResults.results,
@@ -159,19 +160,22 @@ export const getSearchResults = async (
   }
 };
 
-export const getTrekResultsById = async (trekIds: number[]): Promise<TrekResult[]> => {
+export const getTrekResultsById = async (
+  trekIds: number[],
+  language: string,
+): Promise<TrekResult[]> => {
   try {
     if (trekIds === null || trekIds === undefined || trekIds.length === 0) {
       return [];
     }
     const [difficulties, themes, activities, cityDictionnary] = await Promise.all([
-      getDifficulties(),
-      getThemes(),
-      getActivities(),
-      getCities(),
+      getDifficulties(language),
+      getThemes(language),
+      getActivities(language),
+      getCities(language),
     ]);
     const rawTrekResults = await Promise.all(
-      trekIds.map(trekId => fetchTrekResult({ language: 'fr' }, trekId)),
+      trekIds.map(trekId => fetchTrekResult({ language }, trekId)),
     );
     return adaptTrekResultList({
       resultsList: rawTrekResults,

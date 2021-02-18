@@ -13,7 +13,10 @@ import { adaptTouristicContentMapResults, adaptTrekMapResults } from './adapter'
 import { fetchTouristicContentMapResults, fetchTrekMapResults } from './api';
 import { MapResults } from './interface';
 
-export const getMapResults = async (filtersState: QueryFilterState[]): Promise<MapResults> => {
+export const getMapResults = async (
+  filtersState: QueryFilterState[],
+  language: string,
+): Promise<MapResults> => {
   try {
     const practiceFilter = filtersState.find(({ id }) => id === PRACTICE_ID);
     const isPracticeSelected = practiceFilter ? practiceFilter.selectedOptions.length > 0 : false;
@@ -32,41 +35,41 @@ export const getMapResults = async (filtersState: QueryFilterState[]): Promise<M
 
     if (shouldFetchTreks) {
       const rawMapResults = await fetchTrekMapResults({
-        language: 'fr',
+        language,
         page_size: resultsNumber,
         ...trekFilters,
       });
       const mapTrekResults = await Promise.all(
         generatePageNumbersArray(resultsNumber, rawMapResults.count).map(pageNumber =>
           fetchTrekMapResults({
-            language: 'fr',
+            language,
             page_size: resultsNumber,
             page: pageNumber,
             ...trekFilters,
           }),
         ),
       );
-      const activities = await getActivities();
+      const activities = await getActivities(language);
       mapResults.push(...adaptTrekMapResults({ mapResults: mapTrekResults, activities }));
     }
 
     if (shouldFetchTouristicContents) {
       const rawMapResults = await fetchTouristicContentMapResults({
-        language: 'fr',
+        language,
         page_size: resultsNumber,
         ...touristicContentFilter,
       });
       const mapTouristicContentResults = await Promise.all(
         generatePageNumbersArray(resultsNumber, rawMapResults.count).map(pageNumber =>
           fetchTouristicContentMapResults({
-            language: 'fr',
+            language,
             page_size: resultsNumber,
             page: pageNumber,
             ...touristicContentFilter,
           }),
         ),
       );
-      const touristicContentCategories = await getTouristicContentCategories();
+      const touristicContentCategories = await getTouristicContentCategories(language);
       mapResults.push(
         ...adaptTouristicContentMapResults({
           mapResults: mapTouristicContentResults,

@@ -15,9 +15,9 @@ import { adaptChildren, adaptResults, adaptTrekChildGeometry } from './adapter';
 import { fetchDetails, fetchTrekChildren, fetchTrekGeometry, fetchTrekName } from './api';
 import { Details, TrekChild, TrekChildGeometry } from './interface';
 
-export const getDetails = async (id: string): Promise<Details> => {
+export const getDetails = async (id: string, language: string): Promise<Details> => {
   try {
-    const rawDetails = await fetchDetails({ language: 'fr' }, id);
+    const rawDetails = await fetchDetails({ language }, id);
     // Typescript limit for Promise.all is for 10 promises
     const [
       activity,
@@ -31,24 +31,24 @@ export const getDetails = async (id: string): Promise<Details> => {
       accessibilityDictionnary,
       sourceDictionnary,
     ] = await Promise.all([
-      getActivity(rawDetails.properties.practice),
-      getDifficulty(rawDetails.properties.difficulty),
-      getCourseType(rawDetails.properties.route),
-      getNetworks(),
-      getThemes(),
-      getPois(rawDetails.properties.id),
-      getTouristicContentsNearTrek(rawDetails.properties.id),
-      getCities(),
-      getAccessibilities(),
-      getSources(),
+      getActivity(rawDetails.properties.practice, language),
+      getDifficulty(rawDetails.properties.difficulty, language),
+      getCourseType(rawDetails.properties.route, language),
+      getNetworks(language),
+      getThemes(language),
+      getPois(rawDetails.properties.id, language),
+      getTouristicContentsNearTrek(rawDetails.properties.id, language),
+      getCities(language),
+      getAccessibilities(language),
+      getSources(language),
     ]);
     const [informationDeskDictionnary, labelsDictionnary, children] = await Promise.all([
-      getInformationDesks(),
-      getLabels(),
-      getTrekResultsById(rawDetails.properties.children),
+      getInformationDesks(language),
+      getLabels(language),
+      getTrekResultsById(rawDetails.properties.children, language),
     ]);
     const childrenGeometry = await Promise.all(
-      rawDetails.properties.children.map(childId => getChildGeometry(`${childId}`)),
+      rawDetails.properties.children.map(childId => getChildGeometry(`${childId}`, language)),
     );
     return adaptResults({
       rawDetails,
@@ -68,16 +68,16 @@ export const getDetails = async (id: string): Promise<Details> => {
       childrenGeometry,
     });
   } catch (e) {
-    console.error('Error in details/connector', e);
+    console.error('Error in details/connector principal !!!', e, { ...e });
     throw e;
   }
 };
 
-export const getTrekChildren = async (parentId: string): Promise<TrekChild[]> => {
+export const getTrekChildren = async (parentId: string, language: string): Promise<TrekChild[]> => {
   try {
-    const childrenIdsResult = await fetchTrekChildren({ language: 'fr' }, parentId);
+    const childrenIdsResult = await fetchTrekChildren({ language }, parentId);
     const childrenNames = await Promise.all(
-      childrenIdsResult.children.map(childId => getName(childId)),
+      childrenIdsResult.children.map(childId => getName(childId, language)),
     );
     return adaptChildren({ childrenIds: childrenIdsResult.children, childrenNames });
   } catch (e) {
@@ -86,9 +86,9 @@ export const getTrekChildren = async (parentId: string): Promise<TrekChild[]> =>
   }
 };
 
-export const getName = async (id: string): Promise<string> => {
+export const getName = async (id: string, language: string): Promise<string> => {
   try {
-    const result = await fetchTrekName({ language: 'fr' }, id);
+    const result = await fetchTrekName({ language }, id);
     return result.name;
   } catch (e) {
     console.error('Error in details/connector', e);
@@ -96,9 +96,9 @@ export const getName = async (id: string): Promise<string> => {
   }
 };
 
-const getChildGeometry = async (id: string): Promise<TrekChildGeometry> => {
+const getChildGeometry = async (id: string, language: string): Promise<TrekChildGeometry> => {
   try {
-    const result = await fetchTrekGeometry({ language: 'fr' }, id);
+    const result = await fetchTrekGeometry({ language }, id);
     return adaptTrekChildGeometry(id, result.geometry);
   } catch (e) {
     console.error('Error in details/connector', e);

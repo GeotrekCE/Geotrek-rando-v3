@@ -1,3 +1,4 @@
+import { NextRouter, useRouter } from 'next/router';
 import { routes } from 'services/routes';
 import headerConfig from '../../../config/header.json';
 import structureHeaderConfig from '../../../customization/config/header.json';
@@ -8,9 +9,16 @@ export const getHeaderConfig = (): HeaderConfig => ({
   ...structureHeaderConfig,
 });
 
-export const isInternalFlatPageUrl = (url: string): boolean => {
-  if (url === undefined) return false;
-  return url.indexOf(`${routes.FLAT_PAGE}/`) === 0;
+export const getDefaultLanguage = (): string => {
+  const languageConfig = getHeaderConfig().menu;
+  let defaultLanguage = languageConfig.defaultLanguage;
+  if (typeof navigator !== 'undefined') {
+    const navigatorLanguage = navigator.language.split('-')[0];
+    defaultLanguage = languageConfig.supportedLanguages.includes(navigatorLanguage)
+      ? navigatorLanguage
+      : defaultLanguage;
+  }
+  return defaultLanguage;
 };
 
 export const generateFlatPageUrl = (id: number, title: string): string => {
