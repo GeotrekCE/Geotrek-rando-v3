@@ -59,11 +59,13 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       <span className="text-Mobile-C2 desktop:text-P1">{place}</span>
       <span className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold">{`${trekRankLabel}${title}`}</span>
       <div className="flex flex-wrap">
-        {tags.map(tag => (
-          <Chip className="mt-4 desktop:mt-6 mr-2 desktop:mr-4" key={tag}>
-            {tag}
-          </Chip>
-        ))}
+        {tags
+          .filter(tag => tag?.length)
+          .map(tag => (
+            <Chip className="mt-4 desktop:mt-6 mr-2 desktop:mr-4" key={tag}>
+              {tag}
+            </Chip>
+          ))}
       </div>
       <div className="flex flex-wrap">
         {informations.difficulty && (
