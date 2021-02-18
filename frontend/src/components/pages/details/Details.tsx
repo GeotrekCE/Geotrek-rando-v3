@@ -111,7 +111,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
                 </div>
                 <div
                   className="desktop:py-0
-                desktop:relative desktop:-top-9
+                relative -top-6 desktop:-top-9
                 flex flex-col"
                   ref={sectionsContainerRef}
                 >

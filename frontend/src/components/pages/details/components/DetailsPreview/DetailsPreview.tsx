@@ -46,7 +46,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   const trekRank = trekFamily?.find(trek => trek.id === id);
   const trekRankLabel = trekRank !== undefined ? `${trekRank.rank}. ` : '';
   return (
-    <div className={`${className ?? ''} flex flex-col mt-4 desktop:mt-12 relative`}>
+    <div className={`${className ?? ''} flex flex-col mt-2 desktop:mt-12 relative`}>
       {trekFamily && parentId && (
         <DetailsTrekFamilyCarousel parentId={parentId} trekChildren={trekFamily} trekId={id} />
       )}

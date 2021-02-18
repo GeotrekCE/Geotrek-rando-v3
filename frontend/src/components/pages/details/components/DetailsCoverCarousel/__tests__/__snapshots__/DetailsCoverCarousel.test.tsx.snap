@@ -31,12 +31,15 @@ Object {
                   class="relative"
                 >
                   <div
-                    class="w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
+                    class="w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
                   >
-                    <span>
+                    <span
+                      class="ml-15 truncate"
+                    >
                       Arrivée au col de Font Froide - Dominique Vincent - PNE
                     </span>
                   </div>
@@ -59,12 +62,15 @@ Object {
                   class="relative"
                 >
                   <div
-                    class="w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
+                    class="w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
                   >
-                    <span>
+                    <span
+                      class="ml-15 truncate"
+                    >
                       Lac - admin
                     </span>
                   </div>
@@ -87,12 +93,15 @@ Object {
                   class="relative"
                 >
                   <div
-                    class="w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
+                    class="w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
                   >
-                    <span>
+                    <span
+                      class="ml-15 truncate"
+                    >
                       Marmotte - admin
                     </span>
                   </div>
@@ -115,12 +124,15 @@ Object {
                   class="relative"
                 >
                   <div
-                    class="w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
+                    class="w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
                   >
-                    <span>
+                    <span
+                      class="ml-15 truncate"
+                    >
                       Arrivée au col de Font Froide - Dominique Vincent - PNE
                     </span>
                   </div>
@@ -143,12 +155,15 @@ Object {
                   class="relative"
                 >
                   <div
-                    class="w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
+                    class="w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
                   >
-                    <span>
+                    <span
+                      class="ml-15 truncate"
+                    >
                       Lac - admin
                     </span>
                   </div>
@@ -171,12 +186,15 @@ Object {
                   class="relative"
                 >
                   <div
-                    class="w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
+                    class="w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
                   >
-                    <span>
+                    <span
+                      class="ml-15 truncate"
+                    >
                       Marmotte - admin
                     </span>
                   </div>
@@ -199,12 +217,15 @@ Object {
                   class="relative"
                 >
                   <div
-                    class="w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
+                    class="w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
                   >
-                    <span>
+                    <span
+                      class="ml-15 truncate"
+                    >
                       Arrivée au col de Font Froide - Dominique Vincent - PNE
                     </span>
                   </div>
@@ -221,7 +242,7 @@ Object {
           class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 bRtnyF krsGZP slick-arrow slick-next"
         />
         <div
-          class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 gSqOFW slick-dots"
+          class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 belMhl slick-dots"
         >
           <ul>
             <li
@@ -277,12 +298,15 @@ Object {
                 class="relative"
               >
                 <div
-                  class="w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
+                  class="w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
                 >
-                  <span>
+                  <span
+                    class="ml-15 truncate"
+                  >
                     Arrivée au col de Font Froide - Dominique Vincent - PNE
                   </span>
                 </div>
@@ -305,12 +329,15 @@ Object {
                 class="relative"
               >
                 <div
-                  class="w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
+                  class="w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
                 >
-                  <span>
+                  <span
+                    class="ml-15 truncate"
+                  >
                     Lac - admin
                   </span>
                 </div>
@@ -333,12 +360,15 @@ Object {
                 class="relative"
               >
                 <div
-                  class="w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
+                  class="w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
                 >
-                  <span>
+                  <span
+                    class="ml-15 truncate"
+                  >
                     Marmotte - admin
                   </span>
                 </div>
@@ -361,12 +391,15 @@ Object {
                 class="relative"
               >
                 <div
-                  class="w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
+                  class="w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
                 >
-                  <span>
+                  <span
+                    class="ml-15 truncate"
+                  >
                     Arrivée au col de Font Froide - Dominique Vincent - PNE
                   </span>
                 </div>
@@ -389,12 +422,15 @@ Object {
                 class="relative"
               >
                 <div
-                  class="w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
+                  class="w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
                 >
-                  <span>
+                  <span
+                    class="ml-15 truncate"
+                  >
                     Lac - admin
                   </span>
                 </div>
@@ -417,12 +453,15 @@ Object {
                 class="relative"
               >
                 <div
-                  class="w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
+                  class="w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
                 >
-                  <span>
+                  <span
+                    class="ml-15 truncate"
+                  >
                     Marmotte - admin
                   </span>
                 </div>
@@ -445,12 +484,15 @@ Object {
                 class="relative"
               >
                 <div
-                  class="w-full text-center h-6 desktop:h-10 truncate
-          absolute bottom-0 desktop:top-0
-          bg-black bg-opacity-40
-          text-white text-opacity-90 p-1 desktop:pt-3 text-Mobile-C3 desktop:text-P2"
+                  class="w-full h-12 desktop:h-40
+          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
+          py-1 px-2 desktop:pt-3 desktop:px-10
+          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
                 >
-                  <span>
+                  <span
+                    class="ml-15 truncate"
+                  >
                     Arrivée au col de Font Froide - Dominique Vincent - PNE
                   </span>
                 </div>
@@ -467,7 +509,7 @@ Object {
         class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 bRtnyF krsGZP slick-arrow slick-next"
       />
       <div
-        class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 gSqOFW slick-dots"
+        class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 belMhl slick-dots"
       >
         <ul>
           <li
