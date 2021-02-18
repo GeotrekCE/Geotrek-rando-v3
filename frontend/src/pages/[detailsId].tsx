@@ -4,9 +4,11 @@ import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import { getDetails, getTrekChildren } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
+import { getDefaultLanguage } from 'modules/header/utills';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getServerSideProps = async (context: {
+  locale: string;
   query: { detailsId: string | string[] | undefined; parentId: string | string[] | undefined };
 }) => {
   const id = isUrlString(context.query.detailsId) ? context.query.detailsId.split('-')[1] : '';
@@ -14,9 +16,9 @@ export const getServerSideProps = async (context: {
 
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(`details-${id}`, () => getDetails(id));
+  await queryClient.prefetchQuery(`details-${id}`, () => getDetails(id, context.locale));
   await queryClient.prefetchQuery(`trekFamily-${parentIdString}`, () =>
-    getTrekChildren(parentIdString),
+    getTrekChildren(parentIdString, context.locale),
   );
 
   return {
@@ -29,8 +31,9 @@ export const getServerSideProps = async (context: {
 const Details = () => {
   const router = useRouter();
   const { detailsId, parentId } = router.query;
+  const language = router.locale ?? getDefaultLanguage();
 
-  return <DetailsUI detailsId={detailsId} parentId={parentId} />;
+  return <DetailsUI detailsId={detailsId} parentId={parentId} language={language} />;
 };
 
 export default Details;

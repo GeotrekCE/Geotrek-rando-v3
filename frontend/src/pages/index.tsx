@@ -6,7 +6,7 @@ import { getHomePageConfig } from 'modules/home/utils';
 import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context: any) => {
   const queryClient = new QueryClient();
 
   const homePageConfig = getHomePageConfig();
@@ -17,10 +17,10 @@ export const getServerSideProps = async () => {
   );
 
   await queryClient.prefetchQuery(`activitySuggestions-${activitySuggestionIds.join('-')}`, () =>
-    getActivitySuggestions(activitySuggestionIds),
+    getActivitySuggestions(activitySuggestionIds, context.locale),
   );
 
-  await queryClient.prefetchQuery('homeActivities', () => getActivityBarContent());
+  await queryClient.prefetchQuery('homeActivities', () => getActivityBarContent(context.locale));
 
   return {
     props: {
