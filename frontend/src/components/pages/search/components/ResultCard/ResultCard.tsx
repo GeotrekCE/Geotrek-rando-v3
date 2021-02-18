@@ -77,9 +77,11 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => 
 
             <TagContainer>
               <TagLayout>
-                {tags.map(tag => (
-                  <Chip key={tag}>{tag}</Chip>
-                ))}
+                {tags
+                  .filter(tag => tag !== null && tag.length > 0)
+                  .map(tag => (
+                    <Chip key={tag}>{tag}</Chip>
+                  ))}
               </TagLayout>
             </TagContainer>
             {isTrek(props) ? (
