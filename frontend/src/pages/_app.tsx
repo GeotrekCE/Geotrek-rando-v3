@@ -12,7 +12,6 @@ import '../public/style.css';
 
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { LanguageWrapper } from '../services/languageContext';
 
 const queryClient = new QueryClient();
 
@@ -44,16 +43,14 @@ class MyApp extends App<AppProps> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { Component, pageProps, hasError, errorEventId } = this.props;
     return (
-      <LanguageWrapper>
-        <QueryClientProvider client={queryClient}>
-          <Hydrate state={pageProps.dehydratedState}>
-            <Root hasError={hasError} errorEventId={errorEventId}>
-              <Component {...pageProps} />
-            </Root>
-            <ReactQueryDevtools initialIsOpen={false} />
-          </Hydrate>
-        </QueryClientProvider>
-      </LanguageWrapper>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <Root hasError={hasError} errorEventId={errorEventId}>
+            <Component {...pageProps} />
+          </Root>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </Hydrate>
+      </QueryClientProvider>
     );
   }
 }
