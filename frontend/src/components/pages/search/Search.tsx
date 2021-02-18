@@ -32,12 +32,14 @@ interface Props {
   initialFiltersState: FilterState[];
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
   initialFiltersStateWithSelectedOptions: FilterState[];
+  language: string;
 }
 
 export const SearchUI: React.FC<Props> = ({
   initialFiltersState,
   touristicContentCategoryMapping,
   initialFiltersStateWithSelectedOptions,
+  language,
 }) => {
   const {
     filtersState,
@@ -77,9 +79,9 @@ export const SearchUI: React.FC<Props> = ({
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-  } = useTrekResults(filtersState);
+  } = useTrekResults(filtersState, language);
 
-  const { mapResults, isMapLoading } = useMapResults(filtersState);
+  const { mapResults, isMapLoading } = useMapResults(filtersState, language);
 
   return (
     <>
