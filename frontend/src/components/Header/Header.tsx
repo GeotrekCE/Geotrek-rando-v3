@@ -7,6 +7,7 @@ import { Link } from 'components/Link';
 import { Display } from 'hooks/useHideOnScrollDown';
 
 import InlineMenu from 'components/InlineMenu';
+import { GoToSearchButton } from 'components/GoToSearchButton';
 import { BurgerMenu } from './BurgerMenu';
 import { useHeader } from './useHeader';
 
@@ -50,6 +51,7 @@ export const Header: React.FC = () => {
             supportedLanguages={config.menu.supportedLanguages}
           />
         )}
+        <GoToSearchButton className="hidden desktop:block" />
       </Container>
     </>
   );
