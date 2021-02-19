@@ -2,6 +2,7 @@ import { Layout } from 'components/Layout/Layout';
 import Loader from 'react-loader';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
 import parse from 'html-react-parser';
+import { Footer } from 'components/Footer';
 import { Separator } from 'components/Separator';
 import styled from 'styled-components';
 import { useFlatPage } from './useFlatPage';
@@ -75,6 +76,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
               </>
             )}
           </div>
+          <Footer />
         </div>
       )}
     </Layout>
