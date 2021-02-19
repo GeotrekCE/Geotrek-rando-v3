@@ -61,6 +61,7 @@ module.exports = {
       headerAndDetailsRecapBar: '149px',
       resultCardDesktop: '224px',
       resultCardMobile: '27vh',
+      suggestionCardDesktop: '25vw',
     },
     zIndex: {
       content: 0,
