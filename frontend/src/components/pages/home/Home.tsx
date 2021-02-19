@@ -17,7 +17,7 @@ import { useHome } from './useHome';
 const HomeUI: FunctionComponent = () => {
   const { config, activitySuggestionCategories } = useHome();
 
-  const contentContainerClassname = `relative px-4 desktop:px-40 space-y-6 desktop:space-y-18 ${
+  const contentContainerClassname = `relative ${
     config.activityBar.shouldDisplay ? '-top-6 desktop:-top-15' : 'pt-6 desktop:pt-18'
   }`;
 
@@ -39,16 +39,13 @@ const HomeUI: FunctionComponent = () => {
           </TopContainer>
           <div className={contentContainerClassname}>
             {config.activityBar.shouldDisplay && (
-              <div
-                className="
-          desktop:flex desktop:justify-center
-          mx-4 desktop:mx-40"
-              >
+              <div className={`desktop:flex desktop:justify-center ${classNameHomeChild}`}>
                 <ActivitySearchFilter />
               </div>
             )}
 
             <HomeCard
+              className={classNameHomeChild}
               title="Tour des Alpes"
               imagePath="/images/treck-selection.jpg"
               subtitle="Un parcours sur 3 jours à découvrir en famille"
@@ -56,16 +53,17 @@ const HomeUI: FunctionComponent = () => {
               heightMobile={265}
               heightDesktop={265}
             />
-            {parse(homeTopHtml)}
+            <div className={classNameHomeChild}>{parse(homeTopHtml)}</div>
             {activitySuggestionCategories.map(suggestionCategory => (
               <HomeSection
                 title={intl.formatMessage({ id: suggestionCategory.titleTranslationId })}
                 iconUrl={suggestionCategory.iconUrl}
                 key={suggestionCategory.titleTranslationId}
                 activitySuggestions={suggestionCategory.suggestions}
+                className={classNameHomeChild}
               />
             ))}
-            {parse(homeBottomHtml)}
+            <div className={classNameHomeChild}>{parse(homeBottomHtml)}</div>
           </div>
         </HomeContainer>
         <Footer />
@@ -73,5 +71,7 @@ const HomeUI: FunctionComponent = () => {
     </div>
   );
 };
+
+const classNameHomeChild = 'mx-4 desktop:mx-10percent mb-6 desktop:mb-18';
 
 export const Home = HomeUI;

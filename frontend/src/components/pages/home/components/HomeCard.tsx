@@ -11,6 +11,7 @@ interface HomeCardProps extends ImageContainerProps {
   title: string;
   subtitle: string;
   tag: string;
+  className?: string;
 }
 
 const HomeCard: React.FC<HomeCardProps> = ({
@@ -20,10 +21,13 @@ const HomeCard: React.FC<HomeCardProps> = ({
   tag,
   heightMobile,
   heightDesktop,
+  className,
 }) => {
   return (
     <ImageContainer
-      className="flex flex-col h-65 bg-primary1 rounded-2xl p-4 justify-between items-start desktop:p-10"
+      className={`flex flex-col h-65 bg-primary1 rounded-2xl p-4 justify-between items-start desktop:p-10 ${
+        className ?? ''
+      }`}
       imagePath={imagePath}
       heightMobile={heightMobile}
       heightDesktop={heightDesktop}
