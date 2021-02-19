@@ -76,7 +76,7 @@ Object {
                       aria-controls="accordion__panel-raa-0"
                       aria-disabled="false"
                       aria-expanded="false"
-                      class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+                      class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
                       data-accordion-component="AccordionItemButton"
                       id="accordion__heading-raa-0"
                       role="button"
@@ -143,7 +143,7 @@ Object {
                 </div>
               </div>
               <span
-                class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+                class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
               >
                 Favoris
               </span>
@@ -165,7 +165,7 @@ Object {
                       aria-controls="accordion__panel-raa-1"
                       aria-disabled="false"
                       aria-expanded="false"
-                      class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+                      class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
                       data-accordion-component="AccordionItemButton"
                       id="accordion__heading-raa-1"
                       role="button"
@@ -210,7 +210,7 @@ Object {
                 </div>
               </div>
               <span
-                class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+                class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
               >
                 Recherche
               </span>
@@ -321,7 +321,7 @@ Object {
                     aria-controls="accordion__panel-raa-0"
                     aria-disabled="false"
                     aria-expanded="false"
-                    class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+                    class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
                     data-accordion-component="AccordionItemButton"
                     id="accordion__heading-raa-0"
                     role="button"
@@ -388,7 +388,7 @@ Object {
               </div>
             </div>
             <span
-              class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+              class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
             >
               Favoris
             </span>
@@ -410,7 +410,7 @@ Object {
                     aria-controls="accordion__panel-raa-1"
                     aria-disabled="false"
                     aria-expanded="false"
-                    class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+                    class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
                     data-accordion-component="AccordionItemButton"
                     id="accordion__heading-raa-1"
                     role="button"
@@ -455,7 +455,7 @@ Object {
               </div>
             </div>
             <span
-              class="flex items-center pt-4 pb-4 font-bold outline-none border-b pb-2 border-solid border-greySoft"
+              class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
             >
               Recherche
             </span>

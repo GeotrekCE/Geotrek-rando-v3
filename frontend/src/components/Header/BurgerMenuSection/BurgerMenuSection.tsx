@@ -19,7 +19,7 @@ export interface Props {
 const isItemString = (item: MenuItem | string): item is string => typeof item === 'string';
 
 export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick }) => {
-  const classNameTitle = 'flex items-center pt-4 pb-4 font-bold outline-none';
+  const classNameTitle = 'flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer';
   const classNameBorder = 'border-b pb-2 border-solid border-greySoft';
   const openIcon = <Plus size={24} />;
   const closeIcon = <Minus size={24} />;
