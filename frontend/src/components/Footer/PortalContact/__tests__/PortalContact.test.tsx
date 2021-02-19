@@ -1,6 +1,6 @@
 import { render } from 'services/testing/reactTestingLibraryWrapper';
 
-import { PortalContact } from '../';
+import { PortalContact } from '..';
 
 test('AAU, if I click on the "mailTo" link, Im redirected to the bow mail with the correct address', () => {
   const portalContact = render(

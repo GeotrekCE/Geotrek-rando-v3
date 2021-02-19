@@ -1,12 +1,11 @@
 import { LogoButton } from 'components/LogoButton';
 import { Twitter } from 'components/Icons/Twitter';
+import { Globe } from 'components/Icons/Globe';
+import { Instagram } from 'components/Icons/Instagram';
 import { Facebook } from 'components/Icons/Facebook';
 import { YouTube } from 'components/Icons/YouTube';
+import { SocialNetwork } from '../interface';
 
-interface SocialNetwork {
-  id: string;
-  url: string;
-}
 interface SocialNetworkProps {
   socialNetworkList: SocialNetwork[];
 }
@@ -14,7 +13,9 @@ interface SocialNetworkProps {
 const socialNetworksIcons: { [key: string]: React.ReactNode } = {
   twitter: <Twitter size={16} />,
   facebook: <Facebook size={16} />,
+  instagram: <Instagram size={20} />,
   youtube: <YouTube size={16} />,
+  fallback: <Globe size={20} />,
 };
 
 export const SocialNetworks: React.FC<SocialNetworkProps> = ({ socialNetworkList }) => {
@@ -45,5 +46,5 @@ const getSocialNetworkIcon = (socialNetworkId: string): React.ReactNode | null =
   if (Object.keys(socialNetworksIcons).includes(socialNetworkId)) {
     return socialNetworksIcons[socialNetworkId];
   }
-  return null;
+  return socialNetworksIcons.fallback;
 };

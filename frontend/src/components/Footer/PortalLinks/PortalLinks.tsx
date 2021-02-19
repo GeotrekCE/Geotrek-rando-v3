@@ -1,12 +1,10 @@
 import { Link } from 'components/Link';
 import { Plus } from 'components/Icons/Plus';
 import { Minus } from 'components/Icons/Minus';
+import { FormattedMessage } from 'react-intl';
 import { usePortalLinks } from './usePortalLinks';
-
-interface PortalLink {
-  label: string;
-  url: string;
-}
+import { PortalLink } from '../interface';
+import { isLinkInternal, linkWithoutHost } from '../utils';
 
 interface PortalLinksContentProps {
   className?: string;
@@ -56,10 +54,10 @@ const PortalLinksTitle: React.FC<{ name: string }> = ({ name }) => (
   <p
     className="
         text-Mobile-C1 desktop:text-H3
-        font-bold
+        font-bold cursor-pointer w-full
         desktop:mb-3.5"
   >
-    {name}
+    <FormattedMessage id={name} />
   </p>
 );
 
@@ -94,14 +92,23 @@ const PortalLinksMobileContent: React.FC<PortalLinksContentProps> = ({ className
   );
 };
 
-const PortalLinkRendered: React.FC<{ link: PortalLink }> = ({ link }) => (
-  <Link href={link.url}>
+const PortalLinkRendered: React.FC<{ link: PortalLink }> = ({ link }) => {
+  const text = (
     <span
       className="text-greySoft text-Mobile-C3 desktop:text-P1
-        cursor-pointer
-      hover:text-white transition-all"
+      cursor-pointer hover:text-white transition-all"
     >
-      {link.label}
+      <FormattedMessage id={link.label} />
     </span>
-  </Link>
-);
+  );
+  if (typeof window !== 'undefined') {
+    return isLinkInternal(link.url) ? (
+      <Link href={linkWithoutHost(link.url)}>{text}</Link>
+    ) : (
+      <a href={link.url} target="_blank" rel="noopener noreferrer">
+        {text}
+      </a>
+    );
+  }
+  return null;
+};

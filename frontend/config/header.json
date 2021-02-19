@@ -1,7 +1,7 @@
 {
   "menu": {
     "primaryItemsNumber": 3,
-    "shouldDisplayFavorite": true,
+    "shouldDisplayFavorite": false,
     "supportedLanguages": ["fr", "en"],
     "defaultLanguage": "fr"
   },

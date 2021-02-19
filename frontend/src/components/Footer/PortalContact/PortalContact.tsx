@@ -2,17 +2,10 @@ import { FormattedMessage } from 'react-intl';
 import { Plus } from 'components/Icons/Plus';
 import { Minus } from 'components/Icons/Minus';
 import { usePortalContact } from './usePortalContact';
+import { PortalContact as PortalContactInterface } from '../interface';
 
-interface PortalContactContentProps {
+interface PortalContactProps extends Partial<PortalContactInterface> {
   className?: string;
-  addressLine1: string;
-  addressLine2: string;
-  number: string;
-  mail: string;
-}
-
-export interface PortalContactProps extends PortalContactContentProps {
-  name: string;
 }
 
 export const PortalContact: React.FC<PortalContactProps> = ({
@@ -27,7 +20,7 @@ export const PortalContact: React.FC<PortalContactProps> = ({
   return (
     <>
       <div className="hidden desktop:flex flex-col text-greySoft">
-        <PortalContactTitle name={name} />
+        {name !== undefined && <PortalContactTitle name={name} />}
         <PortalContactContent
           addressLine1={addressLine1}
           addressLine2={addressLine2}
@@ -42,7 +35,7 @@ export const PortalContact: React.FC<PortalContactProps> = ({
           ${openState === 'CLOSED' ? 'border-b border-solid border-greySoft' : ''}`}
           onClick={updatePanelState}
         >
-          <PortalContactTitle name={name} />
+          {name !== undefined && <PortalContactTitle name={name} />}
           {openState === 'OPENED' ? (
             <Minus size={24} className="flex-shrink-0" />
           ) : (
@@ -67,31 +60,35 @@ const PortalContactTitle: React.FC<{ name: string }> = ({ name }) => (
   <p
     className="
         text-Mobile-C1 desktop:text-H3
-        font-bold
+        font-bold cursor-pointer w-full
         desktop:mb-3.5"
   >
     {name}
   </p>
 );
 
-const PortalContactContent: React.FC<PortalContactContentProps> = ({
-  className = '',
+const PortalContactContent: React.FC<Partial<PortalContactProps>> = ({
+  className,
   addressLine1,
   addressLine2,
   number,
   mail,
 }) => {
   return (
-    <div className={`flex flex-col ${className} pb-4 text-Mobile-C3 desktop:text-P1`}>
-      <div className="mb-3">
-        <p>{addressLine1}</p>
-        <p>{addressLine2}</p>
-      </div>
+    <div className={`flex flex-col ${className ?? ''} pb-4 text-Mobile-C3 desktop:text-P1`}>
+      {(addressLine1 !== undefined || addressLine2 !== undefined) && (
+        <div className="mb-3">
+          <p>{addressLine1}</p>
+          <p>{addressLine2}</p>
+        </div>
+      )}
       <div>
         <p>{number}</p>
-        <a href={`mailto:${mail}`} className="underline">
-          <FormattedMessage id="home.mailTo" />
-        </a>
+        {mail !== undefined && (
+          <a href={`mailto:${mail}`} className="underline">
+            <FormattedMessage id="home.mailTo" />
+          </a>
+        )}
       </div>
     </div>
   );

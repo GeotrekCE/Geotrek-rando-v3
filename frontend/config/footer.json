@@ -1,0 +1,29 @@
+{
+  "socialNetworks": [
+    { "id": "facebook", "url": "https://www.facebook.com/parcnationaldesecrins/" },
+    { "id": "twitter", "url": "https://twitter.com/pnecrins" }
+  ],
+  "links": [
+    { "label": "footer.links", "url": "https://www.ecrins-parcnational.fr/liens-internet" },
+    { "label": "footer.access", "url": "https://www.ecrins-parcnational.fr/venir-dans-les-ecrins" },
+    {
+      "label": "footer.legalMentions",
+      "url": "https://www.ecrins-parcnational.fr/mentions-legales"
+    },
+    {
+      "label": "footer.accessibility",
+      "url": "https://www.ecrins-parcnational.fr/regles-daccessibilite"
+    },
+    {
+      "label": "footer.geotrek",
+      "url": "https://geotrek.fr/"
+    }
+  ],
+  "contact": {
+    "name": "Parc National des Écrins",
+    "addressLine1": "Domaine de Charance",
+    "addressLine2": "05000 Gap",
+    "number": "04 92 40 20 10",
+    "mail": "info@ecrins-parcnational.fr"
+  }
+}

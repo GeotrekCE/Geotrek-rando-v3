@@ -94,5 +94,13 @@
     "contact": "Contact",
     "email": "Email",
     "website": "Website"
+  },
+  "footer": {
+    "linksSectionTitle": "Additional informations",
+    "links": "Links",
+    "access": "Access",
+    "legalMentions": "Legal mentions",
+    "accessibility": "Accessibility rules",
+    "geotrek": "Geotrek"
   }
 }

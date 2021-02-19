@@ -8,10 +8,10 @@ import homeBottomHtml from 'customization/html/homeBottom.html';
 import { Layout } from 'components/Layout/Layout';
 import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
 import { PageHead } from 'components/PageHead';
+import { Footer } from 'components/Footer';
 import HomeCard from './components/HomeCard';
 import { HomeSection } from './components/HomeSection';
 import { HomeContainer, TopContainer } from './Home.style';
-import { HomeFooter } from './components/HomeFooter';
 import { useHome } from './useHome';
 
 const HomeUI: FunctionComponent = () => {
@@ -68,7 +68,7 @@ const HomeUI: FunctionComponent = () => {
             {parse(homeBottomHtml)}
           </div>
         </HomeContainer>
-        <HomeFooter />
+        <Footer />
       </Layout>
     </div>
   );
