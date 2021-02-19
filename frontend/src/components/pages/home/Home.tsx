@@ -60,7 +60,6 @@ const HomeUI: FunctionComponent = () => {
                 iconUrl={suggestionCategory.iconUrl}
                 key={suggestionCategory.titleTranslationId}
                 activitySuggestions={suggestionCategory.suggestions}
-                className={classNameHomeChild}
               />
             ))}
             <div className={classNameHomeChild}>{parse(homeBottomHtml)}</div>
