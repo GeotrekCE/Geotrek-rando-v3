@@ -10,12 +10,12 @@
     {
       "titleTranslationId": "home.territoryTreks",
       "iconUrl": "https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg",
-      "ids": ["2"]
+      "ids": ["2", "582", "586", "501", "771", "596", "604"]
     },
     {
-      "titleTranslationId": "home.territoryTreks",
+      "titleTranslationId": "home.itinerantTreks",
       "iconUrl": "https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg",
-      "ids": ["2"]
+      "ids": ["501", "771"]
     }
   ]
 }
