@@ -44,10 +44,8 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick }) =>
         </AccordionItemHeading>
         <AccordionItemPanel className={openState === 'OPENED' ? classNameBorder : ''}>
           {items?.map((item, i) => (
-            <p key={i}>
-              <a className="text-Mobile-C2 py-2" href={item.url}>
-                {item.title}
-              </a>
+            <p key={i} className="text-Mobile-C2 m-3">
+              <a href={item.url}>{item.title}</a>
             </p>
           ))}
           {languages?.map(language => (
