@@ -94,5 +94,12 @@
     "contact": "Contact",
     "email": "Courriel",
     "website": "Site internet"
+  },
+  "footer": {
+    "linksSectionTitle": "Informations complémentaires",
+    "links": "Liens",
+    "access": "Comment venir",
+    "legalMentions": "Mentions légales",
+    "accessibility": "Règles d'accessibilité"
   }
 }
