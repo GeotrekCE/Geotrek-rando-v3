@@ -7,6 +7,7 @@ export interface RawActivitySuggestion {
 }
 
 export interface ActivitySuggestion {
+  id: string;
   title: string;
   imgUrl: string | null;
 }
