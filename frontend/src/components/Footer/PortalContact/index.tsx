@@ -1,0 +1,1 @@
+export { PortalContact } from './PortalContact';
