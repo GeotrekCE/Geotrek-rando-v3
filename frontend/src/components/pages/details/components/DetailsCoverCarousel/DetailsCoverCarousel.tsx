@@ -84,9 +84,9 @@ const StyledArrow = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   opacity: 0.75;
-  padding: 0 ${getSpacing(5)};
+  padding: ${getSpacing(5)};
   transition-property: opacity;
   transition-duration: 300ms;
   &:hover {
@@ -103,7 +103,7 @@ const StyledArrow = styled.div`
   }
   ${desktopOnly(
     css`
-      padding: 0 ${getSpacing(8)};
+      padding: ${getSpacing(8)};
     `,
   )}
 `;

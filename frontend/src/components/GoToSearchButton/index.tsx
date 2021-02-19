@@ -1,0 +1,1 @@
+export { GoToSearchButton } from './GoToSearchButton';
