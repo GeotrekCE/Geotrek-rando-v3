@@ -4,6 +4,7 @@ import { colorPalette, sizes, zIndex } from 'stylesheet';
 import parse from 'html-react-parser';
 import { FormattedMessage } from 'react-intl';
 import { TouristicContentMapDynamicComponent } from 'components/Map';
+import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
 import { useTouristicContent } from './useTouristicContent';
@@ -141,6 +142,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({ touristi
                   </DetailsSection>
                 )}
               </div>
+              <Footer />
             </div>
             <div
               className="hidden desktop:flex desktop:z-content desktop:w-2/5

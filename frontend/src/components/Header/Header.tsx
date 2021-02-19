@@ -42,9 +42,10 @@ export const Header: React.FC = () => {
             <FormattedMessage id={'home.title'} />
           </p>
         </Link>
+        <div className="flex-1 w-0" />
         {(sectionsDesktop || subSections) && (
           <InlineMenu
-            className="hidden desktop:flex items-center flex-auto justify-end"
+            className="hidden desktop:flex items-center justify-end flex-auto"
             sections={sectionsDesktop}
             subSections={subSections}
             shouldDisplayFavorites={config.menu.shouldDisplayFavorite}

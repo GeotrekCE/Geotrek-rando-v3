@@ -9,6 +9,7 @@ import { colorPalette, sizes, zIndex } from 'stylesheet';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { useRef } from 'react';
 import { TrekChildGeometry } from 'modules/details/interface';
+import { Footer } from 'components/Footer';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -316,6 +317,7 @@ export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
                     </div>
                   )}
                 </div>
+                <Footer />
               </div>
 
               <div className="hidden desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar">
