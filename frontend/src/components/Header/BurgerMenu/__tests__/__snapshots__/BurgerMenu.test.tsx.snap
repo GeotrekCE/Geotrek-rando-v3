@@ -113,7 +113,7 @@ Object {
                     role="region"
                   >
                     <p
-                      class="text-Mobile-C2 py-2"
+                      class="text-Mobile-C2 m-3"
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
@@ -122,7 +122,7 @@ Object {
                       </a>
                     </p>
                     <p
-                      class="text-Mobile-C2 py-2"
+                      class="text-Mobile-C2 m-3"
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
@@ -131,7 +131,7 @@ Object {
                       </a>
                     </p>
                     <p
-                      class="text-Mobile-C2 py-2"
+                      class="text-Mobile-C2 m-3"
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
@@ -201,11 +201,16 @@ Object {
                     id="accordion__panel-raa-1"
                     role="region"
                   >
-                    <p
-                      class="text-Mobile-C2 py-2"
+                    <a
+                      class="Link__StyledLink-oanbk8-0 hVMYzp w-full"
+                      href="/"
                     >
-                      FR
-                    </p>
+                      <p
+                        class="text-Mobile-C2 py-2 text-greyDarkColored"
+                      >
+                        FR
+                      </p>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -358,7 +363,7 @@ Object {
                   role="region"
                 >
                   <p
-                    class="text-Mobile-C2 py-2"
+                    class="text-Mobile-C2 m-3"
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
@@ -367,7 +372,7 @@ Object {
                     </a>
                   </p>
                   <p
-                    class="text-Mobile-C2 py-2"
+                    class="text-Mobile-C2 m-3"
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
@@ -376,7 +381,7 @@ Object {
                     </a>
                   </p>
                   <p
-                    class="text-Mobile-C2 py-2"
+                    class="text-Mobile-C2 m-3"
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
@@ -446,11 +451,16 @@ Object {
                   id="accordion__panel-raa-1"
                   role="region"
                 >
-                  <p
-                    class="text-Mobile-C2 py-2"
+                  <a
+                    class="Link__StyledLink-oanbk8-0 hVMYzp w-full"
+                    href="/"
                   >
-                    FR
-                  </p>
+                    <p
+                      class="text-Mobile-C2 py-2 text-greyDarkColored"
+                    >
+                      FR
+                    </p>
+                  </a>
                 </div>
               </div>
             </div>
