@@ -1,1 +1,0 @@
-export { SocialNetworks } from './SocialNetworks';
