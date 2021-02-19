@@ -47,6 +47,7 @@ module.exports = {
       90: `${SPACING_UNIT * 90}px`,
       100: `${SPACING_UNIT * 100}px`,
       '10vw': '10vw',
+      '10percent': '10%',
       '50percent': '50%',
       filterBar: '72px',
       headerAndFilterBar: '168px',

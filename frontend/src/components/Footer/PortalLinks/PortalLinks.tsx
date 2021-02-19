@@ -20,7 +20,7 @@ export const PortalLinks: React.FC<PortalLinksProps> = ({ name, links }) => {
 
   return (
     <>
-      <div className="hidden desktop:flex flex-col text-greySoft ml-3">
+      <div className="hidden desktop:flex flex-col text-greySoft ml-3 items-end">
         <PortalLinksTitle name={name} />
         <PortalLinksDesktopContent links={links} />
       </div>
@@ -55,7 +55,7 @@ const PortalLinksTitle: React.FC<{ name: string }> = ({ name }) => (
     className="
         text-Mobile-C1 desktop:text-H3
         font-bold cursor-pointer w-full
-        desktop:mb-3.5"
+        desktop:mb-3.5 desktop:text-right"
   >
     <FormattedMessage id={name} />
   </p>
@@ -93,20 +93,18 @@ const PortalLinksMobileContent: React.FC<PortalLinksContentProps> = ({ className
 };
 
 const PortalLinkRendered: React.FC<{ link: PortalLink }> = ({ link }) => {
-  const text = (
-    <span
-      className="text-greySoft text-Mobile-C3 desktop:text-P1
-      cursor-pointer hover:text-white transition-all"
-    >
-      <FormattedMessage id={link.label} />
-    </span>
-  );
+  const className =
+    'text-greySoft text-Mobile-C3 desktop:text-P1 cursor-pointer hover:text-white transition-all desktop:text-right';
   if (typeof window !== 'undefined') {
     return isLinkInternal(link.url) ? (
-      <Link href={linkWithoutHost(link.url)}>{text}</Link>
+      <Link href={linkWithoutHost(link.url)}>
+        <div className={className}>
+          <FormattedMessage id={link.label} />
+        </div>
+      </Link>
     ) : (
-      <a href={link.url} target="_blank" rel="noopener noreferrer">
-        {text}
+      <a href={link.url} target="_blank" rel="noopener noreferrer" className={className}>
+        <FormattedMessage id={link.label} />
       </a>
     );
   }
