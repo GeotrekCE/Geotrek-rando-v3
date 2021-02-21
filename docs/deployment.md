@@ -1,10 +1,10 @@
 # Deployment
 
-We will be using two remote environments
+We will be using two remote development environments.
 
 ## Staging environment
 
-On this environment, we don't use docker and edploy directly to Vercel in order to ease the development experience during the development phase.
+On this environment, we don't use Docker and deploy directly to Vercel in order to ease the development experience during the development phase.
 
 ### Prerequisite
 
@@ -14,19 +14,19 @@ You need to add a remote to your git repository:
 git remote add vercel git@github.com:Weegle99/Geotrek-rando-v3.git
 ```
 
-We performed a fork of geotrek rando on a personal account to benefit from vercel free tier
+We performed a fork of Geotrek-rando on a personal account to benefit from Vercel free tier.
 
 ### Deploy
 
-The staging deployment is automated upon pushing on the vercel remote. Therefore you can deploy the current available version on the main branch by
+The staging deployment is automated upon pushing on the Vercel remote. Therefore you can deploy the current available version on the main branch by:
 
-- Pulling the latest main branch from origin
+- Pulling the latest ``main`` branch from ``origin``:
 
 ```bash
 git checkout main && git pull origin main
 ```
 
-- Pushing it to the vercel remote
+- Pushing it to the Vercel remote:
 
 ```bash
 git push vercel main
@@ -34,29 +34,30 @@ git push vercel main
 
 ## Preproduction environment
 
-On this environment, we deploy the pwa as a regular geotrek-rando administrator would.
+On this environment, we deploy the PWA as a regular Geotrek-rando administrator would.
 
 ### Prerequisite
 
-You need to have docker installed
+You need to have Docker installed.
 
-You need to have access to the GeotrekCE organization
+You need to have access to the ``GeotrekCE`` organization
 
 You need to have permissions on the packages -> go to [this url](https://github.com/orgs/GeotrekCE/packages/container/geotrek-rando-v3%2Fgeotrek-rando/settings)
 
 ### Build the container
 
-In order to build the container, use docker
+In order to build the container, use Docker:
 
 ```bash
 cd frontend
 docker build -t ghcr.io/geotrekce/geotrek-rando-v3/geotrek-rando:{YOUR VERSION} .
 ```
 
-### Deploy to the geotrek registry
+### Deploy to the Geotrek registry
 
-First you'll need to have a github personal access token with access permission to create packages.
-Then push your container
+First you'll need to have a Github personal access token with access permission to create packages.
+
+Then push your container:
 
 ```bash
 docker push ghcr.io/geotrekce/geotrek-rando-v3/geotrek-rando:{YOUR VERSION}
@@ -64,4 +65,4 @@ docker push ghcr.io/geotrekce/geotrek-rando-v3/geotrek-rando:{YOUR VERSION}
 
 ### Pull the container from the preproduction machine an run it
 
-Follow the steps described in [the install on your own machine documentation](./install-on-your-own-machin.md)
+Follow the steps described in [the install on your own machine documentation](./installation.md)
