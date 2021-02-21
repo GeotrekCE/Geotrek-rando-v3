@@ -1,6 +1,6 @@
-# Geotrek Rando
+# Geotrek-rando V3
 
-Geotrek Rando is the public front end displaying the interface you can use to value your parc assets !
+Geotrek-rando is the public web application displaying the interface you can use to value your territory treks and tourism products!
 
 ## Getting started
 
