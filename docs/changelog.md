@@ -5,7 +5,7 @@
 
 * Full redesign and rewriting of Geotrek-rando with React and NextJS (for PWA, SSR and SEO)
 * Directly connected to Geotrek-admin API, no more using Geotrek-admin synchronization
-* Requires Geotrek-admin 2.5.0 minimun, reachable in https
+* Requires Geotrek-admin 2.50.0 minimun, reachable in https
 * Requires Docker to be installed
 
 **🚀 New features**
