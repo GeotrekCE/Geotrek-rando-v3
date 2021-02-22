@@ -1,4 +1,5 @@
 import {
+  Coordinate2D,
   LineStringGeometry,
   PointGeometry,
   PolygonGeometry,
@@ -35,5 +36,21 @@ export const adaptGeometry = (
         type: geometry.type,
         coordinates: adaptGeometry2D(geometry.coordinates),
       };
+  }
+};
+
+export const extractFirstPointOfGeometry = (
+  geometry: RawPolygonGeometry | RawLineStringGeometry2D | RawPointGeometry2D | null,
+): Coordinate2D | null => {
+  if (geometry === null) return null;
+  switch (geometry.type) {
+    case 'Polygon':
+      return adaptGeometry2D(geometry.coordinates[0][0]);
+
+    case 'LineString':
+      return adaptGeometry2D(geometry.coordinates[0]);
+
+    case 'Point':
+      return adaptGeometry2D(geometry.coordinates);
   }
 };
