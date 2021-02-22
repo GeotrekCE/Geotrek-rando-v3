@@ -1,8 +1,8 @@
 import { adaptTrekGeometryResults, adaptTrekPopupResults } from './adapter';
 import { fetchTrekGeometryResult, fetchTrekPopupResult } from './api';
-import { TrekGeometryResult, TrekPopupResult } from './interface';
+import { PopupResult, TrekGeometryResult } from './interface';
 
-export const getTrekPopupResult = async (id: string): Promise<TrekPopupResult> => {
+export const getTrekPopupResult = async (id: string): Promise<PopupResult> => {
   const rawTrekPopupResult = await fetchTrekPopupResult({ language: 'fr' }, id);
 
   return adaptTrekPopupResults(rawTrekPopupResult);

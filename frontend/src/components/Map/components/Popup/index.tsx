@@ -8,19 +8,21 @@ import { colorPalette, desktopOnly, getSpacing } from 'stylesheet';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import { Button as RawButton } from 'components/Button';
 import { generateResultDetailsUrl } from 'components/pages/search/utils';
+import { generateTouristicContentUrl } from 'components/pages/details/utils';
 
 import Link from 'components/Link';
-import { useTrekPopupResult } from '../../hooks/useTrekPopupResult';
+import { usePopupResult } from '../../hooks/usePopupResult';
 
 interface Props {
   id: number;
   handleOpen: () => void;
   handleClose: () => void;
+  type: 'TREK' | 'TOURISTIC_CONTENT';
 }
 
-export const Popup: React.FC<Props> = ({ id, handleOpen, handleClose }) => {
+export const Popup: React.FC<Props> = ({ id, handleOpen, handleClose, type }) => {
   const [shouldFetchData, setShouldFetchData] = useState<boolean>(false);
-  const { isLoading, trekPopupResult } = useTrekPopupResult(id.toString(), shouldFetchData);
+  const { isLoading, trekPopupResult } = usePopupResult(id.toString(), shouldFetchData, type);
 
   return (
     <StyledPopup
@@ -48,7 +50,13 @@ export const Popup: React.FC<Props> = ({ id, handleOpen, handleClose }) => {
               <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">
                 {trekPopupResult.title}
               </Title>
-              <Link href={generateResultDetailsUrl(id, trekPopupResult.title)}>
+              <Link
+                href={
+                  type === 'TREK'
+                    ? generateResultDetailsUrl(id, trekPopupResult.title)
+                    : generateTouristicContentUrl(id, trekPopupResult.title)
+                }
+              >
                 <Button type="button">
                   <span className="text-center w-full">
                     <FormattedMessage id="search.map.seeResult" />

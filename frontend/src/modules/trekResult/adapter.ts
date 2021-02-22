@@ -1,14 +1,14 @@
 import { getThumbnail } from 'modules/utils/adapter';
 import {
+  PopupResult,
   RawTrekGeometryResult,
   RawTrekPopupResult,
   TrekGeometryResult,
-  TrekPopupResult,
 } from './interface';
 
-const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
+export const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
 
-export const adaptTrekPopupResults = (rawDetails: RawTrekPopupResult): TrekPopupResult => {
+export const adaptTrekPopupResults = (rawDetails: RawTrekPopupResult): PopupResult => {
   return {
     title: rawDetails.name,
     place: rawDetails.departure,

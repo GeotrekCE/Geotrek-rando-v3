@@ -5,8 +5,17 @@ import {
   getTouristicContentCategories,
   getTouristicContentCategory,
 } from 'modules/touristicContentCategory/connector';
-import { adaptTouristicContent, adaptTouristicContentDetails } from './adapter';
-import { fetchTouristicContent, fetchTouristicContentDetails } from './api';
+import { PopupResult } from 'modules/trekResult/interface';
+import {
+  adaptTouristicContent,
+  adaptTouristicContentDetails,
+  adaptTouristicContentPopupResults,
+} from './adapter';
+import {
+  fetchTouristicContent,
+  fetchTouristicContentDetails,
+  fetchTouristicContentPopupResult,
+} from './api';
 import { TouristicContent, TouristicContentDetails } from './interface';
 
 export const getTouristicContentsNearTrek = async (
@@ -60,4 +69,13 @@ export const getTouristicContentDetails = async (id: string): Promise<TouristicC
     console.error('Error in touristicContent connector', e);
     throw e;
   }
+};
+
+export const getTouristicContentPopupResult = async (id: string): Promise<PopupResult> => {
+  const [rawTouristicContentPopupResult, cityDictionnary] = await Promise.all([
+    fetchTouristicContentPopupResult({ language: 'fr' }, id),
+    getCities(),
+  ]);
+
+  return adaptTouristicContentPopupResults(rawTouristicContentPopupResult, cityDictionnary);
 };

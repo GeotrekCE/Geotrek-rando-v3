@@ -3,6 +3,7 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import {
   RawTouristicContent,
   RawTouristicContentDetails,
+  RawTouristicContentPopupResult,
   RawTouristicContentResult,
 } from './interface';
 
@@ -41,5 +42,18 @@ export const fetchTouristicContentResult = (
 ): Promise<APIResponseForList<RawTouristicContentResult>> =>
   GeotrekAPI.url(`/touristiccontent`)
     .query({ ...query, ...fieldsParamsResult })
+    .get()
+    .json();
+
+const fieldsParamsPopupResult = {
+  fields: 'id,name,cities,attachments',
+};
+
+export const fetchTouristicContentPopupResult = (
+  query: APIQuery,
+  id: string,
+): Promise<RawTouristicContentPopupResult> =>
+  GeotrekAPI.url(`/touristiccontent/${id}/`)
+    .query({ ...query, ...fieldsParamsPopupResult })
     .get()
     .json();

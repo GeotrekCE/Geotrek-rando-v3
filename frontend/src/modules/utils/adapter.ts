@@ -10,13 +10,9 @@ const fallbackAttachment: Attachment = {
 };
 
 export const getThumbnail = (rawAttachments: RawAttachment[]): string | null => {
-  let thumbnail: string | null = null;
-  rawAttachments.forEach(rawAttachment => {
-    if (rawAttachment.type === 'image') {
-      thumbnail = rawAttachment.url;
-    }
-  });
-  return thumbnail;
+  const firstImageAttachment = rawAttachments.find(({ type }) => type === 'image');
+  if (firstImageAttachment === undefined) return null;
+  return firstImageAttachment.thumbnail;
 };
 
 export const getAttachment = (rawAttachments: RawAttachment[]): Attachment => {

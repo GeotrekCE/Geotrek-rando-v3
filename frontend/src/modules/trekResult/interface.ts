@@ -6,7 +6,7 @@ export interface RawTrekPopupResult {
   attachments: RawAttachment[];
 }
 
-export interface TrekPopupResult {
+export interface PopupResult {
   title: string;
   place: string;
   imgUrl: string;
