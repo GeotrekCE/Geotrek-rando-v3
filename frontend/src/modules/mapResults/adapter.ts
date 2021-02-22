@@ -1,6 +1,6 @@
 import { ActivityChoices } from 'modules/activities/interface';
 import { MapResults, RawMapResults } from './interface';
-import { concatMapResults, formatLocation } from './utils';
+import { concatTrekMapResults, formatLocation } from './utils';
 
 export const adaptMapResults = ({
   mapResults,
@@ -9,7 +9,7 @@ export const adaptMapResults = ({
   mapResults: RawMapResults[];
   activities: ActivityChoices;
 }): MapResults =>
-  concatMapResults(mapResults).map(rawMapResult => ({
+  concatTrekMapResults(mapResults).map(rawMapResult => ({
     id: rawMapResult.id,
     location: formatLocation(rawMapResult.parking_location),
     practice: activities[rawMapResult.practice],

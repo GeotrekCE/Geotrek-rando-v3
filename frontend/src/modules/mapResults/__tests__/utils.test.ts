@@ -1,5 +1,5 @@
 import { computePageCount, generatePageNumbersArray } from 'modules/utils/connector';
-import { concatMapResults, formatLocation } from '../utils';
+import { concatTrekMapResults, formatLocation } from '../utils';
 
 const MockRawMapResults = [
   {
@@ -36,10 +36,10 @@ const MockRawMapResultsResponse = {
   results: MockRawMapResults,
 };
 
-describe('concatMapResults', () => {
+describe('concatTrekMapResults', () => {
   it('should concatenate all raw api results into one array of results', () => {
     const input = [MockRawMapResultsResponse, MockRawMapResultsResponse];
-    const output = concatMapResults(input);
+    const output = concatTrekMapResults(input);
     const expected = [...MockRawMapResults, ...MockRawMapResults];
 
     expect(output).toStrictEqual(expected);
