@@ -34,27 +34,27 @@ describe('Details', () => {
       .query({
         language: 'fr',
         fields:
-          'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,cities,disabled_infrastructure,accessibilities,source,information_desks,labels,advice,points_reference,children',
+          'id,name,departure,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,trek_route,networks,description,geometry,parking_location,pdf,gpx,kml,cities,disabled_infrastructure,accessibilities,source,information_desks,labels,advice,points_reference,children',
         format: 'geojson',
       })
       .reply(200, rawDetailsMock);
 
     nock(getApiUrl())
-      .get(`/practice/${rawDetailsMock.properties.practice}/`)
+      .get(`/trek_practice/${rawDetailsMock.properties.practice}/`)
       .query({
         language: 'fr',
       })
       .reply(200, rawActivity);
 
     nock(getApiUrl())
-      .get(`/difficulty/${rawDetailsMock.properties.difficulty as number}/`)
+      .get(`/trek_difficulty/${rawDetailsMock.properties.difficulty as number}/`)
       .query({
         language: 'fr',
       })
       .reply(200, rawDifficulty);
 
     nock(getApiUrl())
-      .get(`/route/${rawDetailsMock.properties.route}/`)
+      .get(`/trek_route/${rawDetailsMock.properties.route}/`)
       .query({
         language: 'fr',
       })
@@ -68,7 +68,7 @@ describe('Details', () => {
       .reply(200, mockThemeResponse);
 
     nock(getApiUrl())
-      .get(`/network`)
+      .get(`/trek_network`)
       .query({
         language: 'fr',
       })

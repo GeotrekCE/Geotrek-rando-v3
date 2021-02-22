@@ -36,7 +36,7 @@ export const mockActivitiesResponse = () => ({
 
 export const mockActivitiesRoute = (times: number): void =>
   mockRoute({
-    route: '/practice',
+    route: '/trek_practice',
     mockData: mockActivitiesResponse(),
     times,
   });

@@ -67,13 +67,13 @@ describe('Search page', () => {
     });
 
     // Called by both filterBar and results
-    mockRoute({ route: '/difficulty', mockData: mockDifficultyResponse, times: 3 });
+    mockRoute({ route: '/trek_difficulty', mockData: mockDifficultyResponse, times: 3 });
     mockRoute({ route: '/theme', mockData: mockThemeResponse, times: 6 });
-    mockRoute({ route: '/practice', mockData: mockPracticeResponse, times: 3 });
+    mockRoute({ route: '/trek_practice', mockData: mockPracticeResponse, times: 3 });
 
     // Only called by filterBar
-    mockRoute({ route: '/route', mockData: mockRouteResponse });
-    mockRoute({ route: '/accessibility', mockData: mockAccessibilityResponse });
+    mockRoute({ route: '/trek_route', mockData: mockRouteResponse });
+    mockRoute({ route: '/trek_accessibility', mockData: mockAccessibilityResponse });
     mockRoute({ route: '/structure', mockData: mockStructureResponse });
     mockTouristicContentCategoryRoute(1);
     mockCityRoute(3);

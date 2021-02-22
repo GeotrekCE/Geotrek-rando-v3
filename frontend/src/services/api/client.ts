@@ -4,20 +4,20 @@ import { getApiUrl } from '../envLoader';
 const STALE_CACHE_TIME = 1000 * 60 * 60 * 24;
 
 const cachedRoute: RegExp[] = [
-  RegExp(/\/practice/),
+  RegExp(/\/trek_practice/),
   RegExp(/\/city/),
-  RegExp(/\/accessibility/),
-  RegExp(/\/difficulty/),
+  RegExp(/\/trek_accessibility/),
+  RegExp(/\/trek_difficulty/),
   RegExp(/\/district/),
   RegExp(/\/flatpage/),
   RegExp(/\/label/),
   RegExp(/\/portal/),
   RegExp(/\/theme/),
-  RegExp(/\/touristiccontentcategory/),
+  RegExp(/\/touristiccontent_category/),
   RegExp(/\/structure/),
-  RegExp(/\/route/),
-  RegExp(/\/network/),
-  RegExp(/\/poitype/),
+  RegExp(/\/trek_route/),
+  RegExp(/\/trek_network/),
+  RegExp(/\/poi_type/),
   RegExp(/\/source/),
   RegExp(/\/informationdesk/),
 ];
