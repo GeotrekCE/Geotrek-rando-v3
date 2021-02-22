@@ -1,3 +1,4 @@
 {
-  "searchResultsPageSize": 250
+  "searchResultsPageSize": 10,
+  "mapResultsPageSize": 250
 }

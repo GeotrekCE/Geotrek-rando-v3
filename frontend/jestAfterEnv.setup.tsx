@@ -13,6 +13,7 @@ jest.mock('./src/components/Map', () => ({
 jest.mock('./src/modules/utils/api.config.ts', () => ({
   getApiCallsConfig: () => ({
     searchResultsPageSize: 5,
+    mapResultsPageSize: 5,
   }),
 }));
 

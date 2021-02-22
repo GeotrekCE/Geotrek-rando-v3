@@ -9,7 +9,7 @@ import { fetchMapResults } from './api';
 import { MapResults } from './interface';
 
 export const getMapResults = async (filtersState: QueryFilterState[]): Promise<MapResults> => {
-  const resultsNumber = getApiCallsConfig().searchResultsPageSize;
+  const resultsNumber = getApiCallsConfig().mapResultsPageSize;
 
   const formattedFiltersToUrlParams = formatTrekFiltersToUrlParams(filtersState);
   const rawMapResults = await fetchMapResults({
