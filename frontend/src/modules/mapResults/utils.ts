@@ -1,4 +1,9 @@
-import { RawMapResult, RawMapResults } from './interface';
+import {
+  RawTouristicContentMapResult,
+  RawTouristicContentMapResults,
+  RawTrekMapResult,
+  RawTrekMapResults,
+} from './interface';
 
 export const formatLocation = (rawLocation: number[] | null): { x: number; y: number } | null =>
   rawLocation === null
@@ -8,8 +13,16 @@ export const formatLocation = (rawLocation: number[] | null): { x: number; y: nu
         y: rawLocation[1],
       };
 
-export const concatTrekMapResults = (rawMapResults: RawMapResults[]): RawMapResult[] =>
-  rawMapResults.reduce<RawMapResult[]>(
+export const concatTrekMapResults = (rawMapResults: RawTrekMapResults[]): RawTrekMapResult[] =>
+  rawMapResults.reduce<RawTrekMapResult[]>(
+    (rawResults, currentResult) => [...rawResults, ...currentResult.results],
+    [],
+  );
+
+export const concatTouristicContentMapResults = (
+  rawMapResults: RawTouristicContentMapResults[],
+): RawTouristicContentMapResult[] =>
+  rawMapResults.reduce<RawTouristicContentMapResult[]>(
     (rawResults, currentResult) => [...rawResults, ...currentResult.results],
     [],
   );

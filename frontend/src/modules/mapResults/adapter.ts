@@ -1,16 +1,40 @@
 import { ActivityChoices } from 'modules/activities/interface';
-import { MapResults, RawMapResults } from './interface';
-import { concatTrekMapResults, formatLocation } from './utils';
+import { TouristicContentCategoryDictionnary } from 'modules/touristicContentCategory/interface';
+import { extractFirstPointOfGeometry } from 'modules/utils/geometry';
+import { MapResults, RawTouristicContentMapResults, RawTrekMapResults } from './interface';
+import { concatTouristicContentMapResults, concatTrekMapResults, formatLocation } from './utils';
 
 export const adaptTrekMapResults = ({
   mapResults,
   activities,
 }: {
-  mapResults: RawMapResults[];
+  mapResults: RawTrekMapResults[];
   activities: ActivityChoices;
 }): MapResults =>
   concatTrekMapResults(mapResults).map(rawMapResult => ({
     id: rawMapResult.id,
     location: formatLocation(rawMapResult.parking_location),
     practice: activities[rawMapResult.practice],
+  }));
+
+export const adaptTouristicContentMapResults = ({
+  mapResults,
+  touristicContentCategories,
+}: {
+  mapResults: RawTouristicContentMapResults[];
+  touristicContentCategories: TouristicContentCategoryDictionnary;
+}): MapResults =>
+  concatTouristicContentMapResults(mapResults).map(rawMapResult => ({
+    id: rawMapResult.id,
+    location: extractFirstPointOfGeometry(rawMapResult.geometry ?? null),
+    practice: {
+      pictogram:
+        rawMapResult.category !== undefined
+          ? touristicContentCategories[rawMapResult.category].pictogramUri
+          : '',
+      name:
+        rawMapResult.category !== undefined
+          ? touristicContentCategories[rawMapResult.category].label
+          : '',
+    },
   }));
