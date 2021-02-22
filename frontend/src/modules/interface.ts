@@ -37,6 +37,7 @@ export interface RawPolygonGeometry {
 
 export interface APICallsConfig {
   searchResultsPageSize: number;
+  mapResultsPageSize: number;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */
