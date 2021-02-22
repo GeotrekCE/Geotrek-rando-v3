@@ -5,7 +5,7 @@ import { RawDifficulty } from '../interface';
 export const fetchDifficulties = (
   query: APIQuery,
 ): Promise<APIResponseForList<Partial<RawDifficulty>>> =>
-  GeotrekAPI.url('/difficulty').query(query).get().json();
+  GeotrekAPI.url('/trek_difficulty').query(query).get().json();
 
 export const fetchDifficulty = (query: APIQuery, id: number): Promise<RawDifficulty> =>
-  GeotrekAPI.url(`/difficulty/${id}/`).query(query).get().json();
+  GeotrekAPI.url(`/trek_difficulty/${id}/`).query(query).get().json();
