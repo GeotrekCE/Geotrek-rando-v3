@@ -1,7 +1,7 @@
 import { mockRoute } from 'services/testing/utils';
 import { mockActivitiesRoute } from 'modules/activities/__mocks__';
 
-export const mockMapResultsResponse = () => ({
+const mockMapTrekResultsResponse = () => ({
   count: 5,
   next: null,
   previous: null,
@@ -29,24 +29,64 @@ export const mockMapResultsResponse = () => ({
   ],
 });
 
+const mockMapTouristicContentResultsResponse = () => ({
+  count: 5,
+  next: null,
+  previous: null,
+  results: [
+    {
+      id: 2,
+    },
+    {
+      id: 501,
+    },
+    {
+      id: 582,
+    },
+    {
+      id: 586,
+    },
+    {
+      id: 592,
+    },
+  ],
+});
+
 export const mockMapResultsRoute = (times: number): void => {
-  // Initial call to get the pages number
   mockRoute({
     route: '/trek',
-    mockData: mockMapResultsResponse(),
+    mockData: mockMapTrekResultsResponse(),
     additionalQueries: {
       fields: 'id,parking_location,practice',
       page_size: 5,
     },
     times,
   });
-
-  // Subsequent call to retrieve all pages, only one here because we have only 5 results with a page_size of 5
   mockRoute({
     route: '/trek',
-    mockData: mockMapResultsResponse(),
+    mockData: mockMapTrekResultsResponse(),
     additionalQueries: {
       fields: 'id,parking_location,practice',
+      page_size: 5,
+      page: 1,
+    },
+    times,
+  });
+
+  mockRoute({
+    route: '/touristiccontent',
+    mockData: mockMapTouristicContentResultsResponse(),
+    additionalQueries: {
+      fields: 'id,geometry,category',
+      page_size: 5,
+    },
+    times,
+  });
+  mockRoute({
+    route: '/touristiccontent',
+    mockData: mockMapTouristicContentResultsResponse(),
+    additionalQueries: {
+      fields: 'id,geometry,category',
       page_size: 5,
       page: 1,
     },
