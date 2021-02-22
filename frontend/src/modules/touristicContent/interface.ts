@@ -32,6 +32,13 @@ export interface RawTouristicContentResult {
   cities: number[];
 }
 
+export interface RawTouristicContentPopupResult {
+  id: string;
+  attachments: RawAttachment[];
+  name: string;
+  cities: number[];
+}
+
 interface RawTouristicContentDetailsProperties extends RawTouristicContent {
   description: string;
   source: number[];

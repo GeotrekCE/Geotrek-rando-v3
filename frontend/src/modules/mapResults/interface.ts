@@ -5,6 +5,7 @@ export type MapResults = {
   id: number;
   location: { x: number; y: number } | null;
   practice: Activity;
+  type: 'TREK' | 'TOURISTIC_CONTENT';
 }[];
 
 export interface RawTrekMapResults {

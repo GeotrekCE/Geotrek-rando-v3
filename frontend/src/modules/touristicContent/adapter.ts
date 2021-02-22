@@ -5,11 +5,14 @@ import {
   TouristicContentCategory,
   TouristicContentCategoryDictionnary,
 } from 'modules/touristicContentCategory/interface';
-import { getAttachments, getThumbnails } from 'modules/utils/adapter';
+import { fallbackImgUri } from 'modules/trekResult/adapter';
+import { PopupResult } from 'modules/trekResult/interface';
+import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import {
   RawTouristicContent,
   RawTouristicContentDetails,
+  RawTouristicContentPopupResult,
   RawTouristicContentResult,
   TouristicContent,
   TouristicContentDetails,
@@ -145,4 +148,18 @@ const adaptTouristicType = (
       ),
     }
   );
+};
+
+export const adaptTouristicContentPopupResults = (
+  rawTouristicContent: RawTouristicContentPopupResult,
+  cityDictionnary: CityDictionnary,
+): PopupResult => {
+  return {
+    title: rawTouristicContent.name,
+    place:
+      rawTouristicContent.cities.length > 0
+        ? cityDictionnary[rawTouristicContent.cities[0]].name
+        : '',
+    imgUrl: getThumbnail(rawTouristicContent.attachments) ?? fallbackImgUri,
+  };
 };

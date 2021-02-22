@@ -15,6 +15,7 @@ export const adaptTrekMapResults = ({
     id: rawMapResult.id,
     location: formatLocation(rawMapResult.parking_location),
     practice: activities[rawMapResult.practice],
+    type: 'TREK',
   }));
 
 export const adaptTouristicContentMapResults = ({
@@ -37,4 +38,5 @@ export const adaptTouristicContentMapResults = ({
           ? touristicContentCategories[rawMapResult.category].label
           : '',
     },
+    type: 'TOURISTIC_CONTENT',
   }));

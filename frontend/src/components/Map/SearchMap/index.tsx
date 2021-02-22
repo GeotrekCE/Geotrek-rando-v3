@@ -80,6 +80,7 @@ const SearchMap: React.FC<PropsType> = props => {
                         id={point.id}
                         handleOpen={() => setSelectedMarkerId(point.id)}
                         handleClose={resetSelectedMarker}
+                        type={point.type}
                       />
                     )}
                   </Marker>
