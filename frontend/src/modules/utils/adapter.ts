@@ -55,10 +55,10 @@ export const getThumbnails = (rawAttachments: RawAttachment[]): string[] => {
     .filter(
       rawAttachment =>
         rawAttachment.type === 'image' &&
-        rawAttachment.url !== null &&
-        rawAttachment.url.length > 0,
+        rawAttachment.thumbnail !== null &&
+        rawAttachment.thumbnail.length > 0,
     )
-    .map(rawAttachment => rawAttachment.url);
+    .map(rawAttachment => rawAttachment.thumbnail);
   if (thumbnails.length > 0) {
     return thumbnails;
   }
