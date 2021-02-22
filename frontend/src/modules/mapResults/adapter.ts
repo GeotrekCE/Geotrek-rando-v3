@@ -2,7 +2,7 @@ import { ActivityChoices } from 'modules/activities/interface';
 import { MapResults, RawMapResults } from './interface';
 import { concatTrekMapResults, formatLocation } from './utils';
 
-export const adaptMapResults = ({
+export const adaptTrekMapResults = ({
   mapResults,
   activities,
 }: {

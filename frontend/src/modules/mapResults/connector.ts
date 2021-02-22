@@ -4,7 +4,7 @@ import { formatTrekFiltersToUrlParams } from 'modules/results/utils';
 import { getApiCallsConfig } from 'modules/utils/api.config';
 
 import { generatePageNumbersArray } from 'modules/utils/connector';
-import { adaptMapResults } from './adapter';
+import { adaptTrekMapResults } from './adapter';
 import { fetchMapResults } from './api';
 import { MapResults } from './interface';
 
@@ -31,5 +31,5 @@ export const getMapResults = async (filtersState: QueryFilterState[]): Promise<M
 
   const activities = await getActivities();
 
-  return adaptMapResults({ mapResults, activities });
+  return adaptTrekMapResults({ mapResults, activities });
 };
