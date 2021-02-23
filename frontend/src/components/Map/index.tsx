@@ -1,14 +1,17 @@
+import { memo } from 'react';
 import dynamic from 'next/dynamic';
 import { PropsType as SearchMapProps } from './SearchMap';
 import { PropsType as DetailsMapProps } from './DetailsMap/DetailsMap';
 import { PropsType as TouristicContentMapProps } from './TouristicContentMap/TouristicContentMap';
 
-export const SearchMapDynamicComponent: React.FC<SearchMapProps> = props => {
+const SearchMapDynamicComponentWithoutMemo: React.FC<SearchMapProps> = props => {
   const SearchMap = dynamic(() => import('./SearchMap'), {
     ssr: false,
   });
   return <SearchMap {...props} />;
 };
+
+export const SearchMapDynamicComponent = memo(SearchMapDynamicComponentWithoutMemo);
 
 export const DetailsMapDynamicComponent: React.FC<DetailsMapProps> = props => {
   const DetailsMap = dynamic(() => import('./DetailsMap/DetailsMap'), {
