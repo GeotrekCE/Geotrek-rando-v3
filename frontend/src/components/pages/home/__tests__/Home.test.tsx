@@ -4,14 +4,14 @@ import 'isomorphic-fetch';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import { getApiUrl } from 'services/envLoader';
+import { getApiCallsConfig } from 'modules/utils/api.config';
 import { Home } from '../';
 import { mockActivitySuggestionsResponse } from '../mocks';
 
 describe('Home page', () => {
   const queryClient = new QueryClient();
   it('AAU, I can see an activity suggestion', async () => {
-    nock(getApiUrl())
+    nock(getApiCallsConfig().apiUrl)
       .get('/trek/2')
       .query({
         fields: 'name,attachments,id',

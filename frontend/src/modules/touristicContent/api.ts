@@ -1,3 +1,4 @@
+import { portalsFilter } from 'modules/utils/api.config';
 import { GeotrekAPI } from 'services/api/client';
 import { APIQuery, APIResponseForList } from 'services/api/interface';
 import {
@@ -15,7 +16,7 @@ export const fetchTouristicContent = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawTouristicContent>> =>
   GeotrekAPI.url(`/touristiccontent`)
-    .query({ ...query, ...fieldsParams })
+    .query({ ...query, ...fieldsParams, ...portalsFilter })
     .get()
     .json();
 
@@ -41,7 +42,7 @@ export const fetchTouristicContentResult = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawTouristicContentResult>> =>
   GeotrekAPI.url(`/touristiccontent`)
-    .query({ ...query, ...fieldsParamsResult })
+    .query({ ...query, ...fieldsParamsResult, ...portalsFilter })
     .get()
     .json();
 

@@ -1,3 +1,4 @@
+import { portalsFilter } from 'modules/utils/api.config';
 import { GeotrekAPI } from 'services/api/client';
 import { APIQuery } from 'services/api/interface';
 import { RawActivitySuggestion } from './interface';
@@ -11,6 +12,6 @@ export const fetchActivitySuggestion = (
   query: APIQuery,
 ): Promise<RawActivitySuggestion> =>
   GeotrekAPI.url(`/trek/${id}`)
-    .query({ ...query, ...fieldsParams })
+    .query({ ...query, ...fieldsParams, ...portalsFilter })
     .get()
     .json();

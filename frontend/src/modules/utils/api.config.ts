@@ -9,3 +9,10 @@ export const getApiCallsConfig = (): APICallsConfig => ({
   ...apiCallsConfig,
   ...structureApiCallsConfig,
 });
+
+export const portalsFilter =
+  getApiCallsConfig().portalIds.length > 0
+    ? {
+        portals: getApiCallsConfig().portalIds.join(','),
+      }
+    : {};

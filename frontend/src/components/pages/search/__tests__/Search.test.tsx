@@ -4,10 +4,10 @@ import nock from 'nock';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { render, waitForElementToBeRemoved } from 'services/testing/reactTestingLibraryWrapper';
-import { getApiUrl } from 'services/envLoader';
 import { mockResultsRoute, mockTouristicContentResultsRoute } from 'modules/results/mocks';
 import { mockMapResultsRoute } from 'modules/mapResults/mocks';
 
+import { getApiCallsConfig } from 'modules/utils/api.config';
 import { mockCityRoute } from 'modules/city/mocks';
 import { SearchUI } from '../Search';
 
@@ -34,7 +34,7 @@ const mockRoute = ({
   additionalQueries?: any;
   times?: number;
 }) => {
-  nock(getApiUrl())
+  nock(getApiCallsConfig().apiUrl)
     .get(route)
     .query({ language: 'fr', ...additionalQueries })
     .times(times)

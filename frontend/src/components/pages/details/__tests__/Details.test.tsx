@@ -2,7 +2,6 @@ import nock from 'nock';
 import { render } from 'services/testing/reactTestingLibraryWrapper';
 import 'isomorphic-fetch';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { getApiUrl } from 'services/envLoader';
 import { mockThemeResponse } from 'components/pages/search/mocks';
 import { mockPoiTypeRoute } from 'modules/poiType/mocks';
 import { mockPoiRoute } from 'modules/poi/mocks';
@@ -13,6 +12,7 @@ import { mockAccessibilitiesRoute } from 'modules/accessibility/mocks';
 import { mockSourceRoute } from 'modules/source/mocks';
 import { mockInformationDeskRoute } from 'modules/informationDesk/mocks';
 import { mockLabelRoute } from 'modules/label/mocks';
+import { getApiCallsConfig } from 'modules/utils/api.config';
 import {
   mockNetworksResponse,
   rawActivity,
@@ -29,7 +29,7 @@ describe('Details', () => {
   const queryClient = new QueryClient();
 
   it('AAU, I can see details of the trek', async () => {
-    nock(getApiUrl())
+    nock(getApiCallsConfig().apiUrl)
       .get(`/trek/${idToTest}/`)
       .query({
         language: 'fr',
@@ -39,35 +39,35 @@ describe('Details', () => {
       })
       .reply(200, rawDetailsMock);
 
-    nock(getApiUrl())
+    nock(getApiCallsConfig().apiUrl)
       .get(`/trek_practice/${rawDetailsMock.properties.practice}/`)
       .query({
         language: 'fr',
       })
       .reply(200, rawActivity);
 
-    nock(getApiUrl())
+    nock(getApiCallsConfig().apiUrl)
       .get(`/trek_difficulty/${rawDetailsMock.properties.difficulty as number}/`)
       .query({
         language: 'fr',
       })
       .reply(200, rawDifficulty);
 
-    nock(getApiUrl())
+    nock(getApiCallsConfig().apiUrl)
       .get(`/trek_route/${rawDetailsMock.properties.route}/`)
       .query({
         language: 'fr',
       })
       .reply(200, rawRoute);
 
-    nock(getApiUrl())
+    nock(getApiCallsConfig().apiUrl)
       .get(`/theme`)
       .query({
         language: 'fr',
       })
       .reply(200, mockThemeResponse);
 
-    nock(getApiUrl())
+    nock(getApiCallsConfig().apiUrl)
       .get(`/trek_network`)
       .query({
         language: 'fr',
