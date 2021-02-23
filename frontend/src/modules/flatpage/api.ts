@@ -1,3 +1,4 @@
+import { portalsFilter } from 'modules/utils/api.config';
 import { GeotrekAPI } from 'services/api/client';
 import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawFlatPage, RawFlatPageDetails } from './interface';
@@ -9,7 +10,7 @@ const fieldsParamFlatPages = {
 
 export const fetchFlatPages = (query: APIQuery): Promise<APIResponseForList<RawFlatPage>> =>
   GeotrekAPI.url(`/flatpage`)
-    .query({ ...query, fieldsParamFlatPages })
+    .query({ ...query, fieldsParamFlatPages, ...portalsFilter })
     .get()
     .json();
 

@@ -1,5 +1,5 @@
+import { getApiCallsConfig } from 'modules/utils/api.config';
 import nock from 'nock';
-import { getApiUrl } from 'services/envLoader';
 import { APIQuery } from 'services/api/interface';
 
 export const pushArgsFromLinkHref = <T extends string>(href: T): [T, T, { shallow: undefined }] => [
@@ -21,7 +21,7 @@ export const mockRoute = ({
   additionalQueries?: Partial<APIQuery>;
   times?: number;
 }): void => {
-  nock(getApiUrl())
+  nock(getApiCallsConfig().apiUrl)
     .get(route)
     .query({ language: 'fr', ...additionalQueries })
     .times(times)
