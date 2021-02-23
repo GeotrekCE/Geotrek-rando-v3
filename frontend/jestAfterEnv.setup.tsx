@@ -1,10 +1,6 @@
 import '@testing-library/jest-dom';
 import nock from 'nock';
 
-jest.mock('./src/services/envLoader.ts', () => ({
-  getApiUrl: () => 'https://geotrekdemo.ecrins-parcnational.fr/api/v2',
-}));
-
 jest.mock('./src/components/Map', () => ({
   SearchMapDynamicComponent: () => null,
   DetailsMapDynamicComponent: () => null,
@@ -14,6 +10,8 @@ jest.mock('./src/modules/utils/api.config.ts', () => ({
   getApiCallsConfig: () => ({
     searchResultsPageSize: 5,
     mapResultsPageSize: 5,
+    portalIds: [1],
+    apiUrl: 'https://geotrekdemo.ecrins-parcnational.fr/api/v2',
   }),
 }));
 

@@ -38,6 +38,8 @@ export interface RawPolygonGeometry {
 export interface APICallsConfig {
   searchResultsPageSize: number;
   mapResultsPageSize: number;
+  portalIds: number[];
+  apiUrl: string;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */
