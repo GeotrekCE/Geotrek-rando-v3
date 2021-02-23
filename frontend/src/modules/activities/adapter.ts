@@ -1,6 +1,6 @@
 import { PRACTICE_ID } from 'modules/filters/constant';
 import { FilterWithoutType } from 'modules/filters/interface';
-import { Activity, ActivityChoices, RawListActivity } from './interface';
+import { Activity, ActivityChoices, ActivityFilter, RawListActivity } from './interface';
 
 const isCompleteRawListActivity = (
   rawActivity: Partial<RawListActivity>,
@@ -36,3 +36,13 @@ export const adaptActivities = (rawActivities: Partial<RawListActivity>[]): Acti
     }),
     {} as ActivityChoices,
   );
+
+export const adaptActivitiesFilter = (
+  rawActivities: Partial<RawListActivity>[],
+): ActivityFilter[] =>
+  rawActivities.filter(isCompleteRawListActivity).map(({ name, pictogram, id }) => ({
+    name,
+    pictogram,
+    id: `${id}`,
+    type: 'PRACTICE',
+  }));

@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { ActivityChoices } from 'modules/activities/interface';
+import { ActivityFilter } from 'modules/activities/interface';
 import { useQuery } from 'react-query';
 
 import { useLanguageContext } from 'services/languageContext';
-import { getActivities } from '../../modules/activities/connector';
+import { getActivityBarContent } from 'modules/activities/connector';
 
 export const useActivitySearchFilter = () => {
   const { language } = useLanguageContext();
-  const { data: activities } = useQuery<ActivityChoices, Error>('homeActivities', () =>
-    getActivities(language),
+  const { data: activities } = useQuery<ActivityFilter[], Error>('homeActivities', () =>
+    getActivityBarContent(language),
   );
 
   const [expandedState, setExpandedState] = useState<'EXPANDED' | 'COLLAPSED'>('COLLAPSED');

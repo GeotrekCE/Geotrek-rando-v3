@@ -24,6 +24,8 @@ export const Text = styled.span`
   color: ${colorPalette.greyDarkColored};
 
   margin-top: ${getSpacing(2)};
+  text-overflow: ellipsis;
+  overflow: hidden;
 
   /*
     Will probably be replaced to be responsive

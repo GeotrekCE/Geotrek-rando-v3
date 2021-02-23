@@ -3,7 +3,8 @@ import { MoreHorizontal } from 'components/Icons/MoreHorizontal';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { routes } from 'services/routes';
-import { PRACTICE_ID } from 'modules/filters/constant';
+import { ActivityFilter } from 'modules/activities/interface';
+import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
 
 import { ActivityButton } from './ActivityButton';
 import { useActivitySearchFilter } from './useActivitySearchFilter';
@@ -19,13 +20,13 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
   const { activities, expandedState, toggleExpandedState } = useActivitySearchFilter();
 
   const collapseIsNeeded: boolean =
-    activities !== undefined && Object.keys(activities).length > MAX_VISIBLE_ACTIVITIES;
+    activities !== undefined && activities.length > MAX_VISIBLE_ACTIVITIES;
 
-  const visibleActivitiesIds: string[] | undefined =
+  const visibleActivities: ActivityFilter[] | undefined =
     activities !== undefined
       ? collapseIsNeeded && expandedState === 'COLLAPSED'
-        ? Object.keys(activities).slice(0, MAX_VISIBLE_ACTIVITIES)
-        : Object.keys(activities)
+        ? activities.slice(0, MAX_VISIBLE_ACTIVITIES)
+        : activities
       : undefined;
 
   return (
@@ -37,19 +38,18 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
               className ?? ''
             }`}
           >
-            {activities !== undefined && (
-              <div className="flex content-evenly flex-wrap flex-1">
-                {visibleActivitiesIds?.map(activityId => (
-                  <ActivityButton
-                    iconUrl={activities[activityId].pictogram}
-                    href={`${routes.SEARCH}?${PRACTICE_ID}=${activityId}`}
-                    key={activityId}
-                  >
-                    <span>{activities[activityId].name}</span>
-                  </ActivityButton>
-                ))}
-              </div>
-            )}
+            <div className="flex content-evenly flex-wrap flex-1">
+              {visibleActivities?.map(activity => (
+                <ActivityButton
+                  iconUrl={activity.pictogram}
+                  href={`${routes.SEARCH}?${
+                    activity.type === 'PRACTICE' ? PRACTICE_ID : CATEGORY_ID
+                  }=${activity.id}`}
+                  key={`${activity.type}-${activity.id}`}
+                  label={activity.name}
+                />
+              ))}
+            </div>
             {collapseIsNeeded && (
               <div className="self-end cursor-pointer" onClick={toggleExpandedState}>
                 <ControlCollapseButton expandedState={expandedState} />

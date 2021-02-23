@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 export const useActivitySearchFilterMobile = () => {
-  const [selectedActivity, updateSelectedActivity] = useState<string | null>(null);
+  const [selectedActivityId, updateSelectedActivityId] = useState<string | null>(null);
   return {
-    selectedActivity,
-    updateSelectedActivity,
+    selectedActivityId,
+    updateSelectedActivityId,
   };
 };

@@ -20,3 +20,8 @@ export interface Activity {
 export interface ActivityChoices {
   [value: string]: Activity;
 }
+
+export interface ActivityFilter extends Activity {
+  id: string;
+  type: 'PRACTICE' | 'CATEGORY';
+}
