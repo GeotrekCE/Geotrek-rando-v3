@@ -3,5 +3,9 @@
 import { APICallsConfig } from 'modules/interface';
 
 import apiCallsConfig from '../../../config/apiCalls.json';
+import structureApiCallsConfig from '../../../customization/config/apiCalls.json';
 
-export const getApiCallsConfig = (): APICallsConfig => apiCallsConfig;
+export const getApiCallsConfig = (): APICallsConfig => ({
+  ...apiCallsConfig,
+  ...structureApiCallsConfig,
+});

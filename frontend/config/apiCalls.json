@@ -1,4 +1,6 @@
 {
   "searchResultsPageSize": 10,
-  "mapResultsPageSize": 250
+  "mapResultsPageSize": 250,
+  "portalIds": [1],
+  "apiUrl": "https://geotrekdemo.ecrins-parcnational.fr/api/v2"
 }
