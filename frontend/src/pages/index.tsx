@@ -1,5 +1,5 @@
 import { Home } from 'components/pages/home';
-import { getActivities } from 'modules/activities/connector';
+import { getActivityBarContent } from 'modules/activities/connector';
 import { getActivitySuggestions } from 'modules/activitySuggestions/connector';
 import { getHomePageConfig } from 'modules/home/utils';
 
@@ -20,7 +20,7 @@ export const getServerSideProps = async () => {
     getActivitySuggestions(activitySuggestionIds),
   );
 
-  await queryClient.prefetchQuery('homeActivities', () => getActivities());
+  await queryClient.prefetchQuery('homeActivities', () => getActivityBarContent());
 
   return {
     props: {

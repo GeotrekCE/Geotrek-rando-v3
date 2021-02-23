@@ -1,3 +1,4 @@
+import { ActivityChoices, ActivityFilter } from 'modules/activities/interface';
 import { CATEGORY_ID } from 'modules/filters/constant';
 import { FilterWithoutType } from 'modules/filters/interface';
 import {
@@ -14,6 +15,25 @@ export const adaptTouristicContentCategory = (
   pictogramUri: rawCat.pictogram,
   types: rawCat.types,
 });
+
+const isCompleteRawListTouristicContentCategory = (
+  rawTouristicContentCategory: Partial<RawTouristicContentCategory>,
+): rawTouristicContentCategory is RawTouristicContentCategory =>
+  rawTouristicContentCategory.label !== undefined &&
+  rawTouristicContentCategory.pictogram !== undefined &&
+  rawTouristicContentCategory.id !== undefined;
+
+export const adaptTouristicContentCategoryList = (
+  rawToutisticContentCategories: Partial<RawTouristicContentCategory>[],
+): ActivityFilter[] =>
+  rawToutisticContentCategories
+    .filter(isCompleteRawListTouristicContentCategory)
+    .map(({ label, pictogram, id }) => ({
+      name: label,
+      pictogram,
+      id: `${id}`,
+      type: 'CATEGORY',
+    }));
 
 export const adaptTouristicContentCategories = (
   rawCats: RawTouristicContentCategory[],

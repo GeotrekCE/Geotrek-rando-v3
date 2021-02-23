@@ -4,39 +4,41 @@ import { FormattedMessage } from 'react-intl';
 
 import { colorPalette, getSpacing, shadow } from 'stylesheet';
 import { routes } from 'services/routes';
-import { PRACTICE_ID } from 'modules/filters/constant';
+import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
 
-import { ActivityChoices } from 'modules/activities/interface';
+import { ActivityFilter } from 'modules/activities/interface';
 import { Arrow } from 'components/Icons/Arrow';
 import { Link } from 'components/Link';
 
 import { useActivitySearchFilterMobile } from './useActivitySearchFilterMobile';
 
-const adaptActivityForSelect = (activities: ActivityChoices) => (
-  activityId: string,
-): { value: string; label: string } => ({
-  value: activityId,
-  label: activities[activityId].name,
-});
-
 export const ActivitySearchFilterMobile: React.FC<{
   className?: string;
-  activities: ActivityChoices;
+  activities: ActivityFilter[];
 }> = ({ className, activities }) => {
-  const { selectedActivity, updateSelectedActivity } = useActivitySearchFilterMobile();
+  const { selectedActivityId, updateSelectedActivityId } = useActivitySearchFilterMobile();
+
+  const selectedActivity = activities.find(({ id }) => id === selectedActivityId);
 
   return (
     <div className={`${className ?? ''} flex space-x-4 items-center`}>
       <Select
         className="flex-1"
-        options={Object.keys(activities).map(adaptActivityForSelect(activities))}
+        options={activities.map(({ id, name }) => ({
+          value: id,
+          label: name,
+        }))}
         styles={selectStyles}
         isSearchable={false}
         placeholder={<FormattedMessage id="home.selectPlaceholder" />}
-        onChange={activity => updateSelectedActivity(activity?.value ?? null)}
+        onChange={activity => updateSelectedActivityId(activity?.value ?? null)}
       />
-      {selectedActivity !== null ? (
-        <Link href={`${routes.SEARCH}?${PRACTICE_ID}=${selectedActivity}`}>
+      {selectedActivityId !== null && selectedActivity !== undefined ? (
+        <Link
+          href={`${routes.SEARCH}?${
+            selectedActivity.type === 'PRACTICE' ? PRACTICE_ID : CATEGORY_ID
+          }=${selectedActivityId}`}
+        >
           <ValidateButton />
         </Link>
       ) : (
