@@ -18,14 +18,16 @@ export const ActivitySearchFilterMobile: React.FC<{
 }> = ({ className, activities }) => {
   const { selectedActivityId, updateSelectedActivityId } = useActivitySearchFilterMobile();
 
-  const selectedActivity = activities.find(({ id }) => id === selectedActivityId);
+  const selectedActivity = activities.find(
+    ({ id, type }) => `${type}-${id}` === selectedActivityId,
+  );
 
   return (
     <div className={`${className ?? ''} flex space-x-4 items-center`}>
       <Select
         className="flex-1"
-        options={activities.map(({ id, name }) => ({
-          value: id,
+        options={activities.map(({ id, name, type }) => ({
+          value: `${type}-${id}`,
           label: name,
         }))}
         styles={selectStyles}

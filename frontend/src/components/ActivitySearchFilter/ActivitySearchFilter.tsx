@@ -57,7 +57,7 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
             )}
           </div>
           <div className="block desktop:hidden">
-            <ActivitySearchFilterMobile activities={activities ?? {}} />
+            <ActivitySearchFilterMobile activities={activities ?? []} />
           </div>
         </>
       )}
