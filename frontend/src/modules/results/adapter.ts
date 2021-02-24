@@ -42,7 +42,7 @@ export const adaptTrekResultList = ({
 }): TrekResult[] =>
   resultsList.filter(isRawTrekResultComplete).map(rawResult => ({
     type: 'TREK',
-    id: rawResult.id,
+    id: `${rawResult.id}`,
     activityIcon: 'TODO',
     place: rawResult.cities.length > 0 ? cityDictionnary[rawResult.cities[0]].name : null,
     title: rawResult.name,

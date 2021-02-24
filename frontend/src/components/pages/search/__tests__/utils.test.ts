@@ -65,7 +65,7 @@ const MockSelectedOptions = [
 ];
 
 const mockTrekResult: TrekResult = {
-  id: 2,
+  id: '2',
   type: 'TREK',
   activityIcon: 'TODO',
   place: 'Molines-en-Champsaur',

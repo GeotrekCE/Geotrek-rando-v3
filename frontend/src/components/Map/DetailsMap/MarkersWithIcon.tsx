@@ -1,10 +1,9 @@
 import React from 'react';
-import { Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { TrekMarker } from '../Markers/TrekMarker';
+import { HoverableMarker } from '../components/HoverableMarker';
 
 export type PropsType = {
-  points?: { location: { x: number; y: number }; pictogramUri: string; name: string }[];
+  points?: { location: { x: number; y: number }; pictogramUri: string; name: string; id: string }[];
 };
 
 export const MarkersWithIcon: React.FC<PropsType> = props => {
@@ -14,10 +13,11 @@ export const MarkersWithIcon: React.FC<PropsType> = props => {
         props.points.map(
           point =>
             point.location !== null && (
-              <Marker
-                key={point.name}
+              <HoverableMarker
+                id={point.id}
                 position={[point.location.y, point.location.x]}
-                icon={TrekMarker(point.pictogramUri)}
+                pictogramUri={point.pictogramUri}
+                type="TREK"
               />
             ),
         )}

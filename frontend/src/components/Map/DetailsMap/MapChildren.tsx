@@ -14,6 +14,7 @@ export interface PointWithIcon {
   location: { x: number; y: number };
   pictogramUri: string;
   name: string;
+  id: string;
 }
 
 type Props = {

@@ -25,6 +25,7 @@ export interface TouristicContentGeometry {
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
   pictogramUri: string;
   name: string;
+  id: string;
 }
 
 export type PropsType = {
