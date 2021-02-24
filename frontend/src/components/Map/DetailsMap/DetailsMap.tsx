@@ -4,8 +4,7 @@ import 'leaflet/dist/leaflet.css';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 
-import { DetailsSections } from 'components/pages/details/useDetails';
-
+import { useVisibleSectionContext } from 'components/pages/details/VisibleSectionContext';
 import {
   Coordinate2D,
   LineStringGeometry,
@@ -52,7 +51,6 @@ export type PropsType = {
   departureLocation?: Coordinate2D;
   parkingLocation?: Coordinate2D;
   shouldUsePopups?: boolean;
-  elementOnScreen: DetailsSections | null;
   bbox: { corner1: Coordinate2D; corner2: Coordinate2D };
   trekChildrenGeometry?: TrekChildGeometry[];
 };
@@ -76,6 +74,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
     toggleTouristicContentVisibility,
   } = useDetailsMap();
 
+  const { visibleSection } = useVisibleSectionContext();
+
   return (
     <>
       <MapContainer
@@ -96,20 +96,19 @@ export const DetailsMap: React.FC<PropsType> = props => {
           trekGeometry={props.trekGeometry}
         />
 
-        {(props.elementOnScreen === 'children' || trekChildrenMobileVisibility === 'DISPLAYED') && (
+        {(visibleSection === 'children' || trekChildrenMobileVisibility === 'DISPLAYED') && (
           <TrekChildren trekChildrenGeometry={props.trekChildrenGeometry} />
         )}
 
-        {(props.elementOnScreen === 'description' ||
-          referencePointsMobileVisibility === 'DISPLAYED') && (
+        {(visibleSection === 'description' || referencePointsMobileVisibility === 'DISPLAYED') && (
           <PointsReference pointsReference={props.pointsReference ?? undefined} />
         )}
 
-        {(props.elementOnScreen === 'poi' || poiMobileVisibility === 'DISPLAYED') && (
+        {(visibleSection === 'poi' || poiMobileVisibility === 'DISPLAYED') && (
           <MarkersWithIcon points={props.poiPoints} />
         )}
 
-        {(props.elementOnScreen === 'touristicContent' ||
+        {(visibleSection === 'touristicContent' ||
           touristicContentMobileVisibility === 'DISPLAYED') && (
           <TouristicContent contents={props.touristicContentPoints} />
         )}

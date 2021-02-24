@@ -7,7 +7,6 @@ import { useDetailsHeader } from './useDetailsHeader';
 interface DetailsHeaderProps {
   sectionsReferences: MutableRefObject<DetailsHeaderSection>;
   downloadUrl?: string;
-  currentSectionId: string | null;
 }
 
 const scrollTo = (element: HTMLDivElement | undefined | null) => {
@@ -26,9 +25,8 @@ const scrollTo = (element: HTMLDivElement | undefined | null) => {
 export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
   sectionsReferences,
   downloadUrl,
-  currentSectionId,
 }) => {
-  const { detailsHeaderSection } = useDetailsHeader(sectionsReferences);
+  const { detailsHeaderSection, currentSectionId } = useDetailsHeader(sectionsReferences);
   return (
     <div
       className="hidden desktop:flex justify-between

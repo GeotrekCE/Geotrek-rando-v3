@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { sizes } from 'stylesheet';
 import { DetailsSections, DetailsSectionsPosition } from '../useDetails';
+import { useVisibleSectionContext } from '../VisibleSectionContext';
 
 /**
  * Returns the id of the section currently on screen
@@ -17,7 +18,7 @@ export const useOnScreenSection = ({
    */
   scrollOffset: number;
 }): { visibleSection: DetailsSections | null } => {
-  const [visibleSection, setVisibleSection] = useState<DetailsSections | null>(null);
+  const { visibleSection, setVisibleSection } = useVisibleSectionContext();
 
   /**
    * Number between 0 and 1, indicates which portion of the screen should
