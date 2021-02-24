@@ -29,6 +29,7 @@ import { ResultCardCarousel } from './ResultCardCarousel';
 
 interface BaseProps {
   id: string;
+  hoverId: string;
   place: string | null;
   title: string;
   tags: string[];
@@ -58,12 +59,22 @@ const isTrek = (content: TrekProps | TouristicContentProps): content is TrekProp
   content.type === 'TREK';
 
 export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => {
-  const { id, place, title, tags, thumbnailUris, badgeIconUri, className, redirectionUrl } = props;
+  const {
+    id,
+    hoverId,
+    place,
+    title,
+    tags,
+    thumbnailUris,
+    badgeIconUri,
+    className,
+    redirectionUrl,
+  } = props;
   const { setHoveredCardId } = useContext(ListAndMapContext);
   return (
     <Container
       onMouseEnter={() => {
-        setHoveredCardId(id);
+        setHoveredCardId(hoverId);
       }}
       onMouseLeave={() => {
         setHoveredCardId(null);

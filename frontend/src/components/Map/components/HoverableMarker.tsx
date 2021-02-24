@@ -1,5 +1,5 @@
 import { ListAndMapContext } from 'modules/map/ListAndMapContext';
-import React, { useContext, useMemo } from 'react';
+import React, { ReactNode, useContext, useMemo } from 'react';
 import { Marker } from 'react-leaflet';
 import { TrekChildMarker } from '../Markers/TrekChildMarker';
 import { TrekMarker } from '../Markers/TrekMarker';
@@ -9,6 +9,7 @@ const ZOOM_RATIO = 1.5;
 interface BaseProps {
   id: string;
   position: [number, number];
+  children?: ReactNode;
 }
 
 interface TrekProps extends BaseProps {
@@ -37,7 +38,9 @@ export const HoverableMarker = (props: TrekProps | TrekChildProps) => {
             ? TrekChildMarker(props.rank, isCorrespondingCardHovered ? ZOOM_RATIO : 1)
             : TrekMarker(props.pictogramUri, isCorrespondingCardHovered ? ZOOM_RATIO : 1)
         }
-      />
+      >
+        {props.children}
+      </Marker>
     ),
     [props.id, isCorrespondingCardHovered],
   );

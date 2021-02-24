@@ -19,6 +19,7 @@ import { useSelectedMarker } from '../hooks/useSelectedMarker';
 import { DecoratedPolyline } from '../components/DecoratedPolyline';
 import { getMapConfig } from '../config';
 import { Credits } from '../components/Credits';
+import { HoverableMarker } from '../components/HoverableMarker';
 
 export type PropsType = {
   points?: MapResults;
@@ -43,12 +44,7 @@ const SearchMap: React.FC<PropsType> = props => {
 
   const mapConfig = getMapConfig();
 
-  const {
-    isSelectedMarker,
-    setSelectedMarkerId,
-    resetSelectedMarker,
-    selectedMarkerId,
-  } = useSelectedMarker();
+  const { setSelectedMarkerId, resetSelectedMarker, selectedMarkerId } = useSelectedMarker();
 
   return (
     <>
@@ -66,14 +62,11 @@ const SearchMap: React.FC<PropsType> = props => {
             props.points.map(
               point =>
                 point.location !== null && (
-                  <Marker
-                    key={point.id}
+                  <HoverableMarker
+                    id={`SEARCH-${point.type}-${point.id}`}
+                    type="TREK"
                     position={[point.location.y, point.location.x]}
-                    icon={
-                      isSelectedMarker(point.id)
-                        ? TrekMarker(point.practice.pictogram)
-                        : TrekMarker(point.practice.pictogram)
-                    }
+                    pictogramUri={point.practice.pictogram}
                   >
                     {(props.shouldUsePopups ?? false) && (
                       <Popup
@@ -83,7 +76,7 @@ const SearchMap: React.FC<PropsType> = props => {
                         type={point.type}
                       />
                     )}
-                  </Marker>
+                  </HoverableMarker>
                 ),
             )}
           {props.arrivalLocation !== undefined && (
