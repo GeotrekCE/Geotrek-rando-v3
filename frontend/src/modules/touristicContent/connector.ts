@@ -78,11 +78,11 @@ export const getTouristicContentDetails = async (
 
 export const getTouristicContentPopupResult = async (
   id: string,
-  language?: string,
+  language: string,
 ): Promise<PopupResult> => {
   const [rawTouristicContentPopupResult, cityDictionnary] = await Promise.all([
     fetchTouristicContentPopupResult({ language }, id),
-    getCities(),
+    getCities(language),
   ]);
 
   return adaptTouristicContentPopupResults(rawTouristicContentPopupResult, cityDictionnary);

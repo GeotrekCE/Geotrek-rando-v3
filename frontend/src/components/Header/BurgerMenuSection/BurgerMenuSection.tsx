@@ -21,7 +21,7 @@ export interface Props {
 
 const isItemString = (item: MenuItem | string): item is string => typeof item === 'string';
 
-export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick }) => {
+export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick, languages }) => {
   const router = useRouter();
   const classNameTitle = 'flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer';
   const classNameBorder = 'border-b pb-2 border-solid border-greySoft';
@@ -45,7 +45,7 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick }) =>
         <AccordionItemPanel className={openState === 'OPENED' ? classNameBorder : ''}>
           {items?.map((item, i) => (
             <p key={i} className="text-Mobile-C2 m-3">
-              <a href={item.url}>{item.title}</a>
+              {isItemString(item) ? <p>{item}</p> : <a href={item.url}>{item.title}</a>}
             </p>
           ))}
           {languages?.map(language => (

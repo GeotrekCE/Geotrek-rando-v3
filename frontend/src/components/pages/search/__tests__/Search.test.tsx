@@ -86,6 +86,7 @@ describe('Search page', () => {
     const page = render(
       <QueryClientProvider client={queryClient}>
         <SearchUI
+          language={'fr'}
           initialFiltersState={[
             {
               id: 'practices',
