@@ -9,6 +9,7 @@ interface DetailsCardSectionProps {
   detailsCards: DetailsCardProps[];
   title: string;
   generateUrlFunction?: (id: string | number, title: string) => string;
+  type: 'POI' | 'TOURISTIC_CONTENT';
 }
 
 export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
@@ -16,6 +17,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
   title,
   displayBadge = false,
   generateUrlFunction,
+  type,
 }) => {
   return (
     <div className="mt-6 desktop:mt-12">
@@ -35,7 +37,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
         {detailsCards.map((card, i) => (
           <DetailsCard
             key={i}
-            id={card.id}
+            id={`DETAILS-${type}-${card.id}`}
             name={card.name}
             description={card.description}
             thumbnailUris={card.thumbnailUris}

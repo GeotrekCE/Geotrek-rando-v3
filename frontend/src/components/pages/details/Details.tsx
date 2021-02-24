@@ -150,7 +150,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         <DetailsChildrenSection
                           trekChildren={details.children.map(child => ({
                             ...child,
-                            id: `details-trekchildren-${child.id}`,
+                            id: `${child.id}`,
                           }))}
                           trekId={id}
                           title={intl.formatMessage(
@@ -169,12 +169,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             { count: details.pois.length },
                           )}
                           detailsCards={details.pois.map(poi => ({
-                            id: `details-poi-${poi.id}`,
+                            id: `${poi.id}`,
                             name: poi.name ?? '',
                             description: poi.description,
                             thumbnailUris: poi.thumbnailUris,
                             iconUri: poi.type.pictogramUri,
                           }))}
+                          type="POI"
                         />
                       </div>
                     )}
@@ -320,7 +321,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           displayBadge
                           generateUrlFunction={generateTouristicContentUrl}
                           detailsCards={details.touristicContents.map(touristicContent => ({
-                            id: `details-touristicContent-${touristicContent.id}`,
+                            id: `${touristicContent.id}`,
                             name: touristicContent.name ?? '',
                             place: touristicContent.category.label,
                             description: touristicContent.descriptionTeaser,
@@ -328,6 +329,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             iconUri: touristicContent.category.pictogramUri,
                             logoUri: touristicContent.logoUri,
                           }))}
+                          type="TOURISTIC_CONTENT"
                         />
                       </div>
                     )}
@@ -347,7 +349,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       location: { x: poi.geometry.x, y: poi.geometry.y },
                       pictogramUri: poi.type.pictogramUri,
                       name: poi.name,
-                      id: `details-poi-${poi.id}`,
+                      id: `DETAILS-POI-${poi.id}`,
                     }))}
                     pointsReference={details.pointsReference}
                     bbox={details.bbox}
@@ -356,7 +358,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         if (currentChild.geometry) {
                           children.push({
                             ...currentChild.geometry,
-                            id: `details-trekchildren-${currentChild.geometry.id}`,
+                            id: `DETAILS-TREK_CHILDREN-${currentChild.geometry.id}`,
                           });
                         }
                         return children;
@@ -371,7 +373,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         geometry: touristicContent.geometry!,
                         pictogramUri: touristicContent.category.pictogramUri,
                         name: touristicContent.name,
-                        id: `details-touristicContent-${touristicContent.id}`,
+                        id: `DETAILS-TOURISTIC_CONTENT-${touristicContent.id}`,
                       }))}
                   />
                 </div>
@@ -394,7 +396,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   location: { x: poi.geometry.x, y: poi.geometry.y },
                   pictogramUri: poi.type.pictogramUri,
                   name: poi.name,
-                  id: `details-poi-${poi.id}`,
+                  id: `${poi.id}`,
                 }))}
                 pointsReference={details.pointsReference}
                 bbox={details.bbox}
@@ -415,7 +417,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     geometry: touristicContent.geometry!,
                     pictogramUri: touristicContent.category.pictogramUri,
                     name: touristicContent.name,
-                    id: `details-touristicContent-${touristicContent.id}`,
+                    id: `${touristicContent.id}`,
                   }))}
                 hideMap={hideMobileMap}
               />
