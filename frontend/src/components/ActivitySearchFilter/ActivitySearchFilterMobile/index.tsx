@@ -39,7 +39,7 @@ export const ActivitySearchFilterMobile: React.FC<{
         <Link
           href={`${routes.SEARCH}?${
             selectedActivity.type === 'PRACTICE' ? PRACTICE_ID : CATEGORY_ID
-          }=${selectedActivityId}`}
+          }=${selectedActivityId.split('-')[1]}`}
         >
           <ValidateButton />
         </Link>
