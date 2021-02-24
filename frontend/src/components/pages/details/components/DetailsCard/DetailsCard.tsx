@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import parse from 'html-react-parser';
 import { HtmlText } from 'components/pages/details/utils';
@@ -13,10 +14,11 @@ import {
   MAX_WIDTH_MOBILE,
   shadow,
 } from 'stylesheet';
+import { ListAndMapContext } from 'modules/map/ListAndMapContext';
 import { useDetailsCard } from './useDetailsCard';
 import { DetailsCardCarousel } from '../DetailsCardCarousel';
 export interface DetailsCardProps {
-  id?: string;
+  id: string;
   name: string;
   place?: string;
   description?: string;
@@ -28,6 +30,7 @@ export interface DetailsCardProps {
 }
 
 export const DetailsCard: React.FC<DetailsCardProps> = ({
+  id,
   name,
   description,
   thumbnailUris,
@@ -46,8 +49,20 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
     ) : (
       <HtmlText className="text-greyDarkColored">{parse(description ?? '')}</HtmlText>
     );
+
+  const { setHoveredCardId } = useContext(ListAndMapContext);
+
   return (
-    <DetailsCardContainer height={heightState} className={className}>
+    <DetailsCardContainer
+      height={heightState}
+      className={className}
+      onMouseEnter={() => {
+        setHoveredCardId(id);
+      }}
+      onMouseLeave={() => {
+        setHoveredCardId(null);
+      }}
+    >
       {logoUri !== undefined && logoUri !== null && logoUri.length > 0 && (
         <img
           className="hidden desktop:absolute h-12 object-cover object-center right-6 top-6"

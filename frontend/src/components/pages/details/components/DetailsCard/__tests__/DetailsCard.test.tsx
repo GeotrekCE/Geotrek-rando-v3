@@ -4,6 +4,7 @@ describe('DetailsCard', () => {
   it('should display a well parsed description Element', () => {
     const propsCard = {
       name: 'Église St Louis',
+      id: '2',
       thumbnailUris: ['https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg'],
       iconUri: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg',
       description:

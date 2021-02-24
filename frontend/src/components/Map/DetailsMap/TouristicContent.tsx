@@ -1,9 +1,10 @@
 import React from 'react';
-import { Marker, Polygon, Polyline } from 'react-leaflet';
+import { Polygon, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { colorPalette } from 'stylesheet';
-import { TrekMarker } from '../Markers/TrekMarker';
 import { TouristicContentGeometry } from './DetailsMap';
+import { HoverableMarker } from '../components/HoverableMarker';
+import { HoverablePolyline } from '../components/HoverablePolyline';
+import { HoverablePolygon } from '../components/HoverablePolygon';
 
 export type PropsType = {
   contents?: TouristicContentGeometry[];
@@ -13,34 +14,33 @@ export const TouristicContent: React.FC<PropsType> = ({ contents }) => {
   return (
     <>
       {contents !== undefined &&
-        contents.map(({ name, geometry, pictogramUri }) => {
+        contents.map(({ id, name, geometry, pictogramUri }) => {
           switch (geometry.type) {
             case 'Point':
               return (
-                <Marker
-                  key={name}
+                <HoverableMarker
+                  id={id}
                   position={[geometry.coordinates.y, geometry.coordinates.x]}
-                  icon={TrekMarker(pictogramUri)}
+                  pictogramUri={pictogramUri}
+                  type="TREK"
                 />
               );
 
             case 'LineString':
               return (
-                <Polyline
-                  key={name}
+                <HoverablePolyline
+                  id={id}
                   positions={geometry.coordinates.map(point => [point.y, point.x])}
-                  color={colorPalette.map.touristicContentLines}
                 />
               );
 
             case 'Polygon':
               return (
-                <Polygon
-                  key={name}
+                <HoverablePolygon
+                  id={id}
                   positions={geometry.coordinates.map(line =>
                     line.map<[number, number]>(point => [point.y, point.x]),
                   )}
-                  color={colorPalette.map.touristicContentLines}
                 />
               );
           }

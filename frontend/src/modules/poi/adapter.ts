@@ -10,6 +10,7 @@ export const adaptPoi = ({
   poiTypes: PoiTypeDictionnary;
 }): Poi[] =>
   rawPoisResults.map(rawPoi => ({
+    id: `${rawPoi.id}`,
     name: rawPoi.name,
     description: rawPoi.description,
     thumbnailUris: getThumbnails(rawPoi.attachments),

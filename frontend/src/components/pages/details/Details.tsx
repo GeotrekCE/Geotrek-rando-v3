@@ -148,7 +148,10 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     {details.children.length > 0 && (
                       <div ref={setChildrenRef}>
                         <DetailsChildrenSection
-                          trekChildren={details.children}
+                          trekChildren={details.children.map(child => ({
+                            ...child,
+                            id: `details-trekchildren-${child.id}`,
+                          }))}
                           trekId={id}
                           title={intl.formatMessage(
                             { id: 'details.childrenFullTitle' },
@@ -166,6 +169,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             { count: details.pois.length },
                           )}
                           detailsCards={details.pois.map(poi => ({
+                            id: `details-poi-${poi.id}`,
                             name: poi.name ?? '',
                             description: poi.description,
                             thumbnailUris: poi.thumbnailUris,
@@ -316,7 +320,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           displayBadge
                           generateUrlFunction={generateTouristicContentUrl}
                           detailsCards={details.touristicContents.map(touristicContent => ({
-                            id: touristicContent.id,
+                            id: `details-touristicContent-${touristicContent.id}`,
                             name: touristicContent.name ?? '',
                             place: touristicContent.category.label,
                             description: touristicContent.descriptionTeaser,
@@ -343,13 +347,17 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       location: { x: poi.geometry.x, y: poi.geometry.y },
                       pictogramUri: poi.type.pictogramUri,
                       name: poi.name,
+                      id: `details-poi-${poi.id}`,
                     }))}
                     pointsReference={details.pointsReference}
                     bbox={details.bbox}
                     trekChildrenGeometry={details.children.reduce<TrekChildGeometry[]>(
                       (children, currentChild) => {
                         if (currentChild.geometry) {
-                          children.push(currentChild.geometry);
+                          children.push({
+                            ...currentChild.geometry,
+                            id: `details-trekchildren-${currentChild.geometry.id}`,
+                          });
                         }
                         return children;
                       },
@@ -363,6 +371,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         geometry: touristicContent.geometry!,
                         pictogramUri: touristicContent.category.pictogramUri,
                         name: touristicContent.name,
+                        id: `details-touristicContent-${touristicContent.id}`,
                       }))}
                   />
                 </div>
@@ -385,6 +394,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   location: { x: poi.geometry.x, y: poi.geometry.y },
                   pictogramUri: poi.type.pictogramUri,
                   name: poi.name,
+                  id: `details-poi-${poi.id}`,
                 }))}
                 pointsReference={details.pointsReference}
                 bbox={details.bbox}
@@ -405,6 +415,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     geometry: touristicContent.geometry!,
                     pictogramUri: touristicContent.category.pictogramUri,
                     name: touristicContent.name,
+                    id: `details-touristicContent-${touristicContent.id}`,
                   }))}
                 hideMap={hideMobileMap}
               />

@@ -13,7 +13,7 @@ export interface SearchResults {
 
 export interface TrekResult {
   type: 'TREK';
-  id: number;
+  id: string;
   activityIcon: string; // TODO (call API supplémentaire surement)
   place: string | null;
   title: string;

@@ -11,6 +11,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import '../public/style.css';
 
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { ListAndMapProvider } from 'modules/map/ListAndMapContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const queryClient = new QueryClient();
@@ -46,7 +47,9 @@ class MyApp extends App<AppProps> {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <Root hasError={hasError} errorEventId={errorEventId}>
-            <Component {...pageProps} />
+            <ListAndMapProvider>
+              <Component {...pageProps} />
+            </ListAndMapProvider>
           </Root>
           <ReactQueryDevtools initialIsOpen={false} />
         </Hydrate>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 
@@ -22,6 +22,7 @@ import { TouristicContentDetailsType } from 'modules/touristicContent/interface'
 import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
+import { ListAndMapContext } from 'modules/map/ListAndMapContext';
 
 import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
 import { ResultCardCarousel } from './ResultCardCarousel';
@@ -58,8 +59,17 @@ const isTrek = (content: TrekProps | TouristicContentProps): content is TrekProp
 
 export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => {
   const { id, place, title, tags, thumbnailUris, badgeIconUri, className, redirectionUrl } = props;
+  const { setHoveredCardId } = useContext(ListAndMapContext);
   return (
-    <Container className={className}>
+    <Container
+      onMouseEnter={() => {
+        setHoveredCardId(id);
+      }}
+      onMouseLeave={() => {
+        setHoveredCardId(null);
+      }}
+      className={className}
+    >
       {thumbnailUris.length > 1 ? (
         <ResultCardCarousel thumbnailUris={thumbnailUris} iconUri={badgeIconUri} />
       ) : (

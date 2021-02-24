@@ -2,6 +2,7 @@ import { Coordinate3D, RawAttachment, RawPointGeometry3D } from 'modules/interfa
 import { PoiType } from 'modules/poiType/interface';
 
 export interface RawPoi {
+  id: number;
   name: string;
   description: string;
   type: number;
@@ -11,6 +12,7 @@ export interface RawPoi {
 }
 
 export interface Poi {
+  id: string;
   name: string;
   description?: string;
   thumbnailUris: string[];
