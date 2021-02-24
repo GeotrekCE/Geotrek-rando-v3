@@ -74,6 +74,18 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId }
       sizes.detailsHeaderDesktop,
   });
 
+  // const { setBounds } = useEventHandlerContext();
+
+  // const initialBounds: Bounds | undefined =
+  //   details === undefined
+  //     ? undefined
+  //     : [
+  //         [details.bbox.corner1.y, details.bbox.corner1.x],
+  //         [details.bbox.corner2.y, details.bbox.corner2.x],
+  //       ];
+
+  // setBounds(initialBounds);
+
   return useMemo(
     () => (
       <>

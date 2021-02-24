@@ -80,6 +80,8 @@ export interface DetailsInformation {
   networks: Network[];
 }
 
+export type Bounds = [[number, number], [number, number]];
+
 export interface Bbox {
   corner1: Coordinate2D;
   corner2: Coordinate2D;
