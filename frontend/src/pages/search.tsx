@@ -19,7 +19,6 @@ const sanitizeState = (unsafeState: DehydratedState): DehydratedState => {
 
 export const getServerSideProps = async (context: any) => {
   const queryClient = new QueryClient();
-  console.warn('la locale en ce moment', context.locale);
   const initialFiltersState = await getFiltersState(context.locale);
   const parsedInitialFiltersState = parseFilters(initialFiltersState);
   const touristicContentCategoryMapping = await getTouristicContentCategoryHashMap(context.locale);
