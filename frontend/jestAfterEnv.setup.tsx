@@ -54,6 +54,7 @@ jest.mock('./src/modules/header/utills.ts', () => ({
       supportedLanguages: ['fr'],
     },
   }),
+  getDefaultLanguage: () => 'fr',
 }));
 
 jest.mock('./src/modules/home/utils.ts', () => ({

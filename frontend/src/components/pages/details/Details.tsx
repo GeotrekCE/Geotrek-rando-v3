@@ -440,10 +440,10 @@ const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title: name }
   );
 };
 
-export const DetailsUI: React.FC<Props> = ({ detailsId, parentId }) => {
+export const DetailsUI: React.FC<Props> = ({ detailsId, parentId, language }) => {
   return (
     <VisibleSectionProvider>
-      <DetailsUIWithoutContext detailsId={detailsId} parentId={parentId} />
+      <DetailsUIWithoutContext detailsId={detailsId} parentId={parentId} language={language} />
     </VisibleSectionProvider>
   );
 };
