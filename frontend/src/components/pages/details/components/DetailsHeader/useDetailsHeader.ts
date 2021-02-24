@@ -1,10 +1,10 @@
-import { MutableRefObject, useEffect, useState } from 'react';
+import { MutableRefObject, useContext, useEffect, useState } from 'react';
 import { DetailsHeaderSection } from '../../useDetails';
-import { useVisibleSectionContext } from '../../VisibleSectionContext';
+import { VisibleSectionContext } from '../../VisibleSectionContext';
 
 export const useDetailsHeader = (sectionsReferences: MutableRefObject<DetailsHeaderSection>) => {
   const [detailsHeaderSection, setDetailsHeaderSection] = useState<DetailsHeaderSection>({});
-  const { visibleSection } = useVisibleSectionContext();
+  const { visibleSection } = useContext(VisibleSectionContext);
 
   useEffect(() => {
     if (sectionsReferences.current !== undefined && sectionsReferences.current !== null) {

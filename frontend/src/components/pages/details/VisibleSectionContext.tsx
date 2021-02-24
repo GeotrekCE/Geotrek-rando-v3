@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useState } from 'react';
 import { DetailsSections } from './useDetails';
 
 interface VisibleSection {
@@ -6,7 +6,7 @@ interface VisibleSection {
   setVisibleSection: (sectionId: DetailsSections | null) => void;
 }
 
-const VisibleSectionContext = createContext<VisibleSection>({
+export const VisibleSectionContext = createContext<VisibleSection>({
   visibleSection: null,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setVisibleSection: (_: DetailsSections | null) => {},
@@ -19,8 +19,4 @@ export const VisibleSectionProvider = ({ children }: { children: React.ReactNode
       {children}
     </VisibleSectionContext.Provider>
   );
-};
-
-export const useVisibleSectionContext = () => {
-  return useContext(VisibleSectionContext);
 };

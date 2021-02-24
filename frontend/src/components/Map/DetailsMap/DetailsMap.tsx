@@ -4,7 +4,6 @@ import 'leaflet/dist/leaflet.css';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 
-import { useVisibleSectionContext } from 'components/pages/details/VisibleSectionContext';
 import {
   Coordinate2D,
   LineStringGeometry,
@@ -14,22 +13,13 @@ import {
 import { TrekChildGeometry } from 'modules/details/interface';
 import { MapButton } from '../components/MapButton';
 
-import { MarkersWithIcon } from './MarkersWithIcon';
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
-import { PointsReference } from './PointsReference';
-import { TouristicContent } from './TouristicContent';
 import { getMapConfig } from '../config';
 import { Credits } from '../components/Credits';
 import { AltimetricProfile } from '../components/AltimetricProfile';
 import { ControlSection } from '../components/ControlSection';
 import { useDetailsMap } from './useDetailsMap';
-import { TrekChildren } from './TrekChildren';
-
-interface PointWithIcon {
-  location: { x: number; y: number };
-  pictogramUri: string;
-  name: string;
-}
+import { MapChildren, PointWithIcon } from './MapChildren';
 
 export interface TouristicContentGeometry {
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
@@ -74,19 +64,17 @@ export const DetailsMap: React.FC<PropsType> = props => {
     toggleTouristicContentVisibility,
   } = useDetailsMap();
 
-  const { visibleSection } = useVisibleSectionContext();
-
   return (
     <>
       <MapContainer
         scrollWheelZoom
         style={{ height: '100%', width: '100%' }}
         zoomControl={props.type === 'DESKTOP'}
+        attributionControl={false}
         bounds={[
           [props.bbox.corner1.y, props.bbox.corner1.x],
           [props.bbox.corner2.y, props.bbox.corner2.x],
         ]}
-        attributionControl={false}
       >
         <TileLayer url={mapConfig.mapLayerUrl} />
         <TrekMarkersAndCourse
@@ -95,23 +83,16 @@ export const DetailsMap: React.FC<PropsType> = props => {
           parkingLocation={props.parkingLocation}
           trekGeometry={props.trekGeometry}
         />
-
-        {(visibleSection === 'children' || trekChildrenMobileVisibility === 'DISPLAYED') && (
-          <TrekChildren trekChildrenGeometry={props.trekChildrenGeometry} />
-        )}
-
-        {(visibleSection === 'description' || referencePointsMobileVisibility === 'DISPLAYED') && (
-          <PointsReference pointsReference={props.pointsReference ?? undefined} />
-        )}
-
-        {(visibleSection === 'poi' || poiMobileVisibility === 'DISPLAYED') && (
-          <MarkersWithIcon points={props.poiPoints} />
-        )}
-
-        {(visibleSection === 'touristicContent' ||
-          touristicContentMobileVisibility === 'DISPLAYED') && (
-          <TouristicContent contents={props.touristicContentPoints} />
-        )}
+        <MapChildren
+          poiPoints={props.poiPoints}
+          touristicContentPoints={props.touristicContentPoints}
+          pointsReference={props.pointsReference}
+          trekChildrenGeometry={props.trekChildrenGeometry}
+          trekChildrenMobileVisibility={trekChildrenMobileVisibility}
+          poiMobileVisibility={poiMobileVisibility}
+          referencePointsMobileVisibility={referencePointsMobileVisibility}
+          touristicContentMobileVisibility={touristicContentMobileVisibility}
+        />
         {props.type === 'DESKTOP' && <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />}
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />

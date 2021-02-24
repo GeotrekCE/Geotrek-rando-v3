@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { sizes } from 'stylesheet';
 import { DetailsSections, DetailsSectionsPosition } from '../useDetails';
-import { useVisibleSectionContext } from '../VisibleSectionContext';
+import { VisibleSectionContext } from '../VisibleSectionContext';
 
 /**
  * Returns the id of the section currently on screen
@@ -18,7 +18,7 @@ export const useOnScreenSection = ({
    */
   scrollOffset: number;
 }): { visibleSection: DetailsSections | null } => {
-  const { visibleSection, setVisibleSection } = useVisibleSectionContext();
+  const { visibleSection, setVisibleSection } = useContext(VisibleSectionContext);
 
   /**
    * Number between 0 and 1, indicates which portion of the screen should
@@ -72,7 +72,7 @@ export const useOnScreenSection = ({
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [sectionsPositions]);
+  }, [sectionsPositions, visibleSection]);
 
   return { visibleSection };
 };
