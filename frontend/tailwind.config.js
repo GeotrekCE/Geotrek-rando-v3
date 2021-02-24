@@ -65,6 +65,7 @@ module.exports = {
     },
     zIndex: {
       content: 0,
+      leafletSvg: 200,
       loader: 300,
       floatingButton: 300,
       header: 500,
