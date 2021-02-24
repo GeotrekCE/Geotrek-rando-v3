@@ -161,6 +161,7 @@ export const SearchUI: React.FC<Props> = ({
                           type={searchResult.type}
                           key={searchResult.title}
                           id={`${searchResult.id}`}
+                          hoverId={`SEARCH-TREK-${searchResult.id}`}
                           place={searchResult.place}
                           title={searchResult.title}
                           tags={searchResult.tags}
@@ -177,7 +178,8 @@ export const SearchUI: React.FC<Props> = ({
                         <ResultCard
                           type={searchResult.type}
                           key={searchResult.name}
-                          id={searchResult.id}
+                          id={`${searchResult.id}`}
+                          hoverId={`SEARCH-TOURISTIC_CONTENT-${searchResult.id}`}
                           place={searchResult.place}
                           title={searchResult.name}
                           tags={searchResult.themes}

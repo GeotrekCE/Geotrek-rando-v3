@@ -9,6 +9,7 @@ describe('Results Card', () => {
   const resultCard = (
     <ResultCard
       id={id}
+      hoverId="test"
       type="TREK"
       place="Saint-Etienne-du-Valdonnez"
       title={title}
