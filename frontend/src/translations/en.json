@@ -1,6 +1,6 @@
 {
   "home": {
-    "welcome-text": "Welcome to Park des Écrins",
+    "welcome-text": "The digital and local eco-guide that presents my discoveries of the territory!",
     "use-a-link": "Or use a link",
     "get-started": "To get started, edit",
     "save-to-reload": "and save to reload.",
@@ -9,8 +9,8 @@
     "generate-module": "To add business logic, add a file in ./redux with your reducers/actions/sagas/selectors/constants/...",
     "click-me": "Click me",
     "readme": "Look at the README.md to discover the awesome npm commands we added",
-    "title": "Ecrins National Park",
-    "description": "Ecrin National Park official website",
+    "title": "Geotrek-rando",
+    "description": "Discover the hikes of the territory with Geotrek-rando",
     "selectPlaceholder": "Select an activity",
     "seeMore": "See more",
     "mailTo": "Send an email",
@@ -27,13 +27,7 @@
     "language": "Language",
     "seeMore": "Find out more",
     "favorites": "Favorites",
-    "goToSearch": "Search",
-    "nationalPark": "National Park",
-    "parcHouses": "Park Houses",
-    "usefulInformations": "Practical Informations",
-    "biodiv": "Biodidv'Ecrins",
-    "transportation": "Transportation",
-    "yourOpinion": "Your opinion"
+    "goToSearch": "Search"
   },
   "search": {
     "book": "Book",
