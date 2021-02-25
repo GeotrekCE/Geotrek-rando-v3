@@ -4,6 +4,8 @@ import '@raruto/leaflet-elevation/dist/leaflet-elevation.min.css';
 import L from 'leaflet';
 import { useMap } from 'react-leaflet';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
+import { getDefaultLanguage } from 'modules/header/utills';
 
 interface AltimetricProfileProps {
   trekGeoJSON: string;
@@ -12,6 +14,7 @@ interface AltimetricProfileProps {
 export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSON }) => {
   const map = useMap();
   const intl = useIntl();
+  const language = useRouter().locale ?? getDefaultLanguage();
 
   // @ts-ignore
   const elevationControl = L.control.elevation({
@@ -33,9 +36,9 @@ export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSO
   };
 
   // @ts-ignore
-  L.registerLocale('fr', mylocale);
+  L.registerLocale(language, mylocale);
   // @ts-ignore
-  L.setLocale('fr');
+  L.setLocale(language);
 
   elevationControl.load(trekGeoJSON);
 

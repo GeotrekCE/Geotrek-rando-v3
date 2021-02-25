@@ -36,7 +36,7 @@ export const useTrekResults = (filtersState: FilterState[], language: string) =>
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery<SearchResults, Error>(
-    ['trekResults', parsedFiltersState],
+    ['trekResults', parsedFiltersState, language],
     ({ pageParam = { treks: 1, touristicContents: 1 } }) =>
       getSearchResults(parsedFiltersState, pageParam, language),
     {

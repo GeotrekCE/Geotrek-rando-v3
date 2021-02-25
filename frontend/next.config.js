@@ -9,23 +9,7 @@ const yup = require('yup');
 const runtimeCachingStrategy = require('./cache');
 const headerConfig = require('./config/header.json');
 
-const schema = yup.object().shape({
-  REACT_APP_API_BASE_URL: yup.string().required(),
-});
-
 const env = dotenv.config().parsed;
-
-try {
-  schema.validateSync({ ...process.env, ...env }, { stripUnknown: true, abortEarly: false });
-} catch (error) {
-  const multipleErrors = error.inner.length > 1;
-  const concatenatedMissingEnvVars = error.inner.map(({ path }) => path).join(', ');
-  throw new Error(
-    `${concatenatedMissingEnvVars} ${multipleErrors ? 'are' : 'is'} missing please add ${
-      multipleErrors ? 'them' : 'it'
-    } to your env file`,
-  );
-}
 
 const plugins = [[withPWA], [withImages], [withSourceMaps()]];
 

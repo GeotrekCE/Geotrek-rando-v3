@@ -41,7 +41,7 @@ export const useDetails = (
 ) => {
   const id = isUrlString(detailsUrl) ? detailsUrl.split('-')[1] : '';
   const { data, refetch, isLoading, error } = useQuery<Details, Error>(
-    `details-${id}`,
+    `details-${id}-${language}`,
     () => getDetails(id, language),
     {
       enabled: isUrlString(detailsUrl),
@@ -50,7 +50,7 @@ export const useDetails = (
 
   const parentIdString = isUrlString(parentId) ? parentId : '';
   const { data: trekFamily } = useQuery<TrekChild[], Error>(
-    `trekFamily-${parentIdString}`,
+    `trekFamily-${parentIdString}-${language}`,
     () => getTrekChildren(isUrlString(parentId) ? parentId : '', language),
     {
       enabled: isUrlString(parentId),
