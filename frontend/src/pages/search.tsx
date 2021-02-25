@@ -28,8 +28,14 @@ export const getServerSideProps = async (context: any) => {
     touristicContentCategoryMapping,
   });
 
-  await queryClient.prefetchInfiniteQuery(['trekResults', parsedInitialFiltersState], () =>
-    getSearchResults(parsedInitialFiltersState, { treks: 1, touristicContents: 1 }, context.locale),
+  await queryClient.prefetchInfiniteQuery(
+    ['trekResults', parsedInitialFiltersState, context.locale],
+    () =>
+      getSearchResults(
+        parsedInitialFiltersState,
+        { treks: 1, touristicContents: 1 },
+        context.locale,
+      ),
   );
 
   const unsafeState = dehydrate(queryClient);

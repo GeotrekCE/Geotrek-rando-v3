@@ -15,7 +15,7 @@ export const useHome = () => {
   );
   const language = useRouter().locale ?? getDefaultLanguage();
   const { data: activitySuggestionDictionnary } = useQuery<ActivitySuggestionDictionnary, Error>(
-    `activitySuggestions-${activitySuggestionIds.join('-')}`,
+    `activitySuggestions-${activitySuggestionIds.join('-')}-${language}`,
     () => getActivitySuggestions(activitySuggestionIds, language),
   );
   const activitySuggestionCategories: DisplayableSuggestionCategory[] =

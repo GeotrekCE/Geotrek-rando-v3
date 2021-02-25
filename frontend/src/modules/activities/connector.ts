@@ -24,10 +24,10 @@ export const getActivity = async (id: number, language: string): Promise<Activit
   return adaptActivity(rawActivity);
 };
 
-export const getActivityBarContent = async (language?: string): Promise<ActivityFilter[]> => {
+export const getActivityBarContent = async (language: string): Promise<ActivityFilter[]> => {
   const [rawPractices, rawTouristicContentCategories] = await Promise.all([
-    fetchActivities({ language: language ?? 'fr' }),
-    fetchTouristicContentCategories({ language: language ?? 'fr' }),
+    fetchActivities({ language }),
+    fetchTouristicContentCategories({ language }),
   ]);
   return [
     ...adaptActivitiesFilter(rawPractices.results),

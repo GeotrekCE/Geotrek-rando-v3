@@ -16,8 +16,10 @@ export const getServerSideProps = async (context: {
 
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(`details-${id}`, () => getDetails(id, context.locale));
-  await queryClient.prefetchQuery(`trekFamily-${parentIdString}`, () =>
+  await queryClient.prefetchQuery(`details-${id}-${context.locale}`, () =>
+    getDetails(id, context.locale),
+  );
+  await queryClient.prefetchQuery(`trekFamily-${parentIdString}-${context.locale}`, () =>
     getTrekChildren(parentIdString, context.locale),
   );
 

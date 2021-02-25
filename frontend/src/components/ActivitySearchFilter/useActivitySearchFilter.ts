@@ -7,7 +7,7 @@ import { getActivityBarContent } from 'modules/activities/connector';
 
 export const useActivitySearchFilter = () => {
   const language = useRouter().locale ?? getDefaultLanguage();
-  const { data: activities } = useQuery<ActivityFilter[], Error>('homeActivities', () =>
+  const { data: activities } = useQuery<ActivityFilter[], Error>(`homeActivities-${language}`, () =>
     getActivityBarContent(language),
   );
 
