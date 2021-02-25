@@ -192,7 +192,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       titleId="details.altimetricProfile.title"
                       className={marginDetailsChild}
                     >
-                      <div id="altimetric-profile"></div>
+                      <div className="h-90" id="altimetric-profile"></div>
                     </DetailsSection>
 
                     {(details.labels.length > 0 ||
