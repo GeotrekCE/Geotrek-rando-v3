@@ -8,7 +8,7 @@ import { useQuery } from 'react-query';
 export const useHeader = () => {
   const config = getHeaderConfig();
   const language = useRouter().locale ?? getDefaultLanguage();
-  const { data } = useQuery<MenuItem[], Error>('header', () => getFlatPages(language));
+  const { data } = useQuery<MenuItem[], Error>(['header', language], () => getFlatPages(language));
   const intl = useIntl();
 
   return { config, intl, menuItems: data };

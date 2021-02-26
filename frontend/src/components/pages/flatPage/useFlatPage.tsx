@@ -9,7 +9,7 @@ export const useFlatPage = (flatPageUrl: string | string[] | undefined) => {
   const language = useRouter().locale ?? getDefaultLanguage();
   const id = isUrlString(flatPageUrl) ? flatPageUrl.split('-')[0] : '';
   const { data, refetch, isLoading, error } = useQuery<FlatPageDetails, Error>(
-    `flatPageDetails-${id}`,
+    ['flatPageDetails', id, language],
     () => getFlatPageDetails(id, language),
     {
       enabled: isUrlString(flatPageUrl),

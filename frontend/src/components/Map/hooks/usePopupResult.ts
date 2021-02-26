@@ -13,7 +13,7 @@ export const usePopupResult = (
 ) => {
   const language = useRouter().locale ?? getDefaultLanguage();
   const { data: trekPopupResult, isLoading } = useQuery<PopupResult, Error>(
-    ['popupResult', id],
+    ['popupResult', id, language],
     () =>
       type === 'TREK'
         ? getTrekPopupResult(id, language)
