@@ -30,7 +30,7 @@ module.exports = withPlugins(plugins, {
     return config;
   },
   pwa: {
-    dest: 'src/public',
+    dest: 'public',
     runtimeCaching: runtimeCachingStrategy,
   },
   /**
