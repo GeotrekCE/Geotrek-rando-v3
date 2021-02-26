@@ -40,6 +40,7 @@ export const useDetails = (
   language: string,
 ) => {
   const id = isUrlString(detailsUrl) ? detailsUrl.split('-')[0] : '';
+  const path = isUrlString(detailsUrl) ? decodeURI(detailsUrl) : '';
   const { data, refetch, isLoading, error } = useQuery<Details, Error>(
     `details-${id}-${language}`,
     () => getDetails(id, language),
@@ -166,5 +167,6 @@ export const useDetails = (
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
+    path,
   };
 };
