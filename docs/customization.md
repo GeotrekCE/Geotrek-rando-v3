@@ -48,7 +48,7 @@ You can include some HTML parts in the first and last sections of the homepage, 
 After each customization changes, you'll have to rebuild the Docker image by running:
 
 ```bash
-docker build -t geotrek-rando --build-args VERSION={THE VERSION YOU WANT} .
+docker build -t geotrek-rando --build-arg VERSION={THE VERSION YOU WANT} .
 docker ps ## To find previous container ID to stop
 docker stop {CONTAINER_ID}
 docker run -d -p {YOUR_PORT}:80 geotrek-rando
