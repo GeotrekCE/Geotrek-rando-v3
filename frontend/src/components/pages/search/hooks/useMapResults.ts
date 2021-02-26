@@ -9,7 +9,7 @@ export const useMapResults = (filtersState: FilterState[], language: string) => 
   const parsedFiltersState = parseFilters(filtersState);
 
   const { data: mapResults, isLoading: isMapLoading } = useQuery<MapResults, Error>(
-    ['mapResults', parsedFiltersState],
+    ['mapResults', parsedFiltersState, language],
     () => getMapResults(parsedFiltersState, language),
   );
 
