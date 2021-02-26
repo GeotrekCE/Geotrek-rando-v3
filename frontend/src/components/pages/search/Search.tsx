@@ -35,23 +35,14 @@ interface Props {
   language: string;
 }
 
-export const SearchUI: React.FC<Props> = ({
-  initialFiltersState,
-  touristicContentCategoryMapping,
-  initialFiltersStateWithSelectedOptions,
-  language,
-}) => {
+export const SearchUI: React.FC<Props> = ({ language }) => {
   const {
     filtersState,
     setFilterSelectedOptions,
     filterBarExpansionState,
     setFilterBarExpansionState,
     resetFilters,
-  } = useFilter(
-    initialFiltersState,
-    touristicContentCategoryMapping,
-    initialFiltersStateWithSelectedOptions,
-  );
+  } = useFilter();
 
   const {
     subMenuState,

@@ -1,23 +1,56 @@
+import { getInitialFilters } from 'modules/filters/connector';
 import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
 import { FilterState, Option } from 'modules/filters/interface';
-import { commonFilters, computeFiltersToDisplay } from 'modules/filters/utils';
+import {
+  commonFilters,
+  computeFiltersToDisplay,
+  getNewLanguageFiltersState,
+} from 'modules/filters/utils';
+import { getDefaultLanguage } from 'modules/header/utills';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 
-export const useFilter = (
-  initialFiltersState: FilterState[],
-  touristicContentCategoryMapping: TouristicContentCategoryMapping,
-  initialFiltersStateWithSelectedOptions: FilterState[],
-) => {
+export const useFilter = () => {
+  const language = useRouter().locale ?? getDefaultLanguage();
+  const initialOptions = useRouter().query;
+
+  const { data } = useQuery<
+    {
+      initialFiltersState: FilterState[];
+      touristicContentCategoryMapping: TouristicContentCategoryMapping;
+      initialFiltersStateWithSelectedOptions: FilterState[];
+    },
+    Error
+  >(['initialFilterState', language], () => getInitialFilters(language, initialOptions));
+
+  const initialFiltersState = data ? data.initialFiltersState : [];
+  const touristicContentCategoryMapping = data ? data.touristicContentCategoryMapping : {};
+  const initialFiltersStateWithSelectedOptions = data
+    ? data.initialFiltersStateWithSelectedOptions
+    : [];
+
   const [filtersState, setFiltersState] = useState<FilterState[]>(
     initialFiltersStateWithSelectedOptions,
   );
 
+  useEffect(() => {
+    setFiltersState(initialFiltersStateWithSelectedOptions);
+  }, [initialFiltersStateWithSelectedOptions.length]);
+
+  useEffect(() => {
+    setFiltersState(currentFiltersState =>
+      getNewLanguageFiltersState(currentFiltersState, initialFiltersState),
+    );
+  }, [language]);
+
   const practices = initialFiltersStateWithSelectedOptions[0];
   const services = initialFiltersStateWithSelectedOptions[1];
   const isPracticeOrCategorySelected =
-    (practices.selectedOptions.length > 0 && services.selectedOptions.length === 0) ||
-    (practices.selectedOptions.length === 0 && services.selectedOptions.length === 1);
+    initialFiltersStateWithSelectedOptions.length > 0 &&
+    ((practices.selectedOptions.length > 0 && services.selectedOptions.length === 0) ||
+      (practices.selectedOptions.length === 0 && services.selectedOptions.length === 1));
 
   const [filterBarExpansionState, setFilterBarExpansionState] = useState<'EXPANDED' | 'COLLAPSED'>(
     isPracticeOrCategorySelected ? 'EXPANDED' : 'COLLAPSED',
