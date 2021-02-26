@@ -16,8 +16,7 @@ You will have to download the prebuilt Docker image of Geotrek-rando and its cus
 - Create a folder to install your Geotrek-rando (``/home/myuser/geotrekrando`` for instance) and go in this folder
 - On your server pull the [Geotrek-rando-docker repository](https://github.com/GeotrekCE/Geotrek-rando-v3-docker): ``git pull https://github.com/GeotrekCE/Geotrek-rando-v3-docker.git`` or download and unzip it (``wget https://github.com/GeotrekCE/Geotrek-rando-v3-docker/archive/main.zip``)
 - Update the files in the ``/customization`` folder according to your structure (See customization documentation)
-- Build the Docker image with its latest prebuilt version: ``docker build -t geotrek-rando .``
-- You can also build a [specific version](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando-prebuild) with ``docker build -t geotrek-rando --build-arg VERSION={THE VERSION YOU WANT} .``
+- Build a [specific version](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando-prebuild) of the Docker prebuilt image with ``docker build -t geotrek-rando --build-arg VERSION={THE VERSION YOU WANT} .``
 - Run the docker image on the port you want: ``docker run -d -p {YOUR_PORT}:80 geotrek-rando``
 - Your website is now available to the adress of your server
 
