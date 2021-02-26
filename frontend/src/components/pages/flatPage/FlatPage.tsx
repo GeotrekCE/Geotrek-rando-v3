@@ -2,8 +2,10 @@ import { Layout } from 'components/Layout/Layout';
 import Loader from 'react-loader';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
 import parse from 'html-react-parser';
+import { useIntl } from 'react-intl';
 import { Footer } from 'components/Footer';
 import { Separator } from 'components/Separator';
+import { PageHead } from 'components/PageHead';
 import styled from 'styled-components';
 import { useFlatPage } from './useFlatPage';
 import { DetailsSection } from '../details/components/DetailsSection';
@@ -16,9 +18,20 @@ interface FlatPageUIProps {
 }
 
 export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
-  const { flatPage, isLoading, refetch } = useFlatPage(flatPageUrl);
+  const { flatPage, isLoading, refetch, path } = useFlatPage(flatPageUrl);
+
+  const intl = useIntl();
+
+  const titleRegex = RegExp(/(^\d+-)(.*)/).exec(path);
+  const title = titleRegex ? titleRegex[2].replace(/-/g, ' ') : '';
+
   return (
     <Layout>
+      <PageHead
+        title={`${title} - ${intl.formatMessage({
+          id: 'home.title',
+        })}`}
+      />
       {flatPage === undefined ? (
         isLoading === true ? (
           <Loader

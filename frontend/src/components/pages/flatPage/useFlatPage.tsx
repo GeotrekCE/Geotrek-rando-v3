@@ -7,6 +7,7 @@ import { useQuery } from 'react-query';
 
 export const useFlatPage = (flatPageUrl: string | string[] | undefined) => {
   const language = useRouter().locale ?? getDefaultLanguage();
+  const path = isUrlString(flatPageUrl) ? decodeURI(flatPageUrl) : '';
   const id = isUrlString(flatPageUrl) ? flatPageUrl.split('-')[0] : '';
   const { data, refetch, isLoading, error } = useQuery<FlatPageDetails, Error>(
     ['flatPageDetails', id, language],
@@ -15,5 +16,5 @@ export const useFlatPage = (flatPageUrl: string | string[] | undefined) => {
       enabled: isUrlString(flatPageUrl),
     },
   );
-  return { id, flatPage: data, refetch, isLoading, error };
+  return { id, flatPage: data, refetch, isLoading, error, path };
 };
