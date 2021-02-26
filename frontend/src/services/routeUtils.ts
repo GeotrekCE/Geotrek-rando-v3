@@ -2,7 +2,7 @@ import { NextRouter } from 'next/router';
 import { routes } from './routes';
 
 export const switchToLanguage = async (router: NextRouter, newLanguage: string) => {
-  await router.push(
+  await router.replace(
     {
       pathname: router.pathname,
       query: { ...router.query },
