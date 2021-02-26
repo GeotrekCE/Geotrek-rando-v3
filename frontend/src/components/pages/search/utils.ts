@@ -57,7 +57,7 @@ export const formatInfiniteQuery = (
 /** Generates the details page url related to a result */
 export const generateResultDetailsUrl = (id: number | string, title: string): string => {
   const titleWithNoSpace = title.replace(/ /g, '-');
-  const detailsPageUrl = `${routes.DETAILS}-${id}-${encodeURI(titleWithNoSpace)}`;
+  const detailsPageUrl = `${routes.DETAILS}/${id}-${encodeURI(titleWithNoSpace)}`;
 
   return detailsPageUrl;
 };
