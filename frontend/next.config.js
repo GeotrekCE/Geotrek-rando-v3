@@ -8,6 +8,12 @@ const dotenv = require('dotenv-flow');
 const yup = require('yup');
 const runtimeCachingStrategy = require('./cache');
 const headerConfig = require('./config/header.json');
+const customHeaderConfig = require('./customization/config/header.json');
+
+const mergedHeaderConfig = {
+  ...headerConfig,
+  ...customHeaderConfig,
+};
 
 const env = dotenv.config().parsed;
 
@@ -43,7 +49,7 @@ module.exports = withPlugins(plugins, {
     VERSION: process.env.VERSION,
   },
   i18n: {
-    locales: headerConfig.menu.supportedLanguages,
-    defaultLocale: headerConfig.menu.defaultLanguage,
+    locales: mergedHeaderConfig.menu.supportedLanguages,
+    defaultLocale: mergedHeaderConfig.menu.defaultLanguage,
   },
 });
