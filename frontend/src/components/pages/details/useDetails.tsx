@@ -39,7 +39,7 @@ export const useDetails = (
   parentId: string | string[] | undefined,
   language: string,
 ) => {
-  const id = isUrlString(detailsUrl) ? detailsUrl.split('-')[1] : '';
+  const id = isUrlString(detailsUrl) ? detailsUrl.split('-')[0] : '';
   const { data, refetch, isLoading, error } = useQuery<Details, Error>(
     `details-${id}-${language}`,
     () => getDetails(id, language),

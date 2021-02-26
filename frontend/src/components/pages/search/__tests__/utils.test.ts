@@ -193,7 +193,7 @@ describe('generateResultDetailsUrl', () => {
     const id = 2;
     const title = 'Col de Font Froide';
     const output = generateResultDetailsUrl(id, title);
-    const expected = '/details-2-Col-de-Font-Froide';
+    const expected = '/trek/2-Col-de-Font-Froide';
 
     expect(output).toBe(expected);
   });

@@ -11,7 +11,7 @@ export const getServerSideProps = async (context: {
   locale: string;
   query: { detailsId: string | string[] | undefined; parentId: string | string[] | undefined };
 }) => {
-  const id = isUrlString(context.query.detailsId) ? context.query.detailsId.split('-')[1] : '';
+  const id = isUrlString(context.query.detailsId) ? context.query.detailsId.split('-')[0] : '';
   const parentIdString = isUrlString(context.query.parentId) ? context.query.parentId : '';
 
   const queryClient = new QueryClient();
