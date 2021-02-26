@@ -310,3 +310,37 @@ export const getInitialFiltersStateWithSelectedOptions = ({
     [],
   );
 };
+
+const getTranslatedOptions = (selectedOptions: Option[], translatedOptions: Option[]) => {
+  const translatedSelectedOptions = selectedOptions.map(selectedOption => {
+    const translatedSelectedOption = translatedOptions.find(
+      ({ value }) => value === selectedOption.value,
+    );
+    if (translatedSelectedOption === undefined) return null;
+    return translatedSelectedOption;
+  });
+  return translatedSelectedOptions.filter(isElementNotNull);
+};
+
+export const getNewLanguageFiltersState = (
+  filtersState: FilterState[],
+  translatedInitialFiltersState: FilterState[],
+): FilterState[] => {
+  const translatedFiltersState = filtersState.map(filterState => {
+    const translatedFilterState = translatedInitialFiltersState.find(
+      ({ id }) => id === filterState.id,
+    );
+    if (translatedFilterState === undefined) return null;
+
+    return {
+      ...filterState,
+      label: translatedFilterState.label,
+      options: translatedFilterState.options,
+      selectedOptions: getTranslatedOptions(
+        filterState.selectedOptions,
+        translatedFilterState.options,
+      ),
+    };
+  });
+  return translatedFiltersState.filter(isElementNotNull);
+};
