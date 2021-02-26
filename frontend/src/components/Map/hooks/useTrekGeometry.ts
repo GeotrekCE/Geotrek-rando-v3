@@ -8,7 +8,7 @@ import { getDefaultLanguage } from 'modules/header/utills';
 export const useTrekGeometry = (id?: number) => {
   const language = useRouter().locale ?? getDefaultLanguage();
   const { data: trekGeometry } = useQuery<TrekGeometryResult, Error>(
-    ['trekPopupResult', id],
+    ['trekPopupResult', id, language],
     () =>
       id === undefined ? new Promise(() => []) : getTrekGeometryResult(id.toString(), language),
     { enabled: id !== undefined },

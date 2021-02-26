@@ -10,7 +10,7 @@ export const useTouristicContent = (
 ) => {
   const id = isUrlString(touristicContentUrl) ? touristicContentUrl.split('-')[0] : '';
   const { data, refetch, isLoading } = useQuery<TouristicContentDetails, Error>(
-    `touristicContentDetails-${id}`,
+    ['touristicContentDetails', id, language],
     () => getTouristicContentDetails(id, language),
     {
       enabled: isUrlString(touristicContentUrl),
