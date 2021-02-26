@@ -30,6 +30,7 @@
     "api-to-translate-example": "Ce message est traduit en utilisant directement l'API react-intl"
   },
   "search": {
+    "title": "Recherche",
     "book": "Réserver",
     "resultsFound": "{count, plural, =0 {# résultat trouvé} one {# résultat trouvé} other {# résultats trouvés}}",
     "forThe": "Pour le",

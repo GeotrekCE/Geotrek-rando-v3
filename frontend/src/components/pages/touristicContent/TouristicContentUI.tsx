@@ -2,8 +2,9 @@ import { Layout } from 'components/Layout/Layout';
 import Loader from 'react-loader';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
 import parse from 'html-react-parser';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { TouristicContentMapDynamicComponent } from 'components/Map';
+import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
@@ -35,9 +36,21 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
+    path,
   } = useTouristicContent(touristicContentUrl, language);
+
+  const intl = useIntl();
+
+  const titleRegex = RegExp(/(^\d+-)(.*)/).exec(path);
+  const title = titleRegex ? titleRegex[2].replace(/-/g, ' ') : '';
+
   return (
     <Layout>
+      <PageHead
+        title={`${title} - ${intl.formatMessage({
+          id: 'home.title',
+        })}`}
+      />
       {touristicContent === undefined ? (
         isLoading ? (
           <Loader

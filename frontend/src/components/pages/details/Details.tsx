@@ -1,6 +1,7 @@
 import { Layout } from 'components/Layout/Layout';
 import Loader from 'react-loader';
 import parse from 'html-react-parser';
+import { PageHead } from 'components/PageHead';
 import { DetailsMapDynamicComponent } from 'components/Map';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
@@ -61,6 +62,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
+    path,
   } = useDetails(detailsId, parentId, language);
 
   /** Ref of the parent of all sections */
@@ -79,9 +81,17 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
       sizes.detailsHeaderDesktop,
   });
 
+  const titleRegex = RegExp(/(^\d+-)(.*)/).exec(path);
+  const title = titleRegex ? titleRegex[2].replace(/-/g, ' ') : '';
+
   return useMemo(
     () => (
       <>
+        <PageHead
+          title={`${title} - ${intl.formatMessage({
+            id: 'home.title',
+          })}`}
+        />
         {details === undefined ? (
           isLoading ? (
             <Loader

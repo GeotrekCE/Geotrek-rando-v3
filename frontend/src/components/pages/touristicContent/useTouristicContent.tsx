@@ -9,6 +9,7 @@ export const useTouristicContent = (
   language: string,
 ) => {
   const id = isUrlString(touristicContentUrl) ? touristicContentUrl.split('-')[0] : '';
+  const path = isUrlString(touristicContentUrl) ? decodeURI(touristicContentUrl) : '';
   const { data, refetch, isLoading } = useQuery<TouristicContentDetails, Error>(
     ['touristicContentDetails', id, language],
     () => getTouristicContentDetails(id, language),
@@ -27,5 +28,6 @@ export const useTouristicContent = (
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
+    path,
   };
 };

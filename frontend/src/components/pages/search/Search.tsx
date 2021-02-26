@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'react-loader';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { colorPalette, getSpacing, sizes, typography, zIndex } from 'stylesheet';
@@ -15,6 +15,7 @@ import {
   useFilterSubMenu,
 } from 'components/MobileFilterMenu';
 
+import { PageHead } from 'components/PageHead';
 import { FilterState } from 'modules/filters/interface';
 import { SearchMapDynamicComponent } from 'components/Map';
 import { FilterBar } from './components/FilterBar';
@@ -74,8 +75,15 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
 
   const { mapResults, isMapLoading } = useMapResults(filtersState, language);
 
+  const intl = useIntl();
+
   return (
     <>
+      <PageHead
+        title={`${intl.formatMessage({ id: 'search.title' })} - ${intl.formatMessage({
+          id: 'home.title',
+        })}`}
+      />
       <MobileFilterMenu
         menuState={menuState}
         handleClose={hideMenu}
