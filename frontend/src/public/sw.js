@@ -154,8 +154,17 @@ define("./sw.js",['./workbox-ccd538d6'], function (workbox) { 'use strict';
       purgeOnQuotaError: true
     })]
   }), 'GET');
-  workbox.registerRoute(/\/details-.*$/i, new workbox.NetworkFirst({
-    "cacheName": "details-pages",
+  workbox.registerRoute(/\/trek\/.*$/i, new workbox.NetworkFirst({
+    "cacheName": "trek-pages",
+    "networkTimeoutSeconds": 10,
+    plugins: [new workbox.ExpirationPlugin({
+      maxEntries: 32,
+      maxAgeSeconds: 604800,
+      purgeOnQuotaError: true
+    })]
+  }), 'GET');
+  workbox.registerRoute(/\/service\/.*$/i, new workbox.NetworkFirst({
+    "cacheName": "touritic-content-pages",
     "networkTimeoutSeconds": 10,
     plugins: [new workbox.ExpirationPlugin({
       maxEntries: 32,
