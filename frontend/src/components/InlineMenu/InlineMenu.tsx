@@ -1,11 +1,15 @@
 import { Heart } from 'components/Icons/Heart';
 import Dropdown from 'react-dropdown';
+import DropdownContainer, * as SimpleDropdown from 'react-simple-dropdown';
 import ReactCountryFlag from 'react-country-flag';
 import { useIntl } from 'react-intl';
+import { Link } from 'components/Link';
 import { MenuItem } from 'modules/header/interface';
 import { ChevronDown } from 'components/Icons/ChevronDown';
 import { useRouter } from 'next/router';
-import { isInternalFlatPageUrl, switchToLanguage } from 'services/routeUtils';
+import { isInternalFlatPageUrl } from 'services/routeUtils';
+import React, { useRef } from 'react';
+
 export interface InlineMenuProps {
   className?: string;
   shouldDisplayFavorites: boolean;
@@ -22,6 +26,19 @@ const openInNewTab = (url: string) => {
   window.open(url);
 };
 
+const LanguageDropDownButton = React.forwardRef<
+  HTMLAnchorElement,
+  { text: string; onClick: () => void; href?: string; className: string }
+>(({ text, onClick, href, className }, ref) => {
+  return (
+    <a className={className} href={href} onClick={onClick} ref={ref}>
+      {text}
+    </a>
+  );
+});
+
+LanguageDropDownButton.displayName = 'LanguageDropDownButton';
+
 const InlineMenu: React.FC<InlineMenuProps> = ({
   className,
   sections,
@@ -30,6 +47,7 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
   supportedLanguages,
 }) => {
   const intl = useIntl();
+  const dropdownRef = useRef<DropdownContainer>(null);
   const router = useRouter();
   return (
     <div className={className}>
@@ -81,31 +99,43 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
             svg
           />
         )}
-        <Dropdown
-          options={supportedLanguages.map(language => ({
-            value: language,
-            label: language.toUpperCase(),
-            className: optionClassName,
-          }))}
-          onChange={option => switchToLanguage(router, option.value)}
-          controlClassName={controlClassName}
-          menuClassName={menuClassName}
-          placeholder={router.locale?.toUpperCase()}
-          placeholderClassName={`${sectionClassName} mb-1`}
-          arrowClosed={<SectionWithArrow name={''} />}
-          arrowOpen={<SectionWithArrow name={''} />}
-        />
+        <DropdownContainer ref={dropdownRef} className="flex-row">
+          <SimpleDropdown.DropdownTrigger className={controlClassName}>
+            {router.locale?.toUpperCase()}
+            <ChevronDown size={16} className="flex-shrink-0 ml-1" />
+          </SimpleDropdown.DropdownTrigger>
+          <SimpleDropdown.DropdownContent className={menuClassName}>
+            {/* <div className={menuClassName}> */}
+            {supportedLanguages.map(language => (
+              <Link
+                href={router.asPath}
+                passHref
+                locale={language}
+                replace
+                scroll={false}
+                key={language}
+              >
+                <LanguageDropDownButton
+                  className={optionClassName}
+                  text={language.toUpperCase()}
+                  onClick={() => dropdownRef?.current?.hide()}
+                ></LanguageDropDownButton>
+              </Link>
+            ))}
+            {/* </div> */}
+          </SimpleDropdown.DropdownContent>
+        </DropdownContainer>
       </div>
     </div>
   );
 };
 
 const menuClassName =
-  'bg-white text-greyDarkColored rounded-2xl border border-solid border-greySoft overflow-hidden absolute py-2 -ml-2 top-18';
+  'flex-col bg-white text-greyDarkColored rounded-2xl border border-solid border-greySoft overflow-hidden absolute py-2 -ml-2 top-18';
 
-const controlClassName = 'pt-4 pb-2 mb-2 text-white cursor-pointer flex items-center';
+const controlClassName = 'pt-4 pb-2 mb-2 mr-4 text-white cursor-pointer flex items-center';
 
-const optionClassName = 'hover:bg-greySoft-light focus:bg-greySoft cursor-pointer px-5 py-2';
+const optionClassName = 'flex hover:bg-greySoft-light focus:bg-greySoft cursor-pointer px-5 py-2';
 
 const sectionClassName = 'pt-3 pb-2 mr-5 text-white cursor-pointer';
 
