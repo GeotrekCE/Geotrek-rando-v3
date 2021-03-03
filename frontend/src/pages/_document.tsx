@@ -1,3 +1,4 @@
+import { getApiCallsConfig } from 'modules/utils/api.config';
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
@@ -28,10 +29,14 @@ export default class MyDocument extends Document {
   }
 
   render(): JSX.Element {
+    const { googleAnalyticsId } = getApiCallsConfig();
     return (
       <Html>
         <Head>
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-8FSV2N4FXN"></script>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+          ></script>
           <script
             async
             dangerouslySetInnerHTML={{
@@ -39,7 +44,7 @@ export default class MyDocument extends Document {
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
 
-              gtag('config', 'G-8FSV2N4FXN', {'debug_mode':true});`,
+              gtag('config', '${googleAnalyticsId}');`,
             }}
           />
         </Head>
