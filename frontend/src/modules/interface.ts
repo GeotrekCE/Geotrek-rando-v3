@@ -40,6 +40,7 @@ export interface APICallsConfig {
   mapResultsPageSize: number;
   portalIds: number[];
   apiUrl: string;
+  googleAnalyticsId: string;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */
