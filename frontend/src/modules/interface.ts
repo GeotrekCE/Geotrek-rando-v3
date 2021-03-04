@@ -41,6 +41,7 @@ export interface APICallsConfig {
   portalIds: number[];
   apiUrl: string;
   googleAnalyticsId: string;
+  baseUrl: string;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */
