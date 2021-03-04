@@ -53,7 +53,7 @@ export const Root: FunctionComponent<RootProps> = props => {
           <link rel="shortcut icon" href="/images/logo.png" />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
           />
           <meta
             name="google-site-verification"
