@@ -2,6 +2,8 @@
 
 Install Geotrek-rando on your own computer or server.
 
+# Install with Docker (recommended)
+
 ## Install Docker
 
 You need to have Docker installed on your own computer or server. Docker allows to easily install and update Geotrek-rando on several plateforms (Linux, Windows, macOS).
@@ -18,36 +20,15 @@ You will have to download the prebuilt Docker image of Geotrek-rando and its cus
 - Update the files in the `/customization` folder according to your structure (See customization documentation)
 - Build the Docker image with its latest prebuilt version: `docker build -t geotrek-rando .`
 - You can also build a [specific version](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando-prebuild) with `docker build -t geotrek-rando --build-arg VERSION={THE VERSION YOU WANT} .`
-- Run the docker image on the port you want: `docker run -d -p {YOUR_PORT}:80 geotrek-rando`
+- Run the docker image on the port you want: `docker run --restart unless-stopped -d -p {YOUR_PORT}:80 geotrek-rando`
+  - Let's explain what this command does step by step
+    - `docker run [options] geotrek-rando` runs the container named geotrek-rando that we've just built
+    - the `-d` option specifies that it should run "deamonized" meaning the container should run in background instead of keeping the terminal window linked to its stdout.
+    - the `-p` option specified a port mapping between the port you want to connect on your machine to the port the server is running on in the docker container (here 80)
+    - the `--restart unless-stopped` option specified that unless you stopped the container on purpose, it should restart automatically if something goes wrong.
 - Your website is now available to the adress of your server
 
 You can then serve what comes out of your local {YOUR PORT} port. To configure NGINX, see below.
-
-## Update Geotrek-rando version or configuration
-
-After updating configuration or to install a new version of Geotrek-rando, you have to rebuild a new image of Geotrek-rando, stop the old one and run the new one.
-
-- Build a new Geotrek-rando image: `docker build -t geotrek-rando .`
-- Check running containers: `docker ps`
-- Stop the old container: `docker stop <CONTAINER_ID>`
-- Run the new image: `docker run -d -p {YOUR_PORT}:80 geotrek-rando`
-
-### Manage docker images storage on disk:
-
-The old images will stay on your system and use disk storage.
-
-To remove images without container associated, you can run `docker image prune -a`.
-
-If you notice a unexpectedly large amount of images remaining on your system when asking docker for images with the command `docker images -a` (showing all the otherwise hidden intermediate images), you can start from a clean slate and delete all the existing docker images on your system by running:
-`docker rmi $(docker images -a -q) -f`.
-Docker supports subqueries like this one, let's understand it step by step:
-
-- `docker rmi` is the command to delete an image
-- `$()` defines the subquery
-  - `docker images` list images
-  - `-a` (all) specifies that you want to see all of them even the intermediate ones
-  - `-q` (quiet) specifies that you only need to get the images IDs
-- `-f` (force) means you want to bypass docker security preventing you to delete used images
 
 ## An example with NGINX
 
@@ -93,3 +74,73 @@ sudo ufw enable
 ```
 
 Now you should be able to reach your Geotrek-rando through the default web port of your virtual machine.
+
+## Update Geotrek-rando version or configuration
+
+After updating configuration or to install a new version of Geotrek-rando, you have to rebuild a new image of Geotrek-rando, stop the old one and run the new one.
+
+- Build a new Geotrek-rando image: `docker build -t geotrek-rando .`
+- Check running containers: `docker ps`
+- Stop the old container: `docker stop <CONTAINER_ID>`
+- Run the new image: `docker run -d -p {YOUR_PORT}:80 geotrek-rando`
+
+### Manage docker images storage on disk:
+
+The old images will stay on your system and use disk storage.
+
+To remove images without container associated, you can run `docker image prune -a`.
+
+If you notice a unexpectedly large amount of images remaining on your system when asking docker for images with the command `docker images -a` (showing all the otherwise hidden intermediate images), you can start from a clean slate and delete all the existing docker images on your system by running:
+`docker rmi $(docker images -a -q) -f`.
+Docker supports subqueries like this one, let's understand it step by step:
+
+- `docker rmi` is the command to delete an image
+- `$()` defines the subquery
+  - `docker images` list images
+  - `-a` (all) specifies that you want to see all of them even the intermediate ones
+  - `-q` (quiet) specifies that you only need to get the images IDs
+- `-f` (force) means you want to bypass docker security preventing you to delete used images
+
+## Debug the output of your docker container
+
+If something is wrong with your website and you want to see directly what happens on your docker container you can change the running command to `docker run --restart unless-stopped -it -p {YOUR_PORT}:80 geotrek-rando`. Notice we replaced the `-d`option by the `-it` one specifying that we want the container to be interactive(i) and to connect a tty to it so that it will respond to "ctrl-c" command to kill it, the fact that we keep connected to the container's stdout comes from ommitting the deamonize option.
+
+If you don't even manage to get your container starting and want to inspect the files inside of it, you can override the entrypoint by running `docker run -it --entrypoint sh geotrek-rando -s`. The `--entrypoint sh` option will allow you to replace the server launch command by a simple shell process, you will then be able to navigate in your container. Keep in mind that the modification you make will not be saved to the image, therefore you will lose them if you restart your container from the image.
+
+# Install without Docker
+
+If you can't install docker for some reason, there is also a way to directly deploy the node server to your machines.
+
+To do so, you will have to pull the source code from the geotrek rando repository by running
+
+```sh
+git clone git@github.com:GeotrekCE/Geotrek-rando-v3.git
+```
+
+Then you can head to the frontend folder
+
+```sh
+cd Geotrek-rando-v3/frontend/
+```
+
+build the server:
+
+```sh
+yarn build
+```
+
+and start it
+
+```sh
+yarn start
+```
+
+By default, the server will be served on the port 80, you should set the port you want to serve your server to by specifying the "PORT" environment variable before running the starting command
+
+```sh
+PORT=82 && yarn start
+```
+
+## Process manager
+
+In order to have a more robust solution to serve your node server, our advice is to use [pm2](https://pm2.keymetrics.io/)
