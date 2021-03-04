@@ -30,6 +30,7 @@
     "goToSearch": "Search"
   },
   "search": {
+    "title": "Search",
     "book": "Book",
     "resultsFound": "{count, plural, =0 {# result found} one {# result found} other {# results found}}",
     "forThe": "For the",
