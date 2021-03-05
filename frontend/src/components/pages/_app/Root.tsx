@@ -3,24 +3,20 @@ import Head from 'next/head';
 import { FunctionComponent } from 'react';
 import { IntlProvider } from 'react-intl';
 
-import { flattenMessages } from 'services/i18n/intl';
 import { getGlobalConfig } from 'modules/utils/api.config';
-import enMessages from 'translations/en.json';
-import frMessages from 'translations/fr.json';
-import customFrMessages from 'customization/translations/fr.json';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { useRouter } from 'next/router';
 import CSSResets from './CSSResets';
 import { ErrorBoundary } from './ErrorBoundary';
 
-const locales = {
-  fr: { ...flattenMessages(frMessages), ...flattenMessages(customFrMessages) },
-  en: flattenMessages(enMessages),
-};
-
 interface RootProps {
   hasError: boolean;
   errorEventId?: string;
+  messages: {
+    [language: string]: {
+      [messageId: string]: string;
+    };
+  };
 }
 
 export const Root: FunctionComponent<RootProps> = props => {
@@ -33,7 +29,7 @@ export const Root: FunctionComponent<RootProps> = props => {
       eventId={props.errorEventId}
     >
       {/*@ts-ignore-next-line we ignore because locales have to be given for the config languages */}
-      <IntlProvider locale={language} messages={locales[language] ?? locales.fr}>
+      <IntlProvider locale={language} messages={props.messages[language] ?? props.messages.fr}>
         <Head>
           <link rel="manifest" href="/manifest.json" />
 
