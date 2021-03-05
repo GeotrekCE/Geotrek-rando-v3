@@ -42,6 +42,8 @@ export interface APICallsConfig {
   apiUrl: string;
   googleAnalyticsId: string;
   baseUrl: string;
+  fallbackImageUri: string;
+  fallbackTouristicContentUri: string;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */

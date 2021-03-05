@@ -5,9 +5,9 @@ import {
   TouristicContentCategory,
   TouristicContentCategoryDictionnary,
 } from 'modules/touristicContentCategory/interface';
-import { fallbackImgUri } from 'modules/trekResult/adapter';
 import { PopupResult } from 'modules/trekResult/interface';
 import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptGeometry } from 'modules/utils/geometry';
 import {
   RawTouristicContent,
@@ -20,8 +20,7 @@ import {
   TouristicContentResult,
 } from './interface';
 
-const DEFAULT_LOGO_URI =
-  'https://www.ecrins-parcnational.fr/sites/ecrins-parcnational.com/files/page/12952/14211espritparc-nationalecrinshd_0.jpg';
+const DEFAULT_LOGO_URI = getGlobalConfig().fallbackTouristicContentUri;
 
 export const adaptTouristicContent = ({
   rawTouristicContent,
@@ -160,6 +159,6 @@ export const adaptTouristicContentPopupResults = (
       rawTouristicContent.cities.length > 0
         ? cityDictionnary[rawTouristicContent.cities[0]].name
         : '',
-    imgUrl: getThumbnail(rawTouristicContent.attachments) ?? fallbackImgUri,
+    imgUrl: getThumbnail(rawTouristicContent.attachments) ?? getGlobalConfig().fallbackImageUri,
   };
 };
