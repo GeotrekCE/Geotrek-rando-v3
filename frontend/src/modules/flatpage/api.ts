@@ -10,7 +10,7 @@ const fieldsParamFlatPages = {
 
 export const fetchFlatPages = (query: APIQuery): Promise<APIResponseForList<RawFlatPage>> =>
   GeotrekAPI.url(`/flatpage`)
-    .query({ ...query, fieldsParamFlatPages, ...portalsFilter })
+    .query({ ...query, ...fieldsParamFlatPages, ...portalsFilter })
     .get()
     .json();
 
@@ -20,6 +20,6 @@ const fieldsParamFlatPageDetails = {
 
 export const fetchFlatPageDetails = (query: APIQuery, id: string): Promise<RawFlatPageDetails> =>
   GeotrekAPI.url(`/flatpage/${id}/`)
-    .query({ ...query, fieldsParamFlatPageDetails })
+    .query({ ...query, ...fieldsParamFlatPageDetails })
     .get()
     .json();
