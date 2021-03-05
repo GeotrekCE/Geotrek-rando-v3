@@ -10,6 +10,11 @@ module.exports = {
     screens: {
       desktop: '1024px',
     },
+    fontFamily: {
+      main: `'Assistant', 'Helvetica', 'Arial', sans-serif`,
+      code: 'Monospace',
+    },
+
     boxShadow: {
       DEFAULT: '0 0 30px 0 rgba(0, 0, 0, 0.15)',
       none: 'none',
@@ -36,6 +41,7 @@ module.exports = {
       12: `${SPACING_UNIT * 12}px`,
       13: `${SPACING_UNIT * 13}px`,
       15: `${SPACING_UNIT * 15}px`,
+      16: `${SPACING_UNIT * 16}px`,
       18: `${SPACING_UNIT * 18}px`,
       20: `${SPACING_UNIT * 20}px`,
       21.5: `${SPACING_UNIT * 21.5}px`,
@@ -44,6 +50,7 @@ module.exports = {
       40: `${SPACING_UNIT * 40}px`,
       50: `${SPACING_UNIT * 50}px`,
       60: `${SPACING_UNIT * 60}px`,
+      70: `${SPACING_UNIT * 70}px`,
       90: `${SPACING_UNIT * 90}px`,
       100: `${SPACING_UNIT * 100}px`,
       '10vw': '10vw',
@@ -62,6 +69,7 @@ module.exports = {
       resultCardDesktop: '224px',
       resultCardMobile: '27vh',
       suggestionCardDesktop: '25vw',
+      button: '48px',
     },
     zIndex: {
       content: 0,
@@ -84,7 +92,7 @@ module.exports = {
       P1: ['1rem', '21px'], // 16px [default]
       P2: ['0.875rem', '18px'], // 14px
       P3: ['0.75rem', '16px'], // 12px
-      CTA: ['0,625rem', '13px'], // 10px
+      CTA: ['0.625rem', '13px'], // 10px
       'Mobile-H1': ['1.25rem', '26px'], // 20px
       'Mobile-C1': ['1rem', '21px'], // 16px [default]
       'Mobile-C2': ['0.875rem', '18px'], // 14px
@@ -95,10 +103,22 @@ module.exports = {
       borderWidth: {
         3: '3px',
       },
+      borderRadius: {
+        button: '8px',
+        card: '16px',
+        chip: '20px',
+        large: '10px',
+        medium: '4px',
+        resultCard: '16px',
+        roundButton: '50px',
+        squareButton: '8px',
+      },
+
       boxShadow: {
         lg: '0 0 30px 0 rgba(0, 0, 0, 0.15)',
         md: '0 0 20px rgba(0, 0, 0, 0.15)',
-        sm: '0 0 4px rgba(0, 0, 0, 0.15)',
+        sm: '0 0 4px #D7D6D9',
+        button: '0 0 6px #D7D6D9',
       },
       colors: {
         primary1: {

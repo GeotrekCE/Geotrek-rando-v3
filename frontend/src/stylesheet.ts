@@ -1,5 +1,6 @@
 import { css, FlattenSimpleInterpolation } from 'styled-components';
 
+import tailwindConfig from '../tailwind.config';
 /**
  * This file is here to ensure UI consistency
  * You **MUST** sync with your designer at the start of the project to check
@@ -42,42 +43,42 @@ export const getSpacing = (multiplier: number): string =>
  * As to naming, the best name is the name used by the designer
  */
 export const colorPalette = {
-  primary1: '#AA397D',
-  primary1_light: '#bd3e8b',
-  primary2: '#F5E7EF',
-  primary3: '#791150',
-  greyDarkColored: '#534764',
-  greySoft: '#D7D6D9',
-  warning: '#D77E00',
-  easyOK: '#4FAD79',
-  hardKO: '#E25316',
-  black: '#000000',
-  white: '#FFFFFF',
-  red: '#FF7373',
-  blackTransparent: 'rgba(0, 0, 0, 0.24)',
-  darkPurple: '#534764',
+  primary1: tailwindConfig.theme.extend.colors.primary1.DEFAULT,
+  primary1_light: tailwindConfig.theme.extend.colors.primary1.light,
+  primary2: tailwindConfig.theme.extend.colors.primary2,
+  primary3: tailwindConfig.theme.extend.colors.primary3,
+  greyDarkColored: tailwindConfig.theme.extend.colors.greyDarkColored,
+  greySoft: tailwindConfig.theme.extend.colors.greySoft,
+  warning: tailwindConfig.theme.extend.colors.warning,
+  easyOK: tailwindConfig.theme.extend.colors.easyOK,
+  hardKO: tailwindConfig.theme.extend.colors.hardKO,
+  black: tailwindConfig.theme.extend.colors.black,
+  white: tailwindConfig.theme.extend.colors.white,
+  red: tailwindConfig.theme.extend.colors.red,
+  blackTransparent: tailwindConfig.theme.extend.colors.blackTransparent,
+  darkPurple: tailwindConfig.theme.extend.colors.greyDarkColored,
   filter: {
-    background: '#FFFFFF',
-    color: '#000000',
-    borderColor: '#AA397D',
+    background: tailwindConfig.theme.extend.colors.white,
+    color: tailwindConfig.theme.extend.colors.black,
+    borderColor: tailwindConfig.theme.extend.colors.primary1.DEFAULT,
     hover: {
-      background: '#F5E7EF',
-      color: '#000000',
+      background: tailwindConfig.theme.extend.colors.primary2,
+      color: tailwindConfig.theme.extend.colors.black,
     },
     selected: {
-      background: '#F5E7EF',
-      color: '#000000',
+      background: tailwindConfig.theme.extend.colors.primary2,
+      color: tailwindConfig.theme.extend.colors.black,
     },
     placeholder: {
-      color: '#534764',
+      color: tailwindConfig.theme.extend.colors.greyDarkColored,
     },
   },
   home: {
     activity: {
-      color: '#534764',
+      color: tailwindConfig.theme.extend.colors.greyDarkColored,
     },
-    gradientOnImages: '#27041970',
-    shadowOnImages: '#27041970',
+    gradientOnImages: tailwindConfig.theme.extend.colors.gradientOnImages,
+    shadowOnImages: tailwindConfig.theme.extend.colors.gradientOnImages,
   },
   map: {
     touristicContentLines: '#D65600',
@@ -92,7 +93,7 @@ export const fontFamily = {
 export const shadow = {
   large: `0 0 30px 0 rgba(0, 0, 0, 0.15)`,
   medium: '0 0 20px rgba(0, 0, 0, 0.15)',
-  small: `0 0 4px ${colorPalette.greySoft}`,
+  small: `0 0 4px ${colorPalette.greySoft.light}`,
 } as const;
 
 export const typography = {
