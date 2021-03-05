@@ -48,7 +48,10 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
       ) : (
         <div>
           {flatPage.attachment !== null && flatPage.attachment.length > 0 && (
-            <div className="relative coverDetailsMobile desktop:h-coverDetailsDesktop text-center">
+            <div
+              className="relative coverDetailsMobile desktop:h-coverDetailsDesktop text-center"
+              id="flatpage_cover"
+            >
               <img src={flatPage.attachment} className="h-full w-full object-top object-cover" />
               <TextWithShadow
                 className="text-H3 desktop:text-H1
@@ -60,7 +63,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
               </TextWithShadow>
             </div>
           )}
-          <div className="px-4 desktop:px-10vw py-4 desktop:py-10">
+          <div className="px-4 desktop:px-10vw py-4 desktop:py-10" id="flatpage_content">
             {(flatPage.attachment == null || flatPage.attachment.length === 0) && (
               <div className="flex justify-center py-6 desktop:py-12">
                 <p className="text-H3 desktop:text-H1 font-bold text-primary1 text-center">

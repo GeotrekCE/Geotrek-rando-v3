@@ -4,6 +4,7 @@ import { FunctionComponent } from 'react';
 import { IntlProvider } from 'react-intl';
 
 import { flattenMessages } from 'services/i18n/intl';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import enMessages from 'translations/en.json';
 import frMessages from 'translations/fr.json';
 import customFrMessages from 'customization/translations/fr.json';
@@ -36,10 +37,10 @@ export const Root: FunctionComponent<RootProps> = props => {
         <Head>
           <link rel="manifest" href="/manifest.json" />
 
-          <meta name="application-name" content="Geotrek-rando" />
+          <meta name="application-name" content={getGlobalConfig().applicationName} />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-          <meta name="apple-mobile-web-app-title" content="Geotrek-rando" />
+          <meta name="apple-mobile-web-app-title" content={getGlobalConfig().applicationName} />
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="msapplication-TileColor" content="#2B5797" />

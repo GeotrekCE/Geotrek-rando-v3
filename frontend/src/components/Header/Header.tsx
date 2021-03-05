@@ -28,9 +28,10 @@ export const Header: React.FC = () => {
       <Container
         state={headerState}
         className="h-11 bg-primary1 flex flex-row items-center sticky z-header px-3"
+        id="header"
       >
         <Link href={routes.HOME} className="flex items-center">
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0" id="header_logo">
             <img className="h-9 desktop:h-18 mr-3 rounded-md" alt="logo" src={config.logo} />
           </div>
           <p

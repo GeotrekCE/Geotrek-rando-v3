@@ -55,6 +55,7 @@ const SearchMap: React.FC<PropsType> = props => {
         style={{ height: '100%', width: '100%' }}
         zoomControl={props.type === 'DESKTOP'}
         attributionControl={false}
+        id="search_map"
       >
         <TileLayer url={mapConfig.mapLayerUrl} />
         <ClusterContainer enabled={props.shouldUseClusters ?? false}>

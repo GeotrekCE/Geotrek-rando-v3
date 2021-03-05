@@ -80,6 +80,7 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => 
         setHoveredCardId(null);
       }}
       className={className}
+      id="result_card"
     >
       {thumbnailUris.length > 1 ? (
         <ResultCardCarousel thumbnailUris={thumbnailUris} iconUri={badgeIconUri} />
