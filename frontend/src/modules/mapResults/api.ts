@@ -4,7 +4,7 @@ import { APIQuery } from 'services/api/interface';
 import { RawTouristicContentMapResults, RawTrekMapResults } from './interface';
 
 const trekFieldsParams = {
-  fields: 'id,parking_location,practice',
+  fields: 'id,departure_geom,practice',
 };
 
 export const fetchTrekMapResults = (query: APIQuery): Promise<RawTrekMapResults> =>

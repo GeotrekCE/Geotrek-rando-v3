@@ -5,7 +5,9 @@ import {
   RawTrekMapResults,
 } from './interface';
 
-export const formatLocation = (rawLocation: number[] | null): { x: number; y: number } | null =>
+export const formatLocation = (
+  rawLocation: [number, number] | null,
+): { x: number; y: number } | null =>
   rawLocation === null
     ? null
     : {
