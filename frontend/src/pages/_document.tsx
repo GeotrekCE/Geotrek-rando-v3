@@ -1,4 +1,4 @@
-import { getApiCallsConfig } from 'modules/utils/api.config';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
@@ -29,7 +29,7 @@ export default class MyDocument extends Document {
   }
 
   render(): JSX.Element {
-    const { googleAnalyticsId } = getApiCallsConfig();
+    const { googleAnalyticsId } = getGlobalConfig();
     return (
       <Html>
         <Head>

@@ -5,7 +5,7 @@ import { getThemes } from 'modules/filters/theme/connector';
 import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
 import { QueryFilterState } from 'components/pages/search/utils';
 import { fetchTouristicContentResult } from 'modules/touristicContent/api';
-import { getApiCallsConfig } from 'modules/utils/api.config';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { getCities } from 'modules/city/connector';
 import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
@@ -81,7 +81,7 @@ export const getSearchResults = async (
       pages.treks !== null
         ? fetchTrekResults({
             language,
-            page_size: getApiCallsConfig().searchResultsPageSize,
+            page_size: getGlobalConfig().searchResultsPageSize,
             page: pages.treks ?? undefined,
             ...trekFilters,
           })
@@ -96,7 +96,7 @@ export const getSearchResults = async (
       pages.touristicContents !== null
         ? fetchTouristicContentResult({
             language,
-            page_size: getApiCallsConfig().searchResultsPageSize,
+            page_size: getGlobalConfig().searchResultsPageSize,
             page: pages.touristicContents ?? undefined,
             ...touristicContentFilter,
           })

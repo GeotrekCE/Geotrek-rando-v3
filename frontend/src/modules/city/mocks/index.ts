@@ -1,4 +1,4 @@
-import { getApiCallsConfig } from 'modules/utils/api.config';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { mockRoute } from 'services/testing/utils';
 
 export const mockCityResponse = () => ({
@@ -26,6 +26,6 @@ export const mockCityRoute = (times: number): void =>
   mockRoute({
     route: '/city',
     mockData: mockCityResponse(),
-    additionalQueries: { fields: 'id,name', page_size: getApiCallsConfig().searchResultsPageSize },
+    additionalQueries: { fields: 'id,name', page_size: getGlobalConfig().searchResultsPageSize },
     times,
   });

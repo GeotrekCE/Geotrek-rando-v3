@@ -1,4 +1,4 @@
-import { getApiCallsConfig } from 'modules/utils/api.config';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import nock from 'nock';
 import { APIQuery } from 'services/api/interface';
 
@@ -21,7 +21,7 @@ export const mockRoute = ({
   additionalQueries?: Partial<APIQuery>;
   times?: number;
 }): void => {
-  nock(getApiCallsConfig().apiUrl)
+  nock(getGlobalConfig().apiUrl)
     .get(route)
     .query({ language: 'fr', ...additionalQueries })
     .times(times)

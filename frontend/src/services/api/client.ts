@@ -1,4 +1,4 @@
-import { getApiCallsConfig } from 'modules/utils/api.config';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import wretch, { ConfiguredMiddleware, WretcherResponse } from 'wretch';
 
 const STALE_CACHE_TIME = 1000 * 60 * 60 * 24;
@@ -94,4 +94,4 @@ const cacheMiddleware = (throttle = 0): ConfiguredMiddleware => {
   };
 };
 
-export const GeotrekAPI = wretch(getApiCallsConfig().apiUrl).middlewares([cacheMiddleware(1000)]);
+export const GeotrekAPI = wretch(getGlobalConfig().apiUrl).middlewares([cacheMiddleware(1000)]);

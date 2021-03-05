@@ -1,19 +1,17 @@
 import React from 'react';
 import { getHeaderConfig } from 'modules/header/utills';
-import { getApiCallsConfig } from 'modules/utils/api.config';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { generateResultDetailsUrl } from 'components/pages/search/utils';
 
 const LIMIT = 10000; // This limit is high so we don't have to iterate through result, one call willl get us every treks or touristic content we need
 
 const portalFilter =
-  getApiCallsConfig().portalIds.length > 0
-    ? `&portals=${getApiCallsConfig().portalIds.join(',')}`
-    : '';
+  getGlobalConfig().portalIds.length > 0 ? `&portals=${getGlobalConfig().portalIds.join(',')}` : '';
 
 const getTreksForLanguage = async (language: string): Promise<{ id: string; name: string }[]> => {
   const treks = await fetch(
     `${
-      getApiCallsConfig().apiUrl
+      getGlobalConfig().apiUrl
     }/trek/?language=${language}&fields=id,name&page_size=${LIMIT}${portalFilter}`,
   );
   const response = await treks.json();
@@ -25,7 +23,7 @@ const getTouristicContentsForLanguage = async (
 ): Promise<{ id: string; name: string }[]> => {
   const treks = await fetch(
     `${
-      getApiCallsConfig().apiUrl
+      getGlobalConfig().apiUrl
     }/touristiccontent/?language=${language}&fields=id,name&page_size=${LIMIT}${portalFilter}`,
   );
   const response = await treks.json();
@@ -37,7 +35,7 @@ const getFlatPagesForLanguage = async (
 ): Promise<{ id: string; title: string; external_url: string }[]> => {
   const flatPages = await fetch(
     `${
-      getApiCallsConfig().apiUrl
+      getGlobalConfig().apiUrl
     }/flatpage?language=${language}&fields=external_url,id,title&page_size=${LIMIT}${portalFilter}`,
   );
   const response = await flatPages.json();
@@ -47,11 +45,11 @@ const getFlatPagesForLanguage = async (
 const getApiContentForLanguage = async (language: string): Promise<string> => {
   const baseUrl =
     getHeaderConfig().menu.defaultLanguage === language
-      ? getApiCallsConfig().baseUrl
-      : `${getApiCallsConfig().baseUrl}/${language}`;
+      ? getGlobalConfig().baseUrl
+      : `${getGlobalConfig().baseUrl}/${language}`;
   const treks = await getTreksForLanguage(language);
   const trekUrls = treks
-    .map(({ id, name }) => `<url><loc>${baseUrl}/${generateResultDetailsUrl(id, name)}</loc></url>`)
+    .map(({ id, name }) => `<url><loc>${baseUrl}${generateResultDetailsUrl(id, name)}</loc></url>`)
     .join('');
   const touristicContents = await getTouristicContentsForLanguage(language);
   const touristicContentUrls = touristicContents
