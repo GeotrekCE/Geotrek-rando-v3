@@ -66,3 +66,26 @@ docker push ghcr.io/geotrekce/geotrek-rando-v3/geotrek-rando:{YOUR VERSION}
 ### Pull the container from the preproduction machine an run it
 
 Follow the steps described in [the install on your own machine documentation](./installation.md)
+
+## Release a new Geotrek version
+
+### Build the image
+
+- Merge all the changes you want to include on the main branch
+- Check the number of the current version on the [package repository](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando-prebuild)
+- Checkout main locally and pull
+- `cd frontend`
+- Build the new image
+```
+docker build -t ghcr.io/geotrekce/geotrek-rando-v3/geotrek-rando-prebuild:latest -t ghcr.io/geotrekce/geotrek-rando-v3/geotrek-rando-prebuild:{NEW_VERSION} .
+```
+The "t" option is used to tag the image
+
+### Push the new image
+
+- Push the new image on the github package repository
+```
+docker push ghcr.io/geotrekce/geotrek-rando-v3/geotrek-rando-prebuild:latest && docker push ghcr.io/geotrekce/geotrek-rando-v3/geotrek-rando-prebuild:{NEW_VERSION}
+```
+- Go on the package repository to check that the new image is online
+- Relax and enjoy
