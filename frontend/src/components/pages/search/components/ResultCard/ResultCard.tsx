@@ -164,7 +164,7 @@ const Container = styled.div`
     box-shadow: ${shadow.small};
   }
   border-radius: ${borderRadius.card};
-  border: 1px solid ${colorPalette.greySoft};
+  border: 1px solid ${colorPalette.greySoft.DEFAULT};
   overflow: hidden;
 
   align-items: stretch;
