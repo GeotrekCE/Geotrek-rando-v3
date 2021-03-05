@@ -1,4 +1,5 @@
 import { getThumbnail } from 'modules/utils/adapter';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import {
   PopupResult,
   RawTrekGeometryResult,
@@ -6,7 +7,7 @@ import {
   TrekGeometryResult,
 } from './interface';
 
-export const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
+export const fallbackImgUri = getGlobalConfig().fallbackImageUri;
 
 export const adaptTrekPopupResults = (rawDetails: RawTrekPopupResult): PopupResult => {
   return {

@@ -1,10 +1,9 @@
 import { Attachment, RawAttachment } from 'modules/interface';
 import { APIResponseForList } from 'services/api/interface';
-
-const fallbackImgUri = 'https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png';
+import { getGlobalConfig } from './api.config';
 
 const fallbackAttachment: Attachment = {
-  url: fallbackImgUri,
+  url: getGlobalConfig().fallbackImageUri,
   author: 'Default Author',
   legend: 'Default legend',
 };
@@ -58,7 +57,7 @@ export const getThumbnails = (rawAttachments: RawAttachment[]): string[] => {
   if (thumbnails.length > 0) {
     return thumbnails;
   }
-  return [fallbackImgUri];
+  return [getGlobalConfig().fallbackImageUri];
 };
 
 export function concatResults<T>(rawResults: APIResponseForList<T>[]): T[] {
