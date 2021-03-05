@@ -14,7 +14,7 @@ export const fetchFlatPages = (query: APIQuery): Promise<APIResponseForList<RawF
     .json();
 
 const fieldsParamFlatPageDetails = {
-  fields: 'id,title,content,source',
+  fields: 'id,title,content,source,attachments',
 };
 
 export const fetchFlatPageDetails = (query: APIQuery, id: string): Promise<RawFlatPageDetails> =>
