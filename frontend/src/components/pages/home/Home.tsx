@@ -30,7 +30,7 @@ const HomeUI: FunctionComponent = () => {
       />
       <Layout>
         <HomeContainer>
-          <TopContainer backgroundUrl={config.pictureAndText.pictureUrl}>
+          <TopContainer backgroundUrl={config.pictureAndText.pictureUrl} id="cover_image">
             {config.pictureAndText.shouldDisplayText && (
               <span className="text-white font-bold text-Mobile-H1 desktop:text-H1 desktop:leading-tight">
                 <FormattedMessage id="home.welcome-text" />
@@ -39,7 +39,10 @@ const HomeUI: FunctionComponent = () => {
           </TopContainer>
           <div className={contentContainerClassname}>
             {config.activityBar.shouldDisplay && (
-              <div className={`desktop:flex desktop:justify-center ${classNameHomeChild}`}>
+              <div
+                className={`desktop:flex desktop:justify-center ${classNameHomeChild}`}
+                id="activies_bar"
+              >
                 <ActivitySearchFilter />
               </div>
             )}

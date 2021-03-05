@@ -37,7 +37,11 @@ export const FilterBar: React.FC<Props> = props => {
     props.filtersState.filter(({ id }) => !commonFilters.includes(id)).length > 0;
 
   return (
-    <Container className={filterBarContainerClassName} displayedState={filterBarDisplayedState}>
+    <Container
+      className={filterBarContainerClassName}
+      displayedState={filterBarDisplayedState}
+      id="filter_bar"
+    >
       <div className={`${props.filterBarExpansionState === 'EXPANDED' ? 'mb-4' : ''}`}>
         <FiltersLayout>
           {props.filtersState

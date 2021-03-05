@@ -44,6 +44,7 @@ export interface APICallsConfig {
   baseUrl: string;
   fallbackImageUri: string;
   fallbackTouristicContentUri: string;
+  applicationName: string;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */
