@@ -352,7 +352,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     type="DESKTOP"
                     arrivalLocation={details.trekArrival}
                     departureLocation={details.trekDeparture}
-                    parkingLocation={details.parkingLocation}
+                    parkingLocation={
+                      details.parkingLocation === null ? undefined : details.parkingLocation
+                    }
                     trekGeometry={details.trekGeometry}
                     trekGeoJSON={details.trekGeoJSON}
                     poiPoints={details.pois.map(poi => ({
@@ -399,7 +401,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                 type="MOBILE"
                 arrivalLocation={details.trekArrival}
                 departureLocation={details.trekDeparture}
-                parkingLocation={details.parkingLocation}
+                parkingLocation={
+                  details.parkingLocation === null ? undefined : details.parkingLocation
+                }
                 trekGeometry={details.trekGeometry}
                 trekGeoJSON={details.trekGeoJSON}
                 poiPoints={details.pois.map(poi => ({
