@@ -31,6 +31,7 @@ const HomeCard: React.FC<HomeCardProps> = ({
       imagePath={imagePath}
       heightMobile={heightMobile}
       heightDesktop={heightDesktop}
+      id="home_card"
     >
       <Chip>{tag}</Chip>
       <div className="text-white">
