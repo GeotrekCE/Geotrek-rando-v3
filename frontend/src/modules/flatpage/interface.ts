@@ -12,6 +12,15 @@ export interface RawFlatPageDetails {
   title: string;
   content: string;
   source: number[];
+  attachments: {
+    author: string;
+    backend: string;
+    thumbnail: string;
+    legend: string;
+    title: string;
+    url: string;
+    type: string;
+  }[];
 }
 
 export interface FlatPageDetails {
@@ -19,5 +28,5 @@ export interface FlatPageDetails {
   title: string;
   content: string;
   sources: Source[];
-  attachment: string;
+  attachment: string | null;
 }

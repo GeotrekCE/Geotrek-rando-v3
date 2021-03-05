@@ -35,7 +35,7 @@ export const adaptFlatPageDetails = ({
   content: rawFlatPageDetails.content,
   sources: rawFlatPageDetails.source.map(sourceId => sourceDictionnary[sourceId]),
   attachment:
-    rawFlatPageDetails.id % 2 === 0
-      ? 'http://www.grand-tour-ecrins.fr/custom/images/pages/pne_028853.jpg'
-      : '',
+    rawFlatPageDetails.attachments.length > 0 && rawFlatPageDetails.attachments[0].type === 'image'
+      ? rawFlatPageDetails.attachments[0].url
+      : null,
 });
