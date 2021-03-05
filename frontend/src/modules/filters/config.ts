@@ -1,6 +1,6 @@
 import { FilterConfig, FilterConfigWithOptions } from './interface';
 
-import filterConfig from '../../../config/filterConfig.json';
+import filterConfig from '../../../customization/config/filterConfig.json';
 
 export const getFiltersConfig = (): (FilterConfig | FilterConfigWithOptions)[] =>
   filterConfig.map(filter => ({
