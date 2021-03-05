@@ -111,10 +111,20 @@ If you don't even manage to get your container starting and want to inspect the 
 
 If you can't install docker for some reason, there is also a way to directly deploy the node server to your machines.
 
-To do so, you will have to pull the source code from the geotrek rando repository by running
+Install nodejs:
 
 ```sh
-git clone git@github.com:GeotrekCE/Geotrek-rando-v3.git
+sudo apt update
+sudo apt -y upgrade
+sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt -y install nodejs
+```
+
+Then, you will have to pull the source code from the geotrek rando repository by running
+
+```sh
+git clone https://github.com/GeotrekCE/Geotrek-rando-v3.git
 ```
 
 Then you can head to the frontend folder
@@ -143,4 +153,42 @@ PORT=82 && yarn start
 
 ## Process manager
 
-In order to have a more robust solution to serve your node server, our advice is to use [pm2](https://pm2.keymetrics.io/)
+In order to have a more robust solution to serve your node server, our advice is to use [pm2](https://pm2.keymetrics.io/).
+
+Here is a quick guide on how to use pm2 with an Ubuntu distribution (Make sure you've installed nodejs and built the project following the previous step)
+
+```sh
+sudo npm install -g pm2
+```
+
+```sh
+PORT=3000 pm2 start yarn --name geotrek-rando -- start
+```
+
+Here we specify that the port we want to run our server on is the 3000, that the starting command is "yarn start" and the name of our process should be geotrek-rando.
+
+Now by running
+
+```sh
+pm2 status
+```
+
+You can see all your processes and their status
+
+```sh
+pm2 stop geotrek-rando
+```
+
+will stop your process.
+
+```sh
+pm2 start geotrek-rando
+```
+
+will start your process.
+
+You will also be able to see the application logs by running
+
+```sh
+pm2 logs geotrek-rando
+```
