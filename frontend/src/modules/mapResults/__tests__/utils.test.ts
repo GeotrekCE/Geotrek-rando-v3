@@ -1,30 +1,32 @@
 import { computePageCount, generatePageNumbersArray } from 'modules/utils/connector';
 import { concatTrekMapResults, formatLocation } from '../utils';
 
+const geom: [number, number] = [6.1231119, 44.7475257];
+
 const MockRawMapResults = [
   {
     id: 2,
-    parking_location: [6.1231119, 44.7475257],
+    departure_geom: geom,
     practice: 1,
   },
   {
     id: 501,
-    parking_location: [6.116054, 44.7465199],
+    departure_geom: geom,
     practice: 1,
   },
   {
     id: 582,
-    parking_location: [6.0860825, 44.7155137],
+    departure_geom: geom,
     practice: 1,
   },
   {
     id: 586,
-    parking_location: [6.1234998, 44.7481277],
+    departure_geom: geom,
     practice: 1,
   },
   {
     id: 592,
-    parking_location: [6.0668896, 44.7318421],
+    departure_geom: geom,
     practice: 1,
   },
 ];
@@ -79,7 +81,7 @@ describe('computeNumberOfPages', () => {
 
 describe('formatLocation', () => {
   it('should transform array of coordinates into an object with explicit properties', () => {
-    const input = [34, 12345];
+    const input: [number, number] = [34, 12345];
     const output = formatLocation(input);
     const expected = { x: 34, y: 12345 };
 

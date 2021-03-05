@@ -13,7 +13,7 @@ export const adaptTrekMapResults = ({
 }): MapResults =>
   concatTrekMapResults(mapResults).map(rawMapResult => ({
     id: rawMapResult.id,
-    location: formatLocation(rawMapResult.parking_location),
+    location: formatLocation(rawMapResult.departure_geom),
     practice: activities[rawMapResult.practice],
     type: 'TREK',
   }));

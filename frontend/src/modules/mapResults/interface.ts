@@ -16,7 +16,7 @@ export interface RawTrekMapResults {
 
 export interface RawTrekMapResult {
   id: number;
-  parking_location: number[] | null;
+  departure_geom: [number, number] | null;
   practice: number;
 }
 
