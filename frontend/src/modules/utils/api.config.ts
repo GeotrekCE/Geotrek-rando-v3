@@ -2,17 +2,17 @@
 
 import { APICallsConfig } from 'modules/interface';
 
-import apiCallsConfig from '../../../config/apiCalls.json';
-import structureApiCallsConfig from '../../../customization/config/apiCalls.json';
+import apiCallsConfig from '../../../config/global.json';
+import structureApiCallsConfig from '../../../customization/config/global.json';
 
-export const getApiCallsConfig = (): APICallsConfig => ({
+export const getGlobalConfig = (): APICallsConfig => ({
   ...apiCallsConfig,
   ...structureApiCallsConfig,
 });
 
 export const portalsFilter =
-  getApiCallsConfig().portalIds.length > 0
+  getGlobalConfig().portalIds.length > 0
     ? {
-        portals: getApiCallsConfig().portalIds.join(','),
+        portals: getGlobalConfig().portalIds.join(','),
       }
     : {};

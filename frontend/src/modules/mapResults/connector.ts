@@ -6,7 +6,7 @@ import {
   formatTrekFiltersToUrlParams,
 } from 'modules/results/utils';
 import { getTouristicContentCategories } from 'modules/touristicContentCategory/connector';
-import { getApiCallsConfig } from 'modules/utils/api.config';
+import { getGlobalConfig } from 'modules/utils/api.config';
 
 import { generatePageNumbersArray } from 'modules/utils/connector';
 import { adaptTouristicContentMapResults, adaptTrekMapResults } from './adapter';
@@ -29,7 +29,7 @@ export const getMapResults = async (
     const trekFilters = formatTrekFiltersToUrlParams(filtersState);
     const touristicContentFilter = formatTouristicContentFiltersToUrlParams(filtersState);
 
-    const resultsNumber = getApiCallsConfig().mapResultsPageSize;
+    const resultsNumber = getGlobalConfig().mapResultsPageSize;
 
     const mapResults: MapResults = [];
 

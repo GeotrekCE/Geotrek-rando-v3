@@ -1,11 +1,11 @@
 import { generatePageNumbersArray } from 'modules/utils/connector';
-import { getApiCallsConfig } from 'modules/utils/api.config';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptCities, adaptCitiesSinglePage } from './adapter';
 import { fetchCities } from './api';
 import { CityDictionnary } from './interface';
 
 export const getCities = async (language: string): Promise<CityDictionnary> => {
-  const resultsNumber = getApiCallsConfig().searchResultsPageSize;
+  const resultsNumber = getGlobalConfig().searchResultsPageSize;
   // First call to get the count of result - actual result size is limited by page_size
   const cities = await fetchCities({
     language,

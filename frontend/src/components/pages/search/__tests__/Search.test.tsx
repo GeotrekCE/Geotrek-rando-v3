@@ -7,7 +7,7 @@ import { render, waitForElementToBeRemoved } from 'services/testing/reactTesting
 import { mockResultsRoute, mockTouristicContentResultsRoute } from 'modules/results/mocks';
 import { mockMapResultsRoute } from 'modules/mapResults/mocks';
 
-import { getApiCallsConfig } from 'modules/utils/api.config';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { mockCityRoute } from 'modules/city/mocks';
 import { SearchUI } from '../Search';
 
@@ -34,7 +34,7 @@ const mockRoute = ({
   additionalQueries?: any;
   times?: number;
 }) => {
-  nock(getApiCallsConfig().apiUrl)
+  nock(getGlobalConfig().apiUrl)
     .get(route)
     .query({ language: 'fr', ...additionalQueries })
     .times(times)

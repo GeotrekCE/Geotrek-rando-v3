@@ -12,7 +12,7 @@ import { mockAccessibilitiesRoute } from 'modules/accessibility/mocks';
 import { mockSourceRoute } from 'modules/source/mocks';
 import { mockInformationDeskRoute } from 'modules/informationDesk/mocks';
 import { mockLabelRoute } from 'modules/label/mocks';
-import { getApiCallsConfig } from 'modules/utils/api.config';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import {
   mockNetworksResponse,
   rawActivity,
@@ -29,7 +29,7 @@ describe('Details', () => {
   const queryClient = new QueryClient();
 
   it('AAU, I can see details of the trek', async () => {
-    nock(getApiCallsConfig().apiUrl)
+    nock(getGlobalConfig().apiUrl)
       .get(`/trek/${idToTest}/`)
       .query({
         language: 'fr',
@@ -39,35 +39,35 @@ describe('Details', () => {
       })
       .reply(200, rawDetailsMock);
 
-    nock(getApiCallsConfig().apiUrl)
+    nock(getGlobalConfig().apiUrl)
       .get(`/trek_practice/${rawDetailsMock.properties.practice}/`)
       .query({
         language: 'fr',
       })
       .reply(200, rawActivity);
 
-    nock(getApiCallsConfig().apiUrl)
+    nock(getGlobalConfig().apiUrl)
       .get(`/trek_difficulty/${rawDetailsMock.properties.difficulty as number}/`)
       .query({
         language: 'fr',
       })
       .reply(200, rawDifficulty);
 
-    nock(getApiCallsConfig().apiUrl)
+    nock(getGlobalConfig().apiUrl)
       .get(`/trek_route/${rawDetailsMock.properties.route}/`)
       .query({
         language: 'fr',
       })
       .reply(200, rawRoute);
 
-    nock(getApiCallsConfig().apiUrl)
+    nock(getGlobalConfig().apiUrl)
       .get(`/theme`)
       .query({
         language: 'fr',
       })
       .reply(200, mockThemeResponse);
 
-    nock(getApiCallsConfig().apiUrl)
+    nock(getGlobalConfig().apiUrl)
       .get(`/trek_network`)
       .query({
         language: 'fr',

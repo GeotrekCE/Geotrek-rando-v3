@@ -1,8 +1,8 @@
-import { getApiCallsConfig } from 'modules/utils/api.config';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import React from 'react';
 
 const getRobots = () => `User-agent: *
-Sitemap: ${getApiCallsConfig().baseUrl}/sitemap.xml
+Sitemap: ${getGlobalConfig().baseUrl}/sitemap.xml
 `;
 
 class Sitemap extends React.Component {
