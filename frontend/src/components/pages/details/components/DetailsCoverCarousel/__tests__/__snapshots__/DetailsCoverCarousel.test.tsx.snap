@@ -242,7 +242,7 @@ Object {
           class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 cAuCBv krsGZP slick-arrow slick-next"
         />
         <div
-          class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 belMhl slick-dots"
+          class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 HQIeL slick-dots"
         >
           <ul>
             <li
@@ -509,7 +509,7 @@ Object {
         class="DetailsCoverCarousel__StyledArrow-sc-1mnjwq0-0 DetailsCoverCarousel__StyledRightArrow-sc-1mnjwq0-1 cAuCBv krsGZP slick-arrow slick-next"
       />
       <div
-        class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 belMhl slick-dots"
+        class="DetailsCoverCarousel__StyledDots-sc-1mnjwq0-3 HQIeL slick-dots"
       >
         <ul>
           <li
