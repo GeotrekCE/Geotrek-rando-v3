@@ -8,23 +8,23 @@ const mockMapTrekResultsResponse = () => ({
   results: [
     {
       id: 2,
-      parking_location: [6.1231119, 44.7475257],
+      departure_geom: [6.1231119, 44.7475257],
     },
     {
       id: 501,
-      parking_location: [6.116054, 44.7465199],
+      departure_geom: [6.116054, 44.7465199],
     },
     {
       id: 582,
-      parking_location: [6.0860825, 44.7155137],
+      departure_geom: [6.0860825, 44.7155137],
     },
     {
       id: 586,
-      parking_location: [6.1234998, 44.7481277],
+      departure_geom: [6.1234998, 44.7481277],
     },
     {
       id: 592,
-      parking_location: [6.0668896, 44.7318421],
+      departure_geom: [6.0668896, 44.7318421],
     },
   ],
 });
@@ -57,7 +57,7 @@ export const mockMapResultsRoute = (times: number): void => {
     route: '/trek',
     mockData: mockMapTrekResultsResponse(),
     additionalQueries: {
-      fields: 'id,parking_location,practice',
+      fields: 'id,departure_geom,practice',
       page_size: 5,
     },
     times,
@@ -66,7 +66,7 @@ export const mockMapResultsRoute = (times: number): void => {
     route: '/trek',
     mockData: mockMapTrekResultsResponse(),
     additionalQueries: {
-      fields: 'id,parking_location,practice',
+      fields: 'id,departure_geom,practice',
       page_size: 5,
       page: 1,
     },

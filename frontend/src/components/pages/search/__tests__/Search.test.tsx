@@ -8,7 +8,7 @@ import { mockResultsRoute, mockTouristicContentResultsRoute } from 'modules/resu
 import { mockMapResultsRoute } from 'modules/mapResults/mocks';
 
 import { getGlobalConfig } from 'modules/utils/api.config';
-import { mockCityRoute } from 'modules/city/mocks';
+import { mockCityResponse, mockCityRoute } from 'modules/city/mocks';
 import { SearchUI } from '../Search';
 
 import {
@@ -77,9 +77,28 @@ describe('Search page', () => {
     mockRoute({ route: '/structure', mockData: mockStructureResponse });
     mockTouristicContentCategoryRoute(1);
     mockCityRoute(3);
+    mockRoute({
+      route: '/city',
+      mockData: mockCityResponse(),
+      additionalQueries: { fields: 'id,name' },
+      times: 2,
+    });
 
     // Called once on page init then a 2nd time when filters initialize
     mockMapResultsRoute(2);
+    mockRoute({
+      route: '/flatpage',
+      additionalQueries: {
+        fields: 'id,external_url,title,order',
+      },
+      times: 10,
+      mockData: {
+        count: 5,
+        next: null,
+        previous: null,
+        results: [],
+      },
+    });
 
     const queryClient = new QueryClient();
 
@@ -125,7 +144,7 @@ describe('Search page', () => {
     );
 
     // Wait for results loader + map loader
-    await waitForElementToBeRemoved(() => page.queryAllByRole('progressbar'), { timeout: 5000 });
+    // await waitForElementToBeRemoved(() => page.queryAllByRole('progressbar'), { timeout: 5000 });
 
     const textIsPresent = (text: string) => {
       page.getByText(text);
