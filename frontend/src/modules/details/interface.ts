@@ -44,7 +44,7 @@ export interface RawDetailsProperties {
   route: number;
   networks: number[];
   description: string;
-  parking_location: RawCoordinate;
+  parking_location: RawCoordinate | null;
   pdf: string;
   gpx: string;
   kml: string;
@@ -110,7 +110,7 @@ export interface Details extends DetailsHtml {
   trekDeparture: Coordinate2D;
   trekArrival: Coordinate2D;
   touristicContents: TouristicContent[];
-  parkingLocation: Coordinate2D;
+  parkingLocation: Coordinate2D | null;
   pdfUri: string;
   gpxUri: string;
   kmlUri: string;

@@ -68,7 +68,7 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       childrenGeometry,
     });
   } catch (e) {
-    console.error('Error in details/connector principal !!!', e, { ...e });
+    console.error('Error in details/connector principal', e);
     throw e;
   }
 };

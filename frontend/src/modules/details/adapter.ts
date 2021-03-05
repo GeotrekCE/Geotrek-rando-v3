@@ -96,10 +96,13 @@ export const adaptResults = ({
         y: geometry.coordinates[geometry.coordinates.length - 1][1],
       },
       touristicContents,
-      parkingLocation: {
-        x: rawDetailsProperties.parking_location[0],
-        y: rawDetailsProperties.parking_location[1],
-      },
+      parkingLocation:
+        rawDetailsProperties.parking_location !== null
+          ? {
+              x: rawDetailsProperties.parking_location[0],
+              y: rawDetailsProperties.parking_location[1],
+            }
+          : null,
       pdfUri: rawDetailsProperties.pdf,
       gpxUri: rawDetailsProperties.gpx,
       kmlUri: rawDetailsProperties.kml,
