@@ -13,7 +13,7 @@ You need to have Docker installed on your own computer or server. Docker allows 
 
 ## Install Geotrek-rando
 
-You will have to download the prebuilt Docker image of Geotrek-rando and its customization folder template and build a customized image on your own computer or server.
+You will have to download the prebuilt default Docker image of Geotrek-rando and its customization folder template and build a customized image on your own computer or server.
 
 - Create a folder to install your Geotrek-rando (`/home/myuser/geotrekrando` for instance) and go in this folder
 - On your server pull the [Geotrek-rando-docker repository](https://github.com/GeotrekCE/Geotrek-rando-v3-docker): `git pull https://github.com/GeotrekCE/Geotrek-rando-v3-docker.git` or download and unzip it (`wget https://github.com/GeotrekCE/Geotrek-rando-v3-docker/archive/main.zip`)
@@ -64,7 +64,7 @@ sudo service nginx reload
 
 Feel free to add https configuration at will.
 
-You can also open up your web ports thanks to ufw for instance
+You can also open up your web ports thanks to UFW for instance
 
 ```bash
 sudo ufw allow https comment 'Open all to access Nginx port 443'
@@ -79,18 +79,18 @@ Now you should be able to reach your Geotrek-rando through the default web port 
 
 After updating configuration or to install a new version of Geotrek-rando, you have to rebuild a new image of Geotrek-rando, stop the old one and run the new one.
 
-- Build a new Geotrek-rando image: `docker build -t geotrek-rando .`
+- Build a new Geotrek-rando image with its latest version: `docker build -t geotrek-rando .`. You can also specify a specific version.
 - Check running containers: `docker ps`
 - Stop the old container: `docker stop <CONTAINER_ID>`
 - Run the new image: `docker run -d -p {YOUR_PORT}:80 geotrek-rando`
 
-### Manage docker images storage on disk:
+### Manage Docker images storage on disk:
 
 The old images will stay on your system and use disk storage.
 
 To remove images without container associated, you can run `docker image prune -a`.
 
-If you notice a unexpectedly large amount of images remaining on your system when asking docker for images with the command `docker images -a` (showing all the otherwise hidden intermediate images), you can start from a clean slate and delete all the existing docker images on your system by running:
+If you notice a unexpectedly large amount of images remaining on your system when asking Docker for images with the command `docker images -a` (showing all the otherwise hidden intermediate images), you can start from a clean slate and delete all the existing docker images on your system by running:
 `docker rmi $(docker images -a -q) -f`.
 Docker supports subqueries like this one, let's understand it step by step:
 
@@ -101,15 +101,19 @@ Docker supports subqueries like this one, let's understand it step by step:
   - `-q` (quiet) specifies that you only need to get the images IDs
 - `-f` (force) means you want to bypass docker security preventing you to delete used images
 
-## Debug the output of your docker container
+## Debug the output of your Docker container
 
-If something is wrong with your website and you want to see directly what happens on your docker container you can change the running command to `docker run --restart unless-stopped -it -p {YOUR_PORT}:80 geotrek-rando`. Notice we replaced the `-d`option by the `-it` one specifying that we want the container to be interactive(i) and to connect a tty to it so that it will respond to "ctrl-c" command to kill it, the fact that we keep connected to the container's stdout comes from ommitting the deamonize option.
+If something is wrong with your website and you want to see directly what happens on your Docker container you can change the running command to `docker run --restart unless-stopped -it -p {YOUR_PORT}:80 geotrek-rando`. 
+Notice we replaced the `-d` option by the `-it` one specifying that we want the container to be interactive(i) and to connect a tty to it so that it will respond to "ctrl-c" command to kill it. 
+The fact that we keep connected to the container's stdout comes from ommitting the deamonize option.
 
-If you don't even manage to get your container starting and want to inspect the files inside of it, you can override the entrypoint by running `docker run -it --entrypoint sh geotrek-rando -s`. The `--entrypoint sh` option will allow you to replace the server launch command by a simple shell process, you will then be able to navigate in your container. Keep in mind that the modification you make will not be saved to the image, therefore you will lose them if you restart your container from the image.
+If you don't even manage to get your container starting and want to inspect the files inside of it, you can override the entrypoint by running `docker run -it --entrypoint sh geotrek-rando -s`. 
+The `--entrypoint sh` option will allow you to replace the server launch command by a simple shell process, you will then be able to navigate in your container. 
+Keep in mind that the modification you make will not be saved to the image, therefore you will lose them if you restart your container from the image.
 
 # Install without Docker
 
-If you can't install docker for some reason, there is also a way to directly deploy the node server to your machines.
+If you can't install Docker for some reason, there is also a way to directly deploy the node server to your machines.
 
 Install nodejs:
 
@@ -121,7 +125,7 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt -y install nodejs
 ```
 
-Then, you will have to pull the source code from the geotrek rando repository by running
+Then, you will have to pull the source code from the Geotrek-rando repository by running
 
 ```sh
 git clone https://github.com/GeotrekCE/Geotrek-rando-v3.git
@@ -133,13 +137,13 @@ Then you can head to the frontend folder
 cd Geotrek-rando-v3/frontend/
 ```
 
-build the server:
+Build the server
 
 ```sh
 yarn build
 ```
 
-and start it
+And start it
 
 ```sh
 yarn start
@@ -165,29 +169,27 @@ sudo npm install -g pm2
 PORT=3000 pm2 start yarn --name geotrek-rando -- start
 ```
 
-Here we specify that the port we want to run our server on is the 3000, that the starting command is "yarn start" and the name of our process should be geotrek-rando.
+Here we specify that the port we want to run our server on is the 3000, that the starting command is `yarn start` and the name of our process should be `geotrek-rando`.
 
-Now by running
+You can see all your processes and their status by running:
 
 ```sh
 pm2 status
 ```
 
-You can see all your processes and their status
+To stop your process:
 
 ```sh
 pm2 stop geotrek-rando
 ```
 
-will stop your process.
+To start your process:
 
 ```sh
 pm2 start geotrek-rando
 ```
 
-will start your process.
-
-You will also be able to see the application logs by running
+You will also be able to see the application logs by running:
 
 ```sh
 pm2 logs geotrek-rando
