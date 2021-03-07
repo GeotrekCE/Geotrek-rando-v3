@@ -89,8 +89,13 @@ After updating configuration or to install a new version of Geotrek-rando, you h
 The old images will stay on your system and use disk storage.
 
 To remove images without container associated, you can run `docker image prune -a`.
+You can also run `docker container prune` to remove all stopped containers. Run `docker ps -a` to list all containers on your system.
 
-If you notice a unexpectedly large amount of images remaining on your system when asking Docker for images with the command `docker images -a` (showing all the otherwise hidden intermediate images), you can start from a clean slate and delete all the existing docker images on your system by running:
+Use case: after several images built on my server to update and customize my Geotrek-rando, my `/var/lib/docker/vfs` folder had a size of 81 Go! Identified with `sudo du -sh /var/lib/docker/vfs` command. After running `docker container prune` its size was reduced to 14 Go. And after running `docker image prune -a` its size was 7 Go. 🎉
+
+See https://docs.docker.com/config/pruning/ for more details about cleaning unused Dockers objects.
+
+Another method: If you notice a unexpectedly large amount of images remaining on your system when asking Docker for images with the command `docker images -a` (showing all the otherwise hidden intermediate images), you can start from a clean slate and delete all the existing docker images on your system by running:
 `docker rmi $(docker images -a -q) -f`.
 Docker supports subqueries like this one, let's understand it step by step:
 
