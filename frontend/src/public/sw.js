@@ -185,7 +185,7 @@ define("./sw.js",['./workbox-ccd538d6'], function (workbox) { 'use strict';
     "cacheName": "others",
     "networkTimeoutSeconds": 10,
     plugins: [new workbox.ExpirationPlugin({
-      maxEntries: 32,
+      maxEntries: 256,
       maxAgeSeconds: 86400,
       purgeOnQuotaError: true
     })]
