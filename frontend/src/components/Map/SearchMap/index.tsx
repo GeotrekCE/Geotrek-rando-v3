@@ -67,7 +67,7 @@ const SearchMap: React.FC<PropsType> = props => {
                     id={`SEARCH-${point.type}-${point.id}`}
                     type="TREK"
                     position={[point.location.y, point.location.x]}
-                    pictogramUri={point.practice.pictogram}
+                    pictogramUri={point.practice?.pictogram}
                   >
                     {(props.shouldUsePopups ?? false) && (
                       <Popup

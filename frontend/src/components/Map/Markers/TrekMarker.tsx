@@ -16,7 +16,7 @@ const ActivityPictogram = styled.img<{ zoomRatio: number }>`
   top: ${props => markerTopPadding * props.zoomRatio}px;
 `;
 
-const ActivityMarker: React.FC<{ pictogramUrl: string; zoomRatio: number }> = ({
+const ActivityMarker: React.FC<{ pictogramUrl?: string; zoomRatio: number }> = ({
   pictogramUrl,
   zoomRatio,
 }) => {
@@ -32,7 +32,7 @@ const ActivityMarker: React.FC<{ pictogramUrl: string; zoomRatio: number }> = ({
   );
 };
 
-export const TrekMarker = (pictogramUrl: string, zoomRatio = 1) =>
+export const TrekMarker = (pictogramUrl?: string, zoomRatio = 1) =>
   new DivIcon({
     iconSize: [markerHeight * zoomRatio, markerWidth * zoomRatio],
     // point of the icon which will correspond to marker's location
