@@ -2,9 +2,11 @@ import { useQuery } from 'react-query';
 import { Details, TrekChild } from 'modules/details/interface';
 import { getDetails, getTrekChildren } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
+import { isRessourceMissing } from 'services/routeUtils';
 import { useCallback, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
+import { routes } from 'services/routes';
 import { getDimensions } from './utils';
 
 export interface DetailsHeaderSection {
@@ -41,11 +43,17 @@ export const useDetails = (
 ) => {
   const id = isUrlString(detailsUrl) ? detailsUrl.split('-')[0] : '';
   const path = isUrlString(detailsUrl) ? decodeURI(detailsUrl) : '';
-  const { data, refetch, isLoading, error } = useQuery<Details, Error>(
+  const router = useRouter();
+  const { data, refetch, isLoading } = useQuery<Details, Error>(
     `details-${id}-${language}`,
     () => getDetails(id, language),
     {
       enabled: isUrlString(detailsUrl),
+      onError: async error => {
+        if (isRessourceMissing(error)) {
+          await router.push(routes.HOME);
+        }
+      },
     },
   );
 
@@ -139,7 +147,6 @@ export const useDetails = (
   }, []);
 
   const intl = useIntl();
-  const router = useRouter();
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
@@ -152,7 +159,6 @@ export const useDetails = (
     trekFamily,
     refetch,
     isLoading,
-    error,
     sectionsReferences,
     setPreviewRef,
     setChildrenRef,
@@ -163,7 +169,6 @@ export const useDetails = (
     setAccessibilityRef,
     sectionsPositions,
     intl,
-    router,
     mobileMapState,
     displayMobileMap,
     hideMobileMap,

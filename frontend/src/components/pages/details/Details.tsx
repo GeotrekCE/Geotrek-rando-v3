@@ -11,8 +11,6 @@ import { RemoteIconInformation } from 'components/Information/RemoteIconInformat
 import { useMemo, useRef } from 'react';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { Footer } from 'components/Footer';
-import { isRessourceMissing } from 'services/routeUtils';
-import { routes } from 'services/routes';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -47,7 +45,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
     trekFamily,
     refetch,
     isLoading,
-    error,
     sectionsReferences,
     setDescriptionRef,
     setChildrenRef,
@@ -58,7 +55,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
     setAccessibilityRef,
     sectionsPositions,
     intl,
-    router,
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
@@ -83,7 +79,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
 
   const titleRegex = RegExp(/(^\d+-)(.*)/).exec(path);
   const title = titleRegex ? titleRegex[2].replace(/-/g, ' ') : '';
-
   return useMemo(
     () => (
       <>
@@ -102,8 +97,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                 zIndex: zIndex.loader,
               }}
             />
-          ) : isRessourceMissing(error) ? (
-            router.push(routes.HOME)
           ) : (
             <ErrorFallback refetch={refetch} />
           )
