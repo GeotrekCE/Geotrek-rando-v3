@@ -13,7 +13,7 @@ interface BaseProps {
 }
 
 interface TrekProps extends BaseProps {
-  pictogramUri: string;
+  pictogramUri?: string;
   type: 'TREK';
 }
 

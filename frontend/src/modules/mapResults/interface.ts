@@ -4,7 +4,7 @@ import { RawLineStringGeometry2D, RawPointGeometry2D, RawPolygonGeometry } from 
 export type MapResults = {
   id: number;
   location: { x: number; y: number } | null;
-  practice: Activity;
+  practice?: Activity;
   type: 'TREK' | 'TOURISTIC_CONTENT';
 }[];
 
