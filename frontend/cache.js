@@ -129,7 +129,7 @@ module.exports = [
     options: {
       cacheName: 'others',
       expiration: {
-        maxEntries: 32,
+        maxEntries: 256,
         maxAgeSeconds: 24 * 60 * 60, // 24 hours
       },
       networkTimeoutSeconds: 10,
