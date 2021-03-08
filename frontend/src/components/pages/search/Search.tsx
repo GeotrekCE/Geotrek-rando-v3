@@ -165,7 +165,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                           title={searchResult.title}
                           tags={searchResult.tags}
                           thumbnailUris={searchResult.thumbnailUris}
-                          badgeIconUri={searchResult.practice.pictogram}
+                          badgeIconUri={searchResult.practice?.pictogram}
                           informations={searchResult.informations}
                           redirectionUrl={generateResultDetailsUrl(
                             searchResult.id,
