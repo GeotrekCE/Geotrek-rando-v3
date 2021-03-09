@@ -5,7 +5,7 @@ import { fetchCities } from './api';
 import { CityDictionnary } from './interface';
 
 export const getCities = async (language: string): Promise<CityDictionnary> => {
-  const resultsNumber = getGlobalConfig().searchResultsPageSize;
+  const resultsNumber = getGlobalConfig().mapResultsPageSize;
   // First call to get the count of result - actual result size is limited by page_size
   const cities = await fetchCities({
     language,
