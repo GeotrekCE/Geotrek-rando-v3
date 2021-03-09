@@ -46,16 +46,6 @@ const HomeUI: FunctionComponent = () => {
                 <ActivitySearchFilter />
               </div>
             )}
-
-            <HomeCard
-              className={classNameHomeChild}
-              title="Tour des Alpes"
-              imagePath="/images/treck-selection.jpg"
-              subtitle="Un parcours sur 3 jours à découvrir en famille"
-              tag="Sélectionné par le Parc national des Écrins"
-              heightMobile={265}
-              heightDesktop={265}
-            />
             <div className={classNameHomeChild}>{parse(homeTopHtml)}</div>
             {activitySuggestionCategories.map(suggestionCategory => (
               <HomeSection
