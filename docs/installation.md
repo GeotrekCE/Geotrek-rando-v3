@@ -64,6 +64,17 @@ sudo service nginx reload
 
 Feel free to add https configuration at will.
 
+Example with Certbot:
+
+```bash
+## Install Certbot for NGINX
+sudo apt install certbot
+sudo apt install python3-certbot-nginx
+
+## Launch Cerbot command to install the certificate and follow instructions
+sudo certbot --nginx
+```
+
 You can also open up your web ports thanks to UFW for instance
 
 ```bash
@@ -82,7 +93,7 @@ After updating configuration or to install a new version of Geotrek-rando, you h
 - Build a new Geotrek-rando image with its latest version: `docker build -t geotrek-rando .`. You can also specify a specific version.
 - Check running containers: `docker ps`
 - Stop the old container: `docker stop <CONTAINER_ID>`
-- Run the new image: `docker run -d -p {YOUR_PORT}:80 geotrek-rando`
+- Run the new image: `docker run --restart unless-stopped -d -p {YOUR_PORT}:80 geotrek-rando`
 
 ### Manage Docker images storage on disk:
 
