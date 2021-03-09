@@ -117,6 +117,7 @@ Object {
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
+                        target="_blank"
                       >
                         NationalPark
                       </a>
@@ -126,6 +127,7 @@ Object {
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
+                        target="_blank"
                       >
                         Maisons du Parc
                       </a>
@@ -135,6 +137,7 @@ Object {
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
+                        target="_blank"
                       >
                         Informations utiles
                       </a>
@@ -367,6 +370,7 @@ Object {
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
+                      target="_blank"
                     >
                       NationalPark
                     </a>
@@ -376,6 +380,7 @@ Object {
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
+                      target="_blank"
                     >
                       Maisons du Parc
                     </a>
@@ -385,6 +390,7 @@ Object {
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
+                      target="_blank"
                     >
                       Informations utiles
                     </a>

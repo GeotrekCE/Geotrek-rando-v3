@@ -6,8 +6,11 @@ import {
   AccordionItemPanel,
 } from 'react-accessible-accordion';
 import { MenuItem } from 'modules/header/interface';
+import NextLink from 'next/link';
 import { Link } from 'components/Link';
+import { isInternalFlatPageUrl } from 'services/routeUtils';
 import { useRouter } from 'next/router';
+import { getDefaultLanguage } from 'modules/header/utills';
 import { Plus } from '../../Icons/Plus';
 import { Minus } from '../../Icons/Minus';
 import { useBurgerMenuSection } from './useBurgerMenuSection';
@@ -23,6 +26,7 @@ const isItemString = (item: MenuItem | string): item is string => typeof item ==
 
 export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick, languages }) => {
   const router = useRouter();
+  const currentLanguage = router.locale ?? getDefaultLanguage();
   const classNameTitle = 'flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer';
   const classNameBorder = 'border-b pb-2 border-solid border-greySoft';
   const openIcon = <Plus size={24} />;
@@ -45,7 +49,15 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick, lang
         <AccordionItemPanel className={openState === 'OPENED' ? classNameBorder : ''}>
           {items?.map((item, i) => (
             <p key={i} className="text-Mobile-C2 m-3">
-              {isItemString(item) ? <p>{item}</p> : <a href={item.url}>{item.title}</a>}
+              {isItemString(item) ? (
+                <p>{item}</p>
+              ) : (
+                <NextLink href={item.url} passHref locale={currentLanguage} key={item.url}>
+                  <a target={isInternalFlatPageUrl(item.url) ? undefined : '_blank'}>
+                    {item.title}
+                  </a>
+                </NextLink>
+              )}
             </p>
           ))}
           {languages?.map(language => (
