@@ -11,8 +11,8 @@ You can override all settings default values in files from `customization/config
 - `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
 - `home.json` to define homepage settings such as main image URL, blocks to display and trek suggestion block wih trek ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/home.json)
 - `footer.json` to define social networks and links (based on translation labels) in footer (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/footer.json)
-- `filter.json` to define filters to display, their order and values (https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/filterConfig.json)
-- `map.json` to define basemap URL and attribution, center and default zoom (https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/map.json)
+- `filter.json` to define filters to display, their order and values (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/filter.json)
+- `map.json` to define basemap URL and attribution, center and default zoom (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/map.json)
 
 _Warning:_
 When setting up Google Analytics, you have to setup a flow. When setting up the flow, be careful to enter the corresponding url (the url of your website), otherwise the data will not be received.
@@ -68,13 +68,17 @@ You can include some HTML parts in the first and last sections of the homepage, 
 - `customization/homeTop.html`
 - `customization/homeBottom.html`
 
+See HTML examples at https://github.com/GeotrekCE/Geotrek-rando-v3-docker/tree/main/examples.
+
 ## Apply changes
 
 After each customization changes, you'll have to rebuild the Docker image by running:
 
 ```bash
-docker build -t geotrek-rando --build-args VERSION={THE VERSION YOU WANT} .
+docker build -t geotrek-rando . ## You can also specify a specific version
 docker ps ## To find previous container ID to stop
 docker stop {CONTAINER_ID}
-docker run -d -p {YOUR_PORT}:80 geotrek-rando
+docker run --restart unless-stopped -d -p {YOUR_PORT}:80 geotrek-rando
 ```
+
+Make sure to remove older images, otherwise your server will keep all build and enlarge fast.
