@@ -41,7 +41,7 @@ const HomeUI: FunctionComponent = () => {
             {config.activityBar.shouldDisplay && (
               <div
                 className={`desktop:flex desktop:justify-center ${classNameHomeChild}`}
-                id="activies_bar"
+                id="activities_bar"
               >
                 <ActivitySearchFilter />
               </div>
