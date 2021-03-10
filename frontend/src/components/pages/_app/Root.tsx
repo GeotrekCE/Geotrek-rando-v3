@@ -43,11 +43,11 @@ export const Root: FunctionComponent<RootProps> = props => {
           <meta name="msapplication-tap-highlight" content="no" />
           <meta name="theme-color" content="#000000" />
 
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png" />
-          <link rel="mask-icon" href="/images/logo.png" color="#5bbad5" />
-          <link rel="shortcut icon" href="/images/logo.png" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-geotrek.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-geotrek.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/images/logo-geotrek.png" />
+          <link rel="mask-icon" href="/images/logo-geotrek.png" color="#5bbad5" />
+          <link rel="shortcut icon" href="/images/logo-geotrek.png" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
@@ -61,7 +61,7 @@ export const Root: FunctionComponent<RootProps> = props => {
         <meta name="twitter:url" content="localhost" />
         <meta name="twitter:title" content="Geotrek-rando" />
         <meta name="twitter:description" content="Geotrek rando" />
-        <meta name="twitter:image" content="/images/logo.png" />
+        <meta name="twitter:image" content="/images/logo-geotrek.png" />
         <meta name="twitter:creator" content="@DavidWShadow" />
 
         <meta property="og:type" content="website" />
@@ -69,7 +69,7 @@ export const Root: FunctionComponent<RootProps> = props => {
         <meta property="og:description" content="Geotrek rando" />
         <meta property="og:site_name" content="Geotrek-rando" />
         <meta property="og:url" content="localhost" />
-        <meta property="og:image" content="/images/logo.png" /> */}
+        <meta property="og:image" content="/images/logo-geotrek.png" /> */}
 
           <meta
             name="viewport"

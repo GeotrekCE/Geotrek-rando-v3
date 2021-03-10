@@ -22,8 +22,8 @@
     "click-me": "Clique moi",
     "readme": "Lis le README.md pour découvrir les super commandes npm que nous avons ajouté",
     "walking": "Randonnée",
-    "territoryTreks": "Randonnées du territoire",
-    "itinerantTreks": "Parcours en itinérance"
+    "territoryTreks": "Randonnées à découvrir",
+    "itinerantTreks": "Itinérances à découvrir"
   },
   "page": {
     "back": "Retour",
