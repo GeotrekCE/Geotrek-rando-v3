@@ -1,14 +1,15 @@
 import { Heart } from 'components/Icons/Heart';
-import Dropdown from 'react-dropdown';
 import DropdownContainer, * as SimpleDropdown from 'react-simple-dropdown';
 import ReactCountryFlag from 'react-country-flag';
 import { useIntl } from 'react-intl';
 import { Link } from 'components/Link';
+import NextLink from 'next/link';
 import { MenuItem } from 'modules/header/interface';
 import { ChevronDown } from 'components/Icons/ChevronDown';
 import { useRouter } from 'next/router';
 import { isInternalFlatPageUrl } from 'services/routeUtils';
 import React, { useRef } from 'react';
+import { getDefaultLanguage } from 'modules/header/utills';
 
 export interface InlineMenuProps {
   className?: string;
@@ -18,26 +19,18 @@ export interface InlineMenuProps {
   supportedLanguages: string[];
 }
 
-const openInCurrentTab = (url: string) => {
-  window.open(url, '_self');
-};
-
-const openInNewTab = (url: string) => {
-  window.open(url);
-};
-
-const LanguageDropDownButton = React.forwardRef<
+const DropDownButton = React.forwardRef<
   HTMLAnchorElement,
-  { text: string; onClick: () => void; href?: string; className: string }
->(({ text, onClick, href, className }, ref) => {
+  { text: string; onClick: () => void; href?: string; className: string; target?: string }
+>(({ text, onClick, href, className, target }, ref) => {
   return (
-    <a className={className} href={href} onClick={onClick} ref={ref}>
+    <a className={className} href={href} onClick={onClick} ref={ref} target={target}>
       {text}
     </a>
   );
 });
 
-LanguageDropDownButton.displayName = 'LanguageDropDownButton';
+DropDownButton.displayName = 'DropDownButton';
 
 const InlineMenu: React.FC<InlineMenuProps> = ({
   className,
@@ -47,42 +40,38 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
   supportedLanguages,
 }) => {
   const intl = useIntl();
-  const dropdownRef = useRef<DropdownContainer>(null);
+  const languageDropdownRef = useRef<DropdownContainer>(null);
+  const flatpageDropdownRef = useRef<DropdownContainer>(null);
   const router = useRouter();
+  const language = router.locale ?? getDefaultLanguage();
+
   return (
     <div className={className}>
       {sections &&
-        sections.map((menuItem, i) => <Section name={menuItem.title} key={i} url={menuItem.url} />)}
+        sections.map((menuItem, i) => (
+          <Section name={menuItem.title} key={i} url={menuItem.url} language={language} />
+        ))}
       {subSections && subSections.length > 0 && (
-        <Dropdown
-          options={subSections.map(menuItem => ({
-            value: menuItem.url,
-            label: menuItem.title,
-            className: optionClassName,
-          }))}
-          controlClassName={controlClassName}
-          menuClassName={menuClassName}
-          placeholderClassName="hidden"
-          arrowClosed={
-            <SectionWithArrow
-              name={intl.formatMessage({
-                id: 'header.seeMore',
-              })}
-            />
-          }
-          arrowOpen={
-            <SectionWithArrow
-              name={intl.formatMessage({
-                id: 'header.seeMore',
-              })}
-            />
-          }
-          onChange={option =>
-            isInternalFlatPageUrl(option.value)
-              ? openInCurrentTab(option.value)
-              : openInNewTab(option.value)
-          }
-        />
+        <DropdownContainer ref={flatpageDropdownRef} className="flex-row">
+          <SimpleDropdown.DropdownTrigger className={controlClassName}>
+            {intl.formatMessage({
+              id: 'header.seeMore',
+            })}
+            <ChevronDown size={16} className="flex-shrink-0 ml-1" />
+          </SimpleDropdown.DropdownTrigger>
+          <SimpleDropdown.DropdownContent className={menuClassName}>
+            {subSections.map(menuItem => (
+              <NextLink href={menuItem.url} passHref locale={language} key={menuItem.title}>
+                <DropDownButton
+                  className={optionClassName}
+                  text={menuItem.title}
+                  onClick={() => flatpageDropdownRef?.current?.hide()}
+                  target={isInternalFlatPageUrl(menuItem.url) ? undefined : '_blank'}
+                ></DropDownButton>
+              </NextLink>
+            ))}
+          </SimpleDropdown.DropdownContent>
+        </DropdownContainer>
       )}
 
       {shouldDisplayFavorites && (
@@ -92,20 +81,19 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
         </div>
       )}
       <div className="flex items-center text-white" key="language">
-        {router.locale !== undefined && (
+        {language !== undefined && (
           <ReactCountryFlag
-            countryCode={router.locale === 'en' ? 'GB' : router.locale.toUpperCase()}
+            countryCode={language === 'en' ? 'GB' : language.toUpperCase()}
             className="mr-2"
             svg
           />
         )}
-        <DropdownContainer ref={dropdownRef} className="flex-row">
+        <DropdownContainer ref={languageDropdownRef} className="flex-row">
           <SimpleDropdown.DropdownTrigger className={controlClassName}>
-            {router.locale?.toUpperCase()}
+            {language?.toUpperCase()}
             <ChevronDown size={16} className="flex-shrink-0 ml-1" />
           </SimpleDropdown.DropdownTrigger>
           <SimpleDropdown.DropdownContent className={menuClassName}>
-            {/* <div className={menuClassName}> */}
             {supportedLanguages.map(language => (
               <Link
                 href={router.asPath}
@@ -115,14 +103,13 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
                 scroll={false}
                 key={language}
               >
-                <LanguageDropDownButton
+                <DropDownButton
                   className={optionClassName}
                   text={language.toUpperCase()}
-                  onClick={() => dropdownRef?.current?.hide()}
-                ></LanguageDropDownButton>
+                  onClick={() => languageDropdownRef?.current?.hide()}
+                ></DropDownButton>
               </Link>
             ))}
-            {/* </div> */}
           </SimpleDropdown.DropdownContent>
         </DropdownContainer>
       </div>
@@ -139,18 +126,21 @@ const optionClassName = 'flex hover:bg-greySoft-light focus:bg-greySoft cursor-p
 
 const sectionClassName = 'pt-3 pb-2 mr-5 text-white cursor-pointer';
 
-const SectionWithArrow: React.FC<{ name: string }> = ({ name }) => (
-  <div className={`${sectionClassName} flex items-center flex-shrink-0 mb-1 whitespace-nowrap`}>
-    {name}
-    <ChevronDown size={16} className="flex-shrink-0 ml-1" />
-  </div>
-);
-
-const Section: React.FC<{ name: string; url?: string }> = ({ name, url }) => (
+const Section: React.FC<{ name: string; url?: string; language?: string }> = ({
+  name,
+  url,
+  language,
+}) => (
   <div
     className={`${sectionClassName} duration-500 transition-all border-b-4 hover:border-white border-transparent border-solid`}
   >
-    {url !== undefined ? <a href={url}>{name}</a> : name}
+    {url !== undefined ? (
+      <NextLink href={url} locale={language}>
+        {name}
+      </NextLink>
+    ) : (
+      name
+    )}
   </div>
 );
 
