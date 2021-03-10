@@ -1,3 +1,4 @@
 *.snapshot.test.js
 jest.setup.js
 next.config.js
+customizeManifest.js
