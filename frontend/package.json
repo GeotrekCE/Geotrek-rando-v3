@@ -6,7 +6,7 @@
     "debug": "NODE_OPTIONS='--inspect' next ./src",
     "dev": "NODE_ICU_DATA=node_modules/full-icu next ./src",
     "prod": "yarn build && yarn start",
-    "build": "next build ./src",
+    "build": "yarn node ./customizeManifest.js && next build ./src",
     "generate": "plop --plopfile scripts/generators/index.js",
     "start": "NODE_ENV=production node ./src/server.js",
     "test": "NODE_ICU_DATA=node_modules/full-icu jest --coverage=false --runInBand",

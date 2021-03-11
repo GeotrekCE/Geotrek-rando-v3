@@ -1,6 +1,5 @@
 {
-  "name": "Geotrek-rando",
-  "short_name": "Geotrek-rando",
+  "name": "Custom Geotrek",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
   "display": "standalone",
