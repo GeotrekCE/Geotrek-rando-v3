@@ -16,6 +16,7 @@ You need to have Docker installed on your own computer or server. Docker allows 
 You will have to download the prebuilt default Docker image of Geotrek-rando and its customization folder template and build a customized image on your own computer or server.
 
 - Create a folder to install your Geotrek-rando (`/home/myuser/geotrekrando` for instance) and go in this folder
+- Initialize the directory as the git repository `git init .`
 - On your server pull the [Geotrek-rando-docker repository](https://github.com/GeotrekCE/Geotrek-rando-v3-docker): `git pull https://github.com/GeotrekCE/Geotrek-rando-v3-docker.git` or download and unzip it (`wget https://github.com/GeotrekCE/Geotrek-rando-v3-docker/archive/main.zip`)
 - Update the files in the `/customization` folder according to your structure (See customization documentation)
 - Build the Docker image with its latest prebuilt version: `docker build -t geotrek-rando .`
