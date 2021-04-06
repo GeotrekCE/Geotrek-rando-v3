@@ -50,6 +50,8 @@ La page d'accueil est composée :
 
 ![Search](https://geotrek.ecrins-parcnational.fr/images/gtr3-04-search.jpg)
 
+Logique des filtres permanents et spécifiques
+
 **A venir :**
 
 - Ajout des évènements touristiques
@@ -59,11 +61,25 @@ La page d'accueil est composée :
 
 ## Page détail
 
+Chaque objet dispose d'une page de détail avec ses informations détaillées et sa carte.
+
 ### Randonnées
+
+Photo, infos techniques, description, patrimoines
+
+IMG
 
 ### Itinérances
 
+Idem mais avec fiche séjour et ses étapes, puis la navigation entre les fiches des différentes étapes.
+
+Ne pas publier une étape pour qu'elle n'apparaisse pas dans la recherche mais seulement dans les étapes d'une itinérance.
+
+IMG
+
 ### Contenus touristiques
+
+Fiche simplifiée
 
 ### A venir
 
@@ -72,13 +88,32 @@ La page d'accueil est composée :
 - Ajout des pages détail des sites outdoor
 - Amélioration des informations affichées sur les cartes en version mobile
 
+## Pages statiques
+
 ## Version mobile
+
+IMG
+
+La consultation du portail sur un appareil mobile a été optimisée pour être adaptée aux petits écrans et aux interactions tactiles.
+
+## Customisation
+
+- Classes des filtres
+- Textes
+- Couleurs, logo, titre
+
+## Autres
 
 Valeurs filtres et listes en cache
 
 SSR
 
+- Rendu côté serveur (Server Side Rendering / SSR) pour optimiser et prégénérer les pages renvoyées aux moteurs de recherche, avec NextJS
+
 SEO
+
+- Title et description dans les meta
+- Optimisation des pages et analyse avec Google Search Console
 
 Sitemaps
 Robots.txt
