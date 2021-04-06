@@ -16,7 +16,7 @@ export const mockResultsResponse = (): APIResponseForList<RawTrekResult> => ({
       duration: 7,
       length_2d: 15205.4,
       name: 'Col de Font Froide',
-      cities: ['05045'],
+      departure_city: '05045',
       practice: 4,
       reservation_system: null,
       themes: [1, 7, 11],
@@ -42,7 +42,7 @@ export const mockResultsRoute = (times: number): void =>
     mockData: mockResultsResponse(),
     additionalQueries: {
       fields:
-        'id,departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,attachments,practice,cities',
+        'id,departure,name,themes,duration,length_2d,ascent,difficulty,reservation_system,attachments,practice,departure_city',
       page_size: 5,
       page: 1,
     },
@@ -62,7 +62,7 @@ export const mockTouristicContentResultsRoute = (times: number): void =>
     route: '/touristiccontent',
     mockData: mockTouristicContentResultsResponse(),
     additionalQueries: {
-      fields: 'id,attachments,name,category,description_teaser,themes,types,cities',
+      fields: 'id,attachments,name,category,description_teaser,themes,types,departure_city',
       page_size: 5,
       page: 1,
     },
