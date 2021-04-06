@@ -16,6 +16,7 @@
     "lint": "eslint --ext=jsx,ts,tsx src",
     "lint:fix": "eslint --ext=jsx,ts,tsx src --fix",
     "lint-style": "stylelint 'src/**/*.style.{ts,tsx}' 'src/**/style.{ts,tsx}'",
+    "prepush": "yarn lint && yarn tsc && yarn test",
     "type-check": "tsc -p src/tsconfig.json"
   },
   "stylelint": {

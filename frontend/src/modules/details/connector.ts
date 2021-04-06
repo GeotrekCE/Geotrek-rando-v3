@@ -74,6 +74,7 @@ export const getDetails = async (id: string, language: string): Promise<Details>
 };
 
 export const getTrekChildren = async (parentId: string, language: string): Promise<TrekChild[]> => {
+  if (parentId.length === 0) return [];
   try {
     const childrenIdsResult = await fetchTrekChildren({ language }, parentId);
     const childrenNames = await Promise.all(
