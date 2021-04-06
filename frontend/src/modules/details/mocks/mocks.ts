@@ -99,7 +99,7 @@ export const rawDetailsProperties: RawDetailsProperties = {
       type: 'image',
     },
   ],
-  cities: ['05090'],
+  departure_city: '05090',
   children: [],
   departure: 'Molines-en-Champsaur',
   description:
