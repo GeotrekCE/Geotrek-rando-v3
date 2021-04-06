@@ -48,7 +48,7 @@ export interface RawDetailsProperties {
   pdf: string;
   gpx: string;
   kml: string;
-  cities: string[];
+  departure_city: string;
   disabled_infrastructure: string;
   accessibilities: number[];
   source: number[];

@@ -54,11 +54,7 @@ export const adaptResults = ({
   try {
     return {
       title: rawDetailsProperties.name,
-      place:
-        rawDetailsProperties.cities.length > 0 &&
-        cityDictionnary[rawDetailsProperties.cities[0]] !== undefined
-          ? cityDictionnary[rawDetailsProperties.cities[0]].name
-          : rawDetailsProperties.departure,
+      place: cityDictionnary[rawDetailsProperties.departure_city].name,
       imgs: getAttachments(rawDetailsProperties.attachments),
       practice: activity,
       transport: rawDetailsProperties.public_transport,

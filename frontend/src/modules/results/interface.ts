@@ -50,7 +50,7 @@ export interface RawTrekResult {
   difficulty: number | null;
   duration: number | null;
   themes: number[];
-  cities: string[];
+  departure_city: string;
   length_2d: number;
   name: string;
   reservation_system: null | number;
