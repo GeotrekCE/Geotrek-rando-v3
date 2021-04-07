@@ -6,14 +6,11 @@ import { Header } from 'components/Header';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
 `;
 Container.displayName = 'Container';
 
 export const PageContent = styled.main`
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
 `;
 PageContent.displayName = 'PageContent';
 
