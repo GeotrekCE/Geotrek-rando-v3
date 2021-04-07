@@ -9,7 +9,6 @@ import { Layout } from 'components/Layout/Layout';
 import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
-import HomeCard from './components/HomeCard';
 import { HomeSection } from './components/HomeSection';
 import { HomeContainer, TopContainer } from './Home.style';
 import { useHome } from './useHome';
@@ -23,7 +22,7 @@ const HomeUI: FunctionComponent = () => {
 
   const intl = useIntl();
   return (
-    <div>
+    <div className="h-full">
       <PageHead
         title={intl.formatMessage({ id: 'home.title' })}
         description={intl.formatMessage({ id: 'home.description' })}
