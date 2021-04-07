@@ -4,7 +4,7 @@ interface ActivityBar {
   shouldDisplay: boolean;
 }
 
-interface PictureAndText {
+interface WelcomeBanner {
   pictureUrl: string;
   shouldDisplayText: boolean;
 }
@@ -22,7 +22,7 @@ export interface DisplayableSuggestionCategory {
 }
 
 export interface HomePageConfig {
-  pictureAndText: PictureAndText;
+  welcomeBanner: WelcomeBanner;
   activityBar: ActivityBar;
   suggestions: Suggestion[];
 }

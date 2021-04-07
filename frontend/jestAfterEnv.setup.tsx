@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import { HomePageConfig } from './src/modules/home/interface';
 import nock from 'nock';
 
 jest.mock('./src/components/Map', () => ({
@@ -58,24 +59,25 @@ jest.mock('./src/modules/header/utills.ts', () => ({
   getDefaultLanguage: () => 'fr',
 }));
 
+const mockConfig: HomePageConfig = {
+  welcomeBanner: {
+    pictureUrl: 'https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg',
+    shouldDisplayText: true,
+  },
+  activityBar: {
+    shouldDisplay: true,
+  },
+  suggestions: [
+    {
+      titleTranslationId: 'home.territoryTreks',
+      iconUrl: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg',
+      ids: ['2'],
+    },
+  ],
+};
+
 jest.mock('./src/modules/home/utils.ts', () => ({
-  getHomePageConfig: () => ({
-    pictureAndText: {
-      pictureUrl: 'https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg',
-      shouldDisplayText: true,
-    },
-    activityBar: {
-      shouldDisplay: true,
-    },
-    suggestions: [
-      {
-        titleTranslationId: 'home.territoryTreks',
-        iconUrl:
-          'https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg',
-        ids: ['2'],
-      },
-    ],
-  }),
+  getHomePageConfig: () => mockConfig,
 }));
 
 window.matchMedia =

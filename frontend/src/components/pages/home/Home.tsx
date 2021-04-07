@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import parse from 'html-react-parser';
 
 import homeTopHtml from 'customization/html/homeTop.html';
@@ -10,8 +10,9 @@ import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { HomeSection } from './components/HomeSection';
-import { HomeContainer, TopContainer } from './Home.style';
+import { HomeContainer } from './Home.style';
 import { useHome } from './useHome';
+import { BannerSection } from './components/BannerSection';
 
 const HomeUI: FunctionComponent = () => {
   const { config, activitySuggestionCategories } = useHome();
@@ -29,13 +30,11 @@ const HomeUI: FunctionComponent = () => {
       />
       <Layout>
         <HomeContainer>
-          <TopContainer backgroundUrl={config.pictureAndText.pictureUrl} id="cover_image">
-            {config.pictureAndText.shouldDisplayText && (
-              <span className="text-white font-bold text-Mobile-H1 desktop:text-H1 desktop:leading-tight">
-                <FormattedMessage id="home.welcome-text" />
-              </span>
-            )}
-          </TopContainer>
+          <BannerSection
+            shouldDisplayText={config.welcomeBanner.shouldDisplayText}
+            backgroundSourceUrl={config.welcomeBanner.pictureUrl}
+            type="image"
+          />
           <div className={contentContainerClassname}>
             {config.activityBar.shouldDisplay && (
               <div
