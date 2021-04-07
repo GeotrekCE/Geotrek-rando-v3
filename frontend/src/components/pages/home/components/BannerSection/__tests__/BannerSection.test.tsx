@@ -22,9 +22,9 @@ describe('BannerSection', () => {
       <BannerSection shouldDisplayText backgroundSourceUrl={'test.jpg'} type={type} />,
     );
 
-    const image = component.queryByTestId(type);
+    const asset = component.queryByTestId(type);
 
-    expect(image).toBeTruthy();
+    expect(asset).toBeTruthy();
   });
 
   test.each`
