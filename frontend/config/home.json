@@ -1,6 +1,7 @@
 {
   "welcomeBanner": {
     "pictureUrl": "https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg",
+    "videoUrl": null,
     "shouldDisplayText": true
   },
   "activityBar": {
@@ -10,12 +11,23 @@
     {
       "titleTranslationId": "home.territoryTreks",
       "iconUrl": "/icons/practice-pedestrian.svg",
-      "ids": ["2", "582", "586", "501", "771", "596", "604"]
+      "ids": [
+        "2",
+        "582",
+        "586",
+        "501",
+        "771",
+        "596",
+        "604"
+      ]
     },
     {
       "titleTranslationId": "home.itinerantTreks",
       "iconUrl": "/icons/practice-pedestrian.svg",
-      "ids": ["501", "771"]
+      "ids": [
+        "501",
+        "771"
+      ]
     }
   ]
 }
