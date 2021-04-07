@@ -70,6 +70,8 @@ module.exports = {
       resultCardMobile: '27vh',
       suggestionCardDesktop: '25vw',
       button: '48px',
+      bannerSectionDesktop: '80vh',
+      bannerSectionMobile: '244px',
     },
     zIndex: {
       content: 0,
