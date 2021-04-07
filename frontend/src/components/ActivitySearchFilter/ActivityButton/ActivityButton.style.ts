@@ -20,7 +20,7 @@ export const ActivityButtonContainer = styled.button`
 `;
 
 export const Text = styled.span`
-  ${typography.main}
+  ${typography.small}
   color: ${colorPalette.greyDarkColored};
 
   margin-top: ${getSpacing(2)};
