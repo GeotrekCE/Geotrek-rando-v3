@@ -1,22 +1,30 @@
 import { render } from 'services/testing/reactTestingLibraryWrapper';
 import { BannerSection } from '../BannerSection';
 describe('BannerSection', () => {
-  it('should render correctly', () => {
+  test.each`
+    type       | backgroundSourceUrl
+    ${'image'} | ${'test.jpg'}
+    ${'video'} | ${'test.mp4'}
+  `('should render correctly with a type $type', ({ type, backgroundSourceUrl }) => {
     const component = render(
-      <BannerSection shouldDisplayText backgroundSourceUrl={'test.jpg'} type="image" />,
+      <BannerSection shouldDisplayText backgroundSourceUrl={backgroundSourceUrl} type={type} />,
     );
 
     expect(component).toMatchSnapshot();
   });
 
-  it('should display an image if type is image', () => {
+  test.each`
+    type       |
+    ${'image'}
+    ${'video'}
+  `('should display an $type if type is $type', ({ type }) => {
     const component = render(
-      <BannerSection shouldDisplayText backgroundSourceUrl={'test.jpg'} type="image" />,
+      <BannerSection shouldDisplayText backgroundSourceUrl={'test.jpg'} type={type} />,
     );
 
-    const image = component.queryByTestId('image');
+    const asset = component.queryByTestId(type);
 
-    expect(image).toBeTruthy();
+    expect(asset).toBeTruthy();
   });
 
   test.each`

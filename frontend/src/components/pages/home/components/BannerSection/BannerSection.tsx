@@ -26,6 +26,16 @@ export const BannerSection: React.FC<BannerSectionProps> = ({
           data-testid="image"
         />
       )}
+      {type === 'video' && (
+        <video
+          autoPlay
+          muted
+          loop
+          src={backgroundSourceUrl}
+          className="object-cover object-center overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+          data-testid="video"
+        />
+      )}
       <div className="absolute bottom-0 top-0 right-0 left-0 bg-gradient-to-t from-gradientOnImages to-transparent" />
       {shouldDisplayText && (
         <WelcomeText
