@@ -10,6 +10,7 @@ Object {
       >
         <img
           class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+          data-testid="image"
           src="test.jpg"
         />
         <div
@@ -30,6 +31,7 @@ Object {
     >
       <img
         class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+        data-testid="image"
         src="test.jpg"
       />
       <div

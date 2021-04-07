@@ -9,18 +9,23 @@ const WelcomeText = styled.span`
 interface BannerSectionProps {
   backgroundSourceUrl: string;
   shouldDisplayText: boolean;
+  type: 'image' | 'video' | 'carousel';
 }
 
 export const BannerSection: React.FC<BannerSectionProps> = ({
   backgroundSourceUrl,
   shouldDisplayText,
+  type,
 }) => {
   return (
     <div className="relative">
-      <img
-        src={backgroundSourceUrl}
-        className="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
-      />
+      {type === 'image' && (
+        <img
+          src={backgroundSourceUrl}
+          className="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+          data-testid="image"
+        />
+      )}
       <div className="absolute bottom-0 top-0 right-0 left-0 bg-gradient-to-t from-gradientOnImages to-transparent" />
       {shouldDisplayText && (
         <WelcomeText
