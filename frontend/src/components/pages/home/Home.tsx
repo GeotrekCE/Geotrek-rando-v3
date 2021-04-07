@@ -31,8 +31,8 @@ const HomeUI: FunctionComponent = () => {
       <Layout>
         <HomeContainer>
           <BannerSection
-            shouldDisplayText={config.pictureAndText.shouldDisplayText}
-            backgroundSourceUrl={config.pictureAndText.pictureUrl}
+            shouldDisplayText={config.welcomeBanner.shouldDisplayText}
+            backgroundSourceUrl={config.welcomeBanner.pictureUrl}
             type="image"
           />
           <div className={contentContainerClassname}>
