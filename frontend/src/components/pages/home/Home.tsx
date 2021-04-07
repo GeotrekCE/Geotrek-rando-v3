@@ -13,6 +13,7 @@ import { HomeSection } from './components/HomeSection';
 import { HomeContainer } from './Home.style';
 import { useHome } from './useHome';
 import { BannerSection } from './components/BannerSection';
+import { BannerType } from './components/BannerSection/BannerSection';
 
 const HomeUI: FunctionComponent = () => {
   const { config, activitySuggestionCategories } = useHome();
@@ -20,6 +21,16 @@ const HomeUI: FunctionComponent = () => {
   const contentContainerClassname = `relative ${
     config.activityBar.shouldDisplay ? '-top-6 desktop:-top-15' : 'pt-6 desktop:pt-18'
   }`;
+
+  const getBannerType = (): BannerType => {
+    if (config.welcomeBanner.videoUrl !== null && config.welcomeBanner.videoUrl !== undefined) {
+      return 'video';
+    }
+    if (config.welcomeBanner.picturesUrl.length > 1) {
+      return 'carousel';
+    }
+    return 'image';
+  };
 
   const intl = useIntl();
   return (
@@ -32,14 +43,8 @@ const HomeUI: FunctionComponent = () => {
         <HomeContainer>
           <BannerSection
             shouldDisplayText={config.welcomeBanner.shouldDisplayText}
-            backgroundSourceUrl={
-              config.welcomeBanner.videoUrl ?? config.welcomeBanner.picturesUrl[0]
-            }
-            type={
-              config.welcomeBanner.videoUrl !== null && config.welcomeBanner.videoUrl !== undefined
-                ? 'video'
-                : 'image'
-            }
+            backgroundSourceUrl={config.welcomeBanner.videoUrl ?? config.welcomeBanner.picturesUrl}
+            type={getBannerType()}
           />
           <div className={contentContainerClassname}>
             {config.activityBar.shouldDisplay && (

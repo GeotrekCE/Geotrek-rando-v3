@@ -7,10 +7,11 @@ const WelcomeText = styled.span`
   text-shadow: 0 0 20px ${colorPalette.home.shadowOnImages};
 `;
 
+export type BannerType = 'image' | 'video' | 'carousel';
 interface BannerSectionProps {
   backgroundSourceUrl: string | string[];
   shouldDisplayText: boolean;
-  type: 'image' | 'video' | 'carousel';
+  type: BannerType;
 }
 
 export const BannerSection: React.FC<BannerSectionProps> = ({
