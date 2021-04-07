@@ -45,7 +45,7 @@ export const BannerSection: React.FC<BannerSectionProps> = ({
         <WelcomeText
           data-testid="text"
           className="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight
-          absolute bottom-20 desktop:bottom-40 left-10vw right-10vw"
+          absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
         >
           <FormattedMessage id="home.welcome-text" />
         </WelcomeText>

@@ -17,7 +17,7 @@ Object {
           class="absolute bottom-0 top-0 right-0 left-0 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
         <span
-          class="BannerSection__WelcomeText-opht63-0 dYtjim text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 left-10vw right-10vw"
+          class="BannerSection__WelcomeText-opht63-0 dYtjim text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -38,7 +38,7 @@ Object {
         class="absolute bottom-0 top-0 right-0 left-0 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
       <span
-        class="BannerSection__WelcomeText-opht63-0 dYtjim text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 left-10vw right-10vw"
+        class="BannerSection__WelcomeText-opht63-0 dYtjim text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -118,7 +118,7 @@ Object {
           class="absolute bottom-0 top-0 right-0 left-0 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
         <span
-          class="BannerSection__WelcomeText-opht63-0 dYtjim text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 left-10vw right-10vw"
+          class="BannerSection__WelcomeText-opht63-0 dYtjim text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -141,7 +141,7 @@ Object {
         class="absolute bottom-0 top-0 right-0 left-0 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
       <span
-        class="BannerSection__WelcomeText-opht63-0 dYtjim text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 left-10vw right-10vw"
+        class="BannerSection__WelcomeText-opht63-0 dYtjim text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
