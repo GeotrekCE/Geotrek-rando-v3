@@ -117,8 +117,8 @@ module.exports = {
       boxShadow: {
         lg: '0 0 30px 0 rgba(0, 0, 0, 0.15)',
         md: '0 0 20px rgba(0, 0, 0, 0.15)',
-        sm: '0 0 4px #D7D6D9',
-        button: '0 0 6px #D7D6D9',
+        sm: '0 0 4px rgba(0, 0, 0, 0.15)',
+        button: '0 0 6px rgba(0, 0, 0, 0.15)',
       },
       colors: {
         primary1: {
