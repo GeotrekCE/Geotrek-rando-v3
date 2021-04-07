@@ -61,7 +61,7 @@ jest.mock('./src/modules/header/utills.ts', () => ({
 
 const mockConfig: HomePageConfig = {
   welcomeBanner: {
-    pictureUrl: 'https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg',
+    picturesUrl: ['https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg'],
     shouldDisplayText: true,
     videoUrl: null,
   },

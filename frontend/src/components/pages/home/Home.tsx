@@ -32,7 +32,9 @@ const HomeUI: FunctionComponent = () => {
         <HomeContainer>
           <BannerSection
             shouldDisplayText={config.welcomeBanner.shouldDisplayText}
-            backgroundSourceUrl={config.welcomeBanner.videoUrl ?? config.welcomeBanner.pictureUrl}
+            backgroundSourceUrl={
+              config.welcomeBanner.videoUrl ?? config.welcomeBanner.picturesUrl[0]
+            }
             type={
               config.welcomeBanner.videoUrl !== null && config.welcomeBanner.videoUrl !== undefined
                 ? 'video'
