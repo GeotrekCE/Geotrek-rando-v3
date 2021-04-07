@@ -1,7 +1,10 @@
 {
   "welcomeBanner": {
-    "videoUrl": "https://rando.ecrins-parcnational.fr/custom/videos/video-rando-ecrins.mp4",
-    "picturesUrl": ["https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"],
+    "picturesUrl": [
+      "https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg",
+      "https://images.pexels.com/photos/869258/pexels-photo-869258.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+      "https://images.pexels.com/photos/4275885/pexels-photo-4275885.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+    ],
     "shouldDisplayText": true
   },
   "activityBar": {
