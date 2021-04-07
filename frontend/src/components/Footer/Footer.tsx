@@ -6,7 +6,7 @@ import { useFooter } from './useFooter';
 export const Footer: React.FC = () => {
   const { config } = useFooter();
   return (
-    <div className="bg-black flex flex-col flex-1" id="footer">
+    <div className="bg-black flex flex-col" id="footer">
       <div className="mx-4 desktop:mx-10percent">
         {config.socialNetworks && <SocialNetworks socialNetworkList={config.socialNetworks} />}
         <div
