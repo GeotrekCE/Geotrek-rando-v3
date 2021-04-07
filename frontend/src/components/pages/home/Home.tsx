@@ -32,8 +32,8 @@ const HomeUI: FunctionComponent = () => {
         <HomeContainer>
           <BannerSection
             shouldDisplayText={config.welcomeBanner.shouldDisplayText}
-            backgroundSourceUrl={config.welcomeBanner.pictureUrl}
-            type="image"
+            backgroundSourceUrl={config.welcomeBanner.videoUrl ?? config.welcomeBanner.pictureUrl}
+            type={config.welcomeBanner.videoUrl !== null ? 'video' : 'image'}
           />
           <div className={contentContainerClassname}>
             {config.activityBar.shouldDisplay && (
