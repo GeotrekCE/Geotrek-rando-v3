@@ -6,6 +6,7 @@ import { Header } from 'components/Header';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
 `;
 Container.displayName = 'Container';
 
