@@ -5,8 +5,8 @@ interface ActivityBar {
 }
 
 interface WelcomeBanner {
-  videoUrl: string | null;
-  picturesUrl: string[];
+  videoUrl?: string;
+  picturesUrl?: string[];
   shouldDisplayText: boolean;
 }
 

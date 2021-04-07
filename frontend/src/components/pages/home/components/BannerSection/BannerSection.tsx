@@ -8,8 +8,9 @@ const WelcomeText = styled.span`
 `;
 
 export type BannerType = 'image' | 'video' | 'carousel';
+
 interface BannerSectionProps {
-  backgroundSourceUrl: string | string[];
+  backgroundSourceUrl?: string | string[];
   shouldDisplayText: boolean;
   type: BannerType;
 }
@@ -19,6 +20,9 @@ export const BannerSection: React.FC<BannerSectionProps> = ({
   shouldDisplayText,
   type,
 }) => {
+  if (backgroundSourceUrl === undefined) {
+    return null;
+  }
   return (
     <div className="relative">
       {type === 'image' && typeof backgroundSourceUrl === 'string' && (

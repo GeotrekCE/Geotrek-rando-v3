@@ -22,15 +22,22 @@ const HomeUI: FunctionComponent = () => {
     config.activityBar.shouldDisplay ? '-top-6 desktop:-top-15' : 'pt-6 desktop:pt-18'
   }`;
 
-  const getBannerType = (): BannerType => {
-    if (config.welcomeBanner.videoUrl !== null && config.welcomeBanner.videoUrl !== undefined) {
+  const getBannerType = (): BannerType | null => {
+    if (config.welcomeBanner.videoUrl !== undefined) {
       return 'video';
     }
-    if (config.welcomeBanner.picturesUrl.length > 1) {
+    if (
+      config.welcomeBanner.picturesUrl !== undefined &&
+      config.welcomeBanner.picturesUrl.length > 1
+    ) {
       return 'carousel';
     }
-    return 'image';
+    if (config.welcomeBanner.picturesUrl?.length === 1) {
+      return 'image';
+    }
+    return null;
   };
+  const bannerType = getBannerType();
 
   const intl = useIntl();
   return (
@@ -41,11 +48,15 @@ const HomeUI: FunctionComponent = () => {
       />
       <Layout>
         <HomeContainer>
-          <BannerSection
-            shouldDisplayText={config.welcomeBanner.shouldDisplayText}
-            backgroundSourceUrl={config.welcomeBanner.videoUrl ?? config.welcomeBanner.picturesUrl}
-            type={getBannerType()}
-          />
+          {bannerType !== null && (
+            <BannerSection
+              shouldDisplayText={config.welcomeBanner.shouldDisplayText}
+              backgroundSourceUrl={
+                config.welcomeBanner.videoUrl ?? config.welcomeBanner.picturesUrl
+              }
+              type={bannerType}
+            />
+          )}
           <div className={contentContainerClassname}>
             {config.activityBar.shouldDisplay && (
               <div
