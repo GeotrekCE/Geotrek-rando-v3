@@ -12,6 +12,8 @@ Container.displayName = 'Container';
 
 export const PageContent = styled.main`
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 `;
 PageContent.displayName = 'PageContent';
 
