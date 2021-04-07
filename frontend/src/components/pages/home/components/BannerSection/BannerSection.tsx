@@ -1,13 +1,14 @@
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { colorPalette } from 'stylesheet';
+import { BannerCarousel } from '../BannerCarousel/BannerCarousel';
 
 const WelcomeText = styled.span`
   text-shadow: 0 0 20px ${colorPalette.home.shadowOnImages};
 `;
 
 interface BannerSectionProps {
-  backgroundSourceUrl: string;
+  backgroundSourceUrl: string | string[];
   shouldDisplayText: boolean;
   type: 'image' | 'video' | 'carousel';
 }
@@ -19,14 +20,14 @@ export const BannerSection: React.FC<BannerSectionProps> = ({
 }) => {
   return (
     <div className="relative">
-      {type === 'image' && (
+      {type === 'image' && typeof backgroundSourceUrl === 'string' && (
         <img
           src={backgroundSourceUrl}
           className="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
           data-testid="image"
         />
       )}
-      {type === 'video' && (
+      {type === 'video' && typeof backgroundSourceUrl === 'string' && (
         <video
           autoPlay
           muted
@@ -35,6 +36,9 @@ export const BannerSection: React.FC<BannerSectionProps> = ({
           className="object-cover object-center overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
           data-testid="video"
         />
+      )}
+      {type === 'carousel' && typeof backgroundSourceUrl === 'object' && (
+        <BannerCarousel picturesUrl={backgroundSourceUrl} />
       )}
       <div className="absolute bottom-0 top-0 right-0 left-0 bg-gradient-to-t from-gradientOnImages to-transparent" />
       {shouldDisplayText && (
