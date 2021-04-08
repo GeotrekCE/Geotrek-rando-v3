@@ -9,6 +9,7 @@ Object {
         class="py-4 desktop:py-5 px-3 desktop:px-4 flex items-start text-warning
       rounded-2xl border-2 border-solid border-warning
       "
+        id="details_recommandationLabel"
       >
         <div
           class="mr-2 desktop:mr-3 flex-shrink-0 w-6 h-6 desktop:h-12 desktop:w-12"
@@ -39,6 +40,7 @@ Object {
       class="py-4 desktop:py-5 px-3 desktop:px-4 flex items-start text-warning
       rounded-2xl border-2 border-solid border-warning
       "
+      id="details_recommandationLabel"
     >
       <div
         class="mr-2 desktop:mr-3 flex-shrink-0 w-6 h-6 desktop:h-12 desktop:w-12"

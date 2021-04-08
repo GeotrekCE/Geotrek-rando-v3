@@ -40,7 +40,7 @@ Object {
         <div
           aria-hidden="true"
           class="bm-menu-wrap"
-          id=""
+          id="verticalMenu"
           style="position: fixed; right: 0px; z-index: 1100; width: 300px; height: 100%; transform: translate3d(100%, 0, 0); transition: all 0.5s;"
         >
           <div
@@ -53,6 +53,7 @@ Object {
             >
               <span
                 class="bm-item pb-4 font-bold text-center border-b border-solid border-greySoft outline-none"
+                id="verticalMenu_title"
                 style="display: block;"
                 tabindex="-1"
               >
@@ -84,6 +85,7 @@ Object {
                     >
                       <span
                         class="flex-grow"
+                        id="verticalMenu_section"
                       >
                         En savoir plus
                       </span>
@@ -117,6 +119,7 @@ Object {
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
+                        id="verticalMenu_subsection"
                         target="_blank"
                       >
                         NationalPark
@@ -127,6 +130,7 @@ Object {
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
+                        id="verticalMenu_subsection"
                         target="_blank"
                       >
                         Maisons du Parc
@@ -137,6 +141,7 @@ Object {
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
+                        id="verticalMenu_subsection"
                         target="_blank"
                       >
                         Informations utiles
@@ -176,6 +181,7 @@ Object {
                     >
                       <span
                         class="flex-grow"
+                        id="verticalMenu_section"
                       >
                         Langue
                       </span>
@@ -210,6 +216,7 @@ Object {
                     >
                       <p
                         class="text-Mobile-C2 py-2 text-greyDarkColored"
+                        id="verticalMenu_subsection"
                       >
                         FR
                       </p>
@@ -293,7 +300,7 @@ Object {
       <div
         aria-hidden="true"
         class="bm-menu-wrap"
-        id=""
+        id="verticalMenu"
         style="position: fixed; right: 0px; z-index: 1100; width: 300px; height: 100%; transform: translate3d(100%, 0, 0); transition: all 0.5s;"
       >
         <div
@@ -306,6 +313,7 @@ Object {
           >
             <span
               class="bm-item pb-4 font-bold text-center border-b border-solid border-greySoft outline-none"
+              id="verticalMenu_title"
               style="display: block;"
               tabindex="-1"
             >
@@ -337,6 +345,7 @@ Object {
                   >
                     <span
                       class="flex-grow"
+                      id="verticalMenu_section"
                     >
                       En savoir plus
                     </span>
@@ -370,6 +379,7 @@ Object {
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
+                      id="verticalMenu_subsection"
                       target="_blank"
                     >
                       NationalPark
@@ -380,6 +390,7 @@ Object {
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
+                      id="verticalMenu_subsection"
                       target="_blank"
                     >
                       Maisons du Parc
@@ -390,6 +401,7 @@ Object {
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
+                      id="verticalMenu_subsection"
                       target="_blank"
                     >
                       Informations utiles
@@ -429,6 +441,7 @@ Object {
                   >
                     <span
                       class="flex-grow"
+                      id="verticalMenu_section"
                     >
                       Langue
                     </span>
@@ -463,6 +476,7 @@ Object {
                   >
                     <p
                       class="text-Mobile-C2 py-2 text-greyDarkColored"
+                      id="verticalMenu_subsection"
                     >
                       FR
                     </p>
