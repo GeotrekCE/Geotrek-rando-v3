@@ -108,21 +108,21 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
         deSelectOption={deSelectOption}
       />
       <Layout>
-        <Container className="flex flex-col">
-          <FilterBar
-            filtersState={filtersState}
-            setFilterSelectedOptions={setFilterSelectedOptions}
-            filterBarExpansionState={filterBarExpansionState}
-            setFilterBarExpansionState={setFilterBarExpansionState}
-            resetFilters={resetFilters}
-          />
-          <Loader
-            loaded={!isRedirectionLoading}
-            options={{
-              color: colorPalette.primary1,
-              zIndex: zIndex.loader,
-            }}
-          >
+        <Loader
+          loaded={!isRedirectionLoading}
+          options={{
+            color: colorPalette.primary1,
+            zIndex: zIndex.loader,
+          }}
+        >
+          <Container className="flex flex-col">
+            <FilterBar
+              filtersState={filtersState}
+              setFilterSelectedOptions={setFilterSelectedOptions}
+              filterBarExpansionState={filterBarExpansionState}
+              setFilterBarExpansionState={setFilterBarExpansionState}
+              resetFilters={resetFilters}
+            />
             <div className="flex flex-row flex-1 overflow-y-hidden">
               <div
                 id="search_resultCardList"
@@ -165,7 +165,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                           ></Loader>
                         </div>
                       }
-                      scrollableTarget="scrollableComponent"
+                      scrollableTarget="search_resultCardList"
                     >
                       {searchResults?.results.map(searchResult =>
                         searchResult.type === 'TREK' ? (
@@ -240,8 +240,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                 />
               </div>
             </div>
-          </Loader>
-        </Container>
+          </Container>
+        </Loader>
       </Layout>
       <MobileMapContainer
         className={`desktop:hidden fixed right-0 left-0 h-full z-map ${
