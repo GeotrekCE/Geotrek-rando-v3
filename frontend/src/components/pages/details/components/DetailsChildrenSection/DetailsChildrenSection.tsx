@@ -18,11 +18,15 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
   trekId,
 }) => {
   return (
-    <div className="mt-6 desktop:mt-12">
-      <div className={`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild}`}>
+    <div className="mt-6 desktop:mt-12" id="details_trekChildren">
+      <div
+        id="details_trekChildrenTitle"
+        className={`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild}`}
+      >
         {title}
       </div>
       <ScrollContainer
+        id="details_trekChildrenScrollContainer"
         className="flex desktop:flex-col
         desktop:pl-18 desktop:pr-9 desktop:mr-9 desktop:pt-10
         mt-4 mb-4 desktop:mb-0 px-4

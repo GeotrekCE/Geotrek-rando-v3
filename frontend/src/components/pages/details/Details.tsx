@@ -105,14 +105,18 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
             <Layout>
               <DetailsHeader sectionsReferences={sectionsReferences} downloadUrl={details.pdfUri} />
               {details.title !== undefined && <DetailsHeaderMobile title={details.title} />}
-              <div className="flex flex-1">
+              <div className="flex flex-1" id="details_mainContainer">
                 <div
+                  id="details_informationContainer"
                   className="flex flex-col w-full
-              relative -top-detailsHeaderMobile desktop:top-0
-              desktop:w-3/5"
+                  relative -top-detailsHeaderMobile desktop:top-0
+                  desktop:w-3/5"
                 >
                   <OpenMapButton displayMap={displayMobileMap} />
-                  <div className="h-coverDetailsMobile desktop:h-coverDetailsDesktop">
+                  <div
+                    id="details_cover"
+                    className="h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                  >
                     {details.imgs.length > 1 ? (
                       <DetailsCoverCarousel attachments={details.imgs} />
                     ) : (
@@ -120,9 +124,10 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     )}
                   </div>
                   <div
+                    id="details_textContainer"
                     className="desktop:py-0
-                relative -top-6 desktop:-top-9
-                flex flex-col"
+                    relative -top-6 desktop:-top-9
+                    flex flex-col"
                     ref={sectionsContainerRef}
                   >
                     <DetailsTopIcons
@@ -133,7 +138,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       kmlUri={details.kmlUri}
                     />
 
-                    <div ref={setPreviewRef}>
+                    <div ref={setPreviewRef} id="details_preview_ref">
                       <DetailsPreview
                         className={marginDetailsChild}
                         informations={details.informations}
@@ -149,7 +154,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     </div>
 
                     {details.children.length > 0 && (
-                      <div ref={setChildrenRef}>
+                      <div ref={setChildrenRef} id="details_trekChildren_ref">
                         <DetailsChildrenSection
                           trekChildren={details.children.map(child => ({
                             ...child,
@@ -165,8 +170,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     )}
 
                     {details.pois.length > 0 && (
-                      <div ref={setPoisRef}>
+                      <div ref={setPoisRef} id="details_poi_ref">
                         <DetailsCardSection
+                          id="details_poi"
                           title={intl.formatMessage(
                             { id: 'details.poiFullTitle' },
                             { count: details.pois.length },
@@ -184,7 +190,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     )}
 
                     {details.description && (
-                      <div ref={setDescriptionRef}>
+                      <div ref={setDescriptionRef} id="details_description_ref">
                         <DetailsDescription
                           descriptionHtml={details.description}
                           className={marginDetailsChild}
@@ -192,6 +198,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       </div>
                     )}
                     <DetailsSection
+                      id="details_altimetricProfile"
                       titleId="details.altimetricProfile.title"
                       className={marginDetailsChild}
                     >
@@ -201,6 +208,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     {(details.labels.length > 0 ||
                       (details.advice !== null && details.advice.length > 0)) && (
                       <DetailsSection
+                        id="details_recommandations"
                         titleId="details.recommandations"
                         className={marginDetailsChild}
                       >
@@ -223,9 +231,10 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     {(details.informationDesks.length > 0 ||
                       details.transport ||
                       details.access) && (
-                      <div ref={setPracticalInformationsRef}>
+                      <div ref={setPracticalInformationsRef} id="details_practicalInformationRef">
                         {details.informationDesks.length > 0 && (
                           <DetailsSection
+                            id="details_informationDesks"
                             titleId="details.informationDesks"
                             className={marginDetailsChild}
                           >
@@ -254,6 +263,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
 
                         {details.transport && (
                           <DetailsSection
+                            id="details_transport"
                             titleId="details.transport"
                             className={marginDetailsChild}
                           >
@@ -263,12 +273,15 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
 
                         {(details.access || details.parking) && (
                           <DetailsSection
+                            id="details_accessParking"
                             titleId="details.access_parking"
                             className={marginDetailsChild}
                           >
-                            {details.access && <HtmlText>{parse(details.access)}</HtmlText>}
+                            {details.access && (
+                              <HtmlText id="details_access">{parse(details.access)}</HtmlText>
+                            )}
                             {details.parking && (
-                              <div className="mt-4">
+                              <div className="mt-4" id="details_parking">
                                 <p className="font-bold desktop:text-H4">
                                   {`${intl.formatMessage({ id: 'details.stationnement' })} :`}
                                 </p>
@@ -281,8 +294,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     )}
 
                     {(details.disabledInfrastructure || details.accessibilities.length > 0) && (
-                      <div ref={setAccessibilityRef}>
+                      <div ref={setAccessibilityRef} id="details_accessibility_ref">
                         <DetailsSection
+                          id="details_accessibility"
                           titleId="details.accessibility"
                           className={marginDetailsChild}
                         >
@@ -303,8 +317,12 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     )}
 
                     {details.sources.length > 0 && (
-                      <DetailsSection titleId="details.source" className={marginDetailsChild}>
-                        <div>
+                      <DetailsSection
+                        id="details_source"
+                        titleId="details.source"
+                        className={marginDetailsChild}
+                      >
+                        <>
                           {details.sources.map((source, i) => (
                             <DetailsSource
                               key={i}
@@ -313,13 +331,14 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                               pictogramUri={source.pictogramUri}
                             />
                           ))}
-                        </div>
+                        </>
                       </DetailsSection>
                     )}
 
                     {details.touristicContents.length > 0 && (
-                      <div ref={setTouristicContentsRef}>
+                      <div ref={setTouristicContentsRef} id="details_touristicContent_ref">
                         <DetailsCardSection
+                          id="details_touristicContent"
                           title={intl.formatMessage({ id: 'details.touristicContent' })}
                           displayBadge
                           generateUrlFunction={generateTouristicContentUrl}
@@ -340,7 +359,10 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   <Footer />
                 </div>
 
-                <div className="hidden desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar">
+                <div
+                  id="details_mapContainer"
+                  className="hidden desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar"
+                >
                   <DetailsMapDynamicComponent
                     type="DESKTOP"
                     arrivalLocation={details.trekArrival}
@@ -447,6 +469,7 @@ const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title: name }
   const displayState = useShowOnScrollPosition(sizes.mobileDetailsTitle);
   return (
     <div
+      id="details_headerMobile"
       className={`py-3 px-4
       text-P2 font-bold text-primary1
       shadow-md bg-white

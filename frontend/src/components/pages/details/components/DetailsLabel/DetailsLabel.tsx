@@ -16,6 +16,7 @@ export const DetailsLabel: React.FC<DetailsLabelProps> = ({
 }) => {
   return (
     <div
+      id="details_recommandationLabel"
       className={`py-4 desktop:py-5 px-3 desktop:px-4 flex items-start text-warning
       rounded-2xl border-2 border-solid border-warning
       ${className ?? ''}`}

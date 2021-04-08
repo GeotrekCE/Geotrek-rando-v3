@@ -31,7 +31,7 @@ interface ImageWithLegendProps {
 }
 
 export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({ attachment }) => (
-  <div className="relative">
+  <div id="details_cover_image" className="relative">
     <Legend author={attachment.author} legend={attachment.legend} />
     <img
       src={attachment.url}

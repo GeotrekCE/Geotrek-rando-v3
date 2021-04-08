@@ -9,7 +9,7 @@ interface DetailsSourceProps {
 
 export const DetailsSource: React.FC<DetailsSourceProps> = ({ name, pictogramUri, website }) => {
   return (
-    <div className="flex flex-col desktop:flex-row">
+    <div id="details_sourceContent" className="flex flex-col desktop:flex-row">
       {pictogramUri !== null && (
         <div
           className="w-30 h-20 desktop:mr-6
