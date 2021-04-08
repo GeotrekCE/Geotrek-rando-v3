@@ -20,7 +20,7 @@ interface BannerSectionWithoutAssetProps {
 }
 
 const Banner: React.FC<BannerSectionWithoutAssetProps> = ({ shouldDisplayText, children }) => (
-  <div className="relative">
+  <div id="banner" className="relative">
     {children}
     {shouldDisplayText && (
       <WelcomeText
@@ -44,6 +44,7 @@ export const BannerWithAsset: React.FC<BannerSectionProps> = ({
     return (
       <Banner shouldDisplayText={shouldDisplayText}>
         <video
+          id="banner-video"
           autoPlay
           muted
           loop
@@ -63,6 +64,7 @@ export const BannerWithAsset: React.FC<BannerSectionProps> = ({
     return (
       <Banner shouldDisplayText={shouldDisplayText}>
         <img
+          id="banner-image"
           src={pictureUrl}
           className="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
           data-testid="image"

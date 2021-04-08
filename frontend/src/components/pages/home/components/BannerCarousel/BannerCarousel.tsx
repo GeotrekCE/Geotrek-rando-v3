@@ -8,7 +8,7 @@ interface BannerCarouselProps {
 
 export const BannerCarousel: React.FC<BannerCarouselProps> = ({ picturesUrl }) => {
   return (
-    <div data-testid="carousel">
+    <div data-testid="carousel" id="banner_carousel">
       <Slider
         className="h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
         infinite

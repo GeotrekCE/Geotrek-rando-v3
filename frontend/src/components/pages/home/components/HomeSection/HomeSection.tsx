@@ -16,8 +16,11 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
   activitySuggestions,
 }) => {
   return (
-    <div className={`flex flex-col`}>
-      <div className="flex border-t border-greySoft border-solid pt-4 desktop:pt-10 mb-2 desktop:mb-6 mx-4 desktop:mx-10percent">
+    <div id={'home_section'} className={`flex flex-col`}>
+      <div
+        id="home_sectionTitle"
+        className="flex border-t border-greySoft border-solid pt-4 desktop:pt-10 mb-2 desktop:mb-6 mx-4 desktop:mx-10percent"
+      >
         <SVG
           src={iconUrl}
           preProcessor={fillSvgWithColor(colorPalette.greyDarkColored)}
@@ -26,6 +29,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
         <span className="mt-1 desktop:mt-0 text-H4 desktop:text-H2 font-bold">{title}</span>
       </div>
       <ScrollContainer
+        id="home_sectionContent"
         className="flex desktop:flex-wrap overflow-x-auto overflow-y-hidden desktop:overflow-hidden
         mb-5 desktop:mb-15 desktop:justify-center px-4 desktop:px-10percent"
       >

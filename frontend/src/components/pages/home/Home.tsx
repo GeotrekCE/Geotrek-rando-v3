@@ -23,7 +23,7 @@ const HomeUI: FunctionComponent = () => {
 
   const intl = useIntl();
   return (
-    <div className="h-full">
+    <>
       <PageHead
         title={intl.formatMessage({ id: 'home.title' })}
         description={intl.formatMessage({ id: 'home.description' })}
@@ -36,18 +36,21 @@ const HomeUI: FunctionComponent = () => {
             pictureUrl={config.welcomeBanner.pictureUrl}
             videoUrl={config.welcomeBanner.videoUrl}
           />
-          <div className={contentContainerClassname}>
+          <div id="home_content" className={contentContainerClassname}>
             {config.activityBar.shouldDisplay && (
               <div
                 className={`desktop:flex desktop:justify-center ${classNameHomeChild}`}
-                id="activities_bar"
+                id="home_activitiesBar"
               >
                 <ActivitySearchFilter />
               </div>
             )}
-            <div className={classNameHomeChild}>{parse(homeTopHtml)}</div>
+            <div id="home_topHtml" className={classNameHomeChild}>
+              {parse(homeTopHtml)}
+            </div>
             {activitySuggestionCategories.map(suggestionCategory => (
               <HomeSection
+                id={'home_section'}
                 title={intl.formatMessage({ id: suggestionCategory.titleTranslationId })}
                 iconUrl={suggestionCategory.iconUrl}
                 key={suggestionCategory.titleTranslationId}
@@ -59,7 +62,7 @@ const HomeUI: FunctionComponent = () => {
         </HomeContainer>
         <Footer />
       </Layout>
-    </div>
+    </>
   );
 };
 
