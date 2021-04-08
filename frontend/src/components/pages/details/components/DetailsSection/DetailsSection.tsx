@@ -7,11 +7,17 @@ export interface DetailsSectionProps {
   titleId?: string;
   children: React.ReactNode;
   className?: string;
+  id?: string;
 }
 
-export const DetailsSection: React.FC<DetailsSectionProps> = ({ titleId, children, className }) => {
+export const DetailsSection: React.FC<DetailsSectionProps> = ({
+  titleId,
+  children,
+  className,
+  id,
+}) => {
   return (
-    <div className={className}>
+    <div className={className} id={id}>
       <ScrollContainer
         className={`flex flex-col
           pt-6 desktop:pt-12
