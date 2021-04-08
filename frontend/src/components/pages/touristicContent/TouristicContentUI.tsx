@@ -116,7 +116,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   !!touristicContent.email?.length ||
                   !!touristicContent.website?.length) && (
                   <DetailsSection
-                    id="touristicContent_contact"
+                    htmlId="touristicContent_contact"
                     titleId="touristicContent.contact"
                     className={marginDetailsChild}
                   >
@@ -154,7 +154,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                 )}
                 {touristicContent.sources.length > 0 && (
                   <DetailsSection
-                    id="touristicContent_source"
+                    htmlId="touristicContent_source"
                     titleId="details.source"
                     className={marginDetailsChild}
                   >

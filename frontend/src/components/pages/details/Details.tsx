@@ -172,7 +172,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     {details.pois.length > 0 && (
                       <div ref={setPoisRef} id="details_poi_ref">
                         <DetailsCardSection
-                          id="details_poi"
+                          htmlId="details_poi"
                           title={intl.formatMessage(
                             { id: 'details.poiFullTitle' },
                             { count: details.pois.length },
@@ -198,7 +198,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       </div>
                     )}
                     <DetailsSection
-                      id="details_altimetricProfile"
+                      htmlId="details_altimetricProfile"
                       titleId="details.altimetricProfile.title"
                       className={marginDetailsChild}
                     >
@@ -208,7 +208,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     {(details.labels.length > 0 ||
                       (details.advice !== null && details.advice.length > 0)) && (
                       <DetailsSection
-                        id="details_recommandations"
+                        htmlId="details_recommandations"
                         titleId="details.recommandations"
                         className={marginDetailsChild}
                       >
@@ -234,7 +234,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       <div ref={setPracticalInformationsRef} id="details_practicalInformationRef">
                         {details.informationDesks.length > 0 && (
                           <DetailsSection
-                            id="details_informationDesks"
+                            htmlId="details_informationDesks"
                             titleId="details.informationDesks"
                             className={marginDetailsChild}
                           >
@@ -263,7 +263,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
 
                         {details.transport && (
                           <DetailsSection
-                            id="details_transport"
+                            htmlId="details_transport"
                             titleId="details.transport"
                             className={marginDetailsChild}
                           >
@@ -273,7 +273,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
 
                         {(details.access || details.parking) && (
                           <DetailsSection
-                            id="details_accessParking"
+                            htmlId="details_accessParking"
                             titleId="details.access_parking"
                             className={marginDetailsChild}
                           >
@@ -296,7 +296,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     {(details.disabledInfrastructure || details.accessibilities.length > 0) && (
                       <div ref={setAccessibilityRef} id="details_accessibility_ref">
                         <DetailsSection
-                          id="details_accessibility"
+                          htmlId="details_accessibility"
                           titleId="details.accessibility"
                           className={marginDetailsChild}
                         >
@@ -318,7 +318,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
 
                     {details.sources.length > 0 && (
                       <DetailsSection
-                        id="details_source"
+                        htmlId="details_source"
                         titleId="details.source"
                         className={marginDetailsChild}
                       >
@@ -338,7 +338,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     {details.touristicContents.length > 0 && (
                       <div ref={setTouristicContentsRef} id="details_touristicContent_ref">
                         <DetailsCardSection
-                          id="details_touristicContent"
+                          htmlId="details_touristicContent"
                           title={intl.formatMessage({ id: 'details.touristicContent' })}
                           displayBadge
                           generateUrlFunction={generateTouristicContentUrl}
