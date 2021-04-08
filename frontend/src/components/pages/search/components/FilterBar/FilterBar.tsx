@@ -40,14 +40,14 @@ export const FilterBar: React.FC<Props> = props => {
     <Container
       className={filterBarContainerClassName}
       displayedState={filterBarDisplayedState}
-      id="filter_bar"
+      id="Search_filterBar"
     >
       <div className={`${props.filterBarExpansionState === 'EXPANDED' ? 'mb-4' : ''}`}>
-        <FiltersLayout>
+        <FiltersLayout id="Search_filters">
           {props.filtersState
             .filter(({ id }) => commonFilters.includes(id))
             .map(filterState => (
-              <div key={filterState.id} className="mr-2">
+              <div key={filterState.id} className="mr-2" id="Search_filter">
                 <SelectableDropdown
                   name={filterState.id}
                   placeholder={filterState.label}
@@ -70,7 +70,11 @@ export const FilterBar: React.FC<Props> = props => {
             </SeeMoreButton>
           )}
           {props.filterBarExpansionState === 'COLLAPSED' && (
-            <div className="flex items-center cursor-pointer" onClick={props.resetFilters}>
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={props.resetFilters}
+              id="Search_clearAllButton"
+            >
               <span className="underline text-primary1 font-bold">
                 {intl.formatMessage({ id: 'search.filters.clearAll' }).toUpperCase()}
               </span>
@@ -78,12 +82,15 @@ export const FilterBar: React.FC<Props> = props => {
           )}
         </FiltersLayout>
       </div>
-      <AdditionalFilters expansionState={props.filterBarExpansionState}>
+      <AdditionalFilters
+        expansionState={props.filterBarExpansionState}
+        id="Search_additionalFilters"
+      >
         <FiltersLayout>
           {props.filtersState
             .filter(({ id }) => !commonFilters.includes(id))
             .map(filterState => (
-              <div key={filterState.id} className="mr-2">
+              <div key={filterState.id} className="mr-2" id="Search_filter">
                 <SelectableDropdown
                   name={filterState.id}
                   placeholder={filterState.label}
@@ -100,7 +107,11 @@ export const FilterBar: React.FC<Props> = props => {
             collapseFilters={() => props.setFilterBarExpansionState('COLLAPSED')}
           />
           {props.filterBarExpansionState === 'EXPANDED' && (
-            <div className="flex items-center cursor-pointer" onClick={props.resetFilters}>
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={props.resetFilters}
+              id="Search_additionalFilterClearAllButton"
+            >
               <span className="underline text-primary1 font-bold">
                 {intl.formatMessage({ id: 'search.filters.clearAll' }).toUpperCase()}
               </span>
