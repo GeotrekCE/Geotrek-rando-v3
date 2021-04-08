@@ -1,30 +1,34 @@
 import { render } from 'services/testing/reactTestingLibraryWrapper';
 import { BannerSection } from '../BannerSection';
+
 describe('BannerSection', () => {
-  test.each`
-    type       | backgroundSourceUrl
-    ${'image'} | ${'test.jpg'}
-    ${'video'} | ${'test.mp4'}
-  `('should render correctly with a type $type', ({ type, backgroundSourceUrl }) => {
-    const component = render(
-      <BannerSection shouldDisplayText backgroundSourceUrl={backgroundSourceUrl} type={type} />,
-    );
+  it('should well render with a video', () => {
+    const component = render(<BannerSection shouldDisplayText videoUrl="test.mp4" />);
+    const asset = component.queryByTestId('video');
+
+    expect(asset).toBeTruthy();
 
     expect(component).toMatchSnapshot();
   });
 
-  test.each`
-    type       |
-    ${'image'}
-    ${'video'}
-  `('should display an $type if type is $type', ({ type }) => {
+  it('should well render with a carousel', () => {
     const component = render(
-      <BannerSection shouldDisplayText backgroundSourceUrl={'test.jpg'} type={type} />,
+      <BannerSection shouldDisplayText carouselUrls={['test1.jpg', 'test2.jpg']} />,
     );
-
-    const asset = component.queryByTestId(type);
+    const asset = component.queryByTestId('carousel');
 
     expect(asset).toBeTruthy();
+
+    expect(component).toMatchSnapshot();
+  });
+
+  it('should well render with a single picture', () => {
+    const component = render(<BannerSection shouldDisplayText pictureUrl="test0.jpg" />);
+    const asset = component.queryByTestId('image');
+
+    expect(asset).toBeTruthy();
+
+    expect(component).toMatchSnapshot();
   });
 
   test.each`
@@ -33,11 +37,7 @@ describe('BannerSection', () => {
     ${false}
   `('should adapt text if shouldDisplayText is $isTextDefined', ({ isTextDefined }) => {
     const component = render(
-      <BannerSection
-        shouldDisplayText={isTextDefined}
-        backgroundSourceUrl={'test.jpg'}
-        type="image"
-      />,
+      <BannerSection shouldDisplayText={isTextDefined} pictureUrl="image.jpg" />,
     );
 
     const foundText = component.queryByTestId('text');
