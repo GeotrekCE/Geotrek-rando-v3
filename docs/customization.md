@@ -9,7 +9,20 @@ You can override all settings default values in files from `customization/config
 
 - `global.json` to define API URL (and eventual portal filter), Google Analytics, base URL of your portal (for dynamic sitemap.xml) and fallback images URL if some content don't have image (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/global.json)
 - `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
-- `home.json` to define homepage settings such as main image URL, blocks to display and trek suggestion block wih trek ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/home.json)
+- `home.json` to define homepage settings. You can define blocks to display and trek suggestion block wih trek ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/home.json).
+
+  - In WelcomeBanner, you can personnalize the header on the homepage. You can add an asset on the top of the page: it can either be a video, a picture or a carousel of images:
+
+    - videoUrl: to add a video
+    - carouselUrls: to add a carousel of images. You have to add an array of urls
+    - pictureUrl: to add a single image
+
+    Only one type of asset can be displayed. If you add several field (videoUrl and picture Url for example), we will pick one, following this order of priority: video over carousel over picture.
+
+    You can also enable a text to be displayed on the top of this asset:
+
+    - shouldDisplayText: true to display the text on above the asset, false to hide it.
+
 - `footer.json` to define social networks and links (based on translation labels) in footer (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/footer.json)
 - `filter.json` to define filters to display, their order and values (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/filter.json)
 - `map.json` to define basemap URL and attribution, center and default zoom (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/map.json)
