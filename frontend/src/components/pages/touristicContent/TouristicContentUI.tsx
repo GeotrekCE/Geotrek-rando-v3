@@ -66,10 +66,13 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
         )
       ) : (
         <>
-          <div className="flex flex-1">
-            <div className="flex flex-col w-full desktop:w-3/5">
+          <div id="touristicContent_page" className="flex flex-1">
+            <div id="touristicContent_informations" className="flex flex-col w-full desktop:w-3/5">
               <OpenMapButton displayMap={displayMobileMap} />
-              <div className="h-coverDetailsMobile desktop:h-coverDetailsDesktop">
+              <div
+                id="touristicContent_cover"
+                className="h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+              >
                 {touristicContent.attachments.length > 1 ? (
                   <DetailsCoverCarousel attachments={touristicContent.attachments} />
                 ) : (
@@ -77,6 +80,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                 )}
               </div>
               <div
+                id="touristicContent_text"
                 className="desktop:py-0
                 relative -top-6 desktop:-top-9
                 flex flex-col"
@@ -111,7 +115,11 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                 {(!!touristicContent.contact?.length ||
                   !!touristicContent.email?.length ||
                   !!touristicContent.website?.length) && (
-                  <DetailsSection titleId="touristicContent.contact" className={marginDetailsChild}>
+                  <DetailsSection
+                    id="touristicContent_contact"
+                    titleId="touristicContent.contact"
+                    className={marginDetailsChild}
+                  >
                     <HtmlText>{parse(touristicContent.contact)}</HtmlText>
                     {!!touristicContent.email?.length && (
                       <div className="mt-2 desktop:mt-4">
@@ -145,7 +153,11 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   </DetailsSection>
                 )}
                 {touristicContent.sources.length > 0 && (
-                  <DetailsSection titleId="details.source" className={marginDetailsChild}>
+                  <DetailsSection
+                    id="touristicContent_source"
+                    titleId="details.source"
+                    className={marginDetailsChild}
+                  >
                     <div>
                       {touristicContent.sources.map((source, i) => (
                         <DetailsSource
@@ -162,6 +174,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
               <Footer />
             </div>
             <div
+              id="touristicContent_map"
               className="hidden desktop:flex desktop:z-content desktop:w-2/5
               desktop:bottom-0 desktop:fixed desktop:right-0 desktop:top-desktopHeader"
             >
@@ -177,6 +190,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
             </div>
           </div>
           <MobileMapContainer
+            id="touristicContent_mobileMap"
             className={`desktop:hidden fixed right-0 left-0 h-full z-map ${
               mobileMapState === 'HIDDEN' ? 'hidden' : 'flex'
             }`}
