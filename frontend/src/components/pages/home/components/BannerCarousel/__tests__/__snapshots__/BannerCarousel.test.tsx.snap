@@ -6,6 +6,116 @@ Object {
   "baseElement": <body>
     <div>
       <div
+        data-testid="carousel"
+      >
+        <div
+          class="slick-slider h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full slick-initialized"
+          dir="ltr"
+        >
+          <div
+            class="BannerCarousel__StyledArrow-q9y4d7-0 BannerCarousel__StyledLeftArrow-q9y4d7-2 kJDqw dlYkAW slick-arrow slick-prev"
+          />
+          <div
+            class="slick-list"
+          >
+            <div
+              class="slick-track"
+              style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
+            >
+              <div
+                aria-hidden="true"
+                class="slick-slide slick-cloned"
+                data-index="-1"
+                style="width: 0px;"
+                tabindex="-1"
+              >
+                <div>
+                  <img
+                    class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    src="photoB.jpg"
+                    style="width: 100%; display: inline-block;"
+                    tabindex="-1"
+                  />
+                </div>
+              </div>
+              <div
+                aria-hidden="false"
+                class="slick-slide slick-active slick-current"
+                data-index="0"
+                style="outline: none; width: 0px;"
+                tabindex="-1"
+              >
+                <div>
+                  <img
+                    class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    src="photoA.jpg"
+                    style="width: 100%; display: inline-block;"
+                    tabindex="-1"
+                  />
+                </div>
+              </div>
+              <div
+                aria-hidden="true"
+                class="slick-slide"
+                data-index="1"
+                style="outline: none; width: 0px;"
+                tabindex="-1"
+              >
+                <div>
+                  <img
+                    class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    src="photoB.jpg"
+                    style="width: 100%; display: inline-block;"
+                    tabindex="-1"
+                  />
+                </div>
+              </div>
+              <div
+                aria-hidden="true"
+                class="slick-slide slick-cloned"
+                data-index="2"
+                style="width: 0px;"
+                tabindex="-1"
+              >
+                <div>
+                  <img
+                    class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    src="photoA.jpg"
+                    style="width: 100%; display: inline-block;"
+                    tabindex="-1"
+                  />
+                </div>
+              </div>
+              <div
+                aria-hidden="true"
+                class="slick-slide slick-cloned"
+                data-index="3"
+                style="width: 0px;"
+                tabindex="-1"
+              >
+                <div>
+                  <img
+                    class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    src="photoB.jpg"
+                    style="width: 100%; display: inline-block;"
+                    tabindex="-1"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="BannerCarousel__StyledArrow-q9y4d7-0 BannerCarousel__StyledRightArrow-q9y4d7-1 kJDqw ehrtdV slick-arrow slick-next"
+          />
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      data-testid="carousel"
+    >
+      <div
         class="slick-slider h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full slick-initialized"
         dir="ltr"
       >
@@ -105,108 +215,6 @@ Object {
           class="BannerCarousel__StyledArrow-q9y4d7-0 BannerCarousel__StyledRightArrow-q9y4d7-1 kJDqw ehrtdV slick-arrow slick-next"
         />
       </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="slick-slider h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full slick-initialized"
-      dir="ltr"
-    >
-      <div
-        class="BannerCarousel__StyledArrow-q9y4d7-0 BannerCarousel__StyledLeftArrow-q9y4d7-2 kJDqw dlYkAW slick-arrow slick-prev"
-      />
-      <div
-        class="slick-list"
-      >
-        <div
-          class="slick-track"
-          style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
-        >
-          <div
-            aria-hidden="true"
-            class="slick-slide slick-cloned"
-            data-index="-1"
-            style="width: 0px;"
-            tabindex="-1"
-          >
-            <div>
-              <img
-                class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
-                src="photoB.jpg"
-                style="width: 100%; display: inline-block;"
-                tabindex="-1"
-              />
-            </div>
-          </div>
-          <div
-            aria-hidden="false"
-            class="slick-slide slick-active slick-current"
-            data-index="0"
-            style="outline: none; width: 0px;"
-            tabindex="-1"
-          >
-            <div>
-              <img
-                class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
-                src="photoA.jpg"
-                style="width: 100%; display: inline-block;"
-                tabindex="-1"
-              />
-            </div>
-          </div>
-          <div
-            aria-hidden="true"
-            class="slick-slide"
-            data-index="1"
-            style="outline: none; width: 0px;"
-            tabindex="-1"
-          >
-            <div>
-              <img
-                class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
-                src="photoB.jpg"
-                style="width: 100%; display: inline-block;"
-                tabindex="-1"
-              />
-            </div>
-          </div>
-          <div
-            aria-hidden="true"
-            class="slick-slide slick-cloned"
-            data-index="2"
-            style="width: 0px;"
-            tabindex="-1"
-          >
-            <div>
-              <img
-                class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
-                src="photoA.jpg"
-                style="width: 100%; display: inline-block;"
-                tabindex="-1"
-              />
-            </div>
-          </div>
-          <div
-            aria-hidden="true"
-            class="slick-slide slick-cloned"
-            data-index="3"
-            style="width: 0px;"
-            tabindex="-1"
-          >
-            <div>
-              <img
-                class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
-                src="photoB.jpg"
-                style="width: 100%; display: inline-block;"
-                tabindex="-1"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="BannerCarousel__StyledArrow-q9y4d7-0 BannerCarousel__StyledRightArrow-q9y4d7-1 kJDqw ehrtdV slick-arrow slick-next"
-      />
     </div>
   </div>,
   "debug": [Function],

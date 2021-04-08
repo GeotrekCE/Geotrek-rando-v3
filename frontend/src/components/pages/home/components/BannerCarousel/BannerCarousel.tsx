@@ -8,24 +8,26 @@ interface BannerCarouselProps {
 
 export const BannerCarousel: React.FC<BannerCarouselProps> = ({ picturesUrl }) => {
   return (
-    <Slider
-      className="h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
-      infinite
-      nextArrow={<NextArrow />}
-      prevArrow={<PrevArrow />}
-      swipe={false}
-      autoplay
-      speed={1000}
-      autoplaySpeed={2500}
-    >
-      {picturesUrl.map((pictureUrl, i) => (
-        <img
-          src={pictureUrl}
-          key={i}
-          className="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
-        />
-      ))}
-    </Slider>
+    <div data-testid="carousel">
+      <Slider
+        className="h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+        infinite
+        nextArrow={<NextArrow />}
+        prevArrow={<PrevArrow />}
+        swipe={false}
+        autoplay
+        speed={1000}
+        autoplaySpeed={2500}
+      >
+        {picturesUrl.map((pictureUrl, i) => (
+          <img
+            src={pictureUrl}
+            key={i}
+            className="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+          />
+        ))}
+      </Slider>
+    </div>
   );
 };
 
