@@ -29,12 +29,13 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
   const { detailsHeaderSection, currentSectionId } = useDetailsHeader(sectionsReferences);
   return (
     <div
+      id="details_headerDesktop"
       className="hidden desktop:flex justify-between
       sticky top-desktopHeader z-subHeader
       px-12
       shadow-md bg-white"
     >
-      <div className="flex space-x-12 pb-2.5 pt-4">
+      <div id="details_headerDesktop_inlineMenu" className="flex space-x-12 pb-2.5 pt-4">
         {(Object.keys(detailsHeaderSection) as Array<keyof DetailsHeaderSection>).map(sectionId => (
           <div
             onClick={() => scrollTo(detailsHeaderSection[sectionId])}
@@ -56,6 +57,7 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
 
 const DownloadButton: React.FC<{ url: string }> = ({ url }) => (
   <a
+    id="details_headerDesktop_downloadButton"
     href={url}
     target="_blank"
     rel="noopener noreferrer"

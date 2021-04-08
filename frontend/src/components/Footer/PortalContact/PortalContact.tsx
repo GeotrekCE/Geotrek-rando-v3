@@ -18,8 +18,8 @@ export const PortalContact: React.FC<PortalContactProps> = ({
   const { openState, updatePanelState } = usePortalContact();
 
   return (
-    <>
-      <div className="hidden desktop:flex flex-col text-greySoft">
+    <div id="footer_portal">
+      <div id="footer_portalDesktop" className="hidden desktop:flex flex-col text-greySoft">
         {name !== undefined && <PortalContactTitle name={name} />}
         <PortalContactContent
           addressLine1={addressLine1}
@@ -28,7 +28,7 @@ export const PortalContact: React.FC<PortalContactProps> = ({
           mail={mail}
         />
       </div>
-      <div className="desktop:hidden text-greySoft">
+      <div id="footer_portalMobile" className="desktop:hidden text-greySoft">
         <div
           className={`
           flex justify-between items-center pb-2.5 outline-none
@@ -52,12 +52,13 @@ export const PortalContact: React.FC<PortalContactProps> = ({
           mail={mail}
         />
       </div>
-    </>
+    </div>
   );
 };
 
 const PortalContactTitle: React.FC<{ name: string }> = ({ name }) => (
   <p
+    id="footer_portalTitle"
     className="
         text-Mobile-C1 desktop:text-H3
         font-bold cursor-pointer w-full
@@ -75,7 +76,10 @@ const PortalContactContent: React.FC<Partial<PortalContactProps>> = ({
   mail,
 }) => {
   return (
-    <div className={`flex flex-col ${className ?? ''} pb-4 text-Mobile-C3 desktop:text-P1`}>
+    <div
+      id="footer_portalContactContent"
+      className={`flex flex-col ${className ?? ''} pb-4 text-Mobile-C3 desktop:text-P1`}
+    >
       {(addressLine1 !== undefined || addressLine2 !== undefined) && (
         <div className="mb-3">
           <p>{addressLine1}</p>

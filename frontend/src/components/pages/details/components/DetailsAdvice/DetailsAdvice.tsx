@@ -10,6 +10,7 @@ interface DetailsAdviceProps {
 export const DetailsAdvice: React.FC<DetailsAdviceProps> = ({ className, text }) => {
   return (
     <div
+      id="details_recommandationAdvice"
       className={`py-4 desktop:py-5 px-3 desktop:px-4 flex
       rounded-2xl border-2 border-solid border-greyDarkColored
       ${className ?? ''}`}

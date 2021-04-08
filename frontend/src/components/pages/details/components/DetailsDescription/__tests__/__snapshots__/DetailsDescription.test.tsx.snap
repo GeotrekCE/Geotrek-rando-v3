@@ -7,17 +7,20 @@ Object {
     <div>
       <div
         class="flex flex-col
-    pt-6 desktop:pt-12
-    border-solid border-greySoft border-b
-    "
+      pt-6 desktop:pt-12
+      border-solid border-greySoft border-b
+      "
+        id="details_description"
       >
         <p
           class="text-Mobile-H1 desktop:text-H2 font-bold"
+          id="details_descriptionTitle"
         >
           Description
         </p>
         <div
           class="mt-3 desktop:mt-4 mb-6 desktop:mb-12"
+          id="details_descriptionContent"
         >
           <div
             class="utils__HtmlText-sc-16l79i-0 DetailsDescription__StyledListWithSteps-sc-136483c-0 hwkdDM gbUSGO"
@@ -53,17 +56,20 @@ Object {
   "container": <div>
     <div
       class="flex flex-col
-    pt-6 desktop:pt-12
-    border-solid border-greySoft border-b
-    "
+      pt-6 desktop:pt-12
+      border-solid border-greySoft border-b
+      "
+      id="details_description"
     >
       <p
         class="text-Mobile-H1 desktop:text-H2 font-bold"
+        id="details_descriptionTitle"
       >
         Description
       </p>
       <div
         class="mt-3 desktop:mt-4 mb-6 desktop:mb-12"
+        id="details_descriptionContent"
       >
         <div
           class="utils__HtmlText-sc-16l79i-0 DetailsDescription__StyledListWithSteps-sc-136483c-0 hwkdDM gbUSGO"

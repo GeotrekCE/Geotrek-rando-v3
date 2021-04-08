@@ -10,9 +10,11 @@ interface DetailsCardSectionProps {
   title: string;
   generateUrlFunction?: (id: string | number, title: string) => string;
   type: 'POI' | 'TOURISTIC_CONTENT';
+  htmlId?: string;
 }
 
 export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
+  htmlId,
   detailsCards,
   title,
   displayBadge = false,
@@ -20,14 +22,16 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
   type,
 }) => {
   return (
-    <div className="mt-6 desktop:mt-12">
+    <div id={htmlId} className="mt-6 desktop:mt-12">
       <div
+        id="details_cardSectionTitle"
         className={`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild} flex items-center`}
       >
         {title}
         {displayBadge && <Badge label={detailsCards.length} />}
       </div>
       <ScrollContainer
+        id="details_cardSectionScrollContainer"
         className="flex desktop:flex-col items-stretch
         overflow-x-scroll desktop:overflow-x-hidden
         overflow-y-hidden desktop:overflow-y-scroll flex-nowrap
@@ -53,7 +57,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
           />
         ))}
       </ScrollContainer>
-      <div className={marginDetailsChild}>
+      <div className={marginDetailsChild} id="details_cardSectionBottom">
         <Separator />
       </div>
     </div>

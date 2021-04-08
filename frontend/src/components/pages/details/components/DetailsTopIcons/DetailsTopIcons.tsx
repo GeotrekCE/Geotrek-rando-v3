@@ -27,7 +27,10 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
   if (kmlUri !== undefined) dropdownButtonOptions.push({ label: 'KML', value: kmlUri });
 
   return (
-    <div className="flex justify-between items-center mx-4 desktop:mx-12">
+    <div
+      id="details_topRoundIcons"
+      className="flex justify-between items-center mx-4 desktop:mx-12"
+    >
       {practice !== undefined && <ActivityLogo src={practice.pictogram} />}
       <div className="hidden desktop:flex space-x-4">
         {pdfUri !== undefined && (

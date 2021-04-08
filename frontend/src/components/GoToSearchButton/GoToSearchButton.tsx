@@ -12,6 +12,7 @@ export const GoToSearchButton: React.FC<GoToSearchButtonProps> = ({ className })
   return (
     <Link className={className} href={routes.SEARCH}>
       <div
+        id="goToSearch"
         className="p-2 desktop:p-3 rounded-full text-primary1 bg-white
         flex justify-center items-center hover:text-primary1-light shadow-sm transition-all"
       >

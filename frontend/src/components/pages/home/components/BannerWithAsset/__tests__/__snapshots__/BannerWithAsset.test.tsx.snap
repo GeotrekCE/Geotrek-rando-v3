@@ -7,9 +7,11 @@ Object {
     <div>
       <div
         class="relative"
+        id="banner"
       >
         <div
           data-testid="carousel"
+          id="banner_carousel"
         >
           <div
             class="slick-slider h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full slick-initialized"
@@ -124,9 +126,11 @@ Object {
   "container": <div>
     <div
       class="relative"
+      id="banner"
     >
       <div
         data-testid="carousel"
+        id="banner_carousel"
       >
         <div
           class="slick-slider h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full slick-initialized"
@@ -298,10 +302,12 @@ Object {
     <div>
       <div
         class="relative"
+        id="banner"
       >
         <img
           class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
           data-testid="image"
+          id="banner-image"
           src="test0.jpg"
         />
         <span
@@ -316,10 +322,12 @@ Object {
   "container": <div>
     <div
       class="relative"
+      id="banner"
     >
       <img
         class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
         data-testid="image"
+        id="banner-image"
         src="test0.jpg"
       />
       <span
@@ -391,11 +399,13 @@ Object {
     <div>
       <div
         class="relative"
+        id="banner"
       >
         <video
           autoplay=""
           class="object-cover object-center overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
           data-testid="video"
+          id="banner-video"
           loop=""
           src="test.mp4"
         />
@@ -411,11 +421,13 @@ Object {
   "container": <div>
     <div
       class="relative"
+      id="banner"
     >
       <video
         autoplay=""
         class="object-cover object-center overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
         data-testid="video"
+        id="banner-video"
         loop=""
         src="test.mp4"
       />

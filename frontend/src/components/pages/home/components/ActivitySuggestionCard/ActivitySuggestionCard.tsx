@@ -17,6 +17,7 @@ export const ActivitySuggestionCard: React.FC<ActivitySuggestionCardProps> = ({
   return (
     <Link href={generateResultDetailsUrl(id, title)}>
       <div
+        id={'home_activitySuggestion'}
         className={`
         border border-solid border-greySoft
         hover:shadow-sm transition-all

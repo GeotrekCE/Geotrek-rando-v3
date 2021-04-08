@@ -31,7 +31,7 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick, lang
   const classNameBorder = 'border-b pb-2 border-solid border-greySoft';
   const openIcon = <Plus size={24} />;
   const closeIcon = <Minus size={24} />;
-  const { openState, setOpenState, intl } = useBurgerMenuSection();
+  const { openState, setOpenState } = useBurgerMenuSection();
   const updatePanelState = (openPanelIds: string[]) => {
     openPanelIds.length > 0 ? setOpenState('OPENED') : setOpenState('CLOSED');
   };
@@ -42,7 +42,9 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick, lang
           <AccordionItemButton
             className={`${classNameTitle} ${openState === 'CLOSED' ? classNameBorder : ''}`}
           >
-            <span className="flex-grow">{title}</span>
+            <span id="verticalMenu_section" className="flex-grow">
+              {title}
+            </span>
             {openState === 'OPENED' ? closeIcon : openIcon}
           </AccordionItemButton>
         </AccordionItemHeading>
@@ -53,7 +55,10 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick, lang
                 <p>{item}</p>
               ) : (
                 <NextLink href={item.url} passHref locale={currentLanguage} key={item.url}>
-                  <a target={isInternalFlatPageUrl(item.url) ? undefined : '_blank'}>
+                  <a
+                    target={isInternalFlatPageUrl(item.url) ? undefined : '_blank'}
+                    id="verticalMenu_subsection"
+                  >
                     {item.title}
                   </a>
                 </NextLink>
@@ -70,7 +75,9 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick, lang
               }}
               locale={language}
             >
-              <p className="text-Mobile-C2 py-2 text-greyDarkColored">{language.toUpperCase()}</p>
+              <p className="text-Mobile-C2 py-2 text-greyDarkColored" id="verticalMenu_subsection">
+                {language.toUpperCase()}
+              </p>
             </Link>
           ))}
         </AccordionItemPanel>

@@ -13,6 +13,7 @@ export const OpenMapButton: React.FC<
 
   return (
     <MapButton
+      id="openMapButton"
       type="button"
       displayState={buttonDisplayState}
       className="flex desktop:hidden"

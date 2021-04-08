@@ -15,15 +15,16 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
 }) => {
   return (
     <div
+      id="details_description"
       className={`flex flex-col
-    pt-6 desktop:pt-12
-    border-solid border-greySoft border-b
-    ${className ?? ''}`}
+      pt-6 desktop:pt-12
+      border-solid border-greySoft border-b
+      ${className ?? ''}`}
     >
-      <p className="text-Mobile-H1 desktop:text-H2 font-bold">
+      <p id="details_descriptionTitle" className="text-Mobile-H1 desktop:text-H2 font-bold">
         <FormattedMessage id="details.description" />
       </p>
-      <div className="mt-3 desktop:mt-4 mb-6 desktop:mb-12">
+      <div id="details_descriptionContent" className="mt-3 desktop:mt-4 mb-6 desktop:mb-12">
         <StyledListWithSteps>{parse(descriptionHtml)}</StyledListWithSteps>
       </div>
     </div>

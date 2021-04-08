@@ -46,19 +46,28 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   const trekRank = trekFamily?.find(trek => trek.id === id);
   const trekRankLabel = trekRank !== undefined ? `${trekRank.rank}. ` : '';
   return (
-    <div className={`${className ?? ''} flex flex-col mt-2 desktop:mt-12 relative`}>
+    <div
+      id="details_preview"
+      className={`${className ?? ''} flex flex-col mt-2 desktop:mt-12 relative`}
+    >
       {trekFamily && parentId && (
         <DetailsTrekFamilyCarousel parentId={parentId} trekChildren={trekFamily} trekId={id} />
       )}
       {informations.logoUri !== undefined && informations.logoUri.length > 0 && (
         <img
+          id="details_logo"
           className="hidden desktop:block absolute top-0 right-0 h-30 w-30 object-contain object-center"
           src={informations.logoUri}
         />
       )}
-      <span className="text-Mobile-C2 desktop:text-P1">{place}</span>
-      <span className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold">{`${trekRankLabel}${title}`}</span>
-      <div className="flex flex-wrap">
+      <span id="details_place" className="text-Mobile-C2 desktop:text-P1">
+        {place}
+      </span>
+      <span
+        id="details_title"
+        className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold"
+      >{`${trekRankLabel}${title}`}</span>
+      <div id="details_tags" className="flex flex-wrap">
         {tags
           .filter(tag => tag?.length)
           .map(tag => (
@@ -67,7 +76,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             </Chip>
           ))}
       </div>
-      <div className="flex flex-wrap">
+      <div id="details_infoIcons" className="flex flex-wrap">
         {informations.difficulty && (
           <RemoteIconInformation
             iconUri={informations.difficulty.pictogramUri}
@@ -121,12 +130,15 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         </div>
       )}
       {teaser !== undefined && teaser.length > 0 && (
-        <div className="text-Mobile-C1 desktop:text-H4 font-bold mt-6 desktop:mt-9">
+        <div
+          id="details_teaser"
+          className="text-Mobile-C1 desktop:text-H4 font-bold mt-6 desktop:mt-9"
+        >
           <HtmlText>{parse(teaser)}</HtmlText>
         </div>
       )}
       {ambiance !== undefined && ambiance.length > 0 && (
-        <div className="text-Mobile-C1 desktop:text-P1 mt-4 desktop:mt-8">
+        <div id="details_ambiance" className="text-Mobile-C1 desktop:text-P1 mt-4 desktop:mt-8">
           <HtmlText>{parse(ambiance)}</HtmlText>
         </div>
       )}

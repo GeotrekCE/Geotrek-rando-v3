@@ -21,10 +21,10 @@ const socialNetworksIcons: { [key: string]: React.ReactNode } = {
 export const SocialNetworks: React.FC<SocialNetworkProps> = ({ socialNetworkList }) => {
   return (
     <div
-      className="
-          flex justify-center space-x-6
-          py-4 desktop:py-10
-          border-b border-solid border-greySoft"
+      id="footer_socialNetworks"
+      className="flex justify-center space-x-6
+      py-4 desktop:py-10
+      border-b border-solid border-greySoft"
     >
       {socialNetworkList.map(socialNetwork => (
         // Using <a> for external links (<Link /> is only for internal routes with next).
