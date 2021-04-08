@@ -32,9 +32,15 @@ export const Header: React.FC = () => {
       >
         <Link href={routes.HOME} className="flex items-center">
           <div className="flex-shrink-0" id="header_logo">
-            <img className="h-9 desktop:h-18 mr-3 rounded-md" alt="logo" src={config.logo} />
+            <img
+              id="header_logoImg"
+              className="h-9 desktop:h-18 mr-3 rounded-md"
+              alt="logo"
+              src={config.logo}
+            />
           </div>
           <p
+            id="header_title"
             className="
             flex-auto text-white
             desktop:text-H2 desktop:leading-8

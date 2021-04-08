@@ -46,7 +46,7 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
   const language = router.locale ?? getDefaultLanguage();
 
   return (
-    <div className={className}>
+    <div className={className} id="header_inlineMenu">
       {sections &&
         sections.map((menuItem, i) => (
           <Section name={menuItem.title} key={i} url={menuItem.url} language={language} />
@@ -132,6 +132,7 @@ const Section: React.FC<{ name: string; url?: string; language?: string }> = ({
   language,
 }) => (
   <div
+    id="header_inlineMenuSection"
     className={`${sectionClassName} duration-500 transition-all border-b-4 hover:border-white border-transparent border-solid`}
   >
     {url !== undefined ? (
