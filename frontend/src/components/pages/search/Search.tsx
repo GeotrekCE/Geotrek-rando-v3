@@ -84,7 +84,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   Router.events.on('routeChangeError', () => setIsRedirectionLoading(false));
 
   return (
-    <>
+    <div id="Search">
       <PageHead
         title={`${intl.formatMessage({ id: 'search.title' })} - ${intl.formatMessage({
           id: 'home.title',
@@ -125,7 +125,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
           >
             <div className="flex flex-row flex-1 overflow-y-hidden">
               <div
-                id="scrollableComponent"
+                id="search_resultCardList"
                 className="flex flex-col w-full desktop:w-1/2 overflow-y-scroll"
               >
                 <div className="p-4 flex-1">
@@ -138,7 +138,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                       position: 'relative',
                     }}
                   >
-                    <div className="flex justify-between items-end">
+                    <div className="flex justify-between items-end" id="search_resultMapTitle">
                       <SearchResultsMeta resultsNumber={searchResults?.resultsNumber ?? 0} />
                       <ToggleFilterButton
                         onClick={displayMenu}
@@ -214,7 +214,10 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                 </div>
               </div>
 
-              <div className="hidden desktop:flex desktop:z-content desktop:w-1/2 desktop:fixed desktop:right-0 desktop:bottom-0 desktop:top-headerAndFilterBar">
+              <div
+                className="hidden desktop:flex desktop:z-content desktop:w-1/2 desktop:fixed desktop:right-0 desktop:bottom-0 desktop:top-headerAndFilterBar"
+                id="search_resultMap"
+              >
                 {isMapLoading && (
                   <div
                     className="absolute bg-primary2 opacity-40 w-full h-full"
@@ -256,7 +259,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
           shouldUsePopups
         />
       </MobileMapContainer>
-    </>
+    </div>
   );
 };
 
