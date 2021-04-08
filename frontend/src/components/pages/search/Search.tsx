@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'react-loader';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { colorPalette, getSpacing, sizes, typography, zIndex } from 'stylesheet';
+import { Router } from 'next/router';
 
 import { Layout } from 'components/Layout/Layout';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
@@ -75,7 +76,12 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
 
   const { mapResults, isMapLoading } = useMapResults(filtersState, language);
 
+  const [isRedirectionLoading, setIsRedirectionLoading] = useState(false);
+
   const intl = useIntl();
+
+  Router.events.on('routeChangeStart', () => setIsRedirectionLoading(true));
+  Router.events.on('routeChangeError', () => setIsRedirectionLoading(false));
 
   return (
     <>
@@ -111,7 +117,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
             resetFilters={resetFilters}
           />
           <Loader
-            loaded={false}
+            loaded={!isRedirectionLoading}
             options={{
               color: colorPalette.primary1,
               zIndex: zIndex.loader,
