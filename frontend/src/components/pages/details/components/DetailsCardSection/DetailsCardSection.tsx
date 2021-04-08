@@ -10,9 +10,11 @@ interface DetailsCardSectionProps {
   title: string;
   generateUrlFunction?: (id: string | number, title: string) => string;
   type: 'POI' | 'TOURISTIC_CONTENT';
+  id?: string;
 }
 
 export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
+  id,
   detailsCards,
   title,
   displayBadge = false,
@@ -20,7 +22,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
   type,
 }) => {
   return (
-    <div className="mt-6 desktop:mt-12">
+    <div id={id} className="mt-6 desktop:mt-12">
       <div
         className={`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild} flex items-center`}
       >
