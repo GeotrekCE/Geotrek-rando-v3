@@ -21,6 +21,7 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
 
   return (
     <Slide
+      id="verticalMenu"
       right
       customBurgerIcon={<BmIcon className="text-white" />}
       customCrossIcon={<Cross size={24} />}
@@ -31,7 +32,10 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
       crossButtonClassName="left-4 mt-2"
       crossClassName="bg-greyDarkColored"
     >
-      <span className="pb-4 font-bold text-center border-b border-solid border-greySoft outline-none">
+      <span
+        id="verticalMenu_title"
+        className="pb-4 font-bold text-center border-b border-solid border-greySoft outline-none"
+      >
         {intl.formatMessage({ id: 'header.menu' })}
       </span>
       {menuItems && (
