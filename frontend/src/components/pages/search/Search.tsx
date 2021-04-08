@@ -165,7 +165,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                           ></Loader>
                         </div>
                       }
-                      scrollableTarget="scrollableComponent"
+                      scrollableTarget="search_resultCardList"
                     >
                       {searchResults?.results.map(searchResult =>
                         searchResult.type === 'TREK' ? (
