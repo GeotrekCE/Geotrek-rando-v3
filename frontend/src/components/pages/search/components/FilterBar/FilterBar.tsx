@@ -40,14 +40,14 @@ export const FilterBar: React.FC<Props> = props => {
     <Container
       className={filterBarContainerClassName}
       displayedState={filterBarDisplayedState}
-      id="Search_filterBar"
+      id="search_filterBar"
     >
       <div className={`${props.filterBarExpansionState === 'EXPANDED' ? 'mb-4' : ''}`}>
-        <FiltersLayout id="Search_filters">
+        <FiltersLayout id="search_filters">
           {props.filtersState
             .filter(({ id }) => commonFilters.includes(id))
             .map(filterState => (
-              <div key={filterState.id} className="mr-2" id="Search_filter">
+              <div key={filterState.id} className="mr-2" id="search_filter">
                 <SelectableDropdown
                   name={filterState.id}
                   placeholder={filterState.label}
@@ -73,7 +73,7 @@ export const FilterBar: React.FC<Props> = props => {
             <div
               className="flex items-center cursor-pointer"
               onClick={props.resetFilters}
-              id="Search_clearAllButton"
+              id="search_clearAllButton"
             >
               <span className="underline text-primary1 font-bold">
                 {intl.formatMessage({ id: 'search.filters.clearAll' }).toUpperCase()}
@@ -84,13 +84,13 @@ export const FilterBar: React.FC<Props> = props => {
       </div>
       <AdditionalFilters
         expansionState={props.filterBarExpansionState}
-        id="Search_additionalFilters"
+        id="search_additionalFilters"
       >
         <FiltersLayout>
           {props.filtersState
             .filter(({ id }) => !commonFilters.includes(id))
             .map(filterState => (
-              <div key={filterState.id} className="mr-2" id="Search_filter">
+              <div key={filterState.id} className="mr-2" id="search_filter">
                 <SelectableDropdown
                   name={filterState.id}
                   placeholder={filterState.label}
@@ -110,7 +110,7 @@ export const FilterBar: React.FC<Props> = props => {
             <div
               className="flex items-center cursor-pointer"
               onClick={props.resetFilters}
-              id="Search_additionalFilterClearAllButton"
+              id="search_additionalFilterClearAllButton"
             >
               <span className="underline text-primary1 font-bold">
                 {intl.formatMessage({ id: 'search.filters.clearAll' }).toUpperCase()}
