@@ -12,7 +12,7 @@ import { Footer } from 'components/Footer';
 import { HomeSection } from './components/HomeSection';
 import { HomeContainer } from './Home.style';
 import { useHome } from './useHome';
-import { BannerSection } from './components/BannerSection';
+import { BannerWithAsset } from './components/BannerWithAsset';
 
 const HomeUI: FunctionComponent = () => {
   const { config, activitySuggestionCategories } = useHome();
@@ -30,14 +30,11 @@ const HomeUI: FunctionComponent = () => {
       />
       <Layout>
         <HomeContainer>
-          <BannerSection
+          <BannerWithAsset
             shouldDisplayText={config.welcomeBanner.shouldDisplayText}
-            backgroundSourceUrl={config.welcomeBanner.videoUrl ?? config.welcomeBanner.pictureUrl}
-            type={
-              config.welcomeBanner.videoUrl !== null && config.welcomeBanner.videoUrl !== undefined
-                ? 'video'
-                : 'image'
-            }
+            carouselUrls={config.welcomeBanner.carouselUrls}
+            pictureUrl={config.welcomeBanner.pictureUrl}
+            videoUrl={config.welcomeBanner.videoUrl}
           />
           <div className={contentContainerClassname}>
             {config.activityBar.shouldDisplay && (
