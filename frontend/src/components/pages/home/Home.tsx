@@ -50,7 +50,6 @@ const HomeUI: FunctionComponent = () => {
             </div>
             {activitySuggestionCategories.map(suggestionCategory => (
               <HomeSection
-                id={'home_section'}
                 title={intl.formatMessage({ id: suggestionCategory.titleTranslationId })}
                 iconUrl={suggestionCategory.iconUrl}
                 key={suggestionCategory.titleTranslationId}
