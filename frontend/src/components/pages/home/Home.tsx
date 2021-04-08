@@ -12,7 +12,7 @@ import { Footer } from 'components/Footer';
 import { HomeSection } from './components/HomeSection';
 import { HomeContainer } from './Home.style';
 import { useHome } from './useHome';
-import { BannerSection } from './components/BannerSection';
+import { BannerWithAsset } from './components/BannerWithAsset';
 
 const HomeUI: FunctionComponent = () => {
   const { config, activitySuggestionCategories } = useHome();
@@ -30,7 +30,7 @@ const HomeUI: FunctionComponent = () => {
       />
       <Layout>
         <HomeContainer>
-          <BannerSection
+          <BannerWithAsset
             shouldDisplayText={config.welcomeBanner.shouldDisplayText}
             carouselUrls={config.welcomeBanner.carouselUrls}
             pictureUrl={config.welcomeBanner.pictureUrl}

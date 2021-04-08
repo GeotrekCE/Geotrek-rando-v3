@@ -1,9 +1,9 @@
 import { render } from 'services/testing/reactTestingLibraryWrapper';
-import { BannerSection } from '../BannerSection';
+import { BannerWithAsset } from '../BannerWithAsset';
 
-describe('BannerSection', () => {
+describe('BannerWithAsset', () => {
   it('should well render with a video', () => {
-    const component = render(<BannerSection shouldDisplayText videoUrl="test.mp4" />);
+    const component = render(<BannerWithAsset shouldDisplayText videoUrl="test.mp4" />);
     const asset = component.queryByTestId('video');
 
     expect(asset).toBeTruthy();
@@ -13,7 +13,7 @@ describe('BannerSection', () => {
 
   it('should well render with a carousel', () => {
     const component = render(
-      <BannerSection shouldDisplayText carouselUrls={['test1.jpg', 'test2.jpg']} />,
+      <BannerWithAsset shouldDisplayText carouselUrls={['test1.jpg', 'test2.jpg']} />,
     );
     const asset = component.queryByTestId('carousel');
 
@@ -23,7 +23,7 @@ describe('BannerSection', () => {
   });
 
   it('should well render with a single picture', () => {
-    const component = render(<BannerSection shouldDisplayText pictureUrl="test0.jpg" />);
+    const component = render(<BannerWithAsset shouldDisplayText pictureUrl="test0.jpg" />);
     const asset = component.queryByTestId('image');
 
     expect(asset).toBeTruthy();
@@ -37,7 +37,7 @@ describe('BannerSection', () => {
     ${false}
   `('should adapt text if shouldDisplayText is $isTextDefined', ({ isTextDefined }) => {
     const component = render(
-      <BannerSection shouldDisplayText={isTextDefined} pictureUrl="image.jpg" />,
+      <BannerWithAsset shouldDisplayText={isTextDefined} pictureUrl="image.jpg" />,
     );
 
     const foundText = component.queryByTestId('text');

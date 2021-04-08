@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BannerSection should well render with a carousel 1`] = `
+exports[`BannerWithAsset should well render with a carousel 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -113,7 +113,7 @@ Object {
           </div>
         </div>
         <span
-          class="BannerSection__WelcomeText-opht63-0 dYtjim text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
+          class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -230,7 +230,7 @@ Object {
         </div>
       </div>
       <span
-        class="BannerSection__WelcomeText-opht63-0 dYtjim text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
+        class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -291,7 +291,7 @@ Object {
 }
 `;
 
-exports[`BannerSection should well render with a single picture 1`] = `
+exports[`BannerWithAsset should well render with a single picture 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -305,7 +305,7 @@ Object {
           src="test0.jpg"
         />
         <span
-          class="BannerSection__WelcomeText-opht63-0 dYtjim text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
+          class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -323,7 +323,7 @@ Object {
         src="test0.jpg"
       />
       <span
-        class="BannerSection__WelcomeText-opht63-0 dYtjim text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
+        class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -384,7 +384,7 @@ Object {
 }
 `;
 
-exports[`BannerSection should well render with a video 1`] = `
+exports[`BannerWithAsset should well render with a video 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -400,7 +400,7 @@ Object {
           src="test.mp4"
         />
         <span
-          class="BannerSection__WelcomeText-opht63-0 dYtjim text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
+          class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -420,7 +420,7 @@ Object {
         src="test.mp4"
       />
       <span
-        class="BannerSection__WelcomeText-opht63-0 dYtjim text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
+        class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute flex items-center justify-center bottom-0 desktop:bottom-40 desktop:items-end top-0 left-10vw right-10vw"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !

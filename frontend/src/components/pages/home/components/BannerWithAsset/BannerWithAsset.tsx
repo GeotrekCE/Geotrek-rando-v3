@@ -19,10 +19,7 @@ interface BannerSectionWithoutAssetProps {
   children: React.ReactNode;
 }
 
-const BannerSectionWithoutAsset: React.FC<BannerSectionWithoutAssetProps> = ({
-  shouldDisplayText,
-  children,
-}) => (
+const Banner: React.FC<BannerSectionWithoutAssetProps> = ({ shouldDisplayText, children }) => (
   <div className="relative">
     {children}
     {shouldDisplayText && (
@@ -37,7 +34,7 @@ const BannerSectionWithoutAsset: React.FC<BannerSectionWithoutAssetProps> = ({
   </div>
 );
 
-export const BannerSection: React.FC<BannerSectionProps> = ({
+export const BannerWithAsset: React.FC<BannerSectionProps> = ({
   shouldDisplayText,
   videoUrl,
   carouselUrls,
@@ -45,7 +42,7 @@ export const BannerSection: React.FC<BannerSectionProps> = ({
 }) => {
   if (videoUrl !== undefined) {
     return (
-      <BannerSectionWithoutAsset shouldDisplayText={shouldDisplayText}>
+      <Banner shouldDisplayText={shouldDisplayText}>
         <video
           autoPlay
           muted
@@ -54,23 +51,23 @@ export const BannerSection: React.FC<BannerSectionProps> = ({
           className="object-cover object-center overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
           data-testid="video"
         />
-      </BannerSectionWithoutAsset>
+      </Banner>
     );
   } else if (carouselUrls !== undefined) {
     return (
-      <BannerSectionWithoutAsset shouldDisplayText={shouldDisplayText}>
+      <Banner shouldDisplayText={shouldDisplayText}>
         <BannerCarousel picturesUrl={carouselUrls} />
-      </BannerSectionWithoutAsset>
+      </Banner>
     );
   } else if (pictureUrl !== undefined) {
     return (
-      <BannerSectionWithoutAsset shouldDisplayText={shouldDisplayText}>
+      <Banner shouldDisplayText={shouldDisplayText}>
         <img
           src={pictureUrl}
           className="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
           data-testid="image"
         />
-      </BannerSectionWithoutAsset>
+      </Banner>
     );
   } else {
     return null;

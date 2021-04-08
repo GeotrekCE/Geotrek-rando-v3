@@ -1,0 +1,1 @@
+export { BannerWithAsset } from './BannerWithAsset';
