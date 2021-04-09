@@ -1,10 +1,10 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 
 import { Header } from 'components/Header';
-import { Router } from 'next/router';
 import { colorPalette, zIndex } from 'stylesheet';
 import Loader from 'react-loader';
+import { useNavigationLoader } from './useRedirection';
 
 const Container = styled.div`
   display: flex;
@@ -18,18 +18,14 @@ export const PageContent = styled.main`
 PageContent.displayName = 'PageContent';
 
 export const Layout: FunctionComponent = props => {
-  const [isRedirectionLoading, setIsRedirectionLoading] = useState(false);
-
-  Router.events.on('routeChangeStart', () => setIsRedirectionLoading(true));
-  Router.events.on('routeChangeError', () => setIsRedirectionLoading(false));
-  Router.events.on('routeChangeComplete', () => setIsRedirectionLoading(false));
+  const { isNavigationLoading } = useNavigationLoader();
 
   return (
     <Container>
       <Header />
       <PageContent>
         <Loader
-          loaded={!isRedirectionLoading}
+          loaded={!isNavigationLoading}
           options={{
             color: colorPalette.primary1,
             zIndex: zIndex.loader,
