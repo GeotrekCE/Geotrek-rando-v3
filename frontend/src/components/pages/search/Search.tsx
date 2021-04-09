@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'react-loader';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { colorPalette, getSpacing, sizes, typography, zIndex } from 'stylesheet';
-import { Router } from 'next/router';
 
 import { Layout } from 'components/Layout/Layout';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
@@ -76,13 +75,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
 
   const { mapResults, isMapLoading } = useMapResults(filtersState, language);
 
-  const [isRedirectionLoading, setIsRedirectionLoading] = useState(false);
-
   const intl = useIntl();
-
-  Router.events.on('routeChangeStart', () => setIsRedirectionLoading(true));
-  Router.events.on('routeChangeError', () => setIsRedirectionLoading(false));
-  Router.events.on('routeChangeComplete', () => setIsRedirectionLoading(false));
 
   return (
     <div id="Search">
@@ -109,140 +102,132 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
         deSelectOption={deSelectOption}
       />
       <Layout>
-        <Loader
-          loaded={!isRedirectionLoading}
-          options={{
-            color: colorPalette.primary1,
-            zIndex: zIndex.loader,
-          }}
-        >
-          <Container className="flex flex-col">
-            <FilterBar
-              filtersState={filtersState}
-              setFilterSelectedOptions={setFilterSelectedOptions}
-              filterBarExpansionState={filterBarExpansionState}
-              setFilterBarExpansionState={setFilterBarExpansionState}
-              resetFilters={resetFilters}
-            />
-            <div className="flex flex-row flex-1 overflow-y-hidden">
-              <div
-                id="search_resultCardList"
-                className="flex flex-col w-full desktop:w-1/2 overflow-y-scroll"
-              >
-                <div className="p-4 flex-1">
-                  <Loader
-                    loaded={!isLoading}
-                    options={{
-                      top: '40px',
-                      color: colorPalette.primary1,
-                      zIndex: zIndex.loader,
-                      position: 'relative',
-                    }}
-                  >
-                    <div className="flex justify-between items-end" id="search_resultMapTitle">
-                      <SearchResultsMeta resultsNumber={searchResults?.resultsNumber ?? 0} />
-                      <ToggleFilterButton
-                        onClick={displayMenu}
-                        activeFiltersNumber={activeFiltersNumber}
-                      />
-                    </div>
-
-                    <Separator className="w-full mt-6 desktop:block hidden" />
-
-                    <OpenMapButton displayMap={displayMobileMap} />
-
-                    <InfiniteScroll
-                      dataLength={searchResults?.results.length ?? 0}
-                      next={fetchNextPage}
-                      hasMore={hasNextPage ?? false}
-                      loader={
-                        <div className={` my-10 ${isFetchingNextPage ? 'h-10' : ''}`}>
-                          <Loader
-                            loaded={!isFetchingNextPage}
-                            options={{
-                              color: colorPalette.primary1,
-                              zIndex: zIndex.loader,
-                            }}
-                          ></Loader>
-                        </div>
-                      }
-                      scrollableTarget="search_resultCardList"
-                    >
-                      {searchResults?.results.map(searchResult =>
-                        searchResult.type === 'TREK' ? (
-                          <ResultCard
-                            type={searchResult.type}
-                            key={searchResult.title}
-                            id={`${searchResult.id}`}
-                            hoverId={`SEARCH-TREK-${searchResult.id}`}
-                            place={searchResult.place}
-                            title={searchResult.title}
-                            tags={searchResult.tags}
-                            thumbnailUris={searchResult.thumbnailUris}
-                            badgeIconUri={searchResult.practice?.pictogram}
-                            informations={searchResult.informations}
-                            redirectionUrl={generateResultDetailsUrl(
-                              searchResult.id,
-                              searchResult.title,
-                            )}
-                            className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
-                          />
-                        ) : (
-                          <ResultCard
-                            type={searchResult.type}
-                            key={searchResult.name}
-                            id={`${searchResult.id}`}
-                            hoverId={`SEARCH-TOURISTIC_CONTENT-${searchResult.id}`}
-                            place={searchResult.place}
-                            title={searchResult.name}
-                            tags={searchResult.themes}
-                            thumbnailUris={searchResult.thumbnailUris}
-                            badgeIconUri={searchResult.category.pictogramUri}
-                            informations={searchResult.types}
-                            redirectionUrl={generateTouristicContentUrl(
-                              searchResult.id,
-                              searchResult.name,
-                            )}
-                            className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
-                          />
-                        ),
-                      )}
-                    </InfiniteScroll>
-                    {isError && (
-                      <ErrorFallback refetch={searchResults === null ? refetch : fetchNextPage} />
-                    )}
-                  </Loader>
-                </div>
-              </div>
-
-              <div
-                className="hidden desktop:flex desktop:z-content desktop:w-1/2 desktop:fixed desktop:right-0 desktop:bottom-0 desktop:top-headerAndFilterBar"
-                id="search_resultMap"
-              >
-                {isMapLoading && (
-                  <div
-                    className="absolute bg-primary2 opacity-40 w-full h-full"
-                    style={{ zIndex: 2000 }}
-                  />
-                )}
+        <Container className="flex flex-col">
+          <FilterBar
+            filtersState={filtersState}
+            setFilterSelectedOptions={setFilterSelectedOptions}
+            filterBarExpansionState={filterBarExpansionState}
+            setFilterBarExpansionState={setFilterBarExpansionState}
+            resetFilters={resetFilters}
+          />
+          <div className="flex flex-row flex-1 overflow-y-hidden">
+            <div
+              id="search_resultCardList"
+              className="flex flex-col w-full desktop:w-1/2 overflow-y-scroll"
+            >
+              <div className="p-4 flex-1">
                 <Loader
-                  loaded={!isMapLoading}
+                  loaded={!isLoading}
                   options={{
+                    top: '40px',
                     color: colorPalette.primary1,
-                    zIndex: 2500,
-                    scale: 2,
+                    zIndex: zIndex.loader,
+                    position: 'relative',
                   }}
-                />
-                <SearchMapDynamicComponent
-                  points={mapResults}
-                  type="DESKTOP"
-                  shouldUseClusters
-                  shouldUsePopups
-                />
+                >
+                  <div className="flex justify-between items-end" id="search_resultMapTitle">
+                    <SearchResultsMeta resultsNumber={searchResults?.resultsNumber ?? 0} />
+                    <ToggleFilterButton
+                      onClick={displayMenu}
+                      activeFiltersNumber={activeFiltersNumber}
+                    />
+                  </div>
+
+                  <Separator className="w-full mt-6 desktop:block hidden" />
+
+                  <OpenMapButton displayMap={displayMobileMap} />
+
+                  <InfiniteScroll
+                    dataLength={searchResults?.results.length ?? 0}
+                    next={fetchNextPage}
+                    hasMore={hasNextPage ?? false}
+                    loader={
+                      <div className={` my-10 ${isFetchingNextPage ? 'h-10' : ''}`}>
+                        <Loader
+                          loaded={!isFetchingNextPage}
+                          options={{
+                            color: colorPalette.primary1,
+                            zIndex: zIndex.loader,
+                          }}
+                        ></Loader>
+                      </div>
+                    }
+                    scrollableTarget="search_resultCardList"
+                  >
+                    {searchResults?.results.map(searchResult =>
+                      searchResult.type === 'TREK' ? (
+                        <ResultCard
+                          type={searchResult.type}
+                          key={searchResult.title}
+                          id={`${searchResult.id}`}
+                          hoverId={`SEARCH-TREK-${searchResult.id}`}
+                          place={searchResult.place}
+                          title={searchResult.title}
+                          tags={searchResult.tags}
+                          thumbnailUris={searchResult.thumbnailUris}
+                          badgeIconUri={searchResult.practice?.pictogram}
+                          informations={searchResult.informations}
+                          redirectionUrl={generateResultDetailsUrl(
+                            searchResult.id,
+                            searchResult.title,
+                          )}
+                          className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
+                        />
+                      ) : (
+                        <ResultCard
+                          type={searchResult.type}
+                          key={searchResult.name}
+                          id={`${searchResult.id}`}
+                          hoverId={`SEARCH-TOURISTIC_CONTENT-${searchResult.id}`}
+                          place={searchResult.place}
+                          title={searchResult.name}
+                          tags={searchResult.themes}
+                          thumbnailUris={searchResult.thumbnailUris}
+                          badgeIconUri={searchResult.category.pictogramUri}
+                          informations={searchResult.types}
+                          redirectionUrl={generateTouristicContentUrl(
+                            searchResult.id,
+                            searchResult.name,
+                          )}
+                          className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
+                        />
+                      ),
+                    )}
+                  </InfiniteScroll>
+                  {isError && (
+                    <ErrorFallback refetch={searchResults === null ? refetch : fetchNextPage} />
+                  )}
+                </Loader>
               </div>
             </div>
-          </Container>
-        </Loader>
+
+            <div
+              className="hidden desktop:flex desktop:z-content desktop:w-1/2 desktop:fixed desktop:right-0 desktop:bottom-0 desktop:top-headerAndFilterBar"
+              id="search_resultMap"
+            >
+              {isMapLoading && (
+                <div
+                  className="absolute bg-primary2 opacity-40 w-full h-full"
+                  style={{ zIndex: 2000 }}
+                />
+              )}
+              <Loader
+                loaded={!isMapLoading}
+                options={{
+                  color: colorPalette.primary1,
+                  zIndex: 2500,
+                  scale: 2,
+                }}
+              />
+              <SearchMapDynamicComponent
+                points={mapResults}
+                type="DESKTOP"
+                shouldUseClusters
+                shouldUsePopups
+              />
+            </div>
+          </div>
+        </Container>
       </Layout>
       <MobileMapContainer
         className={`desktop:hidden fixed right-0 left-0 h-full z-map ${
