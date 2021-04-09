@@ -38,7 +38,7 @@ export const adaptResults = ({
   sensitiveAreas,
 }: {
   rawDetails: RawDetails;
-  activity: Activity;
+  activity: Activity | null;
   difficulty: Difficulty | null;
   courseType: CourseType | null;
   networks: NetworkDictionnary;

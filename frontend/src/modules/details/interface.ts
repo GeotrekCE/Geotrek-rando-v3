@@ -31,7 +31,7 @@ export interface RawDetailsProperties {
   name: string;
   departure: string;
   attachments: RawAttachment[];
-  practice: number;
+  practice: number | null;
   public_transport: string;
   access: string;
   advised_parking: string;
@@ -99,7 +99,7 @@ export interface TrekChildGeometry {
   departure: Coordinate2D;
 }
 export interface Details extends DetailsHtml {
-  practice: Activity;
+  practice: Activity | null;
   title: string;
   place?: string;
   imgs: Attachment[];
