@@ -1,5 +1,6 @@
 import {
   Coordinate2D,
+  Coordinate3D,
   LineStringGeometry,
   PointGeometry,
   PolygonGeometry,
@@ -15,6 +16,11 @@ export const adaptGeometry2D = (geometry: RawCoordinate2D | RawCoordinate3D): Co
   y: geometry[1],
 });
 
+export const adaptGeometry3D = (geometry: RawCoordinate3D): Coordinate3D => ({
+  x: geometry[0],
+  y: geometry[1],
+  z: geometry[2],
+});
 
 /** Adapt any type of raw geometry */
 export const adaptGeometry = (
