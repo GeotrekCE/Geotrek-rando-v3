@@ -4,15 +4,17 @@ import {
   PointGeometry,
   PolygonGeometry,
   RawCoordinate2D,
+  RawCoordinate3D,
   RawLineStringGeometry2D,
   RawPointGeometry2D,
   RawPolygonGeometry,
 } from 'modules/interface';
 
-export const adaptGeometry2D = (geometry: RawCoordinate2D): { x: number; y: number } => ({
+export const adaptGeometry2D = (geometry: RawCoordinate2D | RawCoordinate3D): Coordinate2D => ({
   x: geometry[0],
   y: geometry[1],
 });
+
 
 /** Adapt any type of raw geometry */
 export const adaptGeometry = (
