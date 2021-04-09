@@ -1,4 +1,9 @@
-import { Coordinate3D, RawAttachment, RawLineStringGeometry3D } from 'modules/interface';
+import {
+  Coordinate3D,
+  RawAttachment,
+  RawLineStringGeometry3D,
+  RawMultiLineStringGeometry3D,
+} from 'modules/interface';
 
 export interface RawTrekPopupResult {
   name: string;
@@ -13,7 +18,7 @@ export interface PopupResult {
 }
 
 export interface RawTrekGeometryResult {
-  geometry: RawLineStringGeometry3D;
+  geometry: RawLineStringGeometry3D | RawMultiLineStringGeometry3D;
 }
 
 export interface TrekGeometryResult {
