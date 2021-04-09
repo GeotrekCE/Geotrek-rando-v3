@@ -48,9 +48,9 @@ La page d'accueil est composée :
 
 ## Page recherche
 
-![Search](https://geotrek.ecrins-parcnational.fr/images/gtr3-04-search.jpg)
-
 La page de recherche permet de rechercher des objets parmis les randonnées et les services (contenus touristiques).
+
+![Search](https://geotrek.ecrins-parcnational.fr/images/gtr3-04-search.jpg)
 
 **Filtres :**
 
@@ -81,45 +81,46 @@ La page de recherche permet de rechercher des objets parmis les randonnées et l
 
 Chaque objet dispose d'une page de détail avec ses informations détaillées et sa carte.
 
+Les pages de détail sont composées d'un bloc d'information scrollable à droite et d'une carte fixe à gauche, ainsi que d'un bloc fixe vertical permettant de naviguer entre les sections de la page.
+
 ### Randonnées
+
+Les pages de détail des randonnées commencent par la (ou les) photo(s) associées à la randonnée, ainsi que les boutons permettant de la télécharger au format PDF, KML ou GPX.
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-05-detail.jpg)
 
-Photo, infos techniques, description, patrimoines
+Ensuite sont affichées les informations techniques de la randonnée (thèmes, difficulté, durée, dénivelé,...), suivis du résumé (chapeau) et du texte général d'ambiance.
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-06-detail.jpg)
 
-Etapes
+Si la randonnée est une itinérance, sont alors affichées la liste de ses étapes. Elles sont alors aussi affichés sur la carte.
+Au survol d'une étape dans la liste, celle-ci est mise en avant sur la carte. 
+Au clic sur une étape, on accède alors à sa fiche.
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-07-detail.jpg)
 
-Patrimoines
+C'est ensuite la liste des patrimoines qui est affichée, avec leurs localisations sur la carte.
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-08-detail.jpg)
 
-Description
+Vient ensuite la description technique avec les éventuelles puces rouges de localisation correspondantes sur la carte. 
+Ainsi que le profil altimétrique interactif avec la carte, puis les recommandations.
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-09-detail.jpg)
 
-Lieux de renseignement
+Sont ensuite affichés les lieux de renseignement associés à la randonnée (pas encore localisés sur la carte).
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-10-detail.jpg)
 
-Services à proximité
+La page détail d'une randonnée se termine par la liste des services (contenus touristiques) à proximité.
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-11-detail.jpg)
 
-### Itinérances
-
-Idem mais avec fiche séjour et ses étapes, puis la navigation entre les fiches des différentes étapes.
-
-Ne pas publier une étape pour qu'elle n'apparaisse pas dans la recherche mais seulement dans les étapes d'une itinérance.
-
-IMG
-
 ### Contenus touristiques
 
-Fiche simplifiée
+Les pages de détail des contenus touristiques sont construits de la même manière, mais avec un contenu plus simple.
+
+![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-12-detail.jpg)
 
 ### A venir
 
