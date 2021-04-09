@@ -56,3 +56,10 @@ export const extractFirstPointOfGeometry = (
       return adaptGeometry2D(geometry.coordinates);
   }
 };
+
+export function flattenMultiLineStringCoordinates<T>(coordinates: T[][]): T[] {
+  return coordinates.reduce<T[]>(
+    (reducedInLineCoordinates, currentLine) => [...reducedInLineCoordinates, ...currentLine],
+    [],
+  );
+}

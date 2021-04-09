@@ -14,6 +14,10 @@ export interface RawLineStringGeometry3D {
   type: 'LineString';
   coordinates: RawCoordinate3D[];
 }
+export interface RawMultiLineStringGeometry3D {
+  type: 'MultiLineString';
+  coordinates: RawCoordinate3D[][];
+}
 
 export interface RawPointGeometry2D {
   type: 'Point';
