@@ -7,8 +7,9 @@ import {
   Attachment,
   Coordinate2D,
   RawAttachment,
-  RawCoordinate,
+  RawCoordinate2D,
   RawLineStringGeometry3D,
+  RawMultiLineStringGeometry3D,
   RawMultiPointGeometry,
 } from 'modules/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
@@ -22,7 +23,7 @@ import { SensitiveArea } from 'modules/sensitiveArea/interface';
 export interface RawDetails {
   type: string;
   bbox: number[];
-  geometry: RawLineStringGeometry3D;
+  geometry: RawLineStringGeometry3D | RawMultiLineStringGeometry3D;
   properties: RawDetailsProperties;
 }
 
@@ -45,7 +46,7 @@ export interface RawDetailsProperties {
   route: number;
   networks: number[];
   description: string;
-  parking_location: RawCoordinate | null;
+  parking_location: RawCoordinate2D | null;
   pdf: string;
   gpx: string;
   kml: string;
