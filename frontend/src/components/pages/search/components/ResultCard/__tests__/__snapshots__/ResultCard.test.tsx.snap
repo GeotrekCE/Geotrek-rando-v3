@@ -11,11 +11,7 @@ Object {
       >
         <div
           class="ResultCard__ImageContainer-sc-1bem01n-1 iwpCHS"
-        >
-          <div
-            class="ActivityBadge__Container-enmhze-0 eVVswV ResultCard__ActivityBadge-sc-1bem01n-11 jJUVgC"
-          />
-        </div>
+        />
         <a
           class="Link__StyledLink-oanbk8-0 hVMYzp w-full"
           data-testid="Link-ResultCard-2"
@@ -194,11 +190,7 @@ Object {
     >
       <div
         class="ResultCard__ImageContainer-sc-1bem01n-1 iwpCHS"
-      >
-        <div
-          class="ActivityBadge__Container-enmhze-0 eVVswV ResultCard__ActivityBadge-sc-1bem01n-11 jJUVgC"
-        />
-      </div>
+      />
       <a
         class="Link__StyledLink-oanbk8-0 hVMYzp w-full"
         data-testid="Link-ResultCard-2"

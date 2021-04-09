@@ -19,7 +19,7 @@ export interface TrekResult {
   title: string;
   tags: string[];
   thumbnailUris: string[];
-  practice: Activity; // should be an object
+  practice: Activity | null; // should be an object
   informations: {
     duration: string | null;
     distance: string;

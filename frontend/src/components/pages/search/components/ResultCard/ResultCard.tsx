@@ -34,7 +34,7 @@ interface BaseProps {
   title: string;
   tags: string[];
   thumbnailUris: string[];
-  badgeIconUri: string;
+  badgeIconUri?: string;
   className?: string;
   redirectionUrl: string;
 }
@@ -86,7 +86,7 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => 
         <ResultCardCarousel thumbnailUris={thumbnailUris} iconUri={badgeIconUri} />
       ) : (
         <ImageContainer imageUri={thumbnailUris[0]}>
-          <ActivityBadge iconUri={badgeIconUri} />
+          {badgeIconUri !== undefined && <ActivityBadge iconUri={badgeIconUri} />}
         </ImageContainer>
       )}
 
