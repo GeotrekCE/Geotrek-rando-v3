@@ -50,14 +50,32 @@ La page d'accueil est composée :
 
 ![Search](https://geotrek.ecrins-parcnational.fr/images/gtr3-04-search.jpg)
 
-Logique des filtres permanents et spécifiques
+La page de recherche permet de rechercher des objets parmis les randonnées et les services (contenus touristiques).
+
+**Filtres :**
+
+- Il est possible de sélectionner une ou plusieurs activités de randonnée et une ou plusieurs catégories de service.
+- Si je ne sélectionne aucune activité de randonnée et aucune catégorie de service, alors j'affiche tous les objets
+- La première ligne de filtre est fixe et comprend les filtres communs à tous les objets (thèmes, communes, secteurs et structures)
+- Si je sélectionne uniquement des activités de randonnée, alors les filtres spécifiques aux randonnées sont aussi affichés (difficulté, durée, longueur, dénivelé, type de parcours et accessibilité)
+- Si je sélectionne uniquement une seule catégories de service, alors les filtres spécifiques à cette catégorie sont affichés (type 1 et éventuel type 2)
+- Il est possible de customiser, masquer ou réordonner les filtres
+
+**Résultats :**
+
+- Tous les résultats d'une recherche sont affichés sur la carte
+- Dans la liste, les résultats sont affichés 10 par 10 pour optimiser le temps de chargement des résultats
+- Les points proches sur la carte sont regroupés dans des clusters selon le niveau de zoom
+- Quand on clique sur un objet sur la carte, on en affiche le nom et l'image dans une tooltip
+- Si il s'agit d'une randonnée, on affiche aussi son tracé précis sur la carte quand on clique dessus
+- Au survol d'un résultat dans la liste, sa localisation est mise en avant sur la carte
+- Les résultats dans la liste et sur la carte permettent d'accéder à la fiche détail de chaque objet
 
 **A venir :**
 
 - Ajout des évènements touristiques
 - Ajout des sites outdoor
 - Amélioration de l'ergonomie des filtres
-- Recherche libre
 
 ## Page détail
 
@@ -65,9 +83,31 @@ Chaque objet dispose d'une page de détail avec ses informations détaillées et
 
 ### Randonnées
 
+![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-05-detail.jpg)
+
 Photo, infos techniques, description, patrimoines
 
-IMG
+![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-06-detail.jpg)
+
+Etapes
+
+![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-07-detail.jpg)
+
+Patrimoines
+
+![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-08-detail.jpg)
+
+Description
+
+![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-09-detail.jpg)
+
+Lieux de renseignement
+
+![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-10-detail.jpg)
+
+Services à proximité
+
+![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-11-detail.jpg)
 
 ### Itinérances
 
