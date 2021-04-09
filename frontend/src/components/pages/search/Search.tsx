@@ -82,6 +82,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
 
   Router.events.on('routeChangeStart', () => setIsRedirectionLoading(true));
   Router.events.on('routeChangeError', () => setIsRedirectionLoading(false));
+  Router.events.on('routeChangeComplete', () => setIsRedirectionLoading(false));
 
   return (
     <div id="Search">
