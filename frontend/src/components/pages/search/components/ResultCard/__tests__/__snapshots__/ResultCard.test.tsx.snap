@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ResultCard__Container-sc-1bem01n-0 iRGQde"
+        class="ResultCard__Container-sc-1bem01n-0 iyMlgy"
         id="result_card"
       >
         <div
@@ -189,7 +189,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ResultCard__Container-sc-1bem01n-0 iRGQde"
+      class="ResultCard__Container-sc-1bem01n-0 iyMlgy"
       id="result_card"
     >
       <div
