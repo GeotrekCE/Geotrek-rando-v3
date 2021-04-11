@@ -6,7 +6,11 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="DetailsCard__DetailsCardContainer-sc-1paweiv-0 eTRahW"
+        class="DetailsCard__DetailsCardContainer-sc-1paweiv-0 iRBFSr border border-solid border-greySoft rounded-card
+      flex-none overflow-hidden relative
+      flex flex-col h-auto desktop:flex-row desktop:w-auto
+      cursor-pointer hover:shadow-sm transition-all duration-300
+      "
         height="200"
       >
         <div
@@ -52,7 +56,11 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="DetailsCard__DetailsCardContainer-sc-1paweiv-0 eTRahW"
+      class="DetailsCard__DetailsCardContainer-sc-1paweiv-0 iRBFSr border border-solid border-greySoft rounded-card
+      flex-none overflow-hidden relative
+      flex flex-col h-auto desktop:flex-row desktop:w-auto
+      cursor-pointer hover:shadow-sm transition-all duration-300
+      "
       height="200"
     >
       <div
