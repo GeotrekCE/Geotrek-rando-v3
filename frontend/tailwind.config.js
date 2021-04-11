@@ -139,6 +139,7 @@ module.exports = {
         black: '#000000',
         white: '#FFFFFF',
         red: '#FF7373',
+        redMarker: '#E83737',
         blackTransparent: 'rgba(0, 0, 0, 0.24)',
         blackSemiTransparent: 'rgba(0, 0, 0, 0.36)',
         blackSemiOpaque: 'rgba(0, 0, 0, 0.70)',

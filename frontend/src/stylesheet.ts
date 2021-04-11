@@ -55,6 +55,7 @@ export const colorPalette = {
   black: tailwindConfig.theme.extend.colors.black,
   white: tailwindConfig.theme.extend.colors.white,
   red: tailwindConfig.theme.extend.colors.red,
+  redMarker: tailwindConfig.theme.extend.colors.redMarker,
   blackTransparent: tailwindConfig.theme.extend.colors.blackTransparent,
   darkPurple: tailwindConfig.theme.extend.colors.greyDarkColored,
   filter: {
