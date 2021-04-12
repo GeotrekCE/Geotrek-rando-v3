@@ -13,4 +13,5 @@ export interface APIQuery {
   page_size?: number;
   trek?: number;
   near_trek?: number;
+  period?: string;
 }
