@@ -8,6 +8,7 @@ import { parseFilters } from '../utils';
 export const useMapResults = (
   filters: {
     filtersState: FilterState[];
+    textFilter: string | null;
   },
   language: string,
 ) => {
