@@ -16,7 +16,7 @@ import { InformationDeskDictionnary } from 'modules/informationDesk/interface';
 import { LabelDictionnary } from 'modules/label/interface';
 import { TrekResult } from 'modules/results/interface';
 import { RawLineStringGeometry3D } from 'modules/interface';
-import { Details, RawDetails, TrekChild, TrekChildGeometry } from './interface';
+import { Details, RawDetails, TrekChildGeometry, TrekFamily } from './interface';
 
 export const adaptResults = ({
   rawDetails: { properties: rawDetailsProperties, geometry, bbox },
@@ -142,15 +142,22 @@ export const adaptResults = ({
 export const adaptChildren = ({
   childrenIds,
   childrenNames,
+  parentName,
+  parentId,
 }: {
   childrenIds: string[];
   childrenNames: string[];
-}): TrekChild[] =>
-  childrenIds.map((childId, childIndex) => ({
+  parentName: string;
+  parentId: string;
+}): TrekFamily => ({
+  parentId,
+  parentName,
+  trekChildren: childrenIds.map((childId, childIndex) => ({
     id: `${childId}`,
     name: childrenNames[childIndex],
     rank: childIndex + 1,
-  }));
+  })),
+});
 
 export const adaptTrekChildGeometry = (
   id: string,
