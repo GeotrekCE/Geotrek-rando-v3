@@ -4,7 +4,14 @@ import InputWithMagnifier from '.';
 
 describe('InputWithMagnifier', () => {
   it('renders correctly', () => {
-    const inputWithMagnifier = render(<InputWithMagnifier />);
+    const inputWithMagnifier = render(
+      <InputWithMagnifier
+        value={null}
+        onButtonClick={() => {
+          /* does nothing */
+        }}
+      />,
+    );
 
     expect(inputWithMagnifier).toMatchSnapshot();
   });

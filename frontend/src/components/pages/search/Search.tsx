@@ -79,9 +79,14 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   const intl = useIntl();
 
   const [filterInput, setFilterInput] = useState<string | null>(null);
+  const [filterValue, setFilterValue] = useState<string | null>(null);
 
   const onFilterInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFilterInput(event.target.value);
+  };
+
+  const onFilterSubmit = () => {
+    setFilterValue(filterInput);
   };
 
   return (
@@ -141,7 +146,11 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                       />
                     </div>
                     <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
-                      <InputWithMagnifier value={filterInput} onChange={onFilterInputChange} />
+                      <InputWithMagnifier
+                        value={filterInput}
+                        onChange={onFilterInputChange}
+                        onButtonClick={onFilterSubmit}
+                      />
                     </div>
                   </div>
 

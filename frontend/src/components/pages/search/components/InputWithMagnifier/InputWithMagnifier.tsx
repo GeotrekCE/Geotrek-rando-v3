@@ -6,9 +6,14 @@ import CustomizedInput from './CustomizedInput.style';
 interface InputWithMagnifierProps {
   value: string | null;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onButtonClick: () => void;
 }
 
-const InputWithMagnifier: FunctionComponent<InputWithMagnifierProps> = ({ onChange, value }) => {
+const InputWithMagnifier: FunctionComponent<InputWithMagnifierProps> = ({
+  onChange,
+  value,
+  onButtonClick,
+}) => {
   return (
     <div className="flex flex-row w-full desktop:w-auto">
       <CustomizedInput onChange={onChange} value={value !== null ? value : ''} type="text" />
@@ -19,7 +24,9 @@ const InputWithMagnifier: FunctionComponent<InputWithMagnifierProps> = ({ onChan
         cursor-pointer
         "
       >
-        <Search size={24} color={colorPalette.primary2} />
+        <div onClick={onButtonClick}>
+          <Search size={24} color={colorPalette.primary2} />
+        </div>
       </div>
     </div>
   );

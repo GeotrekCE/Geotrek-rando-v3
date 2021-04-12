@@ -16,6 +16,45 @@ Object {
         <div
           class="w-10 h-10 desktop:h-12 desktop:w-12 bg-primary1 rounded-r-md flex justify-center items-center active:bg-primary1-light cursor-pointer "
         >
+          <div>
+            <svg
+              fill="none"
+              height="24"
+              viewBox="0 0 22 22"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 8.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
+                stroke="#F5E7EF"
+                stroke-width="2"
+              />
+              <path
+                d="M14.164 14.25l5.586 5.586"
+                stroke="#F5E7EF"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="flex flex-row w-full desktop:w-auto"
+    >
+      <input
+        class="Inputstyle__Input-m8ywjr-0 CustomizedInputstyle__CustomizedInput-hiqqyy-0 ftUolv hXCUVP"
+        type="text"
+        value=""
+      />
+      <div
+        class="w-10 h-10 desktop:h-12 desktop:w-12 bg-primary1 rounded-r-md flex justify-center items-center active:bg-primary1-light cursor-pointer "
+      >
+        <div>
           <svg
             fill="none"
             height="24"
@@ -37,41 +76,6 @@ Object {
             />
           </svg>
         </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="flex flex-row w-full desktop:w-auto"
-    >
-      <input
-        class="Inputstyle__Input-m8ywjr-0 CustomizedInputstyle__CustomizedInput-hiqqyy-0 ftUolv hXCUVP"
-        type="text"
-        value=""
-      />
-      <div
-        class="w-10 h-10 desktop:h-12 desktop:w-12 bg-primary1 rounded-r-md flex justify-center items-center active:bg-primary1-light cursor-pointer "
-      >
-        <svg
-          fill="none"
-          height="24"
-          viewBox="0 0 22 22"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M16 8.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
-            stroke="#F5E7EF"
-            stroke-width="2"
-          />
-          <path
-            d="M14.164 14.25l5.586 5.586"
-            stroke="#F5E7EF"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-          />
-        </svg>
       </div>
     </div>
   </div>,
