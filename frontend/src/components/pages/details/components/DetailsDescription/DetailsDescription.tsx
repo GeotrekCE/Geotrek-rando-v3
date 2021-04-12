@@ -41,19 +41,6 @@ const StyledListWithSteps = styled(HtmlText)`
       margin: ${getSpacing(4)} 0;
     `)}
   }
-  & > ol::before {
-    content: ' ';
-    background-color: ${colorPalette.primary1};
-    width: 3px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 14px;
-    z-index: -1;
-    ${desktopOnly(css`
-      left: 22px;
-    `)}
-  }
   & > ol > li {
     counter-increment: item;
     display: flex;
@@ -67,25 +54,21 @@ const StyledListWithSteps = styled(HtmlText)`
     padding: 0;
   }
   & > ol > li::before {
+    font-size: 14px;
     content: counter(item);
     border-radius: 100%;
-    width: ${getSpacing(8)};
-    height: ${getSpacing(8)};
+    width: ${getSpacing(6.5)};
+    height: ${getSpacing(6.5)};
     flex: none;
     margin-right: ${getSpacing(3.5)};
-    border: solid 3px ${colorPalette.primary1};
-    font-weight: bold;
-    color: ${colorPalette.primary1};
-    background-color: white;
+    color: white;
+    background-color: ${colorPalette.redMarker};
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: ${shadow.medium};
     ${desktopOnly(css`
-      width: ${getSpacing(12)};
-      height: ${getSpacing(12)};
       margin-right: ${getSpacing(5.5)};
-      ${typography.h4}
     `)}
   }
 `;

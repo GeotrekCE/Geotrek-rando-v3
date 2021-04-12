@@ -5,10 +5,9 @@ import { colorPalette } from 'stylesheet';
 
 const markerSize = 26;
 
-// The color is hardcoded because points reference are always red like this
 const Round = styled.div`
   border-radius: 50%;
-  background-color: #e83737;
+  background-color: ${colorPalette.redMarker};
   display: grid;
   place-items: center;
   color: ${colorPalette.white};

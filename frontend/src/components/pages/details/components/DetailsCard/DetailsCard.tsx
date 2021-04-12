@@ -6,14 +6,7 @@ import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'components/Link';
 import SVG from 'react-inlinesvg';
-import {
-  borderRadius,
-  colorPalette,
-  fillSvgWithColor,
-  getSpacing,
-  MAX_WIDTH_MOBILE,
-  shadow,
-} from 'stylesheet';
+import { colorPalette, fillSvgWithColor, getSpacing, MAX_WIDTH_MOBILE } from 'stylesheet';
 import { ListAndMapContext } from 'modules/map/ListAndMapContext';
 import { useDetailsCard } from './useDetailsCard';
 import { DetailsCardCarousel } from '../DetailsCardCarousel';
@@ -55,7 +48,11 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   return (
     <DetailsCardContainer
       height={heightState}
-      className={className}
+      className={`border border-solid border-greySoft rounded-card
+      flex-none overflow-hidden relative
+      flex flex-col h-auto desktop:flex-row desktop:w-auto
+      cursor-pointer hover:shadow-sm transition-all duration-300
+      ${className ?? ''}`}
       onMouseEnter={() => {
         setHoveredCardId(id);
       }}
@@ -129,17 +126,13 @@ const DetailsCardContainer = styled.div<{ height: number }>`
   margin: 0 ${getSpacing(1)};
   height: auto;
   flex: none;
-  border: solid ${colorPalette.greySoft} 1px;
-  border-radius: ${borderRadius.card};
   overflow: hidden;
   display: flex;
+  // Fix for border radius + overflow hidden in Safari, see https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
   position: relative;
   flex-direction: column;
-  transition-property: all;
-  transition-duration: 500ms;
-  &:hover {
-    box-shadow: ${shadow.small};
-  }
   @media (min-width: ${MAX_WIDTH_MOBILE}px) {
     height: ${props => props.height}px;
     width: auto;

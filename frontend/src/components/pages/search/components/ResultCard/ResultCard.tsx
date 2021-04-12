@@ -167,6 +167,9 @@ const Container = styled.div`
   border-radius: ${borderRadius.card};
   border: 1px solid ${colorPalette.greySoft.DEFAULT};
   overflow: hidden;
+  // Fix for overflow hidden with border radius in Safari, see https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
 
   align-items: stretch;
 
