@@ -29,6 +29,7 @@ import { ErrorFallback } from './components/ErrorFallback';
 import { generateResultDetailsUrl } from './utils';
 import { generateTouristicContentUrl } from '../details/utils';
 import InputWithMagnifier from './components/InputWithMagnifier';
+import { useTrekFilter } from './hooks/useTrekFilter';
 
 interface Props {
   initialFiltersState: FilterState[];
@@ -61,6 +62,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     selectFilter,
   );
 
+  const { filterInput, filterValue, onFilterInputChange, onFilterSubmit } = useTrekFilter();
+
   const {
     searchResults,
     isLoading,
@@ -77,17 +80,6 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   const { mapResults, isMapLoading } = useMapResults(filtersState, language);
 
   const intl = useIntl();
-
-  const [filterInput, setFilterInput] = useState<string | null>(null);
-  const [filterValue, setFilterValue] = useState<string | null>(null);
-
-  const onFilterInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFilterInput(event.target.value);
-  };
-
-  const onFilterSubmit = () => {
-    setFilterValue(filterInput);
-  };
 
   return (
     <div id="Search">
