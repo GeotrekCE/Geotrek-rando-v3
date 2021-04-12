@@ -75,7 +75,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-  } = useTrekResults({ filtersState }, language);
+  } = useTrekResults({ filtersState, textFilter: filterValue }, language);
 
   const { mapResults, isMapLoading } = useMapResults(
     { filtersState, textFilter: filterValue },
