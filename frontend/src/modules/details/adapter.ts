@@ -1,21 +1,21 @@
+import { AccessibilityDictionnary } from 'modules/accessibility/interface';
 import { Activity } from 'modules/activities/interface';
-import { Choices } from 'modules/filters/interface';
-import { getAttachments } from 'modules/utils/adapter';
-import { dataUnits } from 'modules/results/adapter';
-import { Difficulty } from 'modules/filters/difficulties/interface';
-import { formatDistance } from 'modules/results/utils';
+import { CityDictionnary } from 'modules/city/interface';
 import { CourseType } from 'modules/filters/courseType/interface';
+import { Difficulty } from 'modules/filters/difficulties/interface';
+import { Choices } from 'modules/filters/interface';
+import { InformationDeskDictionnary } from 'modules/informationDesk/interface';
+import { RawLineStringGeometry3D } from 'modules/interface';
+import { LabelDictionnary } from 'modules/label/interface';
 import { NetworkDictionnary } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
-import { TouristicContent } from 'modules/touristicContent/interface';
-import { formatHours } from 'modules/utils/time';
-import { CityDictionnary } from 'modules/city/interface';
-import { AccessibilityDictionnary } from 'modules/accessibility/interface';
-import { SourceDictionnary } from 'modules/source/interface';
-import { InformationDeskDictionnary } from 'modules/informationDesk/interface';
-import { LabelDictionnary } from 'modules/label/interface';
+import { dataUnits } from 'modules/results/adapter';
 import { TrekResult } from 'modules/results/interface';
-import { RawLineStringGeometry3D } from 'modules/interface';
+import { formatDistance } from 'modules/results/utils';
+import { SourceDictionnary } from 'modules/source/interface';
+import { TouristicContent } from 'modules/touristicContent/interface';
+import { getAttachments } from 'modules/utils/adapter';
+import { formatHours } from 'modules/utils/time';
 import { Details, RawDetails, TrekChildGeometry, TrekFamily } from './interface';
 
 export const adaptResults = ({
