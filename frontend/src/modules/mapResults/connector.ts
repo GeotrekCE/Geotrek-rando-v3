@@ -14,9 +14,11 @@ import { fetchTouristicContentMapResults, fetchTrekMapResults } from './api';
 import { MapResults } from './interface';
 
 export const getMapResults = async (
-  filtersState: QueryFilterState[],
+  filters: { filtersState: QueryFilterState[] },
   language: string,
 ): Promise<MapResults> => {
+  const { filtersState } = filters;
+
   try {
     const practiceFilter = filtersState.find(({ id }) => id === PRACTICE_ID);
     const isPracticeSelected = practiceFilter ? practiceFilter.selectedOptions.length > 0 : false;

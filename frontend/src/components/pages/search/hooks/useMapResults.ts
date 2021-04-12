@@ -16,7 +16,7 @@ export const useMapResults = (
 
   const { data: mapResults, isLoading: isMapLoading } = useQuery<MapResults, Error>(
     ['mapResults', parsedFiltersState, language],
-    () => getMapResults(parsedFiltersState, language),
+    () => getMapResults({ filtersState: parsedFiltersState }, language),
   );
 
   return {
