@@ -136,3 +136,7 @@ export interface TrekChild {
   rank: number;
   name: string;
 }
+
+export interface TrekFamily {
+  trekChildren: TrekChild[];
+}

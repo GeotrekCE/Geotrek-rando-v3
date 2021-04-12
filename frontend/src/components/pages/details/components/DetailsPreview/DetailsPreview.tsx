@@ -2,12 +2,11 @@ import { Clock } from 'components/Icons/Clock';
 import { Chip } from 'components/Chip';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
-import { DetailsInformation, TrekChild } from 'modules/details/interface';
+import { DetailsInformation, TrekFamily } from 'modules/details/interface';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { LocalIconInformation } from 'components/Information/LocalIconInformation';
 import parse from 'html-react-parser';
 import { Separator } from 'components/Separator';
-import { TouristicContentCategory } from 'modules/touristicContentCategory/interface';
 import { TouristicContentDetailsType } from 'modules/touristicContent/interface';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { HtmlText } from '../../utils';
@@ -25,7 +24,7 @@ interface DetailsPreviewProps {
   tags: string[];
   teaser?: string;
   title: string;
-  trekFamily?: TrekChild[];
+  trekFamily?: TrekFamily;
   id: string;
   parentId?: string;
 }
@@ -43,7 +42,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   parentId,
 }) => {
   // trekRank & trekRankLabel are only defined if trek is part of an itinerance
-  const trekRank = trekFamily?.find(trek => trek.id === id);
+  const trekRank = trekFamily?.trekChildren.find(trek => trek.id === id);
   const trekRankLabel = trekRank !== undefined ? `${trekRank.rank}. ` : '';
   return (
     <div
@@ -51,7 +50,11 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       className={`${className ?? ''} flex flex-col mt-2 desktop:mt-12 relative`}
     >
       {trekFamily && parentId && (
-        <DetailsTrekFamilyCarousel parentId={parentId} trekChildren={trekFamily} trekId={id} />
+        <DetailsTrekFamilyCarousel
+          parentId={parentId}
+          trekChildren={trekFamily.trekChildren}
+          trekId={id}
+        />
       )}
       {informations.logoUri !== undefined && informations.logoUri.length > 0 && (
         <img

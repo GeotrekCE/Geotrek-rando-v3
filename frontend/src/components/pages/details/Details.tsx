@@ -147,7 +147,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         title={details.title}
                         teaser={details.description_teaser}
                         ambiance={details.ambiance}
-                        trekFamily={trekFamily}
+                        trekFamily={trekFamily ?? undefined}
                         id={id}
                         parentId={parentIdString}
                       />

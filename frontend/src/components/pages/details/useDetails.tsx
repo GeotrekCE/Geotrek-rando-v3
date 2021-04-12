@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
-import { Details, TrekChild } from 'modules/details/interface';
-import { getDetails, getTrekChildren } from 'modules/details/connector';
+import { Details, TrekFamily } from 'modules/details/interface';
+import { getDetails, getTrekFamily } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
 import { isRessourceMissing } from 'services/routeUtils';
 import { useCallback, useRef, useState } from 'react';
@@ -58,9 +58,9 @@ export const useDetails = (
   );
 
   const parentIdString = isUrlString(parentId) ? parentId : '';
-  const { data: trekFamily } = useQuery<TrekChild[], Error>(
+  const { data: trekFamily } = useQuery<TrekFamily | null, Error>(
     `trekFamily-${parentIdString}-${language}`,
-    () => getTrekChildren(isUrlString(parentId) ? parentId : '', language),
+    () => getTrekFamily(isUrlString(parentId) ? parentId : '', language),
     {
       enabled: isUrlString(parentId),
     },

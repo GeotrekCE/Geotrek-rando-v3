@@ -145,12 +145,13 @@ export const adaptChildren = ({
 }: {
   childrenIds: string[];
   childrenNames: string[];
-}): TrekChild[] =>
-  childrenIds.map((childId, childIndex) => ({
+}): TrekFamily => ({
+  trekChildren: childrenIds.map((childId, childIndex) => ({
     id: `${childId}`,
     name: childrenNames[childIndex],
     rank: childIndex + 1,
-  }));
+  })),
+});
 
 export const adaptTrekChildGeometry = (
   id: string,

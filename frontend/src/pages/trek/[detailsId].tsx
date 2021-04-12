@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { DetailsUI } from 'components/pages/details';
 import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
-import { getDetails, getTrekChildren } from 'modules/details/connector';
+import { getDetails, getTrekFamily } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
 import { getDefaultLanguage } from 'modules/header/utills';
 
@@ -20,7 +20,7 @@ export const getServerSideProps = async (context: {
     getDetails(id, context.locale),
   );
   await queryClient.prefetchQuery(`trekFamily-${parentIdString}-${context.locale}`, () =>
-    getTrekChildren(parentIdString, context.locale),
+    getTrekFamily(parentIdString, context.locale),
   );
 
   return {
