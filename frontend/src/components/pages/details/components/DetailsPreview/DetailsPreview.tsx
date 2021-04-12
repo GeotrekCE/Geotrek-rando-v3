@@ -50,6 +50,10 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
     >
       {trekFamily && (
         <div id="details_trekFamily" className="mb-4">
+          <DetailsTrekParentButton
+            parentName={trekFamily.parentName}
+            parentId={trekFamily.parentId}
+          />
           <DetailsTrekFamilyCarousel
             parentId={trekFamily.parentId}
             trekChildren={trekFamily.trekChildren}
