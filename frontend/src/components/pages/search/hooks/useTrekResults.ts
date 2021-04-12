@@ -40,7 +40,7 @@ export const useTrekResults = (filters: { filtersState: FilterState[] }, languag
   } = useInfiniteQuery<SearchResults, Error>(
     ['trekResults', parsedFiltersState, language],
     ({ pageParam = { treks: 1, touristicContents: 1 } }) =>
-      getSearchResults(parsedFiltersState, pageParam, language),
+      getSearchResults({ filtersState: parsedFiltersState }, pageParam, language),
     {
       retry: false,
       // We already have a fallback component to allow the user to refetch

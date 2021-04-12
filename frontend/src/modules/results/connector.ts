@@ -32,13 +32,15 @@ const emptyResultPromise = Promise.resolve({
 });
 
 export const getSearchResults = async (
-  filtersState: QueryFilterState[],
+  filters: { filtersState: QueryFilterState[] },
   pages: {
     treks: number | null;
     touristicContents: number | null;
   },
   language: string,
 ): Promise<SearchResults> => {
+  const { filtersState } = filters;
+
   try {
     const practiceFilter = filtersState.find(({ id }) => id === PRACTICE_ID);
     const isPracticeSelected = practiceFilter ? practiceFilter.selectedOptions.length > 0 : false;
