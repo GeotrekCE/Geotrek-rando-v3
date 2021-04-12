@@ -12,6 +12,7 @@ import { Poi } from 'modules/poi/interface';
 import { dataUnits } from 'modules/results/adapter';
 import { TrekResult } from 'modules/results/interface';
 import { formatDistance } from 'modules/results/utils';
+import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SourceDictionnary } from 'modules/source/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { getAttachments } from 'modules/utils/adapter';
@@ -34,6 +35,7 @@ export const adaptResults = ({
   labelsDictionnary,
   children,
   childrenGeometry,
+  sensitiveAreas,
 }: {
   rawDetails: RawDetails;
   activity: Activity;
@@ -50,6 +52,7 @@ export const adaptResults = ({
   labelsDictionnary: LabelDictionnary;
   children: TrekResult[];
   childrenGeometry: TrekChildGeometry[];
+  sensitiveAreas: SensitiveArea[];
 }): Details => {
   try {
     return {
@@ -132,6 +135,7 @@ export const adaptResults = ({
         ...child,
         geometry: childrenGeometry.find(childGeometry => childGeometry.id === `${child.id}`),
       })),
+      sensitiveAreas,
     };
   } catch (e) {
     console.error('Error in details/adapter', e);

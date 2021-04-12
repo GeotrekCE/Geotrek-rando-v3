@@ -17,6 +17,7 @@ import { Source } from 'modules/source/interface';
 import { InformationDesk } from 'modules/informationDesk/interface';
 import { Label } from 'modules/label/interface';
 import { TrekResult } from 'modules/results/interface';
+import { SensitiveArea } from 'modules/sensitiveArea/interface';
 
 export interface RawDetails {
   type: string;
@@ -121,6 +122,7 @@ export interface Details extends DetailsHtml {
   pointsReference: Coordinate2D[] | null;
   bbox: Bbox;
   children: TrekResultWithGeometry[];
+  sensitiveAreas: SensitiveArea[];
 }
 
 export interface RawTrekChildIds {
