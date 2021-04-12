@@ -28,3 +28,7 @@ export interface RawSensitiveArea {
   structure: string;
   url: string;
 }
+
+export interface SensitiveArea {
+  name: string;
+}
