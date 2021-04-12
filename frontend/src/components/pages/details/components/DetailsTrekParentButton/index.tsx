@@ -1,0 +1,1 @@
+export { DetailsTrekParentButton } from './DetailsTrekParentButton';
