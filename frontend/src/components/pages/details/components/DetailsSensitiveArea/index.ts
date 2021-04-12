@@ -1,0 +1,1 @@
+export { DetailsSensitiveArea } from './DetailsSensitiveArea';

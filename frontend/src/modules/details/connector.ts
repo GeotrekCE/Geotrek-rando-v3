@@ -9,6 +9,7 @@ import { getLabels } from 'modules/label/connector';
 import { getNetworks } from 'modules/networks/connector';
 import { getPois } from 'modules/poi/connector';
 import { getTrekResultsById } from 'modules/results/connector';
+import { getSensitiveAreas } from 'modules/sensitiveArea/connector';
 import { getSources } from 'modules/source/connector';
 import { getTouristicContentsNearTrek } from 'modules/touristicContent/connector';
 import { adaptChildren, adaptResults, adaptTrekChildGeometry } from './adapter';
@@ -42,10 +43,16 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       getAccessibilities(language),
       getSources(language),
     ]);
-    const [informationDeskDictionnary, labelsDictionnary, children] = await Promise.all([
+    const [
+      informationDeskDictionnary,
+      labelsDictionnary,
+      children,
+      sensitiveAreas,
+    ] = await Promise.all([
       getInformationDesks(language),
       getLabels(language),
       getTrekResultsById(rawDetails.properties.children, language),
+      getSensitiveAreas(rawDetails.properties.id, language),
     ]);
     const childrenGeometry = await Promise.all(
       rawDetails.properties.children.map(childId => getChildGeometry(`${childId}`, language)),
@@ -66,6 +73,7 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       labelsDictionnary,
       children,
       childrenGeometry,
+      sensitiveAreas,
     });
   } catch (e) {
     console.error('Error in details/connector principal', e);

@@ -79,6 +79,7 @@
     "transport": "Transport",
     "stationnement": "Stationnement",
     "access_parking": "Accès routiers et parkings",
+    "sensitiveAreas": "Zones de sensibilité environnementale",
     "altimetricProfile": {
       "title": "Profil altimétrique",
       "totalLength": "Longueur totale",

@@ -79,6 +79,7 @@
     "transport": "Transport",
     "stationnement": "Parking",
     "access_parking": "Access and parking",
+    "sensitiveAreas": "Sensitive areas",
     "altimetricProfile": {
       "title": "Altimetric profile",
       "totalLength": "Total length",
