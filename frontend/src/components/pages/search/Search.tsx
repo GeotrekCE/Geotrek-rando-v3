@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'react-loader';
@@ -78,6 +78,12 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
 
   const intl = useIntl();
 
+  const [filterInput, setFilterInput] = useState<string | null>(null);
+
+  const onFilterInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFilterInput(event.target.value);
+  };
+
   return (
     <div id="Search">
       <PageHead
@@ -135,7 +141,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                       />
                     </div>
                     <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
-                      <InputWithMagnifier />
+                      <InputWithMagnifier value={filterInput} onChange={onFilterInputChange} />
                     </div>
                   </div>
 
