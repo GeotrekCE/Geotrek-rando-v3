@@ -210,11 +210,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         titleId="details.sensitiveAreas"
                         className={marginDetailsChild}
                       >
-                        <>
-                          {details.sensitiveAreas.map((sensitiveArea, i) => (
-                            <DetailsSensitiveArea key={i} name={sensitiveArea.name} />
-                          ))}
-                        </>
+                        {details.sensitiveAreas.map((sensitiveArea, i) => (
+                          <DetailsSensitiveArea key={i} name={sensitiveArea.name} />
+                        ))}
                       </DetailsSection>
                     )}
 
@@ -335,16 +333,14 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         titleId="details.source"
                         className={marginDetailsChild}
                       >
-                        <>
-                          {details.sources.map((source, i) => (
-                            <DetailsSource
-                              key={i}
-                              name={source.name}
-                              website={source.website}
-                              pictogramUri={source.pictogramUri}
-                            />
-                          ))}
-                        </>
+                        {details.sources.map((source, i) => (
+                          <DetailsSource
+                            key={i}
+                            name={source.name}
+                            website={source.website}
+                            pictogramUri={source.pictogramUri}
+                          />
+                        ))}
                       </DetailsSection>
                     )}
 
