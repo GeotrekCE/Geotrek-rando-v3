@@ -28,6 +28,7 @@ import { useMapResults } from './hooks/useMapResults';
 import { ErrorFallback } from './components/ErrorFallback';
 import { generateResultDetailsUrl } from './utils';
 import { generateTouristicContentUrl } from '../details/utils';
+import InputWithMagnifier from './components/InputWithMagnifier';
 
 interface Props {
   initialFiltersState: FilterState[];
@@ -125,12 +126,17 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                     position: 'relative',
                   }}
                 >
-                  <div className="flex justify-between items-end" id="search_resultMapTitle">
-                    <SearchResultsMeta resultsNumber={searchResults?.resultsNumber ?? 0} />
-                    <ToggleFilterButton
-                      onClick={displayMenu}
-                      activeFiltersNumber={activeFiltersNumber}
-                    />
+                  <div className="flex flex-col desktop:flex-row desktop:justify-between">
+                    <div className="flex justify-between items-end" id="search_resultMapTitle">
+                      <SearchResultsMeta resultsNumber={searchResults?.resultsNumber ?? 0} />
+                      <ToggleFilterButton
+                        onClick={displayMenu}
+                        activeFiltersNumber={activeFiltersNumber}
+                      />
+                    </div>
+                    <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
+                      <InputWithMagnifier />
+                    </div>
                   </div>
 
                   <Separator className="w-full mt-6 desktop:block hidden" />
