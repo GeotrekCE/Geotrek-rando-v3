@@ -114,7 +114,9 @@ export const adaptTouristicContentDetails = ({
     rawTCD.properties.cities.length > 0 ? cityDictionnary[rawTCD.properties.cities[0]].name : '',
   themes:
     rawTCD.properties.themes !== null
-      ? rawTCD.properties.themes.map(themeId => themeDictionnary[themeId].label)
+      ? rawTCD.properties.themes
+          .filter(themeId => themeDictionnary[themeId] !== undefined)
+          .map(themeId => themeDictionnary[themeId].label)
       : [],
   pdf: rawTCD.properties.pdf,
   types: Object.entries(rawTCD.properties.types).reduce<TouristicContentDetailsType[]>(
