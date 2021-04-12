@@ -105,7 +105,9 @@ export const adaptTouristicContentDetails = ({
   description: rawTCD.properties.description,
   sources:
     rawTCD.properties.source !== null
-      ? rawTCD.properties.source.map(sourceId => sourceDictionnary[sourceId])
+      ? rawTCD.properties.source
+          .filter(sourceId => sourceDictionnary[sourceId] !== undefined)
+          .map(sourceId => sourceDictionnary[sourceId])
       : [],
   contact: rawTCD.properties.contact,
   email: rawTCD.properties.email,
