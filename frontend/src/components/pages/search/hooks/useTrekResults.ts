@@ -18,7 +18,9 @@ const computeUrl = (filtersState: FilterState[]) =>
     }, [])
     .join('&')}`;
 
-export const useTrekResults = (filtersState: FilterState[], language: string) => {
+export const useTrekResults = (filters: { filtersState: FilterState[] }, language: string) => {
+  const { filtersState } = filters;
+
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
   const hideMobileMap = () => setMobileMapState('HIDDEN');
