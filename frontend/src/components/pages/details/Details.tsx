@@ -40,7 +40,6 @@ interface Props {
 export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, language }) => {
   const {
     id,
-    parentIdString,
     details,
     trekFamily,
     refetch,
@@ -149,7 +148,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         ambiance={details.ambiance}
                         trekFamily={trekFamily ?? undefined}
                         id={id}
-                        parentId={parentIdString}
                       />
                     </div>
 

@@ -9,6 +9,7 @@ import parse from 'html-react-parser';
 import { Separator } from 'components/Separator';
 import { TouristicContentDetailsType } from 'modules/touristicContent/interface';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
+import { DetailsTrekParentButton } from '../DetailsTrekParentButton';
 import { HtmlText } from '../../utils';
 
 interface DetailsPreviewInformation extends DetailsInformation {
@@ -26,7 +27,6 @@ interface DetailsPreviewProps {
   title: string;
   trekFamily?: TrekFamily;
   id: string;
-  parentId?: string;
 }
 
 export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
@@ -39,7 +39,6 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   title,
   trekFamily,
   id,
-  parentId,
 }) => {
   // trekRank & trekRankLabel are only defined if trek is part of an itinerance
   const trekRank = trekFamily?.trekChildren.find(trek => trek.id === id);
@@ -47,15 +46,18 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   return (
     <div
       id="details_preview"
-      className={`${className ?? ''} flex flex-col mt-2 desktop:mt-12 relative`}
+      className={`${className ?? ''} flex flex-col mt-2 desktop:mt-10 relative`}
     >
-      {trekFamily && parentId && (
-        <DetailsTrekFamilyCarousel
-          parentId={parentId}
-          trekChildren={trekFamily.trekChildren}
-          trekId={id}
-        />
+      {trekFamily && (
+        <div id="details_trekFamily" className="mb-4">
+          <DetailsTrekFamilyCarousel
+            parentId={trekFamily.parentId}
+            trekChildren={trekFamily.trekChildren}
+            trekId={id}
+          />
+        </div>
       )}
+
       {informations.logoUri !== undefined && informations.logoUri.length > 0 && (
         <img
           id="details_logo"

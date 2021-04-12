@@ -154,7 +154,6 @@ export const useDetails = (
 
   return {
     id,
-    parentIdString,
     details: data,
     trekFamily,
     refetch,
