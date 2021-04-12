@@ -13,7 +13,7 @@ import { getSources } from 'modules/source/connector';
 import { getTouristicContentsNearTrek } from 'modules/touristicContent/connector';
 import { adaptChildren, adaptResults, adaptTrekChildGeometry } from './adapter';
 import { fetchDetails, fetchTrekChildren, fetchTrekGeometry, fetchTrekName } from './api';
-import { Details, TrekChild, TrekChildGeometry } from './interface';
+import { Details, TrekChildGeometry, TrekFamily } from './interface';
 
 export const getDetails = async (id: string, language: string): Promise<Details> => {
   try {
@@ -79,11 +79,19 @@ export const getTrekFamily = async (
 ): Promise<TrekFamily | null> => {
   if (parentId.length === 0) return null;
   try {
-    const childrenIdsResult = await fetchTrekChildren({ language }, parentId);
+    const [childrenIdsResult, parentName] = await Promise.all([
+      fetchTrekChildren({ language }, parentId),
+      getName(parentId, language),
+    ]);
     const childrenNames = await Promise.all(
       childrenIdsResult.children.map(childId => getName(childId, language)),
     );
-    return adaptChildren({ childrenIds: childrenIdsResult.children, childrenNames });
+    return adaptChildren({
+      childrenIds: childrenIdsResult.children,
+      childrenNames,
+      parentName,
+      parentId,
+    });
   } catch (e) {
     console.error('Error in details/connector', e);
     throw e;

@@ -138,5 +138,7 @@ export interface TrekChild {
 }
 
 export interface TrekFamily {
+  parentId: string;
+  parentName: string;
   trekChildren: TrekChild[];
 }
