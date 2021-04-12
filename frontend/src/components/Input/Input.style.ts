@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { borderRadius, colorPalette, oldGetSpacing, typography } from 'stylesheet';
 
-const getBorderColor = (hasError: boolean, originalColor: string): string =>
+const getBorderColor = (hasError = false, originalColor: string): string =>
   hasError ? colorPalette.hardKO : originalColor;
 
 interface Props {
-  hasError: boolean;
+  hasError?: boolean;
 }
 
 const Input = styled.input<Props>`
