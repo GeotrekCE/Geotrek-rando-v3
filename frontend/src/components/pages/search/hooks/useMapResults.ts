@@ -12,11 +12,13 @@ export const useMapResults = (
   },
   language: string,
 ) => {
-  const parsedFiltersState = parseFilters(filters.filtersState);
+  const { filtersState, textFilter } = filters;
+
+  const parsedFiltersState = parseFilters(filtersState);
 
   const { data: mapResults, isLoading: isMapLoading } = useQuery<MapResults, Error>(
     ['mapResults', parsedFiltersState, language],
-    () => getMapResults({ filtersState: parsedFiltersState }, language),
+    () => getMapResults({ filtersState: parsedFiltersState, textFilter }, language),
   );
 
   return {

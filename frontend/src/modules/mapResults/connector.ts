@@ -14,7 +14,7 @@ import { fetchTouristicContentMapResults, fetchTrekMapResults } from './api';
 import { MapResults } from './interface';
 
 export const getMapResults = async (
-  filters: { filtersState: QueryFilterState[] },
+  filters: { filtersState: QueryFilterState[]; textFilter: string | null },
   language: string,
 ): Promise<MapResults> => {
   const { filtersState } = filters;
