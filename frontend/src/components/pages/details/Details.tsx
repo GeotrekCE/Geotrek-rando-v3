@@ -30,6 +30,7 @@ import { DetailsChildrenSection } from './components/DetailsChildrenSection';
 import { DetailsCoverCarousel } from './components/DetailsCoverCarousel';
 import { ImageWithLegend } from './components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { VisibleSectionProvider } from './VisibleSectionContext';
+import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
 
 interface Props {
   detailsId: string | string[] | undefined;
@@ -202,6 +203,20 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     >
                       <div className="h-90" id="altimetric-profile"></div>
                     </DetailsSection>
+
+                    {details.sensitiveAreas.length > 0 && (
+                      <DetailsSection
+                        htmlId="details_sensitiveAreas"
+                        titleId="details.sensitiveAreas"
+                        className={marginDetailsChild}
+                      >
+                        <>
+                          {details.sensitiveAreas.map((sensitiveArea, i) => (
+                            <DetailsSensitiveArea key={i} name={sensitiveArea.name} />
+                          ))}
+                        </>
+                      </DetailsSection>
+                    )}
 
                     {(details.labels.length > 0 ||
                       (details.advice !== null && details.advice.length > 0)) && (
