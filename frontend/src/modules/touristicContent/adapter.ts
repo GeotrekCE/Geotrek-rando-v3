@@ -105,7 +105,9 @@ export const adaptTouristicContentDetails = ({
   description: rawTCD.properties.description,
   sources:
     rawTCD.properties.source !== null
-      ? rawTCD.properties.source.map(sourceId => sourceDictionnary[sourceId])
+      ? rawTCD.properties.source
+          .filter(sourceId => sourceDictionnary[sourceId] !== undefined)
+          .map(sourceId => sourceDictionnary[sourceId])
       : [],
   contact: rawTCD.properties.contact,
   email: rawTCD.properties.email,
@@ -114,7 +116,9 @@ export const adaptTouristicContentDetails = ({
     rawTCD.properties.cities.length > 0 ? cityDictionnary[rawTCD.properties.cities[0]].name : '',
   themes:
     rawTCD.properties.themes !== null
-      ? rawTCD.properties.themes.map(themeId => themeDictionnary[themeId].label)
+      ? rawTCD.properties.themes
+          .filter(themeId => themeDictionnary[themeId] !== undefined)
+          .map(themeId => themeDictionnary[themeId].label)
       : [],
   pdf: rawTCD.properties.pdf,
   types: Object.entries(rawTCD.properties.types).reduce<TouristicContentDetailsType[]>(
