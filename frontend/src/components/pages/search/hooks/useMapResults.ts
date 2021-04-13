@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { getMapResults } from 'modules/mapResults/connector';
 import { MapResults } from 'modules/mapResults/interface';
 import { FilterState } from 'modules/filters/interface';
-import { parseFilters } from '../utils';
+import { parseFilters, parseTextFilter } from '../utils';
 
 export const useMapResults = (
   filters: {
@@ -17,7 +17,7 @@ export const useMapResults = (
   const parsedFiltersState = parseFilters(filtersState);
 
   const { data: mapResults, isLoading: isMapLoading } = useQuery<MapResults, Error>(
-    ['mapResults', parsedFiltersState, language],
+    ['mapResults', parsedFiltersState, language, parseTextFilter(textFilter)],
     () => getMapResults({ filtersState: parsedFiltersState, textFilter }, language),
   );
 

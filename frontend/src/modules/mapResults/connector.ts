@@ -2,6 +2,7 @@ import { QueryFilterState } from 'components/pages/search/utils';
 import { getActivities } from 'modules/activities/connector';
 import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
 import {
+  formatTextFilter,
   formatTouristicContentFiltersToUrlParams,
   formatTrekFiltersToUrlParams,
 } from 'modules/results/utils';
@@ -17,7 +18,7 @@ export const getMapResults = async (
   filters: { filtersState: QueryFilterState[]; textFilter: string | null },
   language: string,
 ): Promise<MapResults> => {
-  const { filtersState } = filters;
+  const { filtersState, textFilter: textFilterState } = filters;
 
   try {
     const practiceFilter = filtersState.find(({ id }) => id === PRACTICE_ID);
@@ -31,6 +32,8 @@ export const getMapResults = async (
     const trekFilters = formatTrekFiltersToUrlParams(filtersState);
     const touristicContentFilter = formatTouristicContentFiltersToUrlParams(filtersState);
 
+    const textFilter = formatTextFilter(textFilterState);
+
     const resultsNumber = getGlobalConfig().mapResultsPageSize;
 
     const mapResults: MapResults = [];
@@ -40,6 +43,7 @@ export const getMapResults = async (
         language,
         page_size: resultsNumber,
         ...trekFilters,
+        ...textFilter,
       });
       const mapTrekResults = await Promise.all(
         generatePageNumbersArray(resultsNumber, rawMapResults.count).map(pageNumber =>
@@ -48,6 +52,7 @@ export const getMapResults = async (
             page_size: resultsNumber,
             page: pageNumber,
             ...trekFilters,
+            ...textFilter,
           }),
         ),
       );
@@ -60,6 +65,7 @@ export const getMapResults = async (
         language,
         page_size: resultsNumber,
         ...touristicContentFilter,
+        ...textFilter,
       });
       const mapTouristicContentResults = await Promise.all(
         generatePageNumbersArray(resultsNumber, rawMapResults.count).map(pageNumber =>
@@ -68,6 +74,7 @@ export const getMapResults = async (
             page_size: resultsNumber,
             page: pageNumber,
             ...touristicContentFilter,
+            ...textFilter,
           }),
         ),
       );
