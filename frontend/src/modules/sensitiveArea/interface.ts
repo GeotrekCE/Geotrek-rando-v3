@@ -31,4 +31,7 @@ export interface RawSensitiveArea {
 
 export interface SensitiveArea {
   name: string | null;
+  infoUrl: string | null;
+  description: string | null;
+  contact: string | null;
 }
