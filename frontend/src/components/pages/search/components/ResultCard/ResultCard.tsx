@@ -86,7 +86,7 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => 
         <ResultCardCarousel thumbnailUris={thumbnailUris} iconUri={badgeIconUri} />
       ) : (
         <ImageContainer imageUri={thumbnailUris[0]}>
-          {badgeIconUri !== undefined && <ActivityBadge iconUri={badgeIconUri} />}
+          {badgeIconUri && <ActivityBadge iconUri={badgeIconUri} />}
         </ImageContainer>
       )}
 
