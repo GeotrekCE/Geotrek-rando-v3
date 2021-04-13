@@ -41,6 +41,16 @@ const StyledListWithSteps = styled(HtmlText)`
       margin: ${getSpacing(4)} 0;
     `)}
   }
+  & > ol::before {
+    content: ' ';
+    background-color: ${colorPalette.primary3};
+    width: 3px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 12px;
+    z-index: -1;
+  }
   & > ol > li {
     counter-increment: item;
     display: flex;
