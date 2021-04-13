@@ -37,4 +37,5 @@ export interface SensitiveArea {
   infoUrl: string | null;
   description: string | null;
   contact: string | null;
+  period: MonthlyValidity | null;
 }

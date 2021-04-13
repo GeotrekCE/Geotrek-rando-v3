@@ -1,6 +1,6 @@
 import parse from 'html-react-parser';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
-import { FormattedMessage } from 'react-intl';
+import { FormattedDate, FormattedMessage } from 'react-intl';
 import { HtmlText } from '../../utils';
 import { StyledLink } from '../../../../../components/Link';
 
@@ -14,11 +14,24 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
   contact,
   infoUrl,
   description,
+  period,
 }) => {
   return (
     <div id="details_sensitiveArea" className={className}>
       {name !== null && <span className="font-bold text-H4 space-y-2">{name}</span>}
       {description !== null && <HtmlText>{parse(description)}</HtmlText>}
+      {period !== null && (
+        <div className="mt-1 desktop:mt-2">
+          <span className="font-bold">
+            <FormattedMessage id={'details.sensitiveAreas.period'} />
+          </span>
+          <div>
+            {period.map((monthlyValidity, i) =>
+              monthlyValidity ? <StyledMonth monthNumber={i} key={i} /> : undefined,
+            )}
+          </div>
+        </div>
+      )}
       {contact !== null && (
         <div className="mt-1 desktop:mt-2">
           <span className="font-bold">
@@ -35,5 +48,17 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
         </div>
       )}
     </div>
+  );
+};
+
+interface FormattedMonthProps {
+  monthNumber: number;
+}
+
+export const StyledMonth: React.FC<FormattedMonthProps> = ({ monthNumber }) => {
+  return (
+    <span className="mr-2">
+      <FormattedDate value={new Date(1990, monthNumber, 1)} month="short" />
+    </span>
   );
 };

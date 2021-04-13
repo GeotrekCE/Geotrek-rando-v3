@@ -26,6 +26,27 @@ Object {
           <span
             class="font-bold"
           >
+            Périodes de sensibilité :
+          </span>
+          <div>
+            <span
+              class="mr-2"
+            >
+              janv.
+            </span>
+            <span
+              class="mr-2"
+            >
+              févr.
+            </span>
+          </div>
+        </div>
+        <div
+          class="mt-1 desktop:mt-2"
+        >
+          <span
+            class="font-bold"
+          >
             Contact :
           </span>
           <div
@@ -64,6 +85,27 @@ Object {
         <p>
           Cette zone est très sensible
         </p>
+      </div>
+      <div
+        class="mt-1 desktop:mt-2"
+      >
+        <span
+          class="font-bold"
+        >
+          Périodes de sensibilité :
+        </span>
+        <div>
+          <span
+            class="mr-2"
+          >
+            janv.
+          </span>
+          <span
+            class="mr-2"
+          >
+            févr.
+          </span>
+        </div>
       </div>
       <div
         class="mt-1 desktop:mt-2"

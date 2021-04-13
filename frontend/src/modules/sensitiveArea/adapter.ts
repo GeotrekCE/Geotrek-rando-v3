@@ -5,6 +5,7 @@ const adaptSensitiveArea = (rawSensitiveArea: RawSensitiveArea): SensitiveArea =
   description: rawSensitiveArea.description ?? null,
   contact: rawSensitiveArea.contact ?? null,
   infoUrl: rawSensitiveArea.info_url ?? null,
+  period: rawSensitiveArea.period ?? null,
 });
 
 export const adaptSensitiveAreas = (rawSensitiveAreas: RawSensitiveArea[]): SensitiveArea[] =>
