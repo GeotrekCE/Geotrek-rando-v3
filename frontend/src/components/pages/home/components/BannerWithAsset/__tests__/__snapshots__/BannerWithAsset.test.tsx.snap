@@ -18,7 +18,7 @@ Object {
             dir="ltr"
           >
             <div
-              class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledLeftArrow-q9y4d7-2 jodXmD fBxetP gMhVox dlYkAW slick-arrow slick-prev"
+              class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledLeftArrow-q9y4d7-2 jodXmD fBxetP dpfQfQ dlYkAW slick-arrow slick-prev"
             />
             <div
               class="slick-list"
@@ -110,7 +110,7 @@ Object {
               </div>
             </div>
             <div
-              class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledRightArrow-q9y4d7-1 jodXmD fBxetP gMhVox ehrtdV slick-arrow slick-next"
+              class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledRightArrow-q9y4d7-1 jodXmD fBxetP dpfQfQ ehrtdV slick-arrow slick-next"
             />
           </div>
         </div>
@@ -118,7 +118,7 @@ Object {
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
         <span
-          class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 mx-10 desktop:bottom-40 desktop:items-end desktop:w-full desktop:mx-0"
+          class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -140,7 +140,7 @@ Object {
           dir="ltr"
         >
           <div
-            class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledLeftArrow-q9y4d7-2 jodXmD fBxetP gMhVox dlYkAW slick-arrow slick-prev"
+            class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledLeftArrow-q9y4d7-2 jodXmD fBxetP dpfQfQ dlYkAW slick-arrow slick-prev"
           />
           <div
             class="slick-list"
@@ -232,7 +232,7 @@ Object {
             </div>
           </div>
           <div
-            class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledRightArrow-q9y4d7-1 jodXmD fBxetP gMhVox ehrtdV slick-arrow slick-next"
+            class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledRightArrow-q9y4d7-1 jodXmD fBxetP dpfQfQ ehrtdV slick-arrow slick-next"
           />
         </div>
       </div>
@@ -240,7 +240,7 @@ Object {
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
       <span
-        class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 mx-10 desktop:bottom-40 desktop:items-end desktop:w-full desktop:mx-0"
+        class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -320,7 +320,7 @@ Object {
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
         <span
-          class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 mx-10 desktop:bottom-40 desktop:items-end desktop:w-full desktop:mx-0"
+          class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -343,7 +343,7 @@ Object {
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
       <span
-        class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 mx-10 desktop:bottom-40 desktop:items-end desktop:w-full desktop:mx-0"
+        class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -425,7 +425,7 @@ Object {
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
         <span
-          class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 mx-10 desktop:bottom-40 desktop:items-end desktop:w-full desktop:mx-0"
+          class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -450,7 +450,7 @@ Object {
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
       <span
-        class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 mx-10 desktop:bottom-40 desktop:items-end desktop:w-full desktop:mx-0"
+        class="BannerWithAsset__WelcomeText-sc-189knhl-0 bRKqT text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !

@@ -27,7 +27,7 @@ const Banner: React.FC<BannerSectionWithoutAssetProps> = ({ shouldDisplayText, c
       <WelcomeText
         data-testid="text"
         className="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight
-        absolute bottom-20 mx-10 desktop:bottom-40 desktop:items-end desktop:w-full desktop:mx-0"
+        absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
       >
         <FormattedMessage id="home.welcome-text" />
       </WelcomeText>

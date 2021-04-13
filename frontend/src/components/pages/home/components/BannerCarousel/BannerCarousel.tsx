@@ -44,7 +44,7 @@ const NextArrow = (props: CustomArrowProps) => {
 };
 
 const BannerStyledArrow = styled(LargeStyledArrow)`
-  padding: ${getSpacing(40)} ${getSpacing(5)};
+  padding: ${getSpacing(20)} ${getSpacing(5)};
   opacity: 1;
   &::before {
     text-shadow: 0 0 20px ${colorPalette.home.shadowOnImages};
@@ -56,7 +56,7 @@ const BannerStyledArrow = styled(LargeStyledArrow)`
   }
   ${desktopOnly(
     css`
-      padding: ${getSpacing(45)} ${getSpacing(12)};
+      padding: ${getSpacing(40)} ${getSpacing(12)};
     `,
   )}
 `;
