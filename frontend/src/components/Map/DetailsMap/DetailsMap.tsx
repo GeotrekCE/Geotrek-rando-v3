@@ -77,7 +77,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           [props.bbox.corner2.y, props.bbox.corner2.x],
         ]}
       >
-        <TileLayer url={mapConfig.mapLayerUrl} />
+        <TileLayer url={mapConfig.mapClassicLayerUrl} />
         <TrekMarkersAndCourse
           arrivalLocation={props.arrivalLocation}
           departureLocation={props.departureLocation}

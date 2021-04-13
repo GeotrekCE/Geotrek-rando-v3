@@ -57,7 +57,7 @@ const SearchMap: React.FC<PropsType> = props => {
         attributionControl={false}
         id="search_map"
       >
-        <TileLayer url={mapConfig.mapLayerUrl} />
+        <TileLayer url={mapConfig.mapClassicLayerUrl} />
         <ClusterContainer enabled={props.shouldUseClusters ?? false}>
           {props.points !== undefined &&
             props.points.map(

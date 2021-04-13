@@ -45,7 +45,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
         ]}
         attributionControl={false}
       >
-        <TileLayer url={mapConfig.mapLayerUrl} />
+        <TileLayer url={mapConfig.mapClassicLayerUrl} />
         {props.touristicContentGeometry !== null && (
           <TouristicContent
             contents={[props.touristicContentGeometry as TouristicContentGeometry]}
