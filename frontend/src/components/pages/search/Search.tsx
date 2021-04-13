@@ -29,7 +29,7 @@ import { ErrorFallback } from './components/ErrorFallback';
 import { generateResultDetailsUrl } from './utils';
 import { generateTouristicContentUrl } from '../details/utils';
 import InputWithMagnifier from './components/InputWithMagnifier';
-import { useTextFilter } from './hooks/useTrekFilter';
+import { useTextFilter } from './hooks/useTextFilter';
 
 interface Props {
   initialFiltersState: FilterState[];
