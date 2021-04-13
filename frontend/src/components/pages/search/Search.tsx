@@ -29,7 +29,7 @@ import { ErrorFallback } from './components/ErrorFallback';
 import { generateResultDetailsUrl } from './utils';
 import { generateTouristicContentUrl } from '../details/utils';
 import InputWithMagnifier from './components/InputWithMagnifier';
-import { useTrekFilter } from './hooks/useTrekFilter';
+import { useTextFilter } from './hooks/useTrekFilter';
 
 interface Props {
   initialFiltersState: FilterState[];
@@ -67,7 +67,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     textFilterState,
     onTextFilterInputChange,
     onTextFilterSubmit,
-  } = useTrekFilter();
+  } = useTextFilter();
 
   const {
     searchResults,
