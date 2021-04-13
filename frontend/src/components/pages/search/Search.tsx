@@ -62,7 +62,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     selectFilter,
   );
 
-  const { filterInput, textFilterState, onFilterInputChange, onFilterSubmit } = useTrekFilter();
+  const { textFilterInput, textFilterState, onFilterInputChange, onFilterSubmit } = useTrekFilter();
 
   const {
     searchResults,
@@ -139,7 +139,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                     </div>
                     <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
                       <InputWithMagnifier
-                        value={filterInput}
+                        value={textFilterInput}
                         onChange={onFilterInputChange}
                         onButtonClick={onFilterSubmit}
                       />
