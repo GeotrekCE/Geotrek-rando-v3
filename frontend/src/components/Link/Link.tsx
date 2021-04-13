@@ -18,7 +18,7 @@ export const Link: React.FC<Props> = ({ children, className, testId, ...nextLink
   );
 };
 
-const StyledLink = styled.a`
+export const StyledLink = styled.a`
   text-decoration: none;
   cursor: pointer;
   ${typography.main}
