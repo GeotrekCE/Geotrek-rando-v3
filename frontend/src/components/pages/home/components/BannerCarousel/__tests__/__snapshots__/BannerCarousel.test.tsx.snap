@@ -14,7 +14,7 @@ Object {
           dir="ltr"
         >
           <div
-            class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledLeftArrow-q9y4d7-2 jodXmD fBxetP gMhVox dlYkAW slick-arrow slick-prev"
+            class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledLeftArrow-q9y4d7-2 jodXmD fBxetP dpfQfQ dlYkAW slick-arrow slick-prev"
           />
           <div
             class="slick-list"
@@ -106,7 +106,7 @@ Object {
             </div>
           </div>
           <div
-            class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledRightArrow-q9y4d7-1 jodXmD fBxetP gMhVox ehrtdV slick-arrow slick-next"
+            class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledRightArrow-q9y4d7-1 jodXmD fBxetP dpfQfQ ehrtdV slick-arrow slick-next"
           />
         </div>
       </div>
@@ -122,7 +122,7 @@ Object {
         dir="ltr"
       >
         <div
-          class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledLeftArrow-q9y4d7-2 jodXmD fBxetP gMhVox dlYkAW slick-arrow slick-prev"
+          class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledLeftArrow-q9y4d7-2 jodXmD fBxetP dpfQfQ dlYkAW slick-arrow slick-prev"
         />
         <div
           class="slick-list"
@@ -214,7 +214,7 @@ Object {
           </div>
         </div>
         <div
-          class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledRightArrow-q9y4d7-1 jodXmD fBxetP gMhVox ehrtdV slick-arrow slick-next"
+          class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-q9y4d7-0 BannerCarousel__StyledRightArrow-q9y4d7-1 jodXmD fBxetP dpfQfQ ehrtdV slick-arrow slick-next"
         />
       </div>
     </div>
