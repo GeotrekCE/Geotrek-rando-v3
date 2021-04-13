@@ -3,4 +3,5 @@ export interface MapConfig {
   searchMapZoom: number;
   mapCredits: string;
   mapClassicLayerUrl: string;
+  mapSatelliteLayerUrl: string;
 }
