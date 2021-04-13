@@ -19,10 +19,10 @@ const computeUrl = (filtersState: FilterState[]) =>
     .join('&')}`;
 
 export const useTrekResults = (
-  filters: { filtersState: FilterState[]; textFilter: string | null },
+  filters: { filtersState: FilterState[]; textFilterState: string | null },
   language: string,
 ) => {
-  const { filtersState, textFilter } = filters;
+  const { filtersState, textFilterState } = filters;
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
@@ -41,9 +41,9 @@ export const useTrekResults = (
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery<SearchResults, Error>(
-    ['trekResults', parsedFiltersState, language, parseTextFilter(textFilter)],
+    ['trekResults', parsedFiltersState, language, parseTextFilter(textFilterState)],
     ({ pageParam = { treks: 1, touristicContents: 1 } }) =>
-      getSearchResults({ filtersState: parsedFiltersState, textFilter }, pageParam, language),
+      getSearchResults({ filtersState: parsedFiltersState, textFilterState }, pageParam, language),
     {
       retry: false,
       // We already have a fallback component to allow the user to refetch

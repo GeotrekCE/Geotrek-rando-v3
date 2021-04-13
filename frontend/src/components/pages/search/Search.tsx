@@ -62,7 +62,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     selectFilter,
   );
 
-  const { filterInput, filterValue, onFilterInputChange, onFilterSubmit } = useTrekFilter();
+  const { filterInput, textFilterState, onFilterInputChange, onFilterSubmit } = useTrekFilter();
 
   const {
     searchResults,
@@ -75,12 +75,9 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-  } = useTrekResults({ filtersState, textFilter: filterValue }, language);
+  } = useTrekResults({ filtersState, textFilterState }, language);
 
-  const { mapResults, isMapLoading } = useMapResults(
-    { filtersState, textFilter: filterValue },
-    language,
-  );
+  const { mapResults, isMapLoading } = useMapResults({ filtersState, textFilterState }, language);
 
   const intl = useIntl();
 

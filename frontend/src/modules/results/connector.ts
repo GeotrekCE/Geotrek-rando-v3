@@ -33,14 +33,14 @@ const emptyResultPromise = Promise.resolve({
 });
 
 export const getSearchResults = async (
-  filters: { filtersState: QueryFilterState[]; textFilter: string | null },
+  filters: { filtersState: QueryFilterState[]; textFilterState: string | null },
   pages: {
     treks: number | null;
     touristicContents: number | null;
   },
   language: string,
 ): Promise<SearchResults> => {
-  const { filtersState, textFilter: textFilterState } = filters;
+  const { filtersState, textFilterState } = filters;
 
   try {
     const practiceFilter = filtersState.find(({ id }) => id === PRACTICE_ID);

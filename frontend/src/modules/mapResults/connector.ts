@@ -15,10 +15,10 @@ import { fetchTouristicContentMapResults, fetchTrekMapResults } from './api';
 import { MapResults } from './interface';
 
 export const getMapResults = async (
-  filters: { filtersState: QueryFilterState[]; textFilter: string | null },
+  filters: { filtersState: QueryFilterState[]; textFilterState: string | null },
   language: string,
 ): Promise<MapResults> => {
-  const { filtersState, textFilter: textFilterState } = filters;
+  const { filtersState, textFilterState } = filters;
 
   try {
     const practiceFilter = filtersState.find(({ id }) => id === PRACTICE_ID);

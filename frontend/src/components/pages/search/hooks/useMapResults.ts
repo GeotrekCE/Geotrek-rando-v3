@@ -8,17 +8,17 @@ import { parseFilters, parseTextFilter } from '../utils';
 export const useMapResults = (
   filters: {
     filtersState: FilterState[];
-    textFilter: string | null;
+    textFilterState: string | null;
   },
   language: string,
 ) => {
-  const { filtersState, textFilter } = filters;
+  const { filtersState, textFilterState } = filters;
 
   const parsedFiltersState = parseFilters(filtersState);
 
   const { data: mapResults, isLoading: isMapLoading } = useQuery<MapResults, Error>(
-    ['mapResults', parsedFiltersState, language, parseTextFilter(textFilter)],
-    () => getMapResults({ filtersState: parsedFiltersState, textFilter }, language),
+    ['mapResults', parsedFiltersState, language, parseTextFilter(textFilterState)],
+    () => getMapResults({ filtersState: parsedFiltersState, textFilterState }, language),
   );
 
   return {
