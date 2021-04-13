@@ -1,6 +1,7 @@
 import { Layout } from 'components/Layout/Layout';
 import Loader from 'react-loader';
 import parse from 'html-react-parser';
+import { FormattedMessage } from 'react-intl';
 import { PageHead } from 'components/PageHead';
 import { DetailsMapDynamicComponent } from 'components/Map';
 import { OpenMapButton } from 'components/OpenMapButton';
@@ -210,6 +211,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         titleId="details.sensitiveAreas.title"
                         className={marginDetailsChild}
                       >
+                        <span className="mb-4 desktop:mb-8">
+                          <FormattedMessage id="details.sensitiveAreas.intro" />
+                        </span>
                         {details.sensitiveAreas.map((sensitiveArea, i) => (
                           <DetailsSensitiveArea
                             key={i}
@@ -217,7 +221,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             description={sensitiveArea.description}
                             infoUrl={sensitiveArea.infoUrl}
                             contact={sensitiveArea.contact}
-                            className="mb-4 desktop:mb-8"
+                            className="my-4 desktop:my-8 ml-3 desktop:ml-6"
                           />
                         ))}
                       </DetailsSection>
