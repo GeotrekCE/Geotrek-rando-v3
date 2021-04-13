@@ -14,4 +14,5 @@ export interface APIQuery {
   trek?: number;
   near_trek?: number;
   period?: string;
+  q?: string;
 }
