@@ -30,6 +30,9 @@ export const parseFilter = (filter: FilterState): QueryFilterState => ({
 export const parseFilters = (filters: FilterState[]): QueryFilterState[] =>
   filters.map(parseFilter);
 
+export const parseTextFilter = (textFilter: string | null): string | undefined =>
+  textFilter !== null ? textFilter : undefined;
+
 /** Concatenates multiple SearchResults into one with all results concatenated */
 export const concatResultsPages = (resultsPages: SearchResults[]): SearchResults | null => {
   if (resultsPages.length === 0) return null;

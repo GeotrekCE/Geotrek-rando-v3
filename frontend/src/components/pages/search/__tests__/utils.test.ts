@@ -7,6 +7,7 @@ import {
   parseFilter,
   parseFilters,
   parseSelectedOptions,
+  parseTextFilter,
 } from '../utils';
 
 const MockFilterState: FilterState = {
@@ -141,6 +142,18 @@ describe('parseFilters', () => {
       },
     ];
     expect(output).toStrictEqual(expected);
+  });
+});
+
+describe('parseTextFilter', () => {
+  test.each`
+    textfilter              | expectedParsedTextFilter
+    ${'col de font froide'} | ${'col de font froide'}
+    ${null}                 | ${undefined}
+  `('parses text filter properly with $textfilter', ({ textfilter, expectedParsedTextFilter }) => {
+    const formattedText = parseTextFilter(textfilter);
+
+    expect(formattedText).toEqual(expectedParsedTextFilter);
   });
 });
 

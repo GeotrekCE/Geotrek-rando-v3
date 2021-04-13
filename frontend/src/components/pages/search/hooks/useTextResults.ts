@@ -5,7 +5,7 @@ import { getSearchResults } from 'modules/results/connector';
 import { SearchResults } from 'modules/results/interface';
 import { FilterState } from 'modules/filters/interface';
 
-import { formatInfiniteQuery, parseFilters } from '../utils';
+import { formatInfiniteQuery, parseFilters, parseTextFilter } from '../utils';
 
 const computeUrl = (filtersState: FilterState[]) =>
   `search?${filtersState
@@ -18,7 +18,12 @@ const computeUrl = (filtersState: FilterState[]) =>
     }, [])
     .join('&')}`;
 
-export const useTrekResults = (filtersState: FilterState[], language: string) => {
+export const useTrekResults = (
+  filters: { filtersState: FilterState[]; textFilterState: string | null },
+  language: string,
+) => {
+  const { filtersState, textFilterState } = filters;
+
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
   const hideMobileMap = () => setMobileMapState('HIDDEN');
@@ -36,9 +41,9 @@ export const useTrekResults = (filtersState: FilterState[], language: string) =>
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery<SearchResults, Error>(
-    ['trekResults', parsedFiltersState, language],
+    ['trekResults', parsedFiltersState, language, parseTextFilter(textFilterState)],
     ({ pageParam = { treks: 1, touristicContents: 1 } }) =>
-      getSearchResults(parsedFiltersState, pageParam, language),
+      getSearchResults({ filtersState: parsedFiltersState, textFilterState }, pageParam, language),
     {
       retry: false,
       // We already have a fallback component to allow the user to refetch

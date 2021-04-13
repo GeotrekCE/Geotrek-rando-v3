@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'react-loader';
@@ -29,6 +29,7 @@ import { ErrorFallback } from './components/ErrorFallback';
 import { generateResultDetailsUrl } from './utils';
 import { generateTouristicContentUrl } from '../details/utils';
 import InputWithMagnifier from './components/InputWithMagnifier';
+import { useTextFilter } from './hooks/useTrekFilter';
 
 interface Props {
   initialFiltersState: FilterState[];
@@ -62,6 +63,13 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   );
 
   const {
+    textFilterInput,
+    textFilterState,
+    onTextFilterInputChange,
+    onTextFilterSubmit,
+  } = useTextFilter();
+
+  const {
     searchResults,
     isLoading,
     isError,
@@ -72,9 +80,9 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-  } = useTrekResults(filtersState, language);
+  } = useTrekResults({ filtersState, textFilterState }, language);
 
-  const { mapResults, isMapLoading } = useMapResults(filtersState, language);
+  const { mapResults, isMapLoading } = useMapResults({ filtersState, textFilterState }, language);
 
   const intl = useIntl();
 
@@ -135,7 +143,11 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                       />
                     </div>
                     <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
-                      <InputWithMagnifier />
+                      <InputWithMagnifier
+                        value={textFilterInput}
+                        onChange={onTextFilterInputChange}
+                        onButtonClick={onTextFilterSubmit}
+                      />
                     </div>
                   </div>
 

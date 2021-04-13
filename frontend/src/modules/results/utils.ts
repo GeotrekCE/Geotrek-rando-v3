@@ -137,6 +137,9 @@ const commonFiltersWithoutTrekSelector = [
   STRUCTURE_ID,
 ];
 
+export const formatTextFilter = (textFilter: string | null): { q: string } | undefined =>
+  textFilter !== null ? { q: textFilter } : undefined;
+
 export const formatTouristicContentFiltersToUrlParams = (
   filtersState: QueryFilterState[],
 ): { [key: string]: string } => {

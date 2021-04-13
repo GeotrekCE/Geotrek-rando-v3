@@ -2,6 +2,7 @@ import {
   extractNextPageId,
   formatDistance,
   formatSelectedFilter,
+  formatTextFilter,
   formatTrekFiltersToUrlParams,
 } from '../utils';
 
@@ -103,5 +104,20 @@ describe('extractNextPageId', () => {
 
   it('should throw an error if it cant find the next page id', () => {
     expect(() => extractNextPageId('toto')).toThrow();
+  });
+
+  describe('formatTextFilter', () => {
+    test.each`
+      textfilter              | expectedFormattedTextFilter
+      ${'col de font froide'} | ${{ q: 'col de font froide' }}
+      ${null}                 | ${undefined}
+    `(
+      'formats the textfilter properly with $textfilter',
+      ({ textfilter, expectedFormattedTextFilter }) => {
+        const formattedText = formatTextFilter(textfilter);
+
+        expect(formattedText).toEqual(expectedFormattedTextFilter);
+      },
+    );
   });
 });
