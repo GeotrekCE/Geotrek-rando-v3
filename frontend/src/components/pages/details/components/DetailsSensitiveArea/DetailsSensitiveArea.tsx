@@ -7,7 +7,7 @@ interface DetailsSensitiveAreaProps extends SensitiveArea {
 export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({ name, className }) => {
   return (
     <div id="details_sensitiveArea" className={className}>
-      <span className="font-bold text-Mobile-C1 desktop:text-H4">{name}</span>
+      {name !== null && <span className="font-bold text-Mobile-C1 desktop:text-H4">{name}</span>}
     </div>
   );
 };

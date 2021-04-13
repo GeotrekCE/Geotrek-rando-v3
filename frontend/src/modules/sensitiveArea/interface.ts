@@ -30,5 +30,5 @@ export interface RawSensitiveArea {
 }
 
 export interface SensitiveArea {
-  name: string;
+  name: string | null;
 }
