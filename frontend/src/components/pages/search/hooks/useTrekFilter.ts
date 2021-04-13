@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 
-export const useTrekFilter = (): {
+export const useTextFilter = (): {
   textFilterInput: string | null;
   textFilterState: string | null;
   onTextFilterInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
