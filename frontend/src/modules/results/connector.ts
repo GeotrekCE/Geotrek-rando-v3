@@ -20,6 +20,7 @@ import {
 import { SearchResults, TrekResult } from './interface';
 import {
   extractNextPageId,
+  formatTextFilter,
   formatTouristicContentFiltersToUrlParams,
   formatTrekFiltersToUrlParams,
 } from './utils';
@@ -39,7 +40,7 @@ export const getSearchResults = async (
   },
   language: string,
 ): Promise<SearchResults> => {
-  const { filtersState, textFilter } = filters;
+  const { filtersState, textFilter: textFilterState } = filters;
 
   try {
     const practiceFilter = filtersState.find(({ id }) => id === PRACTICE_ID);
@@ -53,6 +54,8 @@ export const getSearchResults = async (
     const trekFilters = formatTrekFiltersToUrlParams(filtersState);
     const touristicContentFilter = formatTouristicContentFiltersToUrlParams(filtersState);
 
+    const textFilter = formatTextFilter(textFilterState);
+
     // We get the treks and touristic content counts on their own call to handle the "null" next page edge case
 
     const getTreksCountPromise = shouldFetchTreks
@@ -61,6 +64,7 @@ export const getSearchResults = async (
           page_size: 1,
           page: 1,
           ...trekFilters,
+          ...textFilter,
         })
       : emptyResultPromise;
     const getTouristicContentsCountPromise = shouldFetchTouristicContents
@@ -69,6 +73,7 @@ export const getSearchResults = async (
           page_size: 1,
           page: 1,
           ...touristicContentFilter,
+          ...textFilter,
         })
       : emptyResultPromise;
 
@@ -86,6 +91,7 @@ export const getSearchResults = async (
             page_size: getGlobalConfig().searchResultsPageSize,
             page: pages.treks ?? undefined,
             ...trekFilters,
+            ...textFilter,
           })
         : Promise.resolve({
             count: treksCount, // We keep the treks counts event if the query only concerns the touristic content
@@ -101,6 +107,7 @@ export const getSearchResults = async (
             page_size: getGlobalConfig().searchResultsPageSize,
             page: pages.touristicContents ?? undefined,
             ...touristicContentFilter,
+            ...textFilter,
           })
         : Promise.resolve({
             count: touristicContentsCount, // We keep the touristic content counts event if the query only concerns the treks
