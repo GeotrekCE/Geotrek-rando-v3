@@ -5,7 +5,7 @@ import { getSearchResults } from 'modules/results/connector';
 import { SearchResults } from 'modules/results/interface';
 import { FilterState } from 'modules/filters/interface';
 
-import { formatInfiniteQuery, parseFilters } from '../utils';
+import { formatInfiniteQuery, parseFilters, parseTextFilter } from '../utils';
 
 const computeUrl = (filtersState: FilterState[]) =>
   `search?${filtersState
@@ -41,7 +41,7 @@ export const useTrekResults = (
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery<SearchResults, Error>(
-    ['trekResults', parsedFiltersState, language],
+    ['trekResults', parsedFiltersState, language, parseTextFilter(textFilter)],
     ({ pageParam = { treks: 1, touristicContents: 1 } }) =>
       getSearchResults({ filtersState: parsedFiltersState, textFilter }, pageParam, language),
     {
