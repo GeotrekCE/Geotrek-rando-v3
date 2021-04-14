@@ -33,20 +33,24 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
-          ></script>
-          <script
-            async
-            dangerouslySetInnerHTML={{
-              __html: `window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
+          {!!googleAnalyticsId && (
+            <>
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+              ></script>
+              <script
+                async
+                dangerouslySetInnerHTML={{
+                  __html: `window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
 
-              gtag('config', '${googleAnalyticsId}');`,
-            }}
-          />
+                  gtag('config', '${googleAnalyticsId}');`,
+                }}
+              />
+            </>
+          )}
         </Head>
         <body>
           <Main />
