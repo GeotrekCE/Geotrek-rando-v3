@@ -1,4 +1,4 @@
-import { RawLineStringGeometry2D, RawPointGeometry2D, RawPolygonGeometry } from 'modules/interface';
+import { PolygonGeometry, RawPolygonGeometry } from 'modules/interface';
 import { SensitiveAreaPractice } from 'modules/sensitiveAreaPractice/interface';
 
 // This type is an array of 12 booleans, one for each calendar month, each indicating if the sensitive area is active during the month
@@ -22,7 +22,7 @@ export interface RawSensitiveArea {
   contact: string;
   description: string;
   elevation: string | null;
-  geometry: RawPolygonGeometry | RawLineStringGeometry2D | RawPointGeometry2D;
+  geometry: RawPolygonGeometry;
   info_url: string;
   kml_url: string;
   name: string;
@@ -33,6 +33,8 @@ export interface RawSensitiveArea {
   url: string;
 }
 
+export type SensitiveAreaGeometry = Pick<SensitiveArea, 'color' | 'geometry'>;
+
 export interface SensitiveArea {
   name: string | null;
   infoUrl: string | null;
@@ -41,4 +43,5 @@ export interface SensitiveArea {
   period: MonthlyValidity | null;
   practices: SensitiveAreaPractice[];
   color: string;
+  geometry: PolygonGeometry;
 }

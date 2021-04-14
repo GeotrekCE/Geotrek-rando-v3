@@ -6,9 +6,7 @@ import { borderRadius, colorPalette, getSpacing } from 'stylesheet';
 import { StyledLink } from '../../../../../components/Link';
 import { HtmlText } from '../../utils';
 
-interface DetailsSensitiveAreaProps extends SensitiveArea {
-  className?: string;
-}
+type DetailsSensitiveAreaProps = Omit<SensitiveArea, 'geometry'> & { className?: string };
 
 export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
   name,

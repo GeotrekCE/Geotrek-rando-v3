@@ -8,6 +8,10 @@ export const mockSensitiveAreasResponse = () => ({
     {
       id: 111,
       name: 'Mock zone sensible',
+      geometry: {
+        type: 'Polygon',
+        coordinates: [],
+      },
     },
   ],
 });
