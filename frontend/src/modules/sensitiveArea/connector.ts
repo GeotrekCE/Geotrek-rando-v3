@@ -6,6 +6,8 @@ export const getSensitiveAreas = async (
   trekId: number,
   language: string,
 ): Promise<SensitiveArea[]> => {
-  const rawSensitiveAreas = await fetchSensitiveAreas(trekId, { language });
-  return adaptSensitiveAreas(rawSensitiveAreas.results);
+  const [rawSensitiveAreas] = await Promise.all([fetchSensitiveAreas(trekId, { language })]);
+  return adaptSensitiveAreas({
+    rawSensitiveAreas: rawSensitiveAreas.results,
+  });
 };
