@@ -9,6 +9,7 @@ describe('DetailsSensitiveArea', () => {
         contact={'<h2>Une personne a contacter</h2>'}
         infoUrl={'http://ensavoirplusici.com'}
         period={[true, true, false, false, false, false, false, false, false, false, false, false]}
+        practices={[{ name: 'Terrestre' }, { name: 'Aquatique' }]}
       />,
     );
 

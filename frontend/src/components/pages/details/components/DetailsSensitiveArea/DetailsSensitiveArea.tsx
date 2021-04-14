@@ -15,6 +15,7 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
   infoUrl,
   description,
   period,
+  practices,
 }) => {
   const hasPeriodAtLeastOneMonthValid = period?.some(monthlyValidity => monthlyValidity === true);
   return (
@@ -23,6 +24,11 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
       {description !== null && (
         <SensitiveAreaSection>
           <HtmlText>{parse(description)}</HtmlText>
+        </SensitiveAreaSection>
+      )}
+      {practices.length > 0 && (
+        <SensitiveAreaSection labelId="practices">
+          <div>{practices.map(practice => practice.name).join(', ')}</div>
         </SensitiveAreaSection>
       )}
       {period !== null && hasPeriodAtLeastOneMonthValid && (

@@ -30,6 +30,18 @@ Object {
           <div
             class="font-bold"
           >
+            Domaines d'activités concernés :
+          </div>
+          <div>
+            Terrestre, Aquatique
+          </div>
+        </div>
+        <div
+          class="mt-1 desktop:mt-2"
+        >
+          <div
+            class="font-bold"
+          >
             Périodes de sensibilité :
           </div>
           <div>
@@ -92,6 +104,18 @@ Object {
           <p>
             Cette zone est très sensible
           </p>
+        </div>
+      </div>
+      <div
+        class="mt-1 desktop:mt-2"
+      >
+        <div
+          class="font-bold"
+        >
+          Domaines d'activités concernés :
+        </div>
+        <div>
+          Terrestre, Aquatique
         </div>
       </div>
       <div
