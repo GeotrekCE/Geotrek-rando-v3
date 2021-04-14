@@ -9,7 +9,7 @@ Object {
         id="details_sensitiveArea"
       >
         <span
-          class="font-bold text-Mobile-C1 desktop:text-H4"
+          class="font-bold text-H4 space-y-2"
         >
           Zone sensible de test
         </span>
@@ -20,17 +20,42 @@ Object {
             Cette zone est très sensible
           </p>
         </div>
-        <span
-          class="font-bold"
-        >
-          Contact :
-        </span>
         <div
-          class="utils__HtmlText-sc-16l79i-0 hwkdDM"
+          class="mt-1 desktop:mt-2"
         >
-          <h2>
-            Une personne a contacter
-          </h2>
+          <span
+            class="font-bold"
+          >
+            Périodes de sensibilité :
+          </span>
+          <div>
+            <span
+              class="mr-2"
+            >
+              janv.
+            </span>
+            <span
+              class="mr-2"
+            >
+              févr.
+            </span>
+          </div>
+        </div>
+        <div
+          class="mt-1 desktop:mt-2"
+        >
+          <span
+            class="font-bold"
+          >
+            Contact :
+          </span>
+          <div
+            class="utils__HtmlText-sc-16l79i-0 hwkdDM"
+          >
+            <h2>
+              Une personne a contacter
+            </h2>
+          </div>
         </div>
         <div
           class="mt-1 desktop:mt-2"
@@ -50,7 +75,7 @@ Object {
       id="details_sensitiveArea"
     >
       <span
-        class="font-bold text-Mobile-C1 desktop:text-H4"
+        class="font-bold text-H4 space-y-2"
       >
         Zone sensible de test
       </span>
@@ -61,17 +86,42 @@ Object {
           Cette zone est très sensible
         </p>
       </div>
-      <span
-        class="font-bold"
-      >
-        Contact :
-      </span>
       <div
-        class="utils__HtmlText-sc-16l79i-0 hwkdDM"
+        class="mt-1 desktop:mt-2"
       >
-        <h2>
-          Une personne a contacter
-        </h2>
+        <span
+          class="font-bold"
+        >
+          Périodes de sensibilité :
+        </span>
+        <div>
+          <span
+            class="mr-2"
+          >
+            janv.
+          </span>
+          <span
+            class="mr-2"
+          >
+            févr.
+          </span>
+        </div>
+      </div>
+      <div
+        class="mt-1 desktop:mt-2"
+      >
+        <span
+          class="font-bold"
+        >
+          Contact :
+        </span>
+        <div
+          class="utils__HtmlText-sc-16l79i-0 hwkdDM"
+        >
+          <h2>
+            Une personne a contacter
+          </h2>
+        </div>
       </div>
       <div
         class="mt-1 desktop:mt-2"

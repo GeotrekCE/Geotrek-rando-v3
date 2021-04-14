@@ -1,5 +1,21 @@
 import { RawLineStringGeometry2D, RawPointGeometry2D, RawPolygonGeometry } from 'modules/interface';
 
+// This type is an array of 12 booleans, one for each calendar month, each indicating if the sensitive area is active during the month
+export type MonthlyValidity = [
+  boolean,
+  boolean,
+  boolean,
+  boolean,
+  boolean,
+  boolean,
+  boolean,
+  boolean,
+  boolean,
+  boolean,
+  boolean,
+  boolean,
+];
+
 export interface RawSensitiveArea {
   id: number;
   contact: string;
@@ -9,20 +25,7 @@ export interface RawSensitiveArea {
   info_url: string;
   kml_url: string;
   name: string;
-  period: [
-    boolean,
-    boolean,
-    boolean,
-    boolean,
-    boolean,
-    boolean,
-    boolean,
-    boolean,
-    boolean,
-    boolean,
-    boolean,
-    boolean,
-  ];
+  period: MonthlyValidity;
   practices: number[];
   species_id: number;
   structure: string;
@@ -34,4 +37,5 @@ export interface SensitiveArea {
   infoUrl: string | null;
   description: string | null;
   contact: string | null;
+  period: MonthlyValidity | null;
 }
