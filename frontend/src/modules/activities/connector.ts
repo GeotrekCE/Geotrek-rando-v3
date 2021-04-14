@@ -19,7 +19,14 @@ export const getActivityFilter = async (language: string) => {
   return adaptActivityFilter(rawActivities.results);
 };
 
-export const getActivity = async (id: number, language: string): Promise<Activity> => {
+export const getActivity = async (
+  id: number | null,
+  language: string,
+): Promise<Activity | null> => {
+  // Activity id is not supposed to be null in database, but it already happened. This case has to be taken into account
+  if (id === null) {
+    return null;
+  }
   const rawActivity = await fetchActivity({ language }, id);
   return adaptActivity(rawActivity);
 };

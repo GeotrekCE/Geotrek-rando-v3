@@ -41,7 +41,7 @@ describe('Details', () => {
       .reply(200, rawDetailsMock);
 
     nock(getGlobalConfig().apiUrl)
-      .get(`/trek_practice/${rawDetailsMock.properties.practice}/`)
+      .get(`/trek_practice/${rawDetailsMock.properties.practice as number}/`)
       .query({
         language: 'fr',
       })

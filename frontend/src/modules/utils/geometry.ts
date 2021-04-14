@@ -1,17 +1,25 @@
 import {
   Coordinate2D,
+  Coordinate3D,
   LineStringGeometry,
   PointGeometry,
   PolygonGeometry,
   RawCoordinate2D,
+  RawCoordinate3D,
   RawLineStringGeometry2D,
   RawPointGeometry2D,
   RawPolygonGeometry,
 } from 'modules/interface';
 
-export const adaptGeometry2D = (geometry: RawCoordinate2D): { x: number; y: number } => ({
+export const adaptGeometry2D = (geometry: RawCoordinate2D | RawCoordinate3D): Coordinate2D => ({
   x: geometry[0],
   y: geometry[1],
+});
+
+export const adaptGeometry3D = (geometry: RawCoordinate3D): Coordinate3D => ({
+  x: geometry[0],
+  y: geometry[1],
+  z: geometry[2],
 });
 
 /** Adapt any type of raw geometry */
@@ -54,3 +62,10 @@ export const extractFirstPointOfGeometry = (
       return adaptGeometry2D(geometry.coordinates);
   }
 };
+
+export function flattenMultiLineStringCoordinates<T>(coordinates: T[][]): T[] {
+  return coordinates.reduce<T[]>(
+    (reducedInLineCoordinates, currentLine) => [...reducedInLineCoordinates, ...currentLine],
+    [],
+  );
+}

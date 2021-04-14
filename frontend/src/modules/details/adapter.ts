@@ -5,7 +5,7 @@ import { CourseType } from 'modules/filters/courseType/interface';
 import { Difficulty } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
 import { InformationDeskDictionnary } from 'modules/informationDesk/interface';
-import { RawLineStringGeometry3D } from 'modules/interface';
+import { RawLineStringGeometry3D, RawMultiLineStringGeometry3D } from 'modules/interface';
 import { LabelDictionnary } from 'modules/label/interface';
 import { NetworkDictionnary } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
@@ -16,6 +16,7 @@ import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SourceDictionnary } from 'modules/source/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { getAttachments } from 'modules/utils/adapter';
+import { adaptGeometry2D, flattenMultiLineStringCoordinates } from 'modules/utils/geometry';
 import { formatHours } from 'modules/utils/time';
 import { Details, RawDetails, TrekChildGeometry, TrekFamily } from './interface';
 
@@ -38,7 +39,7 @@ export const adaptResults = ({
   sensitiveAreas,
 }: {
   rawDetails: RawDetails;
-  activity: Activity;
+  activity: Activity | null;
   difficulty: Difficulty | null;
   courseType: CourseType | null;
   networks: NetworkDictionnary;
@@ -55,6 +56,10 @@ export const adaptResults = ({
   sensitiveAreas: SensitiveArea[];
 }): Details => {
   try {
+    const coordinates =
+      geometry.type === 'MultiLineString'
+        ? flattenMultiLineStringCoordinates(geometry.coordinates)
+        : geometry.coordinates;
     return {
       title: rawDetailsProperties.name,
       place: cityDictionnary[rawDetailsProperties.departure_city].name,
@@ -79,28 +84,16 @@ export const adaptResults = ({
         courseType,
       },
       pois,
-      trekGeometry: geometry.coordinates.map(rawCoordinates => ({
-        x: rawCoordinates[0],
-        y: rawCoordinates[1],
-      })),
+      trekGeometry: coordinates.map(adaptGeometry2D),
       trekGeoJSON: `{"name":"letrek.geojson","type":"FeatureCollection","features":[{"type":"Feature","geometry":${JSON.stringify(
         geometry,
       )},"properties":null}]}`,
-      trekDeparture: {
-        x: geometry.coordinates[0][0],
-        y: geometry.coordinates[0][1],
-      },
-      trekArrival: {
-        x: geometry.coordinates[geometry.coordinates.length - 1][0],
-        y: geometry.coordinates[geometry.coordinates.length - 1][1],
-      },
+      trekDeparture: adaptGeometry2D(coordinates[0]),
+      trekArrival: adaptGeometry2D(coordinates[coordinates.length - 1]),
       touristicContents,
       parkingLocation:
         rawDetailsProperties.parking_location !== null
-          ? {
-              x: rawDetailsProperties.parking_location[0],
-              y: rawDetailsProperties.parking_location[1],
-            }
+          ? adaptGeometry2D(rawDetailsProperties.parking_location)
           : null,
       pdfUri: rawDetailsProperties.pdf,
       gpxUri: rawDetailsProperties.gpx,
@@ -165,8 +158,12 @@ export const adaptChildren = ({
 
 export const adaptTrekChildGeometry = (
   id: string,
-  geometry: RawLineStringGeometry3D,
-): TrekChildGeometry => ({
-  id,
-  departure: { x: geometry.coordinates[0][0], y: geometry.coordinates[0][1] },
-});
+  geometry: RawLineStringGeometry3D | RawMultiLineStringGeometry3D,
+): TrekChildGeometry => {
+  const rawDeparture =
+    geometry.type === 'MultiLineString' ? geometry.coordinates[0][0] : geometry.coordinates[0];
+  return {
+    id,
+    departure: adaptGeometry2D(rawDeparture),
+  };
+};

@@ -135,7 +135,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       className={marginDetailsChild}
                       pdfUri={details.pdfUri}
                       gpxUri={details.gpxUri}
-                      practice={details.practice}
+                      practice={details.practice ?? undefined}
                       kmlUri={details.kmlUri}
                     />
 

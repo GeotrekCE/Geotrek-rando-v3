@@ -3,7 +3,7 @@ import { ActivityBadge } from '../ActivityBadge';
 
 interface ResultCardCarouselProps {
   thumbnailUris: string[];
-  iconUri: string;
+  iconUri?: string;
 }
 
 export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
@@ -21,7 +21,9 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
               h-resultCardMobile w-full
               desktop:h-full"
             />
-            <ActivityBadge iconUri={iconUri} className="absolute top-4 left-4" />
+            {iconUri !== undefined && (
+              <ActivityBadge iconUri={iconUri} className="absolute top-4 left-4" />
+            )}
           </div>
         ))}
       </SmallCarousel>
