@@ -44,7 +44,7 @@ export interface APICallsConfig {
   mapResultsPageSize: number;
   portalIds: number[];
   apiUrl: string;
-  googleAnalyticsId: string;
+  googleAnalyticsId: string | null;
   baseUrl: string;
   fallbackImageUri: string;
   fallbackTouristicContentUri: string;

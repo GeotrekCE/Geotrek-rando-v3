@@ -29,6 +29,7 @@ You can override all settings default values in files from `customization/config
 
 _Warning:_
 When setting up Google Analytics, you have to setup a flow. When setting up the flow, be careful to enter the corresponding url (the url of your website), otherwise the data will not be received.
+By default Google analytics is disabled (googleAnalyticsId set to null) you will have to override it in the global.json file of your customization folder.
 
 ## Colors
 
