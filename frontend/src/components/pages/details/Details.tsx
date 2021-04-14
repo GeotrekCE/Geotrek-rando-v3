@@ -206,22 +206,24 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     </DetailsSection>
 
                     {details.sensitiveAreas.length > 0 && (
-                      <DetailsSection
-                        htmlId="details_sensitiveAreas"
-                        titleId="details.sensitiveAreas.title"
-                        className={marginDetailsChild}
-                      >
-                        <span className="mb-4 desktop:mb-8">
-                          <FormattedMessage id="details.sensitiveAreas.intro" />
-                        </span>
-                        {details.sensitiveAreas.map((sensitiveArea, i) => (
-                          <DetailsSensitiveArea
-                            key={i}
-                            {...sensitiveArea}
-                            className="my-4 desktop:my-8 ml-3 desktop:ml-6"
-                          />
-                        ))}
-                      </DetailsSection>
+                      <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
+                        <DetailsSection
+                          htmlId="details_sensitiveAreas"
+                          titleId="details.sensitiveAreas.title"
+                          className={marginDetailsChild}
+                        >
+                          <span className="mb-4 desktop:mb-8">
+                            <FormattedMessage id="details.sensitiveAreas.intro" />
+                          </span>
+                          {details.sensitiveAreas.map((sensitiveArea, i) => (
+                            <DetailsSensitiveArea
+                              key={i}
+                              {...sensitiveArea}
+                              className="my-4 desktop:my-8 ml-3 desktop:ml-6"
+                            />
+                          ))}
+                        </DetailsSection>
+                      </div>
                     )}
 
                     {(details.labels.length > 0 ||

@@ -17,6 +17,7 @@ export interface DetailsHeaderSection {
   practicalInformations?: HTMLDivElement | null;
   accessibility?: HTMLDivElement | null;
   touristicContent?: HTMLDivElement | null;
+  sensitiveAreasRef?: HTMLDivElement | null;
 }
 
 export type DetailsSections = keyof DetailsHeaderSection;
@@ -34,6 +35,7 @@ export interface DetailsSectionsPosition {
   practicalInformations?: SectionPosition;
   accessibility?: SectionPosition;
   touristicContent?: SectionPosition;
+  sensitiveAreasRef?: SectionPosition;
 }
 
 export const useDetails = (
@@ -146,6 +148,17 @@ export const useDetails = (
     }
   }, []);
 
+  const setSensitiveAreasRef = useCallback((node: HTMLDivElement | null) => {
+    const sectionName = 'sensitiveAreasRef';
+    if (node !== null) {
+      sectionsReferences.current[sectionName] = node;
+      setSectionsPositions(currentSectionsPositions => ({
+        ...currentSectionsPositions,
+        [sectionName]: getDimensions(node),
+      }));
+    }
+  }, []);
+
   const intl = useIntl();
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
@@ -166,6 +179,7 @@ export const useDetails = (
     setPracticalInformationsRef,
     setTouristicContentsRef,
     setAccessibilityRef,
+    setSensitiveAreasRef,
     sectionsPositions,
     intl,
     mobileMapState,
