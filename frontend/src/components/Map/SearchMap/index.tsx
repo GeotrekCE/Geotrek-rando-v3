@@ -4,8 +4,9 @@ import 'leaflet/dist/leaflet.css';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapResults } from 'modules/mapResults/interface';
+import { useTileLayer } from 'hooks/useTileLayer';
+import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 
-import { TrekMarker } from '../Markers/TrekMarker';
 import { ArrivalMarker } from '../Markers/ArrivalMarker';
 import { DepartureMarker } from '../Markers/DepartureMarker';
 import { ParkingMarker } from '../Markers/ParkingMarker';
@@ -46,6 +47,13 @@ const SearchMap: React.FC<PropsType> = props => {
 
   const { setSelectedMarkerId, resetSelectedMarker, selectedMarkerId } = useSelectedMarker();
 
+  const {
+    tileLayerType,
+    isTileLayerClassic,
+    isTileLayerSatellite,
+    onTileToggleButtonClick,
+  } = useTileLayer();
+
   return (
     <>
       <MapContainer
@@ -57,7 +65,8 @@ const SearchMap: React.FC<PropsType> = props => {
         attributionControl={false}
         id="search_map"
       >
-        <TileLayer url={mapConfig.mapClassicLayerUrl} />
+        {isTileLayerClassic && <TileLayer url={mapConfig.mapClassicLayerUrl} />}
+        {isTileLayerSatellite && <TileLayer url={mapConfig.mapSatelliteLayerUrl} />}
         <ClusterContainer enabled={props.shouldUseClusters ?? false}>
           {props.points !== undefined &&
             props.points.map(
@@ -101,6 +110,12 @@ const SearchMap: React.FC<PropsType> = props => {
         </ClusterContainer>
         {props.segments && <DecoratedPolyline positions={props.segments} />}
         <TrekCourse id={selectedMarkerId} />
+        <div className="absolute bottom-6 left-6 z-mapButton">
+          <MapLayerTypeToggleButton
+            selectedTileLayerType={tileLayerType}
+            onToggleButtonClick={onTileToggleButtonClick}
+          />
+        </div>
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />

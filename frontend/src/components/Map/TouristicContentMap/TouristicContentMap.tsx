@@ -5,6 +5,8 @@ import 'leaflet/dist/leaflet.css';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { Bbox } from 'modules/details/interface';
 import { LineStringGeometry, PointGeometry, PolygonGeometry } from 'modules/interface';
+import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
+import { useTileLayer } from 'hooks/useTileLayer';
 import { MapButton } from '../components/MapButton';
 
 import { TouristicContent } from '../DetailsMap/TouristicContent';
@@ -26,6 +28,13 @@ export type PropsType = {
 };
 
 export const TouristicContentMap: React.FC<PropsType> = props => {
+  const {
+    tileLayerType,
+    isTileLayerClassic,
+    isTileLayerSatellite,
+    onTileToggleButtonClick,
+  } = useTileLayer();
+
   const hideMap = () => {
     if (props.hideMap) {
       props.hideMap();
@@ -45,12 +54,20 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
         ]}
         attributionControl={false}
       >
-        <TileLayer url={mapConfig.mapClassicLayerUrl} />
+        {isTileLayerClassic && <TileLayer url={mapConfig.mapClassicLayerUrl} />}
+        {isTileLayerSatellite && <TileLayer url={mapConfig.mapSatelliteLayerUrl} />}
         {props.touristicContentGeometry !== null && (
           <TouristicContent
             contents={[props.touristicContentGeometry as TouristicContentGeometry]}
           />
         )}
+
+        <div className="absolute bottom-6 left-6 z-mapButton">
+          <MapLayerTypeToggleButton
+            selectedTileLayerType={tileLayerType}
+            onToggleButtonClick={onTileToggleButtonClick}
+          />
+        </div>
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>

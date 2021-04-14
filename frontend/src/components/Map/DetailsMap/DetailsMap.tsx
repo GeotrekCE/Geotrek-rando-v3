@@ -10,6 +10,7 @@ import {
   PointGeometry,
   PolygonGeometry,
 } from 'modules/interface';
+import { useTileLayer } from 'hooks/useTileLayer';
 import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { MapButton } from '../components/MapButton';
@@ -66,6 +67,13 @@ export const DetailsMap: React.FC<PropsType> = props => {
     toggleTouristicContentVisibility,
   } = useDetailsMap();
 
+  const {
+    tileLayerType,
+    isTileLayerClassic,
+    isTileLayerSatellite,
+    onTileToggleButtonClick,
+  } = useTileLayer();
+
   return (
     <>
       <MapContainer
@@ -78,7 +86,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
           [props.bbox.corner2.y, props.bbox.corner2.x],
         ]}
       >
-        <TileLayer url={mapConfig.mapClassicLayerUrl} />
+        {isTileLayerClassic && <TileLayer url={mapConfig.mapClassicLayerUrl} />}
+        {isTileLayerSatellite && <TileLayer url={mapConfig.mapSatelliteLayerUrl} />}
         <TrekMarkersAndCourse
           arrivalLocation={props.arrivalLocation}
           departureLocation={props.departureLocation}
@@ -97,7 +106,10 @@ export const DetailsMap: React.FC<PropsType> = props => {
         />
         {props.type === 'DESKTOP' && <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />}
         <div className="absolute bottom-6 left-6 z-mapButton">
-          <MapLayerTypeToggleButton selectedTileLayerType="classic" />
+          <MapLayerTypeToggleButton
+            selectedTileLayerType={tileLayerType}
+            onToggleButtonClick={onTileToggleButtonClick}
+          />
         </div>
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
