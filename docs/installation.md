@@ -20,11 +20,12 @@ You will have to download the prebuilt default Docker image of Geotrek-rando and
 - Update the files in the `/customization` folder according to your structure (See customization documentation)
 - Build the Docker image with its latest prebuilt version: `docker build -t geotrek-rando .`
 - You can also build a [specific version](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando-prebuild) with `docker build -t geotrek-rando --build-arg VERSION={THE VERSION YOU WANT} .`
-- Run the docker image on the port you want: `docker run --restart unless-stopped -d -p {YOUR_PORT}:80 geotrek-rando`
+- Now we want to run the website that we just built and make it available from your server adress. To do so run the docker image on the port you want: `docker run --restart unless-stopped -d -p {YOUR_PORT}:80 geotrek-rando`
   - Let's explain what this command does step by step
     - `docker run [options] geotrek-rando` runs the container named geotrek-rando that we've just built
     - the `-d` option specifies that it should run "deamonized" meaning the container should run in background instead of keeping the terminal window linked to its stdout.
-    - the `-p` option specified a port mapping between the port you want to connect on your machine to the port the server is running on in the docker container (here 80)
+    - the `-p` option specified a port mapping between the port you want to connect on your machine to the port the server is running on in the docker container (here 80).
+    ![Doker port maping](./assets/DockerPortMaping.png)
     - the `--restart unless-stopped` option specified that unless you stopped the container on purpose, it should restart automatically if something goes wrong.
 - Your website is now available to the adress of your server
 
@@ -119,12 +120,12 @@ Docker supports subqueries like this one, let's understand it step by step:
 
 ## Debug the output of your Docker container
 
-If something is wrong with your website and you want to see directly what happens on your Docker container you can change the running command to `docker run --restart unless-stopped -it -p {YOUR_PORT}:80 geotrek-rando`. 
-Notice we replaced the `-d` option by the `-it` one specifying that we want the container to be interactive(i) and to connect a tty to it so that it will respond to "ctrl-c" command to kill it. 
+If something is wrong with your website and you want to see directly what happens on your Docker container you can change the running command to `docker run --restart unless-stopped -it -p {YOUR_PORT}:80 geotrek-rando`.
+Notice we replaced the `-d` option by the `-it` one specifying that we want the container to be interactive(i) and to connect a tty to it so that it will respond to "ctrl-c" command to kill it.
 The fact that we keep connected to the container's stdout comes from ommitting the deamonize option.
 
-If you don't even manage to get your container starting and want to inspect the files inside of it, you can override the entrypoint by running `docker run -it --entrypoint sh geotrek-rando -s`. 
-The `--entrypoint sh` option will allow you to replace the server launch command by a simple shell process, you will then be able to navigate in your container. 
+If you don't even manage to get your container starting and want to inspect the files inside of it, you can override the entrypoint by running `docker run -it --entrypoint sh geotrek-rando -s`.
+The `--entrypoint sh` option will allow you to replace the server launch command by a simple shell process, you will then be able to navigate in your container.
 Keep in mind that the modification you make will not be saved to the image, therefore you will lose them if you restart your container from the image.
 
 # Install without Docker
