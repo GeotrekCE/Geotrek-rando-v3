@@ -10,6 +10,7 @@ import {
   PointGeometry,
   PolygonGeometry,
 } from 'modules/interface';
+import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { MapButton } from '../components/MapButton';
 
@@ -95,6 +96,9 @@ export const DetailsMap: React.FC<PropsType> = props => {
           touristicContentMobileVisibility={touristicContentMobileVisibility}
         />
         {props.type === 'DESKTOP' && <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />}
+        <div className="absolute bottom-6 left-6 z-mapButton">
+          <MapLayerTypeToggleButton selectedTileLayerType="classic" />
+        </div>
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <ControlSection
