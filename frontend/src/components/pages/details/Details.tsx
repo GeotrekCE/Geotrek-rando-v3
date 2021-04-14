@@ -217,12 +217,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         {details.sensitiveAreas.map((sensitiveArea, i) => (
                           <DetailsSensitiveArea
                             key={i}
-                            name={sensitiveArea.name}
-                            description={sensitiveArea.description}
-                            infoUrl={sensitiveArea.infoUrl}
-                            contact={sensitiveArea.contact}
-                            period={sensitiveArea.period}
-                            practices={sensitiveArea.practices}
+                            {...sensitiveArea}
                             className="my-4 desktop:my-8 ml-3 desktop:ml-6"
                           />
                         ))}
