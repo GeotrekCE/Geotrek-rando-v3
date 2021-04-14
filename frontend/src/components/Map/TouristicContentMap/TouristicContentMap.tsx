@@ -33,6 +33,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
     isTileLayerClassic,
     isTileLayerSatellite,
     onTileToggleButtonClick,
+    isSatelliteLayerAvailable,
   } = useTileLayer();
 
   const hideMap = () => {
@@ -55,19 +56,23 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
         attributionControl={false}
       >
         {isTileLayerClassic && <TileLayer url={mapConfig.mapClassicLayerUrl} />}
-        {isTileLayerSatellite && <TileLayer url={mapConfig.mapSatelliteLayerUrl} />}
+        {isTileLayerSatellite && mapConfig.mapSatelliteLayerUrl && (
+          <TileLayer url={mapConfig.mapSatelliteLayerUrl} />
+        )}
         {props.touristicContentGeometry !== null && (
           <TouristicContent
             contents={[props.touristicContentGeometry as TouristicContentGeometry]}
           />
         )}
 
-        <div className="absolute bottom-6 left-6 z-mapButton">
-          <MapLayerTypeToggleButton
-            selectedTileLayerType={tileLayerType}
-            onToggleButtonClick={onTileToggleButtonClick}
-          />
-        </div>
+        {isSatelliteLayerAvailable && (
+          <div className="absolute bottom-6 left-6 z-mapButton">
+            <MapLayerTypeToggleButton
+              selectedTileLayerType={tileLayerType}
+              onToggleButtonClick={onTileToggleButtonClick}
+            />
+          </div>
+        )}
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>

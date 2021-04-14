@@ -55,7 +55,6 @@ export const DetailsMap: React.FC<PropsType> = props => {
     }
   };
 
-  const mapConfig = getMapConfig();
   const {
     trekChildrenMobileVisibility,
     toggleTrekChildrenVisibility,
@@ -66,12 +65,14 @@ export const DetailsMap: React.FC<PropsType> = props => {
     touristicContentMobileVisibility,
     toggleTouristicContentVisibility,
   } = useDetailsMap();
+  const mapConfig = getMapConfig();
 
   const {
     tileLayerType,
     isTileLayerClassic,
     isTileLayerSatellite,
     onTileToggleButtonClick,
+    isSatelliteLayerAvailable,
   } = useTileLayer();
 
   return (
@@ -87,7 +88,9 @@ export const DetailsMap: React.FC<PropsType> = props => {
         ]}
       >
         {isTileLayerClassic && <TileLayer url={mapConfig.mapClassicLayerUrl} />}
-        {isTileLayerSatellite && <TileLayer url={mapConfig.mapSatelliteLayerUrl} />}
+        {isTileLayerSatellite && mapConfig.mapSatelliteLayerUrl && (
+          <TileLayer url={mapConfig.mapSatelliteLayerUrl} />
+        )}
         <TrekMarkersAndCourse
           arrivalLocation={props.arrivalLocation}
           departureLocation={props.departureLocation}
@@ -105,12 +108,14 @@ export const DetailsMap: React.FC<PropsType> = props => {
           touristicContentMobileVisibility={touristicContentMobileVisibility}
         />
         {props.type === 'DESKTOP' && <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />}
-        <div className="absolute bottom-6 left-6 z-mapButton">
-          <MapLayerTypeToggleButton
-            selectedTileLayerType={tileLayerType}
-            onToggleButtonClick={onTileToggleButtonClick}
-          />
-        </div>
+        {isSatelliteLayerAvailable && (
+          <div className="absolute bottom-6 left-6 z-mapButton">
+            <MapLayerTypeToggleButton
+              selectedTileLayerType={tileLayerType}
+              onToggleButtonClick={onTileToggleButtonClick}
+            />
+          </div>
+        )}
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <ControlSection

@@ -52,6 +52,7 @@ const SearchMap: React.FC<PropsType> = props => {
     isTileLayerClassic,
     isTileLayerSatellite,
     onTileToggleButtonClick,
+    isSatelliteLayerAvailable,
   } = useTileLayer();
 
   return (
@@ -66,7 +67,9 @@ const SearchMap: React.FC<PropsType> = props => {
         id="search_map"
       >
         {isTileLayerClassic && <TileLayer url={mapConfig.mapClassicLayerUrl} />}
-        {isTileLayerSatellite && <TileLayer url={mapConfig.mapSatelliteLayerUrl} />}
+        {isTileLayerSatellite && mapConfig.mapSatelliteLayerUrl && (
+          <TileLayer url={mapConfig.mapSatelliteLayerUrl} />
+        )}
         <ClusterContainer enabled={props.shouldUseClusters ?? false}>
           {props.points !== undefined &&
             props.points.map(
@@ -110,12 +113,14 @@ const SearchMap: React.FC<PropsType> = props => {
         </ClusterContainer>
         {props.segments && <DecoratedPolyline positions={props.segments} />}
         <TrekCourse id={selectedMarkerId} />
-        <div className="absolute bottom-6 left-6 z-mapButton">
-          <MapLayerTypeToggleButton
-            selectedTileLayerType={tileLayerType}
-            onToggleButtonClick={onTileToggleButtonClick}
-          />
-        </div>
+        {isSatelliteLayerAvailable && (
+          <div className="absolute bottom-6 left-6 z-mapButton">
+            <MapLayerTypeToggleButton
+              selectedTileLayerType={tileLayerType}
+              onToggleButtonClick={onTileToggleButtonClick}
+            />
+          </div>
+        )}
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
