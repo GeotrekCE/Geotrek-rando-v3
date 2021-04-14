@@ -44,21 +44,21 @@ export const getSpacing = (multiplier: number): string =>
  */
 export const colorPalette = {
   primary1: tailwindConfig.theme.extend.colors.primary1.DEFAULT,
-  primary1_light: tailwindConfig.theme.extend.colors.primary1.light,
   primary2: tailwindConfig.theme.extend.colors.primary2,
-  primary3: tailwindConfig.theme.extend.colors.primary3,
-  greyDarkColored: tailwindConfig.theme.extend.colors.greyDarkColored,
-  greySoft: tailwindConfig.theme.extend.colors.greySoft,
   warning: tailwindConfig.theme.extend.colors.warning,
   easyOK: tailwindConfig.theme.extend.colors.easyOK,
   hardKO: tailwindConfig.theme.extend.colors.hardKO,
+  primary3: tailwindConfig.theme.extend.colors.primary3,
+  greyDarkColored: tailwindConfig.theme.extend.colors.greyDarkColored,
+  red: tailwindConfig.theme.extend.colors.red,
+  greySoft: tailwindConfig.theme.extend.colors.greySoft,
   black: tailwindConfig.theme.extend.colors.black,
   white: tailwindConfig.theme.extend.colors.white,
-  red: tailwindConfig.theme.extend.colors.red,
   redMarker: tailwindConfig.theme.extend.colors.redMarker,
   blackTransparent: tailwindConfig.theme.extend.colors.blackTransparent,
   darkPurple: tailwindConfig.theme.extend.colors.greyDarkColored,
   blackSemiTransparent: tailwindConfig.theme.extend.colors.blackSemiTransparent,
+  primary1_light: tailwindConfig.theme.extend.colors.primary1.light,
   filter: {
     background: tailwindConfig.theme.extend.colors.white,
     color: tailwindConfig.theme.extend.colors.black,
@@ -86,6 +86,19 @@ export const colorPalette = {
     touristicContentLines: '#D65600',
   },
 } as const;
+
+// This function collects in a list all the colors defined at the root of the color palette object. Duplicated colors are eliminated.
+// This list can then be used to attribute a different color to each member of a set
+// It is used in sensitiveAreas for example
+export const getListOfColorsInPalette = Object.values(colorPalette).reduce<string[]>(
+  (colorList, currentColor) => {
+    if (typeof currentColor === 'string' && !colorList.includes(currentColor)) {
+      colorList.push(currentColor);
+    }
+    return colorList;
+  },
+  [],
+);
 
 export const fontFamily = {
   main: `'Assistant', 'Helvetica', 'Arial', sans-serif`,

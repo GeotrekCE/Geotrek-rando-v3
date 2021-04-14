@@ -40,4 +40,5 @@ export interface SensitiveArea {
   contact: string | null;
   period: MonthlyValidity | null;
   practices: SensitiveAreaPractice[];
+  color: string;
 }
