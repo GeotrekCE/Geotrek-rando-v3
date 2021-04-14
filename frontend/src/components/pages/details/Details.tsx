@@ -54,6 +54,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
     setPreviewRef,
     setTouristicContentsRef,
     setAccessibilityRef,
+    setSensitiveAreasRef,
     sectionsPositions,
     intl,
     mobileMapState,
@@ -77,7 +78,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
       sizes.desktopHeader -
       sizes.detailsHeaderDesktop,
   });
-
   const titleRegex = RegExp(/(^\d+-)(.*)/).exec(path);
   const title = titleRegex ? titleRegex[2].replace(/-/g, ' ') : '';
   return useMemo(
@@ -420,6 +420,12 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         pictogramUri: touristicContent.category.pictogramUri,
                         name: touristicContent.name,
                         id: `DETAILS-TOURISTIC_CONTENT-${touristicContent.id}`,
+                      }))}
+                    sensitiveAreas={details.sensitiveAreas
+                      .filter(sensitiveArea => sensitiveArea.geometry !== null)
+                      .map(({ geometry, color }) => ({
+                        geometry,
+                        color,
                       }))}
                   />
                 </div>

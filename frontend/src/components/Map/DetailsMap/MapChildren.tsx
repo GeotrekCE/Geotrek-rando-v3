@@ -1,11 +1,13 @@
 import { VisibleSectionContext } from 'components/pages/details/VisibleSectionContext';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { Coordinate2D } from 'modules/interface';
+import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import React, { useContext } from 'react';
 import { TouristicContentGeometry } from './DetailsMap';
 
 import { MarkersWithIcon } from './MarkersWithIcon';
 import { PointsReference } from './PointsReference';
+import { SensitiveAreas } from './SensitiveAreas';
 import { TouristicContent } from './TouristicContent';
 import { TrekChildren } from './TrekChildren';
 import { Visibility } from './useDetailsMap';
@@ -22,6 +24,7 @@ type Props = {
   touristicContentPoints?: TouristicContentGeometry[];
   pointsReference?: Coordinate2D[] | null;
   trekChildrenGeometry?: TrekChildGeometry[];
+  sensitiveAreasGeometry?: SensitiveAreaGeometry[];
   trekChildrenMobileVisibility: Visibility;
   referencePointsMobileVisibility: Visibility;
   poiMobileVisibility: Visibility;
@@ -49,6 +52,10 @@ export const MapChildren: React.FC<Props> = props => {
       {(visibleSection === 'touristicContent' ||
         props.touristicContentMobileVisibility === 'DISPLAYED') && (
         <TouristicContent contents={props.touristicContentPoints} />
+      )}
+
+      {visibleSection === 'sensitiveAreasRef' && (
+        <SensitiveAreas contents={props.sensitiveAreasGeometry} />
       )}
     </>
   );
