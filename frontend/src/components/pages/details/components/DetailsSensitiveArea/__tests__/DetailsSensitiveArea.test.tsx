@@ -10,6 +10,7 @@ describe('DetailsSensitiveArea', () => {
         infoUrl={'http://ensavoirplusici.com'}
         period={[true, true, false, false, false, false, false, false, false, false, false, false]}
         practices={[{ name: 'Terrestre' }, { name: 'Aquatique' }]}
+        color={'#AAAAA'}
       />,
     );
 
