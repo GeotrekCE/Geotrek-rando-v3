@@ -15,38 +15,61 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
   infoUrl,
   description,
   period,
+  practices,
 }) => {
+  const hasPeriodAtLeastOneMonthValid = period?.some(monthlyValidity => monthlyValidity === true);
   return (
     <div id="details_sensitiveArea" className={className}>
       {name !== null && <span className="font-bold text-H4 space-y-2">{name}</span>}
-      {description !== null && <HtmlText>{parse(description)}</HtmlText>}
-      {period !== null && (
-        <div className="mt-1 desktop:mt-2">
-          <span className="font-bold">
-            <FormattedMessage id={'details.sensitiveAreas.period'} />
-          </span>
+      {description !== null && (
+        <SensitiveAreaSection>
+          <HtmlText>{parse(description)}</HtmlText>
+        </SensitiveAreaSection>
+      )}
+      {practices.length > 0 && (
+        <SensitiveAreaSection labelId="practices">
+          <div>{practices.map(practice => practice.name).join(', ')}</div>
+        </SensitiveAreaSection>
+      )}
+      {period !== null && hasPeriodAtLeastOneMonthValid && (
+        <SensitiveAreaSection labelId="period">
           <div>
             {period.map((monthlyValidity, i) =>
               monthlyValidity ? <StyledMonth monthNumber={i} key={i} /> : undefined,
             )}
           </div>
-        </div>
+        </SensitiveAreaSection>
       )}
       {contact !== null && (
-        <div className="mt-1 desktop:mt-2">
-          <span className="font-bold">
-            <FormattedMessage id={'details.sensitiveAreas.contact'} />
-          </span>
+        <SensitiveAreaSection labelId="contact">
           <HtmlText>{parse(contact)}</HtmlText>
-        </div>
+        </SensitiveAreaSection>
       )}
       {infoUrl !== null && (
-        <div className="mt-1 desktop:mt-2">
+        <SensitiveAreaSection>
           <StyledLink href={infoUrl}>
             <FormattedMessage id={'details.knowMore'} />
           </StyledLink>
+        </SensitiveAreaSection>
+      )}
+    </div>
+  );
+};
+
+interface SensitiveAreaSectionProps {
+  labelId?: string;
+  children: React.ReactNode;
+}
+
+const SensitiveAreaSection: React.FC<SensitiveAreaSectionProps> = ({ labelId, children }) => {
+  return (
+    <div className="mt-1 desktop:mt-2">
+      {labelId !== undefined && (
+        <div className="font-bold">
+          <FormattedMessage id={`details.sensitiveAreas.${labelId}`} />
         </div>
       )}
+      {children}
     </div>
   );
 };
@@ -55,7 +78,7 @@ interface FormattedMonthProps {
   monthNumber: number;
 }
 
-export const StyledMonth: React.FC<FormattedMonthProps> = ({ monthNumber }) => {
+const StyledMonth: React.FC<FormattedMonthProps> = ({ monthNumber }) => {
   return (
     <span className="mr-2">
       <FormattedDate value={new Date(1990, monthNumber, 1)} month="short" />

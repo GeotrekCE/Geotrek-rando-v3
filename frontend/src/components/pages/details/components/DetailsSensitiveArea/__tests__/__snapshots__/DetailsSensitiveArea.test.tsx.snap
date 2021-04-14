@@ -14,20 +14,36 @@ Object {
           Zone sensible de test
         </span>
         <div
-          class="utils__HtmlText-sc-16l79i-0 hwkdDM"
+          class="mt-1 desktop:mt-2"
         >
-          <p>
-            Cette zone est très sensible
-          </p>
+          <div
+            class="utils__HtmlText-sc-16l79i-0 hwkdDM"
+          >
+            <p>
+              Cette zone est très sensible
+            </p>
+          </div>
         </div>
         <div
           class="mt-1 desktop:mt-2"
         >
-          <span
+          <div
+            class="font-bold"
+          >
+            Domaines d'activités concernés :
+          </div>
+          <div>
+            Terrestre, Aquatique
+          </div>
+        </div>
+        <div
+          class="mt-1 desktop:mt-2"
+        >
+          <div
             class="font-bold"
           >
             Périodes de sensibilité :
-          </span>
+          </div>
           <div>
             <span
               class="mr-2"
@@ -44,11 +60,11 @@ Object {
         <div
           class="mt-1 desktop:mt-2"
         >
-          <span
+          <div
             class="font-bold"
           >
             Contact :
-          </span>
+          </div>
           <div
             class="utils__HtmlText-sc-16l79i-0 hwkdDM"
           >
@@ -80,20 +96,36 @@ Object {
         Zone sensible de test
       </span>
       <div
-        class="utils__HtmlText-sc-16l79i-0 hwkdDM"
+        class="mt-1 desktop:mt-2"
       >
-        <p>
-          Cette zone est très sensible
-        </p>
+        <div
+          class="utils__HtmlText-sc-16l79i-0 hwkdDM"
+        >
+          <p>
+            Cette zone est très sensible
+          </p>
+        </div>
       </div>
       <div
         class="mt-1 desktop:mt-2"
       >
-        <span
+        <div
+          class="font-bold"
+        >
+          Domaines d'activités concernés :
+        </div>
+        <div>
+          Terrestre, Aquatique
+        </div>
+      </div>
+      <div
+        class="mt-1 desktop:mt-2"
+      >
+        <div
           class="font-bold"
         >
           Périodes de sensibilité :
-        </span>
+        </div>
         <div>
           <span
             class="mr-2"
@@ -110,11 +142,11 @@ Object {
       <div
         class="mt-1 desktop:mt-2"
       >
-        <span
+        <div
           class="font-bold"
         >
           Contact :
-        </span>
+        </div>
         <div
           class="utils__HtmlText-sc-16l79i-0 hwkdDM"
         >

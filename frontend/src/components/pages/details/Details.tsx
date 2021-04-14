@@ -222,6 +222,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             infoUrl={sensitiveArea.infoUrl}
                             contact={sensitiveArea.contact}
                             period={sensitiveArea.period}
+                            practices={sensitiveArea.practices}
                             className="my-4 desktop:my-8 ml-3 desktop:ml-6"
                           />
                         ))}

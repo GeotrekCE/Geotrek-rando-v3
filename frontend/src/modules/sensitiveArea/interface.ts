@@ -1,4 +1,5 @@
 import { RawLineStringGeometry2D, RawPointGeometry2D, RawPolygonGeometry } from 'modules/interface';
+import { SensitiveAreaPractice } from 'modules/sensitiveAreaPractice/interface';
 
 // This type is an array of 12 booleans, one for each calendar month, each indicating if the sensitive area is active during the month
 export type MonthlyValidity = [
@@ -38,4 +39,5 @@ export interface SensitiveArea {
   description: string | null;
   contact: string | null;
   period: MonthlyValidity | null;
+  practices: SensitiveAreaPractice[];
 }
