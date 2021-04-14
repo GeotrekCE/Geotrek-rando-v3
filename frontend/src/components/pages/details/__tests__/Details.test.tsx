@@ -13,6 +13,7 @@ import { mockSourceRoute } from 'modules/source/mocks';
 import { mockInformationDeskRoute } from 'modules/informationDesk/mocks';
 import { mockLabelRoute } from 'modules/label/mocks';
 import { mockSensitiveAreaRoute } from 'modules/sensitiveArea/mocks';
+import { mockSensitiveAreaPracticeRoute } from 'modules/sensitiveAreaPractice/mocks';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import {
   mockNetworksResponse,
@@ -87,6 +88,7 @@ describe('Details', () => {
     mockInformationDeskRoute(1);
     mockLabelRoute(1);
     mockSensitiveAreaRoute(1);
+    mockSensitiveAreaPracticeRoute(1);
 
     const component = render(
       <QueryClientProvider client={queryClient}>
