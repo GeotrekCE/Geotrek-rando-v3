@@ -16,11 +16,12 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
   description,
   period,
 }) => {
+  const hasPeriodAtLeastOneMonthValid = period?.some(monthlyValidity => monthlyValidity === true);
   return (
     <div id="details_sensitiveArea" className={className}>
       {name !== null && <span className="font-bold text-H4 space-y-2">{name}</span>}
       {description !== null && <HtmlText>{parse(description)}</HtmlText>}
-      {period !== null && (
+      {period !== null && hasPeriodAtLeastOneMonthValid && (
         <div className="mt-1 desktop:mt-2">
           <span className="font-bold">
             <FormattedMessage id={'details.sensitiveAreas.period'} />
