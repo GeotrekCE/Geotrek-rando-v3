@@ -11,7 +11,9 @@ We use three different strategies here:
 
 ### Network First
 
-This is the main strategy involved with offline support. We use it for the regular pages and API calls. The pages are always queried from the network unless it is unavailable.
+This is the main strategy involved with offline support. We use it for the regular pages, API calls and map tiles. These contents are always queried from the network unless it is unavailable.
+
+They are stored in separated categories, each page has its own category (search, trek, touristic content) and can cache up to 32 occurence each. The API calls and map tiles are stored in the "other" categoy which can host up to 256 entries, when this category reaches 256 entries, the first ones will be poped out of the cache to keep storing the new content.
 
 When constantly unable to reach the network, these resources will appear as "stale" after a week.
 
