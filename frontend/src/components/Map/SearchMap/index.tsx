@@ -73,9 +73,10 @@ const SearchMap: React.FC<PropsType> = props => {
         <ClusterContainer enabled={props.shouldUseClusters ?? false}>
           {props.points !== undefined &&
             props.points.map(
-              point =>
+              (point, i) =>
                 point.location !== null && (
                   <HoverableMarker
+                    key={i}
                     id={`SEARCH-${point.type}-${point.id}`}
                     type="TREK"
                     position={[point.location.y, point.location.x]}
