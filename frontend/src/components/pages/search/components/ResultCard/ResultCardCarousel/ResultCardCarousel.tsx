@@ -1,5 +1,5 @@
 import { SmallCarousel } from 'components/Carousel';
-import { ActivityBadge } from '../ActivityBadge';
+import { CardIcon } from 'components/CardIcon';
 
 interface ResultCardCarouselProps {
   thumbnailUris: string[];
@@ -11,7 +11,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
   iconUri,
 }) => {
   return (
-    <div className="h-auto w-full flex-shrink-0 desktop:w-resultCardDesktop">
+    <div className="h-auto w-full flex-shrink-0 desktop:w-resultCardDesktop relative">
       <SmallCarousel>
         {thumbnailUris.map((thumbnailUri, i) => (
           <div key={i} className="relative h-full">
@@ -21,12 +21,10 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
               h-resultCardMobile w-full
               desktop:h-full"
             />
-            {iconUri !== undefined && (
-              <ActivityBadge iconUri={iconUri} className="absolute top-4 left-4" />
-            )}
           </div>
         ))}
       </SmallCarousel>
+      {iconUri !== undefined && <CardIcon iconUri={iconUri} />}
     </div>
   );
 };

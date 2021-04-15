@@ -11,7 +11,12 @@ Object {
       >
         <div
           class="ResultCard__ImageContainer-sc-1bem01n-1 iwpCHS"
-        />
+        >
+          <img
+            class="object-cover object-center absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white bg-primary1 border-2 border-white border-solid"
+            src=""
+          />
+        </div>
         <a
           class="Link__StyledLink-oanbk8-0 hVMYzp w-full"
           data-testid="Link-ResultCard-2"
@@ -190,7 +195,12 @@ Object {
     >
       <div
         class="ResultCard__ImageContainer-sc-1bem01n-1 iwpCHS"
-      />
+      >
+        <img
+          class="object-cover object-center absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white bg-primary1 border-2 border-white border-solid"
+          src=""
+        />
+      </div>
       <a
         class="Link__StyledLink-oanbk8-0 hVMYzp w-full"
         data-testid="Link-ResultCard-2"

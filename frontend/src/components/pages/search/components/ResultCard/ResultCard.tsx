@@ -2,15 +2,7 @@ import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 
-import {
-  borderRadius,
-  colorPalette,
-  desktopOnly,
-  getSpacing,
-  shadow,
-  sizes,
-  typography,
-} from 'stylesheet';
+import { borderRadius, colorPalette, desktopOnly, getSpacing, sizes, typography } from 'stylesheet';
 import { flexGap } from 'services/cssHelpers';
 
 import { Chip } from 'components/Chip';
@@ -24,7 +16,7 @@ import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 import { ListAndMapContext } from 'modules/map/ListAndMapContext';
 
-import { ActivityBadge as RawActivityBadge } from './ActivityBadge';
+import { CardIcon } from 'components/CardIcon';
 import { ResultCardCarousel } from './ResultCardCarousel';
 
 interface BaseProps {
@@ -86,7 +78,7 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => 
         <ResultCardCarousel thumbnailUris={thumbnailUris} iconUri={badgeIconUri} />
       ) : (
         <ImageContainer imageUri={thumbnailUris[0]}>
-          {badgeIconUri && <ActivityBadge iconUri={badgeIconUri} />}
+          {badgeIconUri !== undefined && <CardIcon iconUri={badgeIconUri} />}
         </ImageContainer>
       )}
 
@@ -286,10 +278,4 @@ const InformationLayout = styled.div`
       ${flexGap(getSpacing(4))}
     `,
   )}
-`;
-
-const ActivityBadge = styled(RawActivityBadge)`
-  position: absolute;
-  top: ${getSpacing(4)};
-  left: ${getSpacing(4)};
 `;
