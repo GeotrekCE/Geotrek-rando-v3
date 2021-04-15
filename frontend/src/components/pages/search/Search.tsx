@@ -67,6 +67,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     textFilterState,
     onTextFilterInputChange,
     onTextFilterSubmit,
+    resetTextFilter,
   } = useTextFilter();
 
   const {
@@ -86,6 +87,11 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
 
   const intl = useIntl();
 
+  const onRemoveAllFiltersClick = () => {
+    resetFilters();
+    resetTextFilter();
+  };
+
   return (
     <div id="Search">
       <PageHead
@@ -99,7 +105,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
         title={<FormattedMessage id="search.filter" />}
         filtersList={filtersList}
         closeMenu={hideMenu}
-        resetFilter={resetFilters}
+        resetFilter={onRemoveAllFiltersClick}
       />
       <MobileFilterSubMenu
         menuState={subMenuState}
@@ -117,7 +123,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
             setFilterSelectedOptions={setFilterSelectedOptions}
             filterBarExpansionState={filterBarExpansionState}
             setFilterBarExpansionState={setFilterBarExpansionState}
-            resetFilters={resetFilters}
+            resetFilters={onRemoveAllFiltersClick}
           />
           <div className="flex flex-row flex-1 overflow-y-hidden">
             <div
