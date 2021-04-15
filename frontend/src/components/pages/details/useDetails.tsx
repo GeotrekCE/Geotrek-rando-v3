@@ -9,32 +9,24 @@ import { useRouter } from 'next/router';
 import { routes } from 'services/routes';
 import { getDimensions } from './utils';
 
-export interface DetailsHeaderSection {
-  preview?: HTMLDivElement | null;
-  children?: HTMLDivElement | null;
-  poi?: HTMLDivElement | null;
-  description?: HTMLDivElement | null;
-  practicalInformations?: HTMLDivElement | null;
-  accessibility?: HTMLDivElement | null;
-  touristicContent?: HTMLDivElement | null;
-}
+export type DetailsHeaderSection = Partial<Record<DetailsSections, HTMLDivElement | null>>;
 
-export type DetailsSections = keyof DetailsHeaderSection;
+export type DetailsSections =
+  | 'preview'
+  | 'children'
+  | 'poi'
+  | 'description'
+  | 'practicalInformations'
+  | 'accessibility'
+  | 'touristicContent'
+  | 'sensitiveAreasRef';
 
 interface SectionPosition {
   top: number;
   bottom: number;
 }
 
-export interface DetailsSectionsPosition {
-  preview?: SectionPosition;
-  children?: SectionPosition;
-  poi?: SectionPosition;
-  description?: SectionPosition;
-  practicalInformations?: SectionPosition;
-  accessibility?: SectionPosition;
-  touristicContent?: SectionPosition;
-}
+export type DetailsSectionsPosition = Partial<Record<DetailsSections, SectionPosition>>;
 
 export const useDetails = (
   detailsUrl: string | string[] | undefined,
@@ -69,82 +61,25 @@ export const useDetails = (
   const sectionsReferences = useRef<DetailsHeaderSection>({});
   const [sectionsPositions, setSectionsPositions] = useState<DetailsSectionsPosition>({});
 
-  const setPreviewRef = useCallback((node: HTMLDivElement | null) => {
-    const sectionName = 'preview';
-    if (node !== null) {
-      sectionsReferences.current[sectionName] = node;
-      setSectionsPositions(currentSectionsPositions => ({
-        ...currentSectionsPositions,
-        [sectionName]: getDimensions(node),
-      }));
-    }
-  }, []);
+  const useSectionReferenceCallback = (sectionName: DetailsSections) =>
+    useCallback((node: HTMLDivElement | null) => {
+      if (node !== null) {
+        sectionsReferences.current[sectionName] = node;
+        setSectionsPositions(currentSectionsPositions => ({
+          ...currentSectionsPositions,
+          [sectionName]: getDimensions(node),
+        }));
+      }
+    }, []);
 
-  const setChildrenRef = useCallback((node: HTMLDivElement | null) => {
-    const sectionName = 'children';
-    if (node !== null) {
-      sectionsReferences.current[sectionName] = node;
-      setSectionsPositions(currentSectionsPositions => ({
-        ...currentSectionsPositions,
-        [sectionName]: getDimensions(node),
-      }));
-    }
-  }, []);
-
-  const setPoisRef = useCallback((node: HTMLDivElement | null) => {
-    const sectionName = 'poi';
-    if (node !== null) {
-      sectionsReferences.current[sectionName] = node;
-      setSectionsPositions(currentSectionsPositions => ({
-        ...currentSectionsPositions,
-        [sectionName]: getDimensions(node),
-      }));
-    }
-  }, []);
-
-  const setDescriptionRef = useCallback((node: HTMLDivElement | null) => {
-    const sectionName = 'description';
-    if (node !== null) {
-      sectionsReferences.current[sectionName] = node;
-      setSectionsPositions(currentSectionsPositions => ({
-        ...currentSectionsPositions,
-        [sectionName]: getDimensions(node),
-      }));
-    }
-  }, []);
-
-  const setPracticalInformationsRef = useCallback((node: HTMLDivElement | null) => {
-    const sectionName = 'practicalInformations';
-    if (node !== null) {
-      sectionsReferences.current[sectionName] = node;
-      setSectionsPositions(currentSectionsPositions => ({
-        ...currentSectionsPositions,
-        [sectionName]: getDimensions(node),
-      }));
-    }
-  }, []);
-
-  const setAccessibilityRef = useCallback((node: HTMLDivElement | null) => {
-    const sectionName = 'accessibility';
-    if (node !== null) {
-      sectionsReferences.current[sectionName] = node;
-      setSectionsPositions(currentSectionsPositions => ({
-        ...currentSectionsPositions,
-        [sectionName]: getDimensions(node),
-      }));
-    }
-  }, []);
-
-  const setTouristicContentsRef = useCallback((node: HTMLDivElement | null) => {
-    const sectionName = 'touristicContent';
-    if (node !== null) {
-      sectionsReferences.current[sectionName] = node;
-      setSectionsPositions(currentSectionsPositions => ({
-        ...currentSectionsPositions,
-        [sectionName]: getDimensions(node),
-      }));
-    }
-  }, []);
+  const setPreviewRef = useSectionReferenceCallback('preview');
+  const setChildrenRef = useSectionReferenceCallback('children');
+  const setPoisRef = useSectionReferenceCallback('poi');
+  const setDescriptionRef = useSectionReferenceCallback('description');
+  const setPracticalInformationsRef = useSectionReferenceCallback('practicalInformations');
+  const setTouristicContentsRef = useSectionReferenceCallback('touristicContent');
+  const setAccessibilityRef = useSectionReferenceCallback('accessibility');
+  const setSensitiveAreasRef = useSectionReferenceCallback('sensitiveAreasRef');
 
   const intl = useIntl();
 
@@ -166,6 +101,7 @@ export const useDetails = (
     setPracticalInformationsRef,
     setTouristicContentsRef,
     setAccessibilityRef,
+    setSensitiveAreasRef,
     sectionsPositions,
     intl,
     mobileMapState,

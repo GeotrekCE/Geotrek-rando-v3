@@ -30,23 +30,26 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
   return (
     <div
       id="details_headerDesktop"
-      className="hidden desktop:flex justify-between
+      className="hidden desktop:flex
       sticky top-desktopHeader z-subHeader
-      px-12
       shadow-md bg-white"
     >
-      <div id="details_headerDesktop_inlineMenu" className="flex space-x-12 pb-2.5 pt-4">
+      <div id="details_headerDesktop_inlineMenu" className="flex flex-1 pb-2.5 pt-4 justify-around">
         {(Object.keys(detailsHeaderSection) as Array<keyof DetailsHeaderSection>).map(sectionId => (
           <div
             onClick={() => scrollTo(detailsHeaderSection[sectionId])}
             key={sectionId}
-            className={`hover:text-primary1
-            pb-1 border-b-2 hover:border-primary1 border-transparent border-solid
-            cursor-pointer transition-all duration-300 ${
-              currentSectionId === sectionId ? 'text-primary1 border-primary1' : ''
-            }`}
+            className="flex-1 text-center"
           >
-            <FormattedMessage id={`details.${sectionId}`} />
+            <span
+              className={`hover:text-primary1
+              pb-1 border-b-2 hover:border-primary1 border-transparent border-solid
+              cursor-pointer transition-all duration-300 ${
+                currentSectionId === sectionId ? 'text-primary1 border-primary1' : ''
+              }`}
+            >
+              <FormattedMessage id={`details.${sectionId}`} />
+            </span>
           </div>
         ))}
       </div>

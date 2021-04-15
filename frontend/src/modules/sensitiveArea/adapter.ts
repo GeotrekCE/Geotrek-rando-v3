@@ -1,4 +1,6 @@
 import { SensitiveAreaPracticeDictionnary } from 'modules/sensitiveAreaPractice/interface';
+import { adaptPolygonGeometry } from 'modules/utils/geometry';
+import { getListOfColorsInPalette } from 'stylesheet';
 import { RawSensitiveArea, SensitiveArea } from './interface';
 
 export const adaptSensitiveAreas = ({
@@ -8,7 +10,7 @@ export const adaptSensitiveAreas = ({
   rawSensitiveAreas: RawSensitiveArea[];
   sensitiveAreaPracticeDictionnary: SensitiveAreaPracticeDictionnary;
 }): SensitiveArea[] =>
-  rawSensitiveAreas.map(rawSensitiveArea => ({
+  rawSensitiveAreas.map((rawSensitiveArea, i) => ({
     name: rawSensitiveArea.name ?? null,
     description: rawSensitiveArea.description ?? null,
     contact: rawSensitiveArea.contact ?? null,
@@ -17,4 +19,6 @@ export const adaptSensitiveAreas = ({
     practices:
       rawSensitiveArea.practices?.map(practiceId => sensitiveAreaPracticeDictionnary[practiceId]) ??
       [],
+    geometry: adaptPolygonGeometry(rawSensitiveArea.geometry),
+    color: getListOfColorsInPalette[i % getListOfColorsInPalette.length],
   }));

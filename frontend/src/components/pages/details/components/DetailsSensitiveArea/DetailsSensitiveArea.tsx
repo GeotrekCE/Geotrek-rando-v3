@@ -1,12 +1,12 @@
 import parse from 'html-react-parser';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { FormattedDate, FormattedMessage } from 'react-intl';
-import { HtmlText } from '../../utils';
+import styled from 'styled-components';
+import { borderRadius, colorPalette, getSpacing } from 'stylesheet';
 import { StyledLink } from '../../../../../components/Link';
+import { HtmlText } from '../../utils';
 
-interface DetailsSensitiveAreaProps extends SensitiveArea {
-  className?: string;
-}
+type DetailsSensitiveAreaProps = Omit<SensitiveArea, 'geometry'> & { className?: string };
 
 export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
   name,
@@ -16,11 +16,15 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
   description,
   period,
   practices,
+  color,
 }) => {
   const hasPeriodAtLeastOneMonthValid = period?.some(monthlyValidity => monthlyValidity === true);
   return (
     <div id="details_sensitiveArea" className={className}>
-      {name !== null && <span className="font-bold text-H4 space-y-2">{name}</span>}
+      <div className="flex items-center space-x-2" id="details_sensitiveAreaTitle">
+        <ColorLegendIcon color={color} />
+        {name !== null && <span className="font-bold text-H4 space-y-2">{name}</span>}
+      </div>
       {description !== null && (
         <SensitiveAreaSection>
           <HtmlText>{parse(description)}</HtmlText>
@@ -56,6 +60,13 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
   );
 };
 
+const ColorLegendIcon = styled.div<{ color: string }>`
+  background-color: ${({ color }) => color};
+  border-radius: ${borderRadius.medium};
+  border: 2px solid ${colorPalette.greyDarkColored};
+  height: ${getSpacing(6)};
+  width: ${getSpacing(6)};
+`;
 interface SensitiveAreaSectionProps {
   labelId?: string;
   children: React.ReactNode;

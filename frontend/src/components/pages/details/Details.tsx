@@ -22,7 +22,6 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from './components/DetailsTopIcons';
 import { generateTouristicContentUrl, HtmlText } from './utils';
 import { DetailsSource } from './components/DetailsSource';
-import { useOnScreenSection } from './hooks/useHighlightedSection';
 
 import { DetailsInformationDesk } from './components/DetailsInformationDesk';
 import { DetailsLabel } from './components/DetailsLabel';
@@ -32,6 +31,7 @@ import { DetailsCoverCarousel } from './components/DetailsCoverCarousel';
 import { ImageWithLegend } from './components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { VisibleSectionProvider } from './VisibleSectionContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
+import { useOnScreenSection } from './hooks/useHighlightedSection';
 
 interface Props {
   detailsId: string | string[] | undefined;
@@ -54,6 +54,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
     setPreviewRef,
     setTouristicContentsRef,
     setAccessibilityRef,
+    setSensitiveAreasRef,
     sectionsPositions,
     intl,
     mobileMapState,
@@ -65,7 +66,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
   /** Ref of the parent of all sections */
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
 
-  const { visibleSection } = useOnScreenSection({
+  useOnScreenSection({
     sectionsPositions,
     // The scroll offset is the height above the sections' container minus the headers size
     // (we want the element detection to trigger when an element top reaches the header's bottom not the windows' top)
@@ -77,7 +78,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
       sizes.desktopHeader -
       sizes.detailsHeaderDesktop,
   });
-
   const titleRegex = RegExp(/(^\d+-)(.*)/).exec(path);
   const title = titleRegex ? titleRegex[2].replace(/-/g, ' ') : '';
   return useMemo(
@@ -206,27 +206,24 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     </DetailsSection>
 
                     {details.sensitiveAreas.length > 0 && (
-                      <DetailsSection
-                        htmlId="details_sensitiveAreas"
-                        titleId="details.sensitiveAreas.title"
-                        className={marginDetailsChild}
-                      >
-                        <span className="mb-4 desktop:mb-8">
-                          <FormattedMessage id="details.sensitiveAreas.intro" />
-                        </span>
-                        {details.sensitiveAreas.map((sensitiveArea, i) => (
-                          <DetailsSensitiveArea
-                            key={i}
-                            name={sensitiveArea.name}
-                            description={sensitiveArea.description}
-                            infoUrl={sensitiveArea.infoUrl}
-                            contact={sensitiveArea.contact}
-                            period={sensitiveArea.period}
-                            practices={sensitiveArea.practices}
-                            className="my-4 desktop:my-8 ml-3 desktop:ml-6"
-                          />
-                        ))}
-                      </DetailsSection>
+                      <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
+                        <DetailsSection
+                          htmlId="details_sensitiveAreas"
+                          titleId="details.sensitiveAreas.title"
+                          className={marginDetailsChild}
+                        >
+                          <span className="mb-4 desktop:mb-8">
+                            <FormattedMessage id="details.sensitiveAreas.intro" />
+                          </span>
+                          {details.sensitiveAreas.map((sensitiveArea, i) => (
+                            <DetailsSensitiveArea
+                              key={i}
+                              {...sensitiveArea}
+                              className="my-4 desktop:my-8 ml-3 desktop:ml-6"
+                            />
+                          ))}
+                        </DetailsSection>
+                      </div>
                     )}
 
                     {(details.labels.length > 0 ||
@@ -423,6 +420,12 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         pictogramUri: touristicContent.category.pictogramUri,
                         name: touristicContent.name,
                         id: `DETAILS-TOURISTIC_CONTENT-${touristicContent.id}`,
+                      }))}
+                    sensitiveAreas={details.sensitiveAreas
+                      .filter(sensitiveArea => sensitiveArea.geometry !== null)
+                      .map(({ geometry, color }) => ({
+                        geometry,
+                        color,
                       }))}
                   />
                 </div>

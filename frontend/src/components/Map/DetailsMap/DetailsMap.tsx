@@ -13,6 +13,7 @@ import {
 import { useTileLayer } from 'hooks/useTileLayer';
 import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { TrekChildGeometry } from 'modules/details/interface';
+import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import { MapButton } from '../components/MapButton';
 
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
@@ -46,6 +47,7 @@ export type PropsType = {
   shouldUsePopups?: boolean;
   bbox: { corner1: Coordinate2D; corner2: Coordinate2D };
   trekChildrenGeometry?: TrekChildGeometry[];
+  sensitiveAreas?: SensitiveAreaGeometry[];
 };
 
 export const DetailsMap: React.FC<PropsType> = props => {
@@ -102,6 +104,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           touristicContentPoints={props.touristicContentPoints}
           pointsReference={props.pointsReference}
           trekChildrenGeometry={props.trekChildrenGeometry}
+          sensitiveAreasGeometry={props.sensitiveAreas}
           trekChildrenMobileVisibility={trekChildrenMobileVisibility}
           poiMobileVisibility={poiMobileVisibility}
           referencePointsMobileVisibility={referencePointsMobileVisibility}

@@ -80,6 +80,7 @@
     "transport": "Transport",
     "stationnement": "Stationnement",
     "access_parking": "Accès routiers et parkings",
+    "sensitiveAreasRef": "Zones sensibles",
     "sensitiveAreas": {
       "title": "Zones de sensibilité environnementale",
       "intro": "Le long de votre itinéraire, vous allez traverser des zones de sensibilité liées à la présence d’une espèce ou d’un milieu particulier. Dans ces zones, un comportement adapté permet de contribuer à leur préservation. Pour plus d’informations détaillées, des fiches spécifiques sont accessibles pour chaque zone.",
