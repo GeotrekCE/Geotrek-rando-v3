@@ -5,9 +5,9 @@ import { HtmlText } from 'components/pages/details/utils';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'components/Link';
-import SVG from 'react-inlinesvg';
-import { colorPalette, fillSvgWithColor, getSpacing, MAX_WIDTH_MOBILE } from 'stylesheet';
 import { ListAndMapContext } from 'modules/map/ListAndMapContext';
+import { CardIcon } from 'components/CardIcon';
+import { getSpacing, MAX_WIDTH_MOBILE } from 'stylesheet';
 import { useDetailsCard } from './useDetailsCard';
 import { DetailsCardCarousel } from '../DetailsCardCarousel';
 export interface DetailsCardProps {
@@ -150,23 +150,6 @@ export const CardSingleImage = styled.img<{ height: number }>`
     width: 100%;
   }
 `;
-
-export const CardIcon: React.FC<{ iconUri: string }> = ({ iconUri }) => {
-  const classNameContainer =
-    'absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white bg-primary1 border-2 border-white border-solid';
-  if (RegExp(/(.*).svg/).test(iconUri)) {
-    return (
-      <div className={classNameContainer}>
-        <SVG
-          src={iconUri}
-          className="fill-current h-full w-full p-1"
-          preProcessor={fillSvgWithColor(colorPalette.white)}
-        />
-      </div>
-    );
-  }
-  return <img className={`object-cover object-center ${classNameContainer}`} src={iconUri} />;
-};
 
 const TruncatedHtmlText = styled(HtmlText)`
   ${textEllipsisAfterNLines(2)}
