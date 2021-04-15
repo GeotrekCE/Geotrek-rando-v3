@@ -10,6 +10,7 @@ Object {
       >
         <input
           class="Inputstyle__Input-m8ywjr-0 CustomizedInputstyle__CustomizedInput-hiqqyy-0 ftUolv hXCUVP"
+          placeholder="Rechercher..."
           type="text"
           value=""
         />
@@ -48,6 +49,7 @@ Object {
     >
       <input
         class="Inputstyle__Input-m8ywjr-0 CustomizedInputstyle__CustomizedInput-hiqqyy-0 ftUolv hXCUVP"
+        placeholder="Rechercher..."
         type="text"
         value=""
       />
