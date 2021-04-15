@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { ChangeEvent, useState } from 'react';
 
 export const useTextFilter = (): {
@@ -7,8 +8,13 @@ export const useTextFilter = (): {
   onTextFilterSubmit: () => void;
   resetTextFilter: () => void;
 } => {
-  const [textFilterInput, setTextFilterInput] = useState<string | null>(null);
-  const [textFilterState, setTextFilterState] = useState<string | null>(null);
+  const initialOptions = useRouter().query;
+
+  const initialTextFilterValue =
+    initialOptions.text !== undefined ? (initialOptions.text as string) : null;
+
+  const [textFilterInput, setTextFilterInput] = useState<string | null>(initialTextFilterValue);
+  const [textFilterState, setTextFilterState] = useState<string | null>(initialTextFilterValue);
 
   const onTextFilterInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTextFilterInput(event.target.value);

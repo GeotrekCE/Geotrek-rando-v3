@@ -7,16 +7,27 @@ import { FilterState } from 'modules/filters/interface';
 
 import { formatInfiniteQuery, parseFilters, parseTextFilter } from '../utils';
 
-const computeUrl = (filtersState: FilterState[]) =>
-  `search?${filtersState
-    .reduce<string[]>((selectedOptions, { id, selectedOptions: currentlySelectedOptions }) => {
+const formatFiltersUrl = (filtersState: FilterState[]): string[] =>
+  filtersState.reduce<string[]>(
+    (selectedOptions, { id, selectedOptions: currentlySelectedOptions }) => {
       if (currentlySelectedOptions.length === 0) return selectedOptions;
       return [
         ...selectedOptions,
         `${id}=${currentlySelectedOptions.map(({ value }) => value).join(',')}`,
       ];
-    }, [])
-    .join('&')}`;
+    },
+    [],
+  );
+
+const computeUrl = (filtersState: FilterState[], textFilter: string | null) => {
+  const urlParams = textFilter
+    ? [...formatFiltersUrl(filtersState), `text=${textFilter}`]
+    : formatFiltersUrl(filtersState);
+
+  const formattedUrl = `search?${urlParams.join('&')}`;
+
+  return formattedUrl;
+};
 
 export const useTrekResults = (
   filters: { filtersState: FilterState[]; textFilterState: string | null },
@@ -30,7 +41,7 @@ export const useTrekResults = (
 
   const parsedFiltersState = parseFilters(filtersState);
 
-  const filterUrl = useRef(computeUrl(filtersState));
+  const filterUrl = useRef(computeUrl(filtersState, textFilterState));
 
   const {
     data,
@@ -61,13 +72,13 @@ export const useTrekResults = (
   );
 
   useEffect(() => {
-    const url = computeUrl(filtersState);
+    const url = computeUrl(filtersState, textFilterState);
     if (url !== filterUrl.current) {
       filterUrl.current = url;
       window.history.replaceState(null, '', url);
       void refetch();
     }
-  }, [filtersState, refetch]);
+  }, [filtersState, textFilterState, refetch]);
 
   return {
     searchResults: formatInfiniteQuery(data),

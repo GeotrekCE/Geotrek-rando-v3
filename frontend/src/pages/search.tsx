@@ -14,6 +14,7 @@ export const getServerSideProps = async (context: any) => {
   const queryClient = new QueryClient();
   const initialFiltersState = await getFiltersState(context.locale);
   const parsedInitialFiltersState = parseFilters(initialFiltersState);
+  const initialTextFilter = context.query.text !== undefined ? context.query.text : null;
 
   await queryClient.prefetchQuery(['initialFilterState', context.locale], () =>
     getInitialFilters(context.locale, context.query),
@@ -23,7 +24,7 @@ export const getServerSideProps = async (context: any) => {
     ['trekResults', parsedInitialFiltersState, context.locale],
     () =>
       getSearchResults(
-        { filtersState: parsedInitialFiltersState, textFilterState: null },
+        { filtersState: parsedInitialFiltersState, textFilterState: initialTextFilter },
         { treks: 1, touristicContents: 1 },
         context.locale,
       ),
