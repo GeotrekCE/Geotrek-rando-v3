@@ -98,6 +98,12 @@
     "email": "Courriel",
     "website": "Site internet"
   },
+  "map": {
+    "layerButton": {
+      "classic": "Plan",
+      "satellite": "Satellite"
+    }
+  },
   "footer": {
     "linksSectionTitle": "Informations complémentaires",
     "links": "Liens",

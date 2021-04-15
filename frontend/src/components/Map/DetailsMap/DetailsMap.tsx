@@ -10,6 +10,8 @@ import {
   PointGeometry,
   PolygonGeometry,
 } from 'modules/interface';
+import { useTileLayer } from 'hooks/useTileLayer';
+import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { MapButton } from '../components/MapButton';
 
@@ -53,7 +55,6 @@ export const DetailsMap: React.FC<PropsType> = props => {
     }
   };
 
-  const mapConfig = getMapConfig();
   const {
     trekChildrenMobileVisibility,
     toggleTrekChildrenVisibility,
@@ -64,6 +65,15 @@ export const DetailsMap: React.FC<PropsType> = props => {
     touristicContentMobileVisibility,
     toggleTouristicContentVisibility,
   } = useDetailsMap();
+  const mapConfig = getMapConfig();
+
+  const {
+    tileLayerType,
+    isTileLayerClassic,
+    isTileLayerSatellite,
+    onTileToggleButtonClick,
+    isSatelliteLayerAvailable,
+  } = useTileLayer();
 
   return (
     <>
@@ -77,7 +87,10 @@ export const DetailsMap: React.FC<PropsType> = props => {
           [props.bbox.corner2.y, props.bbox.corner2.x],
         ]}
       >
-        <TileLayer url={mapConfig.mapLayerUrl} />
+        {isTileLayerClassic && <TileLayer url={mapConfig.mapClassicLayerUrl} />}
+        {isTileLayerSatellite && mapConfig.mapSatelliteLayerUrl && (
+          <TileLayer url={mapConfig.mapSatelliteLayerUrl} />
+        )}
         <TrekMarkersAndCourse
           arrivalLocation={props.arrivalLocation}
           departureLocation={props.departureLocation}
@@ -95,6 +108,14 @@ export const DetailsMap: React.FC<PropsType> = props => {
           touristicContentMobileVisibility={touristicContentMobileVisibility}
         />
         {props.type === 'DESKTOP' && <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />}
+        {isSatelliteLayerAvailable && (
+          <div className="absolute bottom-6 left-6 z-mapButton">
+            <MapLayerTypeToggleButton
+              selectedTileLayerType={tileLayerType}
+              onToggleButtonClick={onTileToggleButtonClick}
+            />
+          </div>
+        )}
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <ControlSection
