@@ -44,7 +44,7 @@ export const adaptTrekResultList = ({
     type: 'TREK',
     id: `${rawResult.id}`,
     activityIcon: 'TODO',
-    place: cityDictionnary[rawResult.departure_city].name,
+    place: cityDictionnary[rawResult.departure_city]?.name ?? null,
     title: rawResult.name,
     tags: rawResult.themes.map(themeId => themes[themeId].label),
     thumbnailUris: getThumbnails(rawResult.attachments),
