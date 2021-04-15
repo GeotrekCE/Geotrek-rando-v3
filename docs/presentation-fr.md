@@ -106,6 +106,8 @@ C'est ensuite la liste des patrimoines qui est affichée, avec leurs localisatio
 Vient ensuite la description technique avec les éventuelles puces rouges de localisation correspondantes sur la carte. 
 Ainsi que le profil altimétrique interactif avec la carte, puis les recommandations.
 
+Si le module "Zones de sensibilité" est activé et si la randonnée intersecte une ou plusieurs zones zones de sensibilité, alors celles-ci sont affichées après les recommandations.
+
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-09-detail.jpg)
 
 Sont ensuite affichés les lieux de renseignement associés à la randonnée (pas encore localisés sur la carte).
@@ -131,32 +133,46 @@ Les pages de détail des contenus touristiques sont construits de la même mani�
 
 ## Pages statiques
 
-## Version mobile
+Les pages statiques d'informations sont accessibles depuis le menu principal du header.
 
-IMG
+Il est possible d'afficher jusqu'à 3 liens vers les 3 premières pages statiques, les suivantes étant accessibles dans le menu "En savoir plus".
+
+Les pages statiques sont composées d'un titre, d'une image principale optionnelle, puis d'un contenu HTML composé de texte, images, liens et éventuels autres médias (vidéos...).
+
+![Information](https://geotrek.ecrins-parcnational.fr/images/gtr3-13-information.jpg)
+
+## Version mobile
 
 La consultation du portail sur un appareil mobile a été optimisée pour être adaptée aux petits écrans et aux interactions tactiles.
 
+Chaque page a ainsi été adaptée pour proposer un affichage adapté aux différentes tailles d'écran.
+
+![Mobile](https://geotrek.ecrins-parcnational.fr/images/gtr3-14-mobile.png)
+
+Le portail web étant une PWA, quand il est consulté avec un smartphone, un message s'affiche en bas de l'écran, invitant l'utilisateur à l'ajouter à son écran d'accueil.
+Un raccourci sera alors créé sur le bureau du smartphone, et il sera alors possible de consulter le contenu comme dans une application mobile.
+
+Des premières fonctionnalités ont été développées pour embarquer une partie du contenu en offline, et ainsi pouvoir le consulter ultérieurement sans connexion internet.
+Les dernières randonnées consultées et leurs fonds de carte peuvent ainsi être consultées offline.
+Voir la [documentation sur la gestion du cache](./knowledge/caching.md) pour en savoir plus.
+
 ## Customisation
 
-- Classes des filtres
-- Textes
-- Couleurs, logo, titre
+Différents éléments de l'aspect du portail et de son contenu peuvent être customisés :
 
-## Autres
+- Les couleurs, le logo, les images, le nom du portail
+- Les différents textes
+- Les filtres affichés et leurs valeurs
+- Les langues disponibles
+- Les traductions
+- Le contenu du pied de page (footer)
+- La carte, son centrage, les fonds utilisés.
 
-Valeurs filtres et listes en cache
+Voir la [documentation sur la customisation](customization.md) pour en savoir plus.
 
-SSR
+## Référencement
 
-- Rendu côté serveur (Server Side Rendering / SSR) pour optimiser et prégénérer les pages renvoyées aux moteurs de recherche, avec NextJS
+Un travail a été réalisé pour optimiser le référencement des contenus du portail. 
+Un rendu côté serveur (Server Side Rendering / SSR) des pages est réalisé pour optimiser et prégénérer les pages renvoyées aux moteurs de recherche (avec NextJS).
 
-SEO
-
-- Title et description dans les meta
-- Optimisation des pages et analyse avec Google Search Console
-
-Sitemaps
-Robots.txt
-
-HTTPS
+Une liste de toutes les pages du portail est générée automatiquement pour faciliter leur indexation dans les moteurs de recherche. Elle est disponible à l'adresse "URL-DU-PORTAIL/sitemap.xml".
