@@ -22,7 +22,6 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from './components/DetailsTopIcons';
 import { generateTouristicContentUrl, HtmlText } from './utils';
 import { DetailsSource } from './components/DetailsSource';
-import { useOnScreenSection } from './hooks/useHighlightedSection';
 
 import { DetailsInformationDesk } from './components/DetailsInformationDesk';
 import { DetailsLabel } from './components/DetailsLabel';
@@ -32,6 +31,7 @@ import { DetailsCoverCarousel } from './components/DetailsCoverCarousel';
 import { ImageWithLegend } from './components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { VisibleSectionProvider } from './VisibleSectionContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
+import { useOnScreenSection } from './hooks/useHighlightedSection';
 
 interface Props {
   detailsId: string | string[] | undefined;
@@ -66,7 +66,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
   /** Ref of the parent of all sections */
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
 
-  const { visibleSection } = useOnScreenSection({
+  useOnScreenSection({
     sectionsPositions,
     // The scroll offset is the height above the sections' container minus the headers size
     // (we want the element detection to trigger when an element top reaches the header's bottom not the windows' top)
