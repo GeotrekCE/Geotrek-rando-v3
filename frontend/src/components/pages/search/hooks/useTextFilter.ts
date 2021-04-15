@@ -5,6 +5,7 @@ export const useTextFilter = (): {
   textFilterState: string | null;
   onTextFilterInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onTextFilterSubmit: () => void;
+  resetTextFilter: () => void;
 } => {
   const [textFilterInput, setTextFilterInput] = useState<string | null>(null);
   const [textFilterState, setTextFilterState] = useState<string | null>(null);
@@ -17,10 +18,16 @@ export const useTextFilter = (): {
     setTextFilterState(textFilterInput);
   };
 
+  const resetTextFilter = () => {
+    setTextFilterInput(null);
+    setTextFilterState(null);
+  };
+
   return {
     textFilterInput,
     textFilterState,
     onTextFilterInputChange,
     onTextFilterSubmit,
+    resetTextFilter,
   };
 };

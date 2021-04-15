@@ -67,6 +67,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     textFilterState,
     onTextFilterInputChange,
     onTextFilterSubmit,
+    resetTextFilter,
   } = useTextFilter();
 
   const {
@@ -88,6 +89,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
 
   const onRemoveAllFiltersClick = () => {
     resetFilters();
+    resetTextFilter();
   };
 
   return (
