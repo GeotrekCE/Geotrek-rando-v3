@@ -17,7 +17,7 @@ const isRawTrekResultComplete = (
 ): rawTrekResult is RawTrekResult =>
   rawTrekResult.ascent !== undefined &&
   rawTrekResult.attachments !== undefined &&
-  rawTrekResult.departure !== undefined &&
+  rawTrekResult.departure_city !== undefined &&
   rawTrekResult.difficulty !== undefined &&
   rawTrekResult.duration !== undefined &&
   rawTrekResult.id !== undefined &&
