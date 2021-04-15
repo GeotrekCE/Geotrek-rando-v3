@@ -53,6 +53,7 @@
       "structures": "Structure",
       "clearAll": "Clear all"
     },
+    "textFilter": "Search...",
     "map": {
       "seeResult": "Display details"
     }
