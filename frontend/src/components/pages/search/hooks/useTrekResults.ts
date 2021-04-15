@@ -19,13 +19,14 @@ const FormatFiltersUrl = (filtersState: FilterState[]) =>
     [],
   );
 
-const computeUrl = (filtersState: FilterState[]) => {
-  const urlParams = FormatFiltersUrl(filtersState);
+const computeUrl = (filtersState: FilterState[], textFilter: string | null) => {
+  const urlParams = textFilter
+    ? [...FormatFiltersUrl(filtersState), `text=${textFilter}`]
+    : FormatFiltersUrl(filtersState);
 
   const formattedUrl = `search?${urlParams.join('&')}`;
 
   return formattedUrl;
-};
 };
 
 export const useTrekResults = (
@@ -40,7 +41,7 @@ export const useTrekResults = (
 
   const parsedFiltersState = parseFilters(filtersState);
 
-  const filterUrl = useRef(computeUrl(filtersState));
+  const filterUrl = useRef(computeUrl(filtersState, textFilterState));
 
   const {
     data,
@@ -71,13 +72,13 @@ export const useTrekResults = (
   );
 
   useEffect(() => {
-    const url = computeUrl(filtersState);
+    const url = computeUrl(filtersState, textFilterState);
     if (url !== filterUrl.current) {
       filterUrl.current = url;
       window.history.replaceState(null, '', url);
       void refetch();
     }
-  }, [filtersState, refetch]);
+  }, [filtersState, textFilterState, refetch]);
 
   return {
     searchResults: formatInfiniteQuery(data),
