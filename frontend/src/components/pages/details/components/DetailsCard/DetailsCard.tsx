@@ -50,7 +50,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
       height={heightState}
       className={`border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
-      flex flex-col h-auto desktop:flex-row desktop:w-auto
+      flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
       ${className ?? ''}`}
       onMouseEnter={() => {
