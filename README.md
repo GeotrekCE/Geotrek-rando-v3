@@ -6,6 +6,10 @@ The third version is a full redesign and rewriting of Geotrek-rando with React, 
 
 Geotrek-rando v3 is directly connected to Geotrek-admin v2 API.
 
+Read more in the [general presentation](./docs/presentation-fr.md).
+
+![Search](https://geotrek.ecrins-parcnational.fr/images/gtr3-04-search.jpg)
+
 ## Documentation for administrators
 
 - [Installation for production](./docs/installation.md)
