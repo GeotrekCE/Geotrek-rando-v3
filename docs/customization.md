@@ -7,8 +7,18 @@ You can override default settings, colors, CSS, HTML and translations in `custom
 Default configuration are defined in files from https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/config folder.
 You can override all settings default values in files from `customization/config/` folder.
 
-- `global.json` to define API URL (and eventual portal filter), Google Analytics, base URL of your portal (for dynamic sitemap.xml) and fallback images URL if some content don't have image (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/global.json)
+- `global.json` to define :
+
+  - `searchResultsPageSize`, `mapResultsPageSize`: used to limit the sizes of results per page when fetching API
+  - `portalIds`: eventual portal filters (list of ids).
+  - `apiUrl` : Geotrek Admin API URL.
+  - `googleAnalyticsId`: eventual Google Analytics Id.
+  - `baseUrl`: base URL of your portal (for dynamic sitemap.xml).
+  - `fallbackImageUri`, `fallbackTouristicContentUri`: fallback images URL if some content don't have image (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/global.json).
+  - `applicationName`: application name appearing on PWA
+
 - `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
+
 - `home.json` to define homepage settings. You can define blocks to display and trek suggestion block wih trek ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/home.json).
 
   - In WelcomeBanner, you can personnalize the header on the homepage. You can add an asset on the top of the page: it can either be a video, a picture or a carousel of images:
