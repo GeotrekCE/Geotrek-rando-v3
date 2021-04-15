@@ -7,7 +7,7 @@ import { FilterState } from 'modules/filters/interface';
 
 import { formatInfiniteQuery, parseFilters, parseTextFilter } from '../utils';
 
-const FormatFiltersUrl = (filtersState: FilterState[]) =>
+const formatFiltersUrl = (filtersState: FilterState[]) =>
   filtersState.reduce<string[]>(
     (selectedOptions, { id, selectedOptions: currentlySelectedOptions }) => {
       if (currentlySelectedOptions.length === 0) return selectedOptions;
@@ -21,8 +21,8 @@ const FormatFiltersUrl = (filtersState: FilterState[]) =>
 
 const computeUrl = (filtersState: FilterState[], textFilter: string | null) => {
   const urlParams = textFilter
-    ? [...FormatFiltersUrl(filtersState), `text=${textFilter}`]
-    : FormatFiltersUrl(filtersState);
+    ? [...formatFiltersUrl(filtersState), `text=${textFilter}`]
+    : formatFiltersUrl(filtersState);
 
   const formattedUrl = `search?${urlParams.join('&')}`;
 
