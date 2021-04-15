@@ -6,10 +6,10 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="DetailsCard__DetailsCardContainer-sc-1paweiv-0 iRBFSr border border-solid border-greySoft rounded-card
+        class="DetailsCard__DetailsCardContainer-sc-1paweiv-0 Aeecf border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto
-      cursor-pointer hover:shadow-sm transition-all duration-300
+      cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
       "
         height="200"
       >
@@ -56,10 +56,10 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="DetailsCard__DetailsCardContainer-sc-1paweiv-0 iRBFSr border border-solid border-greySoft rounded-card
+      class="DetailsCard__DetailsCardContainer-sc-1paweiv-0 Aeecf border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto
-      cursor-pointer hover:shadow-sm transition-all duration-300
+      cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
       "
       height="200"
     >
