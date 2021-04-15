@@ -1,3 +1,11 @@
 {
+  "searchResultsPageSize": 10,
+  "mapResultsPageSize": 250,
+  "portalIds": [],
+  "apiUrl": "https://geotrekdemo.ecrins-parcnational.fr/api/v2",
+  "googleAnalyticsId": "G-8FSV2N4FXN",
+  "baseUrl": "https://geotrek-rando-v3-pi.vercel.app",
+  "fallbackImageUri": "https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png",
+  "fallbackTouristicContentUri": "https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png",
   "applicationName": "Custom Geotrek"
 }

@@ -10,16 +10,5 @@
   "activityBar": {
     "shouldDisplay": true
   },
-  "suggestions": [
-    {
-      "titleTranslationId": "home.territoryTreks",
-      "iconUrl": "/icons/practice-pedestrian.svg",
-      "ids": ["2", "582", "586", "501", "771", "596", "604"]
-    },
-    {
-      "titleTranslationId": "home.itinerantTreks",
-      "iconUrl": "/icons/practice-pedestrian.svg",
-      "ids": ["501", "771"]
-    }
-  ]
+  "suggestions": []
 }

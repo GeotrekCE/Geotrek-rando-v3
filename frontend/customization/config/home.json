@@ -1,1 +1,25 @@
-{}
+{
+  "welcomeBanner": {
+    "carouselUrls": [
+      "https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg",
+      "https://images.pexels.com/photos/869258/pexels-photo-869258.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+      "https://images.pexels.com/photos/4275885/pexels-photo-4275885.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+    ],
+    "shouldDisplayText": true
+  },
+  "activityBar": {
+    "shouldDisplay": true
+  },
+  "suggestions": [
+    {
+      "titleTranslationId": "home.territoryTreks",
+      "iconUrl": "/icons/practice-pedestrian.svg",
+      "ids": ["2", "582", "586", "501", "771", "596", "604"]
+    },
+    {
+      "titleTranslationId": "home.itinerantTreks",
+      "iconUrl": "/icons/practice-pedestrian.svg",
+      "ids": ["501", "771"]
+    }
+  ]
+}
