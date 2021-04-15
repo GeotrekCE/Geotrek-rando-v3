@@ -94,7 +94,7 @@ See HTML examples at https://github.com/GeotrekCE/Geotrek-rando-v3-docker/tree/m
 After each customization changes, you'll have to rebuild the Docker image by running:
 
 ```bash
-docker build -t geotrek-rando . ## You can also specify a specific version
+docker build -t geotrek-rando --build-arg VERSION={YOUR_VERSION} .
 docker ps ## To find previous container ID to stop
 docker stop {CONTAINER_ID}
 docker run --restart unless-stopped -d -p {YOUR_PORT}:80 geotrek-rando

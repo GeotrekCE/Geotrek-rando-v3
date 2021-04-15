@@ -18,8 +18,7 @@ You will have to download the prebuilt default Docker image of Geotrek-rando and
 - Create a folder to install your Geotrek-rando (`/home/myuser/geotrekrando` for instance) and go in this folder
 - On your server pull the [Geotrek-rando-docker repository](https://github.com/GeotrekCE/Geotrek-rando-v3-docker): `git pull https://github.com/GeotrekCE/Geotrek-rando-v3-docker.git` or download and unzip it (`wget https://github.com/GeotrekCE/Geotrek-rando-v3-docker/archive/main.zip`)
 - Update the files in the `/customization` folder according to your structure (See customization documentation)
-- Build the Docker image with its latest prebuilt version: `docker build -t geotrek-rando .`
-- You can also build a [specific version](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando-prebuild) with `docker build -t geotrek-rando --build-arg VERSION={THE VERSION YOU WANT} .`
+- Build a [specific version](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando-prebuild) the Docker image with `docker build -t geotrek-rando --build-arg VERSION={THE VERSION YOU WANT} .`
 - Now we want to run the website that we just built and make it available from your server adress. To do so run the docker image on the port you want: `docker run --restart unless-stopped -d -p {YOUR_PORT}:80 geotrek-rando`
   - Let's explain what this command does step by step
     - `docker run [options] geotrek-rando` runs the container named geotrek-rando that we've just built
@@ -91,7 +90,7 @@ Now you should be able to reach your Geotrek-rando through the default web port 
 
 After updating configuration or to install a new version of Geotrek-rando, you have to rebuild a new image of Geotrek-rando, stop the old one and run the new one.
 
-- Build a new Geotrek-rando image with its latest version: `docker build -t geotrek-rando .`. You can also specify a specific version.
+- Build a new Geotrek-rando image with the [desired version](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando-prebuild): `docker build -t geotrek-rando --build-arg VERSION={YOUR_VERSION} .`.
 - Check running containers: `docker ps`
 - Stop the old container: `docker stop <CONTAINER_ID>`
 - Run the new image: `docker run --restart unless-stopped -d -p {YOUR_PORT}:80 geotrek-rando`
