@@ -7,7 +7,7 @@ import { FilterState } from 'modules/filters/interface';
 
 import { formatInfiniteQuery, parseFilters, parseTextFilter } from '../utils';
 
-const formatFiltersUrl = (filtersState: FilterState[]) =>
+const formatFiltersUrl = (filtersState: FilterState[]): string[] =>
   filtersState.reduce<string[]>(
     (selectedOptions, { id, selectedOptions: currentlySelectedOptions }) => {
       if (currentlySelectedOptions.length === 0) return selectedOptions;
