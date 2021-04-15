@@ -11,6 +11,7 @@ You can override all settings default values in files from `customization/config
 
   - `searchResultsPageSize`, `mapResultsPageSize`: used to limit the sizes of results per page when fetching API
   - `portalIds`: eventual portal filters (list of ids).
+  - `enableSensitiveAreas`: boolean, default to false. Set it to true if sensitive areas are defined in your Geotrek Admin.
   - `apiUrl` : Geotrek Admin API URL.
   - `googleAnalyticsId`: eventual Google Analytics Id.
   - `baseUrl`: base URL of your portal (for dynamic sitemap.xml).
