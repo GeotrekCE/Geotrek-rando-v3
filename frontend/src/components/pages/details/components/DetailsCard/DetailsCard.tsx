@@ -51,7 +51,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
       className={`border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto
-      cursor-pointer hover:shadow-sm transition-all duration-300
+      cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
       ${className ?? ''}`}
       onMouseEnter={() => {
         setHoveredCardId(id);
@@ -123,7 +123,6 @@ const OptionalLink: React.FC<OptionalLinkProps> = ({ redirectionUrl, children })
 };
 
 const DetailsCardContainer = styled.div<{ height: number }>`
-  margin: 0 ${getSpacing(1)};
   height: auto;
   flex: none;
   overflow: hidden;
@@ -152,7 +151,7 @@ export const CardSingleImage = styled.img<{ height: number }>`
   }
 `;
 
-const CardIcon: React.FC<{ iconUri: string }> = ({ iconUri }) => {
+export const CardIcon: React.FC<{ iconUri: string }> = ({ iconUri }) => {
   const classNameContainer =
     'absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white bg-primary1 border-2 border-white border-solid';
   if (RegExp(/(.*).svg/).test(iconUri)) {
