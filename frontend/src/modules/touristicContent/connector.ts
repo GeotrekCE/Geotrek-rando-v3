@@ -6,6 +6,7 @@ import {
   getTouristicContentCategory,
 } from 'modules/touristicContentCategory/connector';
 import { PopupResult } from 'modules/trekResult/interface';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import {
   adaptTouristicContent,
   adaptTouristicContentDetails,
@@ -22,8 +23,9 @@ export const getTouristicContentsNearTrek = async (
   nearTrekId: number,
   language: string,
 ): Promise<TouristicContent[]> => {
+  const pageSize = getGlobalConfig().maxTouristicContentPerPage;
   const [rawTouristicContentResult, touristicContentCategories] = await Promise.all([
-    fetchTouristicContent({ language, near_trek: nearTrekId }),
+    fetchTouristicContent({ language, near_trek: nearTrekId, page_size: pageSize }),
     getTouristicContentCategories(language),
   ]);
   return adaptTouristicContent({
