@@ -23,7 +23,7 @@ You will have to download the prebuilt default Docker image of Geotrek-rando and
   - Let's explain what this command does step by step
     - `docker run [options] geotrek-rando` runs the container named geotrek-rando that we've just built
     - the `-d` option specifies that it should run "deamonized" meaning the container should run in background instead of keeping the terminal window linked to its stdout.
-    - the `-p` option specified a port mapping between the port you want to connect on your machine to the port the server is running on in the docker container (here 80). Replace `{YOUR_PORT}` by any available port on your host.
+    - the `-p` option specifies a port mapping between the port you want to connect on your machine to the port the server is running on in the docker container (here 80). Replace `{YOUR_PORT}` by any available port on your host.
     ![Doker port maping](./assets/DockerPortMaping.png)
     - the `--restart unless-stopped` option specified that unless you stopped the container on purpose, it should restart automatically if something goes wrong.
 - Your website is now available to the address of your server
