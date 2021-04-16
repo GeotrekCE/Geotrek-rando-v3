@@ -49,12 +49,16 @@ const HomeUI: FunctionComponent = () => {
               {parse(homeTopHtml)}
             </div>
             {activitySuggestionCategories.map(suggestionCategory => (
-              <HomeSection
-                title={intl.formatMessage({ id: suggestionCategory.titleTranslationId })}
-                iconUrl={suggestionCategory.iconUrl}
-                key={suggestionCategory.titleTranslationId}
-                activitySuggestions={suggestionCategory.suggestions}
-              />
+              <>
+                {suggestionCategory.suggestions.length > 0 && (
+                  <HomeSection
+                    title={intl.formatMessage({ id: suggestionCategory.titleTranslationId })}
+                    iconUrl={suggestionCategory.iconUrl}
+                    key={suggestionCategory.titleTranslationId}
+                    activitySuggestions={suggestionCategory.suggestions}
+                  />
+                )}
+              </>
             ))}
             <div className={classNameHomeChild}>{parse(homeBottomHtml)}</div>
           </div>
