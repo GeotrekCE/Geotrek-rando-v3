@@ -1,11 +1,11 @@
 # Changelog
 
-3.0.0 (unreleased)
+3.0.0 (2021-04-16)
 ------------------
 
 * Full redesign and rewriting of Geotrek-rando with React and NextJS (for PWA, SSR and SEO)
 * Directly connected to Geotrek-admin API, no more using Geotrek-admin synchronization
-* Requires Geotrek-admin 2.51.1 minimun, reachable in https
+* Requires Geotrek-admin 2.53.1 minimun, reachable in https
 * Requires Docker to be installed
 
 **🚀 New features**
@@ -18,13 +18,14 @@
 * Progressive web app (PWA) to be able to install the web application on a phone, including some offline contents
 * Multilingual
 * Optimized API calls with cache on some contents (such as filters values, cities...)
-* Customizable homepage template
+* Customizable homepage content
 * Simple deployment and customization
 * Search into treks or touristic contents with their common or specific filters
+* Global documentation (presentation, installation, customization, development, icons, cache...)
 
 **⚠️ Release notes**
 
-* To upgrade to this version, you will have to do a new installation of Geotrek-rando with Docker
+* To upgrade to this version, you will have to do a new installation of Geotrek-rando with Docker. See [installation documentation](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/docs/installation.md)
 * The installation process of Geotrek-rando v3 is independant from your eventual version 2 of Geotrek-rando
 
 1.x and 2.x
