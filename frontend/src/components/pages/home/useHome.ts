@@ -23,7 +23,9 @@ export const useHome = () => {
       ? homePageConfig.suggestions.map(suggestion => ({
           titleTranslationId: suggestion.titleTranslationId,
           iconUrl: suggestion.iconUrl,
-          suggestions: suggestion.ids.map(id => activitySuggestionDictionnary[id]),
+          suggestions: suggestion.ids
+            .filter(id => activitySuggestionDictionnary[id])
+            .map(id => activitySuggestionDictionnary[id]),
         }))
       : [];
 
