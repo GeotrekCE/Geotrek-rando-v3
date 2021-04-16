@@ -79,7 +79,7 @@ const SearchMap: React.FC<PropsType> = props => {
                   <HoverableMarker
                     key={i}
                     id={getHoverId(point)}
-                    type="TREK"
+                    type={point.type}
                     position={[point.location.y, point.location.x]}
                     pictogramUri={point.practice?.pictogram}
                   >
