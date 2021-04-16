@@ -16,19 +16,19 @@ You need to have Docker installed on your own computer or server. Docker allows 
 You will have to download the prebuilt default Docker image of Geotrek-rando and its customization folder template and build a customized image on your own computer or server.
 
 - Create a folder to install your Geotrek-rando (`/home/myuser/geotrekrando` for instance) and go in this folder
-- On your server pull the [Geotrek-rando-docker repository](https://github.com/GeotrekCE/Geotrek-rando-v3-docker): `git pull https://github.com/GeotrekCE/Geotrek-rando-v3-docker.git` or download and unzip it (`wget https://github.com/GeotrekCE/Geotrek-rando-v3-docker/archive/main.zip`)
-- Update the files in the `/customization` folder according to your structure (See customization documentation)
-- Build a [specific version](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando-prebuild) the Docker image with `docker build -t geotrek-rando --build-arg VERSION={THE VERSION YOU WANT} .`
+- On your server download the [Geotrek-rando-docker repository](https://github.com/GeotrekCE/Geotrek-rando-v3-docker) version you want: `wget https://github.com/GeotrekCE/Geotrek-rando-v3-docker/archive/vX.Y.Z.zip` (replace `X.Y.Z` with the version of Geotrek-rando-v3-docker that is compatible with the Geotrek-rando-v3 version you want to use) and unzip it. You can also git clone it (`git pull https://github.com/GeotrekCE/Geotrek-rando-v3-docker.git`)
+- Update the files in the `/customization` folder according to your structure (See [customization](customization.md) documentation)
+- Go in the root folder of your Geotrek-rando-v3 docker and build a [specific version](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando-prebuild) of the Docker image with `docker build -t geotrek-rando --build-arg VERSION={THE VERSION YOU WANT} .`
 - Now we want to run the website that we just built and make it available from your server adress. To do so run the docker image on the port you want: `docker run --restart unless-stopped -d -p {YOUR_PORT}:80 geotrek-rando`
   - Let's explain what this command does step by step
     - `docker run [options] geotrek-rando` runs the container named geotrek-rando that we've just built
     - the `-d` option specifies that it should run "deamonized" meaning the container should run in background instead of keeping the terminal window linked to its stdout.
-    - the `-p` option specified a port mapping between the port you want to connect on your machine to the port the server is running on in the docker container (here 80).
+    - the `-p` option specified a port mapping between the port you want to connect on your machine to the port the server is running on in the docker container (here 80). Replace `{YOUR_PORT}` by any available port on your host.
     ![Doker port maping](./assets/DockerPortMaping.png)
     - the `--restart unless-stopped` option specified that unless you stopped the container on purpose, it should restart automatically if something goes wrong.
-- Your website is now available to the adress of your server
+- Your website is now available to the address of your server
 
-You can then serve what comes out of your local {YOUR PORT} port. To configure NGINX, see below.
+You can then serve what comes out of your local `{YOUR PORT}` port. To configure NGINX, see below.
 
 ## An example with NGINX
 
