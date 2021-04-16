@@ -1,13 +1,17 @@
 # Customization
 
-You can override default settings, colors, CSS, HTML and translations in `customization` folder.
+You can override default settings, colors, CSS, HTML and translations in your own `customization` folder.
 
 ## Settings
 
 Default configuration are defined in files from https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/config folder.
-You can override all settings default values in files from `customization/config/` folder.
+You can override all settings default values in files from your own `customization/config/` folder.
 
-- `global.json` to define :
+Examples of customizations are available in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/config folder.
+
+In json files, you can just override the primary keys you need. You have to override primary keys globally.
+
+- `global.json` (example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/global.json) to define :
 
   - `searchResultsPageSize`, `mapResultsPageSize`: used to limit the sizes of results per page when fetching API
   - `portalIds`: eventual portal filters (list of ids).
@@ -16,38 +20,38 @@ You can override all settings default values in files from `customization/config
   - `googleAnalyticsId`: eventual Google Analytics Id.
   - `baseUrl`: base URL of your portal (for dynamic sitemap.xml).
   - `fallbackImageUri`: this uri is used to generate a default image for a trek or a touristic content if none is defined.
-  - `touristicContentLabelImageUri` : this uri is used to define the logo on the labeled toursitic contents :
+  - `touristicContentLabelImageUri` : this uri is used to define the logo of the labeled toursitic contents :
     ![Activity Icon on filter list](assets/labeledTouristicContentExample.png)
   - `applicationName`: application name appearing on PWA
 
-- `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
+- `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/header.json)
 
-- `home.json` to define homepage settings. You can define blocks to display and trek suggestion block wih trek ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/home.json).
+- `home.json` to define homepage settings. You can define blocks to display and trek suggestion block with trek ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
 
-  - In WelcomeBanner, you can personnalize the header on the homepage. You can add an asset on the top of the page: it can either be a video, a picture or a carousel of images:
+  - In `welcomeBanner`, you can personnalize the cover on the homepage. You can add an asset on the top of the page: it can either be a video, a single picture or a carousel of images:
 
-    - videoUrl: to add a video
-    - carouselUrls: to add a carousel of images. You have to add an array of urls
-    - pictureUrl: to add a single image
+    - `videoUrl`: to add a video
+    - `carouselUrls`: to add a carousel of images. You have to add an array of urls
+    - `pictureUrl`: to add a single image
 
-    Only one type of asset can be displayed. If you add several field (videoUrl and picture Url for example), we will pick one, following this order of priority: video over carousel over picture.
+    Only one type of asset can be displayed. If you add several fields (`videoUrl` and `pictureUrl` for example), we will pick one, following this order of priority: video over carousel over picture.
 
     You can also enable a text to be displayed on the top of this asset:
 
-    - shouldDisplayText: true to display the text on above the asset, false to hide it.
+    - `shouldDisplayText`: `true` to display the text on above the asset, `false` to hide it.
 
-- `footer.json` to define social networks and links (based on translation labels) in footer (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/footer.json)
-- `filter.json` to define filters to display, their order and values (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/filter.json)
-- `map.json` to define basemap URL and attribution, center and default zoom (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/map.json).
+- `footer.json` to define social networks and links (based on translation labels) in footer (see example in hhttps://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/footer.json)
+- `filter.json` to define filters to display, their order and values (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/filter.json). If you remove some of the filters 
+- `map.json` to define basemaps URL and attributions, center and default zoom (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json).
 
-  - You can also update the map background. There are two map backgrounds available:
+  - You can also update the map layers. There are two map layers available:
 
-    - `mapClassicLayerUrl` for the map version ;
+    - `mapClassicLayerUrl` for the map version
     - `mapSatelliteLayerUrl` for the satellite version. It is optional, so if you want to have only one available map background, you can add `mapSatelliteLayerUrl: undefined`. This will remove the button which allows the user to switch between two map backgrounds.
 
 _Warning:_
-When setting up Google Analytics, you have to setup a flow. When setting up the flow, be careful to enter the corresponding url (the url of your website), otherwise the data will not be received.
-By default Google analytics is disabled (googleAnalyticsId set to null) you will have to override it in the global.json file of your customization folder.
+- When setting up Google Analytics, you have to setup a flow. When setting up the flow, be careful to enter the corresponding url (the url of your website), otherwise the data will not be received.
+- By default Google analytics is disabled (`googleAnalyticsId` set to `null`), you will have to override it in the `global.json` file of your customization folder.
 
 ## Colors
 
@@ -65,27 +69,7 @@ Example for Cevennes national park orange colors:
 }
 ```
 
-You can also override CSS in `customization/theme/style.css` file. To help overriding CSS, some ID have been added on main components:
-
-HOME
-
-- header
-- header_logo
-- footer
-- cover_image
-- activities_bar
-- home_card
-
-SEARCH
-
-- filter_bar
-- result_card
-- search_map
-
-FLATPAGE
-
-- flatpage_cover
-- flatpage_content
+You can also override CSS in `customization/theme/style.css` file. To help overriding CSS, some ID have been added on main DIV components (header, logo, footer, cover, cards, results, maps, details...).
 
 ## Translations
 
@@ -100,7 +84,7 @@ You can include some HTML parts in the first and last sections of the homepage, 
 - `customization/homeTop.html`
 - `customization/homeBottom.html`
 
-See HTML examples at https://github.com/GeotrekCE/Geotrek-rando-v3-docker/tree/main/examples.
+See HTML examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html.
 
 ## Apply changes
 
