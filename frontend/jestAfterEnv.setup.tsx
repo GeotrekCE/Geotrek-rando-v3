@@ -11,6 +11,8 @@ jest.mock('./src/modules/utils/api.config.ts', () => ({
   getGlobalConfig: () => ({
     searchResultsPageSize: 5,
     mapResultsPageSize: 5,
+    maxPoiPerPage: 50,
+    maxTouristicContentPerPage: 50,
     portalIds: [1],
     apiUrl: 'https://geotrek-admin.ecrins-parcnational.fr/api/v2',
     googleAnalyticsId: 'G-8FSV2N4FXN',
