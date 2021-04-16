@@ -20,7 +20,7 @@ import {
   TouristicContentResult,
 } from './interface';
 
-const DEFAULT_LOGO_URI = getGlobalConfig().fallbackTouristicContentUri;
+const APPROVED_LABEL_LOGO_URI = getGlobalConfig().touristicContentLabelImageUri;
 
 export const adaptTouristicContent = ({
   rawTouristicContent,
@@ -37,7 +37,8 @@ export const adaptTouristicContent = ({
     thumbnailUris: getThumbnails(rawTouristicObject.attachments),
     category: touristicContentCategories[rawTouristicObject.category],
     geometry: rawTouristicObject.geometry ? adaptGeometry(rawTouristicObject.geometry) : null,
-    logoUri: rawTouristicObject.approved ? DEFAULT_LOGO_URI : null,
+    // An "approuved" touristic content means that the content is labeled by the park. A logo (configurable by the park) appears on the page.
+    logoUri: rawTouristicObject.approved ? APPROVED_LABEL_LOGO_URI : null,
   }));
 
 export const adaptTouristicContentResult = ({
@@ -131,7 +132,7 @@ export const adaptTouristicContentDetails = ({
     },
     [],
   ),
-  logoUri: rawTCD.properties.approved === true ? DEFAULT_LOGO_URI : null,
+  logoUri: rawTCD.properties.approved === true ? APPROVED_LABEL_LOGO_URI : null,
   bbox: {
     corner1: { x: rawTCD.bbox[0], y: rawTCD.bbox[1] },
     corner2: { x: rawTCD.bbox[2], y: rawTCD.bbox[3] },
