@@ -7,18 +7,26 @@ export const getActivitySuggestions = async (
   language: string,
 ): Promise<ActivitySuggestionDictionnary> => {
   const rawSuggestions = await Promise.all(
-    ids.map(id =>
-      fetchActivitySuggestion(id, {
-        language,
-      }),
-    ),
-  );
-
-  return rawSuggestions.reduce(
-    (activitySuggestionDictionnary, currentRawSuggestion) => ({
-      ...activitySuggestionDictionnary,
-      [currentRawSuggestion.id]: adaptActivitySuggestion(currentRawSuggestion),
+    ids.map(async id => {
+      try {
+        const suggestion = await fetchActivitySuggestion(id, {
+          language,
+        });
+        return suggestion;
+      } catch (error) {
+        return null;
+      }
     }),
-    {},
   );
+  const reduced = rawSuggestions.reduce((activitySuggestionDictionnary, currentRawSuggestion) => {
+    if (currentRawSuggestion !== null) {
+      return {
+        ...activitySuggestionDictionnary,
+        [currentRawSuggestion.id]: adaptActivitySuggestion(currentRawSuggestion),
+      };
+    } else {
+      return activitySuggestionDictionnary;
+    }
+  }, {});
+  return reduced;
 };
