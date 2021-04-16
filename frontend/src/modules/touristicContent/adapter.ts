@@ -37,7 +37,7 @@ export const adaptTouristicContent = ({
     thumbnailUris: getThumbnails(rawTouristicObject.attachments),
     category: touristicContentCategories[rawTouristicObject.category],
     geometry: rawTouristicObject.geometry ? adaptGeometry(rawTouristicObject.geometry) : null,
-    logoUri: rawTouristicObject.approved ? DEFAULT_LOGO_URI : '',
+    logoUri: rawTouristicObject.approved ? DEFAULT_LOGO_URI : null,
   }));
 
 export const adaptTouristicContentResult = ({
@@ -131,7 +131,7 @@ export const adaptTouristicContentDetails = ({
     },
     [],
   ),
-  logoUri: rawTCD.properties.approved === true ? DEFAULT_LOGO_URI : '',
+  logoUri: rawTCD.properties.approved === true ? DEFAULT_LOGO_URI : null,
   bbox: {
     corner1: { x: rawTCD.bbox[0], y: rawTCD.bbox[1] },
     corner2: { x: rawTCD.bbox[2], y: rawTCD.bbox[3] },

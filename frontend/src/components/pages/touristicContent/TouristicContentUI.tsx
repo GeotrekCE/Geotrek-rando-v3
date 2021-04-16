@@ -103,7 +103,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                     courseType: null,
                     networks: [],
                     types: touristicContent.types,
-                    logoUri: touristicContent.logoUri,
+                    logoUri: touristicContent.logoUri ?? undefined,
                   }}
                   place={touristicContent.place}
                   tags={touristicContent.themes}
