@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'react-loader';
@@ -26,7 +26,7 @@ import { useFilter } from './components/useFilters';
 import { useTrekResults } from './hooks/useTrekResults';
 import { useMapResults } from './hooks/useMapResults';
 import { ErrorFallback } from './components/ErrorFallback';
-import { generateResultDetailsUrl } from './utils';
+import { generateResultDetailsUrl, getHoverId } from './utils';
 import { generateTouristicContentUrl } from '../details/utils';
 import InputWithMagnifier from './components/InputWithMagnifier';
 import { useTextFilter } from './hooks/useTextFilter';
@@ -184,7 +184,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                           type={searchResult.type}
                           key={searchResult.title}
                           id={`${searchResult.id}`}
-                          hoverId={`SEARCH-TREK-${searchResult.id}`}
+                          hoverId={getHoverId(searchResult)}
                           place={searchResult.place}
                           title={searchResult.title}
                           tags={searchResult.tags}
@@ -202,7 +202,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                           type={searchResult.type}
                           key={searchResult.name}
                           id={`${searchResult.id}`}
-                          hoverId={`SEARCH-TOURISTIC_CONTENT-${searchResult.id}`}
+                          hoverId={getHoverId(searchResult)}
                           place={searchResult.place}
                           title={searchResult.name}
                           tags={searchResult.themes}
