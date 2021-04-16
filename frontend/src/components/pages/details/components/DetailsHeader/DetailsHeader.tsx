@@ -64,7 +64,7 @@ const DownloadButton: React.FC<{ url: string }> = ({ url }) => (
     href={url}
     target="_blank"
     rel="noopener noreferrer"
-    className="rounded-full py-2 px-4 my-2
+    className="rounded-full py-2 px-4 m-2
     border-primary1 border-solid border
       cursor-pointer
     text-primary1 font-bold

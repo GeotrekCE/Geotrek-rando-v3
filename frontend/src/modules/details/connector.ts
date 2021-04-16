@@ -12,6 +12,7 @@ import { getTrekResultsById } from 'modules/results/connector';
 import { getSensitiveAreas } from 'modules/sensitiveArea/connector';
 import { getSources } from 'modules/source/connector';
 import { getTouristicContentsNearTrek } from 'modules/touristicContent/connector';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptChildren, adaptResults, adaptTrekChildGeometry } from './adapter';
 import { fetchDetails, fetchTrekChildren, fetchTrekGeometry, fetchTrekName } from './api';
 import { Details, TrekChildGeometry, TrekFamily } from './interface';
@@ -52,7 +53,9 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       getInformationDesks(language),
       getLabels(language),
       getTrekResultsById(rawDetails.properties.children, language),
-      getSensitiveAreas(rawDetails.properties.id, language),
+      getGlobalConfig().enableSensitiveAreas
+        ? getSensitiveAreas(rawDetails.properties.id, language)
+        : [],
     ]);
     const childrenGeometry = await Promise.all(
       rawDetails.properties.children.map(childId => getChildGeometry(`${childId}`, language)),

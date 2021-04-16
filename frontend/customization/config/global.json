@@ -1,6 +1,7 @@
 {
   "searchResultsPageSize": 10,
   "mapResultsPageSize": 250,
+  "enableSensitiveAreas": true,
   "portalIds": [],
   "apiUrl": "https://geotrekdemo.ecrins-parcnational.fr/api/v2",
   "googleAnalyticsId": "G-8FSV2N4FXN",

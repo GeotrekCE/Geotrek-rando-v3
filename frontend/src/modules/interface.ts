@@ -42,6 +42,7 @@ export interface RawPolygonGeometry {
 export interface APICallsConfig {
   searchResultsPageSize: number;
   mapResultsPageSize: number;
+  enableSensitiveAreas: boolean;
   portalIds: number[];
   apiUrl: string;
   googleAnalyticsId: string | null;
