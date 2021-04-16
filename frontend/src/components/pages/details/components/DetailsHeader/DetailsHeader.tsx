@@ -34,15 +34,15 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
       sticky top-desktopHeader z-subHeader
       shadow-md bg-white"
     >
-      <div id="details_headerDesktop_inlineMenu" className="flex flex-1 pb-2.5 pt-4 justify-around">
+      <div id="details_headerDesktop_inlineMenu" className="flex flex-1 pb-2.5 pt-4 ml-3">
         {(Object.keys(detailsHeaderSection) as Array<keyof DetailsHeaderSection>).map(sectionId => (
           <div
             onClick={() => scrollTo(detailsHeaderSection[sectionId])}
             key={sectionId}
-            className="flex-1 text-center"
+            className="text-center"
           >
             <span
-              className={`hover:text-primary1
+              className={`hover:text-primary1 mx-5
               pb-1 border-b-2 hover:border-primary1 border-transparent border-solid
               cursor-pointer transition-all duration-300 ${
                 currentSectionId === sectionId ? 'text-primary1 border-primary1' : ''
