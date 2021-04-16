@@ -87,7 +87,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         <OptionalLink redirectionUrl={redirectionUrl}>
           <p className="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold">{name}</p>
         </OptionalLink>
-        {description !== undefined && (
+        {description !== undefined && description.length > 0 && (
           <div
             className="mt-1 desktop:mt-4
             flex flex-col desktop:flex-row desktop:items-end
