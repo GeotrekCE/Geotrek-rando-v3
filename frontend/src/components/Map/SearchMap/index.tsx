@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -8,6 +8,7 @@ import { useTileLayer } from 'hooks/useTileLayer';
 import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 
 import { getHoverId } from 'components/pages/search/utils';
+import { ListAndMapContext } from 'modules/map/ListAndMapContext';
 import { ArrivalMarker } from '../Markers/ArrivalMarker';
 import { DepartureMarker } from '../Markers/DepartureMarker';
 import { ParkingMarker } from '../Markers/ParkingMarker';
@@ -55,6 +56,9 @@ const SearchMap: React.FC<PropsType> = props => {
     onTileToggleButtonClick,
     isSatelliteLayerAvailable,
   } = useTileLayer();
+
+  const { hoveredCardId } = useContext(ListAndMapContext);
+  const hoveredPoint = props.points?.find(point => getHoverId(point) === hoveredCardId);
 
   return (
     <>
@@ -113,6 +117,14 @@ const SearchMap: React.FC<PropsType> = props => {
             />
           )}
         </ClusterContainer>
+        {hoveredPoint && hoveredCardId && hoveredPoint.location !== null && (
+          <HoverableMarker
+            id={hoveredCardId}
+            type={hoveredPoint.type}
+            position={[hoveredPoint.location.y, hoveredPoint.location.x]}
+            pictogramUri={hoveredPoint.practice?.pictogram}
+          />
+        )}
         {props.segments && <DecoratedPolyline positions={props.segments} />}
         <TrekCourse id={selectedMarkerId} />
         {isSatelliteLayerAvailable && (
