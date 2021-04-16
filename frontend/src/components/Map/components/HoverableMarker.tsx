@@ -12,9 +12,9 @@ interface BaseProps {
   children?: ReactNode;
 }
 
-interface TrekProps extends BaseProps {
+interface TrekOrTouristicContentProps extends BaseProps {
   pictogramUri?: string;
-  type: 'TREK';
+  type: 'TREK' | 'TOURISTIC_CONTENT';
 }
 
 interface TrekChildProps extends BaseProps {
@@ -22,10 +22,10 @@ interface TrekChildProps extends BaseProps {
   type: 'TREK_CHILD';
 }
 
-const isTrekChild = (trek: TrekProps | TrekChildProps): trek is TrekChildProps =>
+const isTrekChild = (trek: TrekOrTouristicContentProps | TrekChildProps): trek is TrekChildProps =>
   trek.type === 'TREK_CHILD';
 
-export const HoverableMarker = (props: TrekProps | TrekChildProps) => {
+export const HoverableMarker = (props: TrekOrTouristicContentProps | TrekChildProps) => {
   const { hoveredCardId } = useContext(ListAndMapContext);
   const isCorrespondingCardHovered = props.id === hoveredCardId;
   return useMemo(

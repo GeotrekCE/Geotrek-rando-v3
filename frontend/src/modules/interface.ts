@@ -42,6 +42,8 @@ export interface RawPolygonGeometry {
 export interface APICallsConfig {
   searchResultsPageSize: number;
   mapResultsPageSize: number;
+  maxPoiPerPage: number;
+  maxTouristicContentPerPage: number;
   enableSensitiveAreas: boolean;
   portalIds: number[];
   apiUrl: string;

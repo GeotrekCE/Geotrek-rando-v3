@@ -1,3 +1,4 @@
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { mockRoute } from 'services/testing/utils';
 
 export const mockPois = () => ({
@@ -61,6 +62,7 @@ export const mockPoiRoute = (times: number, trekId: number): void =>
     additionalQueries: {
       trek: trekId,
       fields: 'id,name,description,attachments,type,geometry',
+      page_size: getGlobalConfig().maxPoiPerPage,
     },
     times,
   });

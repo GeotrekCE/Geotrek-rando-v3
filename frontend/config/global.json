@@ -1,6 +1,8 @@
 {
   "searchResultsPageSize": 10,
   "mapResultsPageSize": 250,
+  "maxPoiPerPage": 50,
+  "maxTouristicContentPerPage": 50,
   "enableSensitiveAreas": false,
   "portalIds": [],
   "apiUrl": "https://geotrekdemo.ecrins-parcnational.fr/api/v2",

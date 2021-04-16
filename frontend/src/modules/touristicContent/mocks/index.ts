@@ -1,3 +1,4 @@
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { mockRoute } from 'services/testing/utils';
 
 export const mockTouristicContentResponse = () => ({
@@ -85,6 +86,7 @@ export const mockTouristicContentRoute = (times: number, nearTrekId: number): vo
     additionalQueries: {
       fields: 'id,attachments,name,category,description_teaser,geometry',
       near_trek: nearTrekId,
+      page_size: getGlobalConfig().maxTouristicContentPerPage,
     },
     times,
   });

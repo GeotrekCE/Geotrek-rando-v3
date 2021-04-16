@@ -14,6 +14,8 @@ In json files, you can just override the primary keys you need. You have to over
 - `global.json` (example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/global.json) to define :
 
   - `searchResultsPageSize`, `mapResultsPageSize`: used to limit the sizes of results per page when fetching API
+  - `maxPoiPerPage`: max number of point of interest (POI) displayed on a single trek page
+  - `maxTouristicContentPerPage`: max number of touristic contents displayed on a single trek page
   - `portalIds`: eventual portal filters (list of ids).
   - `enableSensitiveAreas`: boolean, default to false. Set it to true if sensitive areas are defined in your Geotrek Admin.
   - `apiUrl` : Geotrek Admin API URL.

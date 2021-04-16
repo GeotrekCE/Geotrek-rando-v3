@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -7,6 +7,8 @@ import { MapResults } from 'modules/mapResults/interface';
 import { useTileLayer } from 'hooks/useTileLayer';
 import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 
+import { getHoverId } from 'components/pages/search/utils';
+import { ListAndMapContext } from 'modules/map/ListAndMapContext';
 import { ArrivalMarker } from '../Markers/ArrivalMarker';
 import { DepartureMarker } from '../Markers/DepartureMarker';
 import { ParkingMarker } from '../Markers/ParkingMarker';
@@ -55,6 +57,9 @@ const SearchMap: React.FC<PropsType> = props => {
     isSatelliteLayerAvailable,
   } = useTileLayer();
 
+  const { hoveredCardId } = useContext(ListAndMapContext);
+  const hoveredPoint = props.points?.find(point => getHoverId(point) === hoveredCardId);
+
   return (
     <>
       <MapContainer
@@ -77,8 +82,8 @@ const SearchMap: React.FC<PropsType> = props => {
                 point.location !== null && (
                   <HoverableMarker
                     key={i}
-                    id={`SEARCH-${point.type}-${point.id}`}
-                    type="TREK"
+                    id={getHoverId(point)}
+                    type={point.type}
                     position={[point.location.y, point.location.x]}
                     pictogramUri={point.practice?.pictogram}
                   >
@@ -112,6 +117,14 @@ const SearchMap: React.FC<PropsType> = props => {
             />
           )}
         </ClusterContainer>
+        {hoveredPoint && hoveredCardId && hoveredPoint.location !== null && (
+          <HoverableMarker
+            id={hoveredCardId}
+            type={hoveredPoint.type}
+            position={[hoveredPoint.location.y, hoveredPoint.location.x]}
+            pictogramUri={hoveredPoint.practice?.pictogram}
+          />
+        )}
         {props.segments && <DecoratedPolyline positions={props.segments} />}
         <TrekCourse id={selectedMarkerId} />
         {isSatelliteLayerAvailable && (

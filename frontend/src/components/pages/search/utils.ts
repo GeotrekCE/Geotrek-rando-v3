@@ -4,6 +4,7 @@ import { routes } from 'services/routes';
 import { FilterState, Option } from 'modules/filters/interface';
 import { SearchResults, TrekResult } from 'modules/results/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
+import { MapResult } from 'modules/mapResults/interface';
 
 /**
  * Interface of an objet representing a filter state informations
@@ -64,3 +65,6 @@ export const generateResultDetailsUrl = (id: number | string, title: string): st
 
   return detailsPageUrl;
 };
+
+export const getHoverId = ({ id, type }: TrekResult | TouristicContentResult | MapResult): string =>
+  `SEARCH-${type}-${id}`;
