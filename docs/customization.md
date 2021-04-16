@@ -15,7 +15,9 @@ You can override all settings default values in files from `customization/config
   - `apiUrl` : Geotrek Admin API URL.
   - `googleAnalyticsId`: eventual Google Analytics Id.
   - `baseUrl`: base URL of your portal (for dynamic sitemap.xml).
-  - `fallbackImageUri`, `fallbackTouristicContentUri`: fallback images URL if some content don't have image (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/global.json).
+  - `fallbackImageUri`: this uri is used to generate a default image for a trek or a touristic content if none is defined.
+  - `touristicContentLabelImageUri` : this uri is used to define the logo on the labeled toursitic contents :
+    ![Activity Icon on filter list](assets/labeledTouristicContentExample.png)
   - `applicationName`: application name appearing on PWA
 
 - `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
