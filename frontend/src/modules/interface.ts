@@ -48,7 +48,7 @@ export interface APICallsConfig {
   googleAnalyticsId: string | null;
   baseUrl: string;
   fallbackImageUri: string;
-  fallbackTouristicContentUri: string;
+  touristicContentLabelImageUri: string;
   applicationName: string;
 }
 

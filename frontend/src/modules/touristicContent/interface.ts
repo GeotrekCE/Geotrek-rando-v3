@@ -66,7 +66,7 @@ export interface TouristicContent {
   thumbnailUris: string[];
   category: TouristicContentCategory;
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry | null;
-  logoUri: string;
+  logoUri: string | null;
 }
 
 export interface TouristicContentResult {
