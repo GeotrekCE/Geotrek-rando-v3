@@ -86,6 +86,8 @@ You can include some HTML parts in the first and last sections of the homepage, 
 
 See HTML examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html.
 
+Icons are provided by Geotrek-admin API. See [icons documentation](icons.md) to know how they have to be designed.
+
 ## Apply changes
 
 After each customization changes, you'll have to rebuild the Docker image by running:
@@ -97,4 +99,4 @@ docker stop {CONTAINER_ID}
 docker run --restart unless-stopped -d -p {YOUR_PORT}:80 geotrek-rando
 ```
 
-Make sure to remove older images, otherwise your server will keep all build and enlarge fast.
+Make sure to remove older images after building new ones, otherwise your server will keep all build and enlarge your machine storage fast.
