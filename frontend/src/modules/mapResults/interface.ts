@@ -1,12 +1,14 @@
 import { Activity } from 'modules/activities/interface';
 import { RawLineStringGeometry2D, RawPointGeometry2D, RawPolygonGeometry } from 'modules/interface';
 
-export type MapResults = {
+export type MapResult = {
   id: number;
   location: { x: number; y: number } | null;
   practice?: Activity;
   type: 'TREK' | 'TOURISTIC_CONTENT';
-}[];
+};
+
+export type MapResults = MapResult[];
 
 export interface RawTrekMapResults {
   count: number;
