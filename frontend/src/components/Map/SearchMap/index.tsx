@@ -51,7 +51,7 @@ const SearchMap: React.FC<PropsType> = props => {
     tileLayerType,
     isTileLayerClassic,
     isTileLayerSatellite,
-    onTileToggleButtonClick,
+    updateTileLayer,
     isSatelliteLayerAvailable,
   } = useTileLayer();
 
@@ -118,7 +118,7 @@ const SearchMap: React.FC<PropsType> = props => {
           <div className="absolute bottom-6 left-6 z-mapButton">
             <MapLayerTypeToggleButton
               selectedTileLayerType={tileLayerType}
-              onToggleButtonClick={onTileToggleButtonClick}
+              onToggleButtonClick={updateTileLayer}
             />
           </div>
         )}

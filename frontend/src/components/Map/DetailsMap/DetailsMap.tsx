@@ -73,10 +73,13 @@ export const DetailsMap: React.FC<PropsType> = props => {
     tileLayerType,
     isTileLayerClassic,
     isTileLayerSatellite,
-    onTileToggleButtonClick,
     isSatelliteLayerAvailable,
+    updateTileLayer,
   } = useTileLayer();
 
+  const onToggleButtonClick = (newTileLayerType: TileLayerType) => {
+    updateTileLayer(newTileLayerType);
+  };
   return (
     <>
       <MapContainer
@@ -115,7 +118,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           <div className="absolute bottom-6 left-6 z-mapButton">
             <MapLayerTypeToggleButton
               selectedTileLayerType={tileLayerType}
-              onToggleButtonClick={onTileToggleButtonClick}
+              onToggleButtonClick={onToggleButtonClick}
             />
           </div>
         )}
