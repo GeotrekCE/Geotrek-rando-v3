@@ -18,9 +18,9 @@ We performed a fork of Geotrek-rando on a personal account to benefit from Verce
 
 ### Deploy
 
-The staging deployment is automated upon pushing on the Vercel remote. Therefore you can deploy the current available version on the main branch by:
+The staging deployment is automated upon pushing on the Vercel remote. Therefore you can deploy the current available version on the `main` branch by:
 
-- Pulling the latest ``main`` branch from ``origin``:
+- Pulling the latest `main` branch from `origin`:
 
 ```bash
 git checkout main && git pull origin main
@@ -40,15 +40,15 @@ We deploy a new packaged image on the registry.
 
 You need to have Docker installed.
 
-You need to have access to the ``GeotrekCE`` organization
+You need to have access to the `GeotrekCE` organization.
 
-You need to have permissions on the packages -> go to [this url](https://github.com/orgs/GeotrekCE/packages/container/geotrek-rando-v3%2Fgeotrek-rando-prebuild/settings)
+You need to have permissions on the Geotrek-rando-v3 packages -> go to [this url](https://github.com/orgs/GeotrekCE/packages/container/geotrek-rando-v3%2Fgeotrek-rando-prebuild/settings).
 
 ### Build the image
 
-- Merge all the changes you want to include on the main branch
+- Merge all the changes you want to include on the `main` branch
 - Check the number of the current version on the [package repository](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando-prebuild)
-- Checkout main locally and pull
+- Checkout `main` locally and pull
 - `cd frontend`
 - Build the new image
 ```
@@ -58,15 +58,15 @@ The "t" option is used to tag the image
 
 ### Deploy to the Geotrek registry
 
-First you'll need to have a Github personal access token with access permission to create packages. See [this documentation](https://docs.github.com/en/packages/guides/migrating-to-github-container-registry-for-docker-images#authenticating-with-the-container-registry) if you don't manage to do it on your own
+First you'll need to have a Github personal access token with access permission to create packages. See [this documentation](https://docs.github.com/en/packages/guides/migrating-to-github-container-registry-for-docker-images#authenticating-with-the-container-registry) if you don't manage to do it on your own.
 
-- Push the new image on the github package repository
+- Push the new image on the Github package repository
 ```bash
 docker push ghcr.io/geotrekce/geotrek-rando-v3/geotrek-rando-prebuild:latest && docker push ghcr.io/geotrekce/geotrek-rando-v3/geotrek-rando-prebuild:{NEW_VERSION}
 ```
 
 - Go on the package repository to check that the new image is online
 
-### Pull the container from your machine and run it
+### Pull the container on your machine and run it
 
-Follow the steps described in [the install on your own machine documentation](./installation.md)
+Follow the steps described in [the install on your own machine documentation](./installation.md).
