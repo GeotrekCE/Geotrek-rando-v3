@@ -6,7 +6,7 @@ Install Geotrek-rando on your own computer or server.
 
 ## Global process
 
-[Global process](./assets/geotrek-rando-v3-global-process.jpg)
+![Global process](./assets/geotrek-rando-v3-global-process.jpg)
 
 Before starting the technical installation, here is an overview of the global process:
 - Developers are working on code source of this repository where you will also find the documentation, issues and releases
