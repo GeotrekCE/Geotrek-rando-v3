@@ -4,6 +4,19 @@ Install Geotrek-rando on your own computer or server.
 
 # Install with Docker (recommended)
 
+## Global process
+
+[Global process](./assets/geotrek-rando-v3-global-process.jpg)
+
+Before starting the technical installation, here is an overview of the global process:
+- Developers are working on code source of this repository where you will also find the documentation, issues and releases
+- Once they have a new version of the application ready, they will release it, build a prebuild image of this new version and push it in the [packages repository](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando-prebuild)
+- If required, they will also make changes to the dockerfile and customization template in the [dedicated repository](https://github.com/GeotrekCE/Geotrek-rando-v3-docker) and release a new version of it
+- Administrators will log in on their host with SSH and install Docker on it
+- They will download an archive of the latest version of the Docker customization repository and extract it on their host
+- They will edit the customization files and build a customized image of the application
+- They will run this customized image in a Docker container that will be available with a web browser through NGINX
+
 ## Install Docker
 
 You need to have Docker installed on your own computer or server. Docker allows to easily install and update Geotrek-rando on several plateforms (Linux, Windows, macOS).
