@@ -83,8 +83,8 @@ You should at least override `home.title`, `home.description` and `home.welcome-
 
 You can include some HTML parts in the first and last sections of the homepage, with files:
 
-- `customization/homeTop.html`
-- `customization/homeBottom.html`
+- `customization/html/homeTop.html`
+- `customization/html/homeBottom.html`
 
 See HTML examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html.
 
