@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export const useTileLayer = (): {
   tileLayerType: TileLayerType;
-  onTileToggleButtonClick: (newTileLayerType: TileLayerType) => void;
+  updateTileLayer: (newTileLayerType: TileLayerType) => void;
   isTileLayerClassic: boolean;
   isTileLayerSatellite: boolean;
   isSatelliteLayerAvailable: boolean;
@@ -21,7 +21,7 @@ export const useTileLayer = (): {
 
   return {
     tileLayerType,
-    onTileToggleButtonClick: updateTileLayer,
+    updateTileLayer,
     isTileLayerClassic: tileLayerType === 'classic',
     isTileLayerSatellite: tileLayerType === 'satellite',
     isSatelliteLayerAvailable,

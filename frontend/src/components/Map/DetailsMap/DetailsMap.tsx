@@ -11,7 +11,10 @@ import {
   PolygonGeometry,
 } from 'modules/interface';
 import { useTileLayer } from 'hooks/useTileLayer';
-import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
+import {
+  MapLayerTypeToggleButton,
+  TileLayerType,
+} from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import { MapButton } from '../components/MapButton';
@@ -23,6 +26,7 @@ import { AltimetricProfile } from '../components/AltimetricProfile';
 import { ControlSection } from '../components/ControlSection';
 import { useDetailsMap } from './useDetailsMap';
 import { MapChildren, PointWithIcon } from './MapChildren';
+import { useMapCenterOnRerender } from '../hooks/useMapCenterOnRerender';
 
 export interface TouristicContentGeometry {
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
@@ -73,9 +77,16 @@ export const DetailsMap: React.FC<PropsType> = props => {
     tileLayerType,
     isTileLayerClassic,
     isTileLayerSatellite,
-    onTileToggleButtonClick,
     isSatelliteLayerAvailable,
+    updateTileLayer,
   } = useTileLayer();
+
+  const { setMapInstance, reCenterMapAfterRerender } = useMapCenterOnRerender();
+
+  const onToggleButtonClick = (newTileLayerType: TileLayerType) => {
+    updateTileLayer(newTileLayerType);
+    reCenterMapAfterRerender();
+  };
 
   return (
     <>
@@ -84,6 +95,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         style={{ height: '100%', width: '100%' }}
         zoomControl={props.type === 'DESKTOP'}
         attributionControl={false}
+        whenCreated={setMapInstance}
         bounds={[
           [props.bbox.corner1.y, props.bbox.corner1.x],
           [props.bbox.corner2.y, props.bbox.corner2.x],
@@ -115,7 +127,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           <div className="absolute bottom-6 left-6 z-mapButton">
             <MapLayerTypeToggleButton
               selectedTileLayerType={tileLayerType}
-              onToggleButtonClick={onTileToggleButtonClick}
+              onToggleButtonClick={onToggleButtonClick}
             />
           </div>
         )}
