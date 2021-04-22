@@ -90,6 +90,20 @@ See HTML examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/fro
 
 Icons are provided by Geotrek-admin API. See [icons documentation](icons.md) to know how they have to be designed.
 
+## Favicon, mobile phone icons and splashscreens
+
+These files need to be in the correct folder during the buil phase and therefore, we created a specific "medias" folder in the customization repository.
+
+It provides 6 specific medias to customize:
+
+- android-icon.png: It has to be 144x144px and controls the icon appearing on android phones
+- maskable-icon.png: It hass to be 144x144px and will be used only on android phones enabling round icons (it will hence be cropped to fit a circle by the android phones)
+- ios-icon.png: It has to be 144x144px and controls the icon appearing on ios phones
+- android-splashscreen.png: It has to be 512x512px and controls the splashscreen appearing on ios phones
+- ios-splashscreen.png: It has to be 512x512px and controls the splashscreen appearing on ios phones
+
+- favicon.png: It will be used as the favicon in web browsers
+
 ## Apply changes
 
 After each customization changes, you'll have to rebuild the Docker image by running:
