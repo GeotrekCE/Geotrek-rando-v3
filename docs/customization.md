@@ -22,7 +22,7 @@ In json files, you can just override the primary keys you need. You have to over
   - `googleAnalyticsId`: eventual Google Analytics Id.
   - `baseUrl`: base URL of your portal (for dynamic sitemap.xml).
   - `fallbackImageUri`: this uri is used to generate a default image for a trek or a touristic content if none is defined.
-  - `touristicContentLabelImageUri` : this uri is used to define the logo of the labeled toursitic contents :
+  - `touristicContentLabelImageUri` : this uri is used to define the logo of the labeled touristic contents:
     ![Activity Icon on filter list](assets/labeledTouristicContentExample.png)
   - `applicationName`: application name appearing on PWA
 
@@ -90,23 +90,24 @@ See HTML examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/fro
 
 Icons are provided by Geotrek-admin API. See [icons documentation](icons.md) to know how they have to be designed.
 
-## Favicon, mobile phone icons and splashscreens
+## Images, avicon, mobile phone icons and splashscreens
 
-These files need to be in the correct folder during the buil phase and therefore, we created a specific "medias" folder in the customization repository.
+These files need to be in the correct folder during the build process and therefore, we created a specific `medias` folder in the customization repository.
 
-It provides 6 specific medias to customize:
+It provides 6 default images that can be customized:
 
-- android-icon.png: It has to be 144x144px and controls the icon appearing on android phones
+- android-icon.png: It has to be 144x144px and controls the icon appearing on Android phones
 - maskable-icon.png: It hass to be 144x144px and will be used only on android phones enabling round icons (it will hence be cropped to fit a circle by the android phones)
-- ios-icon.png: It has to be 144x144px and controls the icon appearing on ios phones
-- android-splashscreen.png: It has to be 512x512px and controls the splashscreen appearing on ios phones
-- ios-splashscreen.png: It has to be 512x512px and controls the splashscreen appearing on ios phones
-
+- ios-icon.png: It has to be 144x144px and controls the icon appearing on iOS phones
+- android-splashscreen.png: It has to be 512x512px and controls the splashscreen appearing on Android phones
+- ios-splashscreen.png: It has to be 512x512px and controls the splashscreen appearing on iOS phones
 - favicon.png: It will be used as the favicon in web browsers
+
+You can also add images and other files in the `medias` folder to be used as logo, images in HTML parts and static pages. They will be available on "url-geotrek-rando/medias/image-name.jpg" and can be linked as "/medias/image-name.jpg".
 
 ## Apply changes
 
-After each customization changes, you'll have to rebuild the Docker image by running:
+After each customization changes, you'll have to rebuild the customized Docker image by running:
 
 ```bash
 docker build -t geotrek-rando --build-arg VERSION={YOUR_VERSION} .
