@@ -44,7 +44,7 @@ export const Root: FunctionComponent<RootProps> = props => {
           <meta name="msapplication-tap-highlight" content="no" />
           <meta name="theme-color" content="#000000" />
 
-          <link rel="apple-touch-icon" sizes="180x180" href="/medias/favicon.png" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/medias/apple-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/medias/favicon.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/medias/favicon.png" />
           <link rel="mask-icon" href="/medias/favicon.png" color={colorPalette.primary1} />
