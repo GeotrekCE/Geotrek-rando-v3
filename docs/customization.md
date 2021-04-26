@@ -2,6 +2,8 @@
 
 You can override default settings, colors, CSS, HTML and translations in your own `customization` folder.
 
+See the [general presentation](presentation-fr.md) for an overview of the application.
+
 ## Settings
 
 Default configuration are defined in files from https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/config folder.
