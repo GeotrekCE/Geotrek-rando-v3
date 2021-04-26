@@ -103,6 +103,7 @@ Now you should be able to reach your Geotrek-rando through the default web port 
 
 After updating configuration or to install a new version of Geotrek-rando, you have to rebuild a new image of Geotrek-rando, stop the old one and run the new one.
 
+- Make sure that there is not a new version of the [Geotrek-rando-docker repository](https://github.com/GeotrekCE/Geotrek-rando-v3-docker) to update the dockerfile or customization folder on your host
 - Build a new Geotrek-rando image with the [desired version](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando-prebuild): `docker build -t geotrek-rando --build-arg VERSION={YOUR_VERSION} .`.
 - Check running containers: `docker ps`
 - Stop the old container: `docker stop <CONTAINER_ID>`
