@@ -174,15 +174,6 @@ Object {
                 </div>
               </div>
             </div>
-            <div
-              class="ResultCard__BookingButtonContainer-sc-1bem01n-4 lbJTDf"
-            >
-              <button
-                class="Button__StyledButton-sc-1n2k9lu-0 erZiqq flex items-center "
-              >
-                Réserver
-              </button>
-            </div>
           </div>
         </a>
       </div>
@@ -357,15 +348,6 @@ Object {
                 </div>
               </div>
             </div>
-          </div>
-          <div
-            class="ResultCard__BookingButtonContainer-sc-1bem01n-4 lbJTDf"
-          >
-            <button
-              class="Button__StyledButton-sc-1n2k9lu-0 erZiqq flex items-center "
-            >
-              Réserver
-            </button>
           </div>
         </div>
       </a>
