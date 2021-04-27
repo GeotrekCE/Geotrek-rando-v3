@@ -26,7 +26,6 @@ import { AltimetricProfile } from '../components/AltimetricProfile';
 import { ControlSection } from '../components/ControlSection';
 import { useDetailsMap } from './useDetailsMap';
 import { MapChildren, PointWithIcon } from './MapChildren';
-import { useMapCenterOnRerender } from '../hooks/useMapCenterOnRerender';
 
 export interface TouristicContentGeometry {
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
@@ -73,20 +72,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
   } = useDetailsMap();
   const mapConfig = getMapConfig();
 
-  const {
-    tileLayerType,
-    isTileLayerClassic,
-    isTileLayerSatellite,
-    isSatelliteLayerAvailable,
-    updateTileLayer,
-  } = useTileLayer();
-
-  const { setMapInstance, reCenterMapAfterRerender } = useMapCenterOnRerender();
-
-  const onToggleButtonClick = (newTileLayerType: TileLayerType) => {
-    updateTileLayer(newTileLayerType);
-    reCenterMapAfterRerender();
-  };
+  const { isSatelliteLayerAvailable, setMapInstance, updateTileLayer } = useTileLayer();
 
   return (
     <>
@@ -101,10 +87,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           [props.bbox.corner2.y, props.bbox.corner2.x],
         ]}
       >
-        {isTileLayerClassic && <TileLayer url={mapConfig.mapClassicLayerUrl} />}
-        {isTileLayerSatellite && mapConfig.mapSatelliteLayerUrl && (
-          <TileLayer url={mapConfig.mapSatelliteLayerUrl} />
-        )}
+        <TileLayer url={mapConfig.mapClassicLayerUrl} />
         <TrekMarkersAndCourse
           arrivalLocation={props.arrivalLocation}
           departureLocation={props.departureLocation}
@@ -125,10 +108,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         {props.type === 'DESKTOP' && <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />}
         {isSatelliteLayerAvailable && (
           <div className="absolute bottom-6 left-6 z-mapButton">
-            <MapLayerTypeToggleButton
-              selectedTileLayerType={tileLayerType}
-              onToggleButtonClick={onToggleButtonClick}
-            />
+            <MapLayerTypeToggleButton onToggleButtonClick={newType => updateTileLayer(newType)} />
           </div>
         )}
       </MapContainer>

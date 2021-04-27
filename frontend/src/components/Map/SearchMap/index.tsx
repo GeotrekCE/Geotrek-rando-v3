@@ -49,13 +49,7 @@ const SearchMap: React.FC<PropsType> = props => {
 
   const { setSelectedMarkerId, resetSelectedMarker, selectedMarkerId } = useSelectedMarker();
 
-  const {
-    tileLayerType,
-    isTileLayerClassic,
-    isTileLayerSatellite,
-    updateTileLayer,
-    isSatelliteLayerAvailable,
-  } = useTileLayer();
+  const { isSatelliteLayerAvailable, setMapInstance, updateTileLayer } = useTileLayer();
 
   const { hoveredCardId } = useContext(ListAndMapContext);
   const hoveredPoint = props.points?.find(point => getHoverId(point) === hoveredCardId);
@@ -65,16 +59,14 @@ const SearchMap: React.FC<PropsType> = props => {
       <MapContainer
         center={mapConfig.searchMapCenter as [number, number]}
         zoom={mapConfig.searchMapZoom}
+        whenCreated={setMapInstance}
         scrollWheelZoom
         style={{ height: '100%', width: '100%' }}
         zoomControl={props.type === 'DESKTOP'}
         attributionControl={false}
         id="search_map"
       >
-        {isTileLayerClassic && <TileLayer url={mapConfig.mapClassicLayerUrl} />}
-        {isTileLayerSatellite && mapConfig.mapSatelliteLayerUrl && (
-          <TileLayer url={mapConfig.mapSatelliteLayerUrl} />
-        )}
+        <TileLayer url={mapConfig.mapClassicLayerUrl} />
         <ClusterContainer enabled={props.shouldUseClusters ?? false}>
           {props.points !== undefined &&
             props.points.map(
@@ -129,10 +121,7 @@ const SearchMap: React.FC<PropsType> = props => {
         <TrekCourse id={selectedMarkerId} />
         {isSatelliteLayerAvailable && (
           <div className="absolute bottom-6 left-6 z-mapButton">
-            <MapLayerTypeToggleButton
-              selectedTileLayerType={tileLayerType}
-              onToggleButtonClick={updateTileLayer}
-            />
+            <MapLayerTypeToggleButton onToggleButtonClick={newType => updateTileLayer(newType)} />
           </div>
         )}
       </MapContainer>

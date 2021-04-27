@@ -28,13 +28,7 @@ export type PropsType = {
 };
 
 export const TouristicContentMap: React.FC<PropsType> = props => {
-  const {
-    tileLayerType,
-    isTileLayerClassic,
-    isTileLayerSatellite,
-    updateTileLayer,
-    isSatelliteLayerAvailable,
-  } = useTileLayer();
+  const { isSatelliteLayerAvailable, setMapInstance, updateTileLayer } = useTileLayer();
 
   const hideMap = () => {
     if (props.hideMap) {
@@ -48,6 +42,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
       <MapContainer
         scrollWheelZoom
         style={{ height: '100%', width: '100%' }}
+        whenCreated={setMapInstance}
         zoomControl={props.type === 'DESKTOP'}
         bounds={[
           [props.bbox.corner1.y, props.bbox.corner1.x],
@@ -55,10 +50,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
         ]}
         attributionControl={false}
       >
-        {isTileLayerClassic && <TileLayer url={mapConfig.mapClassicLayerUrl} />}
-        {isTileLayerSatellite && mapConfig.mapSatelliteLayerUrl && (
-          <TileLayer url={mapConfig.mapSatelliteLayerUrl} />
-        )}
+        <TileLayer url={mapConfig.mapClassicLayerUrl} />
         {props.touristicContentGeometry !== null && (
           <TouristicContent
             contents={[props.touristicContentGeometry as TouristicContentGeometry]}
@@ -67,10 +59,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
 
         {isSatelliteLayerAvailable && (
           <div className="absolute bottom-6 left-6 z-mapButton">
-            <MapLayerTypeToggleButton
-              selectedTileLayerType={tileLayerType}
-              onToggleButtonClick={updateTileLayer}
-            />
+            <MapLayerTypeToggleButton onToggleButtonClick={newType => updateTileLayer(newType)} />
           </div>
         )}
       </MapContainer>
