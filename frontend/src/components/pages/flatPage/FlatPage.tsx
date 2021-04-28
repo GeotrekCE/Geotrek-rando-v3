@@ -31,6 +31,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
         title={`${title} - ${intl.formatMessage({
           id: 'home.title',
         })}`}
+        description={`${title} information page`}
       />
       {flatPage === undefined ? (
         isLoading === true ? (

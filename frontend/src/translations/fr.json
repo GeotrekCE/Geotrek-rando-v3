@@ -31,6 +31,7 @@
   },
   "search": {
     "title": "Recherche",
+    "description": "Découvrez les randonnées correspondant à vos envies avec notre moteur de recherche",
     "book": "Réserver",
     "resultsFound": "{count, plural, =0 {# résultat trouvé} one {# résultat trouvé} other {# résultats trouvés}}",
     "forThe": "Pour le",

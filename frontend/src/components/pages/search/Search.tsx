@@ -98,6 +98,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
         title={`${intl.formatMessage({ id: 'search.title' })} - ${intl.formatMessage({
           id: 'home.title',
         })}`}
+        description={`${intl.formatMessage({ id: 'search.description' })}`}
       />
       <MobileFilterMenu
         menuState={menuState}
