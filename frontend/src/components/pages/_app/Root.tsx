@@ -23,6 +23,7 @@ interface RootProps {
 export const Root: FunctionComponent<RootProps> = props => {
   const router = useRouter();
   const language = router.locale ?? getDefaultLanguage();
+  const { googleSiteVerificationToken, applicationName } = getGlobalConfig();
   return (
     <ErrorBoundary
       FallbackComponent={AppCrashFallback}
@@ -34,10 +35,10 @@ export const Root: FunctionComponent<RootProps> = props => {
         <Head>
           <link rel="manifest" href="/manifest.json" />
 
-          <meta name="application-name" content={getGlobalConfig().applicationName} />
+          <meta name="application-name" content={applicationName} />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-          <meta name="apple-mobile-web-app-title" content={getGlobalConfig().applicationName} />
+          <meta name="apple-mobile-web-app-title" content={applicationName} />
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="msapplication-TileColor" content="#2B5797" />
@@ -53,10 +54,9 @@ export const Root: FunctionComponent<RootProps> = props => {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
           />
-          <meta
-            name="google-site-verification"
-            content="eKAyxwaXAobFWQcJen0mnZ8T3CpLoN45JysXeNkRf38"
-          />
+          {googleSiteVerificationToken !== null && (
+            <meta name="google-site-verification" content={googleSiteVerificationToken} />
+          )}
 
           {/* <meta name="twitter:card" content="summary" />
         <meta name="twitter:url" content="localhost" />
