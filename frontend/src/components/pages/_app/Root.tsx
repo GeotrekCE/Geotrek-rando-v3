@@ -58,20 +58,6 @@ export const Root: FunctionComponent<RootProps> = props => {
             <meta name="google-site-verification" content={googleSiteVerificationToken} />
           )}
 
-          {/* <meta name="twitter:card" content="summary" />
-        <meta name="twitter:url" content="localhost" />
-        <meta name="twitter:title" content="Geotrek-rando" />
-        <meta name="twitter:description" content="Geotrek rando" />
-        <meta name="twitter:image" content="/medias/favicon.png" />
-        <meta name="twitter:creator" content="@DavidWShadow" />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Geotrek-rando" />
-        <meta property="og:description" content="Geotrek rando" />
-        <meta property="og:site_name" content="Geotrek-rando" />
-        <meta property="og:url" content="localhost" />
-        <meta property="og:image" content="/medias/favicon.png" /> */}
-
           <meta
             name="viewport"
             content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
