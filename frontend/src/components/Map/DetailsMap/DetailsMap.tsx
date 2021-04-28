@@ -11,10 +11,7 @@ import {
   PolygonGeometry,
 } from 'modules/interface';
 import { useTileLayer } from 'hooks/useTileLayer';
-import {
-  MapLayerTypeToggleButton,
-  TileLayerType,
-} from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
+import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import { MapButton } from '../components/MapButton';
@@ -79,6 +76,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
       <MapContainer
         scrollWheelZoom
         style={{ height: '100%', width: '100%' }}
+        maxZoom={mapConfig.maximumZoomLevel}
         zoomControl={props.type === 'DESKTOP'}
         attributionControl={false}
         whenCreated={setMapInstance}
