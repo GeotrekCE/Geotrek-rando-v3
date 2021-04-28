@@ -87,6 +87,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
           title={`${title} - ${intl.formatMessage({
             id: 'home.title',
           })}`}
+          description={details ? details.description : ''}
         />
         {details === undefined ? (
           isLoading ? (

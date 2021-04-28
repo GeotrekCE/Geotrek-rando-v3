@@ -50,6 +50,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
         title={`${title} - ${intl.formatMessage({
           id: 'home.title',
         })}`}
+        description={touristicContent ? touristicContent.description : ''}
       />
       {touristicContent === undefined ? (
         isLoading ? (
