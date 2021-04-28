@@ -105,7 +105,7 @@ It provides 6 default images that can be customized:
 - ios-splashscreen.png: It has to be 512x512px and controls the splashscreen appearing on iOS phones
 - favicon.png: It will be used as the favicon in web browsers
 
-You can also add images and other files in the `medias` folder to be used as logo, images in HTML parts and static pages. They will be available on "url-geotrek-rando/medias/image-name.jpg" and can be linked as "/medias/image-name.jpg".
+You can also add images and other files in the `medias` folder to be used as logo, images in HTML parts and static pages. They will be available on "url-geotrek-rando/medias/image-name.jpg" and must be linked as "/medias/image-name.jpg".
 
 ## Apply changes
 
