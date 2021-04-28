@@ -48,6 +48,7 @@ export interface APICallsConfig {
   portalIds: number[];
   apiUrl: string;
   googleAnalyticsId: string | null;
+  googleSiteVerificationToken: string | null;
   baseUrl: string;
   fallbackImageUri: string;
   touristicContentLabelImageUri: string;
