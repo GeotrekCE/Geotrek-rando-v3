@@ -92,7 +92,7 @@ See HTML examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/fro
 
 Icons are provided by Geotrek-admin API. See [icons documentation](icons.md) to know how they have to be designed.
 
-## Images, avicon, mobile phone icons and splashscreens
+## Images, favicon, mobile phone icons and splashscreens
 
 These files need to be in the correct folder during the build process and therefore, we created a specific `medias` folder in the customization repository.
 
