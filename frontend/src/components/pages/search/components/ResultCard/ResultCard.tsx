@@ -135,13 +135,15 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => 
               </InformationContainer>
             )}
           </DetailsLayout>
-          {isTrek(props) && props.informations.reservationSystem !== null && (
-            <BookingButtonContainer>
-              <Button>
-                <FormattedMessage id="search.book" />
-              </Button>
-            </BookingButtonContainer>
-          )}
+          {isTrek(props) &&
+            props.informations.reservationSystem !== null &&
+            false && ( // we disable this button because the booking behaviour is not implemented yet
+              <BookingButtonContainer>
+                <Button>
+                  <FormattedMessage id="search.book" />
+                </Button>
+              </BookingButtonContainer>
+            )}
         </DetailsContainer>
       </Link>
     </Container>
