@@ -62,7 +62,9 @@ export const adaptResults = ({
         : geometry.coordinates;
     return {
       title: rawDetailsProperties.name,
-      place: cityDictionnary[rawDetailsProperties.departure_city].name,
+      place: cityDictionnary[rawDetailsProperties.departure_city]
+        ? cityDictionnary[rawDetailsProperties.departure_city].name
+        : '',
       imgs: getAttachments(rawDetailsProperties.attachments),
       practice: activity,
       transport: rawDetailsProperties.public_transport,
