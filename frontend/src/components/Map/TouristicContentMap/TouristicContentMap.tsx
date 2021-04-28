@@ -41,6 +41,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
     <>
       <MapContainer
         scrollWheelZoom
+        maxZoom={mapConfig.maximumZoomLevel}
         style={{ height: '100%', width: '100%' }}
         whenCreated={setMapInstance}
         zoomControl={props.type === 'DESKTOP'}

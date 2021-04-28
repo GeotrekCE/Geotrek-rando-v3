@@ -59,6 +59,7 @@ const SearchMap: React.FC<PropsType> = props => {
       <MapContainer
         center={mapConfig.searchMapCenter as [number, number]}
         zoom={mapConfig.searchMapZoom}
+        maxZoom={mapConfig.maximumZoomLevel}
         whenCreated={setMapInstance}
         scrollWheelZoom
         style={{ height: '100%', width: '100%' }}

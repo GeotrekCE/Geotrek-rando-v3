@@ -1,8 +1,6 @@
 {
-  "searchMapCenter": [
-    44.8,
-    6.3
-  ],
+  "searchMapCenter": [44.8, 6.3],
+  "maximumZoomLevel": 17,
   "searchMapZoom": 10,
   "mapCredits": "OpenTopoMap",
   "mapClassicLayerUrl": "https://a.tile.opentopomap.org/{z}/{x}/{y}.png",
