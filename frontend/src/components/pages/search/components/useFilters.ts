@@ -41,7 +41,7 @@ export const useFilter = () => {
 
   useEffect(() => {
     setFiltersState(currentFiltersState =>
-      getNewLanguageFiltersState(currentFiltersState, initialFiltersState),
+      getNewLanguageFiltersState(currentFiltersState, initialFiltersStateWithSelectedOptions),
     );
   }, [language]);
 
