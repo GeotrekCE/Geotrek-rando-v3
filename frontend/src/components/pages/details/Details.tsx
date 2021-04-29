@@ -83,12 +83,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
   return useMemo(
     () => (
       <>
-        <PageHead
-          title={`${title} - ${intl.formatMessage({
-            id: 'home.title',
-          })}`}
-          description={details ? details.description_teaser : ''}
-        />
+        <PageHead title={title} description={details ? details.description_teaser : ''} />
         {details === undefined ? (
           isLoading ? (
             <Loader
