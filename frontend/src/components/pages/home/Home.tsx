@@ -60,7 +60,9 @@ const HomeUI: FunctionComponent = () => {
                 )}
               </>
             ))}
-            <div className={classNameHomeChild}>{parse(homeBottomHtml)}</div>
+            <div id="home_bottomHtml" className={classNameHomeChild}>
+              {parse(homeBottomHtml)}
+            </div>
           </div>
         </HomeContainer>
         <Footer />
