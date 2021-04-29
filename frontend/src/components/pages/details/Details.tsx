@@ -83,7 +83,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
   return useMemo(
     () => (
       <>
-        <PageHead title={title} description={details ? details.description_teaser : ''} />
+        <PageHead
+          title={title}
+          description={details ? details.description_teaser : ''}
+          sharingImageUrl={
+            details !== undefined && details.imgs.length > 1 ? details.imgs[0].url : undefined
+          }
+        />
         {details === undefined ? (
           isLoading ? (
             <Loader

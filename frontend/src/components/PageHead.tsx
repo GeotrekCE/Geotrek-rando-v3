@@ -7,9 +7,10 @@ import { useIntl } from 'react-intl';
 interface Props {
   title?: string;
   description?: string;
+  sharingImageUrl?: string;
 }
 
-export const PageHead = ({ title, description }: Props) => {
+export const PageHead = ({ title, description, sharingImageUrl }: Props) => {
   const { baseUrl, applicationName } = getGlobalConfig();
   const router = useRouter();
   const currentLanguage = router.locale ?? getDefaultLanguage();
@@ -33,14 +34,14 @@ export const PageHead = ({ title, description }: Props) => {
       <meta property="og:site_name" content={applicationName} />
       <meta property="og:url" content={`${baseUrl}/${currentLanguage}${router.asPath}`} />
       <meta property="og:locale" content={currentLanguage} />
-      <meta property="og:image" content="/medias/favicon.png" />
+      <meta property="og:image" content={sharingImageUrl ?? '/medias/favicon.png'} />
       <meta property="og:type" content="website" />
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:url" content={`${baseUrl}/${currentLanguage}${router.asPath}`} />
       <meta name="twitter:title" content={title ?? intl.formatMessage({ id: 'home.title' })} />
       {description !== undefined && <meta name="twitter:description" content={description} />}
-      <meta name="twitter:image" content="/medias/favicon.png" />
+      <meta name="twitter:image" content={sharingImageUrl ?? '/medias/favicon.png'} />
     </Head>
   );
 };
