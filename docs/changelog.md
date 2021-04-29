@@ -1,5 +1,12 @@
 # Changelog
 
+3.0.1 (unreleased)
+------------------
+
+**🐛 Fixes**
+
+* 
+
 3.0.0 (2021-04-29)
 ------------------
 
@@ -7,6 +14,7 @@
 * Directly connected to Geotrek-admin API, no more using Geotrek-admin synchronization
 * Requires Geotrek-admin 2.57.0 minimun, reachable in https
 * Requires Docker to be installed
+* Compatible with [Geotrek-rando-v3-installer](https://github.com/GeotrekCE/Geotrek-rando-v3-installer) version 1.0.0 
 
 **🚀 New features**
 
