@@ -95,9 +95,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   return (
     <div id="Search">
       <PageHead
-        title={`${intl.formatMessage({ id: 'search.title' })} - ${intl.formatMessage({
-          id: 'home.title',
-        })}`}
+        title={`${intl.formatMessage({ id: 'search.title' })}`}
         description={`${intl.formatMessage({ id: 'search.description' })}`}
       />
       <MobileFilterMenu
