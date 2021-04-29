@@ -22,6 +22,7 @@ In json files, you can just override the primary keys you need. You have to over
   - `enableSensitiveAreas`: boolean, default to false. Set it to true if sensitive areas are defined in your Geotrek Admin.
   - `apiUrl` : Geotrek Admin API URL.
   - `googleAnalyticsId`: eventual Google Analytics Id.
+  - `google-site-verification`: eventual code to enable Google Search Console and Google developer tools.
   - `baseUrl`: base URL of your portal (for dynamic sitemap.xml).
   - `fallbackImageUri`: this uri is used to generate a default image for a trek or a touristic content if none is defined.
   - `touristicContentLabelImageUri` : this uri is used to define the logo of the labeled touristic contents:
@@ -45,8 +46,8 @@ In json files, you can just override the primary keys you need. You have to over
     - `shouldDisplayText`: `true` to display the text on above the asset, `false` to hide it.
 
 - `footer.json` to define social networks and links (based on translation labels) in footer (see example in hhttps://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/footer.json)
-- `filter.json` to define filters to display, their order and values (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/filter.json). If you remove some of the filters 
-- `map.json` to define basemaps URL and attributions, center (y, x) and default zoom (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json).
+- `filter.json` to define filters to display, their order and values (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/filter.json). If you remove some of the filters in this file, they will not be displayed. If you want to override one filter, you have to list all others, otherwise they will not be displayed
+- `map.json` to define basemaps URL and attributions, center (y, x), default and max zoom level (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json).
 
   - You can also update the map layers. There are two map layers available:
 

@@ -1,11 +1,11 @@
 # Changelog
 
-3.0.0 (2021-04-16)
+3.0.0 (2021-04-29)
 ------------------
 
 * Full redesign and rewriting of Geotrek-rando with React and NextJS (for PWA, SSR and SEO)
 * Directly connected to Geotrek-admin API, no more using Geotrek-admin synchronization
-* Requires Geotrek-admin 2.53.1 minimun, reachable in https
+* Requires Geotrek-admin 2.57.0 minimun, reachable in https
 * Requires Docker to be installed
 
 **🚀 New features**
