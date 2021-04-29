@@ -24,6 +24,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 }) => {
   return (
     <StyledSlider
+      lazyLoad="ondemand"
       className={className ?? ''}
       dots
       infinite

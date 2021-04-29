@@ -25,32 +25,7 @@ Object {
               data-index="-1"
               style="width: 0px;"
               tabindex="-1"
-            >
-              <div>
-                <div
-                  class="relative"
-                  id="details_cover_image"
-                >
-                  <div
-                    class="w-full h-12 desktop:h-40
-          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
-          py-1 px-2 desktop:pt-3 desktop:px-10
-          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                  >
-                    <span
-                      class="mx-15 truncate"
-                    >
-                      Arrivée au col de Font Froide - Dominique Vincent - PNE
-                    </span>
-                  </div>
-                  <img
-                    class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
-                    src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
-                  />
-                </div>
-              </div>
-            </div>
+            />
             <div
               aria-hidden="false"
               class="slick-slide slick-active slick-current"
@@ -89,64 +64,14 @@ Object {
               data-index="1"
               style="outline: none; width: 0px;"
               tabindex="-1"
-            >
-              <div>
-                <div
-                  class="relative"
-                  id="details_cover_image"
-                >
-                  <div
-                    class="w-full h-12 desktop:h-40
-          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
-          py-1 px-2 desktop:pt-3 desktop:px-10
-          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                  >
-                    <span
-                      class="mx-15 truncate"
-                    >
-                      Marmotte - admin
-                    </span>
-                  </div>
-                  <img
-                    class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
-                    src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG"
-                  />
-                </div>
-              </div>
-            </div>
+            />
             <div
               aria-hidden="true"
               class="slick-slide"
               data-index="2"
               style="outline: none; width: 0px;"
               tabindex="-1"
-            >
-              <div>
-                <div
-                  class="relative"
-                  id="details_cover_image"
-                >
-                  <div
-                    class="w-full h-12 desktop:h-40
-          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
-          py-1 px-2 desktop:pt-3 desktop:px-10
-          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                  >
-                    <span
-                      class="mx-15 truncate"
-                    >
-                      Arrivée au col de Font Froide - Dominique Vincent - PNE
-                    </span>
-                  </div>
-                  <img
-                    class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
-                    src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
-                  />
-                </div>
-              </div>
-            </div>
+            />
             <div
               aria-hidden="true"
               class="slick-slide slick-cloned"
@@ -185,64 +110,14 @@ Object {
               data-index="4"
               style="width: 0px;"
               tabindex="-1"
-            >
-              <div>
-                <div
-                  class="relative"
-                  id="details_cover_image"
-                >
-                  <div
-                    class="w-full h-12 desktop:h-40
-          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
-          py-1 px-2 desktop:pt-3 desktop:px-10
-          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                  >
-                    <span
-                      class="mx-15 truncate"
-                    >
-                      Marmotte - admin
-                    </span>
-                  </div>
-                  <img
-                    class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
-                    src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG"
-                  />
-                </div>
-              </div>
-            </div>
+            />
             <div
               aria-hidden="true"
               class="slick-slide slick-cloned"
               data-index="5"
               style="width: 0px;"
               tabindex="-1"
-            >
-              <div>
-                <div
-                  class="relative"
-                  id="details_cover_image"
-                >
-                  <div
-                    class="w-full h-12 desktop:h-40
-          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
-          py-1 px-2 desktop:pt-3 desktop:px-10
-          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                  >
-                    <span
-                      class="mx-15 truncate"
-                    >
-                      Arrivée au col de Font Froide - Dominique Vincent - PNE
-                    </span>
-                  </div>
-                  <img
-                    class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
-                    src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
-                  />
-                </div>
-              </div>
-            </div>
+            />
           </div>
         </div>
         <div
@@ -299,32 +174,7 @@ Object {
             data-index="-1"
             style="width: 0px;"
             tabindex="-1"
-          >
-            <div>
-              <div
-                class="relative"
-                id="details_cover_image"
-              >
-                <div
-                  class="w-full h-12 desktop:h-40
-          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
-          py-1 px-2 desktop:pt-3 desktop:px-10
-          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                >
-                  <span
-                    class="mx-15 truncate"
-                  >
-                    Arrivée au col de Font Froide - Dominique Vincent - PNE
-                  </span>
-                </div>
-                <img
-                  class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
-                  src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
-                />
-              </div>
-            </div>
-          </div>
+          />
           <div
             aria-hidden="false"
             class="slick-slide slick-active slick-current"
@@ -363,64 +213,14 @@ Object {
             data-index="1"
             style="outline: none; width: 0px;"
             tabindex="-1"
-          >
-            <div>
-              <div
-                class="relative"
-                id="details_cover_image"
-              >
-                <div
-                  class="w-full h-12 desktop:h-40
-          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
-          py-1 px-2 desktop:pt-3 desktop:px-10
-          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                >
-                  <span
-                    class="mx-15 truncate"
-                  >
-                    Marmotte - admin
-                  </span>
-                </div>
-                <img
-                  class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
-                  src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG"
-                />
-              </div>
-            </div>
-          </div>
+          />
           <div
             aria-hidden="true"
             class="slick-slide"
             data-index="2"
             style="outline: none; width: 0px;"
             tabindex="-1"
-          >
-            <div>
-              <div
-                class="relative"
-                id="details_cover_image"
-              >
-                <div
-                  class="w-full h-12 desktop:h-40
-          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
-          py-1 px-2 desktop:pt-3 desktop:px-10
-          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                >
-                  <span
-                    class="mx-15 truncate"
-                  >
-                    Arrivée au col de Font Froide - Dominique Vincent - PNE
-                  </span>
-                </div>
-                <img
-                  class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
-                  src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
-                />
-              </div>
-            </div>
-          </div>
+          />
           <div
             aria-hidden="true"
             class="slick-slide slick-cloned"
@@ -459,64 +259,14 @@ Object {
             data-index="4"
             style="width: 0px;"
             tabindex="-1"
-          >
-            <div>
-              <div
-                class="relative"
-                id="details_cover_image"
-              >
-                <div
-                  class="w-full h-12 desktop:h-40
-          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
-          py-1 px-2 desktop:pt-3 desktop:px-10
-          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                >
-                  <span
-                    class="mx-15 truncate"
-                  >
-                    Marmotte - admin
-                  </span>
-                </div>
-                <img
-                  class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
-                  src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG"
-                />
-              </div>
-            </div>
-          </div>
+          />
           <div
             aria-hidden="true"
             class="slick-slide slick-cloned"
             data-index="5"
             style="width: 0px;"
             tabindex="-1"
-          >
-            <div>
-              <div
-                class="relative"
-                id="details_cover_image"
-              >
-                <div
-                  class="w-full h-12 desktop:h-40
-          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
-          py-1 px-2 desktop:pt-3 desktop:px-10
-          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                >
-                  <span
-                    class="mx-15 truncate"
-                  >
-                    Arrivée au col de Font Froide - Dominique Vincent - PNE
-                  </span>
-                </div>
-                <img
-                  class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
-                  src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG"
-                />
-              </div>
-            </div>
-          </div>
+          />
         </div>
       </div>
       <div
