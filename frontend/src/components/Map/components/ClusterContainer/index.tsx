@@ -36,7 +36,7 @@ export const ClusterContainer: React.FC<ClusterContainerProps> = ({ children, en
           : 0
       }
       disableClusteringAtZoom={clusteringMaxZoom}
-      spiderfyOnMaxZoom={false}
+      spiderfyOnMaxZoom={true}
     >
       {children}
     </MarkerClusterGroup>
