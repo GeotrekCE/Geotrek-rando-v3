@@ -1,11 +1,12 @@
 # Changelog
 
-3.0.1 (unreleased)
+3.0.1 (2021-05-01)
 ------------------
 
 **🐛 Fixes**
 
-* 
+* Enable ``spiderfy`` on ``Leaflet.markercluster``
+* Social network sharing: improve ``og:image`` tag with checking if there is more than one picture instead of two
 
 3.0.0 (2021-04-29)
 ------------------
