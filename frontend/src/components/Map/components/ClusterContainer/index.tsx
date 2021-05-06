@@ -15,7 +15,7 @@ const clusterRadiusThreshold = 13;
 const lowZoomClusterRadius = 40;
 const highZoomClusterRadius = 20;
 /** Above this zoom level there won't be clustering, the user better sees its trek course on the map when clicking on the marker */
-const clusteringMaxZoom = 18;
+const clusteringMaxZoom = 19;
 
 /**
  * Wraps MarkerClusterGroup to enable/disable it easily
