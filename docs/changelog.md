@@ -1,5 +1,12 @@
 # Changelog
 
+3.0.2 (2021-05-06)
+------------------
+
+**✨ Improvements**
+
+* Increase clustering maximum zoom level from 15 to 18 (#367)
+
 3.0.1 (2021-05-01)
 ------------------
 
