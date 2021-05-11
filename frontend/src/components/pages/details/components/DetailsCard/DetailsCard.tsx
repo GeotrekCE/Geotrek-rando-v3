@@ -60,7 +60,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         setHoveredCardId(null);
       }}
     >
-      {logoUri !== undefined && logoUri !== null && logoUri.length > 0 && (
+      {logoUri && (
         <img
           className="hidden desktop:absolute h-12 object-cover object-center right-6 top-6"
           src={logoUri}
@@ -72,14 +72,14 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         ) : (
           <CardSingleImage src={thumbnailUris[0]} height={heightState} />
         )}
-        {iconUri !== null && iconUri !== undefined && <CardIcon iconUri={iconUri} />}
+        {iconUri && <CardIcon iconUri={iconUri} />}
       </div>
       <div
         ref={detailsCardRef}
         className={`flex flex-col relative
         p-2 desktop:p-6 desktop:my-auto`}
       >
-        {place !== undefined && (
+        {place && (
           <OptionalLink redirectionUrl={redirectionUrl}>
             <p className="text-greyDarkColored">{place}</p>
           </OptionalLink>
@@ -87,7 +87,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         <OptionalLink redirectionUrl={redirectionUrl}>
           <p className="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold">{name}</p>
         </OptionalLink>
-        {description !== undefined && description.length > 0 && (
+        {description && (
           <div
             className="mt-1 desktop:mt-4
             flex flex-col desktop:flex-row desktop:items-end
