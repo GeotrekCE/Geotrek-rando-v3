@@ -1,5 +1,12 @@
 # Changelog
 
+3.0.3 (2021-05-11)
+------------------
+
+**🐛 Fixes**
+
+* Authorize ``null`` value for ``description_teaser`` on ``DetailsCard`` (Fix #366)
+
 3.0.2 (2021-05-06)
 ------------------
 
