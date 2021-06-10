@@ -1,0 +1,117 @@
+{
+  "header": {
+    "menu": "Menu",
+    "language": "Lingua",
+    "seeMore": "Leggi di più",
+    "favorites": "Preferiti",
+    "goToSearch": "Ricerca"
+  },
+  "home": {
+    "title": "Geotrek-rando",
+    "description": "Scopri le escursioni del territorio con Geotrek-rando",
+    "selectPlaceholder": "Seleziona un'attività",
+    "seeMore": "Vedere più",
+    "welcome-text": "L'ecoguida digitale e locale che presenta le mie scoperte del territorio !",
+    "mailTo": "Invia un'email",
+    "use-a-link": "O usare un link",
+    "get-started": "Per iniziare, modificate",
+    "save-to-reload": "e salvataggio per ricaricare.",
+    "create-route": "Per creare una rotta, modificare routes.js e associa una pagina",
+    "generate-component": "Per creare una pagina o un semplice componente, lanciare : ",
+    "generate-module": "Per aggiungere la logica di mestiere, create una cartella in redux con il suo reducers/actions/sagas/selectors/constants/...",
+    "click-me": "Cliccami",
+    "readme": "Leggi il README.md per scoprire i grandi comandi npm che abbiamo aggiunto",
+    "walking": "Escursioni",
+    "territoryTreks": "Escursioni da scoprire",
+    "itinerantTreks": "Itinerari da scoprire"
+  },
+  "page": {
+    "back": "Ritorno",
+    "api-to-translate-example": "Questo messaggio è tradotto usando direttamente l'API react-intl"
+  },
+  "search": {
+    "title": "Ricerca",
+    "description": "Scopri le escursioni che corrispondono ai tuoi desideri con il nostro motore di ricerca",
+    "book": "Prenotare",
+    "resultsFound": "{count, plural, =0 {# Nessun risultato trovato} one {# risultato trovato} other {# risultati trovati}}",
+    "forThe": "Per il",
+    "seeMap": "Vedere la mappa",
+    "filter": "Filtro",
+    "reload": "Ricaricare",
+    "anErrorOccured": "C'è stato un errore",
+    "filters": {
+      "difficulty": "Difficoltà",
+      "practices": "Escursioni",
+      "categories": "Servizi",
+      "cities": "Comune",
+      "duration": "Durata",
+      "districts": "Settore",
+      "themes": "Tema",
+      "routes": "Tipo di percorso",
+      "accessibilities": "Accessibilità",
+      "ascent": "Dislivello positivo",
+      "length": "Lunghezza",
+      "structures": "Struttura",
+      "clearAll": "Cancellare tutto"
+    },
+    "textFilter": "Ricerca...",
+    "map": {
+      "seeResult": "Mostrare i dettagli"
+    }
+  },
+  "details": {
+    "preview": "Presentazione",
+    "download": "Scaricare",
+    "children": "Passi",
+    "childrenFullTitle": "{count, plural, =0 {Nessun passo} one {# Passo} other {# Passi}}",
+    "poi": "Patrimoni",
+    "poiFullTitle": "{count, plural, =0 {Nessun patrimonio} one {# Patrimonio da scoprire} other {# I patrimoni da scoprire}}",
+    "source": "Fonte",
+    "touristicContent": "Vicino",
+    "readMore": "Leggere di più",
+    "knowMore": "Saperne di più",
+    "readLess": "Leggere meno",
+    "close": "Chiudere",
+    "description": "Descrizione",
+    "recommandations": "Raccomandazioni",
+    "informationDesks": "Luoghi di informazione",
+    "practicalInformations": "Informazioni pratiche",
+    "accessibility": "Accessibilità",
+    "toSee": "Vedi anche",
+    "transport": "Trasporto",
+    "stationnement": "Parcheggio",
+    "access_parking": "Accesso stradale e parcheggi",
+    "sensitiveAreasRef": "Zone sensibili",
+    "sensitiveAreas": {
+      "title": "Zone di sensibilità ambientale",
+      "intro": "Lungo il suo percorso, attraverserà zone sensibili legate alla presenza di una specie o di un ambiente particolare. In queste zone, un comportamento adeguato può contribuire alla loro conservazione. Per informazioni più dettagliate, sono disponibili schede specifiche per ogni zona.",
+      "period": "Periodi di sensibilità :",
+      "practices": "Aree di attività interessate :",
+      "contact": "Contatto :"
+    },
+    "altimetricProfile": {
+      "title": "Profilo altimetro",
+      "totalLength": "Lunghezza totale",
+      "minElevation": "Elevazione min",
+      "maxElevation": "Elevazione massima"
+    }
+  },
+  "touristicContent": {
+    "contact": "Contatto",
+    "email": "email",
+    "website": "Sito web"
+  },
+  "map": {
+    "layerButton": {
+      "classic": "Piano",
+      "satellite": "Satellite"
+    }
+  },
+  "footer": {
+    "linksSectionTitle": "Informazioni complementari",
+    "links": "Links",
+    "access": "Come arrivare",
+    "legalMentions": "Informazioni legali",
+    "accessibility": "Regole di accessibilità",
+    "geotrek": "Geotrek"
+  }
