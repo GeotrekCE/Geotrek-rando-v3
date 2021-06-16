@@ -3,6 +3,9 @@ const withImages = require('next-images');
 const withPlugins = require('next-compose-plugins');
 const withSourceMaps = require('@zeit/next-source-maps');
 const withPWA = require('next-pwa');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 const dotenv = require('dotenv-flow');
 const runtimeCachingStrategy = require('./cache');
 const headerConfig = require('./config/header.json');
@@ -15,7 +18,7 @@ const mergedHeaderConfig = {
 
 const env = dotenv.config().parsed;
 
-const plugins = [[withPWA], [withImages], [withSourceMaps()]];
+const plugins = [[withPWA], [withImages], [withSourceMaps()], [withBundleAnalyzer]];
 
 module.exports = withPlugins(plugins, {
   webpack(config, { isServer }) {
