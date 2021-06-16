@@ -9,6 +9,7 @@ const fieldsParams = {
 };
 
 export const fetchDetails = (query: APIQuery, id: string): Promise<RawDetails> => {
+  if (process.env.NODE_ENV !== 'production') console.info('[API] Fetch Details : ' + id)
   try {
     return GeotrekAPI.url(`/trek/${id}/`)
       .query({ ...query, ...fieldsParams })
