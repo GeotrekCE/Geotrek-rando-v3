@@ -7,6 +7,7 @@
     "dev": "NODE_ICU_DATA=node_modules/full-icu next ./src",
     "prod": "yarn build && yarn start",
     "build": "yarn node ./customizeManifest.js && next build ./src",
+    "bundle-analyze": "ANALYZE=true yarn build",
     "generate": "plop --plopfile scripts/generators/index.js",
     "start": "NODE_ENV=production node ./src/server.js",
     "test": "NODE_ICU_DATA=node_modules/full-icu jest --coverage=false --runInBand",
@@ -32,6 +33,7 @@
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^4.0.3",
+    "@next/bundle-analyzer": "^11.0.0",
     "@raruto/leaflet-elevation": "^1.5.4",
     "@sentry/browser": "^5.28.0",
     "@sentry/integrations": "^5.28.0",

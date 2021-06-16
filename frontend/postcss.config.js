@@ -22,7 +22,8 @@ module.exports = {
         ],
         defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
         safelist: {
-          standard: [/^slick-/, /dropdown/, /^leaflet-/]
+          standard: [/^slick-/, /dropdown/, /^leaflet-/],
+          greedy: [/elevation/, '/lightblue-theme/']
         }
       }
     ],
