@@ -1,4 +1,6 @@
 import { InfiniteData } from 'react-query';
+// @ts-ignore
+import { remove as removeDiacritics } from 'diacritics'
 
 import { routes } from 'services/routes';
 import { FilterState, Option } from 'modules/filters/interface';
@@ -60,7 +62,7 @@ export const formatInfiniteQuery = (
 
 /** Generates the details page url related to a result */
 export const generateResultDetailsUrl = (id: number | string, title: string): string => {
-  const titleWithNoSpace = title.replace(/ /g, '-');
+  const titleWithNoSpace = convertStringForSitemap(title);
   const detailsPageUrl = `${routes.DETAILS}/${id}-${encodeURI(titleWithNoSpace)}`;
 
   return detailsPageUrl;
@@ -68,3 +70,5 @@ export const generateResultDetailsUrl = (id: number | string, title: string): st
 
 export const getHoverId = ({ id, type }: TrekResult | TouristicContentResult | MapResult): string =>
   `SEARCH-${type}-${id}`;
+
+export const convertStringForSitemap = (text: string) => removeDiacritics((text || '').replace(/ /g, '-').replace(/'/g, '-').replace(/\+/g, ''))
