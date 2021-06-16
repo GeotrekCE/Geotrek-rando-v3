@@ -31,20 +31,19 @@
     }
   },
   "dependencies": {
+    "@fullhuman/postcss-purgecss": "^4.0.3",
     "@raruto/leaflet-elevation": "^1.5.4",
     "@sentry/browser": "^5.28.0",
     "@sentry/integrations": "^5.28.0",
     "@sentry/node": "^5.28.0",
     "@types/react-leaflet-markercluster": "^2.0.0",
     "@types/react-slick": "^0.23.4",
-    "@zeit/next-css": "^1.0.1",
     "@zeit/next-source-maps": "^0.0.4-canary.1",
     "autoprefixer": "^10.2.0",
     "axios": "^0.20.0",
     "bundlesize": "^0.18.0",
     "compression": "^1.7.4",
     "cypress": "^4.12.1",
-    "d3": "^6.5.0",
     "dotenv-flow": "^3.2.0",
     "es6-promise": "^4.2.8",
     "express": "^4.17.1",
@@ -87,14 +86,12 @@
     "ts-node": "^9.1.0",
     "typesafe-actions": "^5.1.0",
     "wait-on": "^5.2.0",
-    "wretch": "^1.7.4",
-    "yup": "^0.29.3"
+    "wretch": "^1.7.4"
   },
   "devDependencies": {
     "@accessible/accordion": "^2.0.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
-    "@types/d3": "^6.3.0",
     "@types/jest": "^26.0.16",
     "@types/leaflet": "^1.5.19",
     "@types/lodash": "^4.14.165",
