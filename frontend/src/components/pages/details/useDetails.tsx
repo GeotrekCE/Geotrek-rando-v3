@@ -67,11 +67,13 @@ export const useDetails = (
   const useSectionReferenceCallback = (sectionName: DetailsSections) =>
     useCallback((node: HTMLDivElement | null) => {
       if (node !== null) {
-        sectionsReferences.current[sectionName] = node;
-        setSectionsPositions(currentSectionsPositions => ({
-          ...currentSectionsPositions,
-          [sectionName]: getDimensions(node),
-        }));
+        setTimeout(() => {
+          sectionsReferences.current[sectionName] = node;
+          setSectionsPositions(currentSectionsPositions => ({
+            ...currentSectionsPositions,
+            [sectionName]: getDimensions(node),
+          }));
+        }, 1000);
       }
     }, []);
 

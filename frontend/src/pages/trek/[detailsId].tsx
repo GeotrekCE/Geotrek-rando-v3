@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { DetailsUI } from 'components/pages/details';
+import { useEffect } from 'react';
 import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import { getDetails, getTrekFamily } from 'modules/details/connector';
@@ -34,6 +35,11 @@ const Details = () => {
   const router = useRouter();
   const { detailsId, parentId } = router.query;
   const language = router.locale ?? getDefaultLanguage();
+
+  useEffect(() => {
+    // Force to scroll top on page refresh
+    window.history.scrollRestoration = 'manual';
+  }, []);
 
   return <DetailsUI detailsId={detailsId} parentId={parentId} language={language} />;
 };
