@@ -123,7 +123,7 @@ const OptionalLink: React.FC<OptionalLinkProps> = ({ redirectionUrl, children })
 };
 
 const DetailsCardContainer = styled.div<{ height: number }>`
-  height: auto;
+  height: fit-content;
   flex: none;
   overflow: hidden;
   display: flex;
