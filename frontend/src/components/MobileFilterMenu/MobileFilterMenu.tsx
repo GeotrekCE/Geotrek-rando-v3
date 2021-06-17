@@ -1,6 +1,6 @@
 import React from 'react';
 // @ts-ignore Not official but useful to reduce bundle size
-import Slide from 'react-burger-menu/lib/menus/slide'
+import Slide from 'react-burger-menu/lib/menus/slide';
 import { useIntl } from 'react-intl';
 
 import { Cross } from 'components/Icons/Cross';

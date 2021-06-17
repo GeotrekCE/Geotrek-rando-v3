@@ -2,7 +2,7 @@ import App, { AppContext, AppInitialProps } from 'next/app';
 
 import { Root } from 'components/pages/_app/Root';
 import { Hydrate } from 'react-query/hydration';
-import {ONE_MINUTE} from "services/constants/staleTime"
+import { ONE_MINUTE } from 'services/constants/staleTime';
 import { captureException } from 'services/sentry';
 import '../public/fonts.css';
 import 'customization/theme/style.css';
@@ -16,8 +16,6 @@ import { ListAndMapProvider } from 'modules/map/ListAndMapContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { getHeaderConfig } from 'modules/header/utills';
 import { flattenMessages } from 'services/i18n/intl';
-
-
 
 const queryClient = new QueryClient({
   defaultOptions: {

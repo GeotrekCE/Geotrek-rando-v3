@@ -1,10 +1,9 @@
 import React from 'react';
 // @ts-ignore
-import { remove as removeDiacritics } from 'diacritics'
+import { remove as removeDiacritics } from 'diacritics';
 import { getHeaderConfig } from 'modules/header/utills';
 import { getGlobalConfig } from 'modules/utils/api.config';
-import {convertStringForSitemap, generateResultDetailsUrl} from 'components/pages/search/utils';
-
+import { convertStringForSitemap, generateResultDetailsUrl } from 'components/pages/search/utils';
 
 const LIMIT = 10000; // This limit is high so we don't have to iterate through result, one call willl get us every treks or touristic content we need
 
@@ -56,9 +55,12 @@ const getApiContentForLanguage = async (language: string): Promise<string> => {
     .join('');
   const touristicContents = await getTouristicContentsForLanguage(language);
   const touristicContentUrls = touristicContents
-    .map(
-      ({ id, name }) =>
-        name && id ? `<url><loc>${baseUrl}/service/${id}-${encodeURI(convertStringForSitemap(name))}</loc></url>` : '',
+    .map(({ id, name }) =>
+      name && id
+        ? `<url><loc>${baseUrl}/service/${id}-${encodeURI(
+            convertStringForSitemap(name),
+          )}</loc></url>`
+        : '',
     )
     .join('');
   const flatPages = await getFlatPagesForLanguage(language);
@@ -66,9 +68,11 @@ const getApiContentForLanguage = async (language: string): Promise<string> => {
     .map(({ id, title, external_url }) =>
       external_url !== null && external_url.length > 0
         ? `<url><loc>${external_url}</loc></url>`
-        : title && id ? `<url><loc>${baseUrl}/information/${id}-${encodeURI(
-        convertStringForSitemap(title),
-          )}</loc></url>` : '',
+        : title && id
+        ? `<url><loc>${baseUrl}/information/${id}-${encodeURI(
+            convertStringForSitemap(title),
+          )}</loc></url>`
+        : '',
     )
     .join('');
   return [
