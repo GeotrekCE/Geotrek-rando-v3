@@ -1,5 +1,23 @@
 # Changelog
 
+3.0.4 (unreleased)
+------------------
+
+**✨ Improvements**
+
+* Add Italian translation
+* Add ``xxx`` parameter to allow to disable search engine indexation (#410)
+* Improve URL by removing accents with ``diacritics``
+* Remove some unused dependancies (#362)
+* Add ``purgecss`` to reduce CSS bundle size (#362)
+* Improve ``react-query`` configuration for a better management of cache (hydration) (#362)
+
+**🐛 Fixes**
+
+* Add protections to generate sitemap, even when an object has no ``name`` (#422)
+
+Fixes #362 #422
+
 3.0.3 (2021-05-11)
 ------------------
 
