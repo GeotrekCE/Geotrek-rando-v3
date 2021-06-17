@@ -1,6 +1,6 @@
 import { Separator } from 'components/Separator';
 import styled from 'styled-components';
-import { scrollBar, sizes } from 'stylesheet';
+import { MAX_WIDTH_MOBILE, scrollBar, sizes } from 'stylesheet';
 import { marginDetailsChild } from '../../Details';
 import { DetailsCard, DetailsCardProps } from '../DetailsCard/DetailsCard';
 
@@ -93,7 +93,9 @@ const ScrollContainer = styled.div`
   &::-webkit-scrollbar-thumb {
     ${scrollBar.thumb}
   }
-  max-height: calc(
-    100vh - ${sizes.desktopHeader + sizes.detailsHeaderDesktop + offsetTopForTitle}px
-  );
+  @media (min-width: ${MAX_WIDTH_MOBILE}px) {
+    max-height: calc(
+      100vh - ${sizes.desktopHeader + sizes.detailsHeaderDesktop + offsetTopForTitle}px
+    );
+  }
 `;
