@@ -11,5 +11,6 @@
   "baseUrl": "https://geotrek-rando-v3-pi.vercel.app",
   "fallbackImageUri": "https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png",
   "touristicContentLabelImageUri": "https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png",
-  "applicationName": "Geotrek-rando"
+  "applicationName": "Geotrek-rando",
+  "enableIndexation": true
 }

@@ -53,6 +53,7 @@ export interface APICallsConfig {
   fallbackImageUri: string;
   touristicContentLabelImageUri: string;
   applicationName: string;
+  enableIndexation: boolean;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */
