@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useInfiniteQuery } from 'react-query';
 import { useEffect, useRef, useState } from 'react';
 
@@ -43,6 +44,8 @@ export const useTrekResults = (
 
   const filterUrl = useRef(computeUrl(filtersState, textFilterState));
 
+  const router = useRouter();
+
   const {
     data,
     isLoading,
@@ -75,7 +78,7 @@ export const useTrekResults = (
     const url = computeUrl(filtersState, textFilterState);
     if (url !== filterUrl.current) {
       filterUrl.current = url;
-      window.history.replaceState(null, '', url);
+      void router.push(url, undefined, { shallow: true });
       void refetch();
     }
   }, [filtersState, textFilterState, refetch]);
