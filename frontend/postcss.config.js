@@ -17,15 +17,14 @@ module.exports = {
     [
       '@fullhuman/postcss-purgecss',
       {
-        content: [
-          './src/**/*.{js,jsx,ts,tsx}',
-        ],
+        content: ['./src/**/*.{js,jsx,ts,tsx}'],
         defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
         safelist: {
           standard: [/^slick-/, /dropdown/, /^leaflet-/],
-          greedy: [/elevation/, '/lightblue-theme/']
-        }
-      }
+          deep: [],
+          greedy: [/elevation/, /lightblue-theme/],
+        },
+      },
     ],
   ],
 };
