@@ -5,7 +5,7 @@ import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { FilterState, Option } from 'modules/filters/interface';
 import React from 'react';
 // @ts-ignore Not official but useful to reduce bundle size
-import Slide from 'react-burger-menu/lib/menus/slide'
+import Slide from 'react-burger-menu/lib/menus/slide';
 import { useIntl } from 'react-intl';
 
 import { CloseButton } from './CloseButton';

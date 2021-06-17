@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import { Details, TrekFamily } from 'modules/details/interface';
 import { getDetails, getTrekFamily } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
-import {ONE_DAY} from "services/constants/staleTime"
+import { ONE_DAY } from 'services/constants/staleTime';
 import { isRessourceMissing } from 'services/routeUtils';
 import { useCallback, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -47,7 +47,7 @@ export const useDetails = (
           await router.push(routes.HOME);
         }
       },
-      staleTime: ONE_DAY
+      staleTime: ONE_DAY,
     },
   );
 
@@ -57,7 +57,7 @@ export const useDetails = (
     () => getTrekFamily(isUrlString(parentId) ? parentId : '', language),
     {
       enabled: isUrlString(parentId),
-      staleTime: ONE_DAY
+      staleTime: ONE_DAY,
     },
   );
 

@@ -1,6 +1,6 @@
 import { InfiniteData } from 'react-query';
 // @ts-ignore
-import { remove as removeDiacritics } from 'diacritics'
+import { remove as removeDiacritics } from 'diacritics';
 
 import { routes } from 'services/routes';
 import { FilterState, Option } from 'modules/filters/interface';
@@ -71,4 +71,5 @@ export const generateResultDetailsUrl = (id: number | string, title: string): st
 export const getHoverId = ({ id, type }: TrekResult | TouristicContentResult | MapResult): string =>
   `SEARCH-${type}-${id}`;
 
-export const convertStringForSitemap = (text: string) => removeDiacritics((text || '').replace(/ /g, '-').replace(/'/g, '-').replace(/\+/g, ''))
+export const convertStringForSitemap = (text: string) =>
+  removeDiacritics((text || '').replace(/ /g, '-').replace(/'/g, '-').replace(/\+/g, ''));

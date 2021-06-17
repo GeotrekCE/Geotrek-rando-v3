@@ -4,7 +4,7 @@ import { getDefaultLanguage } from 'modules/header/utills';
 import { isUrlString } from 'modules/utils/string';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
-import {ONE_DAY} from "services/constants/staleTime"
+import { ONE_DAY } from 'services/constants/staleTime';
 
 export const useFlatPage = (flatPageUrl: string | string[] | undefined) => {
   const language = useRouter().locale ?? getDefaultLanguage();
@@ -15,7 +15,7 @@ export const useFlatPage = (flatPageUrl: string | string[] | undefined) => {
     () => getFlatPageDetails(id, language),
     {
       enabled: isUrlString(flatPageUrl),
-      staleTime: ONE_DAY
+      staleTime: ONE_DAY,
     },
   );
   return { id, flatPage: data, refetch, isLoading, error, path };

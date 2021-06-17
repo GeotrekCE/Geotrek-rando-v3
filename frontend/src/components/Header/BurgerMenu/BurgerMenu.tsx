@@ -1,5 +1,5 @@
 // @ts-ignore Not official but useful to reduce bundle size
-import Slide from 'react-burger-menu/lib/menus/slide'
+import Slide from 'react-burger-menu/lib/menus/slide';
 import { MenuConfig, MenuItem } from 'modules/header/interface';
 import { useIntl } from 'react-intl';
 import { routes } from 'services/routes';
