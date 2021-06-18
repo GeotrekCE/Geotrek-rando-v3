@@ -1,4 +1,5 @@
 import { Layout } from 'components/Layout/Layout';
+import { Modal } from 'components/Modal';
 import Loader from 'react-loader';
 import parse from 'html-react-parser';
 import { FormattedMessage } from 'react-intl';
@@ -116,16 +117,23 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   desktop:w-3/5"
                 >
                   <OpenMapButton displayMap={displayMobileMap} />
-                  <div
-                    id="details_cover"
-                    className="h-coverDetailsMobile desktop:h-coverDetailsDesktop"
-                  >
-                    {details.imgs.length > 1 ? (
-                      <DetailsCoverCarousel attachments={details.imgs} />
-                    ) : (
-                      <ImageWithLegend attachment={details.imgs[0]} />
+                  <Modal>
+                    {({ toggleFullscreen }) => (
+                      <div id="details_cover">
+                        {details.imgs.length > 1 ? (
+                          <DetailsCoverCarousel
+                            attachments={details.imgs}
+                            onClickImage={toggleFullscreen}
+                          />
+                        ) : (
+                          <ImageWithLegend
+                            attachment={details.imgs[0]}
+                            onClick={toggleFullscreen}
+                          />
+                        )}
+                      </div>
                     )}
-                  </div>
+                  </Modal>
                   <div
                     id="details_textContainer"
                     className="desktop:py-0
@@ -184,6 +192,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             name: poi.name ?? '',
                             description: poi.description,
                             thumbnailUris: poi.thumbnailUris,
+                            attachments: poi.attachments,
                             iconUri: poi.type.pictogramUri,
                           }))}
                           type="POI"
@@ -369,6 +378,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             place: touristicContent.category.label,
                             description: touristicContent.descriptionTeaser,
                             thumbnailUris: touristicContent.thumbnailUris,
+                            attachments: touristicContent.attachments,
                             iconUri: touristicContent.category.pictogramUri,
                             logoUri: touristicContent.logoUri ?? undefined,
                           }))}

@@ -1,5 +1,5 @@
 import { PoiTypeDictionnary } from 'modules/poiType/interface';
-import { getThumbnails } from 'modules/utils/adapter';
+import { getAttachments, getThumbnails } from 'modules/utils/adapter';
 import { Poi, RawPoi } from './interface';
 
 export const adaptPoi = ({
@@ -14,6 +14,7 @@ export const adaptPoi = ({
     name: rawPoi.name,
     description: rawPoi.description,
     thumbnailUris: getThumbnails(rawPoi.attachments),
+    attachments: getAttachments(rawPoi.attachments),
     type: poiTypes[rawPoi.type],
     geometry: {
       x: rawPoi.geometry.coordinates[0],
