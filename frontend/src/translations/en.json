@@ -93,7 +93,10 @@
       "totalLength": "Total length",
       "minElevation": "Min elevation",
       "maxElevation": "Max elevation"
-    }
+    },
+    "departure": "Departure",
+    "arrival": "Arrival",
+    "cities": "Towns crossed"
   },
   "touristicContent": {
     "contact": "Contact",

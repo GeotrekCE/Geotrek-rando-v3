@@ -18,6 +18,7 @@ import { TouristicContent } from 'modules/touristicContent/interface';
 import { getAttachments } from 'modules/utils/adapter';
 import { adaptGeometry2D, flattenMultiLineStringCoordinates } from 'modules/utils/geometry';
 import { formatHours } from 'modules/utils/time';
+import { adaptCities } from '../city/adapter';
 import { Details, RawDetails, TrekChildGeometry, TrekFamily } from './interface';
 
 export const adaptResults = ({
@@ -92,6 +93,9 @@ export const adaptResults = ({
       )},"properties":null}]}`,
       trekDeparture: adaptGeometry2D(coordinates[0]),
       trekArrival: adaptGeometry2D(coordinates[coordinates.length - 1]),
+      departure: rawDetailsProperties.departure,
+      arrival: rawDetailsProperties.arrival,
+      cities: (rawDetailsProperties.cities || []).map(id => cityDictionnary[id].name),
       touristicContents,
       parkingLocation:
         rawDetailsProperties.parking_location !== null

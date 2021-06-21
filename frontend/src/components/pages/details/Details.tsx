@@ -204,6 +204,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       <div ref={setDescriptionRef} id="details_description_ref">
                         <DetailsDescription
                           descriptionHtml={details.description}
+                          departure={details.departure}
+                          arrival={details.arrival}
+                          cities={details.cities}
                           className={marginDetailsChild}
                         />
                       </div>
