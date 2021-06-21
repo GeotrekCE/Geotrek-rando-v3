@@ -11,9 +11,10 @@
 * Add download buttons on trek mobile detail pages (#405)
 * Add ``enableIndexation`` setting to allow to disable search engine indexation, ``true`` by default (#410)
 * Improve URL by removing accents with ``diacritics``
-* Remove some unused dependancies (#362)
-* Add ``purgecss`` to reduce CSS bundle size (#362)
-* Improve ``react-query`` configuration for a better management of cache (hydration) (#362)
+* Improve performances (#362) :
+   * Remove some unused dependancies
+   * Add ``purgecss`` to reduce CSS bundle size
+   * Improve ``react-query`` configuration for a better management of cache (hydration)
 
 **🐛 Fixes**
 
