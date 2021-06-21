@@ -1,5 +1,4 @@
 import { SmallCarousel } from 'components/Carousel';
-import { Attachment } from '../../../../../modules/interface';
 import { CardSingleImage } from '../DetailsCard';
 
 interface DetailsCardCarouselProps {
@@ -8,11 +7,9 @@ interface DetailsCardCarouselProps {
   onClickImage?: () => void;
 }
 
-const noop = (noop: any) => noop;
-
 export const DetailsCardCarousel: React.FC<DetailsCardCarouselProps> = ({
   thumbnailUris,
-  onClickImage = noop,
+  onClickImage,
   height,
 }) => {
   return (
