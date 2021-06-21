@@ -88,7 +88,7 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => 
               <ResultCardCarousel
                 thumbnailUris={thumbnailUris}
                 iconUri={badgeIconUri}
-                onClickImage={!!attachments ? toggleFullscreen : undefined}
+                onClickImage={attachments ? toggleFullscreen : undefined}
               />
             )}
           </>

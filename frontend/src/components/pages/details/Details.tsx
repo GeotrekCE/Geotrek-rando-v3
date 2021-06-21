@@ -64,8 +64,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
     path,
   } = useDetails(detailsId, parentId, language);
 
-  console.log('details:', details);
-
   /** Ref of the parent of all sections */
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
 
