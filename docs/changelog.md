@@ -6,6 +6,9 @@
 **✨ Improvements**
 
 * Add Italian translation
+* Add departure, arrival and cities on trek detail pages (#369)
+* Allow to display fullscreen images (#403)
+* Add download buttons on trek mobile detail pages (#405)
 * Add ``enableIndexation`` setting to allow to disable search engine indexation, ``true`` by default (#410)
 * Improve URL by removing accents with ``diacritics``
 * Remove some unused dependancies (#362)
