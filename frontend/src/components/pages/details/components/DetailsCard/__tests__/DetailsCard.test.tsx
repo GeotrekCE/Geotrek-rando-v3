@@ -5,6 +5,13 @@ describe('DetailsCard', () => {
     const propsCard = {
       name: 'Église St Louis',
       id: '2',
+      attachments: [
+        {
+          url: 'https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg',
+          author: 'Lorem ipsum',
+          legend: 'Lorem ipsum',
+        },
+      ],
       thumbnailUris: ['https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg'],
       iconUri: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg',
       description:

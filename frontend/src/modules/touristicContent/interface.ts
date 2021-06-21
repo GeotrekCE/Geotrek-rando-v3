@@ -64,6 +64,7 @@ export interface TouristicContent {
   name: string;
   descriptionTeaser: string;
   thumbnailUris: string[];
+  attachments: Attachment[];
   category: TouristicContentCategory;
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry | null;
   logoUri: string | null;

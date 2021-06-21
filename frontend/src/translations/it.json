@@ -94,7 +94,10 @@
       "totalLength": "Lunghezza totale",
       "minElevation": "Elevazione min",
       "maxElevation": "Elevazione massima"
-    }
+    },
+    "departure": "Partenza",
+    "arrival": "Arrivo",
+    "cities": "Comune attraversato"
   },
   "touristicContent": {
     "contact": "Contatto",
@@ -115,4 +118,4 @@
     "accessibility": "Regole di accessibilità",
     "geotrek": "Geotrek"
   }
-]
+}

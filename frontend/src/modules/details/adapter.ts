@@ -92,6 +92,9 @@ export const adaptResults = ({
       )},"properties":null}]}`,
       trekDeparture: adaptGeometry2D(coordinates[0]),
       trekArrival: adaptGeometry2D(coordinates[coordinates.length - 1]),
+      departure: rawDetailsProperties.departure,
+      arrival: rawDetailsProperties.arrival,
+      cities: (rawDetailsProperties.cities || []).map(id => cityDictionnary[id].name),
       touristicContents,
       parkingLocation:
         rawDetailsProperties.parking_location !== null

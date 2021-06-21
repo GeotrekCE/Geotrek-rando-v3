@@ -1,5 +1,5 @@
 import { Activity } from 'modules/activities/interface';
-import { RawAttachment } from 'modules/interface';
+import { Attachment, RawAttachment } from 'modules/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 
 export interface SearchResults {
@@ -19,6 +19,7 @@ export interface TrekResult {
   title: string;
   tags: string[];
   thumbnailUris: string[];
+  attachments: Attachment[];
   practice: Activity | null; // should be an object
   informations: {
     duration: string | null;

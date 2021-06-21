@@ -35,6 +35,7 @@ export const adaptTouristicContent = ({
     name: rawTouristicObject.name,
     descriptionTeaser: rawTouristicObject.description_teaser,
     thumbnailUris: getThumbnails(rawTouristicObject.attachments),
+    attachments: getAttachments(rawTouristicObject.attachments),
     category: touristicContentCategories[rawTouristicObject.category],
     geometry: rawTouristicObject.geometry ? adaptGeometry(rawTouristicObject.geometry) : null,
     // An "approuved" touristic content means that the content is labeled by the park. A logo (configurable by the park) appears on the page.

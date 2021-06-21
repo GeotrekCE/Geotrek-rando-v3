@@ -94,7 +94,10 @@
       "totalLength": "Longueur totale",
       "minElevation": "Elevation min",
       "maxElevation": "Elevation max"
-    }
+    },
+    "departure": "Départ",
+    "arrival": "Arrivée",
+    "cities": "Commune traversées"
   },
   "touristicContent": {
     "contact": "Contact",

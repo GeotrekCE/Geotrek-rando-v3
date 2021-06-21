@@ -42,3 +42,11 @@
   fill: #aa397d94 !important;
   stroke: #aa397d !important;
 }
+
+#details_cover {
+  height: 100%;
+}
+
+#details_cover_image {
+  height: 100%;
+}

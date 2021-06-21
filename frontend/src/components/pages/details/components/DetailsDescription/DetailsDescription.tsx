@@ -2,16 +2,23 @@ import { FormattedMessage } from 'react-intl';
 import styled, { css } from 'styled-components';
 import { colorPalette, desktopOnly, getSpacing, shadow, typography } from 'stylesheet';
 import parse from 'html-react-parser';
+import { CityDictionnary } from '../../../../../modules/city/interface';
 import { HtmlText } from '../../utils';
 
 interface DetailsDescriptionProps {
   descriptionHtml: string;
   className?: string;
+  departure?: string;
+  arrival?: string;
+  cities?: string[];
 }
 
 export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
   descriptionHtml,
   className,
+  departure,
+  arrival,
+  cities,
 }) => {
   return (
     <div
@@ -27,6 +34,22 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
       <div id="details_descriptionContent" className="mt-3 desktop:mt-4 mb-6 desktop:mb-12">
         <StyledListWithSteps>{parse(descriptionHtml)}</StyledListWithSteps>
       </div>
+
+      {departure && (
+        <div>
+          <FormattedMessage id="details.departure" /> : {departure}
+        </div>
+      )}
+      {arrival && (
+        <div>
+          <FormattedMessage id="details.arrival" /> : {departure}
+        </div>
+      )}
+      {cities && cities.length > 0 && (
+        <div>
+          <FormattedMessage id="details.cities" /> : {cities.join(', ')}
+        </div>
+      )}
     </div>
   );
 };

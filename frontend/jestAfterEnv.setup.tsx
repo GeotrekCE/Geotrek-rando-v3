@@ -83,6 +83,11 @@ jest.mock('./src/modules/home/utils.ts', () => ({
   getHomePageConfig: () => mockConfig,
 }));
 
+jest.mock('screenfull', () => ({
+  onchange: jest.fn(),
+  on: jest.fn(),
+}));
+
 window.matchMedia =
   window.matchMedia ||
   function () {

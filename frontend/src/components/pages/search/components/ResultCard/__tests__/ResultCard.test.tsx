@@ -15,6 +15,7 @@ describe('Results Card', () => {
       title={title}
       tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
       thumbnailUris={['']}
+      attachments={[]}
       badgeIconUri=""
       informations={{
         duration: '2h',

@@ -1,3 +1,5 @@
+import { Modal } from 'components/Modal';
+import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
 import { useContext } from 'react';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import parse from 'html-react-parser';
@@ -8,6 +10,7 @@ import { Link } from 'components/Link';
 import { ListAndMapContext } from 'modules/map/ListAndMapContext';
 import { CardIcon } from 'components/CardIcon';
 import { getSpacing, MAX_WIDTH_MOBILE } from 'stylesheet';
+import { Attachment } from '../../../../../modules/interface';
 import { useDetailsCard } from './useDetailsCard';
 import { DetailsCardCarousel } from '../DetailsCardCarousel';
 export interface DetailsCardProps {
@@ -16,6 +19,7 @@ export interface DetailsCardProps {
   place?: string;
   description?: string;
   thumbnailUris: string[];
+  attachments: Attachment[];
   iconUri?: string;
   logoUri?: string;
   className?: string;
@@ -27,6 +31,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   name,
   description,
   thumbnailUris,
+  attachments,
   iconUri,
   place,
   logoUri,
@@ -67,11 +72,22 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         />
       )}
       <div className="flex-none desktop:w-2/5">
-        {thumbnailUris.length > 1 ? (
-          <DetailsCardCarousel thumbnailUris={thumbnailUris} height={heightState} />
-        ) : (
-          <CardSingleImage src={thumbnailUris[0]} height={heightState} />
-        )}
+        <Modal>
+          {({ isFullscreen, toggleFullscreen }) => (
+            <>
+              {isFullscreen && attachments && attachments.length > 0 && (
+                <DetailsCoverCarousel attachments={attachments} />
+              )}
+              {!isFullscreen && (
+                <DetailsCardCarousel
+                  thumbnailUris={thumbnailUris}
+                  height={heightState}
+                  onClickImage={toggleFullscreen}
+                />
+              )}
+            </>
+          )}
+        </Modal>
         {iconUri && <CardIcon iconUri={iconUri} />}
       </div>
       <div
@@ -147,6 +163,10 @@ export const CardSingleImage = styled.img<{ height: number }>`
   object-position: top;
   @media (min-width: ${MAX_WIDTH_MOBILE}px) {
     height: ${props => props.height}px;
+    width: 100%;
+  }
+  @media (display-mode: fullscreen) {
+    height: 100%;
     width: 100%;
   }
 `;

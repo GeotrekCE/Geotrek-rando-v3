@@ -31,6 +31,8 @@ export interface RawDetailsProperties {
   id: number;
   name: string;
   departure: string;
+  arrival: string;
+  cities: string[];
   attachments: RawAttachment[];
   practice: number | null;
   public_transport: string;
@@ -51,6 +53,7 @@ export interface RawDetailsProperties {
   gpx: string;
   kml: string;
   departure_city: string;
+  arrival_city: string;
   disabled_infrastructure: string;
   accessibilities: number[];
   source: number[];
@@ -124,6 +127,9 @@ export interface Details extends DetailsHtml {
   bbox: Bbox;
   children: TrekResultWithGeometry[];
   sensitiveAreas: SensitiveArea[];
+  departure: string;
+  arrival: string;
+  cities: string[];
 }
 
 export interface RawTrekChildIds {

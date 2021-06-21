@@ -3,13 +3,17 @@ import { LargeCarousel } from 'components/Carousel';
 
 interface DetailsCoverCarouselProps {
   attachments: Attachment[];
+  onClickImage?: () => void;
 }
 
-export const DetailsCoverCarousel: React.FC<DetailsCoverCarouselProps> = ({ attachments }) => {
+export const DetailsCoverCarousel: React.FC<DetailsCoverCarouselProps> = ({
+  attachments,
+  onClickImage,
+}) => {
   return (
     <LargeCarousel className="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop">
       {attachments.map((attachment, i) => (
-        <ImageWithLegend attachment={attachment} key={i} />
+        <ImageWithLegend attachment={attachment} key={i} onClick={onClickImage} />
       ))}
     </LargeCarousel>
   );
@@ -17,15 +21,18 @@ export const DetailsCoverCarousel: React.FC<DetailsCoverCarouselProps> = ({ atta
 
 interface ImageWithLegendProps {
   attachment: Attachment;
+  onClick?: () => void;
 }
 
-export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({ attachment }) => (
-  <div id="details_cover_image" className="relative">
+export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({ attachment, onClick }) => (
+  <div
+    id="details_cover_image"
+    style={{ cursor: onClick ? 'pointer' : 'initial' }}
+    className="relative"
+    onClick={onClick}
+  >
     <Legend author={attachment.author} legend={attachment.legend} />
-    <img
-      src={attachment.url}
-      className="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
-    />
+    <img src={attachment.url} className="object-cover object-top overflow-hidden w-full h-full" />
   </div>
 );
 
