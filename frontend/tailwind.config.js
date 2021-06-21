@@ -4,7 +4,7 @@ const customColors = require('./customization/theme/colors.json');
 const SPACING_UNIT = 4;
 
 module.exports = {
-  // purge: ['./components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
+  purge: false,
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
