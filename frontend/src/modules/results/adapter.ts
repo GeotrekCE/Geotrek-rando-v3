@@ -48,6 +48,7 @@ export const adaptTrekResultList = ({
     title: rawResult.name,
     tags: rawResult.themes.map(themeId => themes[themeId].label),
     thumbnailUris: getThumbnails(rawResult.attachments),
+    attachments: getAttachments(rawResult.attachments),
     practice: activities[rawResult.practice] ?? null,
     informations: {
       duration: rawResult.duration !== null ? formatHours(rawResult.duration) : null,

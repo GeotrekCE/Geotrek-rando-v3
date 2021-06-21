@@ -18,7 +18,6 @@ import { TouristicContent } from 'modules/touristicContent/interface';
 import { getAttachments } from 'modules/utils/adapter';
 import { adaptGeometry2D, flattenMultiLineStringCoordinates } from 'modules/utils/geometry';
 import { formatHours } from 'modules/utils/time';
-import { adaptCities } from '../city/adapter';
 import { Details, RawDetails, TrekChildGeometry, TrekFamily } from './interface';
 
 export const adaptResults = ({

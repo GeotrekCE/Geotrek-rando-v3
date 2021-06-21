@@ -37,6 +37,7 @@ Object {
                 <div
                   class="relative"
                   id="details_cover_image"
+                  style="cursor: initial;"
                 >
                   <div
                     class="w-full h-12 desktop:h-40
@@ -52,7 +53,7 @@ Object {
                     </span>
                   </div>
                   <img
-                    class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    class="object-cover object-top overflow-hidden w-full h-full"
                     src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                   />
                 </div>
@@ -83,6 +84,7 @@ Object {
                 <div
                   class="relative"
                   id="details_cover_image"
+                  style="cursor: initial;"
                 >
                   <div
                     class="w-full h-12 desktop:h-40
@@ -98,7 +100,7 @@ Object {
                     </span>
                   </div>
                   <img
-                    class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                    class="object-cover object-top overflow-hidden w-full h-full"
                     src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                   />
                 </div>
@@ -186,6 +188,7 @@ Object {
               <div
                 class="relative"
                 id="details_cover_image"
+                style="cursor: initial;"
               >
                 <div
                   class="w-full h-12 desktop:h-40
@@ -201,7 +204,7 @@ Object {
                   </span>
                 </div>
                 <img
-                  class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  class="object-cover object-top overflow-hidden w-full h-full"
                   src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                 />
               </div>
@@ -232,6 +235,7 @@ Object {
               <div
                 class="relative"
                 id="details_cover_image"
+                style="cursor: initial;"
               >
                 <div
                   class="w-full h-12 desktop:h-40
@@ -247,7 +251,7 @@ Object {
                   </span>
                 </div>
                 <img
-                  class="object-cover object-top overflow-hidden h-coverDetailsMobile desktop:h-coverDetailsDesktop w-full"
+                  class="object-cover object-top overflow-hidden w-full h-full"
                   src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                 />
               </div>

@@ -1,3 +1,5 @@
+import { Modal } from 'components/Modal';
+import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
 import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
@@ -16,7 +18,7 @@ import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 import { ListAndMapContext } from 'modules/map/ListAndMapContext';
 
-import { CardIcon } from 'components/CardIcon';
+import { Attachment } from '../../../../../modules/interface';
 import { ResultCardCarousel } from './ResultCardCarousel';
 
 interface BaseProps {
@@ -26,6 +28,7 @@ interface BaseProps {
   title: string;
   tags: string[];
   thumbnailUris: string[];
+  attachments?: Attachment[];
   badgeIconUri?: string;
   className?: string;
   redirectionUrl: string;
@@ -58,6 +61,7 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => 
     title,
     tags,
     thumbnailUris,
+    attachments,
     badgeIconUri,
     className,
     redirectionUrl,
@@ -74,13 +78,22 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => 
       className={className}
       id="result_card"
     >
-      {thumbnailUris.length > 1 ? (
-        <ResultCardCarousel thumbnailUris={thumbnailUris} iconUri={badgeIconUri} />
-      ) : (
-        <ImageContainer imageUri={thumbnailUris[0]}>
-          {badgeIconUri !== undefined && <CardIcon iconUri={badgeIconUri} />}
-        </ImageContainer>
-      )}
+      <Modal>
+        {({ isFullscreen, toggleFullscreen }) => (
+          <>
+            {isFullscreen && attachments && attachments.length > 0 && (
+              <DetailsCoverCarousel attachments={attachments} />
+            )}
+            {(!isFullscreen || !attachments) && (
+              <ResultCardCarousel
+                thumbnailUris={thumbnailUris}
+                iconUri={badgeIconUri}
+                onClickImage={!!attachments ? toggleFullscreen : undefined}
+              />
+            )}
+          </>
+        )}
+      </Modal>
 
       <Link href={redirectionUrl} testId={`Link-ResultCard-${id}`} className="w-full">
         <DetailsContainer>
