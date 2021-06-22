@@ -52,9 +52,9 @@ const Legend: React.FC<LegendProps> = ({ author, legend }) => {
       hasLegendOrAuthor && (
         <div
           className={`w-full h-12 desktop:h-40
-          absolute bottom-0 desktop:top-0 flex items-end desktop:items-start justify-center
-          py-1 px-2 desktop:pt-3 desktop:px-10
-          bg-gradient-to-t desktop:bg-gradient-to-b from-blackSemiOpaque desktop:from-blackSemiTransparent to-transparent
+          absolute top-0 flex items-start justify-center
+          py-1 px-2 pt-3 px-10
+          bg-gradient-to-b from-blackSemiTransparent to-transparent
           text-white text-opacity-90 text-Mobile-C3 desktop:text-P2`}
         >
           <span className="mx-15 truncate">{fullText}</span>
