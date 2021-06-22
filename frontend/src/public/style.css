@@ -43,11 +43,13 @@
   stroke: #aa397d !important;
 }
 
-#details_cover {
+#details_cover,
+#touristicContent_cover {
   height: 100%;
 }
 
-#details_cover_image {
+#details_cover_image,
+#touristicContent_cover_image {
   height: 100%;
 }
 
