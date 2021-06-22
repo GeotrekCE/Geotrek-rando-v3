@@ -1,4 +1,3 @@
-import { NextRouter, useRouter } from 'next/router';
 import { routes } from 'services/routes';
 import headerConfig from '../../../config/header.json';
 import structureHeaderConfig from '../../../customization/config/header.json';

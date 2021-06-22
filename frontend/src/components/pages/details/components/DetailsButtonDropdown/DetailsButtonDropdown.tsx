@@ -6,7 +6,6 @@ interface DetailsButtonDropdownProps {
 }
 
 const onChange = (v: Option) => {
-  console.log('v:', v);
   const link = document.createElement('a');
   link.setAttribute('href', v.value);
   document.body.appendChild(link);

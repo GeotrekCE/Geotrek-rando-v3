@@ -1,8 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 import styled, { css } from 'styled-components';
-import { colorPalette, desktopOnly, getSpacing, shadow, typography } from 'stylesheet';
+import { colorPalette, desktopOnly, getSpacing, shadow } from 'stylesheet';
 import parse from 'html-react-parser';
-import { CityDictionnary } from '../../../../../modules/city/interface';
 import { HtmlText } from '../../utils';
 
 interface DetailsDescriptionProps {

@@ -96,7 +96,6 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                 flex flex-col"
               >
                 <DetailsTopIcons
-                  className={marginDetailsChild}
                   pdfUri={touristicContent.pdf}
                   practice={{
                     pictogram: touristicContent.category.pictogramUri,

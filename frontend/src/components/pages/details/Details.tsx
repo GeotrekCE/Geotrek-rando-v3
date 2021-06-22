@@ -142,7 +142,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     ref={sectionsContainerRef}
                   >
                     <DetailsTopIcons
-                      className={marginDetailsChild}
                       pdfUri={details.pdfUri}
                       gpxUri={details.gpxUri}
                       practice={details.practice ?? undefined}

@@ -1,6 +1,4 @@
 import React from 'react';
-// @ts-ignore
-import { remove as removeDiacritics } from 'diacritics';
 import { getHeaderConfig } from 'modules/header/utills';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { convertStringForSitemap, generateResultDetailsUrl } from 'components/pages/search/utils';

@@ -8,7 +8,6 @@ import { DetailsButton } from '../DetailsButton';
 import { DetailsButtonDropdown } from '../DetailsButtonDropdown';
 
 interface DetailsTopIconsProps {
-  className?: string;
   practice?: Activity;
   pdfUri?: string;
   gpxUri?: string;
@@ -16,7 +15,6 @@ interface DetailsTopIconsProps {
 }
 
 export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
-  className,
   practice,
   pdfUri,
   gpxUri,
