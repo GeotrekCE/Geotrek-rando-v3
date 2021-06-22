@@ -20,8 +20,15 @@ interface Props {
   type: 'TREK' | 'TOURISTIC_CONTENT';
 }
 
-const PopupContent = ({ showButton, id, type }) => {
-  const { isLoading, trekPopupResult = {} } = usePopupResult(id.toString(), true, type);
+interface PropsPC {
+  showButton: boolean;
+  id: number;
+  type: 'TREK' | 'TOURISTIC_CONTENT';
+}
+const PopupContent: React.FC<PropsPC> = ({ showButton, id, type }) => {
+  const { isLoading, trekPopupResult: data } = usePopupResult(id.toString(), true, type);
+
+  const trekPopupResult: any = data || {};
 
   return (
     <Loader

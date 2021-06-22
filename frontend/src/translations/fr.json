@@ -56,7 +56,8 @@
     },
     "textFilter": "Rechercher...",
     "map": {
-      "seeResult": "Afficher le détail"
+      "seeResult": "Afficher le détail",
+      "seeMe": "Voir ma position"
     }
   },
   "details": {
