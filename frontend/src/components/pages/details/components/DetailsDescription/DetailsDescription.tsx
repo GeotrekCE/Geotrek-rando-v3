@@ -37,17 +37,26 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
 
       {departure && (
         <div>
-          <FormattedMessage id="details.departure" /> : {departure}
+          <span className={'font-bold'}>
+            <FormattedMessage id="details.departure" />
+          </span>{' '}
+          : {departure}
         </div>
       )}
       {arrival && (
         <div>
-          <FormattedMessage id="details.arrival" /> : {departure}
+          <span className={'font-bold'}>
+            <FormattedMessage id="details.arrival" />
+          </span>{' '}
+          : {departure}
         </div>
       )}
       {cities && cities.length > 0 && (
         <div>
-          <FormattedMessage id="details.cities" /> : {cities.join(', ')}
+          <span className={'font-bold'}>
+            <FormattedMessage id="details.cities" />
+          </span>{' '}
+          : {cities.join(', ')}
         </div>
       )}
     </div>
