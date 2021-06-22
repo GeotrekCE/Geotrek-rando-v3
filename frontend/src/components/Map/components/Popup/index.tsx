@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { Popup as LeafletPopup } from 'react-leaflet';
+import { Popup as LeafletPopup, Tooltip } from 'react-leaflet';
 import { FormattedMessage } from 'react-intl';
 import Loader from 'react-loader';
 
@@ -20,54 +20,71 @@ interface Props {
   type: 'TREK' | 'TOURISTIC_CONTENT';
 }
 
-export const Popup: React.FC<Props> = ({ id, handleOpen, handleClose, type }) => {
-  const [shouldFetchData, setShouldFetchData] = useState<boolean>(false);
-  const { isLoading, trekPopupResult } = usePopupResult(id.toString(), shouldFetchData, type);
+const PopupContent = ({ showButton, id, type }) => {
+  const { isLoading, trekPopupResult = {} } = usePopupResult(id.toString(), true, type);
 
   return (
-    <StyledPopup
-      closeButton={false}
-      onOpen={() => {
-        setShouldFetchData(true);
-        handleOpen();
+    <Loader
+      loaded={!isLoading}
+      options={{
+        color: colorPalette.primary1,
       }}
-      onClose={handleClose}
-      offset={[0, -12]}
     >
-      <Loader
-        loaded={!isLoading}
-        options={{
-          color: colorPalette.primary1,
+      <div className="flex flex-col">
+        <CoverImage src={trekPopupResult.imgUrl} />
+        <div className="p-4">
+          <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:inline">
+            {trekPopupResult.place}
+          </span>
+          <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">
+            {trekPopupResult.title}
+          </Title>
+          {showButton && (
+            <Link
+              href={
+                type === 'TREK'
+                  ? generateResultDetailsUrl(id, trekPopupResult.title)
+                  : generateTouristicContentUrl(id, trekPopupResult.title)
+              }
+            >
+              <Button type="button">
+                <span className="text-center w-full">
+                  <FormattedMessage id="search.map.seeResult" />
+                </span>
+              </Button>
+            </Link>
+          )}
+        </div>
+      </div>
+    </Loader>
+  );
+};
+
+export const Popup: React.FC<Props> = ({ id, handleOpen, handleClose, type }) => {
+  const [hideTooltip, setHideTooltip] = useState<boolean>(false);
+
+  return (
+    <>
+      {!hideTooltip && (
+        <Tooltip>
+          <PopupContent type={type} id={id} showButton={false} />
+        </Tooltip>
+      )}
+      <StyledPopup
+        closeButton={false}
+        onOpen={() => {
+          setHideTooltip(true);
+          handleOpen();
         }}
+        onClose={() => {
+          setHideTooltip(false);
+          handleClose();
+        }}
+        offset={[0, -12]}
       >
-        {trekPopupResult !== undefined && (
-          <div className="flex flex-col">
-            <CoverImage src={trekPopupResult.imgUrl} />
-            <div className="p-4">
-              <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:inline">
-                {trekPopupResult.place}
-              </span>
-              <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">
-                {trekPopupResult.title}
-              </Title>
-              <Link
-                href={
-                  type === 'TREK'
-                    ? generateResultDetailsUrl(id, trekPopupResult.title)
-                    : generateTouristicContentUrl(id, trekPopupResult.title)
-                }
-              >
-                <Button type="button">
-                  <span className="text-center w-full">
-                    <FormattedMessage id="search.map.seeResult" />
-                  </span>
-                </Button>
-              </Link>
-            </div>
-          </div>
-        )}
-      </Loader>
-    </StyledPopup>
+        <PopupContent type={type} id={id} showButton={true} />
+      </StyledPopup>
+    </>
   );
 };
 
