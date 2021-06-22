@@ -26,9 +26,7 @@ interface PropsPC {
   type: 'TREK' | 'TOURISTIC_CONTENT';
 }
 const PopupContent: React.FC<PropsPC> = ({ showButton, id, type }) => {
-  const { isLoading, trekPopupResult: data } = usePopupResult(id.toString(), true, type);
-
-  const trekPopupResult: any = data || {};
+  const { isLoading, trekPopupResult } = usePopupResult(id.toString(), true, type);
 
   return (
     <Loader
@@ -37,32 +35,34 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type }) => {
         color: colorPalette.primary1,
       }}
     >
-      <div className="flex flex-col">
-        <CoverImage src={trekPopupResult.imgUrl} />
-        <div className="p-4">
-          <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:inline">
-            {trekPopupResult.place}
-          </span>
-          <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">
-            {trekPopupResult.title}
-          </Title>
-          {showButton && (
-            <Link
-              href={
-                type === 'TREK'
-                  ? generateResultDetailsUrl(id, trekPopupResult.title)
-                  : generateTouristicContentUrl(id, trekPopupResult.title)
-              }
-            >
-              <Button type="button">
-                <span className="text-center w-full">
-                  <FormattedMessage id="search.map.seeResult" />
-                </span>
-              </Button>
-            </Link>
-          )}
+      {trekPopupResult && (
+        <div className="flex flex-col">
+          <CoverImage src={trekPopupResult.imgUrl} />
+          <div className="p-4">
+            <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:inline">
+              {trekPopupResult.place}
+            </span>
+            <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">
+              {trekPopupResult.title}
+            </Title>
+            {showButton && (
+              <Link
+                href={
+                  type === 'TREK'
+                    ? generateResultDetailsUrl(id, trekPopupResult.title)
+                    : generateTouristicContentUrl(id, trekPopupResult.title)
+                }
+              >
+                <Button type="button">
+                  <span className="text-center w-full">
+                    <FormattedMessage id="search.map.seeResult" />
+                  </span>
+                </Button>
+              </Link>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </Loader>
   );
 };
