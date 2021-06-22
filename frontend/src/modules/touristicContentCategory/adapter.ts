@@ -1,4 +1,4 @@
-import { ActivityChoices, ActivityFilter } from 'modules/activities/interface';
+import { ActivityFilter } from 'modules/activities/interface';
 import { CATEGORY_ID } from 'modules/filters/constant';
 import { FilterWithoutType } from 'modules/filters/interface';
 import {

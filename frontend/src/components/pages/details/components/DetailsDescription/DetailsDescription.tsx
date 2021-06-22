@@ -1,8 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 import styled, { css } from 'styled-components';
-import { colorPalette, desktopOnly, getSpacing, shadow, typography } from 'stylesheet';
+import { colorPalette, desktopOnly, getSpacing, shadow } from 'stylesheet';
 import parse from 'html-react-parser';
-import { CityDictionnary } from '../../../../../modules/city/interface';
 import { HtmlText } from '../../utils';
 
 interface DetailsDescriptionProps {
@@ -37,17 +36,26 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
 
       {departure && (
         <div>
-          <FormattedMessage id="details.departure" /> : {departure}
+          <span className={'font-bold'}>
+            <FormattedMessage id="details.departure" />
+          </span>{' '}
+          : {departure}
         </div>
       )}
       {arrival && (
         <div>
-          <FormattedMessage id="details.arrival" /> : {departure}
+          <span className={'font-bold'}>
+            <FormattedMessage id="details.arrival" />
+          </span>{' '}
+          : {departure}
         </div>
       )}
       {cities && cities.length > 0 && (
         <div>
-          <FormattedMessage id="details.cities" /> : {cities.join(', ')}
+          <span className={'font-bold'}>
+            <FormattedMessage id="details.cities" />
+          </span>{' '}
+          : {cities.join(', ')}
         </div>
       )}
     </div>

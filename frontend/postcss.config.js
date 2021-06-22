@@ -20,9 +20,9 @@ module.exports = {
         content: ['./src/**/*.{js,jsx,ts,tsx}'],
         defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
         safelist: {
-          standard: [/^slick-/, /dropdown/, /^leaflet-/, /^right-/, /^top-/, /^bottom-/, /^left-/],
+          standard: [/^slick-/, /dropdown/, /^leaflet-/, /^right-/, /^top-/, /^bottom-/, /^left-/, /bg-gradient-to-b/],
           deep: [],
-          greedy: [/elevation/, /lightblue-theme/, /ml-/, /mr-/, /mt-/, /mb-/],
+          greedy: [/elevation/, /lightblue-theme/, /ml-/, /mr-/, /mt-/, /mb-/, /p-/, /mx-/],
         },
       },
     ],

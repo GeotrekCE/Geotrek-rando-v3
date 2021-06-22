@@ -1,4 +1,5 @@
 import { Layout } from 'components/Layout/Layout';
+import { Modal } from 'components/Modal';
 import Loader from 'react-loader';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
 import parse from 'html-react-parser';
@@ -71,16 +72,23 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
           <div id="touristicContent_page" className="flex flex-1">
             <div id="touristicContent_informations" className="flex flex-col w-full desktop:w-3/5">
               <OpenMapButton displayMap={displayMobileMap} />
-              <div
-                id="touristicContent_cover"
-                className="h-coverDetailsMobile desktop:h-coverDetailsDesktop"
-              >
-                {touristicContent.attachments.length > 1 ? (
-                  <DetailsCoverCarousel attachments={touristicContent.attachments} />
-                ) : (
-                  <ImageWithLegend attachment={touristicContent.attachments[0]} />
+              <Modal>
+                {({ toggleFullscreen }) => (
+                  <div id="touristicContent_cover">
+                    {touristicContent.attachments.length > 1 ? (
+                      <DetailsCoverCarousel
+                        attachments={touristicContent.attachments}
+                        onClickImage={toggleFullscreen}
+                      />
+                    ) : (
+                      <ImageWithLegend
+                        attachment={touristicContent.attachments[0]}
+                        onClick={toggleFullscreen}
+                      />
+                    )}
+                  </div>
                 )}
-              </div>
+              </Modal>
               <div
                 id="touristicContent_text"
                 className="desktop:py-0
@@ -88,7 +96,6 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                 flex flex-col"
               >
                 <DetailsTopIcons
-                  className={marginDetailsChild}
                   pdfUri={touristicContent.pdf}
                   practice={{
                     pictogram: touristicContent.category.pictogramUri,

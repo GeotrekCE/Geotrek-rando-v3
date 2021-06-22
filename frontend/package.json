@@ -55,6 +55,7 @@
     "html-react-parser": "^1.2.1",
     "jest-mock-axios": "^4.2.1",
     "leaflet": "^1.7.1",
+    "leaflet.locatecontrol": "^0.73.0",
     "leaflet.markercluster": "^1.4.1",
     "lodash": "^4.17.20",
     "next": "^10.0.3",

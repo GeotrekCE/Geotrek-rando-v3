@@ -3,6 +3,38 @@
   max-height: 100vh;
 }
 
+.leaflet-bottom {
+  bottom: 32px !important;
+}
+
+.pin-solid.icon {
+  color: #000;
+  zoom: 1.4;
+  position: absolute;
+  margin-left: -6px;
+  margin-top: 4px;
+  width: 12px;
+  height: 12px;
+  border: solid 1px currentColor;
+  border-radius: 7px 7px 7px 0;
+  background-color: currentColor;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.pin-solid.icon::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 4px;
+  height: 4px;
+  color: white;
+  border: solid 1px currentColor;
+  border-radius: 3px;
+  background-color: currentColor;
+}
+
 .dropdown {
   display: inline-block;
 }
@@ -43,10 +75,16 @@
   stroke: #aa397d !important;
 }
 
-#details_cover {
+#details_cover,
+#touristicContent_cover {
   height: 100%;
 }
 
-#details_cover_image {
+#details_cover_image,
+#touristicContent_cover_image {
   height: 100%;
+}
+
+.menu-download {
+  z-index: 999;
 }

@@ -72,4 +72,17 @@ export const getHoverId = ({ id, type }: TrekResult | TouristicContentResult | M
   `SEARCH-${type}-${id}`;
 
 export const convertStringForSitemap = (text: string) =>
-  removeDiacritics((text || '').replace(/ /g, '-').replace(/'/g, '-').replace(/\+/g, ''));
+  removeDiacritics(
+    (text || '')
+      .replace(/ /g, '-')
+      .replace(/'/g, '-')
+      .replace(/°/g, '')
+      .replace(/«/g, '')
+      .replace(/»/g, '')
+      .replace(/"/g, '')
+      .replace(/>/g, '')
+      .replace(/</g, '')
+      .replace(/’/g, '-')
+      .replace(/–/g, '-')
+      .replace(/\+/g, ''),
+  );

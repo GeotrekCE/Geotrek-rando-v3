@@ -3,6 +3,10 @@ import { getMapConfig } from 'components/Map/config';
 import { Map } from 'leaflet';
 import { TileLayerType } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { useState } from 'react';
+import { useIntl } from 'react-intl';
+
+require('leaflet.locatecontrol');
+import 'leaflet.locatecontrol/dist/L.Control.Locate.min.css';
 
 export const useTileLayer = (): {
   setMapInstance: (newMap: Map) => void;
@@ -12,6 +16,8 @@ export const useTileLayer = (): {
   const mapConfig = getMapConfig();
   const isSatelliteLayerAvailable = mapConfig.mapSatelliteLayerUrl !== undefined;
   const [map, setMap] = useState<Map | null>(null);
+
+  const intl = useIntl();
 
   const updateTileLayer = (newTileLayerType: TileLayerType) => {
     if (map) {
@@ -30,6 +36,20 @@ export const useTileLayer = (): {
 
   const setMapInstance = (newMap: Map) => {
     setMap(newMap);
+
+    L.control
+      // @ts-ignore no type available in this plugin
+      .locate({
+        locateOptions: {
+          enableHighAccuracy: true,
+        },
+        icon: 'pin-solid icon',
+        strings: {
+          title: intl.formatMessage({ id: 'search.map.seeMe' }),
+        },
+        position: 'bottomright',
+      })
+      .addTo(newMap);
   };
 
   return {
