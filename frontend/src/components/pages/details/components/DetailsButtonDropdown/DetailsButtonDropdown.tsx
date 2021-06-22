@@ -6,6 +6,7 @@ interface DetailsButtonDropdownProps {
 }
 
 const onChange = (v: Option) => {
+  console.log('v:', v);
   const link = document.createElement('a');
   link.setAttribute('href', v.value);
   document.body.appendChild(link);
@@ -22,7 +23,7 @@ export const DetailsButtonDropdown: React.FC<DetailsButtonDropdownProps> = ({
       className="h-12 w-12 rounded-full shadow-lg bg-white"
       options={options.filter(o => o.value !== undefined).map(getOptionStyled)}
       controlClassName="w-full h-full cursor-pointer"
-      menuClassName="bg-white text-greyDarkColored rounded-lg shadow-sm text-P2 overflow-hidden absolute py-2 -ml-2"
+      menuClassName="bg-white text-greyDarkColored rounded-lg shadow-sm text-P2 overflow-hidden absolute py-2 -ml-2 menu-download"
       placeholderClassName="hidden"
       arrowOpen={children}
       arrowClosed={children}

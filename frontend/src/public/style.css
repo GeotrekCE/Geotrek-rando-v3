@@ -50,3 +50,7 @@
 #details_cover_image {
   height: 100%;
 }
+
+.menu-download {
+  z-index: 999;
+}
