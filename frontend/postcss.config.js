@@ -22,7 +22,7 @@ module.exports = {
         safelist: {
           standard: [/^slick-/, /dropdown/, /^leaflet-/, /^right-/, /^top-/, /^bottom-/, /^left-/, /bg-gradient-to-b/],
           deep: [],
-          greedy: [/elevation/, /lightblue-theme/, /ml-/, /mr-/, /mt-/, /mb-/],
+          greedy: [/elevation/, /lightblue-theme/, /ml-/, /mr-/, /mt-/, /mb-/, /p-/, /mx-/],
         },
       },
     ],
