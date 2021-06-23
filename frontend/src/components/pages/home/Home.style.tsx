@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { colorPalette, desktopOnly, getSpacing, zIndex } from 'stylesheet';
+import styled from 'styled-components';
+import { zIndex } from 'stylesheet';
 
 export const HomeContainer = styled.div`
   display: flex;

@@ -27,7 +27,7 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
   return (
     <div
       id="details_topRoundIcons"
-      className="flex justify-between items-center mx-4 desktop:mx-12"
+      className="flex justify-between items-center mx-4 desktop:mx-12 menu-download"
     >
       {practice !== undefined && <ActivityLogo src={practice.pictogram} />}
       <div className="flex space-x-4">

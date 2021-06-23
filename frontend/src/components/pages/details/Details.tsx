@@ -8,6 +8,7 @@ import { DetailsMapDynamicComponent } from 'components/Map';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
 import { useShowOnScrollPosition } from 'hooks/useShowOnScrollPosition';
+import { useMediaPredicate } from 'react-media-hook';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { useMemo, useRef } from 'react';
@@ -64,6 +65,8 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
     path,
   } = useDetails(detailsId, parentId, language);
 
+  const isMobile = useMediaPredicate('(max-width: 1024px)');
+
   /** Ref of the parent of all sections */
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
 
@@ -81,6 +84,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
   });
   const titleRegex = RegExp(/(^\d+-)(.*)/).exec(path);
   const title = titleRegex ? titleRegex[2].replace(/-/g, ' ') : '';
+
   return useMemo(
     () => (
       <>
@@ -392,104 +396,109 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   <Footer />
                 </div>
 
-                <div
-                  id="details_mapContainer"
-                  className="hidden desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar"
-                >
-                  <DetailsMapDynamicComponent
-                    type="DESKTOP"
-                    arrivalLocation={details.trekArrival}
-                    departureLocation={details.trekDeparture}
-                    parkingLocation={
-                      details.parkingLocation === null ? undefined : details.parkingLocation
-                    }
-                    trekGeometry={details.trekGeometry}
-                    trekGeoJSON={details.trekGeoJSON}
-                    poiPoints={details.pois.map(poi => ({
-                      location: { x: poi.geometry.x, y: poi.geometry.y },
-                      pictogramUri: poi.type.pictogramUri,
-                      name: poi.name,
-                      id: `DETAILS-POI-${poi.id}`,
-                    }))}
-                    pointsReference={details.pointsReference}
-                    bbox={details.bbox}
-                    trekChildrenGeometry={details.children.reduce<TrekChildGeometry[]>(
-                      (children, currentChild) => {
-                        if (currentChild.geometry) {
-                          children.push({
-                            ...currentChild.geometry,
-                            id: `DETAILS-TREK_CHILDREN-${currentChild.geometry.id}`,
-                          });
-                        }
-                        return children;
-                      },
-                      [],
-                    )}
-                    touristicContentPoints={details.touristicContents
-                      .filter(touristicContent => touristicContent.geometry !== null)
-                      .map(touristicContent => ({
-                        // It's ok to ignore this rule, we filtered null values 2 lines above
-                        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                        geometry: touristicContent.geometry!,
-                        pictogramUri: touristicContent.category.pictogramUri,
-                        name: touristicContent.name,
-                        id: `DETAILS-TOURISTIC_CONTENT-${touristicContent.id}`,
+                {!isMobile && (
+                  <div
+                    id="details_mapContainer"
+                    className="desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar"
+                  >
+                    <DetailsMapDynamicComponent
+                      type="DESKTOP"
+                      arrivalLocation={details.trekArrival}
+                      departureLocation={details.trekDeparture}
+                      parkingLocation={
+                        details.parkingLocation === null ? undefined : details.parkingLocation
+                      }
+                      trekGeometry={details.trekGeometry}
+                      trekGeoJSON={details.trekGeoJSON}
+                      poiPoints={details.pois.map(poi => ({
+                        location: { x: poi.geometry.x, y: poi.geometry.y },
+                        pictogramUri: poi.type.pictogramUri,
+                        name: poi.name,
+                        id: `DETAILS-POI-${poi.id}`,
                       }))}
-                    sensitiveAreas={details.sensitiveAreas
-                      .filter(sensitiveArea => sensitiveArea.geometry !== null)
-                      .map(({ geometry, color }) => ({
-                        geometry,
-                        color,
-                      }))}
-                  />
-                </div>
+                      pointsReference={details.pointsReference}
+                      bbox={details.bbox}
+                      trekChildrenGeometry={details.children.reduce<TrekChildGeometry[]>(
+                        (children, currentChild) => {
+                          if (currentChild.geometry) {
+                            children.push({
+                              ...currentChild.geometry,
+                              id: `DETAILS-TREK_CHILDREN-${currentChild.geometry.id}`,
+                            });
+                          }
+                          return children;
+                        },
+                        [],
+                      )}
+                      touristicContentPoints={details.touristicContents
+                        .filter(touristicContent => touristicContent.geometry !== null)
+                        .map(touristicContent => ({
+                          // It's ok to ignore this rule, we filtered null values 2 lines above
+                          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                          geometry: touristicContent.geometry!,
+                          pictogramUri: touristicContent.category.pictogramUri,
+                          name: touristicContent.name,
+                          id: `DETAILS-TOURISTIC_CONTENT-${touristicContent.id}`,
+                        }))}
+                      sensitiveAreas={details.sensitiveAreas
+                        .filter(sensitiveArea => sensitiveArea.geometry !== null)
+                        .map(({ geometry, color }) => ({
+                          geometry,
+                          color,
+                        }))}
+                    />
+                  </div>
+                )}
               </div>
             </Layout>
-            <MobileMapContainer
-              className={`desktop:hidden fixed right-0 left-0 h-full z-map ${
-                mobileMapState === 'HIDDEN' ? 'hidden' : 'flex'
-              }`}
-              displayState={mobileMapState}
-            >
-              <DetailsMapDynamicComponent
-                type="MOBILE"
-                arrivalLocation={details.trekArrival}
-                departureLocation={details.trekDeparture}
-                parkingLocation={
-                  details.parkingLocation === null ? undefined : details.parkingLocation
-                }
-                trekGeometry={details.trekGeometry}
-                trekGeoJSON={details.trekGeoJSON}
-                poiPoints={details.pois.map(poi => ({
-                  location: { x: poi.geometry.x, y: poi.geometry.y },
-                  pictogramUri: poi.type.pictogramUri,
-                  name: poi.name,
-                  id: `${poi.id}`,
-                }))}
-                pointsReference={details.pointsReference}
-                bbox={details.bbox}
-                trekChildrenGeometry={details.children.reduce<TrekChildGeometry[]>(
-                  (children, currentChild) => {
-                    if (currentChild.geometry) {
-                      children.push(currentChild.geometry);
-                    }
-                    return children;
-                  },
-                  [],
-                )}
-                touristicContentPoints={details.touristicContents
-                  .filter(touristicContent => touristicContent.geometry !== null)
-                  .map(touristicContent => ({
-                    // It's ok to ignore this rule, we filtered null values 2 lines above
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                    geometry: touristicContent.geometry!,
-                    pictogramUri: touristicContent.category.pictogramUri,
-                    name: touristicContent.name,
-                    id: `${touristicContent.id}`,
+
+            {isMobile && (
+              <MobileMapContainer
+                className={`desktop:hidden fixed right-0 left-0 h-full z-map ${
+                  mobileMapState === 'HIDDEN' ? 'hidden' : 'flex'
+                }`}
+                displayState={mobileMapState}
+              >
+                <DetailsMapDynamicComponent
+                  type="MOBILE"
+                  arrivalLocation={details.trekArrival}
+                  departureLocation={details.trekDeparture}
+                  parkingLocation={
+                    details.parkingLocation === null ? undefined : details.parkingLocation
+                  }
+                  trekGeometry={details.trekGeometry}
+                  trekGeoJSON={details.trekGeoJSON}
+                  poiPoints={details.pois.map(poi => ({
+                    location: { x: poi.geometry.x, y: poi.geometry.y },
+                    pictogramUri: poi.type.pictogramUri,
+                    name: poi.name,
+                    id: `${poi.id}`,
                   }))}
-                hideMap={hideMobileMap}
-              />
-            </MobileMapContainer>
+                  pointsReference={details.pointsReference}
+                  bbox={details.bbox}
+                  trekChildrenGeometry={details.children.reduce<TrekChildGeometry[]>(
+                    (children, currentChild) => {
+                      if (currentChild.geometry) {
+                        children.push(currentChild.geometry);
+                      }
+                      return children;
+                    },
+                    [],
+                  )}
+                  touristicContentPoints={details.touristicContents
+                    .filter(touristicContent => touristicContent.geometry !== null)
+                    .map(touristicContent => ({
+                      // It's ok to ignore this rule, we filtered null values 2 lines above
+                      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                      geometry: touristicContent.geometry!,
+                      pictogramUri: touristicContent.category.pictogramUri,
+                      name: touristicContent.name,
+                      id: `${touristicContent.id}`,
+                    }))}
+                  hideMap={hideMobileMap}
+                />
+              </MobileMapContainer>
+            )}
           </>
         )}
       </>

@@ -7,32 +7,43 @@
   bottom: 32px !important;
 }
 
-.pin-solid.icon {
-  color: #000;
-  zoom: 1.4;
-  position: absolute;
-  margin-left: -6px;
-  margin-top: 4px;
-  width: 12px;
-  height: 12px;
-  border: solid 1px currentColor;
-  border-radius: 7px 7px 7px 0;
-  background-color: currentColor;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+.gg-track {
+  --ggs: 1.5;
+  left: 10px;
+  top: 10px;
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 10px;
+  height: 10px;
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 2px, inset 0 0 0 10px;
+  border-radius: 100px;
 }
-
-.pin-solid.icon::before {
+.gg-track::after,
+.gg-track::before {
   content: '';
+  display: block;
+  box-sizing: border-box;
   position: absolute;
-  left: 3px;
-  top: 3px;
-  width: 4px;
-  height: 4px;
-  color: white;
-  border: solid 1px currentColor;
   border-radius: 3px;
-  background-color: currentColor;
+}
+.gg-track::before {
+  border-left: 4px solid;
+  border-right: 4px solid;
+  width: 18px;
+  height: 2px;
+  left: -6px;
+  top: 2px;
+}
+.gg-track::after {
+  width: 2px;
+  height: 18px;
+  border-top: 4px solid;
+  border-bottom: 4px solid;
+  left: 2px;
+  top: -6px;
 }
 
 .dropdown {
@@ -86,5 +97,9 @@
 }
 
 .menu-download {
-  z-index: 999;
+  z-index: 400;
+}
+
+.over-all {
+  z-index: 10001;
 }

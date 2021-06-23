@@ -15,8 +15,8 @@ import { usePopupResult } from '../../hooks/usePopupResult';
 
 interface Props {
   id: number;
-  handleOpen: () => void;
-  handleClose: () => void;
+  handleOpen?: () => void;
+  handleClose?: () => void;
   type: 'TREK' | 'TOURISTIC_CONTENT';
 }
 
@@ -81,11 +81,11 @@ export const Popup: React.FC<Props> = ({ id, handleOpen, handleClose, type }) =>
         closeButton={false}
         onOpen={() => {
           setHideTooltip(true);
-          handleOpen();
+          handleOpen && handleOpen();
         }}
         onClose={() => {
           setHideTooltip(false);
-          handleClose();
+          handleClose && handleClose();
         }}
         offset={[0, -12]}
       >
