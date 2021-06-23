@@ -19,12 +19,13 @@ In json files, you can just override the primary keys you need. You have to over
   - `maxPoiPerPage`: max number of point of interest (POI) displayed on a single trek page
   - `maxTouristicContentPerPage`: max number of touristic contents displayed on a single trek page
   - `portalIds`: eventual portal filters (list of ids).
-  - `enableSensitiveAreas`: boolean, default to false. Set it to true if sensitive areas are defined in your Geotrek Admin.
-  - `apiUrl` : Geotrek Admin API URL.
-  - `googleAnalyticsId`: eventual Google Analytics Id.
-  - `google-site-verification`: eventual code to enable Google Search Console and Google developer tools.
-  - `baseUrl`: base URL of your portal (for dynamic sitemap.xml).
-  - `fallbackImageUri`: this uri is used to generate a default image for a trek or a touristic content if none is defined.
+  - `enableSensitiveAreas`: boolean, default to false. Set it to true if sensitive areas are defined in your Geotrek-admin
+  - `apiUrl` : Geotrek-admin API URL
+  - `googleAnalyticsId`: eventual Google Analytics Id
+  - `google-site-verification`: eventual code to enable Google Search Console and Google developer tools
+  - `enableIndexation` to disable search engine indexation
+  - `baseUrl`: base URL of your portal (for dynamic sitemap.xml)
+  - `fallbackImageUri`: this uri is used to generate a default image for a trek or a touristic content if none is defined
   - `touristicContentLabelImageUri` : this uri is used to define the logo of the labeled touristic contents:
     ![Activity Icon on filter list](assets/labeledTouristicContentExample.png)
   - `applicationName`: application name appearing on PWA
