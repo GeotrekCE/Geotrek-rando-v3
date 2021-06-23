@@ -1,5 +1,6 @@
 import React from 'react';
 import 'leaflet/dist/leaflet.css';
+import { Tooltip } from 'react-leaflet';
 import { HoverableMarker } from '../components/HoverableMarker';
 
 export type PropsType = {
@@ -18,7 +19,9 @@ export const MarkersWithIcon: React.FC<PropsType> = props => {
                 position={[point.location.y, point.location.x]}
                 pictogramUri={point.pictogramUri}
                 type="TREK"
-              />
+              >
+                <Tooltip>{point.name}</Tooltip>
+              </HoverableMarker>
             ),
         )}
     </>
