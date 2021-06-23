@@ -18,12 +18,13 @@ export const TrekChildren: React.FC<TrekChildrenPropsType> = props => {
 
           return (
             <HoverableMarker
+              key={trekChildGeometry.id}
               id={trekChildGeometry.id}
               position={[trekChildGeometry.departure.y, trekChildGeometry.departure.x]}
               rank={index + 1}
               type="TREK_CHILD"
             >
-              <Popup id={id} handleOpen={() => {}} handleClose={() => {}} type={'TREK'} />
+              <Popup id={id} type={'TREK'} />
             </HoverableMarker>
           );
         })}

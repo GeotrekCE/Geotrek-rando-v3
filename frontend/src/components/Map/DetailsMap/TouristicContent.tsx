@@ -1,6 +1,5 @@
 import { Popup } from 'components/Map/components/Popup';
 import React from 'react';
-import { Polygon, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { TouristicContentGeometry } from './DetailsMap';
 import { HoverableMarker } from '../components/HoverableMarker';
@@ -17,7 +16,7 @@ export const TouristicContent: React.FC<PropsType> = ({ contents }) => {
       {contents !== undefined &&
         contents.map(({ id, name, geometry, pictogramUri }) => {
           const idSplitted = id.split('-');
-          const _id = Number(idSplitted[idSplitted.length - 1]);
+          const idContent = Number(idSplitted[idSplitted.length - 1]);
 
           switch (geometry.type) {
             case 'Point':
@@ -28,12 +27,7 @@ export const TouristicContent: React.FC<PropsType> = ({ contents }) => {
                   pictogramUri={pictogramUri}
                   type="TREK"
                 >
-                  <Popup
-                    id={Number(_id)}
-                    handleOpen={() => {}}
-                    handleClose={() => {}}
-                    type={'TOURISTIC_CONTENT'}
-                  />
+                  <Popup id={Number(idContent)} type={'TOURISTIC_CONTENT'} />
                 </HoverableMarker>
               );
 

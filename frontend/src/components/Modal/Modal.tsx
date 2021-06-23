@@ -32,7 +32,7 @@ export const Modal: React.FC<Props> = ({ children }) => {
           <div
             // @ts-ignore Wrong type in the lib
             ref={ref}
-            className={"desktop:h-coverDetailsDesktop"}
+            className={'desktop:h-coverDetailsDesktop'}
             style={{
               backgroundColor: 'white',
               position: 'relative',

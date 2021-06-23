@@ -8,7 +8,7 @@ const adaptSource = (rawSource: RawSource): Source => ({
 
 export const adaptSources = (rawSources: RawSource[]): SourceDictionnary =>
   rawSources.reduce(
-    (sources, currentSource, currentIndex) => ({
+    (sources, currentSource) => ({
       ...sources,
       [currentSource.id]: adaptSource(currentSource),
     }),
