@@ -10,6 +10,7 @@ Object {
         id="result_card"
       >
         <div
+          class="desktop:h-coverDetailsDesktop"
           style="background-color: white; position: relative;"
         >
           <div
@@ -233,6 +234,7 @@ Object {
       id="result_card"
     >
       <div
+        class="desktop:h-coverDetailsDesktop"
         style="background-color: white; position: relative;"
       >
         <div
