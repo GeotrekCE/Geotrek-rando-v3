@@ -43,7 +43,7 @@ export const useTileLayer = (): {
         locateOptions: {
           enableHighAccuracy: true,
         },
-        icon: 'pin-solid icon',
+        icon: 'gg-track',
         strings: {
           title: intl.formatMessage({ id: 'search.map.seeMe' }),
         },
