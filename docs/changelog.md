@@ -6,9 +6,12 @@
 **✨ Improvements**
 
 * Add Italian translation
+* Show tooltip on search map on hover (#399)
+* Add button on map to locate the  (#365)
 * Add departure, arrival and cities on trek detail pages (#369)
 * Allow to display fullscreen images (#403)
 * Add download buttons on trek mobile detail pages (#405)
+* Display legends at the top of images in mobile detail pages
 * Add ``enableIndexation`` setting to allow to disable search engine indexation, ``true`` by default (#410)
 * Improve URL by removing accents with ``diacritics``
 * Improve performances (#362) :
@@ -22,6 +25,7 @@
 * Fix browser back button, with letting NextJS manage the history (#364)
 * Fix mobile display of cards descriptions in detail pages, with adapting the height of the container (#397)
 * Fix anchor position detection on detail pages refresh, with waiting the end of rendering to calculate position (#419)
+* Fix download buttons z-index on treks detail pages
 
 3.0.3 (2021-05-11)
 ------------------
