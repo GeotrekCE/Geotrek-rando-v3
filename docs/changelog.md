@@ -6,6 +6,7 @@
 **✨ Improvements**
 
 * Add Italian translation
+* Add tooltips on trek detail pages maps (steps, heritages, touristic contents) (#379)
 * Show tooltip on search map on hover (#399)
 * Add button on map to locate the  (#365)
 * Add departure, arrival and cities on trek detail pages (#369)
