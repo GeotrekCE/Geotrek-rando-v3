@@ -97,5 +97,9 @@
 }
 
 .menu-download {
-  z-index: 999;
+  z-index: 400;
+}
+
+.over-all {
+  z-index: 10001;
 }
