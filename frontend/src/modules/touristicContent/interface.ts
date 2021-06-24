@@ -75,6 +75,7 @@ export interface TouristicContentResult {
   type: 'TOURISTIC_CONTENT';
   name: string;
   thumbnailUris: string[];
+  attachments: Attachment[];
   category: TouristicContentCategory;
   place: string;
   themes: string[];

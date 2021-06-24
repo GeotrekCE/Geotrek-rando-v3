@@ -122,8 +122,11 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                 >
                   <OpenMapButton displayMap={displayMobileMap} />
                   <Modal>
-                    {({ toggleFullscreen }) => (
-                      <div id="details_cover">
+                    {({ isFullscreen, toggleFullscreen }) => (
+                      <div
+                        id="details_cover"
+                        className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
+                      >
                         {details.imgs.length > 1 ? (
                           <DetailsCoverCarousel
                             attachments={details.imgs}

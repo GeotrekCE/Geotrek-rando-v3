@@ -188,6 +188,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                           title={searchResult.title}
                           tags={searchResult.tags}
                           thumbnailUris={searchResult.thumbnailUris}
+                          attachments={searchResult.attachments}
                           badgeIconUri={searchResult.practice?.pictogram}
                           informations={searchResult.informations}
                           redirectionUrl={generateResultDetailsUrl(
@@ -206,6 +207,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                           title={searchResult.name}
                           tags={searchResult.themes}
                           thumbnailUris={searchResult.thumbnailUris}
+                          attachments={searchResult.attachments}
                           badgeIconUri={searchResult.category.pictogramUri}
                           informations={searchResult.types}
                           redirectionUrl={generateTouristicContentUrl(
