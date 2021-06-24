@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { Popup as LeafletPopup, Tooltip } from 'react-leaflet';
+import { Popup as LeafletPopup, Tooltip as LeafletTooltip } from 'react-leaflet';
 import { FormattedMessage } from 'react-intl';
 import Loader from 'react-loader';
 
@@ -73,9 +73,9 @@ export const Popup: React.FC<Props> = ({ id, handleOpen, handleClose, type }) =>
   return (
     <>
       {!hideTooltip && (
-        <Tooltip>
+        <StyledTooltip>
           <PopupContent type={type} id={id} showButton={false} />
-        </Tooltip>
+        </StyledTooltip>
       )}
       <StyledPopup
         closeButton={false}
@@ -115,6 +115,18 @@ const Title = styled.span`
     overflow: hidden;
     display: block;
   `)}
+`;
+
+const StyledTooltip = styled(LeafletTooltip)`
+  padding: 0;
+  border: 0px !important;
+  border-radius: ${getSpacing(4)} !important;
+  overflow: hidden;
+  white-space: initial !important;
+  width: ${mobileWidth}px;
+  ${desktopOnly(css`
+    width: ${desktopWidth}px;
+  `)};
 `;
 
 const StyledPopup = styled(LeafletPopup)`
