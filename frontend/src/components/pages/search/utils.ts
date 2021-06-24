@@ -61,9 +61,15 @@ export const formatInfiniteQuery = (
 };
 
 /** Generates the details page url related to a result */
-export const generateResultDetailsUrl = (id: number | string, title: string): string => {
+export const generateResultDetailsUrl = (
+  id: number | string,
+  title: string,
+  parentId?: number,
+): string => {
   const titleWithNoSpace = convertStringForSitemap(title);
-  const detailsPageUrl = `${routes.DETAILS}/${id}-${encodeURI(titleWithNoSpace)}`;
+  const detailsPageUrl = `${routes.DETAILS}/${id}-${encodeURI(titleWithNoSpace)}${
+    parentId ? `?parentId=${parentId}` : ''
+  }`;
 
   return detailsPageUrl;
 };

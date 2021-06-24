@@ -29,6 +29,7 @@ type Props = {
   referencePointsMobileVisibility: Visibility;
   poiMobileVisibility: Visibility;
   touristicContentMobileVisibility: Visibility;
+  parentId?: number;
 };
 
 export const MapChildren: React.FC<Props> = props => {
@@ -37,7 +38,7 @@ export const MapChildren: React.FC<Props> = props => {
   return (
     <>
       {(visibleSection === 'children' || props.trekChildrenMobileVisibility === 'DISPLAYED') && (
-        <TrekChildren trekChildrenGeometry={props.trekChildrenGeometry} />
+        <TrekChildren trekChildrenGeometry={props.trekChildrenGeometry} parentId={props.parentId} />
       )}
 
       {(visibleSection === 'description' ||

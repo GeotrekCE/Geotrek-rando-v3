@@ -449,6 +449,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           geometry,
                           color,
                         }))}
+                      trekId={Number(id)}
                     />
                   </div>
                 )}
@@ -499,6 +500,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       id: `${touristicContent.id}`,
                     }))}
                   hideMap={hideMobileMap}
+                  trekId={Number(id)}
                 />
               </MobileMapContainer>
             )}
