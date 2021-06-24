@@ -55,7 +55,39 @@ In json files, you can just override the primary keys you need. You have to over
     - `mapClassicLayerUrl` for the map version
     - `mapSatelliteLayerUrl` for the satellite version. It is optional, so if you want to have only one available map background, you can add `mapSatelliteLayerUrl: undefined`. This will remove the button which allows the user to switch between two map backgrounds.
 
-_Warning:_
+- `redirects.json` to define url rewriting for your instance. For example, you can use this customization to redirect old URL style (GeoTrek V2) to the new URL style (GeoTrek V3) or to redirect old url to a new url after changing the name of a hike in the backend.
+  - In `rules`, you can define all the rules needed to redirect clients
+    - `source` : must match to the old URL. Use the wildcard `*` to redirect a subdirectory. Use `:varname` to forward a variable to the destination
+    - `destination` : must match to the new URL. Use `:varname` to inject a variable captured in the old URL
+    - `locale` : This can be `true` or `false`. This argument specify if the server must detect automatically the locale or if the rule specify itself the locale used. Default to `true`
+    - `permanent` : Set to `true` if the redirection is permanent. Set to `false` if the redirection is temporally. Default to `false`
+
+    Examples :
+    
+    ```json
+    {
+      "rules": [
+        {
+          "source": "/a-cheval/col-de-font-froide",
+          "destination": "/trek/582-col-de-font-froide"
+        },
+        {
+          "source": "/a-pied/:name",
+          "destination": "/search?rawText=:name"
+        },
+        {
+          "source": "/fr/walking/:name",
+          "destination": "/en/search?rawText=:name",
+          "locale": false
+        }
+      ]
+    }
+    ```
+
+    You can find more examples and more details following this link : https://nextjs.org/docs/api-reference/next.config.js/redirects
+
+## _Warning:_
+
 - When setting up Google Analytics, you have to setup a flow. When setting up the flow, be careful to enter the corresponding url (the url of your website), otherwise the data will not be received.
 - By default Google analytics is disabled (`googleAnalyticsId` set to `null`), you will have to override it in the `global.json` file of your customization folder.
 

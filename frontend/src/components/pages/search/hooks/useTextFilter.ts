@@ -10,8 +10,14 @@ export const useTextFilter = (): {
 } => {
   const initialOptions = useRouter().query;
 
+  const initialTextFromRedirect =
+    initialOptions.rawText !== undefined
+      ? (initialOptions.rawText as string).replace(/-/g, ' ')
+      : null;
   const initialTextFilterValue =
-    initialOptions.text !== undefined ? (initialOptions.text as string) : null;
+    initialOptions.text !== undefined
+      ? (initialOptions.text as string)
+      : initialTextFromRedirect || null;
 
   const [textFilterInput, setTextFilterInput] = useState<string | null>(initialTextFilterValue);
   const [textFilterState, setTextFilterState] = useState<string | null>(initialTextFilterValue);
