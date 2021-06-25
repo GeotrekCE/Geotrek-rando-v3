@@ -36,6 +36,9 @@ export const parseFilters = (filters: FilterState[]): QueryFilterState[] =>
 export const parseTextFilter = (textFilter: string | null): string | undefined =>
   textFilter !== null ? textFilter : undefined;
 
+export const parseBboxFilter = (bboxFilter: string | null): string | undefined =>
+  bboxFilter !== null ? bboxFilter : undefined;
+
 /** Concatenates multiple SearchResults into one with all results concatenated */
 export const concatResultsPages = (resultsPages: SearchResults[]): SearchResults | null => {
   if (resultsPages.length === 0) return null;
@@ -61,9 +64,15 @@ export const formatInfiniteQuery = (
 };
 
 /** Generates the details page url related to a result */
-export const generateResultDetailsUrl = (id: number | string, title: string): string => {
+export const generateResultDetailsUrl = (
+  id: number | string,
+  title: string,
+  parentId?: number,
+): string => {
   const titleWithNoSpace = convertStringForSitemap(title);
-  const detailsPageUrl = `${routes.DETAILS}/${id}-${encodeURI(titleWithNoSpace)}`;
+  const detailsPageUrl = `${routes.DETAILS}/${id}-${encodeURI(titleWithNoSpace)}${
+    parentId ? `?parentId=${parentId}` : ''
+  }`;
 
   return detailsPageUrl;
 };

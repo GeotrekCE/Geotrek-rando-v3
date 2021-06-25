@@ -27,7 +27,8 @@
   },
   "page": {
     "back": "Retour",
-    "api-to-translate-example": "Ce message est traduit en utilisant directement l'API react-intl"
+    "api-to-translate-example": "Ce message est traduit en utilisant directement l'API react-intl",
+    "not-found": "Cette page est introuvable"
   },
   "search": {
     "title": "Recherche",

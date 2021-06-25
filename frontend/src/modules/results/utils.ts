@@ -140,6 +140,9 @@ const commonFiltersWithoutTrekSelector = [
 export const formatTextFilter = (textFilter: string | null): { q: string } | undefined =>
   textFilter !== null ? { q: textFilter } : undefined;
 
+export const formatBboxFilter = (bbox: string | null): { in_bbox: string } | undefined =>
+  bbox !== null ? { in_bbox: bbox } : undefined;
+
 export const formatTouristicContentFiltersToUrlParams = (
   filtersState: QueryFilterState[],
 ): { [key: string]: string } => {

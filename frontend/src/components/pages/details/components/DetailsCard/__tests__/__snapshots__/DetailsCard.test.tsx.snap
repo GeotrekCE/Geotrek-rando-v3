@@ -17,7 +17,6 @@ Object {
           class="flex-none desktop:w-2/5"
         >
           <div
-            class="desktop:h-coverDetailsDesktop"
             style="background-color: white; position: relative;"
           >
             <div
@@ -108,7 +107,6 @@ Object {
         class="flex-none desktop:w-2/5"
       >
         <div
-          class="desktop:h-coverDetailsDesktop"
           style="background-color: white; position: relative;"
         >
           <div

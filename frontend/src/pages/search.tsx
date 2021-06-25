@@ -24,7 +24,11 @@ export const getServerSideProps = async (context: any) => {
     ['trekResults', parsedInitialFiltersState, context.locale],
     () =>
       getSearchResults(
-        { filtersState: parsedInitialFiltersState, textFilterState: initialTextFilter },
+        {
+          filtersState: parsedInitialFiltersState,
+          textFilterState: initialTextFilter,
+          bboxState: null,
+        },
         { treks: 1, touristicContents: 1 },
         context.locale,
       ),

@@ -1,8 +1,9 @@
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { TouristicContentUI } from 'components/pages/touristicContent';
 import { getDefaultLanguage } from 'modules/header/utills';
 
-const TouristicContent = () => {
+const TouristicContent: NextPage = () => {
   const router = useRouter();
   const { touristicContent } = router.query;
   const language = router.locale ?? getDefaultLanguage();

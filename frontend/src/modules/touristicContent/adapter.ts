@@ -59,6 +59,7 @@ export const adaptTouristicContentResult = ({
     name: rawTouristicObject.name,
     descriptionTeaser: rawTouristicObject.description_teaser,
     thumbnailUris: getThumbnails(rawTouristicObject.attachments),
+    attachments: getAttachments(rawTouristicObject.attachments),
     category: touristicContentCategories[rawTouristicObject.category],
     logoUri: '',
     place:

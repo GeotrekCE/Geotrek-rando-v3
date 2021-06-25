@@ -6,6 +6,7 @@ import { HoverableMarker } from '../components/HoverableMarker';
 
 export type TrekChildrenPropsType = {
   trekChildrenGeometry?: TrekChildGeometry[];
+  parentId?: number;
 };
 
 export const TrekChildren: React.FC<TrekChildrenPropsType> = props => {
@@ -24,7 +25,7 @@ export const TrekChildren: React.FC<TrekChildrenPropsType> = props => {
               rank={index + 1}
               type="TREK_CHILD"
             >
-              <Popup id={id} type={'TREK'} />
+              <Popup id={id} type={'TREK'} parentId={props.parentId} />
             </HoverableMarker>
           );
         })}

@@ -6,7 +6,7 @@ import { getSearchResults } from 'modules/results/connector';
 import { SearchResults } from 'modules/results/interface';
 import { FilterState } from 'modules/filters/interface';
 
-import { formatInfiniteQuery, parseFilters, parseTextFilter } from '../utils';
+import { formatInfiniteQuery, parseBboxFilter, parseFilters, parseTextFilter } from '../utils';
 
 const formatFiltersUrl = (filtersState: FilterState[]): string[] =>
   filtersState.reduce<string[]>(
@@ -31,10 +31,14 @@ const computeUrl = (filtersState: FilterState[], textFilter: string | null) => {
 };
 
 export const useTrekResults = (
-  filters: { filtersState: FilterState[]; textFilterState: string | null },
+  filters: {
+    filtersState: FilterState[];
+    textFilterState: string | null;
+    bboxState: string | null;
+  },
   language: string,
 ) => {
-  const { filtersState, textFilterState } = filters;
+  const { filtersState, textFilterState, bboxState } = filters;
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
@@ -55,9 +59,19 @@ export const useTrekResults = (
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery<SearchResults, Error>(
-    ['trekResults', parsedFiltersState, language, parseTextFilter(textFilterState)],
+    [
+      'trekResults',
+      parsedFiltersState,
+      language,
+      parseTextFilter(textFilterState),
+      parseBboxFilter(bboxState),
+    ],
     ({ pageParam = { treks: 1, touristicContents: 1 } }) =>
-      getSearchResults({ filtersState: parsedFiltersState, textFilterState }, pageParam, language),
+      getSearchResults(
+        { filtersState: parsedFiltersState, textFilterState, bboxState },
+        pageParam,
+        language,
+      ),
     {
       retry: false,
       // We already have a fallback component to allow the user to refetch

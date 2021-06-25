@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { Popup as LeafletPopup, Tooltip } from 'react-leaflet';
+import { Popup as LeafletPopup, Tooltip as LeafletTooltip } from 'react-leaflet';
 import { FormattedMessage } from 'react-intl';
 import Loader from 'react-loader';
 
@@ -15,6 +15,7 @@ import { usePopupResult } from '../../hooks/usePopupResult';
 
 interface Props {
   id: number;
+  parentId?: number;
   handleOpen?: () => void;
   handleClose?: () => void;
   type: 'TREK' | 'TOURISTIC_CONTENT';
@@ -24,8 +25,9 @@ interface PropsPC {
   showButton: boolean;
   id: number;
   type: 'TREK' | 'TOURISTIC_CONTENT';
+  parentId?: number;
 }
-const PopupContent: React.FC<PropsPC> = ({ showButton, id, type }) => {
+const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId }) => {
   const { isLoading, trekPopupResult } = usePopupResult(id.toString(), true, type);
 
   return (
@@ -49,7 +51,7 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type }) => {
               <Link
                 href={
                   type === 'TREK'
-                    ? generateResultDetailsUrl(id, trekPopupResult.title)
+                    ? generateResultDetailsUrl(id, trekPopupResult.title, parentId)
                     : generateTouristicContentUrl(id, trekPopupResult.title)
                 }
               >
@@ -67,15 +69,15 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type }) => {
   );
 };
 
-export const Popup: React.FC<Props> = ({ id, handleOpen, handleClose, type }) => {
+export const Popup: React.FC<Props> = ({ id, parentId, handleOpen, handleClose, type }) => {
   const [hideTooltip, setHideTooltip] = useState<boolean>(false);
 
   return (
     <>
       {!hideTooltip && (
-        <Tooltip>
+        <StyledTooltip>
           <PopupContent type={type} id={id} showButton={false} />
-        </Tooltip>
+        </StyledTooltip>
       )}
       <StyledPopup
         closeButton={false}
@@ -89,7 +91,7 @@ export const Popup: React.FC<Props> = ({ id, handleOpen, handleClose, type }) =>
         }}
         offset={[0, -12]}
       >
-        <PopupContent type={type} id={id} showButton={true} />
+        <PopupContent type={type} id={id} showButton={true} parentId={parentId} />
       </StyledPopup>
     </>
   );
@@ -115,6 +117,18 @@ const Title = styled.span`
     overflow: hidden;
     display: block;
   `)}
+`;
+
+const StyledTooltip = styled(LeafletTooltip)`
+  padding: 0;
+  border: 0px !important;
+  border-radius: ${getSpacing(4)} !important;
+  overflow: hidden;
+  white-space: initial !important;
+  width: ${mobileWidth}px;
+  ${desktopOnly(css`
+    width: ${desktopWidth}px;
+  `)};
 `;
 
 const StyledPopup = styled(LeafletPopup)`

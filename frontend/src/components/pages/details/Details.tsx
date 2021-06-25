@@ -122,8 +122,11 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                 >
                   <OpenMapButton displayMap={displayMobileMap} />
                   <Modal>
-                    {({ toggleFullscreen }) => (
-                      <div id="details_cover">
+                    {({ isFullscreen, toggleFullscreen }) => (
+                      <div
+                        id="details_cover"
+                        className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
+                      >
                         {details.imgs.length > 1 ? (
                           <DetailsCoverCarousel
                             attachments={details.imgs}
@@ -446,6 +449,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           geometry,
                           color,
                         }))}
+                      trekId={Number(id)}
                     />
                   </div>
                 )}
@@ -496,6 +500,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       id: `${touristicContent.id}`,
                     }))}
                   hideMap={hideMobileMap}
+                  trekId={Number(id)}
                 />
               </MobileMapContainer>
             )}

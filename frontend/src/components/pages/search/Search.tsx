@@ -1,4 +1,6 @@
+import useBbox from 'components/pages/search/components/useBbox';
 import React from 'react';
+import { useMediaPredicate } from 'react-media-hook';
 import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'react-loader';
@@ -62,6 +64,10 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     selectFilter,
   );
 
+  const { bboxState, handleMoveMap } = useBbox();
+
+  const isMobile = useMediaPredicate('(max-width: 1024px)');
+
   const {
     textFilterInput,
     textFilterState,
@@ -81,9 +87,9 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-  } = useTrekResults({ filtersState, textFilterState }, language);
+  } = useTrekResults({ filtersState, textFilterState, bboxState }, language);
 
-  const { mapResults, isMapLoading } = useMapResults({ filtersState, textFilterState }, language);
+  const { isMapLoading } = useMapResults({ filtersState, textFilterState }, language);
 
   const intl = useIntl();
 
@@ -188,6 +194,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                           title={searchResult.title}
                           tags={searchResult.tags}
                           thumbnailUris={searchResult.thumbnailUris}
+                          attachments={searchResult.attachments}
                           badgeIconUri={searchResult.practice?.pictogram}
                           informations={searchResult.informations}
                           redirectionUrl={generateResultDetailsUrl(
@@ -206,6 +213,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                           title={searchResult.name}
                           tags={searchResult.themes}
                           thumbnailUris={searchResult.thumbnailUris}
+                          attachments={searchResult.attachments}
                           badgeIconUri={searchResult.category.pictogramUri}
                           informations={searchResult.types}
                           redirectionUrl={generateTouristicContentUrl(
@@ -242,32 +250,35 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                   scale: 2,
                 }}
               />
-              <SearchMapDynamicComponent
-                points={mapResults}
-                type="DESKTOP"
-                shouldUseClusters
-                shouldUsePopups
-              />
+              {!isMobile && (
+                <SearchMapDynamicComponent
+                  type="DESKTOP"
+                  onMove={handleMoveMap}
+                  shouldUseClusters
+                  shouldUsePopups
+                />
+              )}
             </div>
           </div>
         </Container>
       </Layout>
-      <MobileMapContainer
-        className={`desktop:hidden fixed right-0 left-0 h-full z-map ${
-          mobileMapState === 'HIDDEN' ? 'hidden' : 'flex'
-        }`}
-        displayState={mobileMapState}
-      >
-        <SearchMapDynamicComponent
-          hideMap={hideMobileMap}
-          type="MOBILE"
-          points={mapResults}
-          openFilterMenu={displayMenu}
-          hasFilters={activeFiltersNumber > 0}
-          shouldUseClusters
-          shouldUsePopups
-        />
-      </MobileMapContainer>
+      {isMobile && (
+        <MobileMapContainer
+          className={`desktop:hidden fixed right-0 left-0 h-full z-map ${
+            mobileMapState === 'HIDDEN' ? 'hidden' : 'flex'
+          }`}
+          displayState={mobileMapState}
+        >
+          <SearchMapDynamicComponent
+            hideMap={hideMobileMap}
+            type="MOBILE"
+            openFilterMenu={displayMenu}
+            hasFilters={activeFiltersNumber > 0}
+            shouldUseClusters
+            shouldUsePopups
+          />
+        </MobileMapContainer>
+      )}
     </div>
   );
 };
@@ -280,11 +291,6 @@ const Separator = styled.hr`
   background-color: ${colorPalette.greySoft};
   height: 1px;
   border: 0;
-`;
-
-const RankingInfo = styled.div`
-  ${typography.small}
-  margin-top: ${getSpacing(1)};
 `;
 
 export const MobileMapContainer = styled.div<{ displayState: 'DISPLAYED' | 'HIDDEN' }>`

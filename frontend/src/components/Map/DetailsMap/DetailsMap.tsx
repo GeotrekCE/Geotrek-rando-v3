@@ -48,6 +48,7 @@ export type PropsType = {
   bbox: { corner1: Coordinate2D; corner2: Coordinate2D };
   trekChildrenGeometry?: TrekChildGeometry[];
   sensitiveAreas?: SensitiveAreaGeometry[];
+  trekId: number;
 };
 
 export const DetailsMap: React.FC<PropsType> = props => {
@@ -93,6 +94,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           trekGeometry={props.trekGeometry}
         />
         <MapChildren
+          parentId={props.trekId}
           poiPoints={props.poiPoints}
           touristicContentPoints={props.touristicContentPoints}
           pointsReference={props.pointsReference}

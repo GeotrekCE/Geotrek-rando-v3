@@ -13,7 +13,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
   onClickImage,
 }) => {
   return (
-    <div className="h-full w-full flex-shrink-0 desktop:w-resultCardDesktop relative">
+    <div className="h-full w-full flex-shrink-0 desktop:w-resultCardDesktop relative ">
       <SmallCarousel>
         {thumbnailUris.map((thumbnailUri, i) => (
           <div key={i} className="relative h-full" onClick={onClickImage}>
