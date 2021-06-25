@@ -47,7 +47,7 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
           <span className={'font-bold'}>
             <FormattedMessage id="details.arrival" />
           </span>{' '}
-          : {departure}
+          : {arrival}
         </div>
       )}
       {cities && cities.length > 0 && (
