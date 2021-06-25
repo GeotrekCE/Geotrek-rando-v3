@@ -36,7 +36,3 @@ const ResultsNumber = styled.div`
     ${typography.h2}
   `)}
 `;
-
-const SearchInfo = styled.span`
-  ${typography.main};
-`;

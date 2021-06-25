@@ -36,6 +36,9 @@ export const parseFilters = (filters: FilterState[]): QueryFilterState[] =>
 export const parseTextFilter = (textFilter: string | null): string | undefined =>
   textFilter !== null ? textFilter : undefined;
 
+export const parseBboxFilter = (bboxFilter: string | null): string | undefined =>
+  bboxFilter !== null ? bboxFilter : undefined;
+
 /** Concatenates multiple SearchResults into one with all results concatenated */
 export const concatResultsPages = (resultsPages: SearchResults[]): SearchResults | null => {
   if (resultsPages.length === 0) return null;

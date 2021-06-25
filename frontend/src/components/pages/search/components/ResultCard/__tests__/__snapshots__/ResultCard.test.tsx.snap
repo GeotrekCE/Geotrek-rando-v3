@@ -10,7 +10,6 @@ Object {
         id="result_card"
       >
         <div
-          class="desktop:h-coverDetailsDesktop"
           style="background-color: white; position: relative;"
         >
           <div
@@ -20,7 +19,7 @@ Object {
               style="width: 100%; height: 100%;"
             >
               <div
-                class="h-full w-full flex-shrink-0 desktop:w-resultCardDesktop relative"
+                class="h-full w-full flex-shrink-0 desktop:w-resultCardDesktop relative "
               >
                 <div
                   class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 dvIfOd slick-initialized"
@@ -234,7 +233,6 @@ Object {
       id="result_card"
     >
       <div
-        class="desktop:h-coverDetailsDesktop"
         style="background-color: white; position: relative;"
       >
         <div
@@ -244,7 +242,7 @@ Object {
             style="width: 100%; height: 100%;"
           >
             <div
-              class="h-full w-full flex-shrink-0 desktop:w-resultCardDesktop relative"
+              class="h-full w-full flex-shrink-0 desktop:w-resultCardDesktop relative "
             >
               <div
                 class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 dvIfOd slick-initialized"

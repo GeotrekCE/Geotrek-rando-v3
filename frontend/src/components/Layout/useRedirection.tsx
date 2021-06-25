@@ -6,7 +6,9 @@ export const useNavigationLoader = (): {
 } => {
   const [isNavigationLoading, setIsNavigationLoading] = useState(false);
 
-  Router.events.on('routeChangeStart', () => setIsNavigationLoading(true));
+  Router.events.on('routeChangeStart', (url, { shallow }) => {
+    if (!shallow) setIsNavigationLoading(true);
+  });
   Router.events.on('routeChangeError', () => setIsNavigationLoading(false));
   Router.events.on('routeChangeComplete', () => setIsNavigationLoading(false));
 

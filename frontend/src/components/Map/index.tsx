@@ -8,10 +8,11 @@ const SearchMapDynamicComponentWithoutMemo: React.FC<SearchMapProps> = props => 
   const SearchMap = dynamic(() => import('./SearchMap'), {
     ssr: false,
   });
+
   return <SearchMap {...props} />;
 };
 
-export const SearchMapDynamicComponent = memo(SearchMapDynamicComponentWithoutMemo);
+export const SearchMapDynamicComponent = memo(SearchMapDynamicComponentWithoutMemo, () => true);
 
 const DetailsMapDynamicComponentWithoutMemo: React.FC<DetailsMapProps> = props => {
   const DetailsMap = dynamic(() => import('./DetailsMap/DetailsMap'), {

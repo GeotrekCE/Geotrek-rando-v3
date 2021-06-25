@@ -12,8 +12,6 @@ import { commonFilters } from 'modules/filters/utils';
 import { FilterState } from 'modules/filters/interface';
 import { SelectableDropdown } from './SelectableDropdown';
 
-const NUMBER_OF_PRIMARY_FILTERS_DISPLAYED = 6;
-
 interface Props {
   filtersState: FilterState[];
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;

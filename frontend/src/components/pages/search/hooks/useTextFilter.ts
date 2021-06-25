@@ -17,7 +17,7 @@ export const useTextFilter = (): {
   const initialTextFilterValue =
     initialOptions.text !== undefined
       ? (initialOptions.text as string)
-      : initialTextFromRedirect || null;
+      : initialTextFromRedirect ?? null;
 
   const [textFilterInput, setTextFilterInput] = useState<string | null>(initialTextFilterValue);
   const [textFilterState, setTextFilterState] = useState<string | null>(initialTextFilterValue);

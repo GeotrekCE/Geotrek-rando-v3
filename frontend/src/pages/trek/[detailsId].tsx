@@ -1,3 +1,4 @@
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { DetailsUI } from 'components/pages/details';
 import { useEffect } from 'react';
@@ -31,7 +32,7 @@ export const getServerSideProps = async (context: {
   };
 };
 
-const Details = () => {
+const Details: NextPage = () => {
   const router = useRouter();
   const { detailsId, parentId } = router.query;
   const language = router.locale ?? getDefaultLanguage();

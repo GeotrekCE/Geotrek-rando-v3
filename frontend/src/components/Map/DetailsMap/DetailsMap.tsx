@@ -48,7 +48,7 @@ export type PropsType = {
   bbox: { corner1: Coordinate2D; corner2: Coordinate2D };
   trekChildrenGeometry?: TrekChildGeometry[];
   sensitiveAreas?: SensitiveAreaGeometry[];
-  trekId: number
+  trekId: number;
 };
 
 export const DetailsMap: React.FC<PropsType> = props => {

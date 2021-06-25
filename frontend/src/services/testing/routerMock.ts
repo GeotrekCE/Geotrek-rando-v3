@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { NextRouter } from 'next/dist/next-server/lib/router/router';
 
 export const routerMock = (routerProps: Partial<NextRouter> = {}): NextRouter => ({

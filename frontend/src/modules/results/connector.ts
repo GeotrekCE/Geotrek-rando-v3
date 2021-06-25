@@ -20,6 +20,7 @@ import {
 import { SearchResults, TrekResult } from './interface';
 import {
   extractNextPageId,
+  formatBboxFilter,
   formatTextFilter,
   formatTouristicContentFiltersToUrlParams,
   formatTrekFiltersToUrlParams,
@@ -33,14 +34,18 @@ const emptyResultPromise = Promise.resolve({
 });
 
 export const getSearchResults = async (
-  filters: { filtersState: QueryFilterState[]; textFilterState: string | null },
+  filters: {
+    filtersState: QueryFilterState[];
+    textFilterState: string | null;
+    bboxState: string | null;
+  },
   pages: {
     treks: number | null;
     touristicContents: number | null;
   },
   language: string,
 ): Promise<SearchResults> => {
-  const { filtersState, textFilterState } = filters;
+  const { filtersState, textFilterState, bboxState } = filters;
 
   try {
     const practiceFilter = filtersState.find(({ id }) => id === PRACTICE_ID);
@@ -56,6 +61,8 @@ export const getSearchResults = async (
 
     const textFilter = formatTextFilter(textFilterState);
 
+    const bboxFilter = formatBboxFilter(bboxState);
+
     // We get the treks and touristic content counts on their own call to handle the "null" next page edge case
 
     const getTreksCountPromise = shouldFetchTreks
@@ -65,6 +72,7 @@ export const getSearchResults = async (
           page: 1,
           ...trekFilters,
           ...textFilter,
+          ...bboxFilter,
         })
       : emptyResultPromise;
     const getTouristicContentsCountPromise = shouldFetchTouristicContents
@@ -74,6 +82,7 @@ export const getSearchResults = async (
           page: 1,
           ...touristicContentFilter,
           ...textFilter,
+          ...bboxFilter,
         })
       : emptyResultPromise;
 
@@ -92,6 +101,7 @@ export const getSearchResults = async (
             page: pages.treks ?? undefined,
             ...trekFilters,
             ...textFilter,
+            ...bboxFilter,
           })
         : Promise.resolve({
             count: treksCount, // We keep the treks counts event if the query only concerns the touristic content
@@ -108,6 +118,7 @@ export const getSearchResults = async (
             page: pages.touristicContents ?? undefined,
             ...touristicContentFilter,
             ...textFilter,
+            ...bboxFilter,
           })
         : Promise.resolve({
             count: touristicContentsCount, // We keep the touristic content counts event if the query only concerns the treks
