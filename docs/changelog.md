@@ -5,6 +5,9 @@
 
 **✨ Improvements**
 
+* Add ``redirects.json`` setting file to manage redirections from Geotrek-rando v2 to Geotrek-rando v3 (#59)
+* Allow to filter results by displayed map area (bbox) (#383)
+* Don't recenter map at each search (#413)
 * Add Italian translation
 * Add tooltips on trek detail pages maps (steps, heritages, touristic contents) (#379)
 * Show tooltip on search map on hover (#399)
@@ -14,6 +17,7 @@
 * Add download buttons on trek mobile detail pages (#405)
 * Display legends at the top of images in mobile detail pages
 * Add ``enableIndexation`` setting to allow to disable search engine indexation, ``true`` by default (#410)
+* Improve 404 page design (#391)
 * Improve URL by removing accents with ``diacritics``
 * Improve performances (#362) :
    * Remove some unused dependancies
