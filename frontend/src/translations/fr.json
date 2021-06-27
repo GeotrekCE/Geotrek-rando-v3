@@ -94,8 +94,8 @@
     "altimetricProfile": {
       "title": "Profil altimétrique",
       "totalLength": "Longueur totale",
-      "minElevation": "Elevation min",
-      "maxElevation": "Elevation max"
+      "minElevation": "Altitude min",
+      "maxElevation": "Altitude max"
     },
     "departure": "Départ",
     "arrival": "Arrivée",
