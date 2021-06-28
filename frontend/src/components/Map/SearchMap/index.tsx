@@ -1,6 +1,7 @@
 import MapContainer from 'components/Map/SearchMap/MapContainer';
 import MoveHandler from 'components/Map/SearchMap/MoveHandler';
 import SearchMapChildrens from 'components/Map/SearchMap/SearchMapChildrens';
+import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { LatLngBounds } from 'leaflet';
 import React from 'react';
 import { TileLayer } from 'react-leaflet';
@@ -43,12 +44,13 @@ const SearchMap: React.FC<PropsType> = props => {
       <MapContainer whenCreated={setMapInstance} type={props.type}>
         {props.onMove && <MoveHandler onMove={props.onMove} />}
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
-        <SearchMapChildrens
-          {...props}
-          isSatelliteLayerAvailable={isSatelliteLayerAvailable}
-          updateTileLayer={updateTileLayer}
-        />
+        <SearchMapChildrens {...props} />
       </MapContainer>
+      {isSatelliteLayerAvailable && (
+        <div className="absolute bottom-6 left-6 z-mapButton">
+          <MapLayerTypeToggleButton onToggleButtonClick={updateTileLayer} />
+        </div>
+      )}
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
       <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
@@ -56,4 +58,4 @@ const SearchMap: React.FC<PropsType> = props => {
   );
 };
 
-export default React.memo(SearchMap, () => true);
+export default SearchMap;
