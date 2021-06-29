@@ -55,6 +55,7 @@ export interface APICallsConfig {
   applicationName: string;
   enableIndexation: boolean;
   enableReport: boolean;
+  enableSearchOnMap: boolean;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */

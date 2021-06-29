@@ -13,5 +13,6 @@
   "touristicContentLabelImageUri": "https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png",
   "applicationName": "Geotrek-rando",
   "enableIndexation": true,
-  "enableReport": true
+  "enableReport": true,
+  "enableSearchOnMap": false
 }
