@@ -1,12 +1,16 @@
+import React from 'react';
+
 interface DetailsButtonProps {
   url: string;
+  onClick?: (event: React.MouseEvent) => void;
   children: JSX.Element;
 }
 
-export const DetailsButton: React.FC<DetailsButtonProps> = ({ url, children }) => {
+export const DetailsButton: React.FC<DetailsButtonProps> = ({ url, onClick, children }) => {
   return (
     <a
       href={url}
+      onClick={onClick}
       target="_blank"
       rel="noopener noreferrer"
       className="h-12 w-12

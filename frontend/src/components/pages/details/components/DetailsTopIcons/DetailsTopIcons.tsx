@@ -1,9 +1,12 @@
 import { Download } from 'components/Icons/Download';
 import { Printer } from 'components/Icons/Printer';
+import { AlertTriangle } from 'components/Icons/AlertTriangle';
+import Report from 'components/Report/Report';
 import { Activity } from 'modules/activities/interface';
-import React from 'react';
+import React, { useState } from 'react';
 import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
+import { getGlobalConfig } from '../../../../../modules/utils/api.config';
 import { DetailsButton } from '../DetailsButton';
 import { DetailsButtonDropdown } from '../DetailsButtonDropdown';
 
@@ -12,6 +15,7 @@ interface DetailsTopIconsProps {
   pdfUri?: string;
   gpxUri?: string;
   kmlUri?: string;
+  trekId?: number;
 }
 
 export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
@@ -19,30 +23,52 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
   pdfUri,
   gpxUri,
   kmlUri,
+  trekId,
 }) => {
+  const [openReport, setOpenReport] = useState<boolean>(false);
   const dropdownButtonOptions = [];
   if (gpxUri !== undefined) dropdownButtonOptions.push({ label: 'GPX', value: gpxUri });
   if (kmlUri !== undefined) dropdownButtonOptions.push({ label: 'KML', value: kmlUri });
 
+  const handleOpenReport = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    setOpenReport(true);
+  };
+
   return (
-    <div
-      id="details_topRoundIcons"
-      className="flex justify-between items-center mx-4 desktop:mx-12 menu-download"
-    >
-      {practice !== undefined && <ActivityLogo src={practice.pictogram} />}
-      <div className="flex space-x-4">
-        {pdfUri !== undefined && (
-          <DetailsButton url={pdfUri}>
-            <Printer size={30} />
-          </DetailsButton>
-        )}
-        {dropdownButtonOptions.length > 0 && (
-          <DetailsButtonDropdown options={dropdownButtonOptions}>
-            <Download className="text-primary1 m-2" size={30} />
-          </DetailsButtonDropdown>
-        )}
+    <>
+      {openReport && trekId && (
+        <Report trekId={trekId} onRequestClose={() => setOpenReport(false)} />
+      )}
+
+      <div
+        id="details_topRoundIcons"
+        className="flex justify-between items-center mx-4 desktop:mx-12 menu-download"
+      >
+        {practice !== undefined && <ActivityLogo src={practice.pictogram} />}
+        <div className="flex space-x-4">
+          {pdfUri !== undefined && (
+            <DetailsButton url={pdfUri}>
+              <Printer size={30} />
+            </DetailsButton>
+          )}
+          {dropdownButtonOptions.length > 0 && (
+            <DetailsButtonDropdown options={dropdownButtonOptions}>
+              <Download className="text-primary1 m-2" size={30} />
+            </DetailsButtonDropdown>
+          )}
+          {trekId && getGlobalConfig().enableReport && (
+            <>
+              <DetailsButton url={'#'} onClick={handleOpenReport}>
+                <AlertTriangle size={30} />
+              </DetailsButton>
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -54,6 +54,7 @@ export interface APICallsConfig {
   touristicContentLabelImageUri: string;
   applicationName: string;
   enableIndexation: boolean;
+  enableReport: boolean;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */
