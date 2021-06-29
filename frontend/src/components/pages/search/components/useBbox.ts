@@ -11,7 +11,7 @@ const useBbox = (): ReturnType => {
   const [bboxState, setBboxState] = useState<string | null>(null);
 
   const handleMoveMap = (bounds: LatLngBounds) => {
-    if (getGlobalConfig().enableSearchOnMap) setBboxState(bounds.toBBoxString());
+    if (getGlobalConfig().enableSearchByMap) setBboxState(bounds.toBBoxString());
   };
 
   return {
