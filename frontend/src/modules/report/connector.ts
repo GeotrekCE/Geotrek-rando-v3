@@ -1,5 +1,5 @@
-import { Report } from '../../../../../../../../../home/sylchauf/projects/Geotrek-rando-v3/frontend/src/modules/report/interface';
 import { postReport } from './api';
+import { Report } from './interface';
 
 export const createReport = async (lang: string, params: Report) => {
   if (!params.name) throw new Error('error.missing');

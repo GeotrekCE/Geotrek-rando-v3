@@ -1,6 +1,6 @@
 import { LatLngBounds } from 'leaflet';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { useState } from 'react';
-import { getGlobalConfig } from '../../../../../../../../../../../home/sylchauf/projects/Geotrek-rando-v3/frontend/src/modules/utils/api.config';
 
 interface ReturnType {
   bboxState: string | null;
