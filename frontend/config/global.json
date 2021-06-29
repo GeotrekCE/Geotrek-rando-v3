@@ -14,5 +14,5 @@
   "applicationName": "Geotrek-rando",
   "enableIndexation": true,
   "enableReport": true,
-  "enableSearchOnMap": false
+  "enableSearchByMap": true
 }
