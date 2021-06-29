@@ -7,16 +7,12 @@ import { useSelectedMarker } from 'components/Map/hooks/useSelectedMarker';
 import { ArrivalMarker } from 'components/Map/Markers/ArrivalMarker';
 import { DepartureMarker } from 'components/Map/Markers/DepartureMarker';
 import { ParkingMarker } from 'components/Map/Markers/ParkingMarker';
-import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { getHoverId } from 'components/pages/search/utils';
-import { LatLngBounds } from 'leaflet';
 import React, { useContext } from 'react';
 import { Marker } from 'react-leaflet';
 import { ListAndMapContext } from '../../../modules/map/ListAndMapContext';
 
 export type PropsType = {
-  isSatelliteLayerAvailable: boolean;
-  updateTileLayer: (values: any) => void;
   segments?: { x: number; y: number }[];
   hideMap?: () => void;
   type: 'DESKTOP' | 'MOBILE';
@@ -88,13 +84,6 @@ const SearchMapChildrens: React.FC<PropsType> = props => {
       )}
       {props.segments && <DecoratedPolyline positions={props.segments} />}
       <TrekCourse id={selectedMarkerId} />
-      {props.isSatelliteLayerAvailable && (
-        <div className="absolute bottom-6 left-6 z-mapButton">
-          <MapLayerTypeToggleButton
-            onToggleButtonClick={newType => props.updateTileLayer(newType)}
-          />
-        </div>
-      )}
     </>
   );
 };

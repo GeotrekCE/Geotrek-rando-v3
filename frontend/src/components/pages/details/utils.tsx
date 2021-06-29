@@ -1,7 +1,7 @@
 import { routes } from 'services/routes';
 import styled, { css } from 'styled-components';
 import { colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
-import { generateResultDetailsUrl } from '../search/utils';
+import { convertStringForSitemap, generateResultDetailsUrl } from '../search/utils';
 
 export const HtmlText = styled.div`
   a {
@@ -124,6 +124,6 @@ export const generateChildrenDetailsUrl = (
 };
 
 export const generateTouristicContentUrl = (id: number | string, title: string): string => {
-  const titleWithNoSpace = title.replace(/ /g, '-');
+  const titleWithNoSpace = convertStringForSitemap(title);
   return `${routes.TOURISTIC_CONTENT}/${id}-${encodeURI(titleWithNoSpace)}`;
 };

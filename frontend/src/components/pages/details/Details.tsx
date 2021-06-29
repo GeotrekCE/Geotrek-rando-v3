@@ -1,5 +1,6 @@
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
+import Report from 'components/Report/Report';
 import Loader from 'react-loader';
 import parse from 'html-react-parser';
 import { FormattedMessage } from 'react-intl';
@@ -11,7 +12,7 @@ import { useShowOnScrollPosition } from 'hooks/useShowOnScrollPosition';
 import { useMediaPredicate } from 'react-media-hook';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
-import { useMemo, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { Footer } from 'components/Footer';
 import { DetailsPreview } from './components/DetailsPreview';
@@ -153,6 +154,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       gpxUri={details.gpxUri}
                       practice={details.practice ?? undefined}
                       kmlUri={details.kmlUri}
+                      trekId={Number(id)}
                     />
 
                     <div ref={setPreviewRef} id="details_preview_ref">

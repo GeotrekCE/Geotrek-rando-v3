@@ -117,5 +117,20 @@
     "legalMentions": "Legal mentions",
     "accessibility": "Accessibility rules",
     "geotrek": "Geotrek"
+  },
+  "report": {
+    "title": "Report a problem or an error",
+    "activity": "Activity",
+    "category": "Category",
+    "magnitude": "Magnitude of the problem",
+    "comment": "Comments",
+    "email": "Email",
+    "name": "Your name",
+    "button": "Report",
+    "cancel": "Cancel",
+    "success": "Thank you, the report has been taken into account."
+  },
+  "error": {
+    "missing": "The form is not complete"
   }
 }

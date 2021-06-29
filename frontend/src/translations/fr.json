@@ -119,5 +119,20 @@
     "legalMentions": "Mentions légales",
     "accessibility": "Règles d'accessibilité",
     "geotrek": "Geotrek"
+  },
+  "report": {
+    "title": "Signaler un problème ou une erreur",
+    "activity": "Activité",
+    "category": "Catégorie",
+    "magnitude": "Ampleur du problème",
+    "comment": "Commentaires",
+    "email": "Email",
+    "name": "Votre nom",
+    "button": "Signaler",
+    "cancel": "Annuler",
+    "success": "Merci, le signalement a été pris en compte."
+  },
+  "error": {
+    "missing": "Le formulaire n'est pas complet"
   }
 }

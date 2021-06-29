@@ -93,5 +93,7 @@ export const convertStringForSitemap = (text: string) =>
       .replace(/</g, '')
       .replace(/’/g, '-')
       .replace(/–/g, '-')
-      .replace(/\+/g, ''),
+      .replace(/\+/g, '')
+      .replace(/\//g, '')
+      .replace(/\\/g, ''),
   );

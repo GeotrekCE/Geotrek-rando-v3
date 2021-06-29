@@ -1,4 +1,5 @@
 import { LatLngBounds } from 'leaflet';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { useState } from 'react';
 
 interface ReturnType {
@@ -10,7 +11,7 @@ const useBbox = (): ReturnType => {
   const [bboxState, setBboxState] = useState<string | null>(null);
 
   const handleMoveMap = (bounds: LatLngBounds) => {
-    setBboxState(bounds.toBBoxString());
+    if (getGlobalConfig().enableSearchOnMap) setBboxState(bounds.toBBoxString());
   };
 
   return {

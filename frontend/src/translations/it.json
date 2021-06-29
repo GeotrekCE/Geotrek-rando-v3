@@ -118,5 +118,20 @@
     "legalMentions": "Informazioni legali",
     "accessibility": "Regole di accessibilità",
     "geotrek": "Geotrek"
+  },
+  "report": {
+    "title": "Segnala un problema o un errore",
+    "activity": "Attività",
+    "category": "Categoria",
+    "magnitude": "Portata del problema",
+    "comment": "Commenti",
+    "email": "Email",
+    "name": "Il tuo nome",
+    "button": "Segnala",
+    "cancel": "Cancella",
+    "success": "Grazie, il rapporto è stato preso in considerazione."
+  },
+  "error": {
+    "missing": "Il modulo non è completo"
   }
 }

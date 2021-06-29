@@ -105,7 +105,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           referencePointsMobileVisibility={referencePointsMobileVisibility}
           touristicContentMobileVisibility={touristicContentMobileVisibility}
         />
-        {props.type === 'DESKTOP' && <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />}
+        <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />
         {isSatelliteLayerAvailable && (
           <div className="absolute bottom-6 left-6 z-mapButton">
             <MapLayerTypeToggleButton onToggleButtonClick={newType => updateTileLayer(newType)} />
