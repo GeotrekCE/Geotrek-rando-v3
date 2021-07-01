@@ -34,7 +34,7 @@ module.exports = withPlugins(plugins, {
       source: rule.source,
       destination: rule.destination,
       permanent: rule.permanent !== undefined ? rule.permanent : false,
-      locale: rule.locale !== undefined ? rule.locale : true,
+      locale: rule.locale !== undefined ? rule.locale : undefined,
       basePath: rule.basePath !== undefined ? rule.basePath : false,
     }));
   },
