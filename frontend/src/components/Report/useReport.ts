@@ -8,7 +8,21 @@ import { getFeedbackMagnitude } from '../../modules/feedbackMagnitude/connector'
 import { getDefaultLanguage } from '../../modules/header/utills';
 import { createReport } from '../../modules/report/connector';
 
-const initialState = {
+type Option = {
+  label: string;
+  id: number;
+};
+
+interface PropsState {
+  activity: Option[];
+  category: Option[];
+  magnitude: Option[];
+  comment: string;
+  email: string;
+  name: string;
+}
+
+const initialState: PropsState = {
   comment: '',
   email: '',
   name: '',
@@ -72,10 +86,10 @@ const useReport = ({ trekId }: Props) => {
   };
 
   const submit = async () => {
-    return createReport(language, {
-      activity: state.activity[0],
-      category: state.category[0],
-      problem_magnitude: state.magnitude[0],
+    await createReport(language, {
+      activity: state.activity[0].id,
+      category: state.category[0].id,
+      problem_magnitude: state.magnitude[0].id,
       email: state.email,
       name: state.name,
       comment: state.comment,
@@ -85,7 +99,10 @@ const useReport = ({ trekId }: Props) => {
         setError('');
         setSubmitted(true);
       })
-      .catch(error => setError(error.message));
+      .catch(error => {
+        console.error(error);
+        setError(error.message);
+      });
   };
 
   return { state, isLoading, options, setValue, submit, submitted, error };
