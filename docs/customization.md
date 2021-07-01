@@ -59,7 +59,7 @@ In json files, you can just override the primary keys you need. You have to over
   - In `rules`, you can define all the rules needed to redirect clients
     - `source` : must match to the old URL. Use the wildcard `*` to redirect a subdirectory. Use `:varname` to forward a variable to the destination
     - `destination` : must match to the new URL. Use `:varname` to inject a variable captured in the old URL
-    - `locale` : This can be `true` or `false`. This argument specify if the server must detect automatically the locale or if the rule specify itself the locale used. Default to `true`
+    - `locale` : This can be `undifined` or `false`. This argument specify if the server must detect automatically the locale or if the rule specify itself the locale used. Default to `undefined`
     - `permanent` : Set to `true` if the redirection is permanent. Set to `false` if the redirection is temporally. Default to `false`
 
     Examples :

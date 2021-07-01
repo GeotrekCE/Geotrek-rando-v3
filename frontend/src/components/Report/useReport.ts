@@ -2,13 +2,24 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useQueries } from 'react-query';
 
+import { Option } from 'modules/filters/interface';
+
 import { getFeedbackActivity } from '../../modules/feedbackActivity/connector';
 import { getFeedbackCategory } from '../../modules/feedbackCategory/connector';
 import { getFeedbackMagnitude } from '../../modules/feedbackMagnitude/connector';
 import { getDefaultLanguage } from '../../modules/header/utills';
 import { createReport } from '../../modules/report/connector';
 
-const initialState = {
+interface PropsState {
+  activity: Option[];
+  category: Option[];
+  magnitude: Option[];
+  comment: string;
+  email: string;
+  name: string;
+}
+
+const initialState: PropsState = {
   comment: '',
   email: '',
   name: '',
@@ -58,7 +69,10 @@ const useReport = ({ trekId }: Props) => {
   const convertToOptions = (key: string, data: any) => {
     setOptions(oldOptions => {
       const newOptions = JSON.parse(JSON.stringify(oldOptions));
-      newOptions[key] = data;
+      newOptions[key] = data.map((d: any) => ({
+        label: d.label,
+        value: String(d.id),
+      }));
       return newOptions;
     });
   };
@@ -72,20 +86,34 @@ const useReport = ({ trekId }: Props) => {
   };
 
   const submit = async () => {
-    return createReport(language, {
-      activity: state.activity[0],
-      category: state.category[0],
-      problem_magnitude: state.magnitude[0],
+    await createReport(language, {
+      activity: Number(state.activity[0].value),
+      category: Number(state.category[0].value),
+      problem_magnitude: Number(state.magnitude[0].value),
       email: state.email,
       name: state.name,
       comment: state.comment,
       related_trek: trekId,
     })
-      .then(() => {
+      .then(async res => {
+        const json = await res.json();
+        if (res.status === 400) {
+          const errors = Object.values(json)
+            // @ts-ignore
+            .map(v => v[0])
+            .join('. ');
+
+          throw new Error(errors);
+        } else return json;
+      })
+      .then(res => {
         setError('');
         setSubmitted(true);
       })
-      .catch(error => setError(error.message));
+      .catch(error => {
+        console.error(error);
+        setError(error.message);
+      });
   };
 
   return { state, isLoading, options, setValue, submit, submitted, error };
