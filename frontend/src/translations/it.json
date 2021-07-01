@@ -129,7 +129,7 @@
     "name": "Il tuo nome",
     "button": "Segnala",
     "cancel": "Cancella",
-    "success": "Grazie, il rapporto è stato preso in considerazione."
+    "success": "Grazie, il rapporto è stato inviato."
   },
   "error": {
     "missing": "Il modulo non è completo"
