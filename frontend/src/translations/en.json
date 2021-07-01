@@ -128,7 +128,7 @@
     "name": "Your name",
     "button": "Report",
     "cancel": "Cancel",
-    "success": "Thank you, the report has been taken into account."
+    "success": "Thank you, the report has been sent."
   },
   "error": {
     "missing": "The form is not complete"
