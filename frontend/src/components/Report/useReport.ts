@@ -95,7 +95,18 @@ const useReport = ({ trekId }: Props) => {
       comment: state.comment,
       related_trek: trekId,
     })
-      .then(() => {
+      .then(async res => {
+        const json = await res.json();
+        if (res.status === 400) {
+          const errors = Object.values(json)
+            // @ts-ignore
+            .map(v => v[0])
+            .join('. ');
+
+          throw new Error(errors);
+        } else return json;
+      })
+      .then(res => {
         setError('');
         setSubmitted(true);
       })
