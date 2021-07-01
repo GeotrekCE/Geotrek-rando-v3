@@ -2,16 +2,13 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useQueries } from 'react-query';
 
+import { Option } from 'modules/filters/interface';
+
 import { getFeedbackActivity } from '../../modules/feedbackActivity/connector';
 import { getFeedbackCategory } from '../../modules/feedbackCategory/connector';
 import { getFeedbackMagnitude } from '../../modules/feedbackMagnitude/connector';
 import { getDefaultLanguage } from '../../modules/header/utills';
 import { createReport } from '../../modules/report/connector';
-
-type Option = {
-  label: string;
-  id: number;
-};
 
 interface PropsState {
   activity: Option[];
@@ -72,7 +69,10 @@ const useReport = ({ trekId }: Props) => {
   const convertToOptions = (key: string, data: any) => {
     setOptions(oldOptions => {
       const newOptions = JSON.parse(JSON.stringify(oldOptions));
-      newOptions[key] = data;
+      newOptions[key] = data.map((d: any) => ({
+        label: d.label,
+        value: String(d.id),
+      }));
       return newOptions;
     });
   };
@@ -87,9 +87,9 @@ const useReport = ({ trekId }: Props) => {
 
   const submit = async () => {
     await createReport(language, {
-      activity: state.activity[0].id,
-      category: state.category[0].id,
-      problem_magnitude: state.magnitude[0].id,
+      activity: Number(state.activity[0].value),
+      category: Number(state.category[0].value),
+      problem_magnitude: Number(state.magnitude[0].value),
       email: state.email,
       name: state.name,
       comment: state.comment,
