@@ -130,7 +130,7 @@
     "name": "Votre nom",
     "button": "Signaler",
     "cancel": "Annuler",
-    "success": "Merci, le signalement a été pris en compte."
+    "success": "Merci, le signalement a été envoyé."
   },
   "error": {
     "missing": "Le formulaire n'est pas complet"
