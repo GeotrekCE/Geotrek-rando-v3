@@ -8,14 +8,19 @@ import Loader from 'react-loader';
 import { SelectableDropdown } from 'components/pages/search/components/FilterBar/SelectableDropdown';
 import useReport from 'components/Report/useReport';
 import { Option } from '../../modules/filters/interface';
+import { PointGeometry } from '../../modules/interface';
 
 interface Props {
   trekId: number;
+  startPoint: PointGeometry;
   onRequestClose: () => void;
 }
 
-const Report: React.FC<Props> = ({ trekId, onRequestClose }) => {
-  const { state, isLoading, options, setValue, submitted, submit, error } = useReport({ trekId });
+const Report: React.FC<Props> = ({ trekId, startPoint, onRequestClose }) => {
+  const { state, isLoading, options, setValue, submitted, submit, error } = useReport({
+    trekId,
+    startPoint,
+  });
   const intl = useIntl();
 
   return (

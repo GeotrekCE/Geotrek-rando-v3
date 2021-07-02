@@ -4,6 +4,7 @@ export interface Report {
   problem_magnitude: number;
   activity: number;
   category: number;
+  geom: string;
   comment: string;
   related_trek: number;
 }

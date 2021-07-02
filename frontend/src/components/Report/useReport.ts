@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQueries } from 'react-query';
 
 import { Option } from 'modules/filters/interface';
+import { PointGeometry } from '../../modules/interface';
 
 import { getFeedbackActivity } from '../../modules/feedbackActivity/connector';
 import { getFeedbackCategory } from '../../modules/feedbackCategory/connector';
@@ -14,6 +15,7 @@ interface PropsState {
   activity: Option[];
   category: Option[];
   magnitude: Option[];
+  geom: PointGeometry;
   comment: string;
   email: string;
   name: string;
@@ -23,6 +25,7 @@ const initialState: PropsState = {
   comment: '',
   email: '',
   name: '',
+  geom: { type: 'Point', coordinates: { x: 0, y: 0 } },
   activity: [],
   category: [],
   magnitude: [],
@@ -36,15 +39,21 @@ const initialOptions = {
 
 interface Props {
   trekId: number;
+  startPoint: PointGeometry;
 }
 
-const useReport = ({ trekId }: Props) => {
+const useReport = ({ trekId, startPoint }: Props) => {
   const [state, setState] = useState(initialState);
   const [options, setOptions] = useState(initialOptions);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
   const language = useRouter().locale ?? getDefaultLanguage();
+
+  useEffect(() => {
+    // On définit un point par défaut en attendant de faire le developpement nécessaire pour choisir l'emplacemenc du problème
+    setValue('geom', startPoint);
+  }, []);
 
   const results = useQueries([
     {
@@ -93,6 +102,7 @@ const useReport = ({ trekId }: Props) => {
       email: state.email,
       name: state.name,
       comment: state.comment,
+      geom: `{"type": "Point", "coordinates": [${state.geom.coordinates.x}, ${state.geom.coordinates.y}]}`,
       related_trek: trekId,
     })
       .then(async res => {

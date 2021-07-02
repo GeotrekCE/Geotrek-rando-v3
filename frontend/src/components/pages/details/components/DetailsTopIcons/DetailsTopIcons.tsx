@@ -6,6 +6,7 @@ import { Activity } from 'modules/activities/interface';
 import React, { useState } from 'react';
 import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
+import { PointGeometry } from '../../../../../modules/interface';
 import { getGlobalConfig } from '../../../../../modules/utils/api.config';
 import { DetailsButton } from '../DetailsButton';
 import { DetailsButtonDropdown } from '../DetailsButtonDropdown';
@@ -16,6 +17,7 @@ interface DetailsTopIconsProps {
   gpxUri?: string;
   kmlUri?: string;
   trekId?: number;
+  startPoint?: PointGeometry;
 }
 
 export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
@@ -24,6 +26,7 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
   gpxUri,
   kmlUri,
   trekId,
+  startPoint,
 }) => {
   const [openReport, setOpenReport] = useState<boolean>(false);
   const dropdownButtonOptions = [];
@@ -39,8 +42,12 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
 
   return (
     <>
-      {openReport && trekId && (
-        <Report trekId={trekId} onRequestClose={() => setOpenReport(false)} />
+      {openReport && trekId && startPoint && (
+        <Report
+          trekId={trekId}
+          startPoint={startPoint}
+          onRequestClose={() => setOpenReport(false)}
+        />
       )}
 
       <div

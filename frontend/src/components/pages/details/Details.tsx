@@ -155,6 +155,10 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       practice={details.practice ?? undefined}
                       kmlUri={details.kmlUri}
                       trekId={Number(id)}
+                      startPoint={{
+                        type: 'Point',
+                        coordinates: details.trekDeparture,
+                      }}
                     />
 
                     <div ref={setPreviewRef} id="details_preview_ref">
