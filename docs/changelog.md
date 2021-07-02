@@ -1,17 +1,18 @@
 # Changelog
 
-3.0.4 (unreleased)
+3.1.0 (2021-07-02)
 ------------------
 
 **✨ Improvements**
 
 * Add ``redirects.json`` setting file to manage redirections from Geotrek-rando v2 to Geotrek-rando v3 (#59)
-* Allow to filter results by displayed map area (bbox) (#383)
+* Allow to filter results by displayed map area (bbox) and its setting ``enableSearchByMap`` (#383)
 * Don't recenter map at each search (#413)
+* Add a report form on trek details pages and its setting ``enableReport`` (#407) 
 * Add Italian translation
 * Add tooltips on trek detail pages maps (steps, heritages, touristic contents) (#379)
 * Show tooltip on search map on hover (#399)
-* Add button on map to locate the  (#365)
+* Add button on map to locate the user GPS position (#365)
 * Add departure, arrival and cities on trek detail pages (#369)
 * Allow to display fullscreen images (#403)
 * Add download buttons on trek mobile detail pages (#405)
