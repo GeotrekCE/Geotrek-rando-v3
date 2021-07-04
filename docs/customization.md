@@ -29,6 +29,8 @@ In json files, you can just override the primary keys you need. You have to over
   - `touristicContentLabelImageUri` : this uri is used to define the logo of the labeled touristic contents:
     ![Activity Icon on filter list](assets/labeledTouristicContentExample.png)
   - `applicationName`: application name appearing on PWA
+  - `enableReport`: to enable report form in trek detail pages
+  - `enableSearchByMap`: to enable searching by map displayed area (bbox)
 
 - `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/header.json)
 
@@ -46,7 +48,7 @@ In json files, you can just override the primary keys you need. You have to over
 
     - `shouldDisplayText`: `true` to display the text on above the asset, `false` to hide it.
 
-- `footer.json` to define social networks and links (based on translation labels) in footer (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/footer.json)
+- `footer.json` to define social networks (`facebook`, `twitter`, `youtube`, `instagram` or `fallback)` and links (based on translation labels) in footer (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/footer.json)
 - `filter.json` to define filters to display, their order and values (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/filter.json). If you remove some of the filters in this file, they will not be displayed. If you want to override one filter, you have to list all others, otherwise they will not be displayed
 - `map.json` to define basemaps URL and attributions, center (y, x), default and max zoom level (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json).
 
