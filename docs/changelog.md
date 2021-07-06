@@ -1,5 +1,12 @@
 # Changelog
 
+3.1.1 (2021-07-06)
+------------------
+
+**🐛 Fixes**
+
+* Fix the size of Leaflet map on mobile search page (#438)
+
 3.1.0 (2021-07-02)
 ------------------
 
