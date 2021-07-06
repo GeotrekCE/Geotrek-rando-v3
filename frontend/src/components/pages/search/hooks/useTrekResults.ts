@@ -41,7 +41,12 @@ export const useTrekResults = (
   const { filtersState, textFilterState, bboxState } = filters;
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
-  const displayMobileMap = () => setMobileMapState('DISPLAYED');
+  const displayMobileMap = () => {
+    setMobileMapState('DISPLAYED');
+
+    // We must fire a resize event for leaflet because the first render is not displayed and leaflet can not calculate the height of the container
+    window.dispatchEvent(new Event('resize'));
+  };
   const hideMobileMap = () => setMobileMapState('HIDDEN');
 
   const parsedFiltersState = parseFilters(filtersState);
