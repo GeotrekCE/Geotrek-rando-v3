@@ -7,7 +7,7 @@
   "portalIds": [],
   "apiUrl": "https://geotrekdemo.ecrins-parcnational.fr/api/v2",
   "googleAnalyticsId": "G-8FSV2N4FXN",
-  "googleSiteVerificationToken": "eKAyxwaXAobFWQcJen0mnZ8T3CpLoN45JysXeNkRf38",
+  "google-site-verification: "eKAyxwaXAobFWQcJen0mnZ8T3CpLoN45JysXeNkRf38",
   "baseUrl": "https://geotrek-rando-v3-pi.vercel.app",
   "fallbackImageUri": "https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png",
   "touristicContentLabelImageUri": "https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png",
