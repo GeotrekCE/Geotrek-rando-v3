@@ -25,6 +25,16 @@ export const Modal: React.FC<Props> = ({ children }) => {
     return () => document.removeEventListener('fullscreenchange', handler);
   }, [handler]);
 
+  const iOSiPadOS =
+    /^iP/.test(navigator.platform) ||
+    (/^Mac/.test(navigator.platform) && navigator.maxTouchPoints > 4);
+
+  // iOS doesn't support fullscreen API. We must disable the fullscreen mode in IOS to prevent javascript error in react-easyfullscreen
+  if (iOSiPadOS)
+    return typeof children === 'function'
+      ? children({ isFullscreen: false, toggleFullscreen: () => {} })
+      : children;
+
   return (
     <ReactFullscreen>
       {({ ref, onToggle }) => {
