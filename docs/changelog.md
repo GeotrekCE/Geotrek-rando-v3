@@ -1,5 +1,12 @@
 # Changelog
 
+3.1.2 (2021-07-18)
+------------------
+
+**🐛 Fixes**
+
+* Disable fullscreen display of images on iOS because it is not supported (#444)
+
 3.1.1 (2021-07-06)
 ------------------
 
