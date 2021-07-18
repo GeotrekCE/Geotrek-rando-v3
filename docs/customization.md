@@ -22,7 +22,7 @@ In json files, you can just override the primary keys you need. You have to over
   - `enableSensitiveAreas`: boolean, default to false. Set it to true if sensitive areas are defined in your Geotrek-admin
   - `apiUrl` : Geotrek-admin API URL
   - `googleAnalyticsId`: eventual Google Analytics Id
-  - `google-site-verification`: eventual code to enable Google Search Console and Google developer tools
+  - `googleSiteVerificationToken`: eventual code to enable Google Search Console and Google developer tools
   - `enableIndexation` to disable search engine indexation
   - `baseUrl`: base URL of your portal (for dynamic sitemap.xml)
   - `fallbackImageUri`: this uri is used to generate a default image for a trek or a touristic content if none is defined
