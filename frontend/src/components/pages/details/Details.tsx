@@ -14,6 +14,7 @@ import { colorPalette, sizes, zIndex } from 'stylesheet';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import React, { useMemo, useRef } from 'react';
 import { TrekChildGeometry } from 'modules/details/interface';
+import { cleanHTMLElementsFromString } from 'modules/utils/string';
 import { Footer } from 'components/Footer';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
@@ -91,7 +92,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
       <>
         <PageHead
           title={title}
-          description={details ? details.description_teaser : ''}
+          description={cleanHTMLElementsFromString(details?.description_teaser)}
           sharingImageUrl={
             details !== undefined && details.imgs.length > 0 ? details.imgs[0].url : undefined
           }
