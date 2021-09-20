@@ -10,6 +10,7 @@
    * Add portal name in title meta tag (#439)
    * Don't remove special characters from title meta tag (#441)
    * Unique URL for each detail page (#442)
+   * Fix multilingual URL indexation (#443)
 
 3.1.2 (2021-07-18)
 ------------------
