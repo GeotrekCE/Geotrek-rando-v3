@@ -87,6 +87,8 @@
     "react-simple-dropdown": "^3.2.3",
     "react-slick": "^0.28.0",
     "slick-carousel": "^1.8.1",
+    "string-strip-html": "^9.0.1",
+    "striptags": "^3.2.0",
     "styled-components": "^5.2.1",
     "superagent": "^6.1.0",
     "tailwindcss": "^2.0.2",

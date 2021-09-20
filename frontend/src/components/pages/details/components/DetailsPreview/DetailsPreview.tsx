@@ -72,10 +72,10 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       <span id="details_place" className="text-Mobile-C2 desktop:text-P1">
         {place}
       </span>
-      <span
+      <h1
         id="details_title"
         className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold"
-      >{`${trekRankLabel}${title}`}</span>
+      >{`${trekRankLabel}${title}`}</h1>
       <div id="details_tags" className="flex flex-wrap">
         {tags
           .filter(tag => tag?.length)

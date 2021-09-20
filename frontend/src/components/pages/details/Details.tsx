@@ -64,7 +64,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-    path,
   } = useDetails(detailsId, parentId, language);
 
   const isMobile = useMediaPredicate('(max-width: 1024px)');
@@ -84,14 +83,12 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
       sizes.desktopHeader -
       sizes.detailsHeaderDesktop,
   });
-  const titleRegex = RegExp(/(^\d+-)(.*)/).exec(path);
-  const title = titleRegex ? titleRegex[2].replace(/-/g, ' ') : '';
 
   return useMemo(
     () => (
       <>
         <PageHead
-          title={title}
+          title={details?.title}
           description={cleanHTMLElementsFromString(details?.description_teaser)}
           sharingImageUrl={
             details !== undefined && details.imgs.length > 0 ? details.imgs[0].url : undefined
