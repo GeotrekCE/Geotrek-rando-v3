@@ -28,13 +28,9 @@ export const PageHead = ({ title, description, sharingImageUrl }: Props) => {
     const supportedLanguages = getHeaderConfig()?.menu?.supportedLanguages || [];
 
     supportedLanguages.map(oneLocale => {
-      return (
-        <link
-          rel="alternate"
-          hrefLang={oneLocale}
-          href={`${baseUrl}/${oneLocale}${router.asPath}`}
-        />
-      );
+      const href = `${baseUrl}/${oneLocale}${router.asPath}`;
+
+      return <link key={href} rel="alternate" hrefLang={oneLocale} href={href} />;
     });
   };
 

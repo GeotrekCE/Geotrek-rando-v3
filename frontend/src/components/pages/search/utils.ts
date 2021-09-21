@@ -80,7 +80,7 @@ export const generateResultDetailsUrl = (
 export const getHoverId = ({ id, type }: TrekResult | TouristicContentResult | MapResult): string =>
   `SEARCH-${type}-${id}`;
 
-export const convertStringForSitemap = (text: string) =>
+export const convertStringForSitemap = (text: string): string =>
   removeDiacritics(
     (text || '')
       .replace(/ /g, '-')

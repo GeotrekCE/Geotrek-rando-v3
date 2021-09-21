@@ -31,10 +31,8 @@ describe('BannerWithAsset', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test.each([true, false])('should adapt text if shouldDisplayText is %p', (actual) => {
-    const component = render(
-      <BannerWithAsset shouldDisplayText={actual} pictureUrl="image.jpg" />,
-    );
+  test.each([true, false])('should adapt text if shouldDisplayText is %p', actual => {
+    const component = render(<BannerWithAsset shouldDisplayText={actual} pictureUrl="image.jpg" />);
 
     const foundText = component.queryByTestId('text');
 
