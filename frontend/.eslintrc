@@ -13,10 +13,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:prettier/recommended",
-    "prettier/react",
-    "prettier/@typescript-eslint",
-    "plugin:testing-library/recommended", // react-testing-libary rules
-    "plugin:testing-library/react", // react-testing-libary rules
+    "prettier",
     "plugin:jest-dom/recommended" // react-testing-libary rules
   ],
   "parser": "@typescript-eslint/parser",
