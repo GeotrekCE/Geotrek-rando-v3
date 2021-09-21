@@ -31,17 +31,13 @@ describe('BannerWithAsset', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test.each`
-    isTextDefined |
-    ${true}
-    ${false}
-  `('should adapt text if shouldDisplayText is $isTextDefined', ({ isTextDefined }) => {
+  test.each([true, false])('should adapt text if shouldDisplayText is %p', (actual) => {
     const component = render(
-      <BannerWithAsset shouldDisplayText={isTextDefined} pictureUrl="image.jpg" />,
+      <BannerWithAsset shouldDisplayText={actual} pictureUrl="image.jpg" />,
     );
 
     const foundText = component.queryByTestId('text');
 
-    expect(!!foundText).toBe(isTextDefined);
+    expect(!!foundText).toBe(actual);
   });
 });

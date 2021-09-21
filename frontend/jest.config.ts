@@ -3,13 +3,14 @@ import type { Config } from '@jest/types';
 const TEST_REGEX = '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|js?|tsx?|ts?)$';
 
 const config: Config.InitialOptions = {
+  testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jestAfterEnv.setup.tsx'],
   testRegex: TEST_REGEX,
   transform: {
-    '^.+\\.tsx?$': 'babel-jest',
-    '^.+\\.jsx?$': 'babel-jest',
+    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
     '^.+\\.html?$': 'html-loader-jest',
   },
+  transformIgnorePatterns: ['/node_modules/', '^.+\\.module\\.(css|sass|scss)$'],
   moduleNameMapper: {
     '^components/(.*)$': '<rootDir>/src/components/$1',
     '^__fixtures__/(.*)$': '<rootDir>/src/__fixtures__/$1',
