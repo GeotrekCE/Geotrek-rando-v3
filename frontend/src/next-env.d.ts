@@ -1,20 +1,6 @@
 /// <reference types="next" />
 /// <reference types="next/types/global" />
+/// <reference types="next/image-types/global" />
 
-declare namespace NodeJS {
-  export interface ProcessEnv {
-    REACT_APP_API_BASE_URL: string;
-  }
-}
-declare module 'react-country-flag' {
-  import * as React from 'react';
-  export interface ReactCountryFlagProps {
-    countryCode: string;
-    cdnSuffix?: string;
-    cdnUrl?: string;
-    svg?: boolean;
-    style?: React.CSSProperties;
-    className?: string;
-  }
-  export default class ReactCountryFlag extends React.Component<ReactCountryFlagProps> {}
-}
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/basic-features/typescript for more information.
