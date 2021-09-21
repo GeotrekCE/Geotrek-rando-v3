@@ -6,7 +6,7 @@ describe('BannerWithAsset', () => {
     const component = render(<BannerWithAsset shouldDisplayText videoUrl="test.mp4" />);
     const asset = component.queryByTestId('video');
 
-    expect(asset).toBeTruthy();
+    expect(asset).toBeInTheDocument();
 
     expect(component).toMatchSnapshot();
   });
@@ -17,7 +17,7 @@ describe('BannerWithAsset', () => {
     );
     const asset = component.queryByTestId('carousel');
 
-    expect(asset).toBeTruthy();
+    expect(asset).toBeInTheDocument();
 
     expect(component).toMatchSnapshot();
   });
@@ -26,7 +26,7 @@ describe('BannerWithAsset', () => {
     const component = render(<BannerWithAsset shouldDisplayText pictureUrl="test0.jpg" />);
     const asset = component.queryByTestId('image');
 
-    expect(asset).toBeTruthy();
+    expect(asset).toBeInTheDocument();
 
     expect(component).toMatchSnapshot();
   });
