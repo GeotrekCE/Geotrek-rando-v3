@@ -1,10 +1,13 @@
 # Changelog
 
-3.1.3 (unreleased)
+3.1.3 (2021-09-21)
 ------------------
 
 **🐛 Fixes**
 
+* Escape ``%`` in URL (#440)
+* Escape accents in static pages URL with ``diacritics`` (#440)
+* Fix tests
 * Fix and improve SEO :
    * Clean HTML from description meta tag (#439, thanks to @dtrucs)
    * Add portal name in title meta tag (#439)
