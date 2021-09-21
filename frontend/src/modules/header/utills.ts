@@ -1,3 +1,4 @@
+import { convertStringForSitemap } from 'components/pages/search/utils';
 import { routes } from 'services/routes';
 import headerConfig from '../../../config/header.json';
 import structureHeaderConfig from '../../../customization/config/header.json';
@@ -21,6 +22,5 @@ export const getDefaultLanguage = (): string => {
 };
 
 export const generateFlatPageUrl = (id: number, title: string): string => {
-  const titleWithNoSpace = title.replace(/ /g, '-');
-  return `${routes.FLAT_PAGE}/${id}-${encodeURI(titleWithNoSpace)}`;
+  return `${routes.FLAT_PAGE}/${id}-${convertStringForSitemap(title)}`;
 };

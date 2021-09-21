@@ -1,4 +1,5 @@
 import { Heart } from 'components/Icons/Heart';
+import { convertStringForSitemap } from 'components/pages/search/utils';
 import DropdownContainer, * as SimpleDropdown from 'react-simple-dropdown';
 import ReactCountryFlag from 'react-country-flag';
 import { useIntl } from 'react-intl';
@@ -60,16 +61,18 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
             <ChevronDown size={16} className="flex-shrink-0 ml-1" />
           </SimpleDropdown.DropdownTrigger>
           <SimpleDropdown.DropdownContent className={menuClassName}>
-            {subSections.map(menuItem => (
-              <NextLink href={menuItem.url} passHref locale={language} key={menuItem.title}>
-                <DropDownButton
-                  className={optionClassName}
-                  text={menuItem.title}
-                  onClick={() => flatpageDropdownRef?.current?.hide()}
-                  target={isInternalFlatPageUrl(menuItem.url) ? undefined : '_blank'}
-                ></DropDownButton>
-              </NextLink>
-            ))}
+            {subSections.map(menuItem => {
+              return (
+                <NextLink href={menuItem.url} passHref locale={language} key={menuItem.title}>
+                  <DropDownButton
+                    className={optionClassName}
+                    text={menuItem.title}
+                    onClick={() => flatpageDropdownRef?.current?.hide()}
+                    target={isInternalFlatPageUrl(menuItem.url) ? undefined : '_blank'}
+                  ></DropDownButton>
+                </NextLink>
+              );
+            })}
           </SimpleDropdown.DropdownContent>
         </DropdownContainer>
       )}
