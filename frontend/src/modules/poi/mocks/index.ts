@@ -19,8 +19,7 @@ export const mockPois = () => ({
             'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-tenue-dete.jpg.120x120_q85_crop.jpg',
           legend: "Lagopède alpin en tenue d'été",
           title: 'lagopede-alpin-en-tenue-dete',
-          url:
-            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-tenue-dete.jpg',
+          url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-tenue-dete.jpg',
           type: 'image',
         },
         {
@@ -30,8 +29,7 @@ export const mockPois = () => ({
             'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-plumage-dhiver.jpg.120x120_q85_crop.jpg',
           legend: "Lagopède alpin en plumage d'hiver",
           title: 'lagopede-alpin-en-plumage-dhiver',
-          url:
-            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-plumage-dhiver.jpg',
+          url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-plumage-dhiver.jpg',
           type: 'image',
         },
       ],

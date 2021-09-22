@@ -5,20 +5,17 @@ describe('DetailsCoverCarousel', () => {
     const propsCoverCarousel = {
       attachments: [
         {
-          url:
-            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg',
+          url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg',
           legend: 'Lac',
           author: 'admin',
         },
         {
-          url:
-            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
+          url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
           legend: 'Marmotte',
           author: 'admin',
         },
         {
-          url:
-            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG',
+          url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG',
           legend: 'Arrivée au col de Font Froide',
           author: 'Dominique Vincent - PNE',
         },

@@ -204,5 +204,7 @@ export const scrollBar = {
   `,
 } as const;
 
-export const fillSvgWithColor = (color: string) => (svg: string): string =>
-  svg.replace(/fill:.*?;/g, `fill: ${color};`);
+export const fillSvgWithColor =
+  (color: string) =>
+  (svg: string): string =>
+    svg.replace(/fill:.*?;/g, `fill: ${color};`);

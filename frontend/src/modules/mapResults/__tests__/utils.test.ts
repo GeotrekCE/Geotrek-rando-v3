@@ -33,8 +33,7 @@ const MockRawMapResults = [
 
 const MockRawMapResultsResponse = {
   count: 9,
-  next:
-    'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=id%2Cparking_location&language=fr&page=2&page_size=5',
+  next: 'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=id%2Cparking_location&language=fr&page=2&page_size=5',
   results: MockRawMapResults,
 };
 

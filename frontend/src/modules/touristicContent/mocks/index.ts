@@ -16,8 +16,7 @@ export const mockTouristicContentResponse = () => ({
             'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/tourism_touristiccontent/257/4948000.jpg.120x120_q85_crop.jpg',
           legend: 'Auberge Gaillard',
           title: '',
-          url:
-            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/tourism_touristiccontent/257/4948000.jpg',
+          url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/tourism_touristiccontent/257/4948000.jpg',
           type: 'image',
         },
         {
@@ -27,8 +26,7 @@ export const mockTouristicContentResponse = () => ({
             'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/tourism_touristiccontent/257/4948001.jpg.120x120_q85_crop.jpg',
           legend: 'Auberge Gaillard',
           title: '',
-          url:
-            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/tourism_touristiccontent/257/4948001.jpg',
+          url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/tourism_touristiccontent/257/4948001.jpg',
           type: 'image',
         },
         {
@@ -38,8 +36,7 @@ export const mockTouristicContentResponse = () => ({
             'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/tourism_touristiccontent/257/4947999.jpg.120x120_q85_crop.jpg',
           legend: 'Auberge Gaillard',
           title: '',
-          url:
-            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/tourism_touristiccontent/257/4947999.jpg',
+          url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/tourism_touristiccontent/257/4947999.jpg',
           type: 'image',
         },
       ],
@@ -56,8 +53,7 @@ export const mockTouristicContentResponse = () => ({
       create_datetime: '2020-06-30T23:37:52.170602+02:00',
       external_id: '379745',
       name: 'Auberge Gaillard',
-      pdf:
-        'https://geotrekdemo.ecrins-parcnational.fr/api/fr/touristiccontents/257/auberge-gaillard_booklet.pdf',
+      pdf: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/touristiccontents/257/auberge-gaillard_booklet.pdf',
       portal: [2],
       published: true,
       source: [3],
