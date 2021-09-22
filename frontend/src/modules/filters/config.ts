@@ -6,7 +6,9 @@ export const getFiltersConfig = (): (FilterConfig | FilterConfigWithOptions)[] =
     publicRuntimeConfig: { filter },
   } = getNextConfig();
 
-  return filter.map(f => ({
+  const _filter = Object.values(filter);
+
+  return _filter.map((f: any) => ({
     ...f,
     type: f.type === 'SINGLE' ? 'SINGLE' : 'MULTIPLE',
   }));
