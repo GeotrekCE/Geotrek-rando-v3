@@ -1,6 +1,6 @@
 import { Heart } from 'components/Icons/Heart';
-import { convertStringForSitemap } from 'components/pages/search/utils';
 import DropdownContainer, * as SimpleDropdown from 'react-simple-dropdown';
+//@ts-ignore
 import ReactCountryFlag from 'react-country-flag';
 import { useIntl } from 'react-intl';
 import { Link } from 'components/Link';
