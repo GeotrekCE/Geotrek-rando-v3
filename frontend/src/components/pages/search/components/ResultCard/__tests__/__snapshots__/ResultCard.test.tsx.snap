@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ResultCard__Container-sc-1bem01n-0 ePxMJu"
+        class="ResultCard__Container-sc-1bem01n-0 kOSMQj"
         id="result_card"
       >
         <div
@@ -22,7 +22,7 @@ Object {
                 class="h-full w-full flex-shrink-0 desktop:w-resultCardDesktop relative "
               >
                 <div
-                  class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 dvIfOd slick-initialized"
+                  class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY slick-initialized"
                 >
                   
                   <div
@@ -66,48 +66,48 @@ Object {
           </div>
         </div>
         <a
-          class="Link__StyledLink-oanbk8-0 hVMYzp w-full"
+          class="Link__StyledLink-sc-oanbk8-0 iAEqSV w-full"
           data-testid="Link-ResultCard-2"
           href="/details-2-Balade-au-pays-des-menhirs"
         >
           <div
-            class="ResultCard__DetailsContainer-sc-1bem01n-2 iopLXu"
+            class="ResultCard__DetailsContainer-sc-1bem01n-2 gykooH"
           >
             <div
-              class="ResultCard__DetailsLayout-sc-1bem01n-3 igcQDh"
+              class="ResultCard__DetailsLayout-sc-1bem01n-3 jSelDw"
             >
               <span
-                class="ResultCard__Place-sc-1bem01n-5 cBEUzg"
+                class="ResultCard__Place-sc-1bem01n-5 hVmPwZ"
               >
                 Saint-Etienne-du-Valdonnez
               </span>
               <span
-                class="ResultCard__Title-sc-1bem01n-6 jDCHfz"
+                class="ResultCard__Title-sc-1bem01n-6 iLIyAK"
               >
                 Balade au pays des menhirs
               </span>
               <div
-                class="ResultCard__TagContainer-sc-1bem01n-7 jyKaTC"
+                class="ResultCard__TagContainer-sc-1bem01n-7 iaKXpL"
               >
                 <div
-                  class="ResultCard__TagLayout-sc-1bem01n-8 ddpYEm"
+                  class="ResultCard__TagLayout-sc-1bem01n-8 gWCrcn"
                 >
                   <div
-                    class="Chip__ChipContainer-sc-1wajafu-0 vxORj"
+                    class="Chip__ChipContainer-sc-1wajafu-0 dsQmti"
                   >
                     <span>
                       En famille
                     </span>
                   </div>
                   <div
-                    class="Chip__ChipContainer-sc-1wajafu-0 vxORj"
+                    class="Chip__ChipContainer-sc-1wajafu-0 dsQmti"
                   >
                     <span>
                       Ciel étoilé
                     </span>
                   </div>
                   <div
-                    class="Chip__ChipContainer-sc-1wajafu-0 vxORj"
+                    class="Chip__ChipContainer-sc-1wajafu-0 dsQmti"
                   >
                     <span>
                       Beau paysage
@@ -116,10 +116,10 @@ Object {
                 </div>
               </div>
               <div
-                class="ResultCard__InformationContainer-sc-1bem01n-9 gFWOQi"
+                class="ResultCard__InformationContainer-sc-1bem01n-9 fZYahL"
               >
                 <div
-                  class="ResultCard__InformationLayout-sc-1bem01n-10 hKiLFh"
+                  class="ResultCard__InformationLayout-sc-1bem01n-10 ilMdQk"
                 >
                   <div
                     class="flex items-center text-primary1  "
@@ -129,7 +129,7 @@ Object {
                       src=""
                     />
                     <span
-                      class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
+                      class="BaseInformation__InformationText-sc-1yqfii-0 bHCUEa"
                     />
                   </div>
                   <div
@@ -159,7 +159,7 @@ Object {
                       />
                     </svg>
                     <span
-                      class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
+                      class="BaseInformation__InformationText-sc-1yqfii-0 bHCUEa"
                     >
                       2h
                     </span>
@@ -183,7 +183,7 @@ Object {
                       />
                     </svg>
                     <span
-                      class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
+                      class="BaseInformation__InformationText-sc-1yqfii-0 bHCUEa"
                     >
                       5km
                     </span>
@@ -214,7 +214,7 @@ Object {
                       />
                     </svg>
                     <span
-                      class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
+                      class="BaseInformation__InformationText-sc-1yqfii-0 bHCUEa"
                     >
                       +360m
                     </span>
@@ -229,7 +229,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ResultCard__Container-sc-1bem01n-0 ePxMJu"
+      class="ResultCard__Container-sc-1bem01n-0 kOSMQj"
       id="result_card"
     >
       <div
@@ -245,7 +245,7 @@ Object {
               class="h-full w-full flex-shrink-0 desktop:w-resultCardDesktop relative "
             >
               <div
-                class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 dvIfOd slick-initialized"
+                class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY slick-initialized"
               >
                 
                 <div
@@ -289,48 +289,48 @@ Object {
         </div>
       </div>
       <a
-        class="Link__StyledLink-oanbk8-0 hVMYzp w-full"
+        class="Link__StyledLink-sc-oanbk8-0 iAEqSV w-full"
         data-testid="Link-ResultCard-2"
         href="/details-2-Balade-au-pays-des-menhirs"
       >
         <div
-          class="ResultCard__DetailsContainer-sc-1bem01n-2 iopLXu"
+          class="ResultCard__DetailsContainer-sc-1bem01n-2 gykooH"
         >
           <div
-            class="ResultCard__DetailsLayout-sc-1bem01n-3 igcQDh"
+            class="ResultCard__DetailsLayout-sc-1bem01n-3 jSelDw"
           >
             <span
-              class="ResultCard__Place-sc-1bem01n-5 cBEUzg"
+              class="ResultCard__Place-sc-1bem01n-5 hVmPwZ"
             >
               Saint-Etienne-du-Valdonnez
             </span>
             <span
-              class="ResultCard__Title-sc-1bem01n-6 jDCHfz"
+              class="ResultCard__Title-sc-1bem01n-6 iLIyAK"
             >
               Balade au pays des menhirs
             </span>
             <div
-              class="ResultCard__TagContainer-sc-1bem01n-7 jyKaTC"
+              class="ResultCard__TagContainer-sc-1bem01n-7 iaKXpL"
             >
               <div
-                class="ResultCard__TagLayout-sc-1bem01n-8 ddpYEm"
+                class="ResultCard__TagLayout-sc-1bem01n-8 gWCrcn"
               >
                 <div
-                  class="Chip__ChipContainer-sc-1wajafu-0 vxORj"
+                  class="Chip__ChipContainer-sc-1wajafu-0 dsQmti"
                 >
                   <span>
                     En famille
                   </span>
                 </div>
                 <div
-                  class="Chip__ChipContainer-sc-1wajafu-0 vxORj"
+                  class="Chip__ChipContainer-sc-1wajafu-0 dsQmti"
                 >
                   <span>
                     Ciel étoilé
                   </span>
                 </div>
                 <div
-                  class="Chip__ChipContainer-sc-1wajafu-0 vxORj"
+                  class="Chip__ChipContainer-sc-1wajafu-0 dsQmti"
                 >
                   <span>
                     Beau paysage
@@ -339,10 +339,10 @@ Object {
               </div>
             </div>
             <div
-              class="ResultCard__InformationContainer-sc-1bem01n-9 gFWOQi"
+              class="ResultCard__InformationContainer-sc-1bem01n-9 fZYahL"
             >
               <div
-                class="ResultCard__InformationLayout-sc-1bem01n-10 hKiLFh"
+                class="ResultCard__InformationLayout-sc-1bem01n-10 ilMdQk"
               >
                 <div
                   class="flex items-center text-primary1  "
@@ -352,7 +352,7 @@ Object {
                     src=""
                   />
                   <span
-                    class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
+                    class="BaseInformation__InformationText-sc-1yqfii-0 bHCUEa"
                   />
                 </div>
                 <div
@@ -382,7 +382,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
+                    class="BaseInformation__InformationText-sc-1yqfii-0 bHCUEa"
                   >
                     2h
                   </span>
@@ -406,7 +406,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
+                    class="BaseInformation__InformationText-sc-1yqfii-0 bHCUEa"
                   >
                     5km
                   </span>
@@ -437,7 +437,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="BaseInformation__InformationText-sc-1yqfii-0 hoFTEr"
+                    class="BaseInformation__InformationText-sc-1yqfii-0 bHCUEa"
                   >
                     +360m
                   </span>

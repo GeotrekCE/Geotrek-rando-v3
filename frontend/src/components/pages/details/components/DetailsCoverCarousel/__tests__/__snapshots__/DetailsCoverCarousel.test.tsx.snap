@@ -6,11 +6,11 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 dvIfOd relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
+        class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
         dir="ltr"
       >
         <div
-          class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 Carousel__LargeStyledLeftArrow-sc-1tck7ng-7 jodXmD fBxetP hijHLy slick-arrow slick-prev"
+          class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 Carousel__LargeStyledLeftArrow-sc-1tck7ng-7 hBtEpW fuiwDG fMXJAv slick-arrow slick-prev"
         />
         <div
           class="slick-list"
@@ -123,10 +123,10 @@ Object {
           </div>
         </div>
         <div
-          class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 Carousel__LargeStyledRightArrow-sc-1tck7ng-6 jodXmD fBxetP cUjsWn slick-arrow slick-next"
+          class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 Carousel__LargeStyledRightArrow-sc-1tck7ng-6 hBtEpW fuiwDG jmjjMe slick-arrow slick-next"
         />
         <div
-          class="Carousel__StyledDots-sc-1tck7ng-8 Carousel__LargeStyledDots-sc-1tck7ng-10 GqclI slick-dots"
+          class="Carousel__StyledDots-sc-1tck7ng-8 Carousel__LargeStyledDots-sc-1tck7ng-10 fOVzLR slick-dots"
         >
           <ul>
             <li
@@ -157,11 +157,11 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 dvIfOd relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
+      class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
       dir="ltr"
     >
       <div
-        class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 Carousel__LargeStyledLeftArrow-sc-1tck7ng-7 jodXmD fBxetP hijHLy slick-arrow slick-prev"
+        class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 Carousel__LargeStyledLeftArrow-sc-1tck7ng-7 hBtEpW fuiwDG fMXJAv slick-arrow slick-prev"
       />
       <div
         class="slick-list"
@@ -274,10 +274,10 @@ Object {
         </div>
       </div>
       <div
-        class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 Carousel__LargeStyledRightArrow-sc-1tck7ng-6 jodXmD fBxetP cUjsWn slick-arrow slick-next"
+        class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 Carousel__LargeStyledRightArrow-sc-1tck7ng-6 hBtEpW fuiwDG jmjjMe slick-arrow slick-next"
       />
       <div
-        class="Carousel__StyledDots-sc-1tck7ng-8 Carousel__LargeStyledDots-sc-1tck7ng-10 GqclI slick-dots"
+        class="Carousel__StyledDots-sc-1tck7ng-8 Carousel__LargeStyledDots-sc-1tck7ng-10 fOVzLR slick-dots"
       >
         <ul>
           <li

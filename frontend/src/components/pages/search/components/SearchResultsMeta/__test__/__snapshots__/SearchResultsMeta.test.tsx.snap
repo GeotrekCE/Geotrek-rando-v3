@@ -10,7 +10,7 @@ Object {
       >
         <div>
           <img
-            class="SearchResultsMeta__Illustration-sc-18aa4n-0 gNcjBr hidden desktop:block"
+            class="SearchResultsMeta__Illustration-sc-18aa4n-0 bxnLjy hidden desktop:block"
             src="images/little-forest.png"
           />
         </div>
@@ -18,7 +18,7 @@ Object {
           class="desktop:ml-6"
         >
           <div
-            class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 ihMIsG"
+            class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 fYecrv"
           >
             0 résultat trouvé
           </div>
@@ -32,7 +32,7 @@ Object {
     >
       <div>
         <img
-          class="SearchResultsMeta__Illustration-sc-18aa4n-0 gNcjBr hidden desktop:block"
+          class="SearchResultsMeta__Illustration-sc-18aa4n-0 bxnLjy hidden desktop:block"
           src="images/little-forest.png"
         />
       </div>
@@ -40,7 +40,7 @@ Object {
         class="desktop:ml-6"
       >
         <div
-          class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 ihMIsG"
+          class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 fYecrv"
         >
           0 résultat trouvé
         </div>
@@ -111,7 +111,7 @@ Object {
       >
         <div>
           <img
-            class="SearchResultsMeta__Illustration-sc-18aa4n-0 gNcjBr hidden desktop:block"
+            class="SearchResultsMeta__Illustration-sc-18aa4n-0 bxnLjy hidden desktop:block"
             src="images/little-forest.png"
           />
         </div>
@@ -119,7 +119,7 @@ Object {
           class="desktop:ml-6"
         >
           <div
-            class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 ihMIsG"
+            class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 fYecrv"
           >
             1 résultat trouvé
           </div>
@@ -133,7 +133,7 @@ Object {
     >
       <div>
         <img
-          class="SearchResultsMeta__Illustration-sc-18aa4n-0 gNcjBr hidden desktop:block"
+          class="SearchResultsMeta__Illustration-sc-18aa4n-0 bxnLjy hidden desktop:block"
           src="images/little-forest.png"
         />
       </div>
@@ -141,7 +141,7 @@ Object {
         class="desktop:ml-6"
       >
         <div
-          class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 ihMIsG"
+          class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 fYecrv"
         >
           1 résultat trouvé
         </div>
@@ -212,7 +212,7 @@ Object {
       >
         <div>
           <img
-            class="SearchResultsMeta__Illustration-sc-18aa4n-0 gNcjBr hidden desktop:block"
+            class="SearchResultsMeta__Illustration-sc-18aa4n-0 bxnLjy hidden desktop:block"
             src="images/little-forest.png"
           />
         </div>
@@ -220,7 +220,7 @@ Object {
           class="desktop:ml-6"
         >
           <div
-            class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 ihMIsG"
+            class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 fYecrv"
           >
             123 résultats trouvés
           </div>
@@ -234,7 +234,7 @@ Object {
     >
       <div>
         <img
-          class="SearchResultsMeta__Illustration-sc-18aa4n-0 gNcjBr hidden desktop:block"
+          class="SearchResultsMeta__Illustration-sc-18aa4n-0 bxnLjy hidden desktop:block"
           src="images/little-forest.png"
         />
       </div>
@@ -242,7 +242,7 @@ Object {
         class="desktop:ml-6"
       >
         <div
-          class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 ihMIsG"
+          class="SearchResultsMeta__ResultsNumber-sc-18aa4n-1 fYecrv"
         >
           123 résultats trouvés
         </div>
