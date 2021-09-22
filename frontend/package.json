@@ -36,7 +36,6 @@
     "@next/bundle-analyzer": "11.1.2",
     "@raruto/leaflet-elevation": "1.7.0",
     "@sentry/browser": "6.13.2",
-    "@sentry/integrations": "6.13.2",
     "@sentry/node": "6.13.2",
     "@zeit/next-source-maps": "^0.0.4-canary.1",
     "autoprefixer": "10.3.4",

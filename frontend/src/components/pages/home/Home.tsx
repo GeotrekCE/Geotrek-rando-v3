@@ -1,9 +1,7 @@
 import { FunctionComponent } from 'react';
 import { useIntl } from 'react-intl';
 import parse from 'html-react-parser';
-
-import homeTopHtml from 'customization/html/homeTop.html';
-import homeBottomHtml from 'customization/html/homeBottom.html';
+import getNextConfig from 'next/config';
 
 import { Layout } from 'components/Layout/Layout';
 import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
@@ -13,6 +11,10 @@ import { HomeSection } from './components/HomeSection';
 import { HomeContainer } from './Home.style';
 import { useHome } from './useHome';
 import { BannerWithAsset } from './components/BannerWithAsset';
+
+const {
+  publicRuntimeConfig: { homeBottomHtml, homeTopHtml },
+} = getNextConfig();
 
 const HomeUI: FunctionComponent = () => {
   const { config, activitySuggestionCategories } = useHome();
