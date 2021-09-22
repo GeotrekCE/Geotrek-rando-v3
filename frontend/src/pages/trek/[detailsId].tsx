@@ -43,8 +43,8 @@ export const getServerSideProps = async (context: {
 
   if (context.req.url !== pathname) {
     // We do a permanent redirect to help search engine to find new version
-    context.res.writeHead(301, { location: url });
-    context.res.end();
+    //context.res.writeHead(301, { location: url });
+    //context.res.end();
   }
 
   return {

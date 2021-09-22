@@ -1,9 +1,13 @@
+import getNextConfig from 'next/config';
 import { FilterConfig, FilterConfigWithOptions } from './interface';
 
-import filterConfig from '../../../customization/config/filter.json';
+export const getFiltersConfig = (): (FilterConfig | FilterConfigWithOptions)[] => {
+  const {
+    publicRuntimeConfig: { filter },
+  } = getNextConfig();
 
-export const getFiltersConfig = (): (FilterConfig | FilterConfigWithOptions)[] =>
-  filterConfig.map(filter => ({
-    ...filter,
-    type: filter.type === 'SINGLE' ? 'SINGLE' : 'MULTIPLE',
+  return filter.map(f => ({
+    ...f,
+    type: f.type === 'SINGLE' ? 'SINGLE' : 'MULTIPLE',
   }));
+};

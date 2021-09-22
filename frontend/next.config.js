@@ -24,8 +24,6 @@ const plugins = [[withPWA], [withImages], [withSourceMaps()], [withBundleAnalyze
 const redirects = async () => {
   const redirectsConfig = getConfig('redirects.json');
 
-  console.log('redirectsConfig:', redirectsConfig);
-
   return redirectsConfig.rules.map(rule => ({
     source: rule.source,
     destination: rule.destination,
@@ -62,5 +60,12 @@ module.exports = withPlugins(plugins, {
   publicRuntimeConfig: {
     homeBottomHtml: getConfig('../html/homeBottom.html', false),
     homeTopHtml: getConfig('../html/homeTop.html', false),
+    style: getConfig('../theme/style.css', false),
+    header: getConfig('header.json', true),
+    global: getConfig('global.json', true),
+    home: getConfig('home.json', true),
+    map: getConfig('map.json', true),
+    filter: getConfig('filter.json', true),
+    footer: getConfig('footer.json', true),
   },
 });
