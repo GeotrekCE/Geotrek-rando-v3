@@ -1,11 +1,11 @@
 import App, { AppContext, AppInitialProps } from 'next/app';
 
 import { Root } from 'components/pages/_app/Root';
+import getNextConfig from 'next/config';
 import { Hydrate } from 'react-query/hydration';
 import { ONE_MINUTE } from 'services/constants/staleTime';
 import { captureException } from 'services/sentry';
 import '../public/fonts.css';
-import 'customization/theme/style.css';
 import 'tailwindcss/tailwind.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -81,6 +81,7 @@ class MyApp extends App<AppProps> {
   render() {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { Component, pageProps, hasError, errorEventId, messages } = this.props;
+
     return (
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>

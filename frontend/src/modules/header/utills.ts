@@ -1,13 +1,15 @@
 import { convertStringForSitemap } from 'components/pages/search/utils';
+import getNextConfig from 'next/config';
 import { routes } from 'services/routes';
-import headerConfig from '../../../config/header.json';
-import structureHeaderConfig from '../../../customization/config/header.json';
 import { HeaderConfig } from './interface';
 
-export const getHeaderConfig = (): HeaderConfig => ({
-  ...headerConfig,
-  ...structureHeaderConfig,
-});
+export const getHeaderConfig = (): HeaderConfig => {
+  const {
+    publicRuntimeConfig: { header },
+  } = getNextConfig();
+
+  return header;
+};
 
 export const getDefaultLanguage = (): string => {
   const languageConfig = getHeaderConfig().menu;

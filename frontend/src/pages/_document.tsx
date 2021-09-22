@@ -1,4 +1,5 @@
 import { getGlobalConfig } from 'modules/utils/api.config';
+import getNextConfig from 'next/config';
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
@@ -30,6 +31,11 @@ export default class MyDocument extends Document {
 
   render(): JSX.Element {
     const { googleAnalyticsId } = getGlobalConfig();
+
+    const {
+      publicRuntimeConfig: { style },
+    } = getNextConfig();
+
     return (
       <Html>
         <Head>
@@ -49,6 +55,7 @@ export default class MyDocument extends Document {
                   gtag('config', '${googleAnalyticsId}');`,
                 }}
               />
+              <style>{style}</style>
             </>
           )}
         </Head>

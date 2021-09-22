@@ -1,14 +1,15 @@
 // This module is mocked in jestAfterEnv so that tests don't depend on the config
 
 import { APICallsConfig } from 'modules/interface';
+import getNextConfig from 'next/config';
 
-import apiCallsConfig from '../../../config/global.json';
-import structureApiCallsConfig from '../../../customization/config/global.json';
+export const getGlobalConfig = (): APICallsConfig => {
+  const {
+    publicRuntimeConfig: { global },
+  } = getNextConfig();
 
-export const getGlobalConfig = (): APICallsConfig => ({
-  ...apiCallsConfig,
-  ...structureApiCallsConfig,
-});
+  return global;
+};
 
 export const portalsFilter =
   getGlobalConfig().portalIds.length > 0

@@ -1,11 +1,13 @@
-import footerConfig from '../../../config/footer.json';
-import structureFooterConfig from '../../../customization/config/footer.json';
+import getNextConfig from 'next/config';
 import { FooterConfig } from './interface';
 
-const getFooterConfig = (): FooterConfig => ({
-  ...footerConfig,
-  ...structureFooterConfig,
-});
+const getFooterConfig = (): FooterConfig => {
+  const {
+    publicRuntimeConfig: { footer },
+  } = getNextConfig();
+
+  return footer;
+};
 
 export const useFooter = (): { config: FooterConfig } => {
   const config = getFooterConfig();

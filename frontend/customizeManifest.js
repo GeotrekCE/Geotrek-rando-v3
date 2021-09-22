@@ -1,11 +1,12 @@
 const manifest = require('./src/public/manifest.json');
-const globalCustomization = require('./customization/config/global.json');
-const globalConfiguration = require('./config/global.json');
 const fs = require('fs');
+const getNextConfig = require('next/config');
 
-manifest.name = globalCustomization.applicationName
-  ? globalCustomization.applicationName
-  : globalConfiguration.applicationName;
+const {
+  publicRuntimeConfig: { global },
+} = getNextConfig();
+
+manifest.name = global.applicationName;
 
 console.log(
   'The manifest.json file is about to be customized with content from customization/config/global.json',
