@@ -8,8 +8,7 @@ export const mockActivitySuggestionsResponse = {
       thumbnail: '',
       legend: 'Présentation Rando Ecrins',
       title: '',
-      url:
-        'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
+      url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
       type: 'image',
     },
   ],

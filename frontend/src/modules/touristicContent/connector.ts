@@ -50,17 +50,13 @@ export const getTouristicContentDetails = async (
   language: string,
 ): Promise<TouristicContentDetails> => {
   try {
-    const [
-      rawTouristicContentDetails,
-      sourceDictionnary,
-      cityDictionnary,
-      themeDictionnary,
-    ] = await Promise.all([
-      fetchTouristicContentDetails({ language }, id),
-      getSources(language),
-      getCities(language),
-      getThemes(language),
-    ]);
+    const [rawTouristicContentDetails, sourceDictionnary, cityDictionnary, themeDictionnary] =
+      await Promise.all([
+        fetchTouristicContentDetails({ language }, id),
+        getSources(language),
+        getCities(language),
+        getThemes(language),
+      ]);
     const touristicContentCategory = await getTouristicContentCategory(
       rawTouristicContentDetails.properties.category,
       language,

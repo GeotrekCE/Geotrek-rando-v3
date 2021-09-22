@@ -9,6 +9,6 @@ const intlShape = {
   formatMessage: jest.fn(),
   formatHTMLMessage: jest.fn(),
 };
-const castInjectedIntlShape = (intlShape as unknown) as WrappedComponentProps;
+const castInjectedIntlShape = intlShape as unknown as WrappedComponentProps;
 
 export default castInjectedIntlShape;
