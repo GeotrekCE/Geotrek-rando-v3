@@ -61,6 +61,7 @@ module.exports = withPlugins(plugins, {
     homeBottomHtml: getConfig('../html/homeBottom.html', false),
     homeTopHtml: getConfig('../html/homeTop.html', false),
     style: getConfig('../theme/style.css', false),
+    colors: getConfig('../theme/colors.json', true),
     header: getConfig('header.json', true),
     global: getConfig('global.json', true),
     home: getConfig('home.json', true),
