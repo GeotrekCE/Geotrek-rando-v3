@@ -1,5 +1,18 @@
 # Changelog
 
+3.2.0-beta1 (unreleased)
+------------------
+
+Requires Geotrek-rando-v3-installer 2.0+.
+
+**✨ Beaking changes**
+
+* New build system to be able to install and customize a Geotrek-rando portal without building it locally (#458)
+
+**✨ Improvements**
+
+* Upgrade dependencies (NextJS 10 to 11 and others) (#469)
+
 3.1.2 (2021-07-18)
 ------------------
 
