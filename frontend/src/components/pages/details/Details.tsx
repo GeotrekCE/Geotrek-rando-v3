@@ -1,3 +1,4 @@
+import MoreLink from 'components/Information/MoreLink';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
 import Report from 'components/Report/Report';
@@ -357,6 +358,20 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                               </RemoteIconInformation>
                             ))}
                           </div>
+                        </DetailsSection>
+                      </div>
+                    )}
+
+                    {details.webLinks?.length > 0 && (
+                      <div ref={setAccessibilityRef} id="details_more_ref">
+                        <DetailsSection
+                          htmlId="details_more"
+                          titleId="details.more"
+                          className={marginDetailsChild}
+                        >
+                          {details.webLinks.map((link, i) => (
+                            <MoreLink key={i} link={link} />
+                          ))}
                         </DetailsSection>
                       </div>
                     )}

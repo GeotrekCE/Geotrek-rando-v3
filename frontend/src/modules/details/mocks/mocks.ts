@@ -121,6 +121,13 @@ export const rawDetailsProperties: RawDetailsProperties = {
   source: [1],
   themes: [11, 1, 7],
   points_reference: null,
+  web_links: [
+    {
+      name: 'Test link',
+      url: 'https://example.com',
+      category: { label: 'Label', id: 'idLabel', pictogram: 'http://url.com/test.png' },
+    },
+  ],
 };
 
 export const rawDetails: RawDetails = {

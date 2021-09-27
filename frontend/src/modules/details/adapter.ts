@@ -134,6 +134,7 @@ export const adaptResults = ({
         geometry: childrenGeometry.find(childGeometry => childGeometry.id === `${child.id}`),
       })),
       sensitiveAreas,
+      webLinks: rawDetailsProperties.web_links,
     };
   } catch (e) {
     console.error('Error in details/adapter', e);

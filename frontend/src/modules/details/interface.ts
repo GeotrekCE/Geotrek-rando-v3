@@ -11,6 +11,7 @@ import {
   RawLineStringGeometry3D,
   RawMultiLineStringGeometry3D,
   RawMultiPointGeometry,
+  RawWebLink,
 } from 'modules/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { Accessibility } from 'modules/accessibility/interface';
@@ -62,6 +63,7 @@ export interface RawDetailsProperties {
   advice: string;
   points_reference: RawMultiPointGeometry | null;
   children: number[];
+  web_links: RawWebLink[];
 }
 
 // Fields parsed with react-html-parser in page
@@ -130,6 +132,17 @@ export interface Details extends DetailsHtml {
   departure: string;
   arrival: string;
   cities: string[];
+  webLinks: WebLink[];
+}
+
+export interface WebLink {
+  name: string;
+  url: string;
+  category: {
+    label: string;
+    id: string;
+    pictogram: string;
+  };
 }
 
 export interface RawTrekChildIds {

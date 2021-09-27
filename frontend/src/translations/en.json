@@ -97,7 +97,8 @@
     },
     "departure": "Departure",
     "arrival": "Arrival",
-    "cities": "Towns crossed"
+    "cities": "Towns crossed",
+    "more": "More information"
   },
   "touristicContent": {
     "contact": "Contact",

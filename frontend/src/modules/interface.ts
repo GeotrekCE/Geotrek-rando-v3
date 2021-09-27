@@ -103,3 +103,13 @@ export interface PolygonGeometry {
   type: 'Polygon';
   coordinates: Coordinate2D[][];
 }
+
+export interface RawWebLink {
+  name: string;
+  url: string;
+  category: {
+    label: string;
+    id: string;
+    pictogram: string;
+  };
+}
