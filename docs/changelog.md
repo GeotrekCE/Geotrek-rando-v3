@@ -1,17 +1,36 @@
 # Changelog
 
-3.2.0-beta1 (unreleased)
+3.2.0 (unreleased)
 ------------------
 
-Requires Geotrek-rando-v3-installer 2.0+.
+Requires Geotrek-rando-v3-installer version 2.0 and more.
 
-**✨ Beaking changes**
+**💥 Beaking changes**
 
-* New build system to be able to install and customize a Geotrek-rando portal without building it locally (#458)
+* New build system to be able to install and customize a Geotrek-rando portal dynamically, without building it locally (#458)
 
-**✨ Improvements**
+**🛠️ Maintenance**
 
 * Upgrade dependencies (NextJS 10 to 11 and others) (#469)
+
+**🐛 Fixes**
+
+* Better title and URL for static pages (#468)
+
+3.1.3 (2021-09-21)
+------------------
+
+**🐛 Fixes**
+
+* Escape ``%`` in URL (#440)
+* Escape accents in static pages URL with ``diacritics`` (#440)
+* Fix tests
+* Fix and improve SEO :
+   * Clean HTML from description meta tag (#439, thanks to @dtrucs)
+   * Add portal name in title meta tag (#439)
+   * Don't remove special characters from title meta tag (#441)
+   * Unique URL for each detail page (#442)
+   * Fix multilingual URL indexation (#443)
 
 3.1.2 (2021-07-18)
 ------------------
@@ -30,7 +49,7 @@ Requires Geotrek-rando-v3-installer 2.0+.
 3.1.0 (2021-07-02)
 ------------------
 
-**✨ Improvements**
+**🚀 New features**
 
 * Add ``redirects.json`` setting file to manage redirections from Geotrek-rando v2 to Geotrek-rando v3 (#59)
 * Allow to filter results by displayed map area (bbox) and its setting ``enableSearchByMap`` (#383)
