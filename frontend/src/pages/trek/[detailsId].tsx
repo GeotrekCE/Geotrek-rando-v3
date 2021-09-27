@@ -39,7 +39,9 @@ export const getServerSideProps = async (context: {
     ? baseUrlLocalised.slice(0, -1)
     : baseUrlLocalised;
   const pathname = generateResultDetailsUrl(id, details.title);
-  const url = `${baseUrlTrimmed}${pathname}`;
+  let url = `${baseUrlTrimmed}${pathname}`;
+
+  if (context.query.parentId) url = `${url}?parentId=${context.query.parentId}`;
 
   if (context.req.url !== pathname && process.env.NODE_ENV === 'production') {
     // We do a permanent redirect to help search engine to find new version
