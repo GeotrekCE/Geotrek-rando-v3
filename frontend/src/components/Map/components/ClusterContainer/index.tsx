@@ -1,3 +1,4 @@
+import { getMapConfig } from 'components/Map/config';
 import React from 'react';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { ClusterMarker } from '../../Markers/Cluster';
@@ -15,7 +16,7 @@ const clusterRadiusThreshold = 13;
 const lowZoomClusterRadius = 40;
 const highZoomClusterRadius = 20;
 /** Above this zoom level there won't be clustering, the user better sees its trek course on the map when clicking on the marker */
-const clusteringMaxZoom = 19;
+const clusteringMaxZoom = getMapConfig().maximumZoomLevel;
 
 /**
  * Wraps MarkerClusterGroup to enable/disable it easily
