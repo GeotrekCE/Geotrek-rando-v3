@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import { HomePageConfig } from './src/modules/home/interface';
 import nock from 'nock';
+import { setConfig } from 'next/config';
 
 jest.mock('./src/components/Map', () => ({
   SearchMapDynamicComponent: () => null,
@@ -97,3 +98,18 @@ window.matchMedia =
       removeListener: function () {},
     };
   };
+
+setConfig({
+  publicRuntimeConfig: {
+    homeBottomHtml: '',
+    homeTopHtml: '',
+    style: '',
+    colors: {},
+    header: {},
+    global: {},
+    home: {},
+    map: {},
+    filter: {},
+    footer: {},
+  },
+});
