@@ -137,7 +137,7 @@ module.exports = {
         black: '#000000',
         white: '#FFFFFF',
         red: 'var(--color-red)',
-        redMarker: '#var(--color-redMarker)',
+        redMarker: 'var(--color-redMarker)',
         blackTransparent: 'rgba(0, 0, 0, 0.24)',
         blackSemiTransparent: 'rgba(0, 0, 0, 0.36)',
         blackSemiOpaque: 'rgba(0, 0, 0, 0.70)',
