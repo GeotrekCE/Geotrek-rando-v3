@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ResultCard__Container-sc-1bem01n-0 kOSMQj"
+        class="ResultCard__Container-sc-1bem01n-0 bmgMpp"
         id="result_card"
       >
         <div
@@ -66,7 +66,7 @@ Object {
           </div>
         </div>
         <a
-          class="Link__StyledLink-sc-oanbk8-0 iAEqSV w-full"
+          class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full"
           data-testid="Link-ResultCard-2"
           href="/details-2-Balade-au-pays-des-menhirs"
         >
@@ -82,7 +82,7 @@ Object {
                 Saint-Etienne-du-Valdonnez
               </span>
               <span
-                class="ResultCard__Title-sc-1bem01n-6 iLIyAK"
+                class="ResultCard__Title-sc-1bem01n-6 jNyrOj"
               >
                 Balade au pays des menhirs
               </span>
@@ -93,21 +93,21 @@ Object {
                   class="ResultCard__TagLayout-sc-1bem01n-8 gWCrcn"
                 >
                   <div
-                    class="Chip__ChipContainer-sc-1wajafu-0 dsQmti"
+                    class="Chip__ChipContainer-sc-1wajafu-0 iTEhJ"
                   >
                     <span>
                       En famille
                     </span>
                   </div>
                   <div
-                    class="Chip__ChipContainer-sc-1wajafu-0 dsQmti"
+                    class="Chip__ChipContainer-sc-1wajafu-0 iTEhJ"
                   >
                     <span>
                       Ciel étoilé
                     </span>
                   </div>
                   <div
-                    class="Chip__ChipContainer-sc-1wajafu-0 dsQmti"
+                    class="Chip__ChipContainer-sc-1wajafu-0 iTEhJ"
                   >
                     <span>
                       Beau paysage
@@ -229,7 +229,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ResultCard__Container-sc-1bem01n-0 kOSMQj"
+      class="ResultCard__Container-sc-1bem01n-0 bmgMpp"
       id="result_card"
     >
       <div
@@ -289,7 +289,7 @@ Object {
         </div>
       </div>
       <a
-        class="Link__StyledLink-sc-oanbk8-0 iAEqSV w-full"
+        class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full"
         data-testid="Link-ResultCard-2"
         href="/details-2-Balade-au-pays-des-menhirs"
       >
@@ -305,7 +305,7 @@ Object {
               Saint-Etienne-du-Valdonnez
             </span>
             <span
-              class="ResultCard__Title-sc-1bem01n-6 iLIyAK"
+              class="ResultCard__Title-sc-1bem01n-6 jNyrOj"
             >
               Balade au pays des menhirs
             </span>
@@ -316,21 +316,21 @@ Object {
                 class="ResultCard__TagLayout-sc-1bem01n-8 gWCrcn"
               >
                 <div
-                  class="Chip__ChipContainer-sc-1wajafu-0 dsQmti"
+                  class="Chip__ChipContainer-sc-1wajafu-0 iTEhJ"
                 >
                   <span>
                     En famille
                   </span>
                 </div>
                 <div
-                  class="Chip__ChipContainer-sc-1wajafu-0 dsQmti"
+                  class="Chip__ChipContainer-sc-1wajafu-0 iTEhJ"
                 >
                   <span>
                     Ciel étoilé
                   </span>
                 </div>
                 <div
-                  class="Chip__ChipContainer-sc-1wajafu-0 dsQmti"
+                  class="Chip__ChipContainer-sc-1wajafu-0 iTEhJ"
                 >
                   <span>
                     Beau paysage
