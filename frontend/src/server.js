@@ -2,7 +2,7 @@ const compression = require('compression');
 const express = require('express');
 const next = require('next');
 
-const port = parseInt(process.env.PORT, 10) || 80;
+const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev, dir: __dirname });
 const handle = app.getRequestHandler();
