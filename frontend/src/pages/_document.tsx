@@ -55,8 +55,10 @@ export default class MyDocument extends Document {
                   gtag('config', '${googleAnalyticsId}');`,
                 }}
               />
-              <style>{style}</style>
-              <style>{`
+            </>
+          )}
+          <style>{style}</style>
+          <style>{`
 :root {
   --color-primary1-default: ${String(colors.primary1?.DEFAULT || '#AA397D')};
   --color-primary1-light: ${String(colors.primary1?.light || '#bd3e8b')};
@@ -74,8 +76,6 @@ export default class MyDocument extends Document {
 @tailwind components;
 @tailwind utilities;
               `}</style>
-            </>
-          )}
         </Head>
         <body>
           <Main />

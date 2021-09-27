@@ -24,8 +24,7 @@ const queryClient = new QueryClient({
 });
 
 const loadLocales = async ({ ctx }: AppContext) => {
-  const protocol = ctx.req?.headers['x-forwarded-proto'] ?? 'http';
-  const baseUrl = ctx.req ? `${String(protocol)}://${String(ctx.req.headers.host)}` : '';
+  const baseUrl = ctx.req ? `http://localhost:${String(process?.env?.PORT ?? 3000)}` : '';
 
   const loadedLanguages = await Promise.all(
     getHeaderConfig().menu.supportedLanguages.map(async language => {
