@@ -3,7 +3,7 @@
 3.2.0 (unreleased)
 ------------------
 
-Requires Geotrek-rando-v3-installer version 2.0 and more.
+Requires [Geotrek-rando-v3-installer](https://github.com/GeotrekCE/Geotrek-rando-v3-installer) version 2.0 and more.
 
 **💥 Beaking changes**
 
@@ -16,6 +16,18 @@ Requires Geotrek-rando-v3-installer version 2.0 and more.
 **🐛 Fixes**
 
 * Better title and URL for static pages (#468)
+
+**⚠️ Version notes**
+
+If you update Geotrek-rando :
+
+* Download the version 2.0 of [Geotrek-rando-installer](https://github.com/GeotrekCE/Geotrek-rando-v3-installer) in a new folder
+* Rapatriate your customization in this folder, overriding the default one
+* Install Docker Compose. See documentation
+* Launch the application with ``docker-compose up -d``
+* No need anymore to build a Docker image on your server to install or update the configuration of your Geotrek-rando
+* Details in [installation documentation](/docs/installation.md)
+* You can also remove your previous Docker containers and images with launching ``docker container prune`` and ``docker image prune -a``
 
 3.1.3 (2021-09-21)
 ------------------
