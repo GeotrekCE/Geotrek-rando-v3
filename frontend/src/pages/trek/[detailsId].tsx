@@ -13,7 +13,7 @@ import { getGlobalConfig } from '../../modules/utils/api.config';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getServerSideProps = async (context: {
   locale: string;
-  query: { detailsId: string | string[] | undefined; parentId: string | string[] | undefined };
+  query: { detailsId: string | undefined; parentId: string | undefined };
   res: any;
   req: any;
 }) => {
