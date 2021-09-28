@@ -117,12 +117,12 @@ Object {
         <div
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
-        <span
+        <h1
           class="BannerWithAsset__WelcomeText-sc-189knhl-0 dVXbNq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
-        </span>
+        </h1>
       </div>
     </div>
   </body>,
@@ -239,12 +239,12 @@ Object {
       <div
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
-      <span
+      <h1
         class="BannerWithAsset__WelcomeText-sc-189knhl-0 dVXbNq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
-      </span>
+      </h1>
     </div>
   </div>,
   "debug": [Function],
@@ -319,12 +319,12 @@ Object {
         <div
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
-        <span
+        <h1
           class="BannerWithAsset__WelcomeText-sc-189knhl-0 dVXbNq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
-        </span>
+        </h1>
       </div>
     </div>
   </body>,
@@ -342,12 +342,12 @@ Object {
       <div
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
-      <span
+      <h1
         class="BannerWithAsset__WelcomeText-sc-189knhl-0 dVXbNq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
-      </span>
+      </h1>
     </div>
   </div>,
   "debug": [Function],
@@ -424,12 +424,12 @@ Object {
         <div
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
-        <span
+        <h1
           class="BannerWithAsset__WelcomeText-sc-189knhl-0 dVXbNq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
-        </span>
+        </h1>
       </div>
     </div>
   </body>,
@@ -449,12 +449,12 @@ Object {
       <div
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
-      <span
+      <h1
         class="BannerWithAsset__WelcomeText-sc-189knhl-0 dVXbNq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
-      </span>
+      </h1>
     </div>
   </div>,
   "debug": [Function],
