@@ -258,6 +258,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         titleId="details.recommandations"
                         className={marginDetailsChild}
                       >
+                        {details.advice !== null && details.advice.length > 0 && (
+                          <DetailsAdvice text={details.advice} className="mb-4 desktop:mb-6" />
+                        )}
                         {details.labels.map((label, i) => (
                           <DetailsLabel
                             key={i}
@@ -265,12 +268,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             name={label.name}
                             advice={label.advice}
                             pictogramUri={label.pictogramUri}
-                            className={i < details.labels.length - 1 ? 'mb-4 desktop:mb-6' : ''}
+                            className={i < details.labels.length - 1 ? 'mt-4 desktop:mt-6' : ''}
                           />
                         ))}
-                        {details.advice !== null && details.advice.length > 0 && (
-                          <DetailsAdvice text={details.advice} className="mt-4 desktop:mt-6" />
-                        )}
                       </DetailsSection>
                     )}
 
