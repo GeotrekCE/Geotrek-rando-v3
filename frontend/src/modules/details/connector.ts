@@ -44,7 +44,7 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       getAccessibilities(language),
       getSources(language),
     ]);
-    const [informationDeskDictionnary, labelsDictionnary, children, sensitiveAreas, webLinks] =
+    const [informationDeskDictionnary, labelsDictionnary, children, sensitiveAreas] =
       await Promise.all([
         getInformationDesks(language),
         getLabels(language),

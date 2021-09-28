@@ -2,7 +2,7 @@
   "menu": {
     "primaryItemsNumber": 3,
     "shouldDisplayFavorite": false,
-    "supportedLanguages": ["fr", "en"],
+    "supportedLanguages": ["fr", "en", "it"],
     "defaultLanguage": "fr"
   },
   "logo": "https://geotrek.ecrins-parcnational.fr/PNX-logo.png"

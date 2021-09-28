@@ -32,6 +32,9 @@ export const fetchTouristicContentDetails = (
   GeotrekAPI.url(`/touristiccontent/${id}/`)
     .query({ ...query, ...fieldsParamsDetails })
     .get()
+    .notFound(() => {
+      throw new Error('RESSOURCE_NOT_FOUND');
+    })
     .json();
 
 const fieldsParamsResult = {
