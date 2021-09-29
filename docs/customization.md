@@ -145,13 +145,4 @@ You can also add images and other files in the `medias` folder to be used as log
 
 ## Apply changes
 
-After each customization changes, you'll have to rebuild the customized Docker image by running:
-
-```bash
-docker build -t geotrek-rando --build-arg VERSION={YOUR_VERSION} .
-docker ps ## To find previous container ID to stop
-docker stop {CONTAINER_ID}
-docker run --restart unless-stopped -d -p {YOUR_PORT}:80 geotrek-rando
-```
-
-Make sure to remove older images after building new ones, otherwise your server will keep all build and enlarge your machine storage fast.
+After each customization changes, you'll have to restart the Docker container by running `docker-compose restart`.
