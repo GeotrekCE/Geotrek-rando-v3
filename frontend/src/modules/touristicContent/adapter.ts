@@ -98,7 +98,7 @@ export const adaptTouristicContentDetails = ({
   cityDictionnary: CityDictionnary;
   themeDictionnary: Choices;
 }): TouristicContentDetails => ({
-  id: rawTCD.properties.id,
+  id: rawTCD.id,
   name: rawTCD.properties.name,
   descriptionTeaser: rawTCD.properties.description_teaser,
   thumbnailUris: getThumbnails(rawTCD.properties.attachments),

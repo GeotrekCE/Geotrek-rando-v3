@@ -194,6 +194,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   geometry: touristicContent.geometry,
                   pictogramUri: touristicContent.category.pictogramUri,
                   name: touristicContent.name,
+                  id: touristicContent.id,
                 }}
               />
             </div>
@@ -212,6 +213,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                 geometry: touristicContent.geometry,
                 pictogramUri: touristicContent.category.pictogramUri,
                 name: touristicContent.name,
+                id: touristicContent.id,
               }}
               hideMap={hideMobileMap}
             />

@@ -15,7 +15,7 @@ export const TouristicContent: React.FC<PropsType> = ({ contents }) => {
     <>
       {contents !== undefined &&
         contents.map(({ id, name, geometry, pictogramUri }) => {
-          const idSplitted = (id || '').split('-');
+          const idSplitted = String(id).split('-');
           const idContent = Number(idSplitted[idSplitted.length - 1]);
 
           switch (geometry.type) {

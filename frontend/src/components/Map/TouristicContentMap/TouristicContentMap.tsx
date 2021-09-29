@@ -18,6 +18,7 @@ interface TouristicContentGeometryNullable {
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry | null;
   pictogramUri: string;
   name: string;
+  id: string;
 }
 
 export type PropsType = {
