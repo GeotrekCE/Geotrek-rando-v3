@@ -1,6 +1,7 @@
 import { portalsFilter } from 'modules/utils/api.config';
 import { GeotrekAPI } from 'services/api/client';
 import { APIQuery, APIResponseForList } from 'services/api/interface';
+import { RawTrekGeometryResult } from '../trekResult/interface';
 import {
   RawTouristicContent,
   RawTouristicContentDetails,
@@ -59,5 +60,14 @@ export const fetchTouristicContentPopupResult = (
 ): Promise<RawTouristicContentPopupResult> =>
   GeotrekAPI.url(`/touristiccontent/${id}/`)
     .query({ ...query, ...fieldsParamsPopupResult })
+    .get()
+    .json();
+
+export const fetchTouristicContentGeometryResult = (
+  query: APIQuery,
+  id: string,
+): Promise<RawTrekGeometryResult> =>
+  GeotrekAPI.url(`/touristiccontent/${id}/`)
+    .query({ ...query, fields: 'geometry' })
     .get()
     .json();
