@@ -13,9 +13,19 @@ Requires [Geotrek-rando-v3-installer](https://github.com/GeotrekCE/Geotrek-rando
 
 * Upgrade dependencies (NextJS 10 to 11 and others) (#469)
 
-**🐛 Fixes**
+**✨ Improvements**
 
 * Better title and URL for static pages (#468)
+* Add "More information" in trek detail page (#370)
+* Use ``maximumZoomLevel`` parameter for spiderfy clusters (#367)
+* Better 404 error handler for multilanguage (#416)
+* Themes uses portalFilters (#432)
+* Switch between advice and labels (#445)
+
+**🐛 Fixes**
+
+* Don't override multi-day trekking url (#473)
+* Fix crash when there is no label available in this language (#470)
 
 **⚠️ Version notes**
 
@@ -23,6 +33,8 @@ If you update Geotrek-rando :
 
 * Download the version 2.0 of [Geotrek-rando-installer](https://github.com/GeotrekCE/Geotrek-rando-v3-installer) in a new folder
 * Rapatriate your customization in this folder, overriding the default one
+* Eventually create and update the ``.env`` file to define another port from the 8080 default one
+* Make sure your NGINX configuration uses the same port (8080 by default)
 * Install Docker Compose. See documentation
 * Launch the application with ``docker-compose up -d``
 * No need anymore to build a Docker image on your server to install or update the configuration of your Geotrek-rando
