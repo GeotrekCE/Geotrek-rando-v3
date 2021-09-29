@@ -39,7 +39,7 @@ If you want to have logs directly in terminal you can just run `docker-compose u
 
 After updating customization, you just have to run `docker-compose restart` to apply changes.
 
-You can also create the optional `.env` file based on the example (`cp .env.example .env`), if you want to change the Docker image URL, the running port, or the `customization` and `medias` folders path
+You can also create the optional `.env` file based on the example (`cp .env.example .env`), if you want to change the Docker image URL, the running port, or the `customization` and `medias` folders path. Run `docker-compose down && docker-compose up -d` to apply changes to `.env` file.
 
 ## An example with NGINX
 
