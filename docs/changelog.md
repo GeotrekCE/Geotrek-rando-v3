@@ -22,6 +22,7 @@ Requires [Geotrek-rando-v3-installer](https://github.com/GeotrekCE/Geotrek-rando
 * Themes uses portalFilters (#432)
 * Switch advice and labels on trek detail pages (#445)
 * Display parking detail in tooltip on trek detail pages (#400)
+* Add ``<h1>`` on homepage
 
 **🐛 Fixes**
 
@@ -29,6 +30,7 @@ Requires [Geotrek-rando-v3-installer](https://github.com/GeotrekCE/Geotrek-rando
 * Fix crash when there is no label available in this language (#470)
 * Fix tooltip on touristic content detail page (#455)
 * Show line or polygon of touristic contents on search page (#456)
+* Fix default language canonical URL (#476)
 
 **⚠️ Version notes**
 
