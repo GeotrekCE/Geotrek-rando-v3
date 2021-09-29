@@ -1,5 +1,6 @@
+import { HoverableMarker } from 'components/Map/components/HoverableMarker';
 import React from 'react';
-import { Marker } from 'react-leaflet';
+import { Marker, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import { ArrivalMarker } from '../Markers/ArrivalMarker';
@@ -13,6 +14,7 @@ export type PropsType = {
   arrivalLocation?: { x: number; y: number };
   departureLocation?: { x: number; y: number };
   parkingLocation?: { x: number; y: number };
+  advisedParking?: string;
 };
 
 export const TrekMarkersAndCourse: React.FC<PropsType> = props => {
@@ -31,10 +33,9 @@ export const TrekMarkersAndCourse: React.FC<PropsType> = props => {
         />
       )}
       {props.parkingLocation !== undefined && (
-        <Marker
-          position={[props.parkingLocation.y, props.parkingLocation.x]}
-          icon={ParkingMarker}
-        />
+        <Marker position={[props.parkingLocation.y, props.parkingLocation.x]} icon={ParkingMarker}>
+          <Tooltip>{props.advisedParking}</Tooltip>
+        </Marker>
       )}
       {props.trekGeometry && <DecoratedPolyline positions={props.trekGeometry} />}
     </>
