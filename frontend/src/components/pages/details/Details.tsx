@@ -111,7 +111,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
         ) : (
           <>
             <Layout>
-              <DetailsHeader sectionsReferences={sectionsReferences} downloadUrl={details.pdfUri} />
+              <DetailsHeader sectionsReferences={sectionsReferences} details={details} />
               {details.title !== undefined && <DetailsHeaderMobile title={details.title} />}
               <div className="flex flex-1" id="details_mainContainer">
                 <div
@@ -149,10 +149,8 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     ref={sectionsContainerRef}
                   >
                     <DetailsTopIcons
-                      pdfUri={details.pdfUri}
-                      gpxUri={details.gpxUri}
+                      details={details}
                       practice={details.practice ?? undefined}
-                      kmlUri={details.kmlUri}
                       trekId={Number(id)}
                       startPoint={{
                         type: 'Point',

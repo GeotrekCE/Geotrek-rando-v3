@@ -123,7 +123,7 @@ export const adaptTouristicContentDetails = ({
           .filter(themeId => themeDictionnary[themeId] !== undefined)
           .map(themeId => themeDictionnary[themeId].label)
       : [],
-  pdf: rawTCD.properties.pdf,
+  pdfUri: rawTCD.properties.pdf,
   types: Object.entries(rawTCD.properties.types).reduce<TouristicContentDetailsType[]>(
     (adaptedTypes, typeEntry) => {
       const adaptedType = adaptTouristicType(typeEntry, touristicContentCategory);

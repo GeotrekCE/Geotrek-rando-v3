@@ -92,7 +92,7 @@ export interface TouristicContentDetails extends TouristicContent {
   website: string;
   place: string;
   themes: string[];
-  pdf: string;
+  pdfUri: string;
   types: TouristicContentDetailsType[];
   bbox: Bbox;
 }

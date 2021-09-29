@@ -1,12 +1,14 @@
-import { MutableRefObject } from 'react';
+import { DetailsDownloadIcons } from 'components/pages/details/components/DetailsDownloadIcons';
+import React, { MutableRefObject } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { sizes } from 'stylesheet';
+import { Details } from '../../../../../modules/details/interface';
 import { DetailsHeaderSection } from '../../useDetails';
 import { useDetailsHeader } from './useDetailsHeader';
 
 interface DetailsHeaderProps {
   sectionsReferences: MutableRefObject<DetailsHeaderSection>;
-  downloadUrl?: string;
+  details: Details;
 }
 
 const scrollTo = (element: HTMLDivElement | undefined | null) => {
@@ -22,10 +24,7 @@ const scrollTo = (element: HTMLDivElement | undefined | null) => {
   }
 };
 
-export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
-  sectionsReferences,
-  downloadUrl,
-}) => {
+export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ sectionsReferences, details }) => {
   const { detailsHeaderSection, currentSectionId } = useDetailsHeader(sectionsReferences);
   return (
     <div
@@ -33,6 +32,7 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
       className="hidden desktop:flex
       sticky top-desktopHeader z-subHeader
       shadow-md bg-white"
+      style={{ height: 55 }}
     >
       <div id="details_headerDesktop_inlineMenu" className="flex flex-1 pb-2.5 pt-4 ml-3">
         {(Object.keys(detailsHeaderSection) as Array<keyof DetailsHeaderSection>).map(sectionId => (
@@ -53,23 +53,7 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
           </div>
         ))}
       </div>
-      {downloadUrl !== undefined && <DownloadButton url={downloadUrl} />}
+      <DetailsDownloadIcons details={details} />
     </div>
   );
 };
-
-const DownloadButton: React.FC<{ url: string }> = ({ url }) => (
-  <a
-    id="details_headerDesktop_downloadButton"
-    href={url}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="rounded-full py-2 px-4 m-2
-    border-primary1 border-solid border
-      cursor-pointer
-    text-primary1 font-bold
-    hover:border-primary1-light hover:shadow-sm hover:text-primary1-light transition-all"
-  >
-    <FormattedMessage id={'details.download'} />
-  </a>
-);
