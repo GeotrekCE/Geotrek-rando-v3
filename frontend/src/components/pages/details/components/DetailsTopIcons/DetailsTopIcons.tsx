@@ -1,37 +1,32 @@
-import { Download } from 'components/Icons/Download';
-import { Printer } from 'components/Icons/Printer';
 import { AlertTriangle } from 'components/Icons/AlertTriangle';
+import { DetailsDownloadIcons } from 'components/pages/details/components/DetailsDownloadIcons';
 import Report from 'components/Report/Report';
 import { Activity } from 'modules/activities/interface';
 import React, { useState } from 'react';
 import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
+import { Details } from '../../../../../modules/details/interface';
 import { PointGeometry } from '../../../../../modules/interface';
+import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
 import { getGlobalConfig } from '../../../../../modules/utils/api.config';
 import { DetailsButton } from '../DetailsButton';
-import { DetailsButtonDropdown } from '../DetailsButtonDropdown';
 
 interface DetailsTopIconsProps {
+  details: Details | TouristicContentDetails;
   practice?: Activity;
-  pdfUri?: string;
-  gpxUri?: string;
-  kmlUri?: string;
   trekId?: number;
   startPoint?: PointGeometry;
+  type?: 'TREK' | 'TOURISTIC_CONTENT';
 }
 
 export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
+  details,
   practice,
-  pdfUri,
-  gpxUri,
-  kmlUri,
   trekId,
   startPoint,
+  type = 'TREK',
 }) => {
   const [openReport, setOpenReport] = useState<boolean>(false);
-  const dropdownButtonOptions = [];
-  if (gpxUri !== undefined) dropdownButtonOptions.push({ label: 'GPX', value: gpxUri });
-  if (kmlUri !== undefined) dropdownButtonOptions.push({ label: 'KML', value: kmlUri });
 
   const handleOpenReport = (event: React.MouseEvent) => {
     event.stopPropagation();
@@ -54,18 +49,11 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
         id="details_topRoundIcons"
         className="flex justify-between items-center mx-4 desktop:mx-12 menu-download"
       >
-        {practice !== undefined && <ActivityLogo src={practice.pictogram} />}
+        {practice && <ActivityLogo src={practice.pictogram} />}
         <div className="flex space-x-4">
-          {pdfUri !== undefined && (
-            <DetailsButton url={pdfUri}>
-              <Printer size={30} />
-            </DetailsButton>
-          )}
-          {dropdownButtonOptions.length > 0 && (
-            <DetailsButtonDropdown options={dropdownButtonOptions}>
-              <Download className="text-primary1 m-2" size={30} />
-            </DetailsButtonDropdown>
-          )}
+          <div className={type === 'TREK' ? 'desktop:hidden' : undefined}>
+            <DetailsDownloadIcons details={details} size={30} />
+          </div>
           {trekId && getGlobalConfig().enableReport && (
             <>
               <DetailsButton url={'#'} onClick={handleOpenReport}>

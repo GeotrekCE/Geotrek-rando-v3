@@ -103,8 +103,7 @@ describe('Details', () => {
     await component.findByText(
       "L'auberge propose, dans un hameau de montagne en bout de route, en pleine nature, un hébergement de séjour, nuitée, demi-pension et pension complète dans un décor de la vie d'antan et d'aujourd'hui.",
     );
-    const download = await component.findByText('Télécharger');
-    expect(download).toHaveAttribute('href', rawDetailsMock.properties.pdf);
+    await component.findAllByTestId('download-button');
     await component.findAllByText('Accessibilité');
     await component.findByText('Poussette');
     await component.findByText('Source');
