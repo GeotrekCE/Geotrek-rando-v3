@@ -9,9 +9,13 @@ const MoreLink: React.FC<Props> = ({ link }) => {
   return (
     <a href={link.url} target={'_blank'} rel="noreferrer">
       <div className={'flex items-center'}>
-        <div>
-          <img src={link.category.pictogram} />
-        </div>
+        {link.category ? (
+          <div>
+            <img src={link.category?.pictogram} />
+          </div>
+        ) : (
+          <div className="ml-8 mt-8" />
+        )}
         <div className={'ml-2'}>{link.name}</div>
       </div>
     </a>
