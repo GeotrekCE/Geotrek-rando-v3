@@ -90,7 +90,7 @@ sudo certbot --nginx
 
 ## Update Geotrek-rando version or configuration
 
-After updating configuration or to install a new version of Geotrek-rando, you have to pull the new container of Geotrek-rando, stop and remove the old one and run the new one:
+After updating configuration or to install a new version of Geotrek-rando, you have to pull the new image of Geotrek-rando, stop and remove the old container and run a new one with the new image:
 
 ```sh
 docker-compose pull && docker-compose down && docker-compose up -d
