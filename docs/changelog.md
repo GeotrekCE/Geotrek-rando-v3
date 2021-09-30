@@ -1,6 +1,6 @@
 # Changelog
 
-3.2.0 (unreleased)
+3.2.0 (2021-09-30)
 ------------------
 
 Requires [Geotrek-rando-v3-installer](https://github.com/GeotrekCE/Geotrek-rando-v3-installer) version 2.0 and more.
@@ -15,6 +15,7 @@ Requires [Geotrek-rando-v3-installer](https://github.com/GeotrekCE/Geotrek-rando
 
 **✨ Improvements**
 
+* Move download button in header on desktop trek detail pages (#378)
 * Better title and URL for static pages (#468)
 * Add "More information" in trek detail page (#370)
 * Use ``maximumZoomLevel`` parameter for spiderfy clusters (#367)
@@ -31,6 +32,7 @@ Requires [Geotrek-rando-v3-installer](https://github.com/GeotrekCE/Geotrek-rando
 * Fix tooltip on touristic content detail page (#455)
 * Show line or polygon of touristic contents on search page (#456)
 * Fix default language canonical URL (#476)
+* Deactivate alternate links in meta to avoid 404 (#475)
 
 **⚠️ Version notes**
 
