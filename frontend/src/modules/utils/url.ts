@@ -7,6 +7,8 @@ export const redirectIfWrongUrl = (
   id: string,
   title: string,
   context: { locale: string; req: NextApiRequest; res: NextApiResponse },
+  route: string,
+  parentId?: number,
 ): void => {
   const baseUrl = getGlobalConfig().baseUrl;
   const baseUrlLocalised =
@@ -16,7 +18,7 @@ export const redirectIfWrongUrl = (
   const baseUrlTrimmed = baseUrlLocalised.endsWith('/')
     ? baseUrlLocalised.slice(0, -1)
     : baseUrlLocalised;
-  const pathname = generateResultDetailsUrl(id, title);
+  const pathname = generateResultDetailsUrl(id, title, route, parentId);
 
   const url = `${baseUrlTrimmed}${pathname}`;
 

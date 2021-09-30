@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { TouristicContentUI } from 'components/pages/touristicContent';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { QueryClient } from 'react-query';
+import { routes } from 'services/routes';
 import { getTouristicContentDetails } from '../../modules/touristicContent/connector';
 import { isUrlString } from '../../modules/utils/string';
 import { redirectIfWrongUrl } from '../../modules/utils/url';
@@ -28,7 +29,7 @@ export const getServerSideProps = async (context: {
       () => details,
     );
 
-    redirectIfWrongUrl(id, details.name, context);
+    redirectIfWrongUrl(id, details.name, context, routes.TOURISTIC_CONTENT);
 
     return { props: {} };
   } catch (error) {

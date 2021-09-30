@@ -7,6 +7,7 @@ import { dehydrate } from 'react-query/hydration';
 import { getDetails, getTrekFamily } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
 import { getDefaultLanguage } from 'modules/header/utills';
+import { routes } from 'services/routes';
 import { redirectIfWrongUrl } from '../../modules/utils/url';
 import Custom404 from '../404';
 
@@ -30,7 +31,7 @@ export const getServerSideProps = async (context: {
       getTrekFamily(parentIdString, context.locale),
     );
 
-    redirectIfWrongUrl(id, details.title, context);
+    redirectIfWrongUrl(id, details.title, context, routes.DETAILS, Number(parentIdString));
 
     return {
       props: {

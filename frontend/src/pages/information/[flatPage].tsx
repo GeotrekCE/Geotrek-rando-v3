@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { FlatPageUI } from 'components/pages/flatPage';
 import { QueryClient } from 'react-query';
+import { routes } from 'services/routes';
 import { getFlatPageDetails } from '../../modules/flatpage/connector';
 import { isUrlString } from '../../modules/utils/string';
 import { redirectIfWrongUrl } from '../../modules/utils/url';
@@ -22,7 +23,7 @@ export const getServerSideProps = async (context: {
 
     await queryClient.prefetchQuery(`flatPageDetails-${id}-${context.locale}`, () => details);
 
-    redirectIfWrongUrl(id, details.title, context);
+    redirectIfWrongUrl(id, details.title, context, routes.FLAT_PAGE);
 
     return { props: {} };
   } catch (error) {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { routes } from 'services/routes';
 import styled, { css } from 'styled-components';
 import { Popup as LeafletPopup, Tooltip as LeafletTooltip } from 'react-leaflet';
 import { FormattedMessage } from 'react-intl';
@@ -49,11 +50,12 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId }) => 
             </Title>
             {showButton && (
               <Link
-                href={
-                  type === 'TREK'
-                    ? generateResultDetailsUrl(id, trekPopupResult.title, parentId)
-                    : generateTouristicContentUrl(id, trekPopupResult.title)
-                }
+                href={generateResultDetailsUrl(
+                  id,
+                  trekPopupResult.title,
+                  type === 'TREK' ? routes.DETAILS : routes.TOURISTIC_CONTENT,
+                  parentId,
+                )}
               >
                 <Button type="button">
                   <span className="text-center w-full">
