@@ -57,7 +57,7 @@ export const PageHead = ({ title, description, sharingImageUrl }: Props) => {
       <meta property="og:type" content="website" />
 
       <meta name="twitter:card" content="summary" />
-      <meta name="twitter:url" content={`${baseUrl}/${currentLanguage}${router.asPath}`} />
+      <meta name="twitter:url" content={canonicalURL} />
       <meta name="twitter:title" content={titleWithSiteName} />
       {description !== undefined && <meta name="twitter:description" content={description} />}
       <meta name="twitter:image" content={sharingImageUrl ?? '/medias/favicon.png'} />
