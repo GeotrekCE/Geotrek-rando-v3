@@ -13,7 +13,7 @@ Before starting the technical installation, here is an overview of the global pr
 - Administrators will log in on their host with SSH and install Docker and Docker Compose on it
 - They will download an archive of the latest version of the Installer repository and extract it on their host
 - They will edit the customization files
-- They will download and run the Docker container with Docker Compose and make it available with a web browser through NGINX
+- They will download the Docker image, run the Docker container with Docker Compose and make it available with a web browser through NGINX
 
 ## Install Docker
 
@@ -28,18 +28,18 @@ You need to have Docker and Docker Compose installed on your own computer or ser
 You will have to download the Installer of Geotrek-rando and its customization folder template to run the Docker container of Geotrek-rando on your own computer or server.
 
 - Create a folder to install your Geotrek-rando (`/home/myuser/geotrekrando` for instance) and go in this folder
-- On your server download the [Geotrek-rando-installer repository](https://github.com/GeotrekCE/Geotrek-rando-v3-installer) version you want: `wget https://github.com/GeotrekCE/Geotrek-rando-v3-installer/archive/vX.Y.Z.zip` (replace `X.Y.Z` with the version of Geotrek-rando-v3-docker that is compatible with the Geotrek-rando-v3 version you want to use) and unzip it. You can also git clone it (`git pull https://github.com/GeotrekCE/Geotrek-rando-v3-installer.git`)
-- Update the files in the `/customization` folder according to your structure (See [customization](customization.md) documentation)
+- On your server, download the [Geotrek-rando-installer repository](https://github.com/GeotrekCE/Geotrek-rando-v3-installer) version you want: `wget https://github.com/GeotrekCE/Geotrek-rando-v3-installer/archive/vX.Y.Z.zip` (replace `X.Y.Z` with the version of Geotrek-rando-v3-installer that is compatible with the Geotrek-rando-v3 version you want to use) and unzip it. You can also git clone it (`git pull https://github.com/GeotrekCE/Geotrek-rando-v3-installer.git`)
+- Update the files in the `/customization` folder according to your structure (See [customization documentation](customization.md))
 - Go in the root folder of your Geotrek-rando-v3-installer and run the Docker container with launching `docker-compose up -d`
-- Your website is now available to the address of your server
+- Your Geotrek-rando is now available at the address of your server on 8080 port (e.g. http://myserver:8080)
 
-You can now then serve what comes out of the default 8080 port. To configure NGINX, see below.
+You can now serve what comes out of the default 8080 port. To configure NGINX, see below.
 
 If you want to have logs directly in terminal you can just run `docker-compose up`. `ctrl`+`c` will exit the command and stop the container. That's why `docker-compose up -d` is used in production to run the service in the background.
 
 After updating customization, you just have to run `docker-compose restart` to apply changes.
 
-You can also create the optional `.env` file based on the example (`cp .env.example .env`), if you want to change the Docker image URL, the running port, or the `customization` and `medias` folders path. Run `docker-compose down && docker-compose up -d` to apply changes to `.env` file.
+You can also create the optional `.env` file based on the example (`cp .env.example .env`), if you want to change the Docker image URL (or run a specific version different from the latest one), the running port, or the `customization` and `medias` folders path. Run `docker-compose down && docker-compose up -d` to apply changes to `.env` file.
 
 ## An example with NGINX
 
@@ -73,7 +73,7 @@ ln -s /etc/nginx/sites-available/geotrekrando.conf /etc/nginx/sites-enabled/
 sudo service nginx reload
 ```
 
-Feel free to add https configuration at will.
+Feel free to add https configuration at will. It is required for the PWA mobile version.
 
 Example with Certbot:
 
@@ -85,17 +85,6 @@ sudo apt install python3-certbot-nginx
 ## Launch Cerbot command to install the certificate and follow instructions
 sudo certbot --nginx
 ```
-
-You can also open up your web ports thanks to UFW for instance
-
-```bash
-sudo ufw allow https comment 'Open all to access Nginx port 443'
-sudo ufw allow http comment 'Open access Nginx port 80'
-sudo ufw allow ssh comment 'Open access OpenSSH port 22'
-sudo ufw enable
-```
-
-Now you should be able to reach your Geotrek-rando through the default web port of your virtual machine.
 
 ## Update Geotrek-rando version or configuration
 
@@ -151,7 +140,7 @@ PORT=82 && yarn start
 
 ## Process manager
 
-In order to have a more robust solution to serve your node server, our advice is to use [pm2](https://pm2.keymetrics.io/).
+If you installed Geotrek-rando without Docker and in order to have a more robust solution to serve your node server, our advice is to use [pm2](https://pm2.keymetrics.io/).
 
 Here is a quick guide on how to use pm2 with an Ubuntu distribution (Make sure you've installed nodejs and built the project following the previous step)
 
