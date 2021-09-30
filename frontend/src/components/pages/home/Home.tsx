@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import { useIntl } from 'react-intl';
 import parse from 'html-react-parser';
 import getNextConfig from 'next/config';
@@ -51,7 +51,7 @@ const HomeUI: FunctionComponent = () => {
               {parse(homeTopHtml)}
             </div>
             {activitySuggestionCategories.map(suggestionCategory => (
-              <>
+              <React.Fragment key={suggestionCategory.titleTranslationId}>
                 {suggestionCategory.suggestions.length > 0 && (
                   <HomeSection
                     title={intl.formatMessage({ id: suggestionCategory.titleTranslationId })}
@@ -60,7 +60,7 @@ const HomeUI: FunctionComponent = () => {
                     activitySuggestions={suggestionCategory.suggestions}
                   />
                 )}
-              </>
+              </React.Fragment>
             ))}
             <div id="home_bottomHtml" className={classNameHomeChild}>
               {parse(homeBottomHtml)}
