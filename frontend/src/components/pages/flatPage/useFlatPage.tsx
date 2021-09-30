@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import { ONE_DAY } from 'services/constants/staleTime';
 
-export const useFlatPage = (flatPageUrl: string | string[] | undefined) => {
+export const useFlatPage = (flatPageUrl: string | undefined) => {
   const language = useRouter().locale ?? getDefaultLanguage();
   const path = isUrlString(flatPageUrl) ? decodeURI(flatPageUrl) : '';
   const id = isUrlString(flatPageUrl) ? flatPageUrl.split('-')[0] : '';

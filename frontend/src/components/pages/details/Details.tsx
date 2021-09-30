@@ -1,3 +1,4 @@
+import MoreLink from 'components/Information/MoreLink';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
 import Report from 'components/Report/Report';
@@ -110,7 +111,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
         ) : (
           <>
             <Layout>
-              <DetailsHeader sectionsReferences={sectionsReferences} downloadUrl={details.pdfUri} />
+              <DetailsHeader sectionsReferences={sectionsReferences} details={details} />
               {details.title !== undefined && <DetailsHeaderMobile title={details.title} />}
               <div className="flex flex-1" id="details_mainContainer">
                 <div
@@ -148,10 +149,8 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     ref={sectionsContainerRef}
                   >
                     <DetailsTopIcons
-                      pdfUri={details.pdfUri}
-                      gpxUri={details.gpxUri}
+                      details={details}
                       practice={details.practice ?? undefined}
-                      kmlUri={details.kmlUri}
                       trekId={Number(id)}
                       startPoint={{
                         type: 'Point',
@@ -257,6 +256,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         titleId="details.recommandations"
                         className={marginDetailsChild}
                       >
+                        {details.advice !== null && details.advice.length > 0 && (
+                          <DetailsAdvice text={details.advice} className="mb-4 desktop:mb-6" />
+                        )}
                         {details.labels.map((label, i) => (
                           <DetailsLabel
                             key={i}
@@ -264,12 +266,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             name={label.name}
                             advice={label.advice}
                             pictogramUri={label.pictogramUri}
-                            className={i < details.labels.length - 1 ? 'mb-4 desktop:mb-6' : ''}
+                            className={i < details.labels.length - 1 ? 'mt-4 desktop:mt-6' : ''}
                           />
                         ))}
-                        {details.advice !== null && details.advice.length > 0 && (
-                          <DetailsAdvice text={details.advice} className="mt-4 desktop:mt-6" />
-                        )}
                       </DetailsSection>
                     )}
 
@@ -361,6 +360,20 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       </div>
                     )}
 
+                    {details.webLinks?.length > 0 && (
+                      <div ref={setAccessibilityRef} id="details_more_ref">
+                        <DetailsSection
+                          htmlId="details_more"
+                          titleId="details.more"
+                          className={marginDetailsChild}
+                        >
+                          {details.webLinks.map((link, i) => (
+                            <MoreLink key={i} link={link} />
+                          ))}
+                        </DetailsSection>
+                      </div>
+                    )}
+
                     {details.sources.length > 0 && (
                       <DetailsSection
                         htmlId="details_source"
@@ -415,6 +428,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       parkingLocation={
                         details.parkingLocation === null ? undefined : details.parkingLocation
                       }
+                      advisedParking={details.parking}
                       trekGeometry={details.trekGeometry}
                       trekGeoJSON={details.trekGeoJSON}
                       poiPoints={details.pois.map(poi => ({
@@ -471,6 +485,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   type="MOBILE"
                   arrivalLocation={details.trekArrival}
                   departureLocation={details.trekDeparture}
+                  advisedParking={details.parking}
                   parkingLocation={
                     details.parkingLocation === null ? undefined : details.parkingLocation
                   }

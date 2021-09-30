@@ -1,6 +1,3 @@
-// eslint-disable-next-line
-const customColors = require('./customization/theme/colors.json');
-
 const SPACING_UNIT = 4;
 
 module.exports = {
@@ -125,28 +122,27 @@ module.exports = {
       },
       colors: {
         primary1: {
-          DEFAULT: '#AA397D',
-          light: '#bd3e8b',
+          DEFAULT: 'var(--color-primary1-default)',
+          light: 'var(--color-primary1-light)',
         },
-        primary2: '#F5E7EF',
-        primary3: '#791150',
+        primary2: 'var(--color-primary2)',
+        primary3: 'var(--color-primary3)',
         greySoft: {
-          DEFAULT: '#D7D6D9',
-          light: '#D7D6D950',
+          DEFAULT: 'var(--color-greySoft-default)',
+          light: 'var(--color-greySoft-light)',
         },
-        warning: '#D77E00',
-        easyOK: '#4FAD79',
-        hardKO: '#E25316',
+        warning: 'var(--color-warning)',
+        easyOK: 'var(--color-easyOK)',
+        hardKO: 'var(--color-hardKO)',
         black: '#000000',
         white: '#FFFFFF',
-        red: '#FF7373',
-        redMarker: '#E83737',
+        red: 'var(--color-red)',
+        redMarker: 'var(--color-redMarker)',
         blackTransparent: 'rgba(0, 0, 0, 0.24)',
         blackSemiTransparent: 'rgba(0, 0, 0, 0.36)',
         blackSemiOpaque: 'rgba(0, 0, 0, 0.70)',
         greyDarkColored: '#534764',
         gradientOnImages: '#27041970',
-        ...customColors,
       },
     },
   },

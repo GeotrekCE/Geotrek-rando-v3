@@ -4,14 +4,16 @@ import { getTrekGeometryResult } from 'modules/trekResult/connector';
 import { TrekGeometryResult } from 'modules/trekResult/interface';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
+import { getTouristicContentGeometryResult } from '../../../modules/touristicContent/connector';
 
-export const useTrekGeometry = (id?: number) => {
+export const useObjectGeometry = (id: number, type: 'TREK' | 'TOURISTIC_CONTENT') => {
   const language = useRouter().locale ?? getDefaultLanguage();
+
+  const func = type === 'TREK' ? getTrekGeometryResult : getTouristicContentGeometryResult;
+
   const { data: trekGeometry } = useQuery<TrekGeometryResult, Error>(
     ['trekPopupResult', id, language],
-    () =>
-      id === undefined ? new Promise(() => []) : getTrekGeometryResult(id.toString(), language),
-    { enabled: id !== undefined },
+    () => func(String(id), language),
   );
 
   return { trekGeometry };

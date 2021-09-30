@@ -55,43 +55,36 @@ export const useTrekResults = (
 
   const router = useRouter();
 
-  const {
-    data,
-    isLoading,
-    isError,
-    refetch,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery<SearchResults, Error>(
-    [
-      'trekResults',
-      parsedFiltersState,
-      language,
-      parseTextFilter(textFilterState),
-      parseBboxFilter(bboxState),
-    ],
-    ({ pageParam = { treks: 1, touristicContents: 1 } }) =>
-      getSearchResults(
-        { filtersState: parsedFiltersState, textFilterState, bboxState },
-        pageParam,
+  const { data, isLoading, isError, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery<SearchResults, Error>(
+      [
+        'trekResults',
+        parsedFiltersState,
         language,
-      ),
-    {
-      retry: false,
-      // We already have a fallback component to allow the user to refetch
-      // Leaving these on induced issues with our refetching only next page strategy
-      // When it refetched on reconnect/focus the infinite scroll then stopped working
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-      // hasNextPage will be set to false if getNextPageParam returns undefined
-      getNextPageParam: lastPageResult =>
-        lastPageResult.nextPages.treks !== null ||
-        lastPageResult.nextPages.touristicContents !== null
-          ? lastPageResult.nextPages
-          : undefined,
-    },
-  );
+        parseTextFilter(textFilterState),
+        parseBboxFilter(bboxState),
+      ],
+      ({ pageParam = { treks: 1, touristicContents: 1 } }) =>
+        getSearchResults(
+          { filtersState: parsedFiltersState, textFilterState, bboxState },
+          pageParam,
+          language,
+        ),
+      {
+        retry: false,
+        // We already have a fallback component to allow the user to refetch
+        // Leaving these on induced issues with our refetching only next page strategy
+        // When it refetched on reconnect/focus the infinite scroll then stopped working
+        refetchOnReconnect: false,
+        refetchOnWindowFocus: false,
+        // hasNextPage will be set to false if getNextPageParam returns undefined
+        getNextPageParam: lastPageResult =>
+          lastPageResult.nextPages.treks !== null ||
+          lastPageResult.nextPages.touristicContents !== null
+            ? lastPageResult.nextPages
+            : undefined,
+      },
+    );
 
   useEffect(() => {
     const url = computeUrl(filtersState, textFilterState);

@@ -9,13 +9,13 @@ Object {
         class=" css-2b097c-container"
       >
         <div
-          class="select__control css-1v0k830-control"
+          class="select__control css-1v9m7x2-control"
         >
           <div
             class="select__value-container select__value-container--is-multi select__value-container--has-value css-g1d714-ValueContainer"
           >
             <div
-              class="css-1ptfxct-multiValue select__multi-value"
+              class="css-ya8gvn-multiValue select__multi-value"
             >
               <div
                 class="css-12jo7m5 select__multi-value__label"
@@ -88,13 +88,13 @@ Object {
       class=" css-2b097c-container"
     >
       <div
-        class="select__control css-1v0k830-control"
+        class="select__control css-1v9m7x2-control"
       >
         <div
           class="select__value-container select__value-container--is-multi select__value-container--has-value css-g1d714-ValueContainer"
         >
           <div
-            class="css-1ptfxct-multiValue select__multi-value"
+            class="css-ya8gvn-multiValue select__multi-value"
           >
             <div
               class="css-12jo7m5 select__multi-value__label"

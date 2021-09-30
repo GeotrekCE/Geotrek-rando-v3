@@ -1,5 +1,54 @@
 # Changelog
 
+3.2.0 (2021-09-30)
+------------------
+
+Requires [Geotrek-rando-v3-installer](https://github.com/GeotrekCE/Geotrek-rando-v3-installer) version 2.0.0 or more.
+
+**💥 Beaking changes**
+
+* New build system to install and customize a Geotrek-rando portal dynamically, without building it locally (#458)
+
+**🛠️ Maintenance**
+
+* Upgrade dependencies (NextJS 10 to 11 and others) (#469)
+
+**✨ Improvements**
+
+* Move download button in header on desktop trek detail pages (#378)
+* Better title and URL for static pages (#468)
+* Add "More information" in trek detail page (#370)
+* Use ``maximumZoomLevel`` parameter for spiderfy clusters (#367)
+* Better 404 error handler for multilanguage (#416)
+* Themes uses portalFilters (#432)
+* Switch advice and labels on trek detail pages (#445)
+* Display parking detail in tooltip on trek detail pages (#400)
+* Add ``<h1>`` on homepage
+
+**🐛 Fixes**
+
+* Don't override multi-day trekking url (#473)
+* Fix crash when there is no label available in this language (#470)
+* Fix tooltip on touristic content detail page (#455)
+* Show line or polygon of touristic contents on search page (#456)
+* Fix default language canonical URL (#476)
+* Deactivate alternate links in meta to avoid 404 (#475)
+
+**⚠️ Version notes**
+
+If you update Geotrek-rando v3, the global Docker process has been updated to avoid the Docker image build on your server :
+
+* Download the version 2.0.0 of [Geotrek-rando-installer](https://github.com/GeotrekCE/Geotrek-rando-v3-installer) 
+(``wget https://github.com/GeotrekCE/Geotrek-rando-v3-installer/archive/v2.0.0.zip``) and unzip it in a new folder
+* Rapatriate your customization in this folder, overriding the default one
+* Eventually create and update the ``.env`` file to define another port from the 8080 default one
+* Make sure your NGINX configuration uses the same port (8080 by default)
+* Install Docker Compose. See its [official documentation](https://docs.docker.com/compose/install/)
+* Launch the application with ``docker-compose up -d``
+* No need anymore to build a Docker image on your server to install or update the configuration of your Geotrek-rando
+* Details in [installation documentation](/docs/installation.md)
+* You can also remove your previous Docker containers and images with launching ``docker container prune`` and ``docker image prune -a``
+
 3.1.3 (2021-09-21)
 ------------------
 
@@ -32,7 +81,7 @@
 3.1.0 (2021-07-02)
 ------------------
 
-**✨ Improvements**
+**🚀 New features**
 
 * Add ``redirects.json`` setting file to manage redirections from Geotrek-rando v2 to Geotrek-rando v3 (#59)
 * Allow to filter results by displayed map area (bbox) and its setting ``enableSearchByMap`` (#383)

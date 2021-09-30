@@ -67,10 +67,11 @@ export const formatInfiniteQuery = (
 export const generateResultDetailsUrl = (
   id: number | string,
   title: string,
+  route: string = routes.DETAILS,
   parentId?: number,
 ): string => {
   const titleWithNoSpace = convertStringForSitemap(title);
-  const detailsPageUrl = `${routes.DETAILS}/${id}-${encodeURI(titleWithNoSpace)}${
+  const detailsPageUrl = `${route}/${id}-${encodeURI(titleWithNoSpace)}${
     parentId ? `?parentId=${parentId}` : ''
   }`;
 

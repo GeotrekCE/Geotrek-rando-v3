@@ -14,6 +14,8 @@ export const DetailsLabel: React.FC<DetailsLabelProps> = ({
   advice,
   pictogramUri,
 }) => {
+  if (!name) return null;
+
   return (
     <div
       id="details_recommandationLabel"
@@ -28,7 +30,7 @@ export const DetailsLabel: React.FC<DetailsLabelProps> = ({
         <div className="text-P1 desktop:text-H4 text-warning font-bold">
           <HtmlText>{parse(name)}</HtmlText>
         </div>
-        <HtmlText>{parse(advice)}</HtmlText>
+        {advice && <HtmlText>{parse(advice)}</HtmlText>}
       </div>
     </div>
   );

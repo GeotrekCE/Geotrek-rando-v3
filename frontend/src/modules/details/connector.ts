@@ -44,19 +44,15 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       getAccessibilities(language),
       getSources(language),
     ]);
-    const [
-      informationDeskDictionnary,
-      labelsDictionnary,
-      children,
-      sensitiveAreas,
-    ] = await Promise.all([
-      getInformationDesks(language),
-      getLabels(language),
-      getTrekResultsById(rawDetails.properties.children, language),
-      getGlobalConfig().enableSensitiveAreas
-        ? getSensitiveAreas(rawDetails.properties.id, language)
-        : [],
-    ]);
+    const [informationDeskDictionnary, labelsDictionnary, children, sensitiveAreas] =
+      await Promise.all([
+        getInformationDesks(language),
+        getLabels(language),
+        getTrekResultsById(rawDetails.properties.children, language),
+        getGlobalConfig().enableSensitiveAreas
+          ? getSensitiveAreas(rawDetails.properties.id, language)
+          : [],
+      ]);
     const childrenGeometry = await Promise.all(
       rawDetails.properties.children.map(childId => getChildGeometry(`${childId}`, language)),
     );

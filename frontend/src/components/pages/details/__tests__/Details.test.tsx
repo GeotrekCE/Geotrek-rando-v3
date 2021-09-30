@@ -36,7 +36,7 @@ describe('Details', () => {
       .query({
         language: 'fr',
         fields:
-          'id,name,departure,arrival,cities,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,departure_city,disabled_infrastructure,accessibilities,source,information_desks,labels,advice,points_reference,children',
+          'id,name,departure,arrival,cities,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,departure_city,disabled_infrastructure,accessibilities,source,information_desks,labels,advice,points_reference,children,web_links',
         format: 'geojson',
       })
       .reply(200, rawDetailsMock);
@@ -103,8 +103,7 @@ describe('Details', () => {
     await component.findByText(
       "L'auberge propose, dans un hameau de montagne en bout de route, en pleine nature, un hébergement de séjour, nuitée, demi-pension et pension complète dans un décor de la vie d'antan et d'aujourd'hui.",
     );
-    const download = await component.findByText('Télécharger');
-    expect(download).toHaveAttribute('href', rawDetailsMock.properties.pdf);
+    await component.findAllByTestId('download-button');
     await component.findAllByText('Accessibilité');
     await component.findByText('Poussette');
     await component.findByText('Source');

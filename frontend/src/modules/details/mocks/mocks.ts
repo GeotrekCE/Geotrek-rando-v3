@@ -28,8 +28,7 @@ export const rawDetailsProperties: RawDetailsProperties = {
         'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg.120x120_q85_crop.jpg',
       legend: 'Lac',
       title: "Lac_de_l'Eychauda_Parc_National_des_Ecrins",
-      url:
-        'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg',
+      url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg',
       type: 'image',
     },
     {
@@ -39,8 +38,7 @@ export const rawDetailsProperties: RawDetailsProperties = {
         'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/marmotte_parc_national_des_ecrins.jpg.120x120_q85_crop.jpg',
       legend: 'Marmotte',
       title: 'Marmotte_Parc_National_des_Ecrins',
-      url:
-        'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/marmotte_parc_national_des_ecrins.jpg',
+      url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/marmotte_parc_national_des_ecrins.jpg',
       type: 'image',
     },
     {
@@ -50,8 +48,7 @@ export const rawDetailsProperties: RawDetailsProperties = {
         'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG.120x120_q85_crop.jpg',
       legend: 'Le départ du hameau de Molines',
       title: 'le-depart-du-hameau-de-molines',
-      url:
-        'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
+      url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
       type: 'image',
     },
     {
@@ -61,8 +58,7 @@ export const rawDetailsProperties: RawDetailsProperties = {
         'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG.120x120_q85_crop.jpg',
       legend: 'Arrivée au col de Font Froide',
       title: 'arrivee-au-col-de-font-froide',
-      url:
-        'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG',
+      url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG',
       type: 'image',
     },
     {
@@ -72,8 +68,7 @@ export const rawDetailsProperties: RawDetailsProperties = {
         'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/en-chemin-vers-le-col-de-font-froide.JPG.120x120_q85_crop.jpg',
       legend: 'En chemin vers le col de Font Froide',
       title: 'en-chemin-vers-le-col-de-font-froide',
-      url:
-        'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/en-chemin-vers-le-col-de-font-froide.JPG',
+      url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/en-chemin-vers-le-col-de-font-froide.JPG',
       type: 'image',
     },
     {
@@ -83,8 +78,7 @@ export const rawDetailsProperties: RawDetailsProperties = {
         'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/signaletique-du-sentier-menant-au-col-de-font-froide.JPG.120x120_q85_crop.jpg',
       legend: 'Signalétique du sentier menant au col de Font Froide',
       title: 'signaletique-du-sentier-menant-au-col-de-font-froide',
-      url:
-        'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/signaletique-du-sentier-menant-au-col-de-font-froide.JPG',
+      url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/signaletique-du-sentier-menant-au-col-de-font-froide.JPG',
       type: 'image',
     },
     {
@@ -94,8 +88,7 @@ export const rawDetailsProperties: RawDetailsProperties = {
         'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/randonneur-au-col-de-font-froide.JPG.120x120_q85_crop.jpg',
       legend: 'Randonneur au col de Font Froide',
       title: 'randonneur-au-col-de-font-froide',
-      url:
-        'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/randonneur-au-col-de-font-froide.JPG',
+      url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/randonneur-au-col-de-font-froide.JPG',
       type: 'image',
     },
   ],
@@ -128,6 +121,13 @@ export const rawDetailsProperties: RawDetailsProperties = {
   source: [1],
   themes: [11, 1, 7],
   points_reference: null,
+  web_links: [
+    {
+      name: 'Test link',
+      url: 'https://example.com',
+      category: { label: 'Label', id: 'idLabel', pictogram: 'http://url.com/test.png' },
+    },
+  ],
 };
 
 export const rawDetails: RawDetails = {
@@ -221,8 +221,7 @@ export const rawPois = {
             'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-tenue-dete.jpg.120x120_q85_crop.jpg',
           legend: "Lagopède alpin en tenue d'été",
           title: 'lagopede-alpin-en-tenue-dete',
-          url:
-            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-tenue-dete.jpg',
+          url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-tenue-dete.jpg',
           type: 'image',
         },
         {
@@ -232,8 +231,7 @@ export const rawPois = {
             'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-plumage-dhiver.jpg.120x120_q85_crop.jpg',
           legend: "Lagopède alpin en plumage d'hiver",
           title: 'lagopede-alpin-en-plumage-dhiver',
-          url:
-            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-plumage-dhiver.jpg',
+          url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-plumage-dhiver.jpg',
           type: 'image',
         },
       ],

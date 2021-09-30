@@ -1,11 +1,8 @@
 // Borrowed from https://github.com/zeit/next.js/blob/master/examples/with-sentry/utils/sentry.js
-
-// NOTE: This require will be replaced with `@sentry/browser`
-// client side thanks to the webpack config in next.config.js
-const SentryIntegrations = require('@sentry/integrations');
-const Sentry = require('@sentry/node');
-
 const makeSentry = (release = process.env.VERSION) => {
+  const Sentry =
+    typeof window !== 'undefined' ? require('@sentry/browser') : require('@sentry/node');
+
   const sentryOptions = {
     dsn: process.env.SENTRY_DSN,
     release,
@@ -18,14 +15,6 @@ const makeSentry = (release = process.env.VERSION) => {
   if (process.env.NODE_ENV !== 'production') {
     // Don't actually send the errors to Sentry
     sentryOptions.beforeSend = () => null;
-
-    // Instead, dump the errors to the console
-    sentryOptions.integrations = [
-      new SentryIntegrations.Debug({
-        // Trigger DevTools debugger instead of using console.log
-        debugger: false,
-      }),
-    ];
   }
 
   Sentry.init(sentryOptions);

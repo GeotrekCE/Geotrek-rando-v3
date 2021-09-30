@@ -96,11 +96,12 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                 flex flex-col"
               >
                 <DetailsTopIcons
-                  pdfUri={touristicContent.pdf}
+                  details={touristicContent}
                   practice={{
                     pictogram: touristicContent.category.pictogramUri,
                     name: touristicContent.category.label,
                   }}
+                  type={'TOURISTIC_CONTENT'}
                 />
                 <DetailsPreview
                   className={marginDetailsChild}
@@ -194,6 +195,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   geometry: touristicContent.geometry,
                   pictogramUri: touristicContent.category.pictogramUri,
                   name: touristicContent.name,
+                  id: touristicContent.id,
                 }}
               />
             </div>
@@ -212,6 +214,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                 geometry: touristicContent.geometry,
                 pictogramUri: touristicContent.category.pictogramUri,
                 name: touristicContent.name,
+                id: touristicContent.id,
               }}
               hideMap={hideMobileMap}
             />

@@ -8,7 +8,7 @@
   "apiUrl": "https://geotrekdemo.ecrins-parcnational.fr/api/v2",
   "googleAnalyticsId": "G-8FSV2N4FXN",
   "googleSiteVerificationToken": "eKAyxwaXAobFWQcJen0mnZ8T3CpLoN45JysXeNkRf38",
-  "baseUrl": "https://geotrek-rando-v3-pi.vercel.app",
+  "baseUrl": "http://localhost:3000",
   "fallbackImageUri": "https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png",
   "touristicContentLabelImageUri": "https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png",
   "applicationName": "Custom Geotrek",

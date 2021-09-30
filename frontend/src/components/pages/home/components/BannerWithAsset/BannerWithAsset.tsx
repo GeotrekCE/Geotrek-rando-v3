@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { colorPalette } from 'stylesheet';
 import { BannerCarousel } from '../BannerCarousel/BannerCarousel';
 
-const WelcomeText = styled.span`
+const WelcomeText = styled.h1`
   text-shadow: 0 0 20px ${colorPalette.home.shadowOnImages};
 `;
 

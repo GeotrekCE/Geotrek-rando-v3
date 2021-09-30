@@ -5,7 +5,6 @@ import { Hydrate } from 'react-query/hydration';
 import { ONE_MINUTE } from 'services/constants/staleTime';
 import { captureException } from 'services/sentry';
 import '../public/fonts.css';
-import 'customization/theme/style.css';
 import 'tailwindcss/tailwind.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -15,7 +14,6 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { ListAndMapProvider } from 'modules/map/ListAndMapContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { getHeaderConfig } from 'modules/header/utills';
-import { flattenMessages } from 'services/i18n/intl';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,19 +23,20 @@ const queryClient = new QueryClient({
   },
 });
 
-const loadLocales = async () => {
+const loadLocales = async ({ ctx }: AppContext) => {
+  const baseUrl = ctx.req ? `http://localhost:${String(process?.env?.PORT ?? 3000)}` : '';
+
   const loadedLanguages = await Promise.all(
     getHeaderConfig().menu.supportedLanguages.map(async language => {
-      const messages = await import(`../translations/${language}.json`);
-      const customMessages = await import(`../../customization/translations/${language}.json`);
+      const result = await fetch(baseUrl + `/api/translations/${language}`);
+      const messages = await result.json();
+
       return {
-        [language]: {
-          ...flattenMessages(messages),
-          ...flattenMessages(customMessages),
-        },
+        [language]: messages,
       };
     }),
   );
+
   return loadedLanguages.reduce(
     (messages, currentMessages) => ({
       ...messages,
@@ -58,14 +57,16 @@ interface AppProps extends AppInitialProps {
 }
 
 class MyApp extends App<AppProps> {
-  static async getInitialProps(props: AppContext): Promise<AppProps> {
+  static async getInitialProps(props: any): Promise<AppProps> {
     const { Component, ctx } = props;
+
     try {
       const pageProps =
         Component.getInitialProps !== undefined ? await Component.getInitialProps(ctx) : {};
-      const messages = await loadLocales();
+      const messages = await loadLocales(props);
       return { pageProps, hasError: false, errorEventId: undefined, messages };
     } catch (error) {
+      console.error(error);
       // Capture errors that happen during a page's getInitialProps.
       // This will work on both client and server sides.
       const errorEventId = captureException(error, ctx);
@@ -81,6 +82,7 @@ class MyApp extends App<AppProps> {
   render() {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { Component, pageProps, hasError, errorEventId, messages } = this.props;
+
     return (
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>

@@ -26,7 +26,13 @@ export type PropsType = {
 };
 
 const SearchMapChildrens: React.FC<PropsType> = props => {
-  const { setSelectedMarkerId, resetSelectedMarker, selectedMarkerId } = useSelectedMarker();
+  const {
+    setSelectedMarkerId,
+    setSelectedMarkerType,
+    selectedMarkerType,
+    resetSelectedMarker,
+    selectedMarkerId,
+  } = useSelectedMarker();
 
   const { hoveredCardId, points } = useContext(ListAndMapContext);
   const hoveredPoint = points?.find(point => getHoverId(point) === hoveredCardId);
@@ -47,7 +53,10 @@ const SearchMapChildrens: React.FC<PropsType> = props => {
                 {(props.shouldUsePopups ?? false) && (
                   <Popup
                     id={point.id}
-                    handleOpen={() => setSelectedMarkerId(point.id)}
+                    handleOpen={() => {
+                      setSelectedMarkerId(point.id);
+                      setSelectedMarkerType(point.type);
+                    }}
                     handleClose={resetSelectedMarker}
                     type={point.type}
                   />
@@ -83,7 +92,9 @@ const SearchMapChildrens: React.FC<PropsType> = props => {
         />
       )}
       {props.segments && <DecoratedPolyline positions={props.segments} />}
-      <TrekCourse id={selectedMarkerId} />
+      {selectedMarkerId && selectedMarkerType && (
+        <TrekCourse id={selectedMarkerId} type={selectedMarkerType} />
+      )}
     </>
   );
 };

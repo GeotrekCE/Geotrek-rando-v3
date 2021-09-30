@@ -46,7 +46,7 @@ export const adaptTrekResultList = ({
     activityIcon: 'TODO',
     place: cityDictionnary[rawResult.departure_city]?.name ?? null,
     title: rawResult.name,
-    tags: rawResult.themes.map(themeId => themes[themeId].label),
+    tags: rawResult.themes.map(themeId => themes[themeId]?.label || ''),
     thumbnailUris: getThumbnails(rawResult.attachments),
     attachments: getAttachments(rawResult.attachments),
     practice: activities[rawResult.practice] ?? null,
@@ -57,8 +57,8 @@ export const adaptTrekResultList = ({
       difficulty:
         rawResult.difficulty !== null
           ? {
-              label: difficulties[rawResult.difficulty].label,
-              pictogramUri: difficulties[rawResult.difficulty].pictogramUri,
+              label: difficulties[rawResult.difficulty]?.label || '',
+              pictogramUri: difficulties[rawResult.difficulty]?.pictogramUri || '',
             }
           : null,
       reservationSystem: rawResult.reservation_system,

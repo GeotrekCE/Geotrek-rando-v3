@@ -49,6 +49,7 @@ export type PropsType = {
   trekChildrenGeometry?: TrekChildGeometry[];
   sensitiveAreas?: SensitiveAreaGeometry[];
   trekId: number;
+  advisedParking?: string;
 };
 
 export const DetailsMap: React.FC<PropsType> = props => {
@@ -92,6 +93,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           departureLocation={props.departureLocation}
           parkingLocation={props.parkingLocation}
           trekGeometry={props.trekGeometry}
+          advisedParking={props.advisedParking}
         />
         <MapChildren
           parentId={props.trekId}

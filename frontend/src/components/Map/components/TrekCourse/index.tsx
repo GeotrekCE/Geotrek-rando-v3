@@ -3,14 +3,15 @@ import { Polyline } from 'react-leaflet';
 
 import { colorPalette } from 'stylesheet';
 
-import { useTrekGeometry } from '../../hooks/useTrekGeometry';
+import { useObjectGeometry } from '../../hooks/useTrekGeometry';
 
 interface TrekCourseProps {
-  id: number | null;
+  id: number;
+  type: 'TREK' | 'TOURISTIC_CONTENT';
 }
 
-export const TrekCourse: React.FC<TrekCourseProps> = ({ id }) => {
-  const { trekGeometry } = useTrekGeometry(id ?? undefined);
+export const TrekCourse: React.FC<TrekCourseProps> = ({ id, type }) => {
+  const { trekGeometry } = useObjectGeometry(id, type);
 
   return (
     <>

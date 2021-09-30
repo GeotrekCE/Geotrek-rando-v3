@@ -1,4 +1,3 @@
-import { generateResultDetailsUrl } from 'components/pages/search/utils';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { DetailsUI } from 'components/pages/details';
@@ -7,13 +6,15 @@ import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import { getDetails, getTrekFamily } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
-import { getDefaultLanguage, getHeaderConfig } from 'modules/header/utills';
-import { getGlobalConfig } from '../../modules/utils/api.config';
+import { getDefaultLanguage } from 'modules/header/utills';
+import { routes } from 'services/routes';
+import { redirectIfWrongUrl } from '../../modules/utils/url';
+import Custom404 from '../404';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getServerSideProps = async (context: {
   locale: string;
-  query: { detailsId: string | string[] | undefined; parentId: string | string[] | undefined };
+  query: { detailsId: string | undefined; parentId: string | undefined };
   res: any;
   req: any;
 }) => {
@@ -22,39 +23,35 @@ export const getServerSideProps = async (context: {
 
   const queryClient = new QueryClient();
 
-  const details = await getDetails(id, context.locale);
+  try {
+    const details = await getDetails(id, context.locale);
 
-  await queryClient.prefetchQuery(`details-${id}-${context.locale}`, () => details);
-  await queryClient.prefetchQuery(`trekFamily-${parentIdString}-${context.locale}`, () =>
-    getTrekFamily(parentIdString, context.locale),
-  );
+    await queryClient.prefetchQuery(`details-${id}-${context.locale}`, () => details);
+    await queryClient.prefetchQuery(`trekFamily-${parentIdString}-${context.locale}`, () =>
+      getTrekFamily(parentIdString, context.locale),
+    );
 
-  // Url calculation
-  const baseUrl = getGlobalConfig().baseUrl;
-  const baseUrlLocalised =
-    getHeaderConfig().menu.defaultLanguage === context.locale
-      ? baseUrl
-      : `${baseUrl}/${context.locale}`;
-  const baseUrlTrimmed = baseUrlLocalised.endsWith('/')
-    ? baseUrlLocalised.slice(0, -1)
-    : baseUrlLocalised;
-  const pathname = generateResultDetailsUrl(id, details.title);
-  const url = `${baseUrlTrimmed}${pathname}`;
+    redirectIfWrongUrl(id, details.title, context, routes.DETAILS, Number(parentIdString));
 
-  if (context.req.url !== pathname) {
-    // We do a permanent redirect to help search engine to find new version
-    context.res.writeHead(301, { location: url });
-    context.res.end();
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        errorCode: String(error).includes('NOT_FOUND') ? 404 : 500,
+      },
+    };
   }
-
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
 };
 
-const Details: NextPage = () => {
+interface Props {
+  errorCode?: number;
+}
+
+const Details: NextPage<Props> = ({ errorCode }) => {
   const router = useRouter();
   const { detailsId, parentId } = router.query;
   const language = router.locale ?? getDefaultLanguage();
@@ -63,6 +60,8 @@ const Details: NextPage = () => {
     // Force to scroll top on page refresh
     window.history.scrollRestoration = 'manual';
   }, []);
+
+  if (errorCode === 404) return <Custom404 />;
 
   return <DetailsUI detailsId={detailsId} parentId={parentId} language={language} />;
 };

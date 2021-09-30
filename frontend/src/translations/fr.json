@@ -99,7 +99,8 @@
     },
     "departure": "Départ",
     "arrival": "Arrivée",
-    "cities": "Communes traversées"
+    "cities": "Communes traversées",
+    "more": "En savoir plus"
   },
   "touristicContent": {
     "contact": "Contact",

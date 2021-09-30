@@ -4,8 +4,7 @@ import { RawTrekResult } from '../interface';
 
 export const mockResultsResponse = (): APIResponseForList<RawTrekResult> => ({
   count: 4,
-  next:
-    'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=departure%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cthumbnail%2Cpractice&language=fr&page=2&page_size=1',
+  next: 'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=departure%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cthumbnail%2Cpractice&language=fr&page=2&page_size=1',
   previous: null,
   results: [
     {
@@ -27,8 +26,7 @@ export const mockResultsResponse = (): APIResponseForList<RawTrekResult> => ({
           thumbnail: '',
           legend: 'Présentation Rando Ecrins',
           title: '',
-          url:
-            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
+          url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
           type: 'image',
         },
       ],
@@ -51,8 +49,7 @@ export const mockResultsRoute = (times: number): void =>
 
 export const mockTouristicContentResultsResponse = (): APIResponseForList<RawTrekResult> => ({
   count: 4,
-  next:
-    'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=departure%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cthumbnail%2Cpractice&language=fr&page=2&page_size=1',
+  next: 'https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?fields=departure%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cthumbnail%2Cpractice&language=fr&page=2&page_size=1',
   previous: null,
   results: [],
 });

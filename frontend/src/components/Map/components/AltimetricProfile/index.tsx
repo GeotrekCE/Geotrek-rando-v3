@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '@raruto/leaflet-elevation';
 import '@raruto/leaflet-elevation/dist/leaflet-elevation.min.css';
 import L from 'leaflet';
@@ -11,36 +11,47 @@ interface AltimetricProfileProps {
   trekGeoJSON: string;
 }
 
+const DIV_ID = 'altimetric-profile';
+
 export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSON }) => {
   const map = useMap();
   const intl = useIntl();
   const language = useRouter().locale ?? getDefaultLanguage();
 
-  // @ts-ignore
-  const elevationControl = L.control.elevation({
-    theme: 'lightblue-theme',
-    collapsed: false,
-    detached: true,
-    elevationDiv: '#altimetric-profile',
-    summary: 'inline',
-    marker: 'position-marker',
-    followMarker: false,
-    legend: false,
-  });
-  elevationControl.addTo(map);
+  useEffect(() => {
+    const div = document.getElementById(DIV_ID);
+    if (div) div.innerHTML = '';
 
-  const mylocale = {
-    'Total Length: ': `${intl.formatMessage({ id: 'details.altimetricProfile.totalLength' })} : `,
-    'Max Elevation: ': `${intl.formatMessage({ id: 'details.altimetricProfile.maxElevation' })} : `,
-    'Min Elevation: ': `${intl.formatMessage({ id: 'details.altimetricProfile.minElevation' })} : `,
-  };
+    // @ts-ignore
+    const elevationControl = L.control.elevation({
+      theme: 'lightblue-theme',
+      collapsed: false,
+      detached: true,
+      elevationDiv: `#${DIV_ID}`,
+      summary: 'inline',
+      marker: 'position-marker',
+      followMarker: false,
+      legend: false,
+    });
+    elevationControl.addTo(map);
 
-  // @ts-ignore
-  L.registerLocale(language, mylocale);
-  // @ts-ignore
-  L.setLocale(language);
+    const mylocale = {
+      'Total Length: ': `${intl.formatMessage({ id: 'details.altimetricProfile.totalLength' })} : `,
+      'Max Elevation: ': `${intl.formatMessage({
+        id: 'details.altimetricProfile.maxElevation',
+      })} : `,
+      'Min Elevation: ': `${intl.formatMessage({
+        id: 'details.altimetricProfile.minElevation',
+      })} : `,
+    };
 
-  elevationControl.load(trekGeoJSON);
+    // @ts-ignore
+    L.registerLocale(language, mylocale);
+    // @ts-ignore
+    L.setLocale(language);
 
-  return <div></div>;
+    elevationControl.load(trekGeoJSON);
+  }, [map]);
+
+  return <div />;
 };

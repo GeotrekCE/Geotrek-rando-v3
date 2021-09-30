@@ -13,18 +13,18 @@ import { DetailsSource } from '../details/components/DetailsSource';
 import { HtmlText } from '../details/utils';
 
 interface FlatPageUIProps {
-  flatPageUrl: string | string[] | undefined;
+  flatPageUrl: string;
 }
 
 export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
-  const { flatPage, isLoading, refetch, path } = useFlatPage(flatPageUrl);
-
-  const titleRegex = RegExp(/(^\d+-)(.*)/).exec(path);
-  const title = titleRegex ? titleRegex[2].replace(/-/g, ' ') : '';
+  const { flatPage, isLoading, refetch } = useFlatPage(flatPageUrl);
 
   return (
     <Layout>
-      <PageHead title={title} description={`${title} information page`} />
+      <PageHead
+        title={flatPage?.title}
+        description={`${String(flatPage?.title)} information page`}
+      />
       {flatPage === undefined ? (
         isLoading === true ? (
           <Loader

@@ -53,6 +53,7 @@ interface RawTouristicContentDetailsProperties extends RawTouristicContent {
 }
 
 export interface RawTouristicContentDetails {
+  id: string;
   type: string;
   bbox: number[];
   geometry: RawPointGeometry2D | RawPolygonGeometry | RawLineStringGeometry2D | null;
@@ -91,7 +92,7 @@ export interface TouristicContentDetails extends TouristicContent {
   website: string;
   place: string;
   themes: string[];
-  pdf: string;
+  pdfUri: string;
   types: TouristicContentDetailsType[];
   bbox: Bbox;
 }

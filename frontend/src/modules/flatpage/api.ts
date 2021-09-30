@@ -21,4 +21,7 @@ export const fetchFlatPageDetails = (query: APIQuery, id: string): Promise<RawFl
   GeotrekAPI.url(`/flatpage/${id}/`)
     .query({ ...query, ...fieldsParamFlatPageDetails })
     .get()
+    .notFound(() => {
+      throw new Error('RESSOURCE_NOT_FOUND');
+    })
     .json();
