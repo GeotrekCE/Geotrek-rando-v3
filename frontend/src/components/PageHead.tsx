@@ -62,7 +62,7 @@ export const PageHead = ({ title, description, sharingImageUrl }: Props) => {
       {description !== undefined && <meta name="twitter:description" content={description} />}
       <meta name="twitter:image" content={sharingImageUrl ?? '/medias/favicon.png'} />
 
-      {getOthersLinks()}
+      {/*getOthersLinks()*/}
     </Head>
   );
 };
