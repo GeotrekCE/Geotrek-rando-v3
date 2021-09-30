@@ -41,6 +41,8 @@ After updating customization, you just have to run `docker-compose restart` to a
 
 You can also create the optional `.env` file based on the example (`cp .env.example .env`), if you want to change the Docker image URL (or run a specific version different from the latest one), the running port, or the `customization` and `medias` folders path. Run `docker-compose down && docker-compose up -d` to apply changes to `.env` file.
 
+If you want to run several Geotrek-rando on the same server, just download one Geotrek-rando-v3-installer for each portal with their own customization and set a different port for each.
+
 ## An example with NGINX
 
 - Create a new site configuration in your `sites-available` folder (in `/etc/nginx`), `geotrekrando.conf` in this example
