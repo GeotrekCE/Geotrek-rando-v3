@@ -1,85 +1,38 @@
+import { FILTERS_CATEGORIES } from 'components/pages/search/components/FilterBar';
+import ShowFilters from 'components/pages/search/components/FilterBar/ShowFilters';
 import styled from 'styled-components';
 
-import { Check } from 'components/Icons/Check';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { FilterState, Option } from 'modules/filters/interface';
 import React from 'react';
 // @ts-ignore Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
-import { useIntl } from 'react-intl';
+import { colorPalette } from 'stylesheet';
 
 import { CloseButton } from './CloseButton';
 
-const OptionItem = ({
-  option,
-  isSelected,
-  selectOption,
-  deSelectOption,
-}: {
-  option: Option;
-  isSelected: boolean;
-  selectOption: (optionToSelect: Option) => void;
-  deSelectOption: (optionToDeselect: Option) => void;
-}) => {
-  const onClick = () => (isSelected ? deSelectOption(option) : selectOption(option));
-  return (
-    <div
-      className="flex justify-between border-b border-solid border-greySoft items-center"
-      onClick={onClick}
-    >
-      <div className="flex items-center">
-        {option.pictogramUrl !== undefined && (
-          <Picto
-            className={`mr-2 rounded-full p-1 ${isSelected ? 'bg-primary1' : 'bg-greyDarkColored'}`}
-          >
-            <img src={option.pictogramUrl} className="w-5 h-5" />
-          </Picto>
-        )}
-        <Label
-          key={option.value}
-          className={`flex items-center pt-4 pb-4 font-bold outline-none pb-2 ${
-            isSelected ? 'text-primary1' : 'text-greyDarkColored'
-          }`}
-        >
-          {option.label}
-        </Label>
-      </div>
-      {isSelected && <Check size={24} />}
-    </div>
-  );
-};
-
-const Label = styled.span`
-  transition: color 150ms ease-in-out;
-`;
-
-const Picto = styled.div`
-  transition: background-color 150ms ease-in-out;
-`;
-
 interface Props {
-  menuState: 'DISPLAYED' | 'HIDDEN';
   handleClose: () => void;
-  filterId: string | null;
-  closeMenu: () => void;
-  filterState: FilterState | null;
-  selectOption: (option: Option) => void;
-  deSelectOption: (option: Option) => void;
+  filterId: string;
+  filtersState: FilterState[];
+  setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
 }
 
 export const MobileFilterSubMenu: React.FC<Props> = ({
-  menuState,
   handleClose,
-  closeMenu,
   filterId,
-  filterState,
-  selectOption,
-  deSelectOption,
+  filtersState,
+  setFilterSelectedOptions,
 }) => {
-  const intl = useIntl();
-  const selectedOptionsValue = filterState?.selectedOptions.map(({ value }) => value);
-  const isOptionSelected = (option: Option) =>
-    selectedOptionsValue ? selectedOptionsValue.includes(option.value) : false;
+  const item = FILTERS_CATEGORIES.find(i => i.id === filterId);
+
+  if (!item) return null;
+
+  const { name, filters, subFilters } = item;
+
+  const subFiltersToDisplay = filtersState.filter(({ id }) => subFilters?.includes(id));
+  const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
+
   return (
     /*
      * The library default behaviour is to have a fixed close icon which
@@ -88,7 +41,7 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
      * the content and imperatively closes the drawer.
      */
     <Slide
-      isOpen={menuState === 'DISPLAYED'}
+      isOpen={true}
       onClose={handleClose}
       right
       customBurgerIcon={false}
@@ -98,27 +51,42 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
     >
       <div className="relative text-center w-full pb-4 font-bold border-b border-solid border-greySoft outline-none">
         <CloseButton
-          onClick={closeMenu}
+          onClick={handleClose}
           className="absolute left-0"
           icon={<ArrowLeft size={24} />}
         />
-        {filterId !== null && (
-          <span>
-            {filterId === 'type1' || filterId === 'type2'
-              ? filterState?.label
-              : intl.formatMessage({ id: `search.filters.${filterId}` })}
-          </span>
-        )}
+        <span>{name}</span>
       </div>
-      {filterState?.options.map(option => (
-        <OptionItem
-          key={option.value}
-          option={option}
-          isSelected={isOptionSelected(option)}
-          selectOption={selectOption}
-          deSelectOption={deSelectOption}
+
+      <div className="mt-4" />
+
+      {filtersToDisplay.map(state => (
+        <ShowFilters
+          key={state.id}
+          item={state}
+          setFilterSelectedOptions={setFilterSelectedOptions}
+          hideLabel
         />
       ))}
+
+      {subFiltersToDisplay.length > 0 && <Separator />}
+
+      <div className="space-y-4">
+        {subFiltersToDisplay.map(state => (
+          <ShowFilters
+            key={state.id}
+            item={state}
+            setFilterSelectedOptions={setFilterSelectedOptions}
+          />
+        ))}
+      </div>
     </Slide>
   );
 };
+
+const Separator = styled.div`
+  width: 80%;
+  height: 1px;
+  margin: 16px auto;
+  background-color: ${colorPalette.greySoft.DEFAULT};
+`;

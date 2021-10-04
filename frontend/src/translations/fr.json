@@ -35,6 +35,7 @@
     "description": "Découvrez les randonnées correspondant à vos envies avec notre moteur de recherche",
     "book": "Réserver",
     "resultsFound": "{count, plural, =0 {# résultat trouvé} one {# résultat trouvé} other {# résultats trouvés}}",
+    "resultsFoundShort": "{count, plural, =0 {# résultat} one {# résultat} other {# résultats}}",
     "forThe": "Pour le",
     "seeMap": "Voir la carte",
     "filter": "Filtrer",
@@ -43,6 +44,8 @@
     "filters": {
       "difficulty": "Difficulté",
       "practices": "Randonnées",
+      "outdoor": "Outdoor",
+      "events": "Évènements",
       "categories": "Services",
       "cities": "Commune",
       "duration": "Durée",
@@ -53,7 +56,8 @@
       "ascent": "Denivelé positif",
       "length": "Longueur",
       "structures": "Structure",
-      "clearAll": "Tout effacer"
+      "clearAll": "Tout effacer",
+      "filters": "Filtres"
     },
     "textFilter": "Rechercher...",
     "map": {

@@ -72,9 +72,6 @@ export default class MyDocument extends Document {
   --color-red: ${String(colors.red || '#FF7373')};
   --color-redMarker: ${String(colors.redMarker || '#E83737')};
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
               `}</style>
         </Head>
         <body>

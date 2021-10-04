@@ -1,7 +1,7 @@
 const SPACING_UNIT = 4;
 
 module.exports = {
-  purge: false,
+  purge: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
@@ -83,23 +83,24 @@ module.exports = {
       map: 1000,
       mapButton: 1500,
     },
-    fontSize: {
-      // [fontSize, lineHeight] // fontSize in px
-      H1: ['2.75rem', '58px'], // 44px
-      H2: ['2rem', '42px'], // 32px
-      H3: ['1.5rem', '31px'], // 24px
-      H4: ['1.25rem', '26px'], // 20px
-      P1: ['1rem', '21px'], // 16px [default]
-      P2: ['0.875rem', '18px'], // 14px
-      P3: ['0.75rem', '16px'], // 12px
-      CTA: ['0.625rem', '13px'], // 10px
-      'Mobile-H1': ['1.25rem', '26px'], // 20px
-      'Mobile-C1': ['1rem', '21px'], // 16px [default]
-      'Mobile-C2': ['0.875rem', '18px'], // 14px
-      'Mobile-C3': ['0.75rem', '16px'], // 12px
-      'Mobile-C1-regular': ['0.75rem', '22px'], // 12px
-    },
+
     extend: {
+      fontSize: {
+        // [fontSize, lineHeight] // fontSize in px
+        H1: ['2.75rem', '58px'], // 44px
+        H2: ['2rem', '42px'], // 32px
+        H3: ['1.5rem', '31px'], // 24px
+        H4: ['1.25rem', '26px'], // 20px
+        P1: ['1rem', '21px'], // 16px [default]
+        P2: ['0.875rem', '18px'], // 14px
+        P3: ['0.75rem', '16px'], // 12px
+        CTA: ['0.625rem', '13px'], // 10px
+        'Mobile-H1': ['1.25rem', '26px'], // 20px
+        'Mobile-C1': ['1rem', '21px'], // 16px [default]
+        'Mobile-C2': ['0.875rem', '18px'], // 14px
+        'Mobile-C3': ['0.75rem', '16px'], // 12px
+        'Mobile-C1-regular': ['0.75rem', '22px'], // 12px
+      },
       borderWidth: {
         3: '3px',
       },
@@ -113,12 +114,12 @@ module.exports = {
         roundButton: '50px',
         squareButton: '8px',
       },
-
       boxShadow: {
         lg: '0 0 30px 0 rgba(0, 0, 0, 0.15)',
         md: '0 0 20px rgba(0, 0, 0, 0.15)',
         sm: '0 0 4px rgba(0, 0, 0, 0.15)',
         button: '0 0 6px rgba(0, 0, 0, 0.15)',
+        inner: 'inset 0 0 12px rgba(0, 0, 0, 0.08)',
       },
       colors: {
         primary1: {
