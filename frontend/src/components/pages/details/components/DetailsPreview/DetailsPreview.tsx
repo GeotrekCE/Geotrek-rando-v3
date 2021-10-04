@@ -43,6 +43,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   // trekRank & trekRankLabel are only defined if trek is part of an itinerance
   const trekRank = trekFamily?.trekChildren.find(trek => trek.id === id);
   const trekRankLabel = trekRank !== undefined ? `${trekRank.rank}. ` : '';
+
   return (
     <div
       id="details_preview"
@@ -138,7 +139,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           ))}
         </div>
       )}
-      {teaser !== undefined && teaser.length > 0 && (
+      {teaser && teaser?.length > 0 && (
         <div
           id="details_teaser"
           className="text-Mobile-C1 desktop:text-H4 font-bold mt-6 desktop:mt-9"
@@ -146,7 +147,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           <HtmlText>{parse(teaser)}</HtmlText>
         </div>
       )}
-      {ambiance !== undefined && ambiance.length > 0 && (
+      {ambiance && ambiance?.length > 0 && (
         <div id="details_ambiance" className="text-Mobile-C1 desktop:text-P1 mt-4 desktop:mt-8">
           <HtmlText>{parse(ambiance)}</HtmlText>
         </div>
