@@ -34,6 +34,7 @@
     "description": "Scopri le escursioni che corrispondono ai tuoi desideri con il nostro motore di ricerca",
     "book": "Prenotare",
     "resultsFound": "{count, plural, =0 {# Nessun risultato trovato} one {# risultato trovato} other {# risultati trovati}}",
+    "resultsFoundShort": "{count, plural, =0 {# Nessun risultato} one {# risultato} other {# risultati}}",
     "forThe": "Per il",
     "seeMap": "Vedere la mappa",
     "filter": "Filtro",
@@ -42,6 +43,8 @@
     "filters": {
       "difficulty": "Difficoltà",
       "practices": "Escursioni",
+      "outdoor": "Outdoor",
+      "events": "Eventi",
       "categories": "Servizi",
       "cities": "Comune",
       "duration": "Durata",
@@ -52,7 +55,8 @@
       "ascent": "Dislivello positivo",
       "length": "Lunghezza",
       "structures": "Struttura",
-      "clearAll": "Cancellare tutto"
+      "clearAll": "Cancellare tutto",
+      "filters": "Filtri"
     },
     "textFilter": "Ricerca...",
     "map": {

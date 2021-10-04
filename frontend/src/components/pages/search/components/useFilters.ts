@@ -1,5 +1,4 @@
 import { getInitialFilters } from 'modules/filters/connector';
-import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
 import { FilterState, Option } from 'modules/filters/interface';
 import {
   commonFilters,
@@ -45,48 +44,9 @@ export const useFilter = () => {
     );
   }, [language]);
 
-  const practices = initialFiltersStateWithSelectedOptions[0];
-  const services = initialFiltersStateWithSelectedOptions[1];
-  const isPracticeOrCategorySelected =
-    initialFiltersStateWithSelectedOptions.length > 0 &&
-    ((practices.selectedOptions.length > 0 && services.selectedOptions.length === 0) ||
-      (practices.selectedOptions.length === 0 && services.selectedOptions.length === 1));
-
-  const [filterBarExpansionState, setFilterBarExpansionState] = useState<'EXPANDED' | 'COLLAPSED'>(
-    isPracticeOrCategorySelected ? 'EXPANDED' : 'COLLAPSED',
-  );
-
-  const expandFilterBarIfNecessary = (filterId: string, numberOfOptionsSelected: number) => {
-    if (
-      filterId === PRACTICE_ID &&
-      numberOfOptionsSelected === 1 &&
-      filtersState[0].selectedOptions.length === 0 &&
-      filtersState[1].selectedOptions.length === 0 &&
-      filterBarExpansionState === 'COLLAPSED'
-    ) {
-      setFilterBarExpansionState('EXPANDED');
-    }
-    if (
-      filterId === CATEGORY_ID &&
-      numberOfOptionsSelected === 1 &&
-      filtersState[0].selectedOptions.length === 0 &&
-      filterBarExpansionState === 'COLLAPSED'
-    ) {
-      setFilterBarExpansionState('EXPANDED');
-    }
-  };
-
   const setFilterSelectedOptions = (filterId: string, options: Option[]) => {
-    expandFilterBarIfNecessary(filterId, options.length);
     setFiltersState(currentState => {
-      const currentStateWithRelevantFilters = computeFiltersToDisplay({
-        currentFiltersState: currentState,
-        initialFiltersState,
-        optionsSelected: options,
-        selectedFilterId: filterId,
-        touristicContentCategoryMapping,
-      });
-      return currentStateWithRelevantFilters.map(filterState => {
+      const newState = currentState.map(filterState => {
         if (filterState.id === filterId) {
           return {
             ...filterState,
@@ -95,19 +55,23 @@ export const useFilter = () => {
         }
         return filterState;
       });
+
+      return computeFiltersToDisplay({
+        currentFiltersState: newState,
+        initialFiltersState,
+        selectedFilterId: filterId,
+        touristicContentCategoryMapping,
+      });
     });
   };
 
   const resetFilters = () => {
     setFiltersState(initialFiltersState.filter(({ id }) => commonFilters.includes(id)));
-    setFilterBarExpansionState('COLLAPSED');
   };
 
   return {
     filtersState,
     setFilterSelectedOptions,
-    filterBarExpansionState,
-    setFilterBarExpansionState,
     resetFilters,
   };
 };

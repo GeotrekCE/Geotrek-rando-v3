@@ -1,3 +1,4 @@
+import FilterBarNew from 'components/pages/search/components/FilterBar';
 import useBbox from 'components/pages/search/components/useBbox';
 import React from 'react';
 import { useMediaPredicate } from 'react-media-hook';
@@ -5,7 +6,7 @@ import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'react-loader';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { colorPalette, getSpacing, sizes, typography, zIndex } from 'stylesheet';
+import { colorPalette, sizes, zIndex } from 'stylesheet';
 
 import { Layout } from 'components/Layout/Layout';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
@@ -20,7 +21,7 @@ import {
 import { PageHead } from 'components/PageHead';
 import { FilterState } from 'modules/filters/interface';
 import { SearchMapDynamicComponent } from 'components/Map';
-import { FilterBar } from './components/FilterBar';
+import { countFiltersSelected } from '../../../modules/filters/utils';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
 import { ToggleFilterButton } from './components/ToggleFilterButton';
@@ -41,25 +42,10 @@ interface Props {
 }
 
 export const SearchUI: React.FC<Props> = ({ language }) => {
-  const {
-    filtersState,
-    setFilterSelectedOptions,
-    filterBarExpansionState,
-    setFilterBarExpansionState,
-    resetFilters,
-  } = useFilter();
+  const { filtersState, setFilterSelectedOptions, resetFilters } = useFilter();
 
-  const {
-    subMenuState,
-    selectFilter,
-    hideSubMenu,
-    currentFilterId,
-    currentFilterState,
-    selectOption,
-    deSelectOption,
-  } = useFilterSubMenu(filtersState, setFilterSelectedOptions);
-
-  const { menuState, displayMenu, hideMenu, filtersList, activeFiltersNumber } = useFilterMenu(
+  const { subMenuState, selectFilter, hideSubMenu, currentFilterId } = useFilterSubMenu();
+  const { menuState, displayMenu, hideMenu, filtersList } = useFilterMenu(
     filtersState,
     selectFilter,
   );
@@ -98,38 +84,48 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     resetTextFilter();
   };
 
+  const numberSelected = countFiltersSelected(filtersState, null, null);
+
   return (
     <div id="Search">
       <PageHead
         title={`${intl.formatMessage({ id: 'search.title' })}`}
         description={`${intl.formatMessage({ id: 'search.description' })}`}
       />
-      <MobileFilterMenu
-        menuState={menuState}
-        handleClose={hideMenu}
-        title={<FormattedMessage id="search.filter" />}
-        filtersList={filtersList}
-        closeMenu={hideMenu}
-        resetFilter={onRemoveAllFiltersClick}
-      />
-      <MobileFilterSubMenu
-        menuState={subMenuState}
-        handleClose={hideSubMenu}
-        filterId={currentFilterId}
-        closeMenu={hideSubMenu}
-        filterState={currentFilterState}
-        selectOption={selectOption}
-        deSelectOption={deSelectOption}
-      />
+
+      {isMobile && (
+        <>
+          {menuState === 'DISPLAYED' && subMenuState !== 'DISPLAYED' && (
+            <MobileFilterMenu
+              handleClose={hideMenu}
+              title={<FormattedMessage id="search.filter" />}
+              filtersState={filtersState}
+              filtersList={filtersList}
+              resetFilter={onRemoveAllFiltersClick}
+              resultsNumber={searchResults?.resultsNumber ?? 0}
+            />
+          )}
+          {subMenuState === 'DISPLAYED' && (
+            <MobileFilterSubMenu
+              handleClose={hideSubMenu}
+              filterId={currentFilterId}
+              filtersState={filtersState}
+              setFilterSelectedOptions={setFilterSelectedOptions}
+            />
+          )}
+        </>
+      )}
+
       <Layout>
         <Container className="flex flex-col">
-          <FilterBar
-            filtersState={filtersState}
-            setFilterSelectedOptions={setFilterSelectedOptions}
-            filterBarExpansionState={filterBarExpansionState}
-            setFilterBarExpansionState={setFilterBarExpansionState}
-            resetFilters={onRemoveAllFiltersClick}
-          />
+          {!isMobile && (
+            <FilterBarNew
+              filtersState={filtersState}
+              setFilterSelectedOptions={setFilterSelectedOptions}
+              resetFilters={onRemoveAllFiltersClick}
+              resultsNumber={searchResults?.resultsNumber ?? 0}
+            />
+          )}
           <div className="flex flex-row flex-1 overflow-y-hidden">
             <div
               id="search_resultCardList"
@@ -148,10 +144,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                   <div className="flex flex-col desktop:flex-row desktop:justify-between">
                     <div className="flex justify-between items-end" id="search_resultMapTitle">
                       <SearchResultsMeta resultsNumber={searchResults?.resultsNumber ?? 0} />
-                      <ToggleFilterButton
-                        onClick={displayMenu}
-                        activeFiltersNumber={activeFiltersNumber}
-                      />
+                      <ToggleFilterButton onClick={displayMenu} numberSelected={numberSelected} />
                     </div>
                     <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
                       <InputWithMagnifier
@@ -273,7 +266,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
             hideMap={hideMobileMap}
             type="MOBILE"
             openFilterMenu={displayMenu}
-            hasFilters={activeFiltersNumber > 0}
+            hasFilters={numberSelected > 0}
             shouldUseClusters
             shouldUsePopups
           />
