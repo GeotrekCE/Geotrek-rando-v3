@@ -51,7 +51,7 @@ const useReport = ({ trekId, startPoint }: Props) => {
   const language = useRouter().locale ?? getDefaultLanguage();
 
   useEffect(() => {
-    // On définit un point par défaut en attendant de faire le developpement nécessaire pour choisir l'emplacemenc du problème
+    // On définit un point par défaut en attendant de faire le developpement nécessaire pour choisir l'emplacement du problème
     setValue('geom', startPoint);
   }, []);
 

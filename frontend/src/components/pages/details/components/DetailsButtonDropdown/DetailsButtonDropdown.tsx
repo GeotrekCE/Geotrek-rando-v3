@@ -19,9 +19,9 @@ export const DetailsButtonDropdown: React.FC<DetailsButtonDropdownProps> = ({
 }) => {
   return (
     <Dropdown
-      className="rounded-full shadow-lg bg-white"
+      className="h-12 w-12 rounded-full shadow-lg bg-white"
       options={options.filter(o => o.value !== undefined).map(getOptionStyled)}
-      controlClassName="w-full h-full cursor-pointer"
+      controlClassName="w-full h-full cursor-pointer grid place-items-center "
       menuClassName="bg-white text-greyDarkColored rounded-lg shadow-sm text-P2 overflow-hidden absolute py-2 -ml-8 menu-download"
       placeholderClassName="hidden"
       arrowOpen={children}

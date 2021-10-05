@@ -105,6 +105,7 @@ export interface TrekChildGeometry {
   departure: Coordinate2D;
 }
 export interface Details extends DetailsHtml {
+  id: number;
   practice: Activity | null;
   title: string;
   place?: string;
