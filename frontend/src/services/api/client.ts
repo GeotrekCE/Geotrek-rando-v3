@@ -9,7 +9,6 @@ const cachedRoute: RegExp[] = [
   RegExp(/\/trek_accessibility/),
   RegExp(/\/trek_difficulty/),
   RegExp(/\/district/),
-  RegExp(/\/flatpage/),
   RegExp(/\/label/),
   RegExp(/\/portal/),
   RegExp(/\/theme/),
