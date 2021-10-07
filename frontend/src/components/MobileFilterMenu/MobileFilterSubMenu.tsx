@@ -1,4 +1,5 @@
 import { FILTERS_CATEGORIES } from 'components/pages/search/components/FilterBar';
+import MobileBottomClear from 'components/pages/search/components/FilterBar/MobileBottomClear';
 import ShowFilters from 'components/pages/search/components/FilterBar/ShowFilters';
 import styled from 'styled-components';
 
@@ -16,6 +17,8 @@ interface Props {
   filterId: string;
   filtersState: FilterState[];
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
+  resultsNumber: number;
+  resetFilter: () => void;
 }
 
 export const MobileFilterSubMenu: React.FC<Props> = ({
@@ -23,6 +26,8 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   filterId,
   filtersState,
   setFilterSelectedOptions,
+  resultsNumber,
+  resetFilter,
 }) => {
   const item = FILTERS_CATEGORIES.find(i => i.id === filterId);
 
@@ -33,13 +38,10 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   const subFiltersToDisplay = filtersState.filter(({ id }) => subFilters?.includes(id));
   const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
 
+  /* * The library default behaviour is to have a fixed close icon which * made the icon overlap
+     with the menu content as we scrolled. * To fix this issue we use our own close button which
+     scrolls along * the content and imperatively closes the drawer. */
   return (
-    /*
-     * The library default behaviour is to have a fixed close icon which
-     * made the icon overlap with the menu content as we scrolled.
-     * To fix this issue we use our own close button which scrolls along
-     * the content and imperatively closes the drawer.
-     */
     <Slide
       isOpen={true}
       onClose={handleClose}
@@ -80,6 +82,8 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
           />
         ))}
       </div>
+
+      <MobileBottomClear resultsNumber={resultsNumber} resetFilter={resetFilter} />
     </Slide>
   );
 };
