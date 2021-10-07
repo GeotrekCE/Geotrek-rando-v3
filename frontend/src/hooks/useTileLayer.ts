@@ -2,7 +2,7 @@ import L from 'leaflet';
 import { getMapConfig } from 'components/Map/config';
 import { Map } from 'leaflet';
 import { TileLayerType } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { useIntl } from 'react-intl';
 
 require('leaflet.locatecontrol');

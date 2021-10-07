@@ -74,7 +74,7 @@ const cacheMiddleware = (throttle = 0): ConfiguredMiddleware => {
         // Resolve pending promises
         const currentInflightRequestList = inflight.get(key);
         if (currentInflightRequestList !== undefined) {
-          currentInflightRequestList.forEach(([resolve, reject]) => resolve(_.clone()));
+          currentInflightRequestList.forEach(([resolve]) => resolve(_.clone()));
         }
         // Remove the inflight pending promises
         inflight.delete(key);
@@ -85,7 +85,7 @@ const cacheMiddleware = (throttle = 0): ConfiguredMiddleware => {
         // Reject pending promises on error
         const currentInflightRequestList = inflight.get(key);
         if (currentInflightRequestList !== undefined) {
-          currentInflightRequestList.forEach(([resolve, reject]) => reject(_));
+          currentInflightRequestList.forEach(([, reject]) => reject(_));
         }
         inflight.delete(key);
         throw _;

@@ -1,7 +1,6 @@
 import MoreLink from 'components/Information/MoreLink';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
-import Report from 'components/Report/Report';
 import Loader from 'react-loader';
 import parse from 'html-react-parser';
 import { FormattedMessage } from 'react-intl';

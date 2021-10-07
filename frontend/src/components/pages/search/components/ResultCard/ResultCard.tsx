@@ -188,26 +188,6 @@ const Container = styled.div`
   )}
 `;
 
-const ImageContainer = styled.div<{ imageUri: string }>`
-  height: ${sizes.resultCardMobile};
-  width: 100%;
-
-  background-image: url(${({ imageUri }) => imageUri});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-color: black;
-
-  position: relative;
-
-  ${desktopOnly(
-    css`
-      height: auto;
-      max-width: ${sizes.resultCardDesktop}px;
-    `,
-  )}
-`;
-
 const DetailsContainer = styled.div`
   display: flex;
   width: 100%;
