@@ -1,5 +1,19 @@
 # Changelog
 
+3.3.0 (unreleased)
+------------------
+
+**✨ Improvements**
+
+* New filter system (#377)
+* Move all download button in header on desktop detail pages (#378)
+
+**🐛 Fixes**
+
+* Avoid crash of touristic content detail pages when teaser is null (#480)
+* Fix click on punctual touristic contents on search map (#456)
+* Fix static pages cache system (#479)
+
 3.2.0 (2021-09-30)
 ------------------
 
