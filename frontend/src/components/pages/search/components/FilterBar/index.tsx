@@ -29,7 +29,7 @@ export const FILTERS_CATEGORIES = [
     id: 'categories',
     name: <FormattedMessage id={'search.filters.categories'} />,
     filters: ['categories'],
-    subFilters: ['type1', 'type2'],
+    subFilters: ['type-services-.+'],
   },
   {
     id: 'events',

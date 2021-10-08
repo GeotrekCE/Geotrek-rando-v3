@@ -111,6 +111,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
               filterId={currentFilterId}
               filtersState={filtersState}
               setFilterSelectedOptions={setFilterSelectedOptions}
+              resetFilter={onRemoveAllFiltersClick}
+              resultsNumber={searchResults?.resultsNumber ?? 0}
             />
           )}
         </>

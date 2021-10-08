@@ -209,30 +209,30 @@ const filtersState: FilterState[] = [
 ];
 
 const touristicContentCategoryMapping: TouristicContentCategoryMapping = {
-  '0': {
-    type1: {
+  1: [
+    {
       id: '1',
       label: 'Type de truc',
       values: [{ value: '1', label: 'Camping' }],
     },
-    type2: {
+    {
       id: '2',
       label: 'Label',
       values: [{ value: '3', label: 'Certifié' }],
     },
-  },
-  '1': {
-    type1: {
+  ],
+  2: [
+    {
       id: '101',
       label: 'Type de truc',
       values: [{ value: '1', label: 'Camping' }],
     },
-    type2: {
+    {
       id: '102',
       label: 'Label',
       values: [{ value: '3', label: 'Certifié' }],
     },
-  },
+  ],
 };
 
 const trekSpecificFilters = [
@@ -273,7 +273,7 @@ describe.only('computeFiltersToDisplay', () => {
     currentState[1].selectedOptions = [
       {
         label: '',
-        value: '0',
+        value: '1',
       },
     ];
     const displayedIds = computeFiltersToDisplay({
@@ -313,7 +313,7 @@ describe.only('computeFiltersToDisplay', () => {
     currentState[1].selectedOptions = [
       {
         label: '',
-        value: '0',
+        value: '1',
       },
     ];
     const displayedIds = computeFiltersToDisplay({

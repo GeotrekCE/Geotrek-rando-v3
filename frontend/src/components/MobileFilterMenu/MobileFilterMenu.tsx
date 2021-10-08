@@ -1,13 +1,9 @@
-import { Bin } from 'components/Icons/Bin';
-import { FILTERS_CATEGORIES } from 'components/pages/search/components/FilterBar';
+import MobileBottomClear from 'components/pages/search/components/FilterBar/MobileBottomClear';
 import React from 'react';
 // @ts-ignore Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
-import { FormattedMessage, useIntl } from 'react-intl';
 
 import { Cross } from 'components/Icons/Cross';
-import styled from 'styled-components';
-import { colorPalette } from 'stylesheet';
 import { FilterCategory, FilterState } from '../../modules/filters/interface';
 import { countFiltersSelected } from '../../modules/filters/utils';
 
@@ -31,7 +27,6 @@ export const MobileFilterMenu: React.FC<Props> = ({
   resultsNumber,
   filtersList,
 }) => {
-  const intl = useIntl();
   return (
     /*
      * The library default behaviour is to have a fixed close icon which
@@ -68,34 +63,7 @@ export const MobileFilterMenu: React.FC<Props> = ({
         })}
       </div>
 
-      <BottomContainer className="shadow-lg">
-        <div
-          onClick={resetFilter}
-          className="text-primary1 font-bold text-P2 cursor-pointer flex items-center w-1/2 justify-center"
-        >
-          <Bin size={12} className="mr-2" />
-          {intl.formatMessage({ id: 'search.filters.clearAll' }).toUpperCase()}
-        </div>
-
-        <ClearContainer className="w-1/2">
-          <FormattedMessage values={{ count: resultsNumber }} id="search.resultsFoundShort" />
-        </ClearContainer>
-      </BottomContainer>
+      <MobileBottomClear resetFilter={resetFilter} resultsNumber={resultsNumber} />
     </Slide>
   );
 };
-
-const BottomContainer = styled.div`
-  display: flex !important;
-  align-items: center;
-  position: fixed;
-  width: 80vw;
-  height: 32px;
-  bottom: 0;
-  right: 0;
-`;
-
-const ClearContainer = styled.div`
-  border-left: 1px solid ${colorPalette.greySoft.DEFAULT};
-  text-align: center;
-`;

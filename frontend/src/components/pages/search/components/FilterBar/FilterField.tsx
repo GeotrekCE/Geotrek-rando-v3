@@ -28,7 +28,9 @@ const FilterField: React.FC<Props> = ({
   filtersState,
   setFilterSelectedOptions,
 }) => {
-  const subFiltersToDisplay = filtersState.filter(({ id }) => subFilters?.includes(id));
+  const subFiltersToDisplay = filtersState.filter(({ id }) =>
+    subFilters?.some(subFilter => new RegExp(subFilter).test(id)),
+  );
   const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
 
   const numberSelected = countFiltersSelected(filtersState, filters, subFilters);

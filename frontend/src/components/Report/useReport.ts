@@ -116,13 +116,13 @@ const useReport = ({ trekId, startPoint }: Props) => {
           throw new Error(errors);
         } else return json;
       })
-      .then(res => {
+      .then(() => {
         setError('');
         setSubmitted(true);
       })
-      .catch(error => {
-        console.error(error);
-        setError(error.message);
+      .catch(localError => {
+        console.error(localError);
+        setError(localError.message);
       });
   };
 

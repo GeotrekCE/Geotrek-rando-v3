@@ -1,4 +1,3 @@
-import { HoverableMarker } from 'components/Map/components/HoverableMarker';
 import React from 'react';
 import { Marker, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';

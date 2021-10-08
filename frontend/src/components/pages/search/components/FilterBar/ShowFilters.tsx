@@ -4,7 +4,7 @@ import React from 'react';
 import { FilterState, Option } from '../../../../../modules/filters/interface';
 
 interface Props {
-  item: any;
+  item: FilterState;
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
   hideLabel?: boolean;
 }

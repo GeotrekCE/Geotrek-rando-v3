@@ -9,7 +9,6 @@ import { colorPalette, desktopOnly, getSpacing } from 'stylesheet';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import { Button as RawButton } from 'components/Button';
 import { generateResultDetailsUrl } from 'components/pages/search/utils';
-import { generateTouristicContentUrl } from 'components/pages/details/utils';
 
 import Link from 'components/Link';
 import { usePopupResult } from '../../hooks/usePopupResult';

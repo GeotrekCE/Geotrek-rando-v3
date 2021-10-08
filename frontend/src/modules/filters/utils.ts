@@ -130,19 +130,19 @@ const getTypesFiltersState = ({
   serviceId: string;
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
 }): FilterState[] => {
-  const getTypeFilterStateForService = (type: 'type1' | 'type2'): FilterState | null =>
-    touristicContentCategoryMapping[parseInt(serviceId, 10)][type].label === ''
-      ? null
-      : {
-          id: type,
-          label: touristicContentCategoryMapping[parseInt(serviceId, 10)][type].label,
-          selectedOptions: [],
-          options: touristicContentCategoryMapping[parseInt(serviceId, 10)][type].values,
-          type: 'MULTIPLE',
-        };
-  return [getTypeFilterStateForService('type1'), getTypeFilterStateForService('type2')].filter(
-    isElementNotNull,
-  );
+  const data = touristicContentCategoryMapping[parseInt(serviceId, 10)];
+
+  if (!data) return [];
+
+  return data.map(i => {
+    return {
+      id: `type-services-${i.id}`,
+      label: i.label,
+      type: 'MULTIPLE',
+      options: i.values,
+      selectedOptions: [],
+    };
+  });
 };
 
 export const computeFiltersToDisplay = ({
