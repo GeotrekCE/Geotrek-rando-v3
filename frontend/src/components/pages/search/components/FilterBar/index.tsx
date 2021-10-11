@@ -41,9 +41,9 @@ export const FILTERS_CATEGORIES = [
     filters: ['themes'],
   },
   {
-    id: 'cities',
-    name: <FormattedMessage id={'search.filters.cities'} />,
-    filters: ['cities'],
+    id: 'localization',
+    name: <FormattedMessage id={'search.filters.localization'} />,
+    subFilters: ['cities', 'districts', 'structures'],
   },
 ];
 

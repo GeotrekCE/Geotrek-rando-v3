@@ -11,7 +11,7 @@ interface Props {
 
 const MobileBottomClear: React.FC<Props> = ({ resultsNumber, resetFilter }) => {
   return (
-    <BottomContainer className="shadow-lg">
+    <BottomContainer className="shadow-lg bg-white">
       <div
         onClick={resetFilter}
         className="text-primary1 font-bold text-P2 cursor-pointer flex items-center w-1/2 justify-center"

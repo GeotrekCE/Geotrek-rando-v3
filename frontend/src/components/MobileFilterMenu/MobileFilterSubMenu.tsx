@@ -62,25 +62,27 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
 
       <div className="mt-4" />
 
-      {filtersToDisplay.map(state => (
-        <ShowFilters
-          key={state.id}
-          item={state}
-          setFilterSelectedOptions={setFilterSelectedOptions}
-          hideLabel
-        />
-      ))}
-
-      {subFiltersToDisplay.length > 0 && <Separator />}
-
-      <div className="space-y-4">
-        {subFiltersToDisplay.map(state => (
+      <div className="pb-10">
+        {filtersToDisplay.map(state => (
           <ShowFilters
             key={state.id}
             item={state}
             setFilterSelectedOptions={setFilterSelectedOptions}
+            hideLabel
           />
         ))}
+
+        {subFiltersToDisplay.length > 0 && filtersToDisplay.length > 0 && <Separator />}
+
+        <div className="space-y-4">
+          {subFiltersToDisplay.map(state => (
+            <ShowFilters
+              key={state.id}
+              item={state}
+              setFilterSelectedOptions={setFilterSelectedOptions}
+            />
+          ))}
+        </div>
       </div>
 
       <MobileBottomClear resultsNumber={resultsNumber} resetFilter={resetFilter} />
