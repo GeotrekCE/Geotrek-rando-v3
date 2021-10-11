@@ -14,9 +14,14 @@ interface DetailsTopIconsProps {
   details: Details | TouristicContentDetails;
   size?: number;
   type?: 'TREK' | 'TOURISTIC_CONTENT';
+  hideReport?: boolean;
 }
 
-export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({ details, size = 24 }) => {
+export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
+  details,
+  size = 24,
+  hideReport = false,
+}) => {
   const [openReport, setOpenReport] = useState<boolean>(false);
 
   const handleOpenReport = (event: React.MouseEvent) => {
@@ -81,7 +86,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({ details, 
           </DetailsButtonDropdown>
         )}
 
-        {details.id && getGlobalConfig().enableReport && (
+        {details.id && !hideReport && getGlobalConfig().enableReport && (
           <>
             <DetailsButton url={'#'} onClick={handleOpenReport}>
               <AlertTriangle size={size} />
