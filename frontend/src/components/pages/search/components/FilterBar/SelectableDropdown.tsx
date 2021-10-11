@@ -29,7 +29,7 @@ const colourStyles = {
     ':hover': {
       borderColor: colorPalette.filter.borderColor,
     },
-    height: sizes.button,
+    minHeight: sizes.button,
   }),
   option: (styles: any, { data }: { data: Option }) => {
     return {
