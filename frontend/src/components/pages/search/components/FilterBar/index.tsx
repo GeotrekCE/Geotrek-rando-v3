@@ -23,20 +23,20 @@ export const FILTERS_CATEGORIES = [
     filters: ['practices'],
     subFilters: ['difficulty', 'duration', 'length', 'routes', 'ascent', 'accessibilities'],
   },
-  {
+  /*{
     id: 'outdoor',
     name: <FormattedMessage id={'search.filters.outdoor'} />,
-  },
+  },*/
   {
     id: 'categories',
     name: <FormattedMessage id={'search.filters.categories'} />,
     filters: ['categories'],
     subFilters: ['type-services-.+'],
   },
-  {
+  /*{
     id: 'events',
     name: <FormattedMessage id={'search.filters.events'} />,
-  },
+  },*/
   {
     id: 'themes',
     name: <FormattedMessage id={'search.filters.themes'} />,
