@@ -1,6 +1,6 @@
 # Changelog
 
-3.3.0 (unreleased)
+3.3.0 (2021-10-12)
 ------------------
 
 **✨ Improvements**
