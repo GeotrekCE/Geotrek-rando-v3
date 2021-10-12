@@ -1,3 +1,4 @@
+import { uniqBy } from 'lodash';
 import { getTouristicContentCategoryFilter } from 'modules/touristicContentCategory/connector';
 import { getActivityFilter } from 'modules/activities/connector';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
@@ -100,7 +101,6 @@ const trekSpecificFilters = [
   ROUTE_ID,
   ACCESSIBILITY_ID,
 ];
-const touristicContentSpecificFilters = ['type1', 'type2'];
 
 export const commonFilters = [
   PRACTICE_ID,
@@ -130,110 +130,63 @@ const getTypesFiltersState = ({
   serviceId: string;
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
 }): FilterState[] => {
-  const getTypeFilterStateForService = (type: 'type1' | 'type2'): FilterState | null =>
-    touristicContentCategoryMapping[parseInt(serviceId, 10)][type].label === ''
-      ? null
-      : {
-          id: type,
-          label: touristicContentCategoryMapping[parseInt(serviceId, 10)][type].label,
-          selectedOptions: [],
-          options: touristicContentCategoryMapping[parseInt(serviceId, 10)][type].values,
-          type: 'MULTIPLE',
-        };
-  return [getTypeFilterStateForService('type1'), getTypeFilterStateForService('type2')].filter(
-    isElementNotNull,
-  );
+  const data = touristicContentCategoryMapping[parseInt(serviceId, 10)];
+
+  if (!data) return [];
+
+  return data.map(i => {
+    return {
+      id: `type-services-${i.id}`,
+      label: i.label,
+      type: 'MULTIPLE',
+      options: i.values,
+      selectedOptions: [],
+    };
+  });
 };
 
 export const computeFiltersToDisplay = ({
   initialFiltersState,
   currentFiltersState,
   selectedFilterId,
-  optionsSelected,
   touristicContentCategoryMapping,
 }: {
   initialFiltersState: FilterState[];
   currentFiltersState: FilterState[];
   selectedFilterId: string;
-  optionsSelected: Option[];
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
 }): FilterState[] => {
   const currentNumberOfPracticeOptionsSelected = currentFiltersState[0].selectedOptions.length;
   const currentNumberOfTouristicContentOptionsSelected =
     currentFiltersState[1].selectedOptions.length;
-  const numberOfOptionsSelected = optionsSelected.length;
 
-  if (selectedFilterId === PRACTICE_ID) {
-    if (numberOfOptionsSelected === 1 && currentNumberOfPracticeOptionsSelected === 0) {
-      if (currentNumberOfTouristicContentOptionsSelected === 0) {
-        return [...currentFiltersState, ...getTreksFiltersState(initialFiltersState)];
-      }
-      if (currentNumberOfTouristicContentOptionsSelected === 1) {
-        return currentFiltersState.filter(
-          ({ id }) => !touristicContentSpecificFilters.includes(id),
-        );
-      }
-    }
-    if (numberOfOptionsSelected === 0 && currentNumberOfPracticeOptionsSelected === 1) {
-      if (currentNumberOfTouristicContentOptionsSelected === 0) {
-        return currentFiltersState.filter(({ id }) => !trekSpecificFilters.includes(id));
-      }
-      if (currentNumberOfTouristicContentOptionsSelected === 1) {
-        return [
-          ...currentFiltersState,
-          ...getTypesFiltersState({
-            serviceId: currentFiltersState[1].selectedOptions[0].value,
-            touristicContentCategoryMapping,
-          }),
-        ];
-      }
-    }
+  const filtersToAdd: FilterState[][] = [];
+
+  // Calculate which filters to display
+  if (currentNumberOfPracticeOptionsSelected > 0) {
+    filtersToAdd.push(getTreksFiltersState(initialFiltersState));
   }
-  if (selectedFilterId === CATEGORY_ID) {
-    if (numberOfOptionsSelected === 1 && currentNumberOfTouristicContentOptionsSelected === 0) {
-      if (currentNumberOfPracticeOptionsSelected === 0) {
-        return [
-          ...currentFiltersState,
-          ...getTypesFiltersState({
-            serviceId: optionsSelected[0].value,
-            touristicContentCategoryMapping,
-          }),
-        ];
-      }
-      if (currentNumberOfPracticeOptionsSelected >= 1) {
-        return currentFiltersState.filter(({ id }) => !trekSpecificFilters.includes(id));
-      }
-    }
-    if (numberOfOptionsSelected === 2 && currentNumberOfTouristicContentOptionsSelected === 1) {
-      if (currentNumberOfPracticeOptionsSelected === 0) {
-        return currentFiltersState.filter(
-          ({ id }) => !touristicContentSpecificFilters.includes(id),
-        );
-      }
-    }
-    if (numberOfOptionsSelected === 1 && currentNumberOfTouristicContentOptionsSelected === 2) {
-      if (currentNumberOfPracticeOptionsSelected === 0) {
-        return [
-          ...currentFiltersState,
-          ...getTypesFiltersState({
-            serviceId: optionsSelected[0].value,
-            touristicContentCategoryMapping,
-          }),
-        ];
-      }
-    }
-    if (numberOfOptionsSelected === 0 && currentNumberOfTouristicContentOptionsSelected === 1) {
-      if (currentNumberOfPracticeOptionsSelected === 0) {
-        return currentFiltersState.filter(
-          ({ id }) => !touristicContentSpecificFilters.includes(id),
-        );
-      }
-      if (currentNumberOfPracticeOptionsSelected >= 1) {
-        return [...currentFiltersState, ...getTreksFiltersState(initialFiltersState)];
-      }
-    }
+  if (currentNumberOfTouristicContentOptionsSelected > 0 || selectedFilterId === CATEGORY_ID) {
+    currentFiltersState[1].selectedOptions.forEach(selectedOptions => {
+      filtersToAdd.push(
+        getTypesFiltersState({
+          serviceId: selectedOptions.value,
+          touristicContentCategoryMapping,
+        }),
+      );
+    });
   }
-  return currentFiltersState;
+
+  // Prevent old filters to display
+  const filtersToAddIds = filtersToAdd.flat().map(i => i.id);
+  const filtersToExcludeIds = currentFiltersState
+    .filter(i => !filtersToAddIds.includes(i.id) && !commonFilters.includes(i.id))
+    .map(i => i.id);
+  const currentFiltersStateToDisplay = currentFiltersState.filter(
+    i => !filtersToExcludeIds.includes(i.id),
+  );
+
+  return uniqBy([...currentFiltersStateToDisplay, ...filtersToAdd.flat()], 'id');
 };
 
 const getInitialFiltersStateWithRelevantFilters = ({
@@ -343,4 +296,20 @@ export const getNewLanguageFiltersState = (
     };
   });
   return translatedFiltersState.filter(isElementNotNull);
+};
+
+export const countFiltersSelected = (
+  filtersState: FilterState[],
+  filters: string[] | null = [],
+  subFilters: string[] | null = [],
+): number => {
+  const subFiltersToDisplay = filtersState.filter(({ id }) => subFilters?.includes(id));
+  const filtersToDisplay = filtersState.filter(
+    ({ id }) => filters?.includes(id) ?? filters === null,
+  );
+
+  return [...subFiltersToDisplay, ...filtersToDisplay].reduce(
+    (acc, state) => state.selectedOptions.length + acc,
+    0,
+  );
 };

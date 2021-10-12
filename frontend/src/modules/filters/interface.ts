@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface Choices {
   [value: string]: {
     label: string;
@@ -63,4 +65,12 @@ export interface FilterState {
   type: 'SINGLE' | 'MULTIPLE';
   options: Option[];
   selectedOptions: Option[];
+}
+
+export interface FilterCategory {
+  id: string;
+  name: React.ReactElement;
+  filters?: string[];
+  subFilters?: string[];
+  onSelect?: () => void;
 }

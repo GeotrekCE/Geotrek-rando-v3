@@ -4,6 +4,8 @@ You can override default settings, colors, CSS, HTML and translations in your ow
 
 See the [general presentation](presentation-fr.md) for an overview of the application.
 
+After each customization changes, you'll have to restart the Docker container by running `docker-compose restart`.
+
 ## Settings
 
 Default configuration are defined in files from https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/config folder.
@@ -88,7 +90,7 @@ In json files, you can just override the primary keys you need. You have to over
 
     You can find more examples and more details following this link : https://nextjs.org/docs/api-reference/next.config.js/redirects
 
-## _Warning:_
+### _Warning:_
 
 - When setting up Google Analytics, you have to setup a flow. When setting up the flow, be careful to enter the corresponding url (the url of your website), otherwise the data will not be received.
 - By default Google analytics is disabled (`googleAnalyticsId` set to `null`), you will have to override it in the `global.json` file of your customization folder.

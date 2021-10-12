@@ -168,6 +168,10 @@ export const getSearchResults = async (
 
     return {
       resultsNumber: treksCount + touristicContentsCount,
+      resultsNumberDetails: {
+        treksCount,
+        touristicContentsCount,
+      },
       nextPages: {
         treks: nextTreksPage,
         touristicContents: nextTouristicContentsPage,

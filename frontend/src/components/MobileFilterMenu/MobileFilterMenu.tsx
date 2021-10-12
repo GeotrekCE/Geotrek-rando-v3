@@ -1,36 +1,32 @@
+import MobileBottomClear from 'components/pages/search/components/FilterBar/MobileBottomClear';
 import React from 'react';
 // @ts-ignore Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
-import { useIntl } from 'react-intl';
 
 import { Cross } from 'components/Icons/Cross';
+import { FilterCategory, FilterState } from '../../modules/filters/interface';
+import { countFiltersSelected } from '../../modules/filters/utils';
 
 import { CloseButton } from './CloseButton';
 import { MobileFilterMenuSection } from './MobileFilterMenuSection';
 
 interface Props {
-  menuState: 'DISPLAYED' | 'HIDDEN';
   handleClose: () => void;
   title: React.ReactNode;
-  filtersList: {
-    id: string;
-    label: string;
-    onSelect: () => void;
-    selectedFiltersLabels: string[];
-  }[];
-  closeMenu: () => void;
+  filtersState: FilterState[];
+  filtersList: FilterCategory[];
   resetFilter: () => void;
+  resultsNumber: number;
 }
 
 export const MobileFilterMenu: React.FC<Props> = ({
-  menuState,
+  filtersState,
   handleClose,
   title,
-  filtersList,
-  closeMenu,
   resetFilter,
+  resultsNumber,
+  filtersList,
 }) => {
-  const intl = useIntl();
   return (
     /*
      * The library default behaviour is to have a fixed close icon which
@@ -39,7 +35,7 @@ export const MobileFilterMenu: React.FC<Props> = ({
      * the content and imperatively closes the drawer.
      */
     <Slide
-      isOpen={menuState === 'DISPLAYED'}
+      isOpen={true}
       onClose={handleClose}
       right
       customBurgerIcon={false}
@@ -48,23 +44,26 @@ export const MobileFilterMenu: React.FC<Props> = ({
       menuClassName="bg-white p-4"
     >
       <div className="relative text-center w-full pb-4 font-bold border-b border-solid border-greySoft outline-none">
-        <CloseButton onClick={closeMenu} className="absolute left-0" icon={<Cross size={24} />} />
+        <CloseButton onClick={handleClose} className="absolute left-0" icon={<Cross size={24} />} />
         <span>{title}</span>
-        <span
-          onClick={resetFilter}
-          className="underline text-primary1 font-normal text-P2 cursor-pointer absolute right-0 mt-2p"
-        >
-          {intl.formatMessage({ id: 'search.filters.clearAll' }).toUpperCase()}
-        </span>
       </div>
-      {filtersList.map(filter => (
-        <MobileFilterMenuSection
-          title={filter.label}
-          key={filter.id}
-          onClick={filter.onSelect}
-          selectedFiltersLabels={filter.selectedFiltersLabels}
-        />
-      ))}
+
+      <div>
+        {filtersList.map(item => {
+          const numberSelected = countFiltersSelected(filtersState, item.filters, item.subFilters);
+
+          return (
+            <MobileFilterMenuSection
+              title={item.name}
+              key={item.id}
+              onClick={item.onSelect}
+              numberSelected={numberSelected}
+            />
+          );
+        })}
+      </div>
+
+      <MobileBottomClear resetFilter={resetFilter} resultsNumber={resultsNumber} />
     </Slide>
   );
 };

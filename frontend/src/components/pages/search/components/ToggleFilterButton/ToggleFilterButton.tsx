@@ -9,19 +9,16 @@ import { Filter } from 'components/Icons/Filter';
 import { NumberBadge } from '../NumberBadge';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  activeFiltersNumber: number;
+  numberSelected: number;
 }
 
-export const ToggleFilterButton: React.FC<Props> = ({
-  activeFiltersNumber,
-  ...nativeButtonProps
-}) => {
+export const ToggleFilterButton: React.FC<Props> = ({ numberSelected, ...nativeButtonProps }) => {
   return (
     <Button className="flex items-center desktop:hidden" {...nativeButtonProps}>
-      {activeFiltersNumber === 0 ? (
+      {numberSelected === 0 ? (
         <Filter size={16} className="mr-2" />
       ) : (
-        <NumberBadge className="mr-1">{activeFiltersNumber}</NumberBadge>
+        <NumberBadge className="mr-1">{numberSelected}</NumberBadge>
       )}
       <FilterText className="ml-1">
         <FormattedMessage id="search.filter" />

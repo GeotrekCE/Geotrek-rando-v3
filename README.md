@@ -1,7 +1,7 @@
 # Geotrek-rando V3
 
 Geotrek-rando is the public web application displaying the interface you can use to value your territory treks and tourism products! 
-Demo available at https://gtr3.ecrins-parcnational.fr.
+Demo available at https://gtr3demo.ecrins-parcnational.fr.
 
 The third version is a full redesign and rewriting of Geotrek-rando with React, and NextJS for Server side rendering (SSR) and SEO.
 

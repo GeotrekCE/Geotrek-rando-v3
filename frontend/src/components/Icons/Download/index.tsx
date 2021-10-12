@@ -10,7 +10,8 @@ export const Download: React.FC<GenericIconProps> = ({
   return (
     <svg
       width={size}
-      viewBox="0 0 30 31"
+      height={size}
+      viewBox="0 0 30 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}

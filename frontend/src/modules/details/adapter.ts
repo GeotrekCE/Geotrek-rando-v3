@@ -61,6 +61,7 @@ export const adaptResults = ({
         ? flattenMultiLineStringCoordinates(geometry.coordinates)
         : geometry.coordinates;
     return {
+      id: Number(rawDetailsProperties.id),
       title: rawDetailsProperties.name,
       place: cityDictionnary[rawDetailsProperties.departure_city]
         ? cityDictionnary[rawDetailsProperties.departure_city].name

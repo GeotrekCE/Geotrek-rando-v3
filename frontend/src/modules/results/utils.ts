@@ -112,11 +112,7 @@ export const formatTrekFiltersToUrlParams = (
   filtersState: QueryFilterState[],
 ): { [key: string]: string } =>
   filtersState.reduce<{ [key: string]: string }>((queryParameters, currentFilterState) => {
-    if (
-      currentFilterState.id === CATEGORY_ID ||
-      currentFilterState.id === 'type1' ||
-      currentFilterState.id === 'type2'
-    )
+    if (currentFilterState.id === CATEGORY_ID || /type-services-.+/.test(currentFilterState.id))
       return queryParameters;
     if (currentFilterState.selectedOptions.length > 0) {
       const filter = formatFilter(currentFilterState);
@@ -148,7 +144,7 @@ export const formatTouristicContentFiltersToUrlParams = (
 ): { [key: string]: string } => {
   const filters = filtersState.reduce<{ [key: string]: string[] }>(
     (currentFilters, currentFilterState) => {
-      if (currentFilterState.id === 'type1' || currentFilterState.id === 'type2') {
+      if (/type-services-.*/.test(currentFilterState.id)) {
         if (currentFilterState.selectedOptions.length > 0) {
           return {
             ...currentFilters,

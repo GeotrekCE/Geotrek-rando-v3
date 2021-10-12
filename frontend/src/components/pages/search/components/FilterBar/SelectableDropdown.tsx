@@ -29,7 +29,7 @@ const colourStyles = {
     ':hover': {
       borderColor: colorPalette.filter.borderColor,
     },
-    height: sizes.button,
+    minHeight: sizes.button,
   }),
   option: (styles: any, { data }: { data: Option }) => {
     return {
@@ -101,11 +101,7 @@ export const SelectableDropdown = (props: Props): ReactElement => {
       isClearable={props.filterType === 'SINGLE'}
       isSearchable={false}
       name={props.name}
-      placeholder={
-        props.name === 'type1' || props.name === 'type2'
-          ? props.placeholder
-          : intl.formatMessage({ id: props.placeholder })
-      }
+      placeholder={intl.formatMessage({ id: props.placeholder })}
       classNamePrefix="select"
       closeMenuOnSelect={false}
       isMulti={props.filterType === 'MULTIPLE' ? true : undefined}

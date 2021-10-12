@@ -37,16 +37,12 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-    path,
   } = useTouristicContent(touristicContentUrl, language);
-
-  const titleRegex = RegExp(/(^\d+-)(.*)/).exec(path);
-  const title = titleRegex ? titleRegex[2].replace(/-/g, ' ') : '';
 
   return (
     <Layout>
       <PageHead
-        title={title}
+        title={touristicContent?.name}
         description={touristicContent ? touristicContent.descriptionTeaser : ''}
         sharingImageUrl={
           touristicContent !== undefined && touristicContent.attachments.length > 0

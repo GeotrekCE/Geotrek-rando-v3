@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import { FormattedMessage } from 'react-intl';
+import { CSSObject } from 'styled-components';
 
 import { colorPalette, getSpacing, shadow } from 'stylesheet';
 import { routes } from 'services/routes';
@@ -57,7 +58,7 @@ const ValidateButton: React.FC = () => (
 );
 
 const selectStyles = {
-  control: (styles: any) => ({
+  control: (styles: CSSObject) => ({
     ...styles,
     backgroundColor: 'white',
     boxShadow: shadow.large,
@@ -69,17 +70,17 @@ const selectStyles = {
       border: 'none',
     },
   }),
-  valueContainer: (styles: any) => ({
+  valueContainer: (styles: CSSObject) => ({
     ...styles,
     padding: 'none',
     overflow: 'visible',
   }),
-  singleValue: (styles: any) => ({
+  singleValue: (styles: CSSObject) => ({
     ...styles,
     color: colorPalette.greyDarkColored,
     paddingLeft: getSpacing(2),
   }),
-  menu: (styles: any) => ({
+  menu: (styles: CSSObject) => ({
     ...styles,
     padding: `${getSpacing(2)} 0`,
     margin: 0,
@@ -87,7 +88,7 @@ const selectStyles = {
     boxShadow: shadow.large,
     borderRadius: getSpacing(2),
   }),
-  option: (styles: any) => ({
+  option: (styles: CSSObject) => ({
     ...styles,
     backgroundColor: 'white',
     paddingLeft: getSpacing(4),
@@ -96,10 +97,10 @@ const selectStyles = {
       backgroundColor: colorPalette.primary2,
     },
   }),
-  indicatorSeparator: (styles: any) => ({
+  indicatorSeparator: () => ({
     color: 'transparent',
   }),
-  placeholder: (styles: any) => ({
+  placeholder: (styles: CSSObject) => ({
     ...styles,
     color: colorPalette.greyDarkColored,
     paddingLeft: '8px',

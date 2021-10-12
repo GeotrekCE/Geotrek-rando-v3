@@ -100,6 +100,10 @@ const mockTrekResult: TrekResult = {
 
 const mockInfiniteQueryPage = {
   resultsNumber: 6,
+  resultsNumberDetails: {
+    treksCount: 4,
+    touristicContentsCount: 2,
+  },
   nextPages: { treks: 2, touristicContents: 2 },
   results: [mockTrekResult, mockTrekResult],
 };
@@ -178,6 +182,10 @@ describe('concatResultsPages', () => {
     const output = concatResultsPages(input);
     const expected = {
       resultsNumber: 6,
+      resultsNumberDetails: {
+        treksCount: 4,
+        touristicContentsCount: 2,
+      },
       nextPages: { treks: 2, touristicContents: 2 },
       results: [mockTrekResult, mockTrekResult, mockTrekResult, mockTrekResult],
     };
@@ -200,6 +208,10 @@ describe('formatInfiniteQuery', () => {
     const output = formatInfiniteQuery(input);
     const expected = {
       resultsNumber: 6,
+      resultsNumberDetails: {
+        treksCount: 4,
+        touristicContentsCount: 2,
+      },
       nextPages: { treks: 2, touristicContents: 2 },
       results: [mockTrekResult, mockTrekResult, mockTrekResult, mockTrekResult],
     };

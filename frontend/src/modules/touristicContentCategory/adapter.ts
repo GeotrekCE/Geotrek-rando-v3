@@ -59,28 +59,19 @@ export const adaptTouristicContentCategoryFilter = (
 
 export const adaptTouristicContentCategoryHashMap = (
   rawTouristicContentCategories: RawTouristicContentCategory[],
-): TouristicContentCategoryMapping =>
-  rawTouristicContentCategories.reduce(
+): TouristicContentCategoryMapping => {
+  return rawTouristicContentCategories.reduce(
     (touristicContentCategoryMapping, currentTouristicContentCategory) => ({
       ...touristicContentCategoryMapping,
-      [currentTouristicContentCategory.id]: {
-        type1: {
-          id: currentTouristicContentCategory.types[0].id,
-          label: currentTouristicContentCategory.types[0].label,
-          values: currentTouristicContentCategory.types[0].values.map(({ id, label }) => ({
-            value: id,
-            label,
-          })),
-        },
-        type2: {
-          id: currentTouristicContentCategory.types[1].id,
-          label: currentTouristicContentCategory.types[1].label,
-          values: currentTouristicContentCategory.types[1].values.map(({ id, label }) => ({
-            value: id,
-            label,
-          })),
-        },
-      },
+      [currentTouristicContentCategory.id]: currentTouristicContentCategory.types.map(i => ({
+        id: i.id,
+        label: i.label,
+        values: i.values.map(({ id, label }) => ({
+          value: id,
+          label,
+        })),
+      })),
     }),
     {},
   );
+};

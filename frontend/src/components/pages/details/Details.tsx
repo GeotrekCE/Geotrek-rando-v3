@@ -1,7 +1,6 @@
 import MoreLink from 'components/Information/MoreLink';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
-import Report from 'components/Report/Report';
 import Loader from 'react-loader';
 import parse from 'html-react-parser';
 import { FormattedMessage } from 'react-intl';
@@ -148,15 +147,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     flex flex-col"
                     ref={sectionsContainerRef}
                   >
-                    <DetailsTopIcons
-                      details={details}
-                      practice={details.practice ?? undefined}
-                      trekId={Number(id)}
-                      startPoint={{
-                        type: 'Point',
-                        coordinates: details.trekDeparture,
-                      }}
-                    />
+                    <DetailsTopIcons details={details} practice={details.practice ?? undefined} />
 
                     <div ref={setPreviewRef} id="details_preview_ref">
                       <DetailsPreview
