@@ -126,6 +126,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
               setFilterSelectedOptions={setFilterSelectedOptions}
               resetFilters={onRemoveAllFiltersClick}
               resultsNumber={searchResults?.resultsNumber ?? 0}
+              language={language}
             />
           )}
           <div className="flex flex-row flex-1 overflow-y-hidden">

@@ -50,7 +50,12 @@ export const concatResultsPages = (resultsPages: SearchResults[]): SearchResults
     [],
   );
 
-  return { resultsNumber, results, nextPages };
+  return {
+    resultsNumber,
+    resultsNumberDetails: resultsPages[0].resultsNumberDetails,
+    results,
+    nextPages,
+  };
 };
 
 /** Formats the data of useInfiniteQuery to make it interpretable by the Search page */

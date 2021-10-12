@@ -1,6 +1,7 @@
 import { Bin } from 'components/Icons/Bin';
 import { Filter } from 'components/Icons/Filter';
 import FilterField from 'components/pages/search/components/FilterBar/FilterField';
+import useCounter from 'components/pages/search/hooks/useCounter';
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
@@ -12,6 +13,7 @@ interface Props {
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
   resetFilters: () => void;
   resultsNumber: number;
+  language: string;
 }
 
 export const FILTERS_CATEGORIES = [
@@ -52,8 +54,10 @@ const FilterBarNew: React.FC<Props> = ({
   setFilterSelectedOptions,
   resetFilters,
   resultsNumber,
+  language,
 }) => {
   const [expanded, setExpanded] = useState<string>('');
+  const { treksCount, touristicContentsCount } = useCounter({ language });
 
   return (
     <ClearContainer className="flex items-center shadow-lg bg-white" style={{ zIndex: 20 }}>
@@ -66,6 +70,9 @@ const FilterBarNew: React.FC<Props> = ({
 
       {FILTERS_CATEGORIES.map(filterField => {
         const handleClick = () => setExpanded(expanded === filterField.id ? '' : filterField.id);
+
+        if (treksCount === 0 && filterField.id === 'practices') return null;
+        if (touristicContentsCount === 0 && filterField.id === 'categories') return null;
 
         return (
           <FilterField

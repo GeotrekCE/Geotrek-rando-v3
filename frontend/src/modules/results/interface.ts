@@ -4,6 +4,10 @@ import { TouristicContentResult } from 'modules/touristicContent/interface';
 
 export interface SearchResults {
   resultsNumber: number;
+  resultsNumberDetails: {
+    treksCount: number;
+    touristicContentsCount: number;
+  };
   nextPages: {
     treks: number | null;
     touristicContents: number | null;
