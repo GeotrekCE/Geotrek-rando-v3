@@ -138,5 +138,10 @@
   },
   "error": {
     "missing": "The form is not complete"
+  },
+  "offline": {
+    "number": "{count} contenus accessibles sans connexion internet",
+    "presentation": "Pour profiter de vos itinéraires sans vous soucier de votre réseau.",
+    "download": "Download"
   }
 }

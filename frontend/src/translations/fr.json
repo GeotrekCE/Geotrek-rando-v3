@@ -4,7 +4,8 @@
     "language": "Langue",
     "seeMore": "En savoir plus",
     "favorites": "Favoris",
-    "goToSearch": "Recherche"
+    "goToSearch": "Recherche",
+    "offline": "Hors ligne"
   },
   "home": {
     "title": "Geotrek-rando",
@@ -140,5 +141,21 @@
   },
   "error": {
     "missing": "Le formulaire n'est pas complet"
+  },
+  "offline": {
+    "number": "{count} contenus accessibles sans connexion internet",
+    "presentation": "Pour profiter de vos itinéraires sans vous soucier de votre réseau.",
+    "explain": "Télécharger cet élément afin d'y avoir accès hors connexion",
+    "explainAvailable": "Cet élément est disponible hors connexion",
+    "title": "Mode hors ligne",
+    "download": "Télécharger",
+    "isInCache": "Disponible hors ligne",
+    "downloadInProgress": "Téléchargement en cours. Veuillez patienter"
+  },
+  "actions": {
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "remove": "Supprimer",
+    "confirmRemove": "Etes vous sûr de vouloir supprimer cet élément?"
   }
 }

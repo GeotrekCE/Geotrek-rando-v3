@@ -71,14 +71,21 @@ export const DetailsMap: React.FC<PropsType> = props => {
   } = useDetailsMap();
   const mapConfig = getMapConfig();
 
-  const { isSatelliteLayerAvailable, setMapInstance, updateTileLayer } = useTileLayer();
+  const { isSatelliteLayerAvailable, setMapInstance, updateTileLayer } = useTileLayer(props.trekId);
 
   return (
     <>
       <MapContainer
         scrollWheelZoom
         style={{ height: '100%', width: '100%' }}
-        maxZoom={mapConfig.maximumZoomLevel}
+        maxZoom={
+          navigator.onLine
+            ? mapConfig.maximumZoomLevel
+            : Math.max(...(mapConfig?.zoomAvailableOffline ?? []))
+        }
+        minZoom={
+          navigator.onLine ? undefined : Math.min(...(mapConfig?.zoomAvailableOffline ?? []))
+        }
         zoomControl={props.type === 'DESKTOP'}
         attributionControl={false}
         whenCreated={setMapInstance}
