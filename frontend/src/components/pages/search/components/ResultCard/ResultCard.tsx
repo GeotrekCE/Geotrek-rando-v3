@@ -139,9 +139,7 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => 
                     values.length > 0 && (
                       <div key={label} className="text-greyDarkColored">
                         <span className="font-bold">{`${label} : `}</span>
-                        {values.map(value => (
-                          <span key={value}>{value}</span>
-                        ))}
+                        {values.join(', ')}
                       </div>
                     ),
                 )}
