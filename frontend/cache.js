@@ -14,7 +14,7 @@ module.exports = [
       cacheName: 'start-url',
       expiration: {
         maxEntries: 1,
-        maxAgeSeconds: 24 * 60 * 60, // 24 hours
+        maxAgeSeconds: 90 * 60 * 60 * 24, // 90 days
       },
     },
   },
@@ -24,7 +24,7 @@ module.exports = [
     options: {
       cacheName: 'google-fonts',
       expiration: {
-        maxEntries: 4,
+        maxEntries: 8,
         maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
       },
     },
@@ -35,7 +35,7 @@ module.exports = [
     options: {
       cacheName: 'static-font-assets',
       expiration: {
-        maxEntries: 4,
+        maxEntries: 8,
         maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
       },
     },
@@ -46,8 +46,8 @@ module.exports = [
     options: {
       cacheName: 'static-image-assets',
       expiration: {
-        maxEntries: 64,
-        maxAgeSeconds: 24 * 60 * 60, // 24 hours
+        maxEntries: 128,
+        maxAgeSeconds: 90 * 60 * 60 * 24, // 90 days
       },
     },
   },
@@ -57,8 +57,8 @@ module.exports = [
     options: {
       cacheName: 'static-js-assets',
       expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 24 * 60 * 60, // 24 hours
+        maxEntries: 128,
+        maxAgeSeconds: 90 * 60 * 60 * 24, // 90 days
       },
     },
   },
@@ -68,8 +68,8 @@ module.exports = [
     options: {
       cacheName: 'static-style-assets',
       expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 24 * 60 * 60, // 24 hours
+        maxEntries: 64,
+        maxAgeSeconds: 90 * 60 * 60 * 24, // 90 days
       },
     },
   },
@@ -79,24 +79,24 @@ module.exports = [
     options: {
       cacheName: 'static-data-assets',
       expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 24 * 60 * 60, // 24 hours
+        maxEntries: 64,
+        maxAgeSeconds: 90 * 60 * 60 * 24, // 90 days
       },
     },
   },
-  {
+  /*{
     urlPattern: /\/trek\/.*$/i,
     handler: 'NetworkFirst',
     method: 'GET',
     options: {
       cacheName: 'trek-pages',
       expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
+        maxEntries: 512,
+        maxAgeSeconds: 90 * 24 * 60 * 60, // 90 days
       },
       networkTimeoutSeconds: 10, // fall back to cache if api does not response within 10 seconds
     },
-  },
+  },*/
   {
     urlPattern: /\/service\/.*$/i,
     handler: 'NetworkFirst',
@@ -104,8 +104,8 @@ module.exports = [
     options: {
       cacheName: 'touritic-content-pages',
       expiration: {
-        maxEntries: 32,
-        maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
+        maxEntries: 64,
+        maxAgeSeconds: 90 * 24 * 60 * 60, // 90 days
       },
       networkTimeoutSeconds: 10, // fall back to cache if api does not response within 10 seconds
     },
@@ -124,13 +124,13 @@ module.exports = [
     },
   },
   {
-    urlPattern: /.*/i,
+    urlPattern: /^(?!.*opentopomap|.*openstreetmap|.*trek).*$/i,
     handler: 'NetworkFirst',
     options: {
       cacheName: 'others',
       expiration: {
-        maxEntries: 256,
-        maxAgeSeconds: 24 * 60 * 60, // 24 hours
+        maxEntries: 512,
+        maxAgeSeconds: 90 * 60 * 60 * 24, // 90 days
       },
       networkTimeoutSeconds: 10,
     },

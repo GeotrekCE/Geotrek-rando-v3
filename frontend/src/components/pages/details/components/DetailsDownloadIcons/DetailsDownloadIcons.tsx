@@ -1,5 +1,6 @@
 import { AlertTriangle } from 'components/Icons/AlertTriangle';
 import { DetailsButton } from 'components/pages/details/components/DetailsButton';
+import OfflineButton from 'components/pages/details/components/OfflineButton';
 import Report from 'components/Report/Report';
 import React, { useState } from 'react';
 
@@ -13,14 +14,15 @@ import { DetailsButtonDropdown } from '../DetailsButtonDropdown';
 interface DetailsTopIconsProps {
   details: Details | TouristicContentDetails;
   size?: number;
-  type?: 'TREK' | 'TOURISTIC_CONTENT';
   hideReport?: boolean;
+  type: 'TREK' | 'TOURISTIC_CONTENT';
 }
 
 export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
   details,
   size = 24,
   hideReport = false,
+  type,
 }) => {
   const [openReport, setOpenReport] = useState<boolean>(false);
 
@@ -93,6 +95,8 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
             </DetailsButton>
           </>
         )}
+
+        <OfflineButton details={details} type={type} />
       </div>
     </div>
   );

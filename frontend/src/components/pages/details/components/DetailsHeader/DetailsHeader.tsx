@@ -53,7 +53,7 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ sectionsReferences
           </div>
         ))}
       </div>
-      <DetailsDownloadIcons details={details} />
+      <DetailsDownloadIcons details={details} type={'TREK'} />
     </div>
   );
 };

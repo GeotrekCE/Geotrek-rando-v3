@@ -126,7 +126,7 @@ const Report: React.FC<Props> = ({ trekId, startPoint, onRequestClose }) => {
 
                     <div className={'flex justify-between'}>
                       <Button onClick={onRequestClose}>
-                        <FormattedMessage id={'report.cancel'} />
+                        <FormattedMessage id={'actions.cancel'} />
                       </Button>
 
                       <Button onClick={submit}>

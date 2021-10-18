@@ -7,6 +7,10 @@
   bottom: 32px !important;
 }
 
+.savetiles {
+  display: none;
+}
+
 .gg-track {
   --ggs: 1.5;
   left: 10px;
