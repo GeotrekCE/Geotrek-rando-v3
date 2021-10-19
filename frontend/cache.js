@@ -108,7 +108,7 @@ module.exports = [
       networkTimeoutSeconds: 10, // fall back to cache if api does not response within 10 seconds
     },
   },*/
-  {
+  /*{
     urlPattern: /\/service\/.*$/i,
     handler: 'NetworkFirst',
     method: 'GET',
@@ -120,7 +120,7 @@ module.exports = [
       },
       networkTimeoutSeconds: 10, // fall back to cache if api does not response within 10 seconds
     },
-  },
+  },*/
   {
     urlPattern: /\/search.*$/i,
     handler: 'NetworkFirst',
@@ -135,7 +135,7 @@ module.exports = [
     },
   },
   {
-    urlPattern: /^(?!.*opentopomap|.*openstreetmap|.*\/trek\/).*$/i,
+    urlPattern: /^(?!.*opentopomap|.*openstreetmap|.*\/trek\/|.*\/service\/).*$/i,
     handler: 'NetworkFirst',
     options: {
       cacheName: 'others',

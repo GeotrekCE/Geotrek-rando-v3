@@ -37,7 +37,7 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
 
     const scriptsUrl = Array.from(document.getElementsByTagName('script'))
       .map(e => e.src)
-      .filter(src => src.includes('chunks/pages/trek'));
+      .filter(src => src.includes('chunks/pages/trek') || src.includes('chunks/pages/service'));
 
     await CacheManager.storeItem({
       details: details as Details,

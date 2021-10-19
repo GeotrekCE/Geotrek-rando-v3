@@ -1,3 +1,4 @@
+import { LatLngBoundsExpression } from 'leaflet';
 import React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -29,7 +30,15 @@ export type PropsType = {
 };
 
 export const TouristicContentMap: React.FC<PropsType> = props => {
-  const { isSatelliteLayerAvailable, setMapInstance, updateTileLayer } = useTileLayer();
+  const center: LatLngBoundsExpression = [
+    [props.bbox.corner1.y, props.bbox.corner1.x],
+    [props.bbox.corner2.y, props.bbox.corner2.x],
+  ];
+
+  const { isSatelliteLayerAvailable, setMapInstance, updateTileLayer } = useTileLayer(
+    Number(props.touristicContentGeometry.id),
+    center,
+  );
 
   const hideMap = () => {
     if (props.hideMap) {
@@ -42,14 +51,18 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
     <>
       <MapContainer
         scrollWheelZoom
-        maxZoom={mapConfig.maximumZoomLevel}
+        maxZoom={
+          navigator.onLine
+            ? mapConfig.maximumZoomLevel
+            : Math.max(...(mapConfig?.zoomAvailableOffline ?? []))
+        }
+        minZoom={
+          navigator.onLine ? undefined : Math.min(...(mapConfig?.zoomAvailableOffline ?? []))
+        }
         style={{ height: '100%', width: '100%' }}
         whenCreated={setMapInstance}
         zoomControl={props.type === 'DESKTOP'}
-        bounds={[
-          [props.bbox.corner1.y, props.bbox.corner1.x],
-          [props.bbox.corner2.y, props.bbox.corner2.x],
-        ]}
+        bounds={center}
         attributionControl={false}
       >
         <TileLayer url={mapConfig.mapClassicLayerUrl} />

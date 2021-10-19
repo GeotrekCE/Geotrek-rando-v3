@@ -1,6 +1,7 @@
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
 import Loader from 'react-loader';
+import { useMediaPredicate } from 'react-media-hook';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
 import parse from 'html-react-parser';
 import { FormattedMessage } from 'react-intl';
@@ -38,6 +39,8 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
     displayMobileMap,
     hideMobileMap,
   } = useTouristicContent(touristicContentUrl, language);
+
+  const isMobile = useMediaPredicate('(max-width: 1024px)');
 
   return (
     <Layout>
@@ -181,13 +184,35 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
               </div>
               <Footer />
             </div>
-            <div
-              id="touristicContent_map"
-              className="hidden desktop:flex desktop:z-content desktop:w-2/5
+            {!isMobile && (
+              <div
+                id="touristicContent_map"
+                className="hidden desktop:flex desktop:z-content desktop:w-2/5
               desktop:bottom-0 desktop:fixed desktop:right-0 desktop:top-desktopHeader"
+              >
+                <TouristicContentMapDynamicComponent
+                  type="DESKTOP"
+                  bbox={touristicContent.bbox}
+                  touristicContentGeometry={{
+                    geometry: touristicContent.geometry,
+                    pictogramUri: touristicContent.category.pictogramUri,
+                    name: touristicContent.name,
+                    id: touristicContent.id,
+                  }}
+                />
+              </div>
+            )}
+          </div>
+          {isMobile && (
+            <MobileMapContainer
+              id="touristicContent_mobileMap"
+              className={`desktop:hidden fixed right-0 left-0 h-full z-map ${
+                mobileMapState === 'HIDDEN' ? 'invisible' : 'flex'
+              }`}
+              displayState={mobileMapState}
             >
               <TouristicContentMapDynamicComponent
-                type="DESKTOP"
+                type="MOBILE"
                 bbox={touristicContent.bbox}
                 touristicContentGeometry={{
                   geometry: touristicContent.geometry,
@@ -195,28 +220,10 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   name: touristicContent.name,
                   id: touristicContent.id,
                 }}
+                hideMap={hideMobileMap}
               />
-            </div>
-          </div>
-          <MobileMapContainer
-            id="touristicContent_mobileMap"
-            className={`desktop:hidden fixed right-0 left-0 h-full z-map ${
-              mobileMapState === 'HIDDEN' ? 'hidden' : 'flex'
-            }`}
-            displayState={mobileMapState}
-          >
-            <TouristicContentMapDynamicComponent
-              type="MOBILE"
-              bbox={touristicContent.bbox}
-              touristicContentGeometry={{
-                geometry: touristicContent.geometry,
-                pictogramUri: touristicContent.category.pictogramUri,
-                name: touristicContent.name,
-                id: touristicContent.id,
-              }}
-              hideMap={hideMobileMap}
-            />
-          </MobileMapContainer>
+            </MobileMapContainer>
+          )}
         </>
       )}
     </Layout>

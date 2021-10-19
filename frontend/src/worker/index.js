@@ -43,7 +43,7 @@ const fromCache = async request => {
 };
 
 self.addEventListener('fetch', event => {
-  if (event.request.url.includes('/trek/')) {
+  if (event.request.url.includes('/trek/') || event.request.url.includes('/service/')) {
     console.log('SW url', event.request.url);
     event.respondWith(fromNetwork(event.request, 10000).catch(() => fromCache(event.request)));
   }

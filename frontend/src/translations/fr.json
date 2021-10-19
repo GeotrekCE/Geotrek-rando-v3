@@ -150,7 +150,8 @@
     "title": "Mode hors ligne",
     "download": "Embarquer",
     "isInCache": "Cet élément est disponible hors ligne.",
-    "downloadInProgress": "Téléchargement en cours. Veuillez patienter"
+    "downloadInProgress": "Téléchargement en cours. Veuillez patienter",
+    "not-available": "Ce contenu n'est pas disponible hors connexion."
   },
   "actions": {
     "cancel": "Annuler",
