@@ -19,6 +19,17 @@ module.exports = [
     },
   },
   {
+    urlPattern: '/offline',
+    handler: 'NetworkFirst',
+    options: {
+      cacheName: 'offline',
+      expiration: {
+        maxEntries: 1,
+        maxAgeSeconds: 90 * 60 * 60 * 24, // 90 days
+      },
+    },
+  },
+  {
     urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
     handler: 'CacheFirst',
     options: {
@@ -97,7 +108,7 @@ module.exports = [
       networkTimeoutSeconds: 10, // fall back to cache if api does not response within 10 seconds
     },
   },*/
-  {
+  /*{
     urlPattern: /\/service\/.*$/i,
     handler: 'NetworkFirst',
     method: 'GET',
@@ -109,7 +120,7 @@ module.exports = [
       },
       networkTimeoutSeconds: 10, // fall back to cache if api does not response within 10 seconds
     },
-  },
+  },*/
   {
     urlPattern: /\/search.*$/i,
     handler: 'NetworkFirst',
@@ -124,7 +135,7 @@ module.exports = [
     },
   },
   {
-    urlPattern: /^(?!.*opentopomap|.*openstreetmap|.*trek).*$/i,
+    urlPattern: /^(?!.*opentopomap|.*openstreetmap|.*\/trek\/|.*\/service\/).*$/i,
     handler: 'NetworkFirst',
     options: {
       cacheName: 'others',

@@ -1,10 +1,10 @@
-import L, { Map } from 'leaflet';
+import L, { LatLngBoundsExpression, Map } from 'leaflet';
 import CacheManager from 'services/offline/CacheManager';
 import { getMapConfig } from 'components/Map/config';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const LeafletOffline = require('leaflet.offline');
 
-const injectOfflineMode = (map: Map, id: number) => {
+const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression) => {
   const mapConfig = getMapConfig();
 
   const tileLayerOffline = L.tileLayer
@@ -71,6 +71,12 @@ const injectOfflineMode = (map: Map, id: number) => {
     // @ts-ignore
     document.getElementById('progress').innerHTML = progress;
   });*/
+
+  const recenter = () => {
+    map.fitBounds(center);
+  };
+
+  controlInstance.recenter = recenter;
 
   CacheManager.registerControlInstance(controlInstance);
 

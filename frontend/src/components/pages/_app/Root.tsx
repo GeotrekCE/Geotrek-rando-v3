@@ -1,11 +1,12 @@
 import { AppCrashFallback } from 'components/AppCrashFallback';
 import Head from 'next/head';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { useRouter } from 'next/router';
+import { routes } from 'services/routes';
 import { colorPalette } from 'stylesheet';
 import CSSResets from './CSSResets';
 import { ErrorBoundary } from './ErrorBoundary';
@@ -24,6 +25,7 @@ export const Root: FunctionComponent<RootProps> = props => {
   const router = useRouter();
   const language = router.locale ?? getDefaultLanguage();
   const { googleSiteVerificationToken, applicationName } = getGlobalConfig();
+
   return (
     <ErrorBoundary
       FallbackComponent={AppCrashFallback}

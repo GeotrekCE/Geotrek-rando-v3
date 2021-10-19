@@ -2,12 +2,17 @@ import { Clock } from 'components/Icons/Clock';
 import { Chip } from 'components/Chip';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
-import { DetailsInformation, TrekFamily } from 'modules/details/interface';
+import OfflineButton from 'components/pages/details/components/OfflineButton';
+import { Details, DetailsInformation, TrekFamily } from 'modules/details/interface';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { LocalIconInformation } from 'components/Information/LocalIconInformation';
 import parse from 'html-react-parser';
 import { Separator } from 'components/Separator';
-import { TouristicContentDetailsType } from 'modules/touristicContent/interface';
+import {
+  TouristicContentDetails,
+  TouristicContentDetailsType,
+} from 'modules/touristicContent/interface';
+import React from 'react';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { DetailsTrekParentButton } from '../DetailsTrekParentButton';
 import { HtmlText } from '../../utils';
@@ -26,6 +31,8 @@ interface DetailsPreviewProps {
   teaser?: string;
   title: string;
   trekFamily?: TrekFamily;
+  details: Details | TouristicContentDetails;
+  type: 'TREK' | 'TOURISTIC_CONTENT';
   id: string;
 }
 
@@ -38,6 +45,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   teaser,
   title,
   trekFamily,
+  details,
+  type,
   id,
 }) => {
   // trekRank & trekRankLabel are only defined if trek is part of an itinerance
@@ -139,10 +148,15 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           ))}
         </div>
       )}
+
+      <div className="desktop:hidden mt-4">
+        <OfflineButton details={details} type={type} />
+      </div>
+
       {teaser && teaser?.length > 0 && (
         <div
           id="details_teaser"
-          className="text-Mobile-C1 desktop:text-H4 font-bold mt-6 desktop:mt-9"
+          className="text-Mobile-C1 desktop:text-H4 font-bold mt-4 desktop:mt-9"
         >
           <HtmlText>{parse(teaser)}</HtmlText>
         </div>
