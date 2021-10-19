@@ -19,6 +19,17 @@ module.exports = [
     },
   },
   {
+    urlPattern: '/offline',
+    handler: 'NetworkFirst',
+    options: {
+      cacheName: 'offline',
+      expiration: {
+        maxEntries: 1,
+        maxAgeSeconds: 90 * 60 * 60 * 24, // 90 days
+      },
+    },
+  },
+  {
     urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
     handler: 'CacheFirst',
     options: {
@@ -124,7 +135,7 @@ module.exports = [
     },
   },
   {
-    urlPattern: /^(?!.*opentopomap|.*openstreetmap|.*trek).*$/i,
+    urlPattern: /^(?!.*opentopomap|.*openstreetmap|.*\/trek\/).*$/i,
     handler: 'NetworkFirst',
     options: {
       cacheName: 'others',

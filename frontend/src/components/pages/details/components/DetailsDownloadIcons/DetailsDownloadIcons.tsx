@@ -1,6 +1,5 @@
 import { AlertTriangle } from 'components/Icons/AlertTriangle';
 import { DetailsButton } from 'components/pages/details/components/DetailsButton';
-import OfflineButton from 'components/pages/details/components/OfflineButton';
 import Report from 'components/Report/Report';
 import React, { useState } from 'react';
 
@@ -95,8 +94,6 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
             </DetailsButton>
           </>
         )}
-
-        <OfflineButton details={details} type={type} />
       </div>
     </div>
   );

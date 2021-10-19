@@ -1,3 +1,4 @@
+import { LatLngBoundsExpression } from 'leaflet';
 import React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -71,7 +72,15 @@ export const DetailsMap: React.FC<PropsType> = props => {
   } = useDetailsMap();
   const mapConfig = getMapConfig();
 
-  const { isSatelliteLayerAvailable, setMapInstance, updateTileLayer } = useTileLayer(props.trekId);
+  const center: LatLngBoundsExpression = [
+    [props.bbox.corner1.y, props.bbox.corner1.x],
+    [props.bbox.corner2.y, props.bbox.corner2.x],
+  ];
+
+  const { isSatelliteLayerAvailable, setMapInstance, updateTileLayer } = useTileLayer(
+    props.trekId,
+    center,
+  );
 
   return (
     <>
@@ -89,10 +98,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         zoomControl={props.type === 'DESKTOP'}
         attributionControl={false}
         whenCreated={setMapInstance}
-        bounds={[
-          [props.bbox.corner1.y, props.bbox.corner1.x],
-          [props.bbox.corner2.y, props.bbox.corner2.x],
-        ]}
+        bounds={center}
       >
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
         <TrekMarkersAndCourse

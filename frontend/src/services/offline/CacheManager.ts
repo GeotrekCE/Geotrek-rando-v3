@@ -23,6 +23,8 @@ const CacheManager = {
     type: 'TREK' | 'TOURISTIC_CONTENT';
     url: string[];
   }) => {
+    controlInstance.recenter();
+
     const cache = await caches.open('trek-pages');
 
     await Promise.all(url.map(_ => cache.add(_)));
@@ -46,7 +48,7 @@ const CacheManager = {
     );
 
     // eslint-disable-next-line no-underscore-dangle
-    if (controlInstance?._saveTiles) controlInstance._saveTiles();
+    if (controlInstance?._saveTiles) await controlInstance._saveTiles();
   },
 
   registerControlInstance: (control: any) => {

@@ -116,6 +116,8 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   title={touristicContent.name}
                   teaser={touristicContent.descriptionTeaser}
                   ambiance={touristicContent.description}
+                  details={touristicContent}
+                  type={'TOURISTIC_CONTENT'}
                   id={id}
                 />
                 {(!!touristicContent.contact?.length ||

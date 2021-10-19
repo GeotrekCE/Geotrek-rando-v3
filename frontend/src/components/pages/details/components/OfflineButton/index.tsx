@@ -1,3 +1,4 @@
+import { WifiOff } from 'components/Icons/WifiOff';
 import Loader from 'components/Loader';
 import Popup from 'components/Popup';
 import React, { useEffect, useState } from 'react';
@@ -5,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { Check } from 'components/Icons/Check';
 import { Bin } from 'components/Icons/Bin';
-import { Save } from 'components/Icons/Save';
 import CacheManager from 'services/offline/CacheManager';
 import { colorPalette } from 'stylesheet';
 import { Details } from '../../../../../modules/details/interface';
@@ -64,7 +64,6 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
     return (
       <Button
         onClick={onClick}
-        icon={isInCache ? Check : Save}
         style={{
           color: isInCache ? colorPalette.easyOK : undefined,
           borderColor: isInCache ? colorPalette.easyOK : undefined,
@@ -127,7 +126,19 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
         </Popup>
       )}
 
-      {getButton(() => setOpenDialog(true))}
+      <div
+        onClick={() => setOpenDialog(true)}
+        className={`${isInCache ? 'bg-green-100' : 'bg-gray-100'} p-4 flex items-center rounded`}
+      >
+        <div className="w-8">{isInCache ? <Check /> : <WifiOff />}</div>
+        <div className="ml-6">
+          {isInCache ? (
+            <FormattedMessage id={'offline.isInCache'} />
+          ) : (
+            <FormattedMessage id={'offline.explain'} />
+          )}
+        </div>
+      </div>
     </>
   );
 };

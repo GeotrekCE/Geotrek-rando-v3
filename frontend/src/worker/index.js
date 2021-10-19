@@ -39,14 +39,18 @@ const fromCache = async request => {
   const cache = await caches.open(cacheName);
   const matching = await cache.match(request);
 
-  console.log('MATCHING:', matching, request.url);
-
   return matching || cache.match('/offline/');
 };
 
 self.addEventListener('fetch', event => {
-  if (event.request.url.includes('/trek')) {
+  if (event.request.url.includes('/trek/')) {
     console.log('SW url', event.request.url);
     event.respondWith(fromNetwork(event.request, 10000).catch(() => fromCache(event.request)));
   }
+});
+
+// Prefetch offline page to be ready on mobile
+self.addEventListener('activate', async () => {
+  const cache = await caches.open('offline');
+  return cache.add('/offline');
 });
