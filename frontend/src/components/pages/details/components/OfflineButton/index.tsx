@@ -128,7 +128,9 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
 
       <div
         onClick={() => setOpenDialog(true)}
-        className={`${isInCache ? 'bg-green-100' : 'bg-gray-100'} border border-solid border-gray-500 p-4 flex items-center rounded`}
+        className={`${
+          isInCache ? 'bg-green-100' : 'bg-gray-100'
+        } border border-solid border-gray-500 p-4 flex items-center rounded`}
       >
         <div className="w-8">{isInCache ? <Check /> : <WifiOff />}</div>
         <div className="ml-6">

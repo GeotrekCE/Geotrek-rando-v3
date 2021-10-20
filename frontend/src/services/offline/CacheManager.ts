@@ -1,3 +1,4 @@
+import { Offline } from 'modules/offline/interface';
 import { Details } from '../../modules/details/interface';
 import { TouristicContentDetails } from '../../modules/touristicContent/interface';
 
@@ -8,7 +9,7 @@ const PATTER_LOCAL_STORAGE = 'item-';
 let storageSize: any;
 
 const CacheManager = {
-  getTreksCached: () => {
+  getTreksCached: (): Offline[] => {
     return Object.keys(localStorage)
       .filter(i => i.includes(PATTER_LOCAL_STORAGE))
       .map(key => JSON.parse(localStorage.getItem(key) ?? '{}'));
@@ -32,18 +33,26 @@ const CacheManager = {
     const title = 'title' in details ? details.title : details.name;
     const thumbnailUris =
       'thumbnailUris' in details ? details.thumbnailUris : details.imgs.map(i => i.url);
-    const informations = 'informations' in details ? details.informations : [];
+    const informations =
+      'informations' in details ? { ...details.informations, reservationSystem: null } : [];
+    const practice =
+      'practice' in details
+        ? details.practice
+        : {
+            pictogram: details.category.pictogramUri,
+            name: details.category.label,
+          };
 
     localStorage.setItem(
       `${PATTER_LOCAL_STORAGE}${details.id}`,
       JSON.stringify({
-        description: details.description,
         title,
         type,
         id: details.id,
         place: details.place,
         thumbnailUris,
         informations,
+        practice,
       }),
     );
 

@@ -20,7 +20,8 @@ export const useTileLayer = (
   isSatelliteLayerAvailable: boolean;
 } => {
   const mapConfig = getMapConfig();
-  const isSatelliteLayerAvailable = mapConfig.mapSatelliteLayerUrl !== undefined;
+  const isSatelliteLayerAvailable =
+    mapConfig.mapSatelliteLayerUrl !== undefined && navigator.onLine;
   const [map, setMap] = useState<Map | null>(null);
 
   const intl = useIntl();
