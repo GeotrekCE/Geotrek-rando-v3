@@ -73,6 +73,8 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
   });*/
 
   const recenter = () => {
+    const minZoom = Math.min(...(mapConfig?.zoomAvailableOffline ?? []));
+    map.setZoom(minZoom);
     map.fitBounds(center);
   };
 
