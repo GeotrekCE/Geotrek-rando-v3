@@ -1,10 +1,10 @@
 import { AlertTriangle } from 'components/Icons/AlertTriangle';
+import { Printer } from 'components/Icons/Printer';
 import { DetailsButton } from 'components/pages/details/components/DetailsButton';
 import Report from 'components/Report/Report';
 import React, { useState } from 'react';
 
 import { Download } from 'components/Icons/Download';
-import { Printer } from 'components/Icons/Printer';
 import { Details } from 'modules/details/interface';
 import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
 import { getGlobalConfig } from '../../../../../modules/utils/api.config';
@@ -51,15 +51,6 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
       ),
       value: details.kmlUri,
     });
-  if ('pdfUri' in details && details.pdfUri !== undefined)
-    dropdownButtonOptions.push({
-      label: (
-        <div className={'flex items-center'}>
-          <Printer className="text-primary1 m-2" size={size} /> PDF
-        </div>
-      ),
-      value: details.pdfUri,
-    });
 
   return (
     <div
@@ -81,6 +72,12 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
       )}
 
       <div className="flex space-x-4">
+        {details.pdfUri && (
+          <DetailsButton url={details.pdfUri}>
+            <Printer size={30} />
+          </DetailsButton>
+        )}
+
         {dropdownButtonOptions.length > 0 && (
           <DetailsButtonDropdown options={dropdownButtonOptions}>
             <Download className="text-primary1" size={size} />

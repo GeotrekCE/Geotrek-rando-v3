@@ -3,6 +3,7 @@ import { Layout } from 'components/Layout/Layout';
 import { Link } from 'components/Link';
 import { NextPage } from 'next';
 import { FormattedMessage } from 'react-intl';
+import { routes } from 'services/routes';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -42,11 +43,9 @@ const OfflineFallback: NextPage = () => {
       <Spacer />
 
       <Container>
-        <Link href={'/offline'}>
-          <Button>
-            <FormattedMessage id={'page.back'} />
-          </Button>
-        </Link>
+        <Button onClick={() => window.open(routes.OFFLINE, '_self')}>
+          <FormattedMessage id={'page.goToOffline'} />
+        </Button>
       </Container>
     </Layout>
   );

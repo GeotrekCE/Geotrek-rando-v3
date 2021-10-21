@@ -57,17 +57,22 @@ In json files, you can just override the primary keys you need. You have to over
   - You can also update the map layers. There are two map layers available:
 
     - `mapClassicLayerUrl` for the map version
+    - `mapClassicLayerUrlOffline` for the map version in offline mode
     - `mapSatelliteLayerUrl` for the satellite version. It is optional, so if you want to have only one available map background, you can add `mapSatelliteLayerUrl: undefined`. This will remove the button which allows the user to switch between two map backgrounds.
 
+  - `zoomAvailableOffline` allows you to define the zoom modes allowed in offline mode. This allows you to control the amount of disk space required when caching. Default `[13,14,15]`
+
 - `redirects.json` to define URL rewriting for your instance. For example, you can use this customization to redirect old URL style (Geotrek-rando V2) to the new URL style (Geotrek-rando V3) or to redirect old URL to a new URL after changing the name of a hike in the backend.
+
   - In `rules`, you can define all the rules needed to redirect clients
+
     - `source`: must match to the old URL. Use the wildcard `*` to redirect a subdirectory. Use `:varname` to forward a variable to the destination
     - `destination`: must match to the new URL. Use `:varname` to inject a variable captured in the old URL
     - `locale`: This can be `undefined` or `false`. This argument specifies if the server must detect automatically the locale or if the rule specifies itself the locale used. Default to `undefined`
     - `permanent`: Set to `true` if the redirection is permanent. Set to `false` if the redirection is temporally. Default to `false`
 
     Examples :
-    
+
     ```json
     {
       "rules": [

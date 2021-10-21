@@ -6,16 +6,20 @@ There are 2 caching strategies at work on this project.
 
 The first one is the responsibility of the service worker. It handles the caching from the web browser of routes and urls that are called from the end user's machine. This is the mechanism allowing the site to be reached offline.
 
-The configuration of this cache is handled in the `frontend/cache.js` file.
+The configuration of this cache is handled in the `frontend/cache.js` file and in the `frontend/src/worker/index.js` file.
 We use three different strategies here:
 
 ### Network First
 
-This is the main strategy involved with offline support. We use it for the regular pages, API calls and map tiles. These contents are always queried from the network unless it is unavailable.
+This is the main strategy involved with offline support. We use it for the regular pages, API calls. These contents are always queried from the network unless it is unavailable.
 
-They are stored in separated categories, each page has its own category (search, trek, touristic content) and can cache up to 32 occurence each. The API calls and map tiles are stored in the "other" categoy which can host up to 256 entries, when this category reaches 256 entries, the first ones will be poped out of the cache to keep storing the new content.
+They are stored in separated categories, each page has its own category (search, content, images, ...) and can cache up to 32 occurence each. The API calls are stored in the "other" category which can host up to 256 entries, when this category reaches 256 entries, the first ones will be poped out of the cache to keep storing the new content.
 
-When constantly unable to reach the network, these resources will appear as "stale" after a week.
+The map tiles is cached by the plugin [leaflet.offline](https://github.com/allartk/leaflet.offline) in an indexed database. Each content store tiles with the id of the content to keep a link and remove the tiles later.
+
+Content page is cached in the Cache Storage in the "trek-pages" category. In addition, there is a resume in the local storage to fill the /offline page.
+
+When constantly unable to reach the network, these resources will appear as "stale" after 90 days.
 
 ![Network First Strategy](../assets/NetworkFirstStrategy.png)
 

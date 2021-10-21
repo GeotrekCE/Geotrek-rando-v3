@@ -5,7 +5,7 @@
     "seeMore": "En savoir plus",
     "favorites": "Favoris",
     "goToSearch": "Recherche",
-    "offline": "Contenus Hors ligne"
+    "offline": "Contenus hors ligne"
   },
   "home": {
     "title": "Geotrek-rando",
@@ -29,7 +29,8 @@
   "page": {
     "back": "Retour",
     "api-to-translate-example": "Ce message est traduit en utilisant directement l'API react-intl",
-    "not-found": "Cette page est introuvable"
+    "not-found": "Cette page est introuvable",
+    "goToOffline": "Afficher les contenus hors ligne"
   },
   "search": {
     "title": "Recherche",
@@ -144,7 +145,7 @@
   },
   "offline": {
     "number": "{count} contenus accessibles sans connexion internet",
-    "presentation": "Pour profiter de vos itinéraires sans vous soucier de votre réseau.",
+    "presentation": "Pour profiter de vos éléments sans vous soucier de votre réseau.",
     "explain": "Embarquer cet élément afin d'y avoir accès hors connexion",
     "explainAvailable": "Cet élément est disponible hors connexion",
     "title": "Mode hors ligne",
