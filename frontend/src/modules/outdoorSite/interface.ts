@@ -9,46 +9,53 @@ import {
   RawPolygonGeometry,
 } from 'modules/interface';
 
-export interface RawOutdoorCourse {
+export interface RawOutdoorSite {
   id: string;
   attachments: RawAttachment[];
   name: string;
   geometry: RawPointGeometry2D | RawPolygonGeometry | RawLineStringGeometry2D | null;
 }
 
-interface RawOutdoorCourseDetailsProperties extends RawOutdoorCourse {
+interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
   advice?: string;
+  ambiance?: string;
+  children?: string;
   description?: string;
-  duration?: number;
-  equipment?: string;
-  gear?: string;
-  height?: number;
-  length?: number;
-  max_elevation?: number;
-  min_elevation?: number;
-  ratings?: any;
-  ratings_description?: string;
-  site: number;
-  structure: number;
-  type: number;
-  url: string;
+  description_teaser?: string;
+  information_desks?: number[];
+  labels?: number[];
+  managers?: number[];
+  orientation?: string[];
+  period?: string;
+  parent?: string;
+  practice?: number;
+  ratings?: number[];
+  sector?: string;
+  source?: number[];
+  structure?: number;
+  themes?: number[];
+  type?: number;
+  url?: string;
+  courses?: string;
+  web_links?: number[];
+  wind?: string[];
 }
 
-export interface RawOutdoorCourseDetails extends RawOutdoorCourse {
+export interface RawOutdoorSiteDetails extends RawOutdoorSite {
   id: string;
   geometry: RawPointGeometry2D | RawPolygonGeometry | RawLineStringGeometry2D | null;
   bbox: number[];
-  properties: RawOutdoorCourseDetailsProperties;
+  properties: RawOutdoorSiteDetailsProperties;
 }
 
-export interface OutdoorCourse {
+export interface OutdoorSite {
   id: string;
   name: string;
   attachments: Attachment[];
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry | null;
 }
 
-export interface OutdoorCourseDetails extends OutdoorCourse {
+export interface OutdoorSiteDetails extends OutdoorSite {
   description?: string;
   bbox: Bbox;
 }

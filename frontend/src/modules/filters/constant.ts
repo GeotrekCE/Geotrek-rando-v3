@@ -1,5 +1,6 @@
 export const PRACTICE_ID = 'practices';
 export const CATEGORY_ID = 'categories';
+export const OUTDOOR_ID = 'outdoor';
 export const THEME_ID = 'themes';
 export const CITY_ID = 'cities';
 export const DISTRICT_ID = 'districts';

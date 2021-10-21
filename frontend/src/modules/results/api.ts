@@ -37,3 +37,11 @@ export const fetchTouristicContentResultsNumber = (
     .query({ ...query, fields: 'id', ...portalsFilter })
     .get()
     .json();
+
+export const fetchOutdoorCoursesResultsNumber = (
+  query: APIQuery,
+): Promise<APIResponseForList<{ id: number }>> =>
+  GeotrekAPI.url('/outdoor_courses')
+    .query({ ...query, fields: 'id', ...portalsFilter })
+    .get()
+    .json();
