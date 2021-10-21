@@ -27,7 +27,8 @@
   },
   "page": {
     "back": "Ritorno",
-    "api-to-translate-example": "Questo messaggio è tradotto usando direttamente l'API react-intl"
+    "api-to-translate-example": "Questo messaggio è tradotto usando direttamente l'API react-intl",
+    "goToOffline": "Visualizzazione di contenuti offline"
   },
   "search": {
     "title": "Ricerca",
@@ -138,5 +139,22 @@
   },
   "error": {
     "missing": "Il modulo non è completo"
+  },
+  "offline": {
+    "number": "{count} contenuto accessibile senza una connessione internet",
+    "presentation": "Per godersi i propri percorsi senza preoccuparsi della rete.",
+    "explain": "Incorpora questo articolo per accedervi offline",
+    "explainAvailable": "Questo articolo è disponibile offline",
+    "title": "Modalità offline",
+    "download": "Imbarco",
+    "isInCache": "Questo articolo è disponibile offline.",
+    "downloadInProgress": "Download in corso. Si prega di attendere",
+    "not-available": "Questo contenuto non è disponibile offline."
+  },
+  "actions": {
+    "cancel": "Cancella",
+    "close": "Chiudere",
+    "remove": "Cancellare",
+    "confirmRemove": "Sei sicuro di voler rimuovere questo elemento?"
   }
 }

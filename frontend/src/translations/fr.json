@@ -29,7 +29,8 @@
   "page": {
     "back": "Retour",
     "api-to-translate-example": "Ce message est traduit en utilisant directement l'API react-intl",
-    "not-found": "Cette page est introuvable"
+    "not-found": "Cette page est introuvable",
+    "goToOffline": "Afficher les contenus hors ligne"
   },
   "search": {
     "title": "Recherche",

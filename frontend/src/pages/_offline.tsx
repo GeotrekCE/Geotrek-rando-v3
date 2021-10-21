@@ -44,7 +44,7 @@ const OfflineFallback: NextPage = () => {
       <Container>
         <Link href={'/offline'}>
           <Button>
-            <FormattedMessage id={'page.back'} />
+            <FormattedMessage id={'page.goToOffline'} />
           </Button>
         </Link>
       </Container>

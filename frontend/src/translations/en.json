@@ -20,7 +20,8 @@
   },
   "page": {
     "back": "Back",
-    "api-to-translate-example": "This message is translated using directly react-intl API"
+    "api-to-translate-example": "This message is translated using directly react-intl API",
+    "goToOffline": "Show offline content"
   },
   "header": {
     "menu": "Menu",
@@ -140,8 +141,20 @@
     "missing": "The form is not complete"
   },
   "offline": {
-    "number": "{count} contenus accessibles sans connexion internet",
-    "presentation": "Pour profiter de vos itinéraires sans vous soucier de votre réseau.",
-    "download": "Download"
+    "number": "{count} contents accessible without an internet connection",
+    "presentation": "To enjoy your routes without worrying about your network.",
+    "explain": "Embed this item to access it offline",
+    "explainAvailable": "This item is available offline",
+    "title": "Offline content",
+    "download": "Embed",
+    "isInCache": "This item is available offline.",
+    "downloadInProgress": "Download in progress. Please wait",
+    "not-available": "This content is not available offline."
+  },
+  "actions": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "remove": "Remove",
+    "confirmRemove": "Are you sure you want to remove this element?"
   }
 }
