@@ -1,3 +1,5 @@
+import { Printer } from 'components/Icons/Printer';
+import { DetailsButton } from 'components/pages/details/components/DetailsButton';
 import { DetailsDownloadIcons } from 'components/pages/details/components/DetailsDownloadIcons';
 import React, { MutableRefObject } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -53,6 +55,7 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ sectionsReferences
           </div>
         ))}
       </div>
+
       <DetailsDownloadIcons details={details} type={'TREK'} />
     </div>
   );
