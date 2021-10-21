@@ -142,7 +142,7 @@
   },
   "offline": {
     "number": "{count} contenuto accessibile senza una connessione internet",
-    "presentation": "Per godersi i propri percorsi senza preoccuparsi della rete.",
+    "presentation": "Per godere dei tuoi elementi senza preoccuparti della tua rete.",
     "explain": "Incorpora questo articolo per accedervi offline",
     "explainAvailable": "Questo articolo è disponibile offline",
     "title": "Modalità offline",

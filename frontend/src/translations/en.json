@@ -142,7 +142,7 @@
   },
   "offline": {
     "number": "{count} contents accessible without an internet connection",
-    "presentation": "To enjoy your routes without worrying about your network.",
+    "presentation": "To enjoy your items without worrying about your network.",
     "explain": "Embed this item to access it offline",
     "explainAvailable": "This item is available offline",
     "title": "Offline content",
