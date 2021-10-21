@@ -232,7 +232,7 @@ Object {
               <span
                 class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
               >
-                Contenus Hors ligne
+                Contenus hors ligne
               </span>
             </nav>
           </div>
@@ -497,7 +497,7 @@ Object {
             <span
               class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
             >
-              Contenus Hors ligne
+              Contenus hors ligne
             </span>
           </nav>
         </div>
