@@ -126,7 +126,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         id="details_cover"
                         className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                       >
-                        {details.imgs.length > 1 ? (
+                        {details.imgs.length > 1 && navigator && navigator?.onLine ? (
                           <DetailsCoverCarousel
                             attachments={details.imgs}
                             onClickImage={toggleFullscreen}

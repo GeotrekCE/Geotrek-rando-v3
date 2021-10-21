@@ -1,5 +1,5 @@
 import { AlertTriangle } from 'components/Icons/AlertTriangle';
-import {Printer} from "components/Icons/Printer"
+import { Printer } from 'components/Icons/Printer';
 import { DetailsButton } from 'components/pages/details/components/DetailsButton';
 import Report from 'components/Report/Report';
 import React, { useState } from 'react';
