@@ -2,7 +2,7 @@ import { getTouristicContentCategories } from 'modules/touristicContentCategory/
 import { getActivities } from 'modules/activities/connector';
 import { getDifficulties } from 'modules/filters/difficulties';
 import { getThemes } from 'modules/filters/theme/connector';
-import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
+import { OUTDOOR_ID, CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
 import { QueryFilterState } from 'components/pages/search/utils';
 import { fetchTouristicContentResult } from 'modules/touristicContent/api';
 import { getGlobalConfig } from 'modules/utils/api.config';
@@ -12,6 +12,7 @@ import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
 
 import { adaptTrekResultList } from './adapter';
 import {
+  fetchOutdoorCoursesResultsNumber,
   fetchTouristicContentResultsNumber,
   fetchTrekResult,
   fetchTrekResults,
@@ -52,12 +53,18 @@ export const getSearchResults = async (
     const isPracticeSelected = practiceFilter ? practiceFilter.selectedOptions.length > 0 : false;
     const serviceFilter = filtersState.find(({ id }) => id === CATEGORY_ID);
     const isServiceSelected = serviceFilter ? serviceFilter.selectedOptions.length > 0 : false;
+    const outdoorFilter = filtersState.find(({ id }) => id === OUTDOOR_ID);
+    const isOutdoorSelected = outdoorFilter ? outdoorFilter.selectedOptions.length > 0 : false;
 
-    const shouldFetchTreks = !isServiceSelected || isPracticeSelected;
-    const shouldFetchTouristicContents = !isPracticeSelected || isServiceSelected;
+    const shouldFetchTreks = (!isServiceSelected && !isOutdoorSelected) || isPracticeSelected;
+    const shouldFetchTouristicContents =
+      (!isPracticeSelected && !isOutdoorSelected) || isServiceSelected;
+    const shouldFetchOutdoorCourses =
+      (!isPracticeSelected && !isServiceSelected) || isOutdoorSelected;
 
     const trekFilters = formatTrekFiltersToUrlParams(filtersState);
     const touristicContentFilter = formatTouristicContentFiltersToUrlParams(filtersState);
+    const outdoorCoursesFilter = formatOutdoorCourseFiltersToUrlParams(filtersState);
 
     const textFilter = formatTextFilter(textFilterState);
 
@@ -85,10 +92,25 @@ export const getSearchResults = async (
           ...bboxFilter,
         })
       : emptyResultPromise;
+    const getOutdoorCoursesCountPromise = shouldFetchOutdoorCourses
+      ? fetchOutdoorCoursesResultsNumber({
+          language,
+          page_size: 1,
+          page: 1,
+          ...touristicContentFilter,
+          ...textFilter,
+          ...bboxFilter,
+        })
+      : emptyResultPromise;
 
-    const [{ count: treksCount }, { count: touristicContentsCount }] = await Promise.all([
+    const [
+      { count: treksCount },
+      { count: touristicContentsCount },
+      { count: outdoorCoursesCount },
+    ] = await Promise.all([
       getTreksCountPromise,
       getTouristicContentsCountPromise,
+      getOutdoorCoursesCountPromise,
     ]);
 
     // Then we prepare the content queries with empty array if the page is null, meaning we reached the end of the pagination for this ressource
