@@ -3,7 +3,7 @@
   "mapResultsPageSize": 250,
   "maxPoiPerPage": 50,
   "maxTouristicContentPerPage": 50,
-  "enableSensitiveAreas": true,
+  "enableSensitiveAreas": false,
   "portalIds": [],
   "apiUrl": "https://geotrekdemo.ecrins-parcnational.fr/api/v2",
   "googleAnalyticsId": "G-8FSV2N4FXN",

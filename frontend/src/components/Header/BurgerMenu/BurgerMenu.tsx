@@ -53,6 +53,10 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
         title={intl.formatMessage({ id: 'header.goToSearch' })}
         onClick={() => window.open(routes.SEARCH, '_self')}
       />
+      <BurgerMenuSection
+        title={intl.formatMessage({ id: 'header.offline' })}
+        onClick={() => window.open(routes.OFFLINE, '_self')}
+      />
     </Slide>
   );
 };

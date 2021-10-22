@@ -4,7 +4,8 @@
     "language": "Langue",
     "seeMore": "En savoir plus",
     "favorites": "Favoris",
-    "goToSearch": "Recherche"
+    "goToSearch": "Recherche",
+    "offline": "Contenus hors ligne"
   },
   "home": {
     "title": "Geotrek-rando",
@@ -28,7 +29,8 @@
   "page": {
     "back": "Retour",
     "api-to-translate-example": "Ce message est traduit en utilisant directement l'API react-intl",
-    "not-found": "Cette page est introuvable"
+    "not-found": "Cette page est introuvable",
+    "goToOffline": "Afficher les contenus hors ligne"
   },
   "search": {
     "title": "Recherche",
@@ -140,5 +142,22 @@
   },
   "error": {
     "missing": "Le formulaire n'est pas complet"
+  },
+  "offline": {
+    "number": "{count} contenus accessibles sans connexion internet",
+    "presentation": "Pour profiter de vos éléments sans vous soucier de votre réseau.",
+    "explain": "Embarquer cet élément afin d'y avoir accès hors connexion",
+    "explainAvailable": "Cet élément est disponible hors connexion",
+    "title": "Mode hors ligne",
+    "download": "Embarquer",
+    "isInCache": "Cet élément est disponible hors ligne.",
+    "downloadInProgress": "Téléchargement en cours. Veuillez patienter",
+    "not-available": "Ce contenu n'est pas disponible hors connexion."
+  },
+  "actions": {
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "remove": "Supprimer",
+    "confirmRemove": "Etes vous sûr de vouloir supprimer cet élément?"
   }
 }

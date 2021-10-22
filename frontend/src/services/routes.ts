@@ -4,4 +4,5 @@ export const routes = {
   DETAILS: '/trek',
   TOURISTIC_CONTENT: '/service',
   FLAT_PAGE: '/information',
+  OFFLINE: '/offline',
 } as const;

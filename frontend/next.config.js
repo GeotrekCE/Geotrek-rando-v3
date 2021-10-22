@@ -43,6 +43,9 @@ module.exports = withPlugins(plugins, {
   pwa: {
     dest: 'public',
     runtimeCaching: runtimeCachingStrategy,
+    fallbacks: {
+      document: '/_offline',
+    },
   },
   /**
    * environment variables that will be shared for the client and server-side

@@ -1,11 +1,15 @@
 import Dropdown, { Option } from 'react-dropdown';
 
 interface DetailsButtonDropdownProps {
-  options: Array<Option>;
+  options: Array<OptionExtended>;
   children: JSX.Element;
 }
 
-const onChange = (v: Option) => {
+interface OptionExtended extends Option {
+  onClick?: () => void;
+}
+
+const onChange = (v: OptionExtended) => {
   const link = document.createElement('a');
   link.setAttribute('href', v.value);
   document.body.appendChild(link);

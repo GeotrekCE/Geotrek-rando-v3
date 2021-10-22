@@ -1,4 +1,4 @@
-import L from 'leaflet';
+import L, { LatLngBoundsExpression } from 'leaflet';
 import { getMapConfig } from 'components/Map/config';
 import { Map } from 'leaflet';
 import { TileLayerType } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
@@ -7,14 +7,21 @@ import { useIntl } from 'react-intl';
 
 require('leaflet.locatecontrol');
 import 'leaflet.locatecontrol/dist/L.Control.Locate.min.css';
+import injectOfflineMode from 'services/offline/injectOfflineMode';
 
-export const useTileLayer = (): {
+let controlSave: any;
+
+export const useTileLayer = (
+  id?: number,
+  center?: LatLngBoundsExpression,
+): {
   setMapInstance: (newMap: Map) => void;
   updateTileLayer: (newTileLayerType: TileLayerType) => void;
   isSatelliteLayerAvailable: boolean;
 } => {
   const mapConfig = getMapConfig();
-  const isSatelliteLayerAvailable = mapConfig.mapSatelliteLayerUrl !== undefined;
+  const isSatelliteLayerAvailable =
+    mapConfig.mapSatelliteLayerUrl !== undefined && navigator.onLine;
   const [map, setMap] = useState<Map | null>(null);
 
   const intl = useIntl();
@@ -36,6 +43,8 @@ export const useTileLayer = (): {
 
   const setMapInstance = (newMap: Map) => {
     setMap(newMap);
+
+    if (id && center) controlSave = injectOfflineMode(newMap, id, center);
 
     L.control
       // @ts-ignore no type available in this plugin

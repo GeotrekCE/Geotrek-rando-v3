@@ -126,7 +126,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         id="details_cover"
                         className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                       >
-                        {details.imgs.length > 1 ? (
+                        {details.imgs.length > 1 && navigator && navigator?.onLine ? (
                           <DetailsCoverCarousel
                             attachments={details.imgs}
                             onClickImage={toggleFullscreen}
@@ -158,7 +158,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         title={details.title}
                         teaser={details.description_teaser}
                         ambiance={details.ambiance}
+                        details={details}
                         trekFamily={trekFamily ?? undefined}
+                        type={'TREK'}
                         id={id}
                       />
                     </div>
@@ -468,7 +470,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
             {isMobile && (
               <MobileMapContainer
                 className={`desktop:hidden fixed right-0 left-0 h-full z-map ${
-                  mobileMapState === 'HIDDEN' ? 'hidden' : 'flex'
+                  mobileMapState === 'HIDDEN' ? 'invisible' : 'flex'
                 }`}
                 displayState={mobileMapState}
               >

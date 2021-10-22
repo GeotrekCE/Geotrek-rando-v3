@@ -1,5 +1,17 @@
 # Changelog
 
+3.4.0 (2021-10-22)
+------------------
+
+**✨ Improvements**
+
+* Explicit and manual offline content download - Texts, images and map tiles (#287)
+* Add a page listing offline contents on mobile version (#287)
+* Add a redirection page when trying to access an unavailable offline page (#287)
+* Move back PDF button and open it in a new tab
+* Separate types values of services with commas (by @dtrucs)
+* Set ``enableSensitiveAreas`` setting default value to ``false``
+
 3.3.0 (2021-10-12)
 ------------------
 
