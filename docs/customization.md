@@ -57,7 +57,7 @@ In json files, you can just override the primary keys you need. You have to over
   - You can also update the map layers. There are two map layers available:
 
     - `mapClassicLayerUrl` for the map version
-    - `mapClassicLayerUrlOffline` for the map version in offline mode
+    - `mapClassicLayerUrlOffline` for the map version in offline mode (if not defined `mapClassicLayerUrl` will be used in offline mode)
     - `mapSatelliteLayerUrl` for the satellite version. It is optional, so if you want to have only one available map background, you can add `mapSatelliteLayerUrl: undefined`. This will remove the button which allows the user to switch between two map backgrounds.
 
   - `zoomAvailableOffline` allows you to define the zoom modes allowed in offline mode. This allows you to control the amount of disk space required when caching. Default `[13,14,15]`
