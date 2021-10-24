@@ -15,7 +15,7 @@ Examples of customizations are available in https://github.com/GeotrekCE/Geotrek
 
 In json files, you can just override the primary keys you need. You have to override primary keys globally.
 
-- `global.json` (example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/global.json) to define :
+- `global.json` (default value in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/global.json) to define :
 
   - `searchResultsPageSize`, `mapResultsPageSize`: used to limit the sizes of results per page when fetching API
   - `maxPoiPerPage`: max number of point of interest (POI) displayed on a single trek page
@@ -34,7 +34,7 @@ In json files, you can just override the primary keys you need. You have to over
   - `enableReport`: to enable report form in trek detail pages
   - `enableSearchByMap`: to enable searching by map displayed area (bbox)
 
-- `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/header.json)
+- `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
 
 - `home.json` to define homepage settings. You can define blocks to display and trek suggestion block with trek ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
 
