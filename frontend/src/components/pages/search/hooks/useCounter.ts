@@ -9,12 +9,13 @@ interface Args {
 interface CountResult {
   treksCount: number;
   touristicContentsCount: number;
+  outdoorSitesCount: number;
 }
 
 const useCounter = ({ language }: Args): CountResult => {
   const result = useQuery(
     ['counter'],
-    ({ pageParam = { treks: 1, touristicContents: 1 } }) =>
+    ({ pageParam = { treks: 1, touristicContents: 1, outdoorSites: 1 } }) =>
       getSearchResults(
         { filtersState: [], textFilterState: null, bboxState: null },
         pageParam,
@@ -30,6 +31,7 @@ const useCounter = ({ language }: Args): CountResult => {
   return {
     treksCount: result?.data?.resultsNumberDetails?.treksCount ?? 0,
     touristicContentsCount: result?.data?.resultsNumberDetails?.touristicContentsCount ?? 0,
+    outdoorSitesCount: result?.data?.resultsNumberDetails?.outdoorSitesCount ?? 0,
   };
 };
 

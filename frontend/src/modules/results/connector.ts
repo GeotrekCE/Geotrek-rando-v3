@@ -9,10 +9,13 @@ import { getGlobalConfig } from 'modules/utils/api.config';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { getCities } from 'modules/city/connector';
 import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
+import { adaptOutdoorSites } from '../outdoorSite/adapter';
+import { fetchOutdoorSites } from '../outdoorSite/api';
+import { OutdoorSite } from '../outdoorSite/interface';
 
 import { adaptTrekResultList } from './adapter';
 import {
-  fetchOutdoorCoursesResultsNumber,
+  fetchOutdoorSitesResultsNumber,
   fetchTouristicContentResultsNumber,
   fetchTrekResult,
   fetchTrekResults,
@@ -22,6 +25,7 @@ import { SearchResults, TrekResult } from './interface';
 import {
   extractNextPageId,
   formatBboxFilter,
+  formatOutdoorSiteFiltersToUrlParams,
   formatTextFilter,
   formatTouristicContentFiltersToUrlParams,
   formatTrekFiltersToUrlParams,
@@ -43,6 +47,7 @@ export const getSearchResults = async (
   pages: {
     treks: number | null;
     touristicContents: number | null;
+    outdoorSites: number | null;
   },
   language: string,
 ): Promise<SearchResults> => {
@@ -54,17 +59,17 @@ export const getSearchResults = async (
     const serviceFilter = filtersState.find(({ id }) => id === CATEGORY_ID);
     const isServiceSelected = serviceFilter ? serviceFilter.selectedOptions.length > 0 : false;
     const outdoorFilter = filtersState.find(({ id }) => id === OUTDOOR_ID);
-    const isOutdoorSelected = outdoorFilter ? outdoorFilter.selectedOptions.length > 0 : false;
+    const isOutdoorSiteSelected = outdoorFilter ? outdoorFilter.selectedOptions.length > 0 : false;
 
-    const shouldFetchTreks = (!isServiceSelected && !isOutdoorSelected) || isPracticeSelected;
+    const shouldFetchTreks = (!isServiceSelected && !isOutdoorSiteSelected) || isPracticeSelected;
     const shouldFetchTouristicContents =
-      (!isPracticeSelected && !isOutdoorSelected) || isServiceSelected;
-    const shouldFetchOutdoorCourses =
-      (!isPracticeSelected && !isServiceSelected) || isOutdoorSelected;
+      (!isPracticeSelected && !isOutdoorSiteSelected) || isServiceSelected;
+    const shouldFetchOutdoorSites =
+      (!isPracticeSelected && !isServiceSelected) || isOutdoorSiteSelected;
 
     const trekFilters = formatTrekFiltersToUrlParams(filtersState);
     const touristicContentFilter = formatTouristicContentFiltersToUrlParams(filtersState);
-    const outdoorCoursesFilter = formatOutdoorCourseFiltersToUrlParams(filtersState);
+    const outdoorSiteFilter = formatOutdoorSiteFiltersToUrlParams(filtersState);
 
     const textFilter = formatTextFilter(textFilterState);
 
@@ -92,8 +97,8 @@ export const getSearchResults = async (
           ...bboxFilter,
         })
       : emptyResultPromise;
-    const getOutdoorCoursesCountPromise = shouldFetchOutdoorCourses
-      ? fetchOutdoorCoursesResultsNumber({
+    const getOutdoorSitesCountPromise = shouldFetchOutdoorSites
+      ? fetchOutdoorSitesResultsNumber({
           language,
           page_size: 1,
           page: 1,
@@ -103,15 +108,12 @@ export const getSearchResults = async (
         })
       : emptyResultPromise;
 
-    const [
-      { count: treksCount },
-      { count: touristicContentsCount },
-      { count: outdoorCoursesCount },
-    ] = await Promise.all([
-      getTreksCountPromise,
-      getTouristicContentsCountPromise,
-      getOutdoorCoursesCountPromise,
-    ]);
+    const [{ count: treksCount }, { count: touristicContentsCount }, { count: outdoorSitesCount }] =
+      await Promise.all([
+        getTreksCountPromise,
+        getTouristicContentsCountPromise,
+        getOutdoorSitesCountPromise,
+      ]);
 
     // Then we prepare the content queries with empty array if the page is null, meaning we reached the end of the pagination for this ressource
 
@@ -149,6 +151,23 @@ export const getSearchResults = async (
             results: [],
           });
 
+    const getOutdoorSitesPromise =
+      pages.outdoorSites !== null
+        ? fetchOutdoorSites({
+            language,
+            page_size: getGlobalConfig().searchResultsPageSize,
+            page: pages.outdoorSites ?? undefined,
+            ...outdoorSiteFilter,
+            ...textFilter,
+            ...bboxFilter,
+          })
+        : Promise.resolve({
+            count: outdoorSitesCount,
+            next: null,
+            previous: null,
+            results: [],
+          });
+
     // Then we perform the actual call, querying the required hashmaps by the way
 
     const [
@@ -157,6 +176,7 @@ export const getSearchResults = async (
       themes,
       activities,
       rawTouristicContents,
+      rawOutdoorSites,
       touristicContentCategories,
       themeDictionnary,
       cityDictionnary,
@@ -166,10 +186,12 @@ export const getSearchResults = async (
       getThemes(language), // Todo: Find a way to store this hashmap to avoid calling this every time
       getActivities(language), // Todo: Find a way to store this hashmap to avoid calling this every time
       shouldFetchTouristicContents ? getToursticContentsPromise : emptyResultPromise,
+      shouldFetchOutdoorSites ? getOutdoorSitesPromise : emptyResultPromise,
       getTouristicContentCategories(language), // Todo: Find a way to store this hashmap to avoid calling this every time
       getThemes(language),
       getCities(language),
     ]);
+
     const adaptedResultsList: TrekResult[] = adaptTrekResultList({
       resultsList: rawTrekResults.results,
       difficulties,
@@ -185,20 +207,29 @@ export const getSearchResults = async (
       cityDictionnary,
     });
 
+    const adaptedOutdoorSitesList: OutdoorSite[] = adaptOutdoorSites({
+      rawOutdoorSites: rawOutdoorSites.results,
+    });
+
     const nextTreksPage = extractNextPageId(rawTrekResults.next);
     const nextTouristicContentsPage = extractNextPageId(rawTouristicContents.next);
+    const nextOutdoorSitesPage = extractNextPageId(rawOutdoorSites.next);
+
+    console.log('nextOutdoorSitesPage:', nextOutdoorSitesPage);
 
     return {
-      resultsNumber: treksCount + touristicContentsCount,
+      resultsNumber: treksCount + touristicContentsCount + outdoorSitesCount,
       resultsNumberDetails: {
         treksCount,
         touristicContentsCount,
+        outdoorSitesCount,
       },
       nextPages: {
         treks: nextTreksPage,
         touristicContents: nextTouristicContentsPage,
+        outdoorSites: nextOutdoorSitesPage,
       },
-      results: [...adaptedResultsList, ...adaptedTouristicContentsList],
+      results: [...adaptedResultsList, ...adaptedTouristicContentsList, ...adaptedOutdoorSitesList],
     };
   } catch (e) {
     console.error('Error in connector / results', e);

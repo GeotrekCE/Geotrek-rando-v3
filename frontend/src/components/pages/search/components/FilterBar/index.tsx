@@ -6,6 +6,15 @@ import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { colorPalette } from 'stylesheet';
+import {
+  CATEGORY_ID,
+  CITY_ID,
+  DISTRICT_ID,
+  OUTDOOR_ID,
+  PRACTICE_ID,
+  STRUCTURE_ID,
+  THEME_ID,
+} from '../../../../../modules/filters/constant';
 import { FilterState, Option } from '../../../../../modules/filters/interface';
 
 interface Props {
@@ -18,19 +27,19 @@ interface Props {
 
 export const FILTERS_CATEGORIES = [
   {
-    id: 'practices',
+    id: PRACTICE_ID,
     name: <FormattedMessage id={'search.filters.practices'} />,
-    filters: ['practices'],
+    filters: [PRACTICE_ID],
     subFilters: ['difficulty', 'duration', 'length', 'routes', 'ascent', 'accessibilities'],
   },
-  /*{
-    id: 'outdoor',
-    name: <FormattedMessage id={'search.filters.outdoor'} />,
-  },*/
   {
-    id: 'categories',
+    id: OUTDOOR_ID,
+    name: <FormattedMessage id={'search.filters.outdoor'} />,
+  },
+  {
+    id: CATEGORY_ID,
     name: <FormattedMessage id={'search.filters.categories'} />,
-    filters: ['categories'],
+    filters: [CATEGORY_ID],
     subFilters: ['type-services-.+'],
   },
   /*{
@@ -38,14 +47,14 @@ export const FILTERS_CATEGORIES = [
     name: <FormattedMessage id={'search.filters.events'} />,
   },*/
   {
-    id: 'themes',
+    id: THEME_ID,
     name: <FormattedMessage id={'search.filters.themes'} />,
-    filters: ['themes'],
+    filters: [THEME_ID],
   },
   {
     id: 'localization',
     name: <FormattedMessage id={'search.filters.localization'} />,
-    subFilters: ['cities', 'districts', 'structures'],
+    subFilters: [CITY_ID, DISTRICT_ID, STRUCTURE_ID],
   },
 ];
 
@@ -57,7 +66,7 @@ const FilterBarNew: React.FC<Props> = ({
   language,
 }) => {
   const [expanded, setExpanded] = useState<string>('');
-  const { treksCount, touristicContentsCount } = useCounter({ language });
+  const { treksCount, touristicContentsCount, outdoorSitesCount } = useCounter({ language });
 
   return (
     <ClearContainer className="flex items-center shadow-lg bg-white" style={{ zIndex: 20 }}>
@@ -71,8 +80,9 @@ const FilterBarNew: React.FC<Props> = ({
       {FILTERS_CATEGORIES.map(filterField => {
         const handleClick = () => setExpanded(expanded === filterField.id ? '' : filterField.id);
 
-        if (treksCount === 0 && filterField.id === 'practices') return null;
-        if (touristicContentsCount === 0 && filterField.id === 'categories') return null;
+        if (treksCount === 0 && filterField.id === PRACTICE_ID) return null;
+        if (touristicContentsCount === 0 && filterField.id === CATEGORY_ID) return null;
+        if (outdoorSitesCount === 0 && filterField.id === OUTDOOR_ID) return null;
 
         return (
           <FilterField
