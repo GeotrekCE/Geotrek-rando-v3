@@ -53,6 +53,7 @@ export interface OutdoorSite {
   name: string;
   attachments: Attachment[];
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry | null;
+  type: string;
 }
 
 export interface OutdoorSiteDetails extends OutdoorSite {

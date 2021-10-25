@@ -179,6 +179,46 @@ export const formatTouristicContentFiltersToUrlParams = (
   );
 };
 
+export const formatOutdoorSiteFiltersToUrlParams = (
+  filtersState: QueryFilterState[],
+): { [key: string]: string } => {
+  const filters = filtersState.reduce<{ [key: string]: string[] }>(
+    (currentFilters, currentFilterState) => {
+      if (/type-services-.*/.test(currentFilterState.id)) {
+        if (currentFilterState.selectedOptions.length > 0) {
+          return {
+            ...currentFilters,
+            types: [
+              // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+              ...(currentFilters.types ? currentFilters.types : []),
+              ...currentFilterState.selectedOptions,
+            ],
+          };
+        }
+      }
+      if (
+        commonFiltersWithoutTrekSelector.includes(currentFilterState.id) &&
+        currentFilterState.selectedOptions.length > 0
+      ) {
+        return {
+          ...currentFilters,
+          [currentFilterState.id]: currentFilterState.selectedOptions,
+        };
+      }
+      return currentFilters;
+    },
+    {},
+  );
+
+  return Object.keys(filters).reduce(
+    (joinedFilters, key) => ({
+      ...joinedFilters,
+      [key]: filters[key].join(','),
+    }),
+    {},
+  );
+};
+
 /** Extracts nextPageId from nextPageUrl */
 export const extractNextPageId = (nextPageUrl: string | null): number | null => {
   if (nextPageUrl === null) return null;

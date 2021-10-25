@@ -64,12 +64,14 @@ export const useTrekResults = (
         parseTextFilter(textFilterState),
         parseBboxFilter(bboxState),
       ],
-      ({ pageParam = { treks: 1, touristicContents: 1 } }) =>
-        getSearchResults(
-          { filtersState: parsedFiltersState, textFilterState, bboxState },
+      ({ pageParam = { treks: 1, touristicContents: 1, outdoorSites: 1 } }) => {
+        console.log('pageParam:', pageParam);
+        return getSearchResults(
+          {filtersState: parsedFiltersState, textFilterState, bboxState},
           pageParam,
           language,
-        ),
+        )
+      },
       {
         retry: false,
         // We already have a fallback component to allow the user to refetch
@@ -80,7 +82,8 @@ export const useTrekResults = (
         // hasNextPage will be set to false if getNextPageParam returns undefined
         getNextPageParam: lastPageResult =>
           lastPageResult.nextPages.treks !== null ||
-          lastPageResult.nextPages.touristicContents !== null
+          lastPageResult.nextPages.touristicContents !== null ||
+          lastPageResult.nextPages.outdoorSites !== null
             ? lastPageResult.nextPages
             : undefined,
       },
