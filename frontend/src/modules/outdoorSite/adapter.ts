@@ -1,5 +1,7 @@
-import { getAttachments, getThumbnails } from 'modules/utils/adapter';
+import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
+import { fallbackImgUri } from '../trekResult/adapter';
+import { PopupResult, RawTrekPopupResult } from '../trekResult/interface';
 import {
   OutdoorSite,
   OutdoorSiteDetails,
@@ -37,3 +39,12 @@ export const adaptOutdoorSiteDetails = ({
     corner2: { x: rawOutdoorSiteDetails.bbox[2], y: rawOutdoorSiteDetails.bbox[3] },
   },
 });
+
+export const adaptOutdoorSitePopupResults = (rawDetails: RawOutdoorSiteDetails): PopupResult => {
+  console.log('rawDetails:', rawDetails);
+  return {
+    title: rawDetails.properties.name,
+    place: '',
+    imgUrl: getThumbnail(rawDetails.properties.attachments) ?? fallbackImgUri,
+  };
+};

@@ -1,4 +1,11 @@
-import { adaptOutdoorSiteDetails, adaptOutdoorSites } from './adapter';
+import { adaptTrekPopupResults } from '../trekResult/adapter';
+import { fetchTrekPopupResult } from '../trekResult/api';
+import { PopupResult } from '../trekResult/interface';
+import {
+  adaptOutdoorSiteDetails,
+  adaptOutdoorSitePopupResults,
+  adaptOutdoorSites,
+} from './adapter';
 import { fetchOutdoorSiteDetails, fetchOutdoorSites } from './api';
 import { OutdoorSite, OutdoorSiteDetails } from './interface';
 
@@ -15,9 +22,7 @@ export const getOutdoorSiteDetails = async (
   language: string,
 ): Promise<OutdoorSiteDetails> => {
   try {
-    const [rawOutdoorSiteDetails] = await Promise.all([
-      fetchOutdoorSiteDetails({ language }, id),
-    ]);
+    const [rawOutdoorSiteDetails] = await Promise.all([fetchOutdoorSiteDetails({ language }, id)]);
 
     return adaptOutdoorSiteDetails({
       rawOutdoorSiteDetails,
@@ -26,4 +31,13 @@ export const getOutdoorSiteDetails = async (
     console.error('Error in outdoor course connector', e);
     throw e;
   }
+};
+
+export const getOutdoorSitePopupResult = async (
+  id: string,
+  language: string,
+): Promise<PopupResult> => {
+  const rawOutdoorSitePopupResult = await fetchOutdoorSiteDetails({ language }, id);
+
+  return adaptOutdoorSitePopupResults(rawOutdoorSitePopupResult);
 };
