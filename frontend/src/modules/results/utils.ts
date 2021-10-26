@@ -4,6 +4,7 @@ import {
   CATEGORY_ID,
   CITY_ID,
   DISTRICT_ID,
+  OUTDOOR_ID,
   STRUCTURE_ID,
   THEME_ID,
 } from 'modules/filters/constant';
@@ -127,6 +128,7 @@ export const formatTrekFiltersToUrlParams = (
 
 const commonFiltersWithoutTrekSelector = [
   CATEGORY_ID,
+  OUTDOOR_ID,
   THEME_ID,
   CITY_ID,
   DISTRICT_ID,
@@ -196,6 +198,11 @@ export const formatOutdoorSiteFiltersToUrlParams = (
           };
         }
       }
+      if (currentFilterState.id === OUTDOOR_ID)
+        return {
+          ...currentFilters,
+          practices_in_hierarchy: currentFilterState.selectedOptions,
+        };
       if (
         commonFiltersWithoutTrekSelector.includes(currentFilterState.id) &&
         currentFilterState.selectedOptions.length > 0
@@ -205,6 +212,7 @@ export const formatOutdoorSiteFiltersToUrlParams = (
           [currentFilterState.id]: currentFilterState.selectedOptions,
         };
       }
+
       return currentFilters;
     },
     {},
@@ -214,6 +222,7 @@ export const formatOutdoorSiteFiltersToUrlParams = (
     (joinedFilters, key) => ({
       ...joinedFilters,
       [key]: filters[key].join(','),
+      root_sites_only: 'true',
     }),
     {},
   );

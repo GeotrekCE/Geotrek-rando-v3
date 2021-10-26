@@ -22,6 +22,9 @@ import { PageHead } from 'components/PageHead';
 import { FilterState } from 'modules/filters/interface';
 import { SearchMapDynamicComponent } from 'components/Map';
 import { countFiltersSelected } from '../../../modules/filters/utils';
+import { OutdoorSite } from '../../../modules/outdoorSite/interface';
+import { TrekResult } from '../../../modules/results/interface';
+import { TouristicContentResult } from '../../../modules/touristicContent/interface';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
 import { ToggleFilterButton } from './components/ToggleFilterButton';
@@ -85,6 +88,18 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   };
 
   const numberSelected = countFiltersSelected(filtersState, null, null);
+
+  const isTrek = (
+    content: TrekResult | TouristicContentResult | OutdoorSite,
+  ): content is TrekResult => content.type === 'TREK';
+
+  const isTouristicContent = (
+    content: TrekResult | TouristicContentResult | OutdoorSite,
+  ): content is TouristicContentResult => content.type === 'TOURISTIC_CONTENT';
+
+  const isOutdoorSite = (
+    content: TrekResult | TouristicContentResult | OutdoorSite,
+  ): content is OutdoorSite => content.type === 'OUTDOOR_SITE';
 
   return (
     <div id="Search">
@@ -180,7 +195,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                     scrollableTarget="search_resultCardList"
                   >
                     {searchResults?.results.map(searchResult => {
-                      if (searchResult.type === 'TREK')
+                      if (isTrek(searchResult))
                         return (
                           <ResultCard
                             type={searchResult.type}
@@ -201,7 +216,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
                           />
                         );
-                      else if (searchResult.type === 'TOURISTIC_CONTENT')
+                      else if (isTouristicContent(searchResult))
                         return (
                           <ResultCard
                             type={searchResult.type}
@@ -222,14 +237,14 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
                           />
                         );
-                      else if (searchResult.type === 'OUTDOOR_SITE')
+                      else if (isOutdoorSite(searchResult))
                         return (
                           <ResultCard
                             type={searchResult.type}
                             key={searchResult.name}
                             id={`${searchResult.id}`}
                             hoverId={getHoverId(searchResult)}
-                            //place={searchResult.place}
+                            place={'searchResult.place'}
                             title={searchResult.name}
                             tags={[]}
                             thumbnailUris={searchResult.thumbnailUris}

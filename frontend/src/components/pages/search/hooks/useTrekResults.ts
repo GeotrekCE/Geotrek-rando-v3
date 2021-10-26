@@ -67,10 +67,10 @@ export const useTrekResults = (
       ({ pageParam = { treks: 1, touristicContents: 1, outdoorSites: 1 } }) => {
         console.log('pageParam:', pageParam);
         return getSearchResults(
-          {filtersState: parsedFiltersState, textFilterState, bboxState},
+          { filtersState: parsedFiltersState, textFilterState, bboxState },
           pageParam,
           language,
-        )
+        );
       },
       {
         retry: false,

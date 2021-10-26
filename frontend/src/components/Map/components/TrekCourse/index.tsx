@@ -7,7 +7,7 @@ import { useObjectGeometry } from '../../hooks/useTrekGeometry';
 
 interface TrekCourseProps {
   id: number;
-  type: 'TREK' | 'TOURISTIC_CONTENT';
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE';
 }
 
 export const TrekCourse: React.FC<TrekCourseProps> = ({ id, type }) => {

@@ -37,8 +37,6 @@ const SearchMapChildrens: React.FC<PropsType> = props => {
   const { hoveredCardId, points } = useContext(ListAndMapContext);
   const hoveredPoint = points?.find(point => getHoverId(point) === hoveredCardId);
 
-  console.log('points:', points);
-
   return (
     <>
       <ClusterContainer enabled={props.shouldUseClusters ?? false}>
