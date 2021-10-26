@@ -1,7 +1,8 @@
 import { QueryFilterState } from 'components/pages/search/utils';
 import { getActivities } from 'modules/activities/connector';
-import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
+import { CATEGORY_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
 import {
+  formatOutdoorSiteFiltersToUrlParams,
   formatTextFilter,
   formatTouristicContentFiltersToUrlParams,
   formatTrekFiltersToUrlParams,
@@ -10,7 +11,12 @@ import { getTouristicContentCategories } from 'modules/touristicContentCategory/
 import { getGlobalConfig } from 'modules/utils/api.config';
 
 import { generatePageNumbersArray } from 'modules/utils/connector';
-import { adaptTouristicContentMapResults, adaptTrekMapResults } from './adapter';
+import { fetchOutdoorSites } from '../outdoorSite/api';
+import {
+  adaptOutdoorSitesMapResults,
+  adaptTouristicContentMapResults,
+  adaptTrekMapResults,
+} from './adapter';
 import { fetchTouristicContentMapResults, fetchTrekMapResults } from './api';
 import { MapResults } from './interface';
 
@@ -25,12 +31,18 @@ export const getMapResults = async (
     const isPracticeSelected = practiceFilter ? practiceFilter.selectedOptions.length > 0 : false;
     const serviceFilter = filtersState.find(({ id }) => id === CATEGORY_ID);
     const isServiceSelected = serviceFilter ? serviceFilter.selectedOptions.length > 0 : false;
+    const outdoorFilter = filtersState.find(({ id }) => id === OUTDOOR_ID);
+    const isOutdoorSiteSelected = outdoorFilter ? outdoorFilter.selectedOptions.length > 0 : false;
 
-    const shouldFetchTreks = !isServiceSelected || isPracticeSelected;
-    const shouldFetchTouristicContents = !isPracticeSelected || isServiceSelected;
+    const shouldFetchTreks = (!isServiceSelected && !isOutdoorSiteSelected) || isPracticeSelected;
+    const shouldFetchTouristicContents =
+      (!isPracticeSelected && !isOutdoorSiteSelected) || isServiceSelected;
+    const shouldFetchOutdoorSites =
+      (!isPracticeSelected && !isServiceSelected) || isOutdoorSiteSelected;
 
     const trekFilters = formatTrekFiltersToUrlParams(filtersState);
     const touristicContentFilter = formatTouristicContentFiltersToUrlParams(filtersState);
+    const outdoorSiteFilter = formatOutdoorSiteFiltersToUrlParams(filtersState);
 
     const textFilter = formatTextFilter(textFilterState);
 
@@ -83,6 +95,31 @@ export const getMapResults = async (
         ...adaptTouristicContentMapResults({
           mapResults: mapTouristicContentResults,
           touristicContentCategories,
+        }),
+      );
+    }
+
+    if (shouldFetchOutdoorSites) {
+      const rawMapResults = await fetchOutdoorSites({
+        language,
+        page_size: resultsNumber,
+        ...outdoorSiteFilter,
+        ...textFilter,
+      });
+      const mapOutdoorSiteResults = await Promise.all(
+        generatePageNumbersArray(resultsNumber, rawMapResults.count).map(pageNumber =>
+          fetchOutdoorSites({
+            language,
+            page_size: resultsNumber,
+            page: pageNumber,
+            ...outdoorSiteFilter,
+            ...textFilter,
+          }),
+        ),
+      );
+      mapResults.push(
+        ...adaptOutdoorSitesMapResults({
+          mapResults: mapOutdoorSiteResults,
         }),
       );
     }

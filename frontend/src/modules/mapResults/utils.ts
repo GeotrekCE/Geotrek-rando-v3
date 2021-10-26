@@ -1,4 +1,6 @@
+import { RawOutdoorSite } from '../outdoorSite/interface';
 import {
+  RawOutdoorSiteMapResults,
   RawTouristicContentMapResult,
   RawTouristicContentMapResults,
   RawTrekMapResult,
@@ -25,6 +27,14 @@ export const concatTouristicContentMapResults = (
   rawMapResults: RawTouristicContentMapResults[],
 ): RawTouristicContentMapResult[] =>
   rawMapResults.reduce<RawTouristicContentMapResult[]>(
+    (rawResults, currentResult) => [...rawResults, ...currentResult.results],
+    [],
+  );
+
+export const concatOutdoorMapResults = (
+  rawMapResults: RawOutdoorSiteMapResults[],
+): RawOutdoorSite[] =>
+  rawMapResults.reduce<RawOutdoorSite[]>(
     (rawResults, currentResult) => [...rawResults, ...currentResult.results],
     [],
   );

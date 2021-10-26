@@ -39,6 +39,11 @@ export interface RawPolygonGeometry {
   coordinates: RawCoordinate2D[][];
 }
 
+export interface RawGeometryCollection {
+  type: 'GeometryCollection';
+  geometries: Array<RawPolygonGeometry | RawLineStringGeometry2D | RawPointGeometry2D>;
+}
+
 export interface APICallsConfig {
   searchResultsPageSize: number;
   mapResultsPageSize: number;
