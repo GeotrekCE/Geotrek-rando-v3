@@ -38,10 +38,10 @@ export const adaptOutdoorSiteDetails = ({
     corner1: { x: rawOutdoorSiteDetails.bbox[0], y: rawOutdoorSiteDetails.bbox[1] },
     corner2: { x: rawOutdoorSiteDetails.bbox[2], y: rawOutdoorSiteDetails.bbox[3] },
   },
+  thumbnailUris: getThumbnails(rawOutdoorSiteDetails.properties.attachments),
 });
 
 export const adaptOutdoorSitePopupResults = (rawDetails: RawOutdoorSiteDetails): PopupResult => {
-  console.log('rawDetails:', rawDetails);
   return {
     title: rawDetails.properties.name,
     place: '',

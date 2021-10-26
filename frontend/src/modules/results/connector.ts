@@ -2,7 +2,7 @@ import { getTouristicContentCategories } from 'modules/touristicContentCategory/
 import { getActivities } from 'modules/activities/connector';
 import { getDifficulties } from 'modules/filters/difficulties';
 import { getThemes } from 'modules/filters/theme/connector';
-import { OUTDOOR_ID, CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
+import { CATEGORY_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
 import { QueryFilterState } from 'components/pages/search/utils';
 import { fetchTouristicContentResult } from 'modules/touristicContent/api';
 import { getGlobalConfig } from 'modules/utils/api.config';

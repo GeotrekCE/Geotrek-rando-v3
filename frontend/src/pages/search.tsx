@@ -29,7 +29,7 @@ export const getServerSideProps = async (context: any) => {
           textFilterState: initialTextFilter,
           bboxState: null,
         },
-        { treks: 1, touristicContents: 1 },
+        { treks: 1, touristicContents: 1, outdoorSites: 1 },
         context.locale,
       ),
   );

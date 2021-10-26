@@ -7,9 +7,7 @@ const fieldsParams = {
   fields: 'id,attachments,name,geometry',
 };
 
-export const fetchOutdoorSites = (
-  query: APIQuery,
-): Promise<APIResponseForList<RawOutdoorSite>> =>
+export const fetchOutdoorSites = (query: APIQuery): Promise<APIResponseForList<RawOutdoorSite>> =>
   GeotrekAPI.url(`/outdoor_site`)
     .query({ ...query, ...fieldsParams, ...portalsFilter })
     .get()

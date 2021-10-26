@@ -50,10 +50,16 @@ interface TouristicContentProps extends BaseProps {
   informations: TouristicContentDetailsType[];
 }
 
-const isTrek = (content: TrekProps | TouristicContentProps): content is TrekProps =>
-  content.type === 'TREK';
+interface OutdoorSiteProps extends BaseProps {
+  type: 'OUTDOOR_SITE';
+  informations: TouristicContentDetailsType[];
+}
 
-export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => {
+const isTrek = (
+  content: TrekProps | TouristicContentProps | OutdoorSiteProps,
+): content is TrekProps => content.type === 'TREK';
+
+export const ResultCard: React.FC<TrekProps | TouristicContentProps | OutdoorSiteProps> = props => {
   const {
     id,
     hoverId,
