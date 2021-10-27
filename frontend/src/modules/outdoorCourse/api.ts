@@ -4,7 +4,7 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawOutdoorCourse, RawOutdoorCourseDetails } from './interface';
 
 const fieldsParams = {
-  fields: 'id,attachments,name,geometry',
+  fields: 'id,attachments,name,geometry,duration',
 };
 
 export const fetchOutdoorCourses = (
@@ -16,7 +16,7 @@ export const fetchOutdoorCourses = (
     .json();
 
 const fieldsParamsDetails = {
-  fields: `${fieldsParams.fields},advice,description,duration,equipment,gear,height,length,max_elevation,min_elevation,ratings,ratings_description,site,structure,type,url`,
+  fields: `${fieldsParams.fields},advice,description,equipment,gear,height,length,max_elevation,min_elevation,ratings,ratings_description,site,structure,type,url`,
   format: 'geojson',
 };
 

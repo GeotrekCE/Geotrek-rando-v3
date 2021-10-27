@@ -4,7 +4,7 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawOutdoorSite, RawOutdoorSiteDetails } from './interface';
 
 const fieldsParams = {
-  fields: 'id,attachments,name,geometry',
+  fields: 'id,attachments,name,geometry,themes,practice',
 };
 
 export const fetchOutdoorSites = (query: APIQuery): Promise<APIResponseForList<RawOutdoorSite>> =>
@@ -14,7 +14,7 @@ export const fetchOutdoorSites = (query: APIQuery): Promise<APIResponseForList<R
     .json();
 
 const fieldsParamsDetails = {
-  fields: `${fieldsParams.fields},advice,description,duration,equipment,gear,height,length,max_elevation,min_elevation,ratings,ratings_description,site,structure,type,url`,
+  fields: `${fieldsParams.fields},advice,description,description_teaser,ambiance,labels,source,information_desks,web_links,courses`,
   format: 'geojson',
 };
 

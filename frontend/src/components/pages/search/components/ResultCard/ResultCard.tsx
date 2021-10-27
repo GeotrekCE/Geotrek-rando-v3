@@ -55,11 +55,24 @@ interface OutdoorSiteProps extends BaseProps {
   informations: TouristicContentDetailsType[];
 }
 
+interface OutdoorCourseProps extends BaseProps {
+  type: 'OUTDOOR_COURSE';
+  informations: {
+    duration: string | null;
+  };
+}
+
 const isTrek = (
-  content: TrekProps | TouristicContentProps | OutdoorSiteProps,
+  content: TrekProps | TouristicContentProps | OutdoorSiteProps | OutdoorCourseProps,
 ): content is TrekProps => content.type === 'TREK';
 
-export const ResultCard: React.FC<TrekProps | TouristicContentProps | OutdoorSiteProps> = props => {
+const isOutdoorCourse = (
+  content: TrekProps | TouristicContentProps | OutdoorSiteProps | OutdoorCourseProps,
+): content is OutdoorCourseProps => content.type === 'OUTDOOR_COURSE';
+
+export const ResultCard: React.FC<
+  TrekProps | TouristicContentProps | OutdoorSiteProps | OutdoorCourseProps
+> = props => {
   const {
     id,
     hoverId,
@@ -117,28 +130,44 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps | OutdoorSit
                   ))}
               </TagLayout>
             </TagContainer>
-            {isTrek(props) ? (
+            {isOutdoorCourse(props) && (
               <InformationContainer>
                 <InformationLayout>
-                  {props.informations.difficulty !== null && (
-                    <RemoteIconInformation iconUri={props.informations.difficulty.pictogramUri}>
-                      {props.informations.difficulty.label}
-                    </RemoteIconInformation>
-                  )}
-                  {props.informations.duration !== null && (
+                  {props.informations.duration && (
                     <LocalIconInformation icon={Clock}>
                       {props.informations.duration}
                     </LocalIconInformation>
                   )}
-                  <LocalIconInformation icon={CodeBrackets}>
-                    {props.informations.distance}
-                  </LocalIconInformation>
-                  <LocalIconInformation icon={TrendingUp} className="desktop:flex hidden">
-                    {props.informations.elevation}
-                  </LocalIconInformation>
                 </InformationLayout>
               </InformationContainer>
-            ) : (
+            )}
+            {isTrek(props) && (
+              <InformationContainer>
+                <InformationLayout>
+                  {props.informations.difficulty && (
+                    <RemoteIconInformation iconUri={props.informations.difficulty.pictogramUri}>
+                      {props.informations.difficulty.label}
+                    </RemoteIconInformation>
+                  )}
+                  {props.informations.duration && (
+                    <LocalIconInformation icon={Clock}>
+                      {props.informations.duration}
+                    </LocalIconInformation>
+                  )}
+                  {props.informations.distance && (
+                    <LocalIconInformation icon={CodeBrackets}>
+                      {props.informations.distance}
+                    </LocalIconInformation>
+                  )}
+                  {props.informations.elevation && (
+                    <LocalIconInformation icon={TrendingUp} className="desktop:flex hidden">
+                      {props.informations.elevation}
+                    </LocalIconInformation>
+                  )}
+                </InformationLayout>
+              </InformationContainer>
+            )}
+            {!isTrek(props) && !isOutdoorCourse(props) && (
               <InformationContainer>
                 {props.informations.map(
                   ({ label, values }) =>

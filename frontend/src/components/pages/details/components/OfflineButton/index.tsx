@@ -9,12 +9,13 @@ import { Bin } from 'components/Icons/Bin';
 import CacheManager from 'services/offline/CacheManager';
 import { colorPalette } from 'stylesheet';
 import { Details } from '../../../../../modules/details/interface';
+import { OutdoorSite, OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
 import { Button } from '../../../../Button/Button';
 
 interface Props {
-  details: Details | TouristicContentDetails;
-  type: 'TREK' | 'TOURISTIC_CONTENT';
+  details: Details | TouristicContentDetails | OutdoorSiteDetails;
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE';
 }
 
 const OfflineButton: React.FC<Props> = ({ details, type }) => {

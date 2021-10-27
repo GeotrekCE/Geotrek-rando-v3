@@ -246,10 +246,10 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             hoverId={getHoverId(searchResult)}
                             place={'searchResult.place'}
                             title={searchResult.name}
-                            tags={[]}
+                            tags={searchResult.themes}
                             thumbnailUris={searchResult.thumbnailUris}
                             attachments={searchResult.attachments}
-                            //badgeIconUri={searchResult.category.pictogramUri}
+                            badgeIconUri={searchResult.practice?.pictogram}
                             informations={[]}
                             redirectionUrl={generateOutdoorSiteUrl(
                               searchResult.id,
