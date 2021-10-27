@@ -1,5 +1,7 @@
-import { getAttachments } from 'modules/utils/adapter';
+import { getAttachments, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
+import { dataUnits } from '../results/adapter';
+import { formatHours } from '../utils/time';
 import {
   OutdoorCourse,
   OutdoorCourseDetails,
@@ -17,6 +19,8 @@ export const adaptOutdoorCourses = ({
     name: rawOutdoorCourse.name,
     attachments: getAttachments(rawOutdoorCourse.attachments),
     geometry: rawOutdoorCourse.geometry ? adaptGeometry(rawOutdoorCourse.geometry) : null,
+    thumbnailUris: getThumbnails(rawOutdoorCourse.attachments),
+    duration: rawOutdoorCourse.duration ? formatHours(rawOutdoorCourse.duration) : null,
   }));
 
 export const adaptOutdoorCourseDetails = ({
@@ -24,12 +28,11 @@ export const adaptOutdoorCourseDetails = ({
 }: {
   rawOutdoorCourseDetails: RawOutdoorCourseDetails;
 }): OutdoorCourseDetails => ({
-  id: rawOutdoorCourseDetails.id,
-  name: rawOutdoorCourseDetails.properties.name,
-  geometry: rawOutdoorCourseDetails.geometry
-    ? adaptGeometry(rawOutdoorCourseDetails.geometry)
-    : null,
-  attachments: getAttachments(rawOutdoorCourseDetails.properties.attachments),
+  // We use the original adapter
+  ...adaptOutdoorCourses({
+    rawOutdoorCourses: [rawOutdoorCourseDetails.properties as RawOutdoorCourse],
+  })[0],
+  // then we add missing fields
   description: rawOutdoorCourseDetails.properties.description,
   bbox: {
     corner1: { x: rawOutdoorCourseDetails.bbox[0], y: rawOutdoorCourseDetails.bbox[1] },

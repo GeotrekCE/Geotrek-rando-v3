@@ -21,7 +21,7 @@ const CacheManager = {
     type,
   }: {
     details: Details | TouristicContentDetails;
-    type: 'TREK' | 'TOURISTIC_CONTENT';
+    type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE';
     url: string[];
   }) => {
     controlInstance.recenter();

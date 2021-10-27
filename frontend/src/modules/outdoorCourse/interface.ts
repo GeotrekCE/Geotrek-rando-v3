@@ -14,12 +14,12 @@ export interface RawOutdoorCourse {
   attachments: RawAttachment[];
   name: string;
   geometry: RawPointGeometry2D | RawPolygonGeometry | RawLineStringGeometry2D | null;
+  duration: number;
 }
 
 interface RawOutdoorCourseDetailsProperties extends RawOutdoorCourse {
   advice?: string;
   description?: string;
-  duration?: number;
   equipment?: string;
   gear?: string;
   height?: number;
@@ -46,6 +46,8 @@ export interface OutdoorCourse {
   name: string;
   attachments: Attachment[];
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry | null;
+  thumbnailUris: string[];
+  duration: string | null;
 }
 
 export interface OutdoorCourseDetails extends OutdoorCourse {

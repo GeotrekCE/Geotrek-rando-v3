@@ -1,7 +1,14 @@
 import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
+import { Activity, ActivityChoices } from '../activities/interface';
+import { Choices } from '../filters/interface';
+import { InformationDeskDictionnary } from '../informationDesk/interface';
+import { LabelDictionnary } from '../label/interface';
+import { OutdoorCourse } from '../outdoorCourse/interface';
+import { Poi } from '../poi/interface';
+import { SourceDictionnary } from '../source/interface';
 import { fallbackImgUri } from '../trekResult/adapter';
-import { PopupResult, RawTrekPopupResult } from '../trekResult/interface';
+import { PopupResult } from '../trekResult/interface';
 import {
   OutdoorSite,
   OutdoorSiteDetails,
@@ -11,34 +18,78 @@ import {
 
 export const adaptOutdoorSites = ({
   rawOutdoorSites,
+  themeDictionnary,
+  activitiesDictionnary,
 }: {
   rawOutdoorSites: RawOutdoorSite[];
+  themeDictionnary: Choices;
+  activitiesDictionnary: ActivityChoices;
 }): OutdoorSite[] =>
-  rawOutdoorSites.map(rawOutdoorSite => ({
-    id: rawOutdoorSite.id,
-    type: 'OUTDOOR_SITE',
-    name: rawOutdoorSite.name,
-    thumbnailUris: getThumbnails(rawOutdoorSite.attachments),
-    attachments: getAttachments(rawOutdoorSite.attachments),
-    geometry: rawOutdoorSite.geometry ? adaptGeometry(rawOutdoorSite.geometry) : null,
-  }));
+  rawOutdoorSites.map(rawOutdoorSite => {
+    return {
+      id: rawOutdoorSite.id,
+      type: 'OUTDOOR_SITE',
+      name: rawOutdoorSite.name,
+      thumbnailUris: getThumbnails(rawOutdoorSite.attachments),
+      attachments: getAttachments(rawOutdoorSite.attachments),
+      geometry: rawOutdoorSite.geometry
+        ? adaptGeometry(rawOutdoorSite.geometry.geometries[0])
+        : null,
+      themes: rawOutdoorSite?.themes?.map(themeId => themeDictionnary[themeId].label) ?? [],
+      practice: activitiesDictionnary[rawOutdoorSite.practice] ?? null,
+    };
+  });
 
 export const adaptOutdoorSiteDetails = ({
   rawOutdoorSiteDetails,
+  activitiesDictionnary,
+  pois,
+  children,
+  themeDictionnary,
+  labelsDictionnary,
+  sourcesDictionnary,
+  informationDesksDictionnary,
+  courses,
 }: {
   rawOutdoorSiteDetails: RawOutdoorSiteDetails;
+  pois: Poi[];
+  children: OutdoorSite[];
+  themeDictionnary: Choices;
+  labelsDictionnary: LabelDictionnary;
+  sourcesDictionnary: SourceDictionnary;
+  informationDesksDictionnary: InformationDeskDictionnary;
+  courses: OutdoorCourse[];
+  activitiesDictionnary: ActivityChoices;
 }): OutdoorSiteDetails => ({
-  id: rawOutdoorSiteDetails.id,
+  ...adaptOutdoorSites({
+    rawOutdoorSites: [
+      { ...rawOutdoorSiteDetails.properties, geometry: rawOutdoorSiteDetails.geometry },
+    ],
+    themeDictionnary,
+    activitiesDictionnary,
+  })[0],
   type: 'OUTDOOR_SITE',
-  name: rawOutdoorSiteDetails.properties.name,
-  geometry: rawOutdoorSiteDetails.geometry ? adaptGeometry(rawOutdoorSiteDetails.geometry) : null,
-  attachments: getAttachments(rawOutdoorSiteDetails.properties.attachments),
   description: rawOutdoorSiteDetails.properties.description,
+  ambiance: rawOutdoorSiteDetails.properties.ambiance,
+  advice: rawOutdoorSiteDetails.properties.advice,
+  descriptionTeaser: rawOutdoorSiteDetails.properties.description_teaser,
   bbox: {
     corner1: { x: rawOutdoorSiteDetails.bbox[0], y: rawOutdoorSiteDetails.bbox[1] },
     corner2: { x: rawOutdoorSiteDetails.bbox[2], y: rawOutdoorSiteDetails.bbox[3] },
   },
-  thumbnailUris: getThumbnails(rawOutdoorSiteDetails.properties.attachments),
+  labels:
+    rawOutdoorSiteDetails?.properties?.labels?.map(labelId => labelsDictionnary[labelId]) ?? [],
+  source:
+    rawOutdoorSiteDetails?.properties?.source?.map(sourceId => sourcesDictionnary[sourceId]) ?? [],
+  informationDesks:
+    rawOutdoorSiteDetails?.properties?.information_desks?.map(
+      deskId => informationDesksDictionnary[deskId],
+    ) ?? [],
+  webLinks: rawOutdoorSiteDetails?.properties?.web_links,
+  pois,
+  children,
+  courses,
+  id: rawOutdoorSiteDetails.id,
 });
 
 export const adaptOutdoorSitePopupResults = (rawDetails: RawOutdoorSiteDetails): PopupResult => {

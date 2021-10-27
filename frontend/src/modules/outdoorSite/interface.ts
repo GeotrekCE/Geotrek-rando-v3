@@ -1,5 +1,5 @@
-import { Bbox } from 'modules/details/interface';
-import { Attachment, RawAttachment } from 'modules/interface';
+import { Bbox, WebLink } from 'modules/details/interface';
+import { Attachment, RawAttachment, RawGeometryCollection, RawWebLink } from 'modules/interface';
 import {
   LineStringGeometry,
   PointGeometry,
@@ -8,12 +8,20 @@ import {
   RawPointGeometry2D,
   RawPolygonGeometry,
 } from 'modules/interface';
+import { Activity } from '../activities/interface';
+import { InformationDesk } from '../informationDesk/interface';
+import { Label } from '../label/interface';
+import { OutdoorCourse } from '../outdoorCourse/interface';
+import { Poi } from '../poi/interface';
+import { Source } from '../source/interface';
 
 export interface RawOutdoorSite {
   id: string;
   attachments: RawAttachment[];
   name: string;
-  geometry: RawPointGeometry2D | RawPolygonGeometry | RawLineStringGeometry2D | null;
+  geometry: RawGeometryCollection;
+  themes?: number[];
+  practice: number;
 }
 
 interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
@@ -28,22 +36,19 @@ interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
   orientation?: string[];
   period?: string;
   parent?: string;
-  practice?: number;
   ratings?: number[];
   sector?: string;
   source?: number[];
   structure?: number;
-  themes?: number[];
   type?: number;
   url?: string;
   courses?: string;
-  web_links?: number[];
+  web_links?: RawWebLink[];
   wind?: string[];
 }
 
 export interface RawOutdoorSiteDetails extends RawOutdoorSite {
   id: string;
-  geometry: RawPointGeometry2D | RawPolygonGeometry | RawLineStringGeometry2D | null;
   bbox: number[];
   properties: RawOutdoorSiteDetailsProperties;
 }
@@ -55,9 +60,21 @@ export interface OutdoorSite {
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry | null;
   type: 'OUTDOOR_SITE';
   thumbnailUris: string[];
+  themes: string[];
+  practice: Activity | null;
 }
 
 export interface OutdoorSiteDetails extends OutdoorSite {
   description?: string;
+  descriptionTeaser?: string;
   bbox: Bbox;
+  ambiance?: string;
+  advice?: string;
+  labels?: Label[];
+  source?: Source[];
+  informationDesks?: InformationDesk[];
+  webLinks?: WebLink[];
+  pois: Poi[];
+  children: OutdoorSite[];
+  courses: OutdoorCourse[];
 }

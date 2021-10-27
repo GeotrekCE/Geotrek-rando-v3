@@ -178,7 +178,6 @@ export const getSearchResults = async (
       rawTouristicContents,
       rawOutdoorSites,
       touristicContentCategories,
-      themeDictionnary,
       cityDictionnary,
     ] = await Promise.all([
       shouldFetchTreks ? getTreksResultsPromise : emptyResultPromise,
@@ -188,7 +187,6 @@ export const getSearchResults = async (
       shouldFetchTouristicContents ? getToursticContentsPromise : emptyResultPromise,
       shouldFetchOutdoorSites ? getOutdoorSitesPromise : emptyResultPromise,
       getTouristicContentCategories(language), // Todo: Find a way to store this hashmap to avoid calling this every time
-      getThemes(language),
       getCities(language),
     ]);
 
@@ -203,12 +201,14 @@ export const getSearchResults = async (
     const adaptedTouristicContentsList: TouristicContentResult[] = adaptTouristicContentResult({
       rawTouristicContent: rawTouristicContents.results,
       touristicContentCategories,
-      themeDictionnary,
+      themeDictionnary: themes,
       cityDictionnary,
     });
 
     const adaptedOutdoorSitesList: OutdoorSite[] = adaptOutdoorSites({
       rawOutdoorSites: rawOutdoorSites.results,
+      themeDictionnary: themes,
+      activitiesDictionnary: activities,
     });
 
     const nextTreksPage = extractNextPageId(rawTrekResults.next);

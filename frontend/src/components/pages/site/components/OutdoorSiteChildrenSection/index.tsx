@@ -1,21 +1,22 @@
+import { marginDetailsChild } from 'components/pages/details/Details';
+import { generateOutdoorSiteUrl } from 'components/pages/details/utils';
 import { Separator } from 'components/Separator';
-import { TrekResult } from 'modules/results/interface';
 import { ResultCard } from 'components/pages/search/components/ResultCard';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { desktopOnly, scrollBar, sizes } from 'stylesheet';
-import { marginDetailsChild } from '../../Details';
-import { generateChildrenDetailsUrl } from '../../utils';
+import { OutdoorSite } from '../../../../../modules/outdoorSite/interface';
 
 interface DetailsChildrenSectionProps {
-  trekChildren: TrekResult[];
+  outdoorChildren: OutdoorSite[];
   title: string;
-  trekId: string;
+  id: string;
 }
 
-export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
-  trekChildren,
+export const OutdoorSiteChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
+  outdoorChildren,
   title,
-  trekId,
+  id,
 }) => {
   return (
     <div className="mt-6 desktop:mt-12" id="details_trekChildren">
@@ -36,14 +37,14 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
         flex-nowrap max-h-screen
         "
       >
-        {trekChildren.map((trekChild, i) => (
+        {outdoorChildren.map((trekChild, i) => (
           <div key={i}>
             <div className="hidden desktop:block">
               <Step number={i + 1} />
             </div>
             <div
               className={`mr-3 desktop:ml-5.5 desktop:mr-0 desktop:pl-12 relative ${
-                i < trekChildren.length - 1
+                i < outdoorChildren.length - 1
                   ? 'desktop:border-solid desktop:border-primary1 desktop:border-l-3'
                   : ''
               }`}
@@ -51,16 +52,16 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
               <div className="relative desktop:-top-20">
                 <ResultCard
                   id={`${trekChild.id}`}
-                  hoverId={`DETAILS-TREK_CHILDREN-${trekChild.id}`}
-                  type="TREK"
-                  place={trekChild.place}
-                  title={trekChild.title}
-                  tags={trekChild.tags || []}
+                  hoverId={`DETAILS-OUTDOOR_SITE_CHILDREN-${trekChild.id}`}
+                  type="OUTDOOR_SITE"
+                  place={''}
+                  title={trekChild.name}
+                  tags={trekChild.themes}
                   thumbnailUris={trekChild.thumbnailUris}
                   attachments={trekChild.attachments}
-                  badgeIconUri={trekChild.practice?.pictogram}
-                  informations={trekChild.informations}
-                  redirectionUrl={generateChildrenDetailsUrl(trekChild.id, trekChild.title, trekId)}
+                  //badgeIconUri={trekChild.practice?.pictogram}
+                  informations={[]}
+                  redirectionUrl={generateOutdoorSiteUrl(trekChild.id, trekChild.name)}
                   className="w-60 desktop:w-auto"
                 />
               </div>

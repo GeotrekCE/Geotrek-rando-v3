@@ -2,8 +2,10 @@ import { adaptOutdoorCourseDetails, adaptOutdoorCourses } from './adapter';
 import { fetchOutdoorCourseDetails, fetchOutdoorCourses } from './api';
 import { OutdoorCourse, OutdoorCourseDetails } from './interface';
 
-export const getOutdoorCourses = async (language: string): Promise<OutdoorCourse[]> => {
-  const [rawOutdoorCoursesResult] = await Promise.all([fetchOutdoorCourses({ language })]);
+export const getOutdoorCourses = async (language: string, query = {}): Promise<OutdoorCourse[]> => {
+  const [rawOutdoorCoursesResult] = await Promise.all([
+    fetchOutdoorCourses({ ...query, language }),
+  ]);
 
   return adaptOutdoorCourses({
     rawOutdoorCourses: rawOutdoorCoursesResult.results,

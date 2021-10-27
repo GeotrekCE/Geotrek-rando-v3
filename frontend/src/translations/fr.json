@@ -159,5 +159,9 @@
     "close": "Fermer",
     "remove": "Supprimer",
     "confirmRemove": "Etes vous sûr de vouloir supprimer cet élément?"
+  },
+  "outdoorSite": {
+    "childrenFullTitle": "Accès",
+    "coursesFullTitle": "Les {count} expériences à découvrir"
   }
 }
