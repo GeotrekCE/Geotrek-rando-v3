@@ -21,13 +21,14 @@ import {
 } from './api';
 import { TouristicContent, TouristicContentDetails } from './interface';
 
-export const getTouristicContentsNearTrek = async (
-  nearTrekId: number,
+export const getTouristicContentsNearTarget = async (
+  id: number,
   language: string,
+  target = 'near_trek',
 ): Promise<TouristicContent[]> => {
   const pageSize = getGlobalConfig().maxTouristicContentPerPage;
   const [rawTouristicContentResult, touristicContentCategories] = await Promise.all([
-    fetchTouristicContent({ language, near_trek: nearTrekId, page_size: pageSize }),
+    fetchTouristicContent({ language, [target]: id, page_size: pageSize }),
     getTouristicContentCategories(language),
   ]);
   return adaptTouristicContent({

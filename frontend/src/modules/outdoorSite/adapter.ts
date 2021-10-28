@@ -8,6 +8,7 @@ import { OutdoorCourse } from '../outdoorCourse/interface';
 import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { Poi } from '../poi/interface';
 import { SourceDictionnary } from '../source/interface';
+import { TouristicContent } from '../touristicContent/interface';
 import { fallbackImgUri } from '../trekResult/adapter';
 import { PopupResult } from '../trekResult/interface';
 import {
@@ -47,6 +48,7 @@ export const adaptOutdoorSites = ({
 export const adaptOutdoorSiteDetails = ({
   rawOutdoorSiteDetails,
   pois,
+  touristicContents,
   children,
   themeDictionnary,
   labelsDictionnary,
@@ -57,6 +59,7 @@ export const adaptOutdoorSiteDetails = ({
 }: {
   rawOutdoorSiteDetails: RawOutdoorSiteDetails;
   pois: Poi[];
+  touristicContents: TouristicContent[];
   children: OutdoorSite[];
   themeDictionnary: Choices;
   labelsDictionnary: LabelDictionnary;
@@ -91,6 +94,7 @@ export const adaptOutdoorSiteDetails = ({
     ) ?? [],
   webLinks: rawOutdoorSiteDetails?.properties?.web_links,
   pois,
+  touristicContents,
   children,
   courses,
   id: rawOutdoorSiteDetails.id,
