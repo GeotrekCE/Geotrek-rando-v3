@@ -63,7 +63,7 @@ export const adaptOutdoorSiteDetails = ({
   sourcesDictionnary: SourceDictionnary;
   informationDesksDictionnary: InformationDeskDictionnary;
   courses: OutdoorCourse[];
-  outdoorPracticeDictionnary: ActivityChoices;
+  outdoorPracticeDictionnary: OutdoorPracticeChoices;
 }): OutdoorSiteDetails => ({
   ...adaptOutdoorSites({
     rawOutdoorSites: [

@@ -9,6 +9,7 @@ import { getGlobalConfig } from 'modules/utils/api.config';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { getCities } from 'modules/city/connector';
 import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
+import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { adaptOutdoorSites } from '../outdoorSite/adapter';
 import { fetchOutdoorSites } from '../outdoorSite/api';
 import { OutdoorSite } from '../outdoorSite/interface';
@@ -179,6 +180,7 @@ export const getSearchResults = async (
       rawOutdoorSites,
       touristicContentCategories,
       cityDictionnary,
+      outdoorPracticeDictionnary,
     ] = await Promise.all([
       shouldFetchTreks ? getTreksResultsPromise : emptyResultPromise,
       getDifficulties(language), // Todo: Find a way to store this hashmap to avoid calling this every time
@@ -188,6 +190,7 @@ export const getSearchResults = async (
       shouldFetchOutdoorSites ? getOutdoorSitesPromise : emptyResultPromise,
       getTouristicContentCategories(language), // Todo: Find a way to store this hashmap to avoid calling this every time
       getCities(language),
+      getOutdoorPractices(language),
     ]);
 
     const adaptedResultsList: TrekResult[] = adaptTrekResultList({
@@ -208,7 +211,7 @@ export const getSearchResults = async (
     const adaptedOutdoorSitesList: OutdoorSite[] = adaptOutdoorSites({
       rawOutdoorSites: rawOutdoorSites.results,
       themeDictionnary: themes,
-      activitiesDictionnary: activities,
+      outdoorPracticeDictionnary,
     });
 
     const nextTreksPage = extractNextPageId(rawTrekResults.next);
