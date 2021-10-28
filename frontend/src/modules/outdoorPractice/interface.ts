@@ -7,5 +7,9 @@ export interface RawOutdoorPractice {
 export interface OutdoorPractice {
   id: string;
   name: string;
-  sector: number;
+  pictogram: string;
+}
+
+export interface OutdoorPracticeChoices {
+  [value: string]: OutdoorPractice;
 }

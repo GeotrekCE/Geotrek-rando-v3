@@ -5,6 +5,7 @@ import { Choices } from '../filters/interface';
 import { InformationDeskDictionnary } from '../informationDesk/interface';
 import { LabelDictionnary } from '../label/interface';
 import { OutdoorCourse } from '../outdoorCourse/interface';
+import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { Poi } from '../poi/interface';
 import { SourceDictionnary } from '../source/interface';
 import { fallbackImgUri } from '../trekResult/adapter';
@@ -19,11 +20,11 @@ import {
 export const adaptOutdoorSites = ({
   rawOutdoorSites,
   themeDictionnary,
-  activitiesDictionnary,
+  outdoorPracticeDictionnary,
 }: {
   rawOutdoorSites: RawOutdoorSite[];
   themeDictionnary: Choices;
-  activitiesDictionnary: ActivityChoices;
+  outdoorPracticeDictionnary: OutdoorPracticeChoices;
 }): OutdoorSite[] =>
   rawOutdoorSites.map(rawOutdoorSite => {
     return {
@@ -36,7 +37,7 @@ export const adaptOutdoorSites = ({
         ? adaptGeometry(rawOutdoorSite.geometry.geometries[0])
         : null,
       themes: rawOutdoorSite?.themes?.map(themeId => themeDictionnary[themeId].label) ?? [],
-      practice: activitiesDictionnary[rawOutdoorSite.practice] ?? null,
+      practice: outdoorPracticeDictionnary[rawOutdoorSite.practice] ?? null,
       period: rawOutdoorSite?.period ? rawOutdoorSite?.period : null,
       wind: rawOutdoorSite?.wind ?? [],
       orientation: rawOutdoorSite?.orientation ?? [],
@@ -45,7 +46,6 @@ export const adaptOutdoorSites = ({
 
 export const adaptOutdoorSiteDetails = ({
   rawOutdoorSiteDetails,
-  activitiesDictionnary,
   pois,
   children,
   themeDictionnary,
@@ -53,6 +53,7 @@ export const adaptOutdoorSiteDetails = ({
   sourcesDictionnary,
   informationDesksDictionnary,
   courses,
+  outdoorPracticeDictionnary,
 }: {
   rawOutdoorSiteDetails: RawOutdoorSiteDetails;
   pois: Poi[];
@@ -62,14 +63,14 @@ export const adaptOutdoorSiteDetails = ({
   sourcesDictionnary: SourceDictionnary;
   informationDesksDictionnary: InformationDeskDictionnary;
   courses: OutdoorCourse[];
-  activitiesDictionnary: ActivityChoices;
+  outdoorPracticeDictionnary: ActivityChoices;
 }): OutdoorSiteDetails => ({
   ...adaptOutdoorSites({
     rawOutdoorSites: [
       { ...rawOutdoorSiteDetails.properties, geometry: rawOutdoorSiteDetails.geometry },
     ],
     themeDictionnary,
-    activitiesDictionnary,
+    outdoorPracticeDictionnary,
   })[0],
   type: 'OUTDOOR_SITE',
   description: rawOutdoorSiteDetails.properties.description,
