@@ -9,6 +9,7 @@ import { DetailsLabel } from 'components/pages/details/components/DetailsLabel';
 import { DetailsSection } from 'components/pages/details/components/DetailsSection';
 import { DetailsSource } from 'components/pages/details/components/DetailsSource';
 import { marginDetailsChild } from 'components/pages/details/Details';
+import { generateTouristicContentUrl } from 'components/pages/details/utils';
 import { OutdoorCoursesChildrenSection } from 'components/pages/site/components/OutdoorCoursesChildrenSection';
 import { OutdoorSiteChildrenSection } from 'components/pages/site/components/OutdoorSiteChildrenSection';
 import React from 'react';
@@ -279,6 +280,28 @@ export const OutdoorSiteUI: React.FC<Props> = ({ outdoorSiteUrl, language }) => 
                       <MoreLink key={i} link={link} />
                     ))}
                   </DetailsSection>
+                </div>
+              )}
+
+              {outdoorSiteContent.touristicContents.length > 0 && (
+                <div id="details_touristicContent_ref">
+                  <DetailsCardSection
+                    htmlId="details_touristicContent"
+                    title={intl.formatMessage({ id: 'details.touristicContent' })}
+                    displayBadge
+                    generateUrlFunction={generateTouristicContentUrl}
+                    detailsCards={outdoorSiteContent.touristicContents.map(touristicContent => ({
+                      id: `${touristicContent.id}`,
+                      name: touristicContent.name ?? '',
+                      place: touristicContent.category.label,
+                      description: touristicContent.descriptionTeaser,
+                      thumbnailUris: touristicContent.thumbnailUris,
+                      attachments: touristicContent.attachments,
+                      iconUri: touristicContent.category.pictogramUri,
+                      logoUri: touristicContent.logoUri ?? undefined,
+                    }))}
+                    type="TOURISTIC_CONTENT"
+                  />
                 </div>
               )}
 

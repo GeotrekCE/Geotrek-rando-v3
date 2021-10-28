@@ -11,7 +11,7 @@ import { getPois } from 'modules/poi/connector';
 import { getTrekResultsById } from 'modules/results/connector';
 import { getSensitiveAreas } from 'modules/sensitiveArea/connector';
 import { getSources } from 'modules/source/connector';
-import { getTouristicContentsNearTrek } from 'modules/touristicContent/connector';
+import { getTouristicContentsNearTarget } from 'modules/touristicContent/connector';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptChildren, adaptResults, adaptTrekChildGeometry } from './adapter';
 import { fetchDetails, fetchTrekChildren, fetchTrekGeometry, fetchTrekName } from './api';
@@ -39,7 +39,7 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       getNetworks(language),
       getThemes(language),
       getPois(rawDetails.properties.id, language),
-      getTouristicContentsNearTrek(rawDetails.properties.id, language),
+      getTouristicContentsNearTarget(rawDetails.properties.id, language),
       getCities(language),
       getAccessibilities(language),
       getSources(language),

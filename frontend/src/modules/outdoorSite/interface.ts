@@ -14,6 +14,7 @@ import { Label } from '../label/interface';
 import { OutdoorCourse } from '../outdoorCourse/interface';
 import { Poi } from '../poi/interface';
 import { Source } from '../source/interface';
+import { TouristicContent } from '../touristicContent/interface';
 
 export interface RawOutdoorSite {
   id: string;
@@ -78,6 +79,7 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   informationDesks?: InformationDesk[];
   webLinks?: WebLink[];
   pois: Poi[];
+  touristicContents: TouristicContent[];
   children: OutdoorSite[];
   courses: OutdoorCourse[];
 }
