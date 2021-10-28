@@ -163,5 +163,15 @@
   "outdoorSite": {
     "childrenFullTitle": "Accès",
     "coursesFullTitle": "Les {count} expériences à découvrir"
+  },
+  "Wind": {
+    "N": "Nord",
+    "S": "Sud",
+    "E": "Est",
+    "O": "Ouest",
+    "NO": "Nord-Ouest",
+    "SO": "Sud-Ouest",
+    "NE": "Nord-Est",
+    "SE": "Sud-Est"
   }
 }

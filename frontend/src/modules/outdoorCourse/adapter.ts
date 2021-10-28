@@ -14,14 +14,23 @@ export const adaptOutdoorCourses = ({
 }: {
   rawOutdoorCourses: RawOutdoorCourse[];
 }): OutdoorCourse[] =>
-  rawOutdoorCourses.map(rawOutdoorCourse => ({
-    id: rawOutdoorCourse.id,
-    name: rawOutdoorCourse.name,
-    attachments: getAttachments(rawOutdoorCourse.attachments),
-    geometry: rawOutdoorCourse.geometry ? adaptGeometry(rawOutdoorCourse.geometry) : null,
-    thumbnailUris: getThumbnails(rawOutdoorCourse.attachments),
-    duration: rawOutdoorCourse.duration ? formatHours(rawOutdoorCourse.duration) : null,
-  }));
+  rawOutdoorCourses.map(rawOutdoorCourse => {
+    return {
+      id: rawOutdoorCourse.id,
+      name: rawOutdoorCourse.name,
+      attachments: getAttachments(rawOutdoorCourse.attachments),
+      geometry: rawOutdoorCourse.geometry ? adaptGeometry(rawOutdoorCourse.geometry) : null,
+      thumbnailUris: getThumbnails(rawOutdoorCourse.attachments),
+      duration: rawOutdoorCourse.duration ? formatHours(rawOutdoorCourse.duration) : null,
+      maxElevation: rawOutdoorCourse.max_elevation
+        ? `+${rawOutdoorCourse.max_elevation}${dataUnits.distance}`
+        : null,
+      length: rawOutdoorCourse.length
+        ? `${Math.round(rawOutdoorCourse.length)}${dataUnits.distance}`
+        : null,
+      height: rawOutdoorCourse.height ? `${rawOutdoorCourse.height}${dataUnits.distance}` : null,
+    };
+  });
 
 export const adaptOutdoorCourseDetails = ({
   rawOutdoorCourseDetails,

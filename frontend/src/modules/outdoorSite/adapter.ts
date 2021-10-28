@@ -37,6 +37,9 @@ export const adaptOutdoorSites = ({
         : null,
       themes: rawOutdoorSite?.themes?.map(themeId => themeDictionnary[themeId].label) ?? [],
       practice: activitiesDictionnary[rawOutdoorSite.practice] ?? null,
+      period: rawOutdoorSite?.period ? rawOutdoorSite?.period : null,
+      wind: rawOutdoorSite?.wind ?? [],
+      orientation: rawOutdoorSite?.orientation ?? [],
     };
   });
 

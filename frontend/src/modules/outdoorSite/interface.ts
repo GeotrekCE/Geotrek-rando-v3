@@ -22,6 +22,9 @@ export interface RawOutdoorSite {
   geometry: RawGeometryCollection;
   themes?: number[];
   practice: number;
+  period?: string;
+  wind?: string[];
+  orientation?: string[];
 }
 
 interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
@@ -33,8 +36,6 @@ interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
   information_desks?: number[];
   labels?: number[];
   managers?: number[];
-  orientation?: string[];
-  period?: string;
   parent?: string;
   ratings?: number[];
   sector?: string;
@@ -44,7 +45,6 @@ interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
   url?: string;
   courses?: string;
   web_links?: RawWebLink[];
-  wind?: string[];
 }
 
 export interface RawOutdoorSiteDetails extends RawOutdoorSite {
@@ -62,6 +62,9 @@ export interface OutdoorSite {
   thumbnailUris: string[];
   themes: string[];
   practice: Activity | null;
+  period: string | null;
+  wind: string[];
+  orientation: string[];
 }
 
 export interface OutdoorSiteDetails extends OutdoorSite {
