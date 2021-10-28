@@ -1,7 +1,10 @@
+import { Calendar } from 'components/Icons/Calendar';
 import { Clock } from 'components/Icons/Clock';
 import { Chip } from 'components/Chip';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
+import { Orientation } from 'components/Icons/Orientation';
 import { TrendingUp } from 'components/Icons/TrendingUp';
+import { Wind } from 'components/Icons/Wind';
 import OfflineButton from 'components/pages/details/components/OfflineButton';
 import { Details, DetailsInformation, TrekFamily } from 'modules/details/interface';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
@@ -13,6 +16,7 @@ import {
   TouristicContentDetailsType,
 } from 'modules/touristicContent/interface';
 import React from 'react';
+import { useIntl } from 'react-intl';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { DetailsTrekParentButton } from '../DetailsTrekParentButton';
@@ -21,6 +25,9 @@ import { HtmlText } from '../../utils';
 interface DetailsPreviewInformation extends DetailsInformation {
   types?: TouristicContentDetailsType[];
   logoUri?: string;
+  period?: string | null;
+  wind?: string[];
+  orientation?: string[];
 }
 
 interface DetailsPreviewProps {
@@ -53,6 +60,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   // trekRank & trekRankLabel are only defined if trek is part of an itinerance
   const trekRank = trekFamily?.trekChildren.find(trek => trek.id === id);
   const trekRankLabel = trekRank !== undefined ? `${trekRank.rank}. ` : '';
+
+  const intl = useIntl();
 
   return (
     <div
@@ -104,6 +113,21 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           >
             {informations.difficulty.label}
           </RemoteIconInformation>
+        )}
+        {informations.period && (
+          <LocalIconInformation icon={Calendar} className={classNameInformation}>
+            {informations.period}
+          </LocalIconInformation>
+        )}
+        {informations.orientation && (
+          <LocalIconInformation icon={Orientation} className={classNameInformation}>
+            {informations.orientation.map(w => intl.formatMessage({ id: `Wind.${w}` })).join(' - ')}
+          </LocalIconInformation>
+        )}
+        {informations.wind && (
+          <LocalIconInformation icon={Wind} className={classNameInformation}>
+            {informations.wind.map(w => intl.formatMessage({ id: `Wind.${w}` })).join(' - ')}
+          </LocalIconInformation>
         )}
         {informations.duration !== null && (
           <LocalIconInformation icon={Clock} className={classNameInformation}>

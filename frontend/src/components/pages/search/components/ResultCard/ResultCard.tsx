@@ -1,3 +1,4 @@
+import { Height } from 'components/Icons/Height';
 import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
 import React, { useContext } from 'react';
@@ -59,6 +60,9 @@ interface OutdoorCourseProps extends BaseProps {
   type: 'OUTDOOR_COURSE';
   informations: {
     duration: string | null;
+    elevation: string | null;
+    height: string | null;
+    length: string | null;
   };
 }
 
@@ -136,6 +140,21 @@ export const ResultCard: React.FC<
                   {props.informations.duration && (
                     <LocalIconInformation icon={Clock}>
                       {props.informations.duration}
+                    </LocalIconInformation>
+                  )}
+                  {props.informations.elevation && (
+                    <LocalIconInformation icon={TrendingUp}>
+                      {props.informations.elevation}
+                    </LocalIconInformation>
+                  )}
+                  {props.informations.length && (
+                    <LocalIconInformation icon={CodeBrackets}>
+                      {props.informations.length}
+                    </LocalIconInformation>
+                  )}
+                  {props.informations.height && (
+                    <LocalIconInformation icon={Height}>
+                      {props.informations.height}
                     </LocalIconInformation>
                   )}
                 </InformationLayout>

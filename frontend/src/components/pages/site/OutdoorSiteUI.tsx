@@ -3,6 +3,7 @@ import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
 import { DetailsAdvice } from 'components/pages/details/components/DetailsAdvice';
 import { DetailsCardSection } from 'components/pages/details/components/DetailsCardSection';
+import { DetailsDescription } from 'components/pages/details/components/DetailsDescription';
 import { DetailsInformationDesk } from 'components/pages/details/components/DetailsInformationDesk';
 import { DetailsLabel } from 'components/pages/details/components/DetailsLabel';
 import { DetailsSection } from 'components/pages/details/components/DetailsSection';
@@ -121,6 +122,9 @@ export const OutdoorSiteUI: React.FC<Props> = ({ outdoorSiteUrl, language }) => 
                     networks: [],
                     //types: outdoorSiteContent?.types,
                     //logoUri: outdoorSiteContent?.logoUri ?? undefined,
+                    period: outdoorSiteContent.period,
+                    wind: outdoorSiteContent.wind,
+                    orientation: outdoorSiteContent.orientation,
                   }}
                   place={''}
                   tags={outdoorSiteContent.themes}
@@ -163,6 +167,15 @@ export const OutdoorSiteUI: React.FC<Props> = ({ outdoorSiteUrl, language }) => 
                       iconUri: poi.type.pictogramUri,
                     }))}
                     type="POI"
+                  />
+                </div>
+              )}
+
+              {outdoorSiteContent.description && (
+                <div id="details_description_ref">
+                  <DetailsDescription
+                    descriptionHtml={outdoorSiteContent.description}
+                    className={marginDetailsChild}
                   />
                 </div>
               )}

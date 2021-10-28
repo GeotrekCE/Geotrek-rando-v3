@@ -51,6 +51,9 @@ export const OutdoorCoursesChildrenSection: React.FC<DetailsChildrenSectionProps
               //badgeIconUri={trekChild.practice?.pictogram}
               informations={{
                 duration: trekChild.duration,
+                elevation: trekChild.maxElevation,
+                height: trekChild.height,
+                length: trekChild.length,
               }}
               redirectionUrl={generateOutdoorSiteUrl(trekChild.id, trekChild.name)}
               className="w-60 desktop:w-auto"

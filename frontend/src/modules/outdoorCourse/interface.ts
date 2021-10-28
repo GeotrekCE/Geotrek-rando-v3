@@ -15,6 +15,9 @@ export interface RawOutdoorCourse {
   name: string;
   geometry: RawPointGeometry2D | RawPolygonGeometry | RawLineStringGeometry2D | null;
   duration: number;
+  max_elevation?: number;
+  height?: number;
+  length?: number;
 }
 
 interface RawOutdoorCourseDetailsProperties extends RawOutdoorCourse {
@@ -22,9 +25,6 @@ interface RawOutdoorCourseDetailsProperties extends RawOutdoorCourse {
   description?: string;
   equipment?: string;
   gear?: string;
-  height?: number;
-  length?: number;
-  max_elevation?: number;
   min_elevation?: number;
   ratings?: any;
   ratings_description?: string;
@@ -48,6 +48,9 @@ export interface OutdoorCourse {
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry | null;
   thumbnailUris: string[];
   duration: string | null;
+  maxElevation: string | null;
+  height: string | null;
+  length: string | null;
 }
 
 export interface OutdoorCourseDetails extends OutdoorCourse {
