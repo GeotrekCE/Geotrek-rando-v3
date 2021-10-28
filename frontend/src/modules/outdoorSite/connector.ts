@@ -3,6 +3,7 @@ import { getThemes } from '../filters/theme/connector';
 import { getInformationDesks } from '../informationDesk/connector';
 import { getLabels } from '../label/connector';
 import { getOutdoorCourses } from '../outdoorCourse/connector';
+import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { getPois } from '../poi/connector';
 import { getSources } from '../source/connector';
 import { PopupResult } from '../trekResult/interface';
@@ -15,16 +16,16 @@ import { fetchOutdoorSiteDetails, fetchOutdoorSites } from './api';
 import { OutdoorSite, OutdoorSiteDetails } from './interface';
 
 export const getOutdoorSites = async (language: string, query = {}): Promise<OutdoorSite[]> => {
-  const [rawOutdoorSitesResult, themeDictionnary, activitiesDictionnary] = await Promise.all([
+  const [rawOutdoorSitesResult, themeDictionnary, outdoorPracticeDictionnary] = await Promise.all([
     fetchOutdoorSites({ ...query, language }),
     getThemes(language),
-    getActivities(language),
+    getOutdoorPractices(language),
   ]);
 
   return adaptOutdoorSites({
     rawOutdoorSites: rawOutdoorSitesResult.results,
     themeDictionnary,
-    activitiesDictionnary,
+    outdoorPracticeDictionnary,
   });
 };
 
@@ -42,7 +43,7 @@ export const getOutdoorSiteDetails = async (
       informationDesksDictionnary,
       children,
       courses,
-      activitiesDictionnary,
+      outdoorPracticeDictionnary,
     ] = await Promise.all([
       fetchOutdoorSiteDetails({ language }, id),
       getPois(Number(id), language, 'sites'),
@@ -52,7 +53,7 @@ export const getOutdoorSiteDetails = async (
       getInformationDesks(language),
       getOutdoorSites(language, { near_outdoorsite: id }),
       getOutdoorCourses(language, { near_outdoorsite: id }),
-      getActivities(language),
+      getOutdoorPractices(language),
     ]);
 
     return adaptOutdoorSiteDetails({
@@ -64,7 +65,7 @@ export const getOutdoorSiteDetails = async (
       informationDesksDictionnary,
       children,
       courses,
-      activitiesDictionnary,
+      outdoorPracticeDictionnary,
     });
   } catch (e) {
     console.error('Error in outdoor course connector', e);

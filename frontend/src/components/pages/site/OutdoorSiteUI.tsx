@@ -120,8 +120,6 @@ export const OutdoorSiteUI: React.FC<Props> = ({ outdoorSiteUrl, language }) => 
                     difficulty: null,
                     courseType: null,
                     networks: [],
-                    //types: outdoorSiteContent?.types,
-                    //logoUri: outdoorSiteContent?.logoUri ?? undefined,
                     period: outdoorSiteContent.period,
                     wind: outdoorSiteContent.wind,
                     orientation: outdoorSiteContent.orientation,
@@ -305,7 +303,7 @@ export const OutdoorSiteUI: React.FC<Props> = ({ outdoorSiteUrl, language }) => 
               </div>
             )}
           </div>
-          {/*isMobile && (
+          {isMobile && (
             <MobileMapContainer
               id="outdoorSiteContent_mobileMap"
               className={`desktop:hidden fixed right-0 left-0 h-full z-map ${
@@ -325,7 +323,7 @@ export const OutdoorSiteUI: React.FC<Props> = ({ outdoorSiteUrl, language }) => 
                 hideMap={hideMobileMap}
               />
             </MobileMapContainer>
-          )*/}
+          )}
         </>
       )}
     </Layout>
