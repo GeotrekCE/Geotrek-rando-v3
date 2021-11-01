@@ -1,4 +1,4 @@
-import { adaptOutdoorRating, adaptOutdoorRatingFilter } from './adapter';
+import { adaptOutdoorRating, adaptOutdoorRatingFilter, adaptOutdoorRatingHashMap } from './adapter';
 import { fetchOutdoorRating } from './api';
 import { OutdoorRatingChoices } from './interface';
 
@@ -13,4 +13,9 @@ export const getOutdoorRating = async (language: string): Promise<OutdoorRatingC
 export const getOutdoorRatingFilter = async (language: string) => {
   const rawOutdoorRating = await fetchOutdoorRating({ language });
   return adaptOutdoorRatingFilter(rawOutdoorRating.results);
+};
+
+export const getOutdoorRatingHashMap = async (language: string) => {
+  const rawOutdoorRating = await fetchOutdoorRating({ language });
+  return adaptOutdoorRatingHashMap(rawOutdoorRating.results);
 };

@@ -1,6 +1,11 @@
 import { OUTDOOR_ID } from '../filters/constant';
 import { FilterWithoutType } from '../filters/interface';
-import { OutdoorRatingChoices, RawOutdoorRating } from './interface';
+import {
+  OutdoorRating,
+  OutdoorRatingChoices,
+  OutdoorRatingMapping,
+  RawOutdoorRating,
+} from './interface';
 
 export const adaptOutdoorRating = ({
   rawOutdoorRating,
@@ -24,3 +29,16 @@ export const adaptOutdoorRatingFilter = (
     label: rawOutdoorPractice.name,
   })),
 });
+
+export const adaptOutdoorRatingHashMap = (
+  rawOutdoorRating: RawOutdoorRating[],
+): OutdoorRatingMapping => {
+  const result: Record<string, OutdoorRating[]> = {};
+
+  rawOutdoorRating.forEach(currentOutdoorRating => {
+    if (!result[currentOutdoorRating.scale]) result[currentOutdoorRating.scale] = [];
+    result[currentOutdoorRating.scale].push(currentOutdoorRating);
+  });
+
+  return result;
+};

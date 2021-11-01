@@ -3,6 +3,8 @@ import { getTouristicContentCategoryFilter } from 'modules/touristicContentCateg
 import { getActivityFilter } from 'modules/activities/connector';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
 import { getOutdoorPracticesFilter } from '../outdoorPractice/connector';
+import { OutdoorRatingMapping } from '../outdoorRating/interface';
+import { OutdoorRatingScale } from '../outdoorRatingScale/interface';
 import { getAccessibilityFilter } from './accessibility/connector';
 import { getCityFilter } from './city/connector';
 import { getFiltersConfig } from './config';
@@ -150,33 +152,84 @@ const getTypesFiltersState = ({
   });
 };
 
+const getOutdoorRatingFiltersState = ({
+  practiceId,
+  outdoorRatingMapping,
+  outdoorRatingScale,
+}: {
+  practiceId: string;
+  outdoorRatingMapping: OutdoorRatingMapping;
+  outdoorRatingScale: OutdoorRatingScale[];
+}): FilterState[] => {
+  const scale = outdoorRatingScale.find(i => String(i.practice) === practiceId);
+
+  if (!scale) return [];
+
+  const data = outdoorRatingMapping[scale.id];
+
+  if (!data) return [];
+
+  return [
+    {
+      id: `type-outdoorRating-${String(scale.id)}`,
+      label: scale?.name ?? 'Error',
+      type: 'MULTIPLE',
+      options: data.map(i => ({
+        value: i.id,
+        label: i.name,
+      })),
+      selectedOptions: [],
+    },
+  ];
+};
+
 export const computeFiltersToDisplay = ({
   initialFiltersState,
   currentFiltersState,
   selectedFilterId,
   touristicContentCategoryMapping,
+  outdoorRatingMapping,
+  outdoorRatingScale,
 }: {
   initialFiltersState: FilterState[];
   currentFiltersState: FilterState[];
   selectedFilterId: string;
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
+  outdoorRatingMapping: OutdoorRatingMapping;
+  outdoorRatingScale: OutdoorRatingScale[];
 }): FilterState[] => {
   const currentNumberOfPracticeOptionsSelected = currentFiltersState[0].selectedOptions.length;
   const currentNumberOfTouristicContentOptionsSelected =
     currentFiltersState[1].selectedOptions.length;
+  const currentNumberOfOutdoorPraticeOptionsSelected =
+    currentFiltersState[6].selectedOptions.length;
 
   const filtersToAdd: FilterState[][] = [];
 
-  // Calculate which filters to display
+  // *** Calculate which filters to display ***
+  // Treks filters
   if (currentNumberOfPracticeOptionsSelected > 0) {
     filtersToAdd.push(getTreksFiltersState(initialFiltersState));
   }
+  // Services filters
   if (currentNumberOfTouristicContentOptionsSelected > 0 || selectedFilterId === CATEGORY_ID) {
     currentFiltersState[1].selectedOptions.forEach(selectedOptions => {
       filtersToAdd.push(
         getTypesFiltersState({
           serviceId: selectedOptions.value,
           touristicContentCategoryMapping,
+        }),
+      );
+    });
+  }
+  // Outdoor filters
+  if (currentNumberOfOutdoorPraticeOptionsSelected > 0 || selectedFilterId === OUTDOOR_ID) {
+    currentFiltersState[6].selectedOptions.forEach(selectedOptions => {
+      filtersToAdd.push(
+        getOutdoorRatingFiltersState({
+          practiceId: selectedOptions.value,
+          outdoorRatingMapping,
+          outdoorRatingScale,
         }),
       );
     });
@@ -198,28 +251,51 @@ const getInitialFiltersStateWithRelevantFilters = ({
   initialFiltersState,
   initialOptions,
   touristicContentCategoryMapping,
+  outdoorRatingMapping,
+  outdoorRatingScale,
 }: {
   initialFiltersState: FilterState[];
   initialOptions: { [filterId: string]: string[] | undefined };
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
+  outdoorRatingMapping: OutdoorRatingMapping;
+  outdoorRatingScale: OutdoorRatingScale[];
 }): FilterState[] => {
   const initialStateWithOnlyCommon = initialFiltersState.filter(({ id }) =>
     commonFilters.includes(id),
   );
   const practices = initialOptions[PRACTICE_ID];
   const services = initialOptions[CATEGORY_ID];
-  if (practices !== undefined && practices.length > 0 && services === undefined) {
-    return [...initialStateWithOnlyCommon, ...getTreksFiltersState(initialFiltersState)];
+  const outdoorPractices = initialOptions[OUTDOOR_ID];
+
+  const result = [...initialStateWithOnlyCommon];
+
+  if (Number(practices?.length) > 0) {
+    result.push(...getTreksFiltersState(initialFiltersState));
   }
-  if (practices === undefined && services !== undefined && services.length === 1) {
-    return [
-      ...initialStateWithOnlyCommon,
-      ...getTypesFiltersState({
-        serviceId: services[0],
-        touristicContentCategoryMapping,
-      }),
-    ];
+
+  if (Number(services?.length) > 0) {
+    services?.forEach(service => {
+      result.push(
+        ...getTypesFiltersState({
+          serviceId: service,
+          touristicContentCategoryMapping,
+        }),
+      );
+    });
   }
+
+  if (Number(outdoorPractices?.length) > 0) {
+    outdoorPractices?.forEach(outdoorPratice => {
+      result.push(
+        ...getOutdoorRatingFiltersState({
+          practiceId: outdoorPratice,
+          outdoorRatingMapping,
+          outdoorRatingScale,
+        }),
+      );
+    });
+  }
+
   return initialStateWithOnlyCommon;
 };
 
@@ -238,16 +314,22 @@ export const getInitialFiltersStateWithSelectedOptions = ({
   initialFiltersState,
   initialOptions,
   touristicContentCategoryMapping,
+  outdoorRatingMapping,
+  outdoorRatingScale,
 }: {
   initialFiltersState: FilterState[];
   initialOptions: { [filterId: string]: string };
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
+  outdoorRatingMapping: OutdoorRatingMapping;
+  outdoorRatingScale: OutdoorRatingScale[];
 }): FilterState[] => {
   const sanitizedInitialOptions = sanitizeInitialOptions(initialOptions);
   const initialFiltersStateWithRelevantFilters = getInitialFiltersStateWithRelevantFilters({
     initialFiltersState,
     initialOptions: sanitizedInitialOptions,
     touristicContentCategoryMapping,
+    outdoorRatingMapping,
+    outdoorRatingScale,
   });
   return initialFiltersStateWithRelevantFilters.reduce<FilterState[]>(
     (initialStateWithSelectedOptions, currentFilterState) => {

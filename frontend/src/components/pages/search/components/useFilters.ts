@@ -10,6 +10,8 @@ import { TouristicContentCategoryMapping } from 'modules/touristicContentCategor
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
+import { OutdoorRatingMapping } from '../../../../modules/outdoorRating/interface';
+import { OutdoorRatingScale } from '../../../../modules/outdoorRatingScale/interface';
 
 export const useFilter = () => {
   const language = useRouter().locale ?? getDefaultLanguage();
@@ -19,6 +21,8 @@ export const useFilter = () => {
     {
       initialFiltersState: FilterState[];
       touristicContentCategoryMapping: TouristicContentCategoryMapping;
+      outdoorRatingMapping: OutdoorRatingMapping;
+      outdoorRatingScale: OutdoorRatingScale[];
       initialFiltersStateWithSelectedOptions: FilterState[];
     },
     Error
@@ -26,6 +30,9 @@ export const useFilter = () => {
 
   const initialFiltersState = data ? data.initialFiltersState : [];
   const touristicContentCategoryMapping = data ? data.touristicContentCategoryMapping : {};
+
+  const outdoorRatingMapping = data ? data.outdoorRatingMapping : {};
+  const outdoorRatingScale = data ? data.outdoorRatingScale : [];
   const initialFiltersStateWithSelectedOptions = data
     ? data.initialFiltersStateWithSelectedOptions
     : [];
@@ -61,6 +68,8 @@ export const useFilter = () => {
         initialFiltersState,
         selectedFilterId: filterId,
         touristicContentCategoryMapping,
+        outdoorRatingMapping,
+        outdoorRatingScale,
       });
     });
   };
