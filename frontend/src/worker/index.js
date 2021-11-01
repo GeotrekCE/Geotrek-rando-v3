@@ -1,25 +1,11 @@
 'use strict';
 
-self.addEventListener('message', event => {
-  // HOW TO TEST THIS?
-  // Run this in your browser console:
-  //     window.navigator.serviceWorker.controller.postMessage({command: 'log', message: 'hello world'})
-  // OR use next-pwa injected workbox object
-  //     window.workbox.messageSW({command: 'log', message: 'hello world'})
-  console.log(event.data);
-  //
-
-  if (event.command === 'getTreksCached') {
-  }
-});
-
 const cacheName = 'trek-pages';
 
 // fetch the resource from the network
 const fromNetwork = (request, timeout) =>
   new Promise((fulfill, reject) => {
     const timeoutId = setTimeout(reject, timeout);
-    console.log('Try request for', request.url);
     fetch(request).then(response => {
       clearTimeout(timeoutId);
       fulfill(response);
@@ -44,7 +30,6 @@ const fromCache = async request => {
 
 self.addEventListener('fetch', event => {
   if (event.request.url.includes('/trek/') || event.request.url.includes('/service/')) {
-    console.log('SW url', event.request.url);
     event.respondWith(fromNetwork(event.request, 10000).catch(() => fromCache(event.request)));
   }
 });

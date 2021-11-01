@@ -16,7 +16,6 @@ interface DetailsChildrenSectionProps {
 export const OutdoorSiteChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
   outdoorChildren,
   title,
-  id,
 }) => {
   return (
     <div className="mt-6 desktop:mt-12" id="details_trekChildren">
@@ -37,7 +36,7 @@ export const OutdoorSiteChildrenSection: React.FC<DetailsChildrenSectionProps> =
         flex-nowrap max-h-screen
         "
       >
-        {outdoorChildren.map((trekChild, i) => (
+        {outdoorChildren.map(trekChild => (
           <div key={trekChild.id} className={`mb-6`}>
             <ResultCard
               id={`${trekChild.id}`}
@@ -78,16 +77,3 @@ const ScrollContainer = styled.div`
     );
   `)}
 `;
-
-const Step: React.FC<{ number: number }> = ({ number }) => (
-  <div
-    className="h-8 w-8 desktop:h-12 desktop:w-12
-    rounded-full
-    flex items-center justify-center
-    border-solid border-primary1 border-3
-    text-P1 desktop:text-H4 font-bold text-primary1
-    shadow-md"
-  >
-    {number}
-  </div>
-);

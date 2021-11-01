@@ -110,7 +110,11 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
         ) : (
           <>
             <Layout>
-              <DetailsHeader sectionsReferences={sectionsReferences} details={details} />
+              <DetailsHeader
+                sectionsReferences={sectionsReferences}
+                details={details}
+                type={'TREK'}
+              />
               {details.title !== undefined && <DetailsHeaderMobile title={details.title} />}
               <div className="flex flex-1" id="details_mainContainer">
                 <div
@@ -530,7 +534,7 @@ interface DetailsHeaderMobileProps {
   title: string;
 }
 
-const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title: name }) => {
+export const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title: name }) => {
   const displayState = useShowOnScrollPosition(sizes.mobileDetailsTitle);
   return (
     <div
