@@ -1,19 +1,15 @@
 import { Bbox } from 'modules/details/interface';
-import { Attachment, RawAttachment } from 'modules/interface';
-import {
-  LineStringGeometry,
-  PointGeometry,
-  PolygonGeometry,
-  RawLineStringGeometry2D,
-  RawPointGeometry2D,
-  RawPolygonGeometry,
-} from 'modules/interface';
+import { Attachment, RawAttachment, RawGeometryCollection } from 'modules/interface';
+import { LineStringGeometry, PointGeometry, PolygonGeometry } from 'modules/interface';
+import { OutdoorSite } from '../outdoorSite/interface';
+import { Poi } from '../poi/interface';
+import { TouristicContent } from '../touristicContent/interface';
 
 export interface RawOutdoorCourse {
   id: string;
   attachments: RawAttachment[];
   name: string;
-  geometry: RawPointGeometry2D | RawPolygonGeometry | RawLineStringGeometry2D | null;
+  geometry: RawGeometryCollection;
   duration: number;
   max_elevation?: number;
   height?: number;
@@ -22,6 +18,7 @@ export interface RawOutdoorCourse {
 
 interface RawOutdoorCourseDetailsProperties extends RawOutdoorCourse {
   advice?: string;
+  children?: string;
   description?: string;
   equipment?: string;
   gear?: string;
@@ -36,7 +33,6 @@ interface RawOutdoorCourseDetailsProperties extends RawOutdoorCourse {
 
 export interface RawOutdoorCourseDetails extends RawOutdoorCourse {
   id: string;
-  geometry: RawPointGeometry2D | RawPolygonGeometry | RawLineStringGeometry2D | null;
   bbox: number[];
   properties: RawOutdoorCourseDetailsProperties;
 }
@@ -56,4 +52,8 @@ export interface OutdoorCourse {
 export interface OutdoorCourseDetails extends OutdoorCourse {
   description?: string;
   bbox: Bbox;
+  touristicContents: TouristicContent[];
+  pois: Poi[];
+  advice?: string;
+  children: OutdoorSite[];
 }

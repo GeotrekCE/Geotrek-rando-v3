@@ -38,34 +38,21 @@ export const OutdoorSiteChildrenSection: React.FC<DetailsChildrenSectionProps> =
         "
       >
         {outdoorChildren.map((trekChild, i) => (
-          <div key={i}>
-            <div className="hidden desktop:block">
-              <Step number={i + 1} />
-            </div>
-            <div
-              className={`mr-3 desktop:ml-5.5 desktop:mr-0 desktop:pl-12 relative ${
-                i < outdoorChildren.length - 1
-                  ? 'desktop:border-solid desktop:border-primary1 desktop:border-l-3'
-                  : ''
-              }`}
-            >
-              <div className="relative desktop:-top-20">
-                <ResultCard
-                  id={`${trekChild.id}`}
-                  hoverId={`DETAILS-OUTDOOR_SITE_CHILDREN-${trekChild.id}`}
-                  type="OUTDOOR_SITE"
-                  place={''}
-                  title={trekChild.name}
-                  tags={trekChild.themes}
-                  thumbnailUris={trekChild.thumbnailUris}
-                  attachments={trekChild.attachments}
-                  //badgeIconUri={trekChild.practice?.pictogram}
-                  informations={[]}
-                  redirectionUrl={generateOutdoorSiteUrl(trekChild.id, trekChild.name)}
-                  className="w-60 desktop:w-auto"
-                />
-              </div>
-            </div>
+          <div key={trekChild.id} className={`mb-6`}>
+            <ResultCard
+              id={`${trekChild.id}`}
+              hoverId={`DETAILS-OUTDOOR_SITE_CHILDREN-${trekChild.id}`}
+              type="OUTDOOR_SITE"
+              place={''}
+              title={trekChild.name}
+              tags={trekChild.themes}
+              thumbnailUris={trekChild.thumbnailUris}
+              attachments={trekChild.attachments}
+              badgeIconUri={trekChild.practice?.pictogram}
+              informations={[]}
+              redirectionUrl={generateOutdoorSiteUrl(trekChild.id, trekChild.name)}
+              className="w-60 desktop:w-auto"
+            />
           </div>
         ))}
       </ScrollContainer>

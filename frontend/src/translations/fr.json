@@ -162,7 +162,8 @@
   },
   "outdoorSite": {
     "childrenFullTitle": "Accès",
-    "coursesFullTitle": "Les {count} expériences à découvrir"
+    "coursesFullTitle": "Parcours",
+    "sitesFullTitle": "Les {count} expériences à découvrir"
   },
   "Wind": {
     "N": "Nord",

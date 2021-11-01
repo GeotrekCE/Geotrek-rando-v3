@@ -2,6 +2,7 @@ import { uniqBy } from 'lodash';
 import { getTouristicContentCategoryFilter } from 'modules/touristicContentCategory/connector';
 import { getActivityFilter } from 'modules/activities/connector';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
+import { getOutdoorPracticesFilter } from '../outdoorPractice/connector';
 import { getAccessibilityFilter } from './accessibility/connector';
 import { getCityFilter } from './city/connector';
 import { getFiltersConfig } from './config';
@@ -22,6 +23,7 @@ import {
   CATEGORY_ID,
   CITY_ID,
   DISTRICT_ID,
+  OUTDOOR_ID,
   PRACTICE_ID,
   ROUTE_ID,
   STRUCTURE_ID,
@@ -62,6 +64,8 @@ const getFilterOptions = async (
       return getStructureFilter(language);
     case CATEGORY_ID:
       return getTouristicContentCategoryFilter(language);
+    case OUTDOOR_ID:
+      return getOutdoorPracticesFilter(language);
     default:
       return null;
   }
@@ -105,6 +109,7 @@ const trekSpecificFilters = [
 export const commonFilters = [
   PRACTICE_ID,
   CATEGORY_ID,
+  OUTDOOR_ID,
   THEME_ID,
   CITY_ID,
   DISTRICT_ID,

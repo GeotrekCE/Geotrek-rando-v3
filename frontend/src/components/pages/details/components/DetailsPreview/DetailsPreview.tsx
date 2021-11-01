@@ -17,6 +17,7 @@ import {
 } from 'modules/touristicContent/interface';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { DetailsTrekParentButton } from '../DetailsTrekParentButton';
@@ -39,8 +40,8 @@ interface DetailsPreviewProps {
   teaser?: string;
   title: string;
   trekFamily?: TrekFamily;
-  details: Details | TouristicContentDetails | OutdoorSiteDetails;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE';
+  details: Details | TouristicContentDetails | OutdoorSiteDetails | OutdoorCourseDetails;
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE';
   id: string;
 }
 
