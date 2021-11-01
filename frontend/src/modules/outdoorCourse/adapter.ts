@@ -1,6 +1,5 @@
 import { getAttachments, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
-import { Choices } from '../filters/interface';
 import { Poi } from '../poi/interface';
 import { dataUnits } from '../results/adapter';
 import { TouristicContent } from '../touristicContent/interface';

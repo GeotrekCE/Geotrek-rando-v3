@@ -1,4 +1,3 @@
-import { ActivityChoices } from '../activities/interface';
 import { OUTDOOR_ID } from '../filters/constant';
 import { FilterWithoutType } from '../filters/interface';
 import { OutdoorPracticeChoices, RawOutdoorPractice } from './interface';
