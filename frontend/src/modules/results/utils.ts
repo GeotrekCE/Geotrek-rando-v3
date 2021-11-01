@@ -186,13 +186,13 @@ export const formatOutdoorSiteFiltersToUrlParams = (
 ): { [key: string]: string } => {
   const filters = filtersState.reduce<{ [key: string]: string[] }>(
     (currentFilters, currentFilterState) => {
-      if (/type-services-.*/.test(currentFilterState.id)) {
+      if (/type-outdoorRating-.*/.test(currentFilterState.id)) {
         if (currentFilterState.selectedOptions.length > 0) {
           return {
             ...currentFilters,
-            types: [
+            ratings_in_hierarchy: [
               // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-              ...(currentFilters.types ? currentFilters.types : []),
+              ...(currentFilters.ratings_in_hierarchy ? currentFilters.ratings_in_hierarchy : []),
               ...currentFilterState.selectedOptions,
             ],
           };
