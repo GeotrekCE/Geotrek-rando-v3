@@ -4,13 +4,14 @@ import React from 'react';
 import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import { Details } from '../../../../../modules/details/interface';
+import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
 
 interface DetailsTopIconsProps {
-  details: Details | TouristicContentDetails | OutdoorSiteDetails;
+  details: Details | TouristicContentDetails | OutdoorSiteDetails | OutdoorCourseDetails;
   practice?: Activity;
-  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE';
+  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE';
 }
 
 export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({

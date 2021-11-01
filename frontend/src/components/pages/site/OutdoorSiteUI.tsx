@@ -136,19 +136,6 @@ export const OutdoorSiteUI: React.FC<Props> = ({ outdoorSiteUrl, language }) => 
                 />
               </div>
 
-              {Number(outdoorSiteContent?.children?.length) > 0 && (
-                <div id="details_trekChildren_ref">
-                  <OutdoorSiteChildrenSection
-                    outdoorChildren={outdoorSiteContent?.children?.map(child => ({
-                      ...child,
-                      id: `${child.id}`,
-                    }))}
-                    id={id}
-                    title={intl.formatMessage({ id: 'outdoorSite.childrenFullTitle' })}
-                  />
-                </div>
-              )}
-
               {Number(outdoorSiteContent?.pois?.length) > 0 && (
                 <div id="details_poi_ref">
                   <DetailsCardSection
@@ -179,6 +166,22 @@ export const OutdoorSiteUI: React.FC<Props> = ({ outdoorSiteUrl, language }) => 
                 </div>
               )}
 
+              {Number(outdoorSiteContent?.children?.length) > 0 && (
+                <div id="details_trekChildren_ref">
+                  <OutdoorSiteChildrenSection
+                    outdoorChildren={outdoorSiteContent?.children?.map(child => ({
+                      ...child,
+                      id: `${child.id}`,
+                    }))}
+                    id={id}
+                    title={intl.formatMessage(
+                      { id: 'outdoorSite.sitesFullTitle' },
+                      { count: Number(outdoorSiteContent?.children?.length) },
+                    )}
+                  />
+                </div>
+              )}
+
               {Number(outdoorSiteContent?.courses?.length) > 0 && (
                 <div id="details_trekChildren_ref">
                   <OutdoorCoursesChildrenSection
@@ -191,6 +194,10 @@ export const OutdoorSiteUI: React.FC<Props> = ({ outdoorSiteUrl, language }) => 
                       { id: 'outdoorSite.coursesFullTitle' },
                       { count: Number(outdoorSiteContent?.courses?.length) },
                     )}
+                    parent={{
+                      id,
+                      title: outdoorSiteContent.name,
+                    }}
                   />
                 </div>
               )}

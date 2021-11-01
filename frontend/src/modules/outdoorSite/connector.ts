@@ -1,4 +1,3 @@
-import { getActivities } from '../activities/connector';
 import { getThemes } from '../filters/theme/connector';
 import { getInformationDesks } from '../informationDesk/connector';
 import { getLabels } from '../label/connector';

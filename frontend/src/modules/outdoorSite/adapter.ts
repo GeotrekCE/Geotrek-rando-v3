@@ -1,6 +1,5 @@
 import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
-import { Activity, ActivityChoices } from '../activities/interface';
 import { Choices } from '../filters/interface';
 import { InformationDeskDictionnary } from '../informationDesk/interface';
 import { LabelDictionnary } from '../label/interface';

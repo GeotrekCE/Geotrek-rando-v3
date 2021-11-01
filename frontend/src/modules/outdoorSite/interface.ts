@@ -1,13 +1,6 @@
 import { Bbox, WebLink } from 'modules/details/interface';
 import { Attachment, RawAttachment, RawGeometryCollection, RawWebLink } from 'modules/interface';
-import {
-  LineStringGeometry,
-  PointGeometry,
-  PolygonGeometry,
-  RawLineStringGeometry2D,
-  RawPointGeometry2D,
-  RawPolygonGeometry,
-} from 'modules/interface';
+import { LineStringGeometry, PointGeometry, PolygonGeometry } from 'modules/interface';
 import { Activity } from '../activities/interface';
 import { InformationDesk } from '../informationDesk/interface';
 import { Label } from '../label/interface';

@@ -1,5 +1,5 @@
 import { marginDetailsChild } from 'components/pages/details/Details';
-import { generateOutdoorSiteUrl } from 'components/pages/details/utils';
+import { generateOutdoorCourseUrl } from 'components/pages/details/utils';
 import { Separator } from 'components/Separator';
 import { ResultCard } from 'components/pages/search/components/ResultCard';
 import React from 'react';
@@ -11,12 +11,17 @@ interface DetailsChildrenSectionProps {
   outdoorChildren: OutdoorCourse[];
   title: string;
   id: string;
+  parent: {
+    id: string;
+    title: string;
+  };
 }
 
 export const OutdoorCoursesChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
   outdoorChildren,
   title,
   id,
+  parent,
 }) => {
   return (
     <div className="mt-6 desktop:mt-12" id="details_trekChildren">
@@ -48,14 +53,19 @@ export const OutdoorCoursesChildrenSection: React.FC<DetailsChildrenSectionProps
               tags={[]}
               thumbnailUris={trekChild.thumbnailUris}
               attachments={trekChild.attachments}
-              //badgeIconUri={trekChild.practice?.pictogram}
+              //badgeIconUri={trekChild?.practice?.pictogram}
               informations={{
                 duration: trekChild.duration,
                 elevation: trekChild.maxElevation,
                 height: trekChild.height,
                 length: trekChild.length,
               }}
-              redirectionUrl={generateOutdoorSiteUrl(trekChild.id, trekChild.name)}
+              redirectionUrl={generateOutdoorCourseUrl(
+                trekChild.id,
+                trekChild.name,
+                parent.id,
+                parent.title,
+              )}
               className="w-60 desktop:w-auto"
             />
           </div>

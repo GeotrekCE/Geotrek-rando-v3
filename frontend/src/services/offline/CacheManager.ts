@@ -1,5 +1,7 @@
 import { Offline } from 'modules/offline/interface';
 import { Details } from '../../modules/details/interface';
+import { OutdoorCourseDetails } from '../../modules/outdoorCourse/interface';
+import { OutdoorSiteDetails } from '../../modules/outdoorSite/interface';
 import { TouristicContentDetails } from '../../modules/touristicContent/interface';
 
 let controlInstance: any = null;
@@ -20,8 +22,8 @@ const CacheManager = {
     url,
     type,
   }: {
-    details: Details | TouristicContentDetails;
-    type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE';
+    details: Details | TouristicContentDetails | OutdoorSiteDetails | OutdoorCourseDetails;
+    type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE';
     url: string[];
   }) => {
     controlInstance.recenter();
@@ -35,13 +37,16 @@ const CacheManager = {
       'thumbnailUris' in details ? details.thumbnailUris : details.imgs.map(i => i.url);
     const informations =
       'informations' in details ? { ...details.informations, reservationSystem: null } : [];
-    const practice =
-      'practice' in details
-        ? details.practice
-        : {
-            pictogram: details.category.pictogramUri,
-            name: details.category.label,
-          };
+
+    let practice = null;
+    if ('practice' in details) practice = details.practice;
+    else if ('category' in details)
+      practice = {
+        pictogram: details.category.pictogramUri,
+        name: details.category.label,
+      };
+
+    const place = 'place' in details ? details.place : '';
 
     localStorage.setItem(
       `${PATTER_LOCAL_STORAGE}${details.id}`,
@@ -49,7 +54,7 @@ const CacheManager = {
         title,
         type,
         id: details.id,
-        place: details.place,
+        place,
         thumbnailUris,
         informations,
         practice,

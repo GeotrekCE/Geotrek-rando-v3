@@ -6,16 +6,17 @@ import React, { useState } from 'react';
 
 import { Download } from 'components/Icons/Download';
 import { Details } from 'modules/details/interface';
+import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
 import { getGlobalConfig } from '../../../../../modules/utils/api.config';
 import { DetailsButtonDropdown } from '../DetailsButtonDropdown';
 
 interface DetailsTopIconsProps {
-  details: Details | TouristicContentDetails | OutdoorSiteDetails;
+  details: Details | TouristicContentDetails | OutdoorSiteDetails | OutdoorCourseDetails;
   size?: number;
   hideReport?: boolean;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE';
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE';
 }
 
 export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
