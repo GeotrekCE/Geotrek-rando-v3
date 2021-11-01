@@ -107,7 +107,9 @@
     "departure": "Départ",
     "arrival": "Arrivée",
     "cities": "Communes traversées",
-    "more": "En savoir plus"
+    "more": "En savoir plus",
+    "courses": "Parcours",
+    "experiences": "Expériences"
   },
   "touristicContent": {
     "contact": "Contact",

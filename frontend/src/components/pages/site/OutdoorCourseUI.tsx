@@ -1,13 +1,9 @@
-import MoreLink from 'components/Information/MoreLink';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
 import { DetailsAdvice } from 'components/pages/details/components/DetailsAdvice';
 import { DetailsCardSection } from 'components/pages/details/components/DetailsCardSection';
 import { DetailsDescription } from 'components/pages/details/components/DetailsDescription';
-import { DetailsInformationDesk } from 'components/pages/details/components/DetailsInformationDesk';
-import { DetailsLabel } from 'components/pages/details/components/DetailsLabel';
 import { DetailsSection } from 'components/pages/details/components/DetailsSection';
-import { DetailsSource } from 'components/pages/details/components/DetailsSource';
 import { marginDetailsChild } from 'components/pages/details/Details';
 import { generateTouristicContentUrl } from 'components/pages/details/utils';
 import { OutdoorSiteChildrenSection } from 'components/pages/site/components/OutdoorSiteChildrenSection';
