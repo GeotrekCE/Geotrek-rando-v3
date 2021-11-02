@@ -30,6 +30,18 @@ const getTouristicContentsForLanguage = async (
   return response.results;
 };
 
+const getOutdoorSiteForLanguage = async (
+  language: string,
+): Promise<{ id: string; name: string }[]> => {
+  const treks = await fetch(
+    `${
+      getGlobalConfig().apiUrl
+    }/outdoor_site/?root_sites_only=1&language=${language}&fields=id,name&page_size=${LIMIT}${portalFilter}`,
+  );
+  const response = await treks.json();
+  return response.results;
+};
+
 const getFlatPagesForLanguage = async (
   language: string,
 ): Promise<{ id: string; title: string; external_url: string }[]> => {
@@ -61,6 +73,16 @@ const getApiContentForLanguage = async (language: string): Promise<string> => {
         : '',
     )
     .join('');
+  const outdoorSites = await getOutdoorSiteForLanguage(language);
+  const outdoorSitesUrls = outdoorSites
+    .map(({ id, name }) =>
+      name && id
+        ? `<url><loc>${baseUrl}/outdoor/${id}-${encodeURI(
+            convertStringForSitemap(name),
+          )}</loc></url>`
+        : '',
+    )
+    .join('');
   const flatPages = await getFlatPagesForLanguage(language);
   const flatPageUrls = flatPages
     .map(({ id, title, external_url }) =>
@@ -78,6 +100,7 @@ const getApiContentForLanguage = async (language: string): Promise<string> => {
     `<url><loc>${baseUrl}/search</loc></url>`,
     trekUrls,
     touristicContentUrls,
+    outdoorSitesUrls,
     flatPageUrls,
   ].join('');
 };
