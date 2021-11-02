@@ -97,7 +97,12 @@ const CacheManager = {
     // Remove cached page
     const cache = await caches.open('trek-pages');
     const keys = await cache.keys();
-    const results = keys.filter(request => request.url.includes(`/trek/${id}`));
+    const results = keys.filter(
+      request =>
+        request.url.includes(`/trek/${id}`) ||
+        request.url.includes(`/service/${id}`) ||
+        request.url.includes(`/outdoor/${id}`),
+    );
     await Promise.all(results.map(request => cache.delete(request)));
 
     // Remove in local storage
