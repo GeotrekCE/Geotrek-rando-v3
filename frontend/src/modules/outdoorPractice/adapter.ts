@@ -1,6 +1,7 @@
+import { ActivityFilter } from '../activities/interface';
 import { OUTDOOR_ID } from '../filters/constant';
 import { FilterWithoutType } from '../filters/interface';
-import { OutdoorPracticeChoices, RawOutdoorPractice } from './interface';
+import { OutdoorPractice, OutdoorPracticeChoices, RawOutdoorPractice } from './interface';
 
 export const adaptOutdoorPractices = ({
   rawOutdoorPractices,
@@ -19,6 +20,16 @@ export const adaptOutdoorPractices = ({
     }),
     {} as OutdoorPracticeChoices,
   );
+
+export const adaptOutdoorPracticesForActivities = (
+  rawOutdoorPractices: RawOutdoorPractice[],
+): ActivityFilter[] =>
+  rawOutdoorPractices.map(({ name, id }) => ({
+    id,
+    name,
+    pictogram: '',
+    type: 'PRACTICE',
+  }));
 
 export const adaptOutdoorPracticesFilter = (
   rawOutdoorPractices: RawOutdoorPractice[],

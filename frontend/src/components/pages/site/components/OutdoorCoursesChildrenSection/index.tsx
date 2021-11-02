@@ -32,17 +32,14 @@ export const OutdoorCoursesChildrenSection: React.FC<DetailsChildrenSectionProps
       </div>
       <ScrollContainer
         id="details_trekChildrenScrollContainer"
-        className="flex desktop:flex-col
-        desktop:pl-18 desktop:pr-9 desktop:mr-9 desktop:pt-10
-        mt-4 mb-4 desktop:mb-0 px-4
-        items-stretch
+        className="flex desktop:flex-col items-stretch
         overflow-x-scroll desktop:overflow-x-hidden
-        overflow-y-hidden desktop:overflow-y-scroll
-        flex-nowrap max-h-screen
-        "
+        overflow-y-hidden desktop:overflow-y-scroll flex-nowrap
+        pb-5 mt-4 mb-2 desktop:mb-0
+        px-4 desktop:pl-18 desktop:pr-9 desktop:mr-9"
       >
         {outdoorChildren.map(trekChild => (
-          <div key={trekChild.id} className={`mb-6`}>
+          <div key={trekChild.id} className={`mb-6 mx-1`}>
             <ResultCard
               id={`${trekChild.id}`}
               hoverId={`DETAILS-OUTDOOR_SITE_CHILDREN-${trekChild.id}`}

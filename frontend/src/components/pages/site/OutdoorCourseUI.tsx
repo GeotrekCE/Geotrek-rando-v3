@@ -9,11 +9,11 @@ import { generateTouristicContentUrl } from 'components/pages/details/utils';
 import { OutdoorSiteChildrenSection } from 'components/pages/site/components/OutdoorSiteChildrenSection';
 import { useOutdoorCourse } from 'components/pages/site/useOutdoorCourse';
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'react-loader';
 import { useMediaPredicate } from 'react-media-hook';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
-import { TouristicContentMapDynamicComponent } from 'components/Map';
+import { DetailsMapDynamicComponent } from 'components/Map';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
@@ -105,7 +105,7 @@ export const OutdoorCourseUI: React.FC<Props> = ({ outdoorCourseUrl, language })
                     pictogram: '',
                     name: '',
                   }}
-                  type={'OUTDOOR_SITE'}
+                  type={'OUTDOOR_COURSE'}
                 />
                 <DetailsPreview
                   className={marginDetailsChild}
@@ -141,6 +141,35 @@ export const OutdoorCourseUI: React.FC<Props> = ({ outdoorCourseUrl, language })
                 </div>
               )}
 
+              {outdoorCourseContent.description && (
+                <div id="details_description_ref">
+                  <DetailsDescription
+                    descriptionHtml={outdoorCourseContent.description}
+                    className={marginDetailsChild}
+                  />
+                </div>
+              )}
+
+              {outdoorCourseContent.gear && (
+                <div id="details_gear_ref">
+                  <DetailsDescription
+                    descriptionHtml={outdoorCourseContent.gear}
+                    className={marginDetailsChild}
+                    title={<FormattedMessage id="details.gear" />}
+                  />
+                </div>
+              )}
+
+              {outdoorCourseContent.equipment && (
+                <div id="details_equipment_ref">
+                  <DetailsDescription
+                    descriptionHtml={outdoorCourseContent.equipment}
+                    className={marginDetailsChild}
+                    title={<FormattedMessage id="details.equipment" />}
+                  />
+                </div>
+              )}
+
               {Number(outdoorCourseContent?.pois?.length) > 0 && (
                 <div id="details_poi_ref">
                   <DetailsCardSection
@@ -158,15 +187,6 @@ export const OutdoorCourseUI: React.FC<Props> = ({ outdoorCourseUrl, language })
                       iconUri: poi.type.pictogramUri,
                     }))}
                     type="POI"
-                  />
-                </div>
-              )}
-
-              {outdoorCourseContent.description && (
-                <div id="details_description_ref">
-                  <DetailsDescription
-                    descriptionHtml={outdoorCourseContent.description}
-                    className={marginDetailsChild}
                   />
                 </div>
               )}
@@ -212,19 +232,37 @@ export const OutdoorCourseUI: React.FC<Props> = ({ outdoorCourseUrl, language })
             </div>
             {!isMobile && (
               <div
-                id="outdoorCourseContent_map"
-                className="hidden desktop:flex desktop:z-content desktop:w-2/5
-              desktop:bottom-0 desktop:fixed desktop:right-0 desktop:top-desktopHeader"
+                id="details_mapContainer"
+                className="desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar"
               >
-                <TouristicContentMapDynamicComponent
+                <DetailsMapDynamicComponent
                   type="DESKTOP"
-                  bbox={outdoorCourseContent.bbox}
-                  touristicContentGeometry={{
+                  outdoorGeometry={{
                     geometry: outdoorCourseContent.geometry,
                     pictogramUri: '',
                     name: outdoorCourseContent.name,
                     id: outdoorCourseContent.id,
                   }}
+                  poiPoints={outdoorCourseContent.pois.map(poi => ({
+                    location: { x: poi.geometry.x, y: poi.geometry.y },
+                    pictogramUri: poi.type.pictogramUri,
+                    name: poi.name,
+                    id: `DETAILS-POI-${poi.id}`,
+                  }))}
+                  bbox={outdoorCourseContent.bbox}
+                  trekChildrenGeometry={[]}
+                  touristicContentPoints={outdoorCourseContent.touristicContents
+                    .filter(touristicContent => touristicContent.geometry !== null)
+                    .map(touristicContent => ({
+                      // It's ok to ignore this rule, we filtered null values 2 lines above
+                      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                      geometry: touristicContent.geometry!,
+                      pictogramUri: touristicContent.category.pictogramUri,
+                      name: touristicContent.name,
+                      id: `DETAILS-TOURISTIC_CONTENT-${touristicContent.id}`,
+                    }))}
+                  sensitiveAreas={[]}
+                  trekId={Number(id)}
                 />
               </div>
             )}
@@ -237,16 +275,34 @@ export const OutdoorCourseUI: React.FC<Props> = ({ outdoorCourseUrl, language })
               }`}
               displayState={mobileMapState}
             >
-              <TouristicContentMapDynamicComponent
+              <DetailsMapDynamicComponent
                 type="MOBILE"
-                bbox={outdoorCourseContent.bbox}
-                touristicContentGeometry={{
+                outdoorGeometry={{
                   geometry: outdoorCourseContent.geometry,
                   pictogramUri: '',
                   name: outdoorCourseContent.name,
                   id: outdoorCourseContent.id,
                 }}
+                poiPoints={outdoorCourseContent.pois.map(poi => ({
+                  location: { x: poi.geometry.x, y: poi.geometry.y },
+                  pictogramUri: poi.type.pictogramUri,
+                  name: poi.name,
+                  id: `${poi.id}`,
+                }))}
+                bbox={outdoorCourseContent.bbox}
+                trekChildrenGeometry={[]}
+                touristicContentPoints={outdoorCourseContent.touristicContents
+                  .filter(touristicContent => touristicContent.geometry !== null)
+                  .map(touristicContent => ({
+                    // It's ok to ignore this rule, we filtered null values 2 lines above
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    geometry: touristicContent.geometry!,
+                    pictogramUri: touristicContent.category.pictogramUri,
+                    name: touristicContent.name,
+                    id: `${touristicContent.id}`,
+                  }))}
                 hideMap={hideMobileMap}
+                trekId={Number(id)}
               />
             </MobileMapContainer>
           )}

@@ -14,7 +14,7 @@ export const fetchOutdoorSites = (query: APIQuery): Promise<APIResponseForList<R
     .json();
 
 const fieldsParamsDetails = {
-  fields: `${fieldsParams.fields},advice,description,description_teaser,ambiance,labels,source,information_desks,web_links,courses`,
+  fields: `${fieldsParams.fields},advice,description,description_teaser,ambiance,labels,source,information_desks,web_links,courses,pdf`,
   format: 'geojson',
 };
 

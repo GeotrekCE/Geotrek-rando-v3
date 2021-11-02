@@ -20,7 +20,8 @@ export type DetailsSections =
   | 'practicalInformations'
   | 'accessibility'
   | 'touristicContent'
-  | 'sensitiveAreasRef';
+  | 'sensitiveAreasRef'
+  | 'courses';
 
 interface SectionPosition {
   top: number;

@@ -109,7 +109,9 @@
     "cities": "Communes traversées",
     "more": "En savoir plus",
     "courses": "Parcours",
-    "experiences": "Expériences"
+    "experiences": "Expériences",
+    "gear": "Materiel",
+    "equipment": "Equipement"
   },
   "touristicContent": {
     "contact": "Contact",
@@ -163,7 +165,7 @@
     "confirmRemove": "Etes vous sûr de vouloir supprimer cet élément?"
   },
   "outdoorSite": {
-    "childrenFullTitle": "Accès",
+    "accessFullTitle": "Accès",
     "coursesFullTitle": "Parcours",
     "sitesFullTitle": "Les {count} expériences à découvrir"
   },

@@ -13,6 +13,7 @@ import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/detail
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
 import { generateTouristicContentUrl } from 'components/pages/details/utils';
 import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
+import { AccessChildrenSection } from 'components/pages/site/components/AccessChildrenSection';
 import { OutdoorCoursesChildrenSection } from 'components/pages/site/components/OutdoorCoursesChildrenSection';
 import { OutdoorSiteChildrenSection } from 'components/pages/site/components/OutdoorSiteChildrenSection';
 import React, { useMemo, useRef } from 'react';
@@ -20,7 +21,7 @@ import { useIntl } from 'react-intl';
 import Loader from 'react-loader';
 import { useMediaPredicate } from 'react-media-hook';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
-import { TouristicContentMapDynamicComponent } from 'components/Map';
+import { DetailsMapDynamicComponent } from 'components/Map';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
@@ -180,6 +181,19 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     />
                   </div>
 
+                  {Number(outdoorSiteContent?.access?.length) > 0 && (
+                    <div ref={setExperienceRef} id="details_trekChildren_ref">
+                      <AccessChildrenSection
+                        accessChildren={outdoorSiteContent?.access}
+                        id={id}
+                        title={intl.formatMessage(
+                          { id: 'outdoorSite.accessFullTitle' },
+                          { count: Number(outdoorSiteContent?.access?.length) },
+                        )}
+                      />
+                    </div>
+                  )}
+
                   {Number(outdoorSiteContent?.pois?.length) > 0 && (
                     <div ref={setPoisRef} id="details_poi_ref">
                       <DetailsCardSection
@@ -213,10 +227,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                   {Number(outdoorSiteContent?.children?.length) > 0 && (
                     <div ref={setExperienceRef} id="details_trekChildren_ref">
                       <OutdoorSiteChildrenSection
-                        outdoorChildren={outdoorSiteContent?.children?.map(child => ({
-                          ...child,
-                          id: `${child.id}`,
-                        }))}
+                        outdoorChildren={outdoorSiteContent?.children}
                         id={id}
                         title={intl.formatMessage(
                           { id: 'outdoorSite.sitesFullTitle' },
@@ -229,10 +240,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                   {Number(outdoorSiteContent?.courses?.length) > 0 && (
                     <div ref={setCoursesRef} id="details_trekChildren_ref">
                       <OutdoorCoursesChildrenSection
-                        outdoorChildren={outdoorSiteContent?.courses?.map(child => ({
-                          ...child,
-                          id: `${child.id}`,
-                        }))}
+                        outdoorChildren={outdoorSiteContent?.courses}
                         id={id}
                         title={intl.formatMessage(
                           { id: 'outdoorSite.coursesFullTitle' },
@@ -370,15 +378,34 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                   className="hidden desktop:flex desktop:z-content desktop:w-2/5
               desktop:bottom-0 desktop:fixed desktop:right-0 desktop:top-desktopHeader"
                 >
-                  <TouristicContentMapDynamicComponent
+                  <DetailsMapDynamicComponent
                     type="DESKTOP"
-                    bbox={outdoorSiteContent.bbox}
-                    touristicContentGeometry={{
+                    outdoorGeometry={{
                       geometry: outdoorSiteContent.geometry,
                       pictogramUri: '',
                       name: outdoorSiteContent.name,
                       id: outdoorSiteContent.id,
                     }}
+                    poiPoints={outdoorSiteContent.pois.map(poi => ({
+                      location: { x: poi.geometry.x, y: poi.geometry.y },
+                      pictogramUri: poi.type.pictogramUri,
+                      name: poi.name,
+                      id: `DETAILS-POI-${poi.id}`,
+                    }))}
+                    bbox={outdoorSiteContent.bbox}
+                    trekChildrenGeometry={[]}
+                    touristicContentPoints={outdoorSiteContent.touristicContents
+                      .filter(touristicContent => touristicContent.geometry !== null)
+                      .map(touristicContent => ({
+                        // It's ok to ignore this rule, we filtered null values 2 lines above
+                        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                        geometry: touristicContent.geometry!,
+                        pictogramUri: touristicContent.category.pictogramUri,
+                        name: touristicContent.name,
+                        id: `DETAILS-TOURISTIC_CONTENT-${touristicContent.id}`,
+                      }))}
+                    sensitiveAreas={[]}
+                    trekId={Number(id)}
                   />
                 </div>
               )}
@@ -391,16 +418,34 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                 }`}
                 displayState={mobileMapState}
               >
-                <TouristicContentMapDynamicComponent
+                <DetailsMapDynamicComponent
                   type="MOBILE"
-                  bbox={outdoorSiteContent.bbox}
-                  touristicContentGeometry={{
+                  outdoorGeometry={{
                     geometry: outdoorSiteContent.geometry,
                     pictogramUri: '',
                     name: outdoorSiteContent.name,
                     id: outdoorSiteContent.id,
                   }}
+                  poiPoints={outdoorSiteContent.pois.map(poi => ({
+                    location: { x: poi.geometry.x, y: poi.geometry.y },
+                    pictogramUri: poi.type.pictogramUri,
+                    name: poi.name,
+                    id: `${poi.id}`,
+                  }))}
+                  bbox={outdoorSiteContent.bbox}
+                  trekChildrenGeometry={[]}
+                  touristicContentPoints={outdoorSiteContent.touristicContents
+                    .filter(touristicContent => touristicContent.geometry !== null)
+                    .map(touristicContent => ({
+                      // It's ok to ignore this rule, we filtered null values 2 lines above
+                      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                      geometry: touristicContent.geometry!,
+                      pictogramUri: touristicContent.category.pictogramUri,
+                      name: touristicContent.name,
+                      id: `${touristicContent.id}`,
+                    }))}
                   hideMap={hideMobileMap}
+                  trekId={Number(id)}
                 />
               </MobileMapContainer>
             )}

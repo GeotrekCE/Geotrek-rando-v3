@@ -5,7 +5,7 @@ import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 
-import { borderRadius, colorPalette, desktopOnly, getSpacing, sizes, typography } from 'stylesheet';
+import { borderRadius, colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
 import { flexGap } from 'services/cssHelpers';
 
 import { Chip } from 'components/Chip';

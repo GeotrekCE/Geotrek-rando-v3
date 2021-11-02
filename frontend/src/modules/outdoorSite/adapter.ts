@@ -6,6 +6,7 @@ import { LabelDictionnary } from '../label/interface';
 import { OutdoorCourse } from '../outdoorCourse/interface';
 import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { Poi } from '../poi/interface';
+import { TrekResult } from '../results/interface';
 import { SourceDictionnary } from '../source/interface';
 import { TouristicContent } from '../touristicContent/interface';
 import { fallbackImgUri } from '../trekResult/adapter';
@@ -33,9 +34,7 @@ export const adaptOutdoorSites = ({
       name: rawOutdoorSite.name,
       thumbnailUris: getThumbnails(rawOutdoorSite.attachments),
       attachments: getAttachments(rawOutdoorSite.attachments),
-      geometry: rawOutdoorSite.geometry
-        ? adaptGeometry(rawOutdoorSite.geometry.geometries[0])
-        : null,
+      geometry: adaptGeometry(rawOutdoorSite.geometry.geometries[0]),
       themes: rawOutdoorSite?.themes?.map(themeId => themeDictionnary[themeId].label) ?? [],
       practice: outdoorPracticeDictionnary[rawOutdoorSite.practice] ?? null,
       period: rawOutdoorSite?.period ? rawOutdoorSite?.period : null,
@@ -55,6 +54,7 @@ export const adaptOutdoorSiteDetails = ({
   informationDesksDictionnary,
   courses,
   outdoorPracticeDictionnary,
+  access,
 }: {
   rawOutdoorSiteDetails: RawOutdoorSiteDetails;
   pois: Poi[];
@@ -66,6 +66,7 @@ export const adaptOutdoorSiteDetails = ({
   informationDesksDictionnary: InformationDeskDictionnary;
   courses: OutdoorCourse[];
   outdoorPracticeDictionnary: OutdoorPracticeChoices;
+  access: TrekResult[];
 }): OutdoorSiteDetails => ({
   ...adaptOutdoorSites({
     rawOutdoorSites: [
@@ -97,6 +98,8 @@ export const adaptOutdoorSiteDetails = ({
   children,
   courses,
   id: rawOutdoorSiteDetails.id,
+  access,
+  pdfUri: rawOutdoorSiteDetails?.properties?.pdf,
 });
 
 export const adaptOutdoorSitePopupResults = (rawDetails: RawOutdoorSiteDetails): PopupResult => {

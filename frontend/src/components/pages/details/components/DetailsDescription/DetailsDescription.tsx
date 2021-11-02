@@ -10,6 +10,7 @@ interface DetailsDescriptionProps {
   departure?: string;
   arrival?: string;
   cities?: string[];
+  title?: React.ReactElement;
 }
 
 export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
@@ -18,6 +19,7 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
   departure,
   arrival,
   cities,
+  title = <FormattedMessage id="details.description" />,
 }) => {
   return (
     <div
@@ -28,7 +30,7 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
       ${className ?? ''}`}
     >
       <p id="details_descriptionTitle" className="text-Mobile-H1 desktop:text-H2 font-bold">
-        <FormattedMessage id="details.description" />
+        {title}
       </p>
       <div id="details_descriptionContent" className="mt-3 desktop:mt-4 mb-6 desktop:mb-12">
         <StyledListWithSteps>{parse(descriptionHtml)}</StyledListWithSteps>
