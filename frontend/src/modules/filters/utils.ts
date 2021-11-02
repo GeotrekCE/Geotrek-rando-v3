@@ -161,26 +161,28 @@ const getOutdoorRatingFiltersState = ({
   outdoorRatingMapping: OutdoorRatingMapping;
   outdoorRatingScale: OutdoorRatingScale[];
 }): FilterState[] => {
-  const scale = outdoorRatingScale.find(i => String(i.practice) === practiceId);
+  const result: FilterState[] = [];
+  const scales = outdoorRatingScale.filter(i => String(i.practice) === practiceId);
 
-  if (!scale) return [];
+  if (scales.length > 0) {
+    scales.forEach(scale => {
+      const data = outdoorRatingMapping[scale.id];
 
-  const data = outdoorRatingMapping[scale.id];
+      if (data)
+        result.push({
+          id: `type-outdoorRating-${String(scale.id)}`,
+          label: scale?.name ?? 'Error',
+          type: 'MULTIPLE',
+          options: data.map(i => ({
+            value: i.id,
+            label: i.name,
+          })),
+          selectedOptions: [],
+        });
+    });
+  }
 
-  if (!data) return [];
-
-  return [
-    {
-      id: `type-outdoorRating-${String(scale.id)}`,
-      label: scale?.name ?? 'Error',
-      type: 'MULTIPLE',
-      options: data.map(i => ({
-        value: i.id,
-        label: i.name,
-      })),
-      selectedOptions: [],
-    },
-  ];
+  return result;
 };
 
 export const computeFiltersToDisplay = ({
