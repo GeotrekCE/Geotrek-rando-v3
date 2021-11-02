@@ -21,9 +21,7 @@ export const adaptOutdoorCourses = ({
       id: rawOutdoorCourse.id,
       name: rawOutdoorCourse.name,
       attachments: getAttachments(rawOutdoorCourse.attachments),
-      geometry: rawOutdoorCourse.geometry
-        ? adaptGeometry(rawOutdoorCourse.geometry.geometries[0])
-        : null,
+      geometry: adaptGeometry(rawOutdoorCourse.geometry.geometries[0]),
       thumbnailUris: getThumbnails(rawOutdoorCourse.attachments),
       duration: rawOutdoorCourse.duration ? formatHours(rawOutdoorCourse.duration) : null,
       maxElevation: rawOutdoorCourse.max_elevation
@@ -66,5 +64,8 @@ export const adaptOutdoorCourseDetails = ({
     advice: rawOutdoorCourseDetails.properties.advice,
     // @FIXME
     children: [],
+    gear: String(rawOutdoorCourseDetails.properties.gear),
+    equipment: String(rawOutdoorCourseDetails.properties.equipment),
+    pdfUri: rawOutdoorCourseDetails.properties.pdf,
   };
 };

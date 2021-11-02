@@ -6,6 +6,7 @@ import { InformationDesk } from '../informationDesk/interface';
 import { Label } from '../label/interface';
 import { OutdoorCourse } from '../outdoorCourse/interface';
 import { Poi } from '../poi/interface';
+import { TrekResult } from '../results/interface';
 import { Source } from '../source/interface';
 import { TouristicContent } from '../touristicContent/interface';
 
@@ -39,6 +40,7 @@ interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
   url?: string;
   courses?: string;
   web_links?: RawWebLink[];
+  pdf: string;
 }
 
 export interface RawOutdoorSiteDetails extends RawOutdoorSite {
@@ -51,7 +53,7 @@ export interface OutdoorSite {
   id: string;
   name: string;
   attachments: Attachment[];
-  geometry: PointGeometry | PolygonGeometry | LineStringGeometry | null;
+  geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
   type: 'OUTDOOR_SITE';
   thumbnailUris: string[];
   themes: string[];
@@ -75,4 +77,6 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   touristicContents: TouristicContent[];
   children: OutdoorSite[];
   courses: OutdoorCourse[];
+  access: TrekResult[];
+  pdfUri: string;
 }

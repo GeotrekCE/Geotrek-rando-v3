@@ -1,20 +1,23 @@
 import { marginDetailsChild } from 'components/pages/details/Details';
-import { generateOutdoorSiteUrl } from 'components/pages/details/utils';
+import { generateChildrenDetailsUrl, generateOutdoorSiteUrl } from 'components/pages/details/utils';
+import { generateResultDetailsUrl } from 'components/pages/search/utils';
 import { Separator } from 'components/Separator';
 import { ResultCard } from 'components/pages/search/components/ResultCard';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { desktopOnly, scrollBar, sizes } from 'stylesheet';
+import { Details } from '../../../../../modules/details/interface';
 import { OutdoorSite } from '../../../../../modules/outdoorSite/interface';
+import { TrekResult } from '../../../../../modules/results/interface';
 
 interface DetailsChildrenSectionProps {
-  outdoorChildren: OutdoorSite[];
+  accessChildren: TrekResult[];
   title: string;
   id: string;
 }
 
-export const OutdoorSiteChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
-  outdoorChildren,
+export const AccessChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
+  accessChildren,
   title,
 }) => {
   return (
@@ -36,20 +39,20 @@ export const OutdoorSiteChildrenSection: React.FC<DetailsChildrenSectionProps> =
         flex-nowrap max-h-screen
         "
       >
-        {outdoorChildren.map(trekChild => (
-          <div key={trekChild.id} className={`mb-6 mx-1`}>
+        {accessChildren.map(trekChild => (
+          <div key={trekChild.id} className={`mb-6`}>
             <ResultCard
               id={`${trekChild.id}`}
-              hoverId={`DETAILS-OUTDOOR_SITE_CHILDREN-${trekChild.id}`}
-              type="OUTDOOR_SITE"
+              hoverId={`DETAILS-TREK-${trekChild.id}`}
+              type="TREK"
               place={''}
-              title={trekChild.name}
-              tags={trekChild.themes}
+              title={trekChild.title}
+              tags={trekChild.tags}
               thumbnailUris={trekChild.thumbnailUris}
               attachments={trekChild.attachments}
               badgeIconUri={trekChild.practice?.pictogram}
-              informations={[]}
-              redirectionUrl={generateOutdoorSiteUrl(trekChild.id, trekChild.name)}
+              informations={trekChild.informations}
+              redirectionUrl={generateResultDetailsUrl(trekChild.id, trekChild.title)}
               className="w-60 desktop:w-auto"
             />
           </div>

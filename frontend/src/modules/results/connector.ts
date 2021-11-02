@@ -269,3 +269,21 @@ export const getTrekResultsById = async (
     throw e;
   }
 };
+
+export const getTrekResults = async (language: string, query = {}) => {
+  const [rawTrekResults, difficulties, themes, activities, cityDictionnary] = await Promise.all([
+    fetchTrekResults({ language, ...query }),
+    getDifficulties(language),
+    getThemes(language),
+    getActivities(language),
+    getCities(language),
+  ]);
+
+  return adaptTrekResultList({
+    resultsList: rawTrekResults.results,
+    difficulties,
+    themes,
+    activities,
+    cityDictionnary,
+  });
+};

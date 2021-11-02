@@ -29,6 +29,7 @@ interface RawOutdoorCourseDetailsProperties extends RawOutdoorCourse {
   structure: number;
   type: number;
   url: string;
+  pdf: string;
 }
 
 export interface RawOutdoorCourseDetails extends RawOutdoorCourse {
@@ -41,7 +42,7 @@ export interface OutdoorCourse {
   id: string;
   name: string;
   attachments: Attachment[];
-  geometry: PointGeometry | PolygonGeometry | LineStringGeometry | null;
+  geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
   thumbnailUris: string[];
   duration: string | null;
   maxElevation: string | null;
@@ -56,4 +57,7 @@ export interface OutdoorCourseDetails extends OutdoorCourse {
   pois: Poi[];
   advice?: string;
   children: OutdoorSite[];
+  gear: string;
+  equipment: string;
+  pdfUri: string;
 }

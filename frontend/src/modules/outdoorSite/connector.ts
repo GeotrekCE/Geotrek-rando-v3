@@ -4,6 +4,7 @@ import { getLabels } from '../label/connector';
 import { getOutdoorCourses } from '../outdoorCourse/connector';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { getPois } from '../poi/connector';
+import { getTrekResults } from '../results/connector';
 import { getSources } from '../source/connector';
 import { getTouristicContentsNearTarget } from '../touristicContent/connector';
 import { PopupResult } from '../trekResult/interface';
@@ -45,6 +46,7 @@ export const getOutdoorSiteDetails = async (
       courses,
       outdoorPracticeDictionnary,
       touristicContents,
+      ,
     ] = await Promise.all([
       fetchOutdoorSiteDetails({ language }, id),
       getPois(Number(id), language, 'sites'),
@@ -58,6 +60,10 @@ export const getOutdoorSiteDetails = async (
       getTouristicContentsNearTarget(Number(id), language, 'near_outdoorsite'),
     ]);
 
+    const [access] = await Promise.all([
+      getTrekResults(language, { near_outdoorsite: Number(id) }),
+    ]);
+
     return adaptOutdoorSiteDetails({
       rawOutdoorSiteDetails,
       pois,
@@ -69,6 +75,7 @@ export const getOutdoorSiteDetails = async (
       courses,
       outdoorPracticeDictionnary,
       touristicContents,
+      access,
     });
   } catch (e) {
     console.error('Error in outdoor course connector', e);

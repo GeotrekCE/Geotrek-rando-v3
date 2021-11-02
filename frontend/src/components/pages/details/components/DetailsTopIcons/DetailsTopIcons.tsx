@@ -27,7 +27,9 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
       >
         {practice && <ActivityLogo src={practice.pictogram} />}
         <div className="flex space-x-4">
-          <div className={type === 'TREK' ? 'desktop:hidden' : undefined}>
+          <div
+            className={type === 'TREK' || type === 'OUTDOOR_SITE' ? 'desktop:hidden' : undefined}
+          >
             <DetailsDownloadIcons
               details={details}
               size={30}

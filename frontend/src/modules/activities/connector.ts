@@ -1,5 +1,7 @@
 import { adaptTouristicContentCategoryList } from 'modules/touristicContentCategory/adapter';
 import { fetchTouristicContentCategories } from 'modules/touristicContentCategory/api';
+import { adaptOutdoorPracticesForActivities } from '../outdoorPractice/adapter';
+import { fetchOutdoorPractices } from '../outdoorPractice/api';
 import {
   adaptActivities,
   adaptActivitiesFilter,
@@ -32,12 +34,15 @@ export const getActivity = async (
 };
 
 export const getActivityBarContent = async (language: string): Promise<ActivityFilter[]> => {
-  const [rawPractices, rawTouristicContentCategories] = await Promise.all([
+  const [rawPractices, rawTouristicContentCategories, rawOutdoorPractices] = await Promise.all([
     fetchActivities({ language }),
     fetchTouristicContentCategories({ language }),
+    fetchOutdoorPractices({ language }),
   ]);
+
   return [
     ...adaptActivitiesFilter(rawPractices.results),
     ...adaptTouristicContentCategoryList(rawTouristicContentCategories.results),
+    ...adaptOutdoorPracticesForActivities(rawOutdoorPractices.results),
   ];
 };
