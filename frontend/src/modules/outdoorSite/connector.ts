@@ -8,6 +8,7 @@ import { getTrekResults } from '../results/connector';
 import { getSources } from '../source/connector';
 import { getTouristicContentsNearTarget } from '../touristicContent/connector';
 import { PopupResult } from '../trekResult/interface';
+import { getGlobalConfig } from '../utils/api.config';
 import {
   adaptOutdoorSiteDetails,
   adaptOutdoorSitePopupResults,
@@ -18,13 +19,13 @@ import { OutdoorSite, OutdoorSiteDetails } from './interface';
 
 export const getOutdoorSites = async (language: string, query = {}): Promise<OutdoorSite[]> => {
   const [rawOutdoorSitesResult, themeDictionnary, outdoorPracticeDictionnary] = await Promise.all([
-    fetchOutdoorSites({ ...query, language }),
+    getGlobalConfig().enableOutdoor ? fetchOutdoorSites({ ...query, language }) : null,
     getThemes(language),
     getOutdoorPractices(language),
   ]);
 
   return adaptOutdoorSites({
-    rawOutdoorSites: rawOutdoorSitesResult.results,
+    rawOutdoorSites: rawOutdoorSitesResult?.results ?? [],
     themeDictionnary,
     outdoorPracticeDictionnary,
   });

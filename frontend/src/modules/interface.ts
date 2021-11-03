@@ -50,6 +50,7 @@ export interface APICallsConfig {
   maxPoiPerPage: number;
   maxTouristicContentPerPage: number;
   enableSensitiveAreas: boolean;
+  enableOutdoor: boolean;
   portalIds: number[];
   apiUrl: string;
   googleAnalyticsId: string | null;

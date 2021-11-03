@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { getSearchResults } from 'modules/results/connector';
 import { SearchResults } from 'modules/results/interface';
 import { FilterState } from 'modules/filters/interface';
+import { getGlobalConfig } from '../../../../modules/utils/api.config';
 
 import { formatInfiniteQuery, parseBboxFilter, parseFilters, parseTextFilter } from '../utils';
 
@@ -64,8 +65,13 @@ export const useTrekResults = (
         parseTextFilter(textFilterState),
         parseBboxFilter(bboxState),
       ],
-      ({ pageParam = { treks: 1, touristicContents: 1, outdoorSites: 1 } }) => {
-        console.log('pageParam:', pageParam);
+      ({
+        pageParam = {
+          treks: 1,
+          touristicContents: 1,
+          outdoorSites: getGlobalConfig().enableOutdoor ? 1 : null,
+        },
+      }) => {
         return getSearchResults(
           { filtersState: parsedFiltersState, textFilterState, bboxState },
           pageParam,

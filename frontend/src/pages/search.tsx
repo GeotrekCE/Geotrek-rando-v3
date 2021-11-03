@@ -6,6 +6,7 @@ import { getDefaultLanguage } from 'modules/header/utills';
 import { getSearchResults } from 'modules/results/connector';
 import { QueryClient } from 'react-query';
 import { dehydrate, DehydratedState } from 'react-query/hydration';
+import { getGlobalConfig } from '../modules/utils/api.config';
 
 const sanitizeState = (unsafeState: DehydratedState): DehydratedState =>
   JSON.parse(JSON.stringify(unsafeState));
@@ -29,7 +30,11 @@ export const getServerSideProps = async (context: any) => {
           textFilterState: initialTextFilter,
           bboxState: null,
         },
-        { treks: 1, touristicContents: 1, outdoorSites: 1 },
+        {
+          treks: 1,
+          touristicContents: 1,
+          outdoorSites: getGlobalConfig().enableOutdoor ? 1 : null,
+        },
         context.locale,
       ),
   );
