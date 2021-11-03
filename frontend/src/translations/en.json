@@ -1,6 +1,19 @@
 {
+  "header": {
+    "menu": "Menu",
+    "language": "Language",
+    "seeMore": "Find out more",
+    "favorites": "Favorites",
+    "goToSearch": "Search",
+    "offline": "Offline content"
+  },
   "home": {
+    "title": "Geotrek-rando",
+    "description": "Discover the hikes of the territory with Geotrek-rando",
+    "selectPlaceholder": "Select an activity",
+    "seeMore": "See more",
     "welcome-text": "The digital and local eco-guide that presents my discoveries of the territory!",
+    "mailTo": "Send an email",
     "use-a-link": "Or use a link",
     "get-started": "To get started, edit",
     "save-to-reload": "and save to reload.",
@@ -9,11 +22,6 @@
     "generate-module": "To add business logic, add a file in ./redux with your reducers/actions/sagas/selectors/constants/...",
     "click-me": "Click me",
     "readme": "Look at the README.md to discover the awesome npm commands we added",
-    "title": "Geotrek-rando",
-    "description": "Discover the hikes of the territory with Geotrek-rando",
-    "selectPlaceholder": "Select an activity",
-    "seeMore": "See more",
-    "mailTo": "Send an email",
     "walking": "Trek",
     "territoryTreks": "Treks to discover",
     "itinerantTreks": "Multi-day treks to discover"
@@ -21,17 +29,11 @@
   "page": {
     "back": "Back",
     "api-to-translate-example": "This message is translated using directly react-intl API",
-    "goToOffline": "Show offline content"
-  },
-  "header": {
-    "menu": "Menu",
-    "language": "Language",
-    "seeMore": "Find out more",
-    "favorites": "Favorites",
-    "goToSearch": "Search"
+    "not-found": "This page was nout found"
   },
   "search": {
     "title": "Search",
+    "description": "Discover the hikes corresponding to your desires with our search engine",
     "book": "Book",
     "resultsFound": "{count, plural, =0 {# result found} one {# result found} other {# results found}}",
     "resultsFoundShort": "{count, plural, =0 {# result} one {# result} other {# results}}",
@@ -104,7 +106,11 @@
     "departure": "Departure",
     "arrival": "Arrival",
     "cities": "Towns crossed",
-    "more": "More information"
+    "more": "More information",
+    "courses": "Courses",
+    "experiences": "Experiences",
+    "gear": "Gear",
+    "equipment": "Equipment"
   },
   "touristicContent": {
     "contact": "Contact",
@@ -141,12 +147,12 @@
     "missing": "The form is not complete"
   },
   "offline": {
-    "number": "{count} contents accessible without an internet connection",
-    "presentation": "To enjoy your items without worrying about your network.",
+    "number": "{count} contenus accessibles sans connexion internet",
+    "presentation": "Pour profiter de vos itinéraires sans vous soucier de votre réseau.",
     "explain": "Embed this item to access it offline",
     "explainAvailable": "This item is available offline",
-    "title": "Offline content",
-    "download": "Embed",
+    "title": "Offline mode",
+    "download": "Download",
     "isInCache": "This item is available offline.",
     "downloadInProgress": "Download in progress. Please wait",
     "not-available": "This content is not available offline."
@@ -156,5 +162,20 @@
     "close": "Close",
     "remove": "Remove",
     "confirmRemove": "Are you sure you want to remove this element?"
+  },
+  "outdoorSite": {
+    "accessFullTitle": "Access",
+    "coursesFullTitle": "Courses",
+    "sitesFullTitle": "The {count} experiences to discover"
+  },
+  "Wind": {
+    "N": "North",
+    "S": "South",
+    "E": "Est",
+    "W": "West",
+    "NW": "North-West",
+    "SW": "South-West",
+    "NE": "North-Est",
+    "SE": "South-Est"
   }
 }
