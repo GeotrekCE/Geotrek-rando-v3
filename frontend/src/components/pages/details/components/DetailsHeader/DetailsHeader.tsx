@@ -5,14 +5,15 @@ import React, { MutableRefObject } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { sizes } from 'stylesheet';
 import { Details } from '../../../../../modules/details/interface';
+import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { DetailsHeaderSection } from '../../useDetails';
 import { useDetailsHeader } from './useDetailsHeader';
 
 interface DetailsHeaderProps {
   sectionsReferences: MutableRefObject<DetailsHeaderSection>;
-  details: Details | OutdoorSiteDetails;
-  type: 'TREK' | 'OUTDOOR_SITE';
+  details: Details | OutdoorSiteDetails | OutdoorCourseDetails;
+  type: 'TREK' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE';
 }
 
 const scrollTo = (element: HTMLDivElement | undefined | null) => {

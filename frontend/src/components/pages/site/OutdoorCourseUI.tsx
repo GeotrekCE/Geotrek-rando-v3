@@ -3,12 +3,15 @@ import { Modal } from 'components/Modal';
 import { DetailsAdvice } from 'components/pages/details/components/DetailsAdvice';
 import { DetailsCardSection } from 'components/pages/details/components/DetailsCardSection';
 import { DetailsDescription } from 'components/pages/details/components/DetailsDescription';
+import { DetailsHeader } from 'components/pages/details/components/DetailsHeader';
 import { DetailsSection } from 'components/pages/details/components/DetailsSection';
-import { marginDetailsChild } from 'components/pages/details/Details';
+import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/details/Details';
+import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
 import { generateTouristicContentUrl } from 'components/pages/details/utils';
+import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
 import { OutdoorSiteChildrenSection } from 'components/pages/site/components/OutdoorSiteChildrenSection';
 import { useOutdoorCourse } from 'components/pages/site/useOutdoorCourse';
-import React from 'react';
+import React, { useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'react-loader';
 import { useMediaPredicate } from 'react-media-hook';
@@ -29,7 +32,7 @@ interface Props {
   language: string;
 }
 
-export const OutdoorCourseUI: React.FC<Props> = ({ outdoorCourseUrl, language }) => {
+export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUrl, language }) => {
   const {
     id,
     outdoorCourseContent,
@@ -38,14 +41,35 @@ export const OutdoorCourseUI: React.FC<Props> = ({ outdoorCourseUrl, language })
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
+    sectionsReferences,
+    sectionsPositions,
+    setPreviewRef,
+    setPoisRef,
+    setTouristicContentsRef,
   } = useOutdoorCourse(outdoorCourseUrl, language);
+
+  /** Ref of the parent of all sections */
+  const sectionsContainerRef = useRef<HTMLDivElement>(null);
+
+  useOnScreenSection({
+    sectionsPositions,
+    // The scroll offset is the height above the sections' container minus the headers size
+    // (we want the element detection to trigger when an element top reaches the header's bottom not the windows' top)
+    // Note that this scrollOffset is necessary because the sections' container
+    // position is relative, therefore its childrens' boundingClientRect are computed
+    // relative to the relative parent.
+    scrollOffset:
+      (sectionsContainerRef.current?.offsetTop ?? 0) -
+      sizes.desktopHeader -
+      sizes.detailsHeaderDesktop,
+  });
 
   const intl = useIntl();
 
   const isMobile = useMediaPredicate('(max-width: 1024px)');
 
   return (
-    <Layout>
+    <>
       <PageHead
         title={outdoorCourseContent?.name}
         description={''}
@@ -69,16 +93,27 @@ export const OutdoorCourseUI: React.FC<Props> = ({ outdoorCourseUrl, language })
           <ErrorFallback refetch={refetch} />
         )
       ) : (
-        <>
+        <Layout>
+          <DetailsHeader
+            sectionsReferences={sectionsReferences}
+            details={outdoorCourseContent}
+            type={'OUTDOOR_COURSE'}
+          />
+          {outdoorCourseContent.name !== undefined && (
+            <DetailsHeaderMobile title={outdoorCourseContent.name} />
+          )}
           <div id="outdoorCourseContent_page" className="flex flex-1">
             <div
               id="outdoorCourseContent_informations"
-              className="flex flex-col w-full desktop:w-3/5"
+              className="flex flex-col w-full relative -top-detailsHeaderMobile desktop:top-0 desktop:w-3/5"
             >
               <OpenMapButton displayMap={displayMobileMap} />
               <Modal>
-                {({ toggleFullscreen }) => (
-                  <div id="outdoorCourseContent_cover">
+                {({ toggleFullscreen, isFullscreen }) => (
+                  <div
+                    id="outdoorCourseContent_cover"
+                    className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
+                  >
                     {outdoorCourseContent.attachments.length > 1 ? (
                       <DetailsCoverCarousel
                         attachments={outdoorCourseContent.attachments}
@@ -98,6 +133,7 @@ export const OutdoorCourseUI: React.FC<Props> = ({ outdoorCourseUrl, language })
                 className="desktop:py-0
                 relative -top-6 desktop:-top-9
                 flex flex-col"
+                ref={sectionsContainerRef}
               >
                 <DetailsTopIcons
                   details={outdoorCourseContent}
@@ -107,127 +143,131 @@ export const OutdoorCourseUI: React.FC<Props> = ({ outdoorCourseUrl, language })
                   }}
                   type={'OUTDOOR_COURSE'}
                 />
-                <DetailsPreview
-                  className={marginDetailsChild}
-                  informations={{
-                    duration: outdoorCourseContent.duration,
-                    distance: outdoorCourseContent.length,
-                    elevation: outdoorCourseContent.maxElevation,
-                    difficulty: null,
-                    courseType: null,
-                    networks: [],
-                  }}
-                  place={''}
-                  tags={[]}
-                  title={outdoorCourseContent.name}
-                  teaser={''}
-                  ambiance={''}
-                  details={outdoorCourseContent}
-                  type={'OUTDOOR_SITE'}
-                  id={id}
-                />
-              </div>
 
-              {Number(outdoorCourseContent?.children?.length) > 0 && (
-                <div id="details_trekChildren_ref">
-                  <OutdoorSiteChildrenSection
-                    outdoorChildren={outdoorCourseContent?.children?.map(child => ({
-                      ...child,
-                      id: `${child.id}`,
-                    }))}
+                <div ref={setPreviewRef} id="details_preview_ref">
+                  <DetailsPreview
+                    className={marginDetailsChild}
+                    informations={{
+                      duration: outdoorCourseContent.duration,
+                      distance: outdoorCourseContent.length,
+                      elevation: outdoorCourseContent.maxElevation,
+                      difficulty: null,
+                      courseType: null,
+                      networks: [],
+                    }}
+                    place={''}
+                    tags={[]}
+                    title={outdoorCourseContent.name}
+                    teaser={''}
+                    ambiance={''}
+                    details={outdoorCourseContent}
+                    type={'OUTDOOR_COURSE'}
                     id={id}
-                    title={intl.formatMessage({ id: 'outdoorSite.childrenFullTitle' })}
                   />
                 </div>
-              )}
 
-              {outdoorCourseContent.description && (
-                <div id="details_description_ref">
-                  <DetailsDescription
-                    descriptionHtml={outdoorCourseContent.description}
-                    className={marginDetailsChild}
-                  />
-                </div>
-              )}
-
-              {outdoorCourseContent.gear && (
-                <div id="details_gear_ref">
-                  <DetailsDescription
-                    descriptionHtml={outdoorCourseContent.gear}
-                    className={marginDetailsChild}
-                    title={<FormattedMessage id="details.gear" />}
-                  />
-                </div>
-              )}
-
-              {outdoorCourseContent.equipment && (
-                <div id="details_equipment_ref">
-                  <DetailsDescription
-                    descriptionHtml={outdoorCourseContent.equipment}
-                    className={marginDetailsChild}
-                    title={<FormattedMessage id="details.equipment" />}
-                  />
-                </div>
-              )}
-
-              {Number(outdoorCourseContent?.pois?.length) > 0 && (
-                <div id="details_poi_ref">
-                  <DetailsCardSection
-                    htmlId="details_poi"
-                    title={intl.formatMessage(
-                      { id: 'details.poiFullTitle' },
-                      { count: Number(outdoorCourseContent?.pois?.length) },
-                    )}
-                    detailsCards={outdoorCourseContent?.pois?.map(poi => ({
-                      id: `${poi.id}`,
-                      name: poi.name ?? '',
-                      description: poi.description,
-                      thumbnailUris: poi.thumbnailUris,
-                      attachments: poi.attachments,
-                      iconUri: poi.type.pictogramUri,
-                    }))}
-                    type="POI"
-                  />
-                </div>
-              )}
-
-              {outdoorCourseContent.advice && (
-                <DetailsSection
-                  htmlId="details_recommandations"
-                  titleId="details.recommandations"
-                  className={marginDetailsChild}
-                >
-                  {outdoorCourseContent.advice && (
-                    <DetailsAdvice
-                      text={outdoorCourseContent.advice}
-                      className="mb-4 desktop:mb-6"
+                {Number(outdoorCourseContent?.children?.length) > 0 && (
+                  <div id="details_trekChildren_ref">
+                    <OutdoorSiteChildrenSection
+                      outdoorChildren={outdoorCourseContent?.children?.map(child => ({
+                        ...child,
+                        id: `${child.id}`,
+                      }))}
+                      id={id}
+                      title={intl.formatMessage({ id: 'outdoorSite.childrenFullTitle' })}
                     />
-                  )}
-                </DetailsSection>
-              )}
+                  </div>
+                )}
 
-              {outdoorCourseContent.touristicContents.length > 0 && (
-                <div id="details_touristicContent_ref">
-                  <DetailsCardSection
-                    htmlId="details_touristicContent"
-                    title={intl.formatMessage({ id: 'details.touristicContent' })}
-                    displayBadge
-                    generateUrlFunction={generateTouristicContentUrl}
-                    detailsCards={outdoorCourseContent.touristicContents.map(touristicContent => ({
-                      id: `${touristicContent.id}`,
-                      name: touristicContent.name ?? '',
-                      place: touristicContent.category.label,
-                      description: touristicContent.descriptionTeaser,
-                      thumbnailUris: touristicContent.thumbnailUris,
-                      attachments: touristicContent.attachments,
-                      iconUri: touristicContent.category.pictogramUri,
-                      logoUri: touristicContent.logoUri ?? undefined,
-                    }))}
-                    type="TOURISTIC_CONTENT"
-                  />
-                </div>
-              )}
+                {outdoorCourseContent.description && (
+                  <div id="details_description_ref">
+                    <DetailsDescription
+                      descriptionHtml={outdoorCourseContent.description}
+                      className={marginDetailsChild}
+                    />
+                  </div>
+                )}
 
+                {outdoorCourseContent.gear && (
+                  <div id="details_gear_ref">
+                    <DetailsDescription
+                      descriptionHtml={outdoorCourseContent.gear}
+                      className={marginDetailsChild}
+                      title={<FormattedMessage id="details.gear" />}
+                    />
+                  </div>
+                )}
+
+                {outdoorCourseContent.equipment && (
+                  <div id="details_equipment_ref">
+                    <DetailsDescription
+                      descriptionHtml={outdoorCourseContent.equipment}
+                      className={marginDetailsChild}
+                      title={<FormattedMessage id="details.equipment" />}
+                    />
+                  </div>
+                )}
+
+                {Number(outdoorCourseContent?.pois?.length) > 0 && (
+                  <div ref={setPoisRef} id="details_poi_ref">
+                    <DetailsCardSection
+                      htmlId="details_poi"
+                      title={intl.formatMessage(
+                        { id: 'details.poiFullTitle' },
+                        { count: Number(outdoorCourseContent?.pois?.length) },
+                      )}
+                      detailsCards={outdoorCourseContent?.pois?.map(poi => ({
+                        id: `${poi.id}`,
+                        name: poi.name ?? '',
+                        description: poi.description,
+                        thumbnailUris: poi.thumbnailUris,
+                        attachments: poi.attachments,
+                        iconUri: poi.type.pictogramUri,
+                      }))}
+                      type="POI"
+                    />
+                  </div>
+                )}
+
+                {outdoorCourseContent.advice && (
+                  <DetailsSection
+                    htmlId="details_recommandations"
+                    titleId="details.recommandations"
+                    className={marginDetailsChild}
+                  >
+                    {outdoorCourseContent.advice && (
+                      <DetailsAdvice
+                        text={outdoorCourseContent.advice}
+                        className="mb-4 desktop:mb-6"
+                      />
+                    )}
+                  </DetailsSection>
+                )}
+
+                {outdoorCourseContent.touristicContents.length > 0 && (
+                  <div ref={setTouristicContentsRef} id="details_touristicContent_ref">
+                    <DetailsCardSection
+                      htmlId="details_touristicContent"
+                      title={intl.formatMessage({ id: 'details.touristicContent' })}
+                      displayBadge
+                      generateUrlFunction={generateTouristicContentUrl}
+                      detailsCards={outdoorCourseContent.touristicContents.map(
+                        touristicContent => ({
+                          id: `${touristicContent.id}`,
+                          name: touristicContent.name ?? '',
+                          place: touristicContent.category.label,
+                          description: touristicContent.descriptionTeaser,
+                          thumbnailUris: touristicContent.thumbnailUris,
+                          attachments: touristicContent.attachments,
+                          iconUri: touristicContent.category.pictogramUri,
+                          logoUri: touristicContent.logoUri ?? undefined,
+                        }),
+                      )}
+                      type="TOURISTIC_CONTENT"
+                    />
+                  </div>
+                )}
+              </div>
               <Footer />
             </div>
             {!isMobile && (
@@ -306,8 +346,19 @@ export const OutdoorCourseUI: React.FC<Props> = ({ outdoorCourseUrl, language })
               />
             </MobileMapContainer>
           )}
-        </>
+        </Layout>
       )}
-    </Layout>
+    </>
+  );
+};
+
+export const OutdoorCourseUI: React.FC<Props> = props => {
+  return (
+    <VisibleSectionProvider>
+      <OutdoorCourseUIWithoutContext
+        outdoorCourseUrl={props.outdoorCourseUrl}
+        language={props.language}
+      />
+    </VisibleSectionProvider>
   );
 };
