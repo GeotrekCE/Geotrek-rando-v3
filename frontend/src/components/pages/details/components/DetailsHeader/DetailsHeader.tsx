@@ -61,7 +61,7 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
           </div>
         ))}
       </div>
-      <DetailsDownloadIcons details={details} type={type} />
+      <DetailsDownloadIcons details={details} />
     </div>
   );
 };

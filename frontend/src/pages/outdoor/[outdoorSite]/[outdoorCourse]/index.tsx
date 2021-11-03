@@ -3,10 +3,8 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { QueryClient } from 'react-query';
-import { routes } from 'services/routes';
 import { getOutdoorCourseDetails } from '../../../../modules/outdoorCourse/connector';
 import { isUrlString } from '../../../../modules/utils/string';
-import { redirectIfWrongUrl } from '../../../../modules/utils/url';
 import Custom404 from '../../../404';
 
 export const getServerSideProps = async (context: {

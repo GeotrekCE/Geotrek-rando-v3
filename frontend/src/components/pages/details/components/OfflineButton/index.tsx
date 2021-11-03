@@ -10,7 +10,7 @@ import CacheManager from 'services/offline/CacheManager';
 import { colorPalette } from 'stylesheet';
 import { Details } from '../../../../../modules/details/interface';
 import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
-import { OutdoorSite, OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
+import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
 import { Button } from '../../../../Button/Button';
 
@@ -22,7 +22,7 @@ interface Props {
 const OfflineButton: React.FC<Props> = ({ details, type }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isInCache, setIsInCache] = useState<boolean | null>(null);
+  const [isInCache, setIsInCache] = useState<boolean>(false);
 
   useEffect(() => {
     fetchState();

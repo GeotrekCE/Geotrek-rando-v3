@@ -4,7 +4,7 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawOutdoorPractice } from './interface';
 
 const fieldsParams = {
-  fields: 'id,name,sector',
+  fields: 'id,name,sector,pictogram',
 };
 
 export const fetchOutdoorPractices = (

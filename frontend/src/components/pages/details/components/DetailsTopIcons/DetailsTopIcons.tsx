@@ -30,12 +30,7 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
           <div
             className={type === 'TREK' || type === 'OUTDOOR_SITE' ? 'desktop:hidden' : undefined}
           >
-            <DetailsDownloadIcons
-              details={details}
-              size={30}
-              hideReport={type !== 'TREK'}
-              type={type}
-            />
+            <DetailsDownloadIcons details={details} size={30} hideReport={type !== 'TREK'} />
           </div>
         </div>
       </div>

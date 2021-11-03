@@ -9,13 +9,12 @@ export const adaptOutdoorPractices = ({
   rawOutdoorPractices: RawOutdoorPractice[];
 }): OutdoorPracticeChoices =>
   rawOutdoorPractices.reduce(
-    (items, { name, id }) => ({
+    (items, { name, id, pictogram }) => ({
       ...items,
       [id]: {
         id,
         name,
-        // @FIXME Wait for API
-        pictogram: '',
+        pictogram,
       },
     }),
     {} as OutdoorPracticeChoices,
@@ -24,10 +23,10 @@ export const adaptOutdoorPractices = ({
 export const adaptOutdoorPracticesForActivities = (
   rawOutdoorPractices: RawOutdoorPractice[],
 ): ActivityFilter[] =>
-  rawOutdoorPractices.map(({ name, id }) => ({
+  rawOutdoorPractices.map(({ name, id, pictogram }) => ({
     id,
     name,
-    pictogram: '',
+    pictogram,
     type: 'PRACTICE',
   }));
 

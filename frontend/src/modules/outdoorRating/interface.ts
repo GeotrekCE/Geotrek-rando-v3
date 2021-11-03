@@ -1,5 +1,3 @@
-import { Option } from '../filters/interface';
-
 export interface RawOutdoorRating {
   id: string;
   name: string;
