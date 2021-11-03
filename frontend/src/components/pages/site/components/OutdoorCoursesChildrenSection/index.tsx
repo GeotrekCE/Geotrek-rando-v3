@@ -55,12 +55,7 @@ export const OutdoorCoursesChildrenSection: React.FC<DetailsChildrenSectionProps
                 height: trekChild.height,
                 length: trekChild.length,
               }}
-              redirectionUrl={generateOutdoorCourseUrl(
-                trekChild.id,
-                trekChild.name,
-                parent.id,
-                parent.title,
-              )}
+              redirectionUrl={generateOutdoorCourseUrl(trekChild.id, trekChild.name)}
               className="w-60 desktop:w-auto"
             />
           </div>

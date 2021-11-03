@@ -4,10 +4,10 @@ import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { QueryClient } from 'react-query';
 import { routes } from 'services/routes';
-import { getOutdoorSiteDetails } from '../../../modules/outdoorSite/connector';
-import { isUrlString } from '../../../modules/utils/string';
-import { redirectIfWrongUrl } from '../../../modules/utils/url';
-import Custom404 from '../../404';
+import { getOutdoorSiteDetails } from '../../modules/outdoorSite/connector';
+import { isUrlString } from '../../modules/utils/string';
+import { redirectIfWrongUrl } from '../../modules/utils/url';
+import Custom404 from '../404';
 
 export const getServerSideProps = async (context: {
   locale: string;
@@ -42,7 +42,7 @@ interface Props {
   errorCode?: number;
 }
 
-const Index: NextPage<Props> = ({ errorCode }) => {
+const OutdoorSite: NextPage<Props> = ({ errorCode }) => {
   const router = useRouter();
   const { outdoorSite } = router.query;
   const language = router.locale ?? getDefaultLanguage();
@@ -52,4 +52,4 @@ const Index: NextPage<Props> = ({ errorCode }) => {
   return <OutdoorSiteUI outdoorSiteUrl={outdoorSite} language={language} />;
 };
 
-export default Index;
+export default OutdoorSite;

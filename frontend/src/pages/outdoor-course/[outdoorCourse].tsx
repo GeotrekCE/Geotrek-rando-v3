@@ -3,9 +3,11 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { QueryClient } from 'react-query';
-import { getOutdoorCourseDetails } from '../../../../modules/outdoorCourse/connector';
-import { isUrlString } from '../../../../modules/utils/string';
-import Custom404 from '../../../404';
+import { routes } from 'services/routes';
+import { redirectIfWrongUrl } from 'modules/utils/url';
+import { getOutdoorCourseDetails } from '../../modules/outdoorCourse/connector';
+import { isUrlString } from '../../modules/utils/string';
+import Custom404 from '../404';
 
 export const getServerSideProps = async (context: {
   locale: string;
@@ -24,8 +26,7 @@ export const getServerSideProps = async (context: {
 
     await queryClient.prefetchQuery(`outdoorCourseDetails-${id}-${context.locale}`, () => details);
 
-    // @FIXME
-    //redirectIfWrongUrl(id, details.name, context, routes.OUTDOOR_COURSE);
+    redirectIfWrongUrl(id, details.name, context, routes.OUTDOOR_COURSE);
 
     return { props: {} };
   } catch (error) {
@@ -41,7 +42,7 @@ interface Props {
   errorCode?: number;
 }
 
-const Index: NextPage<Props> = ({ errorCode }) => {
+const OutdoorCourse: NextPage<Props> = ({ errorCode }) => {
   const router = useRouter();
   const { outdoorCourse } = router.query;
   const language = router.locale ?? getDefaultLanguage();
@@ -51,4 +52,4 @@ const Index: NextPage<Props> = ({ errorCode }) => {
   return <OutdoorCourseUI outdoorCourseUrl={outdoorCourse} language={language} />;
 };
 
-export default Index;
+export default OutdoorCourse;

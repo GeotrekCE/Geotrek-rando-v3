@@ -68,7 +68,7 @@ export const adaptTouristicContentResult = ({
         : '',
     themes:
       rawTouristicObject.themes !== null
-        ? rawTouristicObject.themes.map(themeId => themeDictionnary[themeId].label)
+        ? rawTouristicObject.themes.map(themeId => themeDictionnary[themeId]?.label)
         : [],
     types: Object.entries(rawTouristicObject.types).reduce<TouristicContentDetailsType[]>(
       (adaptedTypes, typeEntry) => {
@@ -121,7 +121,7 @@ export const adaptTouristicContentDetails = ({
     rawTCD.properties.themes !== null
       ? rawTCD.properties.themes
           .filter(themeId => themeDictionnary[themeId] !== undefined)
-          .map(themeId => themeDictionnary[themeId].label)
+          .map(themeId => themeDictionnary[themeId]?.label)
       : [],
   pdfUri: rawTCD.properties.pdf,
   types: Object.entries(rawTCD.properties.types).reduce<TouristicContentDetailsType[]>(
