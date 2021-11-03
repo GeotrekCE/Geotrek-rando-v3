@@ -10,6 +10,7 @@ import { TouristicContentCategoryMapping } from 'modules/touristicContentCategor
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
+import { OutdoorPracticeChoices } from '../../../../modules/outdoorPractice/interface';
 import { OutdoorRatingMapping } from '../../../../modules/outdoorRating/interface';
 import { OutdoorRatingScale } from '../../../../modules/outdoorRatingScale/interface';
 
@@ -23,6 +24,7 @@ export const useFilter = () => {
       touristicContentCategoryMapping: TouristicContentCategoryMapping;
       outdoorRatingMapping: OutdoorRatingMapping;
       outdoorRatingScale: OutdoorRatingScale[];
+      outdoorPractice: OutdoorPracticeChoices;
       initialFiltersStateWithSelectedOptions: FilterState[];
     },
     Error
@@ -33,6 +35,7 @@ export const useFilter = () => {
 
   const outdoorRatingMapping = data ? data.outdoorRatingMapping : {};
   const outdoorRatingScale = data ? data.outdoorRatingScale : [];
+  const outdoorPractice = data ? data.outdoorPractice : {};
   const initialFiltersStateWithSelectedOptions = data
     ? data.initialFiltersStateWithSelectedOptions
     : [];
@@ -70,6 +73,7 @@ export const useFilter = () => {
         touristicContentCategoryMapping,
         outdoorRatingMapping,
         outdoorRatingScale,
+        outdoorPractice,
       });
     });
   };

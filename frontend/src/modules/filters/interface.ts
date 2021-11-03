@@ -62,6 +62,7 @@ export interface FilterConfigWithOptions {
 export interface FilterState {
   id: string;
   label: string;
+  category?: string;
   type: 'SINGLE' | 'MULTIPLE';
   options: Option[];
   selectedOptions: Option[];
