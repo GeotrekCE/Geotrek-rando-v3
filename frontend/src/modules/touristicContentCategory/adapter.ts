@@ -66,6 +66,7 @@ export const adaptTouristicContentCategoryHashMap = (
       [currentTouristicContentCategory.id]: currentTouristicContentCategory.types.map(i => ({
         id: i.id,
         label: i.label,
+        category: currentTouristicContentCategory.label,
         values: i.values.map(({ id, label }) => ({
           value: id,
           label,
