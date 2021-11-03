@@ -20,7 +20,7 @@ export interface TouristicContentTypeValue {
 }
 
 export interface TouristicContentCategoryMapping {
-  [id: number]: { id: string; label: string; values: Option[] }[];
+  [id: number]: { id: string; label: string; category?: string; values: Option[] }[];
 }
 
 export interface TouristicContentCategory {

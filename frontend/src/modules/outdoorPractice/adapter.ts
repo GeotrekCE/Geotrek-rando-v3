@@ -37,5 +37,6 @@ export const adaptOutdoorPracticesFilter = (
   options: rawOutdoorPractices.map(rawOutdoorPractice => ({
     value: `${rawOutdoorPractice.id}`,
     label: rawOutdoorPractice.name,
+    pictogramUrl: rawOutdoorPractice.pictogram,
   })),
 });

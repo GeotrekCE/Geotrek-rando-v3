@@ -145,6 +145,7 @@ const getTypesFiltersState = ({
   return data.map(i => {
     return {
       id: `type-services-${i.id}`,
+      category: i.category,
       label: i.label,
       type: 'MULTIPLE',
       options: i.values,
