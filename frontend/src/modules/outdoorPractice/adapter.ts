@@ -27,7 +27,7 @@ export const adaptOutdoorPracticesForActivities = (
     id,
     name,
     pictogram,
-    type: 'PRACTICE',
+    type: 'OUTDOOR_PRACTICE',
   }));
 
 export const adaptOutdoorPracticesFilter = (
