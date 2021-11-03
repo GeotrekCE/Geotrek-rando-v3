@@ -3,6 +3,7 @@ import { getTouristicContentCategoryFilter } from 'modules/touristicContentCateg
 import { getActivityFilter } from 'modules/activities/connector';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
 import { getOutdoorPracticesFilter } from '../outdoorPractice/connector';
+import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { OutdoorRatingMapping } from '../outdoorRating/interface';
 import { OutdoorRatingScale } from '../outdoorRatingScale/interface';
 import { getAccessibilityFilter } from './accessibility/connector';
@@ -156,10 +157,12 @@ const getOutdoorRatingFiltersState = ({
   practiceId,
   outdoorRatingMapping,
   outdoorRatingScale,
+  outdoorPractice,
 }: {
   practiceId: string;
   outdoorRatingMapping: OutdoorRatingMapping;
   outdoorRatingScale: OutdoorRatingScale[];
+  outdoorPractice: OutdoorPracticeChoices;
 }): FilterState[] => {
   const result: FilterState[] = [];
   const scales = outdoorRatingScale.filter(i => String(i.practice) === practiceId);
@@ -171,6 +174,7 @@ const getOutdoorRatingFiltersState = ({
       if (data)
         result.push({
           id: `type-outdoorRating-${String(scale.id)}`,
+          category: String(outdoorPractice?.[scale.practice]?.name),
           label: scale?.name ?? 'Error',
           type: 'MULTIPLE',
           options: data.map(i => ({
@@ -192,6 +196,7 @@ export const computeFiltersToDisplay = ({
   touristicContentCategoryMapping,
   outdoorRatingMapping,
   outdoorRatingScale,
+  outdoorPractice,
 }: {
   initialFiltersState: FilterState[];
   currentFiltersState: FilterState[];
@@ -199,6 +204,7 @@ export const computeFiltersToDisplay = ({
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
   outdoorRatingMapping: OutdoorRatingMapping;
   outdoorRatingScale: OutdoorRatingScale[];
+  outdoorPractice: OutdoorPracticeChoices;
 }): FilterState[] => {
   const currentNumberOfPracticeOptionsSelected = currentFiltersState[0].selectedOptions.length;
   const currentNumberOfTouristicContentOptionsSelected =
@@ -232,6 +238,7 @@ export const computeFiltersToDisplay = ({
           practiceId: selectedOptions.value,
           outdoorRatingMapping,
           outdoorRatingScale,
+          outdoorPractice,
         }),
       );
     });
@@ -255,12 +262,14 @@ const getInitialFiltersStateWithRelevantFilters = ({
   touristicContentCategoryMapping,
   outdoorRatingMapping,
   outdoorRatingScale,
+  outdoorPractice,
 }: {
   initialFiltersState: FilterState[];
   initialOptions: { [filterId: string]: string[] | undefined };
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
   outdoorRatingMapping: OutdoorRatingMapping;
   outdoorRatingScale: OutdoorRatingScale[];
+  outdoorPractice: OutdoorPracticeChoices;
 }): FilterState[] => {
   const initialStateWithOnlyCommon = initialFiltersState.filter(({ id }) =>
     commonFilters.includes(id),
@@ -293,6 +302,7 @@ const getInitialFiltersStateWithRelevantFilters = ({
           practiceId: outdoorPratice,
           outdoorRatingMapping,
           outdoorRatingScale,
+          outdoorPractice,
         }),
       );
     });
@@ -318,12 +328,14 @@ export const getInitialFiltersStateWithSelectedOptions = ({
   touristicContentCategoryMapping,
   outdoorRatingMapping,
   outdoorRatingScale,
+  outdoorPractice,
 }: {
   initialFiltersState: FilterState[];
   initialOptions: { [filterId: string]: string };
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
   outdoorRatingMapping: OutdoorRatingMapping;
   outdoorRatingScale: OutdoorRatingScale[];
+  outdoorPractice: OutdoorPracticeChoices;
 }): FilterState[] => {
   const sanitizedInitialOptions = sanitizeInitialOptions(initialOptions);
   const initialFiltersStateWithRelevantFilters = getInitialFiltersStateWithRelevantFilters({
@@ -332,6 +344,7 @@ export const getInitialFiltersStateWithSelectedOptions = ({
     touristicContentCategoryMapping,
     outdoorRatingMapping,
     outdoorRatingScale,
+    outdoorPractice,
   });
   return initialFiltersStateWithRelevantFilters.reduce<FilterState[]>(
     (initialStateWithSelectedOptions, currentFilterState) => {

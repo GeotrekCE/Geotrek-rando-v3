@@ -1,13 +1,10 @@
 import { marginDetailsChild } from 'components/pages/details/Details';
-import { generateChildrenDetailsUrl, generateOutdoorSiteUrl } from 'components/pages/details/utils';
 import { generateResultDetailsUrl } from 'components/pages/search/utils';
 import { Separator } from 'components/Separator';
 import { ResultCard } from 'components/pages/search/components/ResultCard';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { desktopOnly, scrollBar, sizes } from 'stylesheet';
-import { Details } from '../../../../../modules/details/interface';
-import { OutdoorSite } from '../../../../../modules/outdoorSite/interface';
 import { TrekResult } from '../../../../../modules/results/interface';
 
 interface DetailsChildrenSectionProps {

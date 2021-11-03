@@ -1,4 +1,5 @@
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
+import { OutdoorPracticeChoices } from '../../outdoorPractice/interface';
 import { OutdoorRatingMapping } from '../../outdoorRating/interface';
 import { OutdoorRatingScale } from '../../outdoorRatingScale/interface';
 import { FilterState } from '../interface';
@@ -250,6 +251,8 @@ const outdoorRatingMapping: OutdoorRatingMapping = {
 
 const outdoorRatingScale: OutdoorRatingScale[] = [{ id: '1', name: 'Niveau', practice: 4 }];
 
+const outdoorPractice: OutdoorPracticeChoices = { '4': { name: 'Niveau', id: '1', pictogram: '' } };
+
 const trekSpecificFilters = [
   'difficulty',
   'duration',
@@ -287,6 +290,7 @@ describe.only('computeFiltersToDisplay', () => {
       touristicContentCategoryMapping,
       outdoorRatingScale,
       outdoorRatingMapping,
+      outdoorPractice,
     }).map(({ id }) => id);
     [...commonFilters, ...trekSpecificFilters].forEach(id => expect(displayedIds.includes(id)));
 
@@ -310,6 +314,7 @@ describe.only('computeFiltersToDisplay', () => {
       touristicContentCategoryMapping,
       outdoorRatingScale,
       outdoorRatingMapping,
+      outdoorPractice,
     }).map(({ id }) => id);
     commonFilters.forEach(id => expect(displayedIds.includes(id)));
     expect(displayedIds.length).toEqual(
@@ -329,6 +334,7 @@ describe.only('computeFiltersToDisplay', () => {
       touristicContentCategoryMapping,
       outdoorRatingScale,
       outdoorRatingMapping,
+      outdoorPractice,
     }).map(({ id }) => id);
     commonFilters.forEach(id => expect(displayedIds.includes(id)));
     expect(displayedIds.length).toEqual(commonFilters.length);
@@ -356,6 +362,7 @@ describe.only('computeFiltersToDisplay', () => {
       touristicContentCategoryMapping,
       outdoorRatingScale,
       outdoorRatingMapping,
+      outdoorPractice,
     }).map(({ id }) => id);
 
     const data = [...commonFilters, ...touristicContentSpecificFilters, ...trekSpecificFilters];
