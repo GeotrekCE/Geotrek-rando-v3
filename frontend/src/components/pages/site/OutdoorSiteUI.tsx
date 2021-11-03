@@ -149,10 +149,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                 >
                   <DetailsTopIcons
                     details={outdoorSiteContent}
-                    practice={{
-                      pictogram: '',
-                      name: '',
-                    }}
+                    practice={outdoorSiteContent.practice}
                     type={'OUTDOOR_SITE'}
                   />
 
@@ -215,7 +212,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     </div>
                   )}
 
-                  {outdoorSiteContent.description && (
+                  {!!outdoorSiteContent.description && (
                     <div ref={setDescriptionRef} id="details_description_ref">
                       <DetailsDescription
                         descriptionHtml={outdoorSiteContent.description}
@@ -254,14 +251,14 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     </div>
                   )}
 
-                  {(outdoorSiteContent.advice ||
+                  {(!!outdoorSiteContent.advice ||
                     Number(outdoorSiteContent?.labels?.length) > 0) && (
                     <DetailsSection
                       htmlId="details_recommandations"
                       titleId="details.recommandations"
                       className={marginDetailsChild}
                     >
-                      {outdoorSiteContent.advice && (
+                      {!!outdoorSiteContent.advice && (
                         <DetailsAdvice
                           text={outdoorSiteContent.advice}
                           className="mb-4 desktop:mb-6"

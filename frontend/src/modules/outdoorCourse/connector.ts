@@ -1,3 +1,4 @@
+import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { getPois } from '../poi/connector';
 import { getTouristicContentsNearTarget } from '../touristicContent/connector';
 import { adaptOutdoorCourseDetails, adaptOutdoorCourses } from './adapter';

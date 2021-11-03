@@ -5,6 +5,7 @@ import { Activity } from '../activities/interface';
 import { InformationDesk } from '../informationDesk/interface';
 import { Label } from '../label/interface';
 import { OutdoorCourse } from '../outdoorCourse/interface';
+import { OutdoorPractice } from '../outdoorPractice/interface';
 import { Poi } from '../poi/interface';
 import { TrekResult } from '../results/interface';
 import { Source } from '../source/interface';
@@ -79,4 +80,5 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   courses: OutdoorCourse[];
   access: TrekResult[];
   pdfUri: string;
+  practice: OutdoorPractice;
 }
