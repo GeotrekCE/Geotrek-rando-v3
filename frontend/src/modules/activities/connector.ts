@@ -42,7 +42,7 @@ export const getActivityBarContent = async (language: string): Promise<ActivityF
 
   return [
     ...adaptActivitiesFilter(rawPractices.results),
-    ...adaptTouristicContentCategoryList(rawTouristicContentCategories.results),
     ...adaptOutdoorPracticesForActivities(rawOutdoorPractices.results),
+    ...adaptTouristicContentCategoryList(rawTouristicContentCategories.results),
   ];
 };

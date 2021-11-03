@@ -1,7 +1,6 @@
 import { OutdoorSiteUI } from 'components/pages/site';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { TouristicContentUI } from 'components/pages/touristicContent';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { QueryClient } from 'react-query';
 import { routes } from 'services/routes';

@@ -2,6 +2,7 @@ export interface RawOutdoorPractice {
   id: string;
   sector: number;
   name: string;
+  pictogram: string;
 }
 
 export interface OutdoorPractice {

@@ -16,14 +16,12 @@ interface DetailsTopIconsProps {
   details: Details | TouristicContentDetails | OutdoorSiteDetails | OutdoorCourseDetails;
   size?: number;
   hideReport?: boolean;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE';
 }
 
 export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
   details,
   size = 24,
   hideReport = false,
-  type,
 }) => {
   const [openReport, setOpenReport] = useState<boolean>(false);
 
