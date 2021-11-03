@@ -66,7 +66,8 @@ export const getSearchResults = async (
     const shouldFetchTouristicContents =
       (!isPracticeSelected && !isOutdoorSiteSelected) || isServiceSelected;
     const shouldFetchOutdoorSites =
-      (!isPracticeSelected && !isServiceSelected) || isOutdoorSiteSelected;
+      ((!isPracticeSelected && !isServiceSelected) || isOutdoorSiteSelected) &&
+      getGlobalConfig().enableOutdoor;
 
     const trekFilters = formatTrekFiltersToUrlParams(filtersState);
     const touristicContentFilter = formatTouristicContentFiltersToUrlParams(filtersState);

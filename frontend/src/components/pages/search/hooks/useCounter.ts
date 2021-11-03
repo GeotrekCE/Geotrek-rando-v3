@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { getSearchResults } from '../../../../modules/results/connector';
+import { getGlobalConfig } from '../../../../modules/utils/api.config';
 
 interface Args {
   language: string;
@@ -15,7 +16,13 @@ interface CountResult {
 const useCounter = ({ language }: Args): CountResult => {
   const result = useQuery(
     ['counter'],
-    ({ pageParam = { treks: 1, touristicContents: 1, outdoorSites: 1 } }) =>
+    ({
+      pageParam = {
+        treks: 1,
+        touristicContents: 1,
+        outdoorSites: getGlobalConfig().enableOutdoor ? 1 : null,
+      },
+    }) =>
       getSearchResults(
         { filtersState: [], textFilterState: null, bboxState: null },
         pageParam,

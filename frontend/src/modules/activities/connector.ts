@@ -2,6 +2,7 @@ import { adaptTouristicContentCategoryList } from 'modules/touristicContentCateg
 import { fetchTouristicContentCategories } from 'modules/touristicContentCategory/api';
 import { adaptOutdoorPracticesForActivities } from '../outdoorPractice/adapter';
 import { fetchOutdoorPractices } from '../outdoorPractice/api';
+import { getGlobalConfig } from '../utils/api.config';
 import {
   adaptActivities,
   adaptActivitiesFilter,
@@ -37,12 +38,12 @@ export const getActivityBarContent = async (language: string): Promise<ActivityF
   const [rawPractices, rawTouristicContentCategories, rawOutdoorPractices] = await Promise.all([
     fetchActivities({ language }),
     fetchTouristicContentCategories({ language }),
-    fetchOutdoorPractices({ language }),
+    getGlobalConfig().enableOutdoor ? fetchOutdoorPractices({ language }) : null,
   ]);
 
   return [
     ...adaptActivitiesFilter(rawPractices.results),
-    ...adaptOutdoorPracticesForActivities(rawOutdoorPractices.results),
+    ...adaptOutdoorPracticesForActivities(rawOutdoorPractices ? rawOutdoorPractices.results : []),
     ...adaptTouristicContentCategoryList(rawTouristicContentCategories.results),
   ];
 };

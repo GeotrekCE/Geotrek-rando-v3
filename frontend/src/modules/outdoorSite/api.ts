@@ -7,11 +7,12 @@ const fieldsParams = {
   fields: 'id,attachments,name,geometry,themes,practice,period,wind,orientation',
 };
 
-export const fetchOutdoorSites = (query: APIQuery): Promise<APIResponseForList<RawOutdoorSite>> =>
-  GeotrekAPI.url(`/outdoor_site`)
+export const fetchOutdoorSites = (query: APIQuery): Promise<APIResponseForList<RawOutdoorSite>> => {
+  return GeotrekAPI.url(`/outdoor_site`)
     .query({ ...query, ...fieldsParams, ...portalsFilter })
     .get()
     .json();
+};
 
 const fieldsParamsDetails = {
   fields: `${fieldsParams.fields},advice,description,description_teaser,ambiance,labels,source,information_desks,web_links,courses,pdf`,

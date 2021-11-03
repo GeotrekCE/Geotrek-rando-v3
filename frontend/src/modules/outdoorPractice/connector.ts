@@ -1,18 +1,22 @@
-import { adaptTouristicContentCategoryFilter } from '../touristicContentCategory/adapter';
-import { fetchTouristicContentCategories } from '../touristicContentCategory/api';
+import { getGlobalConfig } from '../utils/api.config';
 import { adaptOutdoorPractices, adaptOutdoorPracticesFilter } from './adapter';
 import { fetchOutdoorPractices } from './api';
 import { OutdoorPracticeChoices } from './interface';
 
 export const getOutdoorPractices = async (language: string): Promise<OutdoorPracticeChoices> => {
-  const [rawOutdoorPracticesResult] = await Promise.all([fetchOutdoorPractices({ language })]);
+  const [rawOutdoorPracticesResult] = await Promise.all([
+    getGlobalConfig().enableOutdoor ? fetchOutdoorPractices({ language }) : null,
+  ]);
 
   return adaptOutdoorPractices({
-    rawOutdoorPractices: rawOutdoorPracticesResult.results,
+    rawOutdoorPractices: rawOutdoorPracticesResult ? rawOutdoorPracticesResult.results : [],
   });
 };
 
 export const getOutdoorPracticesFilter = async (language: string) => {
-  const rawOutdoorPractices = await fetchOutdoorPractices({ language });
-  return adaptOutdoorPracticesFilter(rawOutdoorPractices.results);
+  const rawOutdoorPractices = getGlobalConfig().enableOutdoor
+    ? await fetchOutdoorPractices({ language })
+    : null;
+
+  return adaptOutdoorPracticesFilter(rawOutdoorPractices ? rawOutdoorPractices.results : []);
 };
