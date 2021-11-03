@@ -45,6 +45,7 @@ export interface Filter extends FilterWithoutType {
 
 export interface FilterConfig {
   id: string;
+  display?: boolean;
   type: 'SINGLE' | 'MULTIPLE';
   options: undefined;
 }
@@ -52,6 +53,7 @@ export interface FilterConfig {
 export interface FilterConfigWithOptions {
   id: string;
   type: 'SINGLE' | 'MULTIPLE';
+  display?: boolean;
   options: {
     minValue: number;
     maxValue: number;

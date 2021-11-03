@@ -41,11 +41,11 @@ export const adaptTouristicContentMapResults = ({
     practice: {
       pictogram:
         rawMapResult.category !== undefined
-          ? touristicContentCategories[rawMapResult.category].pictogramUri
+          ? touristicContentCategories[rawMapResult.category]?.pictogramUri
           : '',
       name:
         rawMapResult.category !== undefined
-          ? touristicContentCategories[rawMapResult.category].label
+          ? touristicContentCategories[rawMapResult.category]?.label
           : '',
     },
     type: 'TOURISTIC_CONTENT',

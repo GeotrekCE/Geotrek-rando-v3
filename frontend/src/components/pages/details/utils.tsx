@@ -133,15 +133,7 @@ export const generateOutdoorSiteUrl = (id: number | string, title: string): stri
   return `${routes.OUTDOOR_SITE}/${id}-${encodeURI(titleWithNoSpace)}`;
 };
 
-export const generateOutdoorCourseUrl = (
-  id: number | string,
-  title: string,
-  parentId: string,
-  parentTitle: string,
-): string => {
-  const parentTitleWithNoSpace = convertStringForSitemap(parentTitle);
+export const generateOutdoorCourseUrl = (id: number | string, title: string): string => {
   const titleWithNoSpace = convertStringForSitemap(title);
-  return `${routes.OUTDOOR_SITE}/${parentId}-${encodeURI(parentTitleWithNoSpace)}/${id}-${encodeURI(
-    titleWithNoSpace,
-  )}`;
+  return `${routes.OUTDOOR_COURSE}/${id}-${encodeURI(titleWithNoSpace)}`;
 };

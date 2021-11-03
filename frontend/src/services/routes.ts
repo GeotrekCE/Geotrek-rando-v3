@@ -5,5 +5,6 @@ export const routes = {
   TOURISTIC_CONTENT: '/service',
   FLAT_PAGE: '/information',
   OFFLINE: '/offline',
-  OUTDOOR_SITE: '/outdoor',
+  OUTDOOR_SITE: '/outdoor-site',
+  OUTDOOR_COURSE: '/outdoor-course',
 } as const;

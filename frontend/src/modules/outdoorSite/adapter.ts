@@ -35,7 +35,7 @@ export const adaptOutdoorSites = ({
       thumbnailUris: getThumbnails(rawOutdoorSite.attachments),
       attachments: getAttachments(rawOutdoorSite.attachments),
       geometry: adaptGeometry(rawOutdoorSite.geometry.geometries[0]),
-      themes: rawOutdoorSite?.themes?.map(themeId => themeDictionnary[themeId].label) ?? [],
+      themes: rawOutdoorSite?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       practice: outdoorPracticeDictionnary[rawOutdoorSite.practice] ?? null,
       period: rawOutdoorSite?.period ? rawOutdoorSite?.period : null,
       wind: rawOutdoorSite?.wind ?? [],

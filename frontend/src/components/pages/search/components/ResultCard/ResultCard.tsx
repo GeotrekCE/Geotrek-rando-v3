@@ -128,7 +128,7 @@ export const ResultCard: React.FC<
             <TagContainer>
               <TagLayout>
                 {tags
-                  .filter(tag => tag !== null && tag.length > 0)
+                  .filter(tag => tag !== null && Number(tag?.length) > 0)
                   .map(tag => (
                     <Chip key={tag}>{tag}</Chip>
                   ))}

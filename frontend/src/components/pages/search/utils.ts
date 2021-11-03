@@ -93,6 +93,8 @@ export const convertStringForSitemap = (text: string): string =>
   removeDiacritics(
     (text || '')
       .replace(/ /g, '-')
+      // eslint-disable-next-line
+      .replace(/ /g, '-')
       .replace(/'/g, '-')
       .replace(/°/g, '')
       .replace(/«/g, '')
