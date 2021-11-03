@@ -47,7 +47,6 @@ export const getOutdoorSiteDetails = async (
       courses,
       outdoorPracticeDictionnary,
       touristicContents,
-      ,
     ] = await Promise.all([
       fetchOutdoorSiteDetails({ language }, id),
       getPois(Number(id), language, 'sites'),
@@ -61,8 +60,9 @@ export const getOutdoorSiteDetails = async (
       getTouristicContentsNearTarget(Number(id), language, 'near_outdoorsite'),
     ]);
 
-    const [access] = await Promise.all([
+    const [access, outdoorPractice] = await Promise.all([
       getTrekResults(language, { near_outdoorsite: Number(id) }),
+      getOutdoorPractices(language),
     ]);
 
     return adaptOutdoorSiteDetails({
@@ -77,6 +77,7 @@ export const getOutdoorSiteDetails = async (
       outdoorPracticeDictionnary,
       touristicContents,
       access,
+      outdoorPractice,
     });
   } catch (e) {
     console.error('Error in outdoor course connector', e);

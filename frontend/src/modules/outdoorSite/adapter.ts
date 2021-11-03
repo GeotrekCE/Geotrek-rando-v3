@@ -55,6 +55,7 @@ export const adaptOutdoorSiteDetails = ({
   courses,
   outdoorPracticeDictionnary,
   access,
+  outdoorPractice,
 }: {
   rawOutdoorSiteDetails: RawOutdoorSiteDetails;
   pois: Poi[];
@@ -67,6 +68,7 @@ export const adaptOutdoorSiteDetails = ({
   courses: OutdoorCourse[];
   outdoorPracticeDictionnary: OutdoorPracticeChoices;
   access: TrekResult[];
+  outdoorPractice: OutdoorPracticeChoices;
 }): OutdoorSiteDetails => ({
   ...adaptOutdoorSites({
     rawOutdoorSites: [
@@ -100,6 +102,7 @@ export const adaptOutdoorSiteDetails = ({
   id: rawOutdoorSiteDetails.id,
   access,
   pdfUri: rawOutdoorSiteDetails?.properties?.pdf,
+  practice: outdoorPractice[String(rawOutdoorSiteDetails?.properties?.practice)],
 });
 
 export const adaptOutdoorSitePopupResults = (rawDetails: RawOutdoorSiteDetails): PopupResult => {

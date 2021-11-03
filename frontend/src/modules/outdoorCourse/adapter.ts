@@ -1,5 +1,6 @@
 import { getAttachments, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
+import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { Poi } from '../poi/interface';
 import { dataUnits } from '../results/adapter';
 import { TouristicContent } from '../touristicContent/interface';
@@ -15,8 +16,8 @@ export const adaptOutdoorCourses = ({
   rawOutdoorCourses,
 }: {
   rawOutdoorCourses: RawOutdoorCourse[];
-}): OutdoorCourse[] =>
-  rawOutdoorCourses.map(rawOutdoorCourse => {
+}): OutdoorCourse[] => {
+  return rawOutdoorCourses.map(rawOutdoorCourse => {
     return {
       id: rawOutdoorCourse.id,
       name: rawOutdoorCourse.name,
@@ -33,6 +34,7 @@ export const adaptOutdoorCourses = ({
       height: rawOutdoorCourse.height ? `${rawOutdoorCourse.height}${dataUnits.distance}` : null,
     };
   });
+};
 
 export const adaptOutdoorCourseDetails = ({
   rawOutdoorCourseDetails,
