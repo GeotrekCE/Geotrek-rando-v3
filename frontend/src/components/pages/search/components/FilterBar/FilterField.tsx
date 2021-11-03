@@ -80,7 +80,7 @@ const FilterField: React.FC<Props> = ({
           {Object.keys(subFiltersToDisplay).map(key => {
             return (
               <div className={'m-1'} key={key}>
-                <div className={'font-bold mb-2'}>{key}</div>
+                {key !== 'undefined' && <div className={'font-bold mb-2'}>{key}</div>}
                 {subFiltersToDisplay[key].map(filterState => (
                   <div className={'my-1'} key={filterState.id}>
                     <ShowFilters
