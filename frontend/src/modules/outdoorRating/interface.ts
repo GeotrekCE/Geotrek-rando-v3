@@ -1,3 +1,5 @@
+import { OutdoorRatingScale } from '../outdoorRatingScale/interface';
+
 export interface RawOutdoorRating {
   id: string;
   name: string;
@@ -14,6 +16,10 @@ export interface OutdoorRating {
   scale: number;
   order: number;
   color: string;
+}
+
+export interface OutdoorRatingWithScale extends Omit<OutdoorRating, 'scale'> {
+  scale?: OutdoorRatingScale;
 }
 
 export interface OutdoorRatingChoices {

@@ -6,6 +6,7 @@ import { InformationDesk } from '../informationDesk/interface';
 import { Label } from '../label/interface';
 import { OutdoorCourse } from '../outdoorCourse/interface';
 import { OutdoorPractice } from '../outdoorPractice/interface';
+import { OutdoorRatingWithScale } from '../outdoorRating/interface';
 import { Poi } from '../poi/interface';
 import { TrekResult } from '../results/interface';
 import { Source } from '../source/interface';
@@ -84,4 +85,5 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   pdfUri: string;
   practice: OutdoorPractice;
   cities: string[];
+  ratings: OutdoorRatingWithScale[];
 }

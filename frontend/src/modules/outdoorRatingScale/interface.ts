@@ -1,11 +1,11 @@
 export interface RawOutdoorRatingScale {
-  id: string;
+  id: number;
   name: string;
   practice: number;
 }
 
 export interface OutdoorRatingScale {
-  id: string;
+  id: number;
   name: string;
   practice: number;
 }
