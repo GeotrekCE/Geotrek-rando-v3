@@ -66,4 +66,5 @@ export interface OutdoorCourseDetails extends OutdoorCourse {
   pdfUri: string;
   cities: string[];
   ratings: OutdoorRatingWithScale[];
+  ratingsDescription: string;
 }

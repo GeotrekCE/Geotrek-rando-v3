@@ -124,6 +124,7 @@ export const adaptOutdoorSiteDetails = ({
         scale: outdoorRatingScale.find(oRS => oRS.id === outdoorRating[String(r)]?.scale),
       };
     }) ?? [],
+  ratingsDescription: rawOutdoorSiteDetails.properties.ratings_description,
 });
 
 export const adaptOutdoorSitePopupResults = ({

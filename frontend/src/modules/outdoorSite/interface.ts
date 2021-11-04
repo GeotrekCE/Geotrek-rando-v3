@@ -44,6 +44,7 @@ interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
   courses?: string;
   web_links?: RawWebLink[];
   pdf: string;
+  ratings_description: string;
 }
 
 export interface RawOutdoorSiteDetails extends RawOutdoorSite {
@@ -86,4 +87,5 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   practice: OutdoorPractice;
   cities: string[];
   ratings: OutdoorRatingWithScale[];
+  ratingsDescription: string;
 }

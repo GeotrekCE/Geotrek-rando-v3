@@ -186,6 +186,10 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         </div>
       )}
 
+      {'ratingsDescription' in details && details.ratingsDescription && (
+        <div className={'my-3'}>{details.ratingsDescription}</div>
+      )}
+
       <div className="desktop:hidden mt-4">
         <OfflineButton details={details} type={type} />
       </div>
