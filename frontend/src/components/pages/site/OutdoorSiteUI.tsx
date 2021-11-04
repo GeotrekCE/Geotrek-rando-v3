@@ -167,7 +167,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                         wind: outdoorSiteContent.wind,
                         orientation: outdoorSiteContent.orientation,
                       }}
-                      place={''}
+                      place={outdoorSiteContent.place}
                       tags={outdoorSiteContent.themes}
                       title={outdoorSiteContent.name}
                       teaser={outdoorSiteContent.descriptionTeaser}
@@ -215,6 +215,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                   {!!outdoorSiteContent.description && (
                     <div ref={setDescriptionRef} id="details_description_ref">
                       <DetailsDescription
+                        cities={outdoorSiteContent.cities}
                         descriptionHtml={outdoorSiteContent.description}
                         className={marginDetailsChild}
                       />

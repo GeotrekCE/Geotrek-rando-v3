@@ -1,5 +1,6 @@
 import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
+import { CityDictionnary } from '../city/interface';
 import { Choices } from '../filters/interface';
 import { InformationDeskDictionnary } from '../informationDesk/interface';
 import { LabelDictionnary } from '../label/interface';
@@ -22,10 +23,12 @@ export const adaptOutdoorSites = ({
   rawOutdoorSites,
   themeDictionnary,
   outdoorPracticeDictionnary,
+  cityDictionnary,
 }: {
   rawOutdoorSites: RawOutdoorSite[];
   themeDictionnary: Choices;
   outdoorPracticeDictionnary: OutdoorPracticeChoices;
+  cityDictionnary: CityDictionnary;
 }): OutdoorSite[] =>
   rawOutdoorSites.map(rawOutdoorSite => {
     return {
@@ -40,6 +43,7 @@ export const adaptOutdoorSites = ({
       period: rawOutdoorSite?.period ? rawOutdoorSite?.period : null,
       wind: rawOutdoorSite?.wind ?? [],
       orientation: rawOutdoorSite?.orientation ?? [],
+      place: cityDictionnary?.[rawOutdoorSite?.cities?.[0]]?.name ?? '',
     };
   });
 
@@ -56,6 +60,7 @@ export const adaptOutdoorSiteDetails = ({
   outdoorPracticeDictionnary,
   access,
   outdoorPractice,
+  cityDictionnary,
 }: {
   rawOutdoorSiteDetails: RawOutdoorSiteDetails;
   pois: Poi[];
@@ -69,6 +74,7 @@ export const adaptOutdoorSiteDetails = ({
   outdoorPracticeDictionnary: OutdoorPracticeChoices;
   access: TrekResult[];
   outdoorPractice: OutdoorPracticeChoices;
+  cityDictionnary: CityDictionnary;
 }): OutdoorSiteDetails => ({
   ...adaptOutdoorSites({
     rawOutdoorSites: [
@@ -76,6 +82,7 @@ export const adaptOutdoorSiteDetails = ({
     ],
     themeDictionnary,
     outdoorPracticeDictionnary,
+    cityDictionnary,
   })[0],
   type: 'OUTDOOR_SITE',
   description: rawOutdoorSiteDetails.properties.description,
@@ -103,12 +110,19 @@ export const adaptOutdoorSiteDetails = ({
   access,
   pdfUri: rawOutdoorSiteDetails?.properties?.pdf,
   practice: outdoorPractice[String(rawOutdoorSiteDetails?.properties?.practice)],
+  cities: rawOutdoorSiteDetails.properties.cities?.map(id => cityDictionnary[id]?.name) ?? [],
 });
 
-export const adaptOutdoorSitePopupResults = (rawDetails: RawOutdoorSiteDetails): PopupResult => {
+export const adaptOutdoorSitePopupResults = ({
+  rawOutdoorSitePopupResult,
+  cityDictionnary,
+}: {
+  rawOutdoorSitePopupResult: RawOutdoorSiteDetails;
+  cityDictionnary: CityDictionnary;
+}): PopupResult => {
   return {
-    title: rawDetails.properties.name,
-    place: '',
-    imgUrl: getThumbnail(rawDetails.properties.attachments) ?? fallbackImgUri,
+    title: rawOutdoorSitePopupResult.properties.name,
+    place: cityDictionnary?.[rawOutdoorSitePopupResult?.properties?.cities?.[0]]?.name ?? '',
+    imgUrl: getThumbnail(rawOutdoorSitePopupResult.properties.attachments) ?? fallbackImgUri,
   };
 };

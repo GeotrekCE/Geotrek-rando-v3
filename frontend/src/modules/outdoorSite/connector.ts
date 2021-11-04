@@ -1,3 +1,4 @@
+import { getCities } from '../city/connector';
 import { getThemes } from '../filters/theme/connector';
 import { getInformationDesks } from '../informationDesk/connector';
 import { getLabels } from '../label/connector';
@@ -18,16 +19,19 @@ import { fetchOutdoorSiteDetails, fetchOutdoorSites } from './api';
 import { OutdoorSite, OutdoorSiteDetails } from './interface';
 
 export const getOutdoorSites = async (language: string, query = {}): Promise<OutdoorSite[]> => {
-  const [rawOutdoorSitesResult, themeDictionnary, outdoorPracticeDictionnary] = await Promise.all([
-    getGlobalConfig().enableOutdoor ? fetchOutdoorSites({ ...query, language }) : null,
-    getThemes(language),
-    getOutdoorPractices(language),
-  ]);
+  const [rawOutdoorSitesResult, themeDictionnary, outdoorPracticeDictionnary, cityDictionnary] =
+    await Promise.all([
+      getGlobalConfig().enableOutdoor ? fetchOutdoorSites({ ...query, language }) : null,
+      getThemes(language),
+      getOutdoorPractices(language),
+      getCities(language),
+    ]);
 
   return adaptOutdoorSites({
     rawOutdoorSites: rawOutdoorSitesResult?.results ?? [],
     themeDictionnary,
     outdoorPracticeDictionnary,
+    cityDictionnary,
   });
 };
 
@@ -60,9 +64,10 @@ export const getOutdoorSiteDetails = async (
       getTouristicContentsNearTarget(Number(id), language, 'near_outdoorsite'),
     ]);
 
-    const [access, outdoorPractice] = await Promise.all([
+    const [access, outdoorPractice, cityDictionnary] = await Promise.all([
       getTrekResults(language, { near_outdoorsite: Number(id) }),
       getOutdoorPractices(language),
+      getCities(language),
     ]);
 
     return adaptOutdoorSiteDetails({
@@ -78,6 +83,7 @@ export const getOutdoorSiteDetails = async (
       touristicContents,
       access,
       outdoorPractice,
+      cityDictionnary,
     });
   } catch (e) {
     console.error('Error in outdoor course connector', e);
@@ -91,5 +97,7 @@ export const getOutdoorSitePopupResult = async (
 ): Promise<PopupResult> => {
   const rawOutdoorSitePopupResult = await fetchOutdoorSiteDetails({ language }, id);
 
-  return adaptOutdoorSitePopupResults(rawOutdoorSitePopupResult);
+  const [cityDictionnary] = await Promise.all([getCities(language)]);
+
+  return adaptOutdoorSitePopupResults({ rawOutdoorSitePopupResult, cityDictionnary });
 };
