@@ -111,7 +111,9 @@
     "courses": "Parcours",
     "experiences": "Expériences",
     "gear": "Materiel",
-    "equipment": "Equipement"
+    "equipment": "Equipement",
+    "typeSite": "Type de site",
+    "typeCourse": "Type de parcours"
   },
   "touristicContent": {
     "contact": "Contact",

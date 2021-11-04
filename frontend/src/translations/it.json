@@ -109,7 +109,9 @@
     "courses": "Corso",
     "experiences": "Esperienze",
     "gear": "Materiale",
-    "equipment": "Attrezzatura"
+    "equipment": "Attrezzatura",
+    "typeSite": "Tipo di sito",
+    "typeCourse": "Tipo di corso"
   },
   "touristicContent": {
     "contact": "Contatto",

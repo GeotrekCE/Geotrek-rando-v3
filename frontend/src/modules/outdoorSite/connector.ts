@@ -6,6 +6,7 @@ import { getOutdoorCourses } from '../outdoorCourse/connector';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { getOutdoorRating, getOutdoorRatingHashMap } from '../outdoorRating/connector';
 import { getOutdoorRatingScale } from '../outdoorRatingScale/connector';
+import { getOutdoorSiteType } from '../outdoorSiteType/connector';
 import { getPois } from '../poi/connector';
 import { getTrekResults } from '../results/connector';
 import { getSources } from '../source/connector';
@@ -66,14 +67,21 @@ export const getOutdoorSiteDetails = async (
       getTouristicContentsNearTarget(Number(id), language, 'near_outdoorsite'),
     ]);
 
-    const [access, outdoorPractice, cityDictionnary, outdoorRating, outdoorRatingScale] =
-      await Promise.all([
-        getTrekResults(language, { near_outdoorsite: Number(id) }),
-        getOutdoorPractices(language),
-        getCities(language),
-        getOutdoorRating(language),
-        getOutdoorRatingScale(language),
-      ]);
+    const [
+      access,
+      outdoorPractice,
+      cityDictionnary,
+      outdoorRating,
+      outdoorRatingScale,
+      outdoorSiteType,
+    ] = await Promise.all([
+      getTrekResults(language, { near_outdoorsite: Number(id) }),
+      getOutdoorPractices(language),
+      getCities(language),
+      getOutdoorRating(language),
+      getOutdoorRatingScale(language),
+      getOutdoorSiteType(language),
+    ]);
 
     return adaptOutdoorSiteDetails({
       rawOutdoorSiteDetails,
@@ -91,6 +99,7 @@ export const getOutdoorSiteDetails = async (
       cityDictionnary,
       outdoorRating,
       outdoorRatingScale,
+      outdoorSiteType,
     });
   } catch (e) {
     console.error('Error in outdoor course connector', e);
