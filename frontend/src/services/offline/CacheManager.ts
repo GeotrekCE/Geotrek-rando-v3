@@ -101,7 +101,8 @@ const CacheManager = {
       request =>
         request.url.includes(`/trek/${id}`) ||
         request.url.includes(`/service/${id}`) ||
-        request.url.includes(`/outdoor/${id}`),
+        request.url.includes(`/outdoor-site/${id}`) ||
+        request.url.includes(`/outdoor-course/${id}`),
     );
     await Promise.all(results.map(request => cache.delete(request)));
 

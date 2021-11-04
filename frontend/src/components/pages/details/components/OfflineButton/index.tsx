@@ -43,7 +43,8 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
         src =>
           src.includes('chunks/pages/trek') ||
           src.includes('chunks/pages/service') ||
-          src.includes('chunks/pages/outdoor'),
+          src.includes('chunks/pages/outdoor-site') ||
+          src.includes('chunks/pages/outdoor-course'),
       );
 
     await CacheManager.storeItem({

@@ -7,7 +7,11 @@ import { Bin } from 'components/Icons/Bin';
 import { Layout } from 'components/Layout/Layout';
 import { ResultCard } from 'components/pages/search/components/ResultCard';
 import { generateResultDetailsUrl } from 'components/pages/search/utils';
-import { generateTouristicContentUrl } from 'components/pages/details/utils';
+import {
+  generateOutdoorCourseUrl,
+  generateOutdoorSiteUrl,
+  generateTouristicContentUrl,
+} from 'components/pages/details/utils';
 import CacheManager from 'services/offline/CacheManager';
 import { Offline } from '../../modules/offline/interface';
 
@@ -76,6 +80,41 @@ const OfflinePage: NextPage = () => {
                 hoverId={String(result.id)}
                 informations={[]}
                 redirectionUrl={generateTouristicContentUrl(result.id, result.title)}
+                className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
+              />
+            )}
+            {result.type === 'OUTDOOR_SITE' && (
+              <ResultCard
+                type={'OUTDOOR_SITE'}
+                id={String(result.id)}
+                place={String(result.place)}
+                title={result.title}
+                tags={[]}
+                thumbnailUris={result.thumbnailUris}
+                badgeIconUri={result.practice?.pictogram}
+                hoverId={String(result.id)}
+                informations={[]}
+                redirectionUrl={generateOutdoorSiteUrl(result.id, result.title)}
+                className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
+              />
+            )}
+            {result.type === 'OUTDOOR_COURSE' && (
+              <ResultCard
+                type={'OUTDOOR_COURSE'}
+                id={String(result.id)}
+                place={String(result.place)}
+                title={result.title}
+                tags={[]}
+                thumbnailUris={result.thumbnailUris}
+                badgeIconUri={result.practice?.pictogram}
+                hoverId={String(result.id)}
+                informations={{
+                  duration: '',
+                  elevation: '',
+                  height: '',
+                  length: '',
+                }}
+                redirectionUrl={generateOutdoorCourseUrl(result.id, result.title)}
                 className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
               />
             )}

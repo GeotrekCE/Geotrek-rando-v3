@@ -9,16 +9,8 @@ const fromNetwork = (request, timeout) =>
     fetch(request).then(response => {
       clearTimeout(timeoutId);
       fulfill(response);
-      //update(request);
     }, reject);
   });
-
-// cache the current page to make it available for offline
-const update = request => {
-  return caches
-    .open(cacheName)
-    .then(cache => fetch(request).then(response => cache.put(request, response)));
-};
 
 // fetch the resource from the browser cache
 const fromCache = async request => {
@@ -29,7 +21,12 @@ const fromCache = async request => {
 };
 
 self.addEventListener('fetch', event => {
-  if (event.request.url.includes('/trek/') || event.request.url.includes('/service/')) {
+  if (
+    event.request.url.includes('/trek/') ||
+    event.request.url.includes('/service/') ||
+    event.request.url.includes('/outdoor-site/') ||
+    event.request.url.includes('/outdoor-course/')
+  ) {
     event.respondWith(fromNetwork(event.request, 10000).catch(() => fromCache(event.request)));
   }
 });
