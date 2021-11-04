@@ -19,6 +19,7 @@ export const getInitialFilters = async (language: string, initialOptions: any) =
     outdoorRatingScale,
     outdoorPractice,
   });
+
   return {
     initialFiltersState,
     touristicContentCategoryMapping,

@@ -309,7 +309,7 @@ const getInitialFiltersStateWithRelevantFilters = ({
     });
   }
 
-  return initialStateWithOnlyCommon;
+  return result;
 };
 
 const sanitizeInitialOptions = (initialOptions: {
