@@ -1,6 +1,8 @@
 import { getAttachments, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CityDictionnary } from '../city/interface';
+import { OutdoorRatingChoices } from '../outdoorRating/interface';
+import { OutdoorRatingScale } from '../outdoorRatingScale/interface';
 import { Poi } from '../poi/interface';
 import { dataUnits } from '../results/adapter';
 import { TouristicContent } from '../touristicContent/interface';
@@ -44,11 +46,15 @@ export const adaptOutdoorCourseDetails = ({
   pois,
   touristicContents,
   cityDictionnary,
+  outdoorRating,
+  outdoorRatingScale,
 }: {
   rawOutdoorCourseDetails: RawOutdoorCourseDetails;
   pois: Poi[];
   touristicContents: TouristicContent[];
   cityDictionnary: CityDictionnary;
+  outdoorRating: OutdoorRatingChoices;
+  outdoorRatingScale: OutdoorRatingScale[];
 }): OutdoorCourseDetails => {
   return {
     // We use the original adapter
@@ -70,11 +76,17 @@ export const adaptOutdoorCourseDetails = ({
     touristicContents,
     pois,
     advice: rawOutdoorCourseDetails.properties.advice,
-    // @FIXME
     children: [],
     gear: String(rawOutdoorCourseDetails.properties.gear),
     equipment: String(rawOutdoorCourseDetails.properties.equipment),
     pdfUri: rawOutdoorCourseDetails.properties.pdf,
     cities: rawOutdoorCourseDetails.properties.cities?.map(id => cityDictionnary[id]?.name) ?? [],
+    ratings:
+      rawOutdoorCourseDetails.properties.ratings?.map(r => {
+        return {
+          ...outdoorRating[String(r)],
+          scale: outdoorRatingScale.find(oRS => oRS.id === outdoorRating[String(r)]?.scale),
+        };
+      }) ?? [],
   };
 };

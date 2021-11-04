@@ -6,6 +6,7 @@ import { Orientation } from 'components/Icons/Orientation';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 import { Wind } from 'components/Icons/Wind';
 import OfflineButton from 'components/pages/details/components/OfflineButton';
+import { groupBy } from 'lodash';
 import { Details, DetailsInformation, TrekFamily } from 'modules/details/interface';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { LocalIconInformation } from 'components/Information/LocalIconInformation';
@@ -170,6 +171,16 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             <div key={i} className={`${i < allTypes.length - 1 ? 'mb-1 desktop:mb-2' : ''}`}>
               <span className="font-bold">{`${type.label} : `}</span>
               <span>{type.values.join(', ')}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {'ratings' in details && details.ratings.length > 0 && (
+        <div>
+          {Object.entries(groupBy(details.ratings, 'scale.name')).map(([key, entry]) => (
+            <div key={key} className={'my-3'}>
+              {key} : {entry.map(e => e.name).join(', ')}
             </div>
           ))}
         </div>

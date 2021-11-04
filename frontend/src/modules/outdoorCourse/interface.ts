@@ -2,6 +2,7 @@ import { Bbox } from 'modules/details/interface';
 import { Attachment, RawAttachment, RawGeometryCollection } from 'modules/interface';
 import { LineStringGeometry, PointGeometry, PolygonGeometry } from 'modules/interface';
 import { OutdoorPractice } from '../outdoorPractice/interface';
+import { OutdoorRatingWithScale } from '../outdoorRating/interface';
 import { OutdoorSite } from '../outdoorSite/interface';
 import { Poi } from '../poi/interface';
 import { TouristicContent } from '../touristicContent/interface';
@@ -25,8 +26,8 @@ interface RawOutdoorCourseDetailsProperties extends RawOutdoorCourse {
   equipment?: string;
   gear?: string;
   min_elevation?: number;
-  ratings?: any;
-  ratings_description?: string;
+  ratings: number[];
+  ratings_description: string;
   site: number;
   structure: number;
   type: number;
@@ -64,4 +65,5 @@ export interface OutdoorCourseDetails extends OutdoorCourse {
   equipment: string;
   pdfUri: string;
   cities: string[];
+  ratings: OutdoorRatingWithScale[];
 }

@@ -249,7 +249,7 @@ const outdoorRatingMapping: OutdoorRatingMapping = {
   1: [{ id: '1', name: 'Facile', description: '', scale: 1, order: 1, color: '' }],
 };
 
-const outdoorRatingScale: OutdoorRatingScale[] = [{ id: '1', name: 'Niveau', practice: 4 }];
+const outdoorRatingScale: OutdoorRatingScale[] = [{ id: 1, name: 'Niveau', practice: 4 }];
 
 const outdoorPractice: OutdoorPracticeChoices = { '4': { name: 'Niveau', id: '1', pictogram: '' } };
 
