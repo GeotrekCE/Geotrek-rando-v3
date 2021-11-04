@@ -93,5 +93,6 @@ export const adaptOutdoorCourseDetails = ({
       }) ?? [],
     ratingsDescription: rawOutdoorCourseDetails.properties.ratings_description,
     typeCourse: outdoorCourseType[Number(rawOutdoorCourseDetails?.properties?.type)],
+    id: rawOutdoorCourseDetails.id,
   };
 };
