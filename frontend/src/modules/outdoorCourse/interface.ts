@@ -15,6 +15,7 @@ export interface RawOutdoorCourse {
   max_elevation?: number;
   height?: number;
   length?: number;
+  cities: string[];
 }
 
 interface RawOutdoorCourseDetailsProperties extends RawOutdoorCourse {
@@ -49,6 +50,7 @@ export interface OutdoorCourse {
   maxElevation: string | null;
   height: string | null;
   length: string | null;
+  place: string;
 }
 
 export interface OutdoorCourseDetails extends OutdoorCourse {
@@ -61,4 +63,5 @@ export interface OutdoorCourseDetails extends OutdoorCourse {
   gear: string;
   equipment: string;
   pdfUri: string;
+  cities: string[];
 }

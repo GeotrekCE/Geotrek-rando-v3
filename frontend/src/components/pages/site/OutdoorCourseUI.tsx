@@ -21,6 +21,7 @@ import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
+import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
@@ -72,7 +73,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
     <>
       <PageHead
         title={outdoorCourseContent?.name}
-        description={''}
+        description={cleanHTMLElementsFromString(outdoorCourseContent?.description)}
         sharingImageUrl={
           outdoorCourseContent !== undefined && outdoorCourseContent.attachments.length > 0
             ? outdoorCourseContent.attachments[0].url
@@ -155,7 +156,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                       courseType: null,
                       networks: [],
                     }}
-                    place={''}
+                    place={outdoorCourseContent.place}
                     tags={[]}
                     title={outdoorCourseContent.name}
                     teaser={''}
@@ -184,6 +185,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                     <DetailsDescription
                       descriptionHtml={outdoorCourseContent.description}
                       className={marginDetailsChild}
+                      cities={outdoorCourseContent.cities}
                     />
                   </div>
                 )}

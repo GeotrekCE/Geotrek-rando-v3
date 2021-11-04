@@ -1,6 +1,6 @@
 import { getAttachments, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
-import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
+import { CityDictionnary } from '../city/interface';
 import { Poi } from '../poi/interface';
 import { dataUnits } from '../results/adapter';
 import { TouristicContent } from '../touristicContent/interface';
@@ -14,8 +14,10 @@ import {
 
 export const adaptOutdoorCourses = ({
   rawOutdoorCourses,
+  cityDictionnary,
 }: {
   rawOutdoorCourses: RawOutdoorCourse[];
+  cityDictionnary: CityDictionnary;
 }): OutdoorCourse[] => {
   return rawOutdoorCourses.map(rawOutdoorCourse => {
     return {
@@ -32,6 +34,7 @@ export const adaptOutdoorCourses = ({
         ? `${Math.round(rawOutdoorCourse.length)}${dataUnits.distance}`
         : null,
       height: rawOutdoorCourse.height ? `${rawOutdoorCourse.height}${dataUnits.distance}` : null,
+      place: cityDictionnary?.[rawOutdoorCourse?.cities?.[0]]?.name ?? '',
     };
   });
 };
@@ -40,10 +43,12 @@ export const adaptOutdoorCourseDetails = ({
   rawOutdoorCourseDetails,
   pois,
   touristicContents,
+  cityDictionnary,
 }: {
   rawOutdoorCourseDetails: RawOutdoorCourseDetails;
   pois: Poi[];
   touristicContents: TouristicContent[];
+  cityDictionnary: CityDictionnary;
 }): OutdoorCourseDetails => {
   return {
     // We use the original adapter
@@ -54,6 +59,7 @@ export const adaptOutdoorCourseDetails = ({
           geometry: rawOutdoorCourseDetails.geometry,
         },
       ],
+      cityDictionnary,
     })[0],
     // then we add missing fields
     description: rawOutdoorCourseDetails.properties.description,
@@ -69,5 +75,6 @@ export const adaptOutdoorCourseDetails = ({
     gear: String(rawOutdoorCourseDetails.properties.gear),
     equipment: String(rawOutdoorCourseDetails.properties.equipment),
     pdfUri: rawOutdoorCourseDetails.properties.pdf,
+    cities: rawOutdoorCourseDetails.properties.cities?.map(id => cityDictionnary[id]?.name) ?? [],
   };
 };
