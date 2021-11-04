@@ -75,14 +75,18 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         <Modal>
           {({ isFullscreen, toggleFullscreen }) => (
             <>
-              {isFullscreen && attachments && attachments.length > 0 && (
-                <DetailsCoverCarousel attachments={attachments} />
-              )}
+              {isFullscreen &&
+                attachments &&
+                attachments.length > 0 &&
+                navigator &&
+                navigator?.onLine && <DetailsCoverCarousel attachments={attachments} />}
               {!isFullscreen && (
                 <DetailsCardCarousel
-                  thumbnailUris={thumbnailUris}
+                  thumbnailUris={
+                    navigator && navigator?.onLine ? thumbnailUris : thumbnailUris.slice(0, 1)
+                  }
                   height={heightState}
-                  onClickImage={toggleFullscreen}
+                  onClickImage={navigator && navigator?.onLine ? toggleFullscreen : undefined}
                 />
               )}
             </>
