@@ -11,6 +11,7 @@ import { getTouristicContentCategories } from 'modules/touristicContentCategory/
 import { getGlobalConfig } from 'modules/utils/api.config';
 
 import { generatePageNumbersArray } from 'modules/utils/connector';
+import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { fetchOutdoorSites } from '../outdoorSite/api';
 import {
   adaptOutdoorSitesMapResults,
@@ -118,9 +119,11 @@ export const getMapResults = async (
           }),
         ),
       );
+      const outdoorPracticeDictionnary = await getOutdoorPractices(language);
       mapResults.push(
         ...adaptOutdoorSitesMapResults({
           mapResults: mapOutdoorSiteResults,
+          outdoorPracticeDictionnary,
         }),
       );
     }
