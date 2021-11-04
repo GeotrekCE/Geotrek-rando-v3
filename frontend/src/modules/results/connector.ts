@@ -220,8 +220,6 @@ export const getSearchResults = async (
     const nextTouristicContentsPage = extractNextPageId(rawTouristicContents.next);
     const nextOutdoorSitesPage = extractNextPageId(rawOutdoorSites.next);
 
-    console.log('nextOutdoorSitesPage:', nextOutdoorSitesPage);
-
     return {
       resultsNumber: treksCount + touristicContentsCount + outdoorSitesCount,
       resultsNumberDetails: {
