@@ -244,7 +244,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             key={searchResult.name}
                             id={`${searchResult.id}`}
                             hoverId={getHoverId(searchResult)}
-                            place={'searchResult.place'}
+                            place={searchResult.place}
                             title={searchResult.name}
                             tags={searchResult.themes}
                             thumbnailUris={searchResult.thumbnailUris}

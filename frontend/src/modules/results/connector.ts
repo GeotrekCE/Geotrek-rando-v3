@@ -213,6 +213,7 @@ export const getSearchResults = async (
       rawOutdoorSites: rawOutdoorSites.results,
       themeDictionnary: themes,
       outdoorPracticeDictionnary,
+      cityDictionnary,
     });
 
     const nextTreksPage = extractNextPageId(rawTrekResults.next);

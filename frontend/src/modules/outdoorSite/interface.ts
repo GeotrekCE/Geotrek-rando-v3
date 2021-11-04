@@ -21,6 +21,7 @@ export interface RawOutdoorSite {
   period?: string;
   wind?: string[];
   orientation?: string[];
+  cities: string[];
 }
 
 interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
@@ -62,6 +63,7 @@ export interface OutdoorSite {
   period: string | null;
   wind: string[];
   orientation: string[];
+  place: string;
 }
 
 export interface OutdoorSiteDetails extends OutdoorSite {
@@ -81,4 +83,5 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   access: TrekResult[];
   pdfUri: string;
   practice: OutdoorPractice;
+  cities: string[];
 }
