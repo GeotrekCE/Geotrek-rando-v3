@@ -108,7 +108,7 @@
     "cities": "Towns crossed",
     "more": "More information",
     "courses": "Courses",
-    "experiences": "Experiences",
+    "experiences": "Practice locations",
     "gear": "Gear",
     "equipment": "Equipment",
     "typeSite": "Type of site",
@@ -168,7 +168,7 @@
   "outdoorSite": {
     "accessFullTitle": "Access",
     "coursesFullTitle": "Courses",
-    "sitesFullTitle": "The {count} experiences to discover"
+    "sitesFullTitle": "The {count} places of practice to discover"
   },
   "Wind": {
     "N": "North",
