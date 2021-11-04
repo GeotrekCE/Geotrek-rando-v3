@@ -88,5 +88,6 @@ export const adaptOutdoorCourseDetails = ({
           scale: outdoorRatingScale.find(oRS => oRS.id === outdoorRating[String(r)]?.scale),
         };
       }) ?? [],
+    ratingsDescription: rawOutdoorCourseDetails.properties.ratings_description,
   };
 };
