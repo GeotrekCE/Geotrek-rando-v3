@@ -120,12 +120,12 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             {informations.period}
           </LocalIconInformation>
         )}
-        {informations.orientation && (
+        {informations.orientation && informations.orientation.length > 0 && (
           <LocalIconInformation icon={Orientation} className={classNameInformation}>
             {informations.orientation.map(w => intl.formatMessage({ id: `Wind.${w}` })).join(' - ')}
           </LocalIconInformation>
         )}
-        {informations.wind && (
+        {informations.wind && informations.wind.length > 0 && (
           <LocalIconInformation icon={Wind} className={classNameInformation}>
             {informations.wind.map(w => intl.formatMessage({ id: `Wind.${w}` })).join(' - ')}
           </LocalIconInformation>
