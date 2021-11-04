@@ -8,6 +8,7 @@ import { OutdoorCourse } from '../outdoorCourse/interface';
 import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { OutdoorRatingChoices } from '../outdoorRating/interface';
 import { OutdoorRatingScale } from '../outdoorRatingScale/interface';
+import { OutdoorSiteTypeChoices } from '../outdoorSiteType/interface';
 import { Poi } from '../poi/interface';
 import { TrekResult } from '../results/interface';
 import { SourceDictionnary } from '../source/interface';
@@ -65,6 +66,7 @@ export const adaptOutdoorSiteDetails = ({
   cityDictionnary,
   outdoorRating,
   outdoorRatingScale,
+  outdoorSiteType,
 }: {
   rawOutdoorSiteDetails: RawOutdoorSiteDetails;
   pois: Poi[];
@@ -81,6 +83,7 @@ export const adaptOutdoorSiteDetails = ({
   cityDictionnary: CityDictionnary;
   outdoorRating: OutdoorRatingChoices;
   outdoorRatingScale: OutdoorRatingScale[];
+  outdoorSiteType: OutdoorSiteTypeChoices;
 }): OutdoorSiteDetails => ({
   ...adaptOutdoorSites({
     rawOutdoorSites: [
@@ -125,6 +128,7 @@ export const adaptOutdoorSiteDetails = ({
       };
     }) ?? [],
   ratingsDescription: rawOutdoorSiteDetails.properties.ratings_description,
+  typeSite: outdoorSiteType[Number(rawOutdoorSiteDetails?.properties?.type)],
 });
 
 export const adaptOutdoorSitePopupResults = ({

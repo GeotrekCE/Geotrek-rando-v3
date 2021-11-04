@@ -7,6 +7,7 @@ import { Label } from '../label/interface';
 import { OutdoorCourse } from '../outdoorCourse/interface';
 import { OutdoorPractice } from '../outdoorPractice/interface';
 import { OutdoorRatingWithScale } from '../outdoorRating/interface';
+import { OutdoorSiteType } from '../outdoorSiteType/interface';
 import { Poi } from '../poi/interface';
 import { TrekResult } from '../results/interface';
 import { Source } from '../source/interface';
@@ -88,4 +89,5 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   cities: string[];
   ratings: OutdoorRatingWithScale[];
   ratingsDescription: string;
+  typeSite?: OutdoorSiteType;
 }

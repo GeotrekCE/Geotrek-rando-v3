@@ -3,6 +3,7 @@ import { adaptGeometry } from 'modules/utils/geometry';
 import { CityDictionnary } from '../city/interface';
 import { OutdoorRatingChoices } from '../outdoorRating/interface';
 import { OutdoorRatingScale } from '../outdoorRatingScale/interface';
+import { OutdoorSiteTypeChoices } from '../outdoorSiteType/interface';
 import { Poi } from '../poi/interface';
 import { dataUnits } from '../results/adapter';
 import { TouristicContent } from '../touristicContent/interface';
@@ -48,6 +49,7 @@ export const adaptOutdoorCourseDetails = ({
   cityDictionnary,
   outdoorRating,
   outdoorRatingScale,
+  outdoorCourseType,
 }: {
   rawOutdoorCourseDetails: RawOutdoorCourseDetails;
   pois: Poi[];
@@ -55,6 +57,7 @@ export const adaptOutdoorCourseDetails = ({
   cityDictionnary: CityDictionnary;
   outdoorRating: OutdoorRatingChoices;
   outdoorRatingScale: OutdoorRatingScale[];
+  outdoorCourseType: OutdoorSiteTypeChoices;
 }): OutdoorCourseDetails => {
   return {
     // We use the original adapter
@@ -89,5 +92,6 @@ export const adaptOutdoorCourseDetails = ({
         };
       }) ?? [],
     ratingsDescription: rawOutdoorCourseDetails.properties.ratings_description,
+    typeCourse: outdoorCourseType[Number(rawOutdoorCourseDetails?.properties?.type)],
   };
 };

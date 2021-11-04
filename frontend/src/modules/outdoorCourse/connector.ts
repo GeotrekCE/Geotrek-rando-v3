@@ -1,4 +1,5 @@
 import { getCities } from '../city/connector';
+import { getOutdoorCourseType } from '../outdoorCourseType/connector';
 import { getOutdoorRating } from '../outdoorRating/connector';
 import { getOutdoorRatingScale } from '../outdoorRatingScale/connector';
 import { getPois } from '../poi/connector';
@@ -31,6 +32,7 @@ export const getOutdoorCourseDetails = async (
       cityDictionnary,
       outdoorRating,
       outdoorRatingScale,
+      outdoorCourseType,
     ] = await Promise.all([
       fetchOutdoorCourseDetails({ language }, id),
       getPois(Number(id), language, 'courses'),
@@ -38,6 +40,7 @@ export const getOutdoorCourseDetails = async (
       getCities(language),
       getOutdoorRating(language),
       getOutdoorRatingScale(language),
+      getOutdoorCourseType(language),
     ]);
 
     return adaptOutdoorCourseDetails({
@@ -47,6 +50,7 @@ export const getOutdoorCourseDetails = async (
       cityDictionnary,
       outdoorRating,
       outdoorRatingScale,
+      outdoorCourseType,
     });
   } catch (e) {
     console.error('Error in outdoor course connector', e);

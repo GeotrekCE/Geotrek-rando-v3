@@ -17,7 +17,7 @@ import {
   TouristicContentDetailsType,
 } from 'modules/touristicContent/interface';
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
@@ -179,7 +179,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       {'ratings' in details && details.ratings.length > 0 && (
         <div>
           {Object.entries(groupBy(details.ratings, 'scale.name')).map(([key, entry]) => (
-            <div key={key} className={'my-3'}>
+            <div key={key} className={'my-2'}>
               {key} : {entry.map(e => e.name).join(', ')}
             </div>
           ))}
@@ -187,7 +187,19 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       )}
 
       {'ratingsDescription' in details && details.ratingsDescription && (
-        <div className={'my-3'}>{details.ratingsDescription}</div>
+        <div className={'my-2'}>{details.ratingsDescription}</div>
+      )}
+
+      {'typeSite' in details && details.typeSite && (
+        <div className={'my-2'}>
+          <FormattedMessage id={'details.typeSite'} /> : {details.typeSite.name}
+        </div>
+      )}
+
+      {'typeCourse' in details && details.typeCourse && (
+        <div className={'my-2'}>
+          <FormattedMessage id={'details.typeCourse'} /> : {details.typeCourse.name}
+        </div>
       )}
 
       <div className="desktop:hidden mt-4">

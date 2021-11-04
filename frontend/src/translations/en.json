@@ -110,7 +110,9 @@
     "courses": "Courses",
     "experiences": "Experiences",
     "gear": "Gear",
-    "equipment": "Equipment"
+    "equipment": "Equipment",
+    "typeSite": "Type of site",
+    "typeCourse": "Type of course"
   },
   "touristicContent": {
     "contact": "Contact",
