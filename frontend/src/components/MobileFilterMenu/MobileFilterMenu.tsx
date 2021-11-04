@@ -42,6 +42,7 @@ export const MobileFilterMenu: React.FC<Props> = ({
       customCrossIcon={false}
       burgerBarClassName="bg-white"
       menuClassName="bg-white p-4"
+      width={'80vw'}
     >
       <div className="relative text-center w-full pb-4 font-bold border-b border-solid border-greySoft outline-none">
         <CloseButton onClick={handleClose} className="absolute left-0" icon={<Cross size={24} />} />
