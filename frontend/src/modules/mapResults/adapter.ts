@@ -1,6 +1,7 @@
 import { ActivityChoices } from 'modules/activities/interface';
 import { TouristicContentCategoryDictionnary } from 'modules/touristicContentCategory/interface';
 import { extractFirstPointOfGeometry } from 'modules/utils/geometry';
+import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import {
   MapResults,
   RawOutdoorSiteMapResults,
@@ -53,17 +54,16 @@ export const adaptTouristicContentMapResults = ({
 
 export const adaptOutdoorSitesMapResults = ({
   mapResults,
+  outdoorPracticeDictionnary,
 }: {
   mapResults: RawOutdoorSiteMapResults[];
+  outdoorPracticeDictionnary: OutdoorPracticeChoices;
 }): MapResults =>
   concatOutdoorMapResults(mapResults).map(rawMapResult => {
     return {
       id: Number(rawMapResult.id),
       location: extractFirstPointOfGeometry(rawMapResult.geometry ?? null),
-      practice: {
-        pictogram: '',
-        name: '',
-      },
+      practice: outdoorPracticeDictionnary[rawMapResult.practice] ?? null,
       type: 'OUTDOOR_SITE',
     };
   });
