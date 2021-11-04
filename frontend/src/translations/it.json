@@ -107,7 +107,7 @@
     "cities": "Comune attraversato",
     "more": "Leggi di più",
     "courses": "Corso",
-    "experiences": "Esperienze",
+    "experiences": "Luoghi di pratica",
     "gear": "Materiale",
     "equipment": "Attrezzatura",
     "typeSite": "Tipo di sito",
@@ -167,7 +167,7 @@
   "outdoorSite": {
     "accessFullTitle": "Accesso",
     "coursesFullTitle": "Corso",
-    "sitesFullTitle": "Il {conteggio} delle esperienze da scoprire"
+    "sitesFullTitle": "Il {conteggio} dei luoghi di pratica da scoprire"
   },
   "Wind": {
     "N": "Nord",
