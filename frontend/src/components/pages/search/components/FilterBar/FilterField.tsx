@@ -66,7 +66,7 @@ const FilterField: React.FC<Props> = ({
             <Cross size={30} />
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-4 mb-10">
+        <div className="mb-4">
           {filtersToDisplay.map(filterState => (
             <ShowFilters
               key={filterState.id}
