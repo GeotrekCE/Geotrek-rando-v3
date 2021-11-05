@@ -1,6 +1,7 @@
 import { FILTERS_CATEGORIES } from 'components/pages/search/components/FilterBar';
 import MobileBottomClear from 'components/pages/search/components/FilterBar/MobileBottomClear';
 import ShowFilters from 'components/pages/search/components/FilterBar/ShowFilters';
+import { groupBy } from 'lodash';
 import styled from 'styled-components';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
@@ -35,7 +36,10 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
 
   const { name, filters, subFilters } = item;
 
-  const subFiltersToDisplay = filtersState.filter(({ id }) => subFilters?.includes(id));
+  const subFiltersToDisplay = groupBy(
+    filtersState.filter(({ id }) => subFilters?.some(subFilter => new RegExp(subFilter).test(id))),
+    'category',
+  );
   const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
 
   /* * The library default behaviour is to have a fixed close icon which * made the icon overlap
@@ -73,16 +77,26 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
           />
         ))}
 
-        {subFiltersToDisplay.length > 0 && filtersToDisplay.length > 0 && <Separator />}
+        {Object.keys(subFiltersToDisplay).length > 0 && filtersToDisplay.length > 0 && (
+          <Separator />
+        )}
 
         <div className="space-y-4">
-          {subFiltersToDisplay.map(state => (
-            <ShowFilters
-              key={state.id}
-              item={state}
-              setFilterSelectedOptions={setFilterSelectedOptions}
-            />
-          ))}
+          {Object.keys(subFiltersToDisplay).map(key => {
+            return (
+              <div className={'m-1'} key={key}>
+                {key !== 'undefined' && <div className={'font-bold mb-2'}>{key}</div>}
+                {subFiltersToDisplay[key].map(filterState => (
+                  <div className={'my-1'} key={filterState.id}>
+                    <ShowFilters
+                      item={filterState}
+                      setFilterSelectedOptions={setFilterSelectedOptions}
+                    />
+                  </div>
+                ))}
+              </div>
+            );
+          })}
         </div>
       </div>
 
