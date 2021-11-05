@@ -8,7 +8,7 @@ import { getTouristicContentGeometryResult } from '../../../modules/touristicCon
 
 export const useObjectGeometry = (
   id: number,
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE',
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT',
 ) => {
   const language = useRouter().locale ?? getDefaultLanguage();
 

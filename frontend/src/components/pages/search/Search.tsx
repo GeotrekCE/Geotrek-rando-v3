@@ -34,7 +34,11 @@ import { useTrekResults } from './hooks/useTrekResults';
 import { useMapResults } from './hooks/useMapResults';
 import { ErrorFallback } from './components/ErrorFallback';
 import { generateResultDetailsUrl, getHoverId } from './utils';
-import { generateOutdoorSiteUrl, generateTouristicContentUrl } from '../details/utils';
+import {
+  generateOutdoorSiteUrl,
+  generateTouristicContentUrl,
+  generateTouristicEventUrl,
+} from '../details/utils';
 import InputWithMagnifier from './components/InputWithMagnifier';
 import { useTextFilter } from './hooks/useTextFilter';
 
@@ -277,7 +281,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             attachments={searchResult.attachments}
                             //badgeIconUri={searchResult.practice?.pictogram}
                             informations={{}}
-                            redirectionUrl={generateOutdoorSiteUrl(
+                            redirectionUrl={generateTouristicEventUrl(
                               searchResult.id,
                               searchResult.name,
                             )}

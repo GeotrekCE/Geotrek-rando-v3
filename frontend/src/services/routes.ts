@@ -7,4 +7,5 @@ export const routes = {
   OFFLINE: '/offline',
   OUTDOOR_SITE: '/outdoor-site',
   OUTDOOR_COURSE: '/outdoor-course',
+  TOURISTIC_EVENT: '/event',
 } as const;

@@ -1,7 +1,10 @@
-import { getAttachments, getThumbnails } from 'modules/utils/adapter';
+import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CityDictionnary } from '../city/interface';
 import { Choices } from '../filters/interface';
+import { RawOutdoorSiteDetails } from '../outdoorSite/interface';
+import { fallbackImgUri } from '../trekResult/adapter';
+import { PopupResult } from '../trekResult/interface';
 import {
   RawTouristicEvent,
   RawTouristicEventDetails,
@@ -62,5 +65,19 @@ export const adaptTouristicEventDetails = ({
     },
     cities: rawTouristicEventDetails.properties.cities?.map(id => cityDictionnary[id]?.name) ?? [],
     id: rawTouristicEventDetails.id,
+  };
+};
+
+export const adaptTouristicEventPopupResults = ({
+  rawTouristicEventPopupResult,
+  cityDictionnary,
+}: {
+  rawTouristicEventPopupResult: RawTouristicEventDetails;
+  cityDictionnary: CityDictionnary;
+}): PopupResult => {
+  return {
+    title: rawTouristicEventPopupResult.properties.name,
+    place: cityDictionnary?.[rawTouristicEventPopupResult?.properties?.cities?.[0]]?.name ?? '',
+    imgUrl: getThumbnail(rawTouristicEventPopupResult.properties.attachments) ?? fallbackImgUri,
   };
 };

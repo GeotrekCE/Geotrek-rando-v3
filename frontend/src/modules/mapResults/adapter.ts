@@ -6,11 +6,13 @@ import {
   MapResults,
   RawOutdoorSiteMapResults,
   RawTouristicContentMapResults,
+  RawTouristicEventsMapResults,
   RawTrekMapResults,
 } from './interface';
 import {
   concatOutdoorMapResults,
   concatTouristicContentMapResults,
+  concatTouristicEventsMapResults,
   concatTrekMapResults,
   formatLocation,
 } from './utils';
@@ -65,5 +67,18 @@ export const adaptOutdoorSitesMapResults = ({
       location: extractFirstPointOfGeometry(rawMapResult.geometry ?? null),
       practice: outdoorPracticeDictionnary[rawMapResult.practice] ?? null,
       type: 'OUTDOOR_SITE',
+    };
+  });
+
+export const adaptTouristicEventsMapResults = ({
+  mapResults,
+}: {
+  mapResults: RawTouristicEventsMapResults[];
+}): MapResults =>
+  concatTouristicEventsMapResults(mapResults).map(rawMapResult => {
+    return {
+      id: Number(rawMapResult.id),
+      location: extractFirstPointOfGeometry(rawMapResult.geometry ?? null),
+      type: 'TOURISTIC_EVENT',
     };
   });

@@ -18,13 +18,13 @@ interface Props {
   parentId?: number;
   handleOpen?: () => void;
   handleClose?: () => void;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE';
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT';
 }
 
 interface PropsPC {
   showButton: boolean;
   id: number;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE';
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT';
   parentId?: number;
 }
 const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId }) => {
@@ -34,6 +34,7 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId }) => 
     if (type === 'TREK') return routes.DETAILS;
     if (type === 'TOURISTIC_CONTENT') return routes.TOURISTIC_CONTENT;
     if (type === 'OUTDOOR_SITE') return routes.OUTDOOR_SITE;
+    if (type === 'TOURISTIC_EVENT') return routes.TOURISTIC_EVENT;
   };
 
   return (
