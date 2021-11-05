@@ -21,6 +21,7 @@ import { TrendingUp } from 'components/Icons/TrendingUp';
 import { ListAndMapContext } from 'modules/map/ListAndMapContext';
 
 import { Attachment } from '../../../../../modules/interface';
+import { dataUnits } from '../../../../../modules/results/adapter';
 import { ResultCardCarousel } from './ResultCardCarousel';
 
 interface BaseProps {
@@ -152,6 +153,7 @@ export const ResultCard: React.FC<
                   {props.informations.maxElevation && (
                     <LocalIconInformation icon={Altitude}>
                       {props.informations.maxElevation}
+                      {dataUnits.distance}
                     </LocalIconInformation>
                   )}
                   {props.informations.length && (
