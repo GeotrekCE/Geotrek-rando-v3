@@ -68,6 +68,7 @@
   },
   "details": {
     "preview": "Presentazione",
+    "access": "Accesso",
     "download": "Scaricare",
     "children": "Passi",
     "childrenFullTitle": "{count, plural, =0 {Nessun passo} one {# Passo} other {# Passi}}",

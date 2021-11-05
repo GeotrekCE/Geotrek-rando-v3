@@ -70,6 +70,7 @@
   },
   "details": {
     "preview": "Présentation",
+    "access": "Accès",
     "download": "Télécharger",
     "children": "Étapes",
     "childrenFullTitle": "{count, plural, =0 {Pas d'étape} one {# étape} other {# étapes}}",
