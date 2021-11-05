@@ -149,7 +149,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             {informations.elevation}
           </LocalIconInformation>
         )}
-        {informations.maxElevation !== null && (
+        {informations.maxElevation && (
           <LocalIconInformation icon={Altitude} className={classNameInformation}>
             {informations.maxElevation}
             {dataUnits.distance}
