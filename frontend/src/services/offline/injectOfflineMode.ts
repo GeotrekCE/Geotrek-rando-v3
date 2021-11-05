@@ -7,13 +7,9 @@ const LeafletOffline = require('leaflet.offline');
 const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression) => {
   const mapConfig = getMapConfig();
 
-  let mapTilesUrl;
-  if (navigator.onLine) mapTilesUrl = mapConfig.mapClassicLayerUrl;
-  else mapTilesUrl = mapConfig.mapClassicLayerUrlOffline ?? mapConfig.mapClassicLayerUrl;
-
   const tileLayerOffline = L.tileLayer
     // @ts-ignore no type available in this plugin
-    .offline(`${mapTilesUrl}?${id}`, {
+    .offline(`${mapConfig.mapClassicLayerUrl}?${id}`, {
       attribution: 'Map data {attribution.OpenStreetMap}',
       subdomains: 'abc',
       minZoom: Math.min(...(mapConfig?.zoomAvailableOffline ?? [])),
