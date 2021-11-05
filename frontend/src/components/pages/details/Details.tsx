@@ -119,9 +119,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
               <div className="flex flex-1" id="details_mainContainer">
                 <div
                   id="details_informationContainer"
-                  className="flex flex-col w-full
-                  relative -top-detailsHeaderMobile desktop:top-0
-                  desktop:w-3/5"
+                  className="flex flex-col w-full relative -top-detailsHeaderMobile desktop:top-0 desktop:w-3/5"
                 >
                   <OpenMapButton displayMap={displayMobileMap} />
                   <Modal>
