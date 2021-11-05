@@ -23,5 +23,5 @@ export interface ActivityChoices {
 
 export interface ActivityFilter extends Activity {
   id: string;
-  type: 'PRACTICE' | 'OUTDOOR_PRACTICE' | 'CATEGORY';
+  type: 'PRACTICE' | 'OUTDOOR_PRACTICE' | 'CATEGORY' | 'TOURISTIC_EVENT_TYPE';
 }
