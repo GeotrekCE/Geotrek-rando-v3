@@ -245,10 +245,6 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                             { id: 'outdoorSite.coursesFullTitle' },
                             { count: Number(outdoorSiteContent?.courses?.length) },
                           )}
-                          parent={{
-                            id,
-                            title: outdoorSiteContent.name,
-                          }}
                         />
                       </div>
                     )}

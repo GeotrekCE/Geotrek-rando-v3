@@ -1,3 +1,4 @@
+import { Altitude } from 'components/Icons/Altitude';
 import { Calendar } from 'components/Icons/Calendar';
 import { Clock } from 'components/Icons/Clock';
 import { Chip } from 'components/Chip';
@@ -20,6 +21,7 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
+import { dataUnits } from '../../../../../modules/results/adapter';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { DetailsTrekParentButton } from '../DetailsTrekParentButton';
 import { HtmlText } from '../../utils';
@@ -30,6 +32,7 @@ interface DetailsPreviewInformation extends DetailsInformation {
   period?: string | null;
   wind?: string[];
   orientation?: string[];
+  maxElevation?: number;
 }
 
 interface DetailsPreviewProps {
@@ -144,6 +147,12 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.elevation !== null && (
           <LocalIconInformation icon={TrendingUp} className={classNameInformation}>
             {informations.elevation}
+          </LocalIconInformation>
+        )}
+        {informations.maxElevation !== null && (
+          <LocalIconInformation icon={Altitude} className={classNameInformation}>
+            {informations.maxElevation}
+            {dataUnits.distance}
           </LocalIconInformation>
         )}
         {informations.courseType !== null && (

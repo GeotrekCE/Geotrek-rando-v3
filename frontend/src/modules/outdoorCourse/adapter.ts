@@ -30,9 +30,7 @@ export const adaptOutdoorCourses = ({
       geometry: adaptGeometry(rawOutdoorCourse.geometry.geometries[0]),
       thumbnailUris: getThumbnails(rawOutdoorCourse.attachments),
       duration: rawOutdoorCourse.duration ? formatHours(rawOutdoorCourse.duration) : null,
-      maxElevation: rawOutdoorCourse.max_elevation
-        ? `+${rawOutdoorCourse.max_elevation}${dataUnits.distance}`
-        : null,
+      maxElevation: Number(rawOutdoorCourse.max_elevation),
       length: rawOutdoorCourse.length
         ? `${Math.round(rawOutdoorCourse.length)}${dataUnits.distance}`
         : null,

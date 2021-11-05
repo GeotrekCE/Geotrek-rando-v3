@@ -5,7 +5,6 @@ import { CSSObject } from 'styled-components';
 
 import { colorPalette, getSpacing, shadow } from 'stylesheet';
 import { routes } from 'services/routes';
-import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
 
 import { ActivityFilter } from 'modules/activities/interface';
 import { Arrow } from 'components/Icons/Arrow';

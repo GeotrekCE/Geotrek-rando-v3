@@ -11,16 +11,11 @@ interface DetailsChildrenSectionProps {
   outdoorChildren: OutdoorCourse[];
   title: string;
   id: string;
-  parent: {
-    id: string;
-    title: string;
-  };
 }
 
 export const OutdoorCoursesChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
   outdoorChildren,
   title,
-  parent,
 }) => {
   return (
     <div className="mt-6 desktop:mt-12" id="details_trekChildren">
@@ -51,7 +46,7 @@ export const OutdoorCoursesChildrenSection: React.FC<DetailsChildrenSectionProps
               attachments={trekChild.attachments}
               informations={{
                 duration: trekChild.duration,
-                elevation: trekChild.maxElevation,
+                maxElevation: trekChild.maxElevation,
                 height: trekChild.height,
                 length: trekChild.length,
               }}
