@@ -36,6 +36,7 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
     }, []);
 
   const setPreviewRef = useSectionReferenceCallback('preview');
+  const setAccessRef = useSectionReferenceCallback('access');
   const setPoisRef = useSectionReferenceCallback('poi');
   const setExperienceRef = useSectionReferenceCallback('experiences');
   const setCoursesRef = useSectionReferenceCallback('courses');
@@ -60,6 +61,7 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
     hideMobileMap,
     path,
     setPreviewRef,
+    setAccessRef,
     setPoisRef,
     setExperienceRef,
     setCoursesRef,

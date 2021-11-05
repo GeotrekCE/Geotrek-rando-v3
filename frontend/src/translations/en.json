@@ -69,6 +69,7 @@
   },
   "details": {
     "preview": "Preview",
+    "access": "Access",
     "download": "Download",
     "children": "Steps",
     "childrenFullTitle": "{count, plural, =0 {No step} one {# step} other {# steps}}",
