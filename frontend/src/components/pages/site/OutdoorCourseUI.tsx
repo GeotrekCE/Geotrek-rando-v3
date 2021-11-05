@@ -153,9 +153,10 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                         informations={{
                           duration: outdoorCourseContent.duration,
                           distance: outdoorCourseContent.length,
-                          elevation: outdoorCourseContent.maxElevation,
+                          maxElevation: outdoorCourseContent.maxElevation,
                           difficulty: null,
                           courseType: null,
+                          elevation: null,
                           networks: [],
                         }}
                         place={outdoorCourseContent.place}

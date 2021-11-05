@@ -1,3 +1,4 @@
+import { Altitude } from 'components/Icons/Altitude';
 import { Height } from 'components/Icons/Height';
 import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
@@ -60,7 +61,8 @@ interface OutdoorCourseProps extends BaseProps {
   type: 'OUTDOOR_COURSE';
   informations: {
     duration: string | null;
-    elevation: string | null;
+    elevation?: string | null;
+    maxElevation?: number;
     height: string | null;
     length: string | null;
   };
@@ -145,6 +147,11 @@ export const ResultCard: React.FC<
                   {props.informations.elevation && (
                     <LocalIconInformation icon={TrendingUp}>
                       {props.informations.elevation}
+                    </LocalIconInformation>
+                  )}
+                  {props.informations.maxElevation && (
+                    <LocalIconInformation icon={Altitude}>
+                      {props.informations.maxElevation}
                     </LocalIconInformation>
                   )}
                   {props.informations.length && (

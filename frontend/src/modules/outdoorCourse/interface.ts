@@ -49,7 +49,7 @@ export interface OutdoorCourse {
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
   thumbnailUris: string[];
   duration: string | null;
-  maxElevation: string | null;
+  maxElevation: number;
   height: string | null;
   length: string | null;
   place: string;
