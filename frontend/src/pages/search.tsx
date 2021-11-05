@@ -34,6 +34,7 @@ export const getServerSideProps = async (context: any) => {
           treks: 1,
           touristicContents: 1,
           outdoorSites: getGlobalConfig().enableOutdoor ? 1 : null,
+          touristicEvents: getGlobalConfig().enableTouristicEvents ? 1 : null,
         },
         context.locale,
       ),

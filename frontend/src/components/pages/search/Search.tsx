@@ -25,6 +25,7 @@ import { countFiltersSelected } from '../../../modules/filters/utils';
 import { OutdoorSite } from '../../../modules/outdoorSite/interface';
 import { TrekResult } from '../../../modules/results/interface';
 import { TouristicContentResult } from '../../../modules/touristicContent/interface';
+import { TouristicEvent } from '../../../modules/touristicEvent/interface';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
 import { ToggleFilterButton } from './components/ToggleFilterButton';
@@ -90,16 +91,20 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   const numberSelected = countFiltersSelected(filtersState, null, null);
 
   const isTrek = (
-    content: TrekResult | TouristicContentResult | OutdoorSite,
+    content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
   ): content is TrekResult => content.type === 'TREK';
 
   const isTouristicContent = (
-    content: TrekResult | TouristicContentResult | OutdoorSite,
+    content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
   ): content is TouristicContentResult => content.type === 'TOURISTIC_CONTENT';
 
   const isOutdoorSite = (
-    content: TrekResult | TouristicContentResult | OutdoorSite,
+    content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
   ): content is OutdoorSite => content.type === 'OUTDOOR_SITE';
+
+  const isTouristicEvent = (
+    content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
+  ): content is TouristicEvent => content.type === 'TOURISTIC_EVENT';
 
   return (
     <div id="Search">
@@ -251,6 +256,27 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             attachments={searchResult.attachments}
                             badgeIconUri={searchResult.practice?.pictogram}
                             informations={[]}
+                            redirectionUrl={generateOutdoorSiteUrl(
+                              searchResult.id,
+                              searchResult.name,
+                            )}
+                            className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
+                          />
+                        );
+                      else if (isTouristicEvent(searchResult))
+                        return (
+                          <ResultCard
+                            type={searchResult.type}
+                            key={searchResult.name}
+                            id={`${searchResult.id}`}
+                            hoverId={getHoverId(searchResult)}
+                            place={searchResult.place}
+                            title={searchResult.name}
+                            tags={searchResult.themes}
+                            thumbnailUris={searchResult.thumbnailUris}
+                            attachments={searchResult.attachments}
+                            //badgeIconUri={searchResult.practice?.pictogram}
+                            informations={{}}
                             redirectionUrl={generateOutdoorSiteUrl(
                               searchResult.id,
                               searchResult.name,

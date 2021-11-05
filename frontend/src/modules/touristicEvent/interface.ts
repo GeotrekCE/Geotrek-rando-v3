@@ -7,6 +7,8 @@ export interface RawTouristicEvent {
   attachments: RawAttachment[];
   name: string;
   geometry: RawGeometryCollection;
+  themes?: number[];
+  cities: string[];
 }
 
 interface RawTouristicEventDetailsProperties extends RawTouristicEvent {
@@ -22,14 +24,18 @@ export interface RawTouristicEventDetails extends RawTouristicEvent {
 
 export interface TouristicEvent {
   id: string;
+  type: 'TOURISTIC_EVENT';
   name: string;
   attachments: Attachment[];
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
   thumbnailUris: string[];
+  themes: string[];
+  place: string;
 }
 
 export interface TouristicEventDetails extends TouristicEvent {
   description: string;
   descriptionTeaser: string;
   bbox: Bbox;
+  cities: string[];
 }

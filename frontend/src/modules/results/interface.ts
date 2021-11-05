@@ -2,6 +2,7 @@ import { Activity } from 'modules/activities/interface';
 import { Attachment, RawAttachment } from 'modules/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { OutdoorSite } from '../outdoorSite/interface';
+import { TouristicEvent } from '../touristicEvent/interface';
 
 export interface SearchResults {
   resultsNumber: number;
@@ -9,13 +10,15 @@ export interface SearchResults {
     treksCount: number;
     touristicContentsCount: number;
     outdoorSitesCount: number;
+    touristicEventsCount: number;
   };
   nextPages: {
     treks: number | null;
     touristicContents: number | null;
     outdoorSites: number | null;
+    touristicEvents: number | null;
   };
-  results: (TrekResult | TouristicContentResult | OutdoorSite)[];
+  results: (TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent)[];
 }
 
 export interface TrekResult {

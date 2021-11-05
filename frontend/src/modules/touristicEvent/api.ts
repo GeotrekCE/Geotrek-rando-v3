@@ -4,7 +4,7 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawTouristicEvent, RawTouristicEventDetails } from './interface';
 
 const fieldsParams = {
-  fields: 'id,attachments,name,geometry',
+  fields: 'id,attachments,name,geometry,themes,cities',
 };
 
 export const fetchTouristicEvents = (

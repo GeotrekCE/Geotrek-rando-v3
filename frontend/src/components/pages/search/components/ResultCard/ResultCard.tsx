@@ -69,16 +69,40 @@ interface OutdoorCourseProps extends BaseProps {
   };
 }
 
+interface TouristicEventProps extends BaseProps {
+  type: 'TOURISTIC_EVENT';
+  informations: Record<any, any>;
+}
+
 const isTrek = (
-  content: TrekProps | TouristicContentProps | OutdoorSiteProps | OutdoorCourseProps,
+  content:
+    | TrekProps
+    | TouristicContentProps
+    | OutdoorSiteProps
+    | OutdoorCourseProps
+    | TouristicEventProps,
 ): content is TrekProps => content.type === 'TREK';
 
 const isOutdoorCourse = (
-  content: TrekProps | TouristicContentProps | OutdoorSiteProps | OutdoorCourseProps,
+  content:
+    | TrekProps
+    | TouristicContentProps
+    | OutdoorSiteProps
+    | OutdoorCourseProps
+    | TouristicEventProps,
 ): content is OutdoorCourseProps => content.type === 'OUTDOOR_COURSE';
 
+const isTouristicEvent = (
+  content:
+    | TrekProps
+    | TouristicContentProps
+    | OutdoorSiteProps
+    | OutdoorCourseProps
+    | TouristicEventProps,
+): content is TouristicEventProps => content.type === 'TOURISTIC_EVENT';
+
 export const ResultCard: React.FC<
-  TrekProps | TouristicContentProps | OutdoorSiteProps | OutdoorCourseProps
+  TrekProps | TouristicContentProps | OutdoorSiteProps | OutdoorCourseProps | TouristicEventProps
 > = props => {
   const {
     id,
@@ -195,7 +219,7 @@ export const ResultCard: React.FC<
                 </InformationLayout>
               </InformationContainer>
             )}
-            {!isTrek(props) && !isOutdoorCourse(props) && (
+            {!isTrek(props) && !isOutdoorCourse(props) && !isTouristicEvent(props) && (
               <InformationContainer>
                 {props.informations.map(
                   ({ label, values }) =>

@@ -5,6 +5,7 @@
   "maxTouristicContentPerPage": 50,
   "enableSensitiveAreas": false,
   "enableOutdoor": true,
+  "enableTouristicEvents": true,
   "portalIds": [],
   "apiUrl": "https://geotrekdemo.ecrins-parcnational.fr/api/v2",
   "googleAnalyticsId": "G-8FSV2N4FXN",
