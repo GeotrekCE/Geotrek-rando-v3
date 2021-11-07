@@ -22,6 +22,7 @@ In json files, you can just override the primary keys you need. You have to over
   - `maxTouristicContentPerPage`: max number of touristic contents displayed on a single trek page
   - `portalIds`: eventual portal filters (list of ids).
   - `enableSensitiveAreas`: boolean, default to false. Set it to true if sensitive areas are defined in your Geotrek-admin
+  - `enableOutdoor`: : boolean, default to false. Set it to true to enable Outdoor sites and courses
   - `apiUrl` : Geotrek-admin API URL
   - `googleAnalyticsId`: eventual Google Analytics Id
   - `googleSiteVerificationToken`: eventual code to enable Google Search Console and Google developer tools
@@ -51,7 +52,7 @@ In json files, you can just override the primary keys you need. You have to over
     - `shouldDisplayText`: `true` to display the text on above the asset, `false` to hide it.
 
 - `footer.json` to define social networks (`facebook`, `twitter`, `youtube`, `instagram` or `fallback)` and links (based on translation labels) in footer (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/footer.json)
-- `filter.json` to define filters to display, their order and values (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/filter.json). If you remove some of the filters in this file, they will not be displayed. If you want to override one filter, you have to list all others, otherwise they will not be displayed
+- `filter.json` to define filters to hide, their order and values (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/filter.json). If you want to hide some of the filter, you have to override their properties with `"display": false`
 - `map.json` to define basemaps URL and attributions, center (y, x), default and max zoom level (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json).
 
   - You can also update the map layers. There are two map layers available:
