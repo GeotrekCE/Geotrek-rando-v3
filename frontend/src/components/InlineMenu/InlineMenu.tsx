@@ -83,39 +83,42 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
           <Section name={intl.formatMessage({ id: 'header.favorites' })} />
         </div>
       )}
-      <div className="flex items-center text-white" key="language">
-        {language !== undefined && (
-          <ReactCountryFlag
-            countryCode={language === 'en' ? 'GB' : language.toUpperCase()}
-            className="mr-2"
-            svg
-          />
-        )}
-        <DropdownContainer ref={languageDropdownRef} className="flex-row">
-          <SimpleDropdown.DropdownTrigger className={controlClassName}>
-            {language?.toUpperCase()}
-            <ChevronDown size={16} className="flex-shrink-0 ml-1" />
-          </SimpleDropdown.DropdownTrigger>
-          <SimpleDropdown.DropdownContent className={menuClassName}>
-            {supportedLanguages.map(language => (
-              <Link
-                href={router.asPath}
-                passHref
-                locale={language}
-                replace
-                scroll={false}
-                key={language}
-              >
-                <DropDownButton
-                  className={optionClassName}
-                  text={language.toUpperCase()}
-                  onClick={() => languageDropdownRef?.current?.hide()}
-                ></DropDownButton>
-              </Link>
-            ))}
-          </SimpleDropdown.DropdownContent>
-        </DropdownContainer>
-      </div>
+
+      {supportedLanguages.length > 1 && (
+        <div className="flex items-center text-white" key="language">
+          {language !== undefined && (
+            <ReactCountryFlag
+              countryCode={language === 'en' ? 'GB' : language.toUpperCase()}
+              className="mr-2"
+              svg
+            />
+          )}
+          <DropdownContainer ref={languageDropdownRef} className="flex-row">
+            <SimpleDropdown.DropdownTrigger className={controlClassName}>
+              {language?.toUpperCase()}
+              <ChevronDown size={16} className="flex-shrink-0 ml-1" />
+            </SimpleDropdown.DropdownTrigger>
+            <SimpleDropdown.DropdownContent className={menuClassName}>
+              {supportedLanguages.map(language => (
+                <Link
+                  href={router.asPath}
+                  passHref
+                  locale={language}
+                  replace
+                  scroll={false}
+                  key={language}
+                >
+                  <DropDownButton
+                    className={optionClassName}
+                    text={language.toUpperCase()}
+                    onClick={() => languageDropdownRef?.current?.hide()}
+                  ></DropDownButton>
+                </Link>
+              ))}
+            </SimpleDropdown.DropdownContent>
+          </DropdownContainer>
+        </div>
+      )}
     </div>
   );
 };
