@@ -1,7 +1,5 @@
 import { getCities } from '../city/connector';
 import { getThemes } from '../filters/theme/connector';
-import { adaptOutdoorSitePopupResults } from '../outdoorSite/adapter';
-import { fetchOutdoorSiteDetails } from '../outdoorSite/api';
 import { PopupResult } from '../trekResult/interface';
 import {
   adaptTouristicEventDetails,

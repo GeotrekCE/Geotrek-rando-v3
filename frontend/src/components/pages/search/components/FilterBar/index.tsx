@@ -48,6 +48,7 @@ export const FILTERS_CATEGORIES = [
   {
     id: EVENT_ID,
     name: <FormattedMessage id={'search.filters.events'} />,
+    filters: [EVENT_ID],
   },
   {
     id: THEME_ID,

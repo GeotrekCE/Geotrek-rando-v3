@@ -6,6 +6,7 @@ import { getOutdoorPracticesFilter } from '../outdoorPractice/connector';
 import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { OutdoorRatingMapping } from '../outdoorRating/interface';
 import { OutdoorRatingScale } from '../outdoorRatingScale/interface';
+import { getTouristicEventTypesFilter } from '../touristicEventType/connector';
 import { getAccessibilityFilter } from './accessibility/connector';
 import { getCityFilter } from './city/connector';
 import { getFiltersConfig } from './config';
@@ -26,6 +27,7 @@ import {
   CATEGORY_ID,
   CITY_ID,
   DISTRICT_ID,
+  EVENT_ID,
   OUTDOOR_ID,
   PRACTICE_ID,
   ROUTE_ID,
@@ -69,6 +71,8 @@ const getFilterOptions = async (
       return getTouristicContentCategoryFilter(language);
     case OUTDOOR_ID:
       return getOutdoorPracticesFilter(language);
+    case EVENT_ID:
+      return getTouristicEventTypesFilter(language);
     default:
       return null;
   }
@@ -89,6 +93,7 @@ const getFilterAndAddType = async (
 
 const getFilters = async (language: string): Promise<Filter[]> => {
   const config = getFiltersConfig();
+  console.log('config:', config);
   const filters = await Promise.all(
     config.map(filterConfig => {
       if (filterConfig.options !== undefined) {
@@ -113,6 +118,7 @@ export const commonFilters = [
   PRACTICE_ID,
   CATEGORY_ID,
   OUTDOOR_ID,
+  EVENT_ID,
   THEME_ID,
   CITY_ID,
   DISTRICT_ID,

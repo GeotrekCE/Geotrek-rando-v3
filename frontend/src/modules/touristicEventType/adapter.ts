@@ -1,5 +1,5 @@
 import { ActivityFilter } from '../activities/interface';
-import { OUTDOOR_ID } from '../filters/constant';
+import { EVENT_ID, OUTDOOR_ID } from '../filters/constant';
 import { FilterWithoutType } from '../filters/interface';
 import { RawTouristicEventType, TouristicEventTypeChoices } from './interface';
 
@@ -33,7 +33,7 @@ export const adaptTouristicEventTypesForActivities = (
 export const adaptTouristicEventTypesFilter = (
   rawTouristicEventTypes: RawTouristicEventType[],
 ): FilterWithoutType => ({
-  id: OUTDOOR_ID,
+  id: EVENT_ID,
   options: rawTouristicEventTypes.map(rawOutdoorPractice => ({
     value: `${rawOutdoorPractice.id}`,
     label: rawOutdoorPractice.type,

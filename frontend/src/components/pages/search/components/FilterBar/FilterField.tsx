@@ -37,6 +37,8 @@ const FilterField: React.FC<Props> = ({
 
   const numberSelected = countFiltersSelected(filtersState, filters, subFilters);
 
+  console.log('filterState:', filtersState);
+
   return (
     <div>
       <Container
