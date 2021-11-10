@@ -1,5 +1,6 @@
 import { getCities } from '../city/connector';
 import { getThemes } from '../filters/theme/connector';
+import { getSources } from '../source/connector';
 import { getTouristicContentsNearTarget } from '../touristicContent/connector';
 import { PopupResult } from '../trekResult/interface';
 import {
@@ -32,19 +33,26 @@ export const getTouristicEventDetails = async (
   language: string,
 ): Promise<TouristicEventDetails> => {
   try {
-    const [rawTouristicEventDetails, themeDictionnary, cityDictionnary, touristicContents] =
-      await Promise.all([
-        fetchTouristicEventDetails({ language }, id),
-        getThemes(language),
-        getCities(language),
-        getTouristicContentsNearTarget(Number(id), language, 'near_touristicevent'),
-      ]);
+    const [
+      rawTouristicEventDetails,
+      themeDictionnary,
+      cityDictionnary,
+      touristicContents,
+      sourcesDictionnary,
+    ] = await Promise.all([
+      fetchTouristicEventDetails({ language }, id),
+      getThemes(language),
+      getCities(language),
+      getTouristicContentsNearTarget(Number(id), language, 'near_touristicevent'),
+      getSources(language),
+    ]);
 
     return adaptTouristicEventDetails({
       rawTouristicEventDetails,
       themeDictionnary,
       cityDictionnary,
       touristicContents,
+      sourcesDictionnary,
     });
   } catch (e) {
     console.error('Error in outdoor course connector', e);

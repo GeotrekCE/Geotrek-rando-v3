@@ -11,8 +11,6 @@ export const getInitialFilters = async (language: string, initialOptions: any) =
   const outdoorRatingScale = await getOutdoorRatingScale(language);
   const outdoorPractice = await getOutdoorPractices(language);
 
-  console.log('initialFiltersState:', initialFiltersState);
-
   const initialFiltersStateWithSelectedOptions = getInitialFiltersStateWithSelectedOptions({
     initialFiltersState,
     initialOptions,

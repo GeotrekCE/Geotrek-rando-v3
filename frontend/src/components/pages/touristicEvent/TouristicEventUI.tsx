@@ -5,6 +5,7 @@ import { DetailsCardSection } from 'components/pages/details/components/DetailsC
 import { DetailsDescription } from 'components/pages/details/components/DetailsDescription';
 import { DetailsHeader } from 'components/pages/details/components/DetailsHeader';
 import { DetailsSection } from 'components/pages/details/components/DetailsSection';
+import { DetailsSource } from 'components/pages/details/components/DetailsSource';
 import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/details/Details';
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
 import { generateTouristicContentUrl } from 'components/pages/details/utils';
@@ -203,6 +204,23 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                         />
                       </div>
                     )*/}
+
+                    {touristicEventContent.sources.length > 0 && (
+                      <DetailsSection
+                        htmlId="details_source"
+                        titleId="details.source"
+                        className={marginDetailsChild}
+                      >
+                        {touristicEventContent.sources.map((source, i) => (
+                          <DetailsSource
+                            key={i}
+                            name={source.name}
+                            website={source.website}
+                            pictogramUri={source.pictogramUri}
+                          />
+                        ))}
+                      </DetailsSection>
+                    )}
 
                     {touristicEventContent.touristicContents.length > 0 && (
                       <div ref={setTouristicContentsRef} id="details_touristicContent_ref">

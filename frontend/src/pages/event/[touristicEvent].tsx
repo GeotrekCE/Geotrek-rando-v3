@@ -1,4 +1,4 @@
-import {TouristicEventUI} from "components/pages/touristicEvent/TouristicEventUI"
+import { TouristicEventUI } from 'components/pages/touristicEvent/TouristicEventUI';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';

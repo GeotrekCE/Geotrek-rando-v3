@@ -43,7 +43,7 @@ interface TrekProps extends BaseProps {
     duration: string | null;
     distance: string;
     elevation: string;
-    difficulty: { label: string; pictogramUri: string } | null;
+    difficulty?: { label: string; pictogramUri: string } | null;
     reservationSystem: number | null;
   };
 }

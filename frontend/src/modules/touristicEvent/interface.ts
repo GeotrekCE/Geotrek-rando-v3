@@ -7,6 +7,7 @@ import {
   RawPolygonGeometry,
 } from 'modules/interface';
 import { LineStringGeometry, PointGeometry, PolygonGeometry } from 'modules/interface';
+import { Source } from '../source/interface';
 import { TouristicContent } from '../touristicContent/interface';
 
 export interface RawTouristicEvent {
@@ -27,6 +28,7 @@ interface RawTouristicEventDetailsProperties extends RawTouristicEvent {
   duration: string;
   begin_date: string;
   end_date: string;
+  source?: number[];
 }
 
 export interface RawTouristicEventDetails extends RawTouristicEvent {
@@ -58,4 +60,5 @@ export interface TouristicEventDetails extends TouristicEvent {
   duration: string;
   beginDate: string;
   endDate: string;
+  sources: Source[];
 }

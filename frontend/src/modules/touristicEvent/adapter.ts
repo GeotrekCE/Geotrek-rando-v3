@@ -2,6 +2,7 @@ import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapt
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CityDictionnary } from '../city/interface';
 import { Choices } from '../filters/interface';
+import { SourceDictionnary } from '../source/interface';
 import { TouristicContent } from '../touristicContent/interface';
 import { fallbackImgUri } from '../trekResult/adapter';
 import { PopupResult } from '../trekResult/interface';
@@ -39,12 +40,14 @@ export const adaptTouristicEventDetails = ({
   rawTouristicEventDetails,
   themeDictionnary,
   cityDictionnary,
+  sourcesDictionnary,
   touristicContents,
 }: {
   rawTouristicEventDetails: RawTouristicEventDetails;
   themeDictionnary: Choices;
   cityDictionnary: CityDictionnary;
   touristicContents: TouristicContent[];
+  sourcesDictionnary: SourceDictionnary;
 }): TouristicEventDetails => {
   return {
     // We use the original adapter
@@ -74,6 +77,9 @@ export const adaptTouristicEventDetails = ({
     duration: rawTouristicEventDetails.properties.duration,
     beginDate: rawTouristicEventDetails.properties.begin_date,
     endDate: rawTouristicEventDetails.properties.end_date,
+    sources:
+      rawTouristicEventDetails?.properties?.source?.map(sourceId => sourcesDictionnary[sourceId]) ??
+      [],
   };
 };
 

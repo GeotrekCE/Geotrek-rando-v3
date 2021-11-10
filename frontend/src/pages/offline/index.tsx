@@ -118,6 +118,26 @@ const OfflinePage: NextPage = () => {
                 className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
               />
             )}
+            {result.type === 'TOURISTIC_EVENT' && (
+              <ResultCard
+                type={'TOURISTIC_EVENT'}
+                id={String(result.id)}
+                place={String(result.place)}
+                title={result.title}
+                tags={[]}
+                thumbnailUris={result.thumbnailUris}
+                badgeIconUri={result.practice?.pictogram}
+                hoverId={String(result.id)}
+                informations={{
+                  duration: '',
+                  elevation: '',
+                  height: '',
+                  length: '',
+                }}
+                redirectionUrl={generateOutdoorCourseUrl(result.id, result.title)}
+                className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
+              />
+            )}
 
             <div className={'absolute top-2 right-2'}>
               <Button onClick={() => handleErase(String(result.id))} icon={Bin}>

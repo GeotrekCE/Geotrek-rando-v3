@@ -93,7 +93,6 @@ const getFilterAndAddType = async (
 
 const getFilters = async (language: string): Promise<Filter[]> => {
   const config = getFiltersConfig();
-  console.log('config:', config);
   const filters = await Promise.all(
     config.map(filterConfig => {
       if (filterConfig.options !== undefined) {
