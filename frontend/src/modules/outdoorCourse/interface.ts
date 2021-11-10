@@ -2,7 +2,6 @@ import { Bbox } from 'modules/details/interface';
 import { Attachment, RawAttachment, RawGeometryCollection } from 'modules/interface';
 import { LineStringGeometry, PointGeometry, PolygonGeometry } from 'modules/interface';
 import { OutdoorCourseType } from '../outdoorCourseType/interface';
-import { OutdoorPractice } from '../outdoorPractice/interface';
 import { OutdoorRatingWithScale } from '../outdoorRating/interface';
 import { OutdoorSite } from '../outdoorSite/interface';
 import { Poi } from '../poi/interface';

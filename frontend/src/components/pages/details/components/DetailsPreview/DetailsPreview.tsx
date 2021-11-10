@@ -3,7 +3,9 @@ import { Calendar } from 'components/Icons/Calendar';
 import { Clock } from 'components/Icons/Clock';
 import { Chip } from 'components/Chip';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
+import { MeetingPoint } from 'components/Icons/MeetingPoint';
 import { Orientation } from 'components/Icons/Orientation';
+import { Participant } from 'components/Icons/Participant';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 import { Wind } from 'components/Icons/Wind';
 import OfflineButton from 'components/pages/details/components/OfflineButton';
@@ -22,6 +24,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { dataUnits } from '../../../../../modules/results/adapter';
+import { TouristicEventDetails } from '../../../../../modules/touristicEvent/interface';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { DetailsTrekParentButton } from '../DetailsTrekParentButton';
 import { HtmlText } from '../../utils';
@@ -33,6 +36,12 @@ interface DetailsPreviewInformation extends DetailsInformation {
   wind?: string[];
   orientation?: string[];
   maxElevation?: number;
+  participantNumber?: number;
+  meetingPoint?: string;
+  date?: {
+    beginDate: string;
+    endDate: string;
+  };
 }
 
 interface DetailsPreviewProps {
@@ -44,8 +53,13 @@ interface DetailsPreviewProps {
   teaser?: string;
   title: string;
   trekFamily?: TrekFamily;
-  details: Details | TouristicContentDetails | OutdoorSiteDetails | OutdoorCourseDetails;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE';
+  details:
+    | Details
+    | TouristicContentDetails
+    | OutdoorSiteDetails
+    | OutdoorCourseDetails
+    | TouristicEventDetails;
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
   id: string;
 }
 
@@ -134,17 +148,35 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             {informations.wind.map(w => intl.formatMessage({ id: `Wind.${w}` })).join(' - ')}
           </LocalIconInformation>
         )}
-        {informations.duration !== null && (
+        {informations.date && (
+          <LocalIconInformation icon={Calendar} className={classNameInformation}>
+            {informations.date.beginDate === informations.date.endDate ? (
+              <FormattedMessage
+                id={'dates.singleDate'}
+                values={{ date: informations.date.beginDate }}
+              />
+            ) : (
+              <FormattedMessage
+                id={'dates.multipleDates'}
+                values={{
+                  beginDate: informations.date.beginDate,
+                  endDate: informations.date.endDate,
+                }}
+              />
+            )}
+          </LocalIconInformation>
+        )}
+        {informations.duration && (
           <LocalIconInformation icon={Clock} className={classNameInformation}>
             {informations.duration}
           </LocalIconInformation>
         )}
-        {informations.distance !== null && (
+        {informations.distance && (
           <LocalIconInformation icon={CodeBrackets} className={classNameInformation}>
             {informations.distance}
           </LocalIconInformation>
         )}
-        {informations.elevation !== null && (
+        {informations.elevation && (
           <LocalIconInformation icon={TrendingUp} className={classNameInformation}>
             {informations.elevation}
           </LocalIconInformation>
@@ -155,7 +187,17 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             {dataUnits.distance}
           </LocalIconInformation>
         )}
-        {informations.courseType !== null && (
+        {informations.meetingPoint && (
+          <LocalIconInformation icon={MeetingPoint} className={classNameInformation}>
+            {informations.meetingPoint}
+          </LocalIconInformation>
+        )}
+        {informations.participantNumber && (
+          <LocalIconInformation icon={Participant} className={classNameInformation}>
+            {informations.participantNumber}
+          </LocalIconInformation>
+        )}
+        {informations.courseType && (
           <RemoteIconInformation
             iconUri={informations.courseType.pictogramUri}
             className={classNameInformation}
@@ -163,8 +205,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             {informations.courseType.label}
           </RemoteIconInformation>
         )}
-        {informations.networks.length > 0 &&
-          informations.networks.map((network, i) => (
+        {Number(informations?.networks?.length) > 0 &&
+          informations.networks?.map((network, i) => (
             <RemoteIconInformation
               iconUri={network.pictogramUri}
               className={classNameInformation}

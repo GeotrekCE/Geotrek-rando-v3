@@ -180,5 +180,9 @@
     "SW": "South-West",
     "NE": "North-Est",
     "SE": "South-Est"
+  },
+  "dates": {
+    "singleDate": "on {date}",
+    "multipleDates": "from {beginDate} to {endDate}"
   }
 }

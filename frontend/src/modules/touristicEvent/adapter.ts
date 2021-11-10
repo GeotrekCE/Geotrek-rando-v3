@@ -2,6 +2,7 @@ import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapt
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CityDictionnary } from '../city/interface';
 import { Choices } from '../filters/interface';
+import { TouristicContent } from '../touristicContent/interface';
 import { fallbackImgUri } from '../trekResult/adapter';
 import { PopupResult } from '../trekResult/interface';
 import {
@@ -38,10 +39,12 @@ export const adaptTouristicEventDetails = ({
   rawTouristicEventDetails,
   themeDictionnary,
   cityDictionnary,
+  touristicContents,
 }: {
   rawTouristicEventDetails: RawTouristicEventDetails;
   themeDictionnary: Choices;
   cityDictionnary: CityDictionnary;
+  touristicContents: TouristicContent[];
 }): TouristicEventDetails => {
   return {
     // We use the original adapter
@@ -64,6 +67,13 @@ export const adaptTouristicEventDetails = ({
     },
     cities: rawTouristicEventDetails.properties.cities?.map(id => cityDictionnary[id]?.name) ?? [],
     id: rawTouristicEventDetails.id,
+    touristicContents,
+    participantNumber: rawTouristicEventDetails.properties.participant_number,
+    pdfUri: rawTouristicEventDetails.properties.pdf,
+    meetingPoint: rawTouristicEventDetails.properties.meeting_point,
+    duration: rawTouristicEventDetails.properties.duration,
+    beginDate: rawTouristicEventDetails.properties.begin_date,
+    endDate: rawTouristicEventDetails.properties.end_date,
   };
 };
 

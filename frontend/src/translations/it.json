@@ -179,5 +179,9 @@
     "SW": "Sud-Ovest",
     "NE": "Nord-Est",
     "SE": "Sud-Est"
+  },
+  "dates": {
+    "singleDate": "il {date}",
+    "multipleDates": "dal {beginDate} al {endDate}"
   }
 }

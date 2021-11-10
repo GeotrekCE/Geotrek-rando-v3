@@ -16,7 +16,7 @@ export const fetchTouristicEvents = (
     .json();
 
 const fieldsParamsDetails = {
-  fields: `${fieldsParams.fields},description,description_teaser`,
+  fields: `${fieldsParams.fields},description,description_teaser,participant_number,pdf,meeting_point,duration,begin_date,end_date`,
   format: 'geojson',
 };
 
