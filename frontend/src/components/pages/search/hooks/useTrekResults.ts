@@ -90,7 +90,8 @@ export const useTrekResults = (
         getNextPageParam: lastPageResult =>
           lastPageResult.nextPages.treks !== null ||
           lastPageResult.nextPages.touristicContents !== null ||
-          lastPageResult.nextPages.outdoorSites !== null
+          lastPageResult.nextPages.outdoorSites !== null ||
+          lastPageResult.nextPages.touristicEvents !== null
             ? lastPageResult.nextPages
             : undefined,
       },

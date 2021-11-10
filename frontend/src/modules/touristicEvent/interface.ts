@@ -1,12 +1,18 @@
 import { Bbox } from 'modules/details/interface';
-import { Attachment, RawAttachment, RawGeometryCollection } from 'modules/interface';
+import {
+  Attachment,
+  RawAttachment,
+  RawLineStringGeometry2D,
+  RawPointGeometry2D,
+  RawPolygonGeometry,
+} from 'modules/interface';
 import { LineStringGeometry, PointGeometry, PolygonGeometry } from 'modules/interface';
 
 export interface RawTouristicEvent {
   id: string;
   attachments: RawAttachment[];
   name: string;
-  geometry: RawGeometryCollection;
+  geometry: RawPolygonGeometry | RawLineStringGeometry2D | RawPointGeometry2D;
   themes?: number[];
   cities: string[];
 }

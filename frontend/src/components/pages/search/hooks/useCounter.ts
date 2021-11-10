@@ -11,6 +11,7 @@ interface CountResult {
   treksCount: number;
   touristicContentsCount: number;
   outdoorSitesCount: number;
+  touristicEventsCount: number;
 }
 
 const useCounter = ({ language }: Args): CountResult => {
@@ -21,6 +22,7 @@ const useCounter = ({ language }: Args): CountResult => {
         treks: 1,
         touristicContents: 1,
         outdoorSites: getGlobalConfig().enableOutdoor ? 1 : null,
+        touristicEvents: getGlobalConfig().enableTouristicEvents ? 1 : null,
       },
     }) =>
       getSearchResults(
@@ -39,6 +41,7 @@ const useCounter = ({ language }: Args): CountResult => {
     treksCount: result?.data?.resultsNumberDetails?.treksCount ?? 0,
     touristicContentsCount: result?.data?.resultsNumberDetails?.touristicContentsCount ?? 0,
     outdoorSitesCount: result?.data?.resultsNumberDetails?.outdoorSitesCount ?? 0,
+    touristicEventsCount: result?.data?.resultsNumberDetails?.touristicEventsCount ?? 0,
   };
 };
 

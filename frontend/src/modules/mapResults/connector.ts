@@ -145,7 +145,7 @@ export const getMapResults = async (
       );
     }
 
-    if (shouldFetchTouristicEvents) {
+    /*if (shouldFetchTouristicEvents) {
       const rawMapResults = await fetchTouristicEvents({
         language,
         page_size: resultsNumber,
@@ -168,7 +168,7 @@ export const getMapResults = async (
           mapResults: mapTouristicEventsResults,
         }),
       );
-    }
+    }*/
 
     return mapResults;
   } catch (error) {
