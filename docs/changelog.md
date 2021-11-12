@@ -7,7 +7,8 @@ To enable Outdoor module, Geotrek-admin version 2.70.0 or higher is required
 
 **🚀 New features**
 
-* Add outdoor sites and courses in home activity bar, seach, detail pages and offline content (#376)
+* Add outdoor sites and courses in home activity bar, seach, detail pages and offline contents (#376)
+* Add touristic events in home activity bar, seach, detail pages and offline contents (#389)
 
 **✨ Improvements**
 
@@ -17,7 +18,7 @@ To enable Outdoor module, Geotrek-admin version 2.70.0 or higher is required
 
 **🐛 Fixes**
 
-* Fix offline maps tiles with removing `mapClassicLayerUrlOffline` setting that didn't worked
+* Fix offline maps tiles with removing ``mapClassicLayerUrlOffline`` setting that didn't worked
 
 **💥 Beaking changes**
 
