@@ -117,7 +117,9 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                         id="outdoorCourseContent_cover"
                         className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                       >
-                        {outdoorCourseContent.attachments.length > 1 ? (
+                        {outdoorCourseContent.attachments.length > 1 &&
+                        navigator &&
+                        navigator?.onLine ? (
                           <DetailsCoverCarousel
                             attachments={outdoorCourseContent.attachments}
                             onClickImage={toggleFullscreen}

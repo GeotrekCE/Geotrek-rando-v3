@@ -128,7 +128,9 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                         id="outdoorSiteContent_cover"
                         className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                       >
-                        {outdoorSiteContent.attachments.length > 1 ? (
+                        {outdoorSiteContent.attachments.length > 1 &&
+                        navigator &&
+                        navigator?.onLine ? (
                           <DetailsCoverCarousel
                             attachments={outdoorSiteContent.attachments}
                             onClickImage={toggleFullscreen}

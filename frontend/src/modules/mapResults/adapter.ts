@@ -2,6 +2,8 @@ import { ActivityChoices } from 'modules/activities/interface';
 import { TouristicContentCategoryDictionnary } from 'modules/touristicContentCategory/interface';
 import { extractFirstPointOfGeometry } from 'modules/utils/geometry';
 import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
+import { getTouristicEventTypes } from '../touristicEventType/connector';
+import { TouristicEventTypeChoices } from '../touristicEventType/interface';
 import {
   MapResults,
   RawOutdoorSiteMapResults,
@@ -72,13 +74,21 @@ export const adaptOutdoorSitesMapResults = ({
 
 export const adaptTouristicEventsMapResults = ({
   mapResults,
+  touristicEventTypes,
 }: {
   mapResults: RawTouristicEventsMapResults[];
+  touristicEventTypes: TouristicEventTypeChoices;
 }): MapResults =>
   concatTouristicEventsMapResults(mapResults).map(rawMapResult => {
     return {
       id: Number(rawMapResult.id),
       location: extractFirstPointOfGeometry(rawMapResult.geometry ?? null),
+      practice: touristicEventTypes[rawMapResult.type]
+        ? {
+            name: String(touristicEventTypes[rawMapResult.type].type),
+            pictogram: String(touristicEventTypes[rawMapResult.type].pictogram),
+          }
+        : undefined,
       type: 'TOURISTIC_EVENT',
     };
   });

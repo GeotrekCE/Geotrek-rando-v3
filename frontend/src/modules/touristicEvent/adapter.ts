@@ -4,8 +4,10 @@ import { CityDictionnary } from '../city/interface';
 import { Choices } from '../filters/interface';
 import { SourceDictionnary } from '../source/interface';
 import { TouristicContent } from '../touristicContent/interface';
+import { TouristicEventType, TouristicEventTypeChoices } from '../touristicEventType/interface';
 import { fallbackImgUri } from '../trekResult/adapter';
 import { PopupResult } from '../trekResult/interface';
+import { getGlobalConfig } from '../utils/api.config';
 import {
   RawTouristicEvent,
   RawTouristicEventDetails,
@@ -17,10 +19,12 @@ export const adaptTouristicEvents = ({
   rawTouristicEvents,
   themeDictionnary,
   cityDictionnary,
+  touristicEventType,
 }: {
   rawTouristicEvents: RawTouristicEvent[];
   themeDictionnary: Choices;
   cityDictionnary: CityDictionnary;
+  touristicEventType: TouristicEventTypeChoices;
 }): TouristicEvent[] => {
   return rawTouristicEvents.map(rawTouristicEvent => {
     return {
@@ -32,6 +36,10 @@ export const adaptTouristicEvents = ({
       thumbnailUris: getThumbnails(rawTouristicEvent.attachments || []),
       themes: rawTouristicEvent?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       place: cityDictionnary?.[rawTouristicEvent?.cities?.[0]]?.name ?? '',
+      typeEvent: touristicEventType[Number(rawTouristicEvent?.type)],
+      beginDate: rawTouristicEvent.begin_date,
+      endDate: rawTouristicEvent.end_date,
+      logoUri: rawTouristicEvent.approved ? getGlobalConfig().touristicContentLabelImageUri : null,
     };
   });
 };
@@ -42,12 +50,14 @@ export const adaptTouristicEventDetails = ({
   cityDictionnary,
   sourcesDictionnary,
   touristicContents,
+  touristicEventType,
 }: {
   rawTouristicEventDetails: RawTouristicEventDetails;
   themeDictionnary: Choices;
   cityDictionnary: CityDictionnary;
   touristicContents: TouristicContent[];
   sourcesDictionnary: SourceDictionnary;
+  touristicEventType: TouristicEventTypeChoices;
 }): TouristicEventDetails => {
   return {
     // We use the original adapter
@@ -60,6 +70,7 @@ export const adaptTouristicEventDetails = ({
       ],
       themeDictionnary,
       cityDictionnary,
+      touristicEventType,
     })[0],
     // then we add missing fields
     description: rawTouristicEventDetails.properties.description,
@@ -75,11 +86,18 @@ export const adaptTouristicEventDetails = ({
     pdfUri: rawTouristicEventDetails.properties.pdf,
     meetingPoint: rawTouristicEventDetails.properties.meeting_point,
     duration: rawTouristicEventDetails.properties.duration,
-    beginDate: rawTouristicEventDetails.properties.begin_date,
-    endDate: rawTouristicEventDetails.properties.end_date,
     sources:
       rawTouristicEventDetails?.properties?.source?.map(sourceId => sourcesDictionnary[sourceId]) ??
       [],
+    contact: rawTouristicEventDetails.properties.contact,
+    email: rawTouristicEventDetails.properties.email,
+    website: rawTouristicEventDetails.properties.website,
+    accessibility: rawTouristicEventDetails.properties.accessibility,
+    organizer: rawTouristicEventDetails.properties.organizer,
+    speaker: rawTouristicEventDetails.properties.speaker,
+    targetAudience: rawTouristicEventDetails.properties.target_audience,
+    practicalInfo: rawTouristicEventDetails.properties.practical_info,
+    booking: rawTouristicEventDetails.properties.booking,
   };
 };
 

@@ -272,15 +272,20 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                           <ResultCard
                             type={searchResult.type}
                             key={searchResult.name}
-                            id={`${searchResult.id}`}
+                            id={`https://formatjs.io/docs/react-intl/api#formatdate${searchResult.id}`}
                             hoverId={getHoverId(searchResult)}
                             place={searchResult.place}
                             title={searchResult.name}
                             tags={searchResult.themes}
                             thumbnailUris={searchResult.thumbnailUris}
                             attachments={searchResult.attachments}
-                            //badgeIconUri={searchResult.practice?.pictogram}
-                            informations={{}}
+                            badgeIconUri={searchResult.typeEvent?.pictogram}
+                            informations={{
+                              date: {
+                                beginDate: searchResult.beginDate,
+                                endDate: searchResult.endDate,
+                              },
+                            }}
                             redirectionUrl={generateTouristicEventUrl(
                               searchResult.id,
                               searchResult.name,

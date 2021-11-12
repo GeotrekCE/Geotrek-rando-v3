@@ -114,7 +114,12 @@
     "gear": "Materiel",
     "equipment": "Equipement",
     "typeSite": "Type de site",
-    "typeCourse": "Type de parcours"
+    "typeCourse": "Type de parcours",
+    "organizer": "Organisateur",
+    "speaker": "Intervenant",
+    "targetAudience": "Public visé",
+    "practicalInfo": "Information pratique",
+    "booking": "Réservation"
   },
   "touristicContent": {
     "contact": "Contact",

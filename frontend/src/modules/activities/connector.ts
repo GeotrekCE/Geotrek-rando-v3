@@ -2,6 +2,8 @@ import { adaptTouristicContentCategoryList } from 'modules/touristicContentCateg
 import { fetchTouristicContentCategories } from 'modules/touristicContentCategory/api';
 import { adaptOutdoorPracticesForActivities } from '../outdoorPractice/adapter';
 import { fetchOutdoorPractices } from '../outdoorPractice/api';
+import { adaptTouristicEventTypesForActivities } from '../touristicEventType/adapter';
+import { fetchTouristicEventTypes } from '../touristicEventType/api';
 import { getGlobalConfig } from '../utils/api.config';
 import {
   adaptActivities,
@@ -35,15 +37,18 @@ export const getActivity = async (
 };
 
 export const getActivityBarContent = async (language: string): Promise<ActivityFilter[]> => {
-  const [rawPractices, rawTouristicContentCategories, rawOutdoorPractices] = await Promise.all([
-    fetchActivities({ language }),
-    fetchTouristicContentCategories({ language }),
-    getGlobalConfig().enableOutdoor ? fetchOutdoorPractices({ language }) : null,
-  ]);
+  const [rawPractices, rawTouristicContentCategories, rawOutdoorPractices, rawTouristicEvents] =
+    await Promise.all([
+      fetchActivities({ language }),
+      fetchTouristicContentCategories({ language }),
+      getGlobalConfig().enableOutdoor ? fetchOutdoorPractices({ language }) : null,
+      getGlobalConfig().enableTouristicEvents ? fetchTouristicEventTypes({ language }) : null,
+    ]);
 
   return [
     ...adaptActivitiesFilter(rawPractices.results),
     ...adaptOutdoorPracticesForActivities(rawOutdoorPractices ? rawOutdoorPractices.results : []),
     ...adaptTouristicContentCategoryList(rawTouristicContentCategories.results),
+    ...adaptTouristicEventTypesForActivities(rawTouristicEvents ? rawTouristicEvents.results : []),
   ];
 };

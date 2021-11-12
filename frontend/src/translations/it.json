@@ -112,7 +112,12 @@
     "gear": "Materiale",
     "equipment": "Attrezzatura",
     "typeSite": "Tipo di sito",
-    "typeCourse": "Tipo di corso"
+    "typeCourse": "Tipo di corso",
+    "organizer": "Organizzatore",
+    "speaker": "Stakeholder",
+    "targetAudience": "Pubblico di riferimento",
+    "practicalInfo": "Informazioni pratiche",
+    "booking": "Prenotazione"
   },
   "touristicContent": {
     "contact": "Contatto",

@@ -4,6 +4,7 @@ import { DetailsAdvice } from 'components/pages/details/components/DetailsAdvice
 import { DetailsCardSection } from 'components/pages/details/components/DetailsCardSection';
 import { DetailsDescription } from 'components/pages/details/components/DetailsDescription';
 import { DetailsHeader } from 'components/pages/details/components/DetailsHeader';
+import { DetailsInformationDesk } from 'components/pages/details/components/DetailsInformationDesk';
 import { DetailsSection } from 'components/pages/details/components/DetailsSection';
 import { DetailsSource } from 'components/pages/details/components/DetailsSource';
 import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/details/Details';
@@ -121,7 +122,9 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                         id="outdoorCourseContent_cover"
                         className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                       >
-                        {touristicEventContent.attachments.length > 1 ? (
+                        {touristicEventContent.attachments.length > 1 &&
+                        navigator &&
+                        navigator?.onLine ? (
                           <DetailsCoverCarousel
                             attachments={touristicEventContent.attachments}
                             onClickImage={toggleFullscreen}
@@ -145,8 +148,8 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                     <DetailsTopIcons
                       details={touristicEventContent}
                       practice={{
-                        pictogram: '',
-                        name: '',
+                        pictogram: touristicEventContent.typeEvent.pictogram,
+                        name: touristicEventContent.typeEvent.type,
                       }}
                       type={'TOURISTIC_EVENT'}
                     />
@@ -155,6 +158,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                       <DetailsPreview
                         className={marginDetailsChild}
                         informations={{
+                          logoUri: touristicEventContent.logoUri ?? undefined,
                           participantNumber: touristicEventContent.participantNumber,
                           meetingPoint: touristicEventContent.meetingPoint,
                           duration: touristicEventContent.duration,
@@ -184,26 +188,75 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                       </div>
                     )}
 
-                    {/*Number(touristicEventContent?.pois?.length) > 0 && (
-                      <div ref={setPoisRef} id="details_poi_ref">
-                        <DetailsCardSection
-                          htmlId="details_poi"
-                          title={intl.formatMessage(
-                            { id: 'details.poiFullTitle' },
-                            { count: Number(touristicEventContent?.pois?.length) },
-                          )}
-                          detailsCards={touristicEventContent?.pois?.map(poi => ({
-                            id: `${poi.id}`,
-                            name: poi.name ?? '',
-                            description: poi.description,
-                            thumbnailUris: poi.thumbnailUris,
-                            attachments: poi.attachments,
-                            iconUri: poi.type.pictogramUri,
-                          }))}
-                          type="POI"
+                    <div>
+                      <DetailsDescription
+                        descriptionHtml={touristicEventContent.contact ?? ''}
+                        className={marginDetailsChild}
+                        title={<FormattedMessage id="details.informationDesks" />}
+                        email={touristicEventContent.email}
+                        website={touristicEventContent.website}
+                      />
+                    </div>
+
+                    {touristicEventContent.accessibility && (
+                      <div>
+                        <DetailsDescription
+                          descriptionHtml={touristicEventContent.accessibility ?? ''}
+                          className={marginDetailsChild}
+                          title={<FormattedMessage id="details.accessibility" />}
                         />
                       </div>
-                    )*/}
+                    )}
+
+                    {touristicEventContent.organizer && (
+                      <div>
+                        <DetailsDescription
+                          descriptionHtml={touristicEventContent.organizer ?? ''}
+                          className={marginDetailsChild}
+                          title={<FormattedMessage id="details.organizer" />}
+                        />
+                      </div>
+                    )}
+
+                    {touristicEventContent.speaker && (
+                      <div>
+                        <DetailsDescription
+                          descriptionHtml={touristicEventContent.speaker ?? ''}
+                          className={marginDetailsChild}
+                          title={<FormattedMessage id="details.speaker" />}
+                        />
+                      </div>
+                    )}
+
+                    {touristicEventContent.targetAudience && (
+                      <div>
+                        <DetailsDescription
+                          descriptionHtml={touristicEventContent.targetAudience ?? ''}
+                          className={marginDetailsChild}
+                          title={<FormattedMessage id="details.targetAudience" />}
+                        />
+                      </div>
+                    )}
+
+                    {touristicEventContent.practicalInfo && (
+                      <div>
+                        <DetailsDescription
+                          descriptionHtml={touristicEventContent.practicalInfo ?? ''}
+                          className={marginDetailsChild}
+                          title={<FormattedMessage id="details.practicalInfo" />}
+                        />
+                      </div>
+                    )}
+
+                    {touristicEventContent.booking && (
+                      <div>
+                        <DetailsDescription
+                          descriptionHtml={touristicEventContent.booking ?? ''}
+                          className={marginDetailsChild}
+                          title={<FormattedMessage id="details.booking" />}
+                        />
+                      </div>
+                    )}
 
                     {touristicEventContent.sources.length > 0 && (
                       <DetailsSection
@@ -257,7 +310,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                       type="DESKTOP"
                       outdoorGeometry={{
                         geometry: touristicEventContent.geometry,
-                        pictogramUri: '',
+                        pictogramUri: touristicEventContent.typeEvent.pictogram,
                         name: touristicEventContent.name,
                         id: touristicEventContent.id,
                       }}
@@ -294,7 +347,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                   type="MOBILE"
                   outdoorGeometry={{
                     geometry: touristicEventContent.geometry,
-                    pictogramUri: '',
+                    pictogramUri: touristicEventContent.typeEvent.pictogram,
                     name: touristicEventContent.name,
                     id: touristicEventContent.id,
                   }}

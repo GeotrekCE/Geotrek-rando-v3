@@ -1,10 +1,11 @@
 import { Altitude } from 'components/Icons/Altitude';
+import { Calendar } from 'components/Icons/Calendar';
 import { Height } from 'components/Icons/Height';
 import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
 import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { borderRadius, colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
 import { flexGap } from 'services/cssHelpers';
@@ -117,6 +118,9 @@ export const ResultCard: React.FC<
     redirectionUrl,
   } = props;
   const { setHoveredCardId } = useContext(ListAndMapContext);
+
+  const intl = useIntl();
+
   return (
     <Container
       onMouseEnter={() => {
@@ -161,6 +165,28 @@ export const ResultCard: React.FC<
                   ))}
               </TagLayout>
             </TagContainer>
+            {isTouristicEvent(props) && (
+              <InformationContainer>
+                {props.informations.date && (
+                  <LocalIconInformation icon={Calendar}>
+                    {props.informations.date.beginDate === props.informations.date.endDate ? (
+                      <FormattedMessage
+                        id={'dates.singleDate'}
+                        values={{ date: props.informations.date.beginDate }}
+                      />
+                    ) : (
+                      <FormattedMessage
+                        id={'dates.multipleDates'}
+                        values={{
+                          beginDate: intl.formatDate(props.informations.date.beginDate),
+                          endDate: intl.formatDate(props.informations.date.endDate),
+                        }}
+                      />
+                    )}
+                  </LocalIconInformation>
+                )}
+              </InformationContainer>
+            )}
             {isOutdoorCourse(props) && (
               <InformationContainer>
                 <InformationLayout>

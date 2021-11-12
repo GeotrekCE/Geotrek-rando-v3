@@ -16,6 +16,7 @@ import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { fetchOutdoorSites } from '../outdoorSite/api';
 import { adaptTouristicEvents } from '../touristicEvent/adapter';
 import { fetchTouristicEvents } from '../touristicEvent/api';
+import { getTouristicEventTypes } from '../touristicEventType/connector';
 import {
   adaptOutdoorSitesMapResults,
   adaptTouristicContentMapResults,
@@ -145,7 +146,7 @@ export const getMapResults = async (
       );
     }
 
-    /*if (shouldFetchTouristicEvents) {
+    if (shouldFetchTouristicEvents) {
       const rawMapResults = await fetchTouristicEvents({
         language,
         page_size: resultsNumber,
@@ -163,12 +164,16 @@ export const getMapResults = async (
           }),
         ),
       );
+
+      const touristicEventTypes = await getTouristicEventTypes(language);
+
       mapResults.push(
         ...adaptTouristicEventsMapResults({
           mapResults: mapTouristicEventsResults,
+          touristicEventTypes,
         }),
       );
-    }*/
+    }
 
     return mapResults;
   } catch (error) {

@@ -159,8 +159,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
               <FormattedMessage
                 id={'dates.multipleDates'}
                 values={{
-                  beginDate: informations.date.beginDate,
-                  endDate: informations.date.endDate,
+                  beginDate: intl.formatDate(informations.date.beginDate),
+                  endDate: intl.formatDate(informations.date.endDate),
                 }}
               />
             )}
@@ -238,7 +238,9 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       )}
 
       {'ratingsDescription' in details && details.ratingsDescription && (
-        <div className={'my-2'}>{details.ratingsDescription}</div>
+        <div className={'my-2'}>
+          <HtmlText>{parse(details.ratingsDescription)}</HtmlText>
+        </div>
       )}
 
       {'typeSite' in details && details.typeSite && (

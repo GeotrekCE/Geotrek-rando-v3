@@ -9,6 +9,7 @@ import {
 import { LineStringGeometry, PointGeometry, PolygonGeometry } from 'modules/interface';
 import { Source } from '../source/interface';
 import { TouristicContent } from '../touristicContent/interface';
+import { TouristicEventType } from '../touristicEventType/interface';
 
 export interface RawTouristicEvent {
   id: string;
@@ -17,6 +18,10 @@ export interface RawTouristicEvent {
   geometry: RawPolygonGeometry | RawLineStringGeometry2D | RawPointGeometry2D;
   themes?: number[];
   cities: string[];
+  type: number;
+  begin_date: string;
+  end_date: string;
+  approved: boolean;
 }
 
 interface RawTouristicEventDetailsProperties extends RawTouristicEvent {
@@ -26,9 +31,16 @@ interface RawTouristicEventDetailsProperties extends RawTouristicEvent {
   pdf: string;
   meeting_point: string;
   duration: string;
-  begin_date: string;
-  end_date: string;
   source?: number[];
+  contact: string;
+  email: string;
+  website: string;
+  accessibility: string;
+  organizer: string;
+  speaker: string;
+  target_audience: string;
+  practical_info: string;
+  booking: string;
 }
 
 export interface RawTouristicEventDetails extends RawTouristicEvent {
@@ -46,6 +58,10 @@ export interface TouristicEvent {
   thumbnailUris: string[];
   themes: string[];
   place: string;
+  typeEvent: TouristicEventType;
+  beginDate: string;
+  endDate: string;
+  logoUri: string | null;
 }
 
 export interface TouristicEventDetails extends TouristicEvent {
@@ -58,7 +74,14 @@ export interface TouristicEventDetails extends TouristicEvent {
   pdfUri: string;
   meetingPoint: string;
   duration: string;
-  beginDate: string;
-  endDate: string;
   sources: Source[];
+  contact: string;
+  email: string;
+  website: string;
+  accessibility: string;
+  organizer: string;
+  speaker: string;
+  targetAudience: string;
+  practicalInfo: string;
+  booking: string;
 }

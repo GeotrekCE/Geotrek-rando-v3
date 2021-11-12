@@ -16,6 +16,7 @@ import { OutdoorSite } from '../outdoorSite/interface';
 import { adaptTouristicEvents } from '../touristicEvent/adapter';
 import { fetchTouristicEvents } from '../touristicEvent/api';
 import { TouristicEvent } from '../touristicEvent/interface';
+import { getTouristicEventTypes } from '../touristicEventType/connector';
 
 import { adaptTrekResultList } from './adapter';
 import {
@@ -245,6 +246,8 @@ export const getSearchResults = async (
       getOutdoorPractices(language),
     ]);
 
+    const [touristicEventType] = await Promise.all([getTouristicEventTypes(language)]);
+
     const adaptedResultsList: TrekResult[] = adaptTrekResultList({
       resultsList: rawTrekResults.results,
       difficulties,
@@ -271,6 +274,7 @@ export const getSearchResults = async (
       rawTouristicEvents: rawTouristicEvents.results,
       themeDictionnary: themes,
       cityDictionnary,
+      touristicEventType,
     });
 
     const nextTreksPage = extractNextPageId(rawTrekResults.next);
