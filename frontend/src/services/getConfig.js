@@ -18,7 +18,6 @@ const getConfig = (file, parse = true) => {
   }
 
   const merge = (elem1, elem2) => {
-    console.log('Array.isArray(elem1):', Array.isArray(elem1));
     if (Array.isArray(elem1)) return [...elem1, ...elem2];
     else return { ...elem1, ...elem2 };
   };

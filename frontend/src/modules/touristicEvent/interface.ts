@@ -41,6 +41,7 @@ interface RawTouristicEventDetailsProperties extends RawTouristicEvent {
   target_audience: string;
   practical_info: string;
   booking: string;
+  meeting_time: string;
 }
 
 export interface RawTouristicEventDetails extends RawTouristicEvent {
@@ -84,4 +85,5 @@ export interface TouristicEventDetails extends TouristicEvent {
   targetAudience: string;
   practicalInfo: string;
   booking: string;
+  meetingTime: string;
 }

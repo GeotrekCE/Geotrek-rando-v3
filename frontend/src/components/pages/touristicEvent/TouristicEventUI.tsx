@@ -163,7 +163,10 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                           logoUri: touristicEventContent.logoUri ?? undefined,
                           participantNumber: touristicEventContent.participantNumber,
                           meetingPoint: touristicEventContent.meetingPoint,
-                          duration: touristicEventContent.duration,
+                          duration: [
+                            touristicEventContent.meetingTime,
+                            touristicEventContent.duration,
+                          ].join(' - '),
                           date: {
                             beginDate: touristicEventContent.beginDate,
                             endDate: touristicEventContent.endDate,

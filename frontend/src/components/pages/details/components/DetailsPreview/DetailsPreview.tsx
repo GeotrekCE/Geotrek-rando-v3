@@ -153,7 +153,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             {informations.date.beginDate === informations.date.endDate ? (
               <FormattedMessage
                 id={'dates.singleDate'}
-                values={{ date: informations.date.beginDate }}
+                values={{ date: intl.formatDate(informations.date.beginDate) }}
               />
             ) : (
               <FormattedMessage

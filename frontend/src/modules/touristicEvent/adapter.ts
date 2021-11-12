@@ -4,7 +4,7 @@ import { CityDictionnary } from '../city/interface';
 import { Choices } from '../filters/interface';
 import { SourceDictionnary } from '../source/interface';
 import { TouristicContent } from '../touristicContent/interface';
-import { TouristicEventType, TouristicEventTypeChoices } from '../touristicEventType/interface';
+import { TouristicEventTypeChoices } from '../touristicEventType/interface';
 import { fallbackImgUri } from '../trekResult/adapter';
 import { PopupResult } from '../trekResult/interface';
 import { getGlobalConfig } from '../utils/api.config';
@@ -98,6 +98,7 @@ export const adaptTouristicEventDetails = ({
     targetAudience: rawTouristicEventDetails.properties.target_audience,
     practicalInfo: rawTouristicEventDetails.properties.practical_info,
     booking: rawTouristicEventDetails.properties.booking,
+    meetingTime: rawTouristicEventDetails.properties.meeting_time,
   };
 };
 
