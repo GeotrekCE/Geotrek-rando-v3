@@ -34,6 +34,7 @@ import {
   formatOutdoorSiteFiltersToUrlParams,
   formatTextFilter,
   formatTouristicContentFiltersToUrlParams,
+  formatTouristicEventsFiltersToUrlParams,
   formatTrekFiltersToUrlParams,
 } from './utils';
 
@@ -90,6 +91,7 @@ export const getSearchResults = async (
     const trekFilters = formatTrekFiltersToUrlParams(filtersState);
     const touristicContentFilter = formatTouristicContentFiltersToUrlParams(filtersState);
     const outdoorSiteFilter = formatOutdoorSiteFiltersToUrlParams(filtersState);
+    const touristicEventsFilter = formatTouristicEventsFiltersToUrlParams(filtersState);
 
     const textFilter = formatTextFilter(textFilterState);
 
@@ -132,7 +134,7 @@ export const getSearchResults = async (
           language,
           page_size: 1,
           page: 1,
-          ...touristicEventFilter,
+          ...touristicEventsFilter,
           ...textFilter,
           ...bboxFilter,
         })
@@ -209,7 +211,7 @@ export const getSearchResults = async (
             language,
             page_size: getGlobalConfig().searchResultsPageSize,
             page: pages.touristicEvents ?? undefined,
-            ...touristicEventFilter,
+            ...touristicEventsFilter,
             ...textFilter,
             ...bboxFilter,
           })

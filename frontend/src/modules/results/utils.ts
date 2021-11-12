@@ -237,6 +237,7 @@ export const formatTouristicEventsFiltersToUrlParams = (
       if (currentFilterState.id === EVENT_ID)
         return {
           ...currentFilters,
+          types: currentFilterState.selectedOptions,
         };
       if (
         commonFiltersWithoutTrekSelector.includes(currentFilterState.id) &&

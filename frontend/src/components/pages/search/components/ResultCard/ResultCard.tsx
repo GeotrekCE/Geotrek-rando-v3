@@ -172,7 +172,7 @@ export const ResultCard: React.FC<
                     {props.informations.date.beginDate === props.informations.date.endDate ? (
                       <FormattedMessage
                         id={'dates.singleDate'}
-                        values={{ date: props.informations.date.beginDate }}
+                        values={{ date: intl.formatDate(props.informations.date.beginDate) }}
                       />
                     ) : (
                       <FormattedMessage
