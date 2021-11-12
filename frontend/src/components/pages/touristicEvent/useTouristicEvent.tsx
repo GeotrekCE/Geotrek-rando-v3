@@ -37,7 +37,8 @@ export const useTouristicEvent = (
     }, []);
 
   const setPreviewRef = useSectionReferenceCallback('preview');
-  const setPoisRef = useSectionReferenceCallback('poi');
+  const setDescriptionRef = useSectionReferenceCallback('description');
+  const setPracticalInformationsRef = useSectionReferenceCallback('practicalInformations');
   const setTouristicContentsRef = useSectionReferenceCallback('touristicContent');
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
@@ -56,7 +57,8 @@ export const useTouristicEvent = (
     sectionsReferences,
     sectionsPositions,
     setPreviewRef,
-    setPoisRef,
+    setDescriptionRef,
+    setPracticalInformationsRef,
     setTouristicContentsRef,
   };
 };

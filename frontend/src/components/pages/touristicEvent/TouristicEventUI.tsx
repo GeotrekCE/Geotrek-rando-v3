@@ -51,6 +51,8 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
     sectionsReferences,
     sectionsPositions,
     setPreviewRef,
+    setDescriptionRef,
+    setPracticalInformationsRef,
     setTouristicContentsRef,
   } = useTouristicEvent(touristicEventUrl, language);
 
@@ -139,7 +141,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                     )}
                   </Modal>
                   <div
-                    id="outdoorCourseContent_text"
+                    id="touristicEventContent_text"
                     className="desktop:py-0
                 relative -top-6 desktop:-top-9
                 flex flex-col"
@@ -179,7 +181,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                     </div>
 
                     {touristicEventContent.description && (
-                      <div id="details_description_ref">
+                      <div ref={setDescriptionRef} id="details_description_ref">
                         <DetailsDescription
                           descriptionHtml={touristicEventContent.description}
                           className={marginDetailsChild}
@@ -188,7 +190,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                       </div>
                     )}
 
-                    <div>
+                    <div ref={setPracticalInformationsRef}>
                       <DetailsDescription
                         descriptionHtml={touristicEventContent.contact ?? ''}
                         className={marginDetailsChild}
@@ -196,84 +198,84 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                         email={touristicEventContent.email}
                         website={touristicEventContent.website}
                       />
-                    </div>
 
-                    {touristicEventContent.accessibility && (
-                      <div>
-                        <DetailsDescription
-                          descriptionHtml={touristicEventContent.accessibility ?? ''}
-                          className={marginDetailsChild}
-                          title={<FormattedMessage id="details.accessibility" />}
-                        />
-                      </div>
-                    )}
-
-                    {touristicEventContent.organizer && (
-                      <div>
-                        <DetailsDescription
-                          descriptionHtml={touristicEventContent.organizer ?? ''}
-                          className={marginDetailsChild}
-                          title={<FormattedMessage id="details.organizer" />}
-                        />
-                      </div>
-                    )}
-
-                    {touristicEventContent.speaker && (
-                      <div>
-                        <DetailsDescription
-                          descriptionHtml={touristicEventContent.speaker ?? ''}
-                          className={marginDetailsChild}
-                          title={<FormattedMessage id="details.speaker" />}
-                        />
-                      </div>
-                    )}
-
-                    {touristicEventContent.targetAudience && (
-                      <div>
-                        <DetailsDescription
-                          descriptionHtml={touristicEventContent.targetAudience ?? ''}
-                          className={marginDetailsChild}
-                          title={<FormattedMessage id="details.targetAudience" />}
-                        />
-                      </div>
-                    )}
-
-                    {touristicEventContent.practicalInfo && (
-                      <div>
-                        <DetailsDescription
-                          descriptionHtml={touristicEventContent.practicalInfo ?? ''}
-                          className={marginDetailsChild}
-                          title={<FormattedMessage id="details.practicalInfo" />}
-                        />
-                      </div>
-                    )}
-
-                    {touristicEventContent.booking && (
-                      <div>
-                        <DetailsDescription
-                          descriptionHtml={touristicEventContent.booking ?? ''}
-                          className={marginDetailsChild}
-                          title={<FormattedMessage id="details.booking" />}
-                        />
-                      </div>
-                    )}
-
-                    {touristicEventContent.sources.length > 0 && (
-                      <DetailsSection
-                        htmlId="details_source"
-                        titleId="details.source"
-                        className={marginDetailsChild}
-                      >
-                        {touristicEventContent.sources.map((source, i) => (
-                          <DetailsSource
-                            key={i}
-                            name={source.name}
-                            website={source.website}
-                            pictogramUri={source.pictogramUri}
+                      {touristicEventContent.accessibility && (
+                        <div>
+                          <DetailsDescription
+                            descriptionHtml={touristicEventContent.accessibility ?? ''}
+                            className={marginDetailsChild}
+                            title={<FormattedMessage id="details.accessibility" />}
                           />
-                        ))}
-                      </DetailsSection>
-                    )}
+                        </div>
+                      )}
+
+                      {touristicEventContent.organizer && (
+                        <div>
+                          <DetailsDescription
+                            descriptionHtml={touristicEventContent.organizer ?? ''}
+                            className={marginDetailsChild}
+                            title={<FormattedMessage id="details.organizer" />}
+                          />
+                        </div>
+                      )}
+
+                      {touristicEventContent.speaker && (
+                        <div>
+                          <DetailsDescription
+                            descriptionHtml={touristicEventContent.speaker ?? ''}
+                            className={marginDetailsChild}
+                            title={<FormattedMessage id="details.speaker" />}
+                          />
+                        </div>
+                      )}
+
+                      {touristicEventContent.targetAudience && (
+                        <div>
+                          <DetailsDescription
+                            descriptionHtml={touristicEventContent.targetAudience ?? ''}
+                            className={marginDetailsChild}
+                            title={<FormattedMessage id="details.targetAudience" />}
+                          />
+                        </div>
+                      )}
+
+                      {touristicEventContent.practicalInfo && (
+                        <div>
+                          <DetailsDescription
+                            descriptionHtml={touristicEventContent.practicalInfo ?? ''}
+                            className={marginDetailsChild}
+                            title={<FormattedMessage id="details.practicalInfo" />}
+                          />
+                        </div>
+                      )}
+
+                      {touristicEventContent.booking && (
+                        <div>
+                          <DetailsDescription
+                            descriptionHtml={touristicEventContent.booking ?? ''}
+                            className={marginDetailsChild}
+                            title={<FormattedMessage id="details.booking" />}
+                          />
+                        </div>
+                      )}
+
+                      {touristicEventContent.sources.length > 0 && (
+                        <DetailsSection
+                          htmlId="details_source"
+                          titleId="details.source"
+                          className={marginDetailsChild}
+                        >
+                          {touristicEventContent.sources.map((source, i) => (
+                            <DetailsSource
+                              key={i}
+                              name={source.name}
+                              website={source.website}
+                              pictogramUri={source.pictogramUri}
+                            />
+                          ))}
+                        </DetailsSection>
+                      )}
+                    </div>
 
                     {touristicEventContent.touristicContents.length > 0 && (
                       <div ref={setTouristicContentsRef} id="details_touristicContent_ref">
@@ -308,7 +310,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                   >
                     <DetailsMapDynamicComponent
                       type="DESKTOP"
-                      outdoorGeometry={{
+                      eventGeometry={{
                         geometry: touristicEventContent.geometry,
                         pictogramUri: touristicEventContent.typeEvent.pictogram,
                         name: touristicEventContent.name,
@@ -345,7 +347,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
               >
                 <DetailsMapDynamicComponent
                   type="MOBILE"
-                  outdoorGeometry={{
+                  eventGeometry={{
                     geometry: touristicEventContent.geometry,
                     pictogramUri: touristicEventContent.typeEvent.pictogram,
                     name: touristicEventContent.name,

@@ -38,6 +38,7 @@ export type PropsType = {
   touristicContentPoints?: TouristicContentGeometry[];
   trekGeometry?: Coordinate2D[];
   outdoorGeometry?: TouristicContentGeometry;
+  eventGeometry?: TouristicContentGeometry;
   trekGeoJSON?: string;
   pointsReference?: Coordinate2D[] | null;
   hideMap?: () => void;
@@ -113,6 +114,9 @@ export const DetailsMap: React.FC<PropsType> = props => {
           />
         )}
         {props.outdoorGeometry && <TouristicContent contents={[props.outdoorGeometry]} />}
+        {props.eventGeometry && (
+          <TouristicContent contents={[props.eventGeometry]} type={'TOURISTIC_EVENT'} />
+        )}
         <MapChildren
           parentId={props.trekId}
           poiPoints={props.poiPoints}
