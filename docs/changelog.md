@@ -1,6 +1,6 @@
 # Changelog
 
-3.5.0 (unreleased)
+3.5.0 (2021-11-14)
 ------------------
 
 To enable Outdoor module, Geotrek-admin version 2.70.0 or higher is required
