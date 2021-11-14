@@ -1,5 +1,38 @@
 # Changelog
 
+3.5.0 (unreleased)
+------------------
+
+To enable Outdoor module, Geotrek-admin version 2.70.0 or higher is required
+
+**🚀 New features**
+
+* Add outdoor sites and courses in home activity bar, seach, detail pages and offline contents (#376)
+* Add touristic events in home activity bar, seach, detail pages and offline contents (#389)
+
+**✨ Improvements**
+
+* Group secondary filters by activity for outdoor and services search
+* Hide images slideshows on offline content as only the first images are downloaded
+* Simplify filter display setting with adding a ``display`` property to each filter (default to ``false``)
+
+**🐛 Fixes**
+
+* Fix offline maps tiles with removing ``mapClassicLayerUrlOffline`` setting that didn't worked
+
+**💥 Beaking changes**
+
+* To hide a filter, you now just have to set its ``display`` property to ``false``. If you had overriden ``filter.json`` file, you have to update it with just setting filters to hide to ``"display":false``.
+Example to hide "structures" filter: 
+  ```
+  [
+    {
+      "id": "structures",
+      "display": false
+    }
+  ]
+  ```
+
 3.4.0 (2021-10-22)
 ------------------
 
