@@ -4,6 +4,8 @@ import {
   CATEGORY_ID,
   CITY_ID,
   DISTRICT_ID,
+  EVENT_ID,
+  OUTDOOR_ID,
   STRUCTURE_ID,
   THEME_ID,
 } from 'modules/filters/constant';
@@ -127,6 +129,7 @@ export const formatTrekFiltersToUrlParams = (
 
 const commonFiltersWithoutTrekSelector = [
   CATEGORY_ID,
+  OUTDOOR_ID,
   THEME_ID,
   CITY_ID,
   DISTRICT_ID,
@@ -165,6 +168,87 @@ export const formatTouristicContentFiltersToUrlParams = (
           [currentFilterState.id]: currentFilterState.selectedOptions,
         };
       }
+      return currentFilters;
+    },
+    {},
+  );
+
+  return Object.keys(filters).reduce(
+    (joinedFilters, key) => ({
+      ...joinedFilters,
+      [key]: filters[key].join(','),
+    }),
+    {},
+  );
+};
+
+export const formatOutdoorSiteFiltersToUrlParams = (
+  filtersState: QueryFilterState[],
+): { [key: string]: string } => {
+  const filters = filtersState.reduce<{ [key: string]: string[] }>(
+    (currentFilters, currentFilterState) => {
+      if (/type-outdoorRating-.*/.test(currentFilterState.id)) {
+        if (currentFilterState.selectedOptions.length > 0) {
+          return {
+            ...currentFilters,
+            ratings_in_hierarchy: [
+              // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+              ...(currentFilters.ratings_in_hierarchy ? currentFilters.ratings_in_hierarchy : []),
+              ...currentFilterState.selectedOptions,
+            ],
+          };
+        }
+      }
+      if (currentFilterState.id === OUTDOOR_ID)
+        return {
+          ...currentFilters,
+          practices_in_hierarchy: currentFilterState.selectedOptions,
+        };
+      if (
+        commonFiltersWithoutTrekSelector.includes(currentFilterState.id) &&
+        currentFilterState.selectedOptions.length > 0
+      ) {
+        return {
+          ...currentFilters,
+          [currentFilterState.id]: currentFilterState.selectedOptions,
+        };
+      }
+
+      return currentFilters;
+    },
+    {},
+  );
+
+  return Object.keys(filters).reduce(
+    (joinedFilters, key) => ({
+      ...joinedFilters,
+      [key]: filters[key].join(','),
+      root_sites_only: 'true',
+    }),
+    {},
+  );
+};
+
+export const formatTouristicEventsFiltersToUrlParams = (
+  filtersState: QueryFilterState[],
+): { [key: string]: string } => {
+  const filters = filtersState.reduce<{ [key: string]: string[] }>(
+    (currentFilters, currentFilterState) => {
+      if (currentFilterState.id === EVENT_ID)
+        return {
+          ...currentFilters,
+          types: currentFilterState.selectedOptions,
+        };
+      if (
+        commonFiltersWithoutTrekSelector.includes(currentFilterState.id) &&
+        currentFilterState.selectedOptions.length > 0
+      ) {
+        return {
+          ...currentFilters,
+          [currentFilterState.id]: currentFilterState.selectedOptions,
+        };
+      }
+
       return currentFilters;
     },
     {},

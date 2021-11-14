@@ -127,3 +127,18 @@ export const generateTouristicContentUrl = (id: number | string, title: string):
   const titleWithNoSpace = convertStringForSitemap(title);
   return `${routes.TOURISTIC_CONTENT}/${id}-${encodeURI(titleWithNoSpace)}`;
 };
+
+export const generateOutdoorSiteUrl = (id: number | string, title: string): string => {
+  const titleWithNoSpace = convertStringForSitemap(title);
+  return `${routes.OUTDOOR_SITE}/${id}-${encodeURI(titleWithNoSpace)}`;
+};
+
+export const generateOutdoorCourseUrl = (id: number | string, title: string): string => {
+  const titleWithNoSpace = convertStringForSitemap(title);
+  return `${routes.OUTDOOR_COURSE}/${id}-${encodeURI(titleWithNoSpace)}`;
+};
+
+export const generateTouristicEventUrl = (id: number | string, title: string): string => {
+  const titleWithNoSpace = convertStringForSitemap(title);
+  return `${routes.TOURISTIC_EVENT}/${id}-${encodeURI(titleWithNoSpace)}`;
+};

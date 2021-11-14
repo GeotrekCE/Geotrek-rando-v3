@@ -39,12 +39,19 @@ export interface RawPolygonGeometry {
   coordinates: RawCoordinate2D[][];
 }
 
+export interface RawGeometryCollection {
+  type: 'GeometryCollection';
+  geometries: Array<RawPolygonGeometry | RawLineStringGeometry2D | RawPointGeometry2D>;
+}
+
 export interface APICallsConfig {
   searchResultsPageSize: number;
   mapResultsPageSize: number;
   maxPoiPerPage: number;
   maxTouristicContentPerPage: number;
   enableSensitiveAreas: boolean;
+  enableOutdoor: boolean;
+  enableTouristicEvents: boolean;
   portalIds: number[];
   apiUrl: string;
   googleAnalyticsId: string | null;

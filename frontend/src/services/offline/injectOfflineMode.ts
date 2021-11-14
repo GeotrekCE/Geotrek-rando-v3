@@ -9,10 +9,10 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
 
   const tileLayerOffline = L.tileLayer
     // @ts-ignore no type available in this plugin
-    .offline(`${mapConfig.mapClassicLayerUrlOffline ?? mapConfig.mapClassicLayerUrl}?${id}`, {
+    .offline(`${mapConfig.mapClassicLayerUrl}?${id}`, {
       attribution: 'Map data {attribution.OpenStreetMap}',
       subdomains: 'abc',
-      minZoom: 13,
+      minZoom: Math.min(...(mapConfig?.zoomAvailableOffline ?? [])),
     })
     .addTo(map);
 

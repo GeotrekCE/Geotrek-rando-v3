@@ -1,0 +1,128 @@
+[
+  {
+    "id": "practices",
+    "type": "MULTIPLE",
+    "display": true
+  },
+  {
+    "id": "categories",
+    "type": "MULTIPLE",
+    "display": true
+  },
+  {
+    "id": "themes",
+    "type": "MULTIPLE",
+    "display": true
+  },
+  {
+    "id": "cities",
+    "type": "MULTIPLE",
+    "display": true
+  },
+  {
+    "id": "districts",
+    "type": "MULTIPLE",
+    "display": true
+  },
+  {
+    "id": "structures",
+    "type": "MULTIPLE",
+    "display": true
+  },
+  {
+    "id": "difficulty",
+    "type": "MULTIPLE",
+    "display": true
+  },
+  {
+    "id": "duration",
+    "type": "MULTIPLE",
+    "display": true,
+    "options": [
+      {
+        "minValue": 0,
+        "maxValue": 1,
+        "label": "0 - 1h"
+      },
+      {
+        "minValue": 1,
+        "maxValue": 2,
+        "label": "1h - 2h"
+      },
+      {
+        "minValue": 2,
+        "maxValue": 5,
+        "label": "2h - 5h"
+      },
+      {
+        "minValue": 5,
+        "maxValue": 10,
+        "label": "5h - 10h"
+      }
+    ]
+  },
+  {
+    "id": "length",
+    "type": "MULTIPLE",
+    "display": true,
+    "options": [
+      {
+        "minValue": 0,
+        "maxValue": 5000,
+        "label": "0 - 5km"
+      },
+      {
+        "minValue": 5000,
+        "maxValue": 10000,
+        "label": "5km - 10km"
+      },
+      {
+        "minValue": 10000,
+        "maxValue": 15000,
+        "label": "10km - 15km"
+      },
+      {
+        "minValue": 15000,
+        "maxValue": 50000,
+        "label": "15km - 50km"
+      }
+    ]
+  },
+  {
+    "id": "ascent",
+    "type": "MULTIPLE",
+    "display": true,
+    "options": [
+      {
+        "minValue": 0,
+        "maxValue": 500,
+        "label": "0 - 500m"
+      },
+      {
+        "minValue": 500,
+        "maxValue": 1000,
+        "label": "500m - 1km"
+      }
+    ]
+  },
+  {
+    "id": "routes",
+    "type": "MULTIPLE",
+    "display": true
+  },
+  {
+    "id": "accessibilities",
+    "type": "MULTIPLE",
+    "display": true
+  },
+  {
+    "id": "outdoorPractice",
+    "type": "MULTIPLE",
+    "display": true
+  },
+  {
+    "id": "event",
+    "type": "MULTIPLE",
+    "display": true
+  }
+]

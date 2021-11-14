@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { getSearchResults } from 'modules/results/connector';
 import { SearchResults } from 'modules/results/interface';
 import { FilterState } from 'modules/filters/interface';
+import { getGlobalConfig } from '../../../../modules/utils/api.config';
 
 import { formatInfiniteQuery, parseBboxFilter, parseFilters, parseTextFilter } from '../utils';
 
@@ -64,12 +65,20 @@ export const useTrekResults = (
         parseTextFilter(textFilterState),
         parseBboxFilter(bboxState),
       ],
-      ({ pageParam = { treks: 1, touristicContents: 1 } }) =>
-        getSearchResults(
+      ({
+        pageParam = {
+          treks: 1,
+          touristicContents: 1,
+          outdoorSites: getGlobalConfig().enableOutdoor ? 1 : null,
+          touristicEvents: getGlobalConfig().enableTouristicEvents ? 1 : null,
+        },
+      }) => {
+        return getSearchResults(
           { filtersState: parsedFiltersState, textFilterState, bboxState },
           pageParam,
           language,
-        ),
+        );
+      },
       {
         retry: false,
         // We already have a fallback component to allow the user to refetch
@@ -80,7 +89,9 @@ export const useTrekResults = (
         // hasNextPage will be set to false if getNextPageParam returns undefined
         getNextPageParam: lastPageResult =>
           lastPageResult.nextPages.treks !== null ||
-          lastPageResult.nextPages.touristicContents !== null
+          lastPageResult.nextPages.touristicContents !== null ||
+          lastPageResult.nextPages.outdoorSites !== null ||
+          lastPageResult.nextPages.touristicEvents !== null
             ? lastPageResult.nextPages
             : undefined,
       },

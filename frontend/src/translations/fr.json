@@ -70,6 +70,7 @@
   },
   "details": {
     "preview": "Présentation",
+    "access": "Accès",
     "download": "Télécharger",
     "children": "Étapes",
     "childrenFullTitle": "{count, plural, =0 {Pas d'étape} one {# étape} other {# étapes}}",
@@ -107,7 +108,18 @@
     "departure": "Départ",
     "arrival": "Arrivée",
     "cities": "Communes traversées",
-    "more": "En savoir plus"
+    "more": "En savoir plus",
+    "courses": "Parcours",
+    "experiences": "Lieux de pratique",
+    "gear": "Materiel",
+    "equipment": "Equipement",
+    "typeSite": "Type de site",
+    "typeCourse": "Type de parcours",
+    "organizer": "Organisateur",
+    "speaker": "Intervenant",
+    "targetAudience": "Public visé",
+    "practicalInfo": "Information pratique",
+    "booking": "Réservation"
   },
   "touristicContent": {
     "contact": "Contact",
@@ -159,5 +171,24 @@
     "close": "Fermer",
     "remove": "Supprimer",
     "confirmRemove": "Etes vous sûr de vouloir supprimer cet élément?"
+  },
+  "outdoorSite": {
+    "accessFullTitle": "Accès",
+    "coursesFullTitle": "Parcours",
+    "sitesFullTitle": "Les {count} lieux de pratique à découvrir"
+  },
+  "Wind": {
+    "N": "Nord",
+    "S": "Sud",
+    "E": "Est",
+    "W": "Ouest",
+    "NW": "Nord-Ouest",
+    "SW": "Sud-Ouest",
+    "NE": "Nord-Est",
+    "SE": "Sud-Est"
+  },
+  "dates": {
+    "singleDate": "le {date}",
+    "multipleDates": "du {beginDate} au {endDate}"
   }
 }

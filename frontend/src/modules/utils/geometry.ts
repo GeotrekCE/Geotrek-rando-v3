@@ -6,6 +6,7 @@ import {
   PolygonGeometry,
   RawCoordinate2D,
   RawCoordinate3D,
+  RawGeometryCollection,
   RawLineStringGeometry2D,
   RawPointGeometry2D,
   RawPolygonGeometry,
@@ -54,7 +55,12 @@ export const adaptPoint = (geometry: RawPointGeometry2D): PointGeometry => ({
 });
 
 export const extractFirstPointOfGeometry = (
-  geometry: RawPolygonGeometry | RawLineStringGeometry2D | RawPointGeometry2D | null,
+  geometry:
+    | RawPolygonGeometry
+    | RawLineStringGeometry2D
+    | RawPointGeometry2D
+    | RawGeometryCollection
+    | null,
 ): Coordinate2D | null => {
   if (geometry === null) return null;
   switch (geometry.type) {
@@ -66,6 +72,9 @@ export const extractFirstPointOfGeometry = (
 
     case 'Point':
       return adaptGeometry2D(geometry.coordinates);
+
+    case 'GeometryCollection':
+      return extractFirstPointOfGeometry(geometry.geometries[0]);
   }
 };
 

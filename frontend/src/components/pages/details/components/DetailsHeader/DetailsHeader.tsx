@@ -1,16 +1,18 @@
-import { Printer } from 'components/Icons/Printer';
-import { DetailsButton } from 'components/pages/details/components/DetailsButton';
 import { DetailsDownloadIcons } from 'components/pages/details/components/DetailsDownloadIcons';
 import React, { MutableRefObject } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { sizes } from 'stylesheet';
 import { Details } from '../../../../../modules/details/interface';
+import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
+import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
+import { TouristicEventDetails } from '../../../../../modules/touristicEvent/interface';
 import { DetailsHeaderSection } from '../../useDetails';
 import { useDetailsHeader } from './useDetailsHeader';
 
 interface DetailsHeaderProps {
   sectionsReferences: MutableRefObject<DetailsHeaderSection>;
-  details: Details;
+  details: Details | OutdoorSiteDetails | OutdoorCourseDetails | TouristicEventDetails;
+  type: 'TREK' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
 }
 
 const scrollTo = (element: HTMLDivElement | undefined | null) => {
@@ -26,7 +28,11 @@ const scrollTo = (element: HTMLDivElement | undefined | null) => {
   }
 };
 
-export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ sectionsReferences, details }) => {
+export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
+  sectionsReferences,
+  details,
+  type,
+}) => {
   const { detailsHeaderSection, currentSectionId } = useDetailsHeader(sectionsReferences);
   return (
     <div
@@ -55,8 +61,7 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({ sectionsReferences
           </div>
         ))}
       </div>
-
-      <DetailsDownloadIcons details={details} type={'TREK'} />
+      <DetailsDownloadIcons details={details} hideReport={type !== 'TREK'} />
     </div>
   );
 };

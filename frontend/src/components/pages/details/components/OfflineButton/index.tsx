@@ -9,18 +9,26 @@ import { Bin } from 'components/Icons/Bin';
 import CacheManager from 'services/offline/CacheManager';
 import { colorPalette } from 'stylesheet';
 import { Details } from '../../../../../modules/details/interface';
+import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
+import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
+import { TouristicEventDetails } from '../../../../../modules/touristicEvent/interface';
 import { Button } from '../../../../Button/Button';
 
 interface Props {
-  details: Details | TouristicContentDetails;
-  type: 'TREK' | 'TOURISTIC_CONTENT';
+  details:
+    | Details
+    | TouristicContentDetails
+    | OutdoorSiteDetails
+    | OutdoorCourseDetails
+    | TouristicEventDetails;
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
 }
 
 const OfflineButton: React.FC<Props> = ({ details, type }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isInCache, setIsInCache] = useState<boolean | null>(null);
+  const [isInCache, setIsInCache] = useState<boolean>(false);
 
   useEffect(() => {
     fetchState();
@@ -37,7 +45,13 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
 
     const scriptsUrl = Array.from(document.getElementsByTagName('script'))
       .map(e => e.src)
-      .filter(src => src.includes('chunks/pages/trek') || src.includes('chunks/pages/service'));
+      .filter(
+        src =>
+          src.includes('chunks/pages/trek') ||
+          src.includes('chunks/pages/service') ||
+          src.includes('chunks/pages/outdoor-site') ||
+          src.includes('chunks/pages/outdoor-course'),
+      );
 
     await CacheManager.storeItem({
       details: details as Details,

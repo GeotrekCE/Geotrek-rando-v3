@@ -15,13 +15,14 @@ Examples of customizations are available in https://github.com/GeotrekCE/Geotrek
 
 In json files, you can just override the primary keys you need. You have to override primary keys globally.
 
-- `global.json` (example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/global.json) to define :
+- `global.json` (default value in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/global.json) to define :
 
   - `searchResultsPageSize`, `mapResultsPageSize`: used to limit the sizes of results per page when fetching API
   - `maxPoiPerPage`: max number of point of interest (POI) displayed on a single trek page
   - `maxTouristicContentPerPage`: max number of touristic contents displayed on a single trek page
   - `portalIds`: eventual portal filters (list of ids).
   - `enableSensitiveAreas`: boolean, default to false. Set it to true if sensitive areas are defined in your Geotrek-admin
+  - `enableOutdoor`: : boolean, default to false. Set it to true to enable Outdoor sites and courses
   - `apiUrl` : Geotrek-admin API URL
   - `googleAnalyticsId`: eventual Google Analytics Id
   - `googleSiteVerificationToken`: eventual code to enable Google Search Console and Google developer tools
@@ -34,7 +35,7 @@ In json files, you can just override the primary keys you need. You have to over
   - `enableReport`: to enable report form in trek detail pages
   - `enableSearchByMap`: to enable searching by map displayed area (bbox)
 
-- `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/header.json)
+- `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
 
 - `home.json` to define homepage settings. You can define blocks to display and trek suggestion block with trek ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
 
@@ -51,13 +52,12 @@ In json files, you can just override the primary keys you need. You have to over
     - `shouldDisplayText`: `true` to display the text on above the asset, `false` to hide it.
 
 - `footer.json` to define social networks (`facebook`, `twitter`, `youtube`, `instagram` or `fallback)` and links (based on translation labels) in footer (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/footer.json)
-- `filter.json` to define filters to display, their order and values (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/filter.json). If you remove some of the filters in this file, they will not be displayed. If you want to override one filter, you have to list all others, otherwise they will not be displayed
+- `filter.json` to define filters to hide, their order and values (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/filter.json). If you want to hide some of the filter, you have to override their properties with `"display": false`
 - `map.json` to define basemaps URL and attributions, center (y, x), default and max zoom level (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json).
 
   - You can also update the map layers. There are two map layers available:
 
     - `mapClassicLayerUrl` for the map version
-    - `mapClassicLayerUrlOffline` for the map version in offline mode
     - `mapSatelliteLayerUrl` for the satellite version. It is optional, so if you want to have only one available map background, you can add `mapSatelliteLayerUrl: undefined`. This will remove the button which allows the user to switch between two map backgrounds.
 
   - `zoomAvailableOffline` allows you to define the zoom modes allowed in offline mode. This allows you to control the amount of disk space required when caching. Default `[13,14,15]`

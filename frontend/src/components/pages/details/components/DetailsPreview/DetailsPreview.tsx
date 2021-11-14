@@ -1,8 +1,15 @@
+import { Altitude } from 'components/Icons/Altitude';
+import { Calendar } from 'components/Icons/Calendar';
 import { Clock } from 'components/Icons/Clock';
 import { Chip } from 'components/Chip';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
+import { MeetingPoint } from 'components/Icons/MeetingPoint';
+import { Orientation } from 'components/Icons/Orientation';
+import { Participant } from 'components/Icons/Participant';
 import { TrendingUp } from 'components/Icons/TrendingUp';
+import { Wind } from 'components/Icons/Wind';
 import OfflineButton from 'components/pages/details/components/OfflineButton';
+import { groupBy } from 'lodash';
 import { Details, DetailsInformation, TrekFamily } from 'modules/details/interface';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { LocalIconInformation } from 'components/Information/LocalIconInformation';
@@ -13,6 +20,11 @@ import {
   TouristicContentDetailsType,
 } from 'modules/touristicContent/interface';
 import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
+import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
+import { dataUnits } from '../../../../../modules/results/adapter';
+import { TouristicEventDetails } from '../../../../../modules/touristicEvent/interface';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { DetailsTrekParentButton } from '../DetailsTrekParentButton';
 import { HtmlText } from '../../utils';
@@ -20,6 +32,16 @@ import { HtmlText } from '../../utils';
 interface DetailsPreviewInformation extends DetailsInformation {
   types?: TouristicContentDetailsType[];
   logoUri?: string;
+  period?: string | null;
+  wind?: string[];
+  orientation?: string[];
+  maxElevation?: number;
+  participantNumber?: number;
+  meetingPoint?: string;
+  date?: {
+    beginDate: string;
+    endDate: string;
+  };
 }
 
 interface DetailsPreviewProps {
@@ -31,8 +53,13 @@ interface DetailsPreviewProps {
   teaser?: string;
   title: string;
   trekFamily?: TrekFamily;
-  details: Details | TouristicContentDetails;
-  type: 'TREK' | 'TOURISTIC_CONTENT';
+  details:
+    | Details
+    | TouristicContentDetails
+    | OutdoorSiteDetails
+    | OutdoorCourseDetails
+    | TouristicEventDetails;
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
   id: string;
 }
 
@@ -52,6 +79,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   // trekRank & trekRankLabel are only defined if trek is part of an itinerance
   const trekRank = trekFamily?.trekChildren.find(trek => trek.id === id);
   const trekRankLabel = trekRank !== undefined ? `${trekRank.rank}. ` : '';
+
+  const intl = useIntl();
 
   return (
     <div
@@ -104,22 +133,71 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             {informations.difficulty.label}
           </RemoteIconInformation>
         )}
-        {informations.duration !== null && (
+        {informations.period && (
+          <LocalIconInformation icon={Calendar} className={classNameInformation}>
+            {informations.period}
+          </LocalIconInformation>
+        )}
+        {informations.orientation && informations.orientation.length > 0 && (
+          <LocalIconInformation icon={Orientation} className={classNameInformation}>
+            {informations.orientation.map(w => intl.formatMessage({ id: `Wind.${w}` })).join(' - ')}
+          </LocalIconInformation>
+        )}
+        {informations.wind && informations.wind.length > 0 && (
+          <LocalIconInformation icon={Wind} className={classNameInformation}>
+            {informations.wind.map(w => intl.formatMessage({ id: `Wind.${w}` })).join(' - ')}
+          </LocalIconInformation>
+        )}
+        {informations.date && (
+          <LocalIconInformation icon={Calendar} className={classNameInformation}>
+            {informations.date.beginDate === informations.date.endDate ? (
+              <FormattedMessage
+                id={'dates.singleDate'}
+                values={{ date: intl.formatDate(informations.date.beginDate) }}
+              />
+            ) : (
+              <FormattedMessage
+                id={'dates.multipleDates'}
+                values={{
+                  beginDate: intl.formatDate(informations.date.beginDate),
+                  endDate: intl.formatDate(informations.date.endDate),
+                }}
+              />
+            )}
+          </LocalIconInformation>
+        )}
+        {informations.duration && (
           <LocalIconInformation icon={Clock} className={classNameInformation}>
             {informations.duration}
           </LocalIconInformation>
         )}
-        {informations.distance !== null && (
+        {informations.distance && (
           <LocalIconInformation icon={CodeBrackets} className={classNameInformation}>
             {informations.distance}
           </LocalIconInformation>
         )}
-        {informations.elevation !== null && (
+        {informations.elevation && (
           <LocalIconInformation icon={TrendingUp} className={classNameInformation}>
             {informations.elevation}
           </LocalIconInformation>
         )}
-        {informations.courseType !== null && (
+        {informations.maxElevation && (
+          <LocalIconInformation icon={Altitude} className={classNameInformation}>
+            {informations.maxElevation}
+            {dataUnits.distance}
+          </LocalIconInformation>
+        )}
+        {informations.meetingPoint && (
+          <LocalIconInformation icon={MeetingPoint} className={classNameInformation}>
+            {informations.meetingPoint}
+          </LocalIconInformation>
+        )}
+        {informations.participantNumber && (
+          <LocalIconInformation icon={Participant} className={classNameInformation}>
+            {informations.participantNumber}
+          </LocalIconInformation>
+        )}
+        {informations.courseType && (
           <RemoteIconInformation
             iconUri={informations.courseType.pictogramUri}
             className={classNameInformation}
@@ -127,8 +205,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             {informations.courseType.label}
           </RemoteIconInformation>
         )}
-        {informations.networks.length > 0 &&
-          informations.networks.map((network, i) => (
+        {Number(informations?.networks?.length) > 0 &&
+          informations.networks?.map((network, i) => (
             <RemoteIconInformation
               iconUri={network.pictogramUri}
               className={classNameInformation}
@@ -146,6 +224,34 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
               <span>{type.values.join(', ')}</span>
             </div>
           ))}
+        </div>
+      )}
+
+      {'ratings' in details && details.ratings.length > 0 && (
+        <div>
+          {Object.entries(groupBy(details.ratings, 'scale.name')).map(([key, entry]) => (
+            <div key={key} className={'my-2'}>
+              {key} : {entry.map(e => e.name).join(', ')}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {'ratingsDescription' in details && details.ratingsDescription && (
+        <div className={'my-2'}>
+          <HtmlText>{parse(details.ratingsDescription)}</HtmlText>
+        </div>
+      )}
+
+      {'typeSite' in details && details.typeSite && (
+        <div className={'my-2'}>
+          <FormattedMessage id={'details.typeSite'} /> : {details.typeSite.name}
+        </div>
+      )}
+
+      {'typeCourse' in details && details.typeCourse && (
+        <div className={'my-2'}>
+          <FormattedMessage id={'details.typeCourse'} /> : {details.typeCourse.name}
         </div>
       )}
 

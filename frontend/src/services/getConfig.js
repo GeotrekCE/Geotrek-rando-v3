@@ -17,7 +17,12 @@ const getConfig = (file, parse = true) => {
     overrideConfig = parse ? JSON.parse(content) : content;
   }
 
-  return parse ? { ...defaultConfig, ...overrideConfig } : overrideConfig || defaultConfig;
+  const merge = (elem1, elem2) => {
+    if (Array.isArray(elem1)) return [...elem1, ...elem2];
+    else return { ...elem1, ...elem2 };
+  };
+
+  return parse ? merge(defaultConfig, overrideConfig) : overrideConfig || defaultConfig;
 };
 
 module.exports = getConfig;

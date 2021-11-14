@@ -4,7 +4,6 @@ export interface MapConfig {
   searchMapZoom: number;
   mapCredits: string;
   mapClassicLayerUrl: string;
-  mapClassicLayerUrlOffline?: string;
   mapSatelliteLayerUrl?: string;
   zoomAvailableOffline?: number[];
 }

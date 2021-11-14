@@ -3,7 +3,7 @@ import { getHeaderConfig } from 'modules/header/utills';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { convertStringForSitemap, generateResultDetailsUrl } from 'components/pages/search/utils';
 
-const LIMIT = 10000; // This limit is high so we don't have to iterate through result, one call willl get us every treks or touristic content we need
+const LIMIT = 10000; // This limit is high so we don't have to iterate through result, one call will get us every treks or touristic content we need
 
 const portalFilter =
   getGlobalConfig().portalIds.length > 0 ? `&portals=${getGlobalConfig().portalIds.join(',')}` : '';
@@ -25,6 +25,30 @@ const getTouristicContentsForLanguage = async (
     `${
       getGlobalConfig().apiUrl
     }/touristiccontent/?language=${language}&fields=id,name&page_size=${LIMIT}${portalFilter}`,
+  );
+  const response = await treks.json();
+  return response.results;
+};
+
+const getOutdoorSiteForLanguage = async (
+  language: string,
+): Promise<{ id: string; name: string }[]> => {
+  const treks = await fetch(
+    `${
+      getGlobalConfig().apiUrl
+    }/outdoor_site/?&language=${language}&fields=id,name&page_size=${LIMIT}${portalFilter}`,
+  );
+  const response = await treks.json();
+  return response.results;
+};
+
+const getOutdoorCourseForLanguage = async (
+  language: string,
+): Promise<{ id: string; name: string }[]> => {
+  const treks = await fetch(
+    `${
+      getGlobalConfig().apiUrl
+    }/outdoor_course/?&language=${language}&fields=id,name&page_size=${LIMIT}${portalFilter}`,
   );
   const response = await treks.json();
   return response.results;
@@ -61,6 +85,29 @@ const getApiContentForLanguage = async (language: string): Promise<string> => {
         : '',
     )
     .join('');
+
+  const outdoorSites = await getOutdoorSiteForLanguage(language);
+  const outdoorSitesUrls = outdoorSites
+    .map(({ id, name }) =>
+      name && id
+        ? `<url><loc>${baseUrl}/outdoor-site/${id}-${encodeURI(
+            convertStringForSitemap(name),
+          )}</loc></url>`
+        : '',
+    )
+    .join('');
+
+  const outdoorCourses = await getOutdoorCourseForLanguage(language);
+  const outdoorCoursesUrls = outdoorCourses
+    .map(({ id, name }) =>
+      name && id
+        ? `<url><loc>${baseUrl}/outdoor-course/${id}-${encodeURI(
+            convertStringForSitemap(name),
+          )}</loc></url>`
+        : '',
+    )
+    .join('');
+
   const flatPages = await getFlatPagesForLanguage(language);
   const flatPageUrls = flatPages
     .map(({ id, title, external_url }) =>
@@ -78,6 +125,8 @@ const getApiContentForLanguage = async (language: string): Promise<string> => {
     `<url><loc>${baseUrl}/search</loc></url>`,
     trekUrls,
     touristicContentUrls,
+    outdoorSitesUrls,
+    outdoorCoursesUrls,
     flatPageUrls,
   ].join('');
 };

@@ -4,7 +4,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { routes } from 'services/routes';
 import { ActivityFilter } from 'modules/activities/interface';
-import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
+import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
 
 import { ActivityButton } from './ActivityButton';
 import { useActivitySearchFilter } from './useActivitySearchFilter';
@@ -29,6 +29,14 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
         : activities
       : undefined;
 
+  const getId = (type: string) => {
+    if (type === 'PRACTICE') return PRACTICE_ID;
+    if (type === 'OUTDOOR_PRACTICE') return OUTDOOR_ID;
+    if (type === 'TOURISTIC_EVENT_TYPE') return EVENT_ID;
+
+    return CATEGORY_ID;
+  };
+
   return (
     <div>
       {activities !== undefined && (
@@ -42,9 +50,7 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
               {visibleActivities?.map(activity => (
                 <ActivityButton
                   iconUrl={activity.pictogram}
-                  href={`${routes.SEARCH}?${
-                    activity.type === 'PRACTICE' ? PRACTICE_ID : CATEGORY_ID
-                  }=${activity.id}`}
+                  href={`${routes.SEARCH}?${getId(activity.type)}=${activity.id}`}
                   key={`${activity.type}-${activity.id}`}
                   label={activity.name}
                 />
@@ -57,7 +63,7 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
             )}
           </div>
           <div className="block desktop:hidden">
-            <ActivitySearchFilterMobile activities={activities ?? []} />
+            <ActivitySearchFilterMobile activities={activities ?? []} getId={getId} />
           </div>
         </>
       )}

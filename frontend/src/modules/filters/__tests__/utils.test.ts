@@ -1,4 +1,7 @@
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
+import { OutdoorPracticeChoices } from '../../outdoorPractice/interface';
+import { OutdoorRatingMapping } from '../../outdoorRating/interface';
+import { OutdoorRatingScale } from '../../outdoorRatingScale/interface';
 import { FilterState } from '../interface';
 import { computeFiltersToDisplay } from '../utils';
 
@@ -206,6 +209,13 @@ const filtersState: FilterState[] = [
     label: 'search.filters.structure',
     selectedOptions: [],
   },
+  {
+    id: 'outdoorPractice',
+    options: [{ value: '4', label: 'Escalade' }],
+    type: 'MULTIPLE',
+    label: 'search.filters.outdoorPractice',
+    selectedOptions: [],
+  },
 ];
 
 const touristicContentCategoryMapping: TouristicContentCategoryMapping = {
@@ -235,6 +245,14 @@ const touristicContentCategoryMapping: TouristicContentCategoryMapping = {
   ],
 };
 
+const outdoorRatingMapping: OutdoorRatingMapping = {
+  1: [{ id: '1', name: 'Facile', description: '', scale: 1, order: 1, color: '' }],
+};
+
+const outdoorRatingScale: OutdoorRatingScale[] = [{ id: 1, name: 'Niveau', practice: 4 }];
+
+const outdoorPractice: OutdoorPracticeChoices = { '4': { name: 'Niveau', id: '1', pictogram: '' } };
+
 const trekSpecificFilters = [
   'difficulty',
   'duration',
@@ -244,7 +262,15 @@ const trekSpecificFilters = [
   'accessibilities',
 ];
 const touristicContentSpecificFilters = ['type1', 'type2'];
-const commonFilters = ['practices', 'categories', 'themes', 'cities', 'districts', 'structures'];
+const commonFilters = [
+  'practices',
+  'categories',
+  'themes',
+  'cities',
+  'districts',
+  'structures',
+  'outdoorPractice',
+];
 
 describe.only('computeFiltersToDisplay', () => {
   it('should return state with treks if user select one practice', () => {
@@ -256,11 +282,15 @@ describe.only('computeFiltersToDisplay', () => {
       },
     ];
     currentState[1].selectedOptions = [];
+    currentState[6].selectedOptions = [];
     const displayedIds = computeFiltersToDisplay({
       currentFiltersState: currentState,
       initialFiltersState,
       selectedFilterId: 'practices',
       touristicContentCategoryMapping,
+      outdoorRatingScale,
+      outdoorRatingMapping,
+      outdoorPractice,
     }).map(({ id }) => id);
     [...commonFilters, ...trekSpecificFilters].forEach(id => expect(displayedIds.includes(id)));
 
@@ -276,11 +306,15 @@ describe.only('computeFiltersToDisplay', () => {
         value: '1',
       },
     ];
+    currentState[6].selectedOptions = [];
     const displayedIds = computeFiltersToDisplay({
       currentFiltersState: currentState,
       initialFiltersState,
       selectedFilterId: 'practices',
       touristicContentCategoryMapping,
+      outdoorRatingScale,
+      outdoorRatingMapping,
+      outdoorPractice,
     }).map(({ id }) => id);
     commonFilters.forEach(id => expect(displayedIds.includes(id)));
     expect(displayedIds.length).toEqual(
@@ -292,11 +326,15 @@ describe.only('computeFiltersToDisplay', () => {
     const currentState = [...filtersState, ...trekSpecificFiltersState];
     currentState[0].selectedOptions = [];
     currentState[1].selectedOptions = [];
+    currentState[6].selectedOptions = [];
     const displayedIds = computeFiltersToDisplay({
       currentFiltersState: currentState,
       initialFiltersState,
       selectedFilterId: 'practices',
       touristicContentCategoryMapping,
+      outdoorRatingScale,
+      outdoorRatingMapping,
+      outdoorPractice,
     }).map(({ id }) => id);
     commonFilters.forEach(id => expect(displayedIds.includes(id)));
     expect(displayedIds.length).toEqual(commonFilters.length);
@@ -316,11 +354,15 @@ describe.only('computeFiltersToDisplay', () => {
         value: '1',
       },
     ];
+    currentState[6].selectedOptions = [];
     const displayedIds = computeFiltersToDisplay({
       currentFiltersState: currentState,
       initialFiltersState,
       selectedFilterId: 'practices',
       touristicContentCategoryMapping,
+      outdoorRatingScale,
+      outdoorRatingMapping,
+      outdoorPractice,
     }).map(({ id }) => id);
 
     const data = [...commonFilters, ...touristicContentSpecificFilters, ...trekSpecificFilters];

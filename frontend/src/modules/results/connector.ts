@@ -2,17 +2,27 @@ import { getTouristicContentCategories } from 'modules/touristicContentCategory/
 import { getActivities } from 'modules/activities/connector';
 import { getDifficulties } from 'modules/filters/difficulties';
 import { getThemes } from 'modules/filters/theme/connector';
-import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
+import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
 import { QueryFilterState } from 'components/pages/search/utils';
 import { fetchTouristicContentResult } from 'modules/touristicContent/api';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { getCities } from 'modules/city/connector';
 import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
+import { getOutdoorPractices } from '../outdoorPractice/connector';
+import { adaptOutdoorSites } from '../outdoorSite/adapter';
+import { fetchOutdoorSites } from '../outdoorSite/api';
+import { OutdoorSite } from '../outdoorSite/interface';
+import { adaptTouristicEvents } from '../touristicEvent/adapter';
+import { fetchTouristicEvents } from '../touristicEvent/api';
+import { TouristicEvent } from '../touristicEvent/interface';
+import { getTouristicEventTypes } from '../touristicEventType/connector';
 
 import { adaptTrekResultList } from './adapter';
 import {
+  fetchOutdoorSitesResultsNumber,
   fetchTouristicContentResultsNumber,
+  fetchTouristicEventsResultsNumber,
   fetchTrekResult,
   fetchTrekResults,
   fetchTrekResultsNumber,
@@ -21,8 +31,10 @@ import { SearchResults, TrekResult } from './interface';
 import {
   extractNextPageId,
   formatBboxFilter,
+  formatOutdoorSiteFiltersToUrlParams,
   formatTextFilter,
   formatTouristicContentFiltersToUrlParams,
+  formatTouristicEventsFiltersToUrlParams,
   formatTrekFiltersToUrlParams,
 } from './utils';
 
@@ -42,6 +54,8 @@ export const getSearchResults = async (
   pages: {
     treks: number | null;
     touristicContents: number | null;
+    outdoorSites: number | null;
+    touristicEvents: number | null;
   },
   language: string,
 ): Promise<SearchResults> => {
@@ -52,12 +66,32 @@ export const getSearchResults = async (
     const isPracticeSelected = practiceFilter ? practiceFilter.selectedOptions.length > 0 : false;
     const serviceFilter = filtersState.find(({ id }) => id === CATEGORY_ID);
     const isServiceSelected = serviceFilter ? serviceFilter.selectedOptions.length > 0 : false;
+    const outdoorFilter = filtersState.find(({ id }) => id === OUTDOOR_ID);
+    const isOutdoorSiteSelected = outdoorFilter ? outdoorFilter.selectedOptions.length > 0 : false;
+    const touristicEventFilter = filtersState.find(({ id }) => id === EVENT_ID);
+    const isTouristicEventSelected = touristicEventFilter
+      ? touristicEventFilter.selectedOptions.length > 0
+      : false;
 
-    const shouldFetchTreks = !isServiceSelected || isPracticeSelected;
-    const shouldFetchTouristicContents = !isPracticeSelected || isServiceSelected;
+    const shouldFetchTreks =
+      (!isServiceSelected && !isOutdoorSiteSelected && !isTouristicEventSelected) ||
+      isPracticeSelected;
+    const shouldFetchTouristicContents =
+      (!isPracticeSelected && !isOutdoorSiteSelected && !isTouristicEventSelected) ||
+      isServiceSelected;
+    const shouldFetchOutdoorSites =
+      ((!isPracticeSelected && !isServiceSelected && !isTouristicEventSelected) ||
+        isOutdoorSiteSelected) &&
+      getGlobalConfig().enableOutdoor;
+    const shouldFetchTouristicEvents =
+      ((!isPracticeSelected && !isServiceSelected && !isOutdoorSiteSelected) ||
+        isTouristicEventSelected) &&
+      getGlobalConfig().enableTouristicEvents;
 
     const trekFilters = formatTrekFiltersToUrlParams(filtersState);
     const touristicContentFilter = formatTouristicContentFiltersToUrlParams(filtersState);
+    const outdoorSiteFilter = formatOutdoorSiteFiltersToUrlParams(filtersState);
+    const touristicEventsFilter = formatTouristicEventsFiltersToUrlParams(filtersState);
 
     const textFilter = formatTextFilter(textFilterState);
 
@@ -85,10 +119,37 @@ export const getSearchResults = async (
           ...bboxFilter,
         })
       : emptyResultPromise;
+    const getOutdoorSitesCountPromise = shouldFetchOutdoorSites
+      ? fetchOutdoorSitesResultsNumber({
+          language,
+          page_size: 1,
+          page: 1,
+          ...outdoorSiteFilter,
+          ...textFilter,
+          ...bboxFilter,
+        })
+      : emptyResultPromise;
+    const getTouristicEventsCountPromise = shouldFetchTouristicEvents
+      ? fetchTouristicEventsResultsNumber({
+          language,
+          page_size: 1,
+          page: 1,
+          ...touristicEventsFilter,
+          ...textFilter,
+          ...bboxFilter,
+        })
+      : emptyResultPromise;
 
-    const [{ count: treksCount }, { count: touristicContentsCount }] = await Promise.all([
+    const [
+      { count: treksCount },
+      { count: touristicContentsCount },
+      { count: outdoorSitesCount },
+      { count: touristicEventsCount },
+    ] = await Promise.all([
       getTreksCountPromise,
       getTouristicContentsCountPromise,
+      getOutdoorSitesCountPromise,
+      getTouristicEventsCountPromise,
     ]);
 
     // Then we prepare the content queries with empty array if the page is null, meaning we reached the end of the pagination for this ressource
@@ -127,6 +188,40 @@ export const getSearchResults = async (
             results: [],
           });
 
+    const getOutdoorSitesPromise =
+      pages.outdoorSites !== null
+        ? fetchOutdoorSites({
+            language,
+            page_size: getGlobalConfig().searchResultsPageSize,
+            page: pages.outdoorSites ?? undefined,
+            ...outdoorSiteFilter,
+            ...textFilter,
+            ...bboxFilter,
+          })
+        : Promise.resolve({
+            count: outdoorSitesCount,
+            next: null,
+            previous: null,
+            results: [],
+          });
+
+    const getTouristicEventsPromise =
+      pages.touristicEvents !== null
+        ? fetchTouristicEvents({
+            language,
+            page_size: getGlobalConfig().searchResultsPageSize,
+            page: pages.touristicEvents ?? undefined,
+            ...touristicEventsFilter,
+            ...textFilter,
+            ...bboxFilter,
+          })
+        : Promise.resolve({
+            count: touristicEventsCount,
+            next: null,
+            previous: null,
+            results: [],
+          });
+
     // Then we perform the actual call, querying the required hashmaps by the way
 
     const [
@@ -135,19 +230,26 @@ export const getSearchResults = async (
       themes,
       activities,
       rawTouristicContents,
+      rawOutdoorSites,
+      rawTouristicEvents,
       touristicContentCategories,
-      themeDictionnary,
       cityDictionnary,
+      outdoorPracticeDictionnary,
     ] = await Promise.all([
       shouldFetchTreks ? getTreksResultsPromise : emptyResultPromise,
       getDifficulties(language), // Todo: Find a way to store this hashmap to avoid calling this every time
       getThemes(language), // Todo: Find a way to store this hashmap to avoid calling this every time
       getActivities(language), // Todo: Find a way to store this hashmap to avoid calling this every time
       shouldFetchTouristicContents ? getToursticContentsPromise : emptyResultPromise,
+      shouldFetchOutdoorSites ? getOutdoorSitesPromise : emptyResultPromise,
+      shouldFetchTouristicEvents ? getTouristicEventsPromise : emptyResultPromise,
       getTouristicContentCategories(language), // Todo: Find a way to store this hashmap to avoid calling this every time
-      getThemes(language),
       getCities(language),
+      getOutdoorPractices(language),
     ]);
+
+    const [touristicEventType] = await Promise.all([getTouristicEventTypes(language)]);
+
     const adaptedResultsList: TrekResult[] = adaptTrekResultList({
       resultsList: rawTrekResults.results,
       difficulties,
@@ -159,24 +261,49 @@ export const getSearchResults = async (
     const adaptedTouristicContentsList: TouristicContentResult[] = adaptTouristicContentResult({
       rawTouristicContent: rawTouristicContents.results,
       touristicContentCategories,
-      themeDictionnary,
+      themeDictionnary: themes,
       cityDictionnary,
+    });
+
+    const adaptedOutdoorSitesList: OutdoorSite[] = adaptOutdoorSites({
+      rawOutdoorSites: rawOutdoorSites.results,
+      themeDictionnary: themes,
+      outdoorPracticeDictionnary,
+      cityDictionnary,
+    });
+
+    const adaptedTouristicEventsList: TouristicEvent[] = adaptTouristicEvents({
+      rawTouristicEvents: rawTouristicEvents.results,
+      themeDictionnary: themes,
+      cityDictionnary,
+      touristicEventType,
     });
 
     const nextTreksPage = extractNextPageId(rawTrekResults.next);
     const nextTouristicContentsPage = extractNextPageId(rawTouristicContents.next);
+    const nextOutdoorSitesPage = extractNextPageId(rawOutdoorSites.next);
+    const nextTouristicEventsPage = extractNextPageId(rawTouristicEvents.next);
 
     return {
-      resultsNumber: treksCount + touristicContentsCount,
+      resultsNumber: treksCount + touristicContentsCount + outdoorSitesCount + touristicEventsCount,
       resultsNumberDetails: {
         treksCount,
         touristicContentsCount,
+        outdoorSitesCount,
+        touristicEventsCount,
       },
       nextPages: {
         treks: nextTreksPage,
         touristicContents: nextTouristicContentsPage,
+        outdoorSites: nextOutdoorSitesPage,
+        touristicEvents: nextTouristicEventsPage,
       },
-      results: [...adaptedResultsList, ...adaptedTouristicContentsList],
+      results: [
+        ...adaptedResultsList,
+        ...adaptedTouristicContentsList,
+        ...adaptedOutdoorSitesList,
+        ...adaptedTouristicEventsList,
+      ],
     };
   } catch (e) {
     console.error('Error in connector / results', e);
@@ -212,4 +339,22 @@ export const getTrekResultsById = async (
     console.error('Error in results connector', e);
     throw e;
   }
+};
+
+export const getTrekResults = async (language: string, query = {}) => {
+  const [rawTrekResults, difficulties, themes, activities, cityDictionnary] = await Promise.all([
+    fetchTrekResults({ language, ...query }),
+    getDifficulties(language),
+    getThemes(language),
+    getActivities(language),
+    getCities(language),
+  ]);
+
+  return adaptTrekResultList({
+    resultsList: rawTrekResults.results,
+    difficulties,
+    themes,
+    activities,
+    cityDictionnary,
+  });
 };

@@ -9,6 +9,7 @@ const fallbackAttachment: Attachment = {
 };
 
 export const getThumbnail = (rawAttachments: RawAttachment[]): string | null => {
+  if (!rawAttachments) return null;
   const firstImageAttachment = rawAttachments.find(({ type }) => type === 'image');
   if (firstImageAttachment === undefined) return null;
   return firstImageAttachment.thumbnail;

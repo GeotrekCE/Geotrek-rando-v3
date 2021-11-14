@@ -110,14 +110,16 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
         ) : (
           <>
             <Layout>
-              <DetailsHeader sectionsReferences={sectionsReferences} details={details} />
+              <DetailsHeader
+                sectionsReferences={sectionsReferences}
+                details={details}
+                type={'TREK'}
+              />
               {details.title !== undefined && <DetailsHeaderMobile title={details.title} />}
               <div className="flex flex-1" id="details_mainContainer">
                 <div
                   id="details_informationContainer"
-                  className="flex flex-col w-full
-                  relative -top-detailsHeaderMobile desktop:top-0
-                  desktop:w-3/5"
+                  className="flex flex-col w-full relative -top-detailsHeaderMobile desktop:top-0 desktop:w-3/5"
                 >
                   <OpenMapButton displayMap={displayMobileMap} />
                   <Modal>
@@ -530,7 +532,7 @@ interface DetailsHeaderMobileProps {
   title: string;
 }
 
-const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title: name }) => {
+export const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title: name }) => {
   const displayState = useShowOnScrollPosition(sizes.mobileDetailsTitle);
   return (
     <div

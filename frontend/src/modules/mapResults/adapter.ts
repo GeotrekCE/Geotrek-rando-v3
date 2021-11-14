@@ -1,8 +1,23 @@
 import { ActivityChoices } from 'modules/activities/interface';
 import { TouristicContentCategoryDictionnary } from 'modules/touristicContentCategory/interface';
 import { extractFirstPointOfGeometry } from 'modules/utils/geometry';
-import { MapResults, RawTouristicContentMapResults, RawTrekMapResults } from './interface';
-import { concatTouristicContentMapResults, concatTrekMapResults, formatLocation } from './utils';
+import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
+import { getTouristicEventTypes } from '../touristicEventType/connector';
+import { TouristicEventTypeChoices } from '../touristicEventType/interface';
+import {
+  MapResults,
+  RawOutdoorSiteMapResults,
+  RawTouristicContentMapResults,
+  RawTouristicEventsMapResults,
+  RawTrekMapResults,
+} from './interface';
+import {
+  concatOutdoorMapResults,
+  concatTouristicContentMapResults,
+  concatTouristicEventsMapResults,
+  concatTrekMapResults,
+  formatLocation,
+} from './utils';
 
 export const adaptTrekMapResults = ({
   mapResults,
@@ -31,12 +46,49 @@ export const adaptTouristicContentMapResults = ({
     practice: {
       pictogram:
         rawMapResult.category !== undefined
-          ? touristicContentCategories[rawMapResult.category].pictogramUri
+          ? touristicContentCategories[rawMapResult.category]?.pictogramUri
           : '',
       name:
         rawMapResult.category !== undefined
-          ? touristicContentCategories[rawMapResult.category].label
+          ? touristicContentCategories[rawMapResult.category]?.label
           : '',
     },
     type: 'TOURISTIC_CONTENT',
   }));
+
+export const adaptOutdoorSitesMapResults = ({
+  mapResults,
+  outdoorPracticeDictionnary,
+}: {
+  mapResults: RawOutdoorSiteMapResults[];
+  outdoorPracticeDictionnary: OutdoorPracticeChoices;
+}): MapResults =>
+  concatOutdoorMapResults(mapResults).map(rawMapResult => {
+    return {
+      id: Number(rawMapResult.id),
+      location: extractFirstPointOfGeometry(rawMapResult.geometry ?? null),
+      practice: outdoorPracticeDictionnary[rawMapResult.practice] ?? null,
+      type: 'OUTDOOR_SITE',
+    };
+  });
+
+export const adaptTouristicEventsMapResults = ({
+  mapResults,
+  touristicEventTypes,
+}: {
+  mapResults: RawTouristicEventsMapResults[];
+  touristicEventTypes: TouristicEventTypeChoices;
+}): MapResults =>
+  concatTouristicEventsMapResults(mapResults).map(rawMapResult => {
+    return {
+      id: Number(rawMapResult.id),
+      location: extractFirstPointOfGeometry(rawMapResult.geometry ?? null),
+      practice: touristicEventTypes[rawMapResult.type]
+        ? {
+            name: String(touristicEventTypes[rawMapResult.type].type),
+            pictogram: String(touristicEventTypes[rawMapResult.type].pictogram),
+          }
+        : undefined,
+      type: 'TOURISTIC_EVENT',
+    };
+  });

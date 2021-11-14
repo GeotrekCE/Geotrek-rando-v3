@@ -18,17 +18,24 @@ interface Props {
   parentId?: number;
   handleOpen?: () => void;
   handleClose?: () => void;
-  type: 'TREK' | 'TOURISTIC_CONTENT';
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT';
 }
 
 interface PropsPC {
   showButton: boolean;
   id: number;
-  type: 'TREK' | 'TOURISTIC_CONTENT';
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT';
   parentId?: number;
 }
 const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId }) => {
   const { isLoading, trekPopupResult } = usePopupResult(id.toString(), true, type);
+
+  const getRoute = (type: string) => {
+    if (type === 'TREK') return routes.DETAILS;
+    if (type === 'TOURISTIC_CONTENT') return routes.TOURISTIC_CONTENT;
+    if (type === 'OUTDOOR_SITE') return routes.OUTDOOR_SITE;
+    if (type === 'TOURISTIC_EVENT') return routes.TOURISTIC_EVENT;
+  };
 
   return (
     <Loader
@@ -49,12 +56,7 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId }) => 
             </Title>
             {showButton && (
               <Link
-                href={generateResultDetailsUrl(
-                  id,
-                  trekPopupResult.title,
-                  type === 'TREK' ? routes.DETAILS : routes.TOURISTIC_CONTENT,
-                  parentId,
-                )}
+                href={generateResultDetailsUrl(id, trekPopupResult.title, getRoute(type), parentId)}
               >
                 <Button type="button">
                   <span className="text-center w-full">

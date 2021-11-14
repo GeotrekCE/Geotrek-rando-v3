@@ -4,7 +4,8 @@
     "language": "Lingua",
     "seeMore": "Leggi di più",
     "favorites": "Preferiti",
-    "goToSearch": "Ricerca"
+    "goToSearch": "Ricerca",
+    "offline": "Contenuto offline"
   },
   "home": {
     "title": "Geotrek-rando",
@@ -27,8 +28,7 @@
   },
   "page": {
     "back": "Ritorno",
-    "api-to-translate-example": "Questo messaggio è tradotto usando direttamente l'API react-intl",
-    "goToOffline": "Visualizzazione di contenuti offline"
+    "api-to-translate-example": "Questo messaggio è tradotto usando direttamente l'API react-intl"
   },
   "search": {
     "title": "Ricerca",
@@ -48,6 +48,7 @@
       "events": "Eventi",
       "categories": "Servizi",
       "cities": "Comune",
+      "localization": "Posizione",
       "duration": "Durata",
       "districts": "Settore",
       "themes": "Tema",
@@ -67,6 +68,7 @@
   },
   "details": {
     "preview": "Presentazione",
+    "access": "Accesso",
     "download": "Scaricare",
     "children": "Passi",
     "childrenFullTitle": "{count, plural, =0 {Nessun passo} one {# Passo} other {# Passi}}",
@@ -104,7 +106,18 @@
     "departure": "Partenza",
     "arrival": "Arrivo",
     "cities": "Comune attraversato",
-    "more": "Leggi di più"
+    "more": "Leggi di più",
+    "courses": "Corso",
+    "experiences": "Luoghi di pratica",
+    "gear": "Materiale",
+    "equipment": "Attrezzatura",
+    "typeSite": "Tipo di sito",
+    "typeCourse": "Tipo di corso",
+    "organizer": "Organizzatore",
+    "speaker": "Stakeholder",
+    "targetAudience": "Pubblico di riferimento",
+    "practicalInfo": "Informazioni pratiche",
+    "booking": "Prenotazione"
   },
   "touristicContent": {
     "contact": "Contatto",
@@ -142,7 +155,7 @@
   },
   "offline": {
     "number": "{count} contenuto accessibile senza una connessione internet",
-    "presentation": "Per godere dei tuoi elementi senza preoccuparti della tua rete.",
+    "presentation": "Per godersi i propri percorsi senza preoccuparsi della rete.",
     "explain": "Incorpora questo articolo per accedervi offline",
     "explainAvailable": "Questo articolo è disponibile offline",
     "title": "Modalità offline",
@@ -156,5 +169,24 @@
     "close": "Chiudere",
     "remove": "Cancellare",
     "confirmRemove": "Sei sicuro di voler rimuovere questo elemento?"
+  },
+  "outdoorSite": {
+    "accessFullTitle": "Accesso",
+    "coursesFullTitle": "Corso",
+    "sitesFullTitle": "Il {conteggio} dei luoghi di pratica da scoprire"
+  },
+  "Wind": {
+    "N": "Nord",
+    "S": "Sud",
+    "E": "Est",
+    "W": "Ovest",
+    "NW": "Nord-Ovest",
+    "SW": "Sud-Ovest",
+    "NE": "Nord-Est",
+    "SE": "Sud-Est"
+  },
+  "dates": {
+    "singleDate": "il {date}",
+    "multipleDates": "dal {beginDate} al {endDate}"
   }
 }

@@ -1,3 +1,4 @@
+import { TouristicContent } from 'components/Map/DetailsMap/TouristicContent';
 import { LatLngBoundsExpression } from 'leaflet';
 import React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
@@ -36,7 +37,9 @@ export type PropsType = {
   poiPoints?: PointWithIcon[];
   touristicContentPoints?: TouristicContentGeometry[];
   trekGeometry?: Coordinate2D[];
-  trekGeoJSON: string;
+  outdoorGeometry?: TouristicContentGeometry;
+  eventGeometry?: TouristicContentGeometry;
+  trekGeoJSON?: string;
   pointsReference?: Coordinate2D[] | null;
   hideMap?: () => void;
   type: 'DESKTOP' | 'MOBILE';
@@ -101,13 +104,19 @@ export const DetailsMap: React.FC<PropsType> = props => {
         bounds={center}
       >
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
-        <TrekMarkersAndCourse
-          arrivalLocation={props.arrivalLocation}
-          departureLocation={props.departureLocation}
-          parkingLocation={props.parkingLocation}
-          trekGeometry={props.trekGeometry}
-          advisedParking={props.advisedParking}
-        />
+        {props.trekGeometry && (
+          <TrekMarkersAndCourse
+            arrivalLocation={props.arrivalLocation}
+            departureLocation={props.departureLocation}
+            parkingLocation={props.parkingLocation}
+            trekGeometry={props.trekGeometry}
+            advisedParking={props.advisedParking}
+          />
+        )}
+        {props.outdoorGeometry && <TouristicContent contents={[props.outdoorGeometry]} />}
+        {props.eventGeometry && (
+          <TouristicContent contents={[props.eventGeometry]} type={'TOURISTIC_EVENT'} />
+        )}
         <MapChildren
           parentId={props.trekId}
           poiPoints={props.poiPoints}
@@ -120,7 +129,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           referencePointsMobileVisibility={referencePointsMobileVisibility}
           touristicContentMobileVisibility={touristicContentMobileVisibility}
         />
-        <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />
+        {props.trekGeoJSON && <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />}
         {isSatelliteLayerAvailable && (
           <div className="absolute bottom-6 left-6 z-mapButton">
             <MapLayerTypeToggleButton onToggleButtonClick={newType => updateTileLayer(newType)} />

@@ -1,4 +1,5 @@
 import getNextConfig from 'next/config';
+import { uniqBy } from 'lodash';
 import { FilterConfig, FilterConfigWithOptions } from './interface';
 
 export const getFiltersConfig = (): (FilterConfig | FilterConfigWithOptions)[] => {
@@ -6,10 +7,12 @@ export const getFiltersConfig = (): (FilterConfig | FilterConfigWithOptions)[] =
     publicRuntimeConfig: { filter },
   } = getNextConfig();
 
-  const filterLocal = Object.values(filter);
+  const dedoublonFilterLocal = uniqBy(filter, 'id');
 
-  return filterLocal.map((f: any) => ({
-    ...f,
-    type: f.type === 'SINGLE' ? 'SINGLE' : 'MULTIPLE',
-  }));
+  return dedoublonFilterLocal
+    .filter((f: any) => f.display !== false)
+    .map((f: any) => ({
+      ...f,
+      type: f.type === 'SINGLE' ? 'SINGLE' : 'MULTIPLE',
+    }));
 };

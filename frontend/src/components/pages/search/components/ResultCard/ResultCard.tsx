@@ -1,10 +1,13 @@
+import { Altitude } from 'components/Icons/Altitude';
+import { Calendar } from 'components/Icons/Calendar';
+import { Height } from 'components/Icons/Height';
 import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
 import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import { borderRadius, colorPalette, desktopOnly, getSpacing, sizes, typography } from 'stylesheet';
+import { borderRadius, colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
 import { flexGap } from 'services/cssHelpers';
 
 import { Chip } from 'components/Chip';
@@ -19,6 +22,7 @@ import { TrendingUp } from 'components/Icons/TrendingUp';
 import { ListAndMapContext } from 'modules/map/ListAndMapContext';
 
 import { Attachment } from '../../../../../modules/interface';
+import { dataUnits } from '../../../../../modules/results/adapter';
 import { ResultCardCarousel } from './ResultCardCarousel';
 
 interface BaseProps {
@@ -40,7 +44,7 @@ interface TrekProps extends BaseProps {
     duration: string | null;
     distance: string;
     elevation: string;
-    difficulty: { label: string; pictogramUri: string } | null;
+    difficulty?: { label: string; pictogramUri: string } | null;
     reservationSystem: number | null;
   };
 }
@@ -50,10 +54,57 @@ interface TouristicContentProps extends BaseProps {
   informations: TouristicContentDetailsType[];
 }
 
-const isTrek = (content: TrekProps | TouristicContentProps): content is TrekProps =>
-  content.type === 'TREK';
+interface OutdoorSiteProps extends BaseProps {
+  type: 'OUTDOOR_SITE';
+  informations: TouristicContentDetailsType[];
+}
 
-export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => {
+interface OutdoorCourseProps extends BaseProps {
+  type: 'OUTDOOR_COURSE';
+  informations: {
+    duration: string | null;
+    elevation?: string | null;
+    maxElevation?: number;
+    height: string | null;
+    length: string | null;
+  };
+}
+
+interface TouristicEventProps extends BaseProps {
+  type: 'TOURISTIC_EVENT';
+  informations: Record<any, any>;
+}
+
+const isTrek = (
+  content:
+    | TrekProps
+    | TouristicContentProps
+    | OutdoorSiteProps
+    | OutdoorCourseProps
+    | TouristicEventProps,
+): content is TrekProps => content.type === 'TREK';
+
+const isOutdoorCourse = (
+  content:
+    | TrekProps
+    | TouristicContentProps
+    | OutdoorSiteProps
+    | OutdoorCourseProps
+    | TouristicEventProps,
+): content is OutdoorCourseProps => content.type === 'OUTDOOR_COURSE';
+
+const isTouristicEvent = (
+  content:
+    | TrekProps
+    | TouristicContentProps
+    | OutdoorSiteProps
+    | OutdoorCourseProps
+    | TouristicEventProps,
+): content is TouristicEventProps => content.type === 'TOURISTIC_EVENT';
+
+export const ResultCard: React.FC<
+  TrekProps | TouristicContentProps | OutdoorSiteProps | OutdoorCourseProps | TouristicEventProps
+> = props => {
   const {
     id,
     hoverId,
@@ -67,6 +118,9 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => 
     redirectionUrl,
   } = props;
   const { setHoveredCardId } = useContext(ListAndMapContext);
+
+  const intl = useIntl();
+
   return (
     <Container
       onMouseEnter={() => {
@@ -105,34 +159,93 @@ export const ResultCard: React.FC<TrekProps | TouristicContentProps> = props => 
             <TagContainer>
               <TagLayout>
                 {tags
-                  .filter(tag => tag !== null && tag.length > 0)
+                  .filter(tag => tag !== null && Number(tag?.length) > 0)
                   .map(tag => (
                     <Chip key={tag}>{tag}</Chip>
                   ))}
               </TagLayout>
             </TagContainer>
-            {isTrek(props) ? (
+            {isTouristicEvent(props) && (
+              <InformationContainer>
+                {props.informations.date && (
+                  <LocalIconInformation icon={Calendar}>
+                    {props.informations.date.beginDate === props.informations.date.endDate ? (
+                      <FormattedMessage
+                        id={'dates.singleDate'}
+                        values={{ date: intl.formatDate(props.informations.date.beginDate) }}
+                      />
+                    ) : (
+                      <FormattedMessage
+                        id={'dates.multipleDates'}
+                        values={{
+                          beginDate: intl.formatDate(props.informations.date.beginDate),
+                          endDate: intl.formatDate(props.informations.date.endDate),
+                        }}
+                      />
+                    )}
+                  </LocalIconInformation>
+                )}
+              </InformationContainer>
+            )}
+            {isOutdoorCourse(props) && (
               <InformationContainer>
                 <InformationLayout>
-                  {props.informations.difficulty !== null && (
-                    <RemoteIconInformation iconUri={props.informations.difficulty.pictogramUri}>
-                      {props.informations.difficulty.label}
-                    </RemoteIconInformation>
-                  )}
-                  {props.informations.duration !== null && (
+                  {props.informations.duration && (
                     <LocalIconInformation icon={Clock}>
                       {props.informations.duration}
                     </LocalIconInformation>
                   )}
-                  <LocalIconInformation icon={CodeBrackets}>
-                    {props.informations.distance}
-                  </LocalIconInformation>
-                  <LocalIconInformation icon={TrendingUp} className="desktop:flex hidden">
-                    {props.informations.elevation}
-                  </LocalIconInformation>
+                  {props.informations.elevation && (
+                    <LocalIconInformation icon={TrendingUp}>
+                      {props.informations.elevation}
+                    </LocalIconInformation>
+                  )}
+                  {props.informations.maxElevation && (
+                    <LocalIconInformation icon={Altitude}>
+                      {props.informations.maxElevation}
+                      {dataUnits.distance}
+                    </LocalIconInformation>
+                  )}
+                  {props.informations.length && (
+                    <LocalIconInformation icon={CodeBrackets}>
+                      {props.informations.length}
+                    </LocalIconInformation>
+                  )}
+                  {props.informations.height && (
+                    <LocalIconInformation icon={Height}>
+                      {props.informations.height}
+                    </LocalIconInformation>
+                  )}
                 </InformationLayout>
               </InformationContainer>
-            ) : (
+            )}
+            {isTrek(props) && (
+              <InformationContainer>
+                <InformationLayout>
+                  {props.informations.difficulty && (
+                    <RemoteIconInformation iconUri={props.informations.difficulty.pictogramUri}>
+                      {props.informations.difficulty.label}
+                    </RemoteIconInformation>
+                  )}
+                  {props.informations.duration && (
+                    <LocalIconInformation icon={Clock}>
+                      {props.informations.duration}
+                    </LocalIconInformation>
+                  )}
+                  {props.informations.distance && (
+                    <LocalIconInformation icon={CodeBrackets}>
+                      {props.informations.distance}
+                    </LocalIconInformation>
+                  )}
+                  {props.informations.elevation && (
+                    <LocalIconInformation icon={TrendingUp} className="desktop:flex hidden">
+                      {props.informations.elevation}
+                    </LocalIconInformation>
+                  )}
+                </InformationLayout>
+              </InformationContainer>
+            )}
+            {!isTrek(props) && !isOutdoorCourse(props) && !isTouristicEvent(props) && (
               <InformationContainer>
                 {props.informations.map(
                   ({ label, values }) =>

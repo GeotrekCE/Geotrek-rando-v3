@@ -2,6 +2,11 @@ import { uniqBy } from 'lodash';
 import { getTouristicContentCategoryFilter } from 'modules/touristicContentCategory/connector';
 import { getActivityFilter } from 'modules/activities/connector';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
+import { getOutdoorPracticesFilter } from '../outdoorPractice/connector';
+import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
+import { OutdoorRatingMapping } from '../outdoorRating/interface';
+import { OutdoorRatingScale } from '../outdoorRatingScale/interface';
+import { getTouristicEventTypesFilter } from '../touristicEventType/connector';
 import { getAccessibilityFilter } from './accessibility/connector';
 import { getCityFilter } from './city/connector';
 import { getFiltersConfig } from './config';
@@ -22,6 +27,8 @@ import {
   CATEGORY_ID,
   CITY_ID,
   DISTRICT_ID,
+  EVENT_ID,
+  OUTDOOR_ID,
   PRACTICE_ID,
   ROUTE_ID,
   STRUCTURE_ID,
@@ -62,6 +69,10 @@ const getFilterOptions = async (
       return getStructureFilter(language);
     case CATEGORY_ID:
       return getTouristicContentCategoryFilter(language);
+    case OUTDOOR_ID:
+      return getOutdoorPracticesFilter(language);
+    case EVENT_ID:
+      return getTouristicEventTypesFilter(language);
     default:
       return null;
   }
@@ -105,6 +116,8 @@ const trekSpecificFilters = [
 export const commonFilters = [
   PRACTICE_ID,
   CATEGORY_ID,
+  OUTDOOR_ID,
+  EVENT_ID,
   THEME_ID,
   CITY_ID,
   DISTRICT_ID,
@@ -137,6 +150,7 @@ const getTypesFiltersState = ({
   return data.map(i => {
     return {
       id: `type-services-${i.id}`,
+      category: i.category,
       label: i.label,
       type: 'MULTIPLE',
       options: i.values,
@@ -145,33 +159,92 @@ const getTypesFiltersState = ({
   });
 };
 
+const getOutdoorRatingFiltersState = ({
+  practiceId,
+  outdoorRatingMapping,
+  outdoorRatingScale,
+  outdoorPractice,
+}: {
+  practiceId: string;
+  outdoorRatingMapping: OutdoorRatingMapping;
+  outdoorRatingScale: OutdoorRatingScale[];
+  outdoorPractice: OutdoorPracticeChoices;
+}): FilterState[] => {
+  const result: FilterState[] = [];
+  const scales = outdoorRatingScale.filter(i => String(i.practice) === practiceId);
+
+  if (scales.length > 0) {
+    scales.forEach(scale => {
+      const data = outdoorRatingMapping[scale.id];
+
+      if (data)
+        result.push({
+          id: `type-outdoorRating-${String(scale.id)}`,
+          category: String(outdoorPractice?.[scale.practice]?.name),
+          label: scale?.name ?? 'Error',
+          type: 'MULTIPLE',
+          options: data.map(i => ({
+            value: i.id,
+            label: i.name,
+          })),
+          selectedOptions: [],
+        });
+    });
+  }
+
+  return result;
+};
+
 export const computeFiltersToDisplay = ({
   initialFiltersState,
   currentFiltersState,
   selectedFilterId,
   touristicContentCategoryMapping,
+  outdoorRatingMapping,
+  outdoorRatingScale,
+  outdoorPractice,
 }: {
   initialFiltersState: FilterState[];
   currentFiltersState: FilterState[];
   selectedFilterId: string;
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
+  outdoorRatingMapping: OutdoorRatingMapping;
+  outdoorRatingScale: OutdoorRatingScale[];
+  outdoorPractice: OutdoorPracticeChoices;
 }): FilterState[] => {
   const currentNumberOfPracticeOptionsSelected = currentFiltersState[0].selectedOptions.length;
   const currentNumberOfTouristicContentOptionsSelected =
     currentFiltersState[1].selectedOptions.length;
+  const currentNumberOfOutdoorPraticeOptionsSelected =
+    currentFiltersState[6].selectedOptions.length;
 
   const filtersToAdd: FilterState[][] = [];
 
-  // Calculate which filters to display
+  // *** Calculate which filters to display ***
+  // Treks filters
   if (currentNumberOfPracticeOptionsSelected > 0) {
     filtersToAdd.push(getTreksFiltersState(initialFiltersState));
   }
+  // Services filters
   if (currentNumberOfTouristicContentOptionsSelected > 0 || selectedFilterId === CATEGORY_ID) {
     currentFiltersState[1].selectedOptions.forEach(selectedOptions => {
       filtersToAdd.push(
         getTypesFiltersState({
           serviceId: selectedOptions.value,
           touristicContentCategoryMapping,
+        }),
+      );
+    });
+  }
+  // Outdoor filters
+  if (currentNumberOfOutdoorPraticeOptionsSelected > 0 || selectedFilterId === OUTDOOR_ID) {
+    currentFiltersState[6].selectedOptions.forEach(selectedOptions => {
+      filtersToAdd.push(
+        getOutdoorRatingFiltersState({
+          practiceId: selectedOptions.value,
+          outdoorRatingMapping,
+          outdoorRatingScale,
+          outdoorPractice,
         }),
       );
     });
@@ -193,29 +266,55 @@ const getInitialFiltersStateWithRelevantFilters = ({
   initialFiltersState,
   initialOptions,
   touristicContentCategoryMapping,
+  outdoorRatingMapping,
+  outdoorRatingScale,
+  outdoorPractice,
 }: {
   initialFiltersState: FilterState[];
   initialOptions: { [filterId: string]: string[] | undefined };
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
+  outdoorRatingMapping: OutdoorRatingMapping;
+  outdoorRatingScale: OutdoorRatingScale[];
+  outdoorPractice: OutdoorPracticeChoices;
 }): FilterState[] => {
   const initialStateWithOnlyCommon = initialFiltersState.filter(({ id }) =>
     commonFilters.includes(id),
   );
   const practices = initialOptions[PRACTICE_ID];
   const services = initialOptions[CATEGORY_ID];
-  if (practices !== undefined && practices.length > 0 && services === undefined) {
-    return [...initialStateWithOnlyCommon, ...getTreksFiltersState(initialFiltersState)];
+  const outdoorPractices = initialOptions[OUTDOOR_ID];
+
+  const result = [...initialStateWithOnlyCommon];
+
+  if (Number(practices?.length) > 0) {
+    result.push(...getTreksFiltersState(initialFiltersState));
   }
-  if (practices === undefined && services !== undefined && services.length === 1) {
-    return [
-      ...initialStateWithOnlyCommon,
-      ...getTypesFiltersState({
-        serviceId: services[0],
-        touristicContentCategoryMapping,
-      }),
-    ];
+
+  if (Number(services?.length) > 0) {
+    services?.forEach(service => {
+      result.push(
+        ...getTypesFiltersState({
+          serviceId: service,
+          touristicContentCategoryMapping,
+        }),
+      );
+    });
   }
-  return initialStateWithOnlyCommon;
+
+  if (Number(outdoorPractices?.length) > 0) {
+    outdoorPractices?.forEach(outdoorPratice => {
+      result.push(
+        ...getOutdoorRatingFiltersState({
+          practiceId: outdoorPratice,
+          outdoorRatingMapping,
+          outdoorRatingScale,
+          outdoorPractice,
+        }),
+      );
+    });
+  }
+
+  return result;
 };
 
 const sanitizeInitialOptions = (initialOptions: {
@@ -233,16 +332,25 @@ export const getInitialFiltersStateWithSelectedOptions = ({
   initialFiltersState,
   initialOptions,
   touristicContentCategoryMapping,
+  outdoorRatingMapping,
+  outdoorRatingScale,
+  outdoorPractice,
 }: {
   initialFiltersState: FilterState[];
   initialOptions: { [filterId: string]: string };
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
+  outdoorRatingMapping: OutdoorRatingMapping;
+  outdoorRatingScale: OutdoorRatingScale[];
+  outdoorPractice: OutdoorPracticeChoices;
 }): FilterState[] => {
   const sanitizedInitialOptions = sanitizeInitialOptions(initialOptions);
   const initialFiltersStateWithRelevantFilters = getInitialFiltersStateWithRelevantFilters({
     initialFiltersState,
     initialOptions: sanitizedInitialOptions,
     touristicContentCategoryMapping,
+    outdoorRatingMapping,
+    outdoorRatingScale,
+    outdoorPractice,
   });
   return initialFiltersStateWithRelevantFilters.reduce<FilterState[]>(
     (initialStateWithSelectedOptions, currentFilterState) => {

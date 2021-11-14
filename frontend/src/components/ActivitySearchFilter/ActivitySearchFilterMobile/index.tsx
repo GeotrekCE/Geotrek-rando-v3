@@ -5,7 +5,6 @@ import { CSSObject } from 'styled-components';
 
 import { colorPalette, getSpacing, shadow } from 'stylesheet';
 import { routes } from 'services/routes';
-import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
 
 import { ActivityFilter } from 'modules/activities/interface';
 import { Arrow } from 'components/Icons/Arrow';
@@ -16,7 +15,8 @@ import { useActivitySearchFilterMobile } from './useActivitySearchFilterMobile';
 export const ActivitySearchFilterMobile: React.FC<{
   className?: string;
   activities: ActivityFilter[];
-}> = ({ className, activities }) => {
+  getId: (type: string) => string;
+}> = ({ className, activities, getId }) => {
   const { selectedActivityId, updateSelectedActivityId } = useActivitySearchFilterMobile();
 
   const selectedActivity = activities.find(
@@ -38,9 +38,9 @@ export const ActivitySearchFilterMobile: React.FC<{
       />
       {selectedActivityId !== null && selectedActivity !== undefined ? (
         <Link
-          href={`${routes.SEARCH}?${
-            selectedActivity.type === 'PRACTICE' ? PRACTICE_ID : CATEGORY_ID
-          }=${selectedActivityId.split('-')[1]}`}
+          href={`${routes.SEARCH}?${getId(selectedActivity.type)}=${
+            selectedActivityId.split('-')[1]
+          }`}
         >
           <ValidateButton />
         </Link>

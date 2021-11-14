@@ -4,6 +4,7 @@ import ShowFilters from 'components/pages/search/components/FilterBar/ShowFilter
 import React from 'react';
 import styled from 'styled-components';
 import { colorPalette, sizes } from 'stylesheet';
+import { groupBy } from 'lodash';
 import { FilterState, Option } from '../../../../../modules/filters/interface';
 import { countFiltersSelected } from '../../../../../modules/filters/utils';
 
@@ -28,8 +29,9 @@ const FilterField: React.FC<Props> = ({
   filtersState,
   setFilterSelectedOptions,
 }) => {
-  const subFiltersToDisplay = filtersState.filter(({ id }) =>
-    subFilters?.some(subFilter => new RegExp(subFilter).test(id)),
+  const subFiltersToDisplay = groupBy(
+    filtersState.filter(({ id }) => subFilters?.some(subFilter => new RegExp(subFilter).test(id))),
+    'category',
   );
   const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
 
@@ -64,7 +66,7 @@ const FilterField: React.FC<Props> = ({
             <Cross size={30} />
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-4 mb-10">
+        <div className="mb-4">
           {filtersToDisplay.map(filterState => (
             <ShowFilters
               key={filterState.id}
@@ -75,13 +77,21 @@ const FilterField: React.FC<Props> = ({
           ))}
         </div>
         <div className="grid grid-cols-3 gap-4">
-          {subFiltersToDisplay.map(filterState => (
-            <ShowFilters
-              key={filterState.id}
-              item={filterState}
-              setFilterSelectedOptions={setFilterSelectedOptions}
-            />
-          ))}
+          {Object.keys(subFiltersToDisplay).map(key => {
+            return (
+              <div className={'m-1'} key={key}>
+                {key !== 'undefined' && <div className={'font-bold mb-2'}>{key}</div>}
+                {subFiltersToDisplay[key].map(filterState => (
+                  <div className={'my-1'} key={filterState.id}>
+                    <ShowFilters
+                      item={filterState}
+                      setFilterSelectedOptions={setFilterSelectedOptions}
+                    />
+                  </div>
+                ))}
+              </div>
+            );
+          })}
         </div>
       </ContainerFields>
     </div>

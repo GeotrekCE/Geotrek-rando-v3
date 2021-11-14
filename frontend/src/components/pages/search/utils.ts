@@ -7,6 +7,8 @@ import { FilterState, Option } from 'modules/filters/interface';
 import { SearchResults, TrekResult } from 'modules/results/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { MapResult } from 'modules/mapResults/interface';
+import { OutdoorSite } from '../../../modules/outdoorSite/interface';
+import { TouristicEvent } from '../../../modules/touristicEvent/interface';
 
 /**
  * Interface of an objet representing a filter state informations
@@ -45,10 +47,9 @@ export const concatResultsPages = (resultsPages: SearchResults[]): SearchResults
 
   const resultsNumber = resultsPages[0].resultsNumber;
   const nextPages = resultsPages[0].nextPages;
-  const results = resultsPages.reduce<(TrekResult | TouristicContentResult)[]>(
-    (resultsAcc, currentPage) => resultsAcc.concat(currentPage.results),
-    [],
-  );
+  const results = resultsPages.reduce<
+    (TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent)[]
+  >((resultsAcc, currentPage) => resultsAcc.concat(currentPage.results), []);
 
   return {
     resultsNumber,
@@ -83,13 +84,18 @@ export const generateResultDetailsUrl = (
   return detailsPageUrl;
 };
 
-export const getHoverId = ({ id, type }: TrekResult | TouristicContentResult | MapResult): string =>
+export const getHoverId = ({
+  id,
+  type,
+}: TrekResult | TouristicContentResult | MapResult | OutdoorSite | TouristicEvent): string =>
   `SEARCH-${type}-${id}`;
 
 export const convertStringForSitemap = (text: string): string =>
   removeDiacritics(
     (text || '')
       .replace(/ /g, '-')
+      // eslint-disable-next-line
+      .replace(/ /g, '-')
       .replace(/'/g, '-')
       .replace(/°/g, '')
       .replace(/«/g, '')
