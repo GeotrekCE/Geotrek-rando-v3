@@ -10,6 +10,7 @@ import {
   CATEGORY_ID,
   CITY_ID,
   DISTRICT_ID,
+  EVENT_ID,
   OUTDOOR_ID,
   PRACTICE_ID,
   STRUCTURE_ID,
@@ -44,10 +45,11 @@ export const FILTERS_CATEGORIES = [
     filters: [CATEGORY_ID],
     subFilters: ['type-services-.+'],
   },
-  /*{
-    id: 'events',
+  {
+    id: EVENT_ID,
     name: <FormattedMessage id={'search.filters.events'} />,
-  },*/
+    filters: [EVENT_ID],
+  },
   {
     id: THEME_ID,
     name: <FormattedMessage id={'search.filters.themes'} />,
@@ -68,7 +70,8 @@ const FilterBarNew: React.FC<Props> = ({
   language,
 }) => {
   const [expanded, setExpanded] = useState<string>('');
-  const { treksCount, touristicContentsCount, outdoorSitesCount } = useCounter({ language });
+  const { treksCount, touristicContentsCount, outdoorSitesCount, touristicEventsCount } =
+    useCounter({ language });
 
   return (
     <ClearContainer className="flex items-center shadow-lg bg-white" style={{ zIndex: 20 }}>
@@ -85,6 +88,7 @@ const FilterBarNew: React.FC<Props> = ({
         if (treksCount === 0 && filterField.id === PRACTICE_ID) return null;
         if (touristicContentsCount === 0 && filterField.id === CATEGORY_ID) return null;
         if (outdoorSitesCount === 0 && filterField.id === OUTDOOR_ID) return null;
+        if (touristicEventsCount === 0 && filterField.id === EVENT_ID) return null;
 
         return (
           <FilterField

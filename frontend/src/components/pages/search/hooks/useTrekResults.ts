@@ -70,6 +70,7 @@ export const useTrekResults = (
           treks: 1,
           touristicContents: 1,
           outdoorSites: getGlobalConfig().enableOutdoor ? 1 : null,
+          touristicEvents: getGlobalConfig().enableTouristicEvents ? 1 : null,
         },
       }) => {
         return getSearchResults(
@@ -89,7 +90,8 @@ export const useTrekResults = (
         getNextPageParam: lastPageResult =>
           lastPageResult.nextPages.treks !== null ||
           lastPageResult.nextPages.touristicContents !== null ||
-          lastPageResult.nextPages.outdoorSites !== null
+          lastPageResult.nextPages.outdoorSites !== null ||
+          lastPageResult.nextPages.touristicEvents !== null
             ? lastPageResult.nextPages
             : undefined,
       },

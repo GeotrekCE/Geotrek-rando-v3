@@ -9,11 +9,17 @@ import { Details } from 'modules/details/interface';
 import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
+import { TouristicEventDetails } from '../../../../../modules/touristicEvent/interface';
 import { getGlobalConfig } from '../../../../../modules/utils/api.config';
 import { DetailsButtonDropdown } from '../DetailsButtonDropdown';
 
 interface DetailsTopIconsProps {
-  details: Details | TouristicContentDetails | OutdoorSiteDetails | OutdoorCourseDetails;
+  details:
+    | Details
+    | TouristicContentDetails
+    | OutdoorSiteDetails
+    | OutdoorCourseDetails
+    | TouristicEventDetails;
   size?: number;
   hideReport?: boolean;
 }

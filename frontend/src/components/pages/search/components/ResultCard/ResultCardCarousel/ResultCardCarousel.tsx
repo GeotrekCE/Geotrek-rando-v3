@@ -12,10 +12,12 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
   iconUri,
   onClickImage,
 }) => {
+  const files = navigator && navigator?.onLine ? thumbnailUris : thumbnailUris.slice(0, 1);
+
   return (
     <div className="h-full w-full flex-shrink-0 desktop:w-resultCardDesktop relative ">
       <SmallCarousel>
-        {thumbnailUris.map((thumbnailUri, i) => (
+        {files.map((thumbnailUri, i) => (
           <div key={i} className="relative h-full" onClick={onClickImage}>
             <img
               src={thumbnailUri}

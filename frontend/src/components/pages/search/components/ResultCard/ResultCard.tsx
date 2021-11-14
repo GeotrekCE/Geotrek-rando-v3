@@ -1,10 +1,11 @@
 import { Altitude } from 'components/Icons/Altitude';
+import { Calendar } from 'components/Icons/Calendar';
 import { Height } from 'components/Icons/Height';
 import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
 import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { borderRadius, colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
 import { flexGap } from 'services/cssHelpers';
@@ -43,7 +44,7 @@ interface TrekProps extends BaseProps {
     duration: string | null;
     distance: string;
     elevation: string;
-    difficulty: { label: string; pictogramUri: string } | null;
+    difficulty?: { label: string; pictogramUri: string } | null;
     reservationSystem: number | null;
   };
 }
@@ -69,16 +70,40 @@ interface OutdoorCourseProps extends BaseProps {
   };
 }
 
+interface TouristicEventProps extends BaseProps {
+  type: 'TOURISTIC_EVENT';
+  informations: Record<any, any>;
+}
+
 const isTrek = (
-  content: TrekProps | TouristicContentProps | OutdoorSiteProps | OutdoorCourseProps,
+  content:
+    | TrekProps
+    | TouristicContentProps
+    | OutdoorSiteProps
+    | OutdoorCourseProps
+    | TouristicEventProps,
 ): content is TrekProps => content.type === 'TREK';
 
 const isOutdoorCourse = (
-  content: TrekProps | TouristicContentProps | OutdoorSiteProps | OutdoorCourseProps,
+  content:
+    | TrekProps
+    | TouristicContentProps
+    | OutdoorSiteProps
+    | OutdoorCourseProps
+    | TouristicEventProps,
 ): content is OutdoorCourseProps => content.type === 'OUTDOOR_COURSE';
 
+const isTouristicEvent = (
+  content:
+    | TrekProps
+    | TouristicContentProps
+    | OutdoorSiteProps
+    | OutdoorCourseProps
+    | TouristicEventProps,
+): content is TouristicEventProps => content.type === 'TOURISTIC_EVENT';
+
 export const ResultCard: React.FC<
-  TrekProps | TouristicContentProps | OutdoorSiteProps | OutdoorCourseProps
+  TrekProps | TouristicContentProps | OutdoorSiteProps | OutdoorCourseProps | TouristicEventProps
 > = props => {
   const {
     id,
@@ -93,6 +118,9 @@ export const ResultCard: React.FC<
     redirectionUrl,
   } = props;
   const { setHoveredCardId } = useContext(ListAndMapContext);
+
+  const intl = useIntl();
+
   return (
     <Container
       onMouseEnter={() => {
@@ -137,6 +165,28 @@ export const ResultCard: React.FC<
                   ))}
               </TagLayout>
             </TagContainer>
+            {isTouristicEvent(props) && (
+              <InformationContainer>
+                {props.informations.date && (
+                  <LocalIconInformation icon={Calendar}>
+                    {props.informations.date.beginDate === props.informations.date.endDate ? (
+                      <FormattedMessage
+                        id={'dates.singleDate'}
+                        values={{ date: intl.formatDate(props.informations.date.beginDate) }}
+                      />
+                    ) : (
+                      <FormattedMessage
+                        id={'dates.multipleDates'}
+                        values={{
+                          beginDate: intl.formatDate(props.informations.date.beginDate),
+                          endDate: intl.formatDate(props.informations.date.endDate),
+                        }}
+                      />
+                    )}
+                  </LocalIconInformation>
+                )}
+              </InformationContainer>
+            )}
             {isOutdoorCourse(props) && (
               <InformationContainer>
                 <InformationLayout>
@@ -195,7 +245,7 @@ export const ResultCard: React.FC<
                 </InformationLayout>
               </InformationContainer>
             )}
-            {!isTrek(props) && !isOutdoorCourse(props) && (
+            {!isTrek(props) && !isOutdoorCourse(props) && !isTouristicEvent(props) && (
               <InformationContainer>
                 {props.informations.map(
                   ({ label, values }) =>

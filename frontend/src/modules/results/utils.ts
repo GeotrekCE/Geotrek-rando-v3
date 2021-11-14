@@ -4,6 +4,7 @@ import {
   CATEGORY_ID,
   CITY_ID,
   DISTRICT_ID,
+  EVENT_ID,
   OUTDOOR_ID,
   STRUCTURE_ID,
   THEME_ID,
@@ -223,6 +224,40 @@ export const formatOutdoorSiteFiltersToUrlParams = (
       ...joinedFilters,
       [key]: filters[key].join(','),
       root_sites_only: 'true',
+    }),
+    {},
+  );
+};
+
+export const formatTouristicEventsFiltersToUrlParams = (
+  filtersState: QueryFilterState[],
+): { [key: string]: string } => {
+  const filters = filtersState.reduce<{ [key: string]: string[] }>(
+    (currentFilters, currentFilterState) => {
+      if (currentFilterState.id === EVENT_ID)
+        return {
+          ...currentFilters,
+          types: currentFilterState.selectedOptions,
+        };
+      if (
+        commonFiltersWithoutTrekSelector.includes(currentFilterState.id) &&
+        currentFilterState.selectedOptions.length > 0
+      ) {
+        return {
+          ...currentFilters,
+          [currentFilterState.id]: currentFilterState.selectedOptions,
+        };
+      }
+
+      return currentFilters;
+    },
+    {},
+  );
+
+  return Object.keys(filters).reduce(
+    (joinedFilters, key) => ({
+      ...joinedFilters,
+      [key]: filters[key].join(','),
     }),
     {},
   );

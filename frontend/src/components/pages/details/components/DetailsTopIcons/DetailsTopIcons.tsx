@@ -7,11 +7,17 @@ import { Details } from '../../../../../modules/details/interface';
 import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
+import { TouristicEventDetails } from '../../../../../modules/touristicEvent/interface';
 
 interface DetailsTopIconsProps {
-  details: Details | TouristicContentDetails | OutdoorSiteDetails | OutdoorCourseDetails;
+  details:
+    | Details
+    | TouristicContentDetails
+    | OutdoorSiteDetails
+    | OutdoorCourseDetails
+    | TouristicEventDetails;
   practice?: Activity;
-  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE';
+  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
 }
 
 export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
@@ -28,7 +34,11 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
         {practice && <ActivityLogo src={practice.pictogram} />}
         <div className="flex space-x-4">
           <div
-            className={type === 'TREK' || type === 'OUTDOOR_SITE' ? 'desktop:hidden' : undefined}
+            className={
+              type === 'TREK' || type === 'OUTDOOR_SITE' || type === 'TOURISTIC_EVENT'
+                ? 'desktop:hidden'
+                : undefined
+            }
           >
             <DetailsDownloadIcons details={details} size={30} hideReport={type !== 'TREK'} />
           </div>

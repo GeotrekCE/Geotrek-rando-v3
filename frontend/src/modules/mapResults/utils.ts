@@ -1,8 +1,10 @@
 import { RawOutdoorSite } from '../outdoorSite/interface';
+import { RawTouristicEvent } from '../touristicEvent/interface';
 import {
   RawOutdoorSiteMapResults,
   RawTouristicContentMapResult,
   RawTouristicContentMapResults,
+  RawTouristicEventsMapResults,
   RawTrekMapResult,
   RawTrekMapResults,
 } from './interface';
@@ -35,6 +37,14 @@ export const concatOutdoorMapResults = (
   rawMapResults: RawOutdoorSiteMapResults[],
 ): RawOutdoorSite[] =>
   rawMapResults.reduce<RawOutdoorSite[]>(
+    (rawResults, currentResult) => [...rawResults, ...currentResult.results],
+    [],
+  );
+
+export const concatTouristicEventsMapResults = (
+  rawMapResults: RawTouristicEventsMapResults[],
+): RawTouristicEvent[] =>
+  rawMapResults.reduce<RawTouristicEvent[]>(
     (rawResults, currentResult) => [...rawResults, ...currentResult.results],
     [],
   );

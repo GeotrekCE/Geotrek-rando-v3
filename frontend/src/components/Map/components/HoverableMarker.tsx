@@ -14,7 +14,7 @@ interface BaseProps {
 
 interface TrekOrTouristicContentProps extends BaseProps {
   pictogramUri?: string;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE';
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT';
 }
 
 interface TrekChildProps extends BaseProps {

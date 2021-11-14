@@ -7,9 +7,7 @@ export const getFiltersConfig = (): (FilterConfig | FilterConfigWithOptions)[] =
     publicRuntimeConfig: { filter },
   } = getNextConfig();
 
-  const filterLocal = Object.values(filter);
-
-  const dedoublonFilterLocal = uniqBy(filterLocal, 'id');
+  const dedoublonFilterLocal = uniqBy(filter, 'id');
 
   return dedoublonFilterLocal
     .filter((f: any) => f.display !== false)

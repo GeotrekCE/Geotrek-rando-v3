@@ -1,10 +1,11 @@
 import { QueryFilterState } from 'components/pages/search/utils';
 import { getActivities } from 'modules/activities/connector';
-import { CATEGORY_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
+import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
 import {
   formatOutdoorSiteFiltersToUrlParams,
   formatTextFilter,
   formatTouristicContentFiltersToUrlParams,
+  formatTouristicEventsFiltersToUrlParams,
   formatTrekFiltersToUrlParams,
 } from 'modules/results/utils';
 import { getTouristicContentCategories } from 'modules/touristicContentCategory/connector';
@@ -13,9 +14,13 @@ import { getGlobalConfig } from 'modules/utils/api.config';
 import { generatePageNumbersArray } from 'modules/utils/connector';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { fetchOutdoorSites } from '../outdoorSite/api';
+import { adaptTouristicEvents } from '../touristicEvent/adapter';
+import { fetchTouristicEvents } from '../touristicEvent/api';
+import { getTouristicEventTypes } from '../touristicEventType/connector';
 import {
   adaptOutdoorSitesMapResults,
   adaptTouristicContentMapResults,
+  adaptTouristicEventsMapResults,
   adaptTrekMapResults,
 } from './adapter';
 import { fetchTouristicContentMapResults, fetchTrekMapResults } from './api';
@@ -34,17 +39,30 @@ export const getMapResults = async (
     const isServiceSelected = serviceFilter ? serviceFilter.selectedOptions.length > 0 : false;
     const outdoorFilter = filtersState.find(({ id }) => id === OUTDOOR_ID);
     const isOutdoorSiteSelected = outdoorFilter ? outdoorFilter.selectedOptions.length > 0 : false;
+    const eventsFilter = filtersState.find(({ id }) => id === EVENT_ID);
+    const isTouristicEventsSelected = eventsFilter
+      ? eventsFilter.selectedOptions.length > 0
+      : false;
 
-    const shouldFetchTreks = (!isServiceSelected && !isOutdoorSiteSelected) || isPracticeSelected;
+    const shouldFetchTreks =
+      (!isServiceSelected && !isOutdoorSiteSelected && !isTouristicEventsSelected) ||
+      isPracticeSelected;
     const shouldFetchTouristicContents =
-      (!isPracticeSelected && !isOutdoorSiteSelected) || isServiceSelected;
+      (!isPracticeSelected && !isOutdoorSiteSelected && !isTouristicEventsSelected) ||
+      isServiceSelected;
     const shouldFetchOutdoorSites =
-      ((!isPracticeSelected && !isServiceSelected) || isOutdoorSiteSelected) &&
+      ((!isPracticeSelected && !isServiceSelected && !isTouristicEventsSelected) ||
+        isOutdoorSiteSelected) &&
       getGlobalConfig().enableOutdoor;
+    const shouldFetchTouristicEvents =
+      ((!isPracticeSelected && !isServiceSelected && !isOutdoorSiteSelected) ||
+        isTouristicEventsSelected) &&
+      getGlobalConfig().enableTouristicEvents;
 
     const trekFilters = formatTrekFiltersToUrlParams(filtersState);
     const touristicContentFilter = formatTouristicContentFiltersToUrlParams(filtersState);
     const outdoorSiteFilter = formatOutdoorSiteFiltersToUrlParams(filtersState);
+    const touristicEventsFilter = formatTouristicEventsFiltersToUrlParams(filtersState);
 
     const textFilter = formatTextFilter(textFilterState);
 
@@ -124,6 +142,35 @@ export const getMapResults = async (
         ...adaptOutdoorSitesMapResults({
           mapResults: mapOutdoorSiteResults,
           outdoorPracticeDictionnary,
+        }),
+      );
+    }
+
+    if (shouldFetchTouristicEvents) {
+      const rawMapResults = await fetchTouristicEvents({
+        language,
+        page_size: resultsNumber,
+        ...touristicEventsFilter,
+        ...textFilter,
+      });
+      const mapTouristicEventsResults = await Promise.all(
+        generatePageNumbersArray(resultsNumber, rawMapResults.count).map(pageNumber =>
+          fetchTouristicEvents({
+            language,
+            page_size: resultsNumber,
+            page: pageNumber,
+            ...touristicEventsFilter,
+            ...textFilter,
+          }),
+        ),
+      );
+
+      const touristicEventTypes = await getTouristicEventTypes(language);
+
+      mapResults.push(
+        ...adaptTouristicEventsMapResults({
+          mapResults: mapTouristicEventsResults,
+          touristicEventTypes,
         }),
       );
     }

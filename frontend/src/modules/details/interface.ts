@@ -79,12 +79,12 @@ export interface DetailsHtml {
 }
 
 export interface DetailsInformation {
-  duration: string | null;
-  distance: string | null;
-  elevation: string | null;
-  difficulty: Difficulty | null;
-  courseType: CourseType | null;
-  networks: Network[];
+  duration?: string | null;
+  distance?: string | null;
+  elevation?: string | null;
+  difficulty?: Difficulty | null;
+  courseType?: CourseType | null;
+  networks?: Network[];
 }
 
 export type Bounds = [[number, number], [number, number]];

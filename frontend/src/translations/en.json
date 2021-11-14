@@ -113,7 +113,12 @@
     "gear": "Gear",
     "equipment": "Equipment",
     "typeSite": "Type of site",
-    "typeCourse": "Type of course"
+    "typeCourse": "Type of course",
+    "organizer": "Organizer",
+    "speaker": "Speaker",
+    "targetAudience": "Target audience",
+    "practicalInfo": "Practical Information",
+    "booking": "Booking"
   },
   "touristicContent": {
     "contact": "Contact",
@@ -180,5 +185,9 @@
     "SW": "South-West",
     "NE": "North-Est",
     "SE": "South-Est"
+  },
+  "dates": {
+    "singleDate": "on {date}",
+    "multipleDates": "from {beginDate} to {endDate}"
   }
 }

@@ -11,6 +11,8 @@ interface DetailsDescriptionProps {
   arrival?: string;
   cities?: string[];
   title?: React.ReactElement;
+  email?: string;
+  website?: string;
 }
 
 export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
@@ -20,6 +22,8 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
   arrival,
   cities,
   title = <FormattedMessage id="details.description" />,
+  email,
+  website,
 }) => {
   return (
     <div
@@ -60,6 +64,8 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
           : {cities.join(', ')}
         </div>
       )}
+      {email && <div>{email}</div>}
+      {website && <div>{website}</div>}
     </div>
   );
 };

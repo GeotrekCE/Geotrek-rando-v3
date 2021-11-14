@@ -8,9 +8,10 @@ import { HoverablePolygon } from '../components/HoverablePolygon';
 
 export type PropsType = {
   contents?: TouristicContentGeometry[];
+  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT';
 };
 
-export const TouristicContent: React.FC<PropsType> = ({ contents }) => {
+export const TouristicContent: React.FC<PropsType> = ({ contents, type = 'TOURISTIC_CONTENT' }) => {
   return (
     <>
       {contents !== undefined &&
@@ -27,7 +28,7 @@ export const TouristicContent: React.FC<PropsType> = ({ contents }) => {
                   pictogramUri={pictogramUri}
                   type="TREK"
                 >
-                  <Popup id={Number(idContent)} type={'TOURISTIC_CONTENT'} />
+                  <Popup id={Number(idContent)} type={type} />
                 </HoverableMarker>
               );
 

@@ -5,13 +5,14 @@ import { sizes } from 'stylesheet';
 import { Details } from '../../../../../modules/details/interface';
 import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
+import { TouristicEventDetails } from '../../../../../modules/touristicEvent/interface';
 import { DetailsHeaderSection } from '../../useDetails';
 import { useDetailsHeader } from './useDetailsHeader';
 
 interface DetailsHeaderProps {
   sectionsReferences: MutableRefObject<DetailsHeaderSection>;
-  details: Details | OutdoorSiteDetails | OutdoorCourseDetails;
-  type: 'TREK' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE';
+  details: Details | OutdoorSiteDetails | OutdoorCourseDetails | TouristicEventDetails;
+  type: 'TREK' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
 }
 
 const scrollTo = (element: HTMLDivElement | undefined | null) => {

@@ -104,8 +104,9 @@ const mockInfiniteQueryPage = {
     treksCount: 4,
     touristicContentsCount: 2,
     outdoorSitesCount: 0,
+    touristicEventsCount: 0,
   },
-  nextPages: { treks: 2, touristicContents: 2, outdoorSites: 0 },
+  nextPages: { treks: 2, touristicContents: 2, outdoorSites: 0, touristicEvents: 0 },
   results: [mockTrekResult, mockTrekResult],
 };
 
@@ -187,8 +188,9 @@ describe('concatResultsPages', () => {
         treksCount: 4,
         touristicContentsCount: 2,
         outdoorSitesCount: 0,
+        touristicEventsCount: 0,
       },
-      nextPages: { treks: 2, touristicContents: 2, outdoorSites: 0 },
+      nextPages: { treks: 2, touristicContents: 2, outdoorSites: 0, touristicEvents: 0 },
       results: [mockTrekResult, mockTrekResult, mockTrekResult, mockTrekResult],
     };
 
@@ -214,8 +216,9 @@ describe('formatInfiniteQuery', () => {
         treksCount: 4,
         touristicContentsCount: 2,
         outdoorSitesCount: 0,
+        touristicEventsCount: 0,
       },
-      nextPages: { treks: 2, touristicContents: 2, outdoorSites: 0 },
+      nextPages: { treks: 2, touristicContents: 2, outdoorSites: 0, touristicEvents: 0 },
       results: [mockTrekResult, mockTrekResult, mockTrekResult, mockTrekResult],
     };
 

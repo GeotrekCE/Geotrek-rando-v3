@@ -137,3 +137,8 @@ export const generateOutdoorCourseUrl = (id: number | string, title: string): st
   const titleWithNoSpace = convertStringForSitemap(title);
   return `${routes.OUTDOOR_COURSE}/${id}-${encodeURI(titleWithNoSpace)}`;
 };
+
+export const generateTouristicEventUrl = (id: number | string, title: string): string => {
+  const titleWithNoSpace = convertStringForSitemap(title);
+  return `${routes.TOURISTIC_EVENT}/${id}-${encodeURI(titleWithNoSpace)}`;
+};

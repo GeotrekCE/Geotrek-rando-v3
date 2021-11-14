@@ -10,9 +10,11 @@ export const DetailsCoverCarousel: React.FC<DetailsCoverCarouselProps> = ({
   attachments,
   onClickImage,
 }) => {
+  const files = navigator && navigator?.onLine ? attachments : attachments.slice(0, 1);
+
   return (
     <LargeCarousel className="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop">
-      {attachments.map((attachment, i) => (
+      {files.map((attachment, i) => (
         <ImageWithLegend attachment={attachment} key={i} onClick={onClickImage} />
       ))}
     </LargeCarousel>
