@@ -212,11 +212,15 @@ export const computeFiltersToDisplay = ({
   outdoorRatingScale: OutdoorRatingScale[];
   outdoorPractice: OutdoorPracticeChoices;
 }): FilterState[] => {
-  const currentNumberOfPracticeOptionsSelected = currentFiltersState[0].selectedOptions.length;
+  const trekPracticeFilter = currentFiltersState.find(i => i.id === PRACTICE_ID);
+  const touristicContentFilter = currentFiltersState.find(i => i.id === CATEGORY_ID);
+  const outdoorPracticeFilter = currentFiltersState.find(i => i.id === OUTDOOR_ID);
+
+  const currentNumberOfPracticeOptionsSelected = trekPracticeFilter?.selectedOptions.length ?? 0;
   const currentNumberOfTouristicContentOptionsSelected =
-    currentFiltersState[1].selectedOptions.length;
+    touristicContentFilter?.selectedOptions.length ?? 0;
   const currentNumberOfOutdoorPraticeOptionsSelected =
-    currentFiltersState[6].selectedOptions.length;
+    outdoorPracticeFilter?.selectedOptions.length ?? 0;
 
   const filtersToAdd: FilterState[][] = [];
 
@@ -227,7 +231,7 @@ export const computeFiltersToDisplay = ({
   }
   // Services filters
   if (currentNumberOfTouristicContentOptionsSelected > 0 || selectedFilterId === CATEGORY_ID) {
-    currentFiltersState[1].selectedOptions.forEach(selectedOptions => {
+    touristicContentFilter?.selectedOptions.forEach(selectedOptions => {
       filtersToAdd.push(
         getTypesFiltersState({
           serviceId: selectedOptions.value,
@@ -238,7 +242,7 @@ export const computeFiltersToDisplay = ({
   }
   // Outdoor filters
   if (currentNumberOfOutdoorPraticeOptionsSelected > 0 || selectedFilterId === OUTDOOR_ID) {
-    currentFiltersState[6].selectedOptions.forEach(selectedOptions => {
+    outdoorPracticeFilter?.selectedOptions.forEach(selectedOptions => {
       filtersToAdd.push(
         getOutdoorRatingFiltersState({
           practiceId: selectedOptions.value,
