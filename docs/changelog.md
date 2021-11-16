@@ -1,5 +1,13 @@
 # Changelog
 
+3.5.1 (unreleased)
+------------------
+
+**🐛 Fixes**
+
+* Fix filter masking (#512)
+* Fix redirecting rules defined in ``redirects.json`` setting file
+
 3.5.0 (2021-11-14)
 ------------------
 
