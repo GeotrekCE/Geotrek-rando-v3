@@ -1,12 +1,9 @@
 export const isLinkInternal = (urlString: string): boolean => {
-  if (typeof window !== 'undefined') {
-    const url = new URL(urlString);
-    return url.hostname === window.location.hostname;
-  }
-  return false;
+  const { hostname } = new URL(urlString, document.baseURI);
+  return hostname === global.location.hostname;
 };
 
 export const linkWithoutHost = (urlString: string): string => {
-  const url = new URL(urlString);
-  return url.pathname;
+  const { pathname } = new URL(urlString, document.baseURI);
+  return pathname;
 };
