@@ -3,12 +3,12 @@ import { Plus } from 'components/Icons/Plus';
 import { Minus } from 'components/Icons/Minus';
 import { FormattedMessage } from 'react-intl';
 import { usePortalLinks } from './usePortalLinks';
-import { PortalLink } from '../interface';
+import { PortalLinkStatic } from '../interface';
 import { isLinkInternal, linkWithoutHost } from '../utils';
 
 interface PortalLinksContentProps {
   className?: string;
-  links: PortalLink[];
+  links: PortalLinkStatic[];
 }
 
 export interface PortalLinksProps extends PortalLinksContentProps {
@@ -92,7 +92,7 @@ const PortalLinksMobileContent: React.FC<PortalLinksContentProps> = ({ className
   );
 };
 
-const PortalLinkRendered: React.FC<{ link: PortalLink }> = ({ link }) => {
+const PortalLinkRendered: React.FC<{ link: PortalLinkStatic }> = ({ link }) => {
   const className =
     'text-greySoft text-Mobile-C3 desktop:text-P1 cursor-pointer hover:text-white transition-all desktop:text-right';
   if (typeof window !== 'undefined') {
