@@ -4,6 +4,9 @@
     { "id": "twitter", "url": "https://twitter.com/pnecrins" }
   ],
   "links": [
+    {
+      "informationID": 4
+    },
     { "label": "footer.links", "url": "https://www.ecrins-parcnational.fr/liens-internet" },
     { "label": "footer.access", "url": "https://www.ecrins-parcnational.fr/venir-dans-les-ecrins" },
     {
