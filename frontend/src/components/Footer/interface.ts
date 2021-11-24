@@ -11,13 +11,25 @@ export interface PortalContact {
   mail: string;
 }
 
-export interface PortalLink {
+export interface PortalLinkStatic {
   label: string;
   url: string;
 }
 
-export interface FooterConfig {
+interface PortalLinkDynamic {
+  informationID: number;
+}
+
+export type PortalLink = PortalLinkStatic | PortalLinkDynamic;
+
+export interface FooterConfigInput {
   socialNetworks?: SocialNetwork[];
   links?: PortalLink[];
+  contact?: Partial<PortalContact>;
+}
+
+export interface FooterConfigOutput {
+  socialNetworks?: SocialNetwork[];
+  links?: PortalLinkStatic[];
   contact?: Partial<PortalContact>;
 }
