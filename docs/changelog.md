@@ -5,8 +5,11 @@
 
 **🐛 Fixes**
 
-* Fix filter masking (#512)
-* Fix redirecting rules defined in ``redirects.json`` setting file
+* Fix filter masking (#518)
+
+**🚀 New features**
+
+* Allow to add dynamic links to information pages in footer (#516)
 
 3.5.0 (2021-11-14)
 ------------------
