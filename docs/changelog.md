@@ -5,7 +5,8 @@
 
 **🐛 Fixes**
 
-* Fix filter masking (#518)
+* Fix filter masking (#512)
+* Fix crash filters with using ID instead of index (#518)
 
 **🚀 New features**
 
