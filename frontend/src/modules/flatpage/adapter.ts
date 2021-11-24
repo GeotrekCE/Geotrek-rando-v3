@@ -10,6 +10,7 @@ const adaptFlatPageToMenuItem = (rawFlatPage: RawFlatPage): MenuItem => ({
       : generateFlatPageUrl(rawFlatPage.id, rawFlatPage.title),
   title: rawFlatPage.title,
   order: rawFlatPage.order,
+  id: rawFlatPage.id,
 });
 
 export const adaptFlatPages = (rawFlatPages: RawFlatPage[]): MenuItem[] => {

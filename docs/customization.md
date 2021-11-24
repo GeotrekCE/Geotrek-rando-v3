@@ -51,7 +51,12 @@ In json files, you can just override the primary keys you need. You have to over
 
     - `shouldDisplayText`: `true` to display the text on above the asset, `false` to hide it.
 
-- `footer.json` to define social networks (`facebook`, `twitter`, `youtube`, `instagram` or `fallback)` and links (based on translation labels) in footer (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/footer.json)
+- In the `footer.json` file, you can define social networks, informations about your organization, and some links (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/footer.json).
+
+  - Social networks: `facebook`, `twitter`, `youtube`, `instagram` or `fallback`.
+  - Contact information such as your name, address, phone number and email.
+  - Links based on the key pair `label`/`url` (can be based on translation labels for multilingual) and/or the key `informationID` whose value is equal to a flatpage identifier.
+
 - `filter.json` to define filters to hide, their order and values (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/filter.json). If you want to hide some of the filter, you have to override their properties with `"display": false`
 - `map.json` to define basemaps URL and attributions, center (y, x), default and max zoom level (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json).
 

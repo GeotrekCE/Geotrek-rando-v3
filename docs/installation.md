@@ -98,6 +98,28 @@ docker-compose pull && docker-compose down && docker-compose up -d
 
 It will download and install the latest version of Geotrek-rando. If you want to install a specific version of Geotrek-rando, you can specify it in your `.env` file, instead of `latest`.
 
+### Manage Docker images storage on disk:
+
+The old images will stay on your system and use disk storage.
+
+To remove images without container associated, you can run `docker image prune -a`.
+You can also run `docker container prune` to remove all stopped containers. Run `docker ps -a` to list all containers on your system.
+
+Use case: after several images built on my server to update and customize my Geotrek-rando, my `/var/lib/docker/vfs` folder had a size of 81 Go! Identified with `sudo du -sh /var/lib/docker/vfs` command. After running `docker container prune` its size was reduced to 14 Go. And after running `docker image prune -a` its size was 7 Go.
+
+See https://docs.docker.com/config/pruning/ for more details about cleaning unused Dockers objects.
+
+Another method: If you notice a unexpectedly large amount of images remaining on your system when asking Docker for images with the command `docker images -a` (showing all the otherwise hidden intermediate images), you can start from a clean slate and delete all the existing docker images on your system by running:
+`docker rmi $(docker images -a -q) -f`.
+Docker supports subqueries like this one, let's understand it step by step:
+
+- `docker rmi` is the command to delete an image
+- `$()` defines the subquery
+  - `docker images` list images
+  - `-a` (all) specifies that you want to see all of them even the intermediate ones
+  - `-q` (quiet) specifies that you only need to get the images IDs
+- `-f` (force) means you want to bypass docker security preventing you to delete used images
+
 # Install without Docker (not recommended)
 
 If you can't install Docker for some reason, there is also a way to directly deploy the node server to your machines.

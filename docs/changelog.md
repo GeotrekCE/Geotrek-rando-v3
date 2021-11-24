@@ -1,14 +1,27 @@
 # Changelog
 
-3.5.0 (2021-11-14)
+3.5.1 (2021-11-24)
 ------------------
 
-To enable Outdoor module, Geotrek-admin version 2.70.0 or higher is required
+**🐛 Fixes**
+
+* Fix filter masking (#512)
+* Fix crash filters with using ID instead of index (#518)
 
 **🚀 New features**
 
-* Add outdoor sites and courses in home activity bar, seach, detail pages and offline contents (#376)
-* Add touristic events in home activity bar, seach, detail pages and offline contents (#389)
+* Allow to add dynamic links to information pages in footer (#516)
+
+3.5.0 (2021-11-14)
+------------------
+
+* To enable Outdoor module, Geotrek-admin version 2.70.0 or higher is required
+* To display images in Event module, Geotrek-admin version 2.72.0 or higher is required
+
+**🚀 New features**
+
+* Add outdoor sites and courses in home activity bar, seach, detail pages and offline contents, enabled with ``enableOutdoor`` setting (#376)
+* Add touristic events in home activity bar, seach, detail pages and offline contents, enabled with ``enableTouristicEvents`` setting (#389)
 
 **✨ Improvements**
 
