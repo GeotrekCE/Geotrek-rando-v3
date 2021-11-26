@@ -23,7 +23,11 @@ app.prepare().then(() => {
   const baseUrl = getConfig('global.json').baseUrl;
   redirectsConfig.rules.forEach(rule => {
     server.get(rule.source, (req, res) => {
-      res.writeHead(rule.permanent ? 301 : 302, { location: baseUrl + rule.destination });
+      let newRoute = rule.destination;
+      Object.keys(req.params).forEach(param => {
+        newRoute = newRoute.replace(':' + param, req.params[param]);
+      });
+      res.writeHead(rule.permanent ? 301 : 302, { location: baseUrl + newRoute });
 
       res.end();
     });
