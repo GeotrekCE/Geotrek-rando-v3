@@ -7,6 +7,7 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev, dir: __dirname });
 const handle = app.getRequestHandler();
 const { Sentry } = require('./services/sentry');
+const getConfig = require('./services/getConfig');
 
 app.prepare().then(() => {
   const server = express();
@@ -16,6 +17,16 @@ app.prepare().then(() => {
 
   server.get('/health', (req, res) => {
     return res.json({ status: 'pass' });
+  });
+
+  const redirectsConfig = getConfig('redirects.json');
+  const baseUrl = getConfig('global.json').baseUrl;
+  redirectsConfig.rules.forEach(rule => {
+    server.get(rule.source, (req, res) => {
+      res.writeHead(rule.permanent ? 301 : 302, { location: baseUrl + rule.destination });
+
+      res.end();
+    });
   });
 
   server.get('*', (req, res) => {
