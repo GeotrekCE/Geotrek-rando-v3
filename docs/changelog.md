@@ -1,5 +1,22 @@
 # Changelog
 
+3.5.2 (2021-11-26)
+------------------
+
+**🐛 Fixes**
+
+* Fix redirections defined in ``redirects.json`` (#522)
+* Fix wrong URL in menu mobile version (#519)
+* Add protection if a filter does not have label (#518)
+
+**✨ Improvements**
+
+* Upgrade Next.js version 11 to 12
+
+**💥 Beaking changes**
+
+* ``Redirects`` from Next.js is replaced by a specific redirection system. ``locale`` property is no more used in ``redirects.json`` and it is no more necessary to add default locale key in other languages rules.
+
 3.5.1 (2021-11-24)
 ------------------
 
@@ -7,10 +24,6 @@
 
 * Fix filter masking (#512)
 * Fix crash filters with using ID instead of index (#518)
-
-**🚀 New features**
-
-* Allow to add dynamic links to information pages in footer (#516)
 
 3.5.0 (2021-11-14)
 ------------------
