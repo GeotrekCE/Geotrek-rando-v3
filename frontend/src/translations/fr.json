@@ -157,7 +157,7 @@
   },
   "offline": {
     "number": "{count} contenus accessibles sans connexion internet",
-    "presentation": "Pour profiter de vos éléments sans vous soucier de votre réseau.",
+    "presentation": "Pour profiter de vos contenus sans vous soucier de votre réseau.",
     "explain": "Embarquer cet élément afin d'y avoir accès hors connexion",
     "explainAvailable": "Cet élément est disponible hors connexion",
     "title": "Mode hors ligne",

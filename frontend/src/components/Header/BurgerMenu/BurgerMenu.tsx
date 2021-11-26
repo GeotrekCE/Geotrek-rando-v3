@@ -1,8 +1,11 @@
+import { useRouter } from 'next/router';
 // @ts-ignore Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
 import { MenuConfig, MenuItem } from 'modules/header/interface';
 import { useIntl } from 'react-intl';
+import NextLink from 'next/link';
 import { routes } from 'services/routes';
+import { getDefaultLanguage } from '../../../modules/header/utills';
 import { BurgerMenuSection } from '../BurgerMenuSection/BurgerMenuSection';
 import { BurgerMenu as BmIcon } from '../../Icons/BurgerMenu';
 import { Cross } from '../../Icons/Cross';
@@ -19,6 +22,8 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
   }`;
 
   const intl = useIntl();
+  const router = useRouter();
+  const currentLanguage = router.locale ?? getDefaultLanguage();
 
   return (
     <Slide
@@ -49,14 +54,12 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
         title={intl.formatMessage({ id: 'header.language' })}
         languages={config.supportedLanguages}
       />
-      <BurgerMenuSection
-        title={intl.formatMessage({ id: 'header.goToSearch' })}
-        onClick={() => window.open(routes.SEARCH, '_self')}
-      />
-      <BurgerMenuSection
-        title={intl.formatMessage({ id: 'header.offline' })}
-        onClick={() => window.open(routes.OFFLINE, '_self')}
-      />
+      <NextLink href={routes.SEARCH} passHref locale={currentLanguage} key={routes.SEARCH}>
+        <BurgerMenuSection title={intl.formatMessage({ id: 'header.goToSearch' })} />
+      </NextLink>
+      <NextLink href={routes.OFFLINE} passHref locale={currentLanguage} key={routes.OFFLINE}>
+        <BurgerMenuSection title={intl.formatMessage({ id: 'header.offline' })} />
+      </NextLink>
     </Slide>
   );
 };
