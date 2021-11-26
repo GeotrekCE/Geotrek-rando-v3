@@ -35,7 +35,7 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
 
   return (
     <div>
-      {!hideLabel && <div className={'mb-1'}>{intl.formatMessage({ id: filterState.label })}</div>}
+      {!hideLabel && <div className={'mb-1'}>{intl.formatMessage({ id: filterState?.label || 'Unknown' })}</div>}
       <div className="-m-1">
         {filterState.options.map(option => {
           const isSelected = filterState.selectedOptions.some(_ => _.value === option.value);
