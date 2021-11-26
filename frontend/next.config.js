@@ -1,5 +1,4 @@
 const path = require('path');
-const withImages = require('next-images');
 const withPlugins = require('next-compose-plugins');
 const withSourceMaps = require('@zeit/next-source-maps');
 const withPWA = require('next-pwa');
@@ -19,22 +18,9 @@ const mergedHeaderConfig = {
 
 const env = dotenv.config().parsed;
 
-const plugins = [[withPWA], [withImages], [withSourceMaps()], [withBundleAnalyzer]];
-
-const redirects = async () => {
-  const redirectsConfig = getConfig('redirects.json');
-
-  return redirectsConfig.rules.map(rule => ({
-    source: rule.source,
-    destination: rule.destination,
-    permanent: rule.permanent !== undefined ? rule.permanent : false,
-    locale: rule.locale !== undefined ? rule.locale : undefined,
-    basePath: rule.basePath !== undefined ? rule.basePath : false,
-  }));
-};
+const plugins = [[withPWA], [withSourceMaps()], [withBundleAnalyzer]];
 
 module.exports = withPlugins(plugins, {
-  redirects,
   webpack(config) {
     config.resolve.modules.push(path.resolve('./src'));
 
