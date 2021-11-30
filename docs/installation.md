@@ -37,6 +37,8 @@ You can now serve what comes out of the default 8080 port. To configure NGINX, s
 
 If you want to have logs directly in terminal you can just run `docker-compose up`. `ctrl`+`c` will exit the command and stop the container. That's why `docker-compose up -d` is used in production to run the service in the background.
 
+You can also access Node.js server logs with `docker-compose logs -t`.
+
 After updating customization, you just have to run `docker-compose restart` to apply changes.
 
 You can also create the optional `.env` file based on the example (`cp .env.example .env`), if you want to change the Docker image URL (or run a specific version different from the latest one), the running port, or the `customization` and `medias` folders path. Run `docker-compose down && docker-compose up -d` to apply changes to `.env` file.
@@ -98,7 +100,7 @@ docker-compose pull && docker-compose down && docker-compose up -d
 
 It will download and install the latest version of Geotrek-rando. If you want to install a specific version of Geotrek-rando, you can specify it in your `.env` file, instead of `latest`.
 
-### Manage Docker images storage on disk:
+### Manage Docker images storage on disk
 
 The old images will stay on your system and use disk storage.
 
