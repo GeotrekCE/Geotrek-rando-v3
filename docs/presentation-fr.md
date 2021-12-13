@@ -15,7 +15,7 @@ La page d'accueil est composée :
    - un selecteur de langue pour basculer entre celles disponibles
    - un lien permanent vers la page de recherche
 - d'une grande image paramétrable, avec un texte d'introduction paramétrable et masquable
-- de la liste des pratiques de randonnées puis des catégories de contenus touristiques sous forme de pictogramme cliquables dans l'ordre défini dans Geotrek-admin
+- de la liste des pratiques de randonnées, des pratiques Outdoor, des catégories de contenus touristiques et des catégories d'événements (selon les contenus publiés) sous forme de pictogramme cliquables dans l'ordre défini dans Geotrek-admin
 
 ![Homepage](https://geotrek.ecrins-parcnational.fr/images/gtr3-01-homepage.jpg)
 
@@ -34,17 +34,18 @@ La page d'accueil est composée :
 
 ## Page recherche
 
-La page de recherche permet de rechercher des objets parmis les randonnées et les services (contenus touristiques).
+La page de recherche permet de rechercher des objets parmis les randonnées, les sites Outdoor, les services (contenus touristiques) et les événements touristiques.
 
 ![Search](https://geotrek.ecrins-parcnational.fr/images/gtr3-04-search.jpg)
 
 **Filtres :**
 
-- Il est possible de sélectionner une ou plusieurs activités de randonnée et une ou plusieurs catégories de service.
-- Si je ne sélectionne aucune activité de randonnée et aucune catégorie de service, alors j'affiche tous les objets
-- La première ligne de filtre est fixe et comprend les filtres communs à tous les objets (thèmes, communes, secteurs et structures)
-- Si je sélectionne uniquement des activités de randonnée, alors les filtres spécifiques aux randonnées sont aussi affichés (difficulté, durée, longueur, dénivelé, type de parcours et accessibilité)
-- Si je sélectionne uniquement une seule catégories de service, alors les filtres spécifiques à cette catégorie sont affichés (type 1 et éventuel type 2)
+- Il est possible de sélectionner une ou plusieurs pratiques de randonnée, une ou plusieurs pratiques Outdoor, une ou plusieurs catégories de service et une ou plusieurs catégories d'événements touristiques.
+- Si je ne sélectionne aucune pratique de randonnée, aucune pratique Outdoor, aucune catégorie de service et aucune catégorie d'événement, alors cela affiche tous les objets
+- Il est aussi possible d'utiliser les filtres communs à tous les objets (thèmes, communes, secteurs et structures)
+- Si je sélectionne des pratiques de randonnée, alors les filtres spécifiques aux randonnées sont affichés (difficulté, durée, longueur, dénivelé, type de parcours et accessibilité)
+- Si je sélectionne une catégories de service, alors les filtres spécifiques à cette catégorie sont affichés (type 1 et éventuel type 2)
+- La zone de la carte affichée est aussi utilisée pour filtrer les résultats (fonctionnalités désactivable)
 - Il est possible de customiser, masquer ou réordonner les filtres
 
 **Résultats :**
@@ -56,12 +57,6 @@ La page de recherche permet de rechercher des objets parmis les randonnées et l
 - Si il s'agit d'une randonnée, on affiche aussi son tracé précis sur la carte quand on clique dessus
 - Au survol d'un résultat dans la liste, sa localisation est mise en avant sur la carte
 - Les résultats dans la liste et sur la carte permettent d'accéder à la fiche détail de chaque objet
-
-**A venir :**
-
-- Ajout des évènements touristiques
-- Ajout des sites outdoor
-- Amélioration de l'ergonomie des filtres
 
 ## Page détail
 
@@ -104,18 +99,22 @@ La page détail d'une randonnée se termine par la liste des services (contenus 
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-11-detail.jpg)
 
+### Sites outdoor
+
+- On entre par le site principal de premier niveau
+- Si le site dispose d'un ou plusieurs sous-sites, alors ils sont listés dans la page
+- Les parcours du site ou de ses sous-sites sont aussi listés dans la page
+- Les randonnées à proximité du site sont aussi listés, pour identifier les accès au site
+
 ### Contenus touristiques
 
 Les pages de détail des contenus touristiques sont construits de la même manière, mais avec un contenu plus simple.
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-12-detail.jpg)
 
-### A venir
+### Evénements touristiques
 
-- Ajout d'informations sur la carte (services, lieux de renseignement, signalétique et aménagements)
-- Ajout des pages détail des évènements touristiques
-- Ajout des pages détail des sites outdoor
-- Amélioration des informations affichées sur les cartes en version mobile
+Assez similaires aux contenus touristiques, mais avec plus de champs et des dates.
 
 ## Pages statiques
 
@@ -139,8 +138,9 @@ Le portail web étant une PWA, quand il est consulté avec un smartphone, un mes
 Un raccourci sera alors créé sur le bureau du smartphone, et il sera alors possible de consulter le contenu comme dans une application mobile.
 
 Des premières fonctionnalités ont été développées pour embarquer une partie du contenu en offline, et ainsi pouvoir le consulter ultérieurement sans connexion internet.
-Les dernières randonnées consultées et leurs fonds de carte peuvent ainsi être consultées offline.
-Voir la [documentation sur la gestion du cache](./knowledge/caching.md) pour en savoir plus.
+Il est ainsi possible d'embarquer le détail des contenus souhaités depuis leur fiche détail, pour y accéder sans connexion (textes, photos, cartes).
+
+Il est aussi possible d'afficher sa localisation GPS sur la carte.
 
 ## Données
 
@@ -176,3 +176,5 @@ Un travail a été réalisé pour optimiser le référencement des contenus du p
 Un rendu côté serveur (Server Side Rendering / SSR) des pages est réalisé pour optimiser et prégénérer les pages renvoyées aux moteurs de recherche (avec NextJS).
 
 Une liste de toutes les pages du portail est générée automatiquement pour faciliter leur indexation dans les moteurs de recherche. Elle est disponible à l'adresse "URL-DU-PORTAIL/sitemap.xml".
+
+Il est aussi possible de définir des règles de redirection, notamment pour optimiser le passage de Geotrek-rando v3 à Geotrek-rando v3.
