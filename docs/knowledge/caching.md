@@ -41,10 +41,12 @@ They will appear as "stale" after a year.
 
 ## Nodejs Application cache
 
-The second one consist in storing the configuration data (activities list, theme list etc..) we get from geotrek admin into ephemeral variable to avoid a lot of API calls to get the same data.
+The second one consist in storing the configuration data (activities list, theme list etc..) we get from Geotrek-admin into ephemeral variable to avoid a lot of API calls to get the same data.
 
 This configuration will appear as "stale" after one day.
 
 If you need to make it available immediately, you can restart your container which will clear the memory and force the refreshment of this configuration data.
+
+This cache can be disabled with ``enableServerCache`` setting in ``global.json`` (default to ``True``).
 
 ![Server Memory Caching Strategy](../assets/ServerMemoryCachingStrategy.png)
