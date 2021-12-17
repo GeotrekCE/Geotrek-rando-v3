@@ -1,5 +1,20 @@
 # Changelog
 
+3.5.3 (2021-12-17)
+------------------
+
+**🐛 Fixes**
+
+* Fix Node.js to version 14, instead of LTR, to fix cache errors (#460)
+
+**🚀 New features**
+
+* Add setting ``enableServerCache`` to be able to disable server cache (#460)
+
+**✨ Improvements**
+
+* Mention ``COMPOSE_PROJECT_NAME`` in installation documentation with several Geotrek-rando on the same server (by @mviadere-openig)
+
 3.5.2 (2021-11-26)
 ------------------
 
