@@ -15,5 +15,6 @@
   "touristicContentLabelImageUri": "https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png",
   "applicationName": "Custom Geotrek",
   "enableReport": true,
-  "enableSearchByMap": true
+  "enableSearchByMap": true,
+  "enableServerCache": true
 }

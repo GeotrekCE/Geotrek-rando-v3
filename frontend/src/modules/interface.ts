@@ -63,6 +63,7 @@ export interface APICallsConfig {
   enableIndexation: boolean;
   enableReport: boolean;
   enableSearchByMap: boolean;
+  enableServerCache: boolean;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */

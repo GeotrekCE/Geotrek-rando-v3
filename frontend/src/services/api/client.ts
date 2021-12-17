@@ -93,4 +93,7 @@ const cacheMiddleware = (throttle = 0): ConfiguredMiddleware => {
   };
 };
 
-export const GeotrekAPI = wretch(getGlobalConfig().apiUrl).middlewares([cacheMiddleware(1000)]);
+const wretcher = wretch(getGlobalConfig().apiUrl);
+export const GeotrekAPI = getGlobalConfig().enableServerCache
+  ? wretcher.middlewares([cacheMiddleware(1000)])
+  : wretcher;
