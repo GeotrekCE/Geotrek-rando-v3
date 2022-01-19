@@ -4,6 +4,7 @@ export interface RawTouristicContentCategory {
   id: number;
   pictogram: string;
   label: string;
+  order: null | number;
   types: TouristicContentType[];
 }
 
