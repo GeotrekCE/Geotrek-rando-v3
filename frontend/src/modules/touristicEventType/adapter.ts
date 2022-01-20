@@ -23,9 +23,10 @@ export const adaptTouristicEventTypes = ({
 export const adaptTouristicEventTypesForActivities = (
   rawTouristicEventTypes: RawTouristicEventType[],
 ): ActivityFilter[] =>
-  rawTouristicEventTypes.map(({ type, id, pictogram }) => ({
+  rawTouristicEventTypes.map(({ type, id, pictogram, order = null }) => ({
     id,
     name: type,
+    order,
     pictogram,
     type: 'TOURISTIC_EVENT_TYPE',
   }));

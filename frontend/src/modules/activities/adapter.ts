@@ -40,9 +40,10 @@ export const adaptActivities = (rawActivities: Partial<RawListActivity>[]): Acti
 export const adaptActivitiesFilter = (
   rawActivities: Partial<RawListActivity>[],
 ): ActivityFilter[] =>
-  rawActivities.filter(isCompleteRawListActivity).map(({ name, pictogram, id }) => ({
+  rawActivities.filter(isCompleteRawListActivity).map(({ name, pictogram, id, order = null }) => ({
     name,
     pictogram,
     id: `${id}`,
+    order,
     type: 'PRACTICE',
   }));

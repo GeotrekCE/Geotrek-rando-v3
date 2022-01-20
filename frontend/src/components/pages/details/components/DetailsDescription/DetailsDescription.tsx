@@ -92,23 +92,26 @@ const StyledListWithSteps = styled(HtmlText)`
   }
   & > ol > li {
     counter-increment: item;
-    display: flex;
-    align-items: center;
-    padding-top: ${getSpacing(4)};
+    margin-top: ${getSpacing(4)};
     ${desktopOnly(css`
-      padding-top: ${getSpacing(10)};
+      margin-top: ${getSpacing(10)};
     `)}
+    position: relative;
+    padding-left: ${getSpacing(12)};
   }
   & > ol > li:first-child {
-    padding: 0;
+    margin-top: 0;
   }
   & > ol > li::before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 14px;
     content: counter(item);
     border-radius: 100%;
     width: ${getSpacing(6.5)};
     height: ${getSpacing(6.5)};
-    flex: none;
     margin-right: ${getSpacing(3.5)};
     color: white;
     background-color: ${colorPalette.redMarker};

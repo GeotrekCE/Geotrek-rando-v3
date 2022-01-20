@@ -86,7 +86,9 @@ const getApiContentForLanguage = async (language: string): Promise<string> => {
     )
     .join('');
 
-  const outdoorSites = await getOutdoorSiteForLanguage(language);
+  const outdoorSites = getGlobalConfig().enableOutdoor
+    ? await getOutdoorSiteForLanguage(language)
+    : [];
   const outdoorSitesUrls = outdoorSites
     .map(({ id, name }) =>
       name && id
@@ -97,7 +99,9 @@ const getApiContentForLanguage = async (language: string): Promise<string> => {
     )
     .join('');
 
-  const outdoorCourses = await getOutdoorCourseForLanguage(language);
+  const outdoorCourses = getGlobalConfig().enableOutdoor
+    ? await getOutdoorCourseForLanguage(language)
+    : [];
   const outdoorCoursesUrls = outdoorCourses
     .map(({ id, name }) =>
       name && id

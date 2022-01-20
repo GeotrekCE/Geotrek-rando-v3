@@ -1,5 +1,6 @@
 export interface RawTouristicEventType {
   id: string;
+  order: null | number;
   type: string;
   pictogram: string;
 }
