@@ -1,5 +1,15 @@
 # Changelog
 
+3.5.4 (2022-01-20)
+------------------
+
+**🐛 Fixes**
+
+* Do not display empty filters (#518 by @dtrucs)
+* Correctly display tags inside list descriptions items (#540 by @dtrucs)
+* Sort activities by order defined in API (#539 by @dtrucs)
+* Fix sitemap generation when Outdoor module is disabled (by @dtrucs)
+
 3.5.3 (2021-12-17)
 ------------------
 
