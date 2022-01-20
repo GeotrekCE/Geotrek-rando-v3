@@ -36,6 +36,9 @@ export const getActivity = async (
   return adaptActivity(rawActivity);
 };
 
+const sortedActivitiesByOrder = (a: ActivityFilter, b: ActivityFilter) =>
+  (a.order ?? Infinity) - (b.order ?? Infinity);
+
 export const getActivityBarContent = async (language: string): Promise<ActivityFilter[]> => {
   const [rawPractices, rawTouristicContentCategories, rawOutdoorPractices, rawTouristicEvents] =
     await Promise.all([
@@ -46,9 +49,15 @@ export const getActivityBarContent = async (language: string): Promise<ActivityF
     ]);
 
   return [
-    ...adaptActivitiesFilter(rawPractices.results),
-    ...adaptOutdoorPracticesForActivities(rawOutdoorPractices ? rawOutdoorPractices.results : []),
-    ...adaptTouristicContentCategoryList(rawTouristicContentCategories.results),
-    ...adaptTouristicEventTypesForActivities(rawTouristicEvents ? rawTouristicEvents.results : []),
+    ...adaptActivitiesFilter(rawPractices.results).sort(sortedActivitiesByOrder),
+    ...adaptOutdoorPracticesForActivities(
+      rawOutdoorPractices ? rawOutdoorPractices.results : [],
+    ).sort(sortedActivitiesByOrder),
+    ...adaptTouristicContentCategoryList(rawTouristicContentCategories.results).sort(
+      sortedActivitiesByOrder,
+    ),
+    ...adaptTouristicEventTypesForActivities(
+      rawTouristicEvents ? rawTouristicEvents.results : [],
+    ).sort(sortedActivitiesByOrder),
   ];
 };

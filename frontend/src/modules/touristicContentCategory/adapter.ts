@@ -28,10 +28,11 @@ export const adaptTouristicContentCategoryList = (
 ): ActivityFilter[] =>
   rawToutisticContentCategories
     .filter(isCompleteRawListTouristicContentCategory)
-    .map(({ label, pictogram, id }) => ({
+    .map(({ label, pictogram, id, order = null }) => ({
       name: label,
       pictogram,
       id: `${id}`,
+      order,
       type: 'CATEGORY',
     }));
 

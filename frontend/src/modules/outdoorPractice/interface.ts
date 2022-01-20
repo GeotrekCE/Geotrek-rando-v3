@@ -1,5 +1,6 @@
 export interface RawOutdoorPractice {
   id: string;
+  order: null | number;
   sector: number;
   name: string;
   pictogram: string;
