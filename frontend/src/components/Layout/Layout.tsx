@@ -5,6 +5,7 @@ import { Header } from 'components/Header';
 import { colorPalette, zIndex } from 'stylesheet';
 import Loader from 'react-loader';
 import { useNavigationLoader } from './useRedirection';
+import ConditionallyRender from 'components/ConditionallyRender';
 
 const Container = styled.div`
   display: flex;
@@ -24,15 +25,18 @@ export const Layout: FunctionComponent = props => {
     <Container>
       <Header />
       <PageContent>
-        <Loader
-          loaded={!isNavigationLoading}
-          options={{
-            color: colorPalette.primary1,
-            zIndex: zIndex.loader,
-          }}
-        >
-          {props.children}
-        </Loader>
+        <ConditionallyRender client>
+          <Loader
+            loaded={!isNavigationLoading}
+            options={{
+              color: colorPalette.primary1,
+              zIndex: zIndex.loader,
+            }}
+          >
+            {props.children}
+          </Loader>
+        </ConditionallyRender>
+        <ConditionallyRender server>{props.children}</ConditionallyRender>
       </PageContent>
     </Container>
   );
