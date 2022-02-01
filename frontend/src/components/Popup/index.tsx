@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { FormattedMessage } from 'react-intl';
+import { Cross } from 'components/Icons/Cross';
 
-const Popup: React.FC = ({ children }) => {
+interface PopupProps {
+  children: React.ReactNode;
+  onClose?: () => void;
+}
+
+const PopupContent: React.FC<PopupProps> = ({ children, onClose }) => {
+  useEffect(() => {
+    if (onClose === undefined) {
+      return;
+    }
+    const handleClose = (event: { key: string }): void => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+    global.addEventListener('keydown', handleClose);
+    return () => global.removeEventListener('keydown', handleClose);
+  }, [onClose]);
+
   return (
     <div
-      className="fixed inset-0 overflow-y-auto"
+      className="fixed inset-0 overflow-y-auto overscroll-contain"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
@@ -20,7 +41,13 @@ const Popup: React.FC = ({ children }) => {
         </span>
 
         <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-          <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div className="flex flex-col bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            {onClose !== undefined && (
+              <button className="flex self-end mb-4" type="button" onClick={onClose}>
+                <Cross size={24} />
+                <FormattedMessage id={'details.close'} />
+              </button>
+            )}
             <div className="sm:flex sm:items-start">
               <div>{children}</div>
             </div>
@@ -29,6 +56,22 @@ const Popup: React.FC = ({ children }) => {
       </div>
     </div>
   );
+};
+
+const Popup: React.FC<PopupProps> = props => {
+  const [container] = useState(() => {
+    return document.createElement('div');
+  });
+
+  useEffect(() => {
+    container.classList.add('popup-wrapper');
+    document.body.appendChild(container);
+    return () => {
+      document.body.removeChild(container);
+    };
+  }, []);
+
+  return createPortal(<PopupContent {...props} />, container);
 };
 
 export default Popup;
