@@ -40,7 +40,6 @@
     "@zeit/next-source-maps": "^0.0.4-canary.1",
     "autoprefixer": "10.3.4",
     "axios": "0.21.4",
-    "bundlesize": "0.18.1",
     "compression": "^1.7.4",
     "cypress": "^4.12.1",
     "debounce": "^1.2.1",
