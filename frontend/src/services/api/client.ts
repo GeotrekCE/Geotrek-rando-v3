@@ -1,27 +1,19 @@
 import { getGlobalConfig } from 'modules/utils/api.config';
 import axios from 'axios';
-const STALE_CACHE_TIME = 1000 * 60 * 60 * 24;
-
-const cachedRoute: RegExp[] = [
-  RegExp(/\/trek_practice/),
-  RegExp(/\/city/),
-  RegExp(/\/trek_accessibility/),
-  RegExp(/\/trek_difficulty/),
-  RegExp(/\/district/),
-  RegExp(/\/label/),
-  RegExp(/\/portal/),
-  RegExp(/\/theme/),
-  RegExp(/\/touristiccontent_category/),
-  RegExp(/\/structure/),
-  RegExp(/\/trek_route/),
-  RegExp(/\/trek_network/),
-  RegExp(/\/poi_type/),
-  RegExp(/\/source/),
-  RegExp(/\/informationdesk/),
-];
+import withCache from './cache';
 
 const instance = axios.create({
   baseURL: getGlobalConfig().apiUrl,
 });
 
-export const GeotrekAPI = instance;
+// Handling 404
+instance.interceptors.response.use(
+  r => r,
+  e => {
+    if (e?.response?.status === 404) {
+      throw new Error('RESSOURCE_NOT_FOUND');
+    }
+  },
+);
+
+export const GeotrekAPI = getGlobalConfig().enableServerCache ? withCache(instance) : instance;
