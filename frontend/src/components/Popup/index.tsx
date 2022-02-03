@@ -4,11 +4,12 @@ import { FormattedMessage } from 'react-intl';
 import { Cross } from 'components/Icons/Cross';
 
 interface PopupProps {
+  title?: string;
   children: React.ReactNode;
   onClose?: () => void;
 }
 
-const PopupContent: React.FC<PopupProps> = ({ children, onClose }) => {
+const PopupContent: React.FC<PopupProps> = ({ children, onClose, title }) => {
   useEffect(() => {
     if (onClose === undefined) {
       return;
@@ -30,7 +31,7 @@ const PopupContent: React.FC<PopupProps> = ({ children, onClose }) => {
       aria-modal="true"
       style={{ zIndex: 901 }}
     >
-      <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0 overscroll-contain">
         <div
           className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
           aria-hidden="true"
@@ -42,12 +43,15 @@ const PopupContent: React.FC<PopupProps> = ({ children, onClose }) => {
 
         <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
           <div className="flex flex-col bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            {onClose !== undefined && (
-              <button className="flex self-end mb-4" type="button" onClick={onClose}>
-                <Cross size={24} />
-                <FormattedMessage id={'details.close'} />
-              </button>
-            )}
+            <div className="flex justify-between mb-4">
+              {title !== undefined ? <h1 className="text-xl">{title}</h1> : <span />}
+              {onClose !== undefined && (
+                <button className="flex self-end" type="button" onClick={onClose}>
+                  <Cross size={24} />
+                  <FormattedMessage id={'details.close'} />
+                </button>
+              )}
+            </div>
             <div className="sm:flex sm:items-start">
               <div>{children}</div>
             </div>
