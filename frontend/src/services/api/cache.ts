@@ -1,5 +1,6 @@
 import { Axios } from 'axios';
 import qs from 'qs';
+import store from 'store';
 
 const STALE_CACHE_TIME = 1000 * 60 * 60 * 24;
 
@@ -21,13 +22,11 @@ const cachedRoute: RegExp[] = [
   RegExp(/\/informationdesk/),
 ];
 
-const cache = new Map();
-
 export const requestInterceptor = (config: any) => {
   const key = config.url + '?' + qs.stringify(config.params);
 
-  if (config.method === 'get' && cache.has(key)) {
-    const cached = cache.get(key);
+  if (config.method === 'get' && store.get(key) != null) {
+    const cached = store.get(key);
 
     if (Date.now() < cached.expiration) {
       config.data = cached.data;
@@ -58,7 +57,7 @@ export const responseInterceptor = (response: any) => {
   ) {
     const key = response.config.url + '?' + qs.stringify(response.config.params);
 
-    cache.set(key, { data: response.data, expiration: Date.now() + STALE_CACHE_TIME });
+    store.set(key, { data: response.data, expiration: Date.now() + STALE_CACHE_TIME });
   }
   return response;
 };
