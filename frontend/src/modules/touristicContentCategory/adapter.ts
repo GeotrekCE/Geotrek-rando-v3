@@ -11,6 +11,7 @@ import {
 export const adaptTouristicContentCategory = (
   rawCat: RawTouristicContentCategory,
 ): TouristicContentCategory => ({
+  id: rawCat.id,
   label: rawCat.label,
   pictogramUri: rawCat.pictogram,
   types: rawCat.types,

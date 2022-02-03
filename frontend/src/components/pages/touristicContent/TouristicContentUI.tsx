@@ -97,6 +97,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                 <DetailsTopIcons
                   details={touristicContent}
                   practice={{
+                    id: 0,
                     pictogram: touristicContent.category.pictogramUri,
                     name: touristicContent.category.label,
                   }}

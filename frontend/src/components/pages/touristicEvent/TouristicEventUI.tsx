@@ -150,6 +150,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                     <DetailsTopIcons
                       details={touristicEventContent}
                       practice={{
+                        id: 0,
                         pictogram: touristicEventContent.typeEvent.pictogram,
                         name: touristicEventContent.typeEvent.type,
                       }}

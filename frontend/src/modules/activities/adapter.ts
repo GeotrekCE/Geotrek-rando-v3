@@ -21,6 +21,7 @@ export const adaptActivityFilter = (
 });
 
 export const adaptActivity = (rawActivity: RawListActivity): Activity => ({
+  id: rawActivity.id,
   pictogram: rawActivity.pictogram,
   name: rawActivity.name,
 });

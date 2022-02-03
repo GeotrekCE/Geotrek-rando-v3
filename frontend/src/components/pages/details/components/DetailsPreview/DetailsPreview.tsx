@@ -28,6 +28,7 @@ import { TouristicEventDetails } from '../../../../../modules/touristicEvent/int
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { DetailsTrekParentButton } from '../DetailsTrekParentButton';
 import { HtmlText } from '../../utils';
+import DetailsBreadcrumb from './DetailsBreadcrumb';
 
 interface DetailsPreviewInformation extends DetailsInformation {
   types?: TouristicContentDetailsType[];
@@ -87,6 +88,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       id="details_preview"
       className={`${className ?? ''} flex flex-col mt-2 desktop:mt-10 relative`}
     >
+      <DetailsBreadcrumb title={title} details={details} type={type} />
       {trekFamily && (
         <div id="details_trekFamily" className="mb-4">
           <DetailsTrekParentButton
@@ -100,7 +102,6 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           />
         </div>
       )}
-
       {informations.logoUri !== undefined && informations.logoUri.length > 0 && (
         <img
           id="details_logo"
@@ -226,7 +227,6 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           ))}
         </div>
       )}
-
       {'ratings' in details && details.ratings.length > 0 && (
         <div>
           {Object.entries(groupBy(details.ratings, 'scale.name')).map(([key, entry]) => (
@@ -236,29 +236,24 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           ))}
         </div>
       )}
-
       {'ratingsDescription' in details && details.ratingsDescription && (
         <div className={'my-2'}>
           <HtmlText>{parse(details.ratingsDescription)}</HtmlText>
         </div>
       )}
-
       {'typeSite' in details && details.typeSite && (
         <div className={'my-2'}>
           <FormattedMessage id={'details.typeSite'} /> : {details.typeSite.name}
         </div>
       )}
-
       {'typeCourse' in details && details.typeCourse && (
         <div className={'my-2'}>
           <FormattedMessage id={'details.typeCourse'} /> : {details.typeCourse.name}
         </div>
       )}
-
       <div className="desktop:hidden mt-4">
         <OfflineButton details={details} type={type} />
       </div>
-
       {teaser && teaser?.length > 0 && (
         <div
           id="details_teaser"
