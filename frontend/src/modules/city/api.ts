@@ -7,7 +7,5 @@ const fieldsParams = {
 };
 
 export const fetchCities = (query: APIQuery): Promise<APIResponseForList<RawCity>> =>
-  GeotrekAPI.url(`/city`)
-    .query({ ...query, ...fieldsParams })
-    .get()
-    .json();
+  GeotrekAPI.get(`/city`, { params: { ...query, ...fieldsParams } })
+  .then(r => r.data)

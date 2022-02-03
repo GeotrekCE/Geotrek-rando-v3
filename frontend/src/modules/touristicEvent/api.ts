@@ -10,15 +10,14 @@ const fieldsParams = {
 export const fetchTouristicEvents = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawTouristicEvent>> =>
-  GeotrekAPI.url(`/touristicevent`)
-    .query({
+  GeotrekAPI.get(`/touristicevent`, {
+    params: {
       ...query,
       ...fieldsParams,
       ...portalsFilter,
       dates_after: '2021-11-10', // @FIXME
-    })
-    .get()
-    .json();
+    },
+  }).then(r => r.data);
 
 const fieldsParamsDetails = {
   fields: `${fieldsParams.fields},description,description_teaser,participant_number,pdf,meeting_point,duration,source,contact,email,website,accessibility,organizer,speaker,target_audience,practical_info,booking,meeting_time`,
@@ -29,10 +28,4 @@ export const fetchTouristicEventDetails = (
   query: APIQuery,
   id: string,
 ): Promise<RawTouristicEventDetails> =>
-  GeotrekAPI.url(`/touristicevent/${id}/`)
-    .query({ ...query, ...fieldsParamsDetails })
-    .get()
-    .notFound(() => {
-      throw new Error('RESSOURCE_NOT_FOUND');
-    })
-    .json();
+  GeotrekAPI.get(`/touristicevent/${id}/`, { params: { ...query, ...fieldsParamsDetails } }).then(r => r.data);;

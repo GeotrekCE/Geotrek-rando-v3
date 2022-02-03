@@ -8,10 +8,9 @@ const trekFieldsParams = {
 };
 
 export const fetchTrekMapResults = (query: APIQuery): Promise<RawTrekMapResults> =>
-  GeotrekAPI.url('/trek')
-    .query({ ...query, ...trekFieldsParams, ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get('/trek', { params: { ...query, ...trekFieldsParams, ...portalsFilter } }).then(
+    r => r.data,
+  );
 
 const touristicContentFieldsParams = {
   fields: 'id,geometry,category',
@@ -20,7 +19,6 @@ const touristicContentFieldsParams = {
 export const fetchTouristicContentMapResults = (
   query: APIQuery,
 ): Promise<RawTouristicContentMapResults> =>
-  GeotrekAPI.url('/touristiccontent')
-    .query({ ...query, ...touristicContentFieldsParams, ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get('/touristiccontent', {
+    params: { ...query, ...touristicContentFieldsParams, ...portalsFilter },
+  }).then(r => r.data);

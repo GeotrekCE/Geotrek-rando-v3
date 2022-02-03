@@ -10,10 +10,9 @@ const fieldsParams = {
 export const fetchOutdoorCourses = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawOutdoorCourse>> =>
-  GeotrekAPI.url(`/outdoor_course`)
-    .query({ ...query, ...fieldsParams, ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get(`/outdoor_course`, {
+    params: { ...query, ...fieldsParams, ...portalsFilter },
+  }).then(r => r.data);
 
 const fieldsParamsDetails = {
   fields: `${fieldsParams.fields},advice,description,equipment,gear,min_elevation,ratings,ratings_description,site,structure,type,url,children,pdf`,
@@ -24,10 +23,6 @@ export const fetchOutdoorCourseDetails = (
   query: APIQuery,
   id: string,
 ): Promise<RawOutdoorCourseDetails> =>
-  GeotrekAPI.url(`/outdoor_course/${id}/`)
-    .query({ ...query, ...fieldsParamsDetails })
-    .get()
-    .notFound(() => {
-      throw new Error('RESSOURCE_NOT_FOUND');
-    })
-    .json();
+  GeotrekAPI.get(`/outdoor_course/${id}/`, { params: { ...query, ...fieldsParamsDetails } }).then(
+    r => r.data,
+  );
