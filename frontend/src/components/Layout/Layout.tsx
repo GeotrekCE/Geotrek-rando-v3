@@ -2,10 +2,10 @@ import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 
 import { Header } from 'components/Header';
+import ConditionallyRender from 'components/ConditionallyRender';
 import { colorPalette, zIndex } from 'stylesheet';
 import Loader from 'react-loader';
 import { useNavigationLoader } from './useRedirection';
-import ConditionallyRender from 'components/ConditionallyRender';
 
 const Container = styled.div`
   display: flex;
