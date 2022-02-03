@@ -1,6 +1,7 @@
 import { Axios } from 'axios';
 import qs from 'qs';
 import store from 'store';
+import { getGlobalConfig } from 'modules/utils/api.config';
 
 const STALE_CACHE_TIME = 1000 * 60 * 60 * 24;
 
@@ -22,8 +23,10 @@ const cachedRoute: RegExp[] = [
   RegExp(/\/informationdesk/),
 ];
 
+const apiUrl = getGlobalConfig().apiUrl;
+
 export const requestInterceptor = (config: any) => {
-  const key = config.url + '?' + qs.stringify(config.params);
+  const key = apiUrl + config.url + '?' + qs.stringify(config.params);
 
   if (config.method === 'get' && store.get(key) != null) {
     const cached = store.get(key);
@@ -55,7 +58,7 @@ export const responseInterceptor = (response: any) => {
     response?.config.method === 'get' &&
     cachedRoute.some(r => r.test(response.config.url))
   ) {
-    const key = response.config.url + '?' + qs.stringify(response.config.params);
+    const key = apiUrl + response.config.url + '?' + qs.stringify(response.config.params);
 
     store.set(key, { data: response.data, expiration: Date.now() + STALE_CACHE_TIME });
   }
