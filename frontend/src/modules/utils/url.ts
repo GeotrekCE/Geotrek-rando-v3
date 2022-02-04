@@ -22,7 +22,10 @@ export const redirectIfWrongUrl = (
 
   const url = `${baseUrlTrimmed}${pathname}`;
 
-  if (context.resolvedUrl.split('?')[0] !== pathname && process.env.NODE_ENV === 'production') {
+  if (
+    context.resolvedUrl.split('?')[0] !== pathname.split('?')[0] &&
+    process.env.NODE_ENV === 'production'
+  ) {
     return {
       destination: url,
       permanent: true,
