@@ -1,15 +1,15 @@
 # Changelog
 
-3.6.0 (unreleased)
+3.6.0 (2022-02-07)
 ------------------
 
 **🐛 Fixes**
 
-* Fix SSR (#511)
-* Fix cache (#460)
+* Fix SSR (Server Side Rendering) and imprive SEO (#511)
+* Fix Node.js server cache (#460)
 * Fix Next.js prefetch mechanism
 
-**Maintenance**
+**🔧 Maintenance**
 
 * Upgrade Node.js version 14 to 17 (#460)
 * Remove and upgrade several dependencies (#533)
