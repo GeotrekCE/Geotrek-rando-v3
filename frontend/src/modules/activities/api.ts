@@ -4,14 +4,13 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawListActivity } from './interface';
 
 export const fetchActivity = (query: APIQuery, id: number): Promise<RawListActivity> => {
-  return GeotrekAPI.url(`/trek_practice/${id}/`).query(query).get().json();
+  return GeotrekAPI.get(`/trek_practice/${id}/`, { params: query }).then(r => r.data);
 };
 
 export const fetchActivities = (
   query: APIQuery,
 ): Promise<APIResponseForList<Partial<RawListActivity>>> => {
-  return GeotrekAPI.url('/trek_practice')
-    .query({ ...query, ...portalsFilter })
-    .get()
-    .json();
+  return GeotrekAPI.get('/trek_practice', { params: { ...query, ...portalsFilter } }).then(
+    r => r.data,
+  );
 };

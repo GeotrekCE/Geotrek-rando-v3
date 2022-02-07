@@ -11,45 +11,37 @@ const fieldsParams = {
 export const fetchTrekResults = (
   query: APIQuery,
 ): Promise<APIResponseForList<Partial<RawTrekResult>>> =>
-  GeotrekAPI.url('/trek')
-    .query({ ...query, ...fieldsParams, ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get('/trek', { params: { ...query, ...fieldsParams, ...portalsFilter } }).then(
+    r => r.data,
+  );
 
 export const fetchTrekResult = (query: APIQuery, id: number): Promise<RawTrekResult> =>
-  GeotrekAPI.url(`/trek/${id}`)
-    .query({ ...query, ...fieldsParams })
-    .get()
-    .json();
+  GeotrekAPI.get(`/trek/${id}`, { params: { ...query, ...fieldsParams } }).then(r => r.data);
 
 export const fetchTrekResultsNumber = (
   query: APIQuery,
 ): Promise<APIResponseForList<{ id: number }>> =>
-  GeotrekAPI.url('/trek')
-    .query({ ...query, fields: 'id', ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get('/trek', { params: { ...query, fields: 'id', ...portalsFilter } }).then(
+    r => r.data,
+  );
 
 export const fetchTouristicContentResultsNumber = (
   query: APIQuery,
 ): Promise<APIResponseForList<{ id: number }>> =>
-  GeotrekAPI.url('/touristiccontent')
-    .query({ ...query, fields: 'id', ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get('/touristiccontent', {
+    params: { ...query, fields: 'id', ...portalsFilter },
+  }).then(r => r.data);
 
 export const fetchOutdoorSitesResultsNumber = (
   query: APIQuery,
 ): Promise<APIResponseForList<{ id: number }>> =>
-  GeotrekAPI.url('/outdoor_site')
-    .query({ ...query, fields: 'id', ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get('/outdoor_site', { params: { ...query, fields: 'id', ...portalsFilter } }).then(
+    r => r.data,
+  );
 
 export const fetchTouristicEventsResultsNumber = (
   query: APIQuery,
 ): Promise<APIResponseForList<{ id: number }>> =>
-  GeotrekAPI.url('/touristicevent')
-    .query({ ...query, fields: 'id', ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get('/touristicevent', { params: { ...query, fields: 'id', ...portalsFilter } }).then(
+    r => r.data,
+  );

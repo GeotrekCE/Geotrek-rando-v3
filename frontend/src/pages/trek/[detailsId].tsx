@@ -14,6 +14,7 @@ import Custom404 from '../404';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getServerSideProps = async (context: {
   locale: string;
+  resolvedUrl: string;
   query: { detailsId: string | undefined; parentId: string | undefined };
   res: any;
   req: any;
@@ -31,7 +32,17 @@ export const getServerSideProps = async (context: {
       getTrekFamily(parentIdString, context.locale),
     );
 
-    redirectIfWrongUrl(id, details.title, context, routes.DETAILS, Number(parentIdString));
+    const redirect = redirectIfWrongUrl(
+      id,
+      details.title,
+      context,
+      routes.DETAILS,
+      Number(parentIdString),
+    );
+    if (redirect)
+      return {
+        redirect,
+      };
 
     return {
       props: {

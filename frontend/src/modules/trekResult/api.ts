@@ -7,16 +7,10 @@ const fieldsParams = {
 };
 
 export const fetchTrekPopupResult = (query: APIQuery, id: string): Promise<RawTrekPopupResult> =>
-  GeotrekAPI.url(`/trek/${id}/`)
-    .query({ ...query, ...fieldsParams })
-    .get()
-    .json();
+  GeotrekAPI.get(`/trek/${id}/`, { params: { ...query, ...fieldsParams } }).then(r => r.data);
 
 export const fetchTrekGeometryResult = (
   query: APIQuery,
   id: string,
 ): Promise<RawTrekGeometryResult> =>
-  GeotrekAPI.url(`/trek/${id}/`)
-    .query({ ...query, fields: 'geometry' })
-    .get()
-    .json();
+  GeotrekAPI.get(`/trek/${id}/`, { params: { ...query, fields: 'geometry' } }).then(r => r.data);

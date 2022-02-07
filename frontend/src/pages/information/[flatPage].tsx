@@ -10,6 +10,7 @@ import Custom404 from '../404';
 
 export const getServerSideProps = async (context: {
   locale: string;
+  resolvedUrl: string;
   query: { flatPage: string };
   res: any;
   req: any;
@@ -23,7 +24,11 @@ export const getServerSideProps = async (context: {
 
     await queryClient.prefetchQuery(`flatPageDetails-${id}-${context.locale}`, () => details);
 
-    redirectIfWrongUrl(id, details.title, context, routes.FLAT_PAGE);
+    const redirect = redirectIfWrongUrl(id, details.title, context, routes.FLAT_PAGE);
+    if (redirect)
+      return {
+        redirect,
+      };
 
     return { props: {} };
   } catch (error) {

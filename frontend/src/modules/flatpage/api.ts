@@ -8,20 +8,15 @@ const fieldsParamFlatPages = {
 };
 
 export const fetchFlatPages = (query: APIQuery): Promise<APIResponseForList<RawFlatPage>> =>
-  GeotrekAPI.url(`/flatpage`)
-    .query({ ...query, ...fieldsParamFlatPages, ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get(`/flatpage`, {
+    params: { ...query, ...fieldsParamFlatPages, ...portalsFilter },
+  }).then(r => r.data);
 
 const fieldsParamFlatPageDetails = {
   fields: 'id,title,content,source,attachments',
 };
 
 export const fetchFlatPageDetails = (query: APIQuery, id: string): Promise<RawFlatPageDetails> =>
-  GeotrekAPI.url(`/flatpage/${id}/`)
-    .query({ ...query, ...fieldsParamFlatPageDetails })
-    .get()
-    .notFound(() => {
-      throw new Error('RESSOURCE_NOT_FOUND');
-    })
-    .json();
+  GeotrekAPI.get(`/flatpage/${id}/`, { params: { ...query, ...fieldsParamFlatPageDetails } }).then(
+    r => r.data,
+  );

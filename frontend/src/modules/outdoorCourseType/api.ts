@@ -10,7 +10,6 @@ const fieldsParams = {
 export const fetchOutdoorCourseType = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawOutdoorCourseType>> =>
-  GeotrekAPI.url(`/outdoor_coursetype`)
-    .query({ ...query, ...fieldsParams, ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get(`/outdoor_coursetype`, {
+    params: { ...query, ...fieldsParams, ...portalsFilter },
+  });

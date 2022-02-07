@@ -11,7 +11,6 @@ export const fetchActivitySuggestion = (
   id: string,
   query: APIQuery,
 ): Promise<RawActivitySuggestion> =>
-  GeotrekAPI.url(`/trek/${id}`)
-    .query({ ...query, ...fieldsParams, ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get(`/trek/${id}`, { params: { ...query, ...fieldsParams, ...portalsFilter } }).then(
+    r => r.data,
+  );
