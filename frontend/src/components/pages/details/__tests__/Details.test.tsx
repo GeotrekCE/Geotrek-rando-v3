@@ -3,6 +3,7 @@ import { render } from 'services/testing/reactTestingLibraryWrapper';
 import 'isomorphic-fetch';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { mockThemeResponse } from 'components/pages/search/mocks';
+import { GeotrekAPI } from 'services/api/client';
 import { mockPoiTypeRoute } from 'modules/poiType/mocks';
 import { mockPoiRoute } from 'modules/poi/mocks';
 import { mockTouristicContentRoute } from 'modules/touristicContent/mocks';
@@ -22,7 +23,10 @@ import {
   rawDifficulty,
   rawRoute,
 } from 'modules/details/mocks/mocks';
+
 import { DetailsUI } from '../';
+
+GeotrekAPI.defaults.adapter = require('axios/lib/adapters/http');
 
 describe('Details', () => {
   const idToTest = 2;
