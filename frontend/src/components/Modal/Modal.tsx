@@ -3,6 +3,7 @@ import ReactFullscreen from 'react-easyfullscreen';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapButton } from 'components/Map/components/MapButton';
+import ConditionallyRender from 'components/ConditionallyRender';
 
 type Props = {
   children: ({
@@ -14,7 +15,7 @@ type Props = {
   }) => any | ReactElement<any>;
 };
 
-export const Modal: React.FC<Props> = ({ children }) => {
+const Inner: React.FC<Props> = ({ children }) => {
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
 
   const handler = useCallback(() => setIsFullscreen(!isFullscreen), [isFullscreen]);
@@ -70,5 +71,13 @@ export const Modal: React.FC<Props> = ({ children }) => {
         );
       }}
     </ReactFullscreen>
+  );
+};
+
+export const Modal: React.FC<Props> = props => {
+  return (
+    <ConditionallyRender client>
+      <Inner {...props} />
+    </ConditionallyRender>
   );
 };

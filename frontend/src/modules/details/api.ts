@@ -10,13 +10,9 @@ const fieldsParams = {
 
 export const fetchDetails = (query: APIQuery, id: string): Promise<RawDetails> => {
   try {
-    return GeotrekAPI.url(`/trek/${id}/`)
-      .query({ ...query, ...fieldsParams })
-      .get()
-      .notFound(() => {
-        throw new Error('RESSOURCE_NOT_FOUND');
-      })
-      .json();
+    return GeotrekAPI.get(`/trek/${id}/`, { params: { ...query, ...fieldsParams } }).then(
+      r => r.data,
+    );
   } catch (e) {
     console.error('Error in details/api', e);
     throw e;
@@ -24,22 +20,17 @@ export const fetchDetails = (query: APIQuery, id: string): Promise<RawDetails> =
 };
 
 export const fetchTrekChildren = (query: APIQuery, id: string): Promise<RawTrekChildIds> => {
-  return GeotrekAPI.url(`/trek/${id}/`)
-    .query({ ...query, fields: 'children' })
-    .get()
-    .json();
+  return GeotrekAPI.get(`/trek/${id}/`, { params: { ...query, fields: 'children' } }).then(
+    r => r.data,
+  );
 };
 
 export const fetchTrekName = (query: APIQuery, id: string): Promise<RawTrekName> => {
-  return GeotrekAPI.url(`/trek/${id}/`)
-    .query({ ...query, fields: 'name' })
-    .get()
-    .json();
+  return GeotrekAPI.get(`/trek/${id}/`, { params: { ...query, fields: 'name' } }).then(r => r.data);
 };
 
 export const fetchTrekGeometry = (query: APIQuery, id: string): Promise<RawTrekChildGeometry> => {
-  return GeotrekAPI.url(`/trek/${id}/`)
-    .query({ ...query, format: 'geojson' })
-    .get()
-    .json();
+  return GeotrekAPI.get(`/trek/${id}/`, { params: { ...query, format: 'geojson' } }).then(
+    r => r.data,
+  );
 };

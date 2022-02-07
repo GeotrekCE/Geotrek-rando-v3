@@ -39,8 +39,7 @@
     "@sentry/node": "6.13.2",
     "@zeit/next-source-maps": "^0.0.4-canary.1",
     "autoprefixer": "10.3.4",
-    "axios": "0.21.4",
-    "bundlesize": "0.18.1",
+    "axios": "0.25.0",
     "compression": "^1.7.4",
     "cypress": "^4.12.1",
     "debounce": "^1.2.1",
@@ -60,7 +59,7 @@
     "next": "12",
     "next-compose-plugins": "^2.2.1",
     "next-cookies": "^2.0.3",
-    "next-pwa": "5.3.1",
+    "next-pwa": "^5.4.4",
     "postcss": "8.3.6",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",
@@ -84,14 +83,14 @@
     "react-simple-dropdown": "^3.2.3",
     "react-slick": "0.28.1",
     "slick-carousel": "^1.8.1",
+    "store": "^2.0.12",
     "striptags": "^3.2.0",
     "styled-components": "5.3.1",
     "superagent": "^6.1.0",
     "tailwindcss": "^2.0.2",
     "ts-node": "10.2.1",
     "typesafe-actions": "^5.1.0",
-    "wait-on": "6.0.0",
-    "wretch": "1.7.6"
+    "wait-on": "6.0.0"
   },
   "devDependencies": {
     "@accessible/accordion": "^2.0.0",
@@ -101,6 +100,7 @@
     "@types/leaflet": "1.7.5",
     "@types/lodash": "4.14.173",
     "@types/node": "16.9.4",
+    "@types/qs": "^6.9.7",
     "@types/react": "17.0.22",
     "@types/react-burger-menu": "2.8.1",
     "@types/react-dom": "17.0.9",
@@ -110,6 +110,7 @@
     "@types/react-select": "4.0.17",
     "@types/react-slick": "0.23.5",
     "@types/react-test-renderer": "17.0.1",
+    "@types/store": "^2.0.2",
     "@types/styled-components": "5.1.14",
     "@types/superagent": "4.1.13",
     "@typescript-eslint/eslint-plugin": "4.31.2",
@@ -143,7 +144,6 @@
     "typescript": "4.4.3"
   },
   "resolutions": {
-    "bl": "^4.0.3",
-    "node-fetch": "2.6.1"
+    "bl": "^4.0.3"
   }
 }

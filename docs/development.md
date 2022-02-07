@@ -4,11 +4,11 @@ Installation in development:
 
 ## Prerequisite
 
-- You need to use a node version above 14
+- You need to use a node version above 17
 - Use nvm and then:
 
 ```bash
-nvm use 14
+nvm use 17
 ```
 
 ## Install dependencies

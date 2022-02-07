@@ -1,5 +1,20 @@
 # Changelog
 
+3.6.0 (unreleased)
+------------------
+
+**🐛 Fixes**
+
+* Fix SSR (#511)
+* Fix cache (#460)
+* Fix Next.js prefetch mechanism
+
+**Maintenance**
+
+* Upgrade Node.js version 14 to 17 (#460)
+* Remove and upgrade several dependencies (#533)
+* Replace wretch by axios as http client (#460)
+
 3.5.4 (2022-01-20)
 ------------------
 

@@ -4,10 +4,7 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawTheme } from './interface';
 
 export const fetchThemes = (query: APIQuery): Promise<APIResponseForList<Partial<RawTheme>>> =>
-  GeotrekAPI.url('/theme')
-    .query({ ...query, ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get('/theme', { params: { ...query, ...portalsFilter } }).then(r => r.data);
 
 export const fetchTheme = (query: APIQuery, id: number): Promise<RawTheme> =>
-  GeotrekAPI.url(`/theme/${id}`).query(query).get().json();
+  GeotrekAPI.get(`/theme/${id}`, { params: query }).then(r => r.data);

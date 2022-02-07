@@ -11,6 +11,7 @@ import Custom404 from '../404';
 
 export const getServerSideProps = async (context: {
   locale: string;
+  resolvedUrl: string;
   query: { touristicEvent: string };
   res: any;
   req: any;
@@ -26,7 +27,11 @@ export const getServerSideProps = async (context: {
 
     await queryClient.prefetchQuery(`touristicEventDetails-${id}-${context.locale}`, () => details);
 
-    redirectIfWrongUrl(id, details.name, context, routes.TOURISTIC_EVENT);
+    const redirect = redirectIfWrongUrl(id, details.name, context, routes.TOURISTIC_EVENT);
+    if (redirect)
+      return {
+        redirect,
+      };
 
     return { props: {} };
   } catch (error) {

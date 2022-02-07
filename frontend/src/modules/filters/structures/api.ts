@@ -3,4 +3,4 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawStructure } from './interface';
 
 export const fetchStructures = (query: APIQuery): Promise<APIResponseForList<RawStructure>> =>
-  GeotrekAPI.url('/structure').query(query).get().json();
+  GeotrekAPI.get('/structure', { params: query }).then(r => r.data);

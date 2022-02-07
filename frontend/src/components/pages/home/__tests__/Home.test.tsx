@@ -3,10 +3,13 @@ import { render } from 'services/testing/reactTestingLibraryWrapper';
 import 'isomorphic-fetch';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { GeotrekAPI } from 'services/api/client';
 
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { Home } from '../';
 import { mockActivitySuggestionsResponse } from '../mocks';
+
+GeotrekAPI.defaults.adapter = require('axios/lib/adapters/http');
 
 describe('Home page', () => {
   const queryClient = new QueryClient();

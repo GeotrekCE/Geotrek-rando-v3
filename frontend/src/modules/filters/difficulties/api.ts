@@ -6,10 +6,7 @@ import { RawDifficulty } from '../interface';
 export const fetchDifficulties = (
   query: APIQuery,
 ): Promise<APIResponseForList<Partial<RawDifficulty>>> =>
-  GeotrekAPI.url('/trek_difficulty')
-    .query({ ...query, ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get('/trek_difficulty', { params: { ...query, ...portalsFilter } }).then(r => r.data);
 
 export const fetchDifficulty = (query: APIQuery, id: number): Promise<RawDifficulty> =>
-  GeotrekAPI.url(`/trek_difficulty/${id}/`).query(query).get().json();
+  GeotrekAPI.get(`/trek_difficulty/${id}/`, { params: query }).then(r => r.data);

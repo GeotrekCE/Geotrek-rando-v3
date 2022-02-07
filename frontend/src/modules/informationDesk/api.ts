@@ -10,10 +10,9 @@ export const fetchInformationDesks = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawInformationDesk>> => {
   try {
-    return GeotrekAPI.url(`/informationdesk`)
-      .query({ ...query, ...fieldsParams })
-      .get()
-      .json();
+    return GeotrekAPI.get('/informationdesk', { params: { ...query, ...fieldsParams } }).then(
+      r => r.data,
+    );
   } catch (e) {
     console.error('Error in informationDesk/api/fetch', e);
     throw e;

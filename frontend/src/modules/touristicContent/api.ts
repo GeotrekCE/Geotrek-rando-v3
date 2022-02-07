@@ -16,10 +16,9 @@ const fieldsParams = {
 export const fetchTouristicContent = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawTouristicContent>> =>
-  GeotrekAPI.url(`/touristiccontent`)
-    .query({ ...query, ...fieldsParams, ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get(`/touristiccontent`, {
+    params: { ...query, ...fieldsParams, ...portalsFilter },
+  }).then(r => r.data);
 
 const fieldsParamsDetails = {
   fields: `${fieldsParams.fields},description,source,contact,email,website,cities,themes,types,pdf,approved`,
@@ -30,13 +29,9 @@ export const fetchTouristicContentDetails = (
   query: APIQuery,
   id: string,
 ): Promise<RawTouristicContentDetails> =>
-  GeotrekAPI.url(`/touristiccontent/${id}/`)
-    .query({ ...query, ...fieldsParamsDetails })
-    .get()
-    .notFound(() => {
-      throw new Error('RESSOURCE_NOT_FOUND');
-    })
-    .json();
+  GeotrekAPI.get(`/touristiccontent/${id}/`, { params: { ...query, ...fieldsParamsDetails } }).then(
+    r => r.data,
+  );
 
 const fieldsParamsResult = {
   fields: 'id,attachments,name,category,description_teaser,themes,types,cities',
@@ -45,10 +40,9 @@ const fieldsParamsResult = {
 export const fetchTouristicContentResult = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawTouristicContentResult>> =>
-  GeotrekAPI.url(`/touristiccontent`)
-    .query({ ...query, ...fieldsParamsResult, ...portalsFilter })
-    .get()
-    .json();
+  GeotrekAPI.get(`/touristiccontent`, {
+    params: { ...query, ...fieldsParamsResult, ...portalsFilter },
+  }).then(r => r.data);
 
 const fieldsParamsPopupResult = {
   fields: 'id,name,cities,attachments',
@@ -58,16 +52,14 @@ export const fetchTouristicContentPopupResult = (
   query: APIQuery,
   id: string,
 ): Promise<RawTouristicContentPopupResult> =>
-  GeotrekAPI.url(`/touristiccontent/${id}/`)
-    .query({ ...query, ...fieldsParamsPopupResult })
-    .get()
-    .json();
+  GeotrekAPI.get(`/touristiccontent/${id}/`, {
+    params: { ...query, ...fieldsParamsPopupResult },
+  }).then(r => r.data);
 
 export const fetchTouristicContentGeometryResult = (
   query: APIQuery,
   id: string,
 ): Promise<RawTrekGeometryResult> =>
-  GeotrekAPI.url(`/touristiccontent/${id}/`)
-    .query({ ...query, fields: 'geometry' })
-    .get()
-    .json();
+  GeotrekAPI.get(`/touristiccontent/${id}/`, { params: { ...query, fields: 'geometry' } }).then(
+    r => r.data,
+  );

@@ -8,10 +8,9 @@ const fieldsParams = {
 };
 
 export const fetchOutdoorSites = (query: APIQuery): Promise<APIResponseForList<RawOutdoorSite>> => {
-  return GeotrekAPI.url(`/outdoor_site`)
-    .query({ ...query, ...fieldsParams, ...portalsFilter })
-    .get()
-    .json();
+  return GeotrekAPI.get(`/outdoor_site`, {
+    params: { ...query, ...fieldsParams, ...portalsFilter },
+  }).then(r => r.data);
 };
 
 const fieldsParamsDetails = {
@@ -23,10 +22,6 @@ export const fetchOutdoorSiteDetails = (
   query: APIQuery,
   id: string,
 ): Promise<RawOutdoorSiteDetails> =>
-  GeotrekAPI.url(`/outdoor_site/${id}/`)
-    .query({ ...query, ...fieldsParamsDetails })
-    .get()
-    .notFound(() => {
-      throw new Error('RESSOURCE_NOT_FOUND');
-    })
-    .json();
+  GeotrekAPI.get(`/outdoor_site/${id}/`, { params: { ...query, ...fieldsParamsDetails } }).then(
+    r => r.data,
+  );

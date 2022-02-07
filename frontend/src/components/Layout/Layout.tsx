@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 
 import { Header } from 'components/Header';
+import ConditionallyRender from 'components/ConditionallyRender';
 import { colorPalette, zIndex } from 'stylesheet';
 import Loader from 'react-loader';
 import { useNavigationLoader } from './useRedirection';
@@ -24,15 +25,18 @@ export const Layout: FunctionComponent = props => {
     <Container>
       <Header />
       <PageContent>
-        <Loader
-          loaded={!isNavigationLoading}
-          options={{
-            color: colorPalette.primary1,
-            zIndex: zIndex.loader,
-          }}
-        >
-          {props.children}
-        </Loader>
+        <ConditionallyRender client>
+          <Loader
+            loaded={!isNavigationLoading}
+            options={{
+              color: colorPalette.primary1,
+              zIndex: zIndex.loader,
+            }}
+          >
+            {props.children}
+          </Loader>
+        </ConditionallyRender>
+        <ConditionallyRender server>{props.children}</ConditionallyRender>
       </PageContent>
     </Container>
   );

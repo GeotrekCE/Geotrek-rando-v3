@@ -1,16 +1,22 @@
 import { Router } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useNavigationLoader = (): {
   isNavigationLoading: boolean;
 } => {
   const [isNavigationLoading, setIsNavigationLoading] = useState(false);
 
-  Router.events.on('routeChangeStart', (url, { shallow }) => {
-    if (!shallow) setIsNavigationLoading(true);
-  });
-  Router.events.on('routeChangeError', () => setIsNavigationLoading(false));
-  Router.events.on('routeChangeComplete', () => setIsNavigationLoading(false));
+  useEffect(() => {
+    Router.events.on('routeChangeStart', (url, { shallow }) => {
+      if (!shallow) setIsNavigationLoading(true);
+    });
+    Router.events.on('routeChangeError', e => {
+      setIsNavigationLoading(false);
+    });
+    Router.events.on('routeChangeComplete', () => {
+      setIsNavigationLoading(false);
+    });
+  }, []);
 
   return {
     isNavigationLoading,
