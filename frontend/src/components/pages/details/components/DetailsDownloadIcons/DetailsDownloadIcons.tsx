@@ -31,13 +31,6 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
 }) => {
   const [openReport, setOpenReport] = useState<boolean>(false);
 
-  const handleOpenReport = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    event.preventDefault();
-
-    setOpenReport(true);
-  };
-
   const dropdownButtonOptions = [];
   if ('gpxUri' in details && details.gpxUri !== undefined)
     dropdownButtonOptions.push({
@@ -90,12 +83,10 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
           </DetailsButtonDropdown>
         )}
 
-        {details.id && !hideReport && getGlobalConfig().enableReport && (
-          <>
-            <DetailsButton url={'#'} onClick={handleOpenReport}>
-              <AlertTriangle size={size} />
-            </DetailsButton>
-          </>
+        {Number(details.id) && !hideReport && getGlobalConfig().enableReport && (
+          <DetailsButton onClick={() => setOpenReport(true)}>
+            <AlertTriangle size={size} />
+          </DetailsButton>
         )}
       </div>
     </div>
