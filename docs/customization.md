@@ -34,6 +34,8 @@ In json files, you can just override the primary keys you need. You have to over
   - `applicationName`: application name appearing on PWA
   - `enableReport`: to enable report form in trek detail pages
   - `enableSearchByMap`: to enable searching by map displayed area (bbox)
+  - `tilesUrl`: string URL that is only useful for displaying the trek in 3D mode
+  - `maxLengthTrekAllowedFor3DRando`: Maximum length of meters allowed to enable 3D mode in the current trek. Adjust this setting carefully as too long a trek could freeze your browser. If this setting is not defined or defined to `0` (or `tilesUrl` is not set) the 3D mode feature is disabled for the whole application
 
 - `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
 
