@@ -339,18 +339,22 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           titleId="details.accessibility"
                           className={marginDetailsChild}
                         >
-                          <HtmlText>{parse(details.disabledInfrastructure)}</HtmlText>
-                          <div className="flex">
-                            {details.accessibilities.map((accessibility, i) => (
-                              <RemoteIconInformation
-                                key={i}
-                                iconUri={accessibility.pictogramUri}
-                                className="mr-6 mt-3 desktop:mt-4 text-primary"
-                              >
-                                {accessibility.name}
-                              </RemoteIconInformation>
-                            ))}
-                          </div>
+                          {details.disabledInfrastructure && (
+                            <HtmlText>{parse(details.disabledInfrastructure)}</HtmlText>
+                          )}
+                          {details.accessibilities.length > 0 && (
+                            <div className="flex">
+                              {details.accessibilities.map((accessibility, i) => (
+                                <RemoteIconInformation
+                                  key={i}
+                                  iconUri={accessibility.pictogramUri}
+                                  className="mr-6 mt-3 desktop:mt-4 text-primary"
+                                >
+                                  {accessibility.name}
+                                </RemoteIconInformation>
+                              ))}
+                            </div>
+                          )}
                         </DetailsSection>
                       </div>
                     )}
