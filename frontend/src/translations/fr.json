@@ -190,5 +190,41 @@
   "dates": {
     "singleDate": "le {date}",
     "multipleDates": "du {beginDate} au {endDate}"
+  },
+  "rando3D": {
+    "poi": {
+      "no-descriptions": "Pas de description liée à ce point d'intérêt."
+    },
+    "views": {
+      "examine": {
+        "title": "Mode examine",
+        "description": "On peut examiner le terrain en le tournant dans tous les sens.",
+        "cameraTitle": "Exam"
+      },
+      "bird": {
+        "title": "Mode oiseau",
+        "description": "On peut survoler le terrain tel un oiseau, tourner la tête, monter, descendre et se déplacer !",
+        "cameraTitle": "Oiseau"
+      },
+      "hiker": {
+        "title": "Mode randonneur",
+        "description": "Ici on est dans la peau d'un randonneur, on suit sans effort l'avancement de l'itinéraire, en profitant de la vue.",
+        "cameraTitle": "Rando"
+      }
+    },
+    "instructions": {
+      "zoom": "Zoom :",
+      "rotation": "Inclinaison/Rotation :",
+      "moveAround": "Se déplacer :",
+      "lookAround": "Tourner regard :",
+      "playPause": "Lecture/Pause :",
+      "stop": "Stop :"
+    },
+    "actions": {
+      "scrollMouse": "Molette souris",
+      "leftClick": "Clic gauche",
+      "space": "Espace",
+      "enter": "Entrée"
+    }
   }
 }

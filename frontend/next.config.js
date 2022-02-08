@@ -23,7 +23,14 @@ const plugins = [[withPWA], [withSourceMaps()], [withBundleAnalyzer]];
 module.exports = withPlugins(plugins, {
   webpack(config) {
     config.resolve.modules.push(path.resolve('./src'));
-
+    Object.assign(config.resolve.alias, {
+      // GSAP aliases are useful for rando3D package
+      "EasePack": "gsap/src/uncompressed/easing/EasePack.js",
+      "TweenLite": "gsap/src/uncompressed/TweenLite.js",
+      "TimelineLite": "gsap/src/uncompressed/TimelineLite.js",
+      "BezierPlugin": "gsap/src/uncompressed/plugins/BezierPlugin.js",
+      "DirectionalRotationPlugin": "gsap/src/uncompressed/plugins/DirectionalRotationPlugin.js"
+    });
     return config;
   },
   pwa: {

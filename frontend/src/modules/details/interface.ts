@@ -64,6 +64,8 @@ export interface RawDetailsProperties {
   points_reference: RawMultiPointGeometry | null;
   children: number[];
   web_links: RawWebLink[];
+  elevation_area_url: string;
+  altimetric_profile: string;
 }
 
 // Fields parsed with react-html-parser in page
@@ -134,6 +136,9 @@ export interface Details extends DetailsHtml {
   arrival: string;
   cities: string[];
   webLinks: WebLink[];
+  elevationAreaUrl: string;
+  altimetricProfileUrl: string;
+  length2d: number;
 }
 
 export interface WebLink {
