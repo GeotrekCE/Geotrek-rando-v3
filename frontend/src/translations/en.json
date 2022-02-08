@@ -189,5 +189,41 @@
   "dates": {
     "singleDate": "on {date}",
     "multipleDates": "from {beginDate} to {endDate}"
+  },
+  "rando3D": {
+    "poi": {
+      "no-descriptions": "No descriptions related to this point of interest."
+    },
+    "views": {
+      "examine": {
+        "title": "Examine mode",
+        "description": "The terrain can be examined by turning it in all directions.",
+        "cameraTitle": "Exam"
+      },
+      "bird": {
+        "title": "Bird mode",
+        "description": "You can fly over the ground like a bird, turn your head, go up, down and move around!",
+        "cameraTitle": "Bird"
+      },
+      "hiker": {
+        "title": "Hiker mode",
+        "description": "Here we are in the skin of a hiker, enjoying the view we follow without effort the progress of the route.",
+        "cameraTitle": "Hiker"
+      }
+    },
+    "instructions": {
+      "zoom": "Zoom :",
+      "rotation": "Tilt/Rotation:",
+      "moveAround": "Move around:",
+      "lookAround": "Look around:",
+      "playPause": "Play/Pause:",
+      "stop": "Stop:"
+    },
+    "actions": {
+      "scrollMouse": "Scroll mouse",
+      "leftClick": "Left click",
+      "space": "Space",
+      "enter": "Enter"
+    }
   }
 }
