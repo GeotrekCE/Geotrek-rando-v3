@@ -128,6 +128,8 @@ export const rawDetailsProperties: RawDetailsProperties = {
       category: { label: 'Label', id: 'idLabel', pictogram: 'http://url.com/test.png' },
     },
   ],
+  elevation_area_url: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/treks/2/dem.json',
+  altimetric_profile: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/treks/2/profile.json',
 };
 
 export const rawDetails: RawDetails = {

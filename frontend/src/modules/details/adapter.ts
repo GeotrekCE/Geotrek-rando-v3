@@ -136,6 +136,9 @@ export const adaptResults = ({
       })),
       sensitiveAreas,
       webLinks: rawDetailsProperties.web_links,
+      elevationAreaUrl: rawDetailsProperties.elevation_area_url,
+      altimetricProfileUrl: rawDetailsProperties.altimetric_profile,
+      length2d: rawDetailsProperties.length_2d,
     };
   } catch (e) {
     console.error('Error in details/adapter', e);
