@@ -64,7 +64,6 @@ export interface APICallsConfig {
   enableReport: boolean;
   enableSearchByMap: boolean;
   enableServerCache: boolean;
-  tilesUrl: string | null;
   maxLengthTrekAllowedFor3DRando: number;
 }
 

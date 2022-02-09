@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Popup from 'components/Popup';
 import { getGlobalConfig } from 'modules/utils/api.config';
+import { getMapConfig } from 'components/Map/config';
 import Loader from 'components/Loader';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Cross } from 'components/Icons/Cross';
@@ -84,7 +85,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
       POI_URL: `${
         getGlobalConfig().apiUrl
       }/poi/?trek=${trekId}&language=${currentLanguage}&format=geojson`,
-      TILE_TEX_URL: getGlobalConfig().tilesUrl,
+      TILE_TEX_URL: getMapConfig().mapSatelliteLayerUrl,
       SIDE_TEX_URL: '/images/3d/side.jpg',
       CAM_SPEED_F: 100,
       PICTO_PREFIX: '',

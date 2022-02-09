@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import { Download } from 'components/Icons/Download';
 import { Details } from 'modules/details/interface';
 import { ThreeD } from 'components/3D';
+import { getMapConfig } from 'components/Map/config';
 import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
@@ -102,7 +103,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
           </DetailsButton>
         )}
 
-        {Boolean(getGlobalConfig().tilesUrl) &&
+        {Boolean(getMapConfig().mapSatelliteLayerUrl) &&
           'length2d' in details &&
           getGlobalConfig().maxLengthTrekAllowedFor3DRando >= details.length2d && (
             <DetailsButton onClick={() => setOpen3D(true)}>

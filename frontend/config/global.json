@@ -17,5 +17,6 @@
   "enableIndexation": true,
   "enableReport": true,
   "enableSearchByMap": true,
-  "enableServerCache": true
+  "enableServerCache": true,
+  "maxLengthTrekAllowedFor3DRando": 15000
 }
