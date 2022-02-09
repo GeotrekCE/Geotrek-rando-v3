@@ -64,7 +64,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
       // @ts-ignore next-line
       const { default: jQuery } = await import('jquery');
       // @ts-ignore next-line
-      await import('rando3D/dist/rando3D');
+      await import('@makina-corpus/rando3d/dist/rando3D');
       window.jQuery = jQuery;
       setLibLoaded(true);
     }

@@ -24,7 +24,7 @@ module.exports = withPlugins(plugins, {
   webpack(config) {
     config.resolve.modules.push(path.resolve('./src'));
     Object.assign(config.resolve.alias, {
-      // GSAP aliases are useful for rando3D package
+      // GSAP aliases are useful for @makina-corpus/rando3d package
       "EasePack": "gsap/src/uncompressed/easing/EasePack.js",
       "TweenLite": "gsap/src/uncompressed/TweenLite.js",
       "TimelineLite": "gsap/src/uncompressed/TimelineLite.js",
