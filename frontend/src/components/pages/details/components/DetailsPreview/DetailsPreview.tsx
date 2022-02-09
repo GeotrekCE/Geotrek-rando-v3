@@ -88,7 +88,12 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       id="details_preview"
       className={`${className ?? ''} flex flex-col mt-2 desktop:mt-10 relative`}
     >
-      <DetailsBreadcrumb title={title} details={details} type={type} />
+      <DetailsBreadcrumb
+        title={title}
+        details={details}
+        type={type}
+        parent={trekFamily && { id: trekFamily.parentId, name: trekFamily.parentName }}
+      />
       {trekFamily && (
         <div id="details_trekFamily" className="mb-4">
           <DetailsTrekParentButton

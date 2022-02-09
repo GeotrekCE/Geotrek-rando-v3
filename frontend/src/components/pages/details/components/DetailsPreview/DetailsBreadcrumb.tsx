@@ -7,6 +7,7 @@ import { TouristicEventDetails } from 'modules/touristicEvent/interface';
 import React from 'react';
 import styled from 'styled-components';
 import { colorPalette, MAX_WIDTH_MOBILE } from 'stylesheet';
+import { generateResultDetailsUrl } from 'components/pages/search/utils';
 
 const BreadcrumbElem = styled.div`
   display: flex;
@@ -40,6 +41,10 @@ interface DetailsBreadcrumb {
   details: any;
   type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
   title: string;
+  parent?: {
+    id: string;
+    name: string;
+  };
 }
 
 /*
@@ -48,7 +53,7 @@ Accueil / Recherche type d'objet / Objet / Sous-objet / sous-sous-objet / parcou
 search?practices=4&categories=3&themes=5&districts=1&outdoorPractice=3&event=3
 */
 
-const DetailsBreadcrumb: React.FC<DetailsBreadcrumb> = ({ details, title, type }) => {
+const DetailsBreadcrumb: React.FC<DetailsBreadcrumb> = ({ details, title, type, parent }) => {
   const toSearchLink = (type: string) =>
     ({
       TREK: (d: any) =>
@@ -94,6 +99,10 @@ const DetailsBreadcrumb: React.FC<DetailsBreadcrumb> = ({ details, title, type }
         label: search(details)?.label,
         link: search(details)?.link,
       },
+    parent && {
+      label: parent.name,
+      link: generateResultDetailsUrl(parent.id, parent.name),
+    },
     {
       label: title,
     },
