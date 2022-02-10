@@ -83,6 +83,7 @@ const mockTrekResult: TrekResult = {
     },
   ],
   practice: {
+    id: '',
     name: 'Pédestre',
     pictogram: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg',
   },

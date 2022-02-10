@@ -11,7 +11,7 @@ interface DetailsReservationWidgetProps {
   language: string;
 }
 
-declare var AllianceReseaux: any;
+declare let AllianceReseaux: any;
 
 export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> = ({
   id,
@@ -19,24 +19,22 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
   language,
 }) => {
   useEffect(() => {
-    console.log('EXECUTING!');
-
-    (function (window, ITW, undefined) {
-      console.log('EXECUYTING IN !!!');
-      var layer = {
+    (function (window, ITW) {
+      const layer = {
         map: { lib: 'MapLeafletDevice' },
         langue: language,
         partner: reservation.partner,
         routeId: id,
       };
-      var spaClient = ITW.pages.getSinglePageApplicationClient({ layer: layer });
+
+      const spaClient = ITW.pages.getSinglePageApplicationClient({ layer });
       AllianceReseaux.jQuery(function () {
         spaClient.executePage();
       });
     })(window, (window as any).eitinerance.core);
   }, []);
 
-  const template = { __html: __html.replace('__PROJECT__', reservation.project) };
+  const template = { __html: __html.replaceAll('__PROJECT__', reservation.project) };
 
   return (
     <Wrapper>

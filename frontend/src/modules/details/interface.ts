@@ -66,6 +66,7 @@ export interface RawDetailsProperties {
   web_links: RawWebLink[];
   elevation_area_url: string;
   altimetric_profile: string;
+  reservation_id?: string;
 }
 
 // Fields parsed with react-html-parser in page
