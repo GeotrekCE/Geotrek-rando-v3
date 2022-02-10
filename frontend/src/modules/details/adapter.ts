@@ -18,7 +18,7 @@ import { TouristicContent } from 'modules/touristicContent/interface';
 import { getAttachments } from 'modules/utils/adapter';
 import { adaptGeometry2D, flattenMultiLineStringCoordinates } from 'modules/utils/geometry';
 import { formatHours } from 'modules/utils/time';
-import { Details, RawDetails, TrekChildGeometry, TrekFamily } from './interface';
+import { Details, RawDetails, Reservation, TrekChildGeometry, TrekFamily } from './interface';
 
 export const adaptResults = ({
   rawDetails: { properties: rawDetailsProperties, geometry, bbox },
@@ -37,6 +37,7 @@ export const adaptResults = ({
   children,
   childrenGeometry,
   sensitiveAreas,
+  reservation,
 }: {
   rawDetails: RawDetails;
   activity: Activity | null;
@@ -54,6 +55,7 @@ export const adaptResults = ({
   children: TrekResult[];
   childrenGeometry: TrekChildGeometry[];
   sensitiveAreas: SensitiveArea[];
+  reservation?: Reservation;
 }): Details => {
   try {
     const coordinates =
@@ -139,6 +141,7 @@ export const adaptResults = ({
       elevationAreaUrl: rawDetailsProperties.elevation_area_url,
       altimetricProfileUrl: rawDetailsProperties.altimetric_profile,
       length2d: rawDetailsProperties.length_2d,
+      reservation,
     };
   } catch (e) {
     console.error('Error in details/adapter', e);

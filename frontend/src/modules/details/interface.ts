@@ -106,6 +106,12 @@ export interface TrekChildGeometry {
   id: string;
   departure: Coordinate2D;
 }
+
+export interface Reservation {
+  partner: string;
+  project: string;
+}
+
 export interface Details extends DetailsHtml {
   id: number;
   practice: Activity | null;
@@ -139,6 +145,8 @@ export interface Details extends DetailsHtml {
   elevationAreaUrl: string;
   altimetricProfileUrl: string;
   length2d: number;
+  reservation?: Reservation;
+  reservation_id?: string;
 }
 
 export interface WebLink {

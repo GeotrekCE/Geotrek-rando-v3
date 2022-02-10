@@ -73,6 +73,13 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       children,
       childrenGeometry,
       sensitiveAreas,
+      reservation:
+        getGlobalConfig().reservationPartner && getGlobalConfig().reservationProject
+          ? {
+              partner: getGlobalConfig().reservationPartner,
+              project: getGlobalConfig().reservationProject,
+            }
+          : undefined,
     });
   } catch (e) {
     console.error('Error in details/connector principal', e);

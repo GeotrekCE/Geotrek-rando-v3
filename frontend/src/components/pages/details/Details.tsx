@@ -32,6 +32,7 @@ import { DetailsLabel } from './components/DetailsLabel';
 import { DetailsAdvice } from './components/DetailsAdvice';
 import { DetailsChildrenSection } from './components/DetailsChildrenSection';
 import { DetailsCoverCarousel } from './components/DetailsCoverCarousel';
+import { DetailsReservationWidget } from './components/DetailsReservationWidget';
 import { ImageWithLegend } from './components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { VisibleSectionProvider } from './VisibleSectionContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
@@ -222,6 +223,16 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     >
                       <div className="h-90" id="altimetric-profile"></div>
                     </DetailsSection>
+
+                    {details.reservation && details.reservation_id && (
+                      <DetailsSection className={marginDetailsChild}>
+                        <DetailsReservationWidget
+                          language={language}
+                          reservation={details.reservation}
+                          id={details.reservation_id}
+                        />
+                      </DetailsSection>
+                    )}
 
                     {details.sensitiveAreas.length > 0 && (
                       <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
