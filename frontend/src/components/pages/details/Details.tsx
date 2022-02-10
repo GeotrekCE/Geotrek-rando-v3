@@ -33,6 +33,7 @@ import { DetailsAdvice } from './components/DetailsAdvice';
 import { DetailsChildrenSection } from './components/DetailsChildrenSection';
 import { DetailsCoverCarousel } from './components/DetailsCoverCarousel';
 import { DetailsReservationWidget } from './components/DetailsReservationWidget';
+import { DetailsMeteoWidget } from './components/DetailsMeteoWidget';
 import { ImageWithLegend } from './components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { VisibleSectionProvider } from './VisibleSectionContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
@@ -167,6 +168,10 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         id={id}
                       />
                     </div>
+
+                    <DetailsSection>
+                      <DetailsMeteoWidget />
+                    </DetailsSection>
 
                     {details.children.length > 0 && (
                       <div ref={setChildrenRef} id="details_trekChildren_ref">
