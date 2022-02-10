@@ -16,13 +16,14 @@ const ActivityPictogram = styled.img<{ zoomRatio: number }>`
   top: ${props => markerTopPadding * props.zoomRatio}px;
 `;
 
-const ActivityMarker: React.FC<{ pictogramUrl?: string; zoomRatio: number }> = ({
+const ActivityMarker: React.FC<{ pictogramUrl?: string; zoomRatio: number; color: string }> = ({
   pictogramUrl,
   zoomRatio,
+  color,
 }) => {
   return (
     <div className="relative flex justify-center">
-      <MapMarker color={colorPalette.primary1} size={markerWidth * zoomRatio} />
+      <MapMarker color={color ?? colorPalette.primary1} size={markerWidth * zoomRatio} />
       <ActivityPictogram
         className="absolute z-leafletSvg"
         src={pictogramUrl}
@@ -32,13 +33,13 @@ const ActivityMarker: React.FC<{ pictogramUrl?: string; zoomRatio: number }> = (
   );
 };
 
-export const TrekMarker = (pictogramUrl?: string, zoomRatio = 1) =>
+export const TrekMarker = (pictogramUrl?: string, zoomRatio = 1, color?: string) =>
   new DivIcon({
     iconSize: [markerHeight * zoomRatio, markerWidth * zoomRatio],
     // point of the icon which will correspond to marker's location
     iconAnchor: [(markerWidth * zoomRatio) / 2, markerHeight * zoomRatio], // horizontal middle of the icon and bottom of it
     html: renderToStaticMarkup(
-      <ActivityMarker pictogramUrl={pictogramUrl} zoomRatio={zoomRatio} />,
+      <ActivityMarker pictogramUrl={pictogramUrl} zoomRatio={zoomRatio} color={color} />,
     ),
     className: 'bg-none border-none',
   });

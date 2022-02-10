@@ -116,6 +116,7 @@ export const ResultCard: React.FC<
     badgeIconUri,
     className,
     redirectionUrl,
+    type,
   } = props;
   const { setHoveredCardId } = useContext(ListAndMapContext);
 
@@ -140,6 +141,7 @@ export const ResultCard: React.FC<
             )}
             {(!isFullscreen || !attachments) && (
               <ResultCardCarousel
+                type={type}
                 thumbnailUris={thumbnailUris}
                 iconUri={badgeIconUri}
                 onClickImage={attachments ? toggleFullscreen : undefined}

@@ -1,17 +1,25 @@
-import { SmallCarousel } from 'components/Carousel';
 import { CardIcon } from 'components/CardIcon';
+import { SmallCarousel } from 'components/Carousel';
+import getConfig from 'next/config';
+import getActivityColor from '../getActivityColor';
 
 interface ResultCardCarouselProps {
+  type: 'TREK' | 'OUTDOOR_COURSE' | 'TOURISTIC_CONTENT' | 'TOURISTIC_EVENT';
   thumbnailUris: string[];
   iconUri?: string;
   onClickImage?: () => void;
 }
 
 export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
+  type,
   thumbnailUris,
   iconUri,
   onClickImage,
 }) => {
+  const {
+    publicRuntimeConfig: { colors },
+  } = getConfig();
+
   const files = navigator && navigator?.onLine ? thumbnailUris : thumbnailUris.slice(0, 1);
 
   return (
@@ -28,7 +36,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
           </div>
         ))}
       </SmallCarousel>
-      {iconUri !== undefined && <CardIcon iconUri={iconUri} />}
+      {iconUri !== undefined && <CardIcon iconUri={iconUri} color={getActivityColor(type)} />}
     </div>
   );
 };

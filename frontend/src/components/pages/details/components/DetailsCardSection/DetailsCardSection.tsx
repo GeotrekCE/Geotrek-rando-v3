@@ -1,3 +1,4 @@
+import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
 import { Separator } from 'components/Separator';
 import styled from 'styled-components';
 import { MAX_WIDTH_MOBILE, scrollBar, sizes } from 'stylesheet';
@@ -28,7 +29,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
         className={`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild} flex items-center`}
       >
         {title}
-        {displayBadge && <Badge label={detailsCards.length} />}
+        {displayBadge && <Badge label={detailsCards.length} color={getActivityColor(type)} />}
       </div>
       <ScrollContainer
         id="details_cardSectionScrollContainer"
@@ -66,10 +67,11 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
 };
 
 interface BadgeProps {
+  color: string;
   label: number;
 }
 
-export const Badge: React.FC<BadgeProps> = ({ label }) => {
+export const Badge: React.FC<BadgeProps> = ({ label, color }) => {
   return (
     <div
       className="h-8 w-8
@@ -79,6 +81,7 @@ export const Badge: React.FC<BadgeProps> = ({ label }) => {
       border-solid border-primary1 border-3 shadow-sm
       text-P1 desktop:text-H4 font-bold text-primary1
       "
+      style={{ borderColor: color, color }}
     >
       {label}
     </div>
