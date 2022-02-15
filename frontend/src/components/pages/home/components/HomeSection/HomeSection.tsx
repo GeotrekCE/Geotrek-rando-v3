@@ -38,11 +38,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
         />
         <span className="mt-1 desktop:mt-0 text-H4 desktop:text-H2 font-bold">{title}</span>
       </div>
-      <ScrollContainer
-        id="home_sectionContent"
-        className="flex desktop:flex-wrap overflow-x-auto overflow-y-hidden desktop:overflow-hidden
-        mb-5 desktop:mb-15 desktop:justify-center px-4 desktop:px-10percent"
-      >
+      <ScrollContainer>
         {results !== undefined &&
           results.map((e: any, i) => {
             if (type === 'trek')
@@ -129,11 +125,15 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
 };
 
 const ScrollContainer = styled.div`
-  &::-webkit-scrollbar {
-    height: 0;
+  display: flex;
+  flex-flow: wrap;
+  align-items: stretch;
+  justify-content: center;
+  padding: 20px;
+
+  & > * {
+    flex: auto;
+    max-width: 500px;
+    margin: 10px;
   }
-  &::-webkit-scrollbar-thumb {
-    opacity: 0;
-  }
-  max-width: 100%;
 `;
