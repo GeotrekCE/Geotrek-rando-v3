@@ -27,15 +27,15 @@ import { ResultCardCarousel } from './ResultCardCarousel';
 
 interface BaseProps {
   id: string;
-  hoverId: string;
+  hoverId: string | null;
   place: string | null;
   title: string;
   tags: string[];
   thumbnailUris: string[];
+  redirectionUrl: string;
   attachments?: Attachment[];
   badgeIconUri?: string;
   className?: string;
-  redirectionUrl: string;
 }
 
 interface TrekProps extends BaseProps {

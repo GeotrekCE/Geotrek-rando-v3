@@ -4,7 +4,7 @@ import getConfig from 'next/config';
 import getActivityColor from '../getActivityColor';
 
 interface ResultCardCarouselProps {
-  type: 'TREK' | 'OUTDOOR_COURSE' | 'TOURISTIC_CONTENT' | 'TOURISTIC_EVENT';
+  type: 'TREK' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_CONTENT' | 'TOURISTIC_EVENT';
   thumbnailUris: string[];
   iconUri?: string;
   onClickImage?: () => void;

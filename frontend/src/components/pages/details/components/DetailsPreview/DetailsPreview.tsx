@@ -83,7 +83,6 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
 
   const intl = useIntl();
 
-  console.log(details);
   return (
     <div
       id="details_preview"

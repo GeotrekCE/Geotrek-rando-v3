@@ -24,7 +24,10 @@
     "readme": "Lis le README.md pour découvrir les super commandes npm que nous avons ajouté",
     "walking": "Randonnée",
     "territoryTreks": "Randonnées à découvrir",
-    "itinerantTreks": "Itinérances à découvrir"
+    "itinerantTreks": "Itinérances à découvrir",
+    "service": "Services à découvrir",
+    "events": "Événements à découvrir",
+    "outdoor": "Activités à découvrir"
   },
   "page": {
     "back": "Retour",

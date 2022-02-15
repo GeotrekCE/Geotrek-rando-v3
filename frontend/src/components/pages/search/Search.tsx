@@ -94,22 +94,6 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
 
   const numberSelected = countFiltersSelected(filtersState, null, null);
 
-  const isTrek = (
-    content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
-  ): content is TrekResult => content.type === 'TREK';
-
-  const isTouristicContent = (
-    content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
-  ): content is TouristicContentResult => content.type === 'TOURISTIC_CONTENT';
-
-  const isOutdoorSite = (
-    content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
-  ): content is OutdoorSite => content.type === 'OUTDOOR_SITE';
-
-  const isTouristicEvent = (
-    content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
-  ): content is TouristicEvent => content.type === 'TOURISTIC_EVENT';
-
   return (
     <div id="Search">
       <PageHead
@@ -367,3 +351,20 @@ export const MobileMapContainer = styled.div<{ displayState: 'DISPLAYED' | 'HIDD
   transition: top 0.3s ease-in-out 0.1s;
   top: ${({ displayState }) => (displayState === 'DISPLAYED' ? 0 : 100)}%;
 `;
+
+
+export const isTrek = (
+  content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
+): content is TrekResult => content.type === 'TREK';
+
+export const isTouristicContent = (
+  content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
+): content is TouristicContentResult => content.type === 'TOURISTIC_CONTENT';
+
+export const isOutdoorSite = (
+  content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
+): content is OutdoorSite => content.type === 'OUTDOOR_SITE';
+
+export const isTouristicEvent = (
+  content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
+): content is TouristicEvent => content.type === 'TOURISTIC_EVENT';

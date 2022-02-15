@@ -11,10 +11,11 @@ interface WelcomeBanner {
   shouldDisplayText: boolean;
 }
 
-interface Suggestion {
+export interface Suggestion {
   titleTranslationId: string;
   iconUrl: string;
   ids: string[];
+  type: 'trek' | 'service' | 'outdoor' | 'events';
 }
 
 export interface DisplayableSuggestionCategory {
