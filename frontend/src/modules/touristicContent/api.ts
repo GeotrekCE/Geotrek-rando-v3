@@ -29,7 +29,7 @@ export const fetchTouristicContentDetails = (
   query: APIQuery,
   id: string,
 ): Promise<RawTouristicContentDetails> =>
-  GeotrekAPI.get(`/touristiccontent/${id}/`, { params: {  ...fieldsParamsDetails, ...query } }).then(
+  GeotrekAPI.get(`/touristiccontent/${id}/`, { params: { ...fieldsParamsDetails, ...query } }).then(
     r => r.data,
   );
 

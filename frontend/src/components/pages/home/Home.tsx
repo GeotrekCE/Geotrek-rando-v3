@@ -1,17 +1,15 @@
-import React, { FunctionComponent } from 'react';
-import { useIntl } from 'react-intl';
+import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
+import { Footer } from 'components/Footer';
+import { Layout } from 'components/Layout/Layout';
+import { PageHead } from 'components/PageHead';
 import parse from 'html-react-parser';
 import getNextConfig from 'next/config';
-
-import { Layout } from 'components/Layout/Layout';
-import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
-import { PageHead } from 'components/PageHead';
-import { Footer } from 'components/Footer';
+import React, { FunctionComponent } from 'react';
+import { useIntl } from 'react-intl';
+import { BannerWithAsset } from './components/BannerWithAsset';
 import { HomeSection } from './components/HomeSection';
 import { HomeContainer } from './Home.style';
 import { useHome } from './useHome';
-import { BannerWithAsset } from './components/BannerWithAsset';
-import util from 'util';
 
 const {
   publicRuntimeConfig: { homeBottomHtml, homeTopHtml },

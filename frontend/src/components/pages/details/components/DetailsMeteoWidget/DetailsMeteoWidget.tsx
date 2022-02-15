@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import __html from './template.html';
-import { colorPalette, getSpacing, typography } from 'stylesheet';
 
 const Wrapper = styled.div`
   position: relative;
@@ -20,9 +18,7 @@ const Wrapper = styled.div`
   }
 `;
 
-interface DetailsMeteoWidgetProps {}
-
-export const DetailsMeteoWidget: React.FC<DetailsMeteoWidgetProps> = ({}) => {
+export const DetailsMeteoWidget: React.FC = () => {
   return (
     <Wrapper>
       <iframe

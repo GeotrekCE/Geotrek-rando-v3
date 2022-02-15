@@ -58,7 +58,7 @@ Object {
                   
                 </div>
                 <img
-                  class="object-cover object-center absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white bg-primary1 border-2 border-white border-solid"
+                  class="object-cover object-center absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white border-2 border-white border-solid"
                   src=""
                 />
               </div>
@@ -281,7 +281,7 @@ Object {
                 
               </div>
               <img
-                class="object-cover object-center absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white bg-primary1 border-2 border-white border-solid"
+                class="object-cover object-center absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white border-2 border-white border-solid"
                 src=""
               />
             </div>

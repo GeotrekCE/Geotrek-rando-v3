@@ -39,7 +39,7 @@ export const TrekMarker = (pictogramUrl?: string, zoomRatio = 1, color?: string)
     // point of the icon which will correspond to marker's location
     iconAnchor: [(markerWidth * zoomRatio) / 2, markerHeight * zoomRatio], // horizontal middle of the icon and bottom of it
     html: renderToStaticMarkup(
-      <ActivityMarker pictogramUrl={pictogramUrl} zoomRatio={zoomRatio} color={color} />,
+      <ActivityMarker pictogramUrl={pictogramUrl} zoomRatio={zoomRatio} color={color as string} />,
     ),
     className: 'bg-none border-none',
   });

@@ -352,7 +352,6 @@ export const MobileMapContainer = styled.div<{ displayState: 'DISPLAYED' | 'HIDD
   top: ${({ displayState }) => (displayState === 'DISPLAYED' ? 0 : 100)}%;
 `;
 
-
 export const isTrek = (
   content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
 ): content is TrekResult => content.type === 'TREK';

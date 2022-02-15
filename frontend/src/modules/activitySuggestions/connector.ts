@@ -12,7 +12,10 @@ import { TrekResult } from 'modules/results/interface';
 import { getSources } from 'modules/source/connector';
 import { adaptTouristicContentDetails } from 'modules/touristicContent/adapter';
 import { fetchTouristicContentDetails } from 'modules/touristicContent/api';
-import { TouristicContentDetails, TouristicContentResult } from 'modules/touristicContent/interface';
+import {
+  TouristicContentDetails,
+  TouristicContentResult,
+} from 'modules/touristicContent/interface';
 import { getTouristicContentCategory } from 'modules/touristicContentCategory/connector';
 import { adaptTouristicEvents } from 'modules/touristicEvent/adapter';
 import { fetchTouristicEventDetails } from 'modules/touristicEvent/api';
@@ -94,11 +97,12 @@ export const getActivitySuggestions = async (suggestions: Suggestion[], language
 
   const activitySuggestions = await Promise.all(
     suggestions.map(async sugg => {
-      const raw = await Promise.all(sugg.ids.map(id => fetch(id, sugg.type ?? 'trek', language)));
-      const results = await adapt(sugg.type ?? 'trek')(raw);
+      const type = sugg?.type ?? 'trek';
+      const raw = await Promise.all(sugg.ids.map(id => fetch(id, type, language) as any));
+      const results = await adapt(type)(raw);
       return {
         ...sugg,
-        type: sugg.type ?? 'trek',
+        type,
         results,
       };
     }),

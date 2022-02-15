@@ -4,18 +4,11 @@ import {
   generateTouristicEventUrl,
 } from 'components/pages/details/utils';
 import { ResultCard } from 'components/pages/search/components/ResultCard';
-import {
-  isOutdoorSite,
-  isTouristicContent,
-  isTouristicEvent,
-  isTrek,
-} from 'components/pages/search/Search';
 import { generateResultDetailsUrl, getHoverId } from 'components/pages/search/utils';
 import { ActivitySuggestion } from 'modules/activitySuggestions/interface';
 import SVG from 'react-inlinesvg';
 import styled from 'styled-components';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
-import { ActivitySuggestionCard } from '../ActivitySuggestionCard';
 
 export interface HomeSectionProps {
   title: string;
@@ -40,13 +33,14 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
       </div>
       <ScrollContainer>
         {results !== undefined &&
+          // eslint-disable-next-line
           results.map((e: any, i) => {
             if (type === 'trek')
               return (
                 <ResultCard
                   type={e.type}
                   key={e.title}
-                  id={`${e.id}`}
+                  id={e.id}
                   hoverId={getHoverId(e)}
                   place={e.place}
                   title={e.title}
@@ -64,7 +58,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
                 <ResultCard
                   type={e.type}
                   key={e.name}
-                  id={`${e.id}`}
+                  id={e.id}
                   hoverId={getHoverId(e)}
                   place={e.place}
                   title={e.name}
@@ -82,7 +76,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
                 <ResultCard
                   type={e.type}
                   key={e.name}
-                  id={`${e.id}`}
+                  id={e.id}
                   hoverId={getHoverId(e)}
                   place={e.place}
                   title={e.name}
@@ -100,7 +94,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
                 <ResultCard
                   type={e.type}
                   key={e.name}
-                  id={`https://formatjs.io/docs/react-intl/api#formatdate${e.id}`}
+                  id={`https://formatjs.io/docs/react-intl/api#formatdate${e.id as string}`}
                   hoverId={getHoverId(e)}
                   place={e.place}
                   title={e.name}
