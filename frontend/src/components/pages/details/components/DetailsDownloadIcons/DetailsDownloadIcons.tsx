@@ -9,6 +9,7 @@ import { Download } from 'components/Icons/Download';
 import { Details } from 'modules/details/interface';
 import { ThreeD } from 'components/3D';
 import { getMapConfig } from 'components/Map/config';
+import { useMediaPredicate } from 'react-media-hook';
 import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
@@ -34,6 +35,14 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
 }) => {
   const [openReport, setOpenReport] = useState<boolean>(false);
   const [open3D, setOpen3D] = useState<boolean>(false);
+
+  const isTouchScreen = useMediaPredicate('(hover: none)');
+  const is3DfeatureEnabled =
+    Boolean(getMapConfig().mapSatelliteLayerUrl) &&
+    'length2d' in details &&
+    getGlobalConfig().maxLengthTrekAllowedFor3DRando >= details.length2d &&
+    'elevationAreaUrl' in details &&
+    !isTouchScreen;
 
   const dropdownButtonOptions = [];
   if ('gpxUri' in details && details.gpxUri !== undefined)
@@ -74,7 +83,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
         />
       )}
 
-      {open3D && 'elevationAreaUrl' in details && (
+      {open3D && is3DfeatureEnabled && (
         <ThreeD
           trekId={Number(details.id)}
           title={details.title}
@@ -103,13 +112,11 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
           </DetailsButton>
         )}
 
-        {Boolean(getMapConfig().mapSatelliteLayerUrl) &&
-          'length2d' in details &&
-          getGlobalConfig().maxLengthTrekAllowedFor3DRando >= details.length2d && (
-            <DetailsButton onClick={() => setOpen3D(true)}>
-              <ThreeDMap size={size} />
-            </DetailsButton>
-          )}
+        {is3DfeatureEnabled && (
+          <DetailsButton onClick={() => setOpen3D(true)}>
+            <ThreeDMap size={size} />
+          </DetailsButton>
+        )}
       </div>
     </div>
   );

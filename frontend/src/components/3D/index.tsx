@@ -113,7 +113,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
   }, [currentLanguage, demURL, profileURL, libLoaded]);
 
   return (
-    <Popup {...(!isLoading && { onClose: handleClose })} title={title}>
+    <Popup onClose={handleClose} title={title}>
       <Wrapper className="relative text-white">
         {isLoading && (
           <LoaderOverlay className="absolute inset-0">
