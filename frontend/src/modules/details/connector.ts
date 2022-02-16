@@ -79,7 +79,7 @@ export const getDetails = async (id: string, language: string): Promise<Details>
               partner: getGlobalConfig().reservationPartner,
               project: getGlobalConfig().reservationProject,
             }
-          : undefined,
+          : null,
     });
   } catch (e) {
     console.error('Error in details/connector principal', e);

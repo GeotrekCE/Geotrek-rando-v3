@@ -132,6 +132,7 @@ export const adaptTouristicContentDetails = ({
     },
     [],
   ),
+  type: 'TOURISTIC_CONTENT',
   logoUri: rawTCD.properties.approved === true ? APPROVED_LABEL_LOGO_URI : null,
   bbox: {
     corner1: { x: rawTCD.bbox[0], y: rawTCD.bbox[1] },

@@ -31,7 +31,7 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
       AllianceReseaux.jQuery(function () {
         spaClient.executePage();
       });
-    })(window, (window as any).eitinerance.core);
+    })(window, (window as any)?.eitinerance?.core);
   }, []);
 
   const template = { __html: __html.replaceAll('__PROJECT__', reservation.project) };

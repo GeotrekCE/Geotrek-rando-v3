@@ -95,6 +95,7 @@ export interface TouristicContentDetails extends TouristicContent {
   pdfUri: string;
   types: TouristicContentDetailsType[];
   bbox: Bbox;
+  type: 'TOURISTIC_CONTENT';
 }
 
 export interface TouristicContentDetailsType {

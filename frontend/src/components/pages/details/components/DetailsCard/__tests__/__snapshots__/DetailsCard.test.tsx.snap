@@ -63,6 +63,7 @@ Object {
           </div>
           <div
             class="CardIcon__Wrapper-sc-cv6h96-0 absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white border-2 border-white border-solid"
+            style="background: rgb(170, 57, 125);"
           />
         </div>
         <div
@@ -153,6 +154,7 @@ Object {
         </div>
         <div
           class="CardIcon__Wrapper-sc-cv6h96-0 absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white border-2 border-white border-solid"
+          style="background: rgb(170, 57, 125);"
         />
       </div>
       <div

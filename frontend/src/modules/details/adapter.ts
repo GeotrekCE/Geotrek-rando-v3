@@ -55,7 +55,7 @@ export const adaptResults = ({
   children: TrekResult[];
   childrenGeometry: TrekChildGeometry[];
   sensitiveAreas: SensitiveArea[];
-  reservation?: Reservation;
+  reservation: Reservation | null;
 }): Details => {
   try {
     const coordinates =

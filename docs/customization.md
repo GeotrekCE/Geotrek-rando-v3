@@ -121,6 +121,19 @@ Example for Cevennes national park orange colors:
 }
 ```
 
+It's also possible to change category colors :
+
+```json
+{
+  "categories": {
+    "trek": "blue",
+    "events": "red",
+    "outdoor": "#62AB41",
+    "service": "#3B89A2"
+  }
+}
+```
+
 You can also override CSS in `customization/theme/style.css` file. To help overriding CSS, some ID have been added on main DIV components (header, logo, footer, cover, cards, results, maps, details...).
 
 ## Translations

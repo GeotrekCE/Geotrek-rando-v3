@@ -146,7 +146,7 @@ export interface Details extends DetailsHtml {
   elevationAreaUrl: string;
   altimetricProfileUrl: string;
   length2d: number;
-  reservation?: Reservation;
+  reservation: Reservation | null;
   reservation_id?: string;
 }
 

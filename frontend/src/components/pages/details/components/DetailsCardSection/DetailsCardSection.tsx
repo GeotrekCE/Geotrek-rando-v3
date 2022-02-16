@@ -56,6 +56,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
                 ? generateUrlFunction(card.id, card.name)
                 : undefined
             }
+            type={type}
           />
         ))}
       </ScrollContainer>
