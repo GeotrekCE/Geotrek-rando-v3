@@ -1,5 +1,14 @@
 # Changelog
 
+3.7.0 (unreleased)
+------------------
+
+**🚀 New features**
+
+* Include 3D view in trek detail pages (#390)
+* Add ``maxLengthTrekAllowedFor3DRando`` setting to define the maximum length of a trek to enable the 3D view on its page (or to disable 3D view) (#390)
+* Improve modale component
+
 3.6.0 (2022-02-07)
 ------------------
 
