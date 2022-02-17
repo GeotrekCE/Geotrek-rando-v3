@@ -38,6 +38,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
 
   const isTouchScreen = useMediaPredicate('(hover: none)');
   const is3DfeatureEnabled =
+    'WebGLRenderingContext' in global &&
     Boolean(getMapConfig().mapSatelliteLayerUrl) &&
     'length2d' in details &&
     getGlobalConfig().maxLengthTrekAllowedFor3DRando >= details.length2d &&
