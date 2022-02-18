@@ -11,10 +11,15 @@ import { DetailsSection } from '../details/components/DetailsSection';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsSource } from '../details/components/DetailsSource';
 import { HtmlText } from '../details/utils';
+import Breadcrumb from '../details/components/DetailsPreview/Breadcrumb';
 
 interface FlatPageUIProps {
   flatPageUrl: string;
 }
+
+const BreadcrumbWrapper = styled.div`
+  margin-left: 2rem;
+`;
 
 export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
   const { flatPage, isLoading, refetch } = useFlatPage(flatPageUrl);
@@ -40,6 +45,17 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
         )
       ) : (
         <div>
+          <BreadcrumbWrapper>
+            <Breadcrumb
+              breadcrumb={[
+                {
+                  label: 'Accueil',
+                  link: '/',
+                },
+                { label: flatPage?.title },
+              ]}
+            />
+          </BreadcrumbWrapper>
           {flatPage.attachment !== null && flatPage.attachment.length > 0 && (
             <div
               className="relative coverDetailsMobile desktop:h-coverDetailsDesktop text-center"
