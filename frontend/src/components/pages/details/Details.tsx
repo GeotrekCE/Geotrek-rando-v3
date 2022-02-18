@@ -17,6 +17,7 @@ import { RemoteIconInformation } from 'components/Information/RemoteIconInformat
 import React, { useMemo, useRef } from 'react';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { cleanHTMLElementsFromString } from 'modules/utils/string';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { Footer } from 'components/Footer';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
@@ -40,7 +41,6 @@ import { ImageWithLegend } from './components/DetailsCoverCarousel/DetailsCoverC
 import { VisibleSectionProvider } from './VisibleSectionContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
 import { useOnScreenSection } from './hooks/useHighlightedSection';
-import { getGlobalConfig } from 'modules/utils/api.config';
 
 interface Props {
   detailsId: string | string[] | undefined;

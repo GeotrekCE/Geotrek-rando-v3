@@ -19,7 +19,7 @@ Object {
               style="width: 100%; height: 100%;"
             >
               <div
-                class="h-full w-full flex-shrink-0 desktop:w-resultCardDesktop relative "
+                class="h-full w-full flex-shrink-0 relative desktop:w-resultCardDesktop"
               >
                 <div
                   class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY slick-initialized"
@@ -242,7 +242,7 @@ Object {
             style="width: 100%; height: 100%;"
           >
             <div
-              class="h-full w-full flex-shrink-0 desktop:w-resultCardDesktop relative "
+              class="h-full w-full flex-shrink-0 relative desktop:w-resultCardDesktop"
             >
               <div
                 class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY slick-initialized"
