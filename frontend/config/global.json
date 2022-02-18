@@ -20,5 +20,6 @@
   "enableReport": true,
   "enableSearchByMap": true,
   "enableServerCache": true,
+  "enableMeteoWidget": true,
   "maxLengthTrekAllowedFor3DRando": 15000
 }

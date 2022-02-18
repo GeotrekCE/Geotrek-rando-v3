@@ -64,6 +64,7 @@ export interface APICallsConfig {
   enableReport: boolean;
   enableSearchByMap: boolean;
   enableServerCache: boolean;
+  enableMeteoWidget: boolean;
   maxLengthTrekAllowedFor3DRando: number;
   reservationPartner: string;
   reservationProject: string;

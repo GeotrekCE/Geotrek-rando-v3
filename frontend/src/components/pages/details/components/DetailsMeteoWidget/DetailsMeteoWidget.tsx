@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export const DetailsMeteoWidget: React.FC = () => {
+export const DetailsMeteoWidget: React.FC<{ code: string }> = ({ code }) => {
   return (
     <Wrapper>
       <iframe
@@ -26,7 +26,7 @@ export const DetailsMeteoWidget: React.FC = () => {
         // width="150"
         height="350"
         frameBorder="0"
-        src={`https://meteofrance.com/widget/prevision/611480`}
+        src={`https://meteofrance.com/widget/prevision/${code}`}
       ></iframe>
     </Wrapper>
   );

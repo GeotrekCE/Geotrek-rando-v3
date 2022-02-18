@@ -1,7 +1,9 @@
+import getConfig from 'next/config';
 import MoreLink from 'components/Information/MoreLink';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
 import Loader from 'react-loader';
+
 import parse from 'html-react-parser';
 import { FormattedMessage } from 'react-intl';
 import { PageHead } from 'components/PageHead';
@@ -38,6 +40,7 @@ import { ImageWithLegend } from './components/DetailsCoverCarousel/DetailsCoverC
 import { VisibleSectionProvider } from './VisibleSectionContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
 import { useOnScreenSection } from './hooks/useHighlightedSection';
+import { getGlobalConfig } from 'modules/utils/api.config';
 
 interface Props {
   detailsId: string | string[] | undefined;
@@ -169,10 +172,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       />
                     </div>
 
-                    <DetailsSection>
-                      <DetailsMeteoWidget />
-                    </DetailsSection>
-
                     {details.children.length > 0 && (
                       <div ref={setChildrenRef} id="details_trekChildren_ref">
                         <DetailsChildrenSection
@@ -210,6 +209,11 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       </div>
                     )}
 
+                    {getGlobalConfig().enableMeteoWidget && details.cities && details.cities[0] && (
+                      <DetailsSection>
+                        <DetailsMeteoWidget code={details.cities[0]} />
+                      </DetailsSection>
+                    )}
                     {details.description && (
                       <div ref={setDescriptionRef} id="details_description_ref">
                         <DetailsDescription
