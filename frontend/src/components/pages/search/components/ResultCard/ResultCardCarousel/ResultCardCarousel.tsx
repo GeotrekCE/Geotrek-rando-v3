@@ -8,6 +8,7 @@ interface ResultCardCarouselProps {
   thumbnailUris: string[];
   iconUri?: string;
   onClickImage?: () => void;
+  asColumn?: boolean;
 }
 
 export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
@@ -15,6 +16,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
   thumbnailUris,
   iconUri,
   onClickImage,
+  asColumn,
 }) => {
   const {
     publicRuntimeConfig: { colors },
@@ -23,7 +25,10 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
   const files = navigator && navigator?.onLine ? thumbnailUris : thumbnailUris.slice(0, 1);
 
   return (
-    <div className="h-full w-full flex-shrink-0 desktop:w-resultCardDesktop relative ">
+    <div
+      className={`h-full w-full flex-shrink-0 relative desktop:w-resultCardDesktop`}
+      style={asColumn ? { width: '100%' } : {}}
+    >
       <SmallCarousel>
         {files.map((thumbnailUri, i) => (
           <div key={i} className="relative h-full" onClick={onClickImage}>

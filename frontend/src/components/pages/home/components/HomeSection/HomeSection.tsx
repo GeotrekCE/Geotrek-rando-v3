@@ -38,6 +38,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
             if (type === 'trek')
               return (
                 <ResultCard
+                  asColumn
                   type={e.type}
                   key={e.title}
                   id={e.id}
@@ -56,6 +57,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
             else if (type === 'service')
               return (
                 <ResultCard
+                  asColumn
                   type={e.type}
                   key={e.name}
                   id={e.id}
@@ -68,12 +70,13 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
                   badgeIconUri={e.category.pictogramUri}
                   informations={e.types}
                   redirectionUrl={generateTouristicContentUrl(e.id, e.name)}
-                  className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
+                  className="my-4 desktop:my-6 desktop:mx-1" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
                 />
               );
             else if (type === 'outdoor')
               return (
                 <ResultCard
+                  asColumn
                   type={e.type}
                   key={e.name}
                   id={e.id}
@@ -86,12 +89,13 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
                   badgeIconUri={e.practice?.pictogram}
                   informations={[]}
                   redirectionUrl={generateOutdoorSiteUrl(e.id, e.name)}
-                  className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
+                  className="my-4 desktop:my-6 desktop:mx-1" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
                 />
               );
             else if (type === 'events')
               return (
                 <ResultCard
+                  asColumn
                   type={e.type}
                   key={e.name}
                   id={`https://formatjs.io/docs/react-intl/api#formatdate${e.id as string}`}
@@ -109,7 +113,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
                     },
                   }}
                   redirectionUrl={generateTouristicEventUrl(e.id, e.name)}
-                  className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
+                  className="my-4 desktop:my-6 desktop:mx-1" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
                 />
               );
           })}

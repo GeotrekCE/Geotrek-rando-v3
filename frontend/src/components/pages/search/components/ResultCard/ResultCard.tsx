@@ -103,7 +103,13 @@ const isTouristicEvent = (
 ): content is TouristicEventProps => content.type === 'TOURISTIC_EVENT';
 
 export const ResultCard: React.FC<
-  TrekProps | TouristicContentProps | OutdoorSiteProps | OutdoorCourseProps | TouristicEventProps
+  (
+    | TrekProps
+    | TouristicContentProps
+    | OutdoorSiteProps
+    | OutdoorCourseProps
+    | TouristicEventProps
+  ) & { asColumn?: boolean }
 > = props => {
   const {
     id,
@@ -117,6 +123,7 @@ export const ResultCard: React.FC<
     className,
     redirectionUrl,
     type,
+    asColumn,
   } = props;
   const { setHoveredCardId } = useContext(ListAndMapContext);
 
@@ -132,6 +139,13 @@ export const ResultCard: React.FC<
       }}
       className={className}
       id="result_card"
+      style={
+        asColumn
+          ? {
+              flexDirection: 'column',
+            }
+          : {}
+      }
     >
       <Modal>
         {({ isFullscreen, toggleFullscreen }) => (
@@ -141,6 +155,7 @@ export const ResultCard: React.FC<
             )}
             {(!isFullscreen || !attachments) && (
               <ResultCardCarousel
+                asColumn={asColumn}
                 type={type}
                 thumbnailUris={thumbnailUris}
                 iconUri={badgeIconUri}
