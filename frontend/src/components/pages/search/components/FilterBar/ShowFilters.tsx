@@ -29,6 +29,7 @@ const ShowFilters: React.FC<Props> = ({ item, setFilterSelectedOptions, hideLabe
   ) : (
     <Field
       key={item.id}
+      id={item.id}
       filterState={item}
       onSelect={(options: Option[]) => {
         setFilterSelectedOptions(item.id, options);

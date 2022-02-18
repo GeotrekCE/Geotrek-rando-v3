@@ -9,6 +9,7 @@ import { countFiltersSelected } from '../../modules/filters/utils';
 
 import { CloseButton } from './CloseButton';
 import { MobileFilterMenuSection } from './MobileFilterMenuSection';
+import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
 
 interface Props {
   handleClose: () => void;
@@ -53,8 +54,10 @@ export const MobileFilterMenu: React.FC<Props> = ({
         {filtersList.map(item => {
           const numberSelected = countFiltersSelected(filtersState, item.filters, item.subFilters);
 
+          console.log('=>', item.id, getActivityColor(item.id));
           return (
             <MobileFilterMenuSection
+              color={getActivityColor(item.id)}
               title={item.name}
               key={item.id}
               onClick={item.onSelect}

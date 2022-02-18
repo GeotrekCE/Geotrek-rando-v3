@@ -22,15 +22,15 @@ const getActivityColor = (type?: string | null): string => {
     (type
       ? {
           TREK: colors?.categories?.trek || default_trek_color,
-          OUTDOOR_SITE: colors?.categories?.events || default_outdoor_color,
-          OUTDOOR_COURSE: colors?.categories?.events || default_outdoor_color,
-          TOURISTIC_CONTENT: colors?.categories?.outdoor || default_touristic_content_color,
-          TOURISTIC_EVENT: colors?.categories?.service || default_touristic_event_color,
-          POI: colors?.categories?.outdoor || defaultColor,
-          practices: colors?.categories?.trek || defaultColor,
-          outdoorPractice: colors?.categories?.events || defaultColor,
-          categories: colors?.categories?.service || defaultColor,
-          event: colors?.categories?.service || defaultColor,
+          OUTDOOR_SITE: colors?.categories?.outdoor || default_outdoor_color,
+          OUTDOOR_COURSE: colors?.categories?.outdoor || default_outdoor_color,
+          TOURISTIC_CONTENT: colors?.categories?.service || default_touristic_content_color,
+          TOURISTIC_EVENT: colors?.categories?.events || default_touristic_event_color,
+          POI: colors?.categories?.outdoor || default_outdoor_color,
+          practices: colors?.categories?.trek || default_trek_color,
+          outdoorPractice: colors?.categories?.outdoor || default_outdoor_color,
+          event: colors?.categories?.events || default_touristic_event_color,
+          categories: colors?.categories?.service || default_touristic_content_color,
         }[type]
       : defaultColor) ?? defaultColor;
 
