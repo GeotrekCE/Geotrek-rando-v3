@@ -209,11 +209,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       </div>
                     )}
 
-                    {getGlobalConfig().enableMeteoWidget && details.cities && details.cities[0] && (
-                      <DetailsSection>
-                        <DetailsMeteoWidget code={details.cities[0]} />
-                      </DetailsSection>
-                    )}
+                    {getGlobalConfig().enableMeteoWidget &&
+                      details.cities_raw &&
+                      details.cities_raw[0] && (
+                        <DetailsSection>
+                          <DetailsMeteoWidget code={details.cities_raw[0]} />
+                        </DetailsSection>
+                      )}
                     {details.description && (
                       <div ref={setDescriptionRef} id="details_description_ref">
                         <DetailsDescription

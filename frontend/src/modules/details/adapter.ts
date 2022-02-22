@@ -98,6 +98,7 @@ export const adaptResults = ({
       departure: rawDetailsProperties.departure,
       arrival: rawDetailsProperties.arrival,
       cities: (rawDetailsProperties.cities || []).map(id => cityDictionnary[id].name),
+      cities_raw: rawDetailsProperties.cities,
       touristicContents,
       parkingLocation:
         rawDetailsProperties.parking_location !== null

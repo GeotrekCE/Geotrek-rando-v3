@@ -142,6 +142,7 @@ export interface Details extends DetailsHtml {
   departure: string;
   arrival: string;
   cities: string[];
+  cities_raw: string[];
   webLinks: WebLink[];
   elevationAreaUrl: string;
   altimetricProfileUrl: string;
