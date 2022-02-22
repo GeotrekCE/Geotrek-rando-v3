@@ -89,6 +89,7 @@
     "transport": "Trasporto",
     "stationnement": "Parcheggio",
     "access_parking": "Accesso stradale e parcheggi",
+    "reservation": "Prenotazione",
     "sensitiveAreasRef": "Zone sensibili",
     "sensitiveAreas": {
       "title": "Zone di sensibilità ambientale",

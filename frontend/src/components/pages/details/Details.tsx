@@ -235,16 +235,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       <div className="h-90" id="altimetric-profile"></div>
                     </DetailsSection>
 
-                    {details.reservation && details.reservation_id && (
-                      <DetailsSection className={marginDetailsChild}>
-                        <DetailsReservationWidget
-                          language={language}
-                          reservation={details.reservation}
-                          id={details.reservation_id}
-                        />
-                      </DetailsSection>
-                    )}
-
                     {details.sensitiveAreas.length > 0 && (
                       <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
                         <DetailsSection
@@ -432,6 +422,20 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           type="TOURISTIC_CONTENT"
                         />
                       </div>
+                    )}
+
+                    {details.reservation && details.reservation_id && (
+                      <DetailsSection
+                        className={marginDetailsChild}
+                        htmlId="details_reservation"
+                        titleId="details.reservation"
+                      >
+                        <DetailsReservationWidget
+                          language={language}
+                          reservation={details.reservation}
+                          id={details.reservation_id}
+                        />
+                      </DetailsSection>
                     )}
                   </div>
                   <Footer />

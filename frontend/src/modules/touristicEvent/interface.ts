@@ -70,6 +70,7 @@ export interface TouristicEventDetails extends TouristicEvent {
   descriptionTeaser: string;
   bbox: Bbox;
   cities: string[];
+  cities_raw: string[];
   touristicContents: TouristicContent[];
   participantNumber: number;
   pdfUri: string;

@@ -30,6 +30,8 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
+import { getGlobalConfig } from 'modules/utils/api.config';
+import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 
 interface Props {
   touristicEventUrl: string | string[] | undefined;
@@ -183,6 +185,14 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                         id={id}
                       />
                     </div>
+
+                    {getGlobalConfig().enableMeteoWidget &&
+                      touristicEventContent.cities_raw &&
+                      touristicEventContent.cities_raw[0] && (
+                        <DetailsSection>
+                          <DetailsMeteoWidget code={touristicEventContent.cities_raw[0]} />
+                        </DetailsSection>
+                      )}
 
                     {touristicEventContent.description && (
                       <div ref={setDescriptionRef} id="details_description_ref">

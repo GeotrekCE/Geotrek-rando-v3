@@ -94,6 +94,7 @@
     "transport": "Transport",
     "stationnement": "Stationnement",
     "access_parking": "Accès routiers et parkings",
+    "reservation": "Réservation",
     "sensitiveAreasRef": "Zones sensibles",
     "sensitiveAreas": {
       "title": "Zones de sensibilité environnementale",

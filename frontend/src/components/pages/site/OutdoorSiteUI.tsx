@@ -33,6 +33,8 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
+import { getGlobalConfig } from 'modules/utils/api.config';
+import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 
 interface Props {
   outdoorSiteUrl: string | string[] | undefined;
@@ -215,6 +217,14 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                         />
                       </div>
                     )}
+
+                    {getGlobalConfig().enableMeteoWidget &&
+                      outdoorSiteContent.cities_raw &&
+                      outdoorSiteContent.cities_raw[0] && (
+                        <DetailsSection>
+                          <DetailsMeteoWidget code={outdoorSiteContent.cities_raw[0]} />
+                        </DetailsSection>
+                      )}
 
                     {!!outdoorSiteContent.description && (
                       <div ref={setDescriptionRef} id="details_description_ref">

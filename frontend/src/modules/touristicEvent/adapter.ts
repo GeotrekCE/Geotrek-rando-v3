@@ -80,6 +80,7 @@ export const adaptTouristicEventDetails = ({
       corner2: { x: rawTouristicEventDetails.bbox[2], y: rawTouristicEventDetails.bbox[3] },
     },
     cities: rawTouristicEventDetails.properties.cities?.map(id => cityDictionnary[id]?.name) ?? [],
+    cities_raw: rawTouristicEventDetails.properties.cities,
     id: rawTouristicEventDetails.id,
     touristicContents,
     participantNumber: rawTouristicEventDetails.properties.participant_number,

@@ -20,6 +20,8 @@ import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { marginDetailsChild } from '../details/Details';
 import { HtmlText } from '../details/utils';
+import { getGlobalConfig } from 'modules/utils/api.config';
+import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 
 interface TouristicContentUIProps {
   touristicContentUrl: string | string[] | undefined;
@@ -164,6 +166,13 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                     )}
                   </DetailsSection>
                 )}
+                {getGlobalConfig().enableMeteoWidget &&
+                  touristicContent.cities_raw &&
+                  touristicContent.cities_raw[0] && (
+                    <DetailsSection>
+                      <DetailsMeteoWidget code={touristicContent.cities_raw[0]} />
+                    </DetailsSection>
+                  )}
                 {touristicContent.sources.length > 0 && (
                   <DetailsSection
                     htmlId="touristicContent_source"

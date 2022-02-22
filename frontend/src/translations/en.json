@@ -90,6 +90,7 @@
     "transport": "Transport",
     "stationnement": "Parking",
     "access_parking": "Access and parking",
+    "reservation": "Booking",
     "sensitiveAreasRef": "Sensitive areas",
     "sensitiveAreas": {
       "title": "Sensitive areas",

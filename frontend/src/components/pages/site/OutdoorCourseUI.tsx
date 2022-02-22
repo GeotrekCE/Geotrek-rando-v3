@@ -27,6 +27,8 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
+import { getGlobalConfig } from 'modules/utils/api.config';
+import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 
 interface Props {
   outdoorCourseUrl: string | string[] | undefined;
@@ -185,6 +187,14 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                         />
                       </div>
                     )}
+
+                    {getGlobalConfig().enableMeteoWidget &&
+                      outdoorCourseContent.cities_raw &&
+                      outdoorCourseContent.cities_raw[0] && (
+                        <DetailsSection>
+                          <DetailsMeteoWidget code={outdoorCourseContent.cities_raw[0]} />
+                        </DetailsSection>
+                      )}
 
                     {outdoorCourseContent.description && (
                       <div id="details_description_ref">
