@@ -45,17 +45,6 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
         )
       ) : (
         <div>
-          <BreadcrumbWrapper>
-            <Breadcrumb
-              breadcrumb={[
-                {
-                  label: 'Accueil',
-                  link: '/',
-                },
-                { label: flatPage?.title },
-              ]}
-            />
-          </BreadcrumbWrapper>
           {flatPage.attachment !== null && flatPage.attachment.length > 0 && (
             <div
               className="relative coverDetailsMobile desktop:h-coverDetailsDesktop text-center"
@@ -80,6 +69,17 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                 </p>
               </div>
             )}
+            <BreadcrumbWrapper>
+              <Breadcrumb
+                breadcrumb={[
+                  {
+                    label: 'Accueil',
+                    link: '/',
+                  },
+                  { label: flatPage?.title },
+                ]}
+              />
+            </BreadcrumbWrapper>
             {flatPage.content !== null && flatPage.content.length > 0 && (
               <HtmlText>{parse(flatPage.content)}</HtmlText>
             )}
