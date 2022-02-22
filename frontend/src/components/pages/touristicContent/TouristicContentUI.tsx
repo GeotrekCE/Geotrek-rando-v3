@@ -10,6 +10,7 @@ import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { useTouristicContent } from './useTouristicContent';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { DetailsSection } from '../details/components/DetailsSection';
@@ -20,7 +21,6 @@ import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { marginDetailsChild } from '../details/Details';
 import { HtmlText } from '../details/utils';
-import { getGlobalConfig } from 'modules/utils/api.config';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 
 interface TouristicContentUIProps {
