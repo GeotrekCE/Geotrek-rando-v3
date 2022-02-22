@@ -22,6 +22,7 @@ export interface DetailsCardProps {
   thumbnailUris: string[];
   attachments: Attachment[];
   iconUri?: string;
+  iconName?: string;
   logoUri?: string;
   className?: string;
   redirectionUrl?: string;
@@ -35,6 +36,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   thumbnailUris,
   attachments,
   iconUri,
+  iconName,
   place,
   logoUri,
   className,
@@ -95,7 +97,9 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
             </>
           )}
         </Modal>
-        {iconUri && <CardIcon iconUri={iconUri} color={getActivityColor(type)} />}
+        {iconUri && (
+          <CardIcon iconUri={iconUri} iconName={iconName} color={getActivityColor(type)} />
+        )}
       </div>
       <div
         ref={detailsCardRef}

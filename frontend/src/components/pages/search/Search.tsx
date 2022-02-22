@@ -201,6 +201,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             thumbnailUris={searchResult.thumbnailUris}
                             attachments={searchResult.attachments}
                             badgeIconUri={searchResult.practice?.pictogram}
+                            badgeName={searchResult.practice?.name}
                             informations={searchResult.informations}
                             redirectionUrl={generateResultDetailsUrl(
                               searchResult.id,
@@ -222,6 +223,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             thumbnailUris={searchResult.thumbnailUris}
                             attachments={searchResult.attachments}
                             badgeIconUri={searchResult.category.pictogramUri}
+                            badgeName={searchResult.category.label}
                             informations={searchResult.types}
                             redirectionUrl={generateTouristicContentUrl(
                               searchResult.id,
@@ -243,6 +245,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             thumbnailUris={searchResult.thumbnailUris}
                             attachments={searchResult.attachments}
                             badgeIconUri={searchResult.practice?.pictogram}
+                            badgeName={searchResult.practice?.name}
                             informations={[]}
                             redirectionUrl={generateOutdoorSiteUrl(
                               searchResult.id,
@@ -264,6 +267,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             thumbnailUris={searchResult.thumbnailUris}
                             attachments={searchResult.attachments}
                             badgeIconUri={searchResult.typeEvent?.pictogram}
+                            badgeName={searchResult.typeEvent?.type}
                             informations={{
                               date: {
                                 beginDate: searchResult.beginDate,

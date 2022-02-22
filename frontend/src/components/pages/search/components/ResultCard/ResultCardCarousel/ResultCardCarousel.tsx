@@ -7,6 +7,7 @@ interface ResultCardCarouselProps {
   type: 'TREK' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_CONTENT' | 'TOURISTIC_EVENT';
   thumbnailUris: string[];
   iconUri?: string;
+  iconName: string;
   onClickImage?: () => void;
   asColumn?: boolean;
 }
@@ -15,6 +16,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
   type,
   thumbnailUris,
   iconUri,
+  iconName,
   onClickImage,
   asColumn,
 }) => {
@@ -41,7 +43,9 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
           </div>
         ))}
       </SmallCarousel>
-      {iconUri !== undefined && <CardIcon iconUri={iconUri} color={getActivityColor(type)} />}
+      {iconUri !== undefined && (
+        <CardIcon iconUri={iconUri} iconName={iconName} color={getActivityColor(type)} />
+      )}
     </div>
   );
 };

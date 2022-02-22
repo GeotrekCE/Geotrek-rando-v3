@@ -35,6 +35,7 @@ interface BaseProps {
   redirectionUrl: string;
   attachments?: Attachment[];
   badgeIconUri?: string;
+  badgeName?: string;
   className?: string;
 }
 
@@ -120,6 +121,7 @@ export const ResultCard: React.FC<
     thumbnailUris,
     attachments,
     badgeIconUri,
+    badgeName,
     className,
     redirectionUrl,
     type,
@@ -159,6 +161,7 @@ export const ResultCard: React.FC<
                 type={type}
                 thumbnailUris={thumbnailUris}
                 iconUri={badgeIconUri}
+                iconName={badgeName}
                 onClickImage={attachments ? toggleFullscreen : undefined}
               />
             )}
