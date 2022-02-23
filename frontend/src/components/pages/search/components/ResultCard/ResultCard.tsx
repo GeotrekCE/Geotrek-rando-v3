@@ -144,9 +144,10 @@ export const ResultCard: React.FC<
       style={
         asColumn
           ? {
+              flex: 'auto',
               flexDirection: 'column',
             }
-          : {}
+          : { flex: 'auto' }
       }
     >
       <Modal>
