@@ -5,19 +5,28 @@ import { Florist } from 'components/Icons/Florist';
 import { Sliders } from 'components/Icons/Sliders';
 import { Visibility } from 'components/Map/DetailsMap/useDetailsMap';
 import { Point } from 'components/Icons/Point';
+import styled from 'styled-components';
 import { ControlButton } from '../ControlButton';
 import { useControlSection } from './useControlSection';
+import { ControlPanel } from './ControlPanel';
+import { Layers } from './Layers';
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
 
 interface ControlSectionProps {
-  trekChildrenVisibility?: Visibility;
-  toggleTrekChildrenVisibility?: () => void;
-  poiVisibility?: Visibility;
-  togglePoiVisibility?: () => void;
-  referencePointsVisibility?: Visibility;
+  trekChildrenVisibility: Visibility;
+  toggleTrekChildrenVisibility: () => void;
+  poiVisibility: Visibility;
+  togglePoiVisibility: () => void;
+  referencePointsVisibility: Visibility;
   toggleReferencePointsVisibility: () => void;
-  touristicContentVisibility?: Visibility;
+  touristicContentVisibility: Visibility;
   toggleTouristicContentVisibility: () => void;
-  className?: string;
+  className: string;
 }
 
 export const ControlSection: React.FC<ControlSectionProps> = ({
@@ -32,44 +41,27 @@ export const ControlSection: React.FC<ControlSectionProps> = ({
   className,
 }) => {
   const { controlSectionState, expandControlSection, collapseControlSection } = useControlSection();
+
   return (
-    <div className={`absolute top-8 right-8 ${className ?? ''}`}>
+    <Wrapper className={`absolute top-8 right-8 ${className ?? ''}`}>
       {controlSectionState === 'COLLAPSED' && (
-        <ControlButton icon={<Sliders size={24} />} onClick={expandControlSection} />
+        <ControlButton icon={<Layers size={24} />} onClick={expandControlSection} />
       )}
       {controlSectionState === 'EXPANDED' && (
         <>
-          <ControlButton icon={<ChevronUp size={24} />} onClick={collapseControlSection} />
-          {trekChildrenVisibility !== null && (
-            <ControlButton
-              icon={<Flag size={24} />}
-              onClick={toggleTrekChildrenVisibility}
-              active={trekChildrenVisibility === 'DISPLAYED'}
-            />
-          )}
-          {poiVisibility !== null && (
-            <ControlButton
-              icon={<Florist size={24} />}
-              onClick={togglePoiVisibility}
-              active={poiVisibility === 'DISPLAYED'}
-            />
-          )}
-          {referencePointsVisibility !== null && (
-            <ControlButton
-              icon={<Point size={20} />}
-              onClick={toggleReferencePointsVisibility}
-              active={referencePointsVisibility === 'DISPLAYED'}
-            />
-          )}
-          {touristicContentVisibility !== null && (
-            <ControlButton
-              icon={<MapPin size={24} />}
-              onClick={toggleTouristicContentVisibility}
-              active={touristicContentVisibility === 'DISPLAYED'}
-            />
-          )}
+          <ControlButton icon={<ChevronUp size={30} />} onClick={collapseControlSection} />
+          <ControlPanel
+            trekChildrenVisibility={trekChildrenVisibility}
+            toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
+            poiVisibility={poiVisibility}
+            togglePoiVisibility={togglePoiVisibility}
+            referencePointsVisibility={referencePointsVisibility}
+            toggleReferencePointsVisibility={toggleReferencePointsVisibility}
+            touristicContentVisibility={touristicContentVisibility}
+            toggleTouristicContentVisibility={toggleTouristicContentVisibility}
+          />
         </>
       )}
-    </div>
+    </Wrapper>
   );
 };

@@ -64,7 +64,13 @@
     "textFilter": "Ricerca...",
     "map": {
       "seeResult": "Mostrare i dettagli",
-      "seeMe": "Vedere la mia posizione"
+      "seeMe": "Vedere la mia posizione",
+      "panel": {
+        "TrekChildren": "Fasi",
+        "Poi": "Informazioni",
+        "ReferencePoints": "Vicino",
+        "TouristicContent": "Eredità"
+      }
     }
   },
   "details": {
