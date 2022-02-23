@@ -3,8 +3,8 @@ import { generateResultDetailsUrl } from 'components/pages/search/utils';
 import React from 'react';
 import styled from 'styled-components';
 import { colorPalette, MAX_WIDTH_MOBILE } from 'stylesheet';
-import Breadcrumb from './Breadcrumb';
 import { useIntl } from 'react-intl';
+import Breadcrumb from './Breadcrumb';
 
 interface DetailsBreadcrumb {
   details: any;

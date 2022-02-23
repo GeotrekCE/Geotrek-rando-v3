@@ -6,13 +6,13 @@ import { Footer } from 'components/Footer';
 import { Separator } from 'components/Separator';
 import { PageHead } from 'components/PageHead';
 import styled from 'styled-components';
+import { useIntl } from 'react-intl';
 import { useFlatPage } from './useFlatPage';
 import { DetailsSection } from '../details/components/DetailsSection';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsSource } from '../details/components/DetailsSource';
 import { HtmlText } from '../details/utils';
 import Breadcrumb from '../details/components/DetailsPreview/Breadcrumb';
-import { useIntl } from 'react-intl';
 
 interface FlatPageUIProps {
   flatPageUrl: string;

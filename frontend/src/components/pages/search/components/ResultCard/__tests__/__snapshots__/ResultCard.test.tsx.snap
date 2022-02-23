@@ -8,6 +8,7 @@ Object {
       <div
         class="ResultCard__Container-sc-1bem01n-0 bmgMpp"
         id="result_card"
+        style="flex-basis: auto;"
       >
         <div
           style="background-color: white; position: relative;"
@@ -231,6 +232,7 @@ Object {
     <div
       class="ResultCard__Container-sc-1bem01n-0 bmgMpp"
       id="result_card"
+      style="flex-basis: auto;"
     >
       <div
         style="background-color: white; position: relative;"
