@@ -12,6 +12,7 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsSource } from '../details/components/DetailsSource';
 import { HtmlText } from '../details/utils';
 import Breadcrumb from '../details/components/DetailsPreview/Breadcrumb';
+import { useIntl } from 'react-intl';
 
 interface FlatPageUIProps {
   flatPageUrl: string;
@@ -23,6 +24,7 @@ const BreadcrumbWrapper = styled.div`
 
 export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
   const { flatPage, isLoading, refetch } = useFlatPage(flatPageUrl);
+  const intl = useIntl();
 
   return (
     <Layout>
@@ -73,7 +75,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
               <Breadcrumb
                 breadcrumb={[
                   {
-                    label: 'Accueil',
+                    label: intl.formatMessage({ id: 'header.accueil' }),
                     link: '/',
                   },
                   { label: flatPage?.title },

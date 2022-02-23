@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { colorPalette, MAX_WIDTH_MOBILE } from 'stylesheet';
 import Breadcrumb from './Breadcrumb';
+import { useIntl } from 'react-intl';
 
 interface DetailsBreadcrumb {
   details: any;
@@ -22,6 +23,8 @@ search?practices=4&categories=3&themes=5&districts=1&outdoorPractice=3&event=3
 */
 
 const DetailsBreadcrumb: React.FC<DetailsBreadcrumb> = ({ details, title, type, parent }) => {
+  const intl = useIntl();
+
   const toSearchLink = (type: string) =>
     ({
       TREK: (d: any) =>
@@ -59,7 +62,7 @@ const DetailsBreadcrumb: React.FC<DetailsBreadcrumb> = ({ details, title, type, 
 
   const breadcrumb = [
     {
-      label: 'Accueil',
+      label: intl.formatMessage({ id: 'header.accueil' }),
       link: '/',
     },
     search &&

@@ -10,6 +10,7 @@ const BreadcrumbElem = styled.div`
 const StyledLink = styled(Link)`
   display: flex;
   color: ${colorPalette.primary1};
+  font-size: 14px;
 
   &:hover {
     text-decoration: underline;
