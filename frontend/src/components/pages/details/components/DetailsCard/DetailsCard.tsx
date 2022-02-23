@@ -98,7 +98,11 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           )}
         </Modal>
         {iconUri && (
-          <CardIcon iconUri={iconUri} iconName={iconName} color={getActivityColor(type)} />
+          <CardIcon
+            iconUri={iconUri}
+            iconName={iconName as string}
+            color={getActivityColor(type)}
+          />
         )}
       </div>
       <div

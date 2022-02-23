@@ -161,7 +161,7 @@ export const ResultCard: React.FC<
                 type={type}
                 thumbnailUris={thumbnailUris}
                 iconUri={badgeIconUri}
-                iconName={badgeName}
+                iconName={badgeName as string}
                 onClickImage={attachments ? toggleFullscreen : undefined}
               />
             )}
