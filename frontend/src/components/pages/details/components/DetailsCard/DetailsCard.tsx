@@ -1,18 +1,19 @@
+import { CardIcon } from 'components/CardIcon';
+import { Link } from 'components/Link';
 import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
-import { useContext } from 'react';
-import { textEllipsisAfterNLines } from 'services/cssHelpers';
-import parse from 'html-react-parser';
 import { HtmlText } from 'components/pages/details/utils';
-import styled from 'styled-components';
-import { FormattedMessage } from 'react-intl';
-import { Link } from 'components/Link';
+import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
+import parse from 'html-react-parser';
 import { ListAndMapContext } from 'modules/map/ListAndMapContext';
-import { CardIcon } from 'components/CardIcon';
+import { useContext } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { textEllipsisAfterNLines } from 'services/cssHelpers';
+import styled from 'styled-components';
 import { getSpacing, MAX_WIDTH_MOBILE } from 'stylesheet';
 import { Attachment } from '../../../../../modules/interface';
-import { useDetailsCard } from './useDetailsCard';
 import { DetailsCardCarousel } from '../DetailsCardCarousel';
+import { useDetailsCard } from './useDetailsCard';
 export interface DetailsCardProps {
   id: string;
   name: string;
@@ -21,9 +22,11 @@ export interface DetailsCardProps {
   thumbnailUris: string[];
   attachments: Attachment[];
   iconUri?: string;
+  iconName?: string;
   logoUri?: string;
   className?: string;
   redirectionUrl?: string;
+  type?: string;
 }
 
 export const DetailsCard: React.FC<DetailsCardProps> = ({
@@ -33,10 +36,12 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   thumbnailUris,
   attachments,
   iconUri,
+  iconName,
   place,
   logoUri,
   className,
   redirectionUrl,
+  type,
 }) => {
   const { truncateState, toggleTruncateState, heightState, detailsCardRef } = useDetailsCard();
   const descriptionStyled =
@@ -92,7 +97,13 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
             </>
           )}
         </Modal>
-        {iconUri && <CardIcon iconUri={iconUri} />}
+        {iconUri && (
+          <CardIcon
+            iconUri={iconUri}
+            iconName={iconName as string}
+            color={getActivityColor(type)}
+          />
+        )}
       </div>
       <div
         ref={detailsCardRef}

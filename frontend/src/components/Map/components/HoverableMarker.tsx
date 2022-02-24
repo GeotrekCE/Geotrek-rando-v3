@@ -1,3 +1,4 @@
+import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
 import { ListAndMapContext } from 'modules/map/ListAndMapContext';
 import React, { ReactNode, useContext, useMemo } from 'react';
 import { Marker } from 'react-leaflet';
@@ -14,12 +15,12 @@ interface BaseProps {
 
 interface TrekOrTouristicContentProps extends BaseProps {
   pictogramUri?: string;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT';
+  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | null;
 }
 
 interface TrekChildProps extends BaseProps {
   rank: number;
-  type: 'TREK_CHILD';
+  type?: 'TREK_CHILD';
 }
 
 const isTrekChild = (trek: TrekOrTouristicContentProps | TrekChildProps): trek is TrekChildProps =>
@@ -28,6 +29,8 @@ const isTrekChild = (trek: TrekOrTouristicContentProps | TrekChildProps): trek i
 export const HoverableMarker = (props: TrekOrTouristicContentProps | TrekChildProps) => {
   const { hoveredCardId } = useContext(ListAndMapContext);
   const isCorrespondingCardHovered = props.id === hoveredCardId;
+  const color = getActivityColor(props.type);
+
   return useMemo(
     () => (
       <Marker
@@ -35,8 +38,8 @@ export const HoverableMarker = (props: TrekOrTouristicContentProps | TrekChildPr
         position={props.position}
         icon={
           isTrekChild(props)
-            ? TrekChildMarker(props.rank, isCorrespondingCardHovered ? ZOOM_RATIO : 1)
-            : TrekMarker(props.pictogramUri, isCorrespondingCardHovered ? ZOOM_RATIO : 1)
+            ? TrekChildMarker(props.rank, isCorrespondingCardHovered ? ZOOM_RATIO : 1, color)
+            : TrekMarker(props.pictogramUri, isCorrespondingCardHovered ? ZOOM_RATIO : 1, color)
         }
       >
         {props.children}

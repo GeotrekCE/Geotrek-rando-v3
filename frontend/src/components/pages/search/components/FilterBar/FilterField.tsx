@@ -7,8 +7,10 @@ import { colorPalette, sizes } from 'stylesheet';
 import { groupBy } from 'lodash';
 import { FilterState, Option } from '../../../../../modules/filters/interface';
 import { countFiltersSelected } from '../../../../../modules/filters/utils';
+import getActivityColor from '../ResultCard/getActivityColor';
 
 interface Props {
+  id: string;
   name: React.ReactElement;
   filters?: string[];
   subFilters?: string[];
@@ -21,6 +23,7 @@ interface Props {
 const BACKGROUND_EXPANDED = '#fefefe';
 
 const FilterField: React.FC<Props> = ({
+  id,
   name,
   expanded,
   onClick,
@@ -45,7 +48,10 @@ const FilterField: React.FC<Props> = ({
         onClick={onClick}
       >
         {numberSelected > 0 && (
-          <div className="bg-primary1 text-white rounded-full h-6 w-6 flex items-center justify-center font-bold">
+          <div
+            className="bg-primary1 text-white rounded-full h-6 w-6 flex items-center justify-center font-bold"
+            style={{ background: getActivityColor(id) }}
+          >
             {numberSelected}
           </div>
         )}

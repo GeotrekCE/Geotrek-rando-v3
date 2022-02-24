@@ -15,13 +15,13 @@ export const fetchTrekResults = (
     r => r.data,
   );
 
-export const fetchTrekResult = (query: APIQuery, id: number): Promise<RawTrekResult> =>
+export const fetchTrekResult = (query: APIQuery, id: number | string): Promise<RawTrekResult> =>
   GeotrekAPI.get(`/trek/${id}`, { params: { ...query, ...fieldsParams } }).then(r => r.data);
 
 export const fetchTrekResultsNumber = (
   query: APIQuery,
 ): Promise<APIResponseForList<{ id: number }>> =>
-  GeotrekAPI.get('/trek', { params: { ...query, fields: 'id', ...portalsFilter } }).then(
+  GeotrekAPI.get('/trek', { params: { fields: 'id', ...portalsFilter, ...query } }).then(
     r => r.data,
   );
 

@@ -1,4 +1,5 @@
 import { Home } from 'components/pages/home';
+import { flatten } from 'lodash';
 import { getActivityBarContent } from 'modules/activities/connector';
 import { getActivitySuggestions } from 'modules/activitySuggestions/connector';
 import { getHomePageConfig } from 'modules/home/utils';
@@ -11,14 +12,11 @@ export const getServerSideProps = async (context: { locale: string }) => {
 
   const homePageConfig = getHomePageConfig();
 
-  const activitySuggestionIds: string[] = homePageConfig.suggestions.reduce<string[]>(
-    (suggestionIds, currentSuggestion) => [...suggestionIds, ...currentSuggestion.ids],
-    [],
-  );
+  const activitySuggestionIds = flatten(homePageConfig.suggestions.map(s => s.ids));
 
   await queryClient.prefetchQuery(
     ['activitySuggestions', activitySuggestionIds.join('-'), context.locale],
-    () => getActivitySuggestions(activitySuggestionIds, context.locale),
+    () => getActivitySuggestions(homePageConfig.suggestions, context.locale),
   );
 
   await queryClient.prefetchQuery(`homeActivities-${context.locale}`, () =>

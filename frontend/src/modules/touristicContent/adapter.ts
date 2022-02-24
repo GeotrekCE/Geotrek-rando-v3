@@ -63,11 +63,11 @@ export const adaptTouristicContentResult = ({
     category: touristicContentCategories[rawTouristicObject.category],
     logoUri: '',
     place:
-      rawTouristicObject.cities.length > 0
+      Array.isArray(rawTouristicObject.cities) && rawTouristicObject.cities.length > 0
         ? cityDictionnary[rawTouristicObject.cities[0]].name
         : '',
     themes:
-      rawTouristicObject.themes !== null
+      rawTouristicObject.themes != null
         ? rawTouristicObject.themes.map(themeId => themeDictionnary[themeId]?.label)
         : [],
     types: Object.entries(rawTouristicObject.types).reduce<TouristicContentDetailsType[]>(
@@ -106,23 +106,22 @@ export const adaptTouristicContentDetails = ({
   geometry: rawTCD.geometry ? adaptGeometry(rawTCD.geometry) : null,
   attachments: getAttachments(rawTCD.properties.attachments),
   description: rawTCD.properties.description,
-  sources:
-    rawTCD.properties.source !== null
-      ? rawTCD.properties.source
-          .filter(sourceId => sourceDictionnary[sourceId] !== undefined)
-          .map(sourceId => sourceDictionnary[sourceId])
-      : [],
+  sources: Array.isArray(rawTCD.properties.source)
+    ? rawTCD.properties.source
+        .filter(sourceId => sourceDictionnary[sourceId] !== undefined)
+        .map(sourceId => sourceDictionnary[sourceId])
+    : [],
   contact: rawTCD.properties.contact,
   email: rawTCD.properties.email,
   website: rawTCD.properties.website,
   place:
     rawTCD.properties.cities.length > 0 ? cityDictionnary[rawTCD.properties.cities[0]].name : '',
-  themes:
-    rawTCD.properties.themes !== null
-      ? rawTCD.properties.themes
-          .filter(themeId => themeDictionnary[themeId] !== undefined)
-          .map(themeId => themeDictionnary[themeId]?.label)
-      : [],
+  cities_raw: rawTCD.properties.cities as any,
+  themes: Array.isArray(rawTCD.properties.themes)
+    ? rawTCD.properties.themes
+        .filter(themeId => themeDictionnary[themeId] !== undefined)
+        .map(themeId => themeDictionnary[themeId]?.label)
+    : [],
   pdfUri: rawTCD.properties.pdf,
   types: Object.entries(rawTCD.properties.types).reduce<TouristicContentDetailsType[]>(
     (adaptedTypes, typeEntry) => {
@@ -134,6 +133,7 @@ export const adaptTouristicContentDetails = ({
     },
     [],
   ),
+  type: 'TOURISTIC_CONTENT',
   logoUri: rawTCD.properties.approved === true ? APPROVED_LABEL_LOGO_URI : null,
   bbox: {
     corner1: { x: rawTCD.bbox[0], y: rawTCD.bbox[1] },

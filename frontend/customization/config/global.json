@@ -8,6 +8,8 @@
   "enableTouristicEvents": true,
   "portalIds": [1],
   "apiUrl": "https://geotrekdemo.ecrins-parcnational.fr/api/v2",
+  "reservationPartner": "parcdesecrins",
+  "reservationProject": "parcdesecrins",
   "googleAnalyticsId": "G-8FSV2N4FXN",
   "googleSiteVerificationToken": "eKAyxwaXAobFWQcJen0mnZ8T3CpLoN45JysXeNkRf38",
   "baseUrl": "http://localhost:3000",

@@ -94,22 +94,6 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
 
   const numberSelected = countFiltersSelected(filtersState, null, null);
 
-  const isTrek = (
-    content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
-  ): content is TrekResult => content.type === 'TREK';
-
-  const isTouristicContent = (
-    content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
-  ): content is TouristicContentResult => content.type === 'TOURISTIC_CONTENT';
-
-  const isOutdoorSite = (
-    content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
-  ): content is OutdoorSite => content.type === 'OUTDOOR_SITE';
-
-  const isTouristicEvent = (
-    content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
-  ): content is TouristicEvent => content.type === 'TOURISTIC_EVENT';
-
   return (
     <div id="Search">
       <PageHead
@@ -217,6 +201,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             thumbnailUris={searchResult.thumbnailUris}
                             attachments={searchResult.attachments}
                             badgeIconUri={searchResult.practice?.pictogram}
+                            badgeName={searchResult.practice?.name}
                             informations={searchResult.informations}
                             redirectionUrl={generateResultDetailsUrl(
                               searchResult.id,
@@ -238,6 +223,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             thumbnailUris={searchResult.thumbnailUris}
                             attachments={searchResult.attachments}
                             badgeIconUri={searchResult.category.pictogramUri}
+                            badgeName={searchResult.category.label}
                             informations={searchResult.types}
                             redirectionUrl={generateTouristicContentUrl(
                               searchResult.id,
@@ -259,6 +245,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             thumbnailUris={searchResult.thumbnailUris}
                             attachments={searchResult.attachments}
                             badgeIconUri={searchResult.practice?.pictogram}
+                            badgeName={searchResult.practice?.name}
                             informations={[]}
                             redirectionUrl={generateOutdoorSiteUrl(
                               searchResult.id,
@@ -280,6 +267,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             thumbnailUris={searchResult.thumbnailUris}
                             attachments={searchResult.attachments}
                             badgeIconUri={searchResult.typeEvent?.pictogram}
+                            badgeName={searchResult.typeEvent?.type}
                             informations={{
                               date: {
                                 beginDate: searchResult.beginDate,
@@ -367,3 +355,19 @@ export const MobileMapContainer = styled.div<{ displayState: 'DISPLAYED' | 'HIDD
   transition: top 0.3s ease-in-out 0.1s;
   top: ${({ displayState }) => (displayState === 'DISPLAYED' ? 0 : 100)}%;
 `;
+
+export const isTrek = (
+  content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
+): content is TrekResult => content.type === 'TREK';
+
+export const isTouristicContent = (
+  content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
+): content is TouristicContentResult => content.type === 'TOURISTIC_CONTENT';
+
+export const isOutdoorSite = (
+  content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
+): content is OutdoorSite => content.type === 'OUTDOOR_SITE';
+
+export const isTouristicEvent = (
+  content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
+): content is TouristicEvent => content.type === 'TOURISTIC_EVENT';

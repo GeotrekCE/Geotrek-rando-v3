@@ -26,7 +26,7 @@ export const TouristicContent: React.FC<PropsType> = ({ contents, type = 'TOURIS
                   id={id}
                   position={[geometry.coordinates.y, geometry.coordinates.x]}
                   pictogramUri={pictogramUri}
-                  type="TREK"
+                  type={type}
                 >
                   <Popup id={Number(idContent)} type={type} />
                 </HoverableMarker>

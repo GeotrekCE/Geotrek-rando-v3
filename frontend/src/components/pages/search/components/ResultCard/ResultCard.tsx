@@ -27,15 +27,16 @@ import { ResultCardCarousel } from './ResultCardCarousel';
 
 interface BaseProps {
   id: string;
-  hoverId: string;
+  hoverId: string | null;
   place: string | null;
   title: string;
   tags: string[];
   thumbnailUris: string[];
+  redirectionUrl: string;
   attachments?: Attachment[];
   badgeIconUri?: string;
+  badgeName?: string;
   className?: string;
-  redirectionUrl: string;
 }
 
 interface TrekProps extends BaseProps {
@@ -103,7 +104,13 @@ const isTouristicEvent = (
 ): content is TouristicEventProps => content.type === 'TOURISTIC_EVENT';
 
 export const ResultCard: React.FC<
-  TrekProps | TouristicContentProps | OutdoorSiteProps | OutdoorCourseProps | TouristicEventProps
+  (
+    | TrekProps
+    | TouristicContentProps
+    | OutdoorSiteProps
+    | OutdoorCourseProps
+    | TouristicEventProps
+  ) & { asColumn?: boolean }
 > = props => {
   const {
     id,
@@ -114,8 +121,11 @@ export const ResultCard: React.FC<
     thumbnailUris,
     attachments,
     badgeIconUri,
+    badgeName,
     className,
     redirectionUrl,
+    type,
+    asColumn,
   } = props;
   const { setHoveredCardId } = useContext(ListAndMapContext);
 
@@ -131,6 +141,14 @@ export const ResultCard: React.FC<
       }}
       className={className}
       id="result_card"
+      style={
+        asColumn
+          ? {
+              flex: 'auto',
+              flexDirection: 'column',
+            }
+          : { flex: 'auto' }
+      }
     >
       <Modal>
         {({ isFullscreen, toggleFullscreen }) => (
@@ -140,8 +158,11 @@ export const ResultCard: React.FC<
             )}
             {(!isFullscreen || !attachments) && (
               <ResultCardCarousel
+                asColumn={asColumn}
+                type={type}
                 thumbnailUris={thumbnailUris}
                 iconUri={badgeIconUri}
+                iconName={badgeName as string}
                 onClickImage={attachments ? toggleFullscreen : undefined}
               />
             )}

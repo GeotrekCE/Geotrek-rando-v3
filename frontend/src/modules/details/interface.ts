@@ -66,6 +66,7 @@ export interface RawDetailsProperties {
   web_links: RawWebLink[];
   elevation_area_url: string;
   altimetric_profile: string;
+  reservation_id?: string;
 }
 
 // Fields parsed with react-html-parser in page
@@ -106,6 +107,12 @@ export interface TrekChildGeometry {
   id: string;
   departure: Coordinate2D;
 }
+
+export interface Reservation {
+  partner: string;
+  project: string;
+}
+
 export interface Details extends DetailsHtml {
   id: number;
   practice: Activity | null;
@@ -135,10 +142,13 @@ export interface Details extends DetailsHtml {
   departure: string;
   arrival: string;
   cities: string[];
+  cities_raw: string[];
   webLinks: WebLink[];
   elevationAreaUrl: string;
   altimetricProfileUrl: string;
   length2d: number;
+  reservation: Reservation | null;
+  reservation_id?: string;
 }
 
 export interface WebLink {

@@ -1,7 +1,9 @@
+import getConfig from 'next/config';
 import MoreLink from 'components/Information/MoreLink';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
 import Loader from 'react-loader';
+
 import parse from 'html-react-parser';
 import { FormattedMessage } from 'react-intl';
 import { PageHead } from 'components/PageHead';
@@ -15,6 +17,7 @@ import { RemoteIconInformation } from 'components/Information/RemoteIconInformat
 import React, { useMemo, useRef } from 'react';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { cleanHTMLElementsFromString } from 'modules/utils/string';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { Footer } from 'components/Footer';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
@@ -32,6 +35,8 @@ import { DetailsLabel } from './components/DetailsLabel';
 import { DetailsAdvice } from './components/DetailsAdvice';
 import { DetailsChildrenSection } from './components/DetailsChildrenSection';
 import { DetailsCoverCarousel } from './components/DetailsCoverCarousel';
+import { DetailsReservationWidget } from './components/DetailsReservationWidget';
+import { DetailsMeteoWidget } from './components/DetailsMeteoWidget';
 import { ImageWithLegend } from './components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { VisibleSectionProvider } from './VisibleSectionContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
@@ -198,6 +203,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             thumbnailUris: poi.thumbnailUris,
                             attachments: poi.attachments,
                             iconUri: poi.type.pictogramUri,
+                            iconName: poi.type.label,
                           }))}
                           type="POI"
                         />
@@ -215,6 +221,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         />
                       </div>
                     )}
+                    {getGlobalConfig().enableMeteoWidget &&
+                      details.cities_raw &&
+                      details.cities_raw[0] && (
+                        <DetailsSection>
+                          <DetailsMeteoWidget code={details.cities_raw[0]} />
+                        </DetailsSection>
+                      )}
                     <DetailsSection
                       htmlId="details_altimetricProfile"
                       titleId="details.altimetricProfile.title"
@@ -405,11 +418,26 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             thumbnailUris: touristicContent.thumbnailUris,
                             attachments: touristicContent.attachments,
                             iconUri: touristicContent.category.pictogramUri,
+                            iconName: touristicContent.category.label,
                             logoUri: touristicContent.logoUri ?? undefined,
                           }))}
                           type="TOURISTIC_CONTENT"
                         />
                       </div>
+                    )}
+
+                    {details.reservation && details.reservation_id && (
+                      <DetailsSection
+                        className={marginDetailsChild}
+                        htmlId="details_reservation"
+                        titleId="details.reservation"
+                      >
+                        <DetailsReservationWidget
+                          language={language}
+                          reservation={details.reservation}
+                          id={details.reservation_id}
+                        />
+                      </DetailsSection>
                     )}
                   </div>
                   <Footer />

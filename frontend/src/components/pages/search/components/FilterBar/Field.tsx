@@ -4,14 +4,16 @@ import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 import { colorPalette } from 'stylesheet';
 import { FilterState, Option } from '../../../../../modules/filters/interface';
+import getActivityColor from '../ResultCard/getActivityColor';
 
 interface Props {
   filterState: FilterState;
   onSelect: (options: Option[]) => void;
   hideLabel?: boolean;
+  id: string;
 }
 
-const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
+const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel, id }) => {
   const intl = useIntl();
 
   const handleClick = (option: Option): void => {
@@ -32,6 +34,8 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
 
     return null;
   };
+
+  const color = getActivityColor(id);
 
   return (
     <div>

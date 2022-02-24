@@ -44,6 +44,7 @@ export const adaptTouristicContentMapResults = ({
     id: rawMapResult.id,
     location: extractFirstPointOfGeometry(rawMapResult.geometry ?? null),
     practice: {
+      id: 0,
       pictogram:
         rawMapResult.category !== undefined
           ? touristicContentCategories[rawMapResult.category]?.pictogramUri
@@ -85,6 +86,7 @@ export const adaptTouristicEventsMapResults = ({
       location: extractFirstPointOfGeometry(rawMapResult.geometry ?? null),
       practice: touristicEventTypes[rawMapResult.type]
         ? {
+            id: 0,
             name: String(touristicEventTypes[rawMapResult.type].type),
             pictogram: String(touristicEventTypes[rawMapResult.type].pictogram),
           }

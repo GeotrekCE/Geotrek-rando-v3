@@ -5,7 +5,8 @@
     "seeMore": "Find out more",
     "favorites": "Favorites",
     "goToSearch": "Search",
-    "offline": "Offline content"
+    "offline": "Offline content",
+    "accueil": "Home"
   },
   "home": {
     "title": "Geotrek-rando",
@@ -64,7 +65,13 @@
     "textFilter": "Search...",
     "map": {
       "seeResult": "Display details",
-      "seeMe": "View my position"
+      "seeMe": "View my position",
+      "panel": {
+        "TrekChildren": "Steps",
+        "Poi": "Heritage",
+        "ReferencePoints": "Informations",
+        "TouristicContent": "Close by"
+      }
     }
   },
   "details": {
@@ -90,6 +97,7 @@
     "transport": "Transport",
     "stationnement": "Parking",
     "access_parking": "Access and parking",
+    "reservation": "Booking",
     "sensitiveAreasRef": "Sensitive areas",
     "sensitiveAreas": {
       "title": "Sensitive areas",

@@ -4,6 +4,7 @@ import React from 'react';
 import Slide from 'react-burger-menu/lib/menus/slide';
 
 import { Cross } from 'components/Icons/Cross';
+import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
 import { FilterCategory, FilterState } from '../../modules/filters/interface';
 import { countFiltersSelected } from '../../modules/filters/utils';
 
@@ -55,6 +56,7 @@ export const MobileFilterMenu: React.FC<Props> = ({
 
           return (
             <MobileFilterMenuSection
+              color={getActivityColor(item.id)}
               title={item.name}
               key={item.id}
               onClick={item.onSelect}

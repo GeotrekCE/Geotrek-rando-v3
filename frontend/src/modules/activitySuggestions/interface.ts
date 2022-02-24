@@ -1,17 +1,12 @@
-import { RawAttachment } from 'modules/interface';
-
-export interface RawActivitySuggestion {
-  id: string;
-  name: string;
-  attachments: RawAttachment[];
-}
+import { OutdoorSite } from 'modules/outdoorSite/interface';
+import { TrekResult } from 'modules/results/interface';
+import { TouristicContentDetails } from 'modules/touristicContent/interface';
+import { TouristicEvent } from 'modules/touristicEvent/interface';
 
 export interface ActivitySuggestion {
-  id: string;
-  title: string;
-  imgUrl: string | null;
-}
-
-export interface ActivitySuggestionDictionnary {
-  [activitySuggestionId: string]: ActivitySuggestion;
+  type: 'events' | 'trek' | 'service' | 'outdoor';
+  results: TouristicContentDetails[] | TrekResult[] | OutdoorSite[] | TouristicEvent[];
+  titleTranslationId: string;
+  iconUrl: string;
+  ids: string[];
 }

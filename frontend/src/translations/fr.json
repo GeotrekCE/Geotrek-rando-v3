@@ -5,7 +5,8 @@
     "seeMore": "En savoir plus",
     "favorites": "Favoris",
     "goToSearch": "Recherche",
-    "offline": "Contenus hors ligne"
+    "offline": "Contenus hors ligne",
+    "accueil": "Accueil"
   },
   "home": {
     "title": "Geotrek-rando",
@@ -24,7 +25,10 @@
     "readme": "Lis le README.md pour découvrir les super commandes npm que nous avons ajouté",
     "walking": "Randonnée",
     "territoryTreks": "Randonnées à découvrir",
-    "itinerantTreks": "Itinérances à découvrir"
+    "itinerantTreks": "Itinérances à découvrir",
+    "service": "Services à découvrir",
+    "events": "Événements à découvrir",
+    "outdoor": "Activités à découvrir"
   },
   "page": {
     "back": "Retour",
@@ -65,7 +69,13 @@
     "textFilter": "Rechercher...",
     "map": {
       "seeResult": "Afficher le détail",
-      "seeMe": "Voir ma position"
+      "seeMe": "Voir ma position",
+      "panel": {
+        "trekChildren": "Étapes",
+        "poi": "Patrimoines",
+        "referencePoints": "Informations",
+        "touristicContent": "À proximité"
+      }
     }
   },
   "details": {
@@ -91,6 +101,7 @@
     "transport": "Transport",
     "stationnement": "Stationnement",
     "access_parking": "Accès routiers et parkings",
+    "reservation": "Réservation",
     "sensitiveAreasRef": "Zones sensibles",
     "sensitiveAreas": {
       "title": "Zones de sensibilité environnementale",

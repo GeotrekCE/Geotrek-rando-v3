@@ -24,12 +24,14 @@ import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
+import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 
 interface Props {
   touristicEventUrl: string | string[] | undefined;
@@ -150,6 +152,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                     <DetailsTopIcons
                       details={touristicEventContent}
                       practice={{
+                        id: 0,
                         pictogram: touristicEventContent.typeEvent.pictogram,
                         name: touristicEventContent.typeEvent.type,
                       }}
@@ -262,6 +265,14 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                         </div>
                       )}
 
+                      {getGlobalConfig().enableMeteoWidget &&
+                        touristicEventContent.cities_raw &&
+                        touristicEventContent.cities_raw[0] && (
+                          <DetailsSection>
+                            <DetailsMeteoWidget code={touristicEventContent.cities_raw[0]} />
+                          </DetailsSection>
+                        )}
+
                       {touristicEventContent.sources.length > 0 && (
                         <DetailsSection
                           htmlId="details_source"
@@ -296,6 +307,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                               thumbnailUris: touristicContent.thumbnailUris,
                               attachments: touristicContent.attachments,
                               iconUri: touristicContent.category.pictogramUri,
+                              iconName: touristicContent.category.label,
                               logoUri: touristicContent.logoUri ?? undefined,
                             }),
                           )}

@@ -87,6 +87,7 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   pdfUri: string;
   practice: OutdoorPractice;
   cities: string[];
+  cities_raw: string[];
   ratings: OutdoorRatingWithScale[];
   ratingsDescription: string;
   typeSite?: OutdoorSiteType;
