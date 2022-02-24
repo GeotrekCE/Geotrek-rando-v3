@@ -1,0 +1,194 @@
+{
+  "header": {
+    "menu": "Menú",
+    "language": "idioma",
+    "seeMore": "más información",
+    "favorites": "Preferido",
+    "goToSearch": "Busca",
+    "offline": "Contenidos sin conexión"
+  },
+  "home": {
+    "title": "Geotrek-senderismo",
+    "description": "Descubre las excursiones del territorio con Geotrek-senderismo",
+    "selectPlaceholder": "Selecciona una actividad",
+    "seeMore": "ver más",
+    "welcome-text": "La guia ecológica y digital que muestra mis descubrimienos del territorio!",
+    "mailTo": "Enviar un email",
+    "use-a-link": "Utilitizamos un enlace",
+    "get-started": "Para empezar, modifica",
+    "save-to-reload": "y salvaguarda para volver a cargar.",
+    "create-route": "Para crear una ruta, modifica rutas.js y asocia una página",
+    "generate-component": "Para crear una página o un componente sencillo, iniciar : ",
+    "generate-module": "Para añadir lógica de oficio, crear un archivo en redux con tus reducers/actions/sagas/selectors/constants/...",
+    "click-me": "Haz clic aquí",
+    "readme": "Lee el README.md para descubrir las superórdenes npm que hemos añadido",
+    "walking": "Senderismo",
+    "territoryTreks": "Excursiones para descubrir",
+    "itinerantTreks": "Itinerancias para descubrir"
+  },
+  "page": {
+    "back": "Vuelta",
+    "api-to-translate-example": "Este mensaje se ha traducido utilizando directamente l'API react-intl",
+    "not-found": "No hemos encontrado la página",
+    "goToOffline": "Mostrar los contenidos sin conexión"
+  },
+  "search": {
+    "title": "Busca",
+    "description": "Descubre las excursiones que coinciden con tus deseos en nuestro motor de búsqueda",
+    "book": "Reserva",
+    "resultsFound": "{count, plural, =0 {# Hemos encontrado el resultado} one {# Hemos encontrado el resultado} other {# Hemos encontrado los resultados}}",
+    "resultsFoundShort": "{count, plural, =0 {# resultado} one {# resultado} other {# resultados}}",
+    "forThe": "Para",
+    "seeMap": "mostrar el mapa",
+    "filter": "Filtrar",
+    "reload": "Volver a cargar",
+    "anErrorOccured": "Se ha producido un error",
+    "filters": {
+      "difficulty": "Dificultad",
+      "practices": "excursiones",
+      "outdoor": "Exterior",
+      "events": "Eventos",
+      "categories": "Servicios",
+      "cities": "pueblo",
+      "localization": "Localización",
+      "duration": "Duración",
+      "districts": "Sector",
+      "themes": "Temas",
+      "routes": "Tipo de recorrido",
+      "accessibilities": "Accesibilidad",
+      "ascent": "Denivel positivo",
+      "length": "Largo",
+      "structures": "Estructura",
+      "clearAll": "Borrar todo",
+      "filters": "Filtros"
+    },
+    "textFilter": "Buscar...",
+    "map": {
+      "seeResult": "Mostrar el detalle",
+      "seeMe": "Mostrar mi posición"
+    }
+  },
+  "details": {
+    "preview": "Presentación",
+    "access": "Acceso",
+    "download": "Bajar",
+    "children": "Pasos",
+    "childrenFullTitle": "{count, plural, =0 {sin paso} one {# paso} other {# pasos}}",
+    "poi": "Patrimonios",
+    "poiFullTitle": "{count, plural, =0 {sin patrimonio} one {# patrimonio para descubrir} other {Els # patrimonios para descubrir}}",
+    "source": "Fuente",
+    "touristicContent": "Cercano",
+    "readMore": "lleer más",
+    "knowMore": "Más información",
+    "readLess": "lleer menos",
+    "close": "Cerrar",
+    "description": "Descripción",
+    "recommandations": "Recomendaciones",
+    "informationDesks": "Lugares de información",
+    "practicalInformations": "Infos prácticas",
+    "accessibility": "Accesibilidad",
+    "toSee": "Para ver también",
+    "transport": "Transporte",
+    "stationnement": "Estacionamiento",
+    "access_parking": "Acceso por carretera y aparcamientos",
+    "sensitiveAreasRef": "Areas sensibles",
+    "sensitiveAreas": {
+      "title": "Zonas de sensibilidad ecológicas",
+      "intro": "A lo largo de su ruta, cruzará zonas de sensibilidad vinculadas con la presencia de una especie o de un medio particular. En estas zonas, un comportamiento adaptado permite contribuir a su preservación. Para más información detallada, se puede acceder a hojas específicas de cada área.",
+      "period": "Periodo de sensibilidad :",
+      "practices": "Ambitos de actividades afectados :",
+      "contact": "Contacto :"
+    },
+    "altimetricProfile": {
+      "title": "Perfil de elevación",
+      "totalLength": "Longitud total",
+      "minElevation": "Altitud min",
+      "maxElevation": "Altitud max"
+    },
+    "departure": "Inicio",
+    "arrival": "Llegada",
+    "cities": "Municipios cruzados",
+    "more": "Más información",
+    "courses": "Recorrido",
+    "experiences": "Lugares de práctica",
+    "gear": "Material",
+    "equipment": "Equipamiento",
+    "typeSite": "Tipo de lugar",
+    "typeCourse": "Tipo de recorrido",
+    "organizer": "Organizador",
+    "speaker": "los que intervienen",
+    "targetAudience": "Público objectivo",
+    "practicalInfo": "Información práctica",
+    "booking": "Reservación"
+  },
+  "touristicContent": {
+    "contact": "Contacto",
+    "email": "Correo electrónico",
+    "website": "página web"
+  },
+  "map": {
+    "layerButton": {
+      "classic": "Mapa",
+      "satellite": "Satélite"
+    }
+  },
+  "footer": {
+    "linksSectionTitle": "Informaciones complementarias",
+    "links": "Enlaces",
+    "access": "Como llegar",
+    "legalMentions": "Anotaciones legales",
+    "accessibility": "Normas de accesibilidad",
+    "geotrek": "Geotrek"
+  },
+  "report": {
+    "title": "Informar de un problema o un error",
+    "activity": "Actividad",
+    "category": "Categoría",
+    "magnitude": "Amplitud del problema",
+    "comment": "Comentarios",
+    "email": "Email",
+    "name": "Su nombre",
+    "button": "Informar",
+    "cancel": "Cancelar",
+    "success": "Gracias, se ha enviado la notificación."
+  },
+  "error": {
+    "missing": "El formulario no se ha completado"
+  },
+  "offline": {
+    "number": "{count} contenidos accesibles sin conexión a internet",
+    "presentation": "Para disfrutar de vuestros contenidos sin preocuparse de la red.",
+    "explain": "Escoge este elemento para acceder a el sin conexión",
+    "explainAvailable": "Este elemento está disponible sin conexión",
+    "title": "Modo sin conexión",
+    "download": "Baja",
+    "isInCache": "Este elemento está disponible sin conexión.",
+    "downloadInProgress": "Se está bajando",
+    "not-available": "Este contenido no está disponible sin conexión."
+  },
+  "actions": {
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "remove": "Suprimir",
+    "confirmRemove": "Confirmar que quieren suprimir este elemento ?"
+  },
+  "outdoorSite": {
+    "accessFullTitle": "Acceso",
+    "coursesFullTitle": "Recorrido",
+    "sitesFullTitle": "Los {count} lugares de práctica para descubrir"
+  },
+  "Wind": {
+    "N": "Norte",
+    "S": "Sur",
+    "E": "Este",
+    "W": "Oeste",
+    "NW": "Norte-Oeste",
+    "SW": "Sur-Oeste",
+    "NE": "Norte-Este",
+    "SE": "Sur-Este"
+  },
+  "dates": {
+    "singleDate": "el {date}",
+    "multipleDates": "del{beginDate} al {endDate}"
+  }
+}
