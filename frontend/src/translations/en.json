@@ -232,6 +232,9 @@
       "leftClick": "Left click",
       "space": "Space",
       "enter": "Enter"
+    },
+    "warning": {
+      "noWebGl": "The web graphics library (WebGL) seems to be disabled or not available on your browser, so the 3D module is unavailable."
     }
   }
 }

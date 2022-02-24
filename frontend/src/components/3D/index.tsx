@@ -7,6 +7,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { Cross } from 'components/Icons/Cross';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
+import { DetailsAdvice } from 'components/pages/details/components/DetailsAdvice';
 import { LoaderOverlay, Poi, PoiSide, Wrapper } from './3D.style';
 import Interface from './Interface';
 
@@ -46,6 +47,8 @@ export const ThreeD: React.FC<ThreeDProps> = ({
   const router = useRouter();
   const currentLanguage = router.locale ?? getDefaultLanguage();
 
+  const isAvailableWebGL = 'WebGLRenderingContext' in window;
+
   const handleClose = () => {
     if (scene.current) {
       scene.current.deinit();
@@ -74,7 +77,12 @@ export const ThreeD: React.FC<ThreeDProps> = ({
   }, []);
 
   useEffect(() => {
-    if (window?.jQuery === undefined || window?.Rando3D === undefined || !libLoaded) {
+    if (
+      window?.jQuery === undefined ||
+      window?.Rando3D === undefined ||
+      !libLoaded ||
+      !isAvailableWebGL
+    ) {
       return;
     }
 
@@ -112,31 +120,36 @@ export const ThreeD: React.FC<ThreeDProps> = ({
     scene.current && scene.current.init(() => setLoading(false));
   }, [currentLanguage, demURL, profileURL, libLoaded]);
 
+  const noWebGL = messages['rando3D.warning.noWebGl'] as string;
+
   return (
-    <Popup {...(!isLoading && { onClose: handleClose })} title={title}>
-      <Wrapper className="relative text-white">
-        {isLoading && (
-          <LoaderOverlay className="absolute inset-0">
-            <Loader />
-          </LoaderOverlay>
-        )}
-        <Interface />
-        <canvas
-          id="canvas_renderer"
-          className="h-full w-full overflow-hidden border-0"
-          ref={canvasRef}
-        />
-        <PoiSide className="poi_side absolute flex flex-col">
-          <button type="button" className="close_btn m-2 flex items-center self-end">
-            <Cross size={20} />
-            <FormattedMessage id={'details.close'} />
-          </button>
-          <h2 className="text-xl text-center my-3" />
-          <div className="description m-3" />
-        </PoiSide>
-        <Poi className="poi poi--clicked" />
-        <Poi className="poi poi--hover" />
-      </Wrapper>
+    <Popup onClose={handleClose} title={title}>
+      {!isAvailableWebGL && <DetailsAdvice text={noWebGL} />}
+      {isAvailableWebGL && (
+        <Wrapper className="relative text-white">
+          {isLoading && (
+            <LoaderOverlay className="absolute inset-0">
+              <Loader />
+            </LoaderOverlay>
+          )}
+          <Interface />
+          <canvas
+            id="canvas_renderer"
+            className="h-full w-full overflow-hidden border-0"
+            ref={canvasRef}
+          />
+          <PoiSide className="poi_side absolute flex flex-col">
+            <button type="button" className="close_btn m-2 flex items-center self-end">
+              <Cross size={20} />
+              <FormattedMessage id={'details.close'} />
+            </button>
+            <h2 className="text-xl text-center my-3" />
+            <div className="description m-3" />
+          </PoiSide>
+          <Poi className="poi poi--clicked" />
+          <Poi className="poi poi--hover" />
+        </Wrapper>
+      )}
     </Popup>
   );
 };
