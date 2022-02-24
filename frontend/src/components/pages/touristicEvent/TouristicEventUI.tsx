@@ -186,14 +186,6 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                       />
                     </div>
 
-                    {getGlobalConfig().enableMeteoWidget &&
-                      touristicEventContent.cities_raw &&
-                      touristicEventContent.cities_raw[0] && (
-                        <DetailsSection>
-                          <DetailsMeteoWidget code={touristicEventContent.cities_raw[0]} />
-                        </DetailsSection>
-                      )}
-
                     {touristicEventContent.description && (
                       <div ref={setDescriptionRef} id="details_description_ref">
                         <DetailsDescription
@@ -273,6 +265,14 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                         </div>
                       )}
 
+                      {getGlobalConfig().enableMeteoWidget &&
+                        touristicEventContent.cities_raw &&
+                        touristicEventContent.cities_raw[0] && (
+                          <DetailsSection>
+                            <DetailsMeteoWidget code={touristicEventContent.cities_raw[0]} />
+                          </DetailsSection>
+                        )}
+
                       {touristicEventContent.sources.length > 0 && (
                         <DetailsSection
                           htmlId="details_source"
@@ -307,6 +307,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                               thumbnailUris: touristicContent.thumbnailUris,
                               attachments: touristicContent.attachments,
                               iconUri: touristicContent.category.pictogramUri,
+                              iconName: touristicContent.category.label,
                               logoUri: touristicContent.logoUri ?? undefined,
                             }),
                           )}

@@ -29,7 +29,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
           preProcessor={fillSvgWithColor(colorPalette.greyDarkColored)}
           className="h-10 mr-2 desktop:mr-3"
         />
-        <span className="mt-1 desktop:mt-0 text-H4 desktop:text-H2 font-bold">{title}</span>
+        <span className="mt-1 desktop:mt-0 text-H2 desktop:text-H2 font-bold">{title}</span>
       </div>
       <ScrollContainer>
         {results !== undefined &&

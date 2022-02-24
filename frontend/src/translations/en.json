@@ -68,9 +68,9 @@
       "seeMe": "View my position",
       "panel": {
         "TrekChildren": "Steps",
-        "Poi": "Informations",
-        "ReferencePoints": "Close by",
-        "TouristicContent": "Heritage"
+        "Poi": "Heritage",
+        "ReferencePoints": "Informations",
+        "TouristicContent": "Close by"
       }
     }
   },

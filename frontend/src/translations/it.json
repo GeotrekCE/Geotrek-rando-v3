@@ -67,9 +67,9 @@
       "seeMe": "Vedere la mia posizione",
       "panel": {
         "TrekChildren": "Fasi",
-        "Poi": "Informazioni",
-        "ReferencePoints": "Vicino",
-        "TouristicContent": "Eredità"
+        "Poi": "Eredità",
+        "ReferencePoints": "Informazioni",
+        "TouristicContent": "Vicino"
       }
     }
   },

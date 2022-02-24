@@ -212,19 +212,12 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                             thumbnailUris: poi.thumbnailUris,
                             attachments: poi.attachments,
                             iconUri: poi.type.pictogramUri,
+                            iconName: poi.type.label,
                           }))}
                           type="POI"
                         />
                       </div>
                     )}
-
-                    {getGlobalConfig().enableMeteoWidget &&
-                      outdoorSiteContent.cities_raw &&
-                      outdoorSiteContent.cities_raw[0] && (
-                        <DetailsSection>
-                          <DetailsMeteoWidget code={outdoorSiteContent.cities_raw[0]} />
-                        </DetailsSection>
-                      )}
 
                     {!!outdoorSiteContent.description && (
                       <div ref={setDescriptionRef} id="details_description_ref">
@@ -323,6 +316,14 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                       </div>
                     )}
 
+                    {getGlobalConfig().enableMeteoWidget &&
+                      outdoorSiteContent.cities_raw &&
+                      outdoorSiteContent.cities_raw[0] && (
+                        <DetailsSection>
+                          <DetailsMeteoWidget code={outdoorSiteContent.cities_raw[0]} />
+                        </DetailsSection>
+                      )}
+
                     {Number(outdoorSiteContent?.source?.length) > 0 && (
                       <DetailsSection
                         htmlId="details_source"
@@ -370,6 +371,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                               thumbnailUris: touristicContent.thumbnailUris,
                               attachments: touristicContent.attachments,
                               iconUri: touristicContent.category.pictogramUri,
+                              iconName: touristicContent.category.label,
                               logoUri: touristicContent.logoUri ?? undefined,
                             }),
                           )}

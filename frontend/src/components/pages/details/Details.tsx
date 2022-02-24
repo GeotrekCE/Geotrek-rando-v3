@@ -203,19 +203,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             thumbnailUris: poi.thumbnailUris,
                             attachments: poi.attachments,
                             iconUri: poi.type.pictogramUri,
+                            iconName: poi.type.label,
                           }))}
                           type="POI"
                         />
                       </div>
                     )}
 
-                    {getGlobalConfig().enableMeteoWidget &&
-                      details.cities_raw &&
-                      details.cities_raw[0] && (
-                        <DetailsSection>
-                          <DetailsMeteoWidget code={details.cities_raw[0]} />
-                        </DetailsSection>
-                      )}
                     {details.description && (
                       <div ref={setDescriptionRef} id="details_description_ref">
                         <DetailsDescription
@@ -227,6 +221,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         />
                       </div>
                     )}
+                    {getGlobalConfig().enableMeteoWidget &&
+                      details.cities_raw &&
+                      details.cities_raw[0] && (
+                        <DetailsSection>
+                          <DetailsMeteoWidget code={details.cities_raw[0]} />
+                        </DetailsSection>
+                      )}
                     <DetailsSection
                       htmlId="details_altimetricProfile"
                       titleId="details.altimetricProfile.title"
@@ -417,6 +418,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             thumbnailUris: touristicContent.thumbnailUris,
                             attachments: touristicContent.attachments,
                             iconUri: touristicContent.category.pictogramUri,
+                            iconName: touristicContent.category.label,
                             logoUri: touristicContent.logoUri ?? undefined,
                           }))}
                           type="TOURISTIC_CONTENT"

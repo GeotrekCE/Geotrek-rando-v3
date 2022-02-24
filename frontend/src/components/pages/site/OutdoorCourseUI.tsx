@@ -188,14 +188,6 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                       </div>
                     )}
 
-                    {getGlobalConfig().enableMeteoWidget &&
-                      outdoorCourseContent.cities_raw &&
-                      outdoorCourseContent.cities_raw[0] && (
-                        <DetailsSection>
-                          <DetailsMeteoWidget code={outdoorCourseContent.cities_raw[0]} />
-                        </DetailsSection>
-                      )}
-
                     {outdoorCourseContent.description && (
                       <div id="details_description_ref">
                         <DetailsDescription
@@ -241,6 +233,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                             thumbnailUris: poi.thumbnailUris,
                             attachments: poi.attachments,
                             iconUri: poi.type.pictogramUri,
+                            iconName: poi.type.label,
                           }))}
                           type="POI"
                         />
@@ -278,6 +271,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                               thumbnailUris: touristicContent.thumbnailUris,
                               attachments: touristicContent.attachments,
                               iconUri: touristicContent.category.pictogramUri,
+                              iconName: touristicContent.category.label,
                               logoUri: touristicContent.logoUri ?? undefined,
                             }),
                           )}
@@ -285,6 +279,14 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                         />
                       </div>
                     )}
+
+                    {getGlobalConfig().enableMeteoWidget &&
+                      outdoorCourseContent.cities_raw &&
+                      outdoorCourseContent.cities_raw[0] && (
+                        <DetailsSection>
+                          <DetailsMeteoWidget code={outdoorCourseContent.cities_raw[0]} />
+                        </DetailsSection>
+                      )}
                   </div>
                   <Footer />
                 </div>
