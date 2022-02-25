@@ -14,21 +14,12 @@
     "seeMore": "veure més",
     "welcome-text": "La guia ecològica i digital que mostra els meus descobriments del territori!",
     "mailTo": "Enviar un email",
-    "use-a-link": "Utilitzem un enllaç",
-    "get-started": "Per començar, modifica",
-    "save-to-reload": "i desa per a tornar a carregar.",
-    "create-route": "Per a crear una ruta, modifica rutes.js i associa una pàgina",
-    "generate-component": "Per a crear una pàgina o un component senzill, llança : ",
-    "generate-module": "Per a afegir lògica d’ofici, crear un fitxer dins redux amb els teus reducers/actions/sagas/selectors/constants/...",
-    "click-me": "Fes clic aquí",
-    "readme": "Llegeix el README.md per a descobrir les superordres npm que hem afegit",
     "walking": "Senderisme",
     "territoryTreks": "Excursions a descobrir",
     "itinerantTreks": "Itineràncies a descobrir"
   },
   "page": {
     "back": "Tornada",
-    "api-to-translate-example": "Aquest missatge està traduit utilitzant directament l'API react-intl",
     "not-found": "No s’ha trobat la pàgina",
     "goToOffline": "Mostrar els continguts fora de línia"
   },
