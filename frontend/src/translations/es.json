@@ -14,21 +14,12 @@
     "seeMore": "ver más",
     "welcome-text": "La guia ecológica y digital que muestra mis descubrimienos del territorio!",
     "mailTo": "Enviar un email",
-    "use-a-link": "Utilitizamos un enlace",
-    "get-started": "Para empezar, modifica",
-    "save-to-reload": "y salvaguarda para volver a cargar.",
-    "create-route": "Para crear una ruta, modifica rutas.js y asocia una página",
-    "generate-component": "Para crear una página o un componente sencillo, iniciar : ",
-    "generate-module": "Para añadir lógica de oficio, crear un archivo en redux con tus reducers/actions/sagas/selectors/constants/...",
-    "click-me": "Haz clic aquí",
-    "readme": "Lee el README.md para descubrir las superórdenes npm que hemos añadido",
     "walking": "Senderismo",
     "territoryTreks": "Excursiones para descubrir",
     "itinerantTreks": "Itinerancias para descubrir"
   },
   "page": {
     "back": "Vuelta",
-    "api-to-translate-example": "Este mensaje se ha traducido utilizando directamente l'API react-intl",
     "not-found": "No hemos encontrado la página",
     "goToOffline": "Mostrar los contenidos sin conexión"
   },
