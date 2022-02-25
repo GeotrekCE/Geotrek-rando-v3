@@ -148,6 +148,11 @@ Then you can head to the frontend folder
 cd Geotrek-rando-v3/frontend/
 ```
 
+Install dependencies
+```sh
+yarn
+```
+
 Build the server
 
 ```sh
