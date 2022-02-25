@@ -58,10 +58,20 @@ Object {
                   
                   
                 </div>
-                <img
-                  class="object-cover object-center absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white border-2 border-white border-solid"
-                  src=""
-                />
+                <div
+                  class="CardIcon__Wrapper-sc-cv6h96-0 kTmOsX absolute top-4 left-4 h-8 flex items-center w-auto rounded-full shadow-sm text-white border-2 border-white border-solid"
+                  color="#001B84"
+                >
+                  <span
+                    class="CardIcon__NoImg-sc-cv6h96-4 ftTsYP"
+                    color="#001B84"
+                  />
+                  <div
+                    class="CardIcon__Label-sc-cv6h96-1 ddMeYP"
+                  >
+                    <div />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -282,10 +292,20 @@ Object {
                 
                 
               </div>
-              <img
-                class="object-cover object-center absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white border-2 border-white border-solid"
-                src=""
-              />
+              <div
+                class="CardIcon__Wrapper-sc-cv6h96-0 kTmOsX absolute top-4 left-4 h-8 flex items-center w-auto rounded-full shadow-sm text-white border-2 border-white border-solid"
+                color="#001B84"
+              >
+                <span
+                  class="CardIcon__NoImg-sc-cv6h96-4 ftTsYP"
+                  color="#001B84"
+                />
+                <div
+                  class="CardIcon__Label-sc-cv6h96-1 ddMeYP"
+                >
+                  <div />
+                </div>
+              </div>
             </div>
           </div>
         </div>
