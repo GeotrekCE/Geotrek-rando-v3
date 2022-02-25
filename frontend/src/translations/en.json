@@ -15,22 +15,16 @@
     "seeMore": "See more",
     "welcome-text": "The digital and local eco-guide that presents my discoveries of the territory!",
     "mailTo": "Send an email",
-    "use-a-link": "Or use a link",
-    "get-started": "To get started, edit",
-    "save-to-reload": "and save to reload.",
-    "create-route": "To create a route, edit routes.js and link it to a page",
-    "generate-component": "To create a page or a simple component, run: ",
-    "generate-module": "To add business logic, add a file in ./redux with your reducers/actions/sagas/selectors/constants/...",
-    "click-me": "Click me",
-    "readme": "Look at the README.md to discover the awesome npm commands we added",
     "walking": "Trek",
     "territoryTreks": "Treks to discover",
-    "itinerantTreks": "Multi-day treks to discover"
+    "itinerantTreks": "Multi-day treks to discover",
+    "services": "Services to discover",
+    "events": "Events not to miss",
+    "outdoor": "Outdoor to discover"
   },
   "page": {
     "back": "Back",
-    "api-to-translate-example": "This message is translated using directly react-intl API",
-    "not-found": "This page was nout found"
+    "not-found": "This page was not found"
   },
   "search": {
     "title": "Search",
@@ -210,12 +204,12 @@
       },
       "bird": {
         "title": "Bird mode",
-        "description": "You can fly over the ground like a bird, turn your head, go up, down and move around!",
+        "description": "Fly over the ground, turn your head, go up, down and move around.",
         "cameraTitle": "Bird"
       },
       "hiker": {
         "title": "Hiker mode",
-        "description": "Here we are in the skin of a hiker, enjoying the view we follow without effort the progress of the route.",
+        "description": "Follow the route.",
         "cameraTitle": "Hiker"
       }
     },
