@@ -14,21 +14,12 @@
     "seeMore": "Mehr anzeigen",
     "Willkommenstext": "Der digitale und lokale Ökoguide, der meine Entdeckungen in der Region präsentiert!",
     "mailTo": "E-Mail senden",
-    "use-a-link": "Verwendet einen Link",
-    "get-started": "Um zu beginnen, ändern",
-    "save-to-reload": "Speichern, um neu zu laden",
-    "create-route": "Um eine Route zu erstellen, ändern Sie die Datei routes.js und ordnen Sie eine Seite zu.",
-    "generate-component": "Um eine Seite oder eine einfache Komponente zu erstellen, führe Folgendes aus: ",
-    "generate-module": "Um Geschäftslogik hinzuzufügen, erstelle einen Ordner in Redux mit Ihren Reducern/Aktionen/Sagas/Selektoren/Konstanten/...",
-    "click-me": "Klick mich",
-    "readme": "Lies die README.md, um die tollen npm-Befehle zu entdecken, die wir hinzugefügt haben",
     "walking": "Wanderung",
     "territoryTreks": "Wanderungen, die es zu entdecken gilt",
     "itinerantTreks": "Reiserouten zum Entdecken"
   },
   "page": {
     "back": "Zurück",
-    "api-to-translate-example": "Diese Nachricht wird unter direkter Verwendung der API react-intl übersetzt",
     "not-found": "Diese Seite ist unauffindbar",
     "goToOffline": "Inhalte offline anzeigen"
   },
