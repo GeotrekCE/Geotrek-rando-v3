@@ -2,7 +2,6 @@ import { AlertTriangle } from 'components/Icons/AlertTriangle';
 import { ThreeDMap } from 'components/Icons/ThreeDMap';
 import { Printer } from 'components/Icons/Printer';
 import { DetailsButton } from 'components/pages/details/components/DetailsButton';
-import Report from 'components/Report/Report';
 import React, { useState } from 'react';
 
 import { Download } from 'components/Icons/Download';
@@ -16,6 +15,7 @@ import { TouristicContentDetails } from '../../../../../modules/touristicContent
 import { TouristicEventDetails } from '../../../../../modules/touristicEvent/interface';
 import { getGlobalConfig } from '../../../../../modules/utils/api.config';
 import { DetailsButtonDropdown } from '../DetailsButtonDropdown';
+import { useDetailsAndMapContext } from '../../DetailsAndMapContext';
 
 interface DetailsTopIconsProps {
   details:
@@ -33,8 +33,8 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
   size = 24,
   hideReport = false,
 }) => {
-  const [openReport, setOpenReport] = useState<boolean>(false);
   const [open3D, setOpen3D] = useState<boolean>(false);
+  const { setReportVisibility } = useDetailsAndMapContext();
 
   const isTouchScreen = useMediaPredicate('(hover: none)');
   const is3DfeatureEnabled =
@@ -71,19 +71,6 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
       className="flex justify-between items-center mx-4 desktop:mx-12 menu-download"
       data-testid={'download-button'}
     >
-      {openReport && (
-        <Report
-          trekId={Number(details.id)}
-          startPoint={{
-            type: 'Point',
-            // @ts-ignore
-            coordinates:
-              'trekDeparture' in details ? details.trekDeparture : details.geometry?.coordinates,
-          }}
-          onRequestClose={() => setOpenReport(false)}
-        />
-      )}
-
       {open3D && is3DfeatureEnabled && (
         <ThreeD
           trekId={Number(details.id)}
@@ -108,7 +95,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
         )}
 
         {Number(details.id) && !hideReport && getGlobalConfig().enableReport && (
-          <DetailsButton onClick={() => setOpenReport(true)}>
+          <DetailsButton url="#details_report" onClick={() => setReportVisibility(true)}>
             <AlertTriangle size={size} />
           </DetailsButton>
         )}
