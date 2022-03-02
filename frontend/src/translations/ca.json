@@ -133,15 +133,22 @@
   },
   "report": {
     "title": "Assenyalar un problema o un error",
+    "intro": "If you have found an error on this page or if you have noticed any changes during your hike, please report them to us here:",    
     "activity": "Activitat",
     "category": "Categoria",
     "magnitude": "Amplitud del problema",
     "comment": "Comentaris",
     "email": "Email",
     "name": "El vostre nom",
+    "image": "Image",
     "button": "Assenyalar",
     "cancel": "Cancel.lar",
-    "success": "Gràcies, s’ha enviat la notificació."
+    "success": "Gràcies, s’ha enviat la notificació.",
+    "mapButton": {
+      "create": "Indicate the position of the report on the map",
+      "edit": "Edit the position of the report"
+    },
+    "GDPRDisclaimer": "These information will be used by <b>organism</b>, which commit to not sell your personal data to third parties. You have the right to read, modify, fix or delete your personal data (art. 34 de la loi \"Informatique et Libertés\"). To apply please send a mail to <a>contact</a>."
   },
   "error": {
     "missing": "El formulari no està complet"
