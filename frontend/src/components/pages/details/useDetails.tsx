@@ -22,7 +22,8 @@ export type DetailsSections =
   | 'accessibility'
   | 'touristicContent'
   | 'sensitiveAreasRef'
-  | 'courses';
+  | 'courses'
+  | 'report';
 
 interface SectionPosition {
   top: number;
@@ -89,6 +90,7 @@ export const useDetails = (
   const setTouristicContentsRef = useSectionReferenceCallback('touristicContent');
   const setAccessibilityRef = useSectionReferenceCallback('accessibility');
   const setSensitiveAreasRef = useSectionReferenceCallback('sensitiveAreasRef');
+  const setReportRef = useSectionReferenceCallback('report');
 
   const intl = useIntl();
 
@@ -122,6 +124,7 @@ export const useDetails = (
     setTouristicContentsRef,
     setAccessibilityRef,
     setSensitiveAreasRef,
+    setReportRef,
     sectionsPositions,
     intl,
     mobileMapState,

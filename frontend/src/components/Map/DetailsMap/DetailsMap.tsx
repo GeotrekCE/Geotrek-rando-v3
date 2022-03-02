@@ -1,6 +1,6 @@
 import { TouristicContent } from 'components/Map/DetailsMap/TouristicContent';
 import { LatLngBoundsExpression } from 'leaflet';
-import React from 'react';
+import React, { useContext } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import styled from 'styled-components';
@@ -17,6 +17,9 @@ import { useTileLayer } from 'hooks/useTileLayer';
 import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { TrekChildGeometry, TrekFamily } from 'modules/details/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
+import { VisibleSectionContext } from 'components/pages/details/VisibleSectionContext';
+import { colorPalette, MAX_WIDTH_MOBILE } from 'stylesheet';
+import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { MapButton } from '../components/MapButton';
 
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
@@ -59,11 +62,13 @@ export type PropsType = {
   advisedParking?: string;
   title?: string;
 };
-
 export const DetailsMap: React.FC<PropsType> = props => {
+  const { reportVisibility, setReportVisibility } = useDetailsAndMapContext();
+
   const hideMap = () => {
     if (props.hideMap) {
       props.hideMap();
+      setReportVisibility(false);
     }
   };
 
@@ -89,11 +94,19 @@ export const DetailsMap: React.FC<PropsType> = props => {
     center,
   );
 
+  const { visibleSection } = useContext(VisibleSectionContext);
+  const mapWrapperProps = {
+    ...(visibleSection === 'report' &&
+      reportVisibility && {
+        className: 'with-report',
+      }),
+  };
+
   return (
-    <>
+    <MapWrapper {...mapWrapperProps}>
       <StyledMapContainer
+        className="mapContainer"
         scrollWheelZoom
-        style={{ height: '100%', width: '100%' }}
         maxZoom={
           navigator.onLine
             ? mapConfig.maximumZoomLevel
@@ -106,7 +119,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         attributionControl={false}
         whenCreated={setMapInstance}
         bounds={center}
-        hasDrawer={!!props.title}
+        hasDrawer={Boolean(props.title)}
       >
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
         {props.trekGeometry && (
@@ -133,6 +146,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           poiMobileVisibility={poiMobileVisibility}
           referencePointsMobileVisibility={referencePointsMobileVisibility}
           touristicContentMobileVisibility={touristicContentMobileVisibility}
+          reportVisibility={reportVisibility}
         />
         {props.trekGeoJSON && (
           <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
@@ -178,11 +192,32 @@ export const DetailsMap: React.FC<PropsType> = props => {
         toggleTouristicContentVisibility={toggleTouristicContentVisibility}
       />
       <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
-    </>
+    </MapWrapper>
   );
 };
 
+const MapWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &.with-report::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 3px solid ${colorPalette.red};
+    pointer-events: none;
+    @media (min-width: ${MAX_WIDTH_MOBILE}px) {
+      top: 2px;
+    }
+  }
+`;
+
 const StyledMapContainer = styled(MapContainer)<{ hasDrawer: boolean }>`
+  width: 100%;
+  height: 100%;
   .leaflet-bottom {
     margin-bottom: ${props => (props.hasDrawer ? '40px' : 0)};
   }

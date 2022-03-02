@@ -3,9 +3,11 @@ import { TrekChildGeometry } from 'modules/details/interface';
 import { Coordinate2D } from 'modules/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import React, { useContext } from 'react';
+import { useMediaPredicate } from 'react-media-hook';
 import { TouristicContentGeometry } from './DetailsMap';
 
 import { MarkersWithIcon } from './MarkersWithIcon';
+import { PointReport } from './PointReport';
 import { PointsReference } from './PointsReference';
 import { SensitiveAreas } from './SensitiveAreas';
 import { TouristicContent } from './TouristicContent';
@@ -29,11 +31,13 @@ type Props = {
   referencePointsMobileVisibility: Visibility;
   poiMobileVisibility: Visibility;
   touristicContentMobileVisibility: Visibility;
+  reportVisibility: boolean;
   parentId?: number;
 };
 
 export const MapChildren: React.FC<Props> = props => {
   const { visibleSection } = useContext(VisibleSectionContext);
+  const isMobile = useMediaPredicate('(max-width: 1024px)');
 
   return (
     <>
@@ -60,6 +64,8 @@ export const MapChildren: React.FC<Props> = props => {
       {visibleSection === 'sensitiveAreasRef' && (
         <SensitiveAreas contents={props.sensitiveAreasGeometry} />
       )}
+
+      {(isMobile || visibleSection === 'report') && props.reportVisibility && <PointReport />}
     </>
   );
 };
