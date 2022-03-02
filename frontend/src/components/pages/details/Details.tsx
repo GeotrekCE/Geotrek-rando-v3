@@ -39,6 +39,7 @@ import { DetailsReservationWidget } from './components/DetailsReservationWidget'
 import { DetailsMeteoWidget } from './components/DetailsMeteoWidget';
 import { ImageWithLegend } from './components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { VisibleSectionProvider } from './VisibleSectionContext';
+import { DetailsAndMapProvider } from './DetailsAndMapContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
 import { useOnScreenSection } from './hooks/useHighlightedSection';
 
@@ -587,8 +588,10 @@ export const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title:
 
 export const DetailsUI: React.FC<Props> = ({ detailsId, parentId, language }) => {
   return (
-    <VisibleSectionProvider>
-      <DetailsUIWithoutContext detailsId={detailsId} parentId={parentId} language={language} />
-    </VisibleSectionProvider>
+    <DetailsAndMapProvider>
+      <VisibleSectionProvider>
+        <DetailsUIWithoutContext detailsId={detailsId} parentId={parentId} language={language} />
+      </VisibleSectionProvider>
+    </DetailsAndMapProvider>
   );
 };
