@@ -49,17 +49,19 @@ const HomeUI: FunctionComponent = () => {
             <div id="home_topHtml" className={classNameHomeChild}>
               {parse(homeTopHtml)}
             </div>
-            {suggestions.map(({ titleTranslationId, iconUrl, results, type }) => (
-              <>
-                <HomeSection
-                  title={intl.formatMessage({ id: titleTranslationId })}
-                  iconUrl={iconUrl}
-                  key={titleTranslationId}
-                  results={results}
-                  type={type}
-                />
-              </>
-            ))}
+            {suggestions
+              .filter(({ results }) => results.length > 0)
+              .map(({ titleTranslationId, iconUrl, results, type }) => (
+                <>
+                  <HomeSection
+                    title={intl.formatMessage({ id: titleTranslationId })}
+                    iconUrl={iconUrl}
+                    key={titleTranslationId}
+                    results={results}
+                    type={type}
+                  />
+                </>
+              ))}
             <div id="home_bottomHtml" className={classNameHomeChild}>
               {parse(homeBottomHtml)}
             </div>
