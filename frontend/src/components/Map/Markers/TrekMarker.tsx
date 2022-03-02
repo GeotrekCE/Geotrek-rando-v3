@@ -21,14 +21,14 @@ const ActivityMarker: React.FC<{ pictogramUrl?: string; zoomRatio: number; color
   zoomRatio,
   color,
 }) => {
+  const icon =
+    Boolean(pictogramUrl) && pictogramUrl?.[0] === '<'
+      ? `data:image/svg+xml;utf8,${pictogramUrl}`
+      : pictogramUrl;
   return (
     <div className="relative flex justify-center">
       <MapMarker color={color ?? colorPalette.primary1} size={markerWidth * zoomRatio} />
-      <ActivityPictogram
-        className="absolute z-leafletSvg"
-        src={pictogramUrl}
-        zoomRatio={zoomRatio}
-      />
+      <ActivityPictogram className="absolute z-leafletSvg" src={icon} zoomRatio={zoomRatio} />
     </div>
   );
 };
