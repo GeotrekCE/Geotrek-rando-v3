@@ -4,10 +4,11 @@ import { getDetails, getTrekFamily } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { isRessourceMissing } from 'services/routeUtils';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import { routes } from 'services/routes';
+import { useMediaPredicate } from 'react-media-hook';
 import { getDimensions } from './utils';
 
 export type DetailsHeaderSection = Partial<Record<DetailsSections, HTMLDivElement | null>>;
@@ -52,6 +53,8 @@ export const useDetails = (
     },
   );
 
+  const isMobile = useMediaPredicate('(max-width: 1024px)');
+
   const parentIdString = isUrlString(parentId) ? parentId : '';
   const { data: trekFamily } = useQuery<TrekFamily | null, Error>(
     `trekFamily-${parentIdString}-${language}`,
@@ -89,9 +92,20 @@ export const useDetails = (
 
   const intl = useIntl();
 
-  const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
+  const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN' | null>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
   const hideMobileMap = () => setMobileMapState('HIDDEN');
+
+  useEffect(() => {
+    if (!isMobile) {
+      setMobileMapState(prevMobileMapState => {
+        if (prevMobileMapState === 'DISPLAYED') {
+          return 'HIDDEN';
+        }
+        return null;
+      });
+    }
+  }, [setMobileMapState, isMobile]);
 
   return {
     id,
