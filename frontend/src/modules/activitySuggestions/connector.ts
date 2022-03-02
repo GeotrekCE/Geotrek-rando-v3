@@ -98,7 +98,10 @@ export const getActivitySuggestions = async (suggestions: Suggestion[], language
   const activitySuggestions = await Promise.all(
     suggestions.map(async sugg => {
       const type = sugg?.type ?? 'trek';
-      const raw = await Promise.all(sugg.ids.map(id => fetch(id, type, language) as any));
+      const raw = (
+        await Promise.all(sugg.ids.map(id => fetch(id, type, language).catch(() => null) as any))
+      ).filter(e => !!e);
+
       const results = await adapt(type)(raw);
       return {
         ...sugg,
