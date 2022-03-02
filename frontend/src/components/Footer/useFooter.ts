@@ -6,7 +6,7 @@ import { MenuItem } from 'modules/header/interface';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { FooterConfigInput, FooterConfigOutput, PortalLinkStatic } from './interface';
 
-const getFooterConfig = (): FooterConfigInput => {
+export const getFooterConfig = (): FooterConfigInput => {
   const {
     publicRuntimeConfig: { footer },
   } = getNextConfig();
