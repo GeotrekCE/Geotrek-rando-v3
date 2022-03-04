@@ -111,6 +111,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
               filtersList={filtersList}
               resetFilter={onRemoveAllFiltersClick}
               resultsNumber={searchResults?.resultsNumber ?? 0}
+              language={language}
             />
           )}
           {subMenuState === 'DISPLAYED' && (
