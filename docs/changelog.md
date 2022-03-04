@@ -21,6 +21,7 @@
 
 **🐛 Fixes**
 
+* Fix categories display in mobile filters depending on contents and settings (#586)
 * Display ``disabledInfrastructure`` and ``accessibilities`` in trek detail pages only if they have content
 
 3.6.0 (2022-02-07)
