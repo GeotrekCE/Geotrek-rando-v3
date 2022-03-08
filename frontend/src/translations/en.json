@@ -137,6 +137,10 @@
     "layerButton": {
       "classic": "Map",
       "satellite": "Satellite"
+    },
+    "drawer": {
+      "next": "Next step",
+      "prev": "Previous step"
     }
   },
   "footer": {

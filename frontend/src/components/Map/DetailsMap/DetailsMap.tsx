@@ -14,7 +14,7 @@ import {
 } from 'modules/interface';
 import { useTileLayer } from 'hooks/useTileLayer';
 import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
-import { TrekChildGeometry } from 'modules/details/interface';
+import { TrekChildGeometry, TrekFamily } from 'modules/details/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import { MapButton } from '../components/MapButton';
 
@@ -25,6 +25,7 @@ import { AltimetricProfile } from '../components/AltimetricProfile';
 import { ControlSection } from '../components/ControlSection';
 import { useDetailsMap } from './useDetailsMap';
 import { MapChildren, PointWithIcon } from './MapChildren';
+import DetailsMapDrawer from '../components/DetailsMapDrawer';
 
 export interface TouristicContentGeometry {
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
@@ -50,10 +51,12 @@ export type PropsType = {
   parkingLocation?: Coordinate2D;
   shouldUsePopups?: boolean;
   bbox: { corner1: Coordinate2D; corner2: Coordinate2D };
+  trekFamily?: TrekFamily | null;
   trekChildrenGeometry?: TrekChildGeometry[];
   sensitiveAreas?: SensitiveAreaGeometry[];
   trekId: number;
   advisedParking?: string;
+  title?: string;
 };
 
 export const DetailsMap: React.FC<PropsType> = props => {
@@ -129,11 +132,21 @@ export const DetailsMap: React.FC<PropsType> = props => {
           referencePointsMobileVisibility={referencePointsMobileVisibility}
           touristicContentMobileVisibility={touristicContentMobileVisibility}
         />
-        {props.trekGeoJSON && <AltimetricProfile trekGeoJSON={props.trekGeoJSON} />}
+        {props.trekGeoJSON && (
+          <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
+        )}
         {isSatelliteLayerAvailable && (
           <div className="absolute bottom-6 left-6 z-mapButton">
             <MapLayerTypeToggleButton onToggleButtonClick={newType => updateTileLayer(newType)} />
           </div>
+        )}
+        {props.title && (
+          <DetailsMapDrawer
+            title={props.title}
+            trekGeoJSON={props.trekGeoJSON}
+            trekFamily={props.trekFamily}
+            trekId={props.trekId}
+          />
         )}
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />

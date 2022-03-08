@@ -450,6 +450,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   >
                     <DetailsMapDynamicComponent
                       type="DESKTOP"
+                      title={details.title}
                       arrivalLocation={details.trekArrival}
                       departureLocation={details.trekDeparture}
                       parkingLocation={
@@ -510,6 +511,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
               >
                 <DetailsMapDynamicComponent
                   type="MOBILE"
+                  title={details.title}
                   arrivalLocation={details.trekArrival}
                   departureLocation={details.trekDeparture}
                   advisedParking={details.parking}
@@ -526,6 +528,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   }))}
                   pointsReference={details.pointsReference}
                   bbox={details.bbox}
+                  trekFamily={trekFamily}
                   trekChildrenGeometry={details.children.reduce<TrekChildGeometry[]>(
                     (children, currentChild) => {
                       if (currentChild.geometry) {

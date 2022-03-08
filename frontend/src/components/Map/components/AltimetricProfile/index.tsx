@@ -9,17 +9,16 @@ import { getDefaultLanguage } from 'modules/header/utills';
 
 interface AltimetricProfileProps {
   trekGeoJSON: string;
+  id: string;
 }
 
-const DIV_ID = 'altimetric-profile';
-
-export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSON }) => {
+export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSON, id }) => {
   const map = useMap();
   const intl = useIntl();
   const language = useRouter().locale ?? getDefaultLanguage();
 
   useEffect(() => {
-    const div = document.getElementById(DIV_ID);
+    const div = document.getElementById(id);
     if (div) div.innerHTML = '';
 
     // @ts-ignore
@@ -27,7 +26,7 @@ export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSO
       theme: 'lightblue-theme',
       collapsed: false,
       detached: true,
-      elevationDiv: `#${DIV_ID}`,
+      elevationDiv: `#${id}`,
       summary: 'inline',
       marker: 'position-marker',
       followMarker: false,
