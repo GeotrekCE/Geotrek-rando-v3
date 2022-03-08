@@ -133,9 +133,14 @@ const ScrollContainer = styled.div`
   justify-content: center;
   padding: 20px;
 
+  @media (min-width: 1024px) {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
   & > * {
     flex: auto;
-    max-width: 500px;
+    max-width: 480px;
     margin: 10px;
   }
 `;
