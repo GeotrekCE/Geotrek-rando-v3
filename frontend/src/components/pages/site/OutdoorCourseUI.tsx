@@ -323,6 +323,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                         }))}
                       sensitiveAreas={[]}
                       trekId={Number(id)}
+                      title={outdoorCourseContent.name}
                     />
                   </div>
                 )}
@@ -365,6 +366,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                     }))}
                   hideMap={hideMobileMap}
                   trekId={Number(id)}
+                  title={outdoorCourseContent.name}
                 />
               </MobileMapContainer>
             )}

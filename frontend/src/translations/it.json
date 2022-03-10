@@ -131,6 +131,10 @@
     "layerButton": {
       "classic": "Piano",
       "satellite": "Satellite"
+    },
+    "drawer": {
+      "next": "Passo successivo",
+      "prev": "Passo precedente"
     }
   },
   "footer": {

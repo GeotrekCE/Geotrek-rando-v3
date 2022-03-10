@@ -132,6 +132,10 @@
     "layerButton": {
       "classic": "Plan",
       "satellite": "Satellite"
+    },
+    "drawer": {
+      "next": "Etape suivante",
+      "prev": "Etape précédente"
     }
   },
   "footer": {

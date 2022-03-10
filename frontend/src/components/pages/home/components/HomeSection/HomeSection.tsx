@@ -34,7 +34,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
       <ScrollContainer>
         {results !== undefined &&
           // eslint-disable-next-line
-          results.map((e: any, i) => {
+          results.map((e: any) => {
             if (type === 'trek')
               return (
                 <ResultCard
@@ -128,10 +128,8 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
 
 const ScrollContainer = styled.div`
   display: flex;
-  flex-flow: wrap;
-  align-items: stretch;
-  justify-content: center;
   padding: 20px;
+  overflow: scroll;
 
   @media (min-width: 1024px) {
     margin-left: 10%;
@@ -140,7 +138,8 @@ const ScrollContainer = styled.div`
 
   & > * {
     flex: auto;
-    max-width: 480px;
+    max-width: 400px;
+    min-width: 300px;
     margin: 10px;
   }
 `;
