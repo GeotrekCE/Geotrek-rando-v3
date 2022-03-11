@@ -128,7 +128,6 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
 
 const ScrollContainer = styled.div`
   display: flex;
-  overflow: scroll;
   padding: 20px;
 
   @media (min-width: 1024px) {
@@ -140,10 +139,13 @@ const ScrollContainer = styled.div`
   }
 
   @media (max-width: 1024px) {
+    overflow: scroll;
+
     & > * {
       flex: auto;
       max-width: 300px;
       min-width: 300px;
+      margin-right: 20px;
     }
   }
 `;

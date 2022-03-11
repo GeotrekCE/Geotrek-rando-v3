@@ -143,12 +143,14 @@ export const DetailsMap: React.FC<PropsType> = props => {
           </div>
         )}
         {props.title && (
-          <DetailsMapDrawer
-            title={props.title}
-            trekGeoJSON={props.trekGeoJSON}
-            trekFamily={props.trekFamily}
-            trekId={props.trekId}
-          />
+          <div className="desktop:hidden">
+            <DetailsMapDrawer
+              title={props.title}
+              trekGeoJSON={props.trekGeoJSON}
+              trekFamily={props.trekFamily}
+              trekId={props.trekId}
+            />
+          </div>
         )}
       </StyledMapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
