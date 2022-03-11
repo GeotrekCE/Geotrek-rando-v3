@@ -3,6 +3,7 @@ import { LatLngBoundsExpression } from 'leaflet';
 import React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import styled from 'styled-components';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 
@@ -90,7 +91,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
 
   return (
     <>
-      <MapContainer
+      <StyledMapContainer
         scrollWheelZoom
         style={{ height: '100%', width: '100%' }}
         maxZoom={
@@ -105,6 +106,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         attributionControl={false}
         whenCreated={setMapInstance}
         bounds={center}
+        hasDrawer={!!props.title}
       >
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
         {props.trekGeometry && (
@@ -136,7 +138,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
         )}
         {isSatelliteLayerAvailable && (
-          <div className="absolute bottom-6 left-6 z-mapButton">
+          <div className={`absolute ${props.title ? 'bottom-18' : 'bottom-6'} left-6 z-mapButton`}>
             <MapLayerTypeToggleButton onToggleButtonClick={newType => updateTileLayer(newType)} />
           </div>
         )}
@@ -148,7 +150,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
             trekId={props.trekId}
           />
         )}
-      </MapContainer>
+      </StyledMapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <ControlSection
         className="desktop:hidden"
@@ -177,5 +179,11 @@ export const DetailsMap: React.FC<PropsType> = props => {
     </>
   );
 };
+
+const StyledMapContainer = styled(MapContainer)<{ hasDrawer: boolean }>`
+  .leaflet-bottom {
+    margin-bottom: ${props => (props.hasDrawer ? '40px' : 0)};
+  }
+`;
 
 export default DetailsMap;

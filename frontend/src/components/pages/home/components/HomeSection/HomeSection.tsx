@@ -128,18 +128,22 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
 
 const ScrollContainer = styled.div`
   display: flex;
-  padding: 20px;
   overflow: scroll;
+  padding: 20px;
 
   @media (min-width: 1024px) {
     margin-left: 10%;
     margin-right: 10%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
   }
 
-  & > * {
-    flex: auto;
-    max-width: 400px;
-    min-width: 300px;
-    margin: 10px;
+  @media (max-width: 1024px) {
+    & > * {
+      flex: auto;
+      max-width: 300px;
+      min-width: 300px;
+    }
   }
 `;
