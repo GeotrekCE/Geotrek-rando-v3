@@ -1,6 +1,6 @@
 # Changelog
 
-3.7.0 (unreleased)
+3.7.0 (2022-03-11)
 ------------------
 
 **🚀 New features**
@@ -15,6 +15,7 @@
 * Add the possibility to define outdoor sites, services and events suggestions on home page (#372)
 * Display more information on suggestions cards on home page (#372)
 * Improve layer controller on treks and outdoor sites detail pages (#449)
+* Add a panel on trek mobile map to display trek title, steps and altimetric profile (#452)
 * Display SVG theme pictograms in filters
 * Improve modale component
 * Add German, Spanish and Catalan translations (#571)
@@ -22,6 +23,7 @@
 **🐛 Fixes**
 
 * Fix categories display in mobile filters depending on contents and settings (#586)
+* Fix trek filters displayed in 3 columns (#377)
 * Display ``disabledInfrastructure`` and ``accessibilities`` in trek detail pages only if they have content
 
 3.6.0 (2022-02-07)
