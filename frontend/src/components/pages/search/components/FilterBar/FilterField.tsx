@@ -83,21 +83,32 @@ const FilterField: React.FC<Props> = ({
           ))}
         </div>
         <div className="grid grid-cols-3 gap-4">
-          {Object.keys(subFiltersToDisplay).map(key => {
-            return (
-              <div className={'m-1'} key={key}>
-                {key !== 'undefined' && <div className={'font-bold mb-2'}>{key}</div>}
-                {subFiltersToDisplay[key].map(filterState => (
-                  <div className={'my-1'} key={filterState.id}>
-                    <ShowFilters
-                      item={filterState}
-                      setFilterSelectedOptions={setFilterSelectedOptions}
-                    />
+          {Object.keys(subFiltersToDisplay).length > 1
+            ? Object.keys(subFiltersToDisplay).map(key => {
+                return (
+                  <div className={'m-1'} key={key}>
+                    {key !== 'undefined' && <div className={'font-bold mb-2'}>{key}</div>}
+                    {subFiltersToDisplay[key].map(filterState => (
+                      <div className={'my-1'} key={filterState.id}>
+                        <ShowFilters
+                          item={filterState}
+                          setFilterSelectedOptions={setFilterSelectedOptions}
+                        />
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            );
-          })}
+                );
+              })
+            : Object.values(subFiltersToDisplay)[0]
+            ? Object.values(subFiltersToDisplay)[0].map(filterState => (
+                <div className={'my-1'} key={filterState.id}>
+                  <ShowFilters
+                    item={filterState}
+                    setFilterSelectedOptions={setFilterSelectedOptions}
+                  />
+                </div>
+              ))
+            : null}
         </div>
       </ContainerFields>
     </div>
