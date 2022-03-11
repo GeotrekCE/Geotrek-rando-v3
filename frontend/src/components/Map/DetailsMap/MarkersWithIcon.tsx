@@ -18,7 +18,7 @@ export const MarkersWithIcon: React.FC<PropsType> = props => {
                 id={point.id}
                 position={[point.location.y, point.location.x]}
                 pictogramUri={point.pictogramUri}
-                type="TREK"
+                type={null}
               >
                 <Tooltip>{point.name}</Tooltip>
               </HoverableMarker>

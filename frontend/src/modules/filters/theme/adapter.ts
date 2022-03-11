@@ -12,7 +12,11 @@ export const adaptTheme = (rawTheme: RawTheme): Theme => ({
 
 export const adaptThemeFilter = (rawThemes: Partial<RawTheme>[]): FilterWithoutType => ({
   id: THEME_ID,
-  options: rawThemes.filter(isRawThemeComplete).map(adaptTheme),
+  options: rawThemes.filter(isRawThemeComplete).map(rawTheme => ({
+    value: `${rawTheme.id}`,
+    label: rawTheme.label,
+    pictogramUrl: rawTheme.pictogram,
+  })),
 });
 
 export const adaptThemes = (rawThemes: Partial<RawTheme>[]): Choices =>

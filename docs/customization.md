@@ -34,10 +34,11 @@ In json files, you can just override the primary keys you need. You have to over
   - `applicationName`: application name appearing on PWA
   - `enableReport`: to enable report form in trek detail pages
   - `enableSearchByMap`: to enable searching by map displayed area (bbox)
+  - `maxLengthTrekAllowedFor3DRando`: Maximum length of meters allowed to enable 3D mode in the current trek. Adjust this setting carefully as too long a trek could freeze your browser. If this setting is defined to `0` (or `mapSatelliteLayerUrl` from `map.json` is not set) the 3D mode feature is disabled for the whole application
 
 - `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
 
-- `home.json` to define homepage settings. You can define blocks to display and trek suggestion block with trek ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
+- `home.json` to define homepage settings. You can define blocks to display and trek suggestion block with treks ID, outdoor sites ID, services ID or events ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
 
   - In `welcomeBanner`, you can personnalize the cover on the homepage. You can add an asset on the top of the page: it can either be a video, a single picture or a carousel of images:
 
@@ -117,6 +118,19 @@ Example for Cevennes national park orange colors:
     "light": "#ffa032"
   },
   "primary3": "#d57b04"
+}
+```
+
+It's also possible to change category colors :
+
+```json
+{
+  "categories": {
+    "trek": "blue",
+    "events": "red",
+    "outdoor": "#62AB41",
+    "service": "#3B89A2"
+  }
 }
 ```
 

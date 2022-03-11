@@ -21,12 +21,14 @@ import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
+import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 
 interface Props {
   outdoorCourseUrl: string | string[] | undefined;
@@ -143,6 +145,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                     <DetailsTopIcons
                       details={outdoorCourseContent}
                       practice={{
+                        id: 0,
                         pictogram: '',
                         name: '',
                       }}
@@ -230,6 +233,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                             thumbnailUris: poi.thumbnailUris,
                             attachments: poi.attachments,
                             iconUri: poi.type.pictogramUri,
+                            iconName: poi.type.label,
                           }))}
                           type="POI"
                         />
@@ -267,6 +271,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                               thumbnailUris: touristicContent.thumbnailUris,
                               attachments: touristicContent.attachments,
                               iconUri: touristicContent.category.pictogramUri,
+                              iconName: touristicContent.category.label,
                               logoUri: touristicContent.logoUri ?? undefined,
                             }),
                           )}
@@ -274,6 +279,14 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                         />
                       </div>
                     )}
+
+                    {getGlobalConfig().enableMeteoWidget &&
+                      outdoorCourseContent.cities_raw &&
+                      outdoorCourseContent.cities_raw[0] && (
+                        <DetailsSection>
+                          <DetailsMeteoWidget code={outdoorCourseContent.cities_raw[0]} />
+                        </DetailsSection>
+                      )}
                   </div>
                   <Footer />
                 </div>
@@ -310,6 +323,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                         }))}
                       sensitiveAreas={[]}
                       trekId={Number(id)}
+                      title={outdoorCourseContent.name}
                     />
                   </div>
                 )}
@@ -352,6 +366,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                     }))}
                   hideMap={hideMobileMap}
                   trekId={Number(id)}
+                  title={outdoorCourseContent.name}
                 />
               </MobileMapContainer>
             )}

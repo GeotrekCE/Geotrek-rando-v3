@@ -7,8 +7,10 @@ import { colorPalette, sizes } from 'stylesheet';
 import { groupBy } from 'lodash';
 import { FilterState, Option } from '../../../../../modules/filters/interface';
 import { countFiltersSelected } from '../../../../../modules/filters/utils';
+import getActivityColor from '../ResultCard/getActivityColor';
 
 interface Props {
+  id: string;
   name: React.ReactElement;
   filters?: string[];
   subFilters?: string[];
@@ -21,6 +23,7 @@ interface Props {
 const BACKGROUND_EXPANDED = '#fefefe';
 
 const FilterField: React.FC<Props> = ({
+  id,
   name,
   expanded,
   onClick,
@@ -45,7 +48,10 @@ const FilterField: React.FC<Props> = ({
         onClick={onClick}
       >
         {numberSelected > 0 && (
-          <div className="bg-primary1 text-white rounded-full h-6 w-6 flex items-center justify-center font-bold">
+          <div
+            className="bg-primary1 text-white rounded-full h-6 w-6 flex items-center justify-center font-bold"
+            style={{ background: getActivityColor(id) }}
+          >
             {numberSelected}
           </div>
         )}
@@ -77,21 +83,32 @@ const FilterField: React.FC<Props> = ({
           ))}
         </div>
         <div className="grid grid-cols-3 gap-4">
-          {Object.keys(subFiltersToDisplay).map(key => {
-            return (
-              <div className={'m-1'} key={key}>
-                {key !== 'undefined' && <div className={'font-bold mb-2'}>{key}</div>}
-                {subFiltersToDisplay[key].map(filterState => (
-                  <div className={'my-1'} key={filterState.id}>
-                    <ShowFilters
-                      item={filterState}
-                      setFilterSelectedOptions={setFilterSelectedOptions}
-                    />
+          {Object.keys(subFiltersToDisplay).length > 1
+            ? Object.keys(subFiltersToDisplay).map(key => {
+                return (
+                  <div className={'m-1'} key={key}>
+                    {key !== 'undefined' && <div className={'font-bold mb-2'}>{key}</div>}
+                    {subFiltersToDisplay[key].map(filterState => (
+                      <div className={'my-1'} key={filterState.id}>
+                        <ShowFilters
+                          item={filterState}
+                          setFilterSelectedOptions={setFilterSelectedOptions}
+                        />
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            );
-          })}
+                );
+              })
+            : Object.values(subFiltersToDisplay)[0]
+            ? Object.values(subFiltersToDisplay)[0].map(filterState => (
+                <div className={'my-1'} key={filterState.id}>
+                  <ShowFilters
+                    item={filterState}
+                    setFilterSelectedOptions={setFilterSelectedOptions}
+                  />
+                </div>
+              ))
+            : null}
         </div>
       </ContainerFields>
     </div>

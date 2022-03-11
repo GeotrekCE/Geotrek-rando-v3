@@ -18,7 +18,7 @@ import { TouristicContent } from 'modules/touristicContent/interface';
 import { getAttachments } from 'modules/utils/adapter';
 import { adaptGeometry2D, flattenMultiLineStringCoordinates } from 'modules/utils/geometry';
 import { formatHours } from 'modules/utils/time';
-import { Details, RawDetails, TrekChildGeometry, TrekFamily } from './interface';
+import { Details, RawDetails, Reservation, TrekChildGeometry, TrekFamily } from './interface';
 
 export const adaptResults = ({
   rawDetails: { properties: rawDetailsProperties, geometry, bbox },
@@ -37,6 +37,7 @@ export const adaptResults = ({
   children,
   childrenGeometry,
   sensitiveAreas,
+  reservation,
 }: {
   rawDetails: RawDetails;
   activity: Activity | null;
@@ -54,6 +55,7 @@ export const adaptResults = ({
   children: TrekResult[];
   childrenGeometry: TrekChildGeometry[];
   sensitiveAreas: SensitiveArea[];
+  reservation: Reservation | null;
 }): Details => {
   try {
     const coordinates =
@@ -96,6 +98,7 @@ export const adaptResults = ({
       departure: rawDetailsProperties.departure,
       arrival: rawDetailsProperties.arrival,
       cities: (rawDetailsProperties.cities || []).map(id => cityDictionnary[id].name),
+      cities_raw: rawDetailsProperties.cities,
       touristicContents,
       parkingLocation:
         rawDetailsProperties.parking_location !== null
@@ -136,6 +139,11 @@ export const adaptResults = ({
       })),
       sensitiveAreas,
       webLinks: rawDetailsProperties.web_links,
+      elevationAreaUrl: rawDetailsProperties.elevation_area_url,
+      altimetricProfileUrl: rawDetailsProperties.altimetric_profile,
+      length2d: rawDetailsProperties.length_2d,
+      reservation,
+      reservation_id: rawDetailsProperties.reservation_id,
     };
   } catch (e) {
     console.error('Error in details/adapter', e);

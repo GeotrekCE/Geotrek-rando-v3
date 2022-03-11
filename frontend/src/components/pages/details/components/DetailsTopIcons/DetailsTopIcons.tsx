@@ -1,4 +1,5 @@
 import { DetailsDownloadIcons } from 'components/pages/details/components/DetailsDownloadIcons';
+import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
 import { Activity } from 'modules/activities/interface';
 import React from 'react';
 import SVG from 'react-inlinesvg';
@@ -31,7 +32,7 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
         id="details_topRoundIcons"
         className="flex justify-between items-center mx-4 desktop:mx-12 menu-download"
       >
-        {practice && <ActivityLogo src={practice.pictogram} />}
+        {practice && <ActivityLogo type={type} src={practice.pictogram} />}
         <div className="flex space-x-4">
           <div
             className={
@@ -48,12 +49,16 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
   );
 };
 
-const ActivityLogo: React.FC<{ src: string }> = ({ src }) => (
+const ActivityLogo: React.FC<{
+  src: string;
+  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
+}> = ({ src, type }) => (
   <div
     className="h-12 w-12 desktop:h-18 desktop:w-18 rounded-full
       flex items-center justify-center
       shadow-md
     bg-primary1"
+    style={{ background: getActivityColor(type) }}
   >
     <div className="desktop:hidden">
       <SVG src={src} preProcessor={fillSvgWithColor(colorPalette.white)} height={40} width={40} />

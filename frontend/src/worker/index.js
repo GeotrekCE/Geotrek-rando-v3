@@ -22,7 +22,8 @@ const fromCache = async request => {
 
 self.addEventListener('fetch', event => {
   if (
-    event.request.url.includes('/trek/') ||
+    // DEM url are excluded from trek url because it could be too long to load
+    (event.request.url.includes('/trek/') && !event.request.url.includes('/dem/')) ||
     event.request.url.includes('/service/') ||
     event.request.url.includes('/outdoor-site/') ||
     event.request.url.includes('/outdoor-course/')

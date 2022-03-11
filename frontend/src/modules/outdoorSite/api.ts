@@ -21,7 +21,8 @@ const fieldsParamsDetails = {
 export const fetchOutdoorSiteDetails = (
   query: APIQuery,
   id: string,
-): Promise<RawOutdoorSiteDetails> =>
-  GeotrekAPI.get(`/outdoor_site/${id}/`, { params: { ...query, ...fieldsParamsDetails } }).then(
-    r => r.data,
-  );
+): Promise<RawOutdoorSiteDetails> => {
+  return GeotrekAPI.get(`/outdoor_site/${id}/`, {
+    params: { ...fieldsParamsDetails, ...query },
+  }).then(r => r.data);
+};

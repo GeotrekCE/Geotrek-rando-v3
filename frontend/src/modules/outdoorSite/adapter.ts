@@ -120,6 +120,7 @@ export const adaptOutdoorSiteDetails = ({
   pdfUri: rawOutdoorSiteDetails?.properties?.pdf || '',
   practice: outdoorPractice[String(rawOutdoorSiteDetails?.properties?.practice)],
   cities: rawOutdoorSiteDetails.properties.cities?.map(id => cityDictionnary[id]?.name) ?? [],
+  cities_raw: rawOutdoorSiteDetails.properties.cities,
   ratings:
     rawOutdoorSiteDetails.properties.ratings?.map(r => {
       return {

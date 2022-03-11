@@ -19,10 +19,14 @@ const ChildLabel = styled.span<{ zoomRatio: number }>`
   text-align: center;
 `;
 
-const ChildMarker: React.FC<{ label: string; zoomRatio: number }> = ({ label, zoomRatio }) => {
+const ChildMarker: React.FC<{ label: string; zoomRatio: number; color: string }> = ({
+  label,
+  zoomRatio,
+  color,
+}) => {
   return (
     <div className="relative flex justify-center">
-      <TrekChildrenMarker color={colorPalette.primary1} size={markerWidth * zoomRatio} />
+      <TrekChildrenMarker color={color ?? colorPalette.primary1} size={markerWidth * zoomRatio} />
       <ChildLabel className="z-leafletSvg" zoomRatio={zoomRatio}>
         {label}
       </ChildLabel>
@@ -30,11 +34,13 @@ const ChildMarker: React.FC<{ label: string; zoomRatio: number }> = ({ label, zo
   );
 };
 
-export const TrekChildMarker = (rank: number, zoomRatio = 1): DivIcon =>
+export const TrekChildMarker = (rank: number, zoomRatio = 1, color: string): DivIcon =>
   new DivIcon({
     iconSize: [markerHeight * zoomRatio, markerWidth * zoomRatio],
     // point of the icon which will correspond to marker's location
     iconAnchor: [(markerWidth * zoomRatio) / 2, markerHeight * zoomRatio], // horizontal middle of the icon and bottom of it
-    html: renderToStaticMarkup(<ChildMarker label={`${rank}`} zoomRatio={zoomRatio} />),
+    html: renderToStaticMarkup(
+      <ChildMarker label={`${rank}`} zoomRatio={zoomRatio} color={color} />,
+    ),
     className: 'bg-none border-none',
   });

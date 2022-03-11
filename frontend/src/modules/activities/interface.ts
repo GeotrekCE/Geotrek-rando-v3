@@ -13,6 +13,7 @@ export interface RawListActivity extends RawActivity {
 }
 
 export interface Activity {
+  id: number | string;
   pictogram: string;
   name: string;
 }
@@ -22,7 +23,7 @@ export interface ActivityChoices {
 }
 
 export interface ActivityFilter extends Activity {
-  id: string;
+  id: number | string;
   order: null | number;
   type: 'PRACTICE' | 'OUTDOOR_PRACTICE' | 'CATEGORY' | 'TOURISTIC_EVENT_TYPE';
 }

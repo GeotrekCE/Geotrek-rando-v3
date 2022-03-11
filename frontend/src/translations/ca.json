@@ -1,0 +1,185 @@
+{
+  "header": {
+    "menu": "Menú",
+    "language": "idioma",
+    "seeMore": "més informació",
+    "favorites": "Preferit",
+    "goToSearch": "cerca",
+    "offline": "Continguts fora de línia"
+  },
+  "home": {
+    "title": "Geotrek-senderisme",
+    "description": "Descobreix les excursions del territori amb Geotrek-senderisme",
+    "selectPlaceholder": "Selecciona una activitat",
+    "seeMore": "veure més",
+    "welcome-text": "La guia ecològica i digital que mostra els meus descobriments del territori!",
+    "mailTo": "Enviar un email",
+    "walking": "Senderisme",
+    "territoryTreks": "Excursions a descobrir",
+    "itinerantTreks": "Itineràncies a descobrir"
+  },
+  "page": {
+    "back": "Tornada",
+    "not-found": "No s’ha trobat la pàgina",
+    "goToOffline": "Mostrar els continguts fora de línia"
+  },
+  "search": {
+    "title": "Cerca",
+    "description": "Descobreix les excursions que coincideixen amb els teus desitjos amb el nostre motor de cerca",
+    "book": "Reserva",
+    "resultsFound": "{count, plural, =0 {# s’ha trobat el resultat} one {# s’ha trobat el resultat} other {# s’han trobat els resultats}}",
+    "resultsFoundShort": "{count, plural, =0 {# resultat} one {# resultat} other {# resultats}}",
+    "forThe": "Per a",
+    "seeMap": "mostra el mapa",
+    "filter": "Filtrar",
+    "reload": "Tornar a carregar",
+    "anErrorOccured": "S’ha produït un error",
+    "filters": {
+      "difficulty": "Dificultat",
+      "practices": "excursions",
+      "outdoor": "Exterior",
+      "events": "Esdeveniments",
+      "categories": "Serveis",
+      "cities": "poble",
+      "localization": "Localització",
+      "duration": "Durada",
+      "districts": "Sector",
+      "themes": "Temes",
+      "routes": "Tipus de recorregut",
+      "accessibilities": "Accessibilitat",
+      "ascent": "Denivell positiu",
+      "length": "Llargada",
+      "structures": "Estructura",
+      "clearAll": "Esborrar-ho tot",
+      "filters": "Filtres"
+    },
+    "textFilter": "Cercar...",
+    "map": {
+      "seeResult": "Mostrar el detall",
+      "seeMe": "Mostrar la meva posició"
+    }
+  },
+  "details": {
+    "preview": "Presentació",
+    "access": "Accés",
+    "download": "Baixar",
+    "children": "Etapes",
+    "childrenFullTitle": "{count, plural, =0 {sense etapa} one {# etapa} other {# etapes}}",
+    "poi": "Patrimonis",
+    "poiFullTitle": "{count, plural, =0 {sense patrimoni} one {# patrimoni a descobrir} other {Els # patrimonis a descobrir}}",
+    "source": "Font",
+    "touristicContent": "Proper",
+    "readMore": "llegir més",
+    "knowMore": "Més informació",
+    "readLess": "llegir menys",
+    "close": "Tancar",
+    "description": "Descripció",
+    "recommandations": "Recomanacions",
+    "informationDesks": "Llocs d’informació",
+    "practicalInformations": "Infos pràctiques",
+    "accessibility": "Accessibilitat",
+    "toSee": "També a veure",
+    "transport": "Transport",
+    "stationnement": "Estacionament",
+    "access_parking": "Accés per carretera i aparcaments",
+    "sensitiveAreasRef": "Arees sensibles",
+    "sensitiveAreas": {
+      "title": "Zones de sensibilitat mediambiental",
+      "intro": "Al llarg de la seva ruta, travessarà zones de sensibilitat vinculades a la presència d'una espècie o d'un medi particular. En aquestes zones, un comportament adaptat permet contribuir a la seva preservació. Per a més informació detallada, es poden accedir a fitxes específiques per a cada àrea.",
+      "period": "Períodes de sensibilitat :",
+      "practices": "Ambits d’activitats afectats :",
+      "contact": "Contacte :"
+    },
+    "altimetricProfile": {
+      "title": "Perfil altiomètric",
+      "totalLength": "Longitud total",
+      "minElevation": "Altitud min",
+      "maxElevation": "Altitud max"
+    },
+    "departure": "Inici",
+    "arrival": "Arribada",
+    "cities": "Municipis travessats",
+    "more": "Més informació",
+    "courses": "Recorregut",
+    "experiences": "Llocs de pràctica",
+    "gear": "Material",
+    "equipment": "Equipament",
+    "typeSite": "Tipus de lloc",
+    "typeCourse": "Tipus de recorregut",
+    "organizer": "Organitzador",
+    "speaker": "els que intervenen",
+    "targetAudience": "Públic apuntat",
+    "practicalInfo": "Informació pràctica",
+    "booking": "Reservació"
+  },
+  "touristicContent": {
+    "contact": "Contacte",
+    "email": "Correu electrònic",
+    "website": "pàgina web"
+  },
+  "map": {
+    "layerButton": {
+      "classic": "Mapa",
+      "satellite": "Satèlit"
+    }
+  },
+  "footer": {
+    "linksSectionTitle": "Informacions complementàries",
+    "links": "Enllaços",
+    "access": "Com arribar",
+    "legalMentions": "Esments legals",
+    "accessibility": "Normes d’accessibilitat",
+    "geotrek": "Geotrek"
+  },
+  "report": {
+    "title": "Assenyalar un problema o un error",
+    "activity": "Activitat",
+    "category": "Categoria",
+    "magnitude": "Amplitud del problema",
+    "comment": "Comentaris",
+    "email": "Email",
+    "name": "El vostre nom",
+    "button": "Assenyalar",
+    "cancel": "Cancel.lar",
+    "success": "Gràcies, s’ha enviat la notificació."
+  },
+  "error": {
+    "missing": "El formulari no està complet"
+  },
+  "offline": {
+    "number": "{count} continguts accessibles sense connexió a internet",
+    "presentation": "Per gaudir dels vostres continguts sense preocupar-se de la xarxa.",
+    "explain": "Agafa aquest element per a tenir-hi accés sense connexió",
+    "explainAvailable": "Aquet element està disponible sense connexió",
+    "title": "Mode fora de línia",
+    "download": "Baixa",
+    "isInCache": "Aquest element està disponible sense connexió.",
+    "downloadInProgress": "S’està baixant",
+    "not-available": "Aquest contingut no està disponible sense connexió."
+  },
+  "actions": {
+    "cancel": "Cancel.lar",
+    "close": "Tancar",
+    "remove": "Suprimir",
+    "confirmRemove": "Esteu segur que voleu suprimir aquest element ?"
+  },
+  "outdoorSite": {
+    "accessFullTitle": "Accés",
+    "coursesFullTitle": "Recorregut",
+    "sitesFullTitle": "Els {count} llocs de pràcticar a descobrir"
+  },
+  "Wind": {
+    "N": "Nord",
+    "S": "Sud",
+    "E": "Est",
+    "W": "Oest",
+    "NW": "Nord-Oest",
+    "SW": "Sud-Oest",
+    "NE": "Nord-Est",
+    "SE": "Sud-Est"
+  },
+  "dates": {
+    "singleDate": "el {date}",
+    "multipleDates": "del{beginDate} al {endDate}"
+  }
+}

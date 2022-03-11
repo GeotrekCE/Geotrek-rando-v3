@@ -24,6 +24,20 @@ module.exports = withPlugins(plugins, {
   webpack(config) {
     config.resolve.modules.push(path.resolve('./src'));
 
+    Object.assign(config.resolve.alias, {
+      // GSAP aliases are useful for @makina-corpus/rando3d package
+      EasePack: 'gsap/src/uncompressed/easing/EasePack.js',
+      TweenLite: 'gsap/src/uncompressed/TweenLite.js',
+      TimelineLite: 'gsap/src/uncompressed/TimelineLite.js',
+      BezierPlugin: 'gsap/src/uncompressed/plugins/BezierPlugin.js',
+      DirectionalRotationPlugin: 'gsap/src/uncompressed/plugins/DirectionalRotationPlugin.js',
+    });
+
+    config.module.rules.push({
+      test: /\.html$/,
+      use: 'raw-loader',
+    });
+
     return config;
   },
   pwa: {

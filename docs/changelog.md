@@ -1,5 +1,31 @@
 # Changelog
 
+3.7.0 (2022-03-11)
+------------------
+
+**🚀 New features**
+
+* Include 3D view in trek detail pages (#390)
+* Add ``maxLengthTrekAllowedFor3DRando`` setting to define the maximum length of a trek to enable the 3D view on its page (or to disable 3D view) (#390)
+* Add breadcrumb on detail and information pages (#506)
+* Add Open System reservation widget on trek detail pages with an ``id_reservation`` (#382)
+* Add ``reservationPartner`` and ``reservationProject`` settings to enable Open System reservation widget (#382)
+* Add a customizable color for each content category (treks, outdoor sites, services and events) to better differentiate content categories (#437)
+* Add content type name display on hover of pictograms in search page (#437)
+* Add the possibility to define outdoor sites, services and events suggestions on home page (#372)
+* Display more information on suggestions cards on home page (#372)
+* Improve layer controller on treks and outdoor sites detail pages (#449)
+* Add a panel on trek mobile map to display trek title, steps and altimetric profile (#452)
+* Display SVG theme pictograms in filters
+* Improve modale component
+* Add German, Spanish and Catalan translations (#571)
+
+**🐛 Fixes**
+
+* Fix categories display in mobile filters depending on contents and settings (#586)
+* Fix trek filters displayed in 3 columns (#377)
+* Display ``disabledInfrastructure`` and ``accessibilities`` in trek detail pages only if they have content
+
 3.6.0 (2022-02-07)
 ------------------
 

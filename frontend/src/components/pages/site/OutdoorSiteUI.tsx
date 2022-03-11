@@ -26,6 +26,7 @@ import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { useOutdoorSite } from './useOutdoorSite';
 import { DetailsPreview } from '../details/components/DetailsPreview';
@@ -33,6 +34,7 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
+import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 
 interface Props {
   outdoorSiteUrl: string | string[] | undefined;
@@ -210,6 +212,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                             thumbnailUris: poi.thumbnailUris,
                             attachments: poi.attachments,
                             iconUri: poi.type.pictogramUri,
+                            iconName: poi.type.label,
                           }))}
                           type="POI"
                         />
@@ -313,6 +316,14 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                       </div>
                     )}
 
+                    {getGlobalConfig().enableMeteoWidget &&
+                      outdoorSiteContent.cities_raw &&
+                      outdoorSiteContent.cities_raw[0] && (
+                        <DetailsSection>
+                          <DetailsMeteoWidget code={outdoorSiteContent.cities_raw[0]} />
+                        </DetailsSection>
+                      )}
+
                     {Number(outdoorSiteContent?.source?.length) > 0 && (
                       <DetailsSection
                         htmlId="details_source"
@@ -360,6 +371,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                               thumbnailUris: touristicContent.thumbnailUris,
                               attachments: touristicContent.attachments,
                               iconUri: touristicContent.category.pictogramUri,
+                              iconName: touristicContent.category.label,
                               logoUri: touristicContent.logoUri ?? undefined,
                             }),
                           )}

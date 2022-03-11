@@ -93,6 +93,7 @@ const FilterBarNew: React.FC<Props> = ({
         return (
           <FilterField
             key={filterField.id}
+            id={filterField.id}
             name={filterField.name}
             filters={filterField.filters}
             subFilters={filterField.subFilters}

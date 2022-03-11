@@ -6,18 +6,25 @@ import { Footer } from 'components/Footer';
 import { Separator } from 'components/Separator';
 import { PageHead } from 'components/PageHead';
 import styled from 'styled-components';
+import { useIntl } from 'react-intl';
 import { useFlatPage } from './useFlatPage';
 import { DetailsSection } from '../details/components/DetailsSection';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsSource } from '../details/components/DetailsSource';
 import { HtmlText } from '../details/utils';
+import Breadcrumb from '../details/components/DetailsPreview/Breadcrumb';
 
 interface FlatPageUIProps {
   flatPageUrl: string;
 }
 
+const BreadcrumbWrapper = styled.div`
+  margin-left: 2rem;
+`;
+
 export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
   const { flatPage, isLoading, refetch } = useFlatPage(flatPageUrl);
+  const intl = useIntl();
 
   return (
     <Layout>
@@ -64,6 +71,17 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                 </p>
               </div>
             )}
+            <BreadcrumbWrapper>
+              <Breadcrumb
+                breadcrumb={[
+                  {
+                    label: intl.formatMessage({ id: 'header.accueil' }),
+                    link: '/',
+                  },
+                  { label: flatPage?.title },
+                ]}
+              />
+            </BreadcrumbWrapper>
             {flatPage.content !== null && flatPage.content.length > 0 && (
               <HtmlText>{parse(flatPage.content)}</HtmlText>
             )}

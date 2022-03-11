@@ -5,7 +5,8 @@
     "seeMore": "Find out more",
     "favorites": "Favorites",
     "goToSearch": "Search",
-    "offline": "Offline content"
+    "offline": "Offline content",
+    "accueil": "Home"
   },
   "home": {
     "title": "Geotrek-rando",
@@ -14,22 +15,16 @@
     "seeMore": "See more",
     "welcome-text": "The digital and local eco-guide that presents my discoveries of the territory!",
     "mailTo": "Send an email",
-    "use-a-link": "Or use a link",
-    "get-started": "To get started, edit",
-    "save-to-reload": "and save to reload.",
-    "create-route": "To create a route, edit routes.js and link it to a page",
-    "generate-component": "To create a page or a simple component, run: ",
-    "generate-module": "To add business logic, add a file in ./redux with your reducers/actions/sagas/selectors/constants/...",
-    "click-me": "Click me",
-    "readme": "Look at the README.md to discover the awesome npm commands we added",
     "walking": "Trek",
     "territoryTreks": "Treks to discover",
-    "itinerantTreks": "Multi-day treks to discover"
+    "itinerantTreks": "Multi-day treks to discover",
+    "services": "Services to discover",
+    "events": "Events not to miss",
+    "outdoor": "Outdoor to discover"
   },
   "page": {
     "back": "Back",
-    "api-to-translate-example": "This message is translated using directly react-intl API",
-    "not-found": "This page was nout found"
+    "not-found": "This page was not found"
   },
   "search": {
     "title": "Search",
@@ -64,7 +59,13 @@
     "textFilter": "Search...",
     "map": {
       "seeResult": "Display details",
-      "seeMe": "View my position"
+      "seeMe": "View my position",
+      "panel": {
+        "trekChildren": "Steps",
+        "poi": "Heritage",
+        "referencePoints": "References",
+        "touristicContent": "Close by"
+      }
     }
   },
   "details": {
@@ -76,7 +77,7 @@
     "poi": "Points of interest",
     "poiFullTitle": "{count, plural, =0 {No point of interest} one {# point of interest} other {# points of interest}}",
     "source": "Source",
-    "touristicContent": "See around",
+    "touristicContent": "Close by",
     "readMore": "read more",
     "knowMore": "Find out more",
     "readLess": "read less",
@@ -90,6 +91,7 @@
     "transport": "Transport",
     "stationnement": "Parking",
     "access_parking": "Access and parking",
+    "reservation": "Booking",
     "sensitiveAreasRef": "Sensitive areas",
     "sensitiveAreas": {
       "title": "Sensitive areas",
@@ -129,6 +131,10 @@
     "layerButton": {
       "classic": "Map",
       "satellite": "Satellite"
+    },
+    "drawer": {
+      "next": "Next step",
+      "prev": "Previous step"
     }
   },
   "footer": {
@@ -189,5 +195,44 @@
   "dates": {
     "singleDate": "on {date}",
     "multipleDates": "from {beginDate} to {endDate}"
+  },
+  "rando3D": {
+    "poi": {
+      "no-descriptions": "No descriptions related to this point of interest."
+    },
+    "views": {
+      "examine": {
+        "title": "Examine mode",
+        "description": "The terrain can be examined by turning it in all directions.",
+        "cameraTitle": "Exam"
+      },
+      "bird": {
+        "title": "Bird mode",
+        "description": "Fly over the ground, turn your head, go up, down and move around.",
+        "cameraTitle": "Bird"
+      },
+      "hiker": {
+        "title": "Hiker mode",
+        "description": "Follow the route.",
+        "cameraTitle": "Hiker"
+      }
+    },
+    "instructions": {
+      "zoom": "Zoom :",
+      "rotation": "Tilt/Rotation:",
+      "moveAround": "Move around:",
+      "lookAround": "Look around:",
+      "playPause": "Play/Pause:",
+      "stop": "Stop:"
+    },
+    "actions": {
+      "scrollMouse": "Scroll mouse",
+      "leftClick": "Left click",
+      "space": "Space",
+      "enter": "Enter"
+    },
+    "warning": {
+      "noWebGl": "The web graphics library (WebGL) seems to be disabled or not available on your browser, so the 3D module is unavailable."
+    }
   }
 }

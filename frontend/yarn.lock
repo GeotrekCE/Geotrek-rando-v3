@@ -1778,6 +1778,16 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
+"@makina-corpus/rando3d@^1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@makina-corpus/rando3d/-/rando3d-1.3.1.tgz#6ef9a66b3df3f8b8b3c409c0487a09d1141a7ab3"
+  integrity sha512-BaqHWWpKCsWsZiZdMN/IVXadVDoXSVIdzJdzcT8d8gk4xQFHSgaod6T9J4zmNy6KHGLEH2Zz/SmPE9ZXOVxXFQ==
+  dependencies:
+    babylonjs "~1.13.3"
+    gsap "~1.16.1"
+    jquery "~1.x.x"
+    lodash "~3.x.x"
+
 "@napi-rs/triples@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@napi-rs/triples/-/triples-1.0.3.tgz#76d6d0c3f4d16013c61e45dfca5ff1e6c31ae53c"
@@ -3259,6 +3269,11 @@ babel-types@6.26.0:
     esutils "^2.0.2"
     lodash "^4.17.4"
     to-fast-properties "^1.0.3"
+
+babylonjs@~1.13.3:
+  version "1.13.3"
+  resolved "https://registry.yarnpkg.com/babylonjs/-/babylonjs-1.13.3.tgz#6d23882e94e91495b97816d922716f4442536415"
+  integrity sha1-bSOILpTpFJW5eBbZInFvREJTZBU=
 
 bail@^1.0.0:
   version "1.0.5"
@@ -6074,6 +6089,11 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.4:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
+gsap@1.16.1, gsap@~1.16.1:
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/gsap/-/gsap-1.16.1.tgz#1c45f72797f0591c7c23e50c9869bc486b410e56"
+  integrity sha1-HEX3J5fwWRx8I+UMmGm8SGtBDlY=
+
 gzip-size@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/gzip-size/-/gzip-size-6.0.0.tgz#065367fd50c239c0671cbcbad5be3e2eeb10e462"
@@ -7477,6 +7497,11 @@ joi@^17.4.0:
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
 
+jquery@~1.x.x:
+  version "1.12.4"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.12.4.tgz#01e1dfba290fe73deba77ceeacb0f9ba2fec9e0c"
+  integrity sha1-AeHfuikP5z3rp3zurLD5ui/sngw=
+
 js-sha3@0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/js-sha3/-/js-sha3-0.8.0.tgz#b9b7a5da73afad7dedd0f8c463954cbde6818840"
@@ -7951,6 +7976,11 @@ lodash@^4.17.11, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+
+lodash@~3.x.x:
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
+  integrity sha1-W/Rejkm6QYnhfUgnid/RW9FAt7Y=
 
 log-symbols@^1.0.2:
   version "1.0.2"
@@ -9772,6 +9802,14 @@ raw-body@2.4.1:
     http-errors "1.7.3"
     iconv-lite "0.4.24"
     unpipe "1.0.0"
+
+raw-loader@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/raw-loader/-/raw-loader-4.0.2.tgz#1aac6b7d1ad1501e66efdac1522c73e59a584eb6"
+  integrity sha512-ZnScIV3ag9A4wPX/ZayxL/jZH+euYb6FcUinPcgiQW0+UBtEv0O6Q3lGd3cqJ+GHH+rksEv3Pj99oxJ3u3VIKA==
+  dependencies:
+    loader-utils "^2.0.0"
+    schema-utils "^3.0.0"
 
 react-accessible-accordion@3.3.5:
   version "3.3.5"

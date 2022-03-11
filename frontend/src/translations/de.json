@@ -1,0 +1,185 @@
+{
+  "header": {
+    "menu": "Menü",
+    "language": "Sprache",
+    "seeMore": "Mehr erfahren",
+    "favorites": "Favoriten",
+    "goToSearch": "Suche",
+    "offline": "Inhalte offline "
+  },
+  "home": {
+    "title": "Geotrek-Wanderung",
+    "Beschreibung": "Entdecken Sie die Wanderungen des Bezirks mit Geotrek-Rando",
+    "selectPlaceholder": "Eine Aktivität auswählen",
+    "seeMore": "Mehr anzeigen",
+    "Willkommenstext": "Der digitale und lokale Ökoguide, der meine Entdeckungen in der Region präsentiert!",
+    "mailTo": "E-Mail senden",
+    "walking": "Wanderung",
+    "territoryTreks": "Wanderungen, die es zu entdecken gilt",
+    "itinerantTreks": "Reiserouten zum Entdecken"
+  },
+  "page": {
+    "back": "Zurück",
+    "not-found": "Diese Seite ist unauffindbar",
+    "goToOffline": "Inhalte offline anzeigen"
+  },
+  "search": {
+    "title": "Suche",
+    "description": "Entdecken Sie mit unserer Suchmaschine Wanderungen, die Ihren Wünschen entsprechen",
+    "book": "Reservieren",
+    "resultsFound": "{count, plural, =0 {# résultat trouvé} one {# résultat trouvé} other {# résultats trouvés}}",
+    "resultsFoundShort": "{count, plural, =0 {# Ergebnis} one {# Ergebnis} other {# Ergebnis}}",
+    "forThe": "Für das",
+    "seeMap": "Siehe die Karte",
+    "filter": "Filter",
+    "reload": "Neuladen",
+    "anErrorOccured": "Ein Fehler ist aufgetreten",
+    "filters": {
+      "difficulty": "Schwierigkeit",
+      "practices": "Wanderungen",
+      "outdoor": "Draußen",
+      "events": "Veranstaltungen",
+      "categories": "Dienstleistungen",
+      "cities": "Gemeinde",
+      "localization": "Lokalisierung",
+      "duration": "Dauer",
+      "districts": "Sektor",
+      "themes": "Themen",
+      "routes": "Streckentyp",
+      "accessibilities": "Zugänglichkeit",
+      "ascent": "Positiver Höhenunterschied",
+      "length": "Länge",
+      "structures": "Struktur",
+      "clearAll": "Alles löschen",
+      "filters": "Filter"
+    },
+    "textFilter": "Suchen...",
+    "map": {
+      "seeResult": "Einzelheiten anzeigen",
+      "seeMe": "Meinen Standpunkt sehen"
+    }
+  },
+  "details": {
+    "preview": " Präsentation ",
+    "access": "Zugang",
+    "download": "Herunterladen",
+    "children": "Etappen",
+    "childrenFullTitle": "{ Anzahl, mehrfach, =0 { Keine Etappe } eine {# Etappe} andere{# Etappen}}",
+    "poi": "Kulturerbe",
+    "poiFullTitle": "{ Anzahl, mehrfach, =0 {Kein Kulturerbe} ein {# Kulturerbe zu entdecken } anderes { Die # Erbgüter, die es zu entdecken gilt }}",
+    "source": "Quelle",
+    "touristicContent": "In der Nähe",
+    "readMore": "weiterlesen",
+    "knowMore": "Mehr darüber erfahren",
+    "readLess": "weniger lesen",
+    "close": "Schließen",
+    "description": "Beschreibung",
+    "recommandations": "Empfehlungen",
+    "informationDesks": "Orte der Information",
+    "practicalInformations": "Praktische Informationen",
+    "accessibility": "Zugänglichkeit",
+    "toSee": "Auch sehenswert",
+    "transport": "Transport",
+    "stationnement": "Parken",
+    "access_parking": "Zufahrt und Parkplätze",
+    "sensitiveAreasRef": "Sensible Bereiche",
+    "sensitiveAreas": {
+      "title": "Umweltempfindliche Zonen",
+      "intro": "Auf Ihrem Weg durchqueren Sie Gebiete, die aufgrund des Vorkommens einer bestimmten Art oder eines bestimmten Lebensraums besonders empfindlich sind. In diesen Zonen können Sie durch angepasstes Verhalten zu deren Erhaltung beitragen. Für weitere Informationen stehen für jedes Gebiet spezielle Informationsblätter zur Verfügung.",
+      "period": "Sensibilitätsperioden:",
+      "practices": "Betroffene Tätigkeitsbereiche:",
+      "contact": "Kontakt:"
+    },
+    "altimetricProfile": {
+      "title": "Höhenprofil",
+      "totalLength": "Gesamtlänge",
+      "minElevation": "Mindesthöhe",
+      "maxElevation": "Maximalhöhe"
+    },
+    "departure": "Start",
+    "arrival": "Ankunft",
+    "cities": "Durchquerte Gemeinden",
+    "more": "Mehr erfahren",
+    "courses": "Strecke",
+    "experiences": "Ausübungsstätten",
+    "gear": "Ausrüstung",
+    "equipment": "Ausstattung",
+    "typeSite": "Art des Ortes",
+    "typeCourse": "Streckentyp",
+    "organizer": "Veranstalter",
+    "speaker": "Redner",
+    "targetAudience": "Zielgruppe",
+    "practicalInfo": "Praktische Information",
+    "booking": "Reservierung"
+  },
+  "touristicContent": {
+    "contact": "Kontakt",
+    "email": "Email",
+    "website": "Webseite"
+  },
+  "map": {
+    "layerButton": {
+      "classic": "Plan",
+      "satellite": " Satellit "
+    }
+  },
+  "footer": {
+    "linksSectionTitle": "Zusätzliche Informationen",
+    "links": "Verbindungen",
+    "access": "Wie man kommt",
+    "legalMentions": "Rechtliche Hinweise",
+    "accessibility": "Regeln für die Zugänglichkeit",
+    "geotrek": "Geotrek"
+  },
+  "report": {
+    "title": "Ein Problem oder einen Fehler melden",
+    "activity": "Aktivität",
+    "category": "Kategorie",
+    "magnitude": "Ausmaß des Problems",
+    "comment": "Kommentare",
+    "email": "Email",
+    "name": "Ihr Name",
+    "button": " Melden ",
+    "cancel": "Annullieren",
+    "success": "Danke, die Meldung wurde gesendet"
+  },
+  "error": {
+    "missing": "Das Formular ist nicht vollständig"
+  },
+  "offline": {
+    "number": "{count}Inhalte, die ohne Internetverbindung zugänglich sind",
+    "presentation": "Damit Sie Ihre Inhalte genießen können, ohne sich Sorgen um Ihr Netzwerk machen zu müssen",
+    "explain": "Dieses Element für den Offline-Zugriff einbetten",
+    "explainAvailable": "Dieses Element ist offline verfügbar",
+    "title": "Offline-Modus",
+    "download": "Einsteigen",
+    "isInCache": "Dieses Element ist offline verfügbar",
+    "downloadInProgress": "Der Download wird gerade durchgeführt. Bitte warten Sie",
+    "not-available": "Dieser Inhalt ist nicht offline verfügbar"
+  },
+  "actions": {
+    "cancel": "Annuler",
+    "close": "Schliessen",
+    "remove": "Löschen",
+    "confirmRemove": "Sind Sie sicher, dass Sie dieses Element löschen möchten?"
+  },
+  "outdoorSite": {
+    "accessFullTitle": "Zugang",
+    "coursesFullTitle": "Strecke",
+    "sitesFullTitle": "Die {count} Orte der Praxis, die es zu entdecken gilt"
+  },
+  "Wind": {
+    "N": "Norden",
+    "S": "Süden",
+    "E": "Osten",
+    "W": "Westen",
+    "NW": "Nord-Westen",
+    "SW": "Süd-Westen",
+    "NE": "Nord-Osten",
+    "SE": "Süd-Osten"
+  },
+  "dates": {
+    "singleDate": "Einzeldatum",
+    "multipleDates": "von {Anfangsdatum} bis {Enddatum}"
+  }
+}

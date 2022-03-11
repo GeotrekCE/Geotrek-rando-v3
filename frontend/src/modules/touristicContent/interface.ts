@@ -91,10 +91,12 @@ export interface TouristicContentDetails extends TouristicContent {
   email: string;
   website: string;
   place: string;
+  cities_raw: string[];
   themes: string[];
   pdfUri: string;
   types: TouristicContentDetailsType[];
   bbox: Bbox;
+  type: 'TOURISTIC_CONTENT';
 }
 
 export interface TouristicContentDetailsType {

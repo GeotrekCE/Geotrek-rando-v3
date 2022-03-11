@@ -5,7 +5,8 @@
     "seeMore": "Leggi di più",
     "favorites": "Preferiti",
     "goToSearch": "Ricerca",
-    "offline": "Contenuto offline"
+    "offline": "Contenuto offline",
+    "accueil": "Pagina iniziale"
   },
   "home": {
     "title": "Geotrek-rando",
@@ -14,21 +15,16 @@
     "seeMore": "Vedere più",
     "welcome-text": "L'ecoguida digitale e locale che presenta le mie scoperte del territorio !",
     "mailTo": "Invia un'email",
-    "use-a-link": "O usare un link",
-    "get-started": "Per iniziare, modificate",
-    "save-to-reload": "e salvataggio per ricaricare.",
-    "create-route": "Per creare una rotta, modificare routes.js e associa una pagina",
-    "generate-component": "Per creare una pagina o un semplice componente, lanciare : ",
-    "generate-module": "Per aggiungere la logica di mestiere, create una cartella in redux con il suo reducers/actions/sagas/selectors/constants/...",
-    "click-me": "Cliccami",
-    "readme": "Leggi il README.md per scoprire i grandi comandi npm che abbiamo aggiunto",
     "walking": "Escursioni",
     "territoryTreks": "Escursioni da scoprire",
-    "itinerantTreks": "Itinerari da scoprire"
+    "itinerantTreks": "Itinerari da scoprire",
+    "services": "Servizi da scoprire",
+    "events": "Eventi da non perdere",
+    "outdoor": "Siti outdoor da scoprire"
   },
   "page": {
     "back": "Ritorno",
-    "api-to-translate-example": "Questo messaggio è tradotto usando direttamente l'API react-intl"
+    "not-found": "Questa pagina non è stata trovata"
   },
   "search": {
     "title": "Ricerca",
@@ -63,7 +59,13 @@
     "textFilter": "Ricerca...",
     "map": {
       "seeResult": "Mostrare i dettagli",
-      "seeMe": "Vedere la mia posizione"
+      "seeMe": "Vedere la mia posizione",
+      "panel": {
+        "trekChildren": "Fasi",
+        "poi": "Eredità",
+        "referencePoints": "Riferimenti",
+        "touristicContent": "Vicino"
+      }
     }
   },
   "details": {
@@ -89,6 +91,7 @@
     "transport": "Trasporto",
     "stationnement": "Parcheggio",
     "access_parking": "Accesso stradale e parcheggi",
+    "reservation": "Prenotazione",
     "sensitiveAreasRef": "Zone sensibili",
     "sensitiveAreas": {
       "title": "Zone di sensibilità ambientale",
@@ -128,6 +131,10 @@
     "layerButton": {
       "classic": "Piano",
       "satellite": "Satellite"
+    },
+    "drawer": {
+      "next": "Passo successivo",
+      "prev": "Passo precedente"
     }
   },
   "footer": {

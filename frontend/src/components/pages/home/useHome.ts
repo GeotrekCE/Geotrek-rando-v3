@@ -1,33 +1,21 @@
-import { getHomePageConfig } from 'modules/home/utils';
-import { ActivitySuggestionDictionnary } from 'modules/activitySuggestions/interface';
+import { flatten } from 'lodash';
 import { getActivitySuggestions } from 'modules/activitySuggestions/connector';
-import { useQuery } from 'react-query';
-import { DisplayableSuggestionCategory } from 'modules/home/interface';
+import { ActivitySuggestion } from 'modules/activitySuggestions/interface';
 import { getDefaultLanguage } from 'modules/header/utills';
+import { getHomePageConfig } from 'modules/home/utils';
 import { useRouter } from 'next/router';
+import { useQuery } from 'react-query';
 
 export const useHome = () => {
   const homePageConfig = getHomePageConfig();
 
-  const activitySuggestionIds: string[] = homePageConfig.suggestions.reduce<string[]>(
-    (suggestionIds, currentSuggestion) => [...suggestionIds, ...currentSuggestion.ids],
-    [],
-  );
-  const language = useRouter().locale ?? getDefaultLanguage();
-  const { data: activitySuggestionDictionnary } = useQuery<ActivitySuggestionDictionnary, Error>(
-    ['activitySuggestions', activitySuggestionIds.join('-'), language],
-    () => getActivitySuggestions(activitySuggestionIds, language),
-  );
-  const activitySuggestionCategories: DisplayableSuggestionCategory[] =
-    activitySuggestionDictionnary !== undefined
-      ? homePageConfig.suggestions.map(suggestion => ({
-          titleTranslationId: suggestion.titleTranslationId,
-          iconUrl: suggestion.iconUrl,
-          suggestions: suggestion.ids
-            .filter(id => activitySuggestionDictionnary[id])
-            .map(id => activitySuggestionDictionnary[id]),
-        }))
-      : [];
+  const activitySuggestionIds = flatten(homePageConfig.suggestions.map(s => s.ids));
 
-  return { config: homePageConfig, activitySuggestionCategories };
+  const language = useRouter().locale ?? getDefaultLanguage();
+  const { data: suggestions } = useQuery<ActivitySuggestion[], Error>(
+    ['activitySuggestions', activitySuggestionIds.join('-'), language],
+    () => getActivitySuggestions(homePageConfig.suggestions, language),
+  );
+
+  return { config: homePageConfig, suggestions: suggestions as ActivitySuggestion[] };
 };

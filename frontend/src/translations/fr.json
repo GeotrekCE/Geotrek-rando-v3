@@ -5,7 +5,8 @@
     "seeMore": "En savoir plus",
     "favorites": "Favoris",
     "goToSearch": "Recherche",
-    "offline": "Contenus hors ligne"
+    "offline": "Contenus hors ligne",
+    "accueil": "Accueil"
   },
   "home": {
     "title": "Geotrek-rando",
@@ -14,21 +15,15 @@
     "seeMore": "Voir plus",
     "welcome-text": "L’écoguide numérique et local qui présente mes découvertes du territoire !",
     "mailTo": "Envoyer un email",
-    "use-a-link": "Ou utilise un lien",
-    "get-started": "Pour commencer, modifie",
-    "save-to-reload": "et sauvegarde pour recharger.",
-    "create-route": "Pour créer une route, modifie routes.js et associe une page",
-    "generate-component": "Pour créer une page ou un simple composant, lance : ",
-    "generate-module": "Pour ajouter de la logique métier, créer un dossier dans redux avec tes reducers/actions/sagas/selectors/constants/...",
-    "click-me": "Clique moi",
-    "readme": "Lis le README.md pour découvrir les super commandes npm que nous avons ajouté",
     "walking": "Randonnée",
     "territoryTreks": "Randonnées à découvrir",
-    "itinerantTreks": "Itinérances à découvrir"
+    "itinerantTreks": "Itinérances à découvrir",
+    "services": "Services à découvrir",
+    "events": "Événements à ne pas rater",
+    "outdoor": "Sites outdoor à découvrir"
   },
   "page": {
     "back": "Retour",
-    "api-to-translate-example": "Ce message est traduit en utilisant directement l'API react-intl",
     "not-found": "Cette page est introuvable",
     "goToOffline": "Afficher les contenus hors ligne"
   },
@@ -65,7 +60,13 @@
     "textFilter": "Rechercher...",
     "map": {
       "seeResult": "Afficher le détail",
-      "seeMe": "Voir ma position"
+      "seeMe": "Voir ma position",
+      "panel": {
+        "trekChildren": "Étapes",
+        "poi": "Patrimoines",
+        "referencePoints": "Références",
+        "touristicContent": "À proximité"
+      }
     }
   },
   "details": {
@@ -91,6 +92,7 @@
     "transport": "Transport",
     "stationnement": "Stationnement",
     "access_parking": "Accès routiers et parkings",
+    "reservation": "Réservation",
     "sensitiveAreasRef": "Zones sensibles",
     "sensitiveAreas": {
       "title": "Zones de sensibilité environnementale",
@@ -130,6 +132,10 @@
     "layerButton": {
       "classic": "Plan",
       "satellite": "Satellite"
+    },
+    "drawer": {
+      "next": "Etape suivante",
+      "prev": "Etape précédente"
     }
   },
   "footer": {
@@ -170,7 +176,7 @@
     "cancel": "Annuler",
     "close": "Fermer",
     "remove": "Supprimer",
-    "confirmRemove": "Etes vous sûr de vouloir supprimer cet élément?"
+    "confirmRemove": "Etes vous sûr de vouloir supprimer cet élément ?"
   },
   "outdoorSite": {
     "accessFullTitle": "Accès",
@@ -190,5 +196,44 @@
   "dates": {
     "singleDate": "le {date}",
     "multipleDates": "du {beginDate} au {endDate}"
+  },
+  "rando3D": {
+    "poi": {
+      "no-descriptions": "Pas de description liée à ce point d'intérêt."
+    },
+    "views": {
+      "examine": {
+        "title": "Mode examine",
+        "description": "Examinez le terrain en le tournant comme vous le souhaitez et en navigant dedans.",
+        "cameraTitle": "Exam"
+      },
+      "bird": {
+        "title": "Mode oiseau",
+        "description": "Survolez le terrain, tournez la tête, montez, descendez et déplacez vous.",
+        "cameraTitle": "Oiseau"
+      },
+      "hiker": {
+        "title": "Mode randonneur",
+        "description": "Suivez le parcours de l'itinéraire.",
+        "cameraTitle": "Rando"
+      }
+    },
+    "instructions": {
+      "zoom": "Zoom :",
+      "rotation": "Inclinaison/Rotation :",
+      "moveAround": "Se déplacer :",
+      "lookAround": "Tourner regard :",
+      "playPause": "Lecture/Pause :",
+      "stop": "Stop :"
+    },
+    "actions": {
+      "scrollMouse": "Molette souris",
+      "leftClick": "Clic gauche",
+      "space": "Espace",
+      "enter": "Entrée"
+    },
+    "warning": {
+      "noWebGl": "La bibliothèque graphique web (WebGL) semble désactivée ou non disponible sur votre navigateur, le module 3D est donc indisponible."
+    }
   }
 }

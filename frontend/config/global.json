@@ -8,6 +8,8 @@
   "enableTouristicEvents": true,
   "portalIds": [],
   "apiUrl": "https://geotrekdemo.ecrins-parcnational.fr/api/v2",
+  "reservationPartner": null,
+  "reservationProject": null,
   "googleAnalyticsId": null,
   "googleSiteVerificationToken": "eKAyxwaXAobFWQcJen0mnZ8T3CpLoN45JysXeNkRf38",
   "baseUrl": "http://127.0.0.1:3000",
@@ -17,5 +19,7 @@
   "enableIndexation": true,
   "enableReport": true,
   "enableSearchByMap": true,
-  "enableServerCache": true
+  "enableServerCache": true,
+  "enableMeteoWidget": true,
+  "maxLengthTrekAllowedFor3DRando": 25000
 }

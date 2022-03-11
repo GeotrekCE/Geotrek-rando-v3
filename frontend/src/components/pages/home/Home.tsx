@@ -1,23 +1,22 @@
-import React, { FunctionComponent } from 'react';
-import { useIntl } from 'react-intl';
+import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
+import { Footer } from 'components/Footer';
+import { Layout } from 'components/Layout/Layout';
+import { PageHead } from 'components/PageHead';
 import parse from 'html-react-parser';
 import getNextConfig from 'next/config';
-
-import { Layout } from 'components/Layout/Layout';
-import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
-import { PageHead } from 'components/PageHead';
-import { Footer } from 'components/Footer';
+import React, { FunctionComponent } from 'react';
+import { useIntl } from 'react-intl';
+import { BannerWithAsset } from './components/BannerWithAsset';
 import { HomeSection } from './components/HomeSection';
 import { HomeContainer } from './Home.style';
 import { useHome } from './useHome';
-import { BannerWithAsset } from './components/BannerWithAsset';
 
 const {
   publicRuntimeConfig: { homeBottomHtml, homeTopHtml },
 } = getNextConfig();
 
 const HomeUI: FunctionComponent = () => {
-  const { config, activitySuggestionCategories } = useHome();
+  const { config, suggestions } = useHome();
 
   const contentContainerClassname = `relative ${
     config.activityBar.shouldDisplay ? '-top-6 desktop:-top-15' : 'pt-6 desktop:pt-18'
@@ -50,18 +49,19 @@ const HomeUI: FunctionComponent = () => {
             <div id="home_topHtml" className={classNameHomeChild}>
               {parse(homeTopHtml)}
             </div>
-            {activitySuggestionCategories.map(suggestionCategory => (
-              <React.Fragment key={suggestionCategory.titleTranslationId}>
-                {suggestionCategory.suggestions.length > 0 && (
+            {suggestions
+              .filter(({ results }) => results.length > 0)
+              .map(({ titleTranslationId, iconUrl, results, type }) => (
+                <>
                   <HomeSection
-                    title={intl.formatMessage({ id: suggestionCategory.titleTranslationId })}
-                    iconUrl={suggestionCategory.iconUrl}
-                    key={suggestionCategory.titleTranslationId}
-                    activitySuggestions={suggestionCategory.suggestions}
+                    title={intl.formatMessage({ id: titleTranslationId })}
+                    iconUrl={iconUrl}
+                    key={titleTranslationId}
+                    results={results}
+                    type={type}
                   />
-                )}
-              </React.Fragment>
-            ))}
+                </>
+              ))}
             <div id="home_bottomHtml" className={classNameHomeChild}>
               {parse(homeBottomHtml)}
             </div>
