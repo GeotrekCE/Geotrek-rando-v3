@@ -148,15 +148,22 @@
   },
   "report": {
     "title": "Signaler un problème ou une erreur",
+    "intro": "Vous avez repéré une erreur sur cette page ou constaté des changements lors de votre randonnée, signalez-les nous ici :",
     "activity": "Activité",
     "category": "Catégorie",
     "magnitude": "Ampleur du problème",
     "comment": "Commentaires",
     "email": "Email",
     "name": "Votre nom",
+    "image": "Image",
     "button": "Signaler",
     "cancel": "Annuler",
-    "success": "Merci, le signalement a été envoyé."
+    "success": "Merci, le signalement a été envoyé.",
+    "mapButton": {
+      "create": "Indiquez la position du signalement sur la carte",
+      "edit": "Modifiez la position du signalement"
+    },
+    "GDPRDisclaimer": "Ces informations sont destinées à <b>organism</b>, qui s'engage à ne pas les communiquer à des tiers. Vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent (art. 34 de la loi \"Informatique et Libertés\"). Pour l'exercer, adressez-vous à <a>contact</a>."
   },
   "error": {
     "missing": "Le formulaire n'est pas complet"

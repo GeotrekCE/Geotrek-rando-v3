@@ -1,7 +1,7 @@
 import { Separator } from 'components/Separator';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
-import { scrollBar } from 'stylesheet';
+import { MAX_WIDTH_MOBILE, scrollBar } from 'stylesheet';
 
 export interface DetailsSectionProps {
   titleId?: string;
@@ -17,7 +17,7 @@ export const DetailsSection: React.FC<DetailsSectionProps> = ({
   htmlId,
 }) => {
   return (
-    <div className={className} id={htmlId}>
+    <Container className={className} id={htmlId}>
       <ScrollContainer
         id="details_section"
         className={`flex flex-col
@@ -40,9 +40,16 @@ export const DetailsSection: React.FC<DetailsSectionProps> = ({
         </div>
       </ScrollContainer>
       <Separator />
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  scroll-margin-top: 80px;
+  @media (min-width: ${MAX_WIDTH_MOBILE}px) {
+    scroll-margin-top: 150px;
+  }
+`;
 
 const ScrollContainer = styled.div`
   &::-webkit-scrollbar {

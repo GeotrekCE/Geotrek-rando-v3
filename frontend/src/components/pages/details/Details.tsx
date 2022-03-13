@@ -17,6 +17,7 @@ import { RemoteIconInformation } from 'components/Information/RemoteIconInformat
 import React, { useMemo, useRef } from 'react';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { cleanHTMLElementsFromString } from 'modules/utils/string';
+import Report from 'components/Report/Report';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { Footer } from 'components/Footer';
 import { DetailsPreview } from './components/DetailsPreview';
@@ -39,6 +40,7 @@ import { DetailsReservationWidget } from './components/DetailsReservationWidget'
 import { DetailsMeteoWidget } from './components/DetailsMeteoWidget';
 import { ImageWithLegend } from './components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { VisibleSectionProvider } from './VisibleSectionContext';
+import { DetailsAndMapProvider } from './DetailsAndMapContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
 import { useOnScreenSection } from './hooks/useHighlightedSection';
 
@@ -64,6 +66,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
     setTouristicContentsRef,
     setAccessibilityRef,
     setSensitiveAreasRef,
+    setReportRef,
     sectionsPositions,
     intl,
     mobileMapState,
@@ -403,6 +406,29 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       </DetailsSection>
                     )}
 
+                    {getGlobalConfig().enableReport && (
+                      <div ref={setReportRef}>
+                        <DetailsSection
+                          htmlId="details_report"
+                          titleId="report.title"
+                          className={marginDetailsChild}
+                        >
+                          <Report
+                            displayMobileMap={displayMobileMap}
+                            trekId={details.id}
+                            startPoint={{
+                              type: 'Point',
+                              coordinates:
+                                'trekDeparture' in details
+                                  ? details.trekDeparture
+                                  : // @ts-ignore next-line
+                                    details.geometry?.coordinates,
+                            }}
+                          />
+                        </DetailsSection>
+                      </div>
+                    )}
+
                     {details.touristicContents.length > 0 && (
                       <div ref={setTouristicContentsRef} id="details_touristicContent_ref">
                         <DetailsCardSection
@@ -587,8 +613,10 @@ export const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title:
 
 export const DetailsUI: React.FC<Props> = ({ detailsId, parentId, language }) => {
   return (
-    <VisibleSectionProvider>
-      <DetailsUIWithoutContext detailsId={detailsId} parentId={parentId} language={language} />
-    </VisibleSectionProvider>
+    <DetailsAndMapProvider>
+      <VisibleSectionProvider>
+        <DetailsUIWithoutContext detailsId={detailsId} parentId={parentId} language={language} />
+      </VisibleSectionProvider>
+    </DetailsAndMapProvider>
   );
 };

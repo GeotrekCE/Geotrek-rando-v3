@@ -147,15 +147,22 @@
   },
   "report": {
     "title": "Segnala un problema o un errore",
+    "intro": "If you have found an error on this page or if you have noticed any changes during your hike, please report them to us here:",
     "activity": "Attività",
     "category": "Categoria",
     "magnitude": "Portata del problema",
     "comment": "Commenti",
     "email": "Email",
     "name": "Il tuo nome",
+    "image": "Image",
     "button": "Segnala",
     "cancel": "Cancella",
-    "success": "Grazie, il rapporto è stato inviato."
+    "success": "Grazie, il rapporto è stato inviato.",
+    "mapButton": {
+      "create": "Indicate the position of the report on the map",
+      "edit": "Edit the position of the report"
+    },
+    "GDPRDisclaimer": "These information will be used by <b>organism</b>, which commit to not sell your personal data to third parties. You have the right to read, modify, fix or delete your personal data (art. 34 de la loi \"Informatique et Libertés\"). To apply please send a mail to <a>contact</a>."
   },
   "error": {
     "missing": "Il modulo non è completo"

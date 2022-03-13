@@ -2,7 +2,8 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useQueries } from 'react-query';
 
-import { Option } from 'modules/filters/interface';
+import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
+import { Option } from '../../modules/filters/interface';
 import { PointGeometry } from '../../modules/interface';
 
 import { getFeedbackActivity } from '../../modules/feedbackActivity/connector';
@@ -15,17 +16,16 @@ interface PropsState {
   activity: Option[];
   category: Option[];
   magnitude: Option[];
-  geom: PointGeometry;
-  comment: string;
-  email: string;
-  name: string;
+  geom: PointGeometry | null;
+}
+
+interface ConvertedOption {
+  id: number;
+  label: string;
 }
 
 const initialState: PropsState = {
-  comment: '',
-  email: '',
-  name: '',
-  geom: { type: 'Point', coordinates: { x: 0, y: 0 } },
+  geom: null,
   activity: [],
   category: [],
   magnitude: [],
@@ -38,11 +38,10 @@ const initialOptions = {
 };
 
 interface Props {
-  trekId: number;
   startPoint: PointGeometry;
 }
 
-const useReport = ({ trekId, startPoint }: Props) => {
+const useReport = ({ startPoint }: Props) => {
   const [state, setState] = useState(initialState);
   const [options, setOptions] = useState(initialOptions);
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -50,61 +49,79 @@ const useReport = ({ trekId, startPoint }: Props) => {
 
   const language = useRouter().locale ?? getDefaultLanguage();
 
+  const {
+    coordinatesReport,
+    coordinatesReportTouched,
+    setCoordinatesReport,
+    setCoordinatesReportTouched,
+  } = useDetailsAndMapContext();
+
   useEffect(() => {
-    // On définit un point par défaut en attendant de faire le developpement nécessaire pour choisir l'emplacement du problème
-    setValue('geom', startPoint);
-  }, []);
+    setCoordinatesReportTouched(false);
+  }, [setCoordinatesReportTouched]);
+
+  useEffect(() => {
+    setCoordinatesReport(prevCoordinates => {
+      if (prevCoordinates === null) {
+        return startPoint;
+      }
+      return prevCoordinates;
+    });
+  }, [setCoordinatesReport, startPoint]);
+
+  useEffect(() => {
+    if (coordinatesReport) {
+      setValue('geom', coordinatesReport);
+    }
+  }, [coordinatesReport]);
 
   const results = useQueries([
     {
       queryKey: ['feedbackActivity', language],
       queryFn: () => getFeedbackActivity(language),
-      onSuccess: data => convertToOptions('activity', data),
+      onSuccess: data => convertToOptions('activity', data as ConvertedOption[]),
     },
     {
       queryKey: ['feedbackCategory', language],
       queryFn: () => getFeedbackCategory(language),
-      onSuccess: data => convertToOptions('category', data),
+      onSuccess: data => convertToOptions('category', data as ConvertedOption[]),
     },
     {
       queryKey: ['feedbackMagnitude', language],
       queryFn: () => getFeedbackMagnitude(language),
-      onSuccess: data => convertToOptions('magnitude', data),
+      onSuccess: data => convertToOptions('magnitude', data as ConvertedOption[]),
     },
   ]);
 
   const isLoading = results.some(i => i.isLoading);
 
-  const convertToOptions = (key: string, data: any) => {
-    setOptions(oldOptions => {
-      const newOptions = JSON.parse(JSON.stringify(oldOptions));
-      newOptions[key] = data.map((d: any) => ({
-        label: d.label,
-        value: String(d.id),
-      }));
-      return newOptions;
-    });
+  const convertToOptions = (key: string, data: ConvertedOption[]) => {
+    setOptions(prevOptions => ({
+      ...prevOptions,
+      [key]: data.map(({ label, id }) => ({
+        label,
+        value: String(id),
+      })),
+    }));
   };
 
-  const setValue = (key: string, value: any) => {
-    setState(oldState => {
-      const newState = JSON.parse(JSON.stringify(oldState));
-      newState[key] = value;
-      return newState;
-    });
+  const setValue = (key: string, value: string | PointGeometry | Option[]) => {
+    setState(prevState => ({
+      ...prevState,
+      [key]: value,
+    }));
   };
 
-  const submit = async () => {
-    await createReport(language, {
-      activity: Number(state.activity[0].value),
-      category: Number(state.category[0].value),
-      problem_magnitude: Number(state.magnitude[0].value),
-      email: state.email,
-      name: state.name,
-      comment: state.comment,
-      geom: `{"type": "Point", "coordinates": [${state.geom.coordinates.x}, ${state.geom.coordinates.y}]}`,
-      related_trek: trekId,
-    })
+  const submit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    if (state.geom !== null) {
+      formData.set(
+        'geom',
+        `{"type": "Point", "coordinates": [${state.geom.coordinates.x}, ${state.geom.coordinates.y}]}`,
+      );
+    }
+    await createReport(language, formData)
       .then(async res => {
         const json = await res.json();
         if (res.status === 400) {
@@ -124,9 +141,19 @@ const useReport = ({ trekId, startPoint }: Props) => {
         console.error(localError);
         setError(localError.message);
       });
+    setCoordinatesReportTouched(false);
   };
 
-  return { state, isLoading, options, setValue, submit, submitted, error };
+  return {
+    state,
+    coordinatesReportTouched,
+    isLoading,
+    options,
+    setValue,
+    submit,
+    submitted,
+    error,
+  };
 };
 
 export default useReport;
