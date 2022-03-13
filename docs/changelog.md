@@ -8,6 +8,7 @@
 * Include 3D view in trek detail pages (#390)
 * Add ``maxLengthTrekAllowedFor3DRando`` setting to define the maximum length of a trek to enable the 3D view on its page (or to disable 3D view) (#390)
 * Add breadcrumb on detail and information pages (#506)
+* Add Meteo France widget on all detail pages based on INSEE code of the content (#525)
 * Add Open System reservation widget on trek detail pages with an ``id_reservation`` (#382)
 * Add ``reservationPartner`` and ``reservationProject`` settings to enable Open System reservation widget (#382)
 * Add a customizable color for each content category (treks, outdoor sites, services and events) to better differentiate content categories (#437)
