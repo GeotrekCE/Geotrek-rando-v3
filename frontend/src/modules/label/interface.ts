@@ -11,7 +11,7 @@ export interface Label {
   advice: string;
   pictogramUri: string;
   name: string;
-  filter: boolean;
+  filter?: boolean;
 }
 
 export interface LabelDictionnary {

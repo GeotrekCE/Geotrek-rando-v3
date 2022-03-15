@@ -2,6 +2,9 @@ import { uniqBy } from 'lodash';
 import { getTouristicContentCategoryFilter } from 'modules/touristicContentCategory/connector';
 import { getActivityFilter } from 'modules/activities/connector';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
+import { getLabels } from 'modules/label/connector';
+import { Label } from 'modules/label/interface';
+
 import { getOutdoorPracticesFilter } from '../outdoorPractice/connector';
 import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { OutdoorRatingMapping } from '../outdoorRating/interface';
@@ -34,8 +37,6 @@ import {
   STRUCTURE_ID,
   THEME_ID,
 } from './constant';
-import { getLabels } from 'modules/label/connector';
-import { Label } from 'modules/label/interface';
 
 const adaptFilterConfigWithOptionsToFilter = (
   filterConfigWithOptions: FilterConfigWithOptions,
