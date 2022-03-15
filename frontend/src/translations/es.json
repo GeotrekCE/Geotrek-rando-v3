@@ -28,7 +28,7 @@
     "title": "Busca",
     "description": "Descubre las excursiones que coinciden con tus deseos en nuestro motor de búsqueda",
     "book": "Reserva",
-    "resultsFound": "{count, plural, =0 {# Hemos encontrado el resultado} one {# Hemos encontrado el resultado} other {# Hemos encontrado los resultados}}",
+    "resultsFound": "{count, plural, =0 {# resultado encontrado} one {# resultado encontrado} other {# resultados encontrados}}",
     "resultsFoundShort": "{count, plural, =0 {# resultado} one {# resultado} other {# resultados}}",
     "forThe": "Para",
     "seeMap": "mostrar el mapa",
