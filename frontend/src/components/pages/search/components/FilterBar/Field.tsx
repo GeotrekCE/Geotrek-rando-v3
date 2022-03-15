@@ -42,7 +42,7 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel, id }) => {
       {!hideLabel && (
         <div className={'mb-1'}>{intl.formatMessage({ id: filterState?.label || 'Unknown' })}</div>
       )}
-      <div className="-m-1">
+      <div className="-m-1 flex">
         {filterState.options.map(option => {
           const isSelected = filterState.selectedOptions.some(_ => _.value === option.value);
 
@@ -70,6 +70,8 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel, id }) => {
 
 const FilledSvg = styled(SVG)`
   height: 24px;
+  width: 24px;
+  margin-right: 10px;
 
   & * {
     fill: ${colorPalette.home.activity.color} !important;
@@ -78,6 +80,8 @@ const FilledSvg = styled(SVG)`
 
 const FilledSvgActive = styled(SVG)`
   height: 24px;
+  width: 24px;
+  margin-right: 10px;
 
   & * {
     fill: ${colorPalette.primary1} !important;
