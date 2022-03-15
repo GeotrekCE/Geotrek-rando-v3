@@ -5,7 +5,8 @@
     "seeMore": "més informació",
     "favorites": "Preferit",
     "goToSearch": "cerca",
-    "offline": "Continguts fora de línia"
+    "offline": "Continguts fora de línia",
+    "home": "Pàgina"
   },
   "home": {
     "title": "Geotrek-senderisme",
@@ -27,7 +28,7 @@
     "title": "Cerca",
     "description": "Descobreix les excursions que coincideixen amb els teus desitjos amb el nostre motor de cerca",
     "book": "Reserva",
-    "resultsFound": "{count, plural, =0 {# s’ha trobat el resultat} one {# s’ha trobat el resultat} other {# s’han trobat els resultats}}",
+    "resultsFound": "{count, plural, =0 {# resultat trobat} one {# resultat trobat} other {# resultats trobats}}",
     "resultsFoundShort": "{count, plural, =0 {# resultat} one {# resultat} other {# resultats}}",
     "forThe": "Per a",
     "seeMap": "mostra el mapa",
