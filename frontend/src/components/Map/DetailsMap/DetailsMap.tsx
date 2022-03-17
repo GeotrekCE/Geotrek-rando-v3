@@ -61,6 +61,7 @@ export type PropsType = {
   trekId: number;
   advisedParking?: string;
   title?: string;
+  displayAltimetricProfile?: boolean;
 };
 export const DetailsMap: React.FC<PropsType> = props => {
   const { reportVisibility, setReportVisibility } = useDetailsAndMapContext();
@@ -150,7 +151,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           touristicContentMobileVisibility={touristicContentMobileVisibility}
           reportVisibility={reportVisibility}
         />
-        {props.trekGeoJSON && (
+        {props.displayAltimetricProfile === true && props.trekGeoJSON && (
           <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
         )}
         {isSatelliteLayerAvailable && (

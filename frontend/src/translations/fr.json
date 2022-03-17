@@ -134,8 +134,8 @@
       "satellite": "Satellite"
     },
     "drawer": {
-      "next": "Etape suivante",
-      "prev": "Etape précédente"
+      "next": "Étape suivante",
+      "prev": "Étape précédente"
     }
   },
   "footer": {
@@ -183,7 +183,7 @@
     "cancel": "Annuler",
     "close": "Fermer",
     "remove": "Supprimer",
-    "confirmRemove": "Etes vous sûr de vouloir supprimer cet élément ?"
+    "confirmRemove": "Êtes-vous sûr de vouloir supprimer cet élément ?"
   },
   "outdoorSite": {
     "accessFullTitle": "Accès",
