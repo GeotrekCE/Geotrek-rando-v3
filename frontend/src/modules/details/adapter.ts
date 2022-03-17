@@ -84,6 +84,7 @@ export const adaptResults = ({
             : null,
         distance: `${formatDistance(rawDetailsProperties.length_2d)}`,
         elevation: `+${rawDetailsProperties.ascent}${dataUnits.distance}`,
+        negativeElevation: `${rawDetailsProperties.descent}${dataUnits.distance}`,
         networks: rawDetailsProperties.networks.map(networkId => networks[networkId]),
         difficulty,
         courseType,
