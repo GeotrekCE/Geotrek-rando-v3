@@ -68,6 +68,7 @@ export interface APICallsConfig {
   maxLengthTrekAllowedFor3DRando: number;
   reservationPartner: string;
   reservationProject: string;
+  minAltitudeDifferenceToDisplayElevationProfile: number;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */
