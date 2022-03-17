@@ -187,6 +187,17 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             {informations.elevation}
           </LocalIconInformation>
         )}
+        {informations.negativeElevation && (
+          <LocalIconInformation
+            icon={TrendingUp}
+            iconProps={{
+              className: 'transform -scale-y-100',
+            }}
+            className={classNameInformation}
+          >
+            {informations.negativeElevation}
+          </LocalIconInformation>
+        )}
         {informations.maxElevation && (
           <LocalIconInformation icon={Altitude} className={classNameInformation}>
             {informations.maxElevation}
