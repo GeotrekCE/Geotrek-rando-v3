@@ -54,11 +54,19 @@ const DetailsMapDrawer: React.FC<{
   trekFamily?: TrekFamily | null;
   trekId?: number;
 }> = ({ title, trekGeoJSON, trekFamily, trekId }) => {
+  if (
+    Boolean(trekGeoJSON) === false &&
+    (!trekFamily || !trekId || trekFamily.trekChildren.length < 2)
+  ) {
+    return null;
+  }
+
   const {
     publicRuntimeConfig: {
       map: { mobileMapPanelDefaultOpened },
     },
   } = getConfig();
+
   const [open, setOpen] = useState(mobileMapPanelDefaultOpened);
 
   return (

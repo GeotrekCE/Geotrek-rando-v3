@@ -167,7 +167,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           <div className="desktop:hidden z-10">
             <DetailsMapDrawer
               title={props.title}
-              trekGeoJSON={props.trekGeoJSON}
+              trekGeoJSON={props.displayAltimetricProfile === true ? props.trekGeoJSON : ''}
               trekFamily={props.trekFamily}
               trekId={props.trekId}
             />
