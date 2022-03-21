@@ -13,6 +13,8 @@ const adaptInformationDesk = (rawInformationDesk: RawInformationDesk): Informati
   description: rawInformationDesk.description,
   photoUrl: rawInformationDesk.photo_url,
   type: adaptInformationDeskType(rawInformationDesk.type),
+  latitude: rawInformationDesk.latitude,
+  longitude: rawInformationDesk.longitude,
 });
 
 export const adaptInformationDesks = ({

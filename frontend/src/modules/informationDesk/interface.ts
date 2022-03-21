@@ -13,6 +13,8 @@ export interface RawInformationDesk {
   description: string;
   photo_url: string;
   type: RawInformationDeskType;
+  longitude: number;
+  latitude: number;
 }
 
 export interface InformationDesk {
@@ -27,6 +29,8 @@ export interface InformationDesk {
   description: string;
   photoUrl: string;
   type: InformationDeskType;
+  longitude: number;
+  latitude: number;
 }
 
 export interface InformationDeskDictionnary {
