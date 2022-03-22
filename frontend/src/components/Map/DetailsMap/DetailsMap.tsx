@@ -25,6 +25,7 @@ import { colorPalette, desktopOnly, MAX_WIDTH_MOBILE } from 'stylesheet';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { Check } from 'components/Icons/Check';
 import { FormattedMessage } from 'react-intl';
+import { InformationDesk } from 'modules/informationDesk/interface';
 import { MapButton } from '../components/MapButton';
 
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
@@ -76,6 +77,7 @@ export type PropsType = {
   advisedParking?: string;
   title?: string;
   displayAltimetricProfile?: boolean;
+  informationDesks?: InformationDesk[];
 };
 export const DetailsMap: React.FC<PropsType> = props => {
   const { reportVisibility, setReportVisibility } = useDetailsAndMapContext();
@@ -96,6 +98,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
     toggleReferencePointsVisibility,
     touristicContentMobileVisibility,
     toggleTouristicContentVisibility,
+    informationDeskMobileVisibility,
+    toggleInformationDeskVisibility,
   } = useDetailsMap();
   const mapConfig = getMapConfig();
 
@@ -167,7 +171,9 @@ export const DetailsMap: React.FC<PropsType> = props => {
           poiMobileVisibility={poiMobileVisibility}
           referencePointsMobileVisibility={referencePointsMobileVisibility}
           touristicContentMobileVisibility={touristicContentMobileVisibility}
+          informationDeskMobileVisibility={informationDeskMobileVisibility}
           reportVisibility={reportVisibility}
+          informationDesks={props.informationDesks}
         />
         {props.displayAltimetricProfile === true && props.trekGeoJSON && (
           <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
@@ -201,7 +207,6 @@ export const DetailsMap: React.FC<PropsType> = props => {
         <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       )}
       <ControlSection
-        className="desktop:hidden"
         trekChildrenVisibility={
           props.trekChildrenGeometry && props.trekChildrenGeometry.length > 0
             ? trekChildrenMobileVisibility
@@ -218,10 +223,18 @@ export const DetailsMap: React.FC<PropsType> = props => {
             ? touristicContentMobileVisibility
             : null
         }
+        informationDeskMobileVisibility={
+          props.informationDesks &&
+          props.informationDesks.filter(({ longitude, latitude }) => longitude && latitude).length >
+            0
+            ? informationDeskMobileVisibility
+            : null
+        }
         toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
         togglePoiVisibility={togglePoiVisibility}
         toggleReferencePointsVisibility={toggleReferencePointsVisibility}
         toggleTouristicContentVisibility={toggleTouristicContentVisibility}
+        toggleInformationDeskVisibility={toggleInformationDeskVisibility}
       />
     </MapWrapper>
   );

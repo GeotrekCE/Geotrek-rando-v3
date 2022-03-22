@@ -63,8 +63,9 @@
       "panel": {
         "trekChildren": "Steps",
         "poi": "Heritage",
-        "referencePoints": "References",
-        "touristicContent": "Close by"
+        "referencePoints": "Landmarks",
+        "touristicContent": "Close by",
+        "informationDesks": "Information desks"
       }
     }
   },

@@ -33,6 +33,8 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
   toggleReferencePointsVisibility,
   touristicContentVisibility,
   toggleTouristicContentVisibility,
+  informationDeskMobileVisibility,
+  toggleInformationDeskVisibility,
 }) => {
   return (
     <Wrapper>
@@ -66,6 +68,14 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
           active={touristicContentVisibility === 'DISPLAYED'}
           toggle={toggleTouristicContentVisibility}
           transKey="search.map.panel.touristicContent"
+        />
+      )}
+      {informationDeskMobileVisibility !== null && (
+        <Line
+          Icon={IconInfo}
+          active={informationDeskMobileVisibility === 'DISPLAYED'}
+          toggle={toggleInformationDeskVisibility}
+          transKey="search.map.panel.informationDesk"
         />
       )}
     </Wrapper>

@@ -522,6 +522,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         }))}
                       trekId={Number(id)}
                       displayAltimetricProfile={displayAltimetricProfile}
+                      informationDesks={details.informationDesks}
                     />
                   </div>
                 )}
@@ -577,6 +578,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   hideMap={hideMobileMap}
                   trekId={Number(id)}
                   displayAltimetricProfile={displayAltimetricProfile}
+                  informationDesks={details.informationDesks}
                 />
               </MobileMapContainer>
             )}

@@ -57,7 +57,14 @@
     "textFilter": "Suchen...",
     "map": {
       "seeResult": "Einzelheiten anzeigen",
-      "seeMe": "Meinen Standpunkt sehen"
+      "seeMe": "Meinen Standpunkt sehen",
+      "panel": {
+        "trekChildren": "Steps",
+        "poi": "Heritage",
+        "referencePoints": "Landmarken",
+        "touristicContent": "Close by",
+        "informationDesks": "Orte der Information"
+      }
     }
   },
   "details": {

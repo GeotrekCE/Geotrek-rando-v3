@@ -57,7 +57,14 @@
     "textFilter": "Cercar...",
     "map": {
       "seeResult": "Mostrar el detall",
-      "seeMe": "Mostrar la meva posició"
+      "seeMe": "Mostrar la meva posició",
+      "panel": {
+        "trekChildren": "Steps",
+        "poi": "Heritage",
+        "referencePoints": "Landmarks",
+        "touristicContent": "Close by",
+        "informationDesks": "Llocs d’informació"
+      }
     }
   },
   "details": {

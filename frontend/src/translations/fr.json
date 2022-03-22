@@ -64,8 +64,9 @@
       "panel": {
         "trekChildren": "Étapes",
         "poi": "Patrimoines",
-        "referencePoints": "Références",
-        "touristicContent": "À proximité"
+        "referencePoints": "Repères",
+        "touristicContent": "À proximité",
+        "informationDesks": "Lieux de renseignement"
       }
     }
   },
