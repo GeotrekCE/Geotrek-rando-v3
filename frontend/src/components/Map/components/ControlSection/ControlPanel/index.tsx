@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Florist } from 'components/Icons/Florist';
 import { Line } from './Line';
 import IconLocation from './IconLocation';
 import IconInfo from './IconInfo';
@@ -48,7 +49,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
       )}
       {poiVisibility !== null && (
         <Line
-          Icon={IconInfo}
+          Icon={Florist}
           active={poiVisibility === 'DISPLAYED'}
           toggle={togglePoiVisibility}
           transKey="search.map.panel.poi"
@@ -75,7 +76,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
           Icon={IconInfo}
           active={informationDeskMobileVisibility === 'DISPLAYED'}
           toggle={toggleInformationDeskVisibility}
-          transKey="search.map.panel.informationDesk"
+          transKey="search.map.panel.informationDesks"
         />
       )}
     </Wrapper>
