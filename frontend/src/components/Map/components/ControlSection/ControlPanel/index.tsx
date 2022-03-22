@@ -1,10 +1,10 @@
-import { Visibility } from 'components/Map/DetailsMap/useDetailsMap';
 import styled from 'styled-components';
 import { Line } from './Line';
 import IconLocation from './IconLocation';
 import IconInfo from './IconInfo';
 import IconDrapeau from './IconDrapeau';
 import IconPatrimoine from './IconPatrimoine';
+import { ControlSectionProps } from '../ControlSection';
 
 const Wrapper = styled.div`
   background: white;
@@ -15,25 +15,16 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: column;
 
-  & div {
-    margin-bottom: 8px;
+  & button {
+    margin-bottom: 16px;
   }
 
-  & div:last-child {
-    margin-bottom: 0;
+  & button:last-child {
+    margin-bottom: 8px;
   }
 `;
 
-export const ControlPanel: React.FC<{
-  trekChildrenVisibility: Visibility;
-  toggleTrekChildrenVisibility: () => void;
-  poiVisibility: Visibility;
-  togglePoiVisibility: () => void;
-  referencePointsVisibility: Visibility;
-  toggleReferencePointsVisibility: () => void;
-  touristicContentVisibility: Visibility;
-  toggleTouristicContentVisibility: () => void;
-}> = ({
+export const ControlPanel: React.FC<ControlSectionProps> = ({
   trekChildrenVisibility,
   toggleTrekChildrenVisibility,
   poiVisibility,

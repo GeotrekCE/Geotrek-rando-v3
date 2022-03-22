@@ -313,7 +313,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                                 className={
                                   i < details.informationDesks.length - 1
                                     ? 'mb-8 desktop:mb-12'
-                                    : undefined
+                                    : ''
                                 }
                                 name={informationDesk.name}
                                 street={informationDesk.street}
