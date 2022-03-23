@@ -13,6 +13,18 @@ interface DetailsReservationWidgetProps {
 
 declare let AllianceReseaux: any;
 
+const waitForGlobal = async (key: string) => {
+  return new Promise((resolve, reject) => {
+    if (window.hasOwnProperty(key)) {
+      resolve(true);
+    } else {
+      setTimeout(function () {
+        return waitForGlobal(key);
+      }, 100);
+    }
+  });
+};
+
 export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> = ({
   id,
   reservation,
@@ -27,9 +39,11 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
         routeId: id,
       };
 
-      const spaClient = ITW.pages.getSinglePageApplicationClient({ layer });
-      AllianceReseaux.jQuery(function () {
-        spaClient.executePage();
+      waitForGlobal('eitinerance').then(() => {
+        const spaClient = ITW.pages.getSinglePageApplicationClient({ layer });
+        AllianceReseaux.jQuery(function () {
+          spaClient.executePage();
+        });
       });
     })(window, (window as any)?.eitinerance?.core);
   }, []);

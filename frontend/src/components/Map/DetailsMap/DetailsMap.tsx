@@ -3,7 +3,7 @@ import { LatLngBoundsExpression } from 'leaflet';
 import React, { useContext } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 
@@ -18,7 +18,7 @@ import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/Ma
 import { TrekChildGeometry, TrekFamily } from 'modules/details/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import { VisibleSectionContext } from 'components/pages/details/VisibleSectionContext';
-import { colorPalette, MAX_WIDTH_MOBILE } from 'stylesheet';
+import { colorPalette, desktopOnly, MAX_WIDTH_MOBILE } from 'stylesheet';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { MapButton } from '../components/MapButton';
 
@@ -203,6 +203,10 @@ export const DetailsMap: React.FC<PropsType> = props => {
 const StyledCredits = styled(Credits)`
   position: absolute;
   bottom: 70px;
+  ${desktopOnly(css`
+    bottom: 30px;
+  `)}
+
   left: 50%;
   transform: translate(-50%);
   z-index: 1000;
