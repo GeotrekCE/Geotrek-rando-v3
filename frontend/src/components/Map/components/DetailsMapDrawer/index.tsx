@@ -56,10 +56,10 @@ const DetailsMapDrawer: React.FC<{
 }> = ({ title, trekGeoJSON, trekFamily, trekId }) => {
   const {
     publicRuntimeConfig: {
-      map: { openPanelMobileMap },
+      map: { mobileMapPanelDefaultOpened },
     },
   } = getConfig();
-  const [open, setOpen] = useState(openPanelMobileMap);
+  const [open, setOpen] = useState(mobileMapPanelDefaultOpened);
 
   return (
     <Wrapper open={open}>

@@ -1,4 +1,5 @@
 import { AlertTriangle } from 'components/Icons/AlertTriangle';
+import { Reservation } from 'components/Icons/Reservation';
 import { ThreeDMap } from 'components/Icons/ThreeDMap';
 import { Printer } from 'components/Icons/Printer';
 import { DetailsButton } from 'components/pages/details/components/DetailsButton';
@@ -82,6 +83,15 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
       )}
 
       <div className="flex space-x-4">
+        {(details as Details).reservation &&
+          (details as Details).reservation_id &&
+          getGlobalConfig().reservationPartner &&
+          getGlobalConfig().reservationProject && (
+            <DetailsButton url="#details_reservation" onClick={() => setReportVisibility(true)}>
+              <Reservation width={30} height={30} />
+            </DetailsButton>
+          )}
+
         {details.pdfUri && (
           <DetailsButton url={details.pdfUri}>
             <Printer size={30} />

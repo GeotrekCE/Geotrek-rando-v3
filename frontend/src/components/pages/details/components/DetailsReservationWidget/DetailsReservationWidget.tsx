@@ -15,10 +15,13 @@ declare let AllianceReseaux: any;
 
 const waitForGlobal = async (key: string) => {
   return new Promise((resolve, reject) => {
+    // eslint-disable-next-line
     if (window.hasOwnProperty(key)) {
       resolve(true);
     } else {
+      // eslint-disable-next-line
       setTimeout(function () {
+        // eslint-disable-next-line
         return waitForGlobal(key);
       }, 100);
     }
@@ -39,6 +42,7 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
         routeId: id,
       };
 
+      // eslint-disable-next-line
       waitForGlobal('eitinerance').then(() => {
         const spaClient = ITW.pages.getSinglePageApplicationClient({ layer });
         AllianceReseaux.jQuery(function () {

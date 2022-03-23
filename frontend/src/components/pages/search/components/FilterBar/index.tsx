@@ -45,7 +45,7 @@ export const FILTERS_CATEGORIES = [
     id: OUTDOOR_ID,
     name: <FormattedMessage id={'search.filters.outdoor'} />,
     filters: [OUTDOOR_ID],
-    subFilters: ['type-outdoorRating-.+', 'labels'],
+    subFilters: ['type-outdoorRating-.+'],
   },
   {
     id: CATEGORY_ID,
