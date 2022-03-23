@@ -2,6 +2,7 @@ import { TrekFamily } from 'modules/details/interface';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { colorPalette } from 'stylesheet';
+import getConfig from 'next/config';
 import { AltimetricProfile } from '../AltimetricProfile';
 import Siblings from './Siblings';
 
@@ -20,7 +21,6 @@ const Wrapper = styled.div<{ open: boolean }>`
 `;
 
 const Puller = styled.div`
-  height: 65px;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -44,7 +44,8 @@ const Title = styled.div`
   font-weight: bold;
   justify-self: stretch;
   margin-bottom: 6px;
-  margin-top: 12px;
+  margin-top: 4px;
+  max-width: 90%;
 `;
 
 const DetailsMapDrawer: React.FC<{
@@ -53,7 +54,13 @@ const DetailsMapDrawer: React.FC<{
   trekFamily?: TrekFamily | null;
   trekId?: number;
 }> = ({ title, trekGeoJSON, trekFamily, trekId }) => {
-  const [open, setOpen] = useState(false);
+  const {
+    publicRuntimeConfig: {
+      map: { openPanelMobileMap },
+    },
+  } = getConfig();
+  const [open, setOpen] = useState(openPanelMobileMap);
+
   return (
     <Wrapper open={open}>
       <Puller

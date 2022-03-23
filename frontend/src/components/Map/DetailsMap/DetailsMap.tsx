@@ -152,12 +152,16 @@ export const DetailsMap: React.FC<PropsType> = props => {
           <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
         )}
         {isSatelliteLayerAvailable && (
-          <div className={`absolute ${props.title ? 'bottom-18' : 'bottom-6'} left-6 z-mapButton`}>
+          <div
+            className={`absolute ${
+              props.title ? 'bottom-18 desktop:bottom-6' : 'bottom-6'
+            } left-6 z-mapButton`}
+          >
             <MapLayerTypeToggleButton onToggleButtonClick={newType => updateTileLayer(newType)} />
           </div>
         )}
         {props.title && (
-          <div className="desktop:hidden">
+          <div className="desktop:hidden z-10">
             <DetailsMapDrawer
               title={props.title}
               trekGeoJSON={props.trekGeoJSON}
@@ -166,6 +170,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
             />
           </div>
         )}
+        <StyledCredits>{mapConfig.mapCredits}</StyledCredits>
       </StyledMapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <ControlSection
@@ -191,10 +196,17 @@ export const DetailsMap: React.FC<PropsType> = props => {
         toggleReferencePointsVisibility={toggleReferencePointsVisibility}
         toggleTouristicContentVisibility={toggleTouristicContentVisibility}
       />
-      <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
     </MapWrapper>
   );
 };
+
+const StyledCredits = styled(Credits)`
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1000;
+`;
 
 const MapWrapper = styled.div`
   position: relative;
