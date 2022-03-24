@@ -102,6 +102,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
       }),
   };
 
+  const hasDrawer = Boolean(props.title);
+
   return (
     <MapWrapper {...mapWrapperProps}>
       <StyledMapContainer
@@ -119,7 +121,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         attributionControl={false}
         whenCreated={setMapInstance}
         bounds={center}
-        hasDrawer={Boolean(props.title)}
+        hasDrawer={hasDrawer}
       >
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
         {props.trekGeometry && (
@@ -170,7 +172,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
             />
           </div>
         )}
-        <StyledCredits>{mapConfig.mapCredits}</StyledCredits>
+        <StyledCredits hasDrawer={hasDrawer}>{mapConfig.mapCredits}</StyledCredits>
       </StyledMapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <ControlSection
@@ -200,15 +202,13 @@ export const DetailsMap: React.FC<PropsType> = props => {
   );
 };
 
-const StyledCredits = styled(Credits)`
+const StyledCredits = styled(Credits)<{ hasDrawer: boolean }>`
   position: absolute;
-  bottom: 70px;
+  bottom: ${props => (props.hasDrawer ? '70px' : '5px')};
   ${desktopOnly(css`
     bottom: 30px;
   `)}
-
-  left: 50%;
-  transform: translate(-50%);
+  right: 10px;
   z-index: 1000;
 `;
 
@@ -235,7 +235,10 @@ const StyledMapContainer = styled(MapContainer)<{ hasDrawer: boolean }>`
   width: 100%;
   height: 100%;
   .leaflet-bottom {
-    margin-bottom: ${props => (props.hasDrawer ? '40px' : 0)};
+    margin-bottom: ${props => (props.hasDrawer ? '70px' : 0)};
+    ${desktopOnly(css`
+      margin-bottom: 30px;
+    `)}
   }
 `;
 
