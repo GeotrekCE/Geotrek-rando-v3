@@ -31,7 +31,15 @@ export const FILTERS_CATEGORIES = [
     id: PRACTICE_ID,
     name: <FormattedMessage id={'search.filters.practices'} />,
     filters: [PRACTICE_ID],
-    subFilters: ['difficulty', 'duration', 'length', 'routes', 'ascent', 'accessibilities'],
+    subFilters: [
+      'difficulty',
+      'duration',
+      'length',
+      'routes',
+      'ascent',
+      'accessibilities',
+      'labels',
+    ],
   },
   {
     id: OUTDOOR_ID,

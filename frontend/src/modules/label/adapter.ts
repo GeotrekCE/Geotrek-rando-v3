@@ -5,6 +5,7 @@ const adaptLabel = (rawLabel: RawLabel): Label => ({
   name: rawLabel.name,
   advice: rawLabel.advice,
   pictogramUri: rawLabel.pictogram,
+  filter: rawLabel.filter,
 });
 
 export const adaptLabels = (rawLabels: RawLabel[]): LabelDictionnary =>

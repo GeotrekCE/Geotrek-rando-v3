@@ -2,6 +2,9 @@ import { uniqBy } from 'lodash';
 import { getTouristicContentCategoryFilter } from 'modules/touristicContentCategory/connector';
 import { getActivityFilter } from 'modules/activities/connector';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
+import { getLabels } from 'modules/label/connector';
+import { Label } from 'modules/label/interface';
+
 import { getOutdoorPracticesFilter } from '../outdoorPractice/connector';
 import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { OutdoorRatingMapping } from '../outdoorRating/interface';
@@ -111,6 +114,7 @@ const trekSpecificFilters = [
   'ascent',
   ROUTE_ID,
   ACCESSIBILITY_ID,
+  'labels',
 ];
 
 export const commonFilters = [
@@ -124,17 +128,37 @@ export const commonFilters = [
   STRUCTURE_ID,
 ];
 
-export const getFiltersState = async (language: string): Promise<FilterState[]> => {
-  const filters = await getFilters(language);
-  return filters.map(filter => ({
-    ...filter,
-    label: `search.filters.${filter.id}`,
-    selectedOptions: [],
-  }));
-};
-
 export const getTreksFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
   initialFiltersState.filter(({ id }) => trekSpecificFilters.includes(id));
+
+export const getFiltersState = async (language: string): Promise<FilterState[]> => {
+  const filters = await getFilters(language);
+
+  const labels = await getLabels(language);
+
+  const labelsFilter = {
+    id: 'labels',
+    label: 'Autres',
+    type: 'MULTIPLE',
+    options: Object.values(labels)
+      .filter(l => l.filter)
+      .map((l: Label) => ({
+        label: l.name,
+        value: l.id.toString(),
+        pictogramUrl: l.pictogramUri,
+      })),
+    selectedOptions: [],
+  } as FilterState;
+
+  return [
+    ...filters.map(filter => ({
+      ...filter,
+      label: `search.filters.${filter.id}`,
+      selectedOptions: [],
+    })),
+    labelsFilter,
+  ];
+};
 
 const getTypesFiltersState = ({
   serviceId,

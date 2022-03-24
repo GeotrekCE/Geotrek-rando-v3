@@ -3,7 +3,7 @@ import { LatLngBoundsExpression } from 'leaflet';
 import React, { useContext } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 
@@ -18,7 +18,7 @@ import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/Ma
 import { TrekChildGeometry, TrekFamily } from 'modules/details/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import { VisibleSectionContext } from 'components/pages/details/VisibleSectionContext';
-import { colorPalette, MAX_WIDTH_MOBILE } from 'stylesheet';
+import { colorPalette, desktopOnly, MAX_WIDTH_MOBILE } from 'stylesheet';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { MapButton } from '../components/MapButton';
 
@@ -102,6 +102,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
       }),
   };
 
+  const hasDrawer = Boolean(props.title);
+
   return (
     <MapWrapper {...mapWrapperProps}>
       <StyledMapContainer
@@ -119,7 +121,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         attributionControl={false}
         whenCreated={setMapInstance}
         bounds={center}
-        hasDrawer={Boolean(props.title)}
+        hasDrawer={hasDrawer}
       >
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
         {props.trekGeometry && (
@@ -152,12 +154,16 @@ export const DetailsMap: React.FC<PropsType> = props => {
           <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
         )}
         {isSatelliteLayerAvailable && (
-          <div className={`absolute ${props.title ? 'bottom-18' : 'bottom-6'} left-6 z-mapButton`}>
+          <div
+            className={`absolute ${
+              props.title ? 'bottom-18 desktop:bottom-6' : 'bottom-6'
+            } left-6 z-mapButton`}
+          >
             <MapLayerTypeToggleButton onToggleButtonClick={newType => updateTileLayer(newType)} />
           </div>
         )}
         {props.title && (
-          <div className="desktop:hidden">
+          <div className="desktop:hidden z-10">
             <DetailsMapDrawer
               title={props.title}
               trekGeoJSON={props.trekGeoJSON}
@@ -166,6 +172,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
             />
           </div>
         )}
+        <StyledCredits hasDrawer={hasDrawer}>{mapConfig.mapCredits}</StyledCredits>
       </StyledMapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <ControlSection
@@ -191,10 +198,20 @@ export const DetailsMap: React.FC<PropsType> = props => {
         toggleReferencePointsVisibility={toggleReferencePointsVisibility}
         toggleTouristicContentVisibility={toggleTouristicContentVisibility}
       />
-      <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
     </MapWrapper>
   );
 };
+
+const StyledCredits = styled(Credits)<{ hasDrawer: boolean }>`
+  position: absolute;
+  bottom: ${props => (props.hasDrawer ? '70px' : '5px')};
+  right: 10px;
+  ${desktopOnly(css`
+    bottom: 0;
+    right: 0;
+  `)}
+  z-index: 1000;
+`;
 
 const MapWrapper = styled.div`
   position: relative;
@@ -219,7 +236,10 @@ const StyledMapContainer = styled(MapContainer)<{ hasDrawer: boolean }>`
   width: 100%;
   height: 100%;
   .leaflet-bottom {
-    margin-bottom: ${props => (props.hasDrawer ? '40px' : 0)};
+    margin-bottom: ${props => (props.hasDrawer ? '70px' : 0)};
+    ${desktopOnly(css`
+      margin-bottom: 0;
+    `)}
   }
 `;
 
