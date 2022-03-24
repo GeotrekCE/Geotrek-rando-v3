@@ -69,6 +69,7 @@ export interface APICallsConfig {
   reservationPartner: string;
   reservationProject: string;
   minAltitudeDifferenceToDisplayElevationProfile: number;
+  accessibilityCodeNumber: string | null;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */

@@ -12,13 +12,14 @@ import { MobileMapContainer } from 'components/pages/search';
 import { useShowOnScrollPosition } from 'hooks/useShowOnScrollPosition';
 import { useMediaPredicate } from 'react-media-hook';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
-import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import React, { useMemo, useRef } from 'react';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { cleanHTMLElementsFromString } from 'modules/utils/string';
 import Report from 'components/Report/Report';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { Footer } from 'components/Footer';
+import Accessibility, { shouldDisplayAccessibility } from 'components/Accessibility';
+
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -360,29 +361,14 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       </div>
                     )}
 
-                    {(details.disabledInfrastructure || details.accessibilities.length > 0) && (
+                    {shouldDisplayAccessibility(details) && (
                       <div ref={setAccessibilityRef} id="details_accessibility_ref">
                         <DetailsSection
                           htmlId="details_accessibility"
                           titleId="details.accessibility"
                           className={marginDetailsChild}
                         >
-                          {details.disabledInfrastructure && (
-                            <HtmlText>{parse(details.disabledInfrastructure)}</HtmlText>
-                          )}
-                          {details.accessibilities.length > 0 && (
-                            <div className="flex">
-                              {details.accessibilities.map((accessibility, i) => (
-                                <RemoteIconInformation
-                                  key={i}
-                                  iconUri={accessibility.pictogramUri}
-                                  className="mr-6 mt-3 desktop:mt-4 text-primary"
-                                >
-                                  {accessibility.name}
-                                </RemoteIconInformation>
-                              ))}
-                            </div>
-                          )}
+                          <Accessibility details={details} language={language} />
                         </DetailsSection>
                       </div>
                     )}
