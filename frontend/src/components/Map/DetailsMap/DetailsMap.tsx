@@ -205,10 +205,11 @@ export const DetailsMap: React.FC<PropsType> = props => {
 const StyledCredits = styled(Credits)<{ hasDrawer: boolean }>`
   position: absolute;
   bottom: ${props => (props.hasDrawer ? '70px' : '5px')};
-  ${desktopOnly(css`
-    bottom: 30px;
-  `)}
   right: 10px;
+  ${desktopOnly(css`
+    bottom: 0;
+    right: 0;
+  `)}
   z-index: 1000;
 `;
 
@@ -237,7 +238,7 @@ const StyledMapContainer = styled(MapContainer)<{ hasDrawer: boolean }>`
   .leaflet-bottom {
     margin-bottom: ${props => (props.hasDrawer ? '70px' : 0)};
     ${desktopOnly(css`
-      margin-bottom: 30px;
+      margin-bottom: 0;
     `)}
   }
 `;
