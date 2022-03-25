@@ -28,7 +28,7 @@ const Puller = styled.div`
 `;
 
 const Content = styled.div`
-  padding: 0 0 1rem;
+  padding: 0 10px 1rem;
 `;
 
 const Separator = styled.div`
