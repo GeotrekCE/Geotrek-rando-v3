@@ -35,6 +35,7 @@ import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
+import { DetailsAndMapProvider } from '../details/DetailsAndMapContext';
 
 interface Props {
   outdoorSiteUrl: string | string[] | undefined;
@@ -302,25 +303,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                           className={marginDetailsChild}
                         >
                           {outdoorSiteContent?.informationDesks?.map((informationDesk, i) => (
-                            <DetailsInformationDesk
-                              accessibility={informationDesk.accessibility}
-                              key={i}
-                              className={
-                                i < Number(outdoorSiteContent?.informationDesks?.length) - 1
-                                  ? 'mb-8 desktop:mb-12'
-                                  : undefined
-                              }
-                              name={informationDesk.name}
-                              street={informationDesk.street}
-                              postalCode={informationDesk.postalCode}
-                              municipality={informationDesk.municipality}
-                              website={informationDesk.website}
-                              email={informationDesk.email}
-                              phone={informationDesk.phone}
-                              description={informationDesk.description}
-                              photoUrl={informationDesk.photoUrl}
-                              type={informationDesk.type}
-                            />
+                            <DetailsInformationDesk key={i} {...informationDesk} />
                           ))}
                         </DetailsSection>
                       </div>
@@ -428,6 +411,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                         }))}
                       sensitiveAreas={[]}
                       trekId={Number(id)}
+                      informationDesks={outdoorSiteContent?.informationDesks}
                     />
                   </div>
                 )}
@@ -484,11 +468,13 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
 
 export const OutdoorSiteUI: React.FC<Props> = props => {
   return (
-    <VisibleSectionProvider>
-      <OutdoorSiteUIWithoutContext
-        outdoorSiteUrl={props.outdoorSiteUrl}
-        language={props.language}
-      />
-    </VisibleSectionProvider>
+    <DetailsAndMapProvider>
+      <VisibleSectionProvider>
+        <OutdoorSiteUIWithoutContext
+          outdoorSiteUrl={props.outdoorSiteUrl}
+          language={props.language}
+        />
+      </VisibleSectionProvider>
+    </DetailsAndMapProvider>
   );
 };
