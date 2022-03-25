@@ -130,7 +130,8 @@
     "speaker": "Intervenant",
     "targetAudience": "Public visé",
     "practicalInfo": "Information pratique",
-    "booking": "Réservation"
+    "booking": "Réservation",
+    "centerOnMap": "Centrer sur la carte"
   },
   "touristicContent": {
     "contact": "Contact",

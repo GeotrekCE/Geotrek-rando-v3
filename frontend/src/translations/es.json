@@ -126,7 +126,8 @@
     "speaker": "los que intervienen",
     "targetAudience": "Público objectivo",
     "practicalInfo": "Información práctica",
-    "booking": "Reservación"
+    "booking": "Reservación",
+    "centerOnMap": "Center on map"
   },
   "touristicContent": {
     "contact": "Contacto",

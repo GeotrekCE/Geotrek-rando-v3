@@ -1,6 +1,6 @@
 import { TouristicContent } from 'components/Map/DetailsMap/TouristicContent';
 import { LatLngBoundsExpression } from 'leaflet';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import styled, { css } from 'styled-components';
@@ -103,17 +103,23 @@ export const DetailsMap: React.FC<PropsType> = props => {
   } = useDetailsMap();
   const mapConfig = getMapConfig();
 
-  const { coordinatesReportTouched } = useDetailsAndMapContext();
+  const { mapCenter: center, coordinatesReportTouched } = useDetailsAndMapContext();
 
-  const center: LatLngBoundsExpression = [
+  const bounds: LatLngBoundsExpression = [
     [props.bbox.corner1.y, props.bbox.corner1.x],
     [props.bbox.corner2.y, props.bbox.corner2.x],
   ];
 
-  const { isSatelliteLayerAvailable, setMapInstance, updateTileLayer } = useTileLayer(
+  const { isSatelliteLayerAvailable, map, setMapInstance, updateTileLayer } = useTileLayer(
     props.trekId,
-    center,
+    bounds,
   );
+
+  useEffect(() => {
+    if (map && center) {
+      map.setView(center);
+    }
+  }, [map, center]);
 
   const { visibleSection } = useContext(VisibleSectionContext);
   const mapWrapperProps = {
@@ -141,7 +147,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         zoomControl={props.type === 'DESKTOP'}
         attributionControl={false}
         whenCreated={setMapInstance}
-        bounds={center}
+        bounds={bounds}
         hasDrawer={hasDrawer}
       >
         <TileLayer url={mapConfig.mapClassicLayerUrl} />

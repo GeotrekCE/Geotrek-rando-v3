@@ -126,7 +126,8 @@
     "speaker": "Redner",
     "targetAudience": "Zielgruppe",
     "practicalInfo": "Praktische Information",
-    "booking": "Reservierung"
+    "booking": "Reservierung",
+    "centerOnMap": "Center on map"
   },
   "touristicContent": {
     "contact": "Kontakt",

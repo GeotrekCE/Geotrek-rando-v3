@@ -34,7 +34,7 @@ export const PointsInformationDesk: React.FC<PointsInformationDeskProps> = props
     <>
       {locations.map((location, index: number) => (
         <HoverableMarker
-          id={index.toString()}
+          id={location.position.join('')}
           key={index}
           position={location.position}
           pictogramUri={renderToStaticMarkup(<InfoCircle color="white" />)}

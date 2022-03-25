@@ -129,7 +129,8 @@
     "speaker": "Speaker",
     "targetAudience": "Target audience",
     "practicalInfo": "Practical Information",
-    "booking": "Booking"
+    "booking": "Booking",
+    "centerOnMap": "Center on map"
   },
   "touristicContent": {
     "contact": "Contact",
