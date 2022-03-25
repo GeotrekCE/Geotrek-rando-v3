@@ -13,7 +13,6 @@ interface DetailsInformationDeskProps extends InformationDesk {
 
 export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
   accessibility,
-  className,
   name,
   street,
   postalCode,
@@ -27,9 +26,9 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
 }) => {
   const { truncateState, toggleTruncateState } = useDetailsInformationDesk();
   return (
-    <div className={`flex ${className ?? ''}`}>
+    <div className="flex mb-8 desktop:mb-12 last:mb-0">
       <div className="h-25 w-25 flex-shrink-0 hidden desktop:block">
-        <InformationDeskIcon pictogramUri={photoUrl ?? type.pictogramUri} />
+        <InformationDeskIcon pictogramUri={photoUrl || type.pictogramUri} />
       </div>
       <div className="desktop:px-4">
         <p className="font-bold">{name}</p>
@@ -88,12 +87,13 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
 
 const InformationDeskIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri }) => {
   if (RegExp(/(.*).svg/).test(pictogramUri)) {
-    return <SVG src={pictogramUri} className="h-18 w-18 m-1" />;
+    return <SVG src={pictogramUri} className="h-full w-full m-1" />;
   }
   return (
     <img
       className="object-cover object-contain h-full w-full rounded-full overflow-hidden"
       src={pictogramUri}
+      alt=""
     />
   );
 };
