@@ -1,9 +1,6 @@
 import { Reservation } from 'modules/details/interface';
 import { useEffect } from 'react';
-import styled from 'styled-components';
 import __html from './template.html';
-
-const Wrapper = styled.div``;
 
 interface DetailsReservationWidgetProps {
   id: string;
@@ -52,11 +49,7 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
     })(window, (window as any)?.eitinerance?.core);
   }, []);
 
-  const template = { __html: __html.replaceAll('__PROJECT__', reservation.project) };
+  const template = { __html: __html.replace(/__PROJECT__/g, reservation.project) };
 
-  return (
-    <Wrapper>
-      <div dangerouslySetInnerHTML={template} />
-    </Wrapper>
-  );
+  return <div dangerouslySetInnerHTML={template} />;
 };
