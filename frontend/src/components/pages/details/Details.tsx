@@ -1,4 +1,3 @@
-import getConfig from 'next/config';
 import MoreLink from 'components/Information/MoreLink';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
@@ -91,6 +90,16 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
       sizes.desktopHeader -
       sizes.detailsHeaderDesktop,
   });
+
+  const positiveElevation = parseInt(details?.informations.elevation ?? '0', 10);
+  const negativeElevation = parseInt(details?.informations.negativeElevation ?? '0', 10);
+
+  const higherDifferenceElevation = Math.max(positiveElevation, Math.abs(negativeElevation));
+
+  const displayAltimetricProfile =
+    Boolean(higherDifferenceElevation) &&
+    (getGlobalConfig().minAltitudeDifferenceToDisplayElevationProfile ?? 0) <
+      higherDifferenceElevation;
 
   return useMemo(
     () => (
@@ -231,13 +240,16 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           <DetailsMeteoWidget code={details.cities_raw[0]} />
                         </DetailsSection>
                       )}
-                    <DetailsSection
-                      htmlId="details_altimetricProfile"
-                      titleId="details.altimetricProfile.title"
-                      className={marginDetailsChild}
-                    >
-                      <div className="h-90" id="altimetric-profile"></div>
-                    </DetailsSection>
+
+                    {displayAltimetricProfile === true && (
+                      <DetailsSection
+                        htmlId="details_altimetricProfile"
+                        titleId="details.altimetricProfile.title"
+                        className={marginDetailsChild}
+                      >
+                        <div className="h-90" id="altimetric-profile"></div>
+                      </DetailsSection>
+                    )}
 
                     {details.sensitiveAreas.length > 0 && (
                       <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
@@ -522,6 +534,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           color,
                         }))}
                       trekId={Number(id)}
+                      displayAltimetricProfile={displayAltimetricProfile}
                     />
                   </div>
                 )}
@@ -576,6 +589,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     }))}
                   hideMap={hideMobileMap}
                   trekId={Number(id)}
+                  displayAltimetricProfile={displayAltimetricProfile}
                 />
               </MobileMapContainer>
             )}

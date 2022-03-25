@@ -46,6 +46,7 @@ export interface RawDetailsProperties {
   duration: number | null;
   length_2d: number;
   ascent: number;
+  descent: number;
   route: number;
   networks: number[];
   description: string;
@@ -85,6 +86,7 @@ export interface DetailsInformation {
   duration?: string | null;
   distance?: string | null;
   elevation?: string | null;
+  negativeElevation?: string | null;
   difficulty?: Difficulty | null;
   courseType?: CourseType | null;
   networks?: Network[];

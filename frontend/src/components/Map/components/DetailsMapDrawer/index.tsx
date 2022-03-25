@@ -12,7 +12,7 @@ const Wrapper = styled.div<{ open: boolean }>`
   bottom: 0;
   z-index: 1500;
 
-  transform: translateY(${props => (props.open ? 0 : 'calc(100% - 65px)')});
+  transform: translateY(${props => (props.open ? 0 : 'calc(100% - 45px)')});
   transition: transform 0.25s;
 
   width: 100vw;
@@ -28,8 +28,7 @@ const Puller = styled.div`
 `;
 
 const Content = styled.div`
-  height: 270px;
-  padding: 10px;
+  padding: 0 0 1rem;
 `;
 
 const Separator = styled.div`
@@ -55,11 +54,19 @@ const DetailsMapDrawer: React.FC<{
   trekFamily?: TrekFamily | null;
   trekId?: number;
 }> = ({ title, trekGeoJSON, trekFamily, trekId }) => {
+  if (
+    Boolean(trekGeoJSON) === false &&
+    (!trekFamily || !trekId || trekFamily.trekChildren.length < 2)
+  ) {
+    return null;
+  }
+
   const {
     publicRuntimeConfig: {
       map: { mobileMapPanelDefaultOpened },
     },
   } = getConfig();
+
   const [open, setOpen] = useState(mobileMapPanelDefaultOpened);
 
   return (
@@ -76,8 +83,12 @@ const DetailsMapDrawer: React.FC<{
       </Puller>
       <Content>
         <Siblings trekFamily={trekFamily} trekId={trekId} />
-        {trekGeoJSON && <AltimetricProfile id="altimetric-profile-map" trekGeoJSON={trekGeoJSON} />}
-        <div className="h-90" id="altimetric-profile-map"></div>
+        {trekGeoJSON && (
+          <>
+            <AltimetricProfile id="altimetric-profile-map" trekGeoJSON={trekGeoJSON} />
+            <div className="h-90" id="altimetric-profile-map"></div>
+          </>
+        )}
       </Content>
     </Wrapper>
   );
