@@ -13,8 +13,9 @@ let controlSave: any;
 
 export const useTileLayer = (
   id?: number,
-  center?: LatLngBoundsExpression,
+  center?: LatLngBoundsExpression | null,
 ): {
+  map: Map | null;
   setMapInstance: (newMap: Map) => void;
   updateTileLayer: (newTileLayerType: TileLayerType) => void;
   isSatelliteLayerAvailable: boolean;
@@ -62,6 +63,7 @@ export const useTileLayer = (
   };
 
   return {
+    map,
     setMapInstance,
     updateTileLayer(newTileLayerType) {
       return updateTileLayer(newTileLayerType);
