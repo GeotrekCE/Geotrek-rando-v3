@@ -4,21 +4,12 @@ import 'leaflet/dist/leaflet.css';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { AlertCircle } from 'components/Icons/AlertCircle';
 import { Icon, LatLngLiteral } from 'leaflet';
-import styled from 'styled-components';
-import { borderRadius, colorPalette } from 'stylesheet';
+import { colorPalette } from 'stylesheet';
 import { useMapEvents } from 'react-leaflet';
 import { FormattedMessage } from 'react-intl';
+import { useMediaPredicate } from 'react-media-hook';
 import { DraggableMarker } from '../components/DraggableMarker';
 import { TrekMarker } from '../Markers/TrekMarker';
-
-const Message = styled.p`
-  border: 1px solid ${colorPalette.red};
-  z-index: 400;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
-  border-radius: ${borderRadius.roundButton};
-  color: ${colorPalette.red};
-  background-color: ${colorPalette.white};
-`;
 
 export const PointReport: React.FC = () => {
   const {
@@ -30,6 +21,8 @@ export const PointReport: React.FC = () => {
   if (coordinatesReport === null) {
     return null;
   }
+
+  const isMobile = useMediaPredicate('(max-width: 1024px)');
 
   const pictogram = TrekMarker(
     renderToStaticMarkup(<AlertCircle color="white" />),
@@ -54,17 +47,21 @@ export const PointReport: React.FC = () => {
     },
   });
 
-  const message = coordinatesReportTouched ? 'report.mapButton.edit' : 'report.mapButton.create';
-
   const {
     coordinates: { x: lng, y: lat },
   } = coordinatesReport;
   return (
     <>
-      <Message className="flex p-2 gap-2 text-sm absolute top-6 left-1/2 transform -translate-x-1/2 z-10 pointer-events-none">
-        <AlertCircle size={24} />
-        <FormattedMessage id={message} />
-      </Message>
+      {(!coordinatesReportTouched || !isMobile) && (
+        <div className="text-sm absolute top-6 left-1/2 transform -translate-x-1/2 z-10 py-2 desktop:py-3 px-3 desktop:px-3 rounded-2xl border-2 border-solid border-red bg-white z-mapButton">
+          <p className="flex gap-2 text-red">
+            <AlertCircle className="flex-shrink-0" size={24} />
+            <span>
+              <FormattedMessage id="report.mapButton.create" />
+            </span>
+          </p>
+        </div>
+      )}
       <DraggableMarker
         onChange={handleChange}
         pictogram={pictogram}
