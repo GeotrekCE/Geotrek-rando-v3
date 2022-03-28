@@ -22,5 +22,5 @@
   "enableServerCache": true,
   "enableMeteoWidget": true,
   "maxLengthTrekAllowedFor3DRando": 25000,
-  "accessibilityCodeNumber": null
+  "accessibilityCodeNumber": "114"
 }

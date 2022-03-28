@@ -18,6 +18,5 @@
   "applicationName": "Custom Geotrek",
   "enableReport": true,
   "enableSearchByMap": true,
-  "enableServerCache": true,
-  "accessibilityCodeNumber": "112"
+  "enableServerCache": true
 }

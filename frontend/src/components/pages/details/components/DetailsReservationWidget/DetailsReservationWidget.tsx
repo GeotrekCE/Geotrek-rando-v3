@@ -54,9 +54,5 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
 
   const template = { __html: __html.replaceAll('__PROJECT__', reservation.project) };
 
-  return (
-    <Wrapper>
-      <div dangerouslySetInnerHTML={template} />
-    </Wrapper>
-  );
+  return <Wrapper>{/* <div dangerouslySetInnerHTML={template} /> */}</Wrapper>;
 };

@@ -4,6 +4,7 @@ import { Modal } from 'components/Modal';
 import { CardSingleImage } from 'components/pages/details/components/DetailsCard';
 import { HtmlText } from 'components/pages/details/utils';
 import parse from 'html-react-parser';
+import { sum } from 'lodash';
 import { AccessibilityAttachment, Details } from 'modules/details/interface';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { FormattedMessage } from 'react-intl';
@@ -13,6 +14,19 @@ import PhoneIcon from './PhoneIcon';
 
 const Accessibility = ({ details, language }: { details: Details; language: string }) => {
   const accessibilityCodeNumber = getGlobalConfig().accessibilityCodeNumber;
+
+  const shouldPictureRowBeDisplayed =
+    sum(
+      ['slope', 'width', 'signage']
+        .filter(k => (details as any)[`accessibility_${k}`])
+        .map(k => {
+          const attachments = details.attachmentsAccessibility.filter(
+            a => a.info_accessibility === k,
+          );
+          return attachments.length;
+        }),
+    ) > 0;
+
   return (
     <div>
       {details.disabledInfrastructure && (
@@ -21,26 +35,31 @@ const Accessibility = ({ details, language }: { details: Details; language: stri
       {details.accessibilities.length > 0 && (
         <div className="flex">
           {details.accessibilities.map((accessibility, i) => (
-            <RemoteIconInformation
+            <StyledRemoteIconInformation
               key={i}
               iconUri={accessibility.pictogramUri}
               className="mr-6 mt-3 desktop:mt-4 text-primary"
             >
               {accessibility.name}
-            </RemoteIconInformation>
+            </StyledRemoteIconInformation>
           ))}
         </div>
       )}
       {details.accessbilityLevel && (
         <Section>
-          <FormattedMessage id="details.accessibility_level" /> :{' '}
-          {details.accessbilityLevel.name[language]}
+          <strong>
+            <FormattedMessage id="details.accessibility_level" />
+          </strong>{' '}
+          : {details.accessbilityLevel.name[language]}
         </Section>
       )}
 
       {accessibilityCodeNumber && (
         <Section>
-          <FormattedMessage id="details.emergency_number" /> :
+          <strong>
+            <FormattedMessage id="details.emergency_number" />
+          </strong>{' '}
+          :
           <EmergencyNumber>
             <PhoneIcon />
             {accessibilityCodeNumber}
@@ -64,22 +83,31 @@ const Accessibility = ({ details, language }: { details: Details; language: stri
 
             return (
               <div key={k}>
-                <Modal>
-                  {({ isFullscreen, toggleFullscreen }) => (
-                    <div id="details_cover" className={!isFullscreen ? '' : 'h-full'}>
-                      <StyledSmallCarousel>
-                        {attachments.map((attachment, i) => (
-                          <CardSingleImage
-                            key={i}
-                            src={attachment.url}
-                            height={200}
-                            onClick={toggleFullscreen}
-                          />
-                        ))}
-                      </StyledSmallCarousel>
-                    </div>
-                  )}
-                </Modal>
+                {shouldPictureRowBeDisplayed && (
+                  <Modal>
+                    {({ isFullscreen, toggleFullscreen }) => (
+                      <div id="details_cover" className={!isFullscreen ? '' : 'h-full'}>
+                        <StyledSmallCarousel isFullscreen={isFullscreen}>
+                          {attachments.map((attachment, i) => (
+                            <>
+                              {isFullscreen && (
+                                <Legend>
+                                  {attachment.author} - {attachment.legend}
+                                </Legend>
+                              )}
+                              <CardSingleImage
+                                key={i}
+                                src={attachment.url}
+                                height={200}
+                                onClick={toggleFullscreen}
+                              />
+                            </>
+                          ))}
+                        </StyledSmallCarousel>
+                      </div>
+                    )}
+                  </Modal>
+                )}
 
                 <h2>
                   <FormattedMessage id={`details.accessibility_${k}`} /> :
@@ -107,6 +135,21 @@ const Accessibility = ({ details, language }: { details: Details; language: stri
   );
 };
 
+const Legend = styled.div`
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  left: 50%;
+  top: 15px;
+  transform: translateX(-50%);
+`;
+
+const StyledRemoteIconInformation = styled(RemoteIconInformation)`
+  * {
+    font-size: 16px;
+  }
+`;
+
 const EmergencyNumber = styled.div`
   color: ${colorPalette.primary1};
   display: flex;
@@ -129,7 +172,10 @@ const Section = styled.div`
   display: flex;
   align-items: center;
   margin-top: 10px;
-  font-weight: 500;
+
+  & strong {
+    font-weight: bold;
+  }
 `;
 
 const Row = styled.div`
@@ -169,17 +215,17 @@ const Columns = styled.div`
   }
 `;
 
-const StyledSmallCarousel = styled(SmallCarousel)`
+const StyledSmallCarousel = styled(SmallCarousel)<{ isFullscreen: boolean }>`
   height: auto;
 
   & img {
-    border-radius: 30px;
+    border-radius: ${props => (props.isFullscreen ? 0 : '30px')};
+    height: ${props => (props.isFullscreen ? '100vh' : 'auto')};
+    margin: auto;
   }
 `;
 
 export const shouldDisplayAccessibility = (details: Details) => {
-  const accessibilityCodeNumber = getGlobalConfig().accessibilityCodeNumber;
-
   return Boolean(
     // eslint-disable-next-line
     details.disabledInfrastructure ||
@@ -198,8 +244,7 @@ export const shouldDisplayAccessibility = (details: Details) => {
       // eslint-disable-next-line
       details.accessibility_slope ||
       // eslint-disable-next-line
-      details.accessibility_width ||
-      accessibilityCodeNumber,
+      details.accessibility_width,
   );
 };
 
