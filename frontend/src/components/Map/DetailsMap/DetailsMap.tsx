@@ -35,12 +35,14 @@ import DetailsMapDrawer from '../components/DetailsMapDrawer';
 
 export interface TouristicContentGeometry {
   geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
-  pictogramUri: string;
+  pictogramUri: string | null;
   name: string;
   id: string;
 }
 
 export type PropsType = {
+  experiences?: any;
+  courses?: any;
   poiPoints?: PointWithIcon[];
   touristicContentPoints?: TouristicContentGeometry[];
   trekGeometry?: Coordinate2D[];
@@ -143,6 +145,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
           <TouristicContent contents={[props.eventGeometry]} type={'TOURISTIC_EVENT'} />
         )}
         <MapChildren
+          courses={props.courses}
+          experiences={props.experiences}
           parentId={props.trekId}
           poiPoints={props.poiPoints}
           touristicContentPoints={props.touristicContentPoints}
