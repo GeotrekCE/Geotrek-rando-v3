@@ -374,7 +374,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     )}
 
                     {details.webLinks?.length > 0 && (
-                      <div ref={setAccessibilityRef} id="details_more_ref">
+                      <div id="details_more_ref">
                         <DetailsSection
                           htmlId="details_more"
                           titleId="details.more"

@@ -23,5 +23,5 @@
   "enableMeteoWidget": true,
   "maxLengthTrekAllowedFor3DRando": 25000,
   "minAltitudeDifferenceToDisplayElevationProfile": 0,
-  "accessibilityCodeNumber": null
+  "accessibilityCodeNumber": "114"
 }
