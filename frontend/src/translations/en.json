@@ -147,7 +147,7 @@
   },
   "report": {
     "title": "Report a problem or an error",
-    "intro": "If you have found an error on this page or if you have noticed any changes during your hike, please report them to us here:",
+    "intro": "If you have found an error on this page or if you have noticed any problems during your hike, please report them to us here:",
     "activity": "Activity",
     "category": "Category",
     "magnitude": "Magnitude of the problem",
@@ -165,7 +165,7 @@
     "GDPRDisclaimer": "These information will be used by <b>organism</b>, which commit to not sell your personal data to third parties. You have the right to read, modify, fix or delete your personal data (art. 34 de la loi \"Informatique et Libertés\"). To apply please send a mail to <a>contact</a>."
   },
   "error": {
-    "missing": "The form is not complete"
+    "missing": "The \"{field}\" field is required."
   },
   "offline": {
     "number": "{count} content accessible without internet connection",
