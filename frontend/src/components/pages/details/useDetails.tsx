@@ -4,11 +4,13 @@ import { getDetails, getTrekFamily } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { isRessourceMissing } from 'services/routeUtils';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import { routes } from 'services/routes';
 import { useMediaPredicate } from 'react-media-hook';
+// @ts-ignore
+import debounce from 'debounce';
 import { getDimensions } from './utils';
 
 export type DetailsHeaderSection = Partial<Record<DetailsSections, HTMLDivElement | null>>;
@@ -72,15 +74,44 @@ export const useDetails = (
   const useSectionReferenceCallback = (sectionName: DetailsSections) =>
     useCallback((node: HTMLDivElement | null) => {
       if (node !== null) {
-        setTimeout(() => {
-          sectionsReferences.current[sectionName] = node;
-          setSectionsPositions(currentSectionsPositions => ({
-            ...currentSectionsPositions,
-            [sectionName]: getDimensions(node),
-          }));
-        }, 1000);
+        sectionsReferences.current[sectionName] = node;
+        setSectionsPositions(currentSectionsPositions => ({
+          ...currentSectionsPositions,
+          [sectionName]: getDimensions(node),
+        }));
       }
     }, []);
+
+  const handleResize = useCallback(
+    debounce(
+      () => {
+        setSectionsPositions(currentSectionsPositions => {
+          if (sectionsReferences.current === null) {
+            return currentSectionsPositions;
+          }
+          return Object.entries(sectionsReferences.current).reduce(
+            (obj, [name, ref]) => ({
+              ...obj,
+              [name]: getDimensions(ref),
+            }),
+            {},
+          );
+        });
+      },
+      1000,
+      false,
+    ),
+    [],
+  );
+
+  useLayoutEffect(() => {
+    global.addEventListener('resize', handleResize);
+    global.addEventListener('scroll', handleResize);
+    return () => {
+      global.removeEventListener('resize', handleResize);
+      global.removeEventListener('scroll', handleResize);
+    };
+  }, []);
 
   const setPreviewRef = useSectionReferenceCallback('preview');
   const setChildrenRef = useSectionReferenceCallback('children');

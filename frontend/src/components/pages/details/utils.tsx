@@ -105,11 +105,11 @@ export const getDimensions = (htmlElement: HTMLElement | null): { top: number; b
   if (htmlElement === null) return { top: 0, bottom: 0 };
   const { height } = htmlElement.getBoundingClientRect();
   const elementTopPosition = htmlElement.offsetTop;
-  const elementBotttomPosition = elementTopPosition + height;
+  const elementBottomPosition = elementTopPosition + height;
 
   return {
     top: elementTopPosition,
-    bottom: elementBotttomPosition,
+    bottom: elementBottomPosition,
   };
 };
 
