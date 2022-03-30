@@ -89,7 +89,7 @@ const Accessibility = ({ details, language }: { details: Details; language: stri
                       <div id="details_cover" className={!isFullscreen ? '' : 'h-full'}>
                         <StyledSmallCarousel isFullscreen={isFullscreen}>
                           {attachments.map((attachment, i) => (
-                            <>
+                            <div className="relative" key={attachment.uuid}>
                               {isFullscreen && (
                                 <Legend>
                                   {attachment.author} - {attachment.legend}
@@ -101,7 +101,7 @@ const Accessibility = ({ details, language }: { details: Details; language: stri
                                 height={200}
                                 onClick={toggleFullscreen}
                               />
-                            </>
+                            </div>
                           ))}
                         </StyledSmallCarousel>
                       </div>
@@ -220,8 +220,14 @@ const StyledSmallCarousel = styled(SmallCarousel)<{ isFullscreen: boolean }>`
 
   & img {
     border-radius: ${props => (props.isFullscreen ? 0 : '30px')};
-    height: ${props => (props.isFullscreen ? '100vh' : 'auto')};
+    height: ${props => (props.isFullscreen ? '100vh' : '200px')};
     margin: auto;
+    cursor: pointer;
+    width: 100%;
+
+    ${desktopOnly(css`
+      width: 'auto';
+    `)}
   }
 `;
 
