@@ -20,6 +20,8 @@ import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import { VisibleSectionContext } from 'components/pages/details/VisibleSectionContext';
 import { colorPalette, desktopOnly, MAX_WIDTH_MOBILE } from 'stylesheet';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
+import { Check } from 'components/Icons/Check';
+import { FormattedMessage } from 'react-intl';
 import { MapButton } from '../components/MapButton';
 
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
@@ -84,6 +86,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
     toggleTouristicContentVisibility,
   } = useDetailsMap();
   const mapConfig = getMapConfig();
+
+  const { coordinatesReportTouched } = useDetailsAndMapContext();
 
   const center: LatLngBoundsExpression = [
     [props.bbox.corner1.y, props.bbox.corner1.x],
@@ -175,7 +179,13 @@ export const DetailsMap: React.FC<PropsType> = props => {
         )}
         <StyledCredits hasDrawer={hasDrawer}>{mapConfig.mapCredits}</StyledCredits>
       </StyledMapContainer>
-      <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
+      {reportVisibility && coordinatesReportTouched ? (
+        <MapButton className="desktop:hidden" icon={<Check size={20} />} onClick={hideMap}>
+          <FormattedMessage id="report.mapButton.validate" />
+        </MapButton>
+      ) : (
+        <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
+      )}
       <ControlSection
         className="desktop:hidden"
         trekChildrenVisibility={

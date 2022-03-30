@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useQueries } from 'react-query';
 
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
+import { useIntl } from 'react-intl';
 import { Option } from '../../modules/filters/interface';
 import { PointGeometry } from '../../modules/interface';
 
@@ -22,6 +23,13 @@ interface PropsState {
 interface ConvertedOption {
   id: number;
   label: string;
+}
+
+interface Error {
+  id: string;
+  values: {
+    field: string;
+  };
 }
 
 const initialState: PropsState = {
@@ -45,9 +53,10 @@ const useReport = ({ startPoint }: Props) => {
   const [state, setState] = useState(initialState);
   const [options, setOptions] = useState(initialOptions);
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<Error | null>(null);
 
   const language = useRouter().locale ?? getDefaultLanguage();
+  const { messages } = useIntl();
 
   const {
     coordinatesReport,
@@ -124,22 +133,22 @@ const useReport = ({ startPoint }: Props) => {
     await createReport(language, formData)
       .then(async res => {
         const json = await res.json();
-        if (res.status === 400) {
-          const errors = Object.values(json)
-            // @ts-ignore
-            .map(v => v[0])
+        if (res.status < 200 || res.status > 299) {
+          const errors = [messages['search.anErrorOccured'], ...Object.values(json)]
+            .map(err => (Array.isArray(err) ? err[0] : err))
             .join('. ');
 
           throw new Error(errors);
         } else return json;
       })
       .then(() => {
-        setError('');
+        setError(null);
         setSubmitted(true);
       })
       .catch(localError => {
         console.error(localError);
-        setError(localError.message);
+        const [context, key, field] = (localError.message as string).split('.');
+        setError({ id: `${context}.${key}`, values: { field: `${context}.${field}` } });
       });
     setCoordinatesReportTouched(false);
   };

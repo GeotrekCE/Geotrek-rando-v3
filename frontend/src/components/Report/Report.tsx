@@ -179,9 +179,14 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
 
                   <input type="hidden" name="related_trek" value={trekId} />
 
-                  {error && (
-                    <p className={'font-bold mb-4'} style={{ color: 'red' }}>
-                      <FormattedMessage id={error} />
+                  {error !== null && (
+                    <p className="font-bold mb-4 text-red">
+                      <FormattedMessage
+                        id={error.id}
+                        values={{
+                          field: <FormattedMessage id={error.values.field} />,
+                        }}
+                      />
                     </p>
                   )}
 
