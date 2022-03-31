@@ -389,6 +389,8 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     className="desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar"
                   >
                     <DetailsMapDynamicComponent
+                      courses={outdoorSiteContent?.courses}
+                      experiences={outdoorSiteContent?.children}
                       type="DESKTOP"
                       outdoorGeometry={{
                         geometry: outdoorSiteContent.geometry,
@@ -430,6 +432,8 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                 displayState={mobileMapState}
               >
                 <DetailsMapDynamicComponent
+                  courses={outdoorSiteContent?.courses}
+                  experiences={outdoorSiteContent?.children}
                   type="MOBILE"
                   outdoorGeometry={{
                     geometry: outdoorSiteContent.geometry,

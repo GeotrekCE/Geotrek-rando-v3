@@ -21,7 +21,7 @@ export const TouristicContent: React.FC<PropsType> = ({ contents, type = 'TOURIS
 
           switch (geometry.type) {
             case 'Point':
-              return (
+              return pictogramUri ? (
                 <HoverableMarker
                   id={id}
                   position={[geometry.coordinates.y, geometry.coordinates.x]}
@@ -30,7 +30,7 @@ export const TouristicContent: React.FC<PropsType> = ({ contents, type = 'TOURIS
                 >
                   <Popup id={Number(idContent)} type={type} />
                 </HoverableMarker>
-              );
+              ) : null;
 
             case 'LineString':
               return (

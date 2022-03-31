@@ -1,3 +1,4 @@
+import { fetchAccessibilityLevel } from 'modules/accessibility/api';
 import { getAccessibilities } from 'modules/accessibility/connector';
 import { getActivity } from 'modules/activities/connector';
 import { getCities } from 'modules/city/connector';
@@ -56,7 +57,13 @@ export const getDetails = async (id: string, language: string): Promise<Details>
     const childrenGeometry = await Promise.all(
       rawDetails.properties.children.map(childId => getChildGeometry(`${childId}`, language)),
     );
+
+    const accessbilityLevel = rawDetails.properties.accessibility_level
+      ? await fetchAccessibilityLevel(rawDetails.properties.accessibility_level)
+      : null;
+
     return adaptResults({
+      accessbilityLevel,
       rawDetails,
       activity,
       difficulty,

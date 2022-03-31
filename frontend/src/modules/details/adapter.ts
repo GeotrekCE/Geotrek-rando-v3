@@ -1,4 +1,4 @@
-import { AccessibilityDictionnary } from 'modules/accessibility/interface';
+import { AccessibilityDictionnary, AccessibilityLevel } from 'modules/accessibility/interface';
 import { Activity } from 'modules/activities/interface';
 import { CityDictionnary } from 'modules/city/interface';
 import { CourseType } from 'modules/filters/courseType/interface';
@@ -21,6 +21,7 @@ import { formatHours } from 'modules/utils/time';
 import { Details, RawDetails, Reservation, TrekChildGeometry, TrekFamily } from './interface';
 
 export const adaptResults = ({
+  accessbilityLevel,
   rawDetails: { properties: rawDetailsProperties, geometry, bbox },
   activity,
   difficulty,
@@ -39,6 +40,7 @@ export const adaptResults = ({
   sensitiveAreas,
   reservation,
 }: {
+  accessbilityLevel: AccessibilityLevel | null;
   rawDetails: RawDetails;
   activity: Activity | null;
   difficulty: Difficulty | null;
@@ -63,6 +65,14 @@ export const adaptResults = ({
         ? flattenMultiLineStringCoordinates(geometry.coordinates)
         : geometry.coordinates;
     return {
+      accessbilityLevel,
+      accessibility_signage: rawDetailsProperties.accessibility_signage,
+      accessibility_slope: rawDetailsProperties.accessibility_slope,
+      accessibility_width: rawDetailsProperties.accessibility_width,
+      accessibility_advice: rawDetailsProperties.accessibility_advice,
+      accessibility_covering: rawDetailsProperties.accessibility_covering,
+      accessibility_exposure: rawDetailsProperties.accessibility_exposure,
+      attachmentsAccessibility: rawDetailsProperties.attachments_accessibility ?? null,
       id: Number(rawDetailsProperties.id),
       title: rawDetailsProperties.name,
       place: cityDictionnary[rawDetailsProperties.departure_city]
