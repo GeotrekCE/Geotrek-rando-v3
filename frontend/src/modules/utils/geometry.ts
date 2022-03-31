@@ -2,12 +2,18 @@ import {
   Coordinate2D,
   Coordinate3D,
   LineStringGeometry,
+  MultiLineStringGeometry,
+  MultiPointGeometry,
+  MultiPolygonGeometry,
   PointGeometry,
   PolygonGeometry,
   RawCoordinate2D,
   RawCoordinate3D,
   RawGeometryCollection,
   RawLineStringGeometry2D,
+  RawMultiLineStringGeometry,
+  RawMultiPointGeometry2D,
+  RawMultiPolygonGeometry,
   RawPointGeometry2D,
   RawPolygonGeometry,
 } from 'modules/interface';
@@ -25,17 +31,38 @@ export const adaptGeometry3D = (geometry: RawCoordinate3D): Coordinate3D => ({
 
 /** Adapt any type of raw geometry */
 export const adaptGeometry = (
-  geometry: RawPolygonGeometry | RawLineStringGeometry2D | RawPointGeometry2D,
-): PolygonGeometry | LineStringGeometry | PointGeometry => {
+  geometry:
+    | RawPolygonGeometry
+    | RawMultiPolygonGeometry
+    | RawLineStringGeometry2D
+    | RawMultiLineStringGeometry
+    | RawPointGeometry2D
+    | RawMultiPointGeometry2D,
+):
+  | PolygonGeometry
+  | MultiPolygonGeometry
+  | LineStringGeometry
+  | MultiLineStringGeometry
+  | PointGeometry
+  | MultiPointGeometry => {
   switch (geometry.type) {
     case 'Polygon':
       return adaptPolygonGeometry(geometry);
 
+    case 'MultiPolygon':
+      return adaptMultiPolygonGeometry(geometry);
+
     case 'LineString':
       return adaptLineString(geometry);
 
+    case 'MultiLineString':
+      return adaptMultiLineString(geometry);
+
     case 'Point':
       return adaptPoint(geometry);
+
+    case 'MultiPoint':
+      return adaptMultiPoint(geometry);
   }
 };
 
@@ -44,9 +71,24 @@ export const adaptPolygonGeometry = (geometry: RawPolygonGeometry): PolygonGeome
   coordinates: geometry.coordinates.map(line => line.map(point => adaptGeometry2D(point))),
 });
 
+export const adaptMultiPolygonGeometry = (
+  geometry: RawMultiPolygonGeometry,
+): MultiPolygonGeometry => ({
+  type: geometry.type,
+  coordinates: geometry.coordinates.map(group =>
+    group.map(line => line.map(point => adaptGeometry2D(point))),
+  ),
+});
+
 export const adaptLineString = (geometry: RawLineStringGeometry2D): LineStringGeometry => ({
   type: geometry.type,
   coordinates: geometry.coordinates.map(point => adaptGeometry2D(point)),
+});
+export const adaptMultiLineString = (
+  geometry: RawMultiLineStringGeometry,
+): MultiLineStringGeometry => ({
+  type: geometry.type,
+  coordinates: geometry.coordinates.map(group => group.map(point => adaptGeometry2D(point))),
 });
 
 export const adaptPoint = (geometry: RawPointGeometry2D): PointGeometry => ({
@@ -54,11 +96,18 @@ export const adaptPoint = (geometry: RawPointGeometry2D): PointGeometry => ({
   coordinates: adaptGeometry2D(geometry.coordinates),
 });
 
+export const adaptMultiPoint = (geometry: RawMultiPointGeometry2D): MultiPointGeometry => ({
+  type: geometry.type,
+  coordinates: geometry.coordinates.map(point => adaptGeometry2D(point)),
+});
 export const extractFirstPointOfGeometry = (
   geometry:
     | RawPolygonGeometry
+    | RawMultiPolygonGeometry
     | RawLineStringGeometry2D
+    | RawMultiLineStringGeometry
     | RawPointGeometry2D
+    | RawMultiPointGeometry2D
     | RawGeometryCollection
     | null,
 ): Coordinate2D | null => {
@@ -67,14 +116,26 @@ export const extractFirstPointOfGeometry = (
     case 'Polygon':
       return adaptGeometry2D(geometry.coordinates[0][0]);
 
+    case 'MultiPolygon':
+      return adaptGeometry2D(geometry.coordinates[0][0][0]);
+
     case 'LineString':
       return adaptGeometry2D(geometry.coordinates[0]);
+
+    case 'MultiLineString':
+      return adaptGeometry2D(geometry.coordinates[0][0]);
 
     case 'Point':
       return adaptGeometry2D(geometry.coordinates);
 
+    case 'MultiPoint':
+      return adaptGeometry2D(geometry.coordinates[0]);
+
     case 'GeometryCollection':
       return extractFirstPointOfGeometry(geometry.geometries[0]);
+
+    default:
+      return null;
   }
 };
 

@@ -49,6 +49,10 @@ export const TouristicContent: React.FC<PropsType> = ({ contents, type = 'TOURIS
                   )}
                 />
               );
+
+            default:
+              // TODO Multi*
+              return null;
           }
         })}
     </>
