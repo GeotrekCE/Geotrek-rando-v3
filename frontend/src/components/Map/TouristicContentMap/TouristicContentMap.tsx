@@ -5,7 +5,14 @@ import 'leaflet/dist/leaflet.css';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { Bbox } from 'modules/details/interface';
-import { LineStringGeometry, PointGeometry, PolygonGeometry } from 'modules/interface';
+import {
+  LineStringGeometry,
+  MultiLineStringGeometry,
+  MultiPointGeometry,
+  MultiPolygonGeometry,
+  PointGeometry,
+  PolygonGeometry,
+} from 'modules/interface';
 import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { useTileLayer } from 'hooks/useTileLayer';
 import { MapButton } from '../components/MapButton';
@@ -16,7 +23,14 @@ import { Credits } from '../components/Credits';
 import { TouristicContentGeometry } from '../DetailsMap/DetailsMap';
 
 interface TouristicContentGeometryNullable {
-  geometry: PointGeometry | PolygonGeometry | LineStringGeometry | null;
+  geometry:
+    | PolygonGeometry
+    | MultiPolygonGeometry
+    | LineStringGeometry
+    | MultiLineStringGeometry
+    | PointGeometry
+    | MultiPointGeometry
+    | null;
   pictogramUri: string;
   name: string;
   id: string;

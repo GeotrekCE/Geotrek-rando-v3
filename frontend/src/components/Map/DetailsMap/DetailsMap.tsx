@@ -10,6 +10,9 @@ import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import {
   Coordinate2D,
   LineStringGeometry,
+  MultiLineStringGeometry,
+  MultiPointGeometry,
+  MultiPolygonGeometry,
   PointGeometry,
   PolygonGeometry,
 } from 'modules/interface';
@@ -34,7 +37,13 @@ import { MapChildren, PointWithIcon } from './MapChildren';
 import DetailsMapDrawer from '../components/DetailsMapDrawer';
 
 export interface TouristicContentGeometry {
-  geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
+  geometry:
+    | PolygonGeometry
+    | MultiPolygonGeometry
+    | LineStringGeometry
+    | MultiLineStringGeometry
+    | PointGeometry
+    | MultiPointGeometry;
   pictogramUri: string | null;
   name: string;
   id: string;
