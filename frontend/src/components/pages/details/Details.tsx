@@ -583,7 +583,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
         )}
       </>
     ),
-    [details, isLoading, mobileMapState, sectionsPositions],
+    [details, isLoading, mobileMapState],
   );
 };
 
