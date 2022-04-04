@@ -1,5 +1,25 @@
 # Changelog
 
+3.8.0 (unreleased)
+------------------
+
+**🚀 New features**
+
+* Filter treks by labels (#418)
+* Allow to hide elevation profile on small elevation treks, with new ``minAltitudeDifferenceToDisplayElevationProfile`` setting (#552)
+* Display negative elevation on trek pages (#574)
+* Add accessibility fields on trek detail pages (#536)
+* Improve report forms design with location on map and photos (#453)
+* Improve outdoor pages detail pages with displaying subobjects on map (#542)
+* Improve anchor system in detail pages
+* Improve translations
+
+**🐛 Fixes**
+
+* Fix flickering of the map when loading the detail pages
+* Fix reservation widget loading on trek detail pages
+* Fix multiple geometries display on maps
+
 3.7.0 (2022-03-11)
 ------------------
 
