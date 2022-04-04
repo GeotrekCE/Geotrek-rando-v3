@@ -9,7 +9,7 @@ const dotenv = require('dotenv-flow');
 const runtimeCachingStrategy = require('./cache');
 const headerConfig = require('./config/header.json');
 const customHeaderConfig = require('./customization/config/header.json');
-const getConfig = require('./src/services/getConfig');
+const { getConfig, getTemplates } = require('./src/services/getConfig');
 
 const mergedHeaderConfig = {
   ...headerConfig,
@@ -62,8 +62,8 @@ module.exports = withPlugins(plugins, {
     defaultLocale: mergedHeaderConfig.menu.defaultLanguage,
   },
   publicRuntimeConfig: {
-    homeBottomHtml: getConfig('../html/homeBottom.html', false),
-    homeTopHtml: getConfig('../html/homeTop.html', false),
+    homeBottomHtml: getTemplates('../html/homeBottom.html', mergedHeaderConfig.menu.supportedLanguages),
+    homeTopHtml: getTemplates('../html/homeTop.html', mergedHeaderConfig.menu.supportedLanguages),
     style: getConfig('../theme/style.css', false),
     colors: getConfig('../theme/colors.json', true),
     header: getConfig('header.json', true),

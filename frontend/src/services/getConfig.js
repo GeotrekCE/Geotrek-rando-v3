@@ -23,4 +23,15 @@ const getConfig = (file, parse = true) => {
   return parse ? merge(defaultConfig, overrideConfig) : overrideConfig || defaultConfig;
 };
 
-module.exports = getConfig;
+const getTemplates = (file, languages) => {
+  const [path] = file.split('.html');
+  return languages.reduce((list, language) => {
+    list[language] = getContent(`./customization/config/${path}-${language}.html`, false);
+    return list;
+  }, { default : getContent(`./customization/config/${file}`, false) })
+};
+
+module.exports = {
+  getConfig,
+  getTemplates
+};
