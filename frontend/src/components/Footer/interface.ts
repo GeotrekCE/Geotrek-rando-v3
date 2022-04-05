@@ -26,10 +26,26 @@ export interface FooterConfigInput {
   socialNetworks?: SocialNetwork[];
   links?: PortalLink[];
   contact?: Partial<PortalContact>;
+  footerTopHtml: {
+    [key: string]: undefined | string;
+    default: undefined | string;
+  };
+  footerBottomHtml: {
+    [key: string]: undefined | string;
+    default: undefined | string;
+  };
 }
 
 export interface FooterConfigOutput {
   socialNetworks?: SocialNetwork[];
   links?: PortalLinkStatic[];
   contact?: Partial<PortalContact>;
+  footerTopHtml: {
+    [key: string]: undefined | string;
+    default: undefined | string;
+  };
+  footerBottomHtml: {
+    [key: string]: undefined | string;
+    default: undefined | string;
+  };
 }

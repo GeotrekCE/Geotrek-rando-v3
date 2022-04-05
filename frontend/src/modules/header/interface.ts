@@ -21,4 +21,12 @@ export interface MenuConfig {
 export interface HeaderConfig {
   logo: string;
   menu: MenuConfig;
+  headerTopHtml: {
+    [key: string]: undefined | string;
+    default: undefined | string;
+  };
+  headerBottomHtml: {
+    [key: string]: undefined | string;
+    default: undefined | string;
+  };
 }
