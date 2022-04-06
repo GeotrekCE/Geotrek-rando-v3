@@ -39,10 +39,14 @@ const initialState: PropsState = {
   magnitude: [],
 };
 
-const initialOptions = {
-  activity: [],
-  category: [],
-  magnitude: [],
+const getFormattedOptions = (data: unknown | undefined): Option[] | [] => {
+  if (data === undefined) {
+    return [];
+  }
+  return (data as ConvertedOption[]).map(({ label, id }) => ({
+    label,
+    value: String(id),
+  }));
 };
 
 interface Props {
@@ -51,7 +55,6 @@ interface Props {
 
 const useReport = ({ startPoint }: Props) => {
   const [state, setState] = useState(initialState);
-  const [options, setOptions] = useState(initialOptions);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -88,30 +91,23 @@ const useReport = ({ startPoint }: Props) => {
     {
       queryKey: ['feedbackActivity', language],
       queryFn: () => getFeedbackActivity(language),
-      onSuccess: data => convertToOptions('activity', data as ConvertedOption[]),
     },
     {
       queryKey: ['feedbackCategory', language],
       queryFn: () => getFeedbackCategory(language),
-      onSuccess: data => convertToOptions('category', data as ConvertedOption[]),
     },
     {
       queryKey: ['feedbackMagnitude', language],
       queryFn: () => getFeedbackMagnitude(language),
-      onSuccess: data => convertToOptions('magnitude', data as ConvertedOption[]),
     },
   ]);
 
   const isLoading = results.some(i => i.isLoading);
 
-  const convertToOptions = (key: string, data: ConvertedOption[]) => {
-    setOptions(prevOptions => ({
-      ...prevOptions,
-      [key]: data.map(({ label, id }) => ({
-        label,
-        value: String(id),
-      })),
-    }));
+  const options = {
+    activity: getFormattedOptions(results[0].data),
+    category: getFormattedOptions(results[1].data),
+    magnitude: getFormattedOptions(results[2].data),
   };
 
   const setValue = (key: string, value: string | PointGeometry | Option[]) => {
