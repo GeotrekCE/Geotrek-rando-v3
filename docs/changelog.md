@@ -3,6 +3,8 @@
 3.8.0 (unreleased)
 ------------------
 
+Geotrek-admin minimal version : 2.76.0 ? (because of accessibility fields and others ?)
+
 **🚀 New features**
 
 * Filter treks by labels (#418)
@@ -11,7 +13,7 @@
 * Add accessibility fields on trek detail pages (#536)
 * Improve report forms design with location on map and photos (#453)
 * Improve outdoor pages detail pages with displaying subobjects on map (#542)
-* Allow to internationalize HTML templates in Homepage (#617)
+* Allow to translate HTML templates in Homepage (#617)
 * Improve anchor system in detail pages
 * Improve translations
 
