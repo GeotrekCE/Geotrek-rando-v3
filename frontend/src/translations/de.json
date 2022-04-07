@@ -182,7 +182,7 @@
   },
   "outdoorSite": {
     "accessFullTitle": "Zugang",
-    "coursesFullTitle": "Strecke",
+    "coursesFullTitle": "Les {count} parcours à découvrir",
     "sitesFullTitle": "Die {count} Orte der Praxis, die es zu entdecken gilt"
   },
   "Wind": {

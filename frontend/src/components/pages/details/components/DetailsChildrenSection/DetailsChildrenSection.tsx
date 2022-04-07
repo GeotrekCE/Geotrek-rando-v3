@@ -59,6 +59,7 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
                   thumbnailUris={trekChild.thumbnailUris}
                   attachments={trekChild.attachments}
                   badgeIconUri={trekChild.practice?.pictogram}
+                  badgeName={trekChild.practice?.name}
                   informations={trekChild.informations}
                   redirectionUrl={generateChildrenDetailsUrl(trekChild.id, trekChild.title, trekId)}
                   className="w-60 desktop:w-auto"

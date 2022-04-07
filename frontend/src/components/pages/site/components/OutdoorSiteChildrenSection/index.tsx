@@ -48,6 +48,7 @@ export const OutdoorSiteChildrenSection: React.FC<DetailsChildrenSectionProps> =
               thumbnailUris={trekChild.thumbnailUris}
               attachments={trekChild.attachments}
               badgeIconUri={trekChild.practice?.pictogram}
+              badgeName={trekChild.practice?.name}
               informations={[]}
               redirectionUrl={generateOutdoorSiteUrl(trekChild.id, trekChild.name)}
               className="w-60 desktop:w-auto"

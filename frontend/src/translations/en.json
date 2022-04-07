@@ -195,7 +195,7 @@
   },
   "outdoorSite": {
     "accessFullTitle": "Access",
-    "coursesFullTitle": "Courses",
+    "coursesFullTitle": "Les {count} parcours à découvrir",
     "sitesFullTitle": "The {count} places of practice to discover"
   },
   "Wind": {
