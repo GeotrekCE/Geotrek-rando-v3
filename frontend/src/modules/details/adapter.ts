@@ -66,12 +66,12 @@ export const adaptResults = ({
         : geometry.coordinates;
     return {
       accessbilityLevel,
-      accessibility_signage: rawDetailsProperties.accessibility_signage,
-      accessibility_slope: rawDetailsProperties.accessibility_slope,
-      accessibility_width: rawDetailsProperties.accessibility_width,
-      accessibility_advice: rawDetailsProperties.accessibility_advice,
-      accessibility_covering: rawDetailsProperties.accessibility_covering,
-      accessibility_exposure: rawDetailsProperties.accessibility_exposure,
+      accessibility_signage: rawDetailsProperties.accessibility_signage ?? null,
+      accessibility_slope: rawDetailsProperties.accessibility_slope ?? null,
+      accessibility_width: rawDetailsProperties.accessibility_width ?? null,
+      accessibility_advice: rawDetailsProperties.accessibility_advice ?? null,
+      accessibility_covering: rawDetailsProperties.accessibility_covering ?? null,
+      accessibility_exposure: rawDetailsProperties.accessibility_exposure ?? null,
       attachmentsAccessibility: rawDetailsProperties.attachments_accessibility ?? null,
       id: Number(rawDetailsProperties.id),
       title: rawDetailsProperties.name,
