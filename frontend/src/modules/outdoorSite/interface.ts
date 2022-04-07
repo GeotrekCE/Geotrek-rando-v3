@@ -87,7 +87,7 @@ export interface OutdoorSite {
 }
 
 export interface OutdoorSiteDetails extends OutdoorSite {
-  accessibility?: string;
+  accessibility?: string | null;
   description?: string;
   descriptionTeaser?: string;
   bbox: Bbox;

@@ -66,7 +66,7 @@ export interface RawTouristicContentDetails {
 }
 
 export interface TouristicContent {
-  accessibility?: string;
+  accessibility?: string | null;
   id: string;
   name: string;
   descriptionTeaser: string;

@@ -93,7 +93,7 @@ export const adaptOutdoorSiteDetails = ({
     outdoorPracticeDictionnary,
     cityDictionnary,
   })[0],
-  accessibility: rawOutdoorSiteDetails.properties.accessibility,
+  accessibility: rawOutdoorSiteDetails.properties.accessibility ?? null,
   type: 'OUTDOOR_SITE',
   description: rawOutdoorSiteDetails.properties.description,
   ambiance: rawOutdoorSiteDetails.properties.ambiance,
