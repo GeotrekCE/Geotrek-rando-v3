@@ -246,6 +246,14 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                         titleId="details.recommandations"
                         className={marginDetailsChild}
                       >
+                        {outdoorCourseContent.accessibility && (
+                          <div style={{ marginBottom: 20 }}>
+                            <strong className="font-bold">
+                              <FormattedMessage id="details.accessibility" /> :{' '}
+                            </strong>
+                            {outdoorCourseContent.accessibility}
+                          </div>
+                        )}
                         {outdoorCourseContent.advice && (
                           <DetailsAdvice
                             text={outdoorCourseContent.advice}

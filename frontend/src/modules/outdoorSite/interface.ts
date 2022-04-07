@@ -37,6 +37,7 @@ export interface RawOutdoorSite {
 }
 
 interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
+  accessibility?: string;
   advice?: string;
   ambiance?: string;
   children?: string;
@@ -86,6 +87,7 @@ export interface OutdoorSite {
 }
 
 export interface OutdoorSiteDetails extends OutdoorSite {
+  accessibility?: string;
   description?: string;
   descriptionTeaser?: string;
   bbox: Bbox;

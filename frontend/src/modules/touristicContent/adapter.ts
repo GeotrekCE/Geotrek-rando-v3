@@ -98,6 +98,7 @@ export const adaptTouristicContentDetails = ({
   cityDictionnary: CityDictionnary;
   themeDictionnary: Choices;
 }): TouristicContentDetails => ({
+  accessibility: rawTCD.properties.accessibility,
   id: rawTCD.id,
   name: rawTCD.properties.name,
   descriptionTeaser: rawTCD.properties.description_teaser,
