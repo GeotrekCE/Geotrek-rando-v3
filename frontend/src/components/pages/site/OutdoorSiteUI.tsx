@@ -184,19 +184,6 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                       />
                     </div>
 
-                    {Number(outdoorSiteContent?.access?.length) > 0 && (
-                      <div ref={setAccessRef} id="details_trekChildren_ref">
-                        <AccessChildrenSection
-                          accessChildren={outdoorSiteContent?.access}
-                          id={id}
-                          title={intl.formatMessage(
-                            { id: 'outdoorSite.accessFullTitle' },
-                            { count: Number(outdoorSiteContent?.access?.length) },
-                          )}
-                        />
-                      </div>
-                    )}
-
                     {Number(outdoorSiteContent?.pois?.length) > 0 && (
                       <div ref={setPoisRef} id="details_poi_ref">
                         <DetailsCardSection
@@ -283,6 +270,19 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                           />
                         ))}
                       </DetailsSection>
+                    )}
+
+                    {Number(outdoorSiteContent?.access?.length) > 0 && (
+                      <div ref={setAccessRef} id="details_trekChildren_ref">
+                        <AccessChildrenSection
+                          accessChildren={outdoorSiteContent?.access}
+                          id={id}
+                          title={intl.formatMessage(
+                            { id: 'outdoorSite.accessFullTitle' },
+                            { count: Number(outdoorSiteContent?.access?.length) },
+                          )}
+                        />
+                      </div>
                     )}
 
                     {Number(outdoorSiteContent?.informationDesks?.length) > 0 && (
