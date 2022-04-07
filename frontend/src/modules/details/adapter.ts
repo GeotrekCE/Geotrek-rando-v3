@@ -154,7 +154,7 @@ export const adaptResults = ({
       altimetricProfileUrl: rawDetailsProperties.altimetric_profile,
       length2d: rawDetailsProperties.length_2d,
       reservation,
-      reservation_id: rawDetailsProperties.reservation_id,
+      reservation_id: rawDetailsProperties.reservation_id ?? null,
     };
   } catch (e) {
     console.error('Error in details/adapter', e);

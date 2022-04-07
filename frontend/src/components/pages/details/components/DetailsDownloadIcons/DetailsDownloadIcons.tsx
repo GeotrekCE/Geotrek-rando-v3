@@ -105,7 +105,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
           (details as Details).reservation_id &&
           getGlobalConfig().reservationPartner &&
           getGlobalConfig().reservationProject && (
-            <DetailsButton url="#details_reservation" onClick={() => setReportVisibility(true)}>
+            <DetailsButton url="#details_reservation">
               <Reservation width={30} height={30} />
             </DetailsButton>
           )}

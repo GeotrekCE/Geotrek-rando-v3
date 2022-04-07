@@ -177,7 +177,7 @@ export interface Details extends DetailsHtml {
   altimetricProfileUrl: string;
   length2d: number;
   reservation: Reservation | null;
-  reservation_id?: string;
+  reservation_id: string | null;
 }
 
 export interface WebLink {
