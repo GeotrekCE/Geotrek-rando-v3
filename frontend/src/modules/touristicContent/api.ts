@@ -29,9 +29,9 @@ export const fetchTouristicContentDetails = (
   query: APIQuery,
   id: string,
 ): Promise<RawTouristicContentDetails> =>
-  GeotrekAPI.get(`/touristiccontent/${id}/`, { params: { ...fieldsParamsDetails, ...query } }).then(
-    r => r.data,
-  );
+  GeotrekAPI.get(`/touristiccontent/${id}/`, {
+    params: { ...fieldsParamsDetails, ...query, ...portalsFilter },
+  }).then(r => r.data);
 
 const fieldsParamsResult = {
   fields: 'id,attachments,name,category,description_teaser,themes,types,cities',

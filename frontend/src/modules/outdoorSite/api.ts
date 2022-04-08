@@ -23,6 +23,6 @@ export const fetchOutdoorSiteDetails = (
   id: string,
 ): Promise<RawOutdoorSiteDetails> => {
   return GeotrekAPI.get(`/outdoor_site/${id}/`, {
-    params: { ...fieldsParamsDetails, ...query },
+    params: { ...fieldsParamsDetails, ...query, ...portalsFilter },
   }).then(r => r.data);
 };
