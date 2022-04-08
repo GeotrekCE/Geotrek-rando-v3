@@ -2,6 +2,7 @@ import { TrekFamily } from 'modules/details/interface';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { colorPalette } from 'stylesheet';
+import getConfig from 'next/config';
 import { AltimetricProfile } from '../AltimetricProfile';
 import Siblings from './Siblings';
 
@@ -11,7 +12,7 @@ const Wrapper = styled.div<{ open: boolean }>`
   bottom: 0;
   z-index: 1500;
 
-  transform: translateY(${props => (props.open ? 0 : 'calc(100% - 65px)')});
+  transform: translateY(${props => (props.open ? 0 : 'calc(100% - 45px)')});
   transition: transform 0.25s;
 
   width: 100vw;
@@ -20,7 +21,6 @@ const Wrapper = styled.div<{ open: boolean }>`
 `;
 
 const Puller = styled.div`
-  height: 65px;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -28,7 +28,7 @@ const Puller = styled.div`
 `;
 
 const Content = styled.div`
-  height: 270px;
+  padding: 0 10px 1rem;
 `;
 
 const Separator = styled.div`
@@ -44,7 +44,8 @@ const Title = styled.div`
   font-weight: bold;
   justify-self: stretch;
   margin-bottom: 6px;
-  margin-top: 12px;
+  margin-top: 4px;
+  max-width: 90%;
 `;
 
 const DetailsMapDrawer: React.FC<{
@@ -53,7 +54,21 @@ const DetailsMapDrawer: React.FC<{
   trekFamily?: TrekFamily | null;
   trekId?: number;
 }> = ({ title, trekGeoJSON, trekFamily, trekId }) => {
-  const [open, setOpen] = useState(false);
+  if (
+    Boolean(trekGeoJSON) === false &&
+    (!trekFamily || !trekId || trekFamily.trekChildren.length < 2)
+  ) {
+    return null;
+  }
+
+  const {
+    publicRuntimeConfig: {
+      map: { mobileMapPanelDefaultOpened },
+    },
+  } = getConfig();
+
+  const [open, setOpen] = useState(mobileMapPanelDefaultOpened);
+
   return (
     <Wrapper open={open}>
       <Puller
@@ -68,8 +83,12 @@ const DetailsMapDrawer: React.FC<{
       </Puller>
       <Content>
         <Siblings trekFamily={trekFamily} trekId={trekId} />
-        {trekGeoJSON && <AltimetricProfile id="altimetric-profile-map" trekGeoJSON={trekGeoJSON} />}
-        <div className="h-90" id="altimetric-profile-map"></div>
+        {trekGeoJSON && (
+          <>
+            <AltimetricProfile id="altimetric-profile-map" trekGeoJSON={trekGeoJSON} />
+            <div className="h-90" id="altimetric-profile-map"></div>
+          </>
+        )}
       </Content>
     </Wrapper>
   );

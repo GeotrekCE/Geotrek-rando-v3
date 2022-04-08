@@ -6,7 +6,7 @@
     "favorites": "Favoris",
     "goToSearch": "Recherche",
     "offline": "Contenus hors ligne",
-    "accueil": "Accueil"
+    "home": "Accueil"
   },
   "home": {
     "title": "Geotrek-rando",
@@ -88,6 +88,14 @@
     "informationDesks": "Lieux de renseignement",
     "practicalInformations": "Infos pratiques",
     "accessibility": "Accessibilité",
+    "accessibility_level": "Niveau d'accessibilité",
+    "accessibility_covering": "Revêtement",
+    "accessibility_exposure": "Exposition",
+    "accessibility_advice": "Conseils",
+    "accessibility_slope": "Pente",
+    "accessibility_width": "Largeur",
+    "accessibility_signage": "Signalétique",
+    "emergency_number": "Numéro de secours",
     "toSee": "À voir aussi",
     "transport": "Transport",
     "stationnement": "Stationnement",
@@ -134,8 +142,8 @@
       "satellite": "Satellite"
     },
     "drawer": {
-      "next": "Etape suivante",
-      "prev": "Etape précédente"
+      "next": "Étape suivante",
+      "prev": "Étape précédente"
     }
   },
   "footer": {
@@ -148,18 +156,26 @@
   },
   "report": {
     "title": "Signaler un problème ou une erreur",
+    "intro": "Vous avez repéré une erreur sur cette page ou constaté un problème lors de votre randonnée, signalez-les nous ici :",
     "activity": "Activité",
     "category": "Catégorie",
     "magnitude": "Ampleur du problème",
     "comment": "Commentaires",
     "email": "Email",
     "name": "Votre nom",
+    "image": "Image",
     "button": "Signaler",
     "cancel": "Annuler",
-    "success": "Merci, le signalement a été envoyé."
+    "success": "Merci, le signalement a été envoyé.",
+    "mapButton": {
+      "create": "Indiquez la position du signalement sur la carte",
+      "edit": "Modifiez la position du signalement",
+      "validate": "Valider la position"
+    },
+    "GDPRDisclaimer": "Ces informations sont destinées à <b>organism</b>, qui s'engage à ne pas les communiquer à des tiers. Vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent (art. 34 de la loi \"Informatique et Libertés\"). Pour l'exercer, adressez-vous à <a>contact</a>."
   },
   "error": {
-    "missing": "Le formulaire n'est pas complet"
+    "missing": "Le champ \"{field}\" est requis."
   },
   "offline": {
     "number": "{count} contenus accessibles sans connexion internet",
@@ -176,11 +192,11 @@
     "cancel": "Annuler",
     "close": "Fermer",
     "remove": "Supprimer",
-    "confirmRemove": "Etes vous sûr de vouloir supprimer cet élément ?"
+    "confirmRemove": "Êtes-vous sûr de vouloir supprimer cet élément ?"
   },
   "outdoorSite": {
     "accessFullTitle": "Accès",
-    "coursesFullTitle": "Parcours",
+    "coursesFullTitle": "Les {count} parcours à découvrir",
     "sitesFullTitle": "Les {count} lieux de pratique à découvrir"
   },
   "Wind": {

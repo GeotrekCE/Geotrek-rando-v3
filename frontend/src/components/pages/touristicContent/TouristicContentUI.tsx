@@ -134,6 +134,14 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                     titleId="touristicContent.contact"
                     className={marginDetailsChild}
                   >
+                    {touristicContent.accessibility && (
+                      <div style={{ marginBottom: 20 }}>
+                        <strong className="font-bold">
+                          <FormattedMessage id="details.accessibility" /> :{' '}
+                        </strong>
+                        {touristicContent.accessibility}
+                      </div>
+                    )}
                     <HtmlText>{parse(touristicContent.contact)}</HtmlText>
                     {!!touristicContent.email?.length && (
                       <div className="mt-2 desktop:mt-4">

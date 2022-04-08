@@ -1,5 +1,26 @@
 # Changelog
 
+3.8.0 (2022-04-08)
+------------------
+
+**🚀 New features**
+
+* Filter treks by labels (#418)
+* Allow to hide elevation profile on small elevation treks, with new ``minAltitudeDifferenceToDisplayElevationProfile`` setting (#552)
+* Display negative elevation on trek pages (#574)
+* Add new accessibility fields on trek, outdoor and services detail pages (#536)
+* Improve report forms design with location on map and photos (#453)
+* Improve outdoor pages detail pages with displaying subobjects on map (#542)
+* Allow to translate HTML templates in Homepage (#617)
+* Improve anchor system in detail pages
+* Improve translations
+
+**🐛 Fixes**
+
+* Fix flickering of the map when loading the detail pages
+* Fix reservation widget loading on trek detail pages
+* Fix multiple geometries display on maps
+
 3.7.0 (2022-03-11)
 ------------------
 
@@ -8,6 +29,7 @@
 * Include 3D view in trek detail pages (#390)
 * Add ``maxLengthTrekAllowedFor3DRando`` setting to define the maximum length of a trek to enable the 3D view on its page (or to disable 3D view) (#390)
 * Add breadcrumb on detail and information pages (#506)
+* Add Meteo France widget on all detail pages based on INSEE code of the content (#525)
 * Add Open System reservation widget on trek detail pages with an ``id_reservation`` (#382)
 * Add ``reservationPartner`` and ``reservationProject`` settings to enable Open System reservation widget (#382)
 * Add a customizable color for each content category (treks, outdoor sites, services and events) to better differentiate content categories (#437)

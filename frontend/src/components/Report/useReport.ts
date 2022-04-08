@@ -2,7 +2,9 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useQueries } from 'react-query';
 
-import { Option } from 'modules/filters/interface';
+import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
+import { useIntl } from 'react-intl';
+import { Option } from '../../modules/filters/interface';
 import { PointGeometry } from '../../modules/interface';
 
 import { getFeedbackActivity } from '../../modules/feedbackActivity/connector';
@@ -15,118 +17,151 @@ interface PropsState {
   activity: Option[];
   category: Option[];
   magnitude: Option[];
-  geom: PointGeometry;
-  comment: string;
-  email: string;
-  name: string;
+  geom: PointGeometry | null;
+}
+
+interface ConvertedOption {
+  id: number;
+  label: string;
+}
+
+interface Error {
+  id: string;
+  values: {
+    field: string;
+  };
 }
 
 const initialState: PropsState = {
-  comment: '',
-  email: '',
-  name: '',
-  geom: { type: 'Point', coordinates: { x: 0, y: 0 } },
+  geom: null,
   activity: [],
   category: [],
   magnitude: [],
 };
 
-const initialOptions = {
-  activity: [],
-  category: [],
-  magnitude: [],
+const getFormattedOptions = (data: unknown | undefined): Option[] | [] => {
+  if (data === undefined) {
+    return [];
+  }
+  return (data as ConvertedOption[]).map(({ label, id }) => ({
+    label,
+    value: String(id),
+  }));
 };
 
 interface Props {
-  trekId: number;
   startPoint: PointGeometry;
 }
 
-const useReport = ({ trekId, startPoint }: Props) => {
+const useReport = ({ startPoint }: Props) => {
   const [state, setState] = useState(initialState);
-  const [options, setOptions] = useState(initialOptions);
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<Error | null>(null);
 
   const language = useRouter().locale ?? getDefaultLanguage();
+  const { messages } = useIntl();
+
+  const {
+    coordinatesReport,
+    coordinatesReportTouched,
+    setCoordinatesReport,
+    setCoordinatesReportTouched,
+  } = useDetailsAndMapContext();
 
   useEffect(() => {
-    // On définit un point par défaut en attendant de faire le developpement nécessaire pour choisir l'emplacement du problème
-    setValue('geom', startPoint);
-  }, []);
+    setCoordinatesReportTouched(false);
+  }, [setCoordinatesReportTouched]);
+
+  useEffect(() => {
+    setCoordinatesReport(prevCoordinates => {
+      if (prevCoordinates === null) {
+        return startPoint;
+      }
+      return prevCoordinates;
+    });
+  }, [setCoordinatesReport, startPoint]);
+
+  useEffect(() => {
+    if (coordinatesReport) {
+      setValue('geom', coordinatesReport);
+    }
+  }, [coordinatesReport]);
 
   const results = useQueries([
     {
       queryKey: ['feedbackActivity', language],
       queryFn: () => getFeedbackActivity(language),
-      onSuccess: data => convertToOptions('activity', data),
     },
     {
       queryKey: ['feedbackCategory', language],
       queryFn: () => getFeedbackCategory(language),
-      onSuccess: data => convertToOptions('category', data),
     },
     {
       queryKey: ['feedbackMagnitude', language],
       queryFn: () => getFeedbackMagnitude(language),
-      onSuccess: data => convertToOptions('magnitude', data),
     },
   ]);
 
   const isLoading = results.some(i => i.isLoading);
 
-  const convertToOptions = (key: string, data: any) => {
-    setOptions(oldOptions => {
-      const newOptions = JSON.parse(JSON.stringify(oldOptions));
-      newOptions[key] = data.map((d: any) => ({
-        label: d.label,
-        value: String(d.id),
-      }));
-      return newOptions;
-    });
+  const options = {
+    activity: getFormattedOptions(results[0].data),
+    category: getFormattedOptions(results[1].data),
+    magnitude: getFormattedOptions(results[2].data),
   };
 
-  const setValue = (key: string, value: any) => {
-    setState(oldState => {
-      const newState = JSON.parse(JSON.stringify(oldState));
-      newState[key] = value;
-      return newState;
-    });
+  const setValue = (key: string, value: string | PointGeometry | Option[]) => {
+    setState(prevState => ({
+      ...prevState,
+      [key]: value,
+    }));
   };
 
-  const submit = async () => {
-    await createReport(language, {
-      activity: Number(state.activity[0].value),
-      category: Number(state.category[0].value),
-      problem_magnitude: Number(state.magnitude[0].value),
-      email: state.email,
-      name: state.name,
-      comment: state.comment,
-      geom: `{"type": "Point", "coordinates": [${state.geom.coordinates.x}, ${state.geom.coordinates.y}]}`,
-      related_trek: trekId,
-    })
+  const submit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    if (state.geom !== null) {
+      formData.set(
+        'geom',
+        `{"type": "Point", "coordinates": [${state.geom.coordinates.x}, ${state.geom.coordinates.y}]}`,
+      );
+    }
+    await createReport(language, formData)
       .then(async res => {
         const json = await res.json();
-        if (res.status === 400) {
-          const errors = Object.values(json)
-            // @ts-ignore
-            .map(v => v[0])
+        if (res.status < 200 || res.status > 299) {
+          const errors = [messages['search.anErrorOccured'], ...Object.values(json)]
+            .map(err => (Array.isArray(err) ? err[0] : err))
             .join('. ');
 
           throw new Error(errors);
         } else return json;
       })
       .then(() => {
-        setError('');
+        setError(null);
         setSubmitted(true);
+        document.querySelector('#details_report')?.scrollIntoView({
+          behavior: 'smooth',
+        });
       })
       .catch(localError => {
         console.error(localError);
-        setError(localError.message);
+        const [context, key, field] = (localError.message as string).split('.');
+        setError({ id: `${context}.${key}`, values: { field: `${context}.${field}` } });
       });
+    setCoordinatesReportTouched(false);
   };
 
-  return { state, isLoading, options, setValue, submit, submitted, error };
+  return {
+    state,
+    coordinatesReportTouched,
+    isLoading,
+    options,
+    setValue,
+    submit,
+    submitted,
+    error,
+  };
 };
 
 export default useReport;

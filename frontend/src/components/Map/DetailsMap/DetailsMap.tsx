@@ -1,15 +1,18 @@
 import { TouristicContent } from 'components/Map/DetailsMap/TouristicContent';
 import { LatLngBoundsExpression } from 'leaflet';
-import React from 'react';
+import React, { useContext } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 
 import {
   Coordinate2D,
   LineStringGeometry,
+  MultiLineStringGeometry,
+  MultiPointGeometry,
+  MultiPolygonGeometry,
   PointGeometry,
   PolygonGeometry,
 } from 'modules/interface';
@@ -17,6 +20,11 @@ import { useTileLayer } from 'hooks/useTileLayer';
 import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { TrekChildGeometry, TrekFamily } from 'modules/details/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
+import { VisibleSectionContext } from 'components/pages/details/VisibleSectionContext';
+import { colorPalette, desktopOnly, MAX_WIDTH_MOBILE } from 'stylesheet';
+import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
+import { Check } from 'components/Icons/Check';
+import { FormattedMessage } from 'react-intl';
 import { MapButton } from '../components/MapButton';
 
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
@@ -29,13 +37,22 @@ import { MapChildren, PointWithIcon } from './MapChildren';
 import DetailsMapDrawer from '../components/DetailsMapDrawer';
 
 export interface TouristicContentGeometry {
-  geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
-  pictogramUri: string;
+  geometry:
+    | PolygonGeometry
+    | MultiPolygonGeometry
+    | LineStringGeometry
+    | MultiLineStringGeometry
+    | PointGeometry
+    | MultiPointGeometry;
+  pictogramUri: string | null;
   name: string;
   id: string;
 }
 
 export type PropsType = {
+  access?: any;
+  experiences?: any;
+  courses?: any;
   poiPoints?: PointWithIcon[];
   touristicContentPoints?: TouristicContentGeometry[];
   trekGeometry?: Coordinate2D[];
@@ -58,12 +75,15 @@ export type PropsType = {
   trekId: number;
   advisedParking?: string;
   title?: string;
+  displayAltimetricProfile?: boolean;
 };
-
 export const DetailsMap: React.FC<PropsType> = props => {
+  const { reportVisibility, setReportVisibility } = useDetailsAndMapContext();
+
   const hideMap = () => {
     if (props.hideMap) {
       props.hideMap();
+      setReportVisibility(false);
     }
   };
 
@@ -79,6 +99,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
   } = useDetailsMap();
   const mapConfig = getMapConfig();
 
+  const { coordinatesReportTouched } = useDetailsAndMapContext();
+
   const center: LatLngBoundsExpression = [
     [props.bbox.corner1.y, props.bbox.corner1.x],
     [props.bbox.corner2.y, props.bbox.corner2.x],
@@ -89,11 +111,21 @@ export const DetailsMap: React.FC<PropsType> = props => {
     center,
   );
 
+  const { visibleSection } = useContext(VisibleSectionContext);
+  const mapWrapperProps = {
+    ...(visibleSection === 'report' &&
+      reportVisibility && {
+        className: 'with-report',
+      }),
+  };
+
+  const hasDrawer = Boolean(props.title);
+
   return (
-    <>
+    <MapWrapper {...mapWrapperProps}>
       <StyledMapContainer
+        className="mapContainer"
         scrollWheelZoom
-        style={{ height: '100%', width: '100%' }}
         maxZoom={
           navigator.onLine
             ? mapConfig.maximumZoomLevel
@@ -106,7 +138,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         attributionControl={false}
         whenCreated={setMapInstance}
         bounds={center}
-        hasDrawer={!!props.title}
+        hasDrawer={hasDrawer}
       >
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
         {props.trekGeometry && (
@@ -123,6 +155,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
           <TouristicContent contents={[props.eventGeometry]} type={'TOURISTIC_EVENT'} />
         )}
         <MapChildren
+          courses={props.courses}
+          experiences={props.experiences}
           parentId={props.trekId}
           poiPoints={props.poiPoints}
           touristicContentPoints={props.touristicContentPoints}
@@ -133,27 +167,39 @@ export const DetailsMap: React.FC<PropsType> = props => {
           poiMobileVisibility={poiMobileVisibility}
           referencePointsMobileVisibility={referencePointsMobileVisibility}
           touristicContentMobileVisibility={touristicContentMobileVisibility}
+          reportVisibility={reportVisibility}
         />
-        {props.trekGeoJSON && (
+        {props.displayAltimetricProfile === true && props.trekGeoJSON && (
           <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
         )}
         {isSatelliteLayerAvailable && (
-          <div className={`absolute ${props.title ? 'bottom-18' : 'bottom-6'} left-6 z-mapButton`}>
+          <div
+            className={`absolute ${
+              props.title ? 'bottom-18 desktop:bottom-6' : 'bottom-6'
+            } left-6 z-mapButton`}
+          >
             <MapLayerTypeToggleButton onToggleButtonClick={newType => updateTileLayer(newType)} />
           </div>
         )}
         {props.title && (
-          <div className="desktop:hidden">
+          <div className="desktop:hidden z-10">
             <DetailsMapDrawer
               title={props.title}
-              trekGeoJSON={props.trekGeoJSON}
+              trekGeoJSON={props.displayAltimetricProfile === true ? props.trekGeoJSON : ''}
               trekFamily={props.trekFamily}
               trekId={props.trekId}
             />
           </div>
         )}
+        <StyledCredits hasDrawer={hasDrawer}>{mapConfig.mapCredits}</StyledCredits>
       </StyledMapContainer>
-      <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
+      {reportVisibility && coordinatesReportTouched ? (
+        <MapButton className="desktop:hidden" icon={<Check size={20} />} onClick={hideMap}>
+          <FormattedMessage id="report.mapButton.validate" />
+        </MapButton>
+      ) : (
+        <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
+      )}
       <ControlSection
         className="desktop:hidden"
         trekChildrenVisibility={
@@ -177,14 +223,48 @@ export const DetailsMap: React.FC<PropsType> = props => {
         toggleReferencePointsVisibility={toggleReferencePointsVisibility}
         toggleTouristicContentVisibility={toggleTouristicContentVisibility}
       />
-      <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
-    </>
+    </MapWrapper>
   );
 };
 
+const StyledCredits = styled(Credits)<{ hasDrawer: boolean }>`
+  position: absolute;
+  bottom: ${props => (props.hasDrawer ? '70px' : '5px')};
+  right: 10px;
+  ${desktopOnly(css`
+    bottom: 0;
+    right: 0;
+  `)}
+  z-index: 1000;
+`;
+
+const MapWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &.with-report::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 3px solid ${colorPalette.red};
+    pointer-events: none;
+    @media (min-width: ${MAX_WIDTH_MOBILE}px) {
+      top: 2px;
+    }
+  }
+`;
+
 const StyledMapContainer = styled(MapContainer)<{ hasDrawer: boolean }>`
+  width: 100%;
+  height: 100%;
   .leaflet-bottom {
-    margin-bottom: ${props => (props.hasDrawer ? '40px' : 0)};
+    margin-bottom: ${props => (props.hasDrawer ? '70px' : 0)};
+    ${desktopOnly(css`
+      margin-bottom: 0;
+    `)}
   }
 `;
 

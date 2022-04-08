@@ -5,7 +5,8 @@
     "seeMore": "más información",
     "favorites": "Preferido",
     "goToSearch": "Busca",
-    "offline": "Contenidos sin conexión"
+    "offline": "Contenidos sin conexión",
+    "home": "Página"
   },
   "home": {
     "title": "Geotrek-senderismo",
@@ -27,7 +28,7 @@
     "title": "Busca",
     "description": "Descubre las excursiones que coinciden con tus deseos en nuestro motor de búsqueda",
     "book": "Reserva",
-    "resultsFound": "{count, plural, =0 {# Hemos encontrado el resultado} one {# Hemos encontrado el resultado} other {# Hemos encontrado los resultados}}",
+    "resultsFound": "{count, plural, =0 {# resultado encontrado} one {# resultado encontrado} other {# resultados encontrados}}",
     "resultsFoundShort": "{count, plural, =0 {# resultado} one {# resultado} other {# resultados}}",
     "forThe": "Para",
     "seeMap": "mostrar el mapa",
@@ -78,6 +79,14 @@
     "informationDesks": "Lugares de información",
     "practicalInformations": "Infos prácticas",
     "accessibility": "Accesibilidad",
+    "accessibility_level": "Nivel de accesibilidad",
+    "accessibility_covering": "Revestimiento",
+    "accessibility_exposure": "Exposición",
+    "accessibility_advice": "Consejo",
+    "accessibility_slope": "Pendiente",
+    "accessibility_width": "Largo",
+    "accessibility_signage": "Señalización",
+    "emergency_number": "Número de emergencia",
     "toSee": "Para ver también",
     "transport": "Transporte",
     "stationnement": "Estacionamiento",
@@ -133,15 +142,23 @@
   },
   "report": {
     "title": "Informar de un problema o un error",
+    "intro": "If you have found an error on this page or if you have noticed any problems during your hike, please report them to us here:",
     "activity": "Actividad",
     "category": "Categoría",
     "magnitude": "Amplitud del problema",
     "comment": "Comentarios",
     "email": "Email",
     "name": "Su nombre",
+    "image": "Image",
     "button": "Informar",
     "cancel": "Cancelar",
-    "success": "Gracias, se ha enviado la notificación."
+    "success": "Gracias, se ha enviado la notificación.",
+    "mapButton": {
+      "create": "Indicate the position of the report on the map",
+      "edit": "Edit the position of the report",
+      "validate": "Validate the position"
+    },
+    "GDPRDisclaimer": "These information will be used by <b>organism</b>, which commit to not sell your personal data to third parties. You have the right to read, modify, fix or delete your personal data (art. 34 de la loi \"Informatique et Libertés\"). To apply please send a mail to <a>contact</a>."
   },
   "error": {
     "missing": "El formulario no se ha completado"
@@ -165,7 +182,7 @@
   },
   "outdoorSite": {
     "accessFullTitle": "Acceso",
-    "coursesFullTitle": "Recorrido",
+    "coursesFullTitle": "Les {count} parcours à découvrir",
     "sitesFullTitle": "Los {count} lugares de práctica para descubrir"
   },
   "Wind": {

@@ -8,22 +8,25 @@ export type PropsType = {
 };
 
 export const MarkersWithIcon: React.FC<PropsType> = props => {
+  if (props.points === undefined) {
+    return null;
+  }
   return (
     <>
-      {props.points !== undefined &&
-        props.points.map(
-          point =>
-            point.location !== null && (
-              <HoverableMarker
-                id={point.id}
-                position={[point.location.y, point.location.x]}
-                pictogramUri={point.pictogramUri}
-                type={null}
-              >
-                <Tooltip>{point.name}</Tooltip>
-              </HoverableMarker>
-            ),
-        )}
+      {props.points.map(
+        point =>
+          point.location !== null && (
+            <HoverableMarker
+              id={point.id}
+              key={point.id}
+              position={[point.location.y, point.location.x]}
+              pictogramUri={point.pictogramUri}
+              type={null}
+            >
+              <Tooltip>{point.name}</Tooltip>
+            </HoverableMarker>
+          ),
+      )}
     </>
   );
 };

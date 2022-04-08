@@ -35,6 +35,7 @@ In json files, you can just override the primary keys you need. You have to over
   - `enableReport`: to enable report form in trek detail pages
   - `enableSearchByMap`: to enable searching by map displayed area (bbox)
   - `maxLengthTrekAllowedFor3DRando`: Maximum length of meters allowed to enable 3D mode in the current trek. Adjust this setting carefully as too long a trek could freeze your browser. If this setting is defined to `0` (or `mapSatelliteLayerUrl` from `map.json` is not set) the 3D mode feature is disabled for the whole application
+  - `minAltitudeDifferenceToDisplayElevationProfile`: Minimum altitude difference in meters required to display the elevation profile in the current trek
 
 - `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
 
@@ -148,6 +149,9 @@ You can include some HTML parts in the first and last sections of the homepage, 
 
 - `customization/html/homeTop.html`
 - `customization/html/homeBottom.html`
+
+You can also internationalize these templates by using the language code as a suffix (e.g. `homeTop-en.html` will be rendered only for the English interface). The application tries to find the localized template first, otherwise it tries the non-localized template, otherwise it displays nothing.
+NB: If you want to display a message common to all languages but not to a particular language (e.g. french), just create the template suffixed with its language code (e.g. `-fr.html`) and leave it empty, and voilà!
 
 See HTML examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html.
 

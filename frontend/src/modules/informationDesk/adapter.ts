@@ -2,6 +2,7 @@ import { adaptInformationDeskType } from 'modules/informationDeskType/adapter';
 import { InformationDesk, InformationDeskDictionnary, RawInformationDesk } from './interface';
 
 const adaptInformationDesk = (rawInformationDesk: RawInformationDesk): InformationDesk => ({
+  accessibility: rawInformationDesk.accessibility ?? null,
   name: rawInformationDesk.name,
   street: rawInformationDesk.street,
   postalCode: rawInformationDesk.postal_code,

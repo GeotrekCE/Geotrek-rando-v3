@@ -28,6 +28,15 @@ const Input = styled.input<Props>`
   ::placeholder {
     color: ${colorPalette.greySoft};
   }
+
+  &[readonly],
+  &[disabled] {
+    background-color: ${colorPalette.greySoft.DEFAULT};
+    cursor: not-allowed;
+    :hover {
+      border-color: ${props => getBorderColor(props.hasError, colorPalette.greySoft.DEFAULT)};
+    }
+  }
 `;
 Input.displayName = 'Input';
 

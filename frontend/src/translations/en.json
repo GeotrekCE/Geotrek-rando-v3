@@ -6,7 +6,7 @@
     "favorites": "Favorites",
     "goToSearch": "Search",
     "offline": "Offline content",
-    "accueil": "Home"
+    "home": "Home"
   },
   "home": {
     "title": "Geotrek-rando",
@@ -87,6 +87,14 @@
     "informationDesks": "Information desks",
     "practicalInformations": "Practical informations",
     "accessibility": "Accessibility",
+    "accessibility_level": "Accessibility level",
+    "accessibility_covering": "Coating",
+    "accessibility_exposure": "Exposure",
+    "accessibility_advice": "Advice",
+    "accessibility_slope": "Slope",
+    "accessibility_width": "Lenght",
+    "accessibility_signage": "Signage",
+    "emergency_number": "Emergency number",
     "toSee": "Discover more",
     "transport": "Transport",
     "stationnement": "Parking",
@@ -147,18 +155,26 @@
   },
   "report": {
     "title": "Report a problem or an error",
+    "intro": "If you have found an error on this page or if you have noticed any problems during your hike, please report them to us here:",
     "activity": "Activity",
     "category": "Category",
     "magnitude": "Magnitude of the problem",
     "comment": "Comments",
     "email": "Email",
     "name": "Your name",
+    "image": "Image",
     "button": "Report",
     "cancel": "Cancel",
-    "success": "Thank you, the report has been sent."
+    "success": "Thank you, the report has been sent.",
+    "mapButton": {
+      "create": "Indicate the position of the report on the map",
+      "edit": "Edit the position of the report",
+      "validate": "Validate the position"
+    },
+    "GDPRDisclaimer": "These information will be used by <b>organism</b>, which commit to not sell your personal data to third parties. You have the right to read, modify, fix or delete your personal data (art. 34 de la loi \"Informatique et Libertés\"). To apply please send a mail to <a>contact</a>."
   },
   "error": {
-    "missing": "The form is not complete"
+    "missing": "The \"{field}\" field is required."
   },
   "offline": {
     "number": "{count} content accessible without internet connection",
@@ -179,7 +195,7 @@
   },
   "outdoorSite": {
     "accessFullTitle": "Access",
-    "coursesFullTitle": "Courses",
+    "coursesFullTitle": "Les {count} parcours à découvrir",
     "sitesFullTitle": "The {count} places of practice to discover"
   },
   "Wind": {

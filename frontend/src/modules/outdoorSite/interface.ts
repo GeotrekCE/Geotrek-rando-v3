@@ -1,6 +1,16 @@
 import { Bbox, WebLink } from 'modules/details/interface';
-import { Attachment, RawAttachment, RawGeometryCollection, RawWebLink } from 'modules/interface';
-import { LineStringGeometry, PointGeometry, PolygonGeometry } from 'modules/interface';
+import {
+  Attachment,
+  LineStringGeometry,
+  MultiLineStringGeometry,
+  MultiPointGeometry,
+  MultiPolygonGeometry,
+  PointGeometry,
+  PolygonGeometry,
+  RawAttachment,
+  RawGeometryCollection,
+  RawWebLink,
+} from 'modules/interface';
 import { Activity } from '../activities/interface';
 import { InformationDesk } from '../informationDesk/interface';
 import { Label } from '../label/interface';
@@ -27,6 +37,7 @@ export interface RawOutdoorSite {
 }
 
 interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
+  accessibility?: string;
   advice?: string;
   ambiance?: string;
   children?: string;
@@ -58,7 +69,13 @@ export interface OutdoorSite {
   id: string;
   name: string;
   attachments: Attachment[];
-  geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
+  geometry:
+    | PolygonGeometry
+    | MultiPolygonGeometry
+    | LineStringGeometry
+    | MultiLineStringGeometry
+    | PointGeometry
+    | MultiPointGeometry;
   type: 'OUTDOOR_SITE';
   thumbnailUris: string[];
   themes: string[];
@@ -70,6 +87,7 @@ export interface OutdoorSite {
 }
 
 export interface OutdoorSiteDetails extends OutdoorSite {
+  accessibility?: string | null;
   description?: string;
   descriptionTeaser?: string;
   bbox: Bbox;

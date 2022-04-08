@@ -1,5 +1,7 @@
 import Textarea from 'components/Textarea';
 import { ChangeEvent, FunctionComponent } from 'react';
+import styled from 'styled-components';
+import { colorPalette } from 'stylesheet';
 import { Error, Label, Row } from './TextareaRow.style';
 
 interface Props {
@@ -10,7 +12,7 @@ interface Props {
   field: {
     name?: string;
     onBlur?: () => void;
-    onChange: (
+    onChange?: (
       event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
     ) => void;
     value?: string;
@@ -24,10 +26,19 @@ const TextareaRow: FunctionComponent<Props> = props => {
   return (
     <Row>
       {label !== undefined && <Label>{label}</Label>}
-      <Textarea disabled={disabled} placeholder={placeholder} hasError={hasError} {...field} />
+      <CustomizedTextarea
+        disabled={disabled}
+        placeholder={placeholder}
+        hasError={hasError}
+        {...field}
+      />
       {hasError && <Error>{error}</Error>}
     </Row>
   );
 };
+
+const CustomizedTextarea = styled(Textarea)`
+  border-color: ${colorPalette.primary1} !important;
+`;
 
 export default TextareaRow;

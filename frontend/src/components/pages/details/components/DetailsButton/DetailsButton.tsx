@@ -17,8 +17,14 @@ export const DetailsButton: React.FC<DetailsButtonProps> = ({ url, onClick, chil
       </button>
     );
   }
+  const linkProps = !url.startsWith('#')
+    ? {
+        target: '_blank',
+        rel: 'noopener no referrer',
+      }
+    : {};
   return (
-    <a href={url} onClick={onClick} target="_blank" rel="noopener noreferrer" className={className}>
+    <a href={url} onClick={onClick} className={className} {...linkProps}>
       {children}
     </a>
   );

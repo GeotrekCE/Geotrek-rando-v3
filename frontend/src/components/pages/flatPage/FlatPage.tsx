@@ -75,7 +75,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
               <Breadcrumb
                 breadcrumb={[
                   {
-                    label: intl.formatMessage({ id: 'header.accueil' }),
+                    label: intl.formatMessage({ id: 'header.home' }),
                     link: '/',
                   },
                   { label: flatPage?.title },

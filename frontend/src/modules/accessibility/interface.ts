@@ -9,6 +9,10 @@ export interface Accessibility {
   name: string;
   pictogramUri: string;
 }
+export interface AccessibilityLevel {
+  id: number;
+  name: { [language: string]: string };
+}
 
 export interface AccessibilityDictionnary {
   [id: string]: Accessibility;

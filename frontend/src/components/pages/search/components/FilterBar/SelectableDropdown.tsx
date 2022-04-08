@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 
 /**
- * We disable unsafe return beccause the lib react-select types it styles with any
+ * We disable unsafe return because the lib react-select types it styles with any
  */
 
 import { ReactElement } from 'react';
@@ -17,6 +17,7 @@ interface Props {
   setFilterSelectedOptions: (options: Option[]) => void;
   selectedFilters: Option[];
   filterType: 'SINGLE' | 'MULTIPLE';
+  closeMenuOnSelect?: boolean;
 }
 
 const colourStyles = {
@@ -97,13 +98,12 @@ export const SelectableDropdown = (props: Props): ReactElement => {
   const intl = useIntl();
   return (
     <Select
-      options={props.options}
+      closeMenuOnSelect={false}
+      {...props}
       isClearable={props.filterType === 'SINGLE'}
       isSearchable={false}
-      name={props.name}
       placeholder={intl.formatMessage({ id: props.placeholder })}
       classNamePrefix="select"
-      closeMenuOnSelect={false}
       isMulti={props.filterType === 'MULTIPLE' ? true : undefined}
       styles={colourStyles}
       value={props.selectedFilters}

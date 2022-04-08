@@ -1,5 +1,7 @@
 import Input from 'components/Input';
 import { ChangeEvent, FunctionComponent } from 'react';
+import styled from 'styled-components';
+import { colorPalette } from 'stylesheet';
 import { Error, Label, Row } from './InputRow.style';
 
 interface Props {
@@ -9,9 +11,10 @@ interface Props {
   disabled?: boolean;
   placeholder?: string;
   field: {
+    accept?: string;
     name?: string;
     onBlur?: () => void;
-    onChange: (
+    onChange?: (
       event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
     ) => void;
     value?: string;
@@ -25,7 +28,7 @@ const InputRow: FunctionComponent<Props> = props => {
   return (
     <Row>
       {label !== undefined && <Label>{label}</Label>}
-      <Input
+      <CustomizedInput
         disabled={disabled}
         type={type}
         placeholder={placeholder}
@@ -36,5 +39,11 @@ const InputRow: FunctionComponent<Props> = props => {
     </Row>
   );
 };
+
+const CustomizedInput = styled(Input)`
+  height: auto;
+  padding: 6px;
+  border-color: ${colorPalette.primary1} !important;
+`;
 
 export default InputRow;

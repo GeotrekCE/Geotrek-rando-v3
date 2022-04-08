@@ -246,6 +246,14 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                         titleId="details.recommandations"
                         className={marginDetailsChild}
                       >
+                        {outdoorCourseContent.accessibility && (
+                          <div style={{ marginBottom: 20 }}>
+                            <strong className="font-bold">
+                              <FormattedMessage id="details.accessibility" /> :{' '}
+                            </strong>
+                            {outdoorCourseContent.accessibility}
+                          </div>
+                        )}
                         {outdoorCourseContent.advice && (
                           <DetailsAdvice
                             text={outdoorCourseContent.advice}
@@ -296,6 +304,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                     className="desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar"
                   >
                     <DetailsMapDynamicComponent
+                      experiences={outdoorCourseContent?.children}
                       type="DESKTOP"
                       outdoorGeometry={{
                         geometry: outdoorCourseContent.geometry,
@@ -339,6 +348,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                 displayState={mobileMapState}
               >
                 <DetailsMapDynamicComponent
+                  experiences={outdoorCourseContent?.children}
                   type="MOBILE"
                   outdoorGeometry={{
                     geometry: outdoorCourseContent.geometry,

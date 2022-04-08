@@ -1,12 +1,20 @@
 import { Bbox } from 'modules/details/interface';
 import {
   Attachment,
+  LineStringGeometry,
+  MultiLineStringGeometry,
+  MultiPointGeometry,
+  MultiPolygonGeometry,
+  PointGeometry,
+  PolygonGeometry,
   RawAttachment,
   RawLineStringGeometry2D,
+  RawMultiLineStringGeometry,
+  RawMultiPointGeometry2D,
+  RawMultiPolygonGeometry,
   RawPointGeometry2D,
   RawPolygonGeometry,
 } from 'modules/interface';
-import { LineStringGeometry, PointGeometry, PolygonGeometry } from 'modules/interface';
 import { Source } from '../source/interface';
 import { TouristicContent } from '../touristicContent/interface';
 import { TouristicEventType } from '../touristicEventType/interface';
@@ -15,7 +23,13 @@ export interface RawTouristicEvent {
   id: string;
   attachments: RawAttachment[];
   name: string;
-  geometry: RawPolygonGeometry | RawLineStringGeometry2D | RawPointGeometry2D;
+  geometry:
+    | RawPolygonGeometry
+    | RawMultiPolygonGeometry
+    | RawLineStringGeometry2D
+    | RawMultiLineStringGeometry
+    | RawPointGeometry2D
+    | RawMultiPointGeometry2D;
   themes?: number[];
   cities: string[];
   type: number;
@@ -55,7 +69,13 @@ export interface TouristicEvent {
   type: 'TOURISTIC_EVENT';
   name: string;
   attachments: Attachment[];
-  geometry: PointGeometry | PolygonGeometry | LineStringGeometry;
+  geometry:
+    | PolygonGeometry
+    | MultiPolygonGeometry
+    | LineStringGeometry
+    | MultiLineStringGeometry
+    | PointGeometry
+    | MultiPointGeometry;
   thumbnailUris: string[];
   themes: string[];
   place: string;
