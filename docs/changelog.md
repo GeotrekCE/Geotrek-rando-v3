@@ -8,7 +8,7 @@
 * Filter treks by labels (#418)
 * Allow to hide elevation profile on small elevation treks, with new ``minAltitudeDifferenceToDisplayElevationProfile`` setting (#552)
 * Display negative elevation on trek pages (#574)
-* Add accessibility fields on trek detail pages (#536)
+* Add new accessibility fields on trek, outdoor and services detail pages (#536)
 * Improve report forms design with location on map and photos (#453)
 * Improve outdoor pages detail pages with displaying subobjects on map (#542)
 * Allow to translate HTML templates in Homepage (#617)
