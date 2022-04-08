@@ -140,6 +140,9 @@ const useReport = ({ startPoint }: Props) => {
       .then(() => {
         setError(null);
         setSubmitted(true);
+        document.querySelector('#details_report')?.scrollIntoView({
+          behavior: 'smooth',
+        });
       })
       .catch(localError => {
         console.error(localError);

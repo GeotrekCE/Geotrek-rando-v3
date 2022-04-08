@@ -77,7 +77,7 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
       {(isMobile || displayForm) && (
         <Loader loaded={!isLoading}>
           {submitted ? (
-            <div>
+            <div className="text-lg bg-easyOK p-4 text-white rounded-lg">
               <FormattedMessage id={'report.success'} />
             </div>
           ) : (
