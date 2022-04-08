@@ -50,6 +50,7 @@ export interface TouristicContentGeometry {
 }
 
 export type PropsType = {
+  access?: any;
   experiences?: any;
   courses?: any;
   poiPoints?: PointWithIcon[];

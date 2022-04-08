@@ -17,7 +17,7 @@ import { AccessChildrenSection } from 'components/pages/site/components/AccessCh
 import { OutdoorCoursesChildrenSection } from 'components/pages/site/components/OutdoorCoursesChildrenSection';
 import { OutdoorSiteChildrenSection } from 'components/pages/site/components/OutdoorSiteChildrenSection';
 import React, { useMemo, useRef } from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'react-loader';
 import { useMediaPredicate } from 'react-media-hook';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
@@ -184,19 +184,6 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                       />
                     </div>
 
-                    {Number(outdoorSiteContent?.access?.length) > 0 && (
-                      <div ref={setAccessRef} id="details_trekChildren_ref">
-                        <AccessChildrenSection
-                          accessChildren={outdoorSiteContent?.access}
-                          id={id}
-                          title={intl.formatMessage(
-                            { id: 'outdoorSite.accessFullTitle' },
-                            { count: Number(outdoorSiteContent?.access?.length) },
-                          )}
-                        />
-                      </div>
-                    )}
-
                     {Number(outdoorSiteContent?.pois?.length) > 0 && (
                       <div ref={setPoisRef} id="details_poi_ref">
                         <DetailsCardSection
@@ -262,6 +249,15 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                         titleId="details.recommandations"
                         className={marginDetailsChild}
                       >
+                        {outdoorSiteContent.accessibility && (
+                          <div style={{ marginBottom: 20 }}>
+                            <strong className="font-bold">
+                              <FormattedMessage id="details.accessibility" /> :{' '}
+                            </strong>
+                            {outdoorSiteContent.accessibility}
+                          </div>
+                        )}
+
                         {!!outdoorSiteContent.advice && (
                           <DetailsAdvice
                             text={outdoorSiteContent.advice}
@@ -285,6 +281,19 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                       </DetailsSection>
                     )}
 
+                    {Number(outdoorSiteContent?.access?.length) > 0 && (
+                      <div ref={setAccessRef} id="details_trekChildren_ref">
+                        <AccessChildrenSection
+                          accessChildren={outdoorSiteContent?.access}
+                          id={id}
+                          title={intl.formatMessage(
+                            { id: 'outdoorSite.accessFullTitle' },
+                            { count: Number(outdoorSiteContent?.access?.length) },
+                          )}
+                        />
+                      </div>
+                    )}
+
                     {Number(outdoorSiteContent?.informationDesks?.length) > 0 && (
                       <div ref={setPracticalInformationsRef} id="details_practicalInformationRef">
                         <DetailsSection
@@ -294,6 +303,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                         >
                           {outdoorSiteContent?.informationDesks?.map((informationDesk, i) => (
                             <DetailsInformationDesk
+                              accessibility={informationDesk.accessibility}
                               key={i}
                               className={
                                 i < Number(outdoorSiteContent?.informationDesks?.length) - 1

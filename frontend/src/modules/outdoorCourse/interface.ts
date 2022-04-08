@@ -29,6 +29,7 @@ export interface RawOutdoorCourse {
 }
 
 interface RawOutdoorCourseDetailsProperties extends RawOutdoorCourse {
+  accessibility?: string;
   advice?: string;
   children?: string;
   description?: string;
@@ -51,6 +52,7 @@ export interface RawOutdoorCourseDetails extends RawOutdoorCourse {
 }
 
 export interface OutdoorCourse {
+  accessibility?: string;
   id: string;
   name: string;
   attachments: Attachment[];

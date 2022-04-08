@@ -37,7 +37,7 @@ export const OutdoorCoursesChildrenSection: React.FC<DetailsChildrenSectionProps
           <div key={trekChild.id} className={`mb-6 mx-1`}>
             <ResultCard
               id={`${trekChild.id}`}
-              hoverId={`DETAILS-OUTDOOR_SITE_CHILDREN-${trekChild.id}`}
+              hoverId={trekChild.id}
               type="OUTDOOR_COURSE"
               place={''}
               title={trekChild.name}

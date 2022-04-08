@@ -136,12 +136,12 @@ export interface Reservation {
 
 export interface Details extends DetailsHtml {
   accessbilityLevel: AccessibilityLevel | null;
-  accessibility_advice?: string;
-  accessibility_covering?: string;
-  accessibility_exposure?: string;
-  accessibility_signage?: string;
-  accessibility_slope?: string;
-  accessibility_width?: string;
+  accessibility_advice: string | null;
+  accessibility_covering: string | null;
+  accessibility_exposure: string | null;
+  accessibility_signage: string | null;
+  accessibility_slope: string | null;
+  accessibility_width: string | null;
   attachmentsAccessibility: AccessibilityAttachment[];
   id: number;
   practice: Activity | null;

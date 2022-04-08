@@ -15,34 +15,37 @@ import PhoneIcon from './PhoneIcon';
 const Accessibility = ({ details, language }: { details: Details; language: string }) => {
   const accessibilityCodeNumber = getGlobalConfig().accessibilityCodeNumber;
 
-  const shouldPictureRowBeDisplayed =
-    sum(
-      ['slope', 'width', 'signage']
-        .filter(k => (details as any)[`accessibility_${k}`])
-        .map(k => {
-          const attachments = details.attachmentsAccessibility.filter(
-            a => a.info_accessibility === k,
-          );
-          return attachments.length;
-        }),
-    ) > 0;
+  const shouldPictureRowBeDisplayed = details.attachmentsAccessibility
+    ? sum(
+        ['slope', 'width', 'signage']
+          .filter(k => (details as any)[`accessibility_${k}`])
+          .map(k => {
+            const attachments = details.attachmentsAccessibility.filter(
+              a => a.info_accessibility === k,
+            );
+            return attachments.length;
+          }),
+      ) > 0
+    : false;
 
   return (
     <div>
       {details.disabledInfrastructure && (
         <HtmlText>{parse(details.disabledInfrastructure)}</HtmlText>
       )}
-      {details.accessibilities.length > 0 && (
+      {details.accessibilities && details.accessibilities.length > 0 && (
         <div className="flex">
-          {details.accessibilities.map((accessibility, i) => (
-            <StyledRemoteIconInformation
-              key={i}
-              iconUri={accessibility.pictogramUri}
-              className="mr-6 mt-3 desktop:mt-4 text-primary"
-            >
-              {accessibility.name}
-            </StyledRemoteIconInformation>
-          ))}
+          {details.accessibilities
+            .filter(e => e)
+            .map((accessibility, i) => (
+              <StyledRemoteIconInformation
+                key={i}
+                iconUri={accessibility.pictogramUri}
+                className="mr-6 mt-3 desktop:mt-4 text-primary"
+              >
+                {accessibility.name}
+              </StyledRemoteIconInformation>
+            ))}
         </div>
       )}
       {details.accessbilityLevel && (
@@ -67,57 +70,58 @@ const Accessibility = ({ details, language }: { details: Details; language: stri
         </Section>
       )}
       <Columns>
-        {['slope', 'width', 'signage']
-          .filter(k => (details as any)[`accessibility_${k}`])
-          .map(k => {
-            let attachments = details.attachmentsAccessibility.filter(
-              a => a.info_accessibility === k,
-            );
-            if (attachments.length === 0) {
-              attachments = [
-                {
-                  url: getGlobalConfig().fallbackImageUri,
-                } as AccessibilityAttachment,
-              ];
-            }
+        {details.attachmentsAccessibility &&
+          ['slope', 'width', 'signage']
+            .filter(k => (details as any)[`accessibility_${k}`])
+            .map(k => {
+              let attachments = details.attachmentsAccessibility.filter(
+                a => a.info_accessibility === k,
+              );
+              if (attachments.length === 0) {
+                attachments = [
+                  {
+                    url: getGlobalConfig().fallbackImageUri,
+                  } as AccessibilityAttachment,
+                ];
+              }
 
-            return (
-              <div key={k}>
-                {shouldPictureRowBeDisplayed && (
-                  <Modal>
-                    {({ isFullscreen, toggleFullscreen }) => (
-                      <div id="details_cover" className={!isFullscreen ? '' : 'h-full'}>
-                        <StyledSmallCarousel isFullscreen={isFullscreen}>
-                          {attachments.map((attachment, i) => (
-                            <div className="relative" key={attachment.uuid}>
-                              {isFullscreen && (
-                                <Legend>
-                                  {attachment.author} - {attachment.legend}
-                                </Legend>
-                              )}
-                              <CardSingleImage
-                                key={i}
-                                src={attachment.url}
-                                height={200}
-                                onClick={toggleFullscreen}
-                              />
-                            </div>
-                          ))}
-                        </StyledSmallCarousel>
-                      </div>
-                    )}
-                  </Modal>
-                )}
+              return (
+                <div key={k}>
+                  {shouldPictureRowBeDisplayed && (
+                    <Modal>
+                      {({ isFullscreen, toggleFullscreen }) => (
+                        <div id="details_cover" className={!isFullscreen ? '' : 'h-full'}>
+                          <StyledSmallCarousel isFullscreen={isFullscreen}>
+                            {attachments.map((attachment, i) => (
+                              <div className="relative" key={attachment.uuid}>
+                                {isFullscreen && (
+                                  <Legend>
+                                    {attachment.author} - {attachment.legend}
+                                  </Legend>
+                                )}
+                                <CardSingleImage
+                                  key={i}
+                                  src={attachment.url}
+                                  height={200}
+                                  onClick={toggleFullscreen}
+                                />
+                              </div>
+                            ))}
+                          </StyledSmallCarousel>
+                        </div>
+                      )}
+                    </Modal>
+                  )}
 
-                <h2>
-                  <FormattedMessage id={`details.accessibility_${k}`} /> :
-                </h2>
-                <p>
-                  <HtmlText>{parse((details as any)[`accessibility_${k}`])}</HtmlText>
-                </p>
-              </div>
-            );
-          })}
+                  <h2>
+                    <FormattedMessage id={`details.accessibility_${k}`} /> :
+                  </h2>
+                  <p>
+                    <HtmlText>{parse((details as any)[`accessibility_${k}`])}</HtmlText>
+                  </p>
+                </div>
+              );
+            })}
       </Columns>
       {['accessibility_covering', 'accessibility_exposure', 'accessibility_advice']
         .filter(k => (details as any)[k])

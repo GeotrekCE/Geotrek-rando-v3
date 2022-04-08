@@ -308,6 +308,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           >
                             {details.informationDesks.map((informationDesk, i) => (
                               <DetailsInformationDesk
+                                accessibility={informationDesk.accessibility}
                                 key={i}
                                 className={
                                   i < details.informationDesks.length - 1

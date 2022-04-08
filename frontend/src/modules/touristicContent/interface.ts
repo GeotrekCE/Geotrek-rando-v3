@@ -44,6 +44,7 @@ export interface RawTouristicContentPopupResult {
 }
 
 interface RawTouristicContentDetailsProperties extends RawTouristicContent {
+  accessibility?: string;
   description: string;
   source: number[];
   contact: string;
@@ -65,6 +66,7 @@ export interface RawTouristicContentDetails {
 }
 
 export interface TouristicContent {
+  accessibility?: string | null;
   id: string;
   name: string;
   descriptionTeaser: string;

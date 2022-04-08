@@ -1,6 +1,7 @@
 import { InformationDeskType, RawInformationDeskType } from 'modules/informationDeskType/interface';
 
 export interface RawInformationDesk {
+  accessibility: string;
   id: number;
   name: string;
   street: string;
@@ -15,6 +16,7 @@ export interface RawInformationDesk {
 }
 
 export interface InformationDesk {
+  accessibility: string;
   name: string;
   street: string;
   postalCode: string;

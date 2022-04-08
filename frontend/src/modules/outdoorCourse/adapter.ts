@@ -69,6 +69,7 @@ export const adaptOutdoorCourseDetails = ({
       cityDictionnary,
     })[0],
     // then we add missing fields
+    accessibility: rawOutdoorCourseDetails.properties.accessibility,
     description: rawOutdoorCourseDetails.properties.description,
     bbox: {
       corner1: { x: rawOutdoorCourseDetails.bbox[0], y: rawOutdoorCourseDetails.bbox[1] },
