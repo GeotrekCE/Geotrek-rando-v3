@@ -1,9 +1,7 @@
 # Changelog
 
-3.8.0 (unreleased)
+3.8.0 (2022-04-08)
 ------------------
-
-Geotrek-admin minimal version : 2.76.0 ? (because of accessibility fields and others ?)
 
 **🚀 New features**
 
