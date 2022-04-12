@@ -5,10 +5,10 @@ import { HeaderConfig } from './interface';
 
 export const getHeaderConfig = (): HeaderConfig => {
   const {
-    publicRuntimeConfig: { header },
+    publicRuntimeConfig: { header, headerTopHtml, headerBottomHtml },
   } = getNextConfig();
 
-  return header;
+  return { ...header, headerTopHtml, headerBottomHtml };
 };
 
 export const getDefaultLanguage = (): string => {

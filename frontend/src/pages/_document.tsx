@@ -1,10 +1,11 @@
 import { getGlobalConfig } from 'modules/utils/api.config';
+import parse from 'html-react-parser';
 import getNextConfig from 'next/config';
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 const {
-  publicRuntimeConfig: { style, colors },
+  publicRuntimeConfig: { style, colors, scriptsHeaderHtml, scriptsFooterHtml },
 } = getNextConfig();
 
 export default class MyDocument extends Document {
@@ -72,11 +73,13 @@ export default class MyDocument extends Document {
   --color-red: ${String(colors.red || '#FF7373')};
   --color-redMarker: ${String(colors.redMarker || '#E83737')};
 }
-              `}</style>
+`}</style>
+          {scriptsHeaderHtml !== undefined && <>{parse(scriptsHeaderHtml)}</>}
         </Head>
         <body>
           <Main />
           <NextScript />
+          {scriptsFooterHtml !== undefined && <>{parse(scriptsFooterHtml)}</>}
         </body>
       </Html>
     );
