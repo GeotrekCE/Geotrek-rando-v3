@@ -119,7 +119,6 @@ Object {
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
-                        id="verticalMenu_subsection"
                         target="_blank"
                       >
                         NationalPark
@@ -130,7 +129,6 @@ Object {
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
-                        id="verticalMenu_subsection"
                         target="_blank"
                       >
                         Maisons du Parc
@@ -141,7 +139,6 @@ Object {
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
-                        id="verticalMenu_subsection"
                         target="_blank"
                       >
                         Informations utiles
@@ -150,11 +147,11 @@ Object {
                   </div>
                 </div>
               </div>
-              <span
+              <a
                 class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
               >
                 Favoris
-              </span>
+              </a>
               <div
                 class="accordion"
                 data-accordion-component="Accordion"
@@ -170,12 +167,12 @@ Object {
                     role="heading"
                   >
                     <div
-                      aria-controls="accordion__panel-raa-1"
+                      aria-controls="accordion__panel-raa-0"
                       aria-disabled="false"
                       aria-expanded="false"
                       class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
                       data-accordion-component="AccordionItemButton"
-                      id="accordion__heading-raa-1"
+                      id="accordion__heading-raa-0"
                       role="button"
                       tabindex="0"
                     >
@@ -203,37 +200,34 @@ Object {
                     </div>
                   </div>
                   <div
-                    aria-labelledby="accordion__heading-raa-1"
+                    aria-labelledby="accordion__heading-raa-0"
                     class=""
                     data-accordion-component="AccordionItemPanel"
                     hidden=""
-                    id="accordion__panel-raa-1"
+                    id="accordion__panel-raa-0"
                     role="region"
                   >
                     <a
-                      class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full"
+                      class="Link__StyledLink-sc-oanbk8-0 htOOkH block text-Mobile-C2 py-2 text-greyDarkColored"
                       href="/"
                     >
-                      <p
-                        class="text-Mobile-C2 py-2 text-greyDarkColored"
-                        id="verticalMenu_subsection"
-                      >
-                        FR
-                      </p>
+                      FR
                     </a>
                   </div>
                 </div>
               </div>
-              <span
+              <a
                 class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
+                href="/search"
               >
                 Recherche
-              </span>
-              <span
+              </a>
+              <a
                 class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
+                href="/offline"
               >
                 Contenus hors ligne
-              </span>
+              </a>
             </nav>
           </div>
           <div>
@@ -384,7 +378,6 @@ Object {
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
-                      id="verticalMenu_subsection"
                       target="_blank"
                     >
                       NationalPark
@@ -395,7 +388,6 @@ Object {
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
-                      id="verticalMenu_subsection"
                       target="_blank"
                     >
                       Maisons du Parc
@@ -406,7 +398,6 @@ Object {
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
-                      id="verticalMenu_subsection"
                       target="_blank"
                     >
                       Informations utiles
@@ -415,11 +406,11 @@ Object {
                 </div>
               </div>
             </div>
-            <span
+            <a
               class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
             >
               Favoris
-            </span>
+            </a>
             <div
               class="accordion"
               data-accordion-component="Accordion"
@@ -435,12 +426,12 @@ Object {
                   role="heading"
                 >
                   <div
-                    aria-controls="accordion__panel-raa-1"
+                    aria-controls="accordion__panel-raa-0"
                     aria-disabled="false"
                     aria-expanded="false"
                     class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
                     data-accordion-component="AccordionItemButton"
-                    id="accordion__heading-raa-1"
+                    id="accordion__heading-raa-0"
                     role="button"
                     tabindex="0"
                   >
@@ -468,37 +459,34 @@ Object {
                   </div>
                 </div>
                 <div
-                  aria-labelledby="accordion__heading-raa-1"
+                  aria-labelledby="accordion__heading-raa-0"
                   class=""
                   data-accordion-component="AccordionItemPanel"
                   hidden=""
-                  id="accordion__panel-raa-1"
+                  id="accordion__panel-raa-0"
                   role="region"
                 >
                   <a
-                    class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full"
+                    class="Link__StyledLink-sc-oanbk8-0 htOOkH block text-Mobile-C2 py-2 text-greyDarkColored"
                     href="/"
                   >
-                    <p
-                      class="text-Mobile-C2 py-2 text-greyDarkColored"
-                      id="verticalMenu_subsection"
-                    >
-                      FR
-                    </p>
+                    FR
                   </a>
                 </div>
               </div>
             </div>
-            <span
+            <a
               class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
+              href="/search"
             >
               Recherche
-            </span>
-            <span
+            </a>
+            <a
               class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
+              href="/offline"
             >
               Contenus hors ligne
-            </span>
+            </a>
           </nav>
         </div>
         <div>

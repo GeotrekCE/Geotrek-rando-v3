@@ -20,19 +20,6 @@ export interface InlineMenuProps {
   supportedLanguages: string[];
 }
 
-const DropDownButton = React.forwardRef<
-  HTMLAnchorElement,
-  { text: string; onClick: () => void; href?: string; className: string; target?: string }
->(({ text, onClick, href, className, target }, ref) => {
-  return (
-    <a className={className} href={href} onClick={onClick} ref={ref} target={target}>
-      {text}
-    </a>
-  );
-});
-
-DropDownButton.displayName = 'DropDownButton';
-
 const InlineMenu: React.FC<InlineMenuProps> = ({
   className,
   sections,
@@ -64,12 +51,13 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
             {subSections.map(menuItem => {
               return (
                 <NextLink href={menuItem.url} passHref locale={language} key={menuItem.title}>
-                  <DropDownButton
+                  <a
                     className={optionClassName}
-                    text={menuItem.title}
                     onClick={() => flatpageDropdownRef?.current?.hide()}
                     target={isInternalFlatPageUrl(menuItem.url) ? undefined : '_blank'}
-                  ></DropDownButton>
+                  >
+                    {menuItem.title}
+                  </a>
                 </NextLink>
               );
             })}
@@ -99,20 +87,17 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
               <ChevronDown size={16} className="flex-shrink-0 ml-1" />
             </SimpleDropdown.DropdownTrigger>
             <SimpleDropdown.DropdownContent className={menuClassName}>
-              {supportedLanguages.map(language => (
+              {supportedLanguages.map(locale => (
                 <Link
                   href={router.asPath}
                   passHref
-                  locale={language}
+                  locale={locale}
                   replace
                   scroll={false}
-                  key={language}
+                  key={locale}
+                  className={optionClassName}
                 >
-                  <DropDownButton
-                    className={optionClassName}
-                    text={language.toUpperCase()}
-                    onClick={() => languageDropdownRef?.current?.hide()}
-                  ></DropDownButton>
+                  {locale.toUpperCase()}
                 </Link>
               ))}
             </SimpleDropdown.DropdownContent>
