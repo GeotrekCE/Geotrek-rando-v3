@@ -64,7 +64,8 @@
         "trekChildren": "Fasi",
         "poi": "Eredità",
         "referencePoints": "Riferimenti",
-        "touristicContent": "Vicino"
+        "touristicContent": "Vicino",
+        "informationDesks": "Luoghi di informazione"
       }
     }
   },
@@ -128,7 +129,8 @@
     "speaker": "Stakeholder",
     "targetAudience": "Pubblico di riferimento",
     "practicalInfo": "Informazioni pratiche",
-    "booking": "Prenotazione"
+    "booking": "Prenotazione",
+    "centerOnMap": "Center on map"
   },
   "touristicContent": {
     "contact": "Contatto",

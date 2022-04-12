@@ -1,6 +1,6 @@
 import { TouristicContent } from 'components/Map/DetailsMap/TouristicContent';
 import { LatLngBoundsExpression } from 'leaflet';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import styled, { css } from 'styled-components';
@@ -25,6 +25,7 @@ import { colorPalette, desktopOnly, MAX_WIDTH_MOBILE } from 'stylesheet';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { Check } from 'components/Icons/Check';
 import { FormattedMessage } from 'react-intl';
+import { InformationDesk } from 'modules/informationDesk/interface';
 import { MapButton } from '../components/MapButton';
 
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
@@ -76,6 +77,7 @@ export type PropsType = {
   advisedParking?: string;
   title?: string;
   displayAltimetricProfile?: boolean;
+  informationDesks?: InformationDesk[];
 };
 export const DetailsMap: React.FC<PropsType> = props => {
   const { reportVisibility, setReportVisibility } = useDetailsAndMapContext();
@@ -96,20 +98,28 @@ export const DetailsMap: React.FC<PropsType> = props => {
     toggleReferencePointsVisibility,
     touristicContentMobileVisibility,
     toggleTouristicContentVisibility,
+    informationDeskMobileVisibility,
+    toggleInformationDeskVisibility,
   } = useDetailsMap();
   const mapConfig = getMapConfig();
 
-  const { coordinatesReportTouched } = useDetailsAndMapContext();
+  const { mapCenter: center, coordinatesReportTouched } = useDetailsAndMapContext();
 
-  const center: LatLngBoundsExpression = [
+  const bounds: LatLngBoundsExpression = [
     [props.bbox.corner1.y, props.bbox.corner1.x],
     [props.bbox.corner2.y, props.bbox.corner2.x],
   ];
 
-  const { isSatelliteLayerAvailable, setMapInstance, updateTileLayer } = useTileLayer(
+  const { isSatelliteLayerAvailable, map, setMapInstance, updateTileLayer } = useTileLayer(
     props.trekId,
-    center,
+    bounds,
   );
+
+  useEffect(() => {
+    if (map && center) {
+      map.setView(center);
+    }
+  }, [map, center]);
 
   const { visibleSection } = useContext(VisibleSectionContext);
   const mapWrapperProps = {
@@ -137,7 +147,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         zoomControl={props.type === 'DESKTOP'}
         attributionControl={false}
         whenCreated={setMapInstance}
-        bounds={center}
+        bounds={bounds}
         hasDrawer={hasDrawer}
       >
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
@@ -167,7 +177,9 @@ export const DetailsMap: React.FC<PropsType> = props => {
           poiMobileVisibility={poiMobileVisibility}
           referencePointsMobileVisibility={referencePointsMobileVisibility}
           touristicContentMobileVisibility={touristicContentMobileVisibility}
+          informationDeskMobileVisibility={informationDeskMobileVisibility}
           reportVisibility={reportVisibility}
+          informationDesks={props.informationDesks}
         />
         {props.displayAltimetricProfile === true && props.trekGeoJSON && (
           <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
@@ -201,7 +213,6 @@ export const DetailsMap: React.FC<PropsType> = props => {
         <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       )}
       <ControlSection
-        className="desktop:hidden"
         trekChildrenVisibility={
           props.trekChildrenGeometry && props.trekChildrenGeometry.length > 0
             ? trekChildrenMobileVisibility
@@ -218,10 +229,18 @@ export const DetailsMap: React.FC<PropsType> = props => {
             ? touristicContentMobileVisibility
             : null
         }
+        informationDeskMobileVisibility={
+          props.informationDesks &&
+          props.informationDesks.filter(({ longitude, latitude }) => longitude && latitude).length >
+            0
+            ? informationDeskMobileVisibility
+            : null
+        }
         toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
         togglePoiVisibility={togglePoiVisibility}
         toggleReferencePointsVisibility={toggleReferencePointsVisibility}
         toggleTouristicContentVisibility={toggleTouristicContentVisibility}
+        toggleInformationDeskVisibility={toggleInformationDeskVisibility}
       />
     </MapWrapper>
   );

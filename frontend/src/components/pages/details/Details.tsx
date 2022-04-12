@@ -307,25 +307,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             className={marginDetailsChild}
                           >
                             {details.informationDesks.map((informationDesk, i) => (
-                              <DetailsInformationDesk
-                                accessibility={informationDesk.accessibility}
-                                key={i}
-                                className={
-                                  i < details.informationDesks.length - 1
-                                    ? 'mb-8 desktop:mb-12'
-                                    : undefined
-                                }
-                                name={informationDesk.name}
-                                street={informationDesk.street}
-                                postalCode={informationDesk.postalCode}
-                                municipality={informationDesk.municipality}
-                                website={informationDesk.website}
-                                email={informationDesk.email}
-                                phone={informationDesk.phone}
-                                description={informationDesk.description}
-                                photoUrl={informationDesk.photoUrl}
-                                type={informationDesk.type}
-                              />
+                              <DetailsInformationDesk key={i} {...informationDesk} />
                             ))}
                           </DetailsSection>
                         )}
@@ -522,6 +504,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         }))}
                       trekId={Number(id)}
                       displayAltimetricProfile={displayAltimetricProfile}
+                      informationDesks={details.informationDesks}
                     />
                   </div>
                 )}
@@ -577,6 +560,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   hideMap={hideMobileMap}
                   trekId={Number(id)}
                   displayAltimetricProfile={displayAltimetricProfile}
+                  informationDesks={details.informationDesks}
                 />
               </MobileMapContainer>
             )}
