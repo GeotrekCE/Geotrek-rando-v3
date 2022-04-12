@@ -193,7 +193,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                         return (
                           <ResultCard
                             type={searchResult.type}
-                            key={searchResult.title}
+                            key={`trek-${searchResult.id}`}
                             id={`${searchResult.id}`}
                             hoverId={getHoverId(searchResult)}
                             place={searchResult.place}
@@ -215,7 +215,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                         return (
                           <ResultCard
                             type={searchResult.type}
-                            key={searchResult.name}
+                            key={`touristicContent-${searchResult.id}`}
                             id={`${searchResult.id}`}
                             hoverId={getHoverId(searchResult)}
                             place={searchResult.place}
@@ -237,7 +237,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                         return (
                           <ResultCard
                             type={searchResult.type}
-                            key={searchResult.name}
+                            key={`outdoor-${searchResult.id}`}
                             id={`${searchResult.id}`}
                             hoverId={getHoverId(searchResult)}
                             place={searchResult.place}
@@ -259,8 +259,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                         return (
                           <ResultCard
                             type={searchResult.type}
-                            key={searchResult.name}
-                            id={`https://formatjs.io/docs/react-intl/api#formatdate${searchResult.id}`}
+                            key={`touristicEvent-${searchResult.id}`}
+                            id={`${searchResult.id}`}
                             hoverId={getHoverId(searchResult)}
                             place={searchResult.place}
                             title={searchResult.name}
