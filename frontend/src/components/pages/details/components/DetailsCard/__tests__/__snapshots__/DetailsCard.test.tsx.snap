@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="DetailsCard__DetailsCardContainer-sc-1paweiv-0 jZvBUu border border-solid border-greySoft rounded-card
+        class="sc-bqyKOL jnBCfI border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -26,7 +26,7 @@ Object {
                 style="width: 100%; height: 100%;"
               >
                 <img
-                  class="DetailsCard__CardSingleImage-sc-1paweiv-1 fzeiag"
+                  class="sc-kstqJO cpcdgp"
                   height="200"
                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                 />
@@ -34,7 +34,7 @@ Object {
             </div>
           </div>
           <div
-            class="CardIcon__Wrapper-sc-cv6h96-0 bXmPlv absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
+            class="sc-bdfBQB kFdGRg absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
             color="#AA397D"
           >
             <div
@@ -57,7 +57,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="utils__HtmlText-sc-16l79i-0 DetailsCard__TruncatedHtmlText-sc-1paweiv-2 jgscmn ewDPit text-greyDarkColored"
+              class="sc-dQoVA sc-hBEYId bfjBXp bXrNA text-greyDarkColored"
             >
               <div>
                 <span>
@@ -76,7 +76,7 @@ Object {
     </div>
     <div>
       <div
-        class="DetailsCard__DetailsCardContainer-sc-1paweiv-0 jZvBUu border border-solid border-greySoft rounded-card
+        class="sc-bqyKOL jnBCfI border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -96,11 +96,11 @@ Object {
                 style="width: 100%; height: 100%;"
               >
                 <div
-                  class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY slick-initialized"
+                  class="slick-slider sc-hKgJUU jgBzgR slick-initialized"
                   dir="ltr"
                 >
                   <div
-                    class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__SmallStyledArrow-sc-1tck7ng-2 Carousel__SmallStyledLeftArrow-sc-1tck7ng-5 hBtEpW gaMWOH clvhZH slick-arrow slick-prev"
+                    class="sc-eCstlR sc-jSgvzq sc-fubCzh iIDDLN iBGNoE jigmQT slick-arrow slick-prev"
                   />
                   <div
                     class="slick-list"
@@ -125,7 +125,7 @@ Object {
                       >
                         <div>
                           <img
-                            class="DetailsCard__CardSingleImage-sc-1paweiv-1 fzeiag"
+                            class="sc-kstqJO cpcdgp"
                             height="200"
                             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                             style="width: 100%; display: inline-block;"
@@ -149,7 +149,7 @@ Object {
                       >
                         <div>
                           <img
-                            class="DetailsCard__CardSingleImage-sc-1paweiv-1 fzeiag"
+                            class="sc-kstqJO cpcdgp"
                             height="200"
                             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                             style="width: 100%; display: inline-block;"
@@ -167,10 +167,10 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__SmallStyledArrow-sc-1tck7ng-2 Carousel__SmallStyledRightArrow-sc-1tck7ng-4 hBtEpW gaMWOH eYPdUK slick-arrow slick-next"
+                    class="sc-eCstlR sc-jSgvzq sc-iBPTik iIDDLN iBGNoE jdjHAl slick-arrow slick-next"
                   />
                   <div
-                    class="Carousel__StyledDots-sc-1tck7ng-8 Carousel__SmallStyledDots-sc-1tck7ng-9 fOVzLR slick-dots"
+                    class="sc-kEjbQP sc-iqHYmW dqcwUK slick-dots"
                   >
                     <ul>
                       <li
@@ -194,7 +194,7 @@ Object {
             </div>
           </div>
           <div
-            class="CardIcon__Wrapper-sc-cv6h96-0 bXmPlv absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
+            class="sc-bdfBQB kFdGRg absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
             color="#AA397D"
           >
             <div
@@ -217,7 +217,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="utils__HtmlText-sc-16l79i-0 DetailsCard__TruncatedHtmlText-sc-1paweiv-2 jgscmn ewDPit text-greyDarkColored"
+              class="sc-dQoVA sc-hBEYId bfjBXp bXrNA text-greyDarkColored"
             >
               <div>
                 <span>
@@ -237,7 +237,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="DetailsCard__DetailsCardContainer-sc-1paweiv-0 jZvBUu border border-solid border-greySoft rounded-card
+      class="sc-bqyKOL jnBCfI border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -257,7 +257,7 @@ Object {
               style="width: 100%; height: 100%;"
             >
               <img
-                class="DetailsCard__CardSingleImage-sc-1paweiv-1 fzeiag"
+                class="sc-kstqJO cpcdgp"
                 height="200"
                 src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
               />
@@ -265,7 +265,7 @@ Object {
           </div>
         </div>
         <div
-          class="CardIcon__Wrapper-sc-cv6h96-0 bXmPlv absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
+          class="sc-bdfBQB kFdGRg absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
           color="#AA397D"
         >
           <div
@@ -288,7 +288,7 @@ Object {
           class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
         >
           <div
-            class="utils__HtmlText-sc-16l79i-0 DetailsCard__TruncatedHtmlText-sc-1paweiv-2 jgscmn ewDPit text-greyDarkColored"
+            class="sc-dQoVA sc-hBEYId bfjBXp bXrNA text-greyDarkColored"
           >
             <div>
               <span>
@@ -365,7 +365,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="DetailsCard__DetailsCardContainer-sc-1paweiv-0 jZvBUu border border-solid border-greySoft rounded-card
+        class="sc-bqyKOL jnBCfI border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -385,7 +385,7 @@ Object {
                 style="width: 100%; height: 100%;"
               >
                 <img
-                  class="DetailsCard__CardSingleImage-sc-1paweiv-1 fzeiag"
+                  class="sc-kstqJO cpcdgp"
                   height="200"
                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                 />
@@ -393,7 +393,7 @@ Object {
             </div>
           </div>
           <div
-            class="CardIcon__Wrapper-sc-cv6h96-0 bXmPlv absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
+            class="sc-bdfBQB kFdGRg absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
             color="#AA397D"
           >
             <div
@@ -416,7 +416,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="utils__HtmlText-sc-16l79i-0 DetailsCard__TruncatedHtmlText-sc-1paweiv-2 jgscmn ewDPit text-greyDarkColored"
+              class="sc-dQoVA sc-hBEYId bfjBXp bXrNA text-greyDarkColored"
             >
               <div>
                 <span>
@@ -435,7 +435,7 @@ Object {
     </div>
     <div>
       <div
-        class="DetailsCard__DetailsCardContainer-sc-1paweiv-0 jZvBUu border border-solid border-greySoft rounded-card
+        class="sc-bqyKOL jnBCfI border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -455,11 +455,11 @@ Object {
                 style="width: 100%; height: 100%;"
               >
                 <div
-                  class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY slick-initialized"
+                  class="slick-slider sc-hKgJUU jgBzgR slick-initialized"
                   dir="ltr"
                 >
                   <div
-                    class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__SmallStyledArrow-sc-1tck7ng-2 Carousel__SmallStyledLeftArrow-sc-1tck7ng-5 hBtEpW gaMWOH clvhZH slick-arrow slick-prev"
+                    class="sc-eCstlR sc-jSgvzq sc-fubCzh iIDDLN iBGNoE jigmQT slick-arrow slick-prev"
                   />
                   <div
                     class="slick-list"
@@ -484,7 +484,7 @@ Object {
                       >
                         <div>
                           <img
-                            class="DetailsCard__CardSingleImage-sc-1paweiv-1 fzeiag"
+                            class="sc-kstqJO cpcdgp"
                             height="200"
                             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                             style="width: 100%; display: inline-block;"
@@ -508,7 +508,7 @@ Object {
                       >
                         <div>
                           <img
-                            class="DetailsCard__CardSingleImage-sc-1paweiv-1 fzeiag"
+                            class="sc-kstqJO cpcdgp"
                             height="200"
                             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                             style="width: 100%; display: inline-block;"
@@ -526,10 +526,10 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__SmallStyledArrow-sc-1tck7ng-2 Carousel__SmallStyledRightArrow-sc-1tck7ng-4 hBtEpW gaMWOH eYPdUK slick-arrow slick-next"
+                    class="sc-eCstlR sc-jSgvzq sc-iBPTik iIDDLN iBGNoE jdjHAl slick-arrow slick-next"
                   />
                   <div
-                    class="Carousel__StyledDots-sc-1tck7ng-8 Carousel__SmallStyledDots-sc-1tck7ng-9 fOVzLR slick-dots"
+                    class="sc-kEjbQP sc-iqHYmW dqcwUK slick-dots"
                   >
                     <ul>
                       <li
@@ -553,7 +553,7 @@ Object {
             </div>
           </div>
           <div
-            class="CardIcon__Wrapper-sc-cv6h96-0 bXmPlv absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
+            class="sc-bdfBQB kFdGRg absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
             color="#AA397D"
           >
             <div
@@ -576,7 +576,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="utils__HtmlText-sc-16l79i-0 DetailsCard__TruncatedHtmlText-sc-1paweiv-2 jgscmn ewDPit text-greyDarkColored"
+              class="sc-dQoVA sc-hBEYId bfjBXp bXrNA text-greyDarkColored"
             >
               <div>
                 <span>
@@ -596,7 +596,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="DetailsCard__DetailsCardContainer-sc-1paweiv-0 jZvBUu border border-solid border-greySoft rounded-card
+      class="sc-bqyKOL jnBCfI border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -616,11 +616,11 @@ Object {
               style="width: 100%; height: 100%;"
             >
               <div
-                class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY slick-initialized"
+                class="slick-slider sc-hKgJUU jgBzgR slick-initialized"
                 dir="ltr"
               >
                 <div
-                  class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__SmallStyledArrow-sc-1tck7ng-2 Carousel__SmallStyledLeftArrow-sc-1tck7ng-5 hBtEpW gaMWOH clvhZH slick-arrow slick-prev"
+                  class="sc-eCstlR sc-jSgvzq sc-fubCzh iIDDLN iBGNoE jigmQT slick-arrow slick-prev"
                 />
                 <div
                   class="slick-list"
@@ -645,7 +645,7 @@ Object {
                     >
                       <div>
                         <img
-                          class="DetailsCard__CardSingleImage-sc-1paweiv-1 fzeiag"
+                          class="sc-kstqJO cpcdgp"
                           height="200"
                           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                           style="width: 100%; display: inline-block;"
@@ -669,7 +669,7 @@ Object {
                     >
                       <div>
                         <img
-                          class="DetailsCard__CardSingleImage-sc-1paweiv-1 fzeiag"
+                          class="sc-kstqJO cpcdgp"
                           height="200"
                           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                           style="width: 100%; display: inline-block;"
@@ -687,10 +687,10 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__SmallStyledArrow-sc-1tck7ng-2 Carousel__SmallStyledRightArrow-sc-1tck7ng-4 hBtEpW gaMWOH eYPdUK slick-arrow slick-next"
+                  class="sc-eCstlR sc-jSgvzq sc-iBPTik iIDDLN iBGNoE jdjHAl slick-arrow slick-next"
                 />
                 <div
-                  class="Carousel__StyledDots-sc-1tck7ng-8 Carousel__SmallStyledDots-sc-1tck7ng-9 fOVzLR slick-dots"
+                  class="sc-kEjbQP sc-iqHYmW dqcwUK slick-dots"
                 >
                   <ul>
                     <li
@@ -714,7 +714,7 @@ Object {
           </div>
         </div>
         <div
-          class="CardIcon__Wrapper-sc-cv6h96-0 bXmPlv absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
+          class="sc-bdfBQB kFdGRg absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
           color="#AA397D"
         >
           <div
@@ -737,7 +737,7 @@ Object {
           class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
         >
           <div
-            class="utils__HtmlText-sc-16l79i-0 DetailsCard__TruncatedHtmlText-sc-1paweiv-2 jgscmn ewDPit text-greyDarkColored"
+            class="sc-dQoVA sc-hBEYId bfjBXp bXrNA text-greyDarkColored"
           >
             <div>
               <span>

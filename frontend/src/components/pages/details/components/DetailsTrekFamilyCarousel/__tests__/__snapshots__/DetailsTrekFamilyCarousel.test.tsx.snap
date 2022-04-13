@@ -10,7 +10,7 @@ Object {
         dir="ltr"
       >
         <div
-          class="DetailsTrekFamilyCarousel__StyledArrow-sc-x6kdlh-0 DetailsTrekFamilyCarousel__StyledLeftArrow-sc-x6kdlh-2 eWbzeZ dhuPMG slick-arrow slick-prev slick-disabled"
+          class="sc-dlfnuX sc-eCstlR iEzKbz fPgiUf slick-arrow slick-prev slick-disabled"
         />
         <div
           class="slick-list"
@@ -33,7 +33,7 @@ Object {
                   tabindex="-1"
                 >
                   <a
-                    class="Link__StyledLink-sc-oanbk8-0 htOOkH"
+                    class="sc-bdfBQB btWAAI"
                     href="/trek/596-Boucle-de-malade?parentId=501"
                   >
                     <div
@@ -65,7 +65,7 @@ Object {
                   tabindex="-1"
                 >
                   <a
-                    class="Link__StyledLink-sc-oanbk8-0 htOOkH"
+                    class="sc-bdfBQB btWAAI"
                     href="/trek/604-Deuxieme-etape?parentId=501"
                   >
                     <div
@@ -97,7 +97,7 @@ Object {
                   tabindex="-1"
                 >
                   <a
-                    class="Link__StyledLink-sc-oanbk8-0 htOOkH"
+                    class="sc-bdfBQB btWAAI"
                     href="/trek/2-Troisieme-etape?parentId=501"
                   >
                     <div
@@ -129,7 +129,7 @@ Object {
                   tabindex="-1"
                 >
                   <a
-                    class="Link__StyledLink-sc-oanbk8-0 htOOkH"
+                    class="sc-bdfBQB btWAAI"
                     href="/trek/4-Quatrieme-etape?parentId=501"
                   >
                     <div
@@ -161,7 +161,7 @@ Object {
                   tabindex="-1"
                 >
                   <a
-                    class="Link__StyledLink-sc-oanbk8-0 htOOkH"
+                    class="sc-bdfBQB btWAAI"
                     href="/trek/5-Encore-une-etape?parentId=501"
                   >
                     <div
@@ -193,7 +193,7 @@ Object {
                   tabindex="-1"
                 >
                   <a
-                    class="Link__StyledLink-sc-oanbk8-0 htOOkH"
+                    class="sc-bdfBQB btWAAI"
                     href="/trek/6-C-est-la-fin-!?parentId=501"
                   >
                     <div
@@ -214,7 +214,7 @@ Object {
           </div>
         </div>
         <div
-          class="DetailsTrekFamilyCarousel__StyledArrow-sc-x6kdlh-0 DetailsTrekFamilyCarousel__StyledRightArrow-sc-x6kdlh-1 eWbzeZ dNvxLm slick-arrow slick-next"
+          class="sc-dlfnuX sc-hKgJUU iEzKbz fHRbop slick-arrow slick-next"
         />
       </div>
     </div>
@@ -225,7 +225,7 @@ Object {
       dir="ltr"
     >
       <div
-        class="DetailsTrekFamilyCarousel__StyledArrow-sc-x6kdlh-0 DetailsTrekFamilyCarousel__StyledLeftArrow-sc-x6kdlh-2 eWbzeZ dhuPMG slick-arrow slick-prev slick-disabled"
+        class="sc-dlfnuX sc-eCstlR iEzKbz fPgiUf slick-arrow slick-prev slick-disabled"
       />
       <div
         class="slick-list"
@@ -248,7 +248,7 @@ Object {
                 tabindex="-1"
               >
                 <a
-                  class="Link__StyledLink-sc-oanbk8-0 htOOkH"
+                  class="sc-bdfBQB btWAAI"
                   href="/trek/596-Boucle-de-malade?parentId=501"
                 >
                   <div
@@ -280,7 +280,7 @@ Object {
                 tabindex="-1"
               >
                 <a
-                  class="Link__StyledLink-sc-oanbk8-0 htOOkH"
+                  class="sc-bdfBQB btWAAI"
                   href="/trek/604-Deuxieme-etape?parentId=501"
                 >
                   <div
@@ -312,7 +312,7 @@ Object {
                 tabindex="-1"
               >
                 <a
-                  class="Link__StyledLink-sc-oanbk8-0 htOOkH"
+                  class="sc-bdfBQB btWAAI"
                   href="/trek/2-Troisieme-etape?parentId=501"
                 >
                   <div
@@ -344,7 +344,7 @@ Object {
                 tabindex="-1"
               >
                 <a
-                  class="Link__StyledLink-sc-oanbk8-0 htOOkH"
+                  class="sc-bdfBQB btWAAI"
                   href="/trek/4-Quatrieme-etape?parentId=501"
                 >
                   <div
@@ -376,7 +376,7 @@ Object {
                 tabindex="-1"
               >
                 <a
-                  class="Link__StyledLink-sc-oanbk8-0 htOOkH"
+                  class="sc-bdfBQB btWAAI"
                   href="/trek/5-Encore-une-etape?parentId=501"
                 >
                   <div
@@ -408,7 +408,7 @@ Object {
                 tabindex="-1"
               >
                 <a
-                  class="Link__StyledLink-sc-oanbk8-0 htOOkH"
+                  class="sc-bdfBQB btWAAI"
                   href="/trek/6-C-est-la-fin-!?parentId=501"
                 >
                   <div
@@ -429,7 +429,7 @@ Object {
         </div>
       </div>
       <div
-        class="DetailsTrekFamilyCarousel__StyledArrow-sc-x6kdlh-0 DetailsTrekFamilyCarousel__StyledRightArrow-sc-x6kdlh-1 eWbzeZ dNvxLm slick-arrow slick-next"
+        class="sc-dlfnuX sc-hKgJUU iEzKbz fHRbop slick-arrow slick-next"
       />
     </div>
   </div>,
