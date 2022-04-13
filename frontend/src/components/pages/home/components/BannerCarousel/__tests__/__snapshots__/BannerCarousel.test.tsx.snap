@@ -14,7 +14,7 @@ Object {
           dir="ltr"
         >
           <div
-            class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-sc-q9y4d7-0 BannerCarousel__StyledLeftArrow-sc-q9y4d7-2 hBtEpW fuiwDG nGhjU MQxHa slick-arrow slick-prev"
+            class="sc-gsTEea sc-hKgJUU sc-kEjbQP sc-crrszt cWbnrH gUGcfP hLBskb hrDxCl slick-arrow slick-prev"
           />
           <div
             class="slick-list"
@@ -111,7 +111,7 @@ Object {
             </div>
           </div>
           <div
-            class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-sc-q9y4d7-0 BannerCarousel__StyledRightArrow-sc-q9y4d7-1 hBtEpW fuiwDG nGhjU gSQeFB slick-arrow slick-next"
+            class="sc-gsTEea sc-hKgJUU sc-kEjbQP sc-iqHYmW cWbnrH gUGcfP hLBskb ksDbZr slick-arrow slick-next"
           />
         </div>
       </div>
@@ -127,7 +127,7 @@ Object {
         dir="ltr"
       >
         <div
-          class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-sc-q9y4d7-0 BannerCarousel__StyledLeftArrow-sc-q9y4d7-2 hBtEpW fuiwDG nGhjU MQxHa slick-arrow slick-prev"
+          class="sc-gsTEea sc-hKgJUU sc-kEjbQP sc-crrszt cWbnrH gUGcfP hLBskb hrDxCl slick-arrow slick-prev"
         />
         <div
           class="slick-list"
@@ -224,7 +224,7 @@ Object {
           </div>
         </div>
         <div
-          class="Carousel__StyledArrow-sc-1tck7ng-1 Carousel__LargeStyledArrow-sc-1tck7ng-3 BannerCarousel__BannerStyledArrow-sc-q9y4d7-0 BannerCarousel__StyledRightArrow-sc-q9y4d7-1 hBtEpW fuiwDG nGhjU gSQeFB slick-arrow slick-next"
+          class="sc-gsTEea sc-hKgJUU sc-kEjbQP sc-iqHYmW cWbnrH gUGcfP hLBskb ksDbZr slick-arrow slick-next"
         />
       </div>
     </div>
