@@ -13,7 +13,7 @@ Object {
           id="details_sensitiveAreaTitle"
         >
           <div
-            class="DetailsSensitiveArea__ColorLegendIcon-sc-1rfsxds-0 kZyAlQ"
+            class="sc-dlfnuX dDiEiS"
             color="#AAAAA"
           />
           <span
@@ -26,7 +26,7 @@ Object {
           class="mt-1 desktop:mt-2"
         >
           <div
-            class="utils__HtmlText-sc-16l79i-0 jgscmn"
+            class="sc-gsTEea dPWxIN"
           >
             <p>
               Cette zone est très sensible
@@ -75,7 +75,7 @@ Object {
             Contact :
           </div>
           <div
-            class="utils__HtmlText-sc-16l79i-0 jgscmn"
+            class="sc-gsTEea dPWxIN"
           >
             <h2>
               Une personne a contacter
@@ -86,7 +86,7 @@ Object {
           class="mt-1 desktop:mt-2"
         >
           <a
-            class="Link__StyledLink-sc-oanbk8-0 htOOkH"
+            class="sc-bdfBQB btWAAI"
             href="http://ensavoirplusici.com"
           >
             En savoir plus
@@ -104,7 +104,7 @@ Object {
         id="details_sensitiveAreaTitle"
       >
         <div
-          class="DetailsSensitiveArea__ColorLegendIcon-sc-1rfsxds-0 kZyAlQ"
+          class="sc-dlfnuX dDiEiS"
           color="#AAAAA"
         />
         <span
@@ -117,7 +117,7 @@ Object {
         class="mt-1 desktop:mt-2"
       >
         <div
-          class="utils__HtmlText-sc-16l79i-0 jgscmn"
+          class="sc-gsTEea dPWxIN"
         >
           <p>
             Cette zone est très sensible
@@ -166,7 +166,7 @@ Object {
           Contact :
         </div>
         <div
-          class="utils__HtmlText-sc-16l79i-0 jgscmn"
+          class="sc-gsTEea dPWxIN"
         >
           <h2>
             Une personne a contacter
@@ -177,7 +177,7 @@ Object {
         class="mt-1 desktop:mt-2"
       >
         <a
-          class="Link__StyledLink-sc-oanbk8-0 htOOkH"
+          class="sc-bdfBQB btWAAI"
           href="http://ensavoirplusici.com"
         >
           En savoir plus

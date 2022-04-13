@@ -9,7 +9,7 @@ Object {
         class="flex flex-row w-full desktop:w-auto"
       >
         <input
-          class="Inputstyle__Input-sc-m8ywjr-0 CustomizedInputstyle__CustomizedInput-sc-hiqqyy-0 gPhzkr dQXJob"
+          class="sc-bdfBQB sc-gsTEea gmBSSb cuGgZO"
           placeholder="Rechercher..."
           type="text"
           value=""
@@ -48,7 +48,7 @@ Object {
       class="flex flex-row w-full desktop:w-auto"
     >
       <input
-        class="Inputstyle__Input-sc-m8ywjr-0 CustomizedInputstyle__CustomizedInput-sc-hiqqyy-0 gPhzkr dQXJob"
+        class="sc-bdfBQB sc-gsTEea gmBSSb cuGgZO"
         placeholder="Rechercher..."
         type="text"
         value=""
