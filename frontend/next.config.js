@@ -97,4 +97,7 @@ module.exports = withPlugins(plugins, {
     manifest: getConfig('manifest.json', true),
     locales: getLocales(mergedHeaderConfig.menu.supportedLanguages),
   },
+  compiler: {
+    styledComponents: true,
+  },
 });
