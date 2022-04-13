@@ -21,7 +21,7 @@ export const fetchTouristicContent = (
   }).then(r => r.data);
 
 const fieldsParamsDetails = {
-  fields: `${fieldsParams.fields},description,source,contact,email,website,cities,themes,types,pdf,approved,accessibility`,
+  fields: `${fieldsParams.fields},description,source,contact,email,website,cities,themes,types,pdf,approved,accessibility,practical_info`,
   format: 'geojson',
 };
 
