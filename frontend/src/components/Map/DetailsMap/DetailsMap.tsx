@@ -111,10 +111,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
     [props.bbox.corner2.y, props.bbox.corner2.x],
   ];
 
-  const { isSatelliteLayerAvailable, map, setMapInstance, updateTileLayer } = useTileLayer(
-    props.trekId,
-    bounds,
-  );
+  const { map, setMapInstance } = useTileLayer(props.trekId, bounds);
 
   useEffect(() => {
     if (map && center) {
@@ -153,6 +150,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
       >
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
         <ResetView />
+        <MapLayerTypeToggleButton />
         {props.trekGeometry && (
           <TrekMarkersAndCourse
             arrivalLocation={props.arrivalLocation}
@@ -185,15 +183,6 @@ export const DetailsMap: React.FC<PropsType> = props => {
         />
         {props.displayAltimetricProfile === true && props.trekGeoJSON && (
           <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
-        )}
-        {isSatelliteLayerAvailable && (
-          <div
-            className={`leaflet-bottom leaflet-left absolute ${
-              props.title ? 'bottom-18 desktop:bottom-6' : 'bottom-6'
-            } left-6 z-mapButton`}
-          >
-            <MapLayerTypeToggleButton onToggleButtonClick={newType => updateTileLayer(newType)} />
-          </div>
         )}
         {props.title && (
           <div className="desktop:hidden z-10">

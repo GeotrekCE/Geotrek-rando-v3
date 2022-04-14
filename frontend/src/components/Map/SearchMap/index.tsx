@@ -38,7 +38,7 @@ const SearchMap: React.FC<PropsType> = props => {
 
   const mapConfig = getMapConfig();
 
-  const { isSatelliteLayerAvailable, setMapInstance, updateTileLayer } = useTileLayer();
+  const { setMapInstance } = useTileLayer();
 
   return (
     <>
@@ -46,13 +46,9 @@ const SearchMap: React.FC<PropsType> = props => {
         {props.onMove && <MoveHandler onMove={props.onMove} />}
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
         <ResetView />
+        <MapLayerTypeToggleButton />
         <SearchMapChildrens {...props} />
       </MapContainer>
-      {isSatelliteLayerAvailable && (
-        <div className="absolute bottom-6 left-6 z-mapButton">
-          <MapLayerTypeToggleButton onToggleButtonClick={updateTileLayer} />
-        </div>
-      )}
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
       <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>

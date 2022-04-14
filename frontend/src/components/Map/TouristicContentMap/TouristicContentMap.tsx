@@ -50,10 +50,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
     [props.bbox.corner2.y, props.bbox.corner2.x],
   ];
 
-  const { isSatelliteLayerAvailable, setMapInstance, updateTileLayer } = useTileLayer(
-    Number(props.touristicContentGeometry.id),
-    center,
-  );
+  const { setMapInstance } = useTileLayer(Number(props.touristicContentGeometry.id), center);
 
   const hideMap = () => {
     if (props.hideMap) {
@@ -82,16 +79,11 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
       >
         <ResetView />
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
+        <MapLayerTypeToggleButton />
         {props.touristicContentGeometry !== null && (
           <TouristicContent
             contents={[props.touristicContentGeometry as TouristicContentGeometry]}
           />
-        )}
-
-        {isSatelliteLayerAvailable && (
-          <div className="absolute bottom-6 left-6 z-mapButton">
-            <MapLayerTypeToggleButton onToggleButtonClick={newType => updateTileLayer(newType)} />
-          </div>
         )}
       </MapContainer>
       <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
