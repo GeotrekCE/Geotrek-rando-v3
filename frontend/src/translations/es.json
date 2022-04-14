@@ -64,7 +64,8 @@
         "referencePoints": "Puntos de referencia",
         "touristicContent": "Cercano",
         "informationDesks": "Lugares de información"
-      }
+      },
+      "resetView": "Centrarse la mapa"
     }
   },
   "details": {

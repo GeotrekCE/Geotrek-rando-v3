@@ -36,6 +36,7 @@ import { ControlSection } from '../components/ControlSection';
 import { useDetailsMap } from './useDetailsMap';
 import { MapChildren, PointWithIcon } from './MapChildren';
 import DetailsMapDrawer from '../components/DetailsMapDrawer';
+import { ResetView } from '../components/ResetView';
 
 export interface TouristicContentGeometry {
   geometry:
@@ -151,6 +152,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         hasDrawer={hasDrawer}
       >
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
+        <ResetView />
         {props.trekGeometry && (
           <TrekMarkersAndCourse
             arrivalLocation={props.arrivalLocation}
@@ -186,7 +188,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         )}
         {isSatelliteLayerAvailable && (
           <div
-            className={`absolute ${
+            className={`leaflet-bottom leaflet-left absolute ${
               props.title ? 'bottom-18 desktop:bottom-6' : 'bottom-6'
             } left-6 z-mapButton`}
           >

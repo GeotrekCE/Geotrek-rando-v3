@@ -64,7 +64,8 @@
         "referencePoints": "Landmarken",
         "touristicContent": "Close by",
         "informationDesks": "Orte der Information"
-      }
+      },
+      "resetView": "Karte zentrieren"
     }
   },
   "details": {

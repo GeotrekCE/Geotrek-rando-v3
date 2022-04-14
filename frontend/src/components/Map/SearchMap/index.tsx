@@ -13,6 +13,7 @@ import { MapButton } from '../components/MapButton';
 import { FilterButton } from '../components/FilterButton';
 import { getMapConfig } from '../config';
 import { Credits } from '../components/Credits';
+import { ResetView } from '../components/ResetView';
 
 export type PropsType = {
   segments?: { x: number; y: number }[];
@@ -44,6 +45,7 @@ const SearchMap: React.FC<PropsType> = props => {
       <MapContainer whenCreated={setMapInstance} type={props.type}>
         {props.onMove && <MoveHandler onMove={props.onMove} />}
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
+        <ResetView />
         <SearchMapChildrens {...props} />
       </MapContainer>
       {isSatelliteLayerAvailable && (

@@ -21,6 +21,7 @@ import { TouristicContent } from '../DetailsMap/TouristicContent';
 import { getMapConfig } from '../config';
 import { Credits } from '../components/Credits';
 import { TouristicContentGeometry } from '../DetailsMap/DetailsMap';
+import { ResetView } from '../components/ResetView';
 
 interface TouristicContentGeometryNullable {
   geometry:
@@ -79,6 +80,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
         bounds={center}
         attributionControl={false}
       >
+        <ResetView />
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
         {props.touristicContentGeometry !== null && (
           <TouristicContent

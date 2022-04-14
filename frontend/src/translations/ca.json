@@ -64,7 +64,8 @@
         "referencePoints": "Landmarks",
         "touristicContent": "Close by",
         "informationDesks": "Llocs d’informació"
-      }
+      },
+      "resetView": "Recenter el mapa"
     }
   },
   "details": {

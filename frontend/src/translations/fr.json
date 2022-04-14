@@ -67,7 +67,8 @@
         "referencePoints": "Repères",
         "touristicContent": "À proximité",
         "informationDesks": "Lieux de renseignement"
-      }
+      },
+      "resetView": "Recentrer la carte"
     }
   },
   "details": {
