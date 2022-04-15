@@ -26,7 +26,7 @@ import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapC
 import { Check } from 'components/Icons/Check';
 import { FormattedMessage } from 'react-intl';
 import { InformationDesk } from 'modules/informationDesk/interface';
-import { MapButton } from '../components/MapButton';
+import { BackButton } from '../components/BackButton';
 
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
 import { getMapConfig } from '../config';
@@ -149,6 +149,13 @@ export const DetailsMap: React.FC<PropsType> = props => {
         hasDrawer={hasDrawer}
       >
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
+        {reportVisibility && coordinatesReportTouched ? (
+          <BackButton icon={<Check size={20} />} onClick={hideMap}>
+            <FormattedMessage id="report.mapButton.validate" />
+          </BackButton>
+        ) : (
+          <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
+        )}
         <ResetView />
         <MapLayerTypeToggleButton />
         {props.trekGeometry && (
@@ -196,13 +203,6 @@ export const DetailsMap: React.FC<PropsType> = props => {
         )}
         <StyledCredits hasDrawer={hasDrawer}>{mapConfig.mapCredits}</StyledCredits>
       </StyledMapContainer>
-      {reportVisibility && coordinatesReportTouched ? (
-        <MapButton className="desktop:hidden" icon={<Check size={20} />} onClick={hideMap}>
-          <FormattedMessage id="report.mapButton.validate" />
-        </MapButton>
-      ) : (
-        <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
-      )}
       <ControlSection
         trekChildrenVisibility={
           props.trekChildrenGeometry && props.trekChildrenGeometry.length > 0

@@ -9,7 +9,7 @@ import 'leaflet/dist/leaflet.css';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { useTileLayer } from 'hooks/useTileLayer';
-import { MapButton } from '../components/MapButton';
+import { BackButton } from '../components/BackButton';
 import { FilterButton } from '../components/FilterButton';
 import { getMapConfig } from '../config';
 import { Credits } from '../components/Credits';
@@ -45,11 +45,11 @@ const SearchMap: React.FC<PropsType> = props => {
       <MapContainer whenCreated={setMapInstance} type={props.type}>
         {props.onMove && <MoveHandler onMove={props.onMove} />}
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
+        <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
         <ResetView />
         <MapLayerTypeToggleButton />
         <SearchMapChildrens {...props} />
       </MapContainer>
-      <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
       <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
     </>

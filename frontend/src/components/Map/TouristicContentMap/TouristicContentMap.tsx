@@ -15,7 +15,7 @@ import {
 } from 'modules/interface';
 import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { useTileLayer } from 'hooks/useTileLayer';
-import { MapButton } from '../components/MapButton';
+import { BackButton } from '../components/BackButton';
 
 import { TouristicContent } from '../DetailsMap/TouristicContent';
 import { getMapConfig } from '../config';
@@ -77,6 +77,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
         bounds={center}
         attributionControl={false}
       >
+        <BackButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
         <ResetView />
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
         <MapLayerTypeToggleButton />
@@ -86,7 +87,6 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
           />
         )}
       </MapContainer>
-      <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
     </>
   );
