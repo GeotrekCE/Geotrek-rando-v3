@@ -160,6 +160,35 @@ export const DetailsMap: React.FC<PropsType> = props => {
         <ScaleControl />
         <MapLayerTypeToggleButton />
         <StyledCredits hasDrawer={hasDrawer}>{mapConfig.mapCredits}</StyledCredits>
+        <ControlSection
+          trekChildrenVisibility={
+            props.trekChildrenGeometry && props.trekChildrenGeometry.length > 0
+              ? trekChildrenMobileVisibility
+              : null
+          }
+          poiVisibility={props.poiPoints && props.poiPoints.length > 0 ? poiMobileVisibility : null}
+          referencePointsVisibility={
+            props.pointsReference && props.pointsReference.length > 0
+              ? referencePointsMobileVisibility
+              : null
+          }
+          touristicContentVisibility={
+            props.touristicContentPoints && props.touristicContentPoints.length > 0
+              ? touristicContentMobileVisibility
+              : null
+          }
+          informationDeskMobileVisibility={
+            props.informationDesks &&
+            props.informationDesks.some(({ longitude, latitude }) => longitude && latitude)
+              ? informationDeskMobileVisibility
+              : null
+          }
+          toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
+          togglePoiVisibility={togglePoiVisibility}
+          toggleReferencePointsVisibility={toggleReferencePointsVisibility}
+          toggleTouristicContentVisibility={toggleTouristicContentVisibility}
+          toggleInformationDeskVisibility={toggleInformationDeskVisibility}
+        />
         {props.trekGeometry && (
           <TrekMarkersAndCourse
             arrivalLocation={props.arrivalLocation}
@@ -204,36 +233,6 @@ export const DetailsMap: React.FC<PropsType> = props => {
           </div>
         )}
       </StyledMapContainer>
-      <ControlSection
-        trekChildrenVisibility={
-          props.trekChildrenGeometry && props.trekChildrenGeometry.length > 0
-            ? trekChildrenMobileVisibility
-            : null
-        }
-        poiVisibility={props.poiPoints && props.poiPoints.length > 0 ? poiMobileVisibility : null}
-        referencePointsVisibility={
-          props.pointsReference && props.pointsReference.length > 0
-            ? referencePointsMobileVisibility
-            : null
-        }
-        touristicContentVisibility={
-          props.touristicContentPoints && props.touristicContentPoints.length > 0
-            ? touristicContentMobileVisibility
-            : null
-        }
-        informationDeskMobileVisibility={
-          props.informationDesks &&
-          props.informationDesks.filter(({ longitude, latitude }) => longitude && latitude).length >
-            0
-            ? informationDeskMobileVisibility
-            : null
-        }
-        toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
-        togglePoiVisibility={togglePoiVisibility}
-        toggleReferencePointsVisibility={toggleReferencePointsVisibility}
-        toggleTouristicContentVisibility={toggleTouristicContentVisibility}
-        toggleInformationDeskVisibility={toggleInformationDeskVisibility}
-      />
     </MapWrapper>
   );
 };
@@ -272,7 +271,7 @@ const StyledMapContainer = styled(MapContainer)<{ hasDrawer: boolean }>`
   width: 100%;
   height: 100%;
   .leaflet-bottom {
-    margin-bottom: ${props => (props.hasDrawer ? '70px' : 0)};
+    margin-bottom: ${props => (props.hasDrawer ? '50px' : 0)};
     ${desktopOnly(css`
       margin-bottom: 0;
     `)}
