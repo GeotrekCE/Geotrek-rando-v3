@@ -1,7 +1,7 @@
 import { TouristicContent } from 'components/Map/DetailsMap/TouristicContent';
 import { LatLngBoundsExpression } from 'leaflet';
 import React, { useContext, useEffect } from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, ScaleControl, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import styled, { css } from 'styled-components';
 
@@ -26,7 +26,7 @@ import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapC
 import { Check } from 'components/Icons/Check';
 import { FormattedMessage } from 'react-intl';
 import { InformationDesk } from 'modules/informationDesk/interface';
-import { MapButton } from '../components/MapButton';
+import { BackButton } from '../components/BackButton';
 
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
 import { getMapConfig } from '../config';
@@ -36,6 +36,7 @@ import { ControlSection } from '../components/ControlSection';
 import { useDetailsMap } from './useDetailsMap';
 import { MapChildren, PointWithIcon } from './MapChildren';
 import DetailsMapDrawer from '../components/DetailsMapDrawer';
+import { ResetView } from '../components/ResetView';
 
 export interface TouristicContentGeometry {
   geometry:
@@ -110,10 +111,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
     [props.bbox.corner2.y, props.bbox.corner2.x],
   ];
 
-  const { isSatelliteLayerAvailable, map, setMapInstance, updateTileLayer } = useTileLayer(
-    props.trekId,
-    bounds,
-  );
+  const { map, setMapInstance } = useTileLayer(props.trekId, bounds);
 
   useEffect(() => {
     if (map && center) {
@@ -151,6 +149,46 @@ export const DetailsMap: React.FC<PropsType> = props => {
         hasDrawer={hasDrawer}
       >
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
+        {reportVisibility && coordinatesReportTouched ? (
+          <BackButton icon={<Check size={20} />} onClick={hideMap}>
+            <FormattedMessage id="report.mapButton.validate" />
+          </BackButton>
+        ) : (
+          <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
+        )}
+        <ResetView />
+        <ScaleControl />
+        <MapLayerTypeToggleButton />
+        <StyledCredits hasDrawer={hasDrawer}>{mapConfig.mapCredits}</StyledCredits>
+        <ControlSection
+          trekChildrenVisibility={
+            props.trekChildrenGeometry && props.trekChildrenGeometry.length > 0
+              ? trekChildrenMobileVisibility
+              : null
+          }
+          poiVisibility={props.poiPoints && props.poiPoints.length > 0 ? poiMobileVisibility : null}
+          referencePointsVisibility={
+            props.pointsReference && props.pointsReference.length > 0
+              ? referencePointsMobileVisibility
+              : null
+          }
+          touristicContentVisibility={
+            props.touristicContentPoints && props.touristicContentPoints.length > 0
+              ? touristicContentMobileVisibility
+              : null
+          }
+          informationDeskMobileVisibility={
+            props.informationDesks &&
+            props.informationDesks.some(({ longitude, latitude }) => longitude && latitude)
+              ? informationDeskMobileVisibility
+              : null
+          }
+          toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
+          togglePoiVisibility={togglePoiVisibility}
+          toggleReferencePointsVisibility={toggleReferencePointsVisibility}
+          toggleTouristicContentVisibility={toggleTouristicContentVisibility}
+          toggleInformationDeskVisibility={toggleInformationDeskVisibility}
+        />
         {props.trekGeometry && (
           <TrekMarkersAndCourse
             arrivalLocation={props.arrivalLocation}
@@ -184,15 +222,6 @@ export const DetailsMap: React.FC<PropsType> = props => {
         {props.displayAltimetricProfile === true && props.trekGeoJSON && (
           <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
         )}
-        {isSatelliteLayerAvailable && (
-          <div
-            className={`absolute ${
-              props.title ? 'bottom-18 desktop:bottom-6' : 'bottom-6'
-            } left-6 z-mapButton`}
-          >
-            <MapLayerTypeToggleButton onToggleButtonClick={newType => updateTileLayer(newType)} />
-          </div>
-        )}
         {props.title && (
           <div className="desktop:hidden z-10">
             <DetailsMapDrawer
@@ -203,45 +232,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
             />
           </div>
         )}
-        <StyledCredits hasDrawer={hasDrawer}>{mapConfig.mapCredits}</StyledCredits>
       </StyledMapContainer>
-      {reportVisibility && coordinatesReportTouched ? (
-        <MapButton className="desktop:hidden" icon={<Check size={20} />} onClick={hideMap}>
-          <FormattedMessage id="report.mapButton.validate" />
-        </MapButton>
-      ) : (
-        <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
-      )}
-      <ControlSection
-        trekChildrenVisibility={
-          props.trekChildrenGeometry && props.trekChildrenGeometry.length > 0
-            ? trekChildrenMobileVisibility
-            : null
-        }
-        poiVisibility={props.poiPoints && props.poiPoints.length > 0 ? poiMobileVisibility : null}
-        referencePointsVisibility={
-          props.pointsReference && props.pointsReference.length > 0
-            ? referencePointsMobileVisibility
-            : null
-        }
-        touristicContentVisibility={
-          props.touristicContentPoints && props.touristicContentPoints.length > 0
-            ? touristicContentMobileVisibility
-            : null
-        }
-        informationDeskMobileVisibility={
-          props.informationDesks &&
-          props.informationDesks.filter(({ longitude, latitude }) => longitude && latitude).length >
-            0
-            ? informationDeskMobileVisibility
-            : null
-        }
-        toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
-        togglePoiVisibility={togglePoiVisibility}
-        toggleReferencePointsVisibility={toggleReferencePointsVisibility}
-        toggleTouristicContentVisibility={toggleTouristicContentVisibility}
-        toggleInformationDeskVisibility={toggleInformationDeskVisibility}
-      />
     </MapWrapper>
   );
 };
@@ -280,7 +271,7 @@ const StyledMapContainer = styled(MapContainer)<{ hasDrawer: boolean }>`
   width: 100%;
   height: 100%;
   .leaflet-bottom {
-    margin-bottom: ${props => (props.hasDrawer ? '70px' : 0)};
+    margin-bottom: ${props => (props.hasDrawer ? '50px' : 0)};
     ${desktopOnly(css`
       margin-bottom: 0;
     `)}
