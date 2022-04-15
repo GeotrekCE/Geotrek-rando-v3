@@ -1,6 +1,6 @@
 import { LatLngBoundsExpression } from 'leaflet';
 import React from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, ScaleControl, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
@@ -80,6 +80,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
         <BackButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
         <ResetView />
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
+        <ScaleControl />
         <MapLayerTypeToggleButton />
         <Credits>{mapConfig.mapCredits}</Credits>
         {props.touristicContentGeometry !== null && (

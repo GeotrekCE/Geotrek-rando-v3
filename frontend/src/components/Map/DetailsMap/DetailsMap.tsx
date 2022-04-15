@@ -1,7 +1,7 @@
 import { TouristicContent } from 'components/Map/DetailsMap/TouristicContent';
 import { LatLngBoundsExpression } from 'leaflet';
 import React, { useContext, useEffect } from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, ScaleControl, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import styled, { css } from 'styled-components';
 
@@ -157,6 +157,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
         )}
         <ResetView />
+        <ScaleControl />
         <MapLayerTypeToggleButton />
         <StyledCredits hasDrawer={hasDrawer}>{mapConfig.mapCredits}</StyledCredits>
         {props.trekGeometry && (

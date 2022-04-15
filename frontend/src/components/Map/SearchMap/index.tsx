@@ -4,7 +4,7 @@ import SearchMapChildrens from 'components/Map/SearchMap/SearchMapChildrens';
 import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { LatLngBounds } from 'leaflet';
 import React from 'react';
-import { TileLayer } from 'react-leaflet';
+import { ScaleControl, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
@@ -47,6 +47,7 @@ const SearchMap: React.FC<PropsType> = props => {
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
         <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
         <ResetView />
+        <ScaleControl />
         <MapLayerTypeToggleButton />
         <Credits>{mapConfig.mapCredits}</Credits>
         <SearchMapChildrens {...props} />
