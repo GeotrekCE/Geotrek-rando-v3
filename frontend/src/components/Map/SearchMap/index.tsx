@@ -41,19 +41,17 @@ const SearchMap: React.FC<PropsType> = props => {
   const { setMapInstance } = useTileLayer();
 
   return (
-    <>
-      <MapContainer whenCreated={setMapInstance} type={props.type}>
-        {props.onMove && <MoveHandler onMove={props.onMove} />}
-        <TileLayer url={mapConfig.mapClassicLayerUrl} />
-        <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
-        <ResetView />
-        <ScaleControl />
-        <MapLayerTypeToggleButton />
-        <Credits>{mapConfig.mapCredits}</Credits>
-        <SearchMapChildrens {...props} />
-      </MapContainer>
+    <MapContainer whenCreated={setMapInstance} type={props.type}>
+      {props.onMove && <MoveHandler onMove={props.onMove} />}
+      <TileLayer url={mapConfig.mapClassicLayerUrl} />
+      <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
-    </>
+      <ResetView />
+      <ScaleControl />
+      <MapLayerTypeToggleButton />
+      <Credits>{mapConfig.mapCredits}</Credits>
+      <SearchMapChildrens {...props} />
+    </MapContainer>
   );
 };
 
