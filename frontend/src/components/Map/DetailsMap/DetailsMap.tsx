@@ -158,6 +158,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         )}
         <ResetView />
         <MapLayerTypeToggleButton />
+        <StyledCredits hasDrawer={hasDrawer}>{mapConfig.mapCredits}</StyledCredits>
         {props.trekGeometry && (
           <TrekMarkersAndCourse
             arrivalLocation={props.arrivalLocation}
@@ -201,7 +202,6 @@ export const DetailsMap: React.FC<PropsType> = props => {
             />
           </div>
         )}
-        <StyledCredits hasDrawer={hasDrawer}>{mapConfig.mapCredits}</StyledCredits>
       </StyledMapContainer>
       <ControlSection
         trekChildrenVisibility={

@@ -81,13 +81,13 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
         <ResetView />
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
         <MapLayerTypeToggleButton />
+        <Credits>{mapConfig.mapCredits}</Credits>
         {props.touristicContentGeometry !== null && (
           <TouristicContent
             contents={[props.touristicContentGeometry as TouristicContentGeometry]}
           />
         )}
       </MapContainer>
-      <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
     </>
   );
 };

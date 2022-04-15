@@ -48,10 +48,10 @@ const SearchMap: React.FC<PropsType> = props => {
         <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
         <ResetView />
         <MapLayerTypeToggleButton />
+        <Credits>{mapConfig.mapCredits}</Credits>
         <SearchMapChildrens {...props} />
       </MapContainer>
       <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
-      <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
     </>
   );
 };
