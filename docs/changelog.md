@@ -6,9 +6,15 @@
 **🚀 New features**
 
 * Display information desks on map (#401)
+* Add reset view and scale on maps (#402)
+* Add "practical_info" property on touristic content detail pages
 * Add some customizable HTML templates and their documentation to include HTML or javascript on all pages before and after header and footer (#588)
 * Add portals parameter when fetching API for a detail page, to access to eventual customized PDF by portal (https://github.com/GeotrekCE/Geotrek-admin/issues/2691)
 * Refactoring of some components
+
+**🐛 Fixes**
+
+* Display multiple geometries on maps
 
 3.8.0 (2022-04-08)
 ------------------
@@ -29,7 +35,7 @@
 
 * Fix flickering of the map when loading the detail pages
 * Fix reservation widget loading on trek detail pages
-* Fix multiple geometries display on maps
+* Fix multiple geometries management
 
 3.7.0 (2022-03-11)
 ------------------
