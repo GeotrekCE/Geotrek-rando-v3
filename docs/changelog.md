@@ -1,6 +1,6 @@
 # Changelog
 
-3.8.1 (unreleased)
+3.8.1 (2022-04-23)
 ------------------
 
 **🚀 New features**
@@ -10,7 +10,7 @@
 * Add "practical_info" property on touristic content detail pages
 * Add some customizable HTML templates and their documentation to include HTML or javascript on all pages before and after header and footer (#588)
 * Add portals parameter when fetching API for a detail page, to access to eventual customized PDF by portal (https://github.com/GeotrekCE/Geotrek-admin/issues/2691)
-* Refactoring of some components
+* Refactoring of several components and Leaflet controls
 
 **🐛 Fixes**
 
