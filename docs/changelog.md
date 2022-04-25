@@ -1,12 +1,12 @@
 # Changelog
 
-3.8.1 (2022-04-23)
+3.8.1 (2022-04-25)
 ------------------
 
 **🚀 New features**
 
-* Display information desks on map (#401)
-* Add reset view and scale on maps (#402)
+* Display information desks on detail pages map (#401)
+* Add reset view and scale controls on maps (#402)
 * Add "practical_info" property on touristic content detail pages
 * Add some customizable HTML templates and their documentation to include HTML or javascript on all pages before and after header and footer (#588)
 * Add portals parameter when fetching API for a detail page, to access to eventual customized PDF by portal (https://github.com/GeotrekCE/Geotrek-admin/issues/2691)
@@ -15,6 +15,7 @@
 **🐛 Fixes**
 
 * Display multiple geometries on maps
+* Fix ``little-forest.png`` image path (#639)
 
 3.8.0 (2022-04-08)
 ------------------
