@@ -40,12 +40,14 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
       };
 
       // eslint-disable-next-line
-      waitForGlobal('eitinerance').then(() => {
-        const spaClient = ITW.pages.getSinglePageApplicationClient({ layer });
-        AllianceReseaux.jQuery(function () {
-          spaClient.executePage();
+      waitForGlobal('eitinerance')
+        .then(() => waitForGlobal('AllianceReseaux'))
+        .then(() => {
+          const spaClient = ITW.pages.getSinglePageApplicationClient({ layer });
+          AllianceReseaux.jQuery(function () {
+            spaClient.executePage();
+          });
         });
-      });
     })(window, (window as any)?.eitinerance?.core);
   }, []);
 

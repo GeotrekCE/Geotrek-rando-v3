@@ -1,5 +1,14 @@
 # Changelog
 
+3.8.2 (2022-04-25)
+------------------
+
+**🐛 Fixes**
+
+- Fix HTML interpretation of new "Accessibility" fields (#536 / #638)
+- Don't display label filter (Others) in trek filters if no label defined as filter (#418)
+- Improve outdoor subobjects display on site maps with adding it in layer control (#542)
+
 3.8.1 (2022-04-25)
 ------------------
 

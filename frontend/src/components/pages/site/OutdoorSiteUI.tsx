@@ -1,3 +1,4 @@
+import parse from 'html-react-parser';
 import MoreLink from 'components/Information/MoreLink';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
@@ -11,7 +12,7 @@ import { DetailsSection } from 'components/pages/details/components/DetailsSecti
 import { DetailsSource } from 'components/pages/details/components/DetailsSource';
 import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/details/Details';
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
-import { generateTouristicContentUrl } from 'components/pages/details/utils';
+import { generateTouristicContentUrl, HtmlText } from 'components/pages/details/utils';
 import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
 import { AccessChildrenSection } from 'components/pages/site/components/AccessChildrenSection';
 import { OutdoorCoursesChildrenSection } from 'components/pages/site/components/OutdoorCoursesChildrenSection';
@@ -250,15 +251,6 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                         titleId="details.recommandations"
                         className={marginDetailsChild}
                       >
-                        {outdoorSiteContent.accessibility && (
-                          <div style={{ marginBottom: 20 }}>
-                            <strong className="font-bold">
-                              <FormattedMessage id="details.accessibility" /> :{' '}
-                            </strong>
-                            {outdoorSiteContent.accessibility}
-                          </div>
-                        )}
-
                         {!!outdoorSiteContent.advice && (
                           <DetailsAdvice
                             text={outdoorSiteContent.advice}
@@ -279,6 +271,15 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                             }
                           />
                         ))}
+
+                        {outdoorSiteContent.accessibility && (
+                          <div style={{ marginTop: 20 }}>
+                            <strong className="font-bold">
+                              <FormattedMessage id="details.accessibility" /> :{' '}
+                            </strong>
+                            <HtmlText>{parse(outdoorSiteContent.accessibility)}</HtmlText>
+                          </div>
+                        )}
                       </DetailsSection>
                     )}
 
