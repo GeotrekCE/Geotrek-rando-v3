@@ -1,3 +1,4 @@
+import parse from 'html-react-parser';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
 import { DetailsAdvice } from 'components/pages/details/components/DetailsAdvice';
@@ -29,7 +30,6 @@ import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
-import parse from 'html-react-parser';
 
 interface Props {
   outdoorCourseUrl: string | string[] | undefined;

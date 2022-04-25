@@ -1,3 +1,4 @@
+import parse from 'html-react-parser';
 import MoreLink from 'components/Information/MoreLink';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
@@ -36,7 +37,6 @@ import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 import { DetailsAndMapProvider } from '../details/DetailsAndMapContext';
-import parse from 'html-react-parser';
 
 interface Props {
   outdoorSiteUrl: string | string[] | undefined;

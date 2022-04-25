@@ -48,8 +48,6 @@ export const MapChildren: React.FC<Props> = props => {
   const { visibleSection } = useContext(VisibleSectionContext);
   const isMobile = useMediaPredicate('(max-width: 1024px)');
 
-  console.log('=>', props);
-
   return (
     <>
       {(visibleSection === 'children' ||
