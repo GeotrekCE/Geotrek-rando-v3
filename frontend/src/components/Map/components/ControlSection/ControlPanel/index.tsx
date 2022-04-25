@@ -5,6 +5,8 @@ import IconLocation from './IconLocation';
 import IconInfo from './IconInfo';
 import IconDrapeau from './IconDrapeau';
 import IconPatrimoine from './IconPatrimoine';
+import IconOutdoorSite from './IconOutdoorSite';
+import IconOutdoorRoute from './IconOutdoorRoute';
 import { ControlSectionProps } from '../ControlSection';
 
 const Wrapper = styled.div`
@@ -85,7 +87,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
       )}
       {coursesVisibility !== null && (
         <Line
-          Icon={IconInfo}
+          Icon={IconOutdoorRoute}
           active={coursesVisibility === 'DISPLAYED'}
           toggle={toggleCoursesVisibility}
           transKey="search.map.panel.courses"
@@ -93,7 +95,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
       )}
       {experiencesVisibility !== null && (
         <Line
-          Icon={IconInfo}
+          Icon={IconOutdoorSite}
           active={experiencesVisibility === 'DISPLAYED'}
           toggle={toggleExperiencesVisibility}
           transKey="search.map.panel.experiences"

@@ -187,8 +187,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
               ? informationDeskMobileVisibility
               : null
           }
-          coursesVisibility={coursesVisibility}
-          experiencesVisibility={experiencesVisibility}
+          coursesVisibility={props.courses ? coursesVisibility : null}
+          experiencesVisibility={props.experiences ? experiencesVisibility : null}
           toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
           togglePoiVisibility={togglePoiVisibility}
           toggleReferencePointsVisibility={toggleReferencePointsVisibility}
