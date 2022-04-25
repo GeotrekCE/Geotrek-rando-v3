@@ -11,7 +11,7 @@ Object {
         <div>
           <img
             class="SearchResultsMeta__Illustration-sc-18aa4n-0 bxnLjy hidden desktop:block"
-            src="images/little-forest.png"
+            src="/images/little-forest.png"
           />
         </div>
         <div
@@ -33,7 +33,7 @@ Object {
       <div>
         <img
           class="SearchResultsMeta__Illustration-sc-18aa4n-0 bxnLjy hidden desktop:block"
-          src="images/little-forest.png"
+          src="/images/little-forest.png"
         />
       </div>
       <div
@@ -112,7 +112,7 @@ Object {
         <div>
           <img
             class="SearchResultsMeta__Illustration-sc-18aa4n-0 bxnLjy hidden desktop:block"
-            src="images/little-forest.png"
+            src="/images/little-forest.png"
           />
         </div>
         <div
@@ -134,7 +134,7 @@ Object {
       <div>
         <img
           class="SearchResultsMeta__Illustration-sc-18aa4n-0 bxnLjy hidden desktop:block"
-          src="images/little-forest.png"
+          src="/images/little-forest.png"
         />
       </div>
       <div
@@ -213,7 +213,7 @@ Object {
         <div>
           <img
             class="SearchResultsMeta__Illustration-sc-18aa4n-0 bxnLjy hidden desktop:block"
-            src="images/little-forest.png"
+            src="/images/little-forest.png"
           />
         </div>
         <div
@@ -235,7 +235,7 @@ Object {
       <div>
         <img
           class="SearchResultsMeta__Illustration-sc-18aa4n-0 bxnLjy hidden desktop:block"
-          src="images/little-forest.png"
+          src="/images/little-forest.png"
         />
       </div>
       <div

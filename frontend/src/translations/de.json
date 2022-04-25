@@ -57,7 +57,15 @@
     "textFilter": "Suchen...",
     "map": {
       "seeResult": "Einzelheiten anzeigen",
-      "seeMe": "Meinen Standpunkt sehen"
+      "seeMe": "Meinen Standpunkt sehen",
+      "panel": {
+        "trekChildren": "Steps",
+        "poi": "Heritage",
+        "referencePoints": "Landmarken",
+        "touristicContent": "Close by",
+        "informationDesks": "Orte der Information"
+      },
+      "resetView": "Karte zentrieren"
     }
   },
   "details": {
@@ -119,7 +127,8 @@
     "speaker": "Redner",
     "targetAudience": "Zielgruppe",
     "practicalInfo": "Praktische Information",
-    "booking": "Reservierung"
+    "booking": "Reservierung",
+    "centerOnMap": "Center on map"
   },
   "touristicContent": {
     "contact": "Kontakt",

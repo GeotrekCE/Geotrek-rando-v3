@@ -4,8 +4,11 @@ import parse from 'html-react-parser';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
+import { ListAndMapContext } from 'modules/map/ListAndMapContext';
+import { useContext } from 'react';
 import { HtmlText } from '../../utils';
 import { useDetailsInformationDesk } from './useDetailsInformationDesk';
+import DetailsInformationDeskLocation from './DetailsInformationDeskLocation';
 
 interface DetailsInformationDeskProps extends InformationDesk {
   className?: string;
@@ -13,7 +16,6 @@ interface DetailsInformationDeskProps extends InformationDesk {
 
 export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
   accessibility,
-  className,
   name,
   street,
   postalCode,
@@ -24,21 +26,39 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
   description,
   photoUrl,
   type,
+  latitude,
+  longitude,
 }) => {
   const { truncateState, toggleTruncateState } = useDetailsInformationDesk();
+  const { setHoveredCardId } = useContext(ListAndMapContext);
   return (
-    <div className={`flex ${className ?? ''}`}>
+    <div
+      className="flex mb-8 desktop:mb-12 last:mb-0"
+      onMouseEnter={() => {
+        setHoveredCardId(`${latitude}${longitude}`);
+      }}
+      onMouseLeave={() => {
+        setHoveredCardId(null);
+      }}
+    >
       <div className="h-25 w-25 flex-shrink-0 hidden desktop:block">
-        <InformationDeskIcon pictogramUri={photoUrl ?? type.pictogramUri} />
+        <InformationDeskIcon pictogramUri={photoUrl || type.pictogramUri} />
       </div>
-      <div className="desktop:px-4">
-        <p className="font-bold">{name}</p>
-        <p>
-          {street !== null && <span>{`${street}, `}</span>}
-          {postalCode !== null && <span>{`${postalCode} `}</span>}
-          <span>{municipality}</span>
-        </p>
-        <a href={website} target="_blank" rel="noopener noreferrer">
+      <div className="w-full desktop:pl-4">
+        <div className="flex items-center">
+          <div className="flex-shrink-0 mr-auto">
+            <p className="font-bold">{name}</p>
+            <p>
+              {street !== null && <span>{`${street}, `}</span>}
+              {postalCode !== null && <span>{`${postalCode} `}</span>}
+              <span>{municipality}</span>
+            </p>
+          </div>
+          {longitude && latitude && (
+            <DetailsInformationDeskLocation longitude={longitude} latitude={latitude} />
+          )}
+        </div>
+        <a className="break-all" href={website} target="_blank" rel="noopener noreferrer">
           <p
             className="mt-2
             text-primary1 underline
@@ -88,12 +108,13 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
 
 const InformationDeskIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri }) => {
   if (RegExp(/(.*).svg/).test(pictogramUri)) {
-    return <SVG src={pictogramUri} className="h-18 w-18 m-1" />;
+    return <SVG src={pictogramUri} className="h-full w-full m-1" />;
   }
   return (
     <img
       className="object-cover object-contain h-full w-full rounded-full overflow-hidden"
       src={pictogramUri}
+      alt=""
     />
   );
 };

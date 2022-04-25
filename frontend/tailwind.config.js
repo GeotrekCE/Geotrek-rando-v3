@@ -153,6 +153,8 @@ module.exports = {
   variants: {
     extend: {
       backgroundColor: ['active'],
+      // Rule should be drop with TW v3
+      margin: ['last'],
     },
   },
   plugins: [],

@@ -6,13 +6,14 @@ import { desktopOnly, sizes } from 'stylesheet';
 import { Link } from 'components/Link';
 import { Display } from 'hooks/useHideOnScrollDown';
 
+import parse from 'html-react-parser';
 import InlineMenu from 'components/InlineMenu';
 import { GoToSearchButton } from 'components/GoToSearchButton';
 import { BurgerMenu } from './BurgerMenu';
 import { useHeader } from './useHeader';
 
 export const Header: React.FC = () => {
-  const { config, menuItems } = useHeader();
+  const { config, menuItems, intl } = useHeader();
 
   const sectionsDesktop = menuItems?.slice(0, config.menu.primaryItemsNumber);
   const subSections = menuItems?.slice(config.menu.primaryItemsNumber);
@@ -22,8 +23,12 @@ export const Header: React.FC = () => {
   // const headerState = useHideOnScrollDown(sizes.desktopHeader);
   const headerState = 'DISPLAYED';
 
+  const headerTop = config.headerTopHtml[intl.locale] ?? config.headerTopHtml.default;
+  const headerBottom = config.headerBottomHtml[intl.locale] ?? config.headerBottomHtml.default;
+
   return (
     <>
+      {headerTop !== undefined && <div id="header_topHtml">{parse(headerTop)}</div>}
       <BurgerMenu config={config.menu} displayState={headerState} menuItems={menuItems} />
       <Container
         state={headerState}
@@ -61,6 +66,7 @@ export const Header: React.FC = () => {
         )}
         <GoToSearchButton className="hidden desktop:block" />
       </Container>
+      {headerBottom !== undefined && <div id="header_bottomHtml">{parse(headerBottom)}</div>}
     </>
   );
 };

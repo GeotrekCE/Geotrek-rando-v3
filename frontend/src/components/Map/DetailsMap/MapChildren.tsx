@@ -1,5 +1,6 @@
 import { VisibleSectionContext } from 'components/pages/details/VisibleSectionContext';
 import { TrekChildGeometry } from 'modules/details/interface';
+import { InformationDesk } from 'modules/informationDesk/interface';
 import { Coordinate2D } from 'modules/interface';
 import { OutdoorSite } from 'modules/outdoorSite/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
@@ -9,6 +10,7 @@ import { TouristicContentGeometry } from './DetailsMap';
 
 import { MarkersWithIcon } from './MarkersWithIcon';
 import { PointReport } from './PointReport';
+import { PointsInformationDesk } from './PointsInformationDesk';
 import { PointsReference } from './PointsReference';
 import { SensitiveAreas } from './SensitiveAreas';
 import { TouristicContent } from './TouristicContent';
@@ -36,6 +38,8 @@ type Props = {
   touristicContentMobileVisibility: Visibility;
   reportVisibility: boolean;
   parentId?: number;
+  informationDeskMobileVisibility: Visibility;
+  informationDesks?: InformationDesk[];
 };
 
 export const MapChildren: React.FC<Props> = props => {
@@ -90,6 +94,11 @@ export const MapChildren: React.FC<Props> = props => {
 
       {visibleSection === 'sensitiveAreasRef' && (
         <SensitiveAreas contents={props.sensitiveAreasGeometry} />
+      )}
+
+      {(visibleSection === 'practicalInformations' ||
+        props.informationDeskMobileVisibility === 'DISPLAYED') && (
+        <PointsInformationDesk informationDesks={props.informationDesks} />
       )}
 
       {(isMobile || visibleSection === 'report') && props.reportVisibility && <PointReport />}

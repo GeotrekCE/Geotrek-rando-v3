@@ -6,40 +6,140 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="pt-4"
+        class="leaflet-container leaflet-grab leaflet-touch-drag"
+        style="position: relative;"
+        tabindex="0"
       >
         <div
-          class="h-12 w-12 relative overflow-hidden shadow-md rounded-medium border-2 border-solid border-white cursor-pointer"
+          class="leaflet-pane leaflet-map-pane"
+          style="left: 0px; top: 0px;"
         >
-          <img
-            class="object-cover h-full w-full rounded-medium"
-            src="/images/satellite-toggle-button-image.png"
+          <div
+            class="leaflet-pane leaflet-tile-pane"
           />
-          <span
-            class="font-bold text-white text-CTA text-center w-full absolute bottom-1 z-text"
+          <div
+            class="leaflet-pane leaflet-shadow-pane"
+          />
+          <div
+            class="leaflet-pane leaflet-overlay-pane"
+          />
+          <div
+            class="leaflet-pane leaflet-marker-pane"
+          />
+          <div
+            class="leaflet-pane leaflet-tooltip-pane"
+          />
+          <div
+            class="leaflet-pane leaflet-popup-pane"
+          />
+        </div>
+        <div
+          class="leaflet-control-container"
+        >
+          <div
+            class="leaflet-top leaflet-left"
+          />
+          <div
+            class="leaflet-top leaflet-right"
+          />
+          <div
+            class="leaflet-bottom leaflet-left"
           >
-            Satellite
-          </span>
+            <div
+              class="leaflet-control"
+            >
+              <div
+                class="leaflet-toggleLayer"
+              >
+                <div
+                  class="h-12 w-12 relative overflow-hidden shadow-md rounded-medium border-2 border-solid border-white cursor-pointer"
+                >
+                  <img
+                    class="object-cover h-full w-full rounded-medium"
+                    src="/images/satellite-toggle-button-image.png"
+                  />
+                  <span
+                    class="font-bold text-white text-CTA text-center w-full absolute bottom-1 z-text"
+                  >
+                    Satellite
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="leaflet-bottom leaflet-right"
+          />
         </div>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="pt-4"
+      class="leaflet-container leaflet-grab leaflet-touch-drag"
+      style="position: relative;"
+      tabindex="0"
     >
       <div
-        class="h-12 w-12 relative overflow-hidden shadow-md rounded-medium border-2 border-solid border-white cursor-pointer"
+        class="leaflet-pane leaflet-map-pane"
+        style="left: 0px; top: 0px;"
       >
-        <img
-          class="object-cover h-full w-full rounded-medium"
-          src="/images/satellite-toggle-button-image.png"
+        <div
+          class="leaflet-pane leaflet-tile-pane"
         />
-        <span
-          class="font-bold text-white text-CTA text-center w-full absolute bottom-1 z-text"
+        <div
+          class="leaflet-pane leaflet-shadow-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-overlay-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-marker-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-tooltip-pane"
+        />
+        <div
+          class="leaflet-pane leaflet-popup-pane"
+        />
+      </div>
+      <div
+        class="leaflet-control-container"
+      >
+        <div
+          class="leaflet-top leaflet-left"
+        />
+        <div
+          class="leaflet-top leaflet-right"
+        />
+        <div
+          class="leaflet-bottom leaflet-left"
         >
-          Satellite
-        </span>
+          <div
+            class="leaflet-control"
+          >
+            <div
+              class="leaflet-toggleLayer"
+            >
+              <div
+                class="h-12 w-12 relative overflow-hidden shadow-md rounded-medium border-2 border-solid border-white cursor-pointer"
+              >
+                <img
+                  class="object-cover h-full w-full rounded-medium"
+                  src="/images/satellite-toggle-button-image.png"
+                />
+                <span
+                  class="font-bold text-white text-CTA text-center w-full absolute bottom-1 z-text"
+                >
+                  Satellite
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="leaflet-bottom leaflet-right"
+        />
       </div>
     </div>
   </div>,

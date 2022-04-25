@@ -1,3 +1,4 @@
+import { portalsFilter } from 'modules/utils/api.config';
 import { GeotrekAPI } from 'services/api/client';
 import { APIQuery } from 'services/api/interface';
 import { RawDetails, RawTrekChildGeometry, RawTrekChildIds, RawTrekName } from './interface';
@@ -10,9 +11,9 @@ const fieldsParams = {
 
 export const fetchDetails = (query: APIQuery, id: string): Promise<RawDetails> => {
   try {
-    return GeotrekAPI.get(`/trek/${id}/`, { params: { ...query, ...fieldsParams } }).then(
-      r => r.data,
-    );
+    return GeotrekAPI.get(`/trek/${id}/`, {
+      params: { ...query, ...fieldsParams, ...portalsFilter },
+    }).then(r => r.data);
   } catch (e) {
     console.error('Error in details/api', e);
     throw e;

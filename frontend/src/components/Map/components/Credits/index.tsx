@@ -1,12 +1,15 @@
+import { ControlPosition } from 'leaflet';
+import Control from '../CustomControl';
+
 interface CreditsProps {
   children: React.ReactNode;
-  className?: string;
+  position?: ControlPosition;
 }
 
-export const Credits: React.FC<CreditsProps> = ({ children, className }) => {
+export const Credits: React.FC<CreditsProps> = ({ position = 'bottomright', children }) => {
   return (
-    <div className={`${className ?? ''} text-P1 py-1 px-2 text-black bg-opacity-50 bg-white`}>
-      {children}
-    </div>
+    <Control position={position}>
+      <div className="text-P1 py-1 px-2 text-black bg-opacity-50 bg-white">{children}</div>
+    </Control>
   );
 };

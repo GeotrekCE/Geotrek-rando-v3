@@ -143,17 +143,27 @@ You can override every texts in translations files, based on default ones (https
 
 You should at least override `home.title`, `home.description` and `home.welcome-text`.
 
-## HTML
+## HTML / Scripts
 
-You can include some HTML parts in the first and last sections of the homepage, with files:
+You can include some HTML parts in different sections of the layout application, with files:
 
-- `customization/html/homeTop.html`
-- `customization/html/homeBottom.html`
+- `customization/html/headerTop.html`: before the header section
+- `customization/html/headerBottom.html`: after the header section and before the content page
+- `customization/html/footerTop.html`: before the footer section and after the content page
+- `customization/html/footerBottom.html`: after the footer section
+- `customization/html/homeTop.html`: first section of the homepage
+- `customization/html/homeBottom.html`: last section of the homepage
 
-You can also internationalize these templates by using the language code as a suffix (e.g. `homeTop-en.html` will be rendered only for the English interface). The application tries to find the localized template first, otherwise it tries the non-localized template, otherwise it displays nothing.
+These templates can be translated by using the language code as a suffix (e.g. `homeTop-en.html` will be rendered only for the English interface). The application tries to find the localized template first, otherwise it tries the non-localized template, otherwise it displays nothing.
 NB: If you want to display a message common to all languages but not to a particular language (e.g. french), just create the template suffixed with its language code (e.g. `-fr.html`) and leave it empty, and voilà!
 
-See HTML examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html.
+You can also include some scripts: 
+- `customization/html/scriptsHeader.html`: in the `<head>` of the document
+- `customization/html/scriptsFooter.html`: just before the `</body>` end tag
+
+The scripts templates are intended for third party scripts. Unlike the HTML parts, there is not possibility of translations.
+
+See examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html.
 
 Icons are provided by Geotrek-admin API. See [icons documentation](icons.md) to know how they have to be designed.
 

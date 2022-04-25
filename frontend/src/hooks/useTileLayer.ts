@@ -1,7 +1,5 @@
 import L, { LatLngBoundsExpression } from 'leaflet';
-import { getMapConfig } from 'components/Map/config';
 import { Map } from 'leaflet';
-import { TileLayerType } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -13,33 +11,14 @@ let controlSave: any;
 
 export const useTileLayer = (
   id?: number,
-  center?: LatLngBoundsExpression,
+  center?: LatLngBoundsExpression | null,
 ): {
+  map: Map | null;
   setMapInstance: (newMap: Map) => void;
-  updateTileLayer: (newTileLayerType: TileLayerType) => void;
-  isSatelliteLayerAvailable: boolean;
 } => {
-  const mapConfig = getMapConfig();
-  const isSatelliteLayerAvailable =
-    mapConfig.mapSatelliteLayerUrl !== undefined && navigator.onLine;
   const [map, setMap] = useState<Map | null>(null);
 
   const intl = useIntl();
-
-  const updateTileLayer = (newTileLayerType: TileLayerType) => {
-    if (map) {
-      map.eachLayer(layer => {
-        if (layer instanceof L.TileLayer) {
-          if (newTileLayerType === 'classic') {
-            layer.setUrl(mapConfig.mapClassicLayerUrl);
-          }
-          if (mapConfig.mapSatelliteLayerUrl !== undefined && newTileLayerType === 'satellite') {
-            layer.setUrl(mapConfig.mapSatelliteLayerUrl);
-          }
-        }
-      });
-    }
-  };
 
   const setMapInstance = (newMap: Map) => {
     setMap(newMap);
@@ -62,10 +41,7 @@ export const useTileLayer = (
   };
 
   return {
+    map,
     setMapInstance,
-    updateTileLayer(newTileLayerType) {
-      return updateTileLayer(newTileLayerType);
-    },
-    isSatelliteLayerAvailable,
   };
 };

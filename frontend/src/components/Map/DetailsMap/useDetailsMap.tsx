@@ -2,6 +2,9 @@ import { useState } from 'react';
 
 export type Visibility = 'DISPLAYED' | 'HIDDEN' | null;
 
+const toggleVisibility = (currentVisibility: Visibility) =>
+  currentVisibility === 'DISPLAYED' ? 'HIDDEN' : 'DISPLAYED';
+
 export const useDetailsMap = () => {
   const [trekChildrenMobileVisibility, setTrekChildrenVisibility] = useState<Visibility>('HIDDEN');
   const [poiMobileVisibility, setPoiVisibility] = useState<Visibility>('HIDDEN');
@@ -9,25 +12,19 @@ export const useDetailsMap = () => {
     useState<Visibility>('HIDDEN');
   const [touristicContentMobileVisibility, setTouristicContentVisibility] =
     useState<Visibility>('HIDDEN');
-  const toggleTrekChildrenVisibility = () =>
-    setTrekChildrenVisibility(currentVisibility =>
-      currentVisibility === 'DISPLAYED' ? 'HIDDEN' : 'DISPLAYED',
-    );
 
-  const togglePoiVisibility = () =>
-    setPoiVisibility(currentVisibility =>
-      currentVisibility === 'DISPLAYED' ? 'HIDDEN' : 'DISPLAYED',
-    );
+  const [informationDeskMobileVisibility, setInformationDeskVisibility] =
+    useState<Visibility>('HIDDEN');
 
-  const toggleReferencePointsVisibility = () =>
-    setReferencePointsVisibility(currentVisibility =>
-      currentVisibility === 'DISPLAYED' ? 'HIDDEN' : 'DISPLAYED',
-    );
+  const toggleTrekChildrenVisibility = () => setTrekChildrenVisibility(toggleVisibility);
 
-  const toggleTouristicContentVisibility = () =>
-    setTouristicContentVisibility(currentVisibility =>
-      currentVisibility === 'DISPLAYED' ? 'HIDDEN' : 'DISPLAYED',
-    );
+  const togglePoiVisibility = () => setPoiVisibility(toggleVisibility);
+
+  const toggleReferencePointsVisibility = () => setReferencePointsVisibility(toggleVisibility);
+
+  const toggleTouristicContentVisibility = () => setTouristicContentVisibility(toggleVisibility);
+
+  const toggleInformationDeskVisibility = () => setInformationDeskVisibility(toggleVisibility);
 
   return {
     trekChildrenMobileVisibility,
@@ -35,8 +32,10 @@ export const useDetailsMap = () => {
     poiMobileVisibility,
     togglePoiVisibility,
     referencePointsMobileVisibility,
+    informationDeskMobileVisibility,
     toggleReferencePointsVisibility,
     touristicContentMobileVisibility,
     toggleTouristicContentVisibility,
+    toggleInformationDeskVisibility,
   };
 };

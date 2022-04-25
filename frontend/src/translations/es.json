@@ -57,7 +57,15 @@
     "textFilter": "Buscar...",
     "map": {
       "seeResult": "Mostrar el detalle",
-      "seeMe": "Mostrar mi posición"
+      "seeMe": "Mostrar mi posición",
+      "panel": {
+        "trekChildren": "Pasos",
+        "poi": "Patrimonios",
+        "referencePoints": "Puntos de referencia",
+        "touristicContent": "Cercano",
+        "informationDesks": "Lugares de información"
+      },
+      "resetView": "Centrarse la mapa"
     }
   },
   "details": {
@@ -119,7 +127,8 @@
     "speaker": "los que intervienen",
     "targetAudience": "Público objectivo",
     "practicalInfo": "Información práctica",
-    "booking": "Reservación"
+    "booking": "Reservación",
+    "centerOnMap": "Center on map"
   },
   "touristicContent": {
     "contact": "Contacto",

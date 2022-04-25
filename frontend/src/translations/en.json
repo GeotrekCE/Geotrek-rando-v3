@@ -63,9 +63,11 @@
       "panel": {
         "trekChildren": "Steps",
         "poi": "Heritage",
-        "referencePoints": "References",
-        "touristicContent": "Close by"
-      }
+        "referencePoints": "Landmarks",
+        "touristicContent": "Close by",
+        "informationDesks": "Information desks"
+      },
+      "resetView": "Recenter map"
     }
   },
   "details": {
@@ -128,7 +130,8 @@
     "speaker": "Speaker",
     "targetAudience": "Target audience",
     "practicalInfo": "Practical Information",
-    "booking": "Booking"
+    "booking": "Booking",
+    "centerOnMap": "Center on map"
   },
   "touristicContent": {
     "contact": "Contact",
