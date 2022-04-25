@@ -77,14 +77,6 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
           </p>
         </a>
         <p className="text-primary1">{phone}</p>
-        {accessibility && (
-          <p style={{ marginTop: 20 }}>
-            <strong className="font-bold">
-              <FormattedMessage id="details.accessibility" /> :{' '}
-            </strong>
-            {accessibility}
-          </p>
-        )}
 
         <div className="flex flex-col desktop:flex-row desktop:items-end mt-4">
           {truncateState === 'TRUNCATE' ? (
@@ -101,6 +93,15 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
             />
           </span>
         </div>
+
+        {accessibility && (
+          <p style={{ marginTop: 20 }}>
+            <strong className="font-bold">
+              <FormattedMessage id="details.accessibility" /> :{' '}
+            </strong>
+            <HtmlText>{parse(accessibility)}</HtmlText>
+          </p>
+        )}
       </div>
     </div>
   );

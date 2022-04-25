@@ -1,3 +1,4 @@
+import parse from 'html-react-parser';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
 import { DetailsAdvice } from 'components/pages/details/components/DetailsAdvice';
@@ -7,7 +8,7 @@ import { DetailsHeader } from 'components/pages/details/components/DetailsHeader
 import { DetailsSection } from 'components/pages/details/components/DetailsSection';
 import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/details/Details';
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
-import { generateTouristicContentUrl } from 'components/pages/details/utils';
+import { generateTouristicContentUrl, HtmlText } from 'components/pages/details/utils';
 import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
 import { OutdoorSiteChildrenSection } from 'components/pages/site/components/OutdoorSiteChildrenSection';
 import { useOutdoorCourse } from 'components/pages/site/useOutdoorCourse';
@@ -246,19 +247,20 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                         titleId="details.recommandations"
                         className={marginDetailsChild}
                       >
-                        {outdoorCourseContent.accessibility && (
-                          <div style={{ marginBottom: 20 }}>
-                            <strong className="font-bold">
-                              <FormattedMessage id="details.accessibility" /> :{' '}
-                            </strong>
-                            {outdoorCourseContent.accessibility}
-                          </div>
-                        )}
                         {outdoorCourseContent.advice && (
                           <DetailsAdvice
                             text={outdoorCourseContent.advice}
                             className="mb-4 desktop:mb-6"
                           />
+                        )}
+
+                        {outdoorCourseContent.accessibility && (
+                          <div style={{ marginTop: 20 }}>
+                            <strong className="font-bold">
+                              <FormattedMessage id="details.accessibility" /> :{' '}
+                            </strong>
+                            <HtmlText>{parse(outdoorCourseContent.accessibility)}</HtmlText>
+                          </div>
                         )}
                       </DetailsSection>
                     )}

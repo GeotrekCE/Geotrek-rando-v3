@@ -36,6 +36,8 @@ type Props = {
   referencePointsMobileVisibility: Visibility;
   poiMobileVisibility: Visibility;
   touristicContentMobileVisibility: Visibility;
+  coursesVisibility: Visibility;
+  experiencesVisibility: Visibility;
   reportVisibility: boolean;
   parentId?: number;
   informationDeskMobileVisibility: Visibility;
@@ -59,7 +61,7 @@ export const MapChildren: React.FC<Props> = props => {
         <PointsReference pointsReference={props.pointsReference ?? undefined} />
       )}
 
-      {visibleSection === 'experiences' && (
+      {(visibleSection === 'experiences' || props.experiencesVisibility === 'DISPLAYED') && (
         <TouristicContent
           contents={
             props.experiences.map(e => ({
@@ -71,7 +73,7 @@ export const MapChildren: React.FC<Props> = props => {
         />
       )}
 
-      {visibleSection === 'courses' && (
+      {(visibleSection === 'courses' || props.coursesVisibility === 'DISPLAYED') && (
         <TouristicContent
           contents={
             props.courses.map(e => ({
