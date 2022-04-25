@@ -65,7 +65,9 @@
         "poi": "Heritage",
         "referencePoints": "Landmarks",
         "touristicContent": "Close by",
-        "informationDesks": "Information desks"
+        "informationDesks": "Information desks",
+        "courses": "Parcours",
+        "experiences": "Lieux de pratique"
       },
       "resetView": "Recenter map"
     }

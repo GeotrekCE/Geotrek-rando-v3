@@ -101,6 +101,10 @@ export const DetailsMap: React.FC<PropsType> = props => {
     toggleTouristicContentVisibility,
     informationDeskMobileVisibility,
     toggleInformationDeskVisibility,
+    coursesVisibility,
+    toggleCoursesVisibility,
+    experiencesVisibility,
+    toggleExperiencesVisibility,
   } = useDetailsMap();
   const mapConfig = getMapConfig();
 
@@ -183,11 +187,15 @@ export const DetailsMap: React.FC<PropsType> = props => {
               ? informationDeskMobileVisibility
               : null
           }
+          coursesVisibility={coursesVisibility}
+          experiencesVisibility={experiencesVisibility}
           toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
           togglePoiVisibility={togglePoiVisibility}
           toggleReferencePointsVisibility={toggleReferencePointsVisibility}
           toggleTouristicContentVisibility={toggleTouristicContentVisibility}
           toggleInformationDeskVisibility={toggleInformationDeskVisibility}
+          toggleCoursesVisibility={toggleCoursesVisibility}
+          toggleExperiencesVisibility={toggleExperiencesVisibility}
         />
         {props.trekGeometry && (
           <TrekMarkersAndCourse
@@ -217,6 +225,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
           touristicContentMobileVisibility={touristicContentMobileVisibility}
           informationDeskMobileVisibility={informationDeskMobileVisibility}
           reportVisibility={reportVisibility}
+          coursesVisibility={coursesVisibility}
+          experiencesVisibility={experiencesVisibility}
           informationDesks={props.informationDesks}
         />
         {props.displayAltimetricProfile === true && props.trekGeoJSON && (

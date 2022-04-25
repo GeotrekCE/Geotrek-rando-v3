@@ -63,7 +63,9 @@
         "poi": "Patrimonios",
         "referencePoints": "Puntos de referencia",
         "touristicContent": "Cercano",
-        "informationDesks": "Lugares de información"
+        "informationDesks": "Lugares de información",
+        "courses": "Parcours",
+        "experiences": "Lieux de pratique"
       },
       "resetView": "Centrarse la mapa"
     }

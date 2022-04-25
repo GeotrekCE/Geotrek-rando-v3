@@ -36,6 +36,8 @@ type Props = {
   referencePointsMobileVisibility: Visibility;
   poiMobileVisibility: Visibility;
   touristicContentMobileVisibility: Visibility;
+  coursesVisibility: Visibility;
+  experiencesVisibility: Visibility;
   reportVisibility: boolean;
   parentId?: number;
   informationDeskMobileVisibility: Visibility;
@@ -45,6 +47,8 @@ type Props = {
 export const MapChildren: React.FC<Props> = props => {
   const { visibleSection } = useContext(VisibleSectionContext);
   const isMobile = useMediaPredicate('(max-width: 1024px)');
+
+  console.log('=>', props);
 
   return (
     <>
@@ -59,7 +63,7 @@ export const MapChildren: React.FC<Props> = props => {
         <PointsReference pointsReference={props.pointsReference ?? undefined} />
       )}
 
-      {visibleSection === 'experiences' && (
+      {(visibleSection === 'experiences' || props.experiencesVisibility === 'DISPLAYED') && (
         <TouristicContent
           contents={
             props.experiences.map(e => ({
@@ -71,7 +75,7 @@ export const MapChildren: React.FC<Props> = props => {
         />
       )}
 
-      {visibleSection === 'courses' && (
+      {(visibleSection === 'courses' || props.coursesVisibility === 'DISPLAYED') && (
         <TouristicContent
           contents={
             props.courses.map(e => ({

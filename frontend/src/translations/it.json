@@ -65,7 +65,9 @@
         "poi": "Eredità",
         "referencePoints": "Riferimenti",
         "touristicContent": "Vicino",
-        "informationDesks": "Luoghi di informazione"
+        "informationDesks": "Luoghi di informazione",
+        "courses": "Parcours",
+        "experiences": "Lieux de pratique"
       },
       "resetView": "Rimettere a fuoco la mappa"
     }

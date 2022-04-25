@@ -18,6 +18,10 @@ export interface ControlSectionProps {
   toggleTouristicContentVisibility: () => void;
   informationDeskMobileVisibility: Visibility;
   toggleInformationDeskVisibility: () => void;
+  coursesVisibility: Visibility;
+  toggleCoursesVisibility: () => void;
+  experiencesVisibility: Visibility;
+  toggleExperiencesVisibility: () => void;
   className?: string;
   position?: ControlPosition;
 }

@@ -63,7 +63,9 @@
         "poi": "Heritage",
         "referencePoints": "Landmarks",
         "touristicContent": "Close by",
-        "informationDesks": "Llocs d’informació"
+        "informationDesks": "Llocs d’informació",
+        "courses": "Parcours",
+        "experiences": "Lieux de pratique"
       },
       "resetView": "Recenter el mapa"
     }
