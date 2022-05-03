@@ -1,18 +1,14 @@
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
-import { DetailsAdvice } from 'components/pages/details/components/DetailsAdvice';
 import { DetailsCardSection } from 'components/pages/details/components/DetailsCardSection';
 import { DetailsDescription } from 'components/pages/details/components/DetailsDescription';
 import { DetailsHeader } from 'components/pages/details/components/DetailsHeader';
-import { DetailsInformationDesk } from 'components/pages/details/components/DetailsInformationDesk';
 import { DetailsSection } from 'components/pages/details/components/DetailsSection';
 import { DetailsSource } from 'components/pages/details/components/DetailsSource';
 import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/details/Details';
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
 import { generateTouristicContentUrl } from 'components/pages/details/utils';
 import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
-import { OutdoorSiteChildrenSection } from 'components/pages/site/components/OutdoorSiteChildrenSection';
-import { useOutdoorCourse } from 'components/pages/site/useOutdoorCourse';
 import { useTouristicEvent } from 'components/pages/touristicEvent/useTouristicEvent';
 import React, { useMemo, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -390,7 +386,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
         )}
       </>
     ),
-    [touristicEventContent, isLoading, mobileMapState, sectionsPositions],
+    [touristicEventContent, isLoading, mobileMapState],
   );
 };
 
