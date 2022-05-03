@@ -463,7 +463,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
         )}
       </>
     ),
-    [outdoorSiteContent, isLoading, mobileMapState, sectionsPositions],
+    [outdoorSiteContent, isLoading, mobileMapState],
   );
 };
 
