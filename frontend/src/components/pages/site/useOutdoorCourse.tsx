@@ -1,7 +1,6 @@
-import { DetailsSectionsPosition } from 'components/pages/details/useDetails';
-import { getDimensions } from 'components/pages/details/utils';
+import useSectionsReferences from 'hooks/useSectionsReferences';
 import { isUrlString } from 'modules/utils/string';
-import { useCallback, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { getOutdoorCourseDetails } from '../../../modules/outdoorCourse/connector';
 import { OutdoorCourseDetails } from '../../../modules/outdoorCourse/interface';
@@ -20,21 +19,8 @@ export const useOutdoorCourse = (
     },
   );
 
-  const sectionsReferences = useRef<Record<string, HTMLDivElement | null>>({});
-  const [sectionsPositions, setSectionsPositions] = useState<DetailsSectionsPosition>({});
-
-  const useSectionReferenceCallback = (sectionName: string) =>
-    useCallback((node: HTMLDivElement | null) => {
-      if (node !== null) {
-        setTimeout(() => {
-          sectionsReferences.current[sectionName] = node;
-          setSectionsPositions(currentSectionsPositions => ({
-            ...currentSectionsPositions,
-            [sectionName]: getDimensions(node),
-          }));
-        }, 1000);
-      }
-    }, []);
+  const { sectionsReferences, sectionsPositions, useSectionReferenceCallback } =
+    useSectionsReferences();
 
   const setPreviewRef = useSectionReferenceCallback('preview');
   const setPoisRef = useSectionReferenceCallback('poi');

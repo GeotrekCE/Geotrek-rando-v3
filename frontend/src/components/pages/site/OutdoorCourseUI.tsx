@@ -386,7 +386,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
         )}
       </>
     ),
-    [outdoorCourseContent, isLoading, mobileMapState, sectionsPositions],
+    [outdoorCourseContent, isLoading, mobileMapState],
   );
 };
 
