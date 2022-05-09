@@ -141,6 +141,7 @@ export const adaptResults = ({
           ? rawDetailsProperties.labels.map(labelId => labelsDictionnary[labelId])
           : [],
       advice: rawDetailsProperties.advice,
+      gear: rawDetailsProperties.gear !== undefined && rawDetailsProperties.gear !== "" ? rawDetailsProperties.gear : null,
       pointsReference:
         rawDetailsProperties.points_reference?.coordinates.map(rawCoordinates => ({
           x: rawCoordinates[0],

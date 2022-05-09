@@ -87,6 +87,7 @@ export interface RawDetailsProperties {
   source: number[];
   themes: number[];
   web_links: RawWebLink[];
+  gear: string | null;
 }
 
 // Fields parsed with react-html-parser in page
@@ -99,6 +100,7 @@ export interface DetailsHtml {
   description: string;
   disabledInfrastructure: string;
   advice: string;
+  gear: string | null;
 }
 
 export interface DetailsInformation {
