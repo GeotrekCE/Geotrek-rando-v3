@@ -222,7 +222,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       </div>
                     )}
                     {getGlobalConfig().enableMeteoWidget &&
-                      navigator && navigator.onLine &&
                       details.cities_raw &&
                       details.cities_raw[0] && (
                         <DetailsSection>
@@ -427,8 +426,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       </div>
                     )}
 
-                    {details.reservation && details.reservation_id &&
-                      navigator && navigator.onLine && (
+                    {details.reservation && details.reservation_id && (
                       <DetailsSection
                         className={marginDetailsChild}
                         htmlId="details_reservation"

@@ -266,7 +266,6 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                       )}
 
                       {getGlobalConfig().enableMeteoWidget &&
-                        navigator && navigator.onLine &&
                         touristicEventContent.cities_raw &&
                         touristicEventContent.cities_raw[0] && (
                           <DetailsSection>

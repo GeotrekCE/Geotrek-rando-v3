@@ -27,12 +27,10 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
         routeId: id,
       };
 
-      if(ITW){
-        const spaClient = ITW.pages.getSinglePageApplicationClient({ layer });
-        AllianceReseaux.jQuery(function () {
-          spaClient.executePage();
-        });
-      }
+      const spaClient = ITW.pages.getSinglePageApplicationClient({ layer });
+      AllianceReseaux.jQuery(function () {
+        spaClient.executePage();
+      });
     })(window, (window as any)?.eitinerance?.core);
   }, []);
 
