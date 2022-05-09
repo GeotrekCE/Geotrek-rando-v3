@@ -29,6 +29,7 @@ import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
+import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
 
 interface Props {
   outdoorCourseUrl: string | string[] | undefined;
@@ -49,6 +50,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
     setPreviewRef,
     setPoisRef,
     setTouristicContentsRef,
+    setSensitiveAreasRef
   } = useOutdoorCourse(outdoorCourseUrl, language);
 
   const intl = useIntl();
@@ -240,6 +242,27 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                       </div>
                     )}
 
+                    {outdoorCourseContent.sensitiveAreas.length > 0 && (
+                      <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
+                        <DetailsSection
+                          htmlId="details_sensitiveAreas"
+                          titleId="details.sensitiveAreas.title"
+                          className={marginDetailsChild}
+                        >
+                          <span className="mb-4 desktop:mb-8">
+                            <FormattedMessage id="details.sensitiveAreas.intro" />
+                          </span>
+                          {outdoorCourseContent.sensitiveAreas.map((sensitiveArea, i) => (
+                            <DetailsSensitiveArea
+                              key={i}
+                              {...sensitiveArea}
+                              className="my-4 desktop:my-8 ml-3 desktop:ml-6"
+                            />
+                          ))}
+                        </DetailsSection>
+                      </div>
+                    )}
+
                     {outdoorCourseContent.advice && (
                       <DetailsSection
                         htmlId="details_recommandations"
@@ -321,7 +344,12 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                           name: touristicContent.name,
                           id: `DETAILS-TOURISTIC_CONTENT-${touristicContent.id}`,
                         }))}
-                      sensitiveAreas={[]}
+                      sensitiveAreas={outdoorCourseContent.sensitiveAreas
+                        .filter(sensitiveArea => sensitiveArea.geometry !== null)
+                        .map(({ geometry, color }) => ({
+                          geometry,
+                          color,
+                        }))}
                       trekId={Number(id)}
                     />
                   </div>

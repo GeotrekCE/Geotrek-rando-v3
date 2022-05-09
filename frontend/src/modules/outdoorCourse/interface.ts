@@ -1,6 +1,7 @@
 import { Bbox } from 'modules/details/interface';
 import { Attachment, RawAttachment, RawGeometryCollection } from 'modules/interface';
 import { LineStringGeometry, PointGeometry, PolygonGeometry } from 'modules/interface';
+import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { OutdoorCourseType } from '../outdoorCourseType/interface';
 import { OutdoorRatingWithScale } from '../outdoorRating/interface';
 import { OutdoorSite } from '../outdoorSite/interface';
@@ -69,4 +70,5 @@ export interface OutdoorCourseDetails extends OutdoorCourse {
   ratings: OutdoorRatingWithScale[];
   ratingsDescription: string;
   typeCourse?: OutdoorCourseType;
+  sensitiveAreas: SensitiveArea[];
 }

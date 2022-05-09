@@ -50,7 +50,7 @@ export const getDetails = async (id: string, language: string): Promise<Details>
         getLabels(language),
         getTrekResultsById(rawDetails.properties.children, language),
         getGlobalConfig().enableSensitiveAreas
-          ? getSensitiveAreas(rawDetails.properties.id, language)
+          ? getSensitiveAreas("trek", rawDetails.properties.id, language)
           : [],
       ]);
     const childrenGeometry = await Promise.all(

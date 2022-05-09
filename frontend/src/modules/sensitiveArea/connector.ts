@@ -4,11 +4,12 @@ import { fetchSensitiveAreas } from './api';
 import { SensitiveArea } from './interface';
 
 export const getSensitiveAreas = async (
-  trekId: number,
+  type: "trek" | "outdoorSite" | "outdoorCourse",
+  id: number,
   language: string,
 ): Promise<SensitiveArea[]> => {
   const [rawSensitiveAreas, sensitiveAreaPracticeDictionnary] = await Promise.all([
-    fetchSensitiveAreas(trekId, { language }),
+    fetchSensitiveAreas(type, id, { language }),
     getSensitiveAreaPractices(language),
   ]);
   return adaptSensitiveAreas({

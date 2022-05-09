@@ -1,3 +1,4 @@
+import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { getAttachments, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CityDictionnary } from '../city/interface';
@@ -48,6 +49,7 @@ export const adaptOutdoorCourseDetails = ({
   outdoorRating,
   outdoorRatingScale,
   outdoorCourseType,
+  sensitiveAreas
 }: {
   rawOutdoorCourseDetails: RawOutdoorCourseDetails;
   pois: Poi[];
@@ -56,6 +58,7 @@ export const adaptOutdoorCourseDetails = ({
   outdoorRating: OutdoorRatingChoices;
   outdoorRatingScale: OutdoorRatingScale[];
   outdoorCourseType: OutdoorSiteTypeChoices;
+  sensitiveAreas: SensitiveArea[];
 }): OutdoorCourseDetails => {
   return {
     // We use the original adapter
@@ -93,5 +96,6 @@ export const adaptOutdoorCourseDetails = ({
     ratingsDescription: rawOutdoorCourseDetails.properties.ratings_description,
     typeCourse: outdoorCourseType[Number(rawOutdoorCourseDetails?.properties?.type)],
     id: rawOutdoorCourseDetails.id,
+    sensitiveAreas
   };
 };

@@ -1,3 +1,4 @@
+import { getSensitiveAreas } from 'modules/sensitiveArea/connector';
 import { getCities } from '../city/connector';
 import { getThemes } from '../filters/theme/connector';
 import { getInformationDesks } from '../informationDesk/connector';
@@ -54,6 +55,7 @@ export const getOutdoorSiteDetails = async (
       courses,
       outdoorPracticeDictionnary,
       touristicContents,
+      sensitiveAreas
     ] = await Promise.all([
       fetchOutdoorSiteDetails({ language }, id),
       getPois(Number(id), language, 'sites'),
@@ -65,6 +67,9 @@ export const getOutdoorSiteDetails = async (
       getOutdoorCourses(language, { near_outdoorsite: id }),
       getOutdoorPractices(language),
       getTouristicContentsNearTarget(Number(id), language, 'near_outdoorsite'),
+      getGlobalConfig().enableSensitiveAreas
+          ? getSensitiveAreas("outdoorSite", Number(id), language)
+          : [],
     ]);
 
     const [
@@ -100,6 +105,7 @@ export const getOutdoorSiteDetails = async (
       outdoorRating,
       outdoorRatingScale,
       outdoorSiteType,
+      sensitiveAreas
     });
   } catch (e) {
     console.error('Error in outdoor course connector', e);

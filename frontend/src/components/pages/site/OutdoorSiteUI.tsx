@@ -17,7 +17,7 @@ import { AccessChildrenSection } from 'components/pages/site/components/AccessCh
 import { OutdoorCoursesChildrenSection } from 'components/pages/site/components/OutdoorCoursesChildrenSection';
 import { OutdoorSiteChildrenSection } from 'components/pages/site/components/OutdoorSiteChildrenSection';
 import React, { useMemo, useRef } from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'react-loader';
 import { useMediaPredicate } from 'react-media-hook';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
@@ -35,6 +35,7 @@ import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
+import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
 
 interface Props {
   outdoorSiteUrl: string | string[] | undefined;
@@ -60,6 +61,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
     setDescriptionRef,
     setPracticalInformationsRef,
     setTouristicContentsRef,
+    setSensitiveAreasRef
   } = useOutdoorSite(outdoorSiteUrl, language);
 
   const intl = useIntl();
@@ -255,6 +257,27 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                       </div>
                     )}
 
+                    {outdoorSiteContent.sensitiveAreas.length > 0 && (
+                      <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
+                        <DetailsSection
+                          htmlId="details_sensitiveAreas"
+                          titleId="details.sensitiveAreas.title"
+                          className={marginDetailsChild}
+                        >
+                          <span className="mb-4 desktop:mb-8">
+                            <FormattedMessage id="details.sensitiveAreas.intro" />
+                          </span>
+                          {outdoorSiteContent.sensitiveAreas.map((sensitiveArea, i) => (
+                            <DetailsSensitiveArea
+                              key={i}
+                              {...sensitiveArea}
+                              className="my-4 desktop:my-8 ml-3 desktop:ml-6"
+                            />
+                          ))}
+                        </DetailsSection>
+                      </div>
+                    )}
+
                     {(!!outdoorSiteContent.advice ||
                       Number(outdoorSiteContent?.labels?.length) > 0) && (
                       <DetailsSection
@@ -414,7 +437,12 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                           name: touristicContent.name,
                           id: `DETAILS-TOURISTIC_CONTENT-${touristicContent.id}`,
                         }))}
-                      sensitiveAreas={[]}
+                      sensitiveAreas={outdoorSiteContent.sensitiveAreas
+                        .filter(sensitiveArea => sensitiveArea.geometry !== null)
+                        .map(({ geometry, color }) => ({
+                          geometry,
+                          color,
+                        }))}
                       trekId={Number(id)}
                     />
                   </div>

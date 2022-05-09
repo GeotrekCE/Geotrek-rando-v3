@@ -1,3 +1,4 @@
+import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CityDictionnary } from '../city/interface';
@@ -67,6 +68,7 @@ export const adaptOutdoorSiteDetails = ({
   outdoorRating,
   outdoorRatingScale,
   outdoorSiteType,
+  sensitiveAreas
 }: {
   rawOutdoorSiteDetails: RawOutdoorSiteDetails;
   pois: Poi[];
@@ -84,6 +86,7 @@ export const adaptOutdoorSiteDetails = ({
   outdoorRating: OutdoorRatingChoices;
   outdoorRatingScale: OutdoorRatingScale[];
   outdoorSiteType: OutdoorSiteTypeChoices;
+  sensitiveAreas: SensitiveArea[];
 }): OutdoorSiteDetails => ({
   ...adaptOutdoorSites({
     rawOutdoorSites: [
@@ -130,6 +133,7 @@ export const adaptOutdoorSiteDetails = ({
     }) ?? [],
   ratingsDescription: rawOutdoorSiteDetails.properties.ratings_description,
   typeSite: outdoorSiteType[Number(rawOutdoorSiteDetails?.properties?.type)],
+  sensitiveAreas
 });
 
 export const adaptOutdoorSitePopupResults = ({

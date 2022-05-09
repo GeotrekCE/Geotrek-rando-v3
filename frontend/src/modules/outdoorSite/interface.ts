@@ -1,6 +1,7 @@
 import { Bbox, WebLink } from 'modules/details/interface';
 import { Attachment, RawAttachment, RawGeometryCollection, RawWebLink } from 'modules/interface';
 import { LineStringGeometry, PointGeometry, PolygonGeometry } from 'modules/interface';
+import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { Activity } from '../activities/interface';
 import { InformationDesk } from '../informationDesk/interface';
 import { Label } from '../label/interface';
@@ -91,4 +92,5 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   ratings: OutdoorRatingWithScale[];
   ratingsDescription: string;
   typeSite?: OutdoorSiteType;
+  sensitiveAreas: SensitiveArea[];
 }
