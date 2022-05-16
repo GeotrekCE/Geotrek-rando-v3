@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { getSearchResults } from 'modules/results/connector';
 import { SearchResults } from 'modules/results/interface';
-import { FilterState } from 'modules/filters/interface';
+import { DateFilter, FilterState } from 'modules/filters/interface';
 import { getGlobalConfig } from '../../../../modules/utils/api.config';
 
 import { formatInfiniteQuery, parseBboxFilter, parseFilters, parseTextFilter } from '../utils';
@@ -36,10 +36,11 @@ export const useTrekResults = (
     filtersState: FilterState[];
     textFilterState: string | null;
     bboxState: string | null;
+    dateFilter: DateFilter
   },
   language: string,
 ) => {
-  const { filtersState, textFilterState, bboxState } = filters;
+  const { filtersState, textFilterState, bboxState, dateFilter } = filters;
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => {
@@ -64,6 +65,7 @@ export const useTrekResults = (
         language,
         parseTextFilter(textFilterState),
         parseBboxFilter(bboxState),
+        dateFilter
       ],
       ({
         pageParam = {
@@ -74,7 +76,7 @@ export const useTrekResults = (
         },
       }) => {
         return getSearchResults(
-          { filtersState: parsedFiltersState, textFilterState, bboxState },
+          { filtersState: parsedFiltersState, textFilterState, bboxState, dateFilter },
           pageParam,
           language,
         );

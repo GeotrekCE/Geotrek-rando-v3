@@ -77,3 +77,8 @@ export interface FilterCategory {
   subFilters?: string[];
   onSelect?: () => void;
 }
+
+export interface DateFilter {
+  beginDate: string | null;
+  endDate: string | null;
+}

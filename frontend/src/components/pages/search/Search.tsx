@@ -19,7 +19,7 @@ import {
 } from 'components/MobileFilterMenu';
 
 import { PageHead } from 'components/PageHead';
-import { FilterState } from 'modules/filters/interface';
+import { DateFilter, FilterState } from 'modules/filters/interface';
 import { SearchMapDynamicComponent } from 'components/Map';
 import { countFiltersSelected } from '../../../modules/filters/utils';
 import { OutdoorSite } from '../../../modules/outdoorSite/interface';
@@ -70,6 +70,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     resetTextFilter,
   } = useTextFilter();
 
+  const dateFilter: DateFilter = { beginDate:'2022-11-01', endDate:'2022-11-10' }
+
   const {
     searchResults,
     isLoading,
@@ -81,7 +83,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-  } = useTrekResults({ filtersState, textFilterState, bboxState }, language);
+  } = useTrekResults({ filtersState, textFilterState, bboxState, dateFilter }, language);
 
   const { isMapLoading } = useMapResults({ filtersState, textFilterState }, language);
 
@@ -188,7 +190,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                     }
                     scrollableTarget="search_resultCardList"
                   >
-                    {searchResults?.results.map(searchResult => {
+                    {searchResults?.results
+                      .map(searchResult => {
                       if (isTrek(searchResult))
                         return (
                           <ResultCard

@@ -9,15 +9,17 @@ const fieldsParams = {
 
 export const fetchTouristicEvents = (
   query: APIQuery,
-): Promise<APIResponseForList<RawTouristicEvent>> =>
-  GeotrekAPI.get(`/touristicevent`, {
+): Promise<APIResponseForList<RawTouristicEvent>> =>{
+  console.log(query)
+  return GeotrekAPI.get(`/touristicevent`, {
     params: {
       ...query,
       ...fieldsParams,
       ...portalsFilter,
-      dates_after: '2021-11-10', // @FIXME
+      //dates_after: '2021-11-10', // @FIXME
     },
   }).then(r => r.data);
+}
 
 const fieldsParamsDetails = {
   fields: `${fieldsParams.fields},description,description_teaser,participant_number,pdf,meeting_point,duration,source,contact,email,website,accessibility,organizer,speaker,target_audience,practical_info,booking,meeting_time`,

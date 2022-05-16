@@ -31,12 +31,14 @@ import { SearchResults, TrekResult } from './interface';
 import {
   extractNextPageId,
   formatBboxFilter,
+  formatDateFilter,
   formatOutdoorSiteFiltersToUrlParams,
   formatTextFilter,
   formatTouristicContentFiltersToUrlParams,
   formatTouristicEventsFiltersToUrlParams,
   formatTrekFiltersToUrlParams,
 } from './utils';
+import { DateFilter } from 'modules/filters/interface';
 
 const emptyResultPromise = Promise.resolve({
   count: 0,
@@ -50,6 +52,7 @@ export const getSearchResults = async (
     filtersState: QueryFilterState[];
     textFilterState: string | null;
     bboxState: string | null;
+    dateFilter: DateFilter
   },
   pages: {
     treks: number | null;
@@ -59,7 +62,7 @@ export const getSearchResults = async (
   },
   language: string,
 ): Promise<SearchResults> => {
-  const { filtersState, textFilterState, bboxState } = filters;
+  const { filtersState, textFilterState, bboxState, dateFilter } = filters;
 
   try {
     const practiceFilter = filtersState.find(({ id }) => id === PRACTICE_ID);
@@ -94,6 +97,7 @@ export const getSearchResults = async (
     const touristicEventsFilter = formatTouristicEventsFiltersToUrlParams(filtersState);
 
     const textFilter = formatTextFilter(textFilterState);
+    const newDateFilter = formatDateFilter(dateFilter)
 
     const bboxFilter = formatBboxFilter(bboxState);
 
@@ -211,6 +215,8 @@ export const getSearchResults = async (
             language,
             page_size: getGlobalConfig().searchResultsPageSize,
             page: pages.touristicEvents ?? undefined,
+            dates_before: newDateFilter.dates_before ?? undefined,
+            dates_after: newDateFilter.dates_after ?? undefined,
             ...touristicEventsFilter,
             ...textFilter,
             ...bboxFilter,
