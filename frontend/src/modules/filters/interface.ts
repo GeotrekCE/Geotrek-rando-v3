@@ -79,6 +79,6 @@ export interface FilterCategory {
 }
 
 export interface DateFilter {
-  beginDate: string | null;
-  endDate: string | null;
+  beginDate: string;
+  endDate: string;
 }

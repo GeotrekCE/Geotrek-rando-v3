@@ -58,6 +58,8 @@
       "filters": "Filtres"
     },
     "textFilter": "Rechercher...",
+    "beginDateFilter": "Date de début",
+    "endDateFilter": "Date de fin",
     "map": {
       "seeResult": "Afficher le détail",
       "seeMe": "Voir ma position",

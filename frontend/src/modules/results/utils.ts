@@ -139,7 +139,7 @@ const commonFiltersWithoutTrekSelector = [
 export const formatTextFilter = (textFilter: string | null): { q: string } | undefined =>
   textFilter !== null ? { q: textFilter } : undefined;
 
-export const formatDateFilter = (dateFilter: DateFilter): { dates_before: string|null, dates_after: string|null } =>
+export const formatDateFilter = (dateFilter: DateFilter): { dates_before: string, dates_after: string } =>
   {return {dates_before: dateFilter.endDate, dates_after: dateFilter.beginDate}};
 
 export const formatBboxFilter = (bbox: string | null): { in_bbox: string } | undefined =>

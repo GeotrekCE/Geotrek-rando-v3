@@ -1,6 +1,6 @@
 import FilterBarNew from 'components/pages/search/components/FilterBar';
 import useBbox from 'components/pages/search/components/useBbox';
-import React from 'react';
+import React, { useState } from 'react';
 import { useMediaPredicate } from 'react-media-hook';
 import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -18,6 +18,7 @@ import {
   useFilterSubMenu,
 } from 'components/MobileFilterMenu';
 
+import { Calendar } from 'components/Icons/Calendar';
 import { PageHead } from 'components/PageHead';
 import { DateFilter, FilterState } from 'modules/filters/interface';
 import { SearchMapDynamicComponent } from 'components/Map';
@@ -41,6 +42,7 @@ import {
 } from '../details/utils';
 import InputWithMagnifier from './components/InputWithMagnifier';
 import { useTextFilter } from './hooks/useTextFilter';
+import InputDateWithMagnifier from './components/InputDateWithMagnifier';
 
 interface Props {
   initialFiltersState: FilterState[];
@@ -70,7 +72,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     resetTextFilter,
   } = useTextFilter();
 
-  const dateFilter: DateFilter = { beginDate:'2022-11-01', endDate:'2022-11-10' }
+  const [dateFilter, setDateFilter] = useState({ beginDate:'', endDate:'' });
 
   const {
     searchResults,
@@ -159,6 +161,20 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                     <div className="flex justify-between items-end" id="search_resultMapTitle">
                       <SearchResultsMeta resultsNumber={searchResults?.resultsNumber ?? 0} />
                       <ToggleFilterButton onClick={displayMenu} numberSelected={numberSelected} />
+                    </div>
+                    <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
+                      <InputDateWithMagnifier
+                        value={dateFilter.beginDate}
+                        onChange={(event) => {setDateFilter({beginDate:event.target.value, endDate:dateFilter.endDate})}}
+                        placeholder={intl.formatMessage({ id: 'search.beginDateFilter' })}
+                      />
+                    </div>
+                    <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
+                      <InputDateWithMagnifier
+                        value={dateFilter.endDate}
+                        onChange={(event) => {setDateFilter({beginDate:dateFilter.beginDate, endDate:event.target.value})}}
+                        placeholder={intl.formatMessage({ id: 'search.endDateFilter' })}
+                      />
                     </div>
                     <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
                       <InputWithMagnifier

@@ -55,6 +55,8 @@
       "filters": "Filter"
     },
     "textFilter": "Suchen...",
+    "beginDateFilter": "Startdatum",
+    "endDateFilter": "Endtermin",
     "map": {
       "seeResult": "Einzelheiten anzeigen",
       "seeMe": "Meinen Standpunkt sehen",

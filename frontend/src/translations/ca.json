@@ -55,6 +55,8 @@
       "filters": "Filtres"
     },
     "textFilter": "Cercar...",
+    "beginDateFilter": "Data d'inici",
+    "endDateFilter": "Data de finalització",
     "map": {
       "seeResult": "Mostrar el detall",
       "seeMe": "Mostrar la meva posició",
