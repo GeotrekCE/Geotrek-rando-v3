@@ -4,6 +4,7 @@ import { InformationDesk } from 'modules/informationDesk/interface';
 import { Coordinate2D } from 'modules/interface';
 import { OutdoorSite } from 'modules/outdoorSite/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
+import { SignageDictionary } from 'modules/signage/interface';
 import React, { useContext } from 'react';
 import { useMediaPredicate } from 'react-media-hook';
 import { TouristicContentGeometry } from './DetailsMap';
@@ -12,6 +13,7 @@ import { MarkersWithIcon } from './MarkersWithIcon';
 import { PointReport } from './PointReport';
 import { PointsInformationDesk } from './PointsInformationDesk';
 import { PointsReference } from './PointsReference';
+import { PointsSignage } from './PointsSignage';
 import { SensitiveAreas } from './SensitiveAreas';
 import { TouristicContent } from './TouristicContent';
 import { TrekChildren } from './TrekChildren';
@@ -42,6 +44,8 @@ type Props = {
   parentId?: number;
   informationDeskMobileVisibility: Visibility;
   informationDesks?: InformationDesk[];
+  signageVisibility: Visibility;
+  signage?: SignageDictionary;
 };
 
 export const MapChildren: React.FC<Props> = props => {
@@ -102,6 +106,8 @@ export const MapChildren: React.FC<Props> = props => {
         props.informationDeskMobileVisibility === 'DISPLAYED') && (
         <PointsInformationDesk informationDesks={props.informationDesks} />
       )}
+
+      {props.signageVisibility === 'DISPLAYED' && <PointsSignage signage={props.signage} />}
 
       {(isMobile || visibleSection === 'report') && props.reportVisibility && <PointReport />}
     </>
