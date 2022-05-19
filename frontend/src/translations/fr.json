@@ -68,7 +68,8 @@
         "touristicContent": "À proximité",
         "informationDesks": "Lieux de renseignement",
         "courses": "Parcours",
-        "experiences": "Lieux de pratique"
+        "experiences": "Lieux de pratique",
+        "signage": "Signalétiques"
       },
       "resetView": "Recentrer la carte"
     }

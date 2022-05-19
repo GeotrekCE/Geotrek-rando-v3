@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Florist } from 'components/Icons/Florist';
+import { Signage } from 'components/Icons/Signage';
 import { Line } from './Line';
 import IconLocation from './IconLocation';
 import IconInfo from './IconInfo';
@@ -42,6 +43,8 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
   toggleCoursesVisibility,
   experiencesVisibility,
   toggleExperiencesVisibility,
+  signageVisibility,
+  toggleSignageVisibility,
 }) => {
   return (
     <Wrapper>
@@ -99,6 +102,14 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
           active={experiencesVisibility === 'DISPLAYED'}
           toggle={toggleExperiencesVisibility}
           transKey="search.map.panel.experiences"
+        />
+      )}
+      {signageVisibility !== null && (
+        <Line
+          Icon={Signage}
+          active={signageVisibility === 'DISPLAYED'}
+          toggle={toggleSignageVisibility}
+          transKey="search.map.panel.signage"
         />
       )}
     </Wrapper>
