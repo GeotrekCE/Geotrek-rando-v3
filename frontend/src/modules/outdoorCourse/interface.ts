@@ -10,6 +10,7 @@ import {
   RawAttachment,
   RawGeometryCollection,
 } from 'modules/interface';
+import { SignageDictionary } from 'modules/signage/interface';
 import { OutdoorCourseType } from '../outdoorCourseType/interface';
 import { OutdoorRatingWithScale } from '../outdoorRating/interface';
 import { OutdoorSite } from '../outdoorSite/interface';
@@ -86,4 +87,6 @@ export interface OutdoorCourseDetails extends OutdoorCourse {
   ratings: OutdoorRatingWithScale[];
   ratingsDescription: string;
   typeCourse?: OutdoorCourseType;
+
+  signage: SignageDictionary | null;
 }
