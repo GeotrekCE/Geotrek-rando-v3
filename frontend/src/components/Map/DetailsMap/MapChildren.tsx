@@ -45,7 +45,7 @@ type Props = {
   informationDeskMobileVisibility: Visibility;
   informationDesks?: InformationDesk[];
   signageVisibility: Visibility;
-  signage?: SignageDictionary;
+  signage?: SignageDictionary | null;
 };
 
 export const MapChildren: React.FC<Props> = props => {

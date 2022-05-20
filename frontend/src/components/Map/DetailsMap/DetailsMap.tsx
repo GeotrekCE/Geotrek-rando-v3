@@ -80,7 +80,7 @@ export type PropsType = {
   title?: string;
   displayAltimetricProfile?: boolean;
   informationDesks?: InformationDesk[];
-  signage?: SignageDictionary;
+  signage?: SignageDictionary | null;
 };
 export const DetailsMap: React.FC<PropsType> = props => {
   const { reportVisibility, setReportVisibility } = useDetailsAndMapContext();

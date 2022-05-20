@@ -10,7 +10,7 @@ import { RawCoordinate2D } from 'modules/interface';
 import { HoverableMarker } from '../components/HoverableMarker';
 
 export type PointsSignageProps = {
-  signage: SignageDictionary;
+  signage?: SignageDictionary | null;
 };
 
 type Locations = {
@@ -24,7 +24,7 @@ type Locations = {
 
 export const PointsSignage: React.FC<PointsSignageProps> = ({ signage }) => {
   const locations: Locations = useMemo(() => {
-    return Object.values(signage)
+    return Object.values(signage ?? {})
       .filter(({ geometry }) => Boolean(geometry?.coordinates))
       .map(({ description, geometry, name, type, imageUrl }) => ({
         description,
