@@ -33,6 +33,7 @@ export const Header: React.FC = () => {
       <Container
         state={headerState}
         className="h-11 bg-primary1 flex flex-row items-center sticky z-header px-3 shadow-sm text-primary3 flex-shrink-0"
+        style={{zIndex:2}}
         id="header"
       >
         <Link href={routes.HOME} className="flex items-center">

@@ -4,7 +4,7 @@ import { ThreeDMap } from 'components/Icons/ThreeDMap';
 import { Printer } from 'components/Icons/Printer';
 import { DetailsButton } from 'components/pages/details/components/DetailsButton';
 import React, { useState } from 'react';
-
+import ToolTip from 'components/ToolTip';
 import { Download } from 'components/Icons/Download';
 import { Details } from 'modules/details/interface';
 import { ThreeD } from 'components/3D';
@@ -84,21 +84,27 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
 
       <div className="flex space-x-4">
         {details.pdfUri && (
-          <DetailsButton url={details.pdfUri}>
-            <Printer size={30} />
-          </DetailsButton>
+          <ToolTip toolTipText="Imprimer">
+            <DetailsButton url={details.pdfUri}>
+              <Printer size={30} />
+            </DetailsButton>
+          </ToolTip>
         )}
 
         {dropdownButtonOptions.length > 0 && (
-          <DetailsButtonDropdown options={dropdownButtonOptions}>
-            <Download className="text-primary1" size={size} />
-          </DetailsButtonDropdown>
+          <ToolTip toolTipText="Télécharger">
+            <DetailsButtonDropdown options={dropdownButtonOptions}>
+              <Download className="text-primary1" size={size} />
+            </DetailsButtonDropdown>
+          </ToolTip>
         )}
 
         {Number(details.id) && !hideReport && getGlobalConfig().enableReport && (
-          <DetailsButton url="#details_report" onClick={() => setReportVisibility(true)}>
-            <AlertTriangle size={size} />
-          </DetailsButton>
+          <ToolTip toolTipText="Signaler un problème">
+            <DetailsButton url="#details_report" onClick={() => setReportVisibility(true)}>
+              <AlertTriangle size={size} />
+            </DetailsButton>
+          </ToolTip>
         )}
 
         {(details as Details).reservation &&
@@ -111,9 +117,11 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
           )}
 
         {is3DfeatureEnabled && (
-          <DetailsButton onClick={() => setOpen3D(true)}>
-            <ThreeDMap size={size} />
-          </DetailsButton>
+          <ToolTip toolTipText="Afficher la 3D">
+            <DetailsButton onClick={() => setOpen3D(true)}>
+              <ThreeDMap size={size} />
+            </DetailsButton>
+          </ToolTip>
         )}
       </div>
     </div>
