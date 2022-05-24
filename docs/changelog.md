@@ -1,7 +1,12 @@
 # Changelog
 
-3.8.3 (2022-04-25)
+3.8.3 (2022-05-24)
 ------------------
+
+**🚀 New features**
+
+* Add published signages on treks and outdoor maps (#408)
+* Add ``groupTreksAndOutdoorFilters`` to be able to group Treks and Outdoor filters on search page (#656)
 
 **🐛 Fixes**
 
