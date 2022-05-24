@@ -1,5 +1,5 @@
 import { Popup } from 'components/Map/components/Popup';
-import React from 'react';
+import React, { Fragment } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { TouristicContentGeometry } from './DetailsMap';
 import { HoverableMarker } from '../components/HoverableMarker';
@@ -23,12 +23,13 @@ export const TouristicContent: React.FC<PropsType> = ({ contents, type = 'TOURIS
             case 'Point':
             case 'MultiPoint':
               return (
-                <>
+                <Fragment key={id}>
                   {(geometry.type === 'Point' ? [geometry.coordinates] : geometry.coordinates).map(
                     coordinates =>
                       pictogramUri ? (
                         <HoverableMarker
-                          id={`${id}${JSON.stringify(coordinates)}`}
+                          key={`${id}${JSON.stringify(coordinates)}`}
+                          id={id}
                           position={[coordinates.y, coordinates.x]}
                           pictogramUri={pictogramUri}
                           type={type}
@@ -37,13 +38,13 @@ export const TouristicContent: React.FC<PropsType> = ({ contents, type = 'TOURIS
                         </HoverableMarker>
                       ) : null,
                   )}
-                </>
+                </Fragment>
               );
 
             case 'LineString':
             case 'MultiLineString':
               return (
-                <>
+                <Fragment key={id}>
                   {(geometry.type === 'LineString'
                     ? [geometry.coordinates]
                     : geometry.coordinates
@@ -54,13 +55,13 @@ export const TouristicContent: React.FC<PropsType> = ({ contents, type = 'TOURIS
                       positions={group.map(point => [point.y, point.x])}
                     />
                   ))}
-                </>
+                </Fragment>
               );
 
             case 'Polygon':
             case 'MultiPolygon':
               return (
-                <>
+                <Fragment key={id}>
                   {(geometry.type === 'Polygon'
                     ? [geometry.coordinates]
                     : geometry.coordinates
@@ -73,7 +74,7 @@ export const TouristicContent: React.FC<PropsType> = ({ contents, type = 'TOURIS
                       )}
                     />
                   ))}
-                </>
+                </Fragment>
               );
 
             default:

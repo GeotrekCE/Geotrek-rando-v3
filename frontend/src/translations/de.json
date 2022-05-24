@@ -39,6 +39,7 @@
       "difficulty": "Schwierigkeit",
       "practices": "Wanderungen",
       "outdoor": "Draußen",
+      "treksOutdoorGrouped": "Activities",
       "events": "Veranstaltungen",
       "categories": "Dienstleistungen",
       "cities": "Gemeinde",
@@ -65,7 +66,8 @@
         "touristicContent": "Close by",
         "informationDesks": "Orte der Information",
         "courses": "Parcours",
-        "experiences": "Lieux de pratique"
+        "experiences": "Lieux de pratique",
+        "signage": "Beschilderung"
       },
       "resetView": "Karte zentrieren"
     }

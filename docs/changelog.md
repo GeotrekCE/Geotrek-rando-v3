@@ -1,13 +1,26 @@
 # Changelog
 
+3.8.3 (2022-05-24)
+------------------
+
+**🚀 New features**
+
+* Add published signages on treks and outdoor maps (#408)
+* Add ``groupTreksAndOutdoorFilters`` setting to be able to group Treks and Outdoor filters on search page (#656)
+
+**🐛 Fixes**
+
+* Fix flickering of Outdoor, services and events maps
+* Refactoring and improvements of anchor system in detail pages
+
 3.8.2 (2022-04-25)
 ------------------
 
 **🐛 Fixes**
 
-- Fix HTML interpretation of new "Accessibility" fields (#536 / #638)
-- Don't display label filter (Others) in trek filters if no label defined as filter (#418)
-- Improve outdoor subobjects display on site maps with adding it in layer control (#542)
+* Fix HTML interpretation of new "Accessibility" fields (#536 / #638)
+* Don't display label filter (Others) in trek filters if no label defined as filter (#418)
+* Improve outdoor subobjects display on site maps with adding it in layer control (#542)
 
 3.8.1 (2022-04-25)
 ------------------

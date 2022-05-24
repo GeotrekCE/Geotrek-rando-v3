@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 import { colorPalette } from 'stylesheet';
 import { FilterState, Option } from '../../../../../modules/filters/interface';
-import getActivityColor from '../ResultCard/getActivityColor';
 
 interface Props {
   filterState: FilterState;
@@ -34,8 +33,6 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel, id }) => {
 
     return null;
   };
-
-  const color = getActivityColor(id);
 
   return (
     <div>

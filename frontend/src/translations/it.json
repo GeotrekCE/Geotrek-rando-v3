@@ -41,6 +41,7 @@
       "difficulty": "Difficoltà",
       "practices": "Escursioni",
       "outdoor": "Outdoor",
+      "treksOutdoorGrouped": "Activities",
       "events": "Eventi",
       "categories": "Servizi",
       "cities": "Comune",
@@ -67,7 +68,8 @@
         "touristicContent": "Vicino",
         "informationDesks": "Luoghi di informazione",
         "courses": "Parcours",
-        "experiences": "Lieux de pratique"
+        "experiences": "Lieux de pratique",
+        "signage": "Segnaletica"
       },
       "resetView": "Rimettere a fuoco la mappa"
     }
