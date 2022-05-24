@@ -2,6 +2,7 @@ import { Bin } from 'components/Icons/Bin';
 import { Filter } from 'components/Icons/Filter';
 import FilterField from 'components/pages/search/components/FilterBar/FilterField';
 import useCounter from 'components/pages/search/hooks/useCounter';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
@@ -26,27 +27,49 @@ interface Props {
   language: string;
 }
 
+const { groupTreksAndOutdoorFilters, enableOutdoor } = getGlobalConfig();
+
+const treksAndOutdoorCategories =
+  groupTreksAndOutdoorFilters === true && enableOutdoor === true
+    ? [
+        {
+          id: PRACTICE_ID,
+          name: [
+            <FormattedMessage key="practices" id={'search.filters.practices'} />,
+            <FormattedMessage key="outdoors" id={'search.filters.outdoor'} />,
+          ],
+          filters: [PRACTICE_ID, OUTDOOR_ID],
+          subFilters: [
+            ['difficulty', 'duration', 'length', 'routes', 'ascent', 'accessibilities', 'labels'],
+            ['type-outdoorRating-.+'],
+          ],
+        },
+      ]
+    : [
+        {
+          id: PRACTICE_ID,
+          name: <FormattedMessage id={'search.filters.practices'} />,
+          filters: [PRACTICE_ID],
+          subFilters: [
+            'difficulty',
+            'duration',
+            'length',
+            'routes',
+            'ascent',
+            'accessibilities',
+            'labels',
+          ],
+        },
+        {
+          id: OUTDOOR_ID,
+          name: <FormattedMessage id={'search.filters.outdoor'} />,
+          filters: [OUTDOOR_ID],
+          subFilters: ['type-outdoorRating-.+'],
+        },
+      ];
+
 export const FILTERS_CATEGORIES = [
-  {
-    id: PRACTICE_ID,
-    name: <FormattedMessage id={'search.filters.practices'} />,
-    filters: [PRACTICE_ID],
-    subFilters: [
-      'difficulty',
-      'duration',
-      'length',
-      'routes',
-      'ascent',
-      'accessibilities',
-      'labels',
-    ],
-  },
-  {
-    id: OUTDOOR_ID,
-    name: <FormattedMessage id={'search.filters.outdoor'} />,
-    filters: [OUTDOOR_ID],
-    subFilters: ['type-outdoorRating-.+'],
-  },
+  ...treksAndOutdoorCategories,
   {
     id: CATEGORY_ID,
     name: <FormattedMessage id={'search.filters.categories'} />,
