@@ -65,7 +65,8 @@
         "touristicContent": "Cercano",
         "informationDesks": "Lugares de información",
         "courses": "Parcours",
-        "experiences": "Lieux de pratique"
+        "experiences": "Lieux de pratique",
+        "signage": "Señalización"
       },
       "resetView": "Centrarse la mapa"
     }
