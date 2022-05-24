@@ -6,7 +6,7 @@
 **🚀 New features**
 
 * Add published signages on treks and outdoor maps (#408)
-* Add ``groupTreksAndOutdoorFilters`` to be able to group Treks and Outdoor filters on search page (#656)
+* Add ``groupTreksAndOutdoorFilters`` setting to be able to group Treks and Outdoor filters on search page (#656)
 
 **🐛 Fixes**
 
