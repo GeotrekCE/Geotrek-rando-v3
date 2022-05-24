@@ -9,11 +9,16 @@ const fieldsParams = {
   format: 'geojson',
 };
 
+const fieldsParamsDetails = {
+  fields: `${fieldsParams.fields},ratings,ratings_description`,
+  format: 'geojson',
+};
+
 export const fetchDetails = (query: APIQuery, id: string): Promise<RawDetails> => {
   try {
-    return GeotrekAPI.get(`/trek/${id}/`, {
-      params: { ...query, ...fieldsParams, ...portalsFilter },
-    }).then(r => r.data);
+    return GeotrekAPI.get(`/trek/${id}/`, { params: { ...query, ...fieldsParamsDetails } }).then(
+      r => r.data,
+    );
   } catch (e) {
     console.error('Error in details/api', e);
     throw e;

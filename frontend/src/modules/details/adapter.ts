@@ -18,6 +18,8 @@ import { TouristicContent } from 'modules/touristicContent/interface';
 import { getAttachments } from 'modules/utils/adapter';
 import { adaptGeometry2D, flattenMultiLineStringCoordinates } from 'modules/utils/geometry';
 import { formatHours } from 'modules/utils/time';
+import { TrekRatingScale } from '../trekRatingScale/interface';
+import { TrekRatingChoices } from '../trekRating/interface';
 import { Details, RawDetails, Reservation, TrekChildGeometry, TrekFamily } from './interface';
 
 export const adaptResults = ({
@@ -39,6 +41,8 @@ export const adaptResults = ({
   childrenGeometry,
   sensitiveAreas,
   reservation,
+  trekRating,
+  trekRatingScale,
 }: {
   accessbilityLevel: AccessibilityLevel | null;
   rawDetails: RawDetails;
@@ -58,6 +62,8 @@ export const adaptResults = ({
   childrenGeometry: TrekChildGeometry[];
   sensitiveAreas: SensitiveArea[];
   reservation: Reservation | null;
+  trekRating: TrekRatingChoices;
+  trekRatingScale: TrekRatingScale[];
 }): Details => {
   try {
     const coordinates =
@@ -155,6 +161,14 @@ export const adaptResults = ({
       length2d: rawDetailsProperties.length_2d,
       reservation,
       reservation_id: rawDetailsProperties.reservation_id ?? null,
+      ratings:
+        rawDetailsProperties.ratings?.map(r => {
+          return {
+            ...trekRating[String(r)],
+            scale: trekRatingScale.find(oRS => oRS.id === trekRating[String(r)]?.scale),
+          };
+        }) ?? [],
+      ratingsDescription: rawDetailsProperties.ratings_description ?? '',
     };
   } catch (e) {
     console.error('Error in details/adapter', e);
