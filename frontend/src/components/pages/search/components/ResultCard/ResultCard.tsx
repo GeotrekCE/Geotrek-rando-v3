@@ -141,14 +141,7 @@ export const ResultCard: React.FC<
       }}
       className={className}
       id="result_card"
-      style={
-        asColumn
-          ? {
-              flex: 'auto',
-              flexDirection: 'column',
-            }
-          : { flex: 'auto' }
-      }
+      asColumn={asColumn}
     >
       <Modal>
         {({ isFullscreen, toggleFullscreen }) => (
@@ -295,9 +288,9 @@ export const ResultCard: React.FC<
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ asColumn?: boolean }>`
   display: flex;
-  flex: none;
+  flex: auto;
   flex-direction: column;
   cursor: pointer;
   border: 1px solid ${colorPalette.greySoft.DEFAULT};
@@ -313,11 +306,13 @@ const Container = styled.div`
 
   align-items: stretch;
 
-  ${desktopOnly(
-    css`
-      flex-direction: row;
-    `,
-  )}
+  ${({ asColumn }) =>
+    asColumn !== true &&
+    desktopOnly(
+      css`
+        flex-direction: row;
+      `,
+    )}
 `;
 
 const DetailsContainer = styled.div`
