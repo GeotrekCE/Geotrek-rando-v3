@@ -6,7 +6,7 @@ const CustomizedInput = styled(Input)`
   width: ${getSpacing(54)};
   flex-grow: 2;
   ${desktopOnly(css`
-    width: ${getSpacing(35)};
+    width: ${getSpacing(58)};
   `)}
   height: ${getSpacing(10)};
   ${desktopOnly(css`

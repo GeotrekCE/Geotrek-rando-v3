@@ -1,23 +1,27 @@
 import { ChevronDown } from 'components/Icons/ChevronDown';
 import { Cross } from 'components/Icons/Cross';
 import ShowFilters from 'components/pages/search/components/FilterBar/ShowFilters';
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import { colorPalette, sizes } from 'stylesheet';
 import { groupBy } from 'lodash';
-import { FilterState, Option } from '../../../../../modules/filters/interface';
+import { FormattedMessage } from 'react-intl';
+import { DateFilter, FilterState, Option } from '../../../../../modules/filters/interface';
 import { countFiltersSelected } from '../../../../../modules/filters/utils';
 import getActivityColor from '../ResultCard/getActivityColor';
+import SubFilterField from './SubFilterField';
 
 interface Props {
   id: string;
-  name: React.ReactElement;
+  name: React.ReactElement | React.ReactElement[];
   filters?: string[];
-  subFilters?: string[];
+  subFilters?: string[] | string[][];
   filtersState: FilterState[];
+  dateFilter: DateFilter;
   expanded: boolean;
   onClick: () => void;
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
+  setDateFilter: () => void;
 }
 
 const BACKGROUND_EXPANDED = '#fefefe';
@@ -30,15 +34,34 @@ const FilterField: React.FC<Props> = ({
   filters,
   subFilters,
   filtersState,
+  dateFilter,
   setFilterSelectedOptions,
+  setDateFilter,
 }) => {
-  const subFiltersToDisplay = groupBy(
-    filtersState.filter(({ id }) => subFilters?.some(subFilter => new RegExp(subFilter).test(id))),
-    'category',
-  );
   const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
 
   const numberSelected = countFiltersSelected(filtersState, filters, subFilters);
+
+  const tabLabel = Array.isArray(name) ? (
+    <FormattedMessage id={'search.filters.treksOutdoorGrouped'} />
+  ) : (
+    name
+  );
+
+  const nextSubFilters =
+    (subFilters && subFilters.some((subFilter: string | string[]) => !Array.isArray(subFilter))
+      ? ([subFilters] as string[][])
+      : (subFilters as string[][])) ?? [];
+
+  const subFiltersToDisplay = nextSubFilters.map(
+    item =>
+      groupBy(
+        filtersState.filter(({ id }) =>
+          item.some((subFilter: string) => new RegExp(subFilter).test(id)),
+        ),
+        'category',
+      ) ?? {},
+  );
 
   return (
     <div>
@@ -55,7 +78,7 @@ const FilterField: React.FC<Props> = ({
             {numberSelected}
           </div>
         )}
-        <div className="ml-4 mr-4">{name}</div>
+        {tabLabel !== null && <div className="ml-4 mr-4">{tabLabel}</div>}
         <ChevronDown
           className={`transform ${expanded ? '' : '-rotate-90'} text-primary1`}
           size={30}
@@ -66,50 +89,33 @@ const FilterField: React.FC<Props> = ({
         className="shadow-inner"
         style={{ display: expanded ? 'block' : 'none', background: BACKGROUND_EXPANDED }}
       >
-        <div className="flex justify-between items-center mb-4">
-          <div className="font-bold text-4xl">{name}</div>
-          <div className="cursor-pointer" onClick={onClick}>
-            <Cross size={30} />
-          </div>
-        </div>
-        <div className="mb-4">
-          {filtersToDisplay.map(filterState => (
-            <ShowFilters
-              key={filterState.id}
-              item={filterState}
-              setFilterSelectedOptions={setFilterSelectedOptions}
-              hideLabel
-            />
-          ))}
-        </div>
-        <div className="grid grid-cols-3 gap-4">
-          {Object.keys(subFiltersToDisplay).length > 1
-            ? Object.keys(subFiltersToDisplay).map(key => {
-                return (
-                  <div className={'m-1'} key={key}>
-                    {key !== 'undefined' && <div className={'font-bold mb-2'}>{key}</div>}
-                    {subFiltersToDisplay[key].map(filterState => (
-                      <div className={'my-1'} key={filterState.id}>
-                        <ShowFilters
-                          item={filterState}
-                          setFilterSelectedOptions={setFilterSelectedOptions}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                );
-              })
-            : Object.values(subFiltersToDisplay)[0]
-            ? Object.values(subFiltersToDisplay)[0].map(filterState => (
-                <div className={'my-1'} key={filterState.id}>
-                  <ShowFilters
-                    item={filterState}
-                    setFilterSelectedOptions={setFilterSelectedOptions}
-                  />
-                </div>
-              ))
-            : null}
-        </div>
+        {filtersToDisplay.map((filterState, index) => (
+          <Fragment key={filterState.id}>
+            <div className="flex justify-between items-center mb-4">
+              <div className="font-bold text-4xl">{Array.isArray(name) ? name[index] : name}</div>
+              {index === 0 && (
+                <button type="button" onClick={onClick}>
+                  <Cross size={30} />
+                </button>
+              )}
+            </div>
+            <div className="mb-4">
+              <ShowFilters
+                item={filterState}
+                setFilterSelectedOptions={setFilterSelectedOptions}
+                hideLabel
+              />
+            </div>
+            <div className="grid grid-cols-3 gap-4">
+              <SubFilterField
+                filters={subFiltersToDisplay[index]}
+                dateFilter={dateFilter}
+                setFilterSelectedOptions={setFilterSelectedOptions}
+                setDateFilter={setDateFilter}
+              />
+            </div>
+          </Fragment>
+        ))}
       </ContainerFields>
     </div>
   );
