@@ -63,7 +63,7 @@ Object {
           </div>
         </div>
         <a
-          class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full"
+          class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full min-h-0"
           data-testid="Link-ResultCard-2"
           href="/details-2-Balade-au-pays-des-menhirs"
         >
@@ -283,7 +283,7 @@ Object {
         </div>
       </div>
       <a
-        class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full"
+        class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full min-h-0"
         data-testid="Link-ResultCard-2"
         href="/details-2-Balade-au-pays-des-menhirs"
       >
