@@ -6,9 +6,8 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ResultCard__Container-sc-1bem01n-0 bmgMpp"
+        class="ResultCard__Container-sc-1bem01n-0 jBsKrk"
         id="result_card"
-        style="flex-basis: auto;"
       >
         <div
           style="background-color: white; position: relative;"
@@ -20,7 +19,7 @@ Object {
               style="width: 100%; height: 100%;"
             >
               <div
-                class="h-full w-full flex-shrink-0 relative desktop:w-resultCardDesktop"
+                class="ResultCardCarousel__Wrapper-sc-13vjoai-0 botBuK h-full w-full flex-shrink-0 relative desktop:w-resultCardDesktop"
               >
                 <div
                   class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY slick-initialized"
@@ -47,6 +46,7 @@ Object {
                             tabindex="-1"
                           >
                             <img
+                              alt=""
                               class="object-cover object-top w-full h-full"
                               src=""
                             />
@@ -58,26 +58,12 @@ Object {
                   
                   
                 </div>
-                <div
-                  class="CardIcon__Wrapper-sc-cv6h96-0 kTmOsX absolute top-4 left-4 h-8 flex items-center w-auto rounded-full shadow-sm text-white border-2 border-white border-solid"
-                  color="#001B84"
-                >
-                  <span
-                    class="CardIcon__NoImg-sc-cv6h96-4 ftTsYP"
-                    color="#001B84"
-                  />
-                  <div
-                    class="CardIcon__Label-sc-cv6h96-1 ddMeYP"
-                  >
-                    <div />
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
         <a
-          class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full"
+          class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full min-h-0"
           data-testid="Link-ResultCard-2"
           href="/details-2-Balade-au-pays-des-menhirs"
         >
@@ -240,9 +226,8 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ResultCard__Container-sc-1bem01n-0 bmgMpp"
+      class="ResultCard__Container-sc-1bem01n-0 jBsKrk"
       id="result_card"
-      style="flex-basis: auto;"
     >
       <div
         style="background-color: white; position: relative;"
@@ -254,7 +239,7 @@ Object {
             style="width: 100%; height: 100%;"
           >
             <div
-              class="h-full w-full flex-shrink-0 relative desktop:w-resultCardDesktop"
+              class="ResultCardCarousel__Wrapper-sc-13vjoai-0 botBuK h-full w-full flex-shrink-0 relative desktop:w-resultCardDesktop"
             >
               <div
                 class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY slick-initialized"
@@ -281,6 +266,7 @@ Object {
                           tabindex="-1"
                         >
                           <img
+                            alt=""
                             class="object-cover object-top w-full h-full"
                             src=""
                           />
@@ -292,26 +278,12 @@ Object {
                 
                 
               </div>
-              <div
-                class="CardIcon__Wrapper-sc-cv6h96-0 kTmOsX absolute top-4 left-4 h-8 flex items-center w-auto rounded-full shadow-sm text-white border-2 border-white border-solid"
-                color="#001B84"
-              >
-                <span
-                  class="CardIcon__NoImg-sc-cv6h96-4 ftTsYP"
-                  color="#001B84"
-                />
-                <div
-                  class="CardIcon__Label-sc-cv6h96-1 ddMeYP"
-                >
-                  <div />
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
       <a
-        class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full"
+        class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full min-h-0"
         data-testid="Link-ResultCard-2"
         href="/details-2-Balade-au-pays-des-menhirs"
       >
