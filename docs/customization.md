@@ -170,6 +170,11 @@ See examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend
 
 Icons are provided by Geotrek-admin API. See [icons documentation](icons.md) to know how they have to be designed.
 
+## Manifest.json
+
+There is a default `manifest.json` generated using the `applicationName` parameters of `global.json` and icons/images detailed in the next section below (See: https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/src/pages/manifest.json.tsx#L20).
+You can complete it by creating `manifest.json` file in the `customization/config/` folder and filling it with the props to add and/or override.
+
 ## Images, favicon, mobile phone icons and splashscreens
 
 These files need to be in the correct folder during the build process and therefore, we created a specific `medias` folder in the customization repository.
