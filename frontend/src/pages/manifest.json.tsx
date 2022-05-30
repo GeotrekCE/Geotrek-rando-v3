@@ -1,16 +1,25 @@
+import { NextPageContext } from 'next';
 import { default as getNextConfig } from 'next/config';
-import React from 'react';
 
-class ManifestJson extends React.Component {
-  public static getInitialProps({ res }: { res: any }) {
-    const {
-      publicRuntimeConfig: { global },
-    } = getNextConfig();
+const ManifestJson = (): null => {
+  return null;
+};
 
-    const appName = String(global.applicationName);
+ManifestJson.getInitialProps = (props: NextPageContext) => {
+  const {
+    publicRuntimeConfig: { global },
+  } = getNextConfig();
 
-    const content = `{
-  "name": "${appName}",
+  const { res } = props;
+
+  if (!res) {
+    return null;
+  }
+
+  const name = String(global.applicationName);
+
+  const content = `{
+  "name": "${name}",
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "display": "standalone",
@@ -25,11 +34,9 @@ class ManifestJson extends React.Component {
   "scope": ".",
   "start_url": "./"
 }`;
-
-    res.setHeader('Content-Type', 'text/plain');
-    res.write(content);
-    res.end();
-  }
-}
+  res.setHeader('Content-Type', 'text/plain');
+  res.write(content);
+  res.end();
+};
 
 export default ManifestJson;
