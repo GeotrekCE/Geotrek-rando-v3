@@ -152,7 +152,7 @@ export const adaptResults = ({
         geometry: childrenGeometry.find(childGeometry => childGeometry.id === `${child.id}`),
       })),
       sensitiveAreas,
-      webLinks: rawDetailsProperties.web_links,
+      webLinks: rawDetailsProperties.web_links ?? null,
       elevationAreaUrl: rawDetailsProperties.elevation_area_url,
       altimetricProfileUrl: rawDetailsProperties.altimetric_profile,
       length2d: rawDetailsProperties.length_2d,
