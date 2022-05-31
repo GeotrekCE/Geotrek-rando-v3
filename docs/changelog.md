@@ -1,5 +1,20 @@
 # Changelog
 
+3.8.4 (2022-05-31)
+------------------
+
+**🚀 New features**
+
+* Allow to override ``manifest.json`` properties (#661)
+
+**🐛 Fixes**
+
+* Fix card display for iOS mobile (#645)
+* Fix truncated icon name if it is too long (#658)
+* Display Sensitive Areas when their geometry is MultiPolygon (#655)
+* Fix trek detail page if there are no signages endpoint in API (#660)
+* Fix trek and outdoor site detail page if there are no weblinks (#660)
+
 3.8.3 (2022-05-24)
 ------------------
 
