@@ -33,7 +33,6 @@ export const getSignage = async (
       signageTypeDictionary,
     });
   } catch (e) {
-    console.error('Error in signage/connector', e);
-    throw e;
+    return null;
   }
 };
