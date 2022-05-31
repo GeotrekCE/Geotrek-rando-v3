@@ -78,5 +78,6 @@ module.exports = withPlugins(plugins, {
     map: getConfig('map.json', true),
     filter: getConfig('filter.json', true),
     footer: getConfig('footer.json', true),
+    manifest: getConfig('manifest.json', true),
   },
 });

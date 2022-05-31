@@ -3,84 +3,56 @@ import SVG from 'react-inlinesvg';
 import styled from 'styled-components';
 
 interface IconProps {
-  iconUri: string;
+  className?: string;
+  iconUri?: string;
   color?: string;
 }
 interface Props extends IconProps {
-  iconName: string;
+  iconName?: string;
 }
 
 const Wrapper = styled.div<{ color?: string }>`
   z-index: 100;
   background: ${props => props.color};
-
-  & > div {
-    max-width: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    transition: max-width 0.6s;
-  }
+  max-width: 32px;
+  transition: max-width 0.6s;
 
   &:hover {
-    & > div {
-      max-width: 150px;
-    }
+    max-width: 300%;
   }
-`;
-
-const Label = styled.div`
-  text-align: center;
-  flex: auto;
-
-  & > div {
-    padding: 0 10px;
-  }
-`;
-
-const StyledSVG = styled(SVG)`
-  height: 28px;
-  width: 28px;
-`;
-
-const Img = styled.img`
-  height: 28px;
-  width: 28px;
 `;
 
 const NoImg = styled.span<{ color?: string }>`
-  display: block;
-  height: 28px;
-  width: 28px;
-  border-radius: 50%;
   background: ${props => props.color};
 `;
 
-const Icon: React.FC<IconProps> = ({ iconUri, color }) => {
+const Icon: React.FC<IconProps> = ({ iconUri = '', className = '', color }) => {
   if (!iconUri) {
-    return <NoImg color={color} />;
+    return <NoImg color={color} className={`block rounded-full ${className}`} />;
   }
   if (RegExp(/(.*).svg/).test(iconUri)) {
     return (
-      <StyledSVG
+      <SVG
         src={iconUri}
-        className="fill-current p-1"
+        className={`fill-current p-1 ${className}`}
         preProcessor={fillSvgWithColor(colorPalette.white)}
       />
     );
   }
-  return <Img src={iconUri} alt="" />;
+  return <img className={className} src={iconUri} alt="" />;
 };
 
-export const CardIcon: React.FC<Props> = ({ iconUri, iconName, color }) => {
+export const CardIcon: React.FC<Props> = ({ iconUri = '', iconName = '', color }) => {
+  if (!iconName && !iconUri) {
+    return null;
+  }
   return (
     <Wrapper
-      className="absolute top-4 left-4 h-8 flex items-center w-auto rounded-full shadow-sm text-white border-2 border-white border-solid"
+      className="absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
       color={color}
     >
-      <Icon color={color} iconUri={iconUri} />
-      <Label>
-        <div>{iconName}</div>
-      </Label>
+      <Icon color={color} iconUri={iconUri} className="w-7 h-7 flex-shrink-0" />
+      {iconName && <div className="pr-3 whitespace-nowrap">{iconName}</div>}
     </Wrapper>
   );
 };

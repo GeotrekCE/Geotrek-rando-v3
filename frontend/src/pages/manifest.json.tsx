@@ -1,35 +1,51 @@
+import { NextPageContext } from 'next';
 import { default as getNextConfig } from 'next/config';
-import React from 'react';
 
-class ManifestJson extends React.Component {
-  public static getInitialProps({ res }: { res: any }) {
-    const {
-      publicRuntimeConfig: { global },
-    } = getNextConfig();
+const ManifestJson = (): null => {
+  return null;
+};
 
-    const appName = String(global.applicationName);
+ManifestJson.getInitialProps = (props: NextPageContext) => {
+  const {
+    publicRuntimeConfig: { global, manifest = {} },
+  } = getNextConfig();
 
-    const content = `{
-  "name": "${appName}",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone",
-  "orientation": "portrait",
-  "icons": [
-    { "src": "/medias/maskable-icon.png", "sizes": "200x200", "purpose": "maskable", "type": "image/png" },
-    { "src": "/medias/apple-icon.png", "sizes": "144x144", "type": "image/png" },
-    { "src": "/medias/android-icon.png", "sizes": "144x144", "type": "image/png" },
-    { "src": "/medias/apple-splashscreen.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "/medias/android-splashscreen.png", "sizes": "512x512", "type": "image/png" }
-  ],
-  "scope": ".",
-  "start_url": "./"
-}`;
+  const { res } = props;
 
-    res.setHeader('Content-Type', 'text/plain');
-    res.write(content);
-    res.end();
+  if (!res) {
+    return null;
   }
-}
+
+  const name = String(global.applicationName);
+  const defaultManifest = {
+    theme_color: '#ffffff',
+    background_color: '#ffffff',
+    display: 'standalone',
+    orientation: 'portrait',
+    icons: [
+      {
+        src: '/medias/maskable-icon.png',
+        sizes: '200x200',
+        purpose: 'maskable',
+        type: 'image/png',
+      },
+      { src: '/medias/apple-icon.png', sizes: '144x144', type: 'image/png' },
+      { src: '/medias/android-icon.png', sizes: '144x144', type: 'image/png' },
+      { src: '/medias/apple-splashscreen.png', sizes: '512x512', type: 'image/png' },
+      { src: '/medias/android-splashscreen.png', sizes: '512x512', type: 'image/png' },
+    ],
+    scope: '.',
+    start_url: './',
+  };
+
+  const content = {
+    name,
+    ...defaultManifest,
+    ...manifest,
+  };
+  res.setHeader('Content-Type', 'text/plain');
+  res.write(JSON.stringify(content, null, 2));
+  res.end();
+};
 
 export default ManifestJson;

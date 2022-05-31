@@ -1,6 +1,6 @@
 import { CardIcon } from 'components/CardIcon';
 import { SmallCarousel } from 'components/Carousel';
-import getConfig from 'next/config';
+import styled, { css } from 'styled-components';
 import getActivityColor from '../getActivityColor';
 
 interface ResultCardCarouselProps {
@@ -20,32 +20,30 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
   onClickImage,
   asColumn,
 }) => {
-  const {
-    publicRuntimeConfig: { colors },
-  } = getConfig();
-
   const files = navigator && navigator?.onLine ? thumbnailUris : thumbnailUris.slice(0, 1);
 
   return (
-    <div
+    <Wrapper
       className={`h-full w-full flex-shrink-0 relative desktop:w-resultCardDesktop`}
-      style={asColumn ? { width: '100%' } : {}}
+      asColumn={asColumn}
     >
       <SmallCarousel>
         {files.map((thumbnailUri, i) => (
           <div key={i} className="relative h-full" onClick={onClickImage}>
-            <img
-              src={thumbnailUri}
-              className="object-cover object-top
-              w-full
-              h-full"
-            />
+            <img src={thumbnailUri} className="object-cover object-top w-full h-full" alt="" />
           </div>
         ))}
       </SmallCarousel>
-      {iconUri !== undefined && (
-        <CardIcon iconUri={iconUri} iconName={iconName} color={getActivityColor(type)} />
-      )}
-    </div>
+      <CardIcon iconUri={iconUri} iconName={iconName} color={getActivityColor(type)} />
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div<{ asColumn?: boolean }>`
+    ${({ asColumn }) =>
+      asColumn === true &&
+      css`
+        width: 100%;
+      `}
+  }
+`;
