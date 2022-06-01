@@ -5,7 +5,7 @@ import { groupBy } from 'lodash';
 import styled from 'styled-components';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
-import { FilterState, Option } from 'modules/filters/interface';
+import { FilterCategory, FilterState, Option } from 'modules/filters/interface';
 import React from 'react';
 // @ts-ignore Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
@@ -31,7 +31,7 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   resultsNumber,
   resetFilter,
 }) => {
-  const categories = FILTERS_CATEGORIES.find(i => i.id === filterId);
+  const categories: FilterCategory | undefined = FILTERS_CATEGORIES.find(i => i.id === filterId);
 
   if (!categories) return null;
 
@@ -44,7 +44,8 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   );
 
   const nextSubFilters =
-    (subFilters && subFilters.some((subFilter: string | string[]) => !Array.isArray(subFilter))
+    (Array.isArray(subFilters) &&
+    subFilters.some((subFilter: string | string[]) => !Array.isArray(subFilter))
       ? ([subFilters] as string[][])
       : (subFilters as string[][])) ?? [];
 
