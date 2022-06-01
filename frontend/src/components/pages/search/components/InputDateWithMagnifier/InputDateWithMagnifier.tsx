@@ -1,6 +1,5 @@
 import { Calendar } from 'components/Icons/Calendar';
-import React, { ChangeEvent, FunctionComponent, KeyboardEvent } from 'react';
-import { useIntl } from 'react-intl';
+import React, { ChangeEvent, FunctionComponent } from 'react';
 import { colorPalette } from 'stylesheet';
 import CustomizedInputDate from './CustomizedInputDate.style';
 
@@ -13,26 +12,21 @@ interface InputDateWithMagnifierProps {
 const InputDateWithMagnifier: FunctionComponent<InputDateWithMagnifierProps> = ({
   onChange,
   value,
-  placeholder
+  placeholder,
 }) => {
-  const intl = useIntl();
-
-  const onInputEnterPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    // if (event.key === 'Enter') {
-    //   onButtonClick();
-    // }
-  };
-
   return (
-    <div className="flex flex-row w-full desktop:w-auto">
-
+    <div className="flex flex-row">
       <CustomizedInputDate
         onChange={onChange}
         value={value !== null ? value : ''}
         type="text"
-        onKeyPress={onInputEnterPress}
-        onFocus={(e) => {e.target.type = "date"; e.target.showPicker()}}
-        onBlur={(e) => {e.target.type = "text"}}
+        onFocus={e => {
+          e.target.type = 'date';
+          e.target.showPicker();
+        }}
+        onBlur={e => {
+          e.target.type = 'text';
+        }}
         placeholder={placeholder}
       />
       <div

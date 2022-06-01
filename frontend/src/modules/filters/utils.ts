@@ -219,22 +219,17 @@ const getOutdoorRatingFiltersState = ({
   return result;
 };
 
-const getEventsFiltersState = ({
-  practiceId
-}: {
-  practiceId: string;
-}): FilterState[] => {
+const getEventsFiltersState = (): FilterState[] => {
   const result: FilterState[] = [];
-  console.log(practiceId)
 
   result.push({
-    id: `tutu`,
-    category: "event",
-    label: "event filter test",
+    id: `date-filter`,
+    category: 'event',
+    label: 'event date filter',
     type: 'MULTIPLE',
     options: [],
     selectedOptions: [],
-  })
+  });
 
   return result;
 };
@@ -301,13 +296,9 @@ export const computeFiltersToDisplay = ({
   }
   // Event filters
   if (currentNumberOfEventsOptionsSelected > 0 || selectedFilterId === EVENT_ID) {
-    eventFilter?.selectedOptions.forEach(selectedOptions => {
-      filtersToAdd.push(
-        getEventsFiltersState({
-          practiceId: selectedOptions.value,
-        }),
-      );
-    })
+    eventFilter?.selectedOptions.forEach(i => {
+      filtersToAdd.push(getEventsFiltersState());
+    });
   }
 
   // Prevent old filters to display
@@ -377,11 +368,7 @@ const getInitialFiltersStateWithRelevantFilters = ({
 
   if (Number(events?.length) > 0) {
     events?.forEach(event => {
-      result.push(
-        ...getEventsFiltersState({
-          practiceId: event,
-        }),
-      );
+      result.push(...getEventsFiltersState());
     });
   }
 

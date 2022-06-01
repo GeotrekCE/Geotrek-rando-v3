@@ -6,6 +6,7 @@ import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/
 import { QueryFilterState } from 'components/pages/search/utils';
 import { fetchTouristicContentResult } from 'modules/touristicContent/api';
 import { getGlobalConfig } from 'modules/utils/api.config';
+import { DateFilter } from 'modules/filters/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { getCities } from 'modules/city/connector';
 import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
@@ -38,7 +39,6 @@ import {
   formatTouristicEventsFiltersToUrlParams,
   formatTrekFiltersToUrlParams,
 } from './utils';
-import { DateFilter } from 'modules/filters/interface';
 
 const emptyResultPromise = Promise.resolve({
   count: 0,
@@ -52,7 +52,7 @@ export const getSearchResults = async (
     filtersState: QueryFilterState[];
     textFilterState: string | null;
     bboxState: string | null;
-    dateFilter: DateFilter
+    dateFilter: DateFilter;
   },
   pages: {
     treks: number | null;
@@ -97,7 +97,7 @@ export const getSearchResults = async (
     const touristicEventsFilter = formatTouristicEventsFiltersToUrlParams(filtersState);
 
     const textFilter = formatTextFilter(textFilterState);
-    const newDateFilter = formatDateFilter(dateFilter)
+    const newDateFilter = formatDateFilter(dateFilter);
 
     const bboxFilter = formatBboxFilter(bboxState);
 
@@ -138,8 +138,8 @@ export const getSearchResults = async (
           language,
           page_size: 1,
           page: 1,
-          dates_before: newDateFilter.dates_before === "" ? undefined : newDateFilter.dates_before,
-          dates_after: newDateFilter.dates_after === "" ? undefined : newDateFilter.dates_after,
+          dates_before: newDateFilter.dates_before === '' ? undefined : newDateFilter.dates_before,
+          dates_after: newDateFilter.dates_after === '' ? undefined : newDateFilter.dates_after,
           ...touristicEventsFilter,
           ...textFilter,
           ...bboxFilter,
@@ -217,8 +217,9 @@ export const getSearchResults = async (
             language,
             page_size: getGlobalConfig().searchResultsPageSize,
             page: pages.touristicEvents ?? undefined,
-            dates_before: newDateFilter.dates_before === "" ? undefined : newDateFilter.dates_before,
-            dates_after: newDateFilter.dates_after === "" ? undefined : newDateFilter.dates_after,
+            dates_before:
+              newDateFilter.dates_before === '' ? undefined : newDateFilter.dates_before,
+            dates_after: newDateFilter.dates_after === '' ? undefined : newDateFilter.dates_after,
             ...touristicEventsFilter,
             ...textFilter,
             ...bboxFilter,

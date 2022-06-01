@@ -18,9 +18,8 @@ import {
   useFilterSubMenu,
 } from 'components/MobileFilterMenu';
 
-import { Calendar } from 'components/Icons/Calendar';
 import { PageHead } from 'components/PageHead';
-import { DateFilter, FilterState } from 'modules/filters/interface';
+import { FilterState } from 'modules/filters/interface';
 import { SearchMapDynamicComponent } from 'components/Map';
 import { countFiltersSelected } from '../../../modules/filters/utils';
 import { OutdoorSite } from '../../../modules/outdoorSite/interface';
@@ -42,7 +41,6 @@ import {
 } from '../details/utils';
 import InputWithMagnifier from './components/InputWithMagnifier';
 import { useTextFilter } from './hooks/useTextFilter';
-import InputDateWithMagnifier from './components/InputDateWithMagnifier';
 
 interface Props {
   initialFiltersState: FilterState[];
@@ -72,7 +70,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     resetTextFilter,
   } = useTextFilter();
 
-  const [dateFilter, setDateFilter] = useState({ beginDate:'', endDate:'' });
+  const [dateFilter, setDateFilter] = useState({ beginDate: '', endDate: '' });
 
   const {
     searchResults,
@@ -126,6 +124,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
               setFilterSelectedOptions={setFilterSelectedOptions}
               resetFilter={onRemoveAllFiltersClick}
               resultsNumber={searchResults?.resultsNumber ?? 0}
+              dateFilter={dateFilter}
+              setDateFilter={setDateFilter}
             />
           )}
         </>
@@ -164,20 +164,6 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                       <SearchResultsMeta resultsNumber={searchResults?.resultsNumber ?? 0} />
                       <ToggleFilterButton onClick={displayMenu} numberSelected={numberSelected} />
                     </div>
-                    {/* <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
-                      <InputDateWithMagnifier
-                        value={dateFilter.beginDate}
-                        onChange={(event) => {setDateFilter({beginDate:event.target.value, endDate:dateFilter.endDate})}}
-                        placeholder={intl.formatMessage({ id: 'search.beginDateFilter' })}
-                      />
-                    </div>
-                    <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
-                      <InputDateWithMagnifier
-                        value={dateFilter.endDate}
-                        onChange={(event) => {setDateFilter({beginDate:dateFilter.beginDate, endDate:event.target.value})}}
-                        placeholder={intl.formatMessage({ id: 'search.endDateFilter' })}
-                      />
-                    </div> */}
                     <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
                       <InputWithMagnifier
                         value={textFilterInput}
@@ -208,8 +194,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                     }
                     scrollableTarget="search_resultCardList"
                   >
-                    {searchResults?.results
-                      .map(searchResult => {
+                    {searchResults?.results.map(searchResult => {
                       if (isTrek(searchResult))
                         return (
                           <ResultCard

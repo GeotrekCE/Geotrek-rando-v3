@@ -3,8 +3,7 @@ import Input from 'components/Input/Input.style';
 import { borderRadius, desktopOnly, getSpacing } from 'stylesheet';
 
 const CustomizedInputDate = styled(Input)`
-  width: ${getSpacing(54)};
-  flex-grow: 2;
+  width: ${getSpacing(35)};
   ${desktopOnly(css`
     width: ${getSpacing(58)};
   `)}
