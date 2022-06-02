@@ -5,13 +5,14 @@ import { groupBy } from 'lodash';
 import styled from 'styled-components';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
-import { FilterState, Option } from 'modules/filters/interface';
+import { FilterCategory, FilterState, Option } from 'modules/filters/interface';
 import React from 'react';
 // @ts-ignore Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
 import { colorPalette } from 'stylesheet';
 
 import { FormattedMessage } from 'react-intl';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { CloseButton } from './CloseButton';
 
 interface Props {
@@ -31,7 +32,7 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   resultsNumber,
   resetFilter,
 }) => {
-  const categories = FILTERS_CATEGORIES.find(i => i.id === filterId);
+  const categories: FilterCategory | undefined = FILTERS_CATEGORIES.find(i => i.id === filterId);
 
   if (!categories) return null;
 
@@ -44,7 +45,8 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   );
 
   const nextSubFilters =
-    (subFilters && subFilters.some((subFilter: string | string[]) => !Array.isArray(subFilter))
+    (Array.isArray(subFilters) &&
+    subFilters.some((subFilter: string | string[]) => !Array.isArray(subFilter))
       ? ([subFilters] as string[][])
       : (subFilters as string[][])) ?? [];
 
@@ -57,6 +59,15 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
         'category',
       ) ?? {},
   );
+
+  const getFilterLabel = (key: string, selectedOptions: Option[]) => {
+    if (key !== 'undefined') {
+      return key;
+    }
+    return getGlobalConfig().groupTreksAndOutdoorFilters
+      ? selectedOptions?.map(({ label }) => label).join('/') ?? null
+      : null;
+  };
 
   const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
 
@@ -100,15 +111,10 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
             {Object.keys(subFilter).length > 0 && filtersToDisplay.length > 0 && <Separator />}
             <div className="space-y-4" key={index}>
               {Object.keys(subFilter).map(key => {
+                const filterLabel = getFilterLabel(key, filtersToDisplay?.[index]?.selectedOptions);
                 return (
                   <div className={'m-1'} key={key}>
-                    <div className={'font-bold mb-2'}>
-                      {key !== 'undefined'
-                        ? key
-                        : filtersToDisplay[index].selectedOptions
-                            .map(({ label }) => label)
-                            .join('/')}
-                    </div>
+                    {filterLabel !== null && <div className={'font-bold mb-2'}>{filterLabel}</div>}
                     {subFilter[key].map(filterState => (
                       <div className={'my-1'} key={filterState.id}>
                         <ShowFilters
