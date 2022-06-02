@@ -11,6 +11,7 @@ import { getNetworks } from 'modules/networks/connector';
 import { getPois } from 'modules/poi/connector';
 import { getTrekResultsById } from 'modules/results/connector';
 import { getSensitiveAreas } from 'modules/sensitiveArea/connector';
+import { getSignage } from 'modules/signage/connector';
 import { getSources } from 'modules/source/connector';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { getTouristicContentsNearTarget } from 'modules/touristicContent/connector';
@@ -51,9 +52,10 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       getTrekRating(language),
       getTrekRatingScale(language),
     ]);
-    const [informationDeskDictionnary, labelsDictionnary, children, sensitiveAreas] =
+    const [informationDeskDictionnary, signage, labelsDictionnary, children, sensitiveAreas] =
       await Promise.all([
         getInformationDesks(language),
+        getSignage(language, id, 'TREK'),
         getLabels(language),
         getTrekResultsById(rawDetails.properties.children, language),
         getGlobalConfig().enableSensitiveAreas
@@ -88,6 +90,7 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       sensitiveAreas,
       trekRating,
       trekRatingScale,
+      signage,
       reservation:
         getGlobalConfig().reservationPartner && getGlobalConfig().reservationProject
           ? {

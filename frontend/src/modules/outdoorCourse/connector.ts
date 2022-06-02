@@ -1,3 +1,4 @@
+import { getSignage } from 'modules/signage/connector';
 import { getCities } from '../city/connector';
 import { getOutdoorCourseType } from '../outdoorCourseType/connector';
 import { getOutdoorRating } from '../outdoorRating/connector';
@@ -33,6 +34,7 @@ export const getOutdoorCourseDetails = async (
       outdoorRating,
       outdoorRatingScale,
       outdoorCourseType,
+      signage,
     ] = await Promise.all([
       fetchOutdoorCourseDetails({ language }, id),
       getPois(Number(id), language, 'courses'),
@@ -41,6 +43,7 @@ export const getOutdoorCourseDetails = async (
       getOutdoorRating(language),
       getOutdoorRatingScale(language),
       getOutdoorCourseType(language),
+      getSignage(language, id, 'OUTDOOR_COURSE'),
     ]);
 
     return adaptOutdoorCourseDetails({
@@ -51,6 +54,7 @@ export const getOutdoorCourseDetails = async (
       outdoorRating,
       outdoorRatingScale,
       outdoorCourseType,
+      signage,
     });
   } catch (e) {
     console.error('Error in outdoor course connector', e);

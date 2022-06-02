@@ -11,6 +11,7 @@ import React from 'react';
 import Slide from 'react-burger-menu/lib/menus/slide';
 import { colorPalette } from 'stylesheet';
 
+import { FormattedMessage } from 'react-intl';
 import { CloseButton } from './CloseButton';
 
 interface Props {
@@ -30,16 +31,33 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   resultsNumber,
   resetFilter,
 }) => {
-  const item = FILTERS_CATEGORIES.find(i => i.id === filterId);
+  const categories = FILTERS_CATEGORIES.find(i => i.id === filterId);
 
-  if (!item) return null;
+  if (!categories) return null;
 
-  const { name, filters, subFilters } = item;
+  const { filters, subFilters } = categories;
 
-  const subFiltersToDisplay = groupBy(
-    filtersState.filter(({ id }) => subFilters?.some(subFilter => new RegExp(subFilter).test(id))),
-    'category',
+  const name = Array.isArray(categories.name) ? (
+    <FormattedMessage id={'search.filters.treksOutdoorGrouped'} />
+  ) : (
+    categories.name
   );
+
+  const nextSubFilters =
+    (subFilters && subFilters.some((subFilter: string | string[]) => !Array.isArray(subFilter))
+      ? ([subFilters] as string[][])
+      : (subFilters as string[][])) ?? [];
+
+  const subFiltersToDisplay = nextSubFilters.map(
+    item =>
+      groupBy(
+        filtersState.filter(({ id }) =>
+          item.some((subFilter: string) => new RegExp(subFilter).test(id)),
+        ),
+        'category',
+      ) ?? {},
+  );
+
   const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
 
   /* * The library default behaviour is to have a fixed close icon which * made the icon overlap
@@ -77,27 +95,34 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
           />
         ))}
 
-        {Object.keys(subFiltersToDisplay).length > 0 && filtersToDisplay.length > 0 && (
-          <Separator />
-        )}
-
-        <div className="space-y-4">
-          {Object.keys(subFiltersToDisplay).map(key => {
-            return (
-              <div className={'m-1'} key={key}>
-                {key !== 'undefined' && <div className={'font-bold mb-2'}>{key}</div>}
-                {subFiltersToDisplay[key].map(filterState => (
-                  <div className={'my-1'} key={filterState.id}>
-                    <ShowFilters
-                      item={filterState}
-                      setFilterSelectedOptions={setFilterSelectedOptions}
-                    />
+        {subFiltersToDisplay.map((subFilter, index) => (
+          <>
+            {Object.keys(subFilter).length > 0 && filtersToDisplay.length > 0 && <Separator />}
+            <div className="space-y-4" key={index}>
+              {Object.keys(subFilter).map(key => {
+                return (
+                  <div className={'m-1'} key={key}>
+                    <div className={'font-bold mb-2'}>
+                      {key !== 'undefined'
+                        ? key
+                        : filtersToDisplay[index].selectedOptions
+                            .map(({ label }) => label)
+                            .join('/')}
+                    </div>
+                    {subFilter[key].map(filterState => (
+                      <div className={'my-1'} key={filterState.id}>
+                        <ShowFilters
+                          item={filterState}
+                          setFilterSelectedOptions={setFilterSelectedOptions}
+                        />
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            );
-          })}
-        </div>
+                );
+              })}
+            </div>
+          </>
+        ))}
       </div>
 
       <MobileBottomClear resultsNumber={resultsNumber} resetFilter={resetFilter} />

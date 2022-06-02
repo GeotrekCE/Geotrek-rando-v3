@@ -7,6 +7,7 @@ import { Cross } from 'components/Icons/Cross';
 import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
 import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
 import useCounter from 'components/pages/search/hooks/useCounter';
+import { FormattedMessage } from 'react-intl';
 import { FilterCategory, FilterState } from '../../modules/filters/interface';
 import { countFiltersSelected } from '../../modules/filters/utils';
 
@@ -65,10 +66,15 @@ export const MobileFilterMenu: React.FC<Props> = ({
           if (touristicEventsCount === 0 && item.id === EVENT_ID) return null;
 
           const numberSelected = countFiltersSelected(filtersState, item.filters, item.subFilters);
+          const name = Array.isArray(item.name) ? (
+            <FormattedMessage id={'search.filters.treksOutdoorGrouped'} />
+          ) : (
+            item.name
+          );
           return (
             <MobileFilterMenuSection
               color={getActivityColor(item.id)}
-              title={item.name}
+              title={name}
               key={item.id}
               onClick={item.onSelect}
               numberSelected={numberSelected}

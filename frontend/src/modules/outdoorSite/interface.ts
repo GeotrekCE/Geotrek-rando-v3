@@ -11,6 +11,7 @@ import {
   RawGeometryCollection,
   RawWebLink,
 } from 'modules/interface';
+import { SignageDictionary } from 'modules/signage/interface';
 import { Activity } from '../activities/interface';
 import { InformationDesk } from '../informationDesk/interface';
 import { Label } from '../label/interface';
@@ -96,7 +97,7 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   labels?: Label[];
   source?: Source[];
   informationDesks?: InformationDesk[];
-  webLinks?: WebLink[];
+  webLinks?: WebLink[] | null;
   pois: Poi[];
   touristicContents: TouristicContent[];
   children: OutdoorSite[];
@@ -108,5 +109,6 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   cities_raw: string[];
   ratings: OutdoorRatingWithScale[];
   ratingsDescription: string;
+  signage: SignageDictionary | null;
   typeSite?: OutdoorSiteType;
 }

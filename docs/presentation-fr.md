@@ -14,13 +14,13 @@ La page d'accueil est composée :
    - les liens vers les pages statiques dans l'ordre défini dans Geotrek-admin et un paramètre pour en afficher de 0 à 3 au premier niveau, les suivantes étant sous forme de liste dans "En savoir plus"
    - un selecteur de langue pour basculer entre celles disponibles
    - un lien permanent vers la page de recherche
-- d'une grande image paramétrable, avec un texte d'introduction paramétrable et masquable
+- d'une grande image, d'une série d'images ou d'une vidéo paramétrables, avec un texte d'introduction paramétrable et masquable
 - de la liste des pratiques de randonnées, des pratiques Outdoor, des catégories de contenus touristiques et des catégories d'événements (selon les contenus publiés) sous forme de pictogramme cliquables dans l'ordre défini dans Geotrek-admin
 
 ![Homepage](https://geotrek.ecrins-parcnational.fr/images/gtr3-01-homepage.jpg)
 
 - d'une zone HTML entièrement paramétrables avec textes, images et liens souhaités
-- d'une zone permettant de mettre en avant un ou plusieurs blocs de randonnées renvoyant vers leurs pages de détail
+- d'une zone permettant de mettre en avant un ou plusieurs blocs de randonnées, de sites outdoor, de services ou d'événements renvoyant vers leurs pages de détail
 - d'une seconde zone HTML entièrement paramétrables avec textes, images et liens souhaités
 
 ![Homepage](https://geotrek.ecrins-parcnational.fr/images/gtr3-02-homepage.jpg)
@@ -84,20 +84,24 @@ C'est ensuite la liste des patrimoines qui est affichée, avec leurs localisatio
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-08-detail.jpg)
 
-Vient ensuite la description technique avec les éventuelles puces rouges de localisation correspondantes sur la carte. 
+Vient ensuite la description technique avec les éventuelles puces rouges de localisation correspondantes sur la carte.
+Puis un widget fourni par Météo France (désactivable) basé sur la commune de départ de la randonnée.
 Ainsi que le profil altimétrique interactif avec la carte, puis les recommandations.
 
-Si le module "Zones de sensibilité" est activé et si la randonnée intersecte une ou plusieurs zones zones de sensibilité, alors celles-ci sont affichées après les recommandations.
+Si le module "Zones de sensibilité" est activé et si la randonnée intersecte une ou plusieurs zones zones de sensibilité, alors celles-ci sont affichées avant les recommandations.
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-09-detail.jpg)
 
-Sont ensuite affichés les lieux de renseignement associés à la randonnée (pas encore localisés sur la carte).
+Sont ensuite affichés les lieux de renseignement associés à la randonnée (pas encore localisés sur la carte), les accès routiers et en transport en commun, les éventuelles informations sur l'accessibilité aux personnes à mobilité réduite, les liens complémentaires et la source de la fiche.
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-10-detail.jpg)
 
+Vient ensuite le formulaire de signalement (désactivable) ainsi que l'éventuel widget de réservation pour les itinérances sur lesquels un identifiant de réservation est associé.
 La page détail d'une randonnée se termine par la liste des services (contenus touristiques) à proximité.
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-11-detail.jpg)
+
+Il est aussi possible d'ajouter un bloc de contenu HTML ou javascript customisable sur toutes les pages du site.
 
 ### Sites outdoor
 
@@ -177,4 +181,4 @@ Un rendu côté serveur (Server Side Rendering / SSR) des pages est réalisé po
 
 Une liste de toutes les pages du portail est générée automatiquement pour faciliter leur indexation dans les moteurs de recherche. Elle est disponible à l'adresse "URL-DU-PORTAIL/sitemap.xml".
 
-Il est aussi possible de définir des règles de redirection, notamment pour optimiser le passage de Geotrek-rando v3 à Geotrek-rando v3.
+Il est aussi possible de définir des règles de redirection, notamment pour optimiser le passage de Geotrek-rando v2 à Geotrek-rando v3.

@@ -15,6 +15,8 @@ import { mockInformationDeskRoute } from 'modules/informationDesk/mocks';
 import { mockLabelRoute } from 'modules/label/mocks';
 import { mockSensitiveAreaRoute } from 'modules/sensitiveArea/mocks';
 import { mockSensitiveAreaPracticeRoute } from 'modules/sensitiveAreaPractice/mocks';
+import { mockSignageRoute } from 'modules/signage/mocks';
+import { mockSignageTypeRoute } from 'modules/signageType/mocks';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import {
   mockNetworksResponse,
@@ -85,6 +87,9 @@ describe('Details', () => {
 
     mockTouristicContentCategoryRoute(1);
     mockTouristicContentRoute(1, rawDetailsMock.properties.id);
+
+    mockSignageTypeRoute(1);
+    mockSignageRoute(1, rawDetailsMock.properties.id);
 
     mockCityRoute(1);
     mockAccessibilitiesRoute(1);

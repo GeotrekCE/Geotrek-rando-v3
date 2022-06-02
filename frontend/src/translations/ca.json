@@ -39,6 +39,7 @@
       "difficulty": "Dificultat",
       "practices": "excursions",
       "outdoor": "Exterior",
+      "treksOutdoorGrouped": "Activities",
       "events": "Esdeveniments",
       "categories": "Serveis",
       "cities": "poble",
@@ -65,7 +66,8 @@
         "touristicContent": "Close by",
         "informationDesks": "Llocs d’informació",
         "courses": "Parcours",
-        "experiences": "Lieux de pratique"
+        "experiences": "Lieux de pratique",
+        "signage": "Senyalització"
       },
       "resetView": "Recenter el mapa"
     }
@@ -95,7 +97,7 @@
     "accessibility_advice": "Beratung",
     "accessibility_slope": "Neigung",
     "accessibility_width": "Länge",
-    "accessibility_signage": "Beschilderung",
+    "accessibility_signage": "Senyalització",
     "emergency_number": "Numero di emergenza",
     "toSee": "També a veure",
     "transport": "Transport",
