@@ -17,7 +17,7 @@ import {
   STRUCTURE_ID,
   THEME_ID,
 } from '../../../../../modules/filters/constant';
-import { FilterState, Option } from '../../../../../modules/filters/interface';
+import { FilterCategory, FilterState, Option } from '../../../../../modules/filters/interface';
 
 interface Props {
   filtersState: FilterState[];
@@ -68,7 +68,7 @@ const treksAndOutdoorCategories =
         },
       ];
 
-export const FILTERS_CATEGORIES = [
+export const FILTERS_CATEGORIES: FilterCategory[] = [
   ...treksAndOutdoorCategories,
   {
     id: CATEGORY_ID,
@@ -105,7 +105,7 @@ const FilterBarNew: React.FC<Props> = ({
     useCounter({ language });
 
   return (
-    <ClearContainer className="flex items-center shadow-lg bg-white" style={{ zIndex: 20 }}>
+    <ClearContainer className="flex items-center shadow-lg bg-white z-20">
       <div className="inline-block ml-4 mr-4 flex items-center">
         <Filter size={24} className="text-primary1" />
         <span className="uppercase text-primary1 ml-2">

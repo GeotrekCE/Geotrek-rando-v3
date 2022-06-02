@@ -183,7 +183,7 @@ It provides 6 default images that can be customized:
 
 - android-icon.png: It has to be 144x144px and controls the icon appearing on Android phones
 - maskable-icon.png: It hass to be 144x144px and will be used only on android phones enabling round icons (it will hence be cropped to fit a circle by the android phones)
-- ios-icon.png: It has to be 144x144px and controls the icon appearing on iOS phones
+- apple-icon.png: It has to be 144x144px and controls the icon appearing on iOS phones
 - android-splashscreen.png: It has to be 512x512px and controls the splashscreen appearing on Android phones
 - ios-splashscreen.png: It has to be 512x512px and controls the splashscreen appearing on iOS phones
 - favicon.png: It will be used as the favicon in web browsers
