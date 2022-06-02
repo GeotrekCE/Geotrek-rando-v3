@@ -255,5 +255,26 @@
     "warning": {
       "noWebGl": "The web graphics library (WebGL) seems to be disabled or not available on your browser, so the 3D module is unavailable."
     }
+  },
+  "tooltip": {
+    "print": "Print",
+    "download": "Download",
+    "report": "Report a problem",
+    "book": "Booking",
+    "show3D": "Show 3D",
+    "difficulty": "Difficulty",
+    "period": "Period",
+    "orientation": "Orientation",
+    "wind": "Wind",
+    "date": "Date",
+    "duration": "Duration",
+    "distance": "Distance",
+    "elevation": "Positive Elevation",
+    "negativeElevation": "Negative Elevation",
+    "altitude": "Altitude",
+    "assemblyPoint": "Assembly point",
+    "numberOfParticipants": "Number of participants",
+    "courseType": "Course type",
+    "network": "Network"
   }
 }
