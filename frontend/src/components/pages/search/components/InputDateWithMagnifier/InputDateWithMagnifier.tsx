@@ -6,7 +6,8 @@ import CustomizedInputDate from './CustomizedInputDate.style';
 interface InputDateWithMagnifierProps {
   value: string | null;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  placeholder: string;
+  placeholder?: string;
+  onButtonClick?: () => void;
 }
 
 const InputDateWithMagnifier: FunctionComponent<InputDateWithMagnifierProps> = ({

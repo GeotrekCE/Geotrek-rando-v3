@@ -37,20 +37,22 @@ const SubFilterField: React.FC<Props> = ({
       <>
         <div className="flex flex-col mt-4 desktop:mt-0 desktop:ml-5">
           <div className="font-bold mb-2 text-lg">Agenda</div>
-          <InputDateWithMagnifier
-            value={dateFilter.beginDate}
-            onChange={event => {
-              setDateFilter({ beginDate: event.target.value, endDate: dateFilter.endDate });
-            }}
-            placeholder={intl.formatMessage({ id: 'search.beginDateFilter' })}
-          />
-          <InputDateWithMagnifier
-            value={dateFilter.endDate}
-            onChange={event => {
-              setDateFilter({ beginDate: dateFilter.beginDate, endDate: event.target.value });
-            }}
-            placeholder={intl.formatMessage({ id: 'search.endDateFilter' })}
-          />
+          <div className="flex flex-row justify-between desktop:mt-0">
+            <InputDateWithMagnifier
+              value={dateFilter.beginDate}
+              onChange={event => {
+                setDateFilter({ beginDate: event.target.value, endDate: dateFilter.endDate });
+              }}
+              placeholder={intl.formatMessage({ id: 'search.beginDateFilter' })}
+            />
+            <InputDateWithMagnifier
+              value={dateFilter.endDate}
+              onChange={event => {
+                setDateFilter({ beginDate: dateFilter.beginDate, endDate: event.target.value });
+              }}
+              placeholder={intl.formatMessage({ id: 'search.endDateFilter' })}
+            />
+          </div>
         </div>
       </>
     );
