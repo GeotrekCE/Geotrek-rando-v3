@@ -11,7 +11,7 @@ export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber }) => {
   return (
     <div className="flex">
       <div>
-        <Illustration className="hidden desktop:block" src="images/little-forest.png" />
+        <Illustration className="hidden desktop:block" src="/images/little-forest.png" />
       </div>
 
       <div className="desktop:ml-6">

@@ -2,59 +2,57 @@ import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import SVG from 'react-inlinesvg';
 import styled from 'styled-components';
 
+interface IconProps {
+  className?: string;
+  iconUri?: string;
+  color?: string;
+}
+interface Props extends IconProps {
+  iconName?: string;
+}
+
 const Wrapper = styled.div<{ color?: string }>`
-  width: auto;
-  display: flex;
   z-index: 100;
   background: ${props => props.color};
+  max-width: 32px;
+  transition: max-width 0.6s;
 
-  & > div {
-    max-width: 0;
-    overflow: hidden;
-    transition: max-width 1s;
-  }
   &:hover {
-    & > div {
-      max-width: 150px;
-    }
+    max-width: 300%;
   }
 `;
 
-const Label = styled.div`
-  text-align: center;
-  flex: auto;
-  margin-top: 2px;
+const NoImg = styled.span<{ color?: string }>`
+  background: ${props => props.color};
+`;
 
-  & > div {
-    padding: 0 10px;
+const Icon: React.FC<IconProps> = ({ iconUri = '', className = '', color }) => {
+  if (!iconUri) {
+    return <NoImg color={color} className={`block rounded-full ${className}`} />;
   }
-`;
-
-const StyledSVG = styled(SVG)`
-  height: 28px;
-  width: 28px;
-`;
-
-export const CardIcon: React.FC<{ iconUri: string; iconName: string; color?: string }> = ({
-  iconUri,
-  iconName,
-  color,
-}) => {
-  const classNameContainer =
-    'absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white border-2 border-white border-solid';
   if (RegExp(/(.*).svg/).test(iconUri)) {
     return (
-      <Wrapper className={classNameContainer} color={color}>
-        <StyledSVG
-          src={iconUri}
-          className="fill-current p-1"
-          preProcessor={fillSvgWithColor(colorPalette.white)}
-        />
-        <Label>
-          <div>{iconName}</div>
-        </Label>
-      </Wrapper>
+      <SVG
+        src={iconUri}
+        className={`fill-current p-1 ${className}`}
+        preProcessor={fillSvgWithColor(colorPalette.white)}
+      />
     );
   }
-  return <img className={`object-cover object-center ${classNameContainer}`} src={iconUri} />;
+  return <img className={className} src={iconUri} alt="" />;
+};
+
+export const CardIcon: React.FC<Props> = ({ iconUri = '', iconName = '', color }) => {
+  if (!iconName && !iconUri) {
+    return null;
+  }
+  return (
+    <Wrapper
+      className="absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
+      color={color}
+    >
+      <Icon color={color} iconUri={iconUri} className="w-7 h-7 flex-shrink-0" />
+      {iconName && <div className="pr-3 whitespace-nowrap">{iconName}</div>}
+    </Wrapper>
+  );
 };

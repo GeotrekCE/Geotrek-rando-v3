@@ -2,6 +2,7 @@ import { adaptInformationDeskType } from 'modules/informationDeskType/adapter';
 import { InformationDesk, InformationDeskDictionnary, RawInformationDesk } from './interface';
 
 const adaptInformationDesk = (rawInformationDesk: RawInformationDesk): InformationDesk => ({
+  accessibility: rawInformationDesk.accessibility ?? null,
   name: rawInformationDesk.name,
   street: rawInformationDesk.street,
   postalCode: rawInformationDesk.postal_code,
@@ -12,6 +13,8 @@ const adaptInformationDesk = (rawInformationDesk: RawInformationDesk): Informati
   description: rawInformationDesk.description,
   photoUrl: rawInformationDesk.photo_url,
   type: adaptInformationDeskType(rawInformationDesk.type),
+  latitude: rawInformationDesk.latitude,
+  longitude: rawInformationDesk.longitude,
 });
 
 export const adaptInformationDesks = ({

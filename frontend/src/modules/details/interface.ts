@@ -14,12 +14,13 @@ import {
   RawWebLink,
 } from 'modules/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
-import { Accessibility } from 'modules/accessibility/interface';
+import { Accessibility, AccessibilityLevel } from 'modules/accessibility/interface';
 import { Source } from 'modules/source/interface';
 import { InformationDesk } from 'modules/informationDesk/interface';
 import { Label } from 'modules/label/interface';
 import { TrekResult } from 'modules/results/interface';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
+import { SignageDictionary } from 'modules/signage/interface';
 
 export interface RawDetails {
   type: string;
@@ -28,45 +29,64 @@ export interface RawDetails {
   properties: RawDetailsProperties;
 }
 
+export interface AccessibilityAttachment {
+  info_accessibility: 'slope' | 'width' | 'signage';
+  author: string;
+  thumbnail: string;
+  legend: string;
+  title: string;
+  url: string;
+  uuid: string;
+}
+
 export interface RawDetailsProperties {
-  id: number;
-  name: string;
-  departure: string;
-  arrival: string;
-  cities: string[];
-  attachments: RawAttachment[];
-  practice: number | null;
-  public_transport: string;
   access: string;
+  accessibilities: number[];
+  accessibility_level: number | null;
+  accessibility_advice?: string;
+  accessibility_covering?: string;
+  accessibility_exposure?: string;
+  accessibility_signage?: string;
+  accessibility_slope?: string;
+  accessibility_width?: string;
+  attachments_accessibility: AccessibilityAttachment[];
+  advice: string;
   advised_parking: string;
-  description_teaser: string;
+  altimetric_profile: string;
   ambiance: string;
-  themes: number[];
-  difficulty: number | null;
-  duration: number | null;
-  length_2d: number;
+  arrival_city: string;
+  arrival: string;
   ascent: number;
-  route: number;
-  networks: number[];
+  attachments: RawAttachment[];
+  children: number[];
+  cities: string[];
+  departure_city: string;
+  departure: string;
+  description_teaser: string;
   description: string;
+  difficulty: number | null;
+  disabled_infrastructure: string;
+  duration: number | null;
+  elevation_area_url: string;
+  gpx: string;
+  id: number;
+  information_desks: number[];
+  kml: string;
+  labels: number[];
+  length_2d: number;
+  descent: number;
+  route: number;
+  name: string;
+  networks: number[];
   parking_location: RawCoordinate2D | null;
   pdf: string;
-  gpx: string;
-  kml: string;
-  departure_city: string;
-  arrival_city: string;
-  disabled_infrastructure: string;
-  accessibilities: number[];
-  source: number[];
-  information_desks: number[];
-  labels: number[];
-  advice: string;
   points_reference: RawMultiPointGeometry | null;
-  children: number[];
-  web_links: RawWebLink[];
-  elevation_area_url: string;
-  altimetric_profile: string;
+  practice: number | null;
+  public_transport: string;
   reservation_id?: string;
+  source: number[];
+  themes: number[];
+  web_links: RawWebLink[];
 }
 
 // Fields parsed with react-html-parser in page
@@ -85,6 +105,7 @@ export interface DetailsInformation {
   duration?: string | null;
   distance?: string | null;
   elevation?: string | null;
+  negativeElevation?: string | null;
   difficulty?: Difficulty | null;
   courseType?: CourseType | null;
   networks?: Network[];
@@ -114,6 +135,14 @@ export interface Reservation {
 }
 
 export interface Details extends DetailsHtml {
+  accessbilityLevel: AccessibilityLevel | null;
+  accessibility_advice: string | null;
+  accessibility_covering: string | null;
+  accessibility_exposure: string | null;
+  accessibility_signage: string | null;
+  accessibility_slope: string | null;
+  accessibility_width: string | null;
+  attachmentsAccessibility: AccessibilityAttachment[];
   id: number;
   practice: Activity | null;
   title: string;
@@ -148,7 +177,8 @@ export interface Details extends DetailsHtml {
   altimetricProfileUrl: string;
   length2d: number;
   reservation: Reservation | null;
-  reservation_id?: string;
+  reservation_id: string | null;
+  signage: SignageDictionary | null;
 }
 
 export interface WebLink {

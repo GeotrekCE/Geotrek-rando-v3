@@ -6,7 +6,7 @@
     "favorites": "Favorites",
     "goToSearch": "Search",
     "offline": "Offline content",
-    "accueil": "Home"
+    "home": "Home"
   },
   "home": {
     "title": "Geotrek-rando",
@@ -15,22 +15,16 @@
     "seeMore": "See more",
     "welcome-text": "The digital and local eco-guide that presents my discoveries of the territory!",
     "mailTo": "Send an email",
-    "use-a-link": "Or use a link",
-    "get-started": "To get started, edit",
-    "save-to-reload": "and save to reload.",
-    "create-route": "To create a route, edit routes.js and link it to a page",
-    "generate-component": "To create a page or a simple component, run: ",
-    "generate-module": "To add business logic, add a file in ./redux with your reducers/actions/sagas/selectors/constants/...",
-    "click-me": "Click me",
-    "readme": "Look at the README.md to discover the awesome npm commands we added",
     "walking": "Trek",
     "territoryTreks": "Treks to discover",
-    "itinerantTreks": "Multi-day treks to discover"
+    "itinerantTreks": "Multi-day treks to discover",
+    "services": "Services to discover",
+    "events": "Events not to miss",
+    "outdoor": "Outdoor to discover"
   },
   "page": {
     "back": "Back",
-    "api-to-translate-example": "This message is translated using directly react-intl API",
-    "not-found": "This page was nout found"
+    "not-found": "This page was not found"
   },
   "search": {
     "title": "Search",
@@ -47,6 +41,7 @@
       "difficulty": "Difficulty",
       "practices": "Practice",
       "outdoor": "Outdoor",
+      "treksOutdoorGrouped": "Activities",
       "events": "Events",
       "categories": "Service",
       "localization": "Localization",
@@ -67,11 +62,16 @@
       "seeResult": "Display details",
       "seeMe": "View my position",
       "panel": {
-        "TrekChildren": "Steps",
-        "Poi": "Heritage",
-        "ReferencePoints": "Informations",
-        "TouristicContent": "Close by"
-      }
+        "trekChildren": "Steps",
+        "poi": "Heritage",
+        "referencePoints": "Landmarks",
+        "touristicContent": "Close by",
+        "informationDesks": "Information desks",
+        "courses": "Parcours",
+        "experiences": "Lieux de pratique",
+        "signage": "Signage"
+      },
+      "resetView": "Recenter map"
     }
   },
   "details": {
@@ -83,7 +83,7 @@
     "poi": "Points of interest",
     "poiFullTitle": "{count, plural, =0 {No point of interest} one {# point of interest} other {# points of interest}}",
     "source": "Source",
-    "touristicContent": "See around",
+    "touristicContent": "Close by",
     "readMore": "read more",
     "knowMore": "Find out more",
     "readLess": "read less",
@@ -93,6 +93,14 @@
     "informationDesks": "Information desks",
     "practicalInformations": "Practical informations",
     "accessibility": "Accessibility",
+    "accessibility_level": "Accessibility level",
+    "accessibility_covering": "Coating",
+    "accessibility_exposure": "Exposure",
+    "accessibility_advice": "Advice",
+    "accessibility_slope": "Slope",
+    "accessibility_width": "Lenght",
+    "accessibility_signage": "Signage",
+    "emergency_number": "Emergency number",
     "toSee": "Discover more",
     "transport": "Transport",
     "stationnement": "Parking",
@@ -126,7 +134,8 @@
     "speaker": "Speaker",
     "targetAudience": "Target audience",
     "practicalInfo": "Practical Information",
-    "booking": "Booking"
+    "booking": "Booking",
+    "centerOnMap": "Center on map"
   },
   "touristicContent": {
     "contact": "Contact",
@@ -137,6 +146,10 @@
     "layerButton": {
       "classic": "Map",
       "satellite": "Satellite"
+    },
+    "drawer": {
+      "next": "Next step",
+      "prev": "Previous step"
     }
   },
   "footer": {
@@ -149,18 +162,26 @@
   },
   "report": {
     "title": "Report a problem or an error",
+    "intro": "If you have found an error on this page or if you have noticed any problems during your hike, please report them to us here:",
     "activity": "Activity",
     "category": "Category",
     "magnitude": "Magnitude of the problem",
     "comment": "Comments",
     "email": "Email",
     "name": "Your name",
+    "image": "Image",
     "button": "Report",
     "cancel": "Cancel",
-    "success": "Thank you, the report has been sent."
+    "success": "Thank you, the report has been sent.",
+    "mapButton": {
+      "create": "Indicate the position of the report on the map",
+      "edit": "Edit the position of the report",
+      "validate": "Validate the position"
+    },
+    "GDPRDisclaimer": "These information will be used by <b>organism</b>, which commit to not sell your personal data to third parties. You have the right to read, modify, fix or delete your personal data (art. 34 de la loi \"Informatique et Libertés\"). To apply please send a mail to <a>contact</a>."
   },
   "error": {
-    "missing": "The form is not complete"
+    "missing": "The \"{field}\" field is required."
   },
   "offline": {
     "number": "{count} content accessible without internet connection",
@@ -181,7 +202,7 @@
   },
   "outdoorSite": {
     "accessFullTitle": "Access",
-    "coursesFullTitle": "Courses",
+    "coursesFullTitle": "Les {count} parcours à découvrir",
     "sitesFullTitle": "The {count} places of practice to discover"
   },
   "Wind": {
@@ -210,12 +231,12 @@
       },
       "bird": {
         "title": "Bird mode",
-        "description": "You can fly over the ground like a bird, turn your head, go up, down and move around!",
+        "description": "Fly over the ground, turn your head, go up, down and move around.",
         "cameraTitle": "Bird"
       },
       "hiker": {
         "title": "Hiker mode",
-        "description": "Here we are in the skin of a hiker, enjoying the view we follow without effort the progress of the route.",
+        "description": "Follow the route.",
         "cameraTitle": "Hiker"
       }
     },

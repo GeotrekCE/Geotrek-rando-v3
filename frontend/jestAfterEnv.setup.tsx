@@ -58,6 +58,14 @@ jest.mock('./src/modules/header/utills.ts', () => ({
       shouldDisplayFavorite: true,
       supportedLanguages: ['fr'],
     },
+    headerTopHtml: {
+      default: undefined,
+      fr: undefined,
+    },
+    headerBottomHtml: {
+      default: undefined,
+      fr: undefined,
+    }
   }),
   getDefaultLanguage: () => 'fr',
 }));
@@ -103,6 +111,12 @@ setConfig({
   publicRuntimeConfig: {
     homeBottomHtml: '',
     homeTopHtml: '',
+    headerTopHtml: '',
+    headerBottomHtml: '',
+    footerTopHtml: '',
+    footerBottomHtml: '',
+    scriptsHeaderHtml: '',
+    scriptsFooterHtml: '',
     style: '',
     colors: {},
     header: {},

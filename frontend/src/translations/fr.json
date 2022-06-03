@@ -6,7 +6,7 @@
     "favorites": "Favoris",
     "goToSearch": "Recherche",
     "offline": "Contenus hors ligne",
-    "accueil": "Accueil"
+    "home": "Accueil"
   },
   "home": {
     "title": "Geotrek-rando",
@@ -15,24 +15,15 @@
     "seeMore": "Voir plus",
     "welcome-text": "L’écoguide numérique et local qui présente mes découvertes du territoire !",
     "mailTo": "Envoyer un email",
-    "use-a-link": "Ou utilise un lien",
-    "get-started": "Pour commencer, modifie",
-    "save-to-reload": "et sauvegarde pour recharger.",
-    "create-route": "Pour créer une route, modifie routes.js et associe une page",
-    "generate-component": "Pour créer une page ou un simple composant, lance : ",
-    "generate-module": "Pour ajouter de la logique métier, créer un dossier dans redux avec tes reducers/actions/sagas/selectors/constants/...",
-    "click-me": "Clique moi",
-    "readme": "Lis le README.md pour découvrir les super commandes npm que nous avons ajouté",
     "walking": "Randonnée",
     "territoryTreks": "Randonnées à découvrir",
     "itinerantTreks": "Itinérances à découvrir",
-    "service": "Services à découvrir",
-    "events": "Événements à découvrir",
-    "outdoor": "Activités à découvrir"
+    "services": "Services à découvrir",
+    "events": "Événements à ne pas rater",
+    "outdoor": "Sites outdoor à découvrir"
   },
   "page": {
     "back": "Retour",
-    "api-to-translate-example": "Ce message est traduit en utilisant directement l'API react-intl",
     "not-found": "Cette page est introuvable",
     "goToOffline": "Afficher les contenus hors ligne"
   },
@@ -51,6 +42,7 @@
       "difficulty": "Difficulté",
       "practices": "Randonnées",
       "outdoor": "Outdoor",
+      "treksOutdoorGrouped": "Activités",
       "events": "Évènements",
       "categories": "Services",
       "cities": "Commune",
@@ -73,9 +65,14 @@
       "panel": {
         "trekChildren": "Étapes",
         "poi": "Patrimoines",
-        "referencePoints": "Informations",
-        "touristicContent": "À proximité"
-      }
+        "referencePoints": "Repères",
+        "touristicContent": "À proximité",
+        "informationDesks": "Lieux de renseignement",
+        "courses": "Parcours",
+        "experiences": "Lieux de pratique",
+        "signage": "Signalétiques"
+      },
+      "resetView": "Recentrer la carte"
     }
   },
   "details": {
@@ -97,6 +94,14 @@
     "informationDesks": "Lieux de renseignement",
     "practicalInformations": "Infos pratiques",
     "accessibility": "Accessibilité",
+    "accessibility_level": "Niveau d'accessibilité",
+    "accessibility_covering": "Revêtement",
+    "accessibility_exposure": "Exposition",
+    "accessibility_advice": "Conseils",
+    "accessibility_slope": "Pente",
+    "accessibility_width": "Largeur",
+    "accessibility_signage": "Signalétique",
+    "emergency_number": "Numéro de secours",
     "toSee": "À voir aussi",
     "transport": "Transport",
     "stationnement": "Stationnement",
@@ -130,7 +135,8 @@
     "speaker": "Intervenant",
     "targetAudience": "Public visé",
     "practicalInfo": "Information pratique",
-    "booking": "Réservation"
+    "booking": "Réservation",
+    "centerOnMap": "Centrer sur la carte"
   },
   "touristicContent": {
     "contact": "Contact",
@@ -141,6 +147,10 @@
     "layerButton": {
       "classic": "Plan",
       "satellite": "Satellite"
+    },
+    "drawer": {
+      "next": "Étape suivante",
+      "prev": "Étape précédente"
     }
   },
   "footer": {
@@ -153,18 +163,26 @@
   },
   "report": {
     "title": "Signaler un problème ou une erreur",
+    "intro": "Vous avez repéré une erreur sur cette page ou constaté un problème lors de votre randonnée, signalez-les nous ici :",
     "activity": "Activité",
     "category": "Catégorie",
     "magnitude": "Ampleur du problème",
     "comment": "Commentaires",
     "email": "Email",
     "name": "Votre nom",
+    "image": "Image",
     "button": "Signaler",
     "cancel": "Annuler",
-    "success": "Merci, le signalement a été envoyé."
+    "success": "Merci, le signalement a été envoyé.",
+    "mapButton": {
+      "create": "Indiquez la position du signalement sur la carte",
+      "edit": "Modifiez la position du signalement",
+      "validate": "Valider la position"
+    },
+    "GDPRDisclaimer": "Ces informations sont destinées à <b>organism</b>, qui s'engage à ne pas les communiquer à des tiers. Vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent (art. 34 de la loi \"Informatique et Libertés\"). Pour l'exercer, adressez-vous à <a>contact</a>."
   },
   "error": {
-    "missing": "Le formulaire n'est pas complet"
+    "missing": "Le champ \"{field}\" est requis."
   },
   "offline": {
     "number": "{count} contenus accessibles sans connexion internet",
@@ -181,11 +199,11 @@
     "cancel": "Annuler",
     "close": "Fermer",
     "remove": "Supprimer",
-    "confirmRemove": "Etes vous sûr de vouloir supprimer cet élément?"
+    "confirmRemove": "Êtes-vous sûr de vouloir supprimer cet élément ?"
   },
   "outdoorSite": {
     "accessFullTitle": "Accès",
-    "coursesFullTitle": "Parcours",
+    "coursesFullTitle": "Les {count} parcours à découvrir",
     "sitesFullTitle": "Les {count} lieux de pratique à découvrir"
   },
   "Wind": {
@@ -209,17 +227,17 @@
     "views": {
       "examine": {
         "title": "Mode examine",
-        "description": "On peut examiner le terrain en le tournant dans tous les sens.",
+        "description": "Examinez le terrain en le tournant comme vous le souhaitez et en navigant dedans.",
         "cameraTitle": "Exam"
       },
       "bird": {
         "title": "Mode oiseau",
-        "description": "On peut survoler le terrain tel un oiseau, tourner la tête, monter, descendre et se déplacer !",
+        "description": "Survolez le terrain, tournez la tête, montez, descendez et déplacez vous.",
         "cameraTitle": "Oiseau"
       },
       "hiker": {
         "title": "Mode randonneur",
-        "description": "Ici on est dans la peau d'un randonneur, on suit sans effort l'avancement de l'itinéraire, en profitant de la vue.",
+        "description": "Suivez le parcours de l'itinéraire.",
         "cameraTitle": "Rando"
       }
     },

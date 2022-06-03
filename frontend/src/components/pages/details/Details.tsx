@@ -1,4 +1,3 @@
-import getConfig from 'next/config';
 import MoreLink from 'components/Information/MoreLink';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
@@ -13,12 +12,14 @@ import { MobileMapContainer } from 'components/pages/search';
 import { useShowOnScrollPosition } from 'hooks/useShowOnScrollPosition';
 import { useMediaPredicate } from 'react-media-hook';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
-import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import React, { useMemo, useRef } from 'react';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { cleanHTMLElementsFromString } from 'modules/utils/string';
+import Report from 'components/Report/Report';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { Footer } from 'components/Footer';
+import Accessibility, { shouldDisplayAccessibility } from 'components/Accessibility';
+
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -39,6 +40,7 @@ import { DetailsReservationWidget } from './components/DetailsReservationWidget'
 import { DetailsMeteoWidget } from './components/DetailsMeteoWidget';
 import { ImageWithLegend } from './components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { VisibleSectionProvider } from './VisibleSectionContext';
+import { DetailsAndMapProvider } from './DetailsAndMapContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
 import { useOnScreenSection } from './hooks/useHighlightedSection';
 
@@ -64,6 +66,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
     setTouristicContentsRef,
     setAccessibilityRef,
     setSensitiveAreasRef,
+    setReportRef,
     sectionsPositions,
     intl,
     mobileMapState,
@@ -88,6 +91,16 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
       sizes.desktopHeader -
       sizes.detailsHeaderDesktop,
   });
+
+  const positiveElevation = parseInt(details?.informations.elevation ?? '0', 10);
+  const negativeElevation = parseInt(details?.informations.negativeElevation ?? '0', 10);
+
+  const higherDifferenceElevation = Math.max(positiveElevation, Math.abs(negativeElevation));
+
+  const displayAltimetricProfile =
+    Boolean(higherDifferenceElevation) &&
+    (getGlobalConfig().minAltitudeDifferenceToDisplayElevationProfile ?? 0) <
+      higherDifferenceElevation;
 
   return useMemo(
     () => (
@@ -228,13 +241,16 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           <DetailsMeteoWidget code={details.cities_raw[0]} />
                         </DetailsSection>
                       )}
-                    <DetailsSection
-                      htmlId="details_altimetricProfile"
-                      titleId="details.altimetricProfile.title"
-                      className={marginDetailsChild}
-                    >
-                      <div className="h-90" id="altimetric-profile"></div>
-                    </DetailsSection>
+
+                    {displayAltimetricProfile === true && (
+                      <DetailsSection
+                        htmlId="details_altimetricProfile"
+                        titleId="details.altimetricProfile.title"
+                        className={marginDetailsChild}
+                      >
+                        <div className="h-90" id="altimetric-profile"></div>
+                      </DetailsSection>
+                    )}
 
                     {details.sensitiveAreas.length > 0 && (
                       <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
@@ -291,24 +307,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                             className={marginDetailsChild}
                           >
                             {details.informationDesks.map((informationDesk, i) => (
-                              <DetailsInformationDesk
-                                key={i}
-                                className={
-                                  i < details.informationDesks.length - 1
-                                    ? 'mb-8 desktop:mb-12'
-                                    : undefined
-                                }
-                                name={informationDesk.name}
-                                street={informationDesk.street}
-                                postalCode={informationDesk.postalCode}
-                                municipality={informationDesk.municipality}
-                                website={informationDesk.website}
-                                email={informationDesk.email}
-                                phone={informationDesk.phone}
-                                description={informationDesk.description}
-                                photoUrl={informationDesk.photoUrl}
-                                type={informationDesk.type}
-                              />
+                              <DetailsInformationDesk key={i} {...informationDesk} />
                             ))}
                           </DetailsSection>
                         )}
@@ -345,35 +344,20 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       </div>
                     )}
 
-                    {(details.disabledInfrastructure || details.accessibilities.length > 0) && (
+                    {shouldDisplayAccessibility(details) && (
                       <div ref={setAccessibilityRef} id="details_accessibility_ref">
                         <DetailsSection
                           htmlId="details_accessibility"
                           titleId="details.accessibility"
                           className={marginDetailsChild}
                         >
-                          {details.disabledInfrastructure && (
-                            <HtmlText>{parse(details.disabledInfrastructure)}</HtmlText>
-                          )}
-                          {details.accessibilities.length > 0 && (
-                            <div className="flex">
-                              {details.accessibilities.map((accessibility, i) => (
-                                <RemoteIconInformation
-                                  key={i}
-                                  iconUri={accessibility.pictogramUri}
-                                  className="mr-6 mt-3 desktop:mt-4 text-primary"
-                                >
-                                  {accessibility.name}
-                                </RemoteIconInformation>
-                              ))}
-                            </div>
-                          )}
+                          <Accessibility details={details} language={language} />
                         </DetailsSection>
                       </div>
                     )}
 
                     {details.webLinks?.length > 0 && (
-                      <div ref={setAccessibilityRef} id="details_more_ref">
+                      <div id="details_more_ref">
                         <DetailsSection
                           htmlId="details_more"
                           titleId="details.more"
@@ -401,6 +385,29 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           />
                         ))}
                       </DetailsSection>
+                    )}
+
+                    {getGlobalConfig().enableReport && (
+                      <div ref={setReportRef}>
+                        <DetailsSection
+                          htmlId="details_report"
+                          titleId="report.title"
+                          className={marginDetailsChild}
+                        >
+                          <Report
+                            displayMobileMap={displayMobileMap}
+                            trekId={details.id}
+                            startPoint={{
+                              type: 'Point',
+                              coordinates:
+                                'trekDeparture' in details
+                                  ? details.trekDeparture
+                                  : // @ts-ignore next-line
+                                    details.geometry?.coordinates,
+                            }}
+                          />
+                        </DetailsSection>
+                      </div>
                     )}
 
                     {details.touristicContents.length > 0 && (
@@ -450,6 +457,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   >
                     <DetailsMapDynamicComponent
                       type="DESKTOP"
+                      title={details.title}
                       arrivalLocation={details.trekArrival}
                       departureLocation={details.trekDeparture}
                       parkingLocation={
@@ -495,6 +503,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           color,
                         }))}
                       trekId={Number(id)}
+                      displayAltimetricProfile={displayAltimetricProfile}
+                      informationDesks={details.informationDesks}
+                      signage={details.signage}
                     />
                   </div>
                 )}
@@ -510,6 +521,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
               >
                 <DetailsMapDynamicComponent
                   type="MOBILE"
+                  title={details.title}
                   arrivalLocation={details.trekArrival}
                   departureLocation={details.trekDeparture}
                   advisedParking={details.parking}
@@ -526,6 +538,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   }))}
                   pointsReference={details.pointsReference}
                   bbox={details.bbox}
+                  trekFamily={trekFamily}
                   trekChildrenGeometry={details.children.reduce<TrekChildGeometry[]>(
                     (children, currentChild) => {
                       if (currentChild.geometry) {
@@ -547,6 +560,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     }))}
                   hideMap={hideMobileMap}
                   trekId={Number(id)}
+                  displayAltimetricProfile={displayAltimetricProfile}
+                  informationDesks={details.informationDesks}
+                  signage={details.signage}
                 />
               </MobileMapContainer>
             )}
@@ -554,7 +570,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
         )}
       </>
     ),
-    [details, isLoading, mobileMapState, sectionsPositions],
+    [details, isLoading, mobileMapState],
   );
 };
 
@@ -584,8 +600,10 @@ export const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title:
 
 export const DetailsUI: React.FC<Props> = ({ detailsId, parentId, language }) => {
   return (
-    <VisibleSectionProvider>
-      <DetailsUIWithoutContext detailsId={detailsId} parentId={parentId} language={language} />
-    </VisibleSectionProvider>
+    <DetailsAndMapProvider>
+      <VisibleSectionProvider>
+        <DetailsUIWithoutContext detailsId={detailsId} parentId={parentId} language={language} />
+      </VisibleSectionProvider>
+    </DetailsAndMapProvider>
   );
 };

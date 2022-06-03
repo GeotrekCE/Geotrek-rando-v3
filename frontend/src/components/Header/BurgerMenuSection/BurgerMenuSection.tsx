@@ -4,6 +4,7 @@ import {
   AccordionItemButton,
   AccordionItemHeading,
   AccordionItemPanel,
+  resetNextUuid,
 } from 'react-accessible-accordion';
 import { MenuItem } from 'modules/header/interface';
 import NextLink from 'next/link';
@@ -19,12 +20,11 @@ export interface Props {
   title: string;
   items?: Array<string | MenuItem>;
   languages?: string[];
-  onClick?: () => void;
 }
 
 const isItemString = (item: MenuItem | string): item is string => typeof item === 'string';
 
-export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick, languages }) => {
+export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) => {
   const router = useRouter();
   const currentLanguage = router.locale ?? getDefaultLanguage();
   const classNameTitle = 'flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer';
@@ -35,6 +35,7 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick, lang
   const updatePanelState = (openPanelIds: string[]) => {
     openPanelIds.length > 0 ? setOpenState('OPENED') : setOpenState('CLOSED');
   };
+  resetNextUuid();
   return items || languages ? (
     <Accordion allowZeroExpanded onChange={updatePanelState}>
       <AccordionItem>
@@ -52,13 +53,10 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick, lang
           {items?.map((item, i) => (
             <p key={i} className="text-Mobile-C2 m-3">
               {isItemString(item) ? (
-                <p>{item}</p>
+                <span>{item}</span>
               ) : (
                 <NextLink href={item.url} passHref locale={currentLanguage} key={item.url}>
-                  <a
-                    target={isInternalFlatPageUrl(item.url) ? undefined : '_blank'}
-                    id="verticalMenu_subsection"
-                  >
+                  <a target={isInternalFlatPageUrl(item.url) ? undefined : '_blank'}>
                     {item.title}
                   </a>
                 </NextLink>
@@ -67,7 +65,7 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick, lang
           ))}
           {languages?.map(language => (
             <Link
-              className="w-full"
+              className="block text-Mobile-C2 py-2 text-greyDarkColored"
               key={language}
               href={{
                 pathname: router.pathname,
@@ -75,17 +73,13 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, onClick, lang
               }}
               locale={language}
             >
-              <p className="text-Mobile-C2 py-2 text-greyDarkColored" id="verticalMenu_subsection">
-                {language.toUpperCase()}
-              </p>
+              {language.toUpperCase()}
             </Link>
           ))}
         </AccordionItemPanel>
       </AccordionItem>
     </Accordion>
   ) : (
-    <span className={`${classNameTitle} ${classNameBorder}`} onClick={onClick}>
-      {title}
-    </span>
+    <a className={`${classNameTitle} ${classNameBorder}`}>{title}</a>
   );
 };

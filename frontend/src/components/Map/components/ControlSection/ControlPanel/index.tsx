@@ -1,10 +1,14 @@
-import { Visibility } from 'components/Map/DetailsMap/useDetailsMap';
 import styled from 'styled-components';
+import { Florist } from 'components/Icons/Florist';
+import { Signage } from 'components/Icons/Signage';
 import { Line } from './Line';
 import IconLocation from './IconLocation';
 import IconInfo from './IconInfo';
 import IconDrapeau from './IconDrapeau';
 import IconPatrimoine from './IconPatrimoine';
+import IconOutdoorSite from './IconOutdoorSite';
+import IconOutdoorRoute from './IconOutdoorRoute';
+import { ControlSectionProps } from '../ControlSection';
 
 const Wrapper = styled.div`
   background: white;
@@ -15,25 +19,16 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: column;
 
-  & div {
-    margin-bottom: 8px;
+  & button {
+    margin-bottom: 16px;
   }
 
-  & div:last-child {
-    margin-bottom: 0;
+  & button:last-child {
+    margin-bottom: 8px;
   }
 `;
 
-export const ControlPanel: React.FC<{
-  trekChildrenVisibility: Visibility;
-  toggleTrekChildrenVisibility: () => void;
-  poiVisibility: Visibility;
-  togglePoiVisibility: () => void;
-  referencePointsVisibility: Visibility;
-  toggleReferencePointsVisibility: () => void;
-  touristicContentVisibility: Visibility;
-  toggleTouristicContentVisibility: () => void;
-}> = ({
+export const ControlPanel: React.FC<ControlSectionProps> = ({
   trekChildrenVisibility,
   toggleTrekChildrenVisibility,
   poiVisibility,
@@ -42,6 +37,14 @@ export const ControlPanel: React.FC<{
   toggleReferencePointsVisibility,
   touristicContentVisibility,
   toggleTouristicContentVisibility,
+  informationDeskMobileVisibility,
+  toggleInformationDeskVisibility,
+  coursesVisibility,
+  toggleCoursesVisibility,
+  experiencesVisibility,
+  toggleExperiencesVisibility,
+  signageVisibility,
+  toggleSignageVisibility,
 }) => {
   return (
     <Wrapper>
@@ -55,7 +58,7 @@ export const ControlPanel: React.FC<{
       )}
       {poiVisibility !== null && (
         <Line
-          Icon={IconInfo}
+          Icon={Florist}
           active={poiVisibility === 'DISPLAYED'}
           toggle={togglePoiVisibility}
           transKey="search.map.panel.poi"
@@ -75,6 +78,38 @@ export const ControlPanel: React.FC<{
           active={touristicContentVisibility === 'DISPLAYED'}
           toggle={toggleTouristicContentVisibility}
           transKey="search.map.panel.touristicContent"
+        />
+      )}
+      {informationDeskMobileVisibility !== null && (
+        <Line
+          Icon={IconInfo}
+          active={informationDeskMobileVisibility === 'DISPLAYED'}
+          toggle={toggleInformationDeskVisibility}
+          transKey="search.map.panel.informationDesks"
+        />
+      )}
+      {coursesVisibility !== null && (
+        <Line
+          Icon={IconOutdoorRoute}
+          active={coursesVisibility === 'DISPLAYED'}
+          toggle={toggleCoursesVisibility}
+          transKey="search.map.panel.courses"
+        />
+      )}
+      {experiencesVisibility !== null && (
+        <Line
+          Icon={IconOutdoorSite}
+          active={experiencesVisibility === 'DISPLAYED'}
+          toggle={toggleExperiencesVisibility}
+          transKey="search.map.panel.experiences"
+        />
+      )}
+      {signageVisibility !== null && (
+        <Line
+          Icon={Signage}
+          active={signageVisibility === 'DISPLAYED'}
+          toggle={toggleSignageVisibility}
+          transKey="search.map.panel.signage"
         />
       )}
     </Wrapper>

@@ -2,8 +2,9 @@
   "searchMapCenter": [44.8, 6.3],
   "maximumZoomLevel": 17,
   "searchMapZoom": 10,
-  "mapCredits": "OpenTopoMap",
+  "mapCredits": "© OpenStreetMap-Contributors, SRTM | Style: © OpenTopoMap",
   "mapClassicLayerUrl": "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
   "mapSatelliteLayerUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-  "zoomAvailableOffline": [13, 14, 15]
+  "zoomAvailableOffline": [13, 14, 15],
+  "mobileMapPanelDefaultOpened": false
 }

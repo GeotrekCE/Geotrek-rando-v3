@@ -5,7 +5,8 @@
     "seeMore": "más información",
     "favorites": "Preferido",
     "goToSearch": "Busca",
-    "offline": "Contenidos sin conexión"
+    "offline": "Contenidos sin conexión",
+    "home": "Página"
   },
   "home": {
     "title": "Geotrek-senderismo",
@@ -14,21 +15,12 @@
     "seeMore": "ver más",
     "welcome-text": "La guia ecológica y digital que muestra mis descubrimienos del territorio!",
     "mailTo": "Enviar un email",
-    "use-a-link": "Utilitizamos un enlace",
-    "get-started": "Para empezar, modifica",
-    "save-to-reload": "y salvaguarda para volver a cargar.",
-    "create-route": "Para crear una ruta, modifica rutas.js y asocia una página",
-    "generate-component": "Para crear una página o un componente sencillo, iniciar : ",
-    "generate-module": "Para añadir lógica de oficio, crear un archivo en redux con tus reducers/actions/sagas/selectors/constants/...",
-    "click-me": "Haz clic aquí",
-    "readme": "Lee el README.md para descubrir las superórdenes npm que hemos añadido",
     "walking": "Senderismo",
     "territoryTreks": "Excursiones para descubrir",
     "itinerantTreks": "Itinerancias para descubrir"
   },
   "page": {
     "back": "Vuelta",
-    "api-to-translate-example": "Este mensaje se ha traducido utilizando directamente l'API react-intl",
     "not-found": "No hemos encontrado la página",
     "goToOffline": "Mostrar los contenidos sin conexión"
   },
@@ -36,7 +28,7 @@
     "title": "Busca",
     "description": "Descubre las excursiones que coinciden con tus deseos en nuestro motor de búsqueda",
     "book": "Reserva",
-    "resultsFound": "{count, plural, =0 {# Hemos encontrado el resultado} one {# Hemos encontrado el resultado} other {# Hemos encontrado los resultados}}",
+    "resultsFound": "{count, plural, =0 {# resultado encontrado} one {# resultado encontrado} other {# resultados encontrados}}",
     "resultsFoundShort": "{count, plural, =0 {# resultado} one {# resultado} other {# resultados}}",
     "forThe": "Para",
     "seeMap": "mostrar el mapa",
@@ -48,6 +40,7 @@
       "practices": "excursiones",
       "outdoor": "Exterior",
       "events": "Eventos",
+      "treksOutdoorGrouped": "Activities",
       "categories": "Servicios",
       "cities": "pueblo",
       "localization": "Localización",
@@ -65,7 +58,18 @@
     "textFilter": "Buscar...",
     "map": {
       "seeResult": "Mostrar el detalle",
-      "seeMe": "Mostrar mi posición"
+      "seeMe": "Mostrar mi posición",
+      "panel": {
+        "trekChildren": "Pasos",
+        "poi": "Patrimonios",
+        "referencePoints": "Puntos de referencia",
+        "touristicContent": "Cercano",
+        "informationDesks": "Lugares de información",
+        "courses": "Parcours",
+        "experiences": "Lieux de pratique",
+        "signage": "Señalización"
+      },
+      "resetView": "Centrarse la mapa"
     }
   },
   "details": {
@@ -87,6 +91,14 @@
     "informationDesks": "Lugares de información",
     "practicalInformations": "Infos prácticas",
     "accessibility": "Accesibilidad",
+    "accessibility_level": "Nivel de accesibilidad",
+    "accessibility_covering": "Revestimiento",
+    "accessibility_exposure": "Exposición",
+    "accessibility_advice": "Consejo",
+    "accessibility_slope": "Pendiente",
+    "accessibility_width": "Largo",
+    "accessibility_signage": "Señalización",
+    "emergency_number": "Número de emergencia",
     "toSee": "Para ver también",
     "transport": "Transporte",
     "stationnement": "Estacionamiento",
@@ -119,7 +131,8 @@
     "speaker": "los que intervienen",
     "targetAudience": "Público objectivo",
     "practicalInfo": "Información práctica",
-    "booking": "Reservación"
+    "booking": "Reservación",
+    "centerOnMap": "Center on map"
   },
   "touristicContent": {
     "contact": "Contacto",
@@ -142,15 +155,23 @@
   },
   "report": {
     "title": "Informar de un problema o un error",
+    "intro": "If you have found an error on this page or if you have noticed any problems during your hike, please report them to us here:",
     "activity": "Actividad",
     "category": "Categoría",
     "magnitude": "Amplitud del problema",
     "comment": "Comentarios",
     "email": "Email",
     "name": "Su nombre",
+    "image": "Image",
     "button": "Informar",
     "cancel": "Cancelar",
-    "success": "Gracias, se ha enviado la notificación."
+    "success": "Gracias, se ha enviado la notificación.",
+    "mapButton": {
+      "create": "Indicate the position of the report on the map",
+      "edit": "Edit the position of the report",
+      "validate": "Validate the position"
+    },
+    "GDPRDisclaimer": "These information will be used by <b>organism</b>, which commit to not sell your personal data to third parties. You have the right to read, modify, fix or delete your personal data (art. 34 de la loi \"Informatique et Libertés\"). To apply please send a mail to <a>contact</a>."
   },
   "error": {
     "missing": "El formulario no se ha completado"
@@ -174,7 +195,7 @@
   },
   "outdoorSite": {
     "accessFullTitle": "Acceso",
-    "coursesFullTitle": "Recorrido",
+    "coursesFullTitle": "Les {count} parcours à découvrir",
     "sitesFullTitle": "Los {count} lugares de práctica para descubrir"
   },
   "Wind": {

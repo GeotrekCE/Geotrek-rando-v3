@@ -1,11 +1,12 @@
 import { getSensitiveAreas } from 'modules/sensitiveArea/connector';
+import { getSignage } from 'modules/signage/connector';
 import { getCities } from '../city/connector';
 import { getThemes } from '../filters/theme/connector';
 import { getInformationDesks } from '../informationDesk/connector';
 import { getLabels } from '../label/connector';
 import { getOutdoorCourses } from '../outdoorCourse/connector';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
-import { getOutdoorRating, getOutdoorRatingHashMap } from '../outdoorRating/connector';
+import { getOutdoorRating } from '../outdoorRating/connector';
 import { getOutdoorRatingScale } from '../outdoorRatingScale/connector';
 import { getOutdoorSiteType } from '../outdoorSiteType/connector';
 import { getPois } from '../poi/connector';
@@ -55,7 +56,7 @@ export const getOutdoorSiteDetails = async (
       courses,
       outdoorPracticeDictionnary,
       touristicContents,
-      sensitiveAreas
+      sensitiveAreas,
     ] = await Promise.all([
       fetchOutdoorSiteDetails({ language }, id),
       getPois(Number(id), language, 'sites'),
@@ -68,8 +69,8 @@ export const getOutdoorSiteDetails = async (
       getOutdoorPractices(language),
       getTouristicContentsNearTarget(Number(id), language, 'near_outdoorsite'),
       getGlobalConfig().enableSensitiveAreas
-          ? getSensitiveAreas("outdoorSite", Number(id), language)
-          : [],
+        ? getSensitiveAreas('outdoorSite', Number(id), language)
+        : [],
     ]);
 
     const [
@@ -79,6 +80,7 @@ export const getOutdoorSiteDetails = async (
       outdoorRating,
       outdoorRatingScale,
       outdoorSiteType,
+      signage,
     ] = await Promise.all([
       getTrekResults(language, { near_outdoorsite: Number(id) }),
       getOutdoorPractices(language),
@@ -86,6 +88,7 @@ export const getOutdoorSiteDetails = async (
       getOutdoorRating(language),
       getOutdoorRatingScale(language),
       getOutdoorSiteType(language),
+      getSignage(language, id, 'OUTDOOR_SITE'),
     ]);
 
     return adaptOutdoorSiteDetails({
@@ -105,7 +108,8 @@ export const getOutdoorSiteDetails = async (
       outdoorRating,
       outdoorRatingScale,
       outdoorSiteType,
-      sensitiveAreas
+      sensitiveAreas,
+      signage,
     });
   } catch (e) {
     console.error('Error in outdoor course connector', e);

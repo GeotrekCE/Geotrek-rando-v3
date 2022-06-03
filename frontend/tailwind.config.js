@@ -11,7 +11,10 @@ module.exports = {
       main: `'Assistant', 'Helvetica', 'Arial', sans-serif`,
       code: 'Monospace',
     },
-
+    scale: {
+      // Rule should be drop with TW v3
+      '-100': '-1',
+    },
     boxShadow: {
       DEFAULT: '0 0 30px 0 rgba(0, 0, 0, 0.15)',
       none: 'none',
@@ -150,6 +153,8 @@ module.exports = {
   variants: {
     extend: {
       backgroundColor: ['active'],
+      // Rule should be drop with TW v3
+      margin: ['last'],
     },
   },
   plugins: [],

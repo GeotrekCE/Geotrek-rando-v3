@@ -1,22 +1,37 @@
 import { LatLngBoundsExpression } from 'leaflet';
 import React from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, ScaleControl, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { Bbox } from 'modules/details/interface';
-import { LineStringGeometry, PointGeometry, PolygonGeometry } from 'modules/interface';
+import {
+  LineStringGeometry,
+  MultiLineStringGeometry,
+  MultiPointGeometry,
+  MultiPolygonGeometry,
+  PointGeometry,
+  PolygonGeometry,
+} from 'modules/interface';
 import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { useTileLayer } from 'hooks/useTileLayer';
-import { MapButton } from '../components/MapButton';
+import { BackButton } from '../components/BackButton';
 
 import { TouristicContent } from '../DetailsMap/TouristicContent';
 import { getMapConfig } from '../config';
 import { Credits } from '../components/Credits';
 import { TouristicContentGeometry } from '../DetailsMap/DetailsMap';
+import { ResetView } from '../components/ResetView';
 
 interface TouristicContentGeometryNullable {
-  geometry: PointGeometry | PolygonGeometry | LineStringGeometry | null;
+  geometry:
+    | PolygonGeometry
+    | MultiPolygonGeometry
+    | LineStringGeometry
+    | MultiLineStringGeometry
+    | PointGeometry
+    | MultiPointGeometry
+    | null;
   pictogramUri: string;
   name: string;
   id: string;
@@ -35,10 +50,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
     [props.bbox.corner2.y, props.bbox.corner2.x],
   ];
 
-  const { isSatelliteLayerAvailable, setMapInstance, updateTileLayer } = useTileLayer(
-    Number(props.touristicContentGeometry.id),
-    center,
-  );
+  const { setMapInstance } = useTileLayer(Number(props.touristicContentGeometry.id), center);
 
   const hideMap = () => {
     if (props.hideMap) {
@@ -65,21 +77,18 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
         bounds={center}
         attributionControl={false}
       >
+        <BackButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
+        <ResetView />
         <TileLayer url={mapConfig.mapClassicLayerUrl} />
+        <ScaleControl />
+        <MapLayerTypeToggleButton />
+        <Credits>{mapConfig.mapCredits}</Credits>
         {props.touristicContentGeometry !== null && (
           <TouristicContent
             contents={[props.touristicContentGeometry as TouristicContentGeometry]}
           />
         )}
-
-        {isSatelliteLayerAvailable && (
-          <div className="absolute bottom-6 left-6 z-mapButton">
-            <MapLayerTypeToggleButton onToggleButtonClick={newType => updateTileLayer(newType)} />
-          </div>
-        )}
       </MapContainer>
-      <MapButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
-      <Credits className="absolute right-0 bottom-0 z-mapButton">{mapConfig.mapCredits}</Credits>
     </>
   );
 };

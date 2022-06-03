@@ -6,7 +6,7 @@
     "favorites": "Preferiti",
     "goToSearch": "Ricerca",
     "offline": "Contenuto offline",
-    "accueil": "Pagina iniziale"
+    "home": "Iniziale"
   },
   "home": {
     "title": "Geotrek-rando",
@@ -15,21 +15,16 @@
     "seeMore": "Vedere più",
     "welcome-text": "L'ecoguida digitale e locale che presenta le mie scoperte del territorio !",
     "mailTo": "Invia un'email",
-    "use-a-link": "O usare un link",
-    "get-started": "Per iniziare, modificate",
-    "save-to-reload": "e salvataggio per ricaricare.",
-    "create-route": "Per creare una rotta, modificare routes.js e associa una pagina",
-    "generate-component": "Per creare una pagina o un semplice componente, lanciare : ",
-    "generate-module": "Per aggiungere la logica di mestiere, create una cartella in redux con il suo reducers/actions/sagas/selectors/constants/...",
-    "click-me": "Cliccami",
-    "readme": "Leggi il README.md per scoprire i grandi comandi npm che abbiamo aggiunto",
     "walking": "Escursioni",
     "territoryTreks": "Escursioni da scoprire",
-    "itinerantTreks": "Itinerari da scoprire"
+    "itinerantTreks": "Itinerari da scoprire",
+    "services": "Servizi da scoprire",
+    "events": "Eventi da non perdere",
+    "outdoor": "Siti outdoor da scoprire"
   },
   "page": {
     "back": "Ritorno",
-    "api-to-translate-example": "Questo messaggio è tradotto usando direttamente l'API react-intl"
+    "not-found": "Questa pagina non è stata trovata"
   },
   "search": {
     "title": "Ricerca",
@@ -46,6 +41,7 @@
       "difficulty": "Difficoltà",
       "practices": "Escursioni",
       "outdoor": "Outdoor",
+      "treksOutdoorGrouped": "Activities",
       "events": "Eventi",
       "categories": "Servizi",
       "cities": "Comune",
@@ -66,11 +62,16 @@
       "seeResult": "Mostrare i dettagli",
       "seeMe": "Vedere la mia posizione",
       "panel": {
-        "TrekChildren": "Fasi",
-        "Poi": "Eredità",
-        "ReferencePoints": "Informazioni",
-        "TouristicContent": "Vicino"
-      }
+        "trekChildren": "Fasi",
+        "poi": "Eredità",
+        "referencePoints": "Riferimenti",
+        "touristicContent": "Vicino",
+        "informationDesks": "Luoghi di informazione",
+        "courses": "Parcours",
+        "experiences": "Lieux de pratique",
+        "signage": "Segnaletica"
+      },
+      "resetView": "Rimettere a fuoco la mappa"
     }
   },
   "details": {
@@ -92,6 +93,14 @@
     "informationDesks": "Luoghi di informazione",
     "practicalInformations": "Informazioni pratiche",
     "accessibility": "Accessibilità",
+    "accessibility_level": "Livello di accessibilità",
+    "accessibility_covering": "Rivestimento",
+    "accessibility_exposure": "Esposizione",
+    "accessibility_advice": "Consigli",
+    "accessibility_slope": "Pendenza",
+    "accessibility_width": "Lunghezza",
+    "accessibility_signage": "Segnaletica",
+    "emergency_number": "Numero di emergenza",
     "toSee": "Vedi anche",
     "transport": "Trasporto",
     "stationnement": "Parcheggio",
@@ -125,7 +134,8 @@
     "speaker": "Stakeholder",
     "targetAudience": "Pubblico di riferimento",
     "practicalInfo": "Informazioni pratiche",
-    "booking": "Prenotazione"
+    "booking": "Prenotazione",
+    "centerOnMap": "Center on map"
   },
   "touristicContent": {
     "contact": "Contatto",
@@ -136,6 +146,10 @@
     "layerButton": {
       "classic": "Piano",
       "satellite": "Satellite"
+    },
+    "drawer": {
+      "next": "Passo successivo",
+      "prev": "Passo precedente"
     }
   },
   "footer": {
@@ -148,15 +162,23 @@
   },
   "report": {
     "title": "Segnala un problema o un errore",
+    "intro": "If you have found an error on this page or if you have noticed any problems during your hike, please report them to us here:",
     "activity": "Attività",
     "category": "Categoria",
     "magnitude": "Portata del problema",
     "comment": "Commenti",
     "email": "Email",
     "name": "Il tuo nome",
+    "image": "Image",
     "button": "Segnala",
     "cancel": "Cancella",
-    "success": "Grazie, il rapporto è stato inviato."
+    "success": "Grazie, il rapporto è stato inviato.",
+    "mapButton": {
+      "create": "Indicate the position of the report on the map",
+      "edit": "Edit the position of the report",
+      "validate": "Validate the position"
+    },
+    "GDPRDisclaimer": "These information will be used by <b>organism</b>, which commit to not sell your personal data to third parties. You have the right to read, modify, fix or delete your personal data (art. 34 de la loi \"Informatique et Libertés\"). To apply please send a mail to <a>contact</a>."
   },
   "error": {
     "missing": "Il modulo non è completo"
@@ -180,7 +202,7 @@
   },
   "outdoorSite": {
     "accessFullTitle": "Accesso",
-    "coursesFullTitle": "Corso",
+    "coursesFullTitle": "Les {count} parcours à découvrir",
     "sitesFullTitle": "Il {conteggio} dei luoghi di pratica da scoprire"
   },
   "Wind": {

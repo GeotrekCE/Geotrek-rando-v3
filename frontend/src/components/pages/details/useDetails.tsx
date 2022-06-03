@@ -4,11 +4,12 @@ import { getDetails, getTrekFamily } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { isRessourceMissing } from 'services/routeUtils';
-import { useCallback, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import { routes } from 'services/routes';
-import { getDimensions } from './utils';
+import { useMediaPredicate } from 'react-media-hook';
+import useSectionsReferences from 'hooks/useSectionsReferences';
 
 export type DetailsHeaderSection = Partial<Record<DetailsSections, HTMLDivElement | null>>;
 
@@ -21,7 +22,9 @@ export type DetailsSections =
   | 'accessibility'
   | 'touristicContent'
   | 'sensitiveAreasRef'
-  | 'courses';
+  | 'courses'
+  | 'report'
+  | 'experiences';
 
 interface SectionPosition {
   top: number;
@@ -52,6 +55,8 @@ export const useDetails = (
     },
   );
 
+  const isMobile = useMediaPredicate('(max-width: 1024px)');
+
   const parentIdString = isUrlString(parentId) ? parentId : '';
   const { data: trekFamily } = useQuery<TrekFamily | null, Error>(
     `trekFamily-${parentIdString}-${language}`,
@@ -62,21 +67,8 @@ export const useDetails = (
     },
   );
 
-  const sectionsReferences = useRef<DetailsHeaderSection>({});
-  const [sectionsPositions, setSectionsPositions] = useState<DetailsSectionsPosition>({});
-
-  const useSectionReferenceCallback = (sectionName: DetailsSections) =>
-    useCallback((node: HTMLDivElement | null) => {
-      if (node !== null) {
-        setTimeout(() => {
-          sectionsReferences.current[sectionName] = node;
-          setSectionsPositions(currentSectionsPositions => ({
-            ...currentSectionsPositions,
-            [sectionName]: getDimensions(node),
-          }));
-        }, 1000);
-      }
-    }, []);
+  const { sectionsReferences, sectionsPositions, useSectionReferenceCallback } =
+    useSectionsReferences();
 
   const setPreviewRef = useSectionReferenceCallback('preview');
   const setChildrenRef = useSectionReferenceCallback('children');
@@ -86,12 +78,24 @@ export const useDetails = (
   const setTouristicContentsRef = useSectionReferenceCallback('touristicContent');
   const setAccessibilityRef = useSectionReferenceCallback('accessibility');
   const setSensitiveAreasRef = useSectionReferenceCallback('sensitiveAreasRef');
+  const setReportRef = useSectionReferenceCallback('report');
 
   const intl = useIntl();
 
-  const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
+  const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN' | null>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
   const hideMobileMap = () => setMobileMapState('HIDDEN');
+
+  useEffect(() => {
+    if (!isMobile) {
+      setMobileMapState(prevMobileMapState => {
+        if (prevMobileMapState === 'DISPLAYED') {
+          return 'HIDDEN';
+        }
+        return null;
+      });
+    }
+  }, [setMobileMapState, isMobile]);
 
   return {
     id,
@@ -108,6 +112,7 @@ export const useDetails = (
     setTouristicContentsRef,
     setAccessibilityRef,
     setSensitiveAreasRef,
+    setReportRef,
     sectionsPositions,
     intl,
     mobileMapState,

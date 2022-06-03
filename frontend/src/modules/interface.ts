@@ -14,6 +14,11 @@ export interface RawLineStringGeometry3D {
   type: 'LineString';
   coordinates: RawCoordinate3D[];
 }
+export interface RawMultiLineStringGeometry {
+  type: 'MultiLineString';
+  coordinates: RawCoordinate2D[][];
+}
+
 export interface RawMultiLineStringGeometry3D {
   type: 'MultiLineString';
   coordinates: RawCoordinate3D[][];
@@ -34,14 +39,31 @@ export interface RawMultiPointGeometry {
   coordinates: RawCoordinate[];
 }
 
+export interface RawMultiPointGeometry2D {
+  type: 'MultiPoint';
+  coordinates: RawCoordinate2D[];
+}
+
 export interface RawPolygonGeometry {
   type: 'Polygon';
   coordinates: RawCoordinate2D[][];
 }
 
+export interface RawMultiPolygonGeometry {
+  type: 'MultiPolygon';
+  coordinates: RawCoordinate2D[][][];
+}
+
 export interface RawGeometryCollection {
   type: 'GeometryCollection';
-  geometries: Array<RawPolygonGeometry | RawLineStringGeometry2D | RawPointGeometry2D>;
+  geometries: Array<
+    | RawPolygonGeometry
+    | RawMultiPolygonGeometry
+    | RawLineStringGeometry2D
+    | RawMultiLineStringGeometry
+    | RawPointGeometry2D
+    | RawMultiPointGeometry2D
+  >;
 }
 
 export interface APICallsConfig {
@@ -68,6 +90,9 @@ export interface APICallsConfig {
   maxLengthTrekAllowedFor3DRando: number;
   reservationPartner: string;
   reservationProject: string;
+  minAltitudeDifferenceToDisplayElevationProfile: number;
+  accessibilityCodeNumber: string | null;
+  groupTreksAndOutdoorFilters: boolean;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */
@@ -106,14 +131,29 @@ export interface LineStringGeometry {
   coordinates: Coordinate2D[];
 }
 
+export interface MultiLineStringGeometry {
+  type: 'MultiLineString';
+  coordinates: Coordinate2D[][];
+}
+
 export interface PointGeometry {
   type: 'Point';
   coordinates: Coordinate2D;
 }
 
+export interface MultiPointGeometry {
+  type: 'MultiPoint';
+  coordinates: Coordinate2D[];
+}
+
 export interface PolygonGeometry {
   type: 'Polygon';
   coordinates: Coordinate2D[][];
+}
+
+export interface MultiPolygonGeometry {
+  type: 'MultiPolygon';
+  coordinates: Coordinate2D[][][];
 }
 
 export interface RawWebLink {

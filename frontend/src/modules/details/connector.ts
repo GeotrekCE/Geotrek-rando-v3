@@ -1,3 +1,4 @@
+import { fetchAccessibilityLevel } from 'modules/accessibility/api';
 import { getAccessibilities } from 'modules/accessibility/connector';
 import { getActivity } from 'modules/activities/connector';
 import { getCities } from 'modules/city/connector';
@@ -10,6 +11,7 @@ import { getNetworks } from 'modules/networks/connector';
 import { getPois } from 'modules/poi/connector';
 import { getTrekResultsById } from 'modules/results/connector';
 import { getSensitiveAreas } from 'modules/sensitiveArea/connector';
+import { getSignage } from 'modules/signage/connector';
 import { getSources } from 'modules/source/connector';
 import { getTouristicContentsNearTarget } from 'modules/touristicContent/connector';
 import { getGlobalConfig } from 'modules/utils/api.config';
@@ -44,9 +46,10 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       getAccessibilities(language),
       getSources(language),
     ]);
-    const [informationDeskDictionnary, labelsDictionnary, children, sensitiveAreas] =
+    const [informationDeskDictionnary, signage, labelsDictionnary, children, sensitiveAreas] =
       await Promise.all([
         getInformationDesks(language),
+        getSignage(language, id, 'TREK'),
         getLabels(language),
         getTrekResultsById(rawDetails.properties.children, language),
         getGlobalConfig().enableSensitiveAreas
@@ -56,7 +59,13 @@ export const getDetails = async (id: string, language: string): Promise<Details>
     const childrenGeometry = await Promise.all(
       rawDetails.properties.children.map(childId => getChildGeometry(`${childId}`, language)),
     );
+
+    const accessbilityLevel = rawDetails.properties.accessibility_level
+      ? await fetchAccessibilityLevel(rawDetails.properties.accessibility_level)
+      : null;
+
     return adaptResults({
+      accessbilityLevel,
       rawDetails,
       activity,
       difficulty,
@@ -73,6 +82,7 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       children,
       childrenGeometry,
       sensitiveAreas,
+      signage,
       reservation:
         getGlobalConfig().reservationPartner && getGlobalConfig().reservationProject
           ? {

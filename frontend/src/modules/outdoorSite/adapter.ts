@@ -1,4 +1,5 @@
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
+import { SignageDictionary } from 'modules/signage/interface';
 import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CityDictionnary } from '../city/interface';
@@ -68,7 +69,8 @@ export const adaptOutdoorSiteDetails = ({
   outdoorRating,
   outdoorRatingScale,
   outdoorSiteType,
-  sensitiveAreas
+  sensitiveAreas,
+  signage,
 }: {
   rawOutdoorSiteDetails: RawOutdoorSiteDetails;
   pois: Poi[];
@@ -87,6 +89,7 @@ export const adaptOutdoorSiteDetails = ({
   outdoorRatingScale: OutdoorRatingScale[];
   outdoorSiteType: OutdoorSiteTypeChoices;
   sensitiveAreas: SensitiveArea[];
+  signage: SignageDictionary | null;
 }): OutdoorSiteDetails => ({
   ...adaptOutdoorSites({
     rawOutdoorSites: [
@@ -96,6 +99,7 @@ export const adaptOutdoorSiteDetails = ({
     outdoorPracticeDictionnary,
     cityDictionnary,
   })[0],
+  accessibility: rawOutdoorSiteDetails.properties.accessibility ?? null,
   type: 'OUTDOOR_SITE',
   description: rawOutdoorSiteDetails.properties.description,
   ambiance: rawOutdoorSiteDetails.properties.ambiance,
@@ -113,7 +117,7 @@ export const adaptOutdoorSiteDetails = ({
     rawOutdoorSiteDetails?.properties?.information_desks?.map(
       deskId => informationDesksDictionnary[deskId],
     ) ?? [],
-  webLinks: rawOutdoorSiteDetails?.properties?.web_links,
+  webLinks: rawOutdoorSiteDetails?.properties?.web_links ?? null,
   pois,
   touristicContents,
   children,
@@ -133,7 +137,8 @@ export const adaptOutdoorSiteDetails = ({
     }) ?? [],
   ratingsDescription: rawOutdoorSiteDetails.properties.ratings_description,
   typeSite: outdoorSiteType[Number(rawOutdoorSiteDetails?.properties?.type)],
-  sensitiveAreas
+  sensitiveAreas,
+  signage,
 });
 
 export const adaptOutdoorSitePopupResults = ({

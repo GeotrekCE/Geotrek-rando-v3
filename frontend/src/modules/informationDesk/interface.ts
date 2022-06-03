@@ -1,6 +1,7 @@
 import { InformationDeskType, RawInformationDeskType } from 'modules/informationDeskType/interface';
 
 export interface RawInformationDesk {
+  accessibility: string;
   id: number;
   name: string;
   street: string;
@@ -12,9 +13,12 @@ export interface RawInformationDesk {
   description: string;
   photo_url: string;
   type: RawInformationDeskType;
+  longitude: number;
+  latitude: number;
 }
 
 export interface InformationDesk {
+  accessibility: string;
   name: string;
   street: string;
   postalCode: string;
@@ -25,6 +29,8 @@ export interface InformationDesk {
   description: string;
   photoUrl: string;
   type: InformationDeskType;
+  longitude: number;
+  latitude: number;
 }
 
 export interface InformationDeskDictionnary {

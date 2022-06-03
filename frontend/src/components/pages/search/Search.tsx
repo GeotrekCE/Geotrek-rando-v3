@@ -53,10 +53,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   const { filtersState, setFilterSelectedOptions, resetFilters } = useFilter();
 
   const { subMenuState, selectFilter, hideSubMenu, currentFilterId } = useFilterSubMenu();
-  const { menuState, displayMenu, hideMenu, filtersList } = useFilterMenu(
-    filtersState,
-    selectFilter,
-  );
+  const { menuState, displayMenu, hideMenu, filtersList } = useFilterMenu(selectFilter);
 
   const { bboxState, handleMoveMap } = useBbox();
 
@@ -111,6 +108,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
               filtersList={filtersList}
               resetFilter={onRemoveAllFiltersClick}
               resultsNumber={searchResults?.resultsNumber ?? 0}
+              language={language}
             />
           )}
           {subMenuState === 'DISPLAYED' && (
@@ -192,7 +190,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                         return (
                           <ResultCard
                             type={searchResult.type}
-                            key={searchResult.title}
+                            key={`trek-${searchResult.id}`}
                             id={`${searchResult.id}`}
                             hoverId={getHoverId(searchResult)}
                             place={searchResult.place}
@@ -214,7 +212,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                         return (
                           <ResultCard
                             type={searchResult.type}
-                            key={searchResult.name}
+                            key={`touristicContent-${searchResult.id}`}
                             id={`${searchResult.id}`}
                             hoverId={getHoverId(searchResult)}
                             place={searchResult.place}
@@ -236,7 +234,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                         return (
                           <ResultCard
                             type={searchResult.type}
-                            key={searchResult.name}
+                            key={`outdoor-${searchResult.id}`}
                             id={`${searchResult.id}`}
                             hoverId={getHoverId(searchResult)}
                             place={searchResult.place}
@@ -258,8 +256,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                         return (
                           <ResultCard
                             type={searchResult.type}
-                            key={searchResult.name}
-                            id={`https://formatjs.io/docs/react-intl/api#formatdate${searchResult.id}`}
+                            key={`touristicEvent-${searchResult.id}`}
+                            id={`${searchResult.id}`}
                             hoverId={getHoverId(searchResult)}
                             place={searchResult.place}
                             title={searchResult.name}
@@ -351,7 +349,7 @@ const Separator = styled.hr`
   border: 0;
 `;
 
-export const MobileMapContainer = styled.div<{ displayState: 'DISPLAYED' | 'HIDDEN' }>`
+export const MobileMapContainer = styled.div<{ displayState: 'DISPLAYED' | 'HIDDEN' | null }>`
   transition: top 0.3s ease-in-out 0.1s;
   top: ${({ displayState }) => (displayState === 'DISPLAYED' ? 0 : 100)}%;
 `;

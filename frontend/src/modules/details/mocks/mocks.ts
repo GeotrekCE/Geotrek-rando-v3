@@ -11,6 +11,9 @@ export const rawDetailsProperties: RawDetailsProperties = {
   ambiance:
     "<p>&laquo; Un petit matin de juillet, &agrave; la sortie de la for&ecirc;t, un vent froid descend du glacier rocheux de Font Froide. C'est de l&agrave; aussi que provient l'eau glaciale de la source dit Font (fontaine) froide. D&eacute;cid&eacute;ment, ce col porte bien son nom. Mais rapidement, l'ascension r&eacute;chauffe les muscles et le corps tout entier. Le col est en vue lorsqu'un sifflement aigu fait sursauter ; un magnifique bouquetin m&acirc;le se l&egrave;ve m&eacute;content &agrave; deux pas de nous et s'en va tranquillement &raquo;.</p>\r\n<p><em>Dominique Vincent, garde monitrice, lors d'un comptage bouquetins.</em></p>",
   ascent: 1457,
+  descent: 600,
+  accessibility_level: null,
+  attachments_accessibility: [],
   attachments: [
     {
       author: 'Parc national des Ecrins',

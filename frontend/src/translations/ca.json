@@ -5,7 +5,8 @@
     "seeMore": "més informació",
     "favorites": "Preferit",
     "goToSearch": "cerca",
-    "offline": "Continguts fora de línia"
+    "offline": "Continguts fora de línia",
+    "home": "Pàgina"
   },
   "home": {
     "title": "Geotrek-senderisme",
@@ -14,21 +15,12 @@
     "seeMore": "veure més",
     "welcome-text": "La guia ecològica i digital que mostra els meus descobriments del territori!",
     "mailTo": "Enviar un email",
-    "use-a-link": "Utilitzem un enllaç",
-    "get-started": "Per començar, modifica",
-    "save-to-reload": "i desa per a tornar a carregar.",
-    "create-route": "Per a crear una ruta, modifica rutes.js i associa una pàgina",
-    "generate-component": "Per a crear una pàgina o un component senzill, llança : ",
-    "generate-module": "Per a afegir lògica d’ofici, crear un fitxer dins redux amb els teus reducers/actions/sagas/selectors/constants/...",
-    "click-me": "Fes clic aquí",
-    "readme": "Llegeix el README.md per a descobrir les superordres npm que hem afegit",
     "walking": "Senderisme",
     "territoryTreks": "Excursions a descobrir",
     "itinerantTreks": "Itineràncies a descobrir"
   },
   "page": {
     "back": "Tornada",
-    "api-to-translate-example": "Aquest missatge està traduit utilitzant directament l'API react-intl",
     "not-found": "No s’ha trobat la pàgina",
     "goToOffline": "Mostrar els continguts fora de línia"
   },
@@ -36,7 +28,7 @@
     "title": "Cerca",
     "description": "Descobreix les excursions que coincideixen amb els teus desitjos amb el nostre motor de cerca",
     "book": "Reserva",
-    "resultsFound": "{count, plural, =0 {# s’ha trobat el resultat} one {# s’ha trobat el resultat} other {# s’han trobat els resultats}}",
+    "resultsFound": "{count, plural, =0 {# resultat trobat} one {# resultat trobat} other {# resultats trobats}}",
     "resultsFoundShort": "{count, plural, =0 {# resultat} one {# resultat} other {# resultats}}",
     "forThe": "Per a",
     "seeMap": "mostra el mapa",
@@ -47,6 +39,7 @@
       "difficulty": "Dificultat",
       "practices": "excursions",
       "outdoor": "Exterior",
+      "treksOutdoorGrouped": "Activities",
       "events": "Esdeveniments",
       "categories": "Serveis",
       "cities": "poble",
@@ -65,7 +58,18 @@
     "textFilter": "Cercar...",
     "map": {
       "seeResult": "Mostrar el detall",
-      "seeMe": "Mostrar la meva posició"
+      "seeMe": "Mostrar la meva posició",
+      "panel": {
+        "trekChildren": "Steps",
+        "poi": "Heritage",
+        "referencePoints": "Landmarks",
+        "touristicContent": "Close by",
+        "informationDesks": "Llocs d’informació",
+        "courses": "Parcours",
+        "experiences": "Lieux de pratique",
+        "signage": "Senyalització"
+      },
+      "resetView": "Recenter el mapa"
     }
   },
   "details": {
@@ -87,6 +91,14 @@
     "informationDesks": "Llocs d’informació",
     "practicalInformations": "Infos pràctiques",
     "accessibility": "Accessibilitat",
+    "accessibility_level": "Livello di accessibilità",
+    "accessibility_covering": "Glasur",
+    "accessibility_exposure": "Belichtung",
+    "accessibility_advice": "Beratung",
+    "accessibility_slope": "Neigung",
+    "accessibility_width": "Länge",
+    "accessibility_signage": "Senyalització",
+    "emergency_number": "Numero di emergenza",
     "toSee": "També a veure",
     "transport": "Transport",
     "stationnement": "Estacionament",
@@ -119,7 +131,8 @@
     "speaker": "els que intervenen",
     "targetAudience": "Públic apuntat",
     "practicalInfo": "Informació pràctica",
-    "booking": "Reservació"
+    "booking": "Reservació",
+    "centerOnMap": "Center on map"
   },
   "touristicContent": {
     "contact": "Contacte",
@@ -142,15 +155,23 @@
   },
   "report": {
     "title": "Assenyalar un problema o un error",
+    "intro": "If you have found an error on this page or if you have noticed any problems during your hike, please report them to us here:",
     "activity": "Activitat",
     "category": "Categoria",
     "magnitude": "Amplitud del problema",
     "comment": "Comentaris",
     "email": "Email",
     "name": "El vostre nom",
+    "image": "Image",
     "button": "Assenyalar",
     "cancel": "Cancel.lar",
-    "success": "Gràcies, s’ha enviat la notificació."
+    "success": "Gràcies, s’ha enviat la notificació.",
+    "mapButton": {
+      "create": "Indicate the position of the report on the map",
+      "edit": "Edit the position of the report",
+      "validate": "Validate the position"
+    },
+    "GDPRDisclaimer": "These information will be used by <b>organism</b>, which commit to not sell your personal data to third parties. You have the right to read, modify, fix or delete your personal data (art. 34 de la loi \"Informatique et Libertés\"). To apply please send a mail to <a>contact</a>."
   },
   "error": {
     "missing": "El formulari no està complet"
@@ -174,7 +195,7 @@
   },
   "outdoorSite": {
     "accessFullTitle": "Accés",
-    "coursesFullTitle": "Recorregut",
+    "coursesFullTitle": "Les {count} parcours à découvrir",
     "sitesFullTitle": "Els {count} llocs de pràcticar a descobrir"
   },
   "Wind": {

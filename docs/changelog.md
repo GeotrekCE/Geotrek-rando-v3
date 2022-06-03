@@ -1,13 +1,113 @@
 # Changelog
 
-3.7.0 (unreleased)
+3.8.5 (2022-06-02)
+------------------
+
+**🐛 Fixes**
+
+* Fix Localization filters
+
+3.8.4 (2022-05-31)
+------------------
+
+**🚀 New features**
+
+* Allow to override ``manifest.json`` properties (#661)
+
+**🐛 Fixes**
+
+* Fix card display for iOS mobile (#645)
+* Fix truncated icon name if it is too long (#658)
+* Display Sensitive Areas when their geometry is MultiPolygon (#655)
+* Fix trek detail page if there are no signages endpoint in API (#660)
+* Fix trek and outdoor site detail page if there are no weblinks (#660)
+
+3.8.3 (2022-05-24)
+------------------
+
+**🚀 New features**
+
+* Add published signages on treks and outdoor maps (#408)
+* Add ``groupTreksAndOutdoorFilters`` setting to be able to group Treks and Outdoor filters on search page (#656)
+
+**🐛 Fixes**
+
+* Fix flickering of Outdoor, services and events maps
+* Refactoring and improvements of anchor system in detail pages
+
+3.8.2 (2022-04-25)
+------------------
+
+**🐛 Fixes**
+
+* Fix HTML interpretation of new "Accessibility" fields (#536 / #638)
+* Don't display label filter (Others) in trek filters if no label defined as filter (#418)
+* Improve outdoor subobjects display on site maps with adding it in layer control (#542)
+
+3.8.1 (2022-04-25)
+------------------
+
+**🚀 New features**
+
+* Display information desks on detail pages map (#401)
+* Add reset view and scale controls on maps (#402)
+* Add "practical_info" property on touristic content detail pages
+* Add some customizable HTML templates and their documentation to include HTML or javascript on all pages before and after header and footer (#588)
+* Add portals parameter when fetching API for a detail page, to access to eventual customized PDF by portal (https://github.com/GeotrekCE/Geotrek-admin/issues/2691)
+* Refactoring of several components and Leaflet controls
+
+**🐛 Fixes**
+
+* Display multiple geometries on maps
+* Fix ``little-forest.png`` image path (#639)
+
+3.8.0 (2022-04-08)
+------------------
+
+**🚀 New features**
+
+* Filter treks by labels (#418)
+* Allow to hide elevation profile on small elevation treks, with new ``minAltitudeDifferenceToDisplayElevationProfile`` setting (#552)
+* Display negative elevation on trek pages (#574)
+* Add new accessibility fields on trek, outdoor and services detail pages (#536)
+* Improve report forms design with location on map and photos (#453)
+* Improve outdoor pages detail pages with displaying subobjects on map (#542)
+* Allow to translate HTML templates in Homepage (#617)
+* Improve anchor system in detail pages
+* Improve translations
+
+**🐛 Fixes**
+
+* Fix flickering of the map when loading the detail pages
+* Fix reservation widget loading on trek detail pages
+* Fix multiple geometries management
+
+3.7.0 (2022-03-11)
 ------------------
 
 **🚀 New features**
 
 * Include 3D view in trek detail pages (#390)
 * Add ``maxLengthTrekAllowedFor3DRando`` setting to define the maximum length of a trek to enable the 3D view on its page (or to disable 3D view) (#390)
+* Add breadcrumb on detail and information pages (#506)
+* Add Meteo France widget on all detail pages based on INSEE code of the content (#525)
+* Add Open System reservation widget on trek detail pages with an ``id_reservation`` (#382)
+* Add ``reservationPartner`` and ``reservationProject`` settings to enable Open System reservation widget (#382)
+* Add a customizable color for each content category (treks, outdoor sites, services and events) to better differentiate content categories (#437)
+* Add content type name display on hover of pictograms in search page (#437)
+* Add the possibility to define outdoor sites, services and events suggestions on home page (#372)
+* Display more information on suggestions cards on home page (#372)
+* Improve layer controller on treks and outdoor sites detail pages (#449)
+* Add a panel on trek mobile map to display trek title, steps and altimetric profile (#452)
+* Display SVG theme pictograms in filters
 * Improve modale component
+* Add German, Spanish and Catalan translations (#571)
+
+**🐛 Fixes**
+
+* Fix categories display in mobile filters depending on contents and settings (#586)
+* Fix trek filters displayed in 3 columns (#377)
+* Display ``disabledInfrastructure`` and ``accessibilities`` in trek detail pages only if they have content
 
 3.6.0 (2022-02-07)
 ------------------

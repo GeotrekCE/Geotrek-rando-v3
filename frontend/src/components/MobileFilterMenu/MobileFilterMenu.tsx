@@ -5,6 +5,9 @@ import Slide from 'react-burger-menu/lib/menus/slide';
 
 import { Cross } from 'components/Icons/Cross';
 import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
+import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
+import useCounter from 'components/pages/search/hooks/useCounter';
+import { FormattedMessage } from 'react-intl';
 import { FilterCategory, FilterState } from '../../modules/filters/interface';
 import { countFiltersSelected } from '../../modules/filters/utils';
 
@@ -18,6 +21,7 @@ interface Props {
   filtersList: FilterCategory[];
   resetFilter: () => void;
   resultsNumber: number;
+  language: string;
 }
 
 export const MobileFilterMenu: React.FC<Props> = ({
@@ -27,7 +31,11 @@ export const MobileFilterMenu: React.FC<Props> = ({
   resetFilter,
   resultsNumber,
   filtersList,
+  language,
 }) => {
+  const { treksCount, touristicContentsCount, outdoorSitesCount, touristicEventsCount } =
+    useCounter({ language });
+
   return (
     /*
      * The library default behaviour is to have a fixed close icon which
@@ -52,12 +60,21 @@ export const MobileFilterMenu: React.FC<Props> = ({
 
       <div>
         {filtersList.map(item => {
-          const numberSelected = countFiltersSelected(filtersState, item.filters, item.subFilters);
+          if (treksCount === 0 && item.id === PRACTICE_ID) return null;
+          if (touristicContentsCount === 0 && item.id === CATEGORY_ID) return null;
+          if (outdoorSitesCount === 0 && item.id === OUTDOOR_ID) return null;
+          if (touristicEventsCount === 0 && item.id === EVENT_ID) return null;
 
+          const numberSelected = countFiltersSelected(filtersState, item.filters, item.subFilters);
+          const name = Array.isArray(item.name) ? (
+            <FormattedMessage id={'search.filters.treksOutdoorGrouped'} />
+          ) : (
+            item.name
+          );
           return (
             <MobileFilterMenuSection
               color={getActivityColor(item.id)}
-              title={item.name}
+              title={name}
               key={item.id}
               onClick={item.onSelect}
               numberSelected={numberSelected}

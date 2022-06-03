@@ -5,30 +5,22 @@
     "seeMore": "Mehr erfahren",
     "favorites": "Favoriten",
     "goToSearch": "Suche",
-    "offline": "Inhalte offline "
+    "offline": "Inhalte offline",
+    "home": "Startseite"
   },
   "home": {
     "title": "Geotrek-Wanderung",
     "Beschreibung": "Entdecken Sie die Wanderungen des Bezirks mit Geotrek-Rando",
     "selectPlaceholder": "Eine Aktivität auswählen",
     "seeMore": "Mehr anzeigen",
-    "Willkommenstext": "Der digitale und lokale Ökoguide, der meine Entdeckungen in der Region präsentiert!",
+    "Willkommenstext": "Der digitale und lokale Ökoguide, der meine Entdeckungen in der Region präsentiert !",
     "mailTo": "E-Mail senden",
-    "use-a-link": "Verwendet einen Link",
-    "get-started": "Um zu beginnen, ändern",
-    "save-to-reload": "Speichern, um neu zu laden",
-    "create-route": "Um eine Route zu erstellen, ändern Sie die Datei routes.js und ordnen Sie eine Seite zu.",
-    "generate-component": "Um eine Seite oder eine einfache Komponente zu erstellen, führe Folgendes aus: ",
-    "generate-module": "Um Geschäftslogik hinzuzufügen, erstelle einen Ordner in Redux mit Ihren Reducern/Aktionen/Sagas/Selektoren/Konstanten/...",
-    "click-me": "Klick mich",
-    "readme": "Lies die README.md, um die tollen npm-Befehle zu entdecken, die wir hinzugefügt haben",
     "walking": "Wanderung",
     "territoryTreks": "Wanderungen, die es zu entdecken gilt",
     "itinerantTreks": "Reiserouten zum Entdecken"
   },
   "page": {
     "back": "Zurück",
-    "api-to-translate-example": "Diese Nachricht wird unter direkter Verwendung der API react-intl übersetzt",
     "not-found": "Diese Seite ist unauffindbar",
     "goToOffline": "Inhalte offline anzeigen"
   },
@@ -36,8 +28,8 @@
     "title": "Suche",
     "description": "Entdecken Sie mit unserer Suchmaschine Wanderungen, die Ihren Wünschen entsprechen",
     "book": "Reservieren",
-    "resultsFound": "{count, plural, =0 {# résultat trouvé} one {# résultat trouvé} other {# résultats trouvés}}",
-    "resultsFoundShort": "{count, plural, =0 {# Ergebnis} one {# Ergebnis} other {# Ergebnis}}",
+    "resultsFound": "{count, plural, =0 {# Ergebnis gefunden} one {# Ergebnis gefunden} other {# gefundene Ergebnisse}}",
+    "resultsFoundShort": "{count, plural, =0 {# Ergebnis} one {# Ergebnis} other {# Ergebnisse}}",
     "forThe": "Für das",
     "seeMap": "Siehe die Karte",
     "filter": "Filter",
@@ -47,6 +39,7 @@
       "difficulty": "Schwierigkeit",
       "practices": "Wanderungen",
       "outdoor": "Draußen",
+      "treksOutdoorGrouped": "Activities",
       "events": "Veranstaltungen",
       "categories": "Dienstleistungen",
       "cities": "Gemeinde",
@@ -65,7 +58,18 @@
     "textFilter": "Suchen...",
     "map": {
       "seeResult": "Einzelheiten anzeigen",
-      "seeMe": "Meinen Standpunkt sehen"
+      "seeMe": "Meinen Standpunkt sehen",
+      "panel": {
+        "trekChildren": "Steps",
+        "poi": "Heritage",
+        "referencePoints": "Landmarken",
+        "touristicContent": "Close by",
+        "informationDesks": "Orte der Information",
+        "courses": "Parcours",
+        "experiences": "Lieux de pratique",
+        "signage": "Beschilderung"
+      },
+      "resetView": "Karte zentrieren"
     }
   },
   "details": {
@@ -73,9 +77,9 @@
     "access": "Zugang",
     "download": "Herunterladen",
     "children": "Etappen",
-    "childrenFullTitle": "{ Anzahl, mehrfach, =0 { Keine Etappe } eine {# Etappe} andere{# Etappen}}",
-    "poi": "Kulturerbe",
-    "poiFullTitle": "{ Anzahl, mehrfach, =0 {Kein Kulturerbe} ein {# Kulturerbe zu entdecken } anderes { Die # Erbgüter, die es zu entdecken gilt }}",
+    "childrenFullTitle": "{count, plural, =0 {Keine Etappe} one {# Etappe} other {# Etappen}}",
+    "poi": "Erbe",
+    "poiFullTitle": "{count, plural, =0 {Kein Erbe} one {# Erbe zu entdecken} other {Die # Erbgüter, die es zu entdecken gilt}}",
     "source": "Quelle",
     "touristicContent": "In der Nähe",
     "readMore": "weiterlesen",
@@ -87,6 +91,14 @@
     "informationDesks": "Orte der Information",
     "practicalInformations": "Praktische Informationen",
     "accessibility": "Zugänglichkeit",
+    "accessibility_level": "Zugänglichkeitsstufe",
+    "accessibility_covering": "Glasur",
+    "accessibility_exposure": "Belichtung",
+    "accessibility_advice": "Beratung",
+    "accessibility_slope": "Neigung",
+    "accessibility_width": "Länge",
+    "accessibility_signage": "Beschilderung",
+    "emergency_number": "Notrufnummer",
     "toSee": "Auch sehenswert",
     "transport": "Transport",
     "stationnement": "Parken",
@@ -119,7 +131,8 @@
     "speaker": "Redner",
     "targetAudience": "Zielgruppe",
     "practicalInfo": "Praktische Information",
-    "booking": "Reservierung"
+    "booking": "Reservierung",
+    "centerOnMap": "Center on map"
   },
   "touristicContent": {
     "contact": "Kontakt",
@@ -142,15 +155,23 @@
   },
   "report": {
     "title": "Ein Problem oder einen Fehler melden",
+    "intro": "If you have found an error on this page or if you have noticed any problems during your hike, please report them to us here:",
     "activity": "Aktivität",
     "category": "Kategorie",
     "magnitude": "Ausmaß des Problems",
     "comment": "Kommentare",
     "email": "Email",
     "name": "Ihr Name",
+    "image": "Image",
     "button": " Melden ",
     "cancel": "Annullieren",
-    "success": "Danke, die Meldung wurde gesendet"
+    "success": "Danke, die Meldung wurde gesendet",
+    "mapButton": {
+      "create": "Indicate the position of the report on the map",
+      "edit": "Edit the position of the report",
+      "validate": "Validate the position"
+    },
+    "GDPRDisclaimer": "These information will be used by <b>organism</b>, which commit to not sell your personal data to third parties. You have the right to read, modify, fix or delete your personal data (art. 34 de la loi \"Informatique et Libertés\"). To apply please send a mail to <a>contact</a>."
   },
   "error": {
     "missing": "Das Formular ist nicht vollständig"
@@ -174,7 +195,7 @@
   },
   "outdoorSite": {
     "accessFullTitle": "Zugang",
-    "coursesFullTitle": "Strecke",
+    "coursesFullTitle": "Les {count} parcours à découvrir",
     "sitesFullTitle": "Die {count} Orte der Praxis, die es zu entdecken gilt"
   },
   "Wind": {
@@ -189,6 +210,6 @@
   },
   "dates": {
     "singleDate": "Einzeldatum",
-    "multipleDates": "von {Anfangsdatum} bis {Enddatum}"
+    "multipleDates": "von {beginDate} bis {endDate}"
   }
 }

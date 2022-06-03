@@ -55,10 +55,14 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
         languages={config.supportedLanguages}
       />
       <NextLink href={routes.SEARCH} passHref locale={currentLanguage} key={routes.SEARCH}>
-        <BurgerMenuSection title={intl.formatMessage({ id: 'header.goToSearch' })} />
+        <a className="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft">
+          {intl.formatMessage({ id: 'header.goToSearch' })}
+        </a>
       </NextLink>
       <NextLink href={routes.OFFLINE} passHref locale={currentLanguage} key={routes.OFFLINE}>
-        <BurgerMenuSection title={intl.formatMessage({ id: 'header.offline' })} />
+        <a className="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft">
+          {intl.formatMessage({ id: 'header.offline' })}
+        </a>
       </NextLink>
     </Slide>
   );

@@ -40,7 +40,7 @@ export const OutdoorSiteChildrenSection: React.FC<DetailsChildrenSectionProps> =
           <div key={trekChild.id} className={`mb-6 mx-1`}>
             <ResultCard
               id={`${trekChild.id}`}
-              hoverId={`DETAILS-OUTDOOR_SITE_CHILDREN-${trekChild.id}`}
+              hoverId={trekChild.id}
               type="OUTDOOR_SITE"
               place={''}
               title={trekChild.name}
@@ -48,6 +48,7 @@ export const OutdoorSiteChildrenSection: React.FC<DetailsChildrenSectionProps> =
               thumbnailUris={trekChild.thumbnailUris}
               attachments={trekChild.attachments}
               badgeIconUri={trekChild.practice?.pictogram}
+              badgeName={trekChild.practice?.name}
               informations={[]}
               redirectionUrl={generateOutdoorSiteUrl(trekChild.id, trekChild.name)}
               className="w-60 desktop:w-auto"

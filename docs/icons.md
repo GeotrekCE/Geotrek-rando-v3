@@ -1,6 +1,6 @@
 # Icons
 
-Geotrek V3 uses icons which images come from API. This file intends to help upload a right format for them in Geotrek Admin.
+Geotrek-rando V3 uses icons which images come from API. This file intends to help upload a right format for them in Geotrek-admin.
 
 ## Activity icons
 
@@ -10,15 +10,17 @@ Because of that, they have to be :
 - in **`svg` format**
 - **white**, or with a light color, by default (a color that is visible on a `primary1` background)
 - **without filled background** : only shapes or lines
+- without `width` and `height` attributes
 - preferrably, **no different colors**. If different colors are used, they will be lost anyway when the icon is modified. The icon has to stay readable with all its shapes and lines in one color.
+- with an usable licence and credits
 
-**Default activity icons**, not modified, are visible in search filter list or on map :
+**Default activity icons**, not modified, are visible in search filter list or on map 
 
 ![Activity Icon on filter list](assets/iconFilterList.png)
 
-Here that "Alpinisme" icon should have been white by default.
+Here the "Alpinisme" icon should have been white by default.
 
-**Modified activity icons** are visible on activity bar on home or details page :
+**Modified activity icons** are visible on activity bar on home or details page:
 
 ![Activity Icon modified on home](assets/iconHome.png)
 

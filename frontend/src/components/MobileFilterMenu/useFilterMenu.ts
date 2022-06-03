@@ -1,9 +1,8 @@
 import { FILTERS_CATEGORIES } from 'components/pages/search/components/FilterBar';
-import { FilterCategory, FilterState } from 'modules/filters/interface';
+import { FilterCategory } from 'modules/filters/interface';
 import { useState } from 'react';
 
 export const useFilterMenu = (
-  filtersState: FilterState[],
   selectFilter: (filterId: string) => void,
 ): {
   menuState: 'DISPLAYED' | 'HIDDEN';

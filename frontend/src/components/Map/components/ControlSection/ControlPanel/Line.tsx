@@ -2,16 +2,14 @@ import styled from 'styled-components';
 import { colorPalette } from 'stylesheet';
 import { useIntl } from 'react-intl';
 import Check from './Check';
-import IconLocation from './IconLocation';
 
-const Wrapper = styled.div<{ active: boolean }>`
+const Wrapper = styled.button<{ active: boolean }>`
   color: ${props => (props.active ? colorPalette.primary1 : colorPalette.greyDarkColored)};
-
   display: flex;
   align-items: center;
   font-weight: bold;
+  text-align: left;
 `;
-
 const IconWrapper = styled.div`
   & svg {
     height: 25px;
@@ -28,7 +26,7 @@ export const Line: React.FC<{ Icon: any; active: boolean; toggle: () => void; tr
   ({ Icon, active, toggle, transKey }) => {
     const intl = useIntl();
     return (
-      <Wrapper active={active} onClick={toggle}>
+      <Wrapper active={active} onClick={toggle} type="button">
         <IconWrapper>
           <Icon />
         </IconWrapper>

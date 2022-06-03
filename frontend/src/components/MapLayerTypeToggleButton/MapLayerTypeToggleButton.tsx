@@ -1,38 +1,66 @@
+import { getMapConfig } from 'components/Map/config';
 import { SquaredButtonWithImage } from 'components/SquaredButtonWithImage/SquaredButtonWithImage';
+import L, { ControlPosition } from 'leaflet';
 import React, { FunctionComponent, useState } from 'react';
+import { useMap } from 'react-leaflet';
+import Control from 'components/Map/components/CustomControl';
 
 export type TileLayerType = 'classic' | 'satellite';
 
 interface MapLayerTypeToggleButton {
-  onToggleButtonClick: (layerType: TileLayerType) => void;
+  position?: ControlPosition;
 }
 
 const TILE_LAYERS: TileLayerType[] = ['classic', 'satellite'];
 
 export const MapLayerTypeToggleButton: FunctionComponent<MapLayerTypeToggleButton> = ({
-  onToggleButtonClick,
+  position = 'bottomleft',
 }) => {
   const [tileLayerType, setTileLayerType] = useState<TileLayerType>('classic');
 
-  return (
-    <>
-      {TILE_LAYERS.filter(buttonsType => buttonsType !== tileLayerType).map(buttonType => {
-        const titleKey = `map.layerButton.${buttonType}`;
-        const imageUrl = `/images/${buttonType}-toggle-button-image.png`;
+  const otherLayer = TILE_LAYERS.find(buttonsType => buttonsType !== tileLayerType);
 
-        return (
-          <div
-            className="pt-4"
-            key={buttonType}
-            onClick={() => {
-              setTileLayerType(buttonType);
-              onToggleButtonClick(buttonType);
-            }}
-          >
-            <SquaredButtonWithImage titleKey={titleKey} imageUrl={imageUrl} />
-          </div>
-        );
-      })}
-    </>
+  const map = useMap();
+
+  const mapConfig = getMapConfig();
+
+  const isSatelliteLayerAvailable =
+    mapConfig.mapSatelliteLayerUrl !== undefined && navigator.onLine;
+
+  if (!otherLayer || !isSatelliteLayerAvailable) {
+    return null;
+  }
+
+  const updateTileLayer = (newTileLayerType: TileLayerType) => {
+    if (map !== undefined) {
+      map.eachLayer(layer => {
+        if (layer instanceof L.TileLayer) {
+          if (newTileLayerType === 'classic') {
+            layer.setUrl(mapConfig.mapClassicLayerUrl);
+          }
+          if (mapConfig.mapSatelliteLayerUrl !== undefined && newTileLayerType === 'satellite') {
+            layer.setUrl(mapConfig.mapSatelliteLayerUrl);
+          }
+        }
+      });
+    }
+  };
+
+  return (
+    <Control position={position}>
+      <div
+        className="leaflet-toggleLayer"
+        key={otherLayer}
+        onClick={() => {
+          setTileLayerType(otherLayer);
+          updateTileLayer(otherLayer);
+        }}
+      >
+        <SquaredButtonWithImage
+          titleKey={`map.layerButton.${otherLayer}`}
+          imageUrl={`/images/${otherLayer}-toggle-button-image.png`}
+        />
+      </div>
+    </Control>
   );
 };

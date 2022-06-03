@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 import { colorPalette } from 'stylesheet';
 import { FilterState, Option } from '../../../../../modules/filters/interface';
-import getActivityColor from '../ResultCard/getActivityColor';
 
 interface Props {
   filterState: FilterState;
@@ -35,14 +34,12 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel, id }) => {
     return null;
   };
 
-  const color = getActivityColor(id);
-
   return (
     <div>
       {!hideLabel && (
         <div className={'mb-1'}>{intl.formatMessage({ id: filterState?.label || 'Unknown' })}</div>
       )}
-      <div className="-m-1">
+      <div className="-m-1 flex flex-wrap">
         {filterState.options.map(option => {
           const isSelected = filterState.selectedOptions.some(_ => _.value === option.value);
 
@@ -70,6 +67,8 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel, id }) => {
 
 const FilledSvg = styled(SVG)`
   height: 24px;
+  width: 24px;
+  margin-right: 10px;
 
   & * {
     fill: ${colorPalette.home.activity.color} !important;
@@ -78,6 +77,8 @@ const FilledSvg = styled(SVG)`
 
 const FilledSvgActive = styled(SVG)`
   height: 24px;
+  width: 24px;
+  margin-right: 10px;
 
   & * {
     fill: ${colorPalette.primary1} !important;

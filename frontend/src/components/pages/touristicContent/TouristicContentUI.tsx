@@ -126,6 +126,28 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   type={'TOURISTIC_CONTENT'}
                   id={id}
                 />
+
+                {touristicContent.practicalInfo && (
+                  <DetailsSection
+                    htmlId="details_practicalInformations"
+                    titleId="details.practicalInformations"
+                    className={marginDetailsChild}
+                  >
+                    <HtmlText>{parse(touristicContent.practicalInfo)}</HtmlText>
+                  </DetailsSection>
+                )}
+
+                <DetailsSection className={marginDetailsChild}>
+                  {touristicContent.accessibility && (
+                    <div style={{ marginBottom: 20 }}>
+                      <strong className="font-bold">
+                        <FormattedMessage id="details.accessibility" /> :{' '}
+                      </strong>
+                      <HtmlText>{parse(touristicContent.accessibility)}</HtmlText>
+                    </div>
+                  )}
+                </DetailsSection>
+
                 {(!!touristicContent.contact?.length ||
                   !!touristicContent.email?.length ||
                   !!touristicContent.website?.length) && (

@@ -33,7 +33,7 @@ export const mockInformationDeskRoute = (times: number): void =>
     mockData: mockInformationDeskResponse(),
     additionalQueries: {
       fields:
-        'id,name,street,postal_code,municipality,website,email,phone,description,photo_url,type',
+        'id,name,street,postal_code,municipality,website,email,phone,description,photo_url,type,accessibility,latitude,longitude',
     },
     times,
   });
