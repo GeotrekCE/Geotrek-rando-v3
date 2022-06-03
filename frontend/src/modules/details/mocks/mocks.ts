@@ -14,6 +14,7 @@ export const rawDetailsProperties: RawDetailsProperties = {
   descent: 600,
   accessibility_level: null,
   attachments_accessibility: [],
+  gear: null,
   attachments: [
     {
       author: 'Parc national des Ecrins',
