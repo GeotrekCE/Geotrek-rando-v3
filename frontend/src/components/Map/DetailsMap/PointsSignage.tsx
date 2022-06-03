@@ -16,7 +16,7 @@ export type PointsSignageProps = {
 type Locations = {
   description: string;
   name: string;
-  imageUrl: string | undefined;
+  imageUrl: string | undefined | null;
   pictogramUri: string;
   position: RawCoordinate2D;
   type: string;
