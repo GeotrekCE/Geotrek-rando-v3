@@ -5,13 +5,14 @@ import { groupBy } from 'lodash';
 import styled from 'styled-components';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
-import { DateFilter, FilterState, Option } from 'modules/filters/interface';
+import { DateFilter, FilterCategory, FilterState, Option } from 'modules/filters/interface';
 import React, { useState } from 'react';
 // @ts-ignore Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
 import { colorPalette } from 'stylesheet';
 
 import { FormattedMessage, useIntl } from 'react-intl';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { EVENT_ID } from 'modules/filters/constant';
 import InputDateWithMagnifier from 'components/pages/search/components/InputDateWithMagnifier';
 import { CloseButton } from './CloseButton';
@@ -37,8 +38,8 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   dateFilter,
   setDateFilter,
 }) => {
-  const categories = FILTERS_CATEGORIES.find(i => i.id === filterId);
   const intl = useIntl();
+  const categories: FilterCategory | undefined = FILTERS_CATEGORIES.find(i => i.id === filterId);
 
   if (!categories) return null;
 
@@ -51,7 +52,8 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   );
 
   const nextSubFilters =
-    (subFilters && subFilters.some((subFilter: string | string[]) => !Array.isArray(subFilter))
+    (Array.isArray(subFilters) &&
+    subFilters.some((subFilter: string | string[]) => !Array.isArray(subFilter))
       ? ([subFilters] as string[][])
       : (subFilters as string[][])) ?? [];
 

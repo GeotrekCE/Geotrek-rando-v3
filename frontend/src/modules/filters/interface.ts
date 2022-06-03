@@ -72,9 +72,9 @@ export interface FilterState {
 
 export interface FilterCategory {
   id: string;
-  name: React.ReactElement;
+  name: React.ReactElement | React.ReactElement[];
   filters?: string[];
-  subFilters?: string[];
+  subFilters?: string[] | string[][];
   onSelect?: () => void;
 }
 

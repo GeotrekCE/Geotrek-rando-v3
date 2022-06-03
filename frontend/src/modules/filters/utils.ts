@@ -467,9 +467,9 @@ export const getNewLanguageFiltersState = (
 export const countFiltersSelected = (
   filtersState: FilterState[],
   filters: string[] | null = [],
-  subFilters: string[] | null = [],
+  subFilters: string[] | string[][] | null = [],
 ): number => {
-  const subFiltersToDisplay = filtersState.filter(({ id }) => subFilters?.includes(id));
+  const subFiltersToDisplay = filtersState.filter(({ id }) => subFilters?.flat().includes(id));
   const filtersToDisplay = filtersState.filter(
     ({ id }) => filters?.includes(id) ?? filters === null,
   );

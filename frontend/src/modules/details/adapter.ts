@@ -13,6 +13,7 @@ import { dataUnits } from 'modules/results/adapter';
 import { TrekResult } from 'modules/results/interface';
 import { formatDistance } from 'modules/results/utils';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
+import { SignageDictionary } from 'modules/signage/interface';
 import { SourceDictionnary } from 'modules/source/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { getAttachments } from 'modules/utils/adapter';
@@ -38,6 +39,7 @@ export const adaptResults = ({
   children,
   childrenGeometry,
   sensitiveAreas,
+  signage,
   reservation,
 }: {
   accessbilityLevel: AccessibilityLevel | null;
@@ -57,6 +59,7 @@ export const adaptResults = ({
   children: TrekResult[];
   childrenGeometry: TrekChildGeometry[];
   sensitiveAreas: SensitiveArea[];
+  signage: SignageDictionary | null;
   reservation: Reservation | null;
 }): Details => {
   try {
@@ -149,12 +152,13 @@ export const adaptResults = ({
         geometry: childrenGeometry.find(childGeometry => childGeometry.id === `${child.id}`),
       })),
       sensitiveAreas,
-      webLinks: rawDetailsProperties.web_links,
+      webLinks: rawDetailsProperties.web_links ?? null,
       elevationAreaUrl: rawDetailsProperties.elevation_area_url,
       altimetricProfileUrl: rawDetailsProperties.altimetric_profile,
       length2d: rawDetailsProperties.length_2d,
       reservation,
       reservation_id: rawDetailsProperties.reservation_id ?? null,
+      signage,
     };
   } catch (e) {
     console.error('Error in details/adapter', e);

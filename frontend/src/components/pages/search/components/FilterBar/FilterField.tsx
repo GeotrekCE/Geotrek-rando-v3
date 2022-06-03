@@ -38,7 +38,7 @@ const FilterField: React.FC<Props> = ({
   setFilterSelectedOptions,
   setDateFilter,
 }) => {
-  const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
+  const filtersToDisplay = filtersState.filter(filter => filters?.includes(filter.id));
 
   const numberSelected = countFiltersSelected(filtersState, filters, subFilters);
 
@@ -49,19 +49,24 @@ const FilterField: React.FC<Props> = ({
   );
 
   const nextSubFilters =
-    (subFilters && subFilters.some((subFilter: string | string[]) => !Array.isArray(subFilter))
+    (Array.isArray(subFilters) &&
+    subFilters.some((subFilter: string | string[]) => !Array.isArray(subFilter))
       ? ([subFilters] as string[][])
       : (subFilters as string[][])) ?? [];
 
   const subFiltersToDisplay = nextSubFilters.map(
     item =>
       groupBy(
-        filtersState.filter(({ id }) =>
-          item.some((subFilter: string) => new RegExp(subFilter).test(id)),
+        filtersState.filter(filter =>
+          item.some((subFilter: string) => new RegExp(subFilter).test(filter.id)),
         ),
         'category',
       ) ?? {},
   );
+
+  const nextFilters: (FilterState | undefined)[] = filtersToDisplay.length
+    ? filtersToDisplay
+    : Array.from({ length: subFiltersToDisplay.length });
 
   return (
     <div>
@@ -89,8 +94,8 @@ const FilterField: React.FC<Props> = ({
         className="shadow-inner"
         style={{ display: expanded ? 'block' : 'none', background: BACKGROUND_EXPANDED }}
       >
-        {filtersToDisplay.map((filterState, index) => (
-          <Fragment key={filterState.id}>
+        {nextFilters.map((filterState, index) => (
+          <Fragment key={filterState?.id ?? index}>
             <div className="flex justify-between items-center mb-4">
               <div className="font-bold text-4xl">{Array.isArray(name) ? name[index] : name}</div>
               {index === 0 && (

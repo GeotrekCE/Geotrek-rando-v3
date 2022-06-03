@@ -22,6 +22,8 @@ export interface ControlSectionProps {
   toggleCoursesVisibility: () => void;
   experiencesVisibility: Visibility;
   toggleExperiencesVisibility: () => void;
+  signageVisibility: Visibility;
+  toggleSignageVisibility: () => void;
   className?: string;
   position?: ControlPosition;
 }

@@ -40,6 +40,7 @@
       "practices": "excursiones",
       "outdoor": "Exterior",
       "events": "Eventos",
+      "treksOutdoorGrouped": "Activities",
       "categories": "Servicios",
       "cities": "pueblo",
       "localization": "Localización",
@@ -67,7 +68,8 @@
         "touristicContent": "Cercano",
         "informationDesks": "Lugares de información",
         "courses": "Parcours",
-        "experiences": "Lieux de pratique"
+        "experiences": "Lieux de pratique",
+        "signage": "Señalización"
       },
       "resetView": "Centrarse la mapa"
     }

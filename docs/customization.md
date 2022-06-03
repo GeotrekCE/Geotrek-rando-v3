@@ -22,7 +22,8 @@ In json files, you can just override the primary keys you need. You have to over
   - `maxTouristicContentPerPage`: max number of touristic contents displayed on a single trek page
   - `portalIds`: eventual portal filters (list of ids).
   - `enableSensitiveAreas`: boolean, default to false. Set it to true if sensitive areas are defined in your Geotrek-admin
-  - `enableOutdoor`: : boolean, default to false. Set it to true to enable Outdoor sites and courses
+  - `enableOutdoor`: boolean, default to false. Set it to true to enable Outdoor sites and courses
+  - `groupTreksAndOutdoorFilters`: boolean, default to false. Groups treks and outdoor filters into a single tab. For this setting to work, `enableOutdoor` must be set to `true`.
   - `apiUrl` : Geotrek-admin API URL
   - `googleAnalyticsId`: eventual Google Analytics Id
   - `googleSiteVerificationToken`: eventual code to enable Google Search Console and Google developer tools
@@ -135,6 +136,8 @@ It's also possible to change category colors :
 }
 ```
 
+NB: If global config `groupTreksAndOutdoorFilters` is set to `true`,  the `outdoor` color is ignored in favor of the `trek` color.
+
 You can also override CSS in `customization/theme/style.css` file. To help overriding CSS, some ID have been added on main DIV components (header, logo, footer, cover, cards, results, maps, details...).
 
 ## Translations
@@ -157,7 +160,7 @@ You can include some HTML parts in different sections of the layout application,
 These templates can be translated by using the language code as a suffix (e.g. `homeTop-en.html` will be rendered only for the English interface). The application tries to find the localized template first, otherwise it tries the non-localized template, otherwise it displays nothing.
 NB: If you want to display a message common to all languages but not to a particular language (e.g. french), just create the template suffixed with its language code (e.g. `-fr.html`) and leave it empty, and voilà!
 
-You can also include some scripts: 
+You can also include some scripts:
 - `customization/html/scriptsHeader.html`: in the `<head>` of the document
 - `customization/html/scriptsFooter.html`: just before the `</body>` end tag
 
@@ -167,6 +170,11 @@ See examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend
 
 Icons are provided by Geotrek-admin API. See [icons documentation](icons.md) to know how they have to be designed.
 
+## Manifest.json
+
+There is a default `manifest.json` generated using the `applicationName` parameters of `global.json` and icons/images detailed in the next section below (See: https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/src/pages/manifest.json.tsx#L20).
+You can complete it by creating `manifest.json` file in the `customization/config/` folder and filling it with the props to add and/or override.
+
 ## Images, favicon, mobile phone icons and splashscreens
 
 These files need to be in the correct folder during the build process and therefore, we created a specific `medias` folder in the customization repository.
@@ -175,7 +183,7 @@ It provides 6 default images that can be customized:
 
 - android-icon.png: It has to be 144x144px and controls the icon appearing on Android phones
 - maskable-icon.png: It hass to be 144x144px and will be used only on android phones enabling round icons (it will hence be cropped to fit a circle by the android phones)
-- ios-icon.png: It has to be 144x144px and controls the icon appearing on iOS phones
+- apple-icon.png: It has to be 144x144px and controls the icon appearing on iOS phones
 - android-splashscreen.png: It has to be 512x512px and controls the splashscreen appearing on Android phones
 - ios-splashscreen.png: It has to be 512x512px and controls the splashscreen appearing on iOS phones
 - favicon.png: It will be used as the favicon in web browsers

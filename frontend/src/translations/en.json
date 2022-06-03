@@ -41,6 +41,7 @@
       "difficulty": "Difficulty",
       "practices": "Practice",
       "outdoor": "Outdoor",
+      "treksOutdoorGrouped": "Activities",
       "events": "Events",
       "categories": "Service",
       "localization": "Localization",
@@ -69,7 +70,8 @@
         "touristicContent": "Close by",
         "informationDesks": "Information desks",
         "courses": "Parcours",
-        "experiences": "Lieux de pratique"
+        "experiences": "Lieux de pratique",
+        "signage": "Signage"
       },
       "resetView": "Recenter map"
     }

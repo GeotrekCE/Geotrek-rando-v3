@@ -20,7 +20,7 @@ import { InformationDesk } from 'modules/informationDesk/interface';
 import { Label } from 'modules/label/interface';
 import { TrekResult } from 'modules/results/interface';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
-import { NumericDictionaryIteratee } from 'lodash';
+import { SignageDictionary } from 'modules/signage/interface';
 
 export interface RawDetails {
   type: string;
@@ -178,6 +178,7 @@ export interface Details extends DetailsHtml {
   length2d: number;
   reservation: Reservation | null;
   reservation_id: string | null;
+  signage: SignageDictionary | null;
 }
 
 export interface WebLink {
