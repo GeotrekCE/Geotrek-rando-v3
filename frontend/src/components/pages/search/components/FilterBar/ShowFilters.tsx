@@ -11,7 +11,7 @@ interface Props {
 
 const ShowFilters: React.FC<Props> = ({ item, setFilterSelectedOptions, hideLabel = false }) => {
   // The API can send empty item
-  if (item.label === '' || item.options.length === 0) {
+  if (typeof item === 'undefined' || item.label === '' || item.options.length === 0) {
     return null;
   }
   return item.options.length > 10 ? (
