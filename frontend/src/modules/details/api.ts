@@ -5,20 +5,15 @@ import { RawDetails, RawTrekChildGeometry, RawTrekChildIds, RawTrekName } from '
 
 const fieldsParams = {
   fields:
-    'id,name,departure,arrival,cities,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,descent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,departure_city,disabled_infrastructure,accessibilities,source,information_desks,labels,advice,points_reference,children,web_links,elevation_area_url,altimetric_profile,reservation_id,accessibility_signage,accessibility_slope,accessibility_width,accessibility_covering,accessibility_exposure,accessibility_advice,attachments_accessibility,accessibility_level',
-  format: 'geojson',
-};
-
-const fieldsParamsDetails = {
-  fields: `${fieldsParams.fields},ratings,ratings_description`,
+    'id,name,departure,arrival,cities,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,descent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,departure_city,disabled_infrastructure,accessibilities,source,information_desks,labels,advice,points_reference,children,web_links,elevation_area_url,altimetric_profile,reservation_id,accessibility_signage,accessibility_slope,accessibility_width,accessibility_covering,accessibility_exposure,accessibility_advice,attachments_accessibility,accessibility_level,ratings,ratings_description',
   format: 'geojson',
 };
 
 export const fetchDetails = (query: APIQuery, id: string): Promise<RawDetails> => {
   try {
-    return GeotrekAPI.get(`/trek/${id}/`, { params: { ...query, ...fieldsParamsDetails } }).then(
-      r => r.data,
-    );
+    return GeotrekAPI.get(`/trek/${id}/`, {
+      params: { ...query, ...fieldsParams, ...portalsFilter },
+    }).then(r => r.data);
   } catch (e) {
     console.error('Error in details/api', e);
     throw e;
