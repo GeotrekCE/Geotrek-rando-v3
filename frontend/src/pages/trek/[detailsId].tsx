@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { DetailsUI } from 'components/pages/details';
 import { useEffect } from 'react';
-import { DehydratedState, QueryClient } from 'react-query';
+import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import { getDetails, getTrekFamily } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
@@ -10,9 +10,6 @@ import { getDefaultLanguage } from 'modules/header/utills';
 import { routes } from 'services/routes';
 import { redirectIfWrongUrl } from '../../modules/utils/url';
 import Custom404 from '../404';
-
-const sanitizeState = (unsafeState: DehydratedState): DehydratedState =>
-  JSON.parse(JSON.stringify(unsafeState));
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getServerSideProps = async (context: {
@@ -47,12 +44,9 @@ export const getServerSideProps = async (context: {
         redirect,
       };
 
-    const unsafeState = dehydrate(queryClient);
-    const safeState = sanitizeState(unsafeState);
-
     return {
       props: {
-        dehydratedState: safeState,
+        dehydratedState: dehydrate(queryClient),
       },
     };
   } catch (error) {

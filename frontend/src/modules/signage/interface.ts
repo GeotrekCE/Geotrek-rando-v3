@@ -25,7 +25,7 @@ export interface Signage {
   description: string;
   geometry: RawPointGeometry3D;
   type: SignageType;
-  imageUrl: string | undefined;
+  imageUrl: string | undefined | null;
 }
 
 export interface SignageDictionary {

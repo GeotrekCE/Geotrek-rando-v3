@@ -6,7 +6,7 @@ const adaptSignage = (
   signageTypeDictionary: SignageTypeDictionary,
 ): Signage => ({
   id: rawSignage.id,
-  imageUrl: rawSignage.attachments?.find(({ type }) => type === 'image')?.thumbnail,
+  imageUrl: rawSignage.attachments?.find(({ type }) => type === 'image')?.thumbnail ?? null,
   description: rawSignage.description,
   geometry: rawSignage.geometry,
   name: rawSignage.name,
