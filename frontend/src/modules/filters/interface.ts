@@ -39,6 +39,7 @@ export interface Option {
 export interface FilterWithoutType {
   id: string;
   options: Option[];
+  withExclude?: boolean;
 }
 export interface Filter extends FilterWithoutType {
   type: 'SINGLE' | 'MULTIPLE';
@@ -49,6 +50,7 @@ export interface FilterConfig {
   display?: boolean;
   type: 'SINGLE' | 'MULTIPLE';
   options: undefined;
+  withExclude?: boolean;
 }
 
 export interface FilterConfigWithOptions {
@@ -60,6 +62,7 @@ export interface FilterConfigWithOptions {
     maxValue: number;
     label: string;
   }[];
+  withExclude?: boolean;
 }
 
 export interface FilterState {
