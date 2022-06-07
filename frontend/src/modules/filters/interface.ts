@@ -33,6 +33,7 @@ export interface Option {
   label: string;
   value: string;
   pictogramUrl?: string;
+  include?: boolean;
 }
 
 export interface FilterWithoutType {
