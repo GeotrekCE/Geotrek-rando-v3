@@ -56,7 +56,6 @@ export const getOutdoorSiteDetails = async (
       courses,
       outdoorPracticeDictionnary,
       touristicContents,
-      sensitiveAreas,
     ] = await Promise.all([
       fetchOutdoorSiteDetails({ language }, id),
       getPois(Number(id), language, 'sites'),
@@ -68,9 +67,6 @@ export const getOutdoorSiteDetails = async (
       getOutdoorCourses(language, { near_outdoorsite: id }),
       getOutdoorPractices(language),
       getTouristicContentsNearTarget(Number(id), language, 'near_outdoorsite'),
-      getGlobalConfig().enableSensitiveAreas
-        ? getSensitiveAreas('outdoorSite', Number(id), language)
-        : [],
     ]);
 
     const [
@@ -81,6 +77,7 @@ export const getOutdoorSiteDetails = async (
       outdoorRatingScale,
       outdoorSiteType,
       signage,
+      sensitiveAreas,
     ] = await Promise.all([
       getTrekResults(language, { near_outdoorsite: Number(id) }),
       getOutdoorPractices(language),
@@ -89,6 +86,9 @@ export const getOutdoorSiteDetails = async (
       getOutdoorRatingScale(language),
       getOutdoorSiteType(language),
       getSignage(language, id, 'OUTDOOR_SITE'),
+      getGlobalConfig().enableSensitiveAreas
+        ? getSensitiveAreas('outdoorSite', Number(id), language)
+        : [],
     ]);
 
     return adaptOutdoorSiteDetails({
