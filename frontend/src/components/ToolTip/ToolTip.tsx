@@ -30,6 +30,7 @@ const ToolTipGT: FC<Props> = ({
           color={color}
           bgcolor={backgroundColor}
           aria-describedby={id}
+          className="tooltipSpan"
         >
           {toolTipText}
         </ToolTipText>
@@ -38,7 +39,12 @@ const ToolTipGT: FC<Props> = ({
     {id === undefined && (
       <ToolTip role={role}>
         {children}
-        <ToolTipText invertPosition={invertPosition} color={color} bgcolor={backgroundColor}>
+        <ToolTipText
+          invertPosition={invertPosition}
+          color={color}
+          bgcolor={backgroundColor}
+          className="tooltipSpan"
+        >
           {toolTipText}
         </ToolTipText>
       </ToolTip>

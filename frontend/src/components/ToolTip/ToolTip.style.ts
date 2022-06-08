@@ -31,7 +31,7 @@ export const ToolTipText = styled.span<{ color: string; bgcolor: string; invertP
 export const ToolTip = styled('div')({
   position: 'relative',
   display: 'inline-block',
-  ':hover span': {
+  ':hover .tooltipSpan': {
     visibility: 'visible',
   },
 });
