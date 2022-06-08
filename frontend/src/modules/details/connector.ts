@@ -36,8 +36,6 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       cityDictionnary,
       accessibilityDictionnary,
       sourceDictionnary,
-      trekRating,
-      trekRatingScale,
     ] = await Promise.all([
       getActivity(rawDetails.properties.practice, language),
       getDifficulty(rawDetails.properties.difficulty, language),
@@ -49,6 +47,8 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       getCities(language),
       getAccessibilities(language),
       getSources(language),
+    ]);
+    const [trekRating, trekRatingScale] = await Promise.all([
       getTrekRating(language),
       getTrekRatingScale(language),
     ]);
