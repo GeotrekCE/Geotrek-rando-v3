@@ -4,7 +4,7 @@ import { fetchSensitiveAreas } from './api';
 import { SensitiveArea } from './interface';
 
 export const getSensitiveAreas = async (
-  type: "trek" | "outdoorSite" | "outdoorCourse",
+  type: 'trek' | 'outdoorSite' | 'outdoorCourse',
   id: number,
   language: string,
 ): Promise<SensitiveArea[]> => {

@@ -55,6 +55,6 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
     setDescriptionRef,
     setPracticalInformationsRef,
     setTouristicContentsRef,
-    setSensitiveAreasRef
+    setSensitiveAreasRef,
   };
 };

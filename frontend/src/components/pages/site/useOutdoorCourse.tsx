@@ -45,6 +45,6 @@ export const useOutdoorCourse = (
     setPreviewRef,
     setPoisRef,
     setTouristicContentsRef,
-    setSensitiveAreasRef
+    setSensitiveAreasRef,
   };
 };

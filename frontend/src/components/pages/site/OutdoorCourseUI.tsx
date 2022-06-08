@@ -51,7 +51,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
     setPreviewRef,
     setPoisRef,
     setTouristicContentsRef,
-    setSensitiveAreasRef
+    setSensitiveAreasRef,
   } = useOutdoorCourse(outdoorCourseUrl, language);
 
   const intl = useIntl();
