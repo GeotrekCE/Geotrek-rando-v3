@@ -7,7 +7,7 @@ interface Props {
   toolTipText?: string;
   color?: string;
   backgroundColor?: string;
-  reverse: boolean;
+  invertPosition: boolean;
   role?: string;
   id?: string;
 }
@@ -17,7 +17,7 @@ const ToolTipGT: FC<Props> = ({
   toolTipText,
   color = colorPalette.primary1,
   backgroundColor = colorPalette.primary2,
-  reverse,
+  invertPosition,
   role = 'tooltip',
   id,
 }) => (
@@ -26,7 +26,7 @@ const ToolTipGT: FC<Props> = ({
       <ToolTip role={role} id={id}>
         {children}
         <ToolTipText
-          reverse={reverse}
+          invertPosition={invertPosition}
           color={color}
           bgcolor={backgroundColor}
           aria-describedby={id}
@@ -38,7 +38,7 @@ const ToolTipGT: FC<Props> = ({
     {id === undefined && (
       <ToolTip role={role}>
         {children}
-        <ToolTipText reverse={reverse} color={color} bgcolor={backgroundColor}>
+        <ToolTipText invertPosition={invertPosition} color={color} bgcolor={backgroundColor}>
           {toolTipText}
         </ToolTipText>
       </ToolTip>

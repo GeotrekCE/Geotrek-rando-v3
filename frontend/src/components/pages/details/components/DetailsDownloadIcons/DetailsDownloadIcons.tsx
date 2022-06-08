@@ -89,7 +89,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
         {details.pdfUri && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.print' })}
-            reverse
+            invertPosition
             id={intl.formatMessage({ id: 'tooltip.print' })}
           >
             <DetailsButton url={details.pdfUri}>
@@ -101,7 +101,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
         {dropdownButtonOptions.length > 0 && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'details.download' })}
-            reverse
+            invertPosition
             id={intl.formatMessage({ id: 'details.download' })}
           >
             <DetailsButtonDropdown options={dropdownButtonOptions}>
@@ -113,7 +113,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
         {Number(details.id) && !hideReport && getGlobalConfig().enableReport && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'report.title' })}
-            reverse
+            invertPosition
             id={intl.formatMessage({ id: 'report.title' })}
           >
             <DetailsButton url="#details_report" onClick={() => setReportVisibility(true)}>
@@ -128,7 +128,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
           getGlobalConfig().reservationProject && (
             <ToolTip
               toolTipText={intl.formatMessage({ id: 'search.book' })}
-              reverse
+              invertPosition
               id={intl.formatMessage({ id: 'search.book' })}
             >
               <DetailsButton url="#details_reservation">
@@ -140,7 +140,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
         {is3DfeatureEnabled && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.show3D' })}
-            reverse
+            invertPosition
             id={intl.formatMessage({ id: 'tooltip.show3D' })}
           >
             <DetailsButton onClick={() => setOpen3D(true)}>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ToolTipText = styled.span<{ color: string; bgcolor: string; reverse: boolean }>`
+export const ToolTipText = styled.span<{ color: string; bgcolor: string; invertPosition: boolean }>`
   background-color: ${props => props.color};
   color: ${props => props.bgcolor};
   visibility: hidden;
@@ -10,19 +10,19 @@ export const ToolTipText = styled.span<{ color: string; bgcolor: string; reverse
   padding: 5px 0;
   position: absolute;
   z-index: 1;
-  top: ${props => (props.reverse ? '130%' : '-50%')};
+  top: ${props => (props.invertPosition ? '130%' : '-50%')};
   left: 50%;
   margin-left: -60px;
   &:after {
     content: '';
     position: absolute;
-    bottom: ${props => (props.reverse ? '100%' : '-30%')};
+    bottom: ${props => (props.invertPosition ? '100%' : '-30%')};
     left: 50%;
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
     border-color: ${props =>
-      props.reverse
+      props.invertPosition
         ? `transparent transparent ${props.color} transparent`
         : `${props.color} transparent transparent transparent`};
 

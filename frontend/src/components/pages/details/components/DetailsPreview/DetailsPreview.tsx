@@ -135,7 +135,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.difficulty && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.difficulty' })}
-            reverse={false}
+            invertPosition={false}
             id={intl.formatMessage({ id: 'tooltip.difficulty' })}
           >
             <RemoteIconInformation
@@ -149,7 +149,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.period && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.period' })}
-            reverse={false}
+            invertPosition={false}
             id={intl.formatMessage({ id: 'tooltip.period' })}
           >
             <LocalIconInformation icon={Calendar} className={classNameInformation}>
@@ -160,7 +160,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.orientation && informations.orientation.length > 0 && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.orientation' })}
-            reverse={false}
+            invertPosition={false}
             id={intl.formatMessage({ id: 'tooltip.orientation' })}
           >
             <LocalIconInformation icon={Orientation} className={classNameInformation}>
@@ -173,7 +173,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.wind && informations.wind.length > 0 && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.wind' })}
-            reverse={false}
+            invertPosition={false}
             id={intl.formatMessage({ id: 'tooltip.wind' })}
           >
             <LocalIconInformation icon={Wind} className={classNameInformation}>
@@ -184,7 +184,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.date && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.date' })}
-            reverse={false}
+            invertPosition={false}
             id={intl.formatMessage({ id: 'tooltip.date' })}
           >
             <LocalIconInformation icon={Calendar} className={classNameInformation}>
@@ -208,7 +208,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.duration && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.duration' })}
-            reverse={false}
+            invertPosition={false}
             id={intl.formatMessage({ id: 'tooltip.duration' })}
           >
             <LocalIconInformation icon={Clock} className={classNameInformation}>
@@ -219,7 +219,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.distance && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.distance' })}
-            reverse={false}
+            invertPosition={false}
             id={intl.formatMessage({ id: 'tooltip.distance' })}
           >
             <LocalIconInformation icon={CodeBrackets} className={classNameInformation}>
@@ -230,7 +230,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.elevation && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.elevation' })}
-            reverse={false}
+            invertPosition={false}
             id={intl.formatMessage({ id: 'tooltip.elevation' })}
           >
             <LocalIconInformation icon={TrendingUp} className={classNameInformation}>
@@ -241,7 +241,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.negativeElevation && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.negativeElevation' })}
-            reverse={false}
+            invertPosition={false}
             id={intl.formatMessage({ id: 'tooltip.negativeElevation' })}
           >
             <LocalIconInformation
@@ -258,7 +258,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.maxElevation && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.altitude' })}
-            reverse={false}
+            invertPosition={false}
             id={intl.formatMessage({ id: 'tooltip.altitude' })}
           >
             <LocalIconInformation icon={Altitude} className={classNameInformation}>
@@ -270,7 +270,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.meetingPoint && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.assemblyPoint' })}
-            reverse={false}
+            invertPosition={false}
             id={intl.formatMessage({ id: 'tooltip.assemblyPoint' })}
           >
             <LocalIconInformation icon={MeetingPoint} className={classNameInformation}>
@@ -281,7 +281,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.participantNumber && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.numberOfParticipants' })}
-            reverse={false}
+            invertPosition={false}
             id={intl.formatMessage({ id: 'tooltip.numberOfParticipants' })}
           >
             <LocalIconInformation icon={Participant} className={classNameInformation}>
@@ -292,7 +292,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.courseType && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.courseType' })}
-            reverse={false}
+            invertPosition={false}
             id={intl.formatMessage({ id: 'tooltip.courseType' })}
           >
             <RemoteIconInformation
@@ -307,7 +307,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           informations.networks?.map((network, i) => (
             <ToolTip
               toolTipText={intl.formatMessage({ id: 'tooltip.network' })}
-              reverse={false}
+              invertPosition={false}
               key={i}
               id={intl.formatMessage({ id: 'tooltip.network' })}
             >
