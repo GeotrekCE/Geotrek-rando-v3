@@ -26,7 +26,12 @@ const useCounter = ({ language }: Args): CountResult => {
       },
     }) =>
       getSearchResults(
-        { filtersState: [], textFilterState: null, bboxState: null, dateFilter: {endDate: "", beginDate:""} },
+        {
+          filtersState: [],
+          textFilterState: null,
+          bboxState: null,
+          dateFilter: { endDate: '', beginDate: '' },
+        },
         pageParam,
         language,
       ),
