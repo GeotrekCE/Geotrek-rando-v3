@@ -135,8 +135,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.difficulty && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.difficulty' })}
-            bottom="80%"
-            reverse={true}
+            reverse={false}
+            id={intl.formatMessage({ id: 'tooltip.difficulty' })}
           >
             <RemoteIconInformation
               iconUri={informations.difficulty.pictogramUri}
@@ -149,8 +149,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.period && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.period' })}
-            bottom="80%"
-            reverse={true}
+            reverse={false}
+            id={intl.formatMessage({ id: 'tooltip.period' })}
           >
             <LocalIconInformation icon={Calendar} className={classNameInformation}>
               {informations.period}
@@ -160,8 +160,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.orientation && informations.orientation.length > 0 && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.orientation' })}
-            bottom="80%"
-            reverse={true}
+            reverse={false}
+            id={intl.formatMessage({ id: 'tooltip.orientation' })}
           >
             <LocalIconInformation icon={Orientation} className={classNameInformation}>
               {informations.orientation
@@ -173,8 +173,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.wind && informations.wind.length > 0 && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.wind' })}
-            bottom="80%"
-            reverse={true}
+            reverse={false}
+            id={intl.formatMessage({ id: 'tooltip.wind' })}
           >
             <LocalIconInformation icon={Wind} className={classNameInformation}>
               {informations.wind.map(w => intl.formatMessage({ id: `Wind.${w}` })).join(' - ')}
@@ -184,8 +184,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.date && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.date' })}
-            bottom="80%"
-            reverse={true}
+            reverse={false}
+            id={intl.formatMessage({ id: 'tooltip.date' })}
           >
             <LocalIconInformation icon={Calendar} className={classNameInformation}>
               {informations.date.beginDate === informations.date.endDate ? (
@@ -208,8 +208,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.duration && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.duration' })}
-            bottom="80%"
-            reverse={true}
+            reverse={false}
+            id={intl.formatMessage({ id: 'tooltip.duration' })}
           >
             <LocalIconInformation icon={Clock} className={classNameInformation}>
               {informations.duration}
@@ -219,8 +219,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.distance && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.distance' })}
-            bottom="80%"
-            reverse={true}
+            reverse={false}
+            id={intl.formatMessage({ id: 'tooltip.distance' })}
           >
             <LocalIconInformation icon={CodeBrackets} className={classNameInformation}>
               {informations.distance}
@@ -230,8 +230,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.elevation && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.elevation' })}
-            bottom="80%"
-            reverse={true}
+            reverse={false}
+            id={intl.formatMessage({ id: 'tooltip.elevation' })}
           >
             <LocalIconInformation icon={TrendingUp} className={classNameInformation}>
               {informations.elevation}
@@ -241,8 +241,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.negativeElevation && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.negativeElevation' })}
-            bottom="80%"
-            reverse={true}
+            reverse={false}
+            id={intl.formatMessage({ id: 'tooltip.negativeElevation' })}
           >
             <LocalIconInformation
               icon={TrendingUp}
@@ -258,8 +258,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.maxElevation && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.altitude' })}
-            bottom="80%"
-            reverse={true}
+            reverse={false}
+            id={intl.formatMessage({ id: 'tooltip.altitude' })}
           >
             <LocalIconInformation icon={Altitude} className={classNameInformation}>
               {informations.maxElevation}
@@ -270,8 +270,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.meetingPoint && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.assemblyPoint' })}
-            bottom="80%"
-            reverse={true}
+            reverse={false}
+            id={intl.formatMessage({ id: 'tooltip.assemblyPoint' })}
           >
             <LocalIconInformation icon={MeetingPoint} className={classNameInformation}>
               {informations.meetingPoint}
@@ -281,8 +281,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.participantNumber && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.numberOfParticipants' })}
-            bottom="80%"
-            reverse={true}
+            reverse={false}
+            id={intl.formatMessage({ id: 'tooltip.numberOfParticipants' })}
           >
             <LocalIconInformation icon={Participant} className={classNameInformation}>
               {informations.participantNumber}
@@ -292,8 +292,8 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         {informations.courseType && (
           <ToolTip
             toolTipText={intl.formatMessage({ id: 'tooltip.courseType' })}
-            bottom="80%"
-            reverse={true}
+            reverse={false}
+            id={intl.formatMessage({ id: 'tooltip.courseType' })}
           >
             <RemoteIconInformation
               iconUri={informations.courseType.pictogramUri}
@@ -307,9 +307,9 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           informations.networks?.map((network, i) => (
             <ToolTip
               toolTipText={intl.formatMessage({ id: 'tooltip.network' })}
-              bottom="80%"
-              reverse={true}
+              reverse={false}
               key={i}
+              id={intl.formatMessage({ id: 'tooltip.network' })}
             >
               <RemoteIconInformation
                 iconUri={network.pictogramUri}
