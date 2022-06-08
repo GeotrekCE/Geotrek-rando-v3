@@ -52,7 +52,7 @@ export const getSearchResults = async (
     filtersState: QueryFilterState[];
     textFilterState: string | null;
     bboxState: string | null;
-    dateFilter: DateFilter;
+    dateFilter: DateFilter | null;
   },
   pages: {
     treks: number | null;

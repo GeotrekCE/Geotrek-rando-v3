@@ -23,6 +23,7 @@ const InputDateWithMagnifier: FunctionComponent<InputDateWithMagnifierProps> = (
         type="text"
         onFocus={e => {
           e.target.type = 'date';
+          // @ts-ignore: Unreachable code error
           e.target.showPicker();
         }}
         onBlur={e => {

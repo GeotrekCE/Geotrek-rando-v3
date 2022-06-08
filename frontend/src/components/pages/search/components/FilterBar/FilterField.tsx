@@ -64,7 +64,7 @@ const FilterField: React.FC<Props> = ({
       ) ?? {},
   );
 
-  const nextFilters: (FilterState | undefined)[] = filtersToDisplay.length
+  const nextFilters: FilterState[] = filtersToDisplay.length
     ? filtersToDisplay
     : Array.from({ length: subFiltersToDisplay.length });
 

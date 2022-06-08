@@ -36,7 +36,7 @@ export const useTrekResults = (
     filtersState: FilterState[];
     textFilterState: string | null;
     bboxState: string | null;
-    dateFilter: DateFilter
+    dateFilter: DateFilter | null;
   },
   language: string,
 ) => {
@@ -65,7 +65,7 @@ export const useTrekResults = (
         language,
         parseTextFilter(textFilterState),
         parseBboxFilter(bboxState),
-        dateFilter
+        dateFilter,
       ],
       ({
         pageParam = {
