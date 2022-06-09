@@ -7,20 +7,27 @@ import { FilterState, Option } from '../../../../../modules/filters/interface';
 
 interface Props {
   filterState: FilterState;
-  onSelect: (options: Option[]) => void;
+  onSelect: (options: Option[], include?: boolean) => void;
   hideLabel?: boolean;
-  id: string;
 }
 
-const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel, id }) => {
+const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
   const intl = useIntl();
 
   const handleClick = (option: Option): void => {
-    const alreadySelected = filterState.selectedOptions.some(_ => _.value === option.value);
+    const selectedOption = filterState.selectedOptions.find(({ value }) => value === option.value);
 
-    if (alreadySelected)
-      onSelect(filterState.selectedOptions.filter(_ => _.value !== option.value));
-    else onSelect([...filterState.selectedOptions, option]);
+    if (selectedOption !== undefined) {
+      onSelect(
+        filterState.selectedOptions.filter(({ value }) => value !== option.value),
+        Boolean(selectedOption.include),
+      );
+      if (selectedOption.include !== false) {
+        onSelect([...filterState.selectedOptions, { ...option, include: false }], false);
+      }
+    } else {
+      onSelect([...filterState.selectedOptions, { ...option, include: true }], true);
+    }
   };
 
   const getIcon = (option: Option, isSelected: boolean): React.ReactElement | null => {
@@ -36,28 +43,29 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel, id }) => {
 
   return (
     <div>
-      {!hideLabel && (
+      {hideLabel !== true && (
         <div className={'mb-1'}>{intl.formatMessage({ id: filterState?.label || 'Unknown' })}</div>
       )}
       <div className="-m-1 flex flex-wrap">
         {filterState.options.map(option => {
-          const isSelected = filterState.selectedOptions.some(_ => _.value === option.value);
+          const selectedOption = filterState.selectedOptions.find(_ => _.value === option.value);
 
           return (
-            <div
+            <button
               key={option.value}
               onClick={() => handleClick(option)}
+              type="button"
               className={`p-1 m-1 inline-block width-auto border border-solid rounded-lg bg-white cursor-pointer ${
-                isSelected
+                selectedOption !== undefined
                   ? 'text-primary1 font-bold bg-primary2 bg-opacity-5 border-transparent'
                   : 'border-black'
-              }`}
+              } ${selectedOption?.include === false ? 'line-through' : ''}`}
             >
-              <div className={`flex items-center ${option.pictogramUrl ? 'mr-1' : ''}`}>
-                {getIcon(option, isSelected)}
+              <span className={`flex items-center ${option.pictogramUrl ? 'mr-1' : ''}`}>
+                {getIcon(option, Boolean(selectedOption))}
                 {option.label}
-              </div>
-            </div>
+              </span>
+            </button>
           );
         })}
       </div>
