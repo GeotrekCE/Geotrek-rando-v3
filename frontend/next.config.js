@@ -9,7 +9,7 @@ const dotenv = require('dotenv-flow');
 const runtimeCachingStrategy = require('./cache');
 const headerConfig = require('./config/header.json');
 const customHeaderConfig = require('./customization/config/header.json');
-const getConfig = require('./src/services/getConfig');
+const { getConfig, getTemplates } = require('./src/services/getConfig');
 
 const mergedHeaderConfig = {
   ...headerConfig,
@@ -62,8 +62,14 @@ module.exports = withPlugins(plugins, {
     defaultLocale: mergedHeaderConfig.menu.defaultLanguage,
   },
   publicRuntimeConfig: {
-    homeBottomHtml: getConfig('../html/homeBottom.html', false),
-    homeTopHtml: getConfig('../html/homeTop.html', false),
+    homeBottomHtml: getTemplates('../html/homeBottom.html', mergedHeaderConfig.menu.supportedLanguages),
+    homeTopHtml: getTemplates('../html/homeTop.html', mergedHeaderConfig.menu.supportedLanguages),
+    headerTopHtml: getTemplates('../html/headerTop.html', mergedHeaderConfig.menu.supportedLanguages),
+    headerBottomHtml: getTemplates('../html/headerBottom.html', mergedHeaderConfig.menu.supportedLanguages),
+    footerTopHtml: getTemplates('../html/footerTop.html', mergedHeaderConfig.menu.supportedLanguages),
+    footerBottomHtml: getTemplates('../html/footerBottom.html', mergedHeaderConfig.menu.supportedLanguages),
+    scriptsHeaderHtml: getConfig('../html/scriptsHeader.html', false),
+    scriptsFooterHtml: getConfig('../html/scriptsFooter.html', false),
     style: getConfig('../theme/style.css', false),
     colors: getConfig('../theme/colors.json', true),
     header: getConfig('header.json', true),
@@ -72,5 +78,6 @@ module.exports = withPlugins(plugins, {
     map: getConfig('map.json', true),
     filter: getConfig('filter.json', true),
     footer: getConfig('footer.json', true),
+    manifest: getConfig('manifest.json', true),
   },
 });

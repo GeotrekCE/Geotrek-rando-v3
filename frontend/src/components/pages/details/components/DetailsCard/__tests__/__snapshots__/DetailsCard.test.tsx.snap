@@ -62,13 +62,13 @@ Object {
             </div>
           </div>
           <div
-            class="CardIcon__Wrapper-sc-cv6h96-0 kXgvEW absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white border-2 border-white border-solid"
+            class="CardIcon__Wrapper-sc-cv6h96-0 bXmPlv absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
             color="#AA397D"
           >
             <div
-              class="CardIcon__Label-sc-cv6h96-1 jerYqY"
+              class="pr-3 whitespace-nowrap"
             >
-              <div />
+              Randonnée pédestre
             </div>
           </div>
         </div>
@@ -159,13 +159,13 @@ Object {
           </div>
         </div>
         <div
-          class="CardIcon__Wrapper-sc-cv6h96-0 kXgvEW absolute top-4 left-4 h-8 w-8 rounded-full shadow-sm text-white border-2 border-white border-solid"
+          class="CardIcon__Wrapper-sc-cv6h96-0 bXmPlv absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
           color="#AA397D"
         >
           <div
-            class="CardIcon__Label-sc-cv6h96-1 jerYqY"
+            class="pr-3 whitespace-nowrap"
           >
-            <div />
+            Randonnée pédestre
           </div>
         </div>
       </div>

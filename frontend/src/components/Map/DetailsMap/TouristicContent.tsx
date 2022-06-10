@@ -1,5 +1,5 @@
 import { Popup } from 'components/Map/components/Popup';
-import React from 'react';
+import React, { Fragment } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { TouristicContentGeometry } from './DetailsMap';
 import { HoverableMarker } from '../components/HoverableMarker';
@@ -21,34 +21,64 @@ export const TouristicContent: React.FC<PropsType> = ({ contents, type = 'TOURIS
 
           switch (geometry.type) {
             case 'Point':
+            case 'MultiPoint':
               return (
-                <HoverableMarker
-                  id={id}
-                  position={[geometry.coordinates.y, geometry.coordinates.x]}
-                  pictogramUri={pictogramUri}
-                  type={type}
-                >
-                  <Popup id={Number(idContent)} type={type} />
-                </HoverableMarker>
+                <Fragment key={id}>
+                  {(geometry.type === 'Point' ? [geometry.coordinates] : geometry.coordinates).map(
+                    coordinates =>
+                      pictogramUri ? (
+                        <HoverableMarker
+                          key={`${id}${JSON.stringify(coordinates)}`}
+                          id={id}
+                          position={[coordinates.y, coordinates.x]}
+                          pictogramUri={pictogramUri}
+                          type={type}
+                        >
+                          <Popup id={Number(idContent)} type={type} />
+                        </HoverableMarker>
+                      ) : null,
+                  )}
+                </Fragment>
               );
 
             case 'LineString':
+            case 'MultiLineString':
               return (
-                <HoverablePolyline
-                  id={id}
-                  positions={geometry.coordinates.map(point => [point.y, point.x])}
-                />
+                <Fragment key={id}>
+                  {(geometry.type === 'LineString'
+                    ? [geometry.coordinates]
+                    : geometry.coordinates
+                  ).map(group => (
+                    <HoverablePolyline
+                      key={`${id}${JSON.stringify(group)}`}
+                      id={id}
+                      positions={group.map(point => [point.y, point.x])}
+                    />
+                  ))}
+                </Fragment>
               );
 
             case 'Polygon':
+            case 'MultiPolygon':
               return (
-                <HoverablePolygon
-                  id={id}
-                  positions={geometry.coordinates.map(line =>
-                    line.map<[number, number]>(point => [point.y, point.x]),
-                  )}
-                />
+                <Fragment key={id}>
+                  {(geometry.type === 'Polygon'
+                    ? [geometry.coordinates]
+                    : geometry.coordinates
+                  ).map(group => (
+                    <HoverablePolygon
+                      key={`${id}${JSON.stringify(group)}`}
+                      id={id}
+                      positions={group.map(line =>
+                        line.map<[number, number]>(point => [point.y, point.x]),
+                      )}
+                    />
+                  ))}
+                </Fragment>
               );
+
+            default:
+              return null;
           }
         })}
     </>

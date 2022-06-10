@@ -1,12 +1,10 @@
 import { postReport } from './api';
-import { Report } from './interface';
 
-export const createReport = async (lang: string, params: Report) => {
-  if (!params.name) throw new Error('error.missing');
-  if (!params.email) throw new Error('error.missing');
-  if (!params.problem_magnitude) throw new Error('error.missing');
-  if (!params.activity) throw new Error('error.missing');
-  if (!params.category) throw new Error('error.missing');
+export const createReport = async (lang: string, params: FormData) => {
+  if (params.get('email') === '') throw new Error('error.missing.email');
+  if (params.get('problem_magnitude') === '') throw new Error('error.missing.magnitude');
+  if (params.get('activity') === '') throw new Error('error.missing.activity');
+  if (params.get('category') === '') throw new Error('error.missing.category');
 
   return postReport(lang, params);
 };

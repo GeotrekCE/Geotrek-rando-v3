@@ -2,6 +2,8 @@ import { uniqBy } from 'lodash';
 import { getTouristicContentCategoryFilter } from 'modules/touristicContentCategory/connector';
 import { getActivityFilter } from 'modules/activities/connector';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
+import { getLabelsFilter } from 'modules/label/connector';
+
 import { getOutdoorPracticesFilter } from '../outdoorPractice/connector';
 import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { OutdoorRatingMapping } from '../outdoorRating/interface';
@@ -15,6 +17,7 @@ import { getCourseTypeFilter } from './courseType/connector';
 import { getDistrictFilter } from './district/connector';
 import {
   Filter,
+  FilterConfig,
   FilterConfigWithOptions,
   FilterState,
   FilterWithoutType,
@@ -28,6 +31,8 @@ import {
   CITY_ID,
   DISTRICT_ID,
   EVENT_ID,
+  LABEL_EXCLUDE_ID,
+  LABEL_ID,
   OUTDOOR_ID,
   PRACTICE_ID,
   ROUTE_ID,
@@ -49,6 +54,7 @@ const adaptFilterConfigWithOptionsToFilter = (
 const getFilterOptions = async (
   filterId: string,
   language: string,
+  withExclude = false,
 ): Promise<FilterWithoutType | null> => {
   switch (filterId) {
     case 'difficulty':
@@ -73,6 +79,9 @@ const getFilterOptions = async (
       return getOutdoorPracticesFilter(language);
     case EVENT_ID:
       return getTouristicEventTypesFilter(language);
+    case LABEL_ID:
+    case LABEL_EXCLUDE_ID:
+      return getLabelsFilter(language, withExclude);
     default:
       return null;
   }
@@ -82,23 +91,29 @@ const isElementNotNull = <ElementType>(element: ElementType | null): element is 
   element !== null;
 
 const getFilterAndAddType = async (
-  filterId: string,
-  filterType: 'SINGLE' | 'MULTIPLE',
+  { id, type, withExclude }: FilterConfig,
   language: string,
 ): Promise<Filter | null> => {
-  const filter = await getFilterOptions(filterId, language);
+  const filter = await getFilterOptions(id, language, withExclude);
   if (filter === null) return null;
-  return { ...filter, type: filterType };
+  return { ...filter, type };
 };
 
 const getFilters = async (language: string): Promise<Filter[]> => {
   const config = getFiltersConfig();
+  const adaptFiltersConfig = config.flatMap(({ withExclude, ...item }) => {
+    if (withExclude === true) {
+      return [item, { ...item, id: `${item.id}_exclude`, withExclude }];
+    }
+    return [item];
+  });
+
   const filters = await Promise.all(
-    config.map(filterConfig => {
+    adaptFiltersConfig.map(filterConfig => {
       if (filterConfig.options !== undefined) {
         return adaptFilterConfigWithOptionsToFilter(filterConfig);
       }
-      return getFilterAndAddType(filterConfig.id, filterConfig.type, language);
+      return getFilterAndAddType(filterConfig, language);
     }),
   );
   return filters.filter(isElementNotNull);
@@ -111,6 +126,8 @@ const trekSpecificFilters = [
   'ascent',
   ROUTE_ID,
   ACCESSIBILITY_ID,
+  'labels',
+  'labels_exclude',
 ];
 
 export const commonFilters = [
@@ -124,17 +141,20 @@ export const commonFilters = [
   STRUCTURE_ID,
 ];
 
-export const getFiltersState = async (language: string): Promise<FilterState[]> => {
-  const filters = await getFilters(language);
-  return filters.map(filter => ({
-    ...filter,
-    label: `search.filters.${filter.id}`,
-    selectedOptions: [],
-  }));
-};
-
 export const getTreksFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
   initialFiltersState.filter(({ id }) => trekSpecificFilters.includes(id));
+
+export const getFiltersState = async (language: string): Promise<FilterState[]> => {
+  const filters = await getFilters(language);
+
+  return [
+    ...filters.map(filter => ({
+      ...filter,
+      label: `search.filters.${filter.id}`.replace('_exclude', ''),
+      selectedOptions: [],
+    })),
+  ];
+};
 
 const getTypesFiltersState = ({
   serviceId,
@@ -413,9 +433,9 @@ export const getNewLanguageFiltersState = (
 export const countFiltersSelected = (
   filtersState: FilterState[],
   filters: string[] | null = [],
-  subFilters: string[] | null = [],
+  subFilters: string[] | string[][] | null = [],
 ): number => {
-  const subFiltersToDisplay = filtersState.filter(({ id }) => subFilters?.includes(id));
+  const subFiltersToDisplay = filtersState.filter(({ id }) => subFilters?.flat().includes(id));
   const filtersToDisplay = filtersState.filter(
     ({ id }) => filters?.includes(id) ?? filters === null,
   );

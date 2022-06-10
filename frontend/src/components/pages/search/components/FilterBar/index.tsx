@@ -2,6 +2,7 @@ import { Bin } from 'components/Icons/Bin';
 import { Filter } from 'components/Icons/Filter';
 import FilterField from 'components/pages/search/components/FilterBar/FilterField';
 import useCounter from 'components/pages/search/hooks/useCounter';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
@@ -16,7 +17,7 @@ import {
   STRUCTURE_ID,
   THEME_ID,
 } from '../../../../../modules/filters/constant';
-import { FilterState, Option } from '../../../../../modules/filters/interface';
+import { FilterCategory, FilterState, Option } from '../../../../../modules/filters/interface';
 
 interface Props {
   filtersState: FilterState[];
@@ -26,19 +27,49 @@ interface Props {
   language: string;
 }
 
-export const FILTERS_CATEGORIES = [
-  {
-    id: PRACTICE_ID,
-    name: <FormattedMessage id={'search.filters.practices'} />,
-    filters: [PRACTICE_ID],
-    subFilters: ['difficulty', 'duration', 'length', 'routes', 'ascent', 'accessibilities'],
-  },
-  {
-    id: OUTDOOR_ID,
-    name: <FormattedMessage id={'search.filters.outdoor'} />,
-    filters: [OUTDOOR_ID],
-    subFilters: ['type-outdoorRating-.+'],
-  },
+const { groupTreksAndOutdoorFilters, enableOutdoor } = getGlobalConfig();
+
+const treksAndOutdoorCategories =
+  groupTreksAndOutdoorFilters === true && enableOutdoor === true
+    ? [
+        {
+          id: PRACTICE_ID,
+          name: [
+            <FormattedMessage key="practices" id={'search.filters.practices'} />,
+            <FormattedMessage key="outdoors" id={'search.filters.outdoor'} />,
+          ],
+          filters: [PRACTICE_ID, OUTDOOR_ID],
+          subFilters: [
+            ['difficulty', 'duration', 'length', 'routes', 'ascent', 'accessibilities', 'labels'],
+            ['type-outdoorRating-.+'],
+          ],
+        },
+      ]
+    : [
+        {
+          id: PRACTICE_ID,
+          name: <FormattedMessage id={'search.filters.practices'} />,
+          filters: [PRACTICE_ID],
+          subFilters: [
+            'difficulty',
+            'duration',
+            'length',
+            'routes',
+            'ascent',
+            'accessibilities',
+            'labels',
+          ],
+        },
+        {
+          id: OUTDOOR_ID,
+          name: <FormattedMessage id={'search.filters.outdoor'} />,
+          filters: [OUTDOOR_ID],
+          subFilters: ['type-outdoorRating-.+'],
+        },
+      ];
+
+export const FILTERS_CATEGORIES: FilterCategory[] = [
+  ...treksAndOutdoorCategories,
   {
     id: CATEGORY_ID,
     name: <FormattedMessage id={'search.filters.categories'} />,
@@ -74,7 +105,7 @@ const FilterBarNew: React.FC<Props> = ({
     useCounter({ language });
 
   return (
-    <ClearContainer className="flex items-center shadow-lg bg-white" style={{ zIndex: 20 }}>
+    <ClearContainer className="flex items-center shadow-lg bg-white z-20">
       <div className="inline-block ml-4 mr-4 flex items-center">
         <Filter size={24} className="text-primary1" />
         <span className="uppercase text-primary1 ml-2">

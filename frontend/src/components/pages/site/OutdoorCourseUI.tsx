@@ -1,3 +1,4 @@
+import parse from 'html-react-parser';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
 import { DetailsAdvice } from 'components/pages/details/components/DetailsAdvice';
@@ -7,7 +8,7 @@ import { DetailsHeader } from 'components/pages/details/components/DetailsHeader
 import { DetailsSection } from 'components/pages/details/components/DetailsSection';
 import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/details/Details';
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
-import { generateTouristicContentUrl } from 'components/pages/details/utils';
+import { generateTouristicContentUrl, HtmlText } from 'components/pages/details/utils';
 import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
 import { OutdoorSiteChildrenSection } from 'components/pages/site/components/OutdoorSiteChildrenSection';
 import { useOutdoorCourse } from 'components/pages/site/useOutdoorCourse';
@@ -29,6 +30,7 @@ import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
+import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
 
 interface Props {
   outdoorCourseUrl: string | string[] | undefined;
@@ -49,6 +51,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
     setPreviewRef,
     setPoisRef,
     setTouristicContentsRef,
+    setSensitiveAreasRef,
   } = useOutdoorCourse(outdoorCourseUrl, language);
 
   const intl = useIntl();
@@ -240,6 +243,27 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                       </div>
                     )}
 
+                    {outdoorCourseContent.sensitiveAreas.length > 0 && (
+                      <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
+                        <DetailsSection
+                          htmlId="details_sensitiveAreas"
+                          titleId="details.sensitiveAreas.title"
+                          className={marginDetailsChild}
+                        >
+                          <span className="mb-4 desktop:mb-8">
+                            <FormattedMessage id="details.sensitiveAreas.intro" />
+                          </span>
+                          {outdoorCourseContent.sensitiveAreas.map((sensitiveArea, i) => (
+                            <DetailsSensitiveArea
+                              key={i}
+                              {...sensitiveArea}
+                              className="my-4 desktop:my-8 ml-3 desktop:ml-6"
+                            />
+                          ))}
+                        </DetailsSection>
+                      </div>
+                    )}
+
                     {outdoorCourseContent.advice && (
                       <DetailsSection
                         htmlId="details_recommandations"
@@ -251,6 +275,15 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                             text={outdoorCourseContent.advice}
                             className="mb-4 desktop:mb-6"
                           />
+                        )}
+
+                        {outdoorCourseContent.accessibility && (
+                          <div style={{ marginTop: 20 }}>
+                            <strong className="font-bold">
+                              <FormattedMessage id="details.accessibility" /> :{' '}
+                            </strong>
+                            <HtmlText>{parse(outdoorCourseContent.accessibility)}</HtmlText>
+                          </div>
                         )}
                       </DetailsSection>
                     )}
@@ -297,6 +330,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                     className="desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar"
                   >
                     <DetailsMapDynamicComponent
+                      experiences={outdoorCourseContent?.children}
                       type="DESKTOP"
                       outdoorGeometry={{
                         geometry: outdoorCourseContent.geometry,
@@ -322,8 +356,15 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                           name: touristicContent.name,
                           id: `DETAILS-TOURISTIC_CONTENT-${touristicContent.id}`,
                         }))}
-                      sensitiveAreas={[]}
+                      sensitiveAreas={outdoorCourseContent.sensitiveAreas
+                        .filter(sensitiveArea => sensitiveArea.geometry !== null)
+                        .map(({ geometry, color }) => ({
+                          geometry,
+                          color,
+                        }))}
                       trekId={Number(id)}
+                      title={outdoorCourseContent.name}
+                      signage={outdoorCourseContent.signage}
                     />
                   </div>
                 )}
@@ -339,6 +380,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                 displayState={mobileMapState}
               >
                 <DetailsMapDynamicComponent
+                  experiences={outdoorCourseContent?.children}
                   type="MOBILE"
                   outdoorGeometry={{
                     geometry: outdoorCourseContent.geometry,
@@ -366,6 +408,8 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                     }))}
                   hideMap={hideMobileMap}
                   trekId={Number(id)}
+                  title={outdoorCourseContent.name}
+                  signage={outdoorCourseContent.signage}
                 />
               </MobileMapContainer>
             )}
@@ -373,7 +417,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
         )}
       </>
     ),
-    [outdoorCourseContent, isLoading, mobileMapState, sectionsPositions],
+    [outdoorCourseContent, isLoading, mobileMapState],
   );
 };
 

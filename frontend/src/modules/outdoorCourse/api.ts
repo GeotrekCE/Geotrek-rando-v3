@@ -15,7 +15,7 @@ export const fetchOutdoorCourses = (
   }).then(r => r.data);
 
 const fieldsParamsDetails = {
-  fields: `${fieldsParams.fields},advice,description,equipment,gear,min_elevation,ratings,ratings_description,site,structure,type,url,children,pdf`,
+  fields: `${fieldsParams.fields},advice,description,equipment,gear,min_elevation,ratings,ratings_description,site,structure,type,url,children,pdf,accessibility`,
   format: 'geojson',
 };
 

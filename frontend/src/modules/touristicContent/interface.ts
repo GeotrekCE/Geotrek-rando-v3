@@ -1,9 +1,13 @@
 import { Bbox } from 'modules/details/interface';
-import { Attachment, RawAttachment } from 'modules/interface';
 import {
+  Attachment,
   LineStringGeometry,
+  MultiLineStringGeometry,
+  MultiPointGeometry,
+  MultiPolygonGeometry,
   PointGeometry,
   PolygonGeometry,
+  RawAttachment,
   RawLineStringGeometry2D,
   RawPointGeometry2D,
   RawPolygonGeometry,
@@ -40,6 +44,8 @@ export interface RawTouristicContentPopupResult {
 }
 
 interface RawTouristicContentDetailsProperties extends RawTouristicContent {
+  accessibility?: string;
+  practical_info?: string;
   description: string;
   source: number[];
   contact: string;
@@ -61,13 +67,22 @@ export interface RawTouristicContentDetails {
 }
 
 export interface TouristicContent {
+  accessibility?: string | null;
+  practicalInfo?: string | null;
   id: string;
   name: string;
   descriptionTeaser: string;
   thumbnailUris: string[];
   attachments: Attachment[];
   category: TouristicContentCategory;
-  geometry: PointGeometry | PolygonGeometry | LineStringGeometry | null;
+  geometry:
+    | PolygonGeometry
+    | MultiPolygonGeometry
+    | LineStringGeometry
+    | MultiLineStringGeometry
+    | PointGeometry
+    | MultiPointGeometry
+    | null;
   logoUri: string | null;
 }
 

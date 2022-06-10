@@ -23,6 +23,10 @@ const HomeUI: FunctionComponent = () => {
   }`;
 
   const intl = useIntl();
+
+  const homeTop = homeTopHtml[intl.locale] ?? homeTopHtml.default;
+  const homeBottom = homeBottomHtml[intl.locale] ?? homeBottomHtml.default;
+
   return (
     <>
       <PageHead
@@ -46,11 +50,14 @@ const HomeUI: FunctionComponent = () => {
                 <ActivitySearchFilter />
               </div>
             )}
-            <div id="home_topHtml" className={classNameHomeChild}>
-              {parse(homeTopHtml)}
-            </div>
-            {suggestions.map(({ titleTranslationId, iconUrl, results, type }) => (
-              <>
+            {homeTop !== undefined && (
+              <div id="home_topHtml" className={classNameHomeChild}>
+                {parse(homeTop)}
+              </div>
+            )}
+            {suggestions
+              .filter(({ results }) => results.length > 0)
+              .map(({ titleTranslationId, iconUrl, results, type }) => (
                 <HomeSection
                   title={intl.formatMessage({ id: titleTranslationId })}
                   iconUrl={iconUrl}
@@ -58,11 +65,12 @@ const HomeUI: FunctionComponent = () => {
                   results={results}
                   type={type}
                 />
-              </>
-            ))}
-            <div id="home_bottomHtml" className={classNameHomeChild}>
-              {parse(homeBottomHtml)}
-            </div>
+              ))}
+            {homeBottom !== undefined && (
+              <div id="home_bottomHtml" className={classNameHomeChild}>
+                {parse(homeBottom)}
+              </div>
+            )}
           </div>
         </HomeContainer>
         <Footer />

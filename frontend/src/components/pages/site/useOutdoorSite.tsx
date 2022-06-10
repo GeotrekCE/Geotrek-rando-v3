@@ -1,7 +1,6 @@
-import { DetailsSectionsPosition } from 'components/pages/details/useDetails';
-import { getDimensions } from 'components/pages/details/utils';
+import useSectionsReferences from 'hooks/useSectionsReferences';
 import { isUrlString } from 'modules/utils/string';
-import { useCallback, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { getOutdoorSiteDetails } from '../../../modules/outdoorSite/connector';
@@ -19,21 +18,8 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
     },
   );
 
-  const sectionsReferences = useRef<Record<string, HTMLDivElement | null>>({});
-  const [sectionsPositions, setSectionsPositions] = useState<DetailsSectionsPosition>({});
-
-  const useSectionReferenceCallback = (sectionName: string) =>
-    useCallback((node: HTMLDivElement | null) => {
-      if (node !== null) {
-        setTimeout(() => {
-          sectionsReferences.current[sectionName] = node;
-          setSectionsPositions(currentSectionsPositions => ({
-            ...currentSectionsPositions,
-            [sectionName]: getDimensions(node),
-          }));
-        }, 1000);
-      }
-    }, []);
+  const { sectionsReferences, sectionsPositions, useSectionReferenceCallback } =
+    useSectionsReferences();
 
   const setPreviewRef = useSectionReferenceCallback('preview');
   const setAccessRef = useSectionReferenceCallback('access');
@@ -43,6 +29,7 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
   const setDescriptionRef = useSectionReferenceCallback('description');
   const setPracticalInformationsRef = useSectionReferenceCallback('practicalInformations');
   const setTouristicContentsRef = useSectionReferenceCallback('touristicContent');
+  const setSensitiveAreasRef = useSectionReferenceCallback('sensitiveAreasRef');
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
@@ -68,5 +55,6 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
     setDescriptionRef,
     setPracticalInformationsRef,
     setTouristicContentsRef,
+    setSensitiveAreasRef,
   };
 };

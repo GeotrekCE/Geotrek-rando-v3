@@ -11,7 +11,7 @@ interface Props {
 
 const ShowFilters: React.FC<Props> = ({ item, setFilterSelectedOptions, hideLabel = false }) => {
   // The API can send empty item
-  if (item.label === '' && item.options.length === 0) {
+  if (item.label === '' || item.options.length === 0) {
     return null;
   }
   return item.options.length > 10 ? (
@@ -29,10 +29,11 @@ const ShowFilters: React.FC<Props> = ({ item, setFilterSelectedOptions, hideLabe
   ) : (
     <Field
       key={item.id}
-      id={item.id}
       filterState={item}
-      onSelect={(options: Option[]) => {
-        setFilterSelectedOptions(item.id, options);
+      onSelect={(options: Option[], include = true) => {
+        const id = include !== true ? `${item.id}_exclude` : item.id.replace('_exclude', '');
+        const filteredOptions = options.filter(option => option.include === include);
+        setFilterSelectedOptions(id, filteredOptions);
       }}
       hideLabel={hideLabel}
     />

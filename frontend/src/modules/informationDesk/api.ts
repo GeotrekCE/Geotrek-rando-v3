@@ -3,7 +3,8 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawInformationDesk } from './interface';
 
 const fieldsParams = {
-  fields: 'id,name,street,postal_code,municipality,website,email,phone,description,photo_url,type',
+  fields:
+    'id,name,street,postal_code,municipality,website,email,phone,description,photo_url,type,accessibility,latitude,longitude',
 };
 
 export const fetchInformationDesks = (

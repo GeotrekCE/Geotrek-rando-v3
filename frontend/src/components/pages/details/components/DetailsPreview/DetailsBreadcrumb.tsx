@@ -62,7 +62,7 @@ const DetailsBreadcrumb: React.FC<DetailsBreadcrumb> = ({ details, title, type, 
 
   const breadcrumb = [
     {
-      label: intl.formatMessage({ id: 'header.accueil' }),
+      label: intl.formatMessage({ id: 'header.home' }),
       link: '/',
     },
     search &&

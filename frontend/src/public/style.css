@@ -3,10 +3,6 @@
   max-height: 100vh;
 }
 
-.leaflet-bottom {
-  bottom: 32px !important;
-}
-
 .savetiles {
   display: none;
 }

@@ -4,17 +4,18 @@ import { useQuery } from 'react-query';
 import { getFlatPages } from 'modules/flatpage/connector';
 import { MenuItem } from 'modules/header/interface';
 import { getDefaultLanguage } from 'modules/header/utills';
+import { IntlShape, useIntl } from 'react-intl';
 import { FooterConfigInput, FooterConfigOutput, PortalLinkStatic } from './interface';
 
-const getFooterConfig = (): FooterConfigInput => {
+export const getFooterConfig = (): FooterConfigInput => {
   const {
-    publicRuntimeConfig: { footer },
+    publicRuntimeConfig: { footer, footerTopHtml, footerBottomHtml },
   } = getNextConfig();
 
-  return footer;
+  return { ...footer, footerTopHtml, footerBottomHtml };
 };
 
-export const useFooter = (): { config: FooterConfigOutput } => {
+export const useFooter = (): { config: FooterConfigOutput; intl: IntlShape } => {
   const { links, ...rest } = getFooterConfig();
   let nextLinks;
   // If the footer config contains `informationID` keys,the app retrieves "flatpages" to get the corresponding label/url
@@ -37,6 +38,7 @@ export const useFooter = (): { config: FooterConfigOutput } => {
       // If the informationID doesn't match with any flatPage id, it won't be displayed
       .filter(Boolean) as PortalLinkStatic[];
   }
+  const intl = useIntl();
 
-  return { config: { links: nextLinks ?? (links as PortalLinkStatic[]), ...rest } };
+  return { config: { links: nextLinks ?? (links as PortalLinkStatic[]), ...rest }, intl };
 };
