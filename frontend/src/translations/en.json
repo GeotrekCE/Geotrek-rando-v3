@@ -258,9 +258,6 @@
   },
   "tooltip": {
     "print": "Print",
-    "download": "Download",
-    "report": "Report a problem",
-    "book": "Booking",
     "show3D": "Show 3D",
     "difficulty": "Difficulty",
     "period": "Period",
