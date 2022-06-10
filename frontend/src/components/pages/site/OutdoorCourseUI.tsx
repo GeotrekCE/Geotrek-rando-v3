@@ -314,7 +314,8 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                     )}
 
                     {getGlobalConfig().enableMeteoWidget &&
-                      navigator && navigator.onLine &&
+                      typeof navigator !== 'undefined' &&
+                      navigator.onLine &&
                       outdoorCourseContent.cities_raw &&
                       outdoorCourseContent.cities_raw[0] && (
                         <DetailsSection>

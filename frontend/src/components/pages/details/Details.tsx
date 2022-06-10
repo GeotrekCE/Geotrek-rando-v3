@@ -235,7 +235,8 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       </div>
                     )}
                     {getGlobalConfig().enableMeteoWidget &&
-                      navigator && navigator.onLine &&
+                      typeof navigator !== 'undefined' &&
+                      navigator.onLine &&
                       details.cities_raw &&
                       details.cities_raw[0] && (
                         <DetailsSection>
@@ -434,20 +435,22 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       </div>
                     )}
 
-                    {details.reservation && details.reservation_id &&
-                      navigator && navigator.onLine && (
-                      <DetailsSection
-                        className={marginDetailsChild}
-                        htmlId="details_reservation"
-                        titleId="details.reservation"
-                      >
-                        <DetailsReservationWidget
-                          language={language}
-                          reservation={details.reservation}
-                          id={details.reservation_id}
-                        />
-                      </DetailsSection>
-                    )}
+                    {details.reservation &&
+                      details.reservation_id &&
+                      typeof navigator !== 'undefined' &&
+                      navigator.onLine && (
+                        <DetailsSection
+                          className={marginDetailsChild}
+                          htmlId="details_reservation"
+                          titleId="details.reservation"
+                        >
+                          <DetailsReservationWidget
+                            language={language}
+                            reservation={details.reservation}
+                            id={details.reservation_id}
+                          />
+                        </DetailsSection>
+                      )}
                   </div>
                   <Footer />
                 </div>

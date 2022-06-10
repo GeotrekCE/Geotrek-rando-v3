@@ -334,7 +334,8 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     )}
 
                     {getGlobalConfig().enableMeteoWidget &&
-                      navigator && navigator.onLine &&
+                      typeof navigator !== 'undefined' &&
+                      navigator.onLine &&
                       outdoorSiteContent.cities_raw &&
                       outdoorSiteContent.cities_raw[0] && (
                         <DetailsSection>
