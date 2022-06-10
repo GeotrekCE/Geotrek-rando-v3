@@ -15,6 +15,8 @@ import { mockInformationDeskRoute } from 'modules/informationDesk/mocks';
 import { mockLabelRoute } from 'modules/label/mocks';
 import { mockSensitiveAreaRoute } from 'modules/sensitiveArea/mocks';
 import { mockSensitiveAreaPracticeRoute } from 'modules/sensitiveAreaPractice/mocks';
+import { mockTrekRatingRoute } from 'modules/trekRating/mocks';
+import { mockTrekRatingScaleRoute } from 'modules/trekRatingScale/mocks';
 import { mockSignageRoute } from 'modules/signage/mocks';
 import { mockSignageTypeRoute } from 'modules/signageType/mocks';
 import { getGlobalConfig } from 'modules/utils/api.config';
@@ -42,7 +44,7 @@ describe('Details', () => {
       .query({
         language: 'fr',
         fields:
-          'id,name,departure,arrival,cities,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,descent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,departure_city,disabled_infrastructure,accessibilities,source,information_desks,labels,advice,points_reference,children,web_links,elevation_area_url,altimetric_profile,reservation_id,accessibility_signage,accessibility_slope,accessibility_width,accessibility_covering,accessibility_exposure,accessibility_advice,attachments_accessibility,accessibility_level',
+          'id,name,departure,arrival,cities,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,descent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,departure_city,disabled_infrastructure,accessibilities,source,information_desks,labels,advice,points_reference,children,web_links,elevation_area_url,altimetric_profile,reservation_id,accessibility_signage,accessibility_slope,accessibility_width,accessibility_covering,accessibility_exposure,accessibility_advice,attachments_accessibility,accessibility_level,ratings,ratings_description',
         format: 'geojson',
       })
       .reply(200, rawDetailsMock);
@@ -98,6 +100,8 @@ describe('Details', () => {
     mockLabelRoute(1);
     mockSensitiveAreaRoute(1);
     mockSensitiveAreaPracticeRoute(1);
+    mockTrekRatingRoute();
+    mockTrekRatingScaleRoute();
 
     const component = render(
       <QueryClientProvider client={queryClient}>
