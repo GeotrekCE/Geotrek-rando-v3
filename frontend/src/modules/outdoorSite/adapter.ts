@@ -155,7 +155,6 @@ export const adaptOutdoorSitePopupResults = ({
       rawOutdoorSitePopupResult?.properties?.cities
         ?.map(city => cityDictionnary?.[city]?.name ?? '')
         .join(', ') ?? '',
-    //place: cityDictionnary?.[rawOutdoorSitePopupResult?.properties?.cities?.[0]]?.name ?? '',
     imgUrl: getThumbnail(rawOutdoorSitePopupResult.properties.attachments) ?? fallbackImgUri,
   };
 };
