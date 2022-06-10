@@ -48,7 +48,8 @@ export const adaptOutdoorSites = ({
       period: rawOutdoorSite?.period ? rawOutdoorSite?.period : null,
       wind: rawOutdoorSite?.wind ?? [],
       orientation: rawOutdoorSite?.orientation ?? [],
-      place: cityDictionnary?.[rawOutdoorSite?.cities?.[0]]?.name ?? '',
+      place:
+        rawOutdoorSite?.cities?.map(city => cityDictionnary?.[city]?.name ?? '').join(', ') ?? '',
     };
   });
 
@@ -150,7 +151,11 @@ export const adaptOutdoorSitePopupResults = ({
 }): PopupResult => {
   return {
     title: rawOutdoorSitePopupResult.properties.name,
-    place: cityDictionnary?.[rawOutdoorSitePopupResult?.properties?.cities?.[0]]?.name ?? '',
+    place:
+      rawOutdoorSitePopupResult?.properties?.cities
+        ?.map(city => cityDictionnary?.[city]?.name ?? '')
+        .join(', ') ?? '',
+    //place: cityDictionnary?.[rawOutdoorSitePopupResult?.properties?.cities?.[0]]?.name ?? '',
     imgUrl: getThumbnail(rawOutdoorSitePopupResult.properties.attachments) ?? fallbackImgUri,
   };
 };
