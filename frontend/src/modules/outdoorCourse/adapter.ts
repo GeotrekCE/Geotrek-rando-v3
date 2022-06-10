@@ -37,8 +37,7 @@ export const adaptOutdoorCourses = ({
         ? `${Math.round(rawOutdoorCourse.length)}${dataUnits.distance}`
         : null,
       height: rawOutdoorCourse.height ? `${rawOutdoorCourse.height}${dataUnits.distance}` : null,
-      place:
-        rawOutdoorCourse?.cities?.map(city => cityDictionnary?.[city]?.name ?? '').join(', ') ?? '',
+      place: cityDictionnary?.[rawOutdoorCourse?.cities?.[0]]?.name ?? '',
     };
   });
 };
