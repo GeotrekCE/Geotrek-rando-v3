@@ -1,3 +1,4 @@
+import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { getAttachments, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
@@ -49,6 +50,7 @@ export const adaptOutdoorCourseDetails = ({
   outdoorRating,
   outdoorRatingScale,
   outdoorCourseType,
+  sensitiveAreas,
   signage,
 }: {
   rawOutdoorCourseDetails: RawOutdoorCourseDetails;
@@ -58,6 +60,7 @@ export const adaptOutdoorCourseDetails = ({
   outdoorRating: OutdoorRatingChoices;
   outdoorRatingScale: OutdoorRatingScale[];
   outdoorCourseType: OutdoorSiteTypeChoices;
+  sensitiveAreas: SensitiveArea[];
   signage: SignageDictionary | null;
 }): OutdoorCourseDetails => {
   return {
@@ -97,6 +100,7 @@ export const adaptOutdoorCourseDetails = ({
     ratingsDescription: rawOutdoorCourseDetails.properties.ratings_description,
     typeCourse: outdoorCourseType[Number(rawOutdoorCourseDetails?.properties?.type)],
     id: rawOutdoorCourseDetails.id,
+    sensitiveAreas,
     signage,
   };
 };
