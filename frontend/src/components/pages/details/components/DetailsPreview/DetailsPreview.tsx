@@ -133,11 +133,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       </div>
       <div id="details_infoIcons" className="flex flex-wrap">
         {informations.difficulty && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.difficulty' })}
-            invertPosition={false}
-            id={intl.formatMessage({ id: 'tooltip.difficulty' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.difficulty' })}>
             <RemoteIconInformation
               iconUri={informations.difficulty.pictogramUri}
               className={classNameInformation}
@@ -147,22 +143,14 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           </ToolTip>
         )}
         {informations.period && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.period' })}
-            invertPosition={false}
-            id={intl.formatMessage({ id: 'tooltip.period' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.period' })}>
             <LocalIconInformation icon={Calendar} className={classNameInformation}>
               {informations.period}
             </LocalIconInformation>
           </ToolTip>
         )}
         {informations.orientation && informations.orientation.length > 0 && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.orientation' })}
-            invertPosition={false}
-            id={intl.formatMessage({ id: 'tooltip.orientation' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.orientation' })}>
             <LocalIconInformation icon={Orientation} className={classNameInformation}>
               {informations.orientation
                 .map(w => intl.formatMessage({ id: `Wind.${w}` }))
@@ -171,22 +159,14 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           </ToolTip>
         )}
         {informations.wind && informations.wind.length > 0 && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.wind' })}
-            invertPosition={false}
-            id={intl.formatMessage({ id: 'tooltip.wind' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.wind' })}>
             <LocalIconInformation icon={Wind} className={classNameInformation}>
               {informations.wind.map(w => intl.formatMessage({ id: `Wind.${w}` })).join(' - ')}
             </LocalIconInformation>
           </ToolTip>
         )}
         {informations.date && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.date' })}
-            invertPosition={false}
-            id={intl.formatMessage({ id: 'tooltip.date' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.date' })}>
             <LocalIconInformation icon={Calendar} className={classNameInformation}>
               {informations.date.beginDate === informations.date.endDate ? (
                 <FormattedMessage
@@ -206,44 +186,28 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           </ToolTip>
         )}
         {informations.duration && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.duration' })}
-            invertPosition={false}
-            id={intl.formatMessage({ id: 'tooltip.duration' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.duration' })}>
             <LocalIconInformation icon={Clock} className={classNameInformation}>
               {informations.duration}
             </LocalIconInformation>
           </ToolTip>
         )}
         {informations.distance && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.distance' })}
-            invertPosition={false}
-            id={intl.formatMessage({ id: 'tooltip.distance' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.distance' })}>
             <LocalIconInformation icon={CodeBrackets} className={classNameInformation}>
               {informations.distance}
             </LocalIconInformation>
           </ToolTip>
         )}
         {informations.elevation && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.elevation' })}
-            invertPosition={false}
-            id={intl.formatMessage({ id: 'tooltip.elevation' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.elevation' })}>
             <LocalIconInformation icon={TrendingUp} className={classNameInformation}>
               {informations.elevation}
             </LocalIconInformation>
           </ToolTip>
         )}
         {informations.negativeElevation && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.negativeElevation' })}
-            invertPosition={false}
-            id={intl.formatMessage({ id: 'tooltip.negativeElevation' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.negativeElevation' })}>
             <LocalIconInformation
               icon={TrendingUp}
               iconProps={{
@@ -256,11 +220,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           </ToolTip>
         )}
         {informations.maxElevation && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.altitude' })}
-            invertPosition={false}
-            id={intl.formatMessage({ id: 'tooltip.altitude' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.altitude' })}>
             <LocalIconInformation icon={Altitude} className={classNameInformation}>
               {informations.maxElevation}
               {dataUnits.distance}
@@ -268,33 +228,21 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           </ToolTip>
         )}
         {informations.meetingPoint && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.assemblyPoint' })}
-            invertPosition={false}
-            id={intl.formatMessage({ id: 'tooltip.assemblyPoint' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.assemblyPoint' })}>
             <LocalIconInformation icon={MeetingPoint} className={classNameInformation}>
               {informations.meetingPoint}
             </LocalIconInformation>
           </ToolTip>
         )}
         {informations.participantNumber && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.numberOfParticipants' })}
-            invertPosition={false}
-            id={intl.formatMessage({ id: 'tooltip.numberOfParticipants' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.numberOfParticipants' })}>
             <LocalIconInformation icon={Participant} className={classNameInformation}>
               {informations.participantNumber}
             </LocalIconInformation>
           </ToolTip>
         )}
         {informations.courseType && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.courseType' })}
-            invertPosition={false}
-            id={intl.formatMessage({ id: 'tooltip.courseType' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.courseType' })}>
             <RemoteIconInformation
               iconUri={informations.courseType.pictogramUri}
               className={classNameInformation}
@@ -305,12 +253,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         )}
         {Number(informations?.networks?.length) > 0 &&
           informations.networks?.map((network, i) => (
-            <ToolTip
-              toolTipText={intl.formatMessage({ id: 'tooltip.network' })}
-              invertPosition={false}
-              key={i}
-              id={intl.formatMessage({ id: 'tooltip.network' })}
-            >
+            <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.network' })} key={i}>
               <RemoteIconInformation
                 iconUri={network.pictogramUri}
                 className={classNameInformation}

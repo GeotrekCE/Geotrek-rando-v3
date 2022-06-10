@@ -87,11 +87,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
 
       <div className="flex space-x-4">
         {details.pdfUri && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.print' })}
-            invertPosition
-            id={intl.formatMessage({ id: 'tooltip.print' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.print' })} onBottom>
             <DetailsButton url={details.pdfUri}>
               <Printer size={30} />
             </DetailsButton>
@@ -99,11 +95,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
         )}
 
         {dropdownButtonOptions.length > 0 && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'details.download' })}
-            invertPosition
-            id={intl.formatMessage({ id: 'details.download' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'details.download' })} onBottom>
             <DetailsButtonDropdown options={dropdownButtonOptions}>
               <Download className="text-primary1" size={size} />
             </DetailsButtonDropdown>
@@ -111,11 +103,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
         )}
 
         {Number(details.id) && !hideReport && getGlobalConfig().enableReport && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'report.title' })}
-            invertPosition
-            id={intl.formatMessage({ id: 'report.title' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'report.title' })} onBottom>
             <DetailsButton url="#details_report" onClick={() => setReportVisibility(true)}>
               <AlertTriangle size={size} />
             </DetailsButton>
@@ -126,11 +114,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
           (details as Details).reservation_id &&
           getGlobalConfig().reservationPartner &&
           getGlobalConfig().reservationProject && (
-            <ToolTip
-              toolTipText={intl.formatMessage({ id: 'search.book' })}
-              invertPosition
-              id={intl.formatMessage({ id: 'search.book' })}
-            >
+            <ToolTip toolTipText={intl.formatMessage({ id: 'search.book' })} onBottom>
               <DetailsButton url="#details_reservation">
                 <Reservation width={30} height={30} />
               </DetailsButton>
@@ -138,11 +122,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
           )}
 
         {is3DfeatureEnabled && (
-          <ToolTip
-            toolTipText={intl.formatMessage({ id: 'tooltip.show3D' })}
-            invertPosition
-            id={intl.formatMessage({ id: 'tooltip.show3D' })}
-          >
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.show3D' })} onBottom>
             <DetailsButton onClick={() => setOpen3D(true)}>
               <ThreeDMap size={size} />
             </DetailsButton>

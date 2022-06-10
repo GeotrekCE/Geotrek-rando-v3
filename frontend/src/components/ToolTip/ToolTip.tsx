@@ -7,7 +7,7 @@ interface Props {
   toolTipText?: string;
   color?: string;
   backgroundColor?: string;
-  invertPosition: boolean;
+  onBottom?: boolean;
   role?: string;
   id?: string;
 }
@@ -17,39 +17,22 @@ const ToolTipGT: FC<Props> = ({
   toolTipText,
   color = colorPalette.primary1,
   backgroundColor = colorPalette.primary2,
-  invertPosition,
+  onBottom = false,
   role = 'tooltip',
-  id,
+  id = `tooltip-${Math.random().toString(36).substring(2, 9)}`,
 }) => (
-  <>
-    {id !== undefined && (
-      <ToolTip role={role} id={id}>
-        {children}
-        <ToolTipText
-          invertPosition={invertPosition}
-          color={color}
-          bgcolor={backgroundColor}
-          aria-describedby={id}
-          className="tooltipSpan"
-        >
-          {toolTipText}
-        </ToolTipText>
-      </ToolTip>
-    )}
-    {id === undefined && (
-      <ToolTip role={role}>
-        {children}
-        <ToolTipText
-          invertPosition={invertPosition}
-          color={color}
-          bgcolor={backgroundColor}
-          className="tooltipSpan"
-        >
-          {toolTipText}
-        </ToolTipText>
-      </ToolTip>
-    )}
-  </>
+  <ToolTip role={role} aria-describedby={id}>
+    {children}
+    <ToolTipText
+      onBottom={onBottom}
+      color={color}
+      bgcolor={backgroundColor}
+      id={id}
+      className="tooltipSpan"
+    >
+      {toolTipText}
+    </ToolTipText>
+  </ToolTip>
 );
 
 export default ToolTipGT;
