@@ -53,7 +53,8 @@
       "length": "Largo",
       "structures": "Estructura",
       "clearAll": "Borrar todo",
-      "filters": "Filtros"
+      "filters": "Filtros",
+      "labels": "Otros"
     },
     "textFilter": "Buscar...",
     "beginDateFilter": "Fecha de inicio",

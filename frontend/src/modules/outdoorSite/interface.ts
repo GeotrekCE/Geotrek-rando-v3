@@ -1,4 +1,5 @@
 import { Bbox, WebLink } from 'modules/details/interface';
+import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import {
   Attachment,
   LineStringGeometry,
@@ -111,4 +112,5 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   ratingsDescription: string;
   signage: SignageDictionary | null;
   typeSite?: OutdoorSiteType;
+  sensitiveAreas: SensitiveArea[];
 }

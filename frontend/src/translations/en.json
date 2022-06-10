@@ -55,7 +55,8 @@
       "length": "Length",
       "structures": "Structure",
       "clearAll": "Clear all",
-      "filters": "Filters"
+      "filters": "Filters",
+      "labels": "Others"
     },
     "textFilter": "Search...",
     "beginDateFilter": "Start date",

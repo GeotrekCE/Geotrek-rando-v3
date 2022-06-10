@@ -53,7 +53,8 @@
       "length": "Llargada",
       "structures": "Estructura",
       "clearAll": "Esborrar-ho tot",
-      "filters": "Filtres"
+      "filters": "Filtres",
+      "labels": "Altres"
     },
     "textFilter": "Cercar...",
     "beginDateFilter": "Data d'inici",

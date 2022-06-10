@@ -3,9 +3,11 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawSensitiveArea } from './interface';
 
 export const fetchSensitiveAreas = (
-  trekId: number,
+  type: 'trek' | 'outdoorSite' | 'outdoorCourse',
+  id: number,
   query: APIQuery,
-): Promise<APIResponseForList<RawSensitiveArea>> =>
-  GeotrekAPI.get(`/sensitivearea`, { params: { ...query, period: 'ignore', trek: trekId } }).then(
-    r => r.data,
-  );
+): Promise<APIResponseForList<RawSensitiveArea>> => {
+  const typeKey = type.startsWith('outdoor') ? `near_${type.toLowerCase()}` : 'trek';
+  const params = { ...query, period: 'ignore', [typeKey]: id };
+  return GeotrekAPI.get(`/sensitivearea`, { params }).then(r => r.data);
+};

@@ -29,6 +29,7 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
   const setDescriptionRef = useSectionReferenceCallback('description');
   const setPracticalInformationsRef = useSectionReferenceCallback('practicalInformations');
   const setTouristicContentsRef = useSectionReferenceCallback('touristicContent');
+  const setSensitiveAreasRef = useSectionReferenceCallback('sensitiveAreasRef');
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
@@ -54,5 +55,6 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
     setDescriptionRef,
     setPracticalInformationsRef,
     setTouristicContentsRef,
+    setSensitiveAreasRef,
   };
 };
