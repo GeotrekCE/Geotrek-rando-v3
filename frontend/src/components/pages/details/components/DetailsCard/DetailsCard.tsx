@@ -83,15 +83,21 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
               {isFullscreen &&
                 attachments &&
                 attachments.length > 0 &&
-                navigator &&
+                typeof navigator !== 'undefined' &&
                 navigator?.onLine && <DetailsCoverCarousel attachments={attachments} />}
               {!isFullscreen && (
                 <DetailsCardCarousel
                   thumbnailUris={
-                    navigator && navigator?.onLine ? thumbnailUris : thumbnailUris.slice(0, 1)
+                    typeof navigator !== 'undefined' && navigator?.onLine
+                      ? thumbnailUris
+                      : thumbnailUris.slice(0, 1)
                   }
                   height={heightState}
-                  onClickImage={navigator && navigator?.onLine ? toggleFullscreen : undefined}
+                  onClickImage={
+                    typeof navigator !== 'undefined' && navigator?.onLine
+                      ? toggleFullscreen
+                      : undefined
+                  }
                 />
               )}
             </>
