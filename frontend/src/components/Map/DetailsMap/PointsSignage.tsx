@@ -16,7 +16,7 @@ export type PointsSignageProps = {
 type Locations = {
   description: string;
   name: string;
-  imageUrl: string | undefined | null;
+  imageUrl: string | null;
   pictogramUri: string;
   position: RawCoordinate2D;
   type: string;
@@ -52,9 +52,7 @@ export const PointsSignage: React.FC<PointsSignageProps> = ({ signage }) => {
         >
           <StyledTooltip>
             <div className="flex flex-col">
-              {location.imageUrl !== undefined && location.imageUrl !== null && (
-                <CoverImage src={location.imageUrl} alt="" />
-              )}
+              {location.imageUrl !== null && <CoverImage src={location.imageUrl} alt="" />}
               <div className="p-4">
                 <div className="text-P2 mb-1 text-greyDarkColored">{location.type}</div>
                 <Name className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">
