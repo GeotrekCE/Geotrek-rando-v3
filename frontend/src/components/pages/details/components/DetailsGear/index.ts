@@ -1,0 +1,1 @@
+export { DetailsGear } from './DetailsGear';

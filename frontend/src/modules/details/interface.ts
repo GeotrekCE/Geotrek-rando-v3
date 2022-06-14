@@ -88,6 +88,7 @@ export interface RawDetailsProperties {
   source: number[];
   themes: number[];
   web_links: RawWebLink[];
+  gear: string | null;
   ratings: number[];
   ratings_description: string;
 }
@@ -102,6 +103,7 @@ export interface DetailsHtml {
   description: string;
   disabledInfrastructure: string;
   advice: string;
+  gear: string | null;
   ratings: TrekRatingWithScale[];
   ratingsDescription: string;
 }
