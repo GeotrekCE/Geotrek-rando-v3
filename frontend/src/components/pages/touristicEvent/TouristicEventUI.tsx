@@ -123,7 +123,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                         className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                       >
                         {touristicEventContent.attachments.length > 1 &&
-                        navigator &&
+                        typeof navigator !== 'undefined' &&
                         navigator?.onLine ? (
                           <DetailsCoverCarousel
                             attachments={touristicEventContent.attachments}
@@ -262,6 +262,8 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                       )}
 
                       {getGlobalConfig().enableMeteoWidget &&
+                        typeof navigator !== 'undefined' &&
+                        navigator.onLine &&
                         touristicEventContent.cities_raw &&
                         touristicEventContent.cities_raw[0] && (
                           <DetailsSection>

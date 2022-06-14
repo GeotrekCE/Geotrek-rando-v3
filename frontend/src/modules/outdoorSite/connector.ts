@@ -1,3 +1,4 @@
+import { getSensitiveAreas } from 'modules/sensitiveArea/connector';
 import { getSignage } from 'modules/signage/connector';
 import { getCities } from '../city/connector';
 import { getThemes } from '../filters/theme/connector';
@@ -76,6 +77,7 @@ export const getOutdoorSiteDetails = async (
       outdoorRatingScale,
       outdoorSiteType,
       signage,
+      sensitiveAreas,
     ] = await Promise.all([
       getTrekResults(language, { near_outdoorsite: Number(id) }),
       getOutdoorPractices(language),
@@ -84,6 +86,9 @@ export const getOutdoorSiteDetails = async (
       getOutdoorRatingScale(language),
       getOutdoorSiteType(language),
       getSignage(language, id, 'OUTDOOR_SITE'),
+      getGlobalConfig().enableSensitiveAreas
+        ? getSensitiveAreas('outdoorSite', Number(id), language)
+        : [],
     ]);
 
     return adaptOutdoorSiteDetails({
@@ -103,6 +108,7 @@ export const getOutdoorSiteDetails = async (
       outdoorRating,
       outdoorRatingScale,
       outdoorSiteType,
+      sensitiveAreas,
       signage,
     });
   } catch (e) {

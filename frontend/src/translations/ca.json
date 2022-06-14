@@ -53,7 +53,8 @@
       "length": "Llargada",
       "structures": "Estructura",
       "clearAll": "Esborrar-ho tot",
-      "filters": "Filtres"
+      "filters": "Filtres",
+      "labels": "Altres"
     },
     "textFilter": "Cercar...",
     "map": {
@@ -211,5 +212,23 @@
   "dates": {
     "singleDate": "el {date}",
     "multipleDates": "del{beginDate} al {endDate}"
+  },
+  "tooltip": {
+    "print": "Imprimir",
+    "show3D": "Mostra 3D",
+    "difficulty": "Dificultat",
+    "period": "Període",
+    "orientation": "Orientació",
+    "wind": "Vent",
+    "date": "Data",
+    "duration": "Durada",
+    "distance": "Distància",
+    "elevation": "Elevació positiva",
+    "negativeElevation": "Elevació positiva",
+    "altitude": "Altitud",
+    "assemblyPoint": "Punt d'ensamblatge",
+    "numberOfParticipants": "Nombre de participants",
+    "courseType": "Tipus de cursa",
+    "network": "Xarxa"
   }
 }

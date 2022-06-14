@@ -76,7 +76,9 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
               <Modal>
                 {({ toggleFullscreen }) => (
                   <div id="touristicContent_cover">
-                    {touristicContent.attachments.length > 1 && navigator && navigator?.onLine ? (
+                    {touristicContent.attachments.length > 1 &&
+                    typeof navigator !== 'undefined' &&
+                    navigator?.onLine ? (
                       <DetailsCoverCarousel
                         attachments={touristicContent.attachments}
                         onClickImage={toggleFullscreen}
@@ -189,6 +191,8 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   </DetailsSection>
                 )}
                 {getGlobalConfig().enableMeteoWidget &&
+                  typeof navigator !== 'undefined' &&
+                  navigator.onLine &&
                   touristicContent.cities_raw &&
                   touristicContent.cities_raw[0] && (
                     <DetailsSection>

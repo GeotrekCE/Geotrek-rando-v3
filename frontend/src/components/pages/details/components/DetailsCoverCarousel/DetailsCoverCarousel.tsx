@@ -10,7 +10,8 @@ export const DetailsCoverCarousel: React.FC<DetailsCoverCarouselProps> = ({
   attachments,
   onClickImage,
 }) => {
-  const files = navigator && navigator?.onLine ? attachments : attachments.slice(0, 1);
+  const files =
+    typeof navigator !== 'undefined' && navigator?.onLine ? attachments : attachments.slice(0, 1);
 
   return (
     <LargeCarousel className="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop">

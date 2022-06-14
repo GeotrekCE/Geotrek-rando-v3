@@ -1,4 +1,5 @@
 import { Bbox } from 'modules/details/interface';
+import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import {
   Attachment,
   LineStringGeometry,
@@ -87,6 +88,6 @@ export interface OutdoorCourseDetails extends OutdoorCourse {
   ratings: OutdoorRatingWithScale[];
   ratingsDescription: string;
   typeCourse?: OutdoorCourseType;
-
+  sensitiveAreas: SensitiveArea[];
   signage: SignageDictionary | null;
 }

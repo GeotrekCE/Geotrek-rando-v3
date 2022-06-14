@@ -21,6 +21,7 @@ import { Label } from 'modules/label/interface';
 import { TrekResult } from 'modules/results/interface';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
+import { TrekRatingWithScale } from '../trekRating/interface';
 
 export interface RawDetails {
   type: string;
@@ -88,6 +89,8 @@ export interface RawDetailsProperties {
   themes: number[];
   web_links: RawWebLink[];
   gear: string | null;
+  ratings: number[];
+  ratings_description: string;
 }
 
 // Fields parsed with react-html-parser in page
@@ -101,6 +104,8 @@ export interface DetailsHtml {
   disabledInfrastructure: string;
   advice: string;
   gear: string | null;
+  ratings: TrekRatingWithScale[];
+  ratingsDescription: string;
 }
 
 export interface DetailsInformation {
