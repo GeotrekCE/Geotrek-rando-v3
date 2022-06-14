@@ -128,394 +128,396 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
         ) : (
           <>
             <Layout>
-              <DetailsHeader
-                sectionsReferences={sectionsReferences}
-                details={details}
-                type={'TREK'}
-              />
-              {details.title !== undefined && <DetailsHeaderMobile title={details.title} />}
-              <div className="flex flex-1" id="details_mainContainer">
-                <div
-                  id="details_informationContainer"
-                  className="flex flex-col w-full relative -top-detailsHeaderMobile desktop:top-0 desktop:w-3/5"
-                >
-                  <OpenMapButton displayMap={displayMobileMap} />
-                  <Modal>
-                    {({ isFullscreen, toggleFullscreen }) => (
-                      <div
-                        id="details_cover"
-                        className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
-                      >
-                        {details.imgs.length > 1 &&
-                        typeof navigator !== 'undefined' &&
-                        navigator?.onLine ? (
-                          <DetailsCoverCarousel
-                            attachments={details.imgs}
-                            onClickImage={toggleFullscreen}
-                          />
-                        ) : (
-                          <ImageWithLegend
-                            attachment={details.imgs[0]}
-                            onClick={toggleFullscreen}
-                          />
-                        )}
-                      </div>
-                    )}
-                  </Modal>
+              <div id="details_container">
+                <DetailsHeader
+                  sectionsReferences={sectionsReferences}
+                  details={details}
+                  type={'TREK'}
+                />
+                {details.title !== undefined && <DetailsHeaderMobile title={details.title} />}
+                <div className="flex flex-1" id="details_mainContainer">
                   <div
-                    id="details_textContainer"
-                    className="desktop:py-0
+                    id="details_informationContainer"
+                    className="flex flex-col w-full relative -top-detailsHeaderMobile desktop:top-0 desktop:w-3/5"
+                  >
+                    <OpenMapButton displayMap={displayMobileMap} />
+                    <Modal>
+                      {({ isFullscreen, toggleFullscreen }) => (
+                        <div
+                          id="details_cover"
+                          className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
+                        >
+                          {details.imgs.length > 1 &&
+                          typeof navigator !== 'undefined' &&
+                          navigator?.onLine ? (
+                            <DetailsCoverCarousel
+                              attachments={details.imgs}
+                              onClickImage={toggleFullscreen}
+                            />
+                          ) : (
+                            <ImageWithLegend
+                              attachment={details.imgs[0]}
+                              onClick={toggleFullscreen}
+                            />
+                          )}
+                        </div>
+                      )}
+                    </Modal>
+                    <div
+                      id="details_textContainer"
+                      className="desktop:py-0
                     relative -top-6 desktop:-top-9
                     flex flex-col"
-                    ref={sectionsContainerRef}
-                  >
-                    <DetailsTopIcons details={details} practice={details.practice ?? undefined} />
+                      ref={sectionsContainerRef}
+                    >
+                      <DetailsTopIcons details={details} practice={details.practice ?? undefined} />
 
-                    <div ref={setPreviewRef} id="details_preview_ref">
-                      <DetailsPreview
-                        className={marginDetailsChild}
-                        informations={details.informations}
-                        place={details.place}
-                        tags={details.tags}
-                        title={details.title}
-                        teaser={details.description_teaser}
-                        ambiance={details.ambiance}
-                        details={details}
-                        trekFamily={trekFamily ?? undefined}
-                        type={'TREK'}
-                        id={id}
-                      />
-                    </div>
-
-                    {details.children.length > 0 && (
-                      <div ref={setChildrenRef} id="details_trekChildren_ref">
-                        <DetailsChildrenSection
-                          trekChildren={details.children.map(child => ({
-                            ...child,
-                            id: `${child.id}`,
-                          }))}
-                          trekId={id}
-                          title={intl.formatMessage(
-                            { id: 'details.childrenFullTitle' },
-                            { count: details.children.length },
-                          )}
-                        />
-                      </div>
-                    )}
-
-                    {details.pois.length > 0 && (
-                      <div ref={setPoisRef} id="details_poi_ref">
-                        <DetailsCardSection
-                          htmlId="details_poi"
-                          title={intl.formatMessage(
-                            { id: 'details.poiFullTitle' },
-                            { count: details.pois.length },
-                          )}
-                          detailsCards={details.pois.map(poi => ({
-                            id: `${poi.id}`,
-                            name: poi.name ?? '',
-                            description: poi.description,
-                            thumbnailUris: poi.thumbnailUris,
-                            attachments: poi.attachments,
-                            iconUri: poi.type.pictogramUri,
-                            iconName: poi.type.label,
-                          }))}
-                          type="POI"
-                        />
-                      </div>
-                    )}
-
-                    {details.description && (
-                      <div ref={setDescriptionRef} id="details_description_ref">
-                        <DetailsDescription
-                          descriptionHtml={details.description}
-                          departure={details.departure}
-                          arrival={details.arrival}
-                          cities={details.cities}
+                      <div ref={setPreviewRef} id="details_preview_ref">
+                        <DetailsPreview
                           className={marginDetailsChild}
+                          informations={details.informations}
+                          place={details.place}
+                          tags={details.tags}
+                          title={details.title}
+                          teaser={details.description_teaser}
+                          ambiance={details.ambiance}
+                          details={details}
+                          trekFamily={trekFamily ?? undefined}
+                          type={'TREK'}
+                          id={id}
                         />
                       </div>
-                    )}
-                    {getGlobalConfig().enableMeteoWidget &&
-                      typeof navigator !== 'undefined' &&
-                      navigator.onLine &&
-                      details.cities_raw &&
-                      details.cities_raw[0] && (
-                        <DetailsSection>
-                          <DetailsMeteoWidget code={details.cities_raw[0]} />
+
+                      {details.children.length > 0 && (
+                        <div ref={setChildrenRef} id="details_trekChildren_ref">
+                          <DetailsChildrenSection
+                            trekChildren={details.children.map(child => ({
+                              ...child,
+                              id: `${child.id}`,
+                            }))}
+                            trekId={id}
+                            title={intl.formatMessage(
+                              { id: 'details.childrenFullTitle' },
+                              { count: details.children.length },
+                            )}
+                          />
+                        </div>
+                      )}
+
+                      {details.pois.length > 0 && (
+                        <div ref={setPoisRef} id="details_poi_ref">
+                          <DetailsCardSection
+                            htmlId="details_poi"
+                            title={intl.formatMessage(
+                              { id: 'details.poiFullTitle' },
+                              { count: details.pois.length },
+                            )}
+                            detailsCards={details.pois.map(poi => ({
+                              id: `${poi.id}`,
+                              name: poi.name ?? '',
+                              description: poi.description,
+                              thumbnailUris: poi.thumbnailUris,
+                              attachments: poi.attachments,
+                              iconUri: poi.type.pictogramUri,
+                              iconName: poi.type.label,
+                            }))}
+                            type="POI"
+                          />
+                        </div>
+                      )}
+
+                      {details.description && (
+                        <div ref={setDescriptionRef} id="details_description_ref">
+                          <DetailsDescription
+                            descriptionHtml={details.description}
+                            departure={details.departure}
+                            arrival={details.arrival}
+                            cities={details.cities}
+                            className={marginDetailsChild}
+                          />
+                        </div>
+                      )}
+                      {getGlobalConfig().enableMeteoWidget &&
+                        typeof navigator !== 'undefined' &&
+                        navigator.onLine &&
+                        details.cities_raw &&
+                        details.cities_raw[0] && (
+                          <DetailsSection>
+                            <DetailsMeteoWidget code={details.cities_raw[0]} />
+                          </DetailsSection>
+                        )}
+
+                      {displayAltimetricProfile === true && (
+                        <DetailsSection
+                          htmlId="details_altimetricProfile"
+                          titleId="details.altimetricProfile.title"
+                          className={marginDetailsChild}
+                        >
+                          <div className="h-90" id="altimetric-profile"></div>
                         </DetailsSection>
                       )}
 
-                    {displayAltimetricProfile === true && (
-                      <DetailsSection
-                        htmlId="details_altimetricProfile"
-                        titleId="details.altimetricProfile.title"
-                        className={marginDetailsChild}
-                      >
-                        <div className="h-90" id="altimetric-profile"></div>
-                      </DetailsSection>
-                    )}
+                      {details.sensitiveAreas.length > 0 && (
+                        <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
+                          <DetailsSection
+                            htmlId="details_sensitiveAreas"
+                            titleId="details.sensitiveAreas.title"
+                            className={marginDetailsChild}
+                          >
+                            <span className="mb-4 desktop:mb-8">
+                              <FormattedMessage id="details.sensitiveAreas.intro" />
+                            </span>
+                            {details.sensitiveAreas.map((sensitiveArea, i) => (
+                              <DetailsSensitiveArea
+                                key={i}
+                                {...sensitiveArea}
+                                className="my-4 desktop:my-8 ml-3 desktop:ml-6"
+                              />
+                            ))}
+                          </DetailsSection>
+                        </div>
+                      )}
 
-                    {details.sensitiveAreas.length > 0 && (
-                      <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
+                      {(details.labels.length > 0 ||
+                        (details.advice !== null && details.advice.length > 0)) && (
                         <DetailsSection
-                          htmlId="details_sensitiveAreas"
-                          titleId="details.sensitiveAreas.title"
+                          htmlId="details_recommandations"
+                          titleId="details.recommandations"
                           className={marginDetailsChild}
                         >
-                          <span className="mb-4 desktop:mb-8">
-                            <FormattedMessage id="details.sensitiveAreas.intro" />
-                          </span>
-                          {details.sensitiveAreas.map((sensitiveArea, i) => (
-                            <DetailsSensitiveArea
+                          {details.advice !== null && details.advice.length > 0 && (
+                            <DetailsAdvice text={details.advice} className="mb-4 desktop:mb-6" />
+                          )}
+                          {details.labels.map((label, i) => (
+                            <DetailsLabel
                               key={i}
-                              {...sensitiveArea}
-                              className="my-4 desktop:my-8 ml-3 desktop:ml-6"
+                              id={label.id}
+                              name={label.name}
+                              advice={label.advice}
+                              pictogramUri={label.pictogramUri}
+                              className={i < details.labels.length - 1 ? 'mt-4 desktop:mt-6' : ''}
                             />
                           ))}
                         </DetailsSection>
-                      </div>
-                    )}
+                      )}
 
-                    {(details.labels.length > 0 ||
-                      (details.advice !== null && details.advice.length > 0)) && (
-                      <DetailsSection
-                        htmlId="details_recommandations"
-                        titleId="details.recommandations"
-                        className={marginDetailsChild}
-                      >
-                        {details.advice !== null && details.advice.length > 0 && (
-                          <DetailsAdvice text={details.advice} className="mb-4 desktop:mb-6" />
-                        )}
-                        {details.labels.map((label, i) => (
-                          <DetailsLabel
-                            key={i}
-                            id={label.id}
-                            name={label.name}
-                            advice={label.advice}
-                            pictogramUri={label.pictogramUri}
-                            className={i < details.labels.length - 1 ? 'mt-4 desktop:mt-6' : ''}
-                          />
-                        ))}
-                      </DetailsSection>
-                    )}
+                      {(details.informationDesks.length > 0 ||
+                        details.transport ||
+                        details.access) && (
+                        <div ref={setPracticalInformationsRef} id="details_practicalInformationRef">
+                          {details.informationDesks.length > 0 && (
+                            <DetailsSection
+                              htmlId="details_informationDesks"
+                              titleId="details.informationDesks"
+                              className={marginDetailsChild}
+                            >
+                              {details.informationDesks.map((informationDesk, i) => (
+                                <DetailsInformationDesk key={i} {...informationDesk} />
+                              ))}
+                            </DetailsSection>
+                          )}
 
-                    {(details.informationDesks.length > 0 ||
-                      details.transport ||
-                      details.access) && (
-                      <div ref={setPracticalInformationsRef} id="details_practicalInformationRef">
-                        {details.informationDesks.length > 0 && (
+                          {details.transport && (
+                            <DetailsSection
+                              htmlId="details_transport"
+                              titleId="details.transport"
+                              className={marginDetailsChild}
+                            >
+                              <HtmlText>{parse(details.transport)}</HtmlText>
+                            </DetailsSection>
+                          )}
+
+                          {(details.access || details.parking) && (
+                            <DetailsSection
+                              htmlId="details_accessParking"
+                              titleId="details.access_parking"
+                              className={marginDetailsChild}
+                            >
+                              {details.access && (
+                                <HtmlText id="details_access">{parse(details.access)}</HtmlText>
+                              )}
+                              {details.parking && (
+                                <div className="mt-4" id="details_parking">
+                                  <p className="font-bold desktop:text-H4">
+                                    {`${intl.formatMessage({ id: 'details.stationnement' })} :`}
+                                  </p>
+                                  <HtmlText>{parse(details.parking)}</HtmlText>
+                                </div>
+                              )}
+                            </DetailsSection>
+                          )}
+                        </div>
+                      )}
+
+                      {shouldDisplayAccessibility(details) && (
+                        <div ref={setAccessibilityRef} id="details_accessibility_ref">
                           <DetailsSection
-                            htmlId="details_informationDesks"
-                            titleId="details.informationDesks"
+                            htmlId="details_accessibility"
+                            titleId="details.accessibility"
                             className={marginDetailsChild}
                           >
-                            {details.informationDesks.map((informationDesk, i) => (
-                              <DetailsInformationDesk key={i} {...informationDesk} />
+                            <Accessibility details={details} language={language} />
+                          </DetailsSection>
+                        </div>
+                      )}
+
+                      {details.webLinks?.length > 0 && (
+                        <div id="details_more_ref">
+                          <DetailsSection
+                            htmlId="details_more"
+                            titleId="details.more"
+                            className={marginDetailsChild}
+                          >
+                            {details.webLinks.map((link, i) => (
+                              <MoreLink key={i} link={link} />
                             ))}
                           </DetailsSection>
-                        )}
+                        </div>
+                      )}
 
-                        {details.transport && (
-                          <DetailsSection
-                            htmlId="details_transport"
-                            titleId="details.transport"
-                            className={marginDetailsChild}
-                          >
-                            <HtmlText>{parse(details.transport)}</HtmlText>
-                          </DetailsSection>
-                        )}
-
-                        {(details.access || details.parking) && (
-                          <DetailsSection
-                            htmlId="details_accessParking"
-                            titleId="details.access_parking"
-                            className={marginDetailsChild}
-                          >
-                            {details.access && (
-                              <HtmlText id="details_access">{parse(details.access)}</HtmlText>
-                            )}
-                            {details.parking && (
-                              <div className="mt-4" id="details_parking">
-                                <p className="font-bold desktop:text-H4">
-                                  {`${intl.formatMessage({ id: 'details.stationnement' })} :`}
-                                </p>
-                                <HtmlText>{parse(details.parking)}</HtmlText>
-                              </div>
-                            )}
-                          </DetailsSection>
-                        )}
-                      </div>
-                    )}
-
-                    {shouldDisplayAccessibility(details) && (
-                      <div ref={setAccessibilityRef} id="details_accessibility_ref">
+                      {details.sources.length > 0 && (
                         <DetailsSection
-                          htmlId="details_accessibility"
-                          titleId="details.accessibility"
+                          htmlId="details_source"
+                          titleId="details.source"
                           className={marginDetailsChild}
                         >
-                          <Accessibility details={details} language={language} />
-                        </DetailsSection>
-                      </div>
-                    )}
-
-                    {details.webLinks?.length > 0 && (
-                      <div id="details_more_ref">
-                        <DetailsSection
-                          htmlId="details_more"
-                          titleId="details.more"
-                          className={marginDetailsChild}
-                        >
-                          {details.webLinks.map((link, i) => (
-                            <MoreLink key={i} link={link} />
+                          {details.sources.map((source, i) => (
+                            <DetailsSource
+                              key={i}
+                              name={source.name}
+                              website={source.website}
+                              pictogramUri={source.pictogramUri}
+                            />
                           ))}
                         </DetailsSection>
-                      </div>
-                    )}
+                      )}
 
-                    {details.sources.length > 0 && (
-                      <DetailsSection
-                        htmlId="details_source"
-                        titleId="details.source"
-                        className={marginDetailsChild}
-                      >
-                        {details.sources.map((source, i) => (
-                          <DetailsSource
-                            key={i}
-                            name={source.name}
-                            website={source.website}
-                            pictogramUri={source.pictogramUri}
+                      {getGlobalConfig().enableReport && (
+                        <div ref={setReportRef}>
+                          <DetailsSection
+                            htmlId="details_report"
+                            titleId="report.title"
+                            className={marginDetailsChild}
+                          >
+                            <Report
+                              displayMobileMap={displayMobileMap}
+                              trekId={details.id}
+                              startPoint={{
+                                type: 'Point',
+                                coordinates:
+                                  'trekDeparture' in details
+                                    ? details.trekDeparture
+                                    : // @ts-ignore next-line
+                                      details.geometry?.coordinates,
+                              }}
+                            />
+                          </DetailsSection>
+                        </div>
+                      )}
+
+                      {details.touristicContents.length > 0 && (
+                        <div ref={setTouristicContentsRef} id="details_touristicContent_ref">
+                          <DetailsCardSection
+                            htmlId="details_touristicContent"
+                            title={intl.formatMessage({ id: 'details.touristicContent' })}
+                            displayBadge
+                            generateUrlFunction={generateTouristicContentUrl}
+                            detailsCards={details.touristicContents.map(touristicContent => ({
+                              id: `${touristicContent.id}`,
+                              name: touristicContent.name ?? '',
+                              place: touristicContent.category.label,
+                              description: touristicContent.descriptionTeaser,
+                              thumbnailUris: touristicContent.thumbnailUris,
+                              attachments: touristicContent.attachments,
+                              iconUri: touristicContent.category.pictogramUri,
+                              iconName: touristicContent.category.label,
+                              logoUri: touristicContent.logoUri ?? undefined,
+                            }))}
+                            type="TOURISTIC_CONTENT"
                           />
-                        ))}
-                      </DetailsSection>
-                    )}
+                        </div>
+                      )}
 
-                    {getGlobalConfig().enableReport && (
-                      <div ref={setReportRef}>
-                        <DetailsSection
-                          htmlId="details_report"
-                          titleId="report.title"
-                          className={marginDetailsChild}
-                        >
-                          <Report
-                            displayMobileMap={displayMobileMap}
-                            trekId={details.id}
-                            startPoint={{
-                              type: 'Point',
-                              coordinates:
-                                'trekDeparture' in details
-                                  ? details.trekDeparture
-                                  : // @ts-ignore next-line
-                                    details.geometry?.coordinates,
-                            }}
-                          />
-                        </DetailsSection>
-                      </div>
-                    )}
+                      {details.reservation &&
+                        details.reservation_id &&
+                        typeof navigator !== 'undefined' &&
+                        navigator.onLine && (
+                          <DetailsSection
+                            className={marginDetailsChild}
+                            htmlId="details_reservation"
+                            titleId="details.reservation"
+                          >
+                            <DetailsReservationWidget
+                              language={language}
+                              reservation={details.reservation}
+                              id={details.reservation_id}
+                            />
+                          </DetailsSection>
+                        )}
+                    </div>
+                    <Footer />
+                  </div>
 
-                    {details.touristicContents.length > 0 && (
-                      <div ref={setTouristicContentsRef} id="details_touristicContent_ref">
-                        <DetailsCardSection
-                          htmlId="details_touristicContent"
-                          title={intl.formatMessage({ id: 'details.touristicContent' })}
-                          displayBadge
-                          generateUrlFunction={generateTouristicContentUrl}
-                          detailsCards={details.touristicContents.map(touristicContent => ({
-                            id: `${touristicContent.id}`,
-                            name: touristicContent.name ?? '',
-                            place: touristicContent.category.label,
-                            description: touristicContent.descriptionTeaser,
-                            thumbnailUris: touristicContent.thumbnailUris,
-                            attachments: touristicContent.attachments,
-                            iconUri: touristicContent.category.pictogramUri,
-                            iconName: touristicContent.category.label,
-                            logoUri: touristicContent.logoUri ?? undefined,
+                  {!isMobile && (
+                    <div
+                      id="details_mapContainer"
+                      className="desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar"
+                    >
+                      <DetailsMapDynamicComponent
+                        type="DESKTOP"
+                        title={details.title}
+                        arrivalLocation={details.trekArrival}
+                        departureLocation={details.trekDeparture}
+                        parkingLocation={
+                          details.parkingLocation === null ? undefined : details.parkingLocation
+                        }
+                        advisedParking={details.parking}
+                        trekGeometry={details.trekGeometry}
+                        trekGeoJSON={details.trekGeoJSON}
+                        poiPoints={details.pois.map(poi => ({
+                          location: { x: poi.geometry.x, y: poi.geometry.y },
+                          pictogramUri: poi.type.pictogramUri,
+                          name: poi.name,
+                          id: `DETAILS-POI-${poi.id}`,
+                        }))}
+                        pointsReference={details.pointsReference}
+                        bbox={details.bbox}
+                        trekChildrenGeometry={details.children.reduce<TrekChildGeometry[]>(
+                          (children, currentChild) => {
+                            if (currentChild.geometry) {
+                              children.push({
+                                ...currentChild.geometry,
+                                id: `DETAILS-TREK_CHILDREN-${currentChild.geometry.id}`,
+                              });
+                            }
+                            return children;
+                          },
+                          [],
+                        )}
+                        touristicContentPoints={details.touristicContents
+                          .filter(touristicContent => touristicContent.geometry !== null)
+                          .map(touristicContent => ({
+                            // It's ok to ignore this rule, we filtered null values 2 lines above
+                            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                            geometry: touristicContent.geometry!,
+                            pictogramUri: touristicContent.category.pictogramUri,
+                            name: touristicContent.name,
+                            id: `DETAILS-TOURISTIC_CONTENT-${touristicContent.id}`,
                           }))}
-                          type="TOURISTIC_CONTENT"
-                        />
-                      </div>
-                    )}
-
-                    {details.reservation &&
-                      details.reservation_id &&
-                      typeof navigator !== 'undefined' &&
-                      navigator.onLine && (
-                        <DetailsSection
-                          className={marginDetailsChild}
-                          htmlId="details_reservation"
-                          titleId="details.reservation"
-                        >
-                          <DetailsReservationWidget
-                            language={language}
-                            reservation={details.reservation}
-                            id={details.reservation_id}
-                          />
-                        </DetailsSection>
-                      )}
-                  </div>
-                  <Footer />
+                        sensitiveAreas={details.sensitiveAreas
+                          .filter(sensitiveArea => sensitiveArea.geometry !== null)
+                          .map(({ geometry, color }) => ({
+                            geometry,
+                            color,
+                          }))}
+                        trekId={Number(id)}
+                        displayAltimetricProfile={displayAltimetricProfile}
+                        informationDesks={details.informationDesks}
+                        signage={details.signage}
+                      />
+                    </div>
+                  )}
                 </div>
-
-                {!isMobile && (
-                  <div
-                    id="details_mapContainer"
-                    className="desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar"
-                  >
-                    <DetailsMapDynamicComponent
-                      type="DESKTOP"
-                      title={details.title}
-                      arrivalLocation={details.trekArrival}
-                      departureLocation={details.trekDeparture}
-                      parkingLocation={
-                        details.parkingLocation === null ? undefined : details.parkingLocation
-                      }
-                      advisedParking={details.parking}
-                      trekGeometry={details.trekGeometry}
-                      trekGeoJSON={details.trekGeoJSON}
-                      poiPoints={details.pois.map(poi => ({
-                        location: { x: poi.geometry.x, y: poi.geometry.y },
-                        pictogramUri: poi.type.pictogramUri,
-                        name: poi.name,
-                        id: `DETAILS-POI-${poi.id}`,
-                      }))}
-                      pointsReference={details.pointsReference}
-                      bbox={details.bbox}
-                      trekChildrenGeometry={details.children.reduce<TrekChildGeometry[]>(
-                        (children, currentChild) => {
-                          if (currentChild.geometry) {
-                            children.push({
-                              ...currentChild.geometry,
-                              id: `DETAILS-TREK_CHILDREN-${currentChild.geometry.id}`,
-                            });
-                          }
-                          return children;
-                        },
-                        [],
-                      )}
-                      touristicContentPoints={details.touristicContents
-                        .filter(touristicContent => touristicContent.geometry !== null)
-                        .map(touristicContent => ({
-                          // It's ok to ignore this rule, we filtered null values 2 lines above
-                          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                          geometry: touristicContent.geometry!,
-                          pictogramUri: touristicContent.category.pictogramUri,
-                          name: touristicContent.name,
-                          id: `DETAILS-TOURISTIC_CONTENT-${touristicContent.id}`,
-                        }))}
-                      sensitiveAreas={details.sensitiveAreas
-                        .filter(sensitiveArea => sensitiveArea.geometry !== null)
-                        .map(({ geometry, color }) => ({
-                          geometry,
-                          color,
-                        }))}
-                      trekId={Number(id)}
-                      displayAltimetricProfile={displayAltimetricProfile}
-                      informationDesks={details.informationDesks}
-                      signage={details.signage}
-                    />
-                  </div>
-                )}
               </div>
             </Layout>
 

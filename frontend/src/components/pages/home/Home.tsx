@@ -34,7 +34,7 @@ const HomeUI: FunctionComponent = () => {
         description={intl.formatMessage({ id: 'home.description' })}
       />
       <Layout>
-        <HomeContainer>
+        <HomeContainer id="home_container">
           <BannerWithAsset
             shouldDisplayText={config.welcomeBanner.shouldDisplayText}
             carouselUrls={config.welcomeBanner.carouselUrls}
