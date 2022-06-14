@@ -212,5 +212,23 @@
   "dates": {
     "singleDate": "Einzeldatum",
     "multipleDates": "von {beginDate} bis {endDate}"
+  },
+  "tooltip": {
+    "print": "Zu drucken",
+    "show3D": "3D anzeigen",
+    "difficulty": "Schwierigkeit",
+    "period": "Zeitraum",
+    "orientation": "Orientierung",
+    "wind": "Wind",
+    "date": "Datum",
+    "duration": "Dauer",
+    "distance": "Distanz",
+    "elevation": "Positive Höhe",
+    "negativeElevation": "Negative Höhe",
+    "altitude": "Höhe",
+    "assemblyPoint": "Sammelplatz",
+    "numberOfParticipants": "Zahl der Teilnehmer",
+    "courseType": "Art des Rennens",
+    "network": "Netzwerk"
   }
 }

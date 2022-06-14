@@ -259,5 +259,23 @@
     "warning": {
       "noWebGl": "La bibliothèque graphique web (WebGL) semble désactivée ou non disponible sur votre navigateur, le module 3D est donc indisponible."
     }
+  },
+  "tooltip": {
+    "print": "Imprimer",
+    "show3D": "Afficher la 3D",
+    "difficulty": "Difficulté",
+    "period": "Période",
+    "orientation": "Orientation",
+    "wind": "Vent",
+    "date": "Date",
+    "duration": "Durée",
+    "distance": "Distance",
+    "elevation": "Dénivelé positif",
+    "negativeElevation": "Dénivelé négatif",
+    "altitude": "Altitude",
+    "assemblyPoint": "Point de rassemblement",
+    "numberOfParticipants": "Nombre de participants",
+    "courseType": "Type de course",
+    "network": "Réseau"
   }
 }
