@@ -133,6 +133,8 @@ export const rawDetailsProperties: RawDetailsProperties = {
   ],
   elevation_area_url: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/treks/2/dem.json',
   altimetric_profile: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/treks/2/profile.json',
+  ratings: [],
+  ratings_description: '',
 };
 
 export const rawDetails: RawDetails = {
