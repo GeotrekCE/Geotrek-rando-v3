@@ -1,5 +1,23 @@
 # Changelog
 
+3.9.0 (unreleased)
+------------------
+
+**🚀 New features**
+
+* Add tooltips on detail pages, on actions and information pictograms (#392)
+* Add dynamic ratings and rating description on treks details pages (#541)
+* Add "gear" property on treks detail pages (#672)
+* Add sensitive areas on outdoor sites and courses detail pages (#671)
+* Allow to exclude labels from treks search results (#418)
+* Display all cities on outdoor sites cards and detail pages (#669)
+* Display trek route on search map when hovering a trek in results list (#368)
+
+**🐛 Fixes**
+
+* Fix SSR of treks details pages without signage (#674)
+* Disable meteo and reservation widgets on offline detail pages (#622)
+
 3.8.5 (2022-06-02)
 ------------------
 
