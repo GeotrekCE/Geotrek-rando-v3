@@ -289,6 +289,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           {details.advice !== null && details.advice.length > 0 && (
                             <DetailsAdvice text={details.advice} className="mb-4 desktop:mb-6" />
                           )}
+                          {details.gear !== null && (
+                            <DetailsGear text={details.gear} className="mt-4 desktop:mb-6" />
+                          )}
                           {details.labels.map((label, i) => (
                             <DetailsLabel
                               key={i}
