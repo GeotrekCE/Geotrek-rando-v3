@@ -262,20 +262,20 @@
   },
   "tooltip": {
     "print": "Imprimer",
-    "show3D": "Afficher la 3D",
+    "show3D": "Afficher en 3D",
     "difficulty": "Difficulté",
     "period": "Période",
     "orientation": "Orientation",
     "wind": "Vent",
     "date": "Date",
     "duration": "Durée",
-    "distance": "Distance",
+    "distance": "Longueur",
     "elevation": "Dénivelé positif",
     "negativeElevation": "Dénivelé négatif",
     "altitude": "Altitude",
     "assemblyPoint": "Point de rassemblement",
     "numberOfParticipants": "Nombre de participants",
-    "courseType": "Type de course",
+    "courseType": "Type de parcours",
     "network": "Réseau"
   }
 }
