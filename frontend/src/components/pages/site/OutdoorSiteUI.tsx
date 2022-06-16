@@ -296,7 +296,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                         ))}
 
                         {outdoorSiteContent.accessibility && (
-                          <div style={{ marginTop: 20 }}>
+                          <div className="mt-5">
                             <strong className="font-bold">
                               <FormattedMessage id="details.accessibility" /> :{' '}
                             </strong>
