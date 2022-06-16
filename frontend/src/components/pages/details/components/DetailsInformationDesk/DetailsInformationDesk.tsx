@@ -95,12 +95,12 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
         </div>
 
         {accessibility && (
-          <p style={{ marginTop: 20 }}>
+          <div className="mt-5">
             <strong className="font-bold">
               <FormattedMessage id="details.accessibility" /> :{' '}
             </strong>
             <HtmlText>{parse(accessibility)}</HtmlText>
-          </p>
+          </div>
         )}
       </div>
     </div>
