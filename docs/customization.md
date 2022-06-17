@@ -139,7 +139,15 @@ It's also possible to change category colors :
 
 NB: If global config `groupTreksAndOutdoorFilters` is set to `true`,  the `outdoor` color is ignored in favor of the `trek` color.
 
-You can also override CSS in `customization/theme/style.css` file. To help overriding CSS, some ID have been added on main DIV components (header, logo, footer, cover, cards, results, maps, details...).
+## CSS
+
+You can override CSS in `customization/theme/style.css` file. To help overriding CSS, some ID have been added on main DIV components:
+- `home_content`, `home_activitiesBar`, `home_topHtml`, `home_section`, `home_activitySuggestion`, `banner_carousel`, etc on Homepage
+- `header_logo` in Header
+- Several similar ID on search and detail pages
+- `home_container` to isolate Home page
+- `search_container` to isolate Search page
+- `details_container` to isolate detail pages
 
 ## Translations
 
