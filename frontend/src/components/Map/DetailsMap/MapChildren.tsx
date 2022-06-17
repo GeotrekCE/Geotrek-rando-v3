@@ -13,7 +13,7 @@ import { MarkersWithIcon } from './MarkersWithIcon';
 import { PointReport } from './PointReport';
 import { PointsInformationDesk } from './PointsInformationDesk';
 import { PointsReference } from './PointsReference';
-import { PointsSignage } from './PointsSignage';
+import { PointsSecondary } from './PointsSecondary';
 import { SensitiveAreas } from './SensitiveAreas';
 import { TouristicContent } from './TouristicContent';
 import { TrekChildren } from './TrekChildren';
@@ -107,7 +107,7 @@ export const MapChildren: React.FC<Props> = props => {
         <PointsInformationDesk informationDesks={props.informationDesks} />
       )}
 
-      {props.signageVisibility === 'DISPLAYED' && <PointsSignage signage={props.signage} />}
+      {props.signageVisibility === 'DISPLAYED' && <PointsSecondary dictionary={props.signage} />}
 
       {(isMobile || visibleSection === 'report') && props.reportVisibility && <PointReport />}
     </>

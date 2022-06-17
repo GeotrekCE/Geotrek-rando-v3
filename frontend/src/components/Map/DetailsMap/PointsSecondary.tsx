@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import { Tooltip } from 'react-leaflet';
 import { Signage } from 'components/Icons/Signage';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -9,8 +9,9 @@ import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import { RawCoordinate2D } from 'modules/interface';
 import { HoverableMarker } from '../components/HoverableMarker';
 
-export type PointsSignageProps = {
-  signage?: SignageDictionary | null;
+export type PointsSecondaryProps = {
+  dictionary?: SignageDictionary | null;
+  icon?: FC;
 };
 
 type Locations = {
@@ -22,15 +23,18 @@ type Locations = {
   type: string;
 }[];
 
-export const PointsSignage: React.FC<PointsSignageProps> = ({ signage }) => {
+export const PointsSecondary: React.FC<PointsSecondaryProps> = ({
+  dictionary,
+  icon: Icon = Signage,
+}) => {
   const locations: Locations = useMemo(() => {
-    return Object.values(signage ?? {})
+    return Object.values(dictionary ?? {})
       .filter(({ geometry }) => Boolean(geometry?.coordinates))
       .map(({ description, geometry, name, type, imageUrl }) => ({
         description,
         imageUrl,
         name,
-        pictogramUri: type.pictogram ?? renderToStaticMarkup(<Signage color="white" />),
+        pictogramUri: type.pictogram ?? renderToStaticMarkup(<Icon color="white" />),
         position: [geometry.coordinates[1], geometry.coordinates[0]],
         type: type.label,
       }));
