@@ -102,251 +102,253 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
         ) : (
           <>
             <Layout>
-              <DetailsHeader
-                sectionsReferences={sectionsReferences}
-                details={touristicEventContent}
-                type={'TOURISTIC_EVENT'}
-              />
-              {touristicEventContent.name !== undefined && (
-                <DetailsHeaderMobile title={touristicEventContent.name} />
-              )}
-              <div id="outdoorCourseContent_page" className="flex flex-1">
-                <div
-                  id="outdoorCourseContent_informations"
-                  className="flex flex-col w-full relative -top-detailsHeaderMobile desktop:top-0 desktop:w-3/5"
-                >
-                  <OpenMapButton displayMap={displayMobileMap} />
-                  <Modal>
-                    {({ toggleFullscreen, isFullscreen }) => (
-                      <div
-                        id="outdoorCourseContent_cover"
-                        className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
-                      >
-                        {touristicEventContent.attachments.length > 1 &&
-                        typeof navigator !== 'undefined' &&
-                        navigator?.onLine ? (
-                          <DetailsCoverCarousel
-                            attachments={touristicEventContent.attachments}
-                            onClickImage={toggleFullscreen}
-                          />
-                        ) : (
-                          <ImageWithLegend
-                            attachment={touristicEventContent.attachments[0]}
-                            onClick={toggleFullscreen}
-                          />
-                        )}
-                      </div>
-                    )}
-                  </Modal>
+              <div id="details_container">
+                <DetailsHeader
+                  sectionsReferences={sectionsReferences}
+                  details={touristicEventContent}
+                  type={'TOURISTIC_EVENT'}
+                />
+                {touristicEventContent.name !== undefined && (
+                  <DetailsHeaderMobile title={touristicEventContent.name} />
+                )}
+                <div id="outdoorCourseContent_page" className="flex flex-1">
                   <div
-                    id="touristicEventContent_text"
-                    className="desktop:py-0
+                    id="outdoorCourseContent_informations"
+                    className="flex flex-col w-full relative -top-detailsHeaderMobile desktop:top-0 desktop:w-3/5"
+                  >
+                    <OpenMapButton displayMap={displayMobileMap} />
+                    <Modal>
+                      {({ toggleFullscreen, isFullscreen }) => (
+                        <div
+                          id="outdoorCourseContent_cover"
+                          className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
+                        >
+                          {touristicEventContent.attachments.length > 1 &&
+                          typeof navigator !== 'undefined' &&
+                          navigator?.onLine ? (
+                            <DetailsCoverCarousel
+                              attachments={touristicEventContent.attachments}
+                              onClickImage={toggleFullscreen}
+                            />
+                          ) : (
+                            <ImageWithLegend
+                              attachment={touristicEventContent.attachments[0]}
+                              onClick={toggleFullscreen}
+                            />
+                          )}
+                        </div>
+                      )}
+                    </Modal>
+                    <div
+                      id="touristicEventContent_text"
+                      className="desktop:py-0
                 relative -top-6 desktop:-top-9
                 flex flex-col"
-                    ref={sectionsContainerRef}
-                  >
-                    <DetailsTopIcons
-                      details={touristicEventContent}
-                      practice={{
-                        id: 0,
-                        pictogram: touristicEventContent.typeEvent.pictogram,
-                        name: touristicEventContent.typeEvent.type,
-                      }}
-                      type={'TOURISTIC_EVENT'}
-                    />
-
-                    <div ref={setPreviewRef} id="details_preview_ref">
-                      <DetailsPreview
-                        className={marginDetailsChild}
-                        informations={{
-                          logoUri: touristicEventContent.logoUri ?? undefined,
-                          participantNumber: touristicEventContent.participantNumber,
-                          meetingPoint: touristicEventContent.meetingPoint,
-                          duration: [
-                            touristicEventContent.meetingTime,
-                            touristicEventContent.duration,
-                          ].join(' - '),
-                          date: {
-                            beginDate: touristicEventContent.beginDate,
-                            endDate: touristicEventContent.endDate,
-                          },
-                        }}
-                        place={touristicEventContent.place}
-                        tags={touristicEventContent.themes}
-                        title={touristicEventContent.name}
-                        teaser={touristicEventContent.descriptionTeaser}
-                        ambiance={''}
+                      ref={sectionsContainerRef}
+                    >
+                      <DetailsTopIcons
                         details={touristicEventContent}
+                        practice={{
+                          id: 0,
+                          pictogram: touristicEventContent.typeEvent.pictogram,
+                          name: touristicEventContent.typeEvent.type,
+                        }}
                         type={'TOURISTIC_EVENT'}
-                        id={id}
                       />
-                    </div>
 
-                    {touristicEventContent.description && (
-                      <div ref={setDescriptionRef} id="details_description_ref">
-                        <DetailsDescription
-                          descriptionHtml={touristicEventContent.description}
+                      <div ref={setPreviewRef} id="details_preview_ref">
+                        <DetailsPreview
                           className={marginDetailsChild}
-                          cities={touristicEventContent.cities}
+                          informations={{
+                            logoUri: touristicEventContent.logoUri ?? undefined,
+                            participantNumber: touristicEventContent.participantNumber,
+                            meetingPoint: touristicEventContent.meetingPoint,
+                            duration: [
+                              touristicEventContent.meetingTime,
+                              touristicEventContent.duration,
+                            ].join(' - '),
+                            date: {
+                              beginDate: touristicEventContent.beginDate,
+                              endDate: touristicEventContent.endDate,
+                            },
+                          }}
+                          place={touristicEventContent.place}
+                          tags={touristicEventContent.themes}
+                          title={touristicEventContent.name}
+                          teaser={touristicEventContent.descriptionTeaser}
+                          ambiance={''}
+                          details={touristicEventContent}
+                          type={'TOURISTIC_EVENT'}
+                          id={id}
                         />
                       </div>
-                    )}
 
-                    <div ref={setPracticalInformationsRef}>
-                      <DetailsDescription
-                        descriptionHtml={touristicEventContent.contact ?? ''}
-                        className={marginDetailsChild}
-                        title={<FormattedMessage id="details.informationDesks" />}
-                        email={touristicEventContent.email}
-                        website={touristicEventContent.website}
-                      />
-
-                      {touristicEventContent.accessibility && (
-                        <div>
+                      {touristicEventContent.description && (
+                        <div ref={setDescriptionRef} id="details_description_ref">
                           <DetailsDescription
-                            descriptionHtml={touristicEventContent.accessibility ?? ''}
+                            descriptionHtml={touristicEventContent.description}
                             className={marginDetailsChild}
-                            title={<FormattedMessage id="details.accessibility" />}
+                            cities={touristicEventContent.cities}
                           />
                         </div>
                       )}
 
-                      {touristicEventContent.organizer && (
-                        <div>
-                          <DetailsDescription
-                            descriptionHtml={touristicEventContent.organizer ?? ''}
-                            className={marginDetailsChild}
-                            title={<FormattedMessage id="details.organizer" />}
-                          />
-                        </div>
-                      )}
+                      <div ref={setPracticalInformationsRef}>
+                        <DetailsDescription
+                          descriptionHtml={touristicEventContent.contact ?? ''}
+                          className={marginDetailsChild}
+                          title={<FormattedMessage id="details.informationDesks" />}
+                          email={touristicEventContent.email}
+                          website={touristicEventContent.website}
+                        />
 
-                      {touristicEventContent.speaker && (
-                        <div>
-                          <DetailsDescription
-                            descriptionHtml={touristicEventContent.speaker ?? ''}
-                            className={marginDetailsChild}
-                            title={<FormattedMessage id="details.speaker" />}
-                          />
-                        </div>
-                      )}
-
-                      {touristicEventContent.targetAudience && (
-                        <div>
-                          <DetailsDescription
-                            descriptionHtml={touristicEventContent.targetAudience ?? ''}
-                            className={marginDetailsChild}
-                            title={<FormattedMessage id="details.targetAudience" />}
-                          />
-                        </div>
-                      )}
-
-                      {touristicEventContent.practicalInfo && (
-                        <div>
-                          <DetailsDescription
-                            descriptionHtml={touristicEventContent.practicalInfo ?? ''}
-                            className={marginDetailsChild}
-                            title={<FormattedMessage id="details.practicalInfo" />}
-                          />
-                        </div>
-                      )}
-
-                      {touristicEventContent.booking && (
-                        <div>
-                          <DetailsDescription
-                            descriptionHtml={touristicEventContent.booking ?? ''}
-                            className={marginDetailsChild}
-                            title={<FormattedMessage id="details.booking" />}
-                          />
-                        </div>
-                      )}
-
-                      {getGlobalConfig().enableMeteoWidget &&
-                        typeof navigator !== 'undefined' &&
-                        navigator.onLine &&
-                        touristicEventContent.cities_raw &&
-                        touristicEventContent.cities_raw[0] && (
-                          <DetailsSection>
-                            <DetailsMeteoWidget code={touristicEventContent.cities_raw[0]} />
-                          </DetailsSection>
+                        {touristicEventContent.accessibility && (
+                          <div>
+                            <DetailsDescription
+                              descriptionHtml={touristicEventContent.accessibility ?? ''}
+                              className={marginDetailsChild}
+                              title={<FormattedMessage id="details.accessibility" />}
+                            />
+                          </div>
                         )}
 
-                      {touristicEventContent.sources.length > 0 && (
-                        <DetailsSection
-                          htmlId="details_source"
-                          titleId="details.source"
-                          className={marginDetailsChild}
-                        >
-                          {touristicEventContent.sources.map((source, i) => (
-                            <DetailsSource
-                              key={i}
-                              name={source.name}
-                              website={source.website}
-                              pictogramUri={source.pictogramUri}
+                        {touristicEventContent.organizer && (
+                          <div>
+                            <DetailsDescription
+                              descriptionHtml={touristicEventContent.organizer ?? ''}
+                              className={marginDetailsChild}
+                              title={<FormattedMessage id="details.organizer" />}
                             />
-                          ))}
-                        </DetailsSection>
+                          </div>
+                        )}
+
+                        {touristicEventContent.speaker && (
+                          <div>
+                            <DetailsDescription
+                              descriptionHtml={touristicEventContent.speaker ?? ''}
+                              className={marginDetailsChild}
+                              title={<FormattedMessage id="details.speaker" />}
+                            />
+                          </div>
+                        )}
+
+                        {touristicEventContent.targetAudience && (
+                          <div>
+                            <DetailsDescription
+                              descriptionHtml={touristicEventContent.targetAudience ?? ''}
+                              className={marginDetailsChild}
+                              title={<FormattedMessage id="details.targetAudience" />}
+                            />
+                          </div>
+                        )}
+
+                        {touristicEventContent.practicalInfo && (
+                          <div>
+                            <DetailsDescription
+                              descriptionHtml={touristicEventContent.practicalInfo ?? ''}
+                              className={marginDetailsChild}
+                              title={<FormattedMessage id="details.practicalInfo" />}
+                            />
+                          </div>
+                        )}
+
+                        {touristicEventContent.booking && (
+                          <div>
+                            <DetailsDescription
+                              descriptionHtml={touristicEventContent.booking ?? ''}
+                              className={marginDetailsChild}
+                              title={<FormattedMessage id="details.booking" />}
+                            />
+                          </div>
+                        )}
+
+                        {getGlobalConfig().enableMeteoWidget &&
+                          typeof navigator !== 'undefined' &&
+                          navigator.onLine &&
+                          touristicEventContent.cities_raw &&
+                          touristicEventContent.cities_raw[0] && (
+                            <DetailsSection>
+                              <DetailsMeteoWidget code={touristicEventContent.cities_raw[0]} />
+                            </DetailsSection>
+                          )}
+
+                        {touristicEventContent.sources.length > 0 && (
+                          <DetailsSection
+                            htmlId="details_source"
+                            titleId="details.source"
+                            className={marginDetailsChild}
+                          >
+                            {touristicEventContent.sources.map((source, i) => (
+                              <DetailsSource
+                                key={i}
+                                name={source.name}
+                                website={source.website}
+                                pictogramUri={source.pictogramUri}
+                              />
+                            ))}
+                          </DetailsSection>
+                        )}
+                      </div>
+
+                      {touristicEventContent.touristicContents.length > 0 && (
+                        <div ref={setTouristicContentsRef} id="details_touristicContent_ref">
+                          <DetailsCardSection
+                            htmlId="details_touristicContent"
+                            title={intl.formatMessage({ id: 'details.touristicContent' })}
+                            displayBadge
+                            generateUrlFunction={generateTouristicContentUrl}
+                            detailsCards={touristicEventContent.touristicContents.map(
+                              touristicContent => ({
+                                id: `${touristicContent.id}`,
+                                name: touristicContent.name ?? '',
+                                place: touristicContent.category.label,
+                                description: touristicContent.descriptionTeaser,
+                                thumbnailUris: touristicContent.thumbnailUris,
+                                attachments: touristicContent.attachments,
+                                iconUri: touristicContent.category.pictogramUri,
+                                iconName: touristicContent.category.label,
+                                logoUri: touristicContent.logoUri ?? undefined,
+                              }),
+                            )}
+                            type="TOURISTIC_CONTENT"
+                          />
+                        </div>
                       )}
                     </div>
-
-                    {touristicEventContent.touristicContents.length > 0 && (
-                      <div ref={setTouristicContentsRef} id="details_touristicContent_ref">
-                        <DetailsCardSection
-                          htmlId="details_touristicContent"
-                          title={intl.formatMessage({ id: 'details.touristicContent' })}
-                          displayBadge
-                          generateUrlFunction={generateTouristicContentUrl}
-                          detailsCards={touristicEventContent.touristicContents.map(
-                            touristicContent => ({
-                              id: `${touristicContent.id}`,
-                              name: touristicContent.name ?? '',
-                              place: touristicContent.category.label,
-                              description: touristicContent.descriptionTeaser,
-                              thumbnailUris: touristicContent.thumbnailUris,
-                              attachments: touristicContent.attachments,
-                              iconUri: touristicContent.category.pictogramUri,
-                              iconName: touristicContent.category.label,
-                              logoUri: touristicContent.logoUri ?? undefined,
-                            }),
-                          )}
-                          type="TOURISTIC_CONTENT"
-                        />
-                      </div>
-                    )}
+                    <Footer />
                   </div>
-                  <Footer />
+                  {!isMobile && (
+                    <div
+                      id="details_mapContainer"
+                      className="desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar"
+                    >
+                      <DetailsMapDynamicComponent
+                        type="DESKTOP"
+                        eventGeometry={{
+                          geometry: touristicEventContent.geometry,
+                          pictogramUri: touristicEventContent.typeEvent.pictogram,
+                          name: touristicEventContent.name,
+                          id: touristicEventContent.id,
+                        }}
+                        poiPoints={[]}
+                        bbox={touristicEventContent.bbox}
+                        trekChildrenGeometry={[]}
+                        touristicContentPoints={touristicEventContent.touristicContents
+                          .filter(touristicContent => touristicContent.geometry !== null)
+                          .map(touristicContent => ({
+                            // It's ok to ignore this rule, we filtered null values 2 lines above
+                            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                            geometry: touristicContent.geometry!,
+                            pictogramUri: touristicContent.category.pictogramUri,
+                            name: touristicContent.name,
+                            id: `DETAILS-TOURISTIC_CONTENT-${touristicContent.id}`,
+                          }))}
+                        sensitiveAreas={[]}
+                        trekId={Number(id)}
+                      />
+                    </div>
+                  )}
                 </div>
-                {!isMobile && (
-                  <div
-                    id="details_mapContainer"
-                    className="desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar"
-                  >
-                    <DetailsMapDynamicComponent
-                      type="DESKTOP"
-                      eventGeometry={{
-                        geometry: touristicEventContent.geometry,
-                        pictogramUri: touristicEventContent.typeEvent.pictogram,
-                        name: touristicEventContent.name,
-                        id: touristicEventContent.id,
-                      }}
-                      poiPoints={[]}
-                      bbox={touristicEventContent.bbox}
-                      trekChildrenGeometry={[]}
-                      touristicContentPoints={touristicEventContent.touristicContents
-                        .filter(touristicContent => touristicContent.geometry !== null)
-                        .map(touristicContent => ({
-                          // It's ok to ignore this rule, we filtered null values 2 lines above
-                          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                          geometry: touristicContent.geometry!,
-                          pictogramUri: touristicContent.category.pictogramUri,
-                          name: touristicContent.name,
-                          id: `DETAILS-TOURISTIC_CONTENT-${touristicContent.id}`,
-                        }))}
-                      sensitiveAreas={[]}
-                      trekId={Number(id)}
-                    />
-                  </div>
-                )}
               </div>
             </Layout>
 
