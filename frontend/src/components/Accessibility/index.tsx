@@ -116,9 +116,9 @@ const Accessibility = ({ details, language }: { details: Details; language: stri
                   <h2>
                     <FormattedMessage id={`details.accessibility_${k}`} /> :
                   </h2>
-                  <p>
+                  <div>
                     <HtmlText>{parse((details as any)[`accessibility_${k}`])}</HtmlText>
-                  </p>
+                  </div>
                 </div>
               );
             })}
@@ -130,9 +130,9 @@ const Accessibility = ({ details, language }: { details: Details; language: stri
             <h2>
               <FormattedMessage id={`details.${k}`} /> :
             </h2>
-            <p>
+            <div>
               <HtmlText>{parse((details as any)[k])}</HtmlText>
-            </p>
+            </div>
           </Row>
         ))}
     </div>
