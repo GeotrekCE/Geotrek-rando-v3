@@ -5,8 +5,10 @@ import { Coordinate2D } from 'modules/interface';
 import { OutdoorSite } from 'modules/outdoorSite/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
+import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import React, { useContext } from 'react';
 import { useMediaPredicate } from 'react-media-hook';
+import { Infrastructure } from 'components/Icons/Infrastructure';
 import { TouristicContentGeometry } from './DetailsMap';
 
 import { MarkersWithIcon } from './MarkersWithIcon';
@@ -46,6 +48,8 @@ type Props = {
   informationDesks?: InformationDesk[];
   signageVisibility: Visibility;
   signage?: SignageDictionary | null;
+  infrastructureVisibility: Visibility;
+  infrastructure?: InfrastructureDictionary | null;
 };
 
 export const MapChildren: React.FC<Props> = props => {
@@ -108,6 +112,10 @@ export const MapChildren: React.FC<Props> = props => {
       )}
 
       {props.signageVisibility === 'DISPLAYED' && <PointsSecondary dictionary={props.signage} />}
+
+      {props.infrastructureVisibility === 'DISPLAYED' && (
+        <PointsSecondary dictionary={props.infrastructure} icon={Infrastructure} />
+      )}
 
       {(isMobile || visibleSection === 'report') && props.reportVisibility && <PointReport />}
     </>

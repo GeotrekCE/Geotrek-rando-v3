@@ -14,6 +14,7 @@ import { TrekResult } from 'modules/results/interface';
 import { formatDistance } from 'modules/results/utils';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
+import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { SourceDictionnary } from 'modules/source/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { getAttachments } from 'modules/utils/adapter';
@@ -42,6 +43,7 @@ export const adaptResults = ({
   childrenGeometry,
   sensitiveAreas,
   signage,
+  infrastructure,
   reservation,
   trekRating,
   trekRatingScale,
@@ -64,6 +66,7 @@ export const adaptResults = ({
   childrenGeometry: TrekChildGeometry[];
   sensitiveAreas: SensitiveArea[];
   signage: SignageDictionary | null;
+  infrastructure: InfrastructureDictionary | null;
   reservation: Reservation | null;
   trekRating: TrekRatingChoices;
   trekRatingScale: TrekRatingScale[];
@@ -177,6 +180,7 @@ export const adaptResults = ({
         }) ?? [],
       ratingsDescription: rawDetailsProperties.ratings_description ?? '',
       signage,
+      infrastructure,
     };
   } catch (e) {
     console.error('Error in details/adapter', e);

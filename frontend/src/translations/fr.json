@@ -71,7 +71,8 @@
         "informationDesks": "Lieux de renseignement",
         "courses": "Parcours",
         "experiences": "Lieux de pratique",
-        "signage": "Signalétiques"
+        "signage": "Signalétiques",
+        "infrastructure": "Aménagements"
       },
       "resetView": "Recentrer la carte"
     }

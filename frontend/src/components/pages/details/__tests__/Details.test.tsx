@@ -19,6 +19,8 @@ import { mockTrekRatingRoute } from 'modules/trekRating/mocks';
 import { mockTrekRatingScaleRoute } from 'modules/trekRatingScale/mocks';
 import { mockSignageRoute } from 'modules/signage/mocks';
 import { mockSignageTypeRoute } from 'modules/signageType/mocks';
+import { mockInfrastructureRoute } from 'modules/infrastructure/mocks';
+import { mockInfrastructureTypeRoute } from 'modules/infrastructureType/mocks';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import {
   mockNetworksResponse,
@@ -92,6 +94,8 @@ describe('Details', () => {
 
     mockSignageTypeRoute(1);
     mockSignageRoute(1, rawDetailsMock.properties.id);
+    mockInfrastructureTypeRoute(1);
+    mockInfrastructureRoute(1, rawDetailsMock.properties.id);
 
     mockCityRoute(1);
     mockAccessibilitiesRoute(1);

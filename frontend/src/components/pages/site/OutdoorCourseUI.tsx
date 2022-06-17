@@ -366,6 +366,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                         trekId={Number(id)}
                         title={outdoorCourseContent.name}
                         signage={outdoorCourseContent.signage}
+                        infrastructure={outdoorCourseContent.infrastructure}
                       />
                     </div>
                   )}
@@ -412,6 +413,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                   trekId={Number(id)}
                   title={outdoorCourseContent.name}
                   signage={outdoorCourseContent.signage}
+                  infrastructure={outdoorCourseContent.infrastructure}
                 />
               </MobileMapContainer>
             )}

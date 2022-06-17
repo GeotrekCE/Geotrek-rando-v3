@@ -68,7 +68,8 @@
         "informationDesks": "Lugares de información",
         "courses": "Parcours",
         "experiences": "Lieux de pratique",
-        "signage": "Señalización"
+        "signage": "Señalización",
+        "infrastructure": "Infrastructures"
       },
       "resetView": "Centrarse la mapa"
     }
