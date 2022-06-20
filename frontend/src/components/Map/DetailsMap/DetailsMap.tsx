@@ -82,6 +82,7 @@ export type PropsType = {
   displayAltimetricProfile?: boolean;
   informationDesks?: InformationDesk[];
   signage?: SignageDictionary | null;
+  service?: PointWithIcon[];
   infrastructure?: InfrastructureDictionary | null;
 };
 export const DetailsMap: React.FC<PropsType> = props => {
@@ -110,7 +111,9 @@ export const DetailsMap: React.FC<PropsType> = props => {
     experiencesVisibility,
     toggleExperiencesVisibility,
     signageVisibility,
+    serviceVisibility,
     toggleSignageVisibility,
+    toggleServiceVisibility,
     infrastructureVisibility,
     toggleInfrastructureVisibility,
   } = useDetailsMap();
@@ -204,6 +207,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
               : null
           }
           signageVisibility={props.signage ? signageVisibility : null}
+          serviceVisibility={props.service && props.service.length > 0 ? serviceVisibility : null}
           infrastructureVisibility={props.infrastructure ? infrastructureVisibility : null}
           toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
           togglePoiVisibility={togglePoiVisibility}
@@ -213,6 +217,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           toggleCoursesVisibility={toggleCoursesVisibility}
           toggleExperiencesVisibility={toggleExperiencesVisibility}
           toggleSignageVisibility={toggleSignageVisibility}
+          toggleServiceVisibility={toggleServiceVisibility}
           toggleInfrastructureVisibility={toggleInfrastructureVisibility}
         />
         {props.trekGeometry && (
@@ -238,6 +243,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           trekChildrenGeometry={props.trekChildrenGeometry}
           sensitiveAreasGeometry={props.sensitiveAreas}
           signage={props.signage}
+          service={props.service}
           infrastructure={props.infrastructure}
           trekChildrenMobileVisibility={trekChildrenMobileVisibility}
           poiMobileVisibility={poiMobileVisibility}
@@ -249,6 +255,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           experiencesVisibility={experiencesVisibility}
           informationDesks={props.informationDesks}
           signageVisibility={signageVisibility}
+          serviceVisibility={serviceVisibility}
           infrastructureVisibility={infrastructureVisibility}
         />
         {props.displayAltimetricProfile === true && props.trekGeoJSON && (

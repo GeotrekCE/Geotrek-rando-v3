@@ -20,6 +20,8 @@ import { getGlobalConfig } from 'modules/utils/api.config';
 import { Footer } from 'components/Footer';
 import Accessibility, { shouldDisplayAccessibility } from 'components/Accessibility';
 
+import { renderToStaticMarkup } from 'react-dom/server';
+import { MapPin } from 'components/Icons/MapPin';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -521,6 +523,14 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         displayAltimetricProfile={displayAltimetricProfile}
                         informationDesks={details.informationDesks}
                         signage={details.signage}
+                        service={details.service?.map(service => ({
+                          location: { x: service.geometry.x, y: service.geometry.y },
+                          pictogramUri:
+                            service.type.pictogram ??
+                            renderToStaticMarkup(<MapPin color="white" />),
+                          name: service.type.name,
+                          id: `DETAILS-SERVICE-${service.id}`,
+                        }))}
                         infrastructure={details.infrastructure}
                       />
                     </div>
@@ -580,6 +590,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   displayAltimetricProfile={displayAltimetricProfile}
                   informationDesks={details.informationDesks}
                   signage={details.signage}
+                  service={details.service?.map(service => ({
+                    location: { x: service.geometry.x, y: service.geometry.y },
+                    pictogramUri:
+                      service.type.pictogram ?? renderToStaticMarkup(<MapPin color="white" />),
+                    name: service.type.name,
+                    id: `DETAILS-SERVICE-${service.id}`,
+                  }))}
                   infrastructure={details.infrastructure}
                 />
               </MobileMapContainer>

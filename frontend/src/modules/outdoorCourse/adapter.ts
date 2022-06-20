@@ -1,5 +1,6 @@
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
+import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { getAttachments, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
@@ -53,6 +54,7 @@ export const adaptOutdoorCourseDetails = ({
   outdoorCourseType,
   sensitiveAreas,
   signage,
+  service,
   infrastructure,
 }: {
   rawOutdoorCourseDetails: RawOutdoorCourseDetails;
@@ -64,6 +66,7 @@ export const adaptOutdoorCourseDetails = ({
   outdoorCourseType: OutdoorSiteTypeChoices;
   sensitiveAreas: SensitiveArea[];
   signage: SignageDictionary | null;
+  service: Service[] | null;
   infrastructure: InfrastructureDictionary | null;
 }): OutdoorCourseDetails => {
   return {
@@ -105,6 +108,7 @@ export const adaptOutdoorCourseDetails = ({
     id: rawOutdoorCourseDetails.id,
     sensitiveAreas,
     signage,
+    service,
     infrastructure,
   };
 };

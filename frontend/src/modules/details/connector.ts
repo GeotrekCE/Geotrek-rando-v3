@@ -12,6 +12,7 @@ import { getPois } from 'modules/poi/connector';
 import { getTrekResultsById } from 'modules/results/connector';
 import { getSensitiveAreas } from 'modules/sensitiveArea/connector';
 import { getSignage } from 'modules/signage/connector';
+import { getService } from 'modules/service/connector';
 import { getInfrastructure } from 'modules/infrastructure/connector';
 import { getSources } from 'modules/source/connector';
 import { getGlobalConfig } from 'modules/utils/api.config';
@@ -56,6 +57,7 @@ export const getDetails = async (id: string, language: string): Promise<Details>
     const [
       informationDeskDictionnary,
       signage,
+      service,
       infrastructure,
       labelsDictionnary,
       children,
@@ -63,6 +65,7 @@ export const getDetails = async (id: string, language: string): Promise<Details>
     ] = await Promise.all([
       getInformationDesks(language),
       getSignage(language, id, 'TREK'),
+      getService(language, id, 'TREK'),
       getInfrastructure(language, id, 'TREK'),
       getLabels(language),
       getTrekResultsById(rawDetails.properties.children, language),
@@ -99,6 +102,7 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       trekRating,
       trekRatingScale,
       signage,
+      service,
       infrastructure,
       reservation:
         getGlobalConfig().reservationPartner && getGlobalConfig().reservationProject

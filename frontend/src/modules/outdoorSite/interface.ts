@@ -13,6 +13,7 @@ import {
   RawWebLink,
 } from 'modules/interface';
 import { SignageDictionary } from 'modules/signage/interface';
+import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { Activity } from '../activities/interface';
 import { InformationDesk } from '../informationDesk/interface';
@@ -112,6 +113,7 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   ratings: OutdoorRatingWithScale[];
   ratingsDescription: string;
   signage: SignageDictionary | null;
+  service: Service[] | null;
   infrastructure: InfrastructureDictionary | null;
   typeSite?: OutdoorSiteType;
   sensitiveAreas: SensitiveArea[];

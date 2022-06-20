@@ -28,6 +28,8 @@ import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
 import { getGlobalConfig } from 'modules/utils/api.config';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { MapPin } from 'components/Icons/MapPin';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { useOutdoorSite } from './useOutdoorSite';
 import { DetailsPreview } from '../details/components/DetailsPreview';
@@ -445,6 +447,14 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                         trekId={Number(id)}
                         informationDesks={outdoorSiteContent?.informationDesks}
                         signage={outdoorSiteContent.signage}
+                        service={outdoorSiteContent.service?.map(service => ({
+                          location: { x: service.geometry.x, y: service.geometry.y },
+                          pictogramUri:
+                            service.type.pictogram ??
+                            renderToStaticMarkup(<MapPin color="white" />),
+                          name: service.type.name,
+                          id: `DETAILS-SERVICE-${service.id}`,
+                        }))}
                         infrastructure={outdoorSiteContent.infrastructure}
                       />
                     </div>
@@ -491,6 +501,13 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                   hideMap={hideMobileMap}
                   trekId={Number(id)}
                   signage={outdoorSiteContent.signage}
+                  service={outdoorSiteContent.service?.map(service => ({
+                    location: { x: service.geometry.x, y: service.geometry.y },
+                    pictogramUri:
+                      service.type.pictogram ?? renderToStaticMarkup(<MapPin color="white" />),
+                    name: service.type.name,
+                    id: `DETAILS-SERVICE-${service.id}`,
+                  }))}
                   infrastructure={outdoorSiteContent.infrastructure}
                 />
               </MobileMapContainer>
