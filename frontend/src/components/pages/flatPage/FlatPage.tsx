@@ -46,7 +46,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
           <ErrorFallback refetch={refetch} />
         )
       ) : (
-        <div>
+        <div id="flatPage_container">
           {flatPage.attachment !== null && flatPage.attachment.length > 0 && (
             <div
               className="relative coverDetailsMobile desktop:h-coverDetailsDesktop text-center"
