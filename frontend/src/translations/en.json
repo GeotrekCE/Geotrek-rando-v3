@@ -71,7 +71,8 @@
         "courses": "Parcours",
         "experiences": "Lieux de pratique",
         "signage": "Signage",
-        "infrastructure": "Infrastructures"
+        "infrastructure": "Infrastructures",
+        "service": "Others infos"
       },
       "resetView": "Recenter map"
     }

@@ -14,6 +14,7 @@ import { TrekResult } from 'modules/results/interface';
 import { formatDistance } from 'modules/results/utils';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
+import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { SourceDictionnary } from 'modules/source/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
@@ -43,6 +44,7 @@ export const adaptResults = ({
   childrenGeometry,
   sensitiveAreas,
   signage,
+  service,
   infrastructure,
   reservation,
   trekRating,
@@ -66,6 +68,7 @@ export const adaptResults = ({
   childrenGeometry: TrekChildGeometry[];
   sensitiveAreas: SensitiveArea[];
   signage: SignageDictionary | null;
+  service: Service[] | null;
   infrastructure: InfrastructureDictionary | null;
   reservation: Reservation | null;
   trekRating: TrekRatingChoices;
@@ -180,6 +183,7 @@ export const adaptResults = ({
         }) ?? [],
       ratingsDescription: rawDetailsProperties.ratings_description ?? '',
       signage,
+      service,
       infrastructure,
     };
   } catch (e) {

@@ -23,6 +23,8 @@ import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
 import { getGlobalConfig } from 'modules/utils/api.config';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { MapPin } from 'components/Icons/MapPin';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { ErrorFallback } from '../search/components/ErrorFallback';
@@ -366,6 +368,14 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                         trekId={Number(id)}
                         title={outdoorCourseContent.name}
                         signage={outdoorCourseContent.signage}
+                        service={outdoorCourseContent.service?.map(service => ({
+                          location: { x: service.geometry.x, y: service.geometry.y },
+                          pictogramUri:
+                            service.type.pictogram ??
+                            renderToStaticMarkup(<MapPin color="white" />),
+                          name: service.type.name,
+                          id: `DETAILS-SERVICE-${service.id}`,
+                        }))}
                         infrastructure={outdoorCourseContent.infrastructure}
                       />
                     </div>
@@ -413,6 +423,13 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                   trekId={Number(id)}
                   title={outdoorCourseContent.name}
                   signage={outdoorCourseContent.signage}
+                  service={outdoorCourseContent.service?.map(service => ({
+                    location: { x: service.geometry.x, y: service.geometry.y },
+                    pictogramUri:
+                      service.type.pictogram ?? renderToStaticMarkup(<MapPin color="white" />),
+                    name: service.type.name,
+                    id: `DETAILS-SERVICE-${service.id}`,
+                  }))}
                   infrastructure={outdoorCourseContent.infrastructure}
                 />
               </MobileMapContainer>

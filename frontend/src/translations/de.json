@@ -69,7 +69,8 @@
         "courses": "Parcours",
         "experiences": "Lieux de pratique",
         "signage": "Beschilderung",
-        "infrastructure": "Infrastructures"
+        "infrastructure": "Infrastructures",
+        "service": "Others infos"
       },
       "resetView": "Karte zentrieren"
     }

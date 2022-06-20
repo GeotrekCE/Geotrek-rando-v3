@@ -72,7 +72,8 @@
         "courses": "Parcours",
         "experiences": "Lieux de pratique",
         "signage": "Signalétiques",
-        "infrastructure": "Aménagements"
+        "infrastructure": "Aménagements",
+        "service": "Autres infos"
       },
       "resetView": "Recentrer la carte"
     }

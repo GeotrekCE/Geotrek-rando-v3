@@ -48,6 +48,8 @@ type Props = {
   informationDesks?: InformationDesk[];
   signageVisibility: Visibility;
   signage?: SignageDictionary | null;
+  serviceVisibility: Visibility;
+  service?: PointWithIcon[];
   infrastructureVisibility: Visibility;
   infrastructure?: InfrastructureDictionary | null;
 };
@@ -116,6 +118,8 @@ export const MapChildren: React.FC<Props> = props => {
       {props.infrastructureVisibility === 'DISPLAYED' && (
         <PointsSecondary dictionary={props.infrastructure} icon={Infrastructure} />
       )}
+
+      {props.serviceVisibility === 'DISPLAYED' && <MarkersWithIcon points={props.service} />}
 
       {(isMobile || visibleSection === 'report') && props.reportVisibility && <PointReport />}
     </>
