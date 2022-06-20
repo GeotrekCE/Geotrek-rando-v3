@@ -20,6 +20,7 @@
 
 * Fix SSR of treks details pages without signage (#674)
 * Disable meteo and reservation widgets on offline detail pages (#622)
+* Don't display outdoor sites and courses on map controls if the site has none
 
 3.8.5 (2022-06-02)
 ------------------
