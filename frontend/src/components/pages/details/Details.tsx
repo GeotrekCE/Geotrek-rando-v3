@@ -521,6 +521,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         displayAltimetricProfile={displayAltimetricProfile}
                         informationDesks={details.informationDesks}
                         signage={details.signage}
+                        infrastructure={details.infrastructure}
                       />
                     </div>
                   )}
@@ -579,6 +580,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                   displayAltimetricProfile={displayAltimetricProfile}
                   informationDesks={details.informationDesks}
                   signage={details.signage}
+                  infrastructure={details.infrastructure}
                 />
               </MobileMapContainer>
             )}

@@ -445,6 +445,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                         trekId={Number(id)}
                         informationDesks={outdoorSiteContent?.informationDesks}
                         signage={outdoorSiteContent.signage}
+                        infrastructure={outdoorSiteContent.infrastructure}
                       />
                     </div>
                   )}
@@ -490,6 +491,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                   hideMap={hideMobileMap}
                   trekId={Number(id)}
                   signage={outdoorSiteContent.signage}
+                  infrastructure={outdoorSiteContent.infrastructure}
                 />
               </MobileMapContainer>
             )}

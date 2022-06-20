@@ -19,6 +19,7 @@ export const useDetailsMap = () => {
   const [coursesVisibility, setCoursesVisibility] = useState<Visibility>('HIDDEN');
   const [experiencesVisibility, setExperiencesVisibility] = useState<Visibility>('HIDDEN');
   const [signageVisibility, setSignageVisibility] = useState<Visibility>('HIDDEN');
+  const [infrastructureVisibility, setInfrastructureVisibility] = useState<Visibility>('HIDDEN');
 
   const toggleTrekChildrenVisibility = () => setTrekChildrenVisibility(toggleVisibility);
 
@@ -33,6 +34,7 @@ export const useDetailsMap = () => {
   const toggleExperiencesVisibility = () => setExperiencesVisibility(toggleVisibility);
   const toggleCoursesVisibility = () => setCoursesVisibility(toggleVisibility);
   const toggleSignageVisibility = () => setSignageVisibility(toggleVisibility);
+  const toggleInfrastructureVisibility = () => setInfrastructureVisibility(toggleVisibility);
 
   return {
     trekChildrenMobileVisibility,
@@ -51,5 +53,7 @@ export const useDetailsMap = () => {
     toggleExperiencesVisibility,
     signageVisibility,
     toggleSignageVisibility,
+    infrastructureVisibility,
+    toggleInfrastructureVisibility,
   };
 };

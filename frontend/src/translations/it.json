@@ -70,7 +70,8 @@
         "informationDesks": "Luoghi di informazione",
         "courses": "Parcours",
         "experiences": "Lieux de pratique",
-        "signage": "Segnaletica"
+        "signage": "Segnaletica",
+        "infrastructure": "Infrastructures"
       },
       "resetView": "Rimettere a fuoco la mappa"
     }

@@ -70,7 +70,8 @@
         "informationDesks": "Information desks",
         "courses": "Parcours",
         "experiences": "Lieux de pratique",
-        "signage": "Signage"
+        "signage": "Signage",
+        "infrastructure": "Infrastructures"
       },
       "resetView": "Recenter map"
     }
