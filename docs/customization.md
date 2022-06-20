@@ -148,6 +148,7 @@ You can override CSS in `customization/theme/style.css` file. To help overriding
 - `home_container` to isolate Home page
 - `search_container` to isolate Search page
 - `details_container` to isolate detail pages
+- `flatPage_container` to isolate static flatpages
 
 ## Translations
 
