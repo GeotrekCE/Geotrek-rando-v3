@@ -109,6 +109,8 @@ const FilterField: React.FC<Props> = ({
                 item={filterState}
                 setFilterSelectedOptions={setFilterSelectedOptions}
                 hideLabel
+                dateFilter={dateFilter}
+                setDateFilter={setDateFilter}
               />
             </div>
             <div className="grid grid-cols-3 gap-4">

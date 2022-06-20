@@ -363,9 +363,7 @@ const getInitialFiltersStateWithRelevantFilters = ({
   }
 
   if (Number(events?.length) > 0) {
-    events?.forEach(event => {
-      result.push(...getEventsFiltersState());
-    });
+    result.push(...getEventsFiltersState());
   }
 
   return result;

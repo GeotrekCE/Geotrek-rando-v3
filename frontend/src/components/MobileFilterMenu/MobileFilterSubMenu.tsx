@@ -6,15 +6,12 @@ import styled from 'styled-components';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { DateFilter, FilterCategory, FilterState, Option } from 'modules/filters/interface';
-import React, { useState } from 'react';
+import React from 'react';
 // @ts-ignore Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
 import { colorPalette } from 'stylesheet';
 
-import { FormattedMessage, useIntl } from 'react-intl';
-import { getGlobalConfig } from 'modules/utils/api.config';
-import { EVENT_ID } from 'modules/filters/constant';
-import InputDateWithMagnifier from 'components/pages/search/components/InputDateWithMagnifier';
+import { FormattedMessage } from 'react-intl';
 import { CloseButton } from './CloseButton';
 
 interface Props {
@@ -38,7 +35,6 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   dateFilter,
   setDateFilter,
 }) => {
-  const intl = useIntl();
   const categories: FilterCategory | undefined = FILTERS_CATEGORIES.find(i => i.id === filterId);
 
   if (!categories) return null;
@@ -68,8 +64,6 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   );
 
   const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
-
-  const entriesFilters = Object.entries(filtersToDisplay);
 
   /* * The library default behaviour is to have a fixed close icon which * made the icon overlap
      with the menu content as we scrolled. * To fix this issue we use our own close button which
@@ -103,33 +97,10 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
             item={state}
             setFilterSelectedOptions={setFilterSelectedOptions}
             hideLabel
+            dateFilter={dateFilter}
+            setDateFilter={setDateFilter}
           />
         ))}
-        {entriesFilters[0][1].id === EVENT_ID && (
-          <div className="flex flex-col mt-4 desktop:mt-0 desktop:ml-5">
-            <div className="font-bold mb-2 text-lg">Agenda</div>
-            <InputDateWithMagnifier
-              value={dateFilter.beginDate}
-              onChange={event => {
-                setDateFilter({
-                  beginDate: event.target.value,
-                  endDate: dateFilter.endDate,
-                });
-              }}
-              placeholder={intl.formatMessage({ id: 'search.beginDateFilter' })}
-            />
-            <InputDateWithMagnifier
-              value={dateFilter.endDate}
-              onChange={event => {
-                setDateFilter({
-                  beginDate: dateFilter.beginDate,
-                  endDate: event.target.value,
-                });
-              }}
-              placeholder={intl.formatMessage({ id: 'search.endDateFilter' })}
-            />
-          </div>
-        )}
         {subFiltersToDisplay.map((subFilter, index) => (
           <>
             {Object.keys(subFilter).length > 0 && filtersToDisplay.length > 0 && <Separator />}
@@ -149,6 +120,8 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
                         <ShowFilters
                           item={filterState}
                           setFilterSelectedOptions={setFilterSelectedOptions}
+                          dateFilter={dateFilter}
+                          setDateFilter={setDateFilter}
                         />
                       </div>
                     ))}
