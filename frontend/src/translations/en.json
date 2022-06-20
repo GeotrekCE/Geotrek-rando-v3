@@ -37,6 +37,7 @@
     "filter": "Filter",
     "reload": "Reload",
     "anErrorOccured": "An error occured",
+    "diary": "Diary",
     "filters": {
       "difficulty": "Difficulty",
       "practices": "Practice",
