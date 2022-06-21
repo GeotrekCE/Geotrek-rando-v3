@@ -2,6 +2,7 @@ import { RawPointGeometry3D } from 'modules/interface';
 import { InfrastructureType } from 'modules/infrastructureType/interface';
 
 export interface RawInfrastructure {
+  accessibility: string | null;
   attachments?: {
     type: string;
     thumbnail: string;
@@ -20,6 +21,7 @@ export interface RawInfrastructure {
 }
 
 export interface Infrastructure {
+  accessibility: string | null;
   id: number;
   name: string;
   description: string;

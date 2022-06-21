@@ -26,7 +26,7 @@ export const mockInfrastructureRoute = (times: number, nearTrek: number): void =
     route: '/infrastructure',
     mockData: mockInfrastructureResponse(),
     additionalQueries: {
-      fields: 'attachments,description,id,geometry,name,type',
+      fields: 'accessibility,attachments,description,id,geometry,name,type',
       near_trek: nearTrek,
     },
     times,
