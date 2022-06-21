@@ -3,7 +3,7 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawInfrastructure } from './interface';
 
 const fieldsParams = {
-  fields: 'attachments,description,id,geometry,name,type',
+  fields: 'accessibility,attachments,description,id,geometry,name,type',
 };
 
 export const fetchInfrastructure = (
