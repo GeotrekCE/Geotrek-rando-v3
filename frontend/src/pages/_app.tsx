@@ -15,6 +15,10 @@ import { ListAndMapProvider } from 'modules/map/ListAndMapContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { getHeaderConfig } from 'modules/header/utills';
 
+import CookieConsent, { Cookies } from 'react-cookie-consent';
+import { colorPalette } from 'stylesheet';
+import { getGlobalConfig } from 'modules/utils/api.config';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -83,12 +87,41 @@ class MyApp extends App<AppProps> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { Component, pageProps, hasError, errorEventId, messages } = this.props;
 
+    const { googleAnalyticsId } = getGlobalConfig();
+
+    const handleDeclineCookie = () => {
+      //remove google analytics cookies
+      Cookies.remove('_ga');
+      Cookies.remove(`_ga_${googleAnalyticsId?.replace('G-', '') ?? ''}`);
+      Cookies.remove('_gat');
+      Cookies.remove('_gid');
+    };
+
     return (
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <Root hasError={hasError} errorEventId={errorEventId} messages={messages}>
             <ListAndMapProvider>
               <Component {...pageProps} />
+              <CookieConsent
+                location="bottom"
+                buttonText="J'accepte"
+                style={{
+                  background: colorPalette.primary1,
+                  textAlign: 'center',
+                }}
+                buttonStyle={{ background: colorPalette.primary2, fontSize: '13px' }}
+                enableDeclineButton
+                declineButtonText="Je refuse"
+                declineButtonStyle={{
+                  background: colorPalette.primary3,
+                  color: colorPalette.primary2,
+                  fontSize: '13px',
+                }}
+                onDecline={handleDeclineCookie}
+              >
+                Notre site web utilise des cookies nous permettant d'analyser notre trafic.
+              </CookieConsent>
             </ListAndMapProvider>
           </Root>
           <ReactQueryDevtools initialIsOpen={false} />

@@ -3,6 +3,7 @@ import parse from 'html-react-parser';
 import getNextConfig from 'next/config';
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { Cookies } from 'react-cookie-consent';
 
 const {
   publicRuntimeConfig: { style, colors, scriptsHeaderHtml, scriptsFooterHtml },
@@ -40,7 +41,7 @@ export default class MyDocument extends Document {
     return (
       <Html style={{ scrollBehavior: 'smooth' }}>
         <Head>
-          {!!googleAnalyticsId && (
+          {!!googleAnalyticsId && Cookies.get('CookieConsent') === true && (
             <>
               <script
                 async
