@@ -89,6 +89,29 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     resetTextFilter();
   };
 
+  const filtersStateWithExclude = filtersState.reduce((list, item) => {
+    const [id, exclude] = item.id.split('_');
+    if (exclude !== undefined) {
+      const index = list?.findIndex(filter => filter?.id === id) ?? -1;
+      if (index > -1) {
+        list[index] = {
+          ...item,
+          id,
+          selectedOptions: [
+            ...list[index].selectedOptions,
+            ...item.selectedOptions.map(option => ({ ...option, include: false })),
+          ],
+        };
+      }
+    } else {
+      list.push({
+        ...item,
+        selectedOptions: item.selectedOptions.map(option => ({ ...option, include: true })),
+      });
+    }
+    return list;
+  }, [] as FilterState[]);
+
   const numberSelected = countFiltersSelected(filtersState, null, null);
 
   return (
@@ -104,7 +127,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
             <MobileFilterMenu
               handleClose={hideMenu}
               title={<FormattedMessage id="search.filter" />}
-              filtersState={filtersState}
+              filtersState={filtersStateWithExclude}
               filtersList={filtersList}
               resetFilter={onRemoveAllFiltersClick}
               resultsNumber={searchResults?.resultsNumber ?? 0}
@@ -115,7 +138,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
             <MobileFilterSubMenu
               handleClose={hideSubMenu}
               filterId={currentFilterId}
-              filtersState={filtersState}
+              filtersState={filtersStateWithExclude}
               setFilterSelectedOptions={setFilterSelectedOptions}
               resetFilter={onRemoveAllFiltersClick}
               resultsNumber={searchResults?.resultsNumber ?? 0}
@@ -125,10 +148,10 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
       )}
 
       <Layout>
-        <Container className="flex flex-col">
+        <Container className="flex flex-col" id="search_container">
           {!isMobile && (
             <FilterBarNew
-              filtersState={filtersState}
+              filtersState={filtersStateWithExclude}
               setFilterSelectedOptions={setFilterSelectedOptions}
               resetFilters={onRemoveAllFiltersClick}
               resultsNumber={searchResults?.resultsNumber ?? 0}

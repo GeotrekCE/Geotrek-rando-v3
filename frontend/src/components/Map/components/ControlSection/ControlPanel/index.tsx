@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Florist } from 'components/Icons/Florist';
 import { Signage } from 'components/Icons/Signage';
+import { Infrastructure } from 'components/Icons/Infrastructure';
+import { MapPin } from 'components/Icons/MapPin';
 import { Line } from './Line';
 import IconLocation from './IconLocation';
 import IconInfo from './IconInfo';
@@ -45,6 +47,10 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
   toggleExperiencesVisibility,
   signageVisibility,
   toggleSignageVisibility,
+  serviceVisibility,
+  toggleServiceVisibility,
+  infrastructureVisibility,
+  toggleInfrastructureVisibility,
 }) => {
   return (
     <Wrapper>
@@ -110,6 +116,22 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
           active={signageVisibility === 'DISPLAYED'}
           toggle={toggleSignageVisibility}
           transKey="search.map.panel.signage"
+        />
+      )}
+      {infrastructureVisibility !== null && (
+        <Line
+          Icon={Infrastructure}
+          active={infrastructureVisibility === 'DISPLAYED'}
+          toggle={toggleInfrastructureVisibility}
+          transKey="search.map.panel.infrastructure"
+        />
+      )}
+      {serviceVisibility !== null && (
+        <Line
+          Icon={MapPin}
+          active={serviceVisibility === 'DISPLAYED'}
+          toggle={toggleServiceVisibility}
+          transKey="search.map.panel.service"
         />
       )}
     </Wrapper>

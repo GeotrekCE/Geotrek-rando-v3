@@ -12,9 +12,13 @@ import { getPois } from 'modules/poi/connector';
 import { getTrekResultsById } from 'modules/results/connector';
 import { getSensitiveAreas } from 'modules/sensitiveArea/connector';
 import { getSignage } from 'modules/signage/connector';
+import { getService } from 'modules/service/connector';
+import { getInfrastructure } from 'modules/infrastructure/connector';
 import { getSources } from 'modules/source/connector';
-import { getTouristicContentsNearTarget } from 'modules/touristicContent/connector';
 import { getGlobalConfig } from 'modules/utils/api.config';
+import { getTouristicContentsNearTarget } from 'modules/touristicContent/connector';
+import { getTrekRating } from '../trekRating/connector';
+import { getTrekRatingScale } from '../trekRatingScale/connector';
 import { adaptChildren, adaptResults, adaptTrekChildGeometry } from './adapter';
 import { fetchDetails, fetchTrekChildren, fetchTrekGeometry, fetchTrekName } from './api';
 import { Details, TrekChildGeometry, TrekFamily } from './interface';
@@ -46,16 +50,29 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       getAccessibilities(language),
       getSources(language),
     ]);
-    const [informationDeskDictionnary, signage, labelsDictionnary, children, sensitiveAreas] =
-      await Promise.all([
-        getInformationDesks(language),
-        getSignage(language, id, 'TREK'),
-        getLabels(language),
-        getTrekResultsById(rawDetails.properties.children, language),
-        getGlobalConfig().enableSensitiveAreas
-          ? getSensitiveAreas(rawDetails.properties.id, language)
-          : [],
-      ]);
+    const [trekRating, trekRatingScale] = await Promise.all([
+      getTrekRating(language),
+      getTrekRatingScale(language),
+    ]);
+    const [
+      informationDeskDictionnary,
+      signage,
+      service,
+      infrastructure,
+      labelsDictionnary,
+      children,
+      sensitiveAreas,
+    ] = await Promise.all([
+      getInformationDesks(language),
+      getSignage(language, id, 'TREK'),
+      getService(language, id, 'TREK'),
+      getInfrastructure(language, id, 'TREK'),
+      getLabels(language),
+      getTrekResultsById(rawDetails.properties.children, language),
+      getGlobalConfig().enableSensitiveAreas
+        ? getSensitiveAreas('trek', rawDetails.properties.id, language)
+        : [],
+    ]);
     const childrenGeometry = await Promise.all(
       rawDetails.properties.children.map(childId => getChildGeometry(`${childId}`, language)),
     );
@@ -82,7 +99,11 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       children,
       childrenGeometry,
       sensitiveAreas,
+      trekRating,
+      trekRatingScale,
       signage,
+      service,
+      infrastructure,
       reservation:
         getGlobalConfig().reservationPartner && getGlobalConfig().reservationProject
           ? {

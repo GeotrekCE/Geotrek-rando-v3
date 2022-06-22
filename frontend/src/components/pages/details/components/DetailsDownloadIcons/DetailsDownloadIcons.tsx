@@ -4,7 +4,8 @@ import { ThreeDMap } from 'components/Icons/ThreeDMap';
 import { Printer } from 'components/Icons/Printer';
 import { DetailsButton } from 'components/pages/details/components/DetailsButton';
 import React, { useState } from 'react';
-
+import ToolTip from 'components/ToolTip';
+import { useIntl } from 'react-intl';
 import { Download } from 'components/Icons/Download';
 import { Details } from 'modules/details/interface';
 import { ThreeD } from 'components/3D';
@@ -36,6 +37,8 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
 }) => {
   const [open3D, setOpen3D] = useState<boolean>(false);
   const { setReportVisibility } = useDetailsAndMapContext();
+
+  const intl = useIntl();
 
   const isTouchScreen = useMediaPredicate('(hover: none)');
   const is3DfeatureEnabled =
@@ -84,36 +87,46 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
 
       <div className="flex space-x-4">
         {details.pdfUri && (
-          <DetailsButton url={details.pdfUri}>
-            <Printer size={30} />
-          </DetailsButton>
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.print' })} invertPosition>
+            <DetailsButton url={details.pdfUri}>
+              <Printer size={30} />
+            </DetailsButton>
+          </ToolTip>
         )}
 
         {dropdownButtonOptions.length > 0 && (
-          <DetailsButtonDropdown options={dropdownButtonOptions}>
-            <Download className="text-primary1" size={size} />
-          </DetailsButtonDropdown>
+          <ToolTip toolTipText={intl.formatMessage({ id: 'details.download' })} invertPosition>
+            <DetailsButtonDropdown options={dropdownButtonOptions}>
+              <Download className="text-primary1" size={size} />
+            </DetailsButtonDropdown>
+          </ToolTip>
         )}
 
         {Number(details.id) && !hideReport && getGlobalConfig().enableReport && (
-          <DetailsButton url="#details_report" onClick={() => setReportVisibility(true)}>
-            <AlertTriangle size={size} />
-          </DetailsButton>
+          <ToolTip toolTipText={intl.formatMessage({ id: 'report.title' })} invertPosition>
+            <DetailsButton url="#details_report" onClick={() => setReportVisibility(true)}>
+              <AlertTriangle size={size} />
+            </DetailsButton>
+          </ToolTip>
         )}
 
         {(details as Details).reservation &&
           (details as Details).reservation_id &&
           getGlobalConfig().reservationPartner &&
           getGlobalConfig().reservationProject && (
-            <DetailsButton url="#details_reservation">
-              <Reservation width={30} height={30} />
-            </DetailsButton>
+            <ToolTip toolTipText={intl.formatMessage({ id: 'search.book' })} invertPosition>
+              <DetailsButton url="#details_reservation">
+                <Reservation width={30} height={30} />
+              </DetailsButton>
+            </ToolTip>
           )}
 
         {is3DfeatureEnabled && (
-          <DetailsButton onClick={() => setOpen3D(true)}>
-            <ThreeDMap size={size} />
-          </DetailsButton>
+          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.show3D' })} invertPosition>
+            <DetailsButton onClick={() => setOpen3D(true)}>
+              <ThreeDMap size={size} />
+            </DetailsButton>
+          </ToolTip>
         )}
       </div>
     </div>

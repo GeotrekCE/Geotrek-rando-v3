@@ -53,7 +53,8 @@
       "length": "Largo",
       "structures": "Estructura",
       "clearAll": "Borrar todo",
-      "filters": "Filtros"
+      "filters": "Filtros",
+      "labels": "Otros"
     },
     "textFilter": "Buscar...",
     "map": {
@@ -67,7 +68,9 @@
         "informationDesks": "Lugares de información",
         "courses": "Parcours",
         "experiences": "Lieux de pratique",
-        "signage": "Señalización"
+        "signage": "Señalización",
+        "infrastructure": "Infrastructures",
+        "service": "Others infos"
       },
       "resetView": "Centrarse la mapa"
     }
@@ -211,5 +214,23 @@
   "dates": {
     "singleDate": "el {date}",
     "multipleDates": "del{beginDate} al {endDate}"
+  },
+  "tooltip": {
+    "print": "Imprimir",
+    "show3D": "Mostrar 3D",
+    "difficulty": "Dificultad",
+    "period": "Período",
+    "orientation": "Orientación",
+    "wind": "Viento",
+    "date": "Fecha",
+    "duration": "Duración",
+    "distance": "Distancia",
+    "elevation": "Elevación positiva",
+    "negativeElevation": "Elevación negativa",
+    "altitude": "Altitud",
+    "assemblyPoint": "Punto de reunión",
+    "numberOfParticipants": "Número de participantes",
+    "courseType": "Tipo de carrera",
+    "network": "La red"
   }
 }

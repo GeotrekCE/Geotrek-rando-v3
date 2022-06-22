@@ -14,11 +14,15 @@ import { TrekResult } from 'modules/results/interface';
 import { formatDistance } from 'modules/results/utils';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
+import { Service } from 'modules/service/interface';
+import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { SourceDictionnary } from 'modules/source/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { getAttachments } from 'modules/utils/adapter';
 import { adaptGeometry2D, flattenMultiLineStringCoordinates } from 'modules/utils/geometry';
 import { formatHours } from 'modules/utils/time';
+import { TrekRatingScale } from '../trekRatingScale/interface';
+import { TrekRatingChoices } from '../trekRating/interface';
 import { Details, RawDetails, Reservation, TrekChildGeometry, TrekFamily } from './interface';
 
 export const adaptResults = ({
@@ -40,7 +44,11 @@ export const adaptResults = ({
   childrenGeometry,
   sensitiveAreas,
   signage,
+  service,
+  infrastructure,
   reservation,
+  trekRating,
+  trekRatingScale,
 }: {
   accessbilityLevel: AccessibilityLevel | null;
   rawDetails: RawDetails;
@@ -60,7 +68,11 @@ export const adaptResults = ({
   childrenGeometry: TrekChildGeometry[];
   sensitiveAreas: SensitiveArea[];
   signage: SignageDictionary | null;
+  service: Service[] | null;
+  infrastructure: InfrastructureDictionary | null;
   reservation: Reservation | null;
+  trekRating: TrekRatingChoices;
+  trekRatingScale: TrekRatingScale[];
 }): Details => {
   try {
     const coordinates =
@@ -141,6 +153,10 @@ export const adaptResults = ({
           ? rawDetailsProperties.labels.map(labelId => labelsDictionnary[labelId])
           : [],
       advice: rawDetailsProperties.advice,
+      gear:
+        rawDetailsProperties.gear !== undefined && rawDetailsProperties.gear !== ''
+          ? rawDetailsProperties.gear
+          : null,
       pointsReference:
         rawDetailsProperties.points_reference?.coordinates.map(rawCoordinates => ({
           x: rawCoordinates[0],
@@ -158,7 +174,17 @@ export const adaptResults = ({
       length2d: rawDetailsProperties.length_2d,
       reservation,
       reservation_id: rawDetailsProperties.reservation_id ?? null,
+      ratings:
+        rawDetailsProperties.ratings?.map(r => {
+          return {
+            ...trekRating[String(r)],
+            scale: trekRatingScale.find(oRS => oRS.id === trekRating[String(r)]?.scale),
+          };
+        }) ?? [],
+      ratingsDescription: rawDetailsProperties.ratings_description ?? '',
       signage,
+      service,
+      infrastructure,
     };
   } catch (e) {
     console.error('Error in details/adapter', e);

@@ -20,12 +20,13 @@ export interface RawSignage {
 }
 
 export interface Signage {
+  accessibility?: string | null;
   id: number;
   name: string;
   description: string;
   geometry: RawPointGeometry3D;
   type: SignageType;
-  imageUrl: string | undefined;
+  imageUrl: string | null;
 }
 
 export interface SignageDictionary {

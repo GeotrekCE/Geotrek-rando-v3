@@ -27,6 +27,7 @@ import { Check } from 'components/Icons/Check';
 import { FormattedMessage } from 'react-intl';
 import { InformationDesk } from 'modules/informationDesk/interface';
 import { SignageDictionary } from 'modules/signage/interface';
+import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { BackButton } from '../components/BackButton';
 
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
@@ -81,6 +82,8 @@ export type PropsType = {
   displayAltimetricProfile?: boolean;
   informationDesks?: InformationDesk[];
   signage?: SignageDictionary | null;
+  service?: PointWithIcon[];
+  infrastructure?: InfrastructureDictionary | null;
 };
 export const DetailsMap: React.FC<PropsType> = props => {
   const { reportVisibility, setReportVisibility } = useDetailsAndMapContext();
@@ -108,7 +111,11 @@ export const DetailsMap: React.FC<PropsType> = props => {
     experiencesVisibility,
     toggleExperiencesVisibility,
     signageVisibility,
+    serviceVisibility,
     toggleSignageVisibility,
+    toggleServiceVisibility,
+    infrastructureVisibility,
+    toggleInfrastructureVisibility,
   } = useDetailsMap();
   const mapConfig = getMapConfig();
 
@@ -191,9 +198,17 @@ export const DetailsMap: React.FC<PropsType> = props => {
               ? informationDeskMobileVisibility
               : null
           }
-          coursesVisibility={props.courses ? coursesVisibility : null}
-          experiencesVisibility={props.experiences ? experiencesVisibility : null}
+          coursesVisibility={
+            Boolean(props.courses) && props.courses.length > 0 ? coursesVisibility : null
+          }
+          experiencesVisibility={
+            Boolean(props.experiences) && props.experiences.length > 0
+              ? experiencesVisibility
+              : null
+          }
           signageVisibility={props.signage ? signageVisibility : null}
+          serviceVisibility={props.service && props.service.length > 0 ? serviceVisibility : null}
+          infrastructureVisibility={props.infrastructure ? infrastructureVisibility : null}
           toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
           togglePoiVisibility={togglePoiVisibility}
           toggleReferencePointsVisibility={toggleReferencePointsVisibility}
@@ -202,6 +217,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
           toggleCoursesVisibility={toggleCoursesVisibility}
           toggleExperiencesVisibility={toggleExperiencesVisibility}
           toggleSignageVisibility={toggleSignageVisibility}
+          toggleServiceVisibility={toggleServiceVisibility}
+          toggleInfrastructureVisibility={toggleInfrastructureVisibility}
         />
         {props.trekGeometry && (
           <TrekMarkersAndCourse
@@ -226,6 +243,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
           trekChildrenGeometry={props.trekChildrenGeometry}
           sensitiveAreasGeometry={props.sensitiveAreas}
           signage={props.signage}
+          service={props.service}
+          infrastructure={props.infrastructure}
           trekChildrenMobileVisibility={trekChildrenMobileVisibility}
           poiMobileVisibility={poiMobileVisibility}
           referencePointsMobileVisibility={referencePointsMobileVisibility}
@@ -236,6 +255,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
           experiencesVisibility={experiencesVisibility}
           informationDesks={props.informationDesks}
           signageVisibility={signageVisibility}
+          serviceVisibility={serviceVisibility}
+          infrastructureVisibility={infrastructureVisibility}
         />
         {props.displayAltimetricProfile === true && props.trekGeoJSON && (
           <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />

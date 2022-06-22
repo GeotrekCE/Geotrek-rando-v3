@@ -1,4 +1,7 @@
+import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
+import { Service } from 'modules/service/interface';
+import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CityDictionnary } from '../city/interface';
@@ -47,7 +50,8 @@ export const adaptOutdoorSites = ({
       period: rawOutdoorSite?.period ? rawOutdoorSite?.period : null,
       wind: rawOutdoorSite?.wind ?? [],
       orientation: rawOutdoorSite?.orientation ?? [],
-      place: cityDictionnary?.[rawOutdoorSite?.cities?.[0]]?.name ?? '',
+      place:
+        rawOutdoorSite?.cities?.map(city => cityDictionnary?.[city]?.name ?? '').join(', ') ?? '',
     };
   });
 
@@ -68,7 +72,10 @@ export const adaptOutdoorSiteDetails = ({
   outdoorRating,
   outdoorRatingScale,
   outdoorSiteType,
+  sensitiveAreas,
   signage,
+  service,
+  infrastructure,
 }: {
   rawOutdoorSiteDetails: RawOutdoorSiteDetails;
   pois: Poi[];
@@ -86,7 +93,10 @@ export const adaptOutdoorSiteDetails = ({
   outdoorRating: OutdoorRatingChoices;
   outdoorRatingScale: OutdoorRatingScale[];
   outdoorSiteType: OutdoorSiteTypeChoices;
+  sensitiveAreas: SensitiveArea[];
   signage: SignageDictionary | null;
+  service: Service[] | null;
+  infrastructure: InfrastructureDictionary | null;
 }): OutdoorSiteDetails => ({
   ...adaptOutdoorSites({
     rawOutdoorSites: [
@@ -134,7 +144,10 @@ export const adaptOutdoorSiteDetails = ({
     }) ?? [],
   ratingsDescription: rawOutdoorSiteDetails.properties.ratings_description,
   typeSite: outdoorSiteType[Number(rawOutdoorSiteDetails?.properties?.type)],
+  sensitiveAreas,
   signage,
+  service,
+  infrastructure,
 });
 
 export const adaptOutdoorSitePopupResults = ({
@@ -146,7 +159,10 @@ export const adaptOutdoorSitePopupResults = ({
 }): PopupResult => {
   return {
     title: rawOutdoorSitePopupResult.properties.name,
-    place: cityDictionnary?.[rawOutdoorSitePopupResult?.properties?.cities?.[0]]?.name ?? '',
+    place:
+      rawOutdoorSitePopupResult?.properties?.cities
+        ?.map(city => cityDictionnary?.[city]?.name ?? '')
+        .join(', ') ?? '',
     imgUrl: getThumbnail(rawOutdoorSitePopupResult.properties.attachments) ?? fallbackImgUri,
   };
 };

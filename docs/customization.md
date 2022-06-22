@@ -60,7 +60,8 @@ In json files, you can just override the primary keys you need. You have to over
   - Contact information such as your name, address, phone number and email.
   - Links based on the key pair `label`/`url` (can be based on translation labels for multilingual) and/or the key `informationID` whose value is equal to a flatpage identifier.
 
-- `filter.json` to define filters to hide, their order and values (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/filter.json). If you want to hide some of the filter, you have to override their properties with `"display": false`
+- `filter.json` to define filters to hide, their order and values (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/filter.json). If you want to hide some of the filter, you have to override their properties with `"display": false`.
+  The `labels` filter contains an additional `withExclude` parameter. Its default value is `true`. By setting it to `true`, the user can filter the search by excluding a label (`withExclude` only works if your version of Geotrek Admin is equal to or higher than [2.77.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.77.0); please set it to `false` if this is not the case)
 - `map.json` to define basemaps URL and attributions, center (y, x), default and max zoom level (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json).
 
   - You can also update the map layers. There are two map layers available:
@@ -138,7 +139,16 @@ It's also possible to change category colors :
 
 NB: If global config `groupTreksAndOutdoorFilters` is set to `true`,  the `outdoor` color is ignored in favor of the `trek` color.
 
-You can also override CSS in `customization/theme/style.css` file. To help overriding CSS, some ID have been added on main DIV components (header, logo, footer, cover, cards, results, maps, details...).
+## CSS
+
+You can override CSS in `customization/theme/style.css` file. To help overriding CSS, some ID have been added on main DIV components:
+- `home_content`, `home_activitiesBar`, `home_topHtml`, `home_section`, `home_activitySuggestion`, `banner_carousel`, etc on Homepage
+- `header_logo` in Header
+- Several similar ID on search and detail pages
+- `home_container` to isolate Home page
+- `search_container` to isolate Search page
+- `details_container` to isolate detail pages
+- `flatPage_container` to isolate static flatpages
 
 ## Translations
 

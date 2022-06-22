@@ -1,4 +1,5 @@
 import { Bbox, WebLink } from 'modules/details/interface';
+import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import {
   Attachment,
   LineStringGeometry,
@@ -12,6 +13,8 @@ import {
   RawWebLink,
 } from 'modules/interface';
 import { SignageDictionary } from 'modules/signage/interface';
+import { Service } from 'modules/service/interface';
+import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { Activity } from '../activities/interface';
 import { InformationDesk } from '../informationDesk/interface';
 import { Label } from '../label/interface';
@@ -110,5 +113,8 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   ratings: OutdoorRatingWithScale[];
   ratingsDescription: string;
   signage: SignageDictionary | null;
+  service: Service[] | null;
+  infrastructure: InfrastructureDictionary | null;
   typeSite?: OutdoorSiteType;
+  sensitiveAreas: SensitiveArea[];
 }

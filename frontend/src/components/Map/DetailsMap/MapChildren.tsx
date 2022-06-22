@@ -5,15 +5,17 @@ import { Coordinate2D } from 'modules/interface';
 import { OutdoorSite } from 'modules/outdoorSite/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
+import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import React, { useContext } from 'react';
 import { useMediaPredicate } from 'react-media-hook';
+import { Infrastructure } from 'components/Icons/Infrastructure';
 import { TouristicContentGeometry } from './DetailsMap';
 
 import { MarkersWithIcon } from './MarkersWithIcon';
 import { PointReport } from './PointReport';
 import { PointsInformationDesk } from './PointsInformationDesk';
 import { PointsReference } from './PointsReference';
-import { PointsSignage } from './PointsSignage';
+import { PointsSecondary } from './PointsSecondary';
 import { SensitiveAreas } from './SensitiveAreas';
 import { TouristicContent } from './TouristicContent';
 import { TrekChildren } from './TrekChildren';
@@ -46,6 +48,10 @@ type Props = {
   informationDesks?: InformationDesk[];
   signageVisibility: Visibility;
   signage?: SignageDictionary | null;
+  serviceVisibility: Visibility;
+  service?: PointWithIcon[];
+  infrastructureVisibility: Visibility;
+  infrastructure?: InfrastructureDictionary | null;
 };
 
 export const MapChildren: React.FC<Props> = props => {
@@ -107,7 +113,13 @@ export const MapChildren: React.FC<Props> = props => {
         <PointsInformationDesk informationDesks={props.informationDesks} />
       )}
 
-      {props.signageVisibility === 'DISPLAYED' && <PointsSignage signage={props.signage} />}
+      {props.signageVisibility === 'DISPLAYED' && <PointsSecondary dictionary={props.signage} />}
+
+      {props.infrastructureVisibility === 'DISPLAYED' && (
+        <PointsSecondary dictionary={props.infrastructure} icon={Infrastructure} />
+      )}
+
+      {props.serviceVisibility === 'DISPLAYED' && <MarkersWithIcon points={props.service} />}
 
       {(isMobile || visibleSection === 'report') && props.reportVisibility && <PointReport />}
     </>

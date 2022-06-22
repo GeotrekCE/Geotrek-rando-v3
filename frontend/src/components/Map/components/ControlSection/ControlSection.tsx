@@ -24,6 +24,10 @@ export interface ControlSectionProps {
   toggleExperiencesVisibility: () => void;
   signageVisibility: Visibility;
   toggleSignageVisibility: () => void;
+  serviceVisibility: Visibility;
+  toggleServiceVisibility: () => void;
+  infrastructureVisibility: Visibility;
+  toggleInfrastructureVisibility: () => void;
   className?: string;
   position?: ControlPosition;
 }

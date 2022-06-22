@@ -55,7 +55,8 @@
       "length": "Length",
       "structures": "Structure",
       "clearAll": "Clear all",
-      "filters": "Filters"
+      "filters": "Filters",
+      "labels": "Others"
     },
     "textFilter": "Search...",
     "map": {
@@ -69,7 +70,9 @@
         "informationDesks": "Information desks",
         "courses": "Parcours",
         "experiences": "Lieux de pratique",
-        "signage": "Signage"
+        "signage": "Signage",
+        "infrastructure": "Infrastructures",
+        "service": "Others infos"
       },
       "resetView": "Recenter map"
     }
@@ -257,5 +260,23 @@
     "warning": {
       "noWebGl": "The web graphics library (WebGL) seems to be disabled or not available on your browser, so the 3D module is unavailable."
     }
+  },
+  "tooltip": {
+    "print": "Print",
+    "show3D": "Show 3D",
+    "difficulty": "Difficulty",
+    "period": "Period",
+    "orientation": "Orientation",
+    "wind": "Wind",
+    "date": "Date",
+    "duration": "Duration",
+    "distance": "Distance",
+    "elevation": "Positive Elevation",
+    "negativeElevation": "Negative Elevation",
+    "altitude": "Altitude",
+    "assemblyPoint": "Assembly point",
+    "numberOfParticipants": "Number of participants",
+    "courseType": "Course type",
+    "network": "Network"
   }
 }

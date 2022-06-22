@@ -1,4 +1,8 @@
+import { getSensitiveAreas } from 'modules/sensitiveArea/connector';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { getSignage } from 'modules/signage/connector';
+import { getService } from 'modules/service/connector';
+import { getInfrastructure } from 'modules/infrastructure/connector';
 import { getCities } from '../city/connector';
 import { getOutdoorCourseType } from '../outdoorCourseType/connector';
 import { getOutdoorRating } from '../outdoorRating/connector';
@@ -26,6 +30,7 @@ export const getOutdoorCourseDetails = async (
   language: string,
 ): Promise<OutdoorCourseDetails> => {
   try {
+    // Typescript limit for Promise.all is for 10 promises
     const [
       rawOutdoorCourseDetails,
       pois,
@@ -34,7 +39,7 @@ export const getOutdoorCourseDetails = async (
       outdoorRating,
       outdoorRatingScale,
       outdoorCourseType,
-      signage,
+      sensitiveAreas,
     ] = await Promise.all([
       fetchOutdoorCourseDetails({ language }, id),
       getPois(Number(id), language, 'courses'),
@@ -43,7 +48,15 @@ export const getOutdoorCourseDetails = async (
       getOutdoorRating(language),
       getOutdoorRatingScale(language),
       getOutdoorCourseType(language),
+      getGlobalConfig().enableSensitiveAreas
+        ? getSensitiveAreas('outdoorCourse', Number(id), language)
+        : [],
+    ]);
+
+    const [signage, service, infrastructure] = await Promise.all([
       getSignage(language, id, 'OUTDOOR_COURSE'),
+      getService(language, id, 'OUTDOOR_COURSE'),
+      getInfrastructure(language, id, 'OUTDOOR_COURSE'),
     ]);
 
     return adaptOutdoorCourseDetails({
@@ -54,7 +67,10 @@ export const getOutdoorCourseDetails = async (
       outdoorRating,
       outdoorRatingScale,
       outdoorCourseType,
+      sensitiveAreas,
       signage,
+      service,
+      infrastructure,
     });
   } catch (e) {
     console.error('Error in outdoor course connector', e);
