@@ -1,12 +1,12 @@
 # Changelog
 
-3.9.0 (unreleased)
+3.9.0 (2022-06-22)
 ------------------
 
 **🚀 New features**
 
 * Add tooltips on detail pages, on actions and information pictograms (#392)
-* Add dynamic ratings and rating description on treks details pages (#541)
+* Add dynamic ratings and rating descriptions on treks details pages (#541)
 * Add "gear" property on treks detail pages (#672)
 * Add sensitive areas on outdoor sites and courses detail pages (#671)
 * Add published infrastructures on treks and outdoor maps (#408)
