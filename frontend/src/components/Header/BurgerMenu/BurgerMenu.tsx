@@ -66,10 +66,7 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
         locale={currentLanguage}
         key={routes.OFFLINE}
       >
-        <a
-          className="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
-          rel="nofollow"
-        >
+        <a className="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft">
           {intl.formatMessage({ id: 'header.offline' })}
         </a>
       </NextLink>
