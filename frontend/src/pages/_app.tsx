@@ -59,7 +59,6 @@ interface AppProps extends AppInitialProps {
 class MyApp extends App<AppProps> {
   static async getInitialProps(props: any): Promise<AppProps> {
     const { Component, ctx } = props;
-
     try {
       const pageProps =
         Component.getInitialProps !== undefined ? await Component.getInitialProps(ctx) : {};
