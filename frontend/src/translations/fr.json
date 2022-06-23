@@ -279,5 +279,10 @@
     "numberOfParticipants": "Nombre de participants",
     "courseType": "Type de parcours",
     "network": "Réseau"
+  },
+  "cookie": {
+    "message": "Notre site web utilise des cookies nous permettant d'analyser notre trafic.",
+    "accept": "J'accepte",
+    "refuse": "Je refuse"
   }
 }

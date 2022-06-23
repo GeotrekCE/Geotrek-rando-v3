@@ -239,5 +239,10 @@
     "numberOfParticipants": "Numero di partecipanti",
     "courseType": "Tipo de gara",
     "network": "Rete"
+  },
+  "cookie": {
+    "message": "Il nostro sito Web utilizza i cookie che ci consentono di analizzare il nostro traffico.",
+    "accept": "Accetto",
+    "refuse": "Mi rifiuto"
   }
 }

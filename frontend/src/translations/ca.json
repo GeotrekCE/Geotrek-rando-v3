@@ -232,5 +232,10 @@
     "numberOfParticipants": "Nombre de participants",
     "courseType": "Tipus de cursa",
     "network": "Xarxa"
+  },
+  "cookie": {
+    "message": "El nostre lloc web utilitza cookies que ens permeten analitzar el nostre trànsit.",
+    "accept": "Accepto",
+    "refuse": "Em nego"
   }
 }

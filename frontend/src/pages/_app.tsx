@@ -14,6 +14,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { ListAndMapProvider } from 'modules/map/ListAndMapContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { getHeaderConfig } from 'modules/header/utills';
+import { FormattedMessage } from 'react-intl';
 
 import CookieConsent, { Cookies } from 'react-cookie-consent';
 import { colorPalette } from 'stylesheet';
@@ -87,15 +88,17 @@ class MyApp extends App<AppProps> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { Component, pageProps, hasError, errorEventId, messages } = this.props;
 
-    const { googleAnalyticsId } = getGlobalConfig();
+    const { googleAnalyticsId, baseUrl } = getGlobalConfig();
 
     const handleDeclineCookie = () => {
       //remove google analytics cookies
+      Cookies.remove(`_ga_${googleAnalyticsId?.replace('G-', '') ?? ''}`, { path: '/' });
       Cookies.remove('_ga');
-      Cookies.remove(`_ga_${googleAnalyticsId?.replace('G-', '') ?? ''}`);
       Cookies.remove('_gat');
       Cookies.remove('_gid');
     };
+
+    console.log(Cookies.get('_ga_8FSV2N4FXN'));
 
     return (
       <QueryClientProvider client={queryClient}>
@@ -105,14 +108,14 @@ class MyApp extends App<AppProps> {
               <Component {...pageProps} />
               <CookieConsent
                 location="bottom"
-                buttonText="J'accepte"
+                buttonText={<FormattedMessage id="cookie.accept" />}
                 style={{
                   background: colorPalette.primary1,
                   textAlign: 'center',
                 }}
                 buttonStyle={{ background: colorPalette.primary2, fontSize: '13px' }}
                 enableDeclineButton
-                declineButtonText="Je refuse"
+                declineButtonText={<FormattedMessage id="cookie.refuse" />}
                 declineButtonStyle={{
                   background: colorPalette.primary3,
                   color: colorPalette.primary2,
@@ -120,7 +123,7 @@ class MyApp extends App<AppProps> {
                 }}
                 onDecline={handleDeclineCookie}
               >
-                Notre site web utilise des cookies nous permettant d'analyser notre trafic.
+                {<FormattedMessage id="cookie.message" />}
               </CookieConsent>
             </ListAndMapProvider>
           </Root>

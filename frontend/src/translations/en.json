@@ -278,5 +278,10 @@
     "numberOfParticipants": "Number of participants",
     "courseType": "Course type",
     "network": "Network"
+  },
+  "cookie": {
+    "message": "Our website uses cookies allowing us to analyze our traffic.",
+    "accept": "I accept",
+    "refuse": "I refuse"
   }
 }

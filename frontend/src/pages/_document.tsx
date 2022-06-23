@@ -41,7 +41,7 @@ export default class MyDocument extends Document {
     return (
       <Html style={{ scrollBehavior: 'smooth' }}>
         <Head>
-          {!!googleAnalyticsId && Cookies.get('CookieConsent') === true && (
+          {Cookies.get('CookieConsent') !== false && !!googleAnalyticsId && (
             <>
               <script
                 async
@@ -59,6 +59,7 @@ export default class MyDocument extends Document {
               />
             </>
           )}
+          {Cookies.get('CookieConsent') === false && googleAnalyticsId && <></>}
           <style>{style}</style>
           <style>{`
 :root {

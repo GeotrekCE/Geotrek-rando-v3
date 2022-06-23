@@ -232,5 +232,10 @@
     "numberOfParticipants": "Número de participantes",
     "courseType": "Tipo de carrera",
     "network": "La red"
+  },
+  "cookie": {
+    "message": "Nuestro sitio web utiliza cookies que nos permiten analizar nuestro tráfico.",
+    "accept": "Acepto",
+    "refuse": "Me niego"
   }
 }
