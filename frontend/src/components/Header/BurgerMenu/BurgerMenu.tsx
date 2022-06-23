@@ -59,7 +59,13 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
           {intl.formatMessage({ id: 'header.goToSearch' })}
         </a>
       </NextLink>
-      <NextLink href={routes.OFFLINE} locale={currentLanguage} key={routes.OFFLINE}>
+      <NextLink
+        href={routes.OFFLINE}
+        passHref
+        prefetch={false}
+        locale={currentLanguage}
+        key={routes.OFFLINE}
+      >
         <a
           className="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
           rel="nofollow"
