@@ -225,7 +225,6 @@ Object {
               <a
                 class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
                 href="/offline"
-                rel="nofollow"
               >
                 Contenus hors ligne
               </a>
@@ -485,7 +484,6 @@ Object {
             <a
               class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
               href="/offline"
-              rel="nofollow"
             >
               Contenus hors ligne
             </a>
