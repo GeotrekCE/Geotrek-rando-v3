@@ -48,6 +48,9 @@ export const ThreeD: React.FC<ThreeDProps> = ({
   const currentLanguage = router.locale ?? getDefaultLanguage();
 
   const isAvailableWebGL = 'WebGLRenderingContext' in window;
+  const {
+    mapSatelliteLayers: [{ url: mapLayerUrl }],
+  } = getMapConfig();
 
   const handleClose = () => {
     if (scene.current) {
@@ -93,7 +96,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
       POI_URL: `${
         getGlobalConfig().apiUrl
       }/poi/?trek=${trekId}&language=${currentLanguage}&format=geojson`,
-      TILE_TEX_URL: getMapConfig().mapSatelliteLayerUrl,
+      TILE_TEX_URL: mapLayerUrl,
       SIDE_TEX_URL: '/images/3d/side.jpg',
       CAM_SPEED_F: 100,
       PICTO_PREFIX: '',
