@@ -88,17 +88,19 @@ class MyApp extends App<AppProps> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { Component, pageProps, hasError, errorEventId, messages } = this.props;
 
-    const { googleAnalyticsId, baseUrl } = getGlobalConfig();
+    const { googleAnalyticsId } = getGlobalConfig();
 
     const handleDeclineCookie = () => {
       //remove google analytics cookies
-      Cookies.remove(`_ga_${googleAnalyticsId?.replace('G-', '') ?? ''}`, { path: '/' });
+      Cookies.remove(`_ga_${googleAnalyticsId?.replace('G-', '') ?? ''}`);
       Cookies.remove('_ga');
       Cookies.remove('_gat');
       Cookies.remove('_gid');
     };
 
-    console.log(Cookies.get('_ga_8FSV2N4FXN'));
+    if (Cookies.get('cookieConsent') === 'false') {
+      handleDeclineCookie();
+    }
 
     return (
       <QueryClientProvider client={queryClient}>
@@ -108,6 +110,7 @@ class MyApp extends App<AppProps> {
               <Component {...pageProps} />
               <CookieConsent
                 location="bottom"
+                cookieName="cookieConsent"
                 buttonText={<FormattedMessage id="cookie.accept" />}
                 style={{
                   background: colorPalette.primary1,

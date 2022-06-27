@@ -41,7 +41,7 @@ export default class MyDocument extends Document {
     return (
       <Html style={{ scrollBehavior: 'smooth' }}>
         <Head>
-          {Cookies.get('CookieConsent') !== false && !!googleAnalyticsId && (
+          {!!googleAnalyticsId && (
             <>
               <script
                 async
@@ -54,12 +54,24 @@ export default class MyDocument extends Document {
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
 
-                  gtag('config', '${googleAnalyticsId}');`,
+                  gtag('config', '${googleAnalyticsId}');
+                  const fct = () => {
+                    if(document.cookie.includes("cookieConsent=false")) {
+                      var cookies = document.cookie.split(";");
+                      for (var i = 0; i < cookies.length; i++) {
+                          var cookie = cookies[i];
+                          var eqPos = cookie.indexOf("=");
+                          var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                          document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+                        }
+                      document.cookie="cookieConsent=false";
+                  }
+                  }
+                  setInterval(fct, 5000)`,
                 }}
               />
             </>
           )}
-          {Cookies.get('CookieConsent') === false && googleAnalyticsId && <></>}
           <style>{style}</style>
           <style>{`
 :root {
