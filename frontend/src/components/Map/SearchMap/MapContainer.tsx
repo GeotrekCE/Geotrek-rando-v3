@@ -20,7 +20,6 @@ const MapContainer: React.FC<Props> = ({ children, whenCreated, type }) => {
       scrollWheelZoom
       style={{ height: '100%', width: '100%' }}
       zoomControl={type === 'DESKTOP'}
-      attributionControl={false}
       id="search_map"
     >
       {children}
