@@ -6,5 +6,29 @@ export const getMapConfig = (): MapConfig => {
     publicRuntimeConfig: { map },
   } = getNextConfig();
 
-  return map;
+  return {
+    ...map,
+    mapClassicLayers: map.mapClassicLayers ?? [
+      {
+        url: map.mapClassicLayerUrl,
+        options: {
+          attribution: map.mapCredits,
+        },
+      },
+    ],
+    mapSatelliteLayers: map.mapSatelliteLayers ?? [
+      {
+        url: map.mapSatelliteLayerUrl,
+        options: {
+          attribution: map.mapSatelliteLayerUrl,
+        },
+      },
+    ],
+    mapOfflineLayer: map.mapOfflineLayer ?? {
+      url: map.mapClassicLayerUrl,
+      options: {
+        attribution: map.mapCredits,
+      },
+    },
+  };
 };
