@@ -40,7 +40,62 @@ In json files, you can just override the primary keys you need. You have to over
 
 - `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
 
-- `home.json` to define homepage settings. You can define blocks to display and trek suggestion block with treks ID, outdoor sites ID, services ID or events ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
+- `home.json` to define homepage settings.
+
+  - `suggestions`: You can define blocks to display suggestions groups with treks ID, outdoor sites ID, services ID or events ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
+    Each group has the following properties :
+    ```typescript
+    {
+      "titleTranslationId": string, // you can use locales keys with the files inside `translations` folder
+      "iconUrl": string, // url to the icon file
+      "ids": string[] // list of ids ,
+      "type": 'trek' | 'service' | 'outdoor' | 'events' // if not set, default to `trek`
+    }
+    ```
+   To define suggestions groups you need to build an `object` with the languages code as keys. By this way you can differentiate the valorization of a territory according to the selected language. If you don't need this feature (or if you want the same configuration for several language), use `default` key instead of a language code. The configuration in the example below displays 2 groups of suggestions for all languages except the English version with one different:
+    ```json
+    "suggestions": {
+      "default": [
+        {
+          "titleTranslationId": "home.territoryTreks",
+          "iconUrl": "/icons/practice-pedestrian.svg",
+          "ids": ["2", "582", "586", "501", "771", "596"],
+          "type": "trek"
+        },
+        {
+          "titleTranslationId": "home.events",
+          "iconUrl": "/icons/category-events.svg",
+          "ids": ["1", "5"],
+          "type": "events"
+        },
+      ],
+      "en": [
+        {
+          "titleTranslationId": "home.treksDiscovery",
+          "iconUrl": "/icons/pedestrian.svg",
+          "ids": ["2", "582", "586"],
+          "type": "trek"
+        },
+      ]
+    }
+    ```
+    For backward compatibility you can still use an array, this is the same behavior that `object` with only a `default` key. For example:
+      ```json
+      "suggestions": [
+        {
+          "titleTranslationId": "home.territoryTreks",
+          "iconUrl": "/icons/practice-pedestrian.svg",
+          "ids": ["2", "582", "586", "501", "771", "596"],
+          "type": "trek"
+        },
+        {
+          "titleTranslationId": "home.events",
+          "iconUrl": "/icons/category-events.svg",
+          "ids": ["1", "5"],
+          "type": "events"
+        },
+      ]
+      ```
 
   - In `welcomeBanner`, you can personnalize the cover on the homepage. You can add an asset on the top of the page: it can either be a video, a single picture or a carousel of images:
 

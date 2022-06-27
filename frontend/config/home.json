@@ -10,5 +10,7 @@
   "activityBar": {
     "shouldDisplay": true
   },
-  "suggestions": []
+  "suggestions": {
+    "default": []
+  }
 }

@@ -18,6 +18,13 @@ export interface Suggestion {
   type: 'trek' | 'service' | 'outdoor' | 'events';
 }
 
+/** @deprecated since 3.9.1 version */
+export type DeprecatedSuggestionList = Array<Suggestion>;
+
+export interface SuggestionList {
+  [language: 'default' | string]: Suggestion[];
+}
+
 export interface DisplayableSuggestionCategory {
   titleTranslationId: string;
   iconUrl: string;
