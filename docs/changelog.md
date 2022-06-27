@@ -1,5 +1,27 @@
 # Changelog
 
+3.9.1 (unreleased)
+------------------
+
+**🚀 New features**
+
+* Allow to define different suggestions groups depending on language (#711)
+* Reorganize and improve map layers settings and attributions
+* Ability to display different layers depending on zoom
+* Ability to define bounds to some layers (#689)
+* Live change attributions to match with the current displayed layer
+* Ability to define a specific layer for offline maps
+
+**🐛 Fixes**
+
+* Fix displaying of routes when hovering or clicking on one trek in map search page (#694)
+* Fix first loading of the "Offline contents" page (#621)
+
+**⚠️ Version notes**
+
+* It is now possible de define home suggestions contents by language. Change in suggastions and maps settings....
+* Map settings....
+
 3.9.0 (2022-06-22)
 ------------------
 
