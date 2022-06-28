@@ -19,7 +19,7 @@ Object {
               style="width: 100%; height: 100%;"
             >
               <div
-                class="ResultCardCarousel__Wrapper-sc-13vjoai-0 botBuK h-full w-full flex-shrink-0 relative desktop:w-resultCardDesktop"
+                class="ResultCardCarousel__Wrapper-sc-13vjoai-0 botBuK h-full w-full flex-grow relative desktop:w-resultCardDesktop"
               >
                 <div
                   class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY slick-initialized"
@@ -63,7 +63,7 @@ Object {
           </div>
         </div>
         <a
-          class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full min-h-0"
+          class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full"
           data-testid="Link-ResultCard-2"
           href="/details-2-Balade-au-pays-des-menhirs"
         >
@@ -239,7 +239,7 @@ Object {
             style="width: 100%; height: 100%;"
           >
             <div
-              class="ResultCardCarousel__Wrapper-sc-13vjoai-0 botBuK h-full w-full flex-shrink-0 relative desktop:w-resultCardDesktop"
+              class="ResultCardCarousel__Wrapper-sc-13vjoai-0 botBuK h-full w-full flex-grow relative desktop:w-resultCardDesktop"
             >
               <div
                 class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY slick-initialized"
@@ -283,7 +283,7 @@ Object {
         </div>
       </div>
       <a
-        class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full min-h-0"
+        class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full"
         data-testid="Link-ResultCard-2"
         href="/details-2-Balade-au-pays-des-menhirs"
       >

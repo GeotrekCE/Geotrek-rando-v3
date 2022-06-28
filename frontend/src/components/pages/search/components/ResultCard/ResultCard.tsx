@@ -163,7 +163,7 @@ export const ResultCard: React.FC<
         )}
       </Modal>
 
-      <Link href={redirectionUrl} testId={`Link-ResultCard-${id}`} className="w-full min-h-0">
+      <Link href={redirectionUrl} testId={`Link-ResultCard-${id}`} className="w-full">
         <DetailsContainer>
           <DetailsLayout>
             {place !== null && <Place>{place}</Place>}
