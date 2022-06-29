@@ -66,7 +66,20 @@ export interface RawGeometryCollection {
   >;
 }
 
+export interface ColorsConfig {
+  primary1?: { DEFAULT?: string; light?: string };
+  primary2?: string;
+  primary3?: string;
+  greySoft?: { DEFAULT?: string; light?: string };
+  warning?: string;
+  easyOK?: string;
+  hardKO?: string;
+  red?: string;
+  redMarker?: string;
+}
+
 export interface APICallsConfig {
+  colors: ColorsConfig;
   searchResultsPageSize: number;
   mapResultsPageSize: number;
   maxPoiPerPage: number;
