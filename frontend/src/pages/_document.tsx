@@ -1,15 +1,35 @@
 import { getGlobalConfig } from 'modules/utils/api.config';
 import parse from 'html-react-parser';
 import getNextConfig from 'next/config';
-import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
+import Document, {
+  DocumentContext,
+  DocumentInitialProps,
+  Head,
+  Html,
+  Main,
+  NextScript,
+} from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { ColorsConfig } from 'modules/interface';
 
 const {
   publicRuntimeConfig: { style, colors, scriptsHeaderHtml, scriptsFooterHtml },
 } = getNextConfig();
 
+const {
+  primary1: { DEFAULT: primary1 = '#aa397d', light: primary1Light = '#bd3e8b' } = {},
+  primary2 = '#f5E7ef',
+  primary3 = '#791150',
+  greySoft: { DEFAULT: greySoft = '#d7d6d9', light: greySoftLight = '#d7d6d950' } = {},
+  warning = '#d77E00',
+  easyOK = '4fad79',
+  hardKO = '#e25316',
+  red = '#ff7373',
+  redMarker = '#e83737',
+} = colors as ColorsConfig;
+
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext) {
+  static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
@@ -40,7 +60,7 @@ export default class MyDocument extends Document {
     return (
       <Html className="scroll-smooth">
         <Head>
-          {!!googleAnalyticsId && (
+          {googleAnalyticsId !== null && (
             <>
               <script
                 async
@@ -60,17 +80,17 @@ export default class MyDocument extends Document {
           )}
           <style>{`
 :root {
-  --color-primary1-default: ${String(colors.primary1?.DEFAULT || '#AA397D')};
-  --color-primary1-light: ${String(colors.primary1?.light || '#bd3e8b')};
-  --color-primary2: ${String(colors.primary2 || '#F5E7EF')};
-  --color-primary3: ${String(colors.primary3 || '#791150')};
-  --color-greySoft-default: ${String(colors.greySoft?.DEFAULT || '#D7D6D9')};
-  --color-greySoft-light: ${String(colors.greySoft?.light || '#D7D6D950')};
-  --color-warning: ${String(colors.warning || '#D77E00')};
-  --color-easyOK: ${String(colors.easyOK || '#4FAD79')};
-  --color-hardKO: ${String(colors.hardKO || '#E25316')};
-  --color-red: ${String(colors.red || '#FF7373')};
-  --color-redMarker: ${String(colors.redMarker || '#E83737')};
+  --color-primary1-default: ${primary1};
+  --color-primary1-light: ${primary1Light};
+  --color-primary2: ${primary2};
+  --color-primary3: ${primary3};
+  --color-greySoft-default: ${greySoft};
+  --color-greySoft-light: ${greySoftLight};
+  --color-warning: ${warning};
+  --color-easyOK: ${easyOK};
+  --color-hardKO: ${hardKO};
+  --color-red: ${red};
+  --color-redMarker: ${redMarker};
 }
 `}</style>
           {style !== undefined && <style dangerouslySetInnerHTML={{ __html: style }} />}
