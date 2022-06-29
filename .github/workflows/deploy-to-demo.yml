@@ -1,0 +1,14 @@
+name: Deploy release to demo instance
+
+on:
+  registry_package:
+    types:
+      - published
+
+jobs:
+  trigger-gitlab-webhook:
+    name: Trigger GitLab webhook
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Call webhook
+        run: "curl -X POST --fail -F token=${{ secrects.GITLAB_WEBHOOK_TOKEN }} -F ref=master ${{ secrets.GITLAB_WEBHOOK }}"
