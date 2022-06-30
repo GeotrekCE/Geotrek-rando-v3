@@ -1,7 +1,7 @@
 import { TouristicContent } from 'components/Map/DetailsMap/TouristicContent';
 import { LatLngBoundsExpression } from 'leaflet';
 import React, { useContext, useEffect } from 'react';
-import { MapContainer, ScaleControl, TileLayer } from 'react-leaflet';
+import { MapContainer, ScaleControl } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import styled, { css } from 'styled-components';
 
@@ -17,7 +17,6 @@ import {
   PolygonGeometry,
 } from 'modules/interface';
 import { useTileLayer } from 'hooks/useTileLayer';
-import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { TrekChildGeometry, TrekFamily } from 'modules/details/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import { VisibleSectionContext } from 'components/pages/details/VisibleSectionContext';
@@ -32,13 +31,13 @@ import { BackButton } from '../components/BackButton';
 
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
 import { getMapConfig } from '../config';
-import { Credits } from '../components/Credits';
 import { AltimetricProfile } from '../components/AltimetricProfile';
 import { ControlSection } from '../components/ControlSection';
 import { useDetailsMap } from './useDetailsMap';
 import { MapChildren, PointWithIcon } from './MapChildren';
 import DetailsMapDrawer from '../components/DetailsMapDrawer';
 import { ResetView } from '../components/ResetView';
+import TileLayerManager from '../components/TileLayerManager';
 
 export interface TouristicContentGeometry {
   geometry:
@@ -158,12 +157,11 @@ export const DetailsMap: React.FC<PropsType> = props => {
           navigator.onLine ? undefined : Math.min(...(mapConfig?.zoomAvailableOffline ?? []))
         }
         zoomControl={props.type === 'DESKTOP'}
-        attributionControl={false}
         whenCreated={setMapInstance}
         bounds={bounds}
         hasDrawer={hasDrawer}
       >
-        <TileLayer url={mapConfig.mapClassicLayerUrl} />
+        <TileLayerManager />
         {reportVisibility && coordinatesReportTouched ? (
           <BackButton icon={<Check size={20} />} onClick={hideMap}>
             <FormattedMessage id="report.mapButton.validate" />
@@ -173,8 +171,6 @@ export const DetailsMap: React.FC<PropsType> = props => {
         )}
         <ResetView />
         <ScaleControl />
-        <MapLayerTypeToggleButton />
-        <StyledCredits hasDrawer={hasDrawer}>{mapConfig.mapCredits}</StyledCredits>
         <ControlSection
           trekChildrenVisibility={
             props.trekChildrenGeometry && props.trekChildrenGeometry.length > 0
@@ -275,17 +271,6 @@ export const DetailsMap: React.FC<PropsType> = props => {
     </MapWrapper>
   );
 };
-
-const StyledCredits = styled(Credits)<{ hasDrawer: boolean }>`
-  position: absolute;
-  bottom: ${props => (props.hasDrawer ? '70px' : '5px')};
-  right: 10px;
-  ${desktopOnly(css`
-    bottom: 0;
-    right: 0;
-  `)}
-  z-index: 1000;
-`;
 
 const MapWrapper = styled.div`
   position: relative;

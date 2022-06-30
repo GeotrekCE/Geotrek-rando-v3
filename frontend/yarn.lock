@@ -7731,6 +7731,11 @@ lazy-ass@^1.6.0:
   resolved "https://registry.yarnpkg.com/lazy-ass/-/lazy-ass-1.6.0.tgz#7999655e8646c17f089fdd187d150d3324d54513"
   integrity sha1-eZllXoZGwX8In90YfRUNMyTVRRM=
 
+leaflet-boundary-canvas@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/leaflet-boundary-canvas/-/leaflet-boundary-canvas-1.0.0.tgz#2b4c2d9f4aac4328e58588f89039d483f7c3fa84"
+  integrity sha512-+0kTmtqOBIKM5iOI8lywAAPHpKVHBSkyjdg/UvPW+M9moc8f1lBWaF7KEL6uc5cL3FAQf5J66bRFtJQ0bxPoLA==
+
 leaflet-i18n@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/leaflet-i18n/-/leaflet-i18n-0.3.1.tgz#404e75dc6704f4a2399d1cd05f0dd1dd178300b5"

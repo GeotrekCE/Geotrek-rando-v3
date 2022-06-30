@@ -13,15 +13,14 @@ import {
   PointGeometry,
   PolygonGeometry,
 } from 'modules/interface';
-import { MapLayerTypeToggleButton } from 'components/MapLayerTypeToggleButton/MapLayerTypeToggleButton';
 import { useTileLayer } from 'hooks/useTileLayer';
 import { BackButton } from '../components/BackButton';
 
 import { TouristicContent } from '../DetailsMap/TouristicContent';
 import { getMapConfig } from '../config';
-import { Credits } from '../components/Credits';
 import { TouristicContentGeometry } from '../DetailsMap/DetailsMap';
 import { ResetView } from '../components/ResetView';
+import TileLayerManager from '../components/TileLayerManager';
 
 interface TouristicContentGeometryNullable {
   geometry:
@@ -79,10 +78,8 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
       >
         <BackButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
         <ResetView />
-        <TileLayer url={mapConfig.mapClassicLayerUrl} />
+        <TileLayerManager />
         <ScaleControl />
-        <MapLayerTypeToggleButton />
-        <Credits>{mapConfig.mapCredits}</Credits>
         {props.touristicContentGeometry !== null && (
           <TouristicContent
             contents={[props.touristicContentGeometry as TouristicContentGeometry]}
