@@ -79,23 +79,23 @@ In json files, you can just override the primary keys you need. You have to over
       ]
     }
     ```
-    For backward compatibility you can still use an array, this is the same behavior that `object` with only a `default` key. For example:
-      ```json
-      "suggestions": [
-        {
-          "titleTranslationId": "home.territoryTreks",
-          "iconUrl": "/icons/practice-pedestrian.svg",
-          "ids": ["2", "582", "586", "501", "771", "596"],
-          "type": "trek"
-        },
-        {
-          "titleTranslationId": "home.events",
-          "iconUrl": "/icons/category-events.svg",
-          "ids": ["1", "5"],
-          "type": "events"
-        },
-      ]
-      ```
+    PS: For backward compatibility you can still use an array, this is the same behavior that `object` with only a `default` key. For example:
+    ```json
+    "suggestions": [
+      {
+        "titleTranslationId": "home.territoryTreks",
+        "iconUrl": "/icons/practice-pedestrian.svg",
+        "ids": ["2", "582", "586", "501", "771", "596"],
+        "type": "trek"
+      },
+      {
+        "titleTranslationId": "home.events",
+        "iconUrl": "/icons/category-events.svg",
+        "ids": ["1", "5"],
+        "type": "events"
+      },
+    ]
+    ```
 
   - In `welcomeBanner`, you can personnalize the cover on the homepage. You can add an asset on the top of the page: it can either be a video, a single picture or a carousel of images:
 
