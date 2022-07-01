@@ -1,28 +1,28 @@
 import { AppCrashFallback } from 'components/AppCrashFallback';
 import Head from 'next/head';
-import { FunctionComponent } from 'react';
 import { IntlProvider } from 'react-intl';
 
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { useRouter } from 'next/router';
 import { colorPalette } from 'stylesheet';
+import messages from 'public/locales.json';
 import CSSResets from './CSSResets';
 import { ErrorBoundary } from './ErrorBoundary';
 
 interface RootProps {
   hasError: boolean;
   errorEventId?: string;
-  messages: {
-    [language: string]: {
-      [messageId: string]: string;
-    };
-  };
 }
 
-export const Root: FunctionComponent<RootProps> = props => {
+interface Messages {
+  [language: string]: {
+    [messageId: string]: string;
+  };
+}
+export const Root: React.FC<RootProps> = props => {
   const router = useRouter();
-  const language = router.locale ?? getDefaultLanguage();
+  const language: string = router.locale ?? getDefaultLanguage() ?? 'fr';
   const { googleSiteVerificationToken, applicationName } = getGlobalConfig();
 
   return (
@@ -31,8 +31,7 @@ export const Root: FunctionComponent<RootProps> = props => {
       hasError={props.hasError}
       eventId={props.errorEventId}
     >
-      {/*@ts-ignore-next-line we ignore because locales have to be given for the config languages */}
-      <IntlProvider locale={language} messages={props.messages[language] ?? props.messages.fr}>
+      <IntlProvider locale={language} messages={(messages as Messages)[language]}>
         <Head>
           <link rel="manifest" href="/manifest.json" />
 
