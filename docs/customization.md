@@ -35,12 +35,67 @@ In json files, you can just override the primary keys you need. You have to over
   - `applicationName`: application name appearing on PWA
   - `enableReport`: to enable report form in trek detail pages
   - `enableSearchByMap`: to enable searching by map displayed area (bbox)
-  - `maxLengthTrekAllowedFor3DRando`: Maximum length of meters allowed to enable 3D mode in the current trek. Adjust this setting carefully as too long a trek could freeze your browser. If this setting is defined to `0` (or `mapSatelliteLayerUrl` from `map.json` is not set) the 3D mode feature is disabled for the whole application
+  - `maxLengthTrekAllowedFor3DRando`: Maximum length of meters allowed to enable 3D mode in the current trek. Adjust this setting carefully as too long a trek could freeze your browser. If this setting is defined to `0` (or  `mapSatelliteLayers` from `map.json` is defined to `null`) the 3D mode feature is disabled for the whole application
   - `minAltitudeDifferenceToDisplayElevationProfile`: Minimum altitude difference in meters required to display the elevation profile in the current trek
 
 - `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
 
-- `home.json` to define homepage settings. You can define blocks to display and trek suggestion block with treks ID, outdoor sites ID, services ID or events ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
+- `home.json` to define homepage settings.
+
+  - `suggestions`: You can define blocks to display suggestions groups with treks ID, outdoor sites ID, services ID or events ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
+    Each group has the following properties :
+    ```typescript
+    {
+      "titleTranslationId": string, // you can use locales keys with the files inside `translations` folder
+      "iconUrl": string, // url to the icon file
+      "ids": string[] // list of ids ,
+      "type": 'trek' | 'service' | 'outdoor' | 'events' // if not set, default to `trek`
+    }
+    ```
+   To define suggestions groups you need to build an `object` with the languages code as keys. By this way you can differentiate the valorization of a territory according to the selected language. If you don't need this feature (or if you want the same configuration for several language), use `default` key instead of a language code. The configuration in the example below displays 2 groups of suggestions for all languages except the English version with one different:
+    ```json
+    "suggestions": {
+      "default": [
+        {
+          "titleTranslationId": "home.territoryTreks",
+          "iconUrl": "/icons/practice-pedestrian.svg",
+          "ids": ["2", "582", "586", "501", "771", "596"],
+          "type": "trek"
+        },
+        {
+          "titleTranslationId": "home.events",
+          "iconUrl": "/icons/category-events.svg",
+          "ids": ["1", "5"],
+          "type": "events"
+        },
+      ],
+      "en": [
+        {
+          "titleTranslationId": "home.treksDiscovery",
+          "iconUrl": "/icons/pedestrian.svg",
+          "ids": ["2", "582", "586"],
+          "type": "trek"
+        },
+      ]
+    }
+    ```
+    PS: For backward compatibility you can still use an array, this is the same behavior that `object` with only a `default` key. For example:
+    ```json
+    "suggestions": [
+      {
+        "titleTranslationId": "home.territoryTreks",
+        "iconUrl": "/icons/practice-pedestrian.svg",
+        "ids": ["2", "582", "586", "501", "771", "596"],
+        "type": "trek"
+      },
+      {
+        "titleTranslationId": "home.events",
+        "iconUrl": "/icons/category-events.svg",
+        "ids": ["1", "5"],
+        "type": "events"
+      },
+    ]
+    ```
 
   - In `welcomeBanner`, you can personnalize the cover on the homepage. You can add an asset on the top of the page: it can either be a video, a single picture or a carousel of images:
 
@@ -62,12 +117,22 @@ In json files, you can just override the primary keys you need. You have to over
 
 - `filter.json` to define filters to hide, their order and values (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/filter.json). If you want to hide some of the filter, you have to override their properties with `"display": false`.
   The `labels` filter contains an additional `withExclude` parameter. Its default value is `true`. By setting it to `true`, the user can filter the search by excluding a label (`withExclude` only works if your version of Geotrek Admin is equal to or higher than [2.77.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.77.0); please set it to `false` if this is not the case)
+
 - `map.json` to define basemaps URL and attributions, center (y, x), default and max zoom level (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json).
 
-  - You can also update the map layers. There are two map layers available:
+  You can also update the map layers. Three types of map layers are available: classic, satellite and offline. Each of them is structured as follows:
+    ```ts
+      interface LayerObject {
+        url: string; // Url of the layer. It needs to be a valid tiles server url.
+        options: TileLayerOptions; // See https://leafletjs.com/reference.html#tilelayer-option
+        bounds: string; // Url of a geoJSON polygon to display this layer inside.
+      }
+    ```
+    - `mapClassicLayers`: array of `LayerObjects` for the default version.
+    - `mapSatelliteLayers`: array of `LayerObjects` for the satellite version.
+    - `mapOfflineLayer`: `LayerObject` registered for offline use. If it's explicitly set to `null`, the application uses the first layer of `mapClassicLayers` as a fallback.
 
-    - `mapClassicLayerUrl` for the map version
-    - `mapSatelliteLayerUrl` for the satellite version. It is optional, so if you want to have only one available map background, you can add `mapSatelliteLayerUrl: undefined`. This will remove the button which allows the user to switch between two map backgrounds.
+    NB: If you want to have only one map available, you can add `mapSatelliteLayers: null`. This will remove the button that allows the user to switch between two map layers.
 
   - `zoomAvailableOffline` allows you to define the zoom modes allowed in offline mode. This allows you to control the amount of disk space required when caching. Default `[13,14,15]`
 

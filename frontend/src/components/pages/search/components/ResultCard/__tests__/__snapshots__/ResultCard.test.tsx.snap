@@ -19,51 +19,23 @@ Object {
               style="width: 100%; height: 100%;"
             >
               <div
-                class="ResultCardCarousel__Wrapper-sc-13vjoai-0 botBuK h-full w-full flex-shrink-0 relative desktop:w-resultCardDesktop"
+                class="ResultCardCarousel__Wrapper-sc-13vjoai-0 botBuK h-full w-full flex-grow relative desktop:w-resultCardDesktop"
               >
                 <div
-                  class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY slick-initialized"
+                  class="relative h-full"
                 >
-                  
-                  <div
-                    class="slick-list"
-                  >
-                    <div
-                      class="slick-track"
-                      style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
-                    >
-                      <div
-                        aria-hidden="false"
-                        class="slick-slide slick-active slick-current"
-                        data-index="0"
-                        style="outline: none; width: 0px;"
-                        tabindex="-1"
-                      >
-                        <div>
-                          <div
-                            class="relative h-full"
-                            style="width: 100%; display: inline-block;"
-                            tabindex="-1"
-                          >
-                            <img
-                              alt=""
-                              class="object-cover object-top w-full h-full"
-                              src=""
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  
+                  <img
+                    alt=""
+                    class="object-cover object-top w-full h-full"
+                    src=""
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
         <a
-          class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full min-h-0"
+          class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full"
           data-testid="Link-ResultCard-2"
           href="/details-2-Balade-au-pays-des-menhirs"
         >
@@ -239,51 +211,23 @@ Object {
             style="width: 100%; height: 100%;"
           >
             <div
-              class="ResultCardCarousel__Wrapper-sc-13vjoai-0 botBuK h-full w-full flex-shrink-0 relative desktop:w-resultCardDesktop"
+              class="ResultCardCarousel__Wrapper-sc-13vjoai-0 botBuK h-full w-full flex-grow relative desktop:w-resultCardDesktop"
             >
               <div
-                class="slick-slider Carousel__StyledSlider-sc-1tck7ng-0 iyRBSY slick-initialized"
+                class="relative h-full"
               >
-                
-                <div
-                  class="slick-list"
-                >
-                  <div
-                    class="slick-track"
-                    style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
-                  >
-                    <div
-                      aria-hidden="false"
-                      class="slick-slide slick-active slick-current"
-                      data-index="0"
-                      style="outline: none; width: 0px;"
-                      tabindex="-1"
-                    >
-                      <div>
-                        <div
-                          class="relative h-full"
-                          style="width: 100%; display: inline-block;"
-                          tabindex="-1"
-                        >
-                          <img
-                            alt=""
-                            class="object-cover object-top w-full h-full"
-                            src=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                
+                <img
+                  alt=""
+                  class="object-cover object-top w-full h-full"
+                  src=""
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
       <a
-        class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full min-h-0"
+        class="Link__StyledLink-sc-oanbk8-0 htOOkH w-full"
         data-testid="Link-ResultCard-2"
         href="/details-2-Balade-au-pays-des-menhirs"
       >

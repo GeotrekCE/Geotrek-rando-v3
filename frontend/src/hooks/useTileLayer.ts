@@ -23,7 +23,9 @@ export const useTileLayer = (
   const setMapInstance = (newMap: Map) => {
     setMap(newMap);
 
-    if (id && center) controlSave = injectOfflineMode(newMap, id, center);
+    if (id !== undefined && center && !navigator.onLine) {
+      injectOfflineMode(newMap, id, center);
+    }
 
     L.control
       // @ts-ignore no type available in this plugin

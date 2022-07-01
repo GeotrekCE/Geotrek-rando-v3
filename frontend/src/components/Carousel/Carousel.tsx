@@ -22,6 +22,9 @@ export const Carousel: React.FC<CarouselProps> = ({
   prevArrow,
   dots,
 }) => {
+  if (Array.isArray(children) && children.length <= 1) {
+    return <>{children}</>;
+  }
   return (
     <StyledSlider
       lazyLoad="ondemand"

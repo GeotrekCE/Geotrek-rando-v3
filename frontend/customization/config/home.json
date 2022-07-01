@@ -10,35 +10,37 @@
   "activityBar": {
     "shouldDisplay": true
   },
-  "suggestions": [
-    {
-      "titleTranslationId": "home.territoryTreks",
-      "iconUrl": "/icons/practice-pedestrian.svg",
-      "ids": ["2", "582", "586", "501", "771", "596"],
-      "type": "trek"
-    },
-    {
-      "titleTranslationId": "home.events",
-      "iconUrl": "/icons/category-events.svg",
-      "ids": ["1", "5"],
-      "type": "events"
-    },
-    {
-      "titleTranslationId": "home.outdoor",
-      "iconUrl": "/icons/practice-outdoor.svg",
-      "ids": ["65", "12", "79"],
-      "type": "outdoor"
-    },
-    {
-      "titleTranslationId": "home.services",
-      "iconUrl": "/icons/category-services.svg",
-      "ids": ["1", "6", "476"],
-      "type": "service"
-    },
-    {
-      "titleTranslationId": "home.itinerantTreks",
-      "iconUrl": "/icons/practice-pedestrian.svg",
-      "ids": ["501", "771", "604"]
-    }
-  ]
+  "suggestions": {
+    "default": [
+      {
+        "titleTranslationId": "home.territoryTreks",
+        "iconUrl": "/icons/practice-pedestrian.svg",
+        "ids": ["2", "582", "586", "501", "771", "596"],
+        "type": "trek"
+      },
+      {
+        "titleTranslationId": "home.events",
+        "iconUrl": "/icons/category-events.svg",
+        "ids": ["1", "5"],
+        "type": "events"
+      },
+      {
+        "titleTranslationId": "home.outdoor",
+        "iconUrl": "/icons/practice-outdoor.svg",
+        "ids": ["65", "12", "79"],
+        "type": "outdoor"
+      },
+      {
+        "titleTranslationId": "home.services",
+        "iconUrl": "/icons/category-services.svg",
+        "ids": ["1", "6", "476"],
+        "type": "service"
+      },
+      {
+        "titleTranslationId": "home.itinerantTreks",
+        "iconUrl": "/icons/practice-pedestrian.svg",
+        "ids": ["501", "771", "604"]
+      }
+    ]
+  }
 }

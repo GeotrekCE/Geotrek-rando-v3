@@ -1,6 +1,6 @@
 {
   "name": "geotrek-rando-frontend",
-  "version": "3.9.0",
+  "version": "3.10.0",
   "private": true,
   "scripts": {
     "debug": "NODE_OPTIONS='--inspect' next ./src",
@@ -54,6 +54,7 @@
     "html-react-parser": "1.3.0",
     "jest-mock-axios": "4.4.0",
     "leaflet": "^1.7.1",
+    "leaflet-boundary-canvas": "^1.0.0",
     "leaflet.locatecontrol": "0.74.0",
     "leaflet.markercluster": "1.5.1",
     "leaflet.offline": "^2.0.0-beta.3",
