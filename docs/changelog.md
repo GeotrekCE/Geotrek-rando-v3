@@ -1,26 +1,36 @@
 # Changelog
 
-3.9.1 (unreleased)
+3.10.0 (unreleased)
 ------------------
 
 **🚀 New features**
 
-* Allow to define different suggestions groups depending on language (#711)
 * Reorganize and improve map layers settings and attributions
-* Ability to display different layers depending on zoom
-* Ability to define bounds to some layers (#689)
+* Allow to display different layers depending on zoom
+* Allow to define attributions for each layer
+* Allow to define bounds to some layers (#689)
 * Live change attributions to match with the current displayed layer
-* Ability to define a specific layer for offline maps
+* Allow to define a specific layer for offline maps
+* Allow to define different suggestions groups depending on language (#711)
 
 **🐛 Fixes**
 
 * Fix displaying of routes when hovering or clicking on one trek in map search page (#694)
 * Fix first loading of the "Offline contents" page (#621)
+* Fix card display on iOS mobile (#645)
+* Optimize images in the card when there is only one
+* Fix reservation widget loading on treks detail pages (#382)
+
+**💥 Breaking changes**
+
+* Basemap layers settings have been totally modified to allow more customization.  
+* `mapCredits`, `mapClassicLayerUrl`, `mapSatelliteLayerUrl` settings have been replaced by `mapClassicLayers`, `mapSatelliteLayers`, `mapOfflineLayer` and their options.  
+* You have to apply these changes in your `map.json` customization file.
 
 **⚠️ Version notes**
 
-* It is now possible de define home suggestions contents by language. Change in suggastions and maps settings....
-* Map settings....
+* You have to edit your `map.json` customization file to apply the new layers settings organization. See `map.json` customisation in [documentation](customization.md#settings)
+* It is now possible to define home suggestions contents by language. See `home.json` customisation in [documentation](customization.md#settings)
 
 3.9.0 (2022-06-22)
 ------------------
@@ -60,7 +70,7 @@
 
 **🐛 Fixes**
 
-* Fix card display for iOS mobile (#645)
+* Fix card display on iOS mobile (#645)
 * Fix truncated icon name if it is too long (#658)
 * Display Sensitive Areas when their geometry is MultiPolygon (#655)
 * Fix trek detail page if there are no signages endpoint in API (#660)
