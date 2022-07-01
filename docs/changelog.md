@@ -29,8 +29,8 @@
 
 **⚠️ Version notes**
 
-* You have to edit your `map.json` customization file to apply the new layers settings organization. See `map.json` customisation in [documentation](customization.md#settings)
-* It is now possible to define home suggestions contents by language. See `home.json` customisation in [documentation](customization.md#settings)
+* You have to edit your `map.json` customization file to apply the new layers settings organization. See `map.json` customization in [documentation](customization.md#settings)
+* It is now possible to define home suggestions contents by language. See `home.json` customization in [documentation](customization.md#settings)
 
 3.9.0 (2022-06-22)
 ------------------
