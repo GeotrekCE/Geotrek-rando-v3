@@ -6,5 +6,8 @@ export const getMapConfig = (): MapConfig => {
     publicRuntimeConfig: { map },
   } = getNextConfig();
 
-  return map;
+  return {
+    ...map,
+    mapOfflineLayer: map.mapOfflineLayer ?? map.mapClassicLayers[0],
+  };
 };
