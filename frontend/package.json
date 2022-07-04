@@ -4,8 +4,6 @@
   "private": true,
   "scripts": {
     "debug": "NODE_OPTIONS='--inspect' next ./src",
-    "predev": "node ./scripts/generateLocales.js",
-    "prebuild": "node ./scripts/generateLocales.js",
     "dev": "NODE_ICU_DATA=node_modules/full-icu next ./src",
     "prod": "yarn build && yarn start",
     "build": "next build ./src",
@@ -15,7 +13,7 @@
     "test": "NODE_ICU_DATA=node_modules/full-icu jest --coverage=false --runInBand",
     "test:coverage": "NODE_ICU_DATA=node_modules/full-icu jest --coverage --runInBand",
     "test:compact": "DEBUG_PRINT_LIMIT=50 yarn test",
-    "tsc": "node ./scripts/generateLocales.js && tsc -p ./src/tsconfig.json",
+    "tsc": "tsc -p ./src/tsconfig.json",
     "lint": "eslint --ext=jsx,ts,tsx src",
     "lint:fix": "eslint --ext=jsx,ts,tsx src --fix",
     "lint-style": "stylelint 'src/**/*.style.{ts,tsx}' 'src/**/style.{ts,tsx}'",
