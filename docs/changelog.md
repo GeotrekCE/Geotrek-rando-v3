@@ -9,7 +9,8 @@
 
 **🐛 Fixes**
 
-* Fix locales call (#553) 
+* Fix entities HTML escapement for styles injection (#548 / #705)
+* Call language locales once on runtime (#553)
 
 3.10.0 (2022-07-01)
 -------------------
