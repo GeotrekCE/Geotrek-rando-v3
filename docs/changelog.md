@@ -1,5 +1,16 @@
 # Changelog
 
+3.10.1 (2022-07-05)
+-------------------
+
+**🚀 New features**
+
+* Check customization files when purging Tailwind CSS (#548)
+
+**🐛 Fixes**
+
+* Fix locales call (#553) 
+
 3.10.0 (2022-07-01)
 -------------------
 
