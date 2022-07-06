@@ -4,7 +4,7 @@ import { colorPalette } from 'stylesheet';
 import CustomizedInputDate from './CustomizedInputDate.style';
 
 interface InputDateWithMagnifierProps {
-  value: string | null;
+  value: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   onButtonClick?: () => void;
@@ -19,7 +19,7 @@ const InputDateWithMagnifier: FunctionComponent<InputDateWithMagnifierProps> = (
     <div className="flex flex-row">
       <CustomizedInputDate
         onChange={onChange}
-        value={value !== null ? value : ''}
+        value={value !== 'null' ? value : ''}
         type="text"
         onFocus={e => {
           e.target.type = 'date';

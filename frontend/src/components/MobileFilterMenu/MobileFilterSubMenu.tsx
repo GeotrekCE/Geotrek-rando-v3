@@ -22,7 +22,7 @@ interface Props {
   resultsNumber: number;
   resetFilter: () => void;
   dateFilter: DateFilter;
-  setDateFilter: (beginDate?: any, endDate?: any) => void;
+  setDateFilter: (dFilter: DateFilter) => void;
 }
 
 export const MobileFilterSubMenu: React.FC<Props> = ({

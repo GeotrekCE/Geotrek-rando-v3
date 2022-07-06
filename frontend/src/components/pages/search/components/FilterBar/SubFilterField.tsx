@@ -8,7 +8,7 @@ interface Props {
   };
   dateFilter: DateFilter;
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
-  setDateFilter: (beginDate?: any, endDate?: any) => void;
+  setDateFilter: (dFilter: DateFilter) => void;
 }
 
 const SubFilterField: React.FC<Props> = ({

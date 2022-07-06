@@ -138,8 +138,9 @@ export const getSearchResults = async (
           language,
           page_size: 1,
           page: 1,
-          dates_before: newDateFilter.dates_before === '' ? undefined : newDateFilter.dates_before,
-          dates_after: newDateFilter.dates_after === '' ? undefined : newDateFilter.dates_after,
+          dates_before:
+            newDateFilter.dates_before === 'null' ? undefined : newDateFilter.dates_before,
+          dates_after: newDateFilter.dates_after === 'null' ? undefined : newDateFilter.dates_after,
           ...touristicEventsFilter,
           ...textFilter,
           ...bboxFilter,
@@ -218,8 +219,9 @@ export const getSearchResults = async (
             page_size: getGlobalConfig().searchResultsPageSize,
             page: pages.touristicEvents ?? undefined,
             dates_before:
-              newDateFilter.dates_before === '' ? undefined : newDateFilter.dates_before,
-            dates_after: newDateFilter.dates_after === '' ? undefined : newDateFilter.dates_after,
+              newDateFilter.dates_before === 'null' ? undefined : newDateFilter.dates_before,
+            dates_after:
+              newDateFilter.dates_after === 'null' ? undefined : newDateFilter.dates_after,
             ...touristicEventsFilter,
             ...textFilter,
             ...bboxFilter,

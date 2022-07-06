@@ -41,6 +41,7 @@ import {
 } from '../details/utils';
 import InputWithMagnifier from './components/InputWithMagnifier';
 import { useTextFilter } from './hooks/useTextFilter';
+import { useDateFilter } from './hooks/useDateFilter';
 
 interface Props {
   initialFiltersState: FilterState[];
@@ -67,7 +68,9 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     resetTextFilter,
   } = useTextFilter();
 
-  const [dateFilter, setDateFilter] = useState({ beginDate: '', endDate: '' });
+  const { dateFilter, setDateFilter } = useDateFilter();
+
+  //const [dateFilter, setDateFilter] = useState({ beginDate: 'null', endDate: 'null' });
 
   const {
     searchResults,

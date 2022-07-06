@@ -21,7 +21,7 @@ interface Props {
   expanded: boolean;
   onClick: () => void;
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
-  setDateFilter: () => void;
+  setDateFilter: (dFilter: DateFilter) => void;
 }
 
 const BACKGROUND_EXPANDED = '#fefefe';

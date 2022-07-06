@@ -30,8 +30,10 @@ const computeUrl = (
     ? [...formatFiltersUrl(filtersState), `text=${textFilter}`]
     : formatFiltersUrl(filtersState);
 
-  dateFilter && dateFilter.beginDate !== '' && urlParams.push(`beginDate=${dateFilter?.beginDate}`);
-  dateFilter && dateFilter.endDate !== '' && urlParams.push(`endDate=${dateFilter?.endDate}`);
+  dateFilter &&
+    dateFilter.beginDate !== 'null' &&
+    urlParams.push(`beginDate=${dateFilter?.beginDate}`);
+  dateFilter && dateFilter.endDate !== 'null' && urlParams.push(`endDate=${dateFilter?.endDate}`);
   const formattedUrl = `search?${urlParams.join('&')}`;
 
   return formattedUrl;
@@ -42,7 +44,7 @@ export const useTrekResults = (
     filtersState: FilterState[];
     textFilterState: string | null;
     bboxState: string | null;
-    dateFilter: DateFilter | null;
+    dateFilter: DateFilter;
   },
   language: string,
 ) => {

@@ -28,7 +28,7 @@ interface Props {
   filtersState: FilterState[];
   dateFilter: DateFilter;
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
-  setDateFilter: any;
+  setDateFilter: (dFilter: DateFilter) => void;
   resetFilters: () => void;
   resultsNumber: number;
   language: string;
