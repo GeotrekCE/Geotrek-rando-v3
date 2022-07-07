@@ -1,16 +1,13 @@
 # Changelog
 
-3.10.1 (2022-07-05)
+3.10.1 (2022-07-06)
 -------------------
-
-**🚀 New features**
-
-* Check customization files when purging Tailwind CSS (#548)
 
 **🐛 Fixes**
 
 * Fix entities HTML escapement for styles injection (#548 / #705)
 * Call language locales once on runtime (#553)
+* Fix offline map downloading (#738)
 
 3.10.0 (2022-07-01)
 -------------------
