@@ -15,7 +15,6 @@ export const fetchTouristicEvents = (
       ...query,
       ...fieldsParams,
       ...portalsFilter,
-      //dates_after: '2021-11-10', // @FIXME
     },
   }).then(r => r.data);
 };

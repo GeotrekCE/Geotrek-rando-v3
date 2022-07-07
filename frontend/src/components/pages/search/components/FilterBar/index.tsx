@@ -10,6 +10,7 @@ import { colorPalette } from 'stylesheet';
 import {
   CATEGORY_ID,
   CITY_ID,
+  DATE_FILTER,
   DISTRICT_ID,
   EVENT_ID,
   OUTDOOR_ID,
@@ -87,7 +88,7 @@ export const FILTERS_CATEGORIES: FilterCategory[] = [
     id: EVENT_ID,
     name: <FormattedMessage id={'search.filters.events'} />,
     filters: [EVENT_ID],
-    subFilters: ['date-filter'],
+    subFilters: [DATE_FILTER],
   },
   {
     id: THEME_ID,

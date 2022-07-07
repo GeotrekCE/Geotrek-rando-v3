@@ -2,6 +2,7 @@ import { SelectableDropdown } from 'components/pages/search/components/FilterBar
 import Field from 'components/pages/search/components/FilterBar/Field';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { DATE_FILTER } from 'modules/filters/constant';
 import { DateFilter, FilterState, Option } from '../../../../../modules/filters/interface';
 import InputDateWithMagnifier from '../InputDateWithMagnifier';
 
@@ -10,7 +11,7 @@ interface Props {
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
   hideLabel?: boolean;
   dateFilter: DateFilter;
-  setDateFilter: any;
+  setDateFilter: (dFilter: DateFilter) => void;
 }
 
 const ShowFilters: React.FC<Props> = ({
@@ -22,7 +23,7 @@ const ShowFilters: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  if (item !== undefined && item.id === 'date-filter') {
+  if (item !== undefined && item.id === DATE_FILTER) {
     return (
       <div className="flex flex-col mt-4 desktop:mt-0 desktop:ml-5">
         <div className="font-bold mb-2 text-lg">
@@ -31,7 +32,7 @@ const ShowFilters: React.FC<Props> = ({
         <InputDateWithMagnifier
           value={dateFilter.beginDate}
           onChange={event => {
-            const beginDate = event.target.value !== '' ? event.target.value : 'null';
+            const beginDate = event.target.value !== '' ? event.target.value : '';
             setDateFilter({
               beginDate,
               endDate: dateFilter.endDate,
@@ -42,7 +43,7 @@ const ShowFilters: React.FC<Props> = ({
         <InputDateWithMagnifier
           value={dateFilter.endDate}
           onChange={event => {
-            const endDate = event.target.value !== '' ? event.target.value : 'null';
+            const endDate = event.target.value !== '' ? event.target.value : '';
             setDateFilter({
               beginDate: dateFilter.beginDate,
               endDate,

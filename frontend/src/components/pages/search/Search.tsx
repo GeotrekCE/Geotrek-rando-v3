@@ -1,6 +1,6 @@
 import FilterBarNew from 'components/pages/search/components/FilterBar';
 import useBbox from 'components/pages/search/components/useBbox';
-import React, { useState } from 'react';
+import React from 'react';
 import { useMediaPredicate } from 'react-media-hook';
 import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -69,8 +69,6 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   } = useTextFilter();
 
   const { dateFilter, setDateFilter } = useDateFilter();
-
-  //const [dateFilter, setDateFilter] = useState({ beginDate: 'null', endDate: 'null' });
 
   const {
     searchResults,

@@ -8,8 +8,8 @@ export const useDateFilter = (): {
 } => {
   const initialOptions = useRouter().query;
 
-  const beginDate = initialOptions.beginDate ? initialOptions.beginDate.toString() : 'null';
-  const endDate = initialOptions.endDate ? initialOptions.endDate.toString() : 'null';
+  const beginDate = initialOptions.beginDate ? initialOptions.beginDate.toString() : '';
+  const endDate = initialOptions.endDate ? initialOptions.endDate.toString() : '';
 
   const [dateFilter, setDateFilterState] = useState<DateFilter>({ beginDate, endDate });
 

@@ -19,7 +19,7 @@ const InputDateWithMagnifier: FunctionComponent<InputDateWithMagnifierProps> = (
     <div className="flex flex-row">
       <CustomizedInputDate
         onChange={onChange}
-        value={value !== 'null' ? value : ''}
+        value={value !== '' ? value : ''}
         type="text"
         onFocus={e => {
           e.target.type = 'date';

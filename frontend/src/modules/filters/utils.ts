@@ -29,6 +29,7 @@ import {
   ACCESSIBILITY_ID,
   CATEGORY_ID,
   CITY_ID,
+  DATE_FILTER,
   DISTRICT_ID,
   EVENT_ID,
   LABEL_EXCLUDE_ID,
@@ -219,7 +220,7 @@ const getEventsFiltersState = (): FilterState[] => {
   const result: FilterState[] = [];
 
   result.push({
-    id: `date-filter`,
+    id: DATE_FILTER,
     category: 'event',
     label: 'event date filter',
     type: 'MULTIPLE',
