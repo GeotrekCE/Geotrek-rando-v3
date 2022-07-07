@@ -23,7 +23,11 @@ const ShowFilters: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  if (item !== undefined && item.id === DATE_FILTER) {
+  if (item === undefined) {
+    return null;
+  }
+
+  if (item.id === DATE_FILTER) {
     return (
       <div className="flex flex-col mt-4 desktop:mt-0 desktop:ml-5">
         <div className="font-bold mb-2 text-lg">
@@ -55,7 +59,7 @@ const ShowFilters: React.FC<Props> = ({
     );
   }
   // The API can send empty item
-  if (item === undefined || item.label === '' || item.options.length === 0) {
+  if (item.label === '' || item.options.length === 0) {
     return null;
   }
   return item.options.length > 10 ? (
