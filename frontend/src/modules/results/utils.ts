@@ -140,7 +140,7 @@ export const formatTextFilter = (textFilter: string | null): { q: string } | und
   textFilter !== null ? { q: textFilter } : undefined;
 
 export const formatDateFilter = (
-  dateFilter: DateFilter | null,
+  dateFilter: DateFilter,
 ): { dates_before?: string; dates_after?: string } => {
   return { dates_before: dateFilter?.endDate, dates_after: dateFilter?.beginDate };
 };
