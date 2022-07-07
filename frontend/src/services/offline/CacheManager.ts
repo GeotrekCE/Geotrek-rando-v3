@@ -93,10 +93,12 @@ const CacheManager = {
       const transaction = db.transaction('tileStore', 'readwrite');
       const store = transaction.objectStore('tileStore');
 
-      const keys = store.getAllKeys();
+      const allKeys = store.getAllKeys();
 
-      keys.onsuccess = () => {
-        keys.result.filter(key => String(key).includes(`?${id}`)).forEach(key => store.delete(key));
+      allKeys.onsuccess = () => {
+        allKeys.result
+          .filter(key => String(key).includes(`?${id}`))
+          .forEach(key => store.delete(key));
       };
     };
 
@@ -119,7 +121,7 @@ const CacheManager = {
   },
 
   isInCache: (id: string): boolean => {
-    return !!Object.keys(localStorage).find(key => key === CacheManager.getKey(id));
+    return Object.keys(localStorage).some(key => key === CacheManager.getKey(id));
   },
 };
 
