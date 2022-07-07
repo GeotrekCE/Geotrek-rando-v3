@@ -7,7 +7,6 @@ interface InputDateWithMagnifierProps {
   value: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
-  onButtonClick?: () => void;
 }
 
 const InputDateWithMagnifier: FunctionComponent<InputDateWithMagnifierProps> = ({
