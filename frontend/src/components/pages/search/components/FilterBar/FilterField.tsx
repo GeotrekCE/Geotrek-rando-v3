@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { colorPalette, sizes } from 'stylesheet';
 import { groupBy } from 'lodash';
 import { FormattedMessage } from 'react-intl';
-import { FilterState, Option } from '../../../../../modules/filters/interface';
+import { DateFilter, FilterState, Option } from '../../../../../modules/filters/interface';
 import { countFiltersSelected } from '../../../../../modules/filters/utils';
 import getActivityColor from '../ResultCard/getActivityColor';
 import SubFilterField from './SubFilterField';
@@ -17,9 +17,11 @@ interface Props {
   filters?: string[];
   subFilters?: string[] | string[][];
   filtersState: FilterState[];
+  dateFilter: DateFilter;
   expanded: boolean;
   onClick: () => void;
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
+  setDateFilter: (dFilter: DateFilter) => void;
 }
 
 const BACKGROUND_EXPANDED = '#fefefe';
@@ -32,7 +34,9 @@ const FilterField: React.FC<Props> = ({
   filters,
   subFilters,
   filtersState,
+  dateFilter,
   setFilterSelectedOptions,
+  setDateFilter,
 }) => {
   const filtersToDisplay = filtersState.filter(filter => filters?.includes(filter.id));
 
@@ -60,7 +64,7 @@ const FilterField: React.FC<Props> = ({
       ) ?? {},
   );
 
-  const nextFilters: (FilterState | undefined)[] = filtersToDisplay.length
+  const nextFilters: FilterState[] = filtersToDisplay.length
     ? filtersToDisplay
     : Array.from({ length: subFiltersToDisplay.length });
 
@@ -100,19 +104,21 @@ const FilterField: React.FC<Props> = ({
                 </button>
               )}
             </div>
-            {filterState !== undefined && (
-              <div className="mb-4">
-                <ShowFilters
-                  item={filterState}
-                  setFilterSelectedOptions={setFilterSelectedOptions}
-                  hideLabel
-                />
-              </div>
-            )}
+            <div className="mb-4">
+              <ShowFilters
+                item={filterState}
+                setFilterSelectedOptions={setFilterSelectedOptions}
+                hideLabel
+                dateFilter={dateFilter}
+                setDateFilter={setDateFilter}
+              />
+            </div>
             <div className="grid grid-cols-3 gap-4">
               <SubFilterField
                 filters={subFiltersToDisplay[index]}
+                dateFilter={dateFilter}
                 setFilterSelectedOptions={setFilterSelectedOptions}
+                setDateFilter={setDateFilter}
               />
             </div>
           </Fragment>

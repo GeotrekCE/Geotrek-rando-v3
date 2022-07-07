@@ -41,6 +41,7 @@ import {
 } from '../details/utils';
 import InputWithMagnifier from './components/InputWithMagnifier';
 import { useTextFilter } from './hooks/useTextFilter';
+import { useDateFilter } from './hooks/useDateFilter';
 
 interface Props {
   initialFiltersState: FilterState[];
@@ -67,6 +68,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     resetTextFilter,
   } = useTextFilter();
 
+  const { dateFilter, setDateFilter } = useDateFilter();
+
   const {
     searchResults,
     isLoading,
@@ -78,7 +81,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-  } = useTrekResults({ filtersState, textFilterState, bboxState }, language);
+  } = useTrekResults({ filtersState, textFilterState, bboxState, dateFilter }, language);
 
   const { isMapLoading } = useMapResults({ filtersState, textFilterState }, language);
 
@@ -142,6 +145,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
               setFilterSelectedOptions={setFilterSelectedOptions}
               resetFilter={onRemoveAllFiltersClick}
               resultsNumber={searchResults?.resultsNumber ?? 0}
+              dateFilter={dateFilter}
+              setDateFilter={setDateFilter}
             />
           )}
         </>
@@ -151,8 +156,10 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
         <Container className="flex flex-col" id="search_container">
           {!isMobile && (
             <FilterBarNew
+              dateFilter={dateFilter}
               filtersState={filtersStateWithExclude}
               setFilterSelectedOptions={setFilterSelectedOptions}
+              setDateFilter={setDateFilter}
               resetFilters={onRemoveAllFiltersClick}
               resultsNumber={searchResults?.resultsNumber ?? 0}
               language={language}
