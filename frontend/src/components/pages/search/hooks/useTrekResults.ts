@@ -24,7 +24,7 @@ const formatFiltersUrl = (filtersState: FilterState[]): string[] =>
 const computeUrl = (
   filtersState: FilterState[],
   textFilter: string | null,
-  dateFilter: DateFilter | null,
+  dateFilter: DateFilter,
 ) => {
   const urlParams = textFilter
     ? [...formatFiltersUrl(filtersState), `text=${textFilter}`]
