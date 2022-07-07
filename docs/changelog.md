@@ -1,5 +1,22 @@
 # Changelog
 
+3.10.1 (2022-07-08)
+-------------------
+
+**🚀 New features**
+
+* Add date filters to events (#567)
+
+**🐛 Fixes**
+
+* Fix entities HTML escapement for styles injection (#548 / #705)
+* Call language locales once on runtime (#553)
+* Fix offline map downloading (#738)
+
+**🔧 Maintenance**
+
+* Upgrade Leaflet.offline to version 2.2.0
+
 3.10.0 (2022-07-01)
 -------------------
 
