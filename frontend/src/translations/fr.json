@@ -38,6 +38,7 @@
     "filter": "Filtrer",
     "reload": "Recharger",
     "anErrorOccured": "Une erreur est survenue",
+    "diary": "Agenda",
     "filters": {
       "difficulty": "Difficulté",
       "practices": "Randonnées",
@@ -60,6 +61,8 @@
       "labels": "Autres"
     },
     "textFilter": "Rechercher...",
+    "beginDateFilter": "Date de début",
+    "endDateFilter": "Date de fin",
     "map": {
       "seeResult": "Afficher le détail",
       "seeMe": "Voir ma position",

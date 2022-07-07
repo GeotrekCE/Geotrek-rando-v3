@@ -10,6 +10,7 @@ const runtimeCachingStrategy = require('./cache');
 const headerConfig = require('./config/header.json');
 const customHeaderConfig = require('./customization/config/header.json');
 const { getConfig, getTemplates } = require('./src/services/getConfig');
+const { getLocales } = require('./src/services/getLocales');
 
 const mergedHeaderConfig = {
   ...headerConfig,
@@ -30,7 +31,8 @@ module.exports = withPlugins(plugins, {
       TweenLite: 'gsap/src/uncompressed/TweenLite.js',
       TimelineLite: 'gsap/src/uncompressed/TimelineLite.js',
       BezierPlugin: 'gsap/src/uncompressed/plugins/BezierPlugin.js',
-      DirectionalRotationPlugin: 'gsap/src/uncompressed/plugins/DirectionalRotationPlugin.js',
+      DirectionalRotationPlugin:
+        'gsap/src/uncompressed/plugins/DirectionalRotationPlugin.js',
     });
 
     config.module.rules.push({
@@ -62,12 +64,30 @@ module.exports = withPlugins(plugins, {
     defaultLocale: mergedHeaderConfig.menu.defaultLanguage,
   },
   publicRuntimeConfig: {
-    homeBottomHtml: getTemplates('../html/homeBottom.html', mergedHeaderConfig.menu.supportedLanguages),
-    homeTopHtml: getTemplates('../html/homeTop.html', mergedHeaderConfig.menu.supportedLanguages),
-    headerTopHtml: getTemplates('../html/headerTop.html', mergedHeaderConfig.menu.supportedLanguages),
-    headerBottomHtml: getTemplates('../html/headerBottom.html', mergedHeaderConfig.menu.supportedLanguages),
-    footerTopHtml: getTemplates('../html/footerTop.html', mergedHeaderConfig.menu.supportedLanguages),
-    footerBottomHtml: getTemplates('../html/footerBottom.html', mergedHeaderConfig.menu.supportedLanguages),
+    homeBottomHtml: getTemplates(
+      '../html/homeBottom.html',
+      mergedHeaderConfig.menu.supportedLanguages,
+    ),
+    homeTopHtml: getTemplates(
+      '../html/homeTop.html',
+      mergedHeaderConfig.menu.supportedLanguages,
+    ),
+    headerTopHtml: getTemplates(
+      '../html/headerTop.html',
+      mergedHeaderConfig.menu.supportedLanguages,
+    ),
+    headerBottomHtml: getTemplates(
+      '../html/headerBottom.html',
+      mergedHeaderConfig.menu.supportedLanguages,
+    ),
+    footerTopHtml: getTemplates(
+      '../html/footerTop.html',
+      mergedHeaderConfig.menu.supportedLanguages,
+    ),
+    footerBottomHtml: getTemplates(
+      '../html/footerBottom.html',
+      mergedHeaderConfig.menu.supportedLanguages,
+    ),
     scriptsHeaderHtml: getConfig('../html/scriptsHeader.html', false),
     scriptsFooterHtml: getConfig('../html/scriptsFooter.html', false),
     style: getConfig('../theme/style.css', false),
@@ -79,5 +99,6 @@ module.exports = withPlugins(plugins, {
     filter: getConfig('filter.json', true),
     footer: getConfig('footer.json', true),
     manifest: getConfig('manifest.json', true),
+    locales: getLocales(mergedHeaderConfig.menu.supportedLanguages),
   },
 });

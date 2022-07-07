@@ -1,4 +1,4 @@
-import { FilterState, Option } from 'modules/filters/interface';
+import { DateFilter, FilterState, Option } from 'modules/filters/interface';
 import React, { Fragment } from 'react';
 import ShowFilters from './ShowFilters';
 
@@ -6,10 +6,17 @@ interface Props {
   filters?: {
     [key: string]: FilterState[];
   };
+  dateFilter: DateFilter;
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
+  setDateFilter: (dFilter: DateFilter) => void;
 }
 
-const SubFilterField: React.FC<Props> = ({ filters, setFilterSelectedOptions }) => {
+const SubFilterField: React.FC<Props> = ({
+  filters,
+  dateFilter,
+  setFilterSelectedOptions,
+  setDateFilter,
+}) => {
   if (filters === undefined) {
     return null;
   }
@@ -28,7 +35,12 @@ const SubFilterField: React.FC<Props> = ({ filters, setFilterSelectedOptions }) 
           <Fragment key={index}>
             {content.map(filter => (
               <div className="my-1" key={filter.id}>
-                <ShowFilters item={filter} setFilterSelectedOptions={setFilterSelectedOptions} />
+                <ShowFilters
+                  item={filter}
+                  setFilterSelectedOptions={setFilterSelectedOptions}
+                  dateFilter={dateFilter}
+                  setDateFilter={setDateFilter}
+                />
               </div>
             ))}
           </Fragment>
@@ -48,6 +60,8 @@ const SubFilterField: React.FC<Props> = ({ filters, setFilterSelectedOptions }) 
               key={filter.id}
               item={filter}
               setFilterSelectedOptions={setFilterSelectedOptions}
+              dateFilter={dateFilter}
+              setDateFilter={setDateFilter}
             />
           ))}
         </div>

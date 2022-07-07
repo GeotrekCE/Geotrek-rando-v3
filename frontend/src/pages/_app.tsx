@@ -1,4 +1,4 @@
-import App, { AppContext, AppInitialProps } from 'next/app';
+import { AppProps } from 'next/app';
 
 import { Root } from 'components/pages/_app/Root';
 import { Hydrate } from 'react-query/hydration';
@@ -13,7 +13,6 @@ import '../public/style.css';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { ListAndMapProvider } from 'modules/map/ListAndMapContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { getHeaderConfig } from 'modules/header/utills';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,78 +22,43 @@ const queryClient = new QueryClient({
   },
 });
 
-const loadLocales = async ({ ctx }: AppContext) => {
-  const baseUrl = ctx.req ? `http://localhost:${String(process?.env?.PORT ?? 3000)}` : '';
+interface MyAppProps extends AppProps {
+  hasError: boolean;
+  errorEventId?: string;
+}
 
-  const loadedLanguages = await Promise.all(
-    getHeaderConfig().menu.supportedLanguages.map(async language => {
-      const result = await fetch(baseUrl + `/api/translations/${language}`);
-      const messages = await result.json();
-
-      return {
-        [language]: messages,
-      };
-    }),
-  );
-
-  return loadedLanguages.reduce(
-    (messages, currentMessages) => ({
-      ...messages,
-      ...currentMessages,
-    }),
-    {},
+const MyApp = ({ Component, pageProps, hasError, errorEventId }: MyAppProps) => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <Root hasError={hasError} errorEventId={errorEventId}>
+          <ListAndMapProvider>
+            <Component {...pageProps} />
+          </ListAndMapProvider>
+        </Root>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </Hydrate>
+    </QueryClientProvider>
   );
 };
 
-interface AppProps extends AppInitialProps {
-  hasError: boolean;
-  errorEventId?: string;
-  messages: {
-    [language: string]: {
-      [messageId: string]: string;
+MyApp.getInitialProps = async (props: any): Promise<any> => {
+  const { Component, ctx } = props;
+  try {
+    const pageProps =
+      Component.getInitialProps !== undefined ? await Component.getInitialProps(ctx) : {};
+    return { pageProps, hasError: false, errorEventId: undefined };
+  } catch (error) {
+    console.error(error);
+    // Capture errors that happen during a page's getInitialProps.
+    // This will work on both client and server sides.
+    const errorEventId = captureException(error, ctx);
+    return {
+      hasError: true,
+      errorEventId,
+      pageProps: {},
     };
-  };
-}
-
-class MyApp extends App<AppProps> {
-  static async getInitialProps(props: any): Promise<AppProps> {
-    const { Component, ctx } = props;
-    try {
-      const pageProps =
-        Component.getInitialProps !== undefined ? await Component.getInitialProps(ctx) : {};
-      const messages = await loadLocales(props);
-      return { pageProps, hasError: false, errorEventId: undefined, messages };
-    } catch (error) {
-      console.error(error);
-      // Capture errors that happen during a page's getInitialProps.
-      // This will work on both client and server sides.
-      const errorEventId = captureException(error, ctx);
-      return {
-        hasError: true,
-        errorEventId,
-        pageProps: {},
-        messages: {},
-      };
-    }
   }
-
-  render() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const { Component, pageProps, hasError, errorEventId, messages } = this.props;
-
-    return (
-      <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <Root hasError={hasError} errorEventId={errorEventId} messages={messages}>
-            <ListAndMapProvider>
-              <Component {...pageProps} />
-            </ListAndMapProvider>
-          </Root>
-          <ReactQueryDevtools initialIsOpen={false} />
-        </Hydrate>
-      </QueryClientProvider>
-    );
-  }
-}
+};
 
 export default MyApp;

@@ -1,6 +1,6 @@
 {
   "name": "geotrek-rando-frontend",
-  "version": "3.10.0",
+  "version": "3.10.1",
   "private": true,
   "scripts": {
     "debug": "NODE_OPTIONS='--inspect' next ./src",
@@ -57,7 +57,7 @@
     "leaflet-boundary-canvas": "^1.0.0",
     "leaflet.locatecontrol": "0.74.0",
     "leaflet.markercluster": "1.5.1",
-    "leaflet.offline": "^2.0.0-beta.3",
+    "leaflet.offline": "^2.2.0",
     "lodash": "4.17.21",
     "next": "12",
     "next-compose-plugins": "^2.2.1",

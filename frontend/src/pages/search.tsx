@@ -29,6 +29,7 @@ export const getServerSideProps = async (context: any) => {
           filtersState: parsedInitialFiltersState,
           textFilterState: initialTextFilter,
           bboxState: null,
+          dateFilter: null,
         },
         {
           treks: 1,
