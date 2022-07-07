@@ -9,7 +9,7 @@ import {
   STRUCTURE_ID,
   THEME_ID,
 } from 'modules/filters/constant';
-import { FilterConfig, FilterConfigWithOptions } from 'modules/filters/interface';
+import { DateFilter, FilterConfig, FilterConfigWithOptions } from 'modules/filters/interface';
 
 export const formatDistance = (distance: number): string => {
   if (distance >= 1000) {
@@ -138,6 +138,12 @@ const commonFiltersWithoutTrekSelector = [
 
 export const formatTextFilter = (textFilter: string | null): { q: string } | undefined =>
   textFilter !== null ? { q: textFilter } : undefined;
+
+export const formatDateFilter = (
+  dateFilter: DateFilter | null,
+): { dates_before?: string; dates_after?: string } => {
+  return { dates_before: dateFilter?.endDate, dates_after: dateFilter?.beginDate };
+};
 
 export const formatBboxFilter = (bbox: string | null): { in_bbox: string } | undefined =>
   bbox !== null ? { in_bbox: bbox } : undefined;

@@ -5,14 +5,13 @@ import { groupBy } from 'lodash';
 import styled from 'styled-components';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
-import { FilterCategory, FilterState, Option } from 'modules/filters/interface';
+import { DateFilter, FilterCategory, FilterState, Option } from 'modules/filters/interface';
 import React from 'react';
 // @ts-ignore Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
 import { colorPalette } from 'stylesheet';
 
 import { FormattedMessage } from 'react-intl';
-import { getGlobalConfig } from 'modules/utils/api.config';
 import { CloseButton } from './CloseButton';
 
 interface Props {
@@ -22,6 +21,8 @@ interface Props {
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
   resultsNumber: number;
   resetFilter: () => void;
+  dateFilter: DateFilter;
+  setDateFilter: (dFilter: DateFilter) => void;
 }
 
 export const MobileFilterSubMenu: React.FC<Props> = ({
@@ -31,6 +32,8 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   setFilterSelectedOptions,
   resultsNumber,
   resetFilter,
+  dateFilter,
+  setDateFilter,
 }) => {
   const categories: FilterCategory | undefined = FILTERS_CATEGORIES.find(i => i.id === filterId);
 
@@ -59,15 +62,6 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
         'category',
       ) ?? {},
   );
-
-  const getFilterLabel = (key: string, selectedOptions: Option[]) => {
-    if (key !== 'undefined') {
-      return key;
-    }
-    return getGlobalConfig().groupTreksAndOutdoorFilters
-      ? selectedOptions?.map(({ label }) => label).join('/') ?? null
-      : null;
-  };
 
   const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
 
@@ -103,23 +97,31 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
             item={state}
             setFilterSelectedOptions={setFilterSelectedOptions}
             hideLabel
+            dateFilter={dateFilter}
+            setDateFilter={setDateFilter}
           />
         ))}
-
         {subFiltersToDisplay.map((subFilter, index) => (
           <>
             {Object.keys(subFilter).length > 0 && filtersToDisplay.length > 0 && <Separator />}
             <div className="space-y-4" key={index}>
               {Object.keys(subFilter).map(key => {
-                const filterLabel = getFilterLabel(key, filtersToDisplay?.[index]?.selectedOptions);
                 return (
                   <div className={'m-1'} key={key}>
-                    {filterLabel !== null && <div className={'font-bold mb-2'}>{filterLabel}</div>}
+                    <div className={'font-bold mb-2'}>
+                      {key !== 'undefined' && key !== 'event'
+                        ? key
+                        : filtersToDisplay[index].selectedOptions
+                            .map(({ label }) => label)
+                            .join('/')}
+                    </div>
                     {subFilter[key].map(filterState => (
                       <div className={'my-1'} key={filterState.id}>
                         <ShowFilters
                           item={filterState}
                           setFilterSelectedOptions={setFilterSelectedOptions}
+                          dateFilter={dateFilter}
+                          setDateFilter={setDateFilter}
                         />
                       </div>
                     ))}
