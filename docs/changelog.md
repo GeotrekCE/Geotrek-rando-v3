@@ -1,7 +1,11 @@
 # Changelog
 
-3.10.1 (2022-07-06)
+3.10.1 (2022-07-08)
 -------------------
+
+**🚀 New features**
+
+* Add date filters to events (#567)
 
 **🐛 Fixes**
 
