@@ -32,7 +32,7 @@ const ShowFilters: React.FC<Props> = ({
         <InputDateWithMagnifier
           value={dateFilter.beginDate}
           onChange={event => {
-            const beginDate = event.target.value !== '' ? event.target.value : '';
+            const beginDate = event.target.value;
             setDateFilter({
               beginDate,
               endDate: dateFilter.endDate,
@@ -43,7 +43,7 @@ const ShowFilters: React.FC<Props> = ({
         <InputDateWithMagnifier
           value={dateFilter.endDate}
           onChange={event => {
-            const endDate = event.target.value !== '' ? event.target.value : '';
+            const endDate = event.target.value;
             setDateFilter({
               beginDate: dateFilter.beginDate,
               endDate,
