@@ -84,16 +84,42 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           {({ isFullscreen, toggleFullscreen }) => (
             <>
               {isFullscreen &&
+                type === 'TOURISTIC_CONTENT' &&
                 redirectionUrl &&
                 attachments.length > 0 &&
                 typeof navigator !== 'undefined' &&
                 navigator?.onLine && (
                   <DetailsCoverCarousel
+                    attachments={attachments}
                     onClickImage={() => router.push(redirectionUrl)}
+                  />
+                )}
+              {!isFullscreen &&
+                type === 'TOURISTIC_CONTENT' &&
+                redirectionUrl &&
+                attachments.length > 0 &&
+                typeof navigator !== 'undefined' &&
+                navigator?.onLine && (
+                  <DetailsCoverCarousel
+                    attachments={attachments}
+                    onClickImage={() => router.push(redirectionUrl)}
+                  />
+                )}
+              {isFullscreen &&
+                type !== 'TOURISTIC_CONTENT' &&
+                attachments.length > 0 &&
+                typeof navigator !== 'undefined' &&
+                navigator?.onLine && (
+                  <DetailsCoverCarousel
+                    onClickImage={
+                      typeof navigator !== 'undefined' && navigator?.onLine
+                        ? toggleFullscreen
+                        : undefined
+                    }
                     attachments={attachments}
                   />
                 )}
-              {!isFullscreen && (
+              {!isFullscreen && type !== 'TOURISTIC_CONTENT' && (
                 <DetailsCardCarousel
                   thumbnailUris={
                     typeof navigator !== 'undefined' && navigator?.onLine
