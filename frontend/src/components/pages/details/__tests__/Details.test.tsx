@@ -120,7 +120,7 @@ describe('Details', () => {
     await component.findByText('La Motte-en-Champsaur');
     await component.findAllByText('Lagopède alpin');
     await component.findAllByText('Refuge de la Lavey');
-    await component.findByText('Auberge Gaillard');
+    await component.findAllByText('Auberge Gaillard');
     await component.findByText(
       "L'auberge propose, dans un hameau de montagne en bout de route, en pleine nature, un hébergement de séjour, nuitée, demi-pension et pension complète dans un décor de la vie d'antan et d'aujourd'hui.",
     );
