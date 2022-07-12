@@ -6,6 +6,7 @@ import { HtmlText } from 'components/pages/details/utils';
 import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
 import parse from 'html-react-parser';
 import { ListAndMapContext } from 'modules/map/ListAndMapContext';
+import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
@@ -55,6 +56,8 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
 
   const { setHoveredCardId } = useContext(ListAndMapContext);
 
+  const router = useRouter();
+
   return (
     <DetailsCardContainer
       height={heightState}
@@ -81,10 +84,15 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           {({ isFullscreen, toggleFullscreen }) => (
             <>
               {isFullscreen &&
-                attachments &&
+                redirectionUrl &&
                 attachments.length > 0 &&
                 typeof navigator !== 'undefined' &&
-                navigator?.onLine && <DetailsCoverCarousel attachments={attachments} />}
+                navigator?.onLine && (
+                  <DetailsCoverCarousel
+                    onClickImage={() => router.push(redirectionUrl)}
+                    attachments={attachments}
+                  />
+                )}
               {!isFullscreen && (
                 <DetailsCardCarousel
                   thumbnailUris={
