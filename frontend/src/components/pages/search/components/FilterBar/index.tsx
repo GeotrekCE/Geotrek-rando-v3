@@ -10,6 +10,7 @@ import { colorPalette } from 'stylesheet';
 import {
   CATEGORY_ID,
   CITY_ID,
+  DATE_FILTER,
   DISTRICT_ID,
   EVENT_ID,
   OUTDOOR_ID,
@@ -17,11 +18,18 @@ import {
   STRUCTURE_ID,
   THEME_ID,
 } from '../../../../../modules/filters/constant';
-import { FilterCategory, FilterState, Option } from '../../../../../modules/filters/interface';
+import {
+  DateFilter,
+  FilterCategory,
+  FilterState,
+  Option,
+} from '../../../../../modules/filters/interface';
 
 interface Props {
   filtersState: FilterState[];
+  dateFilter: DateFilter;
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
+  setDateFilter: (dFilter: DateFilter) => void;
   resetFilters: () => void;
   resultsNumber: number;
   language: string;
@@ -80,6 +88,7 @@ export const FILTERS_CATEGORIES: FilterCategory[] = [
     id: EVENT_ID,
     name: <FormattedMessage id={'search.filters.events'} />,
     filters: [EVENT_ID],
+    subFilters: [DATE_FILTER],
   },
   {
     id: THEME_ID,
@@ -95,7 +104,9 @@ export const FILTERS_CATEGORIES: FilterCategory[] = [
 
 const FilterBarNew: React.FC<Props> = ({
   filtersState,
+  dateFilter,
   setFilterSelectedOptions,
+  setDateFilter,
   resetFilters,
   resultsNumber,
   language,
@@ -129,9 +140,11 @@ const FilterBarNew: React.FC<Props> = ({
             filters={filterField.filters}
             subFilters={filterField.subFilters}
             filtersState={filtersState}
+            dateFilter={dateFilter}
             expanded={expanded === filterField.id}
             onClick={handleClick}
             setFilterSelectedOptions={setFilterSelectedOptions}
+            setDateFilter={setDateFilter}
           />
         );
       })}

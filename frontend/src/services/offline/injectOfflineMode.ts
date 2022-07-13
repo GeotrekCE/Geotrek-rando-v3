@@ -7,20 +7,22 @@ const LeafletOffline = require('leaflet.offline');
 const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression) => {
   const mapConfig = getMapConfig();
 
+  const { mapOfflineLayer, mapClassicLayers, zoomAvailableOffline } = mapConfig;
+
   const tileLayerOffline = L.tileLayer
     // @ts-ignore no type available in this plugin
-    .offline(`${mapConfig.mapClassicLayerUrl}?${id}`, {
-      attribution: 'Map data {attribution.OpenStreetMap}',
+    .offline(`${mapOfflineLayer.url}?${id}`, {
+      attribution: mapOfflineLayer?.options?.attribution,
       subdomains: 'abc',
-      minZoom: Math.min(...(mapConfig?.zoomAvailableOffline ?? [])),
+      minZoom: Math.min(...(zoomAvailableOffline ?? [])),
     })
     .addTo(map);
 
   // @ts-ignore no type available in this plugin
   const controlInstance = L.control.savetiles(tileLayerOffline, {
     zoomlevels: mapConfig.zoomAvailableOffline,
-    confirm(layer: any, succesCallback: () => void) {
-      succesCallback();
+    confirm(layer: any, successCallback: () => void) {
+      successCallback();
     },
     confirmRemoval(layer: any, successCallback: () => void) {
       successCallback();
@@ -34,7 +36,7 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
   let storageLayer: any;
 
   const getGeoJsonData = () =>
-    LeafletOffline.getStorageInfo(getMapConfig().mapClassicLayerUrl).then((data: any) =>
+    LeafletOffline.getStorageInfo(mapOfflineLayer.url).then((data: any) =>
       LeafletOffline.getStoredTilesAsJson(tileLayerOffline, data),
     );
 
@@ -73,7 +75,7 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
   });*/
 
   const recenter = () => {
-    const minZoom = Math.min(...(mapConfig?.zoomAvailableOffline ?? []));
+    const minZoom = Math.min(...(zoomAvailableOffline ?? []));
     map.setZoom(minZoom);
     map.fitBounds(center);
   };
@@ -81,6 +83,10 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
   controlInstance.recenter = recenter;
 
   CacheManager.registerControlInstance(controlInstance);
+
+  if (tileLayerOffline.url !== mapClassicLayers[0].url && navigator.onLine) {
+    map.removeLayer(tileLayerOffline);
+  }
 
   return controlInstance;
 };

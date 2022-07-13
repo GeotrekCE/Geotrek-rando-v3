@@ -5,6 +5,7 @@ const adaptInfrastructure = (
   rawInfrastructure: RawInfrastructure,
   infrastructureTypeDictionary: InfrastructureTypeDictionary,
 ): Infrastructure => ({
+  accessibility: rawInfrastructure.accessibility ?? null,
   id: rawInfrastructure.id,
   imageUrl: rawInfrastructure.attachments?.find(({ type }) => type === 'image')?.thumbnail ?? null,
   description: rawInfrastructure.description,

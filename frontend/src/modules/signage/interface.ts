@@ -20,6 +20,7 @@ export interface RawSignage {
 }
 
 export interface Signage {
+  accessibility?: string | null;
   id: number;
   name: string;
   description: string;

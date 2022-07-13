@@ -72,7 +72,7 @@ export default class MyDocument extends Document {
               />
             </>
           )}
-          <style>{style}</style>
+          <style dangerouslySetInnerHTML={{ __html: style }} />
           <style>{`
 :root {
   --color-primary1-default: ${String(colors.primary1?.DEFAULT || '#AA397D')};

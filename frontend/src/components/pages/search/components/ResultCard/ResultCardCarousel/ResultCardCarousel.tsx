@@ -27,7 +27,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
 
   return (
     <Wrapper
-      className={`h-full w-full flex-shrink-0 relative desktop:w-resultCardDesktop`}
+      className={`h-full w-full flex-grow relative desktop:w-resultCardDesktop`}
       asColumn={asColumn}
     >
       <SmallCarousel>

@@ -92,7 +92,7 @@ Si le module "Zones de sensibilité" est activé et si la randonnée intersecte 
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-09-detail.jpg)
 
-Sont ensuite affichés les lieux de renseignement associés à la randonnée (pas encore localisés sur la carte), les accès routiers et en transport en commun, les éventuelles informations sur l'accessibilité aux personnes à mobilité réduite, les liens complémentaires et la source de la fiche.
+Sont ensuite affichés les lieux de renseignement associés à la randonnée, les accès routiers et en transport en commun, les éventuelles informations sur l'accessibilité aux personnes à mobilité réduite, les liens complémentaires et la source de la fiche.
 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-10-detail.jpg)
 
@@ -102,6 +102,8 @@ La page détail d'une randonnée se termine par la liste des services (contenus 
 ![Detail](https://geotrek.ecrins-parcnational.fr/images/gtr3-11-detail.jpg)
 
 Il est aussi possible d'ajouter un bloc de contenu HTML ou javascript customisable sur toutes les pages du site.
+
+Si des aménagements, signalétiques publiés ou "services" sont présents à proximité de la randonnées, alors ils sont affichables sur la carte de celle-ci.
 
 ### Sites outdoor
 

@@ -7,8 +7,6 @@ require('leaflet.locatecontrol');
 import 'leaflet.locatecontrol/dist/L.Control.Locate.min.css';
 import injectOfflineMode from 'services/offline/injectOfflineMode';
 
-let controlSave: any;
-
 export const useTileLayer = (
   id?: number,
   center?: LatLngBoundsExpression | null,
@@ -23,7 +21,9 @@ export const useTileLayer = (
   const setMapInstance = (newMap: Map) => {
     setMap(newMap);
 
-    if (id && center) controlSave = injectOfflineMode(newMap, id, center);
+    if (id !== undefined && center) {
+      injectOfflineMode(newMap, id, center);
+    }
 
     L.control
       // @ts-ignore no type available in this plugin

@@ -1,7 +1,9 @@
 import { QueryFilterState } from 'components/pages/search/utils';
 import { getActivities } from 'modules/activities/connector';
 import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
+import { DateFilter } from 'modules/filters/interface';
 import {
+  formatDateFilter,
   formatOutdoorSiteFiltersToUrlParams,
   formatTextFilter,
   formatTouristicContentFiltersToUrlParams,
@@ -14,7 +16,6 @@ import { getGlobalConfig } from 'modules/utils/api.config';
 import { generatePageNumbersArray } from 'modules/utils/connector';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { fetchOutdoorSites } from '../outdoorSite/api';
-import { adaptTouristicEvents } from '../touristicEvent/adapter';
 import { fetchTouristicEvents } from '../touristicEvent/api';
 import { getTouristicEventTypes } from '../touristicEventType/connector';
 import {
@@ -27,10 +28,14 @@ import { fetchTouristicContentMapResults, fetchTrekMapResults } from './api';
 import { MapResults } from './interface';
 
 export const getMapResults = async (
-  filters: { filtersState: QueryFilterState[]; textFilterState: string | null },
+  filters: {
+    filtersState: QueryFilterState[];
+    textFilterState: string | null;
+    dateFilter: DateFilter | null;
+  },
   language: string,
 ): Promise<MapResults> => {
-  const { filtersState, textFilterState } = filters;
+  const { filtersState, textFilterState, dateFilter } = filters;
 
   try {
     const practiceFilter = filtersState.find(({ id }) => id === PRACTICE_ID);
@@ -65,6 +70,7 @@ export const getMapResults = async (
     const touristicEventsFilter = formatTouristicEventsFiltersToUrlParams(filtersState);
 
     const textFilter = formatTextFilter(textFilterState);
+    const newDateFilter = formatDateFilter(dateFilter);
 
     const resultsNumber = getGlobalConfig().mapResultsPageSize;
 
@@ -150,6 +156,8 @@ export const getMapResults = async (
       const rawMapResults = await fetchTouristicEvents({
         language,
         page_size: resultsNumber,
+        dates_before: newDateFilter.dates_before,
+        dates_after: newDateFilter.dates_after,
         ...touristicEventsFilter,
         ...textFilter,
       });
@@ -159,6 +167,8 @@ export const getMapResults = async (
             language,
             page_size: resultsNumber,
             page: pageNumber,
+            dates_before: newDateFilter.dates_before,
+            dates_after: newDateFilter.dates_after,
             ...touristicEventsFilter,
             ...textFilter,
           }),

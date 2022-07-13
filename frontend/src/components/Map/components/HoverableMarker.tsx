@@ -11,6 +11,8 @@ interface BaseProps {
   id: string;
   position: [number, number];
   children?: ReactNode;
+  onMouseOver?: () => void;
+  onMouseOut?: () => void;
 }
 
 interface TrekOrTouristicContentProps extends BaseProps {
@@ -36,6 +38,10 @@ export const HoverableMarker = (props: TrekOrTouristicContentProps | TrekChildPr
       <Marker
         key={props.id}
         position={props.position}
+        eventHandlers={{
+          mouseover: props.onMouseOver,
+          mouseout: props.onMouseOut,
+        }}
         icon={
           isTrekChild(props)
             ? TrekChildMarker(props.rank, isCorrespondingCardHovered ? ZOOM_RATIO : 1, color)

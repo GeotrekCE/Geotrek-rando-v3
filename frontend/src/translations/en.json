@@ -37,6 +37,7 @@
     "filter": "Filter",
     "reload": "Reload",
     "anErrorOccured": "An error occured",
+    "diary": "Diary",
     "filters": {
       "difficulty": "Difficulty",
       "practices": "Practice",
@@ -59,6 +60,8 @@
       "labels": "Others"
     },
     "textFilter": "Search...",
+    "beginDateFilter": "Start date",
+    "endDateFilter": "End date",
     "map": {
       "seeResult": "Display details",
       "seeMe": "View my position",

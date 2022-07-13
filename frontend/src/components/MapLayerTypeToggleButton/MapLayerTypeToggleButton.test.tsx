@@ -13,7 +13,7 @@ describe('MapLayerTypeToggleButton', () => {
   it('renders correctly', () => {
     const mapLayerTypeToggleButton = render(
       <MapContainer attributionControl={false} zoomControl={false}>
-        <MapLayerTypeToggleButton />
+        <MapLayerTypeToggleButton onChange={() => null} />
       </MapContainer>,
     );
 
