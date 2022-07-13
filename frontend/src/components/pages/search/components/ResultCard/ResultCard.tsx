@@ -20,6 +20,7 @@ import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 import { ListAndMapContext } from 'modules/map/ListAndMapContext';
+import { useRouter } from 'next/router';
 
 import { Attachment } from '../../../../../modules/interface';
 import { dataUnits } from '../../../../../modules/results/adapter';
@@ -130,6 +131,7 @@ export const ResultCard: React.FC<
   const { setHoveredCardId } = useContext(ListAndMapContext);
 
   const intl = useIntl();
+  const router = useRouter();
 
   return (
     <Container
@@ -144,7 +146,7 @@ export const ResultCard: React.FC<
       asColumn={asColumn}
     >
       <Modal>
-        {({ isFullscreen, toggleFullscreen }) => (
+        {({ isFullscreen }) => (
           <>
             {isFullscreen && attachments && attachments.length > 0 && (
               <DetailsCoverCarousel attachments={attachments} />
@@ -156,7 +158,7 @@ export const ResultCard: React.FC<
                 thumbnailUris={thumbnailUris}
                 iconUri={badgeIconUri}
                 iconName={badgeName as string}
-                onClickImage={attachments ? toggleFullscreen : undefined}
+                onClickImage={() => router.push(redirectionUrl)}
               />
             )}
           </>

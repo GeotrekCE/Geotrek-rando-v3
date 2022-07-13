@@ -1,5 +1,13 @@
 # Changelog
 
+3.10.2 (2022-07-13)
+-------------------
+
+**🐛 Fixes**
+
+* Fix events date filter on map results of Search page (#743)
+* Link to detail page on images of objects cards rather than images fullscreen (#670)
+
 3.10.1 (2022-07-08)
 -------------------
 
