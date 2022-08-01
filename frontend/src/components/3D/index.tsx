@@ -119,7 +119,16 @@ export const ThreeD: React.FC<ThreeDProps> = ({
     const app3D = new window.Rando3D();
     scene.current = app3D.init(customSettings, canvasRef.current, 'examine');
     scene.current && scene.current.init(() => setLoading(false));
-  }, [currentLanguage, demURL, profileURL, libLoaded]);
+  }, [
+    currentLanguage,
+    demURL,
+    isAvailableWebGL,
+    mapSatelliteLayers,
+    messages,
+    libLoaded,
+    profileURL,
+    trekId,
+  ]);
 
   const noWebGL = messages['rando3D.warning.noWebGl'] as string;
 
