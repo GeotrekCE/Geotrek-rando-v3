@@ -13,4 +13,5 @@ export interface MapConfig {
   mapSatelliteLayers: TileLayer[] | null;
   mapOfflineLayer: TileLayer;
   zoomAvailableOffline?: number[];
+  mobileMapPanelDefaultOpened: boolean;
 }
