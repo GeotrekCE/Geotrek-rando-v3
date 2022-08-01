@@ -113,6 +113,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           id="details_logo"
           className="hidden desktop:block absolute top-0 right-0 h-30 w-30 object-contain object-center"
           src={informations.logoUri}
+          alt=""
         />
       )}
       <span id="details_place" className="text-Mobile-C2 desktop:text-P1">

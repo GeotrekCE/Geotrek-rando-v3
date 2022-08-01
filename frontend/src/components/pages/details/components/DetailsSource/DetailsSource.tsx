@@ -50,5 +50,5 @@ const SourceIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri }) => {
       </div>
     );
   }
-  return <img className="object-center object-contain h-20" src={pictogramUri} />;
+  return <img className="object-center object-contain h-20" src={pictogramUri} alt="" />;
 };

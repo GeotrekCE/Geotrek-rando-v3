@@ -7,11 +7,11 @@ interface Props {
 
 const MoreLink: React.FC<Props> = ({ link }) => {
   return (
-    <a href={link.url} target={'_blank'} rel="noreferrer">
+    <a href={link.url} target={'_blank'} rel="noreferrer noopener">
       <div className={'flex items-center'}>
-        {link.category ? (
+        {link.category?.pictogram !== undefined ? (
           <div>
-            <img src={link.category?.pictogram} />
+            <img src={link.category.pictogram} alt="" />
           </div>
         ) : (
           <div className="ml-8 mt-8" />

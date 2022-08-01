@@ -55,6 +55,7 @@ Object {
                   class="h-12 w-12 relative overflow-hidden shadow-md rounded-medium border-2 border-solid border-white cursor-pointer"
                 >
                   <img
+                    alt=""
                     class="object-cover h-full w-full rounded-medium"
                     src="/images/satellite-toggle-button-image.png"
                   />
@@ -125,6 +126,7 @@ Object {
                 class="h-12 w-12 relative overflow-hidden shadow-md rounded-medium border-2 border-solid border-white cursor-pointer"
               >
                 <img
+                  alt=""
                   class="object-cover h-full w-full rounded-medium"
                   src="/images/satellite-toggle-button-image.png"
                 />

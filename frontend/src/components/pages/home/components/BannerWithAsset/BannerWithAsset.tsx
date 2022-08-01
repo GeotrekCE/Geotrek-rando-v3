@@ -69,6 +69,7 @@ export const BannerWithAsset: React.FC<BannerSectionProps> = ({
           src={pictureUrl}
           className="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
           data-testid="image"
+          alt=""
         />
       </Banner>
     );
