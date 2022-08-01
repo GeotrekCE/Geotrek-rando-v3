@@ -33,7 +33,7 @@ const ActivityMarker: React.FC<{ pictogramUrl?: string; zoomRatio: number; color
   );
 };
 
-export const TrekMarker = (pictogramUrl?: string, zoomRatio = 1, color?: string) =>
+export const TrekMarker = (pictogramUrl?: string, zoomRatio = 1, color?: string): DivIcon =>
   new DivIcon({
     iconSize: [markerHeight * zoomRatio, markerWidth * zoomRatio],
     // point of the icon which will correspond to marker's location

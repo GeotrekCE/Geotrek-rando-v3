@@ -609,7 +609,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
   );
 };
 
-export const marginDetailsChild = 'mx-4 desktop:mx-18' as const;
+export const marginDetailsChild = 'mx-4 desktop:mx-18';
 
 interface DetailsHeaderMobileProps {
   title: string;

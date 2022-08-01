@@ -7,7 +7,12 @@ import { colorPalette } from 'stylesheet';
 import ArrowLeft from './ArrowLeft';
 import ArrowRight from './ArrowRight';
 
-const Siblings = ({ trekFamily, trekId }: { trekFamily?: TrekFamily | null; trekId?: number }) => {
+interface Props {
+  trekFamily?: TrekFamily | null;
+  trekId?: number;
+}
+
+const Siblings: React.FC<Props> = ({ trekFamily, trekId }) => {
   const intl = useIntl();
 
   if (!trekFamily || !trekId || trekFamily.trekChildren.length < 2) {

@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { colorPalette } from 'stylesheet';
 import { ToolTip, ToolTipText } from './ToolTip.style';
 
 interface Props {
-  children?: any;
+  children?: ReactNode;
   toolTipText?: string;
   color?: string;
   backgroundColor?: string;

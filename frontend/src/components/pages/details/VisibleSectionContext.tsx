@@ -8,11 +8,10 @@ interface VisibleSection {
 
 export const VisibleSectionContext = createContext<VisibleSection>({
   visibleSection: null,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setVisibleSection: (_: DetailsSections | null) => {},
+  setVisibleSection: (section: DetailsSections | null) => section,
 });
 
-export const VisibleSectionProvider = ({ children }: { children: React.ReactNode }) => {
+export const VisibleSectionProvider: React.FC = ({ children }) => {
   const [visibleSection, setVisibleSection] = useState<DetailsSections | null>(null);
   return (
     <VisibleSectionContext.Provider value={{ visibleSection, setVisibleSection }}>
