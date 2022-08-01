@@ -10,7 +10,7 @@ export const useNavigationLoader = (): {
     Router.events.on('routeChangeStart', (url, { shallow }) => {
       if (!shallow) setIsNavigationLoading(true);
     });
-    Router.events.on('routeChangeError', e => {
+    Router.events.on('routeChangeError', () => {
       setIsNavigationLoading(false);
     });
     Router.events.on('routeChangeComplete', () => {

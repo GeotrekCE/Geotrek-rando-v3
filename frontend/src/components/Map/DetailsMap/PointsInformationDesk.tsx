@@ -16,10 +16,6 @@ type Locations = {
 }[];
 
 export const PointsInformationDesk: React.FC<PointsInformationDeskProps> = props => {
-  if (!props.informationDesks) {
-    return null;
-  }
-
   const locations: Locations = useMemo(() => {
     return (props.informationDesks ?? [])
       .filter(({ longitude, latitude }) => longitude && latitude)

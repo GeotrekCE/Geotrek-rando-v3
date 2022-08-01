@@ -2,7 +2,6 @@ import { ActivityChoices } from 'modules/activities/interface';
 import { TouristicContentCategoryDictionnary } from 'modules/touristicContentCategory/interface';
 import { extractFirstPointOfGeometry } from 'modules/utils/geometry';
 import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
-import { getTouristicEventTypes } from '../touristicEventType/connector';
 import { TouristicEventTypeChoices } from '../touristicEventType/interface';
 import {
   MapResults,

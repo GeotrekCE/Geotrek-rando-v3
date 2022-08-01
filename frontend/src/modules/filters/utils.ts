@@ -293,7 +293,7 @@ export const computeFiltersToDisplay = ({
   }
   // Event filters
   if (currentNumberOfEventsOptionsSelected > 0 || selectedFilterId === EVENT_ID) {
-    eventFilter?.selectedOptions.forEach(i => {
+    eventFilter?.selectedOptions.forEach(() => {
       filtersToAdd.push(getEventsFiltersState());
     });
   }
