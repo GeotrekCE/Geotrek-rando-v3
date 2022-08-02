@@ -1,7 +1,7 @@
 export interface InfrastructureType {
   id: number;
   label: string;
-  pictogram: string;
+  pictogram: string | null;
 }
 
 export interface InfrastructureTypeDictionary {
