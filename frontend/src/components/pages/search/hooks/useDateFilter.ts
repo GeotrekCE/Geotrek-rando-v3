@@ -7,15 +7,12 @@ export const useDateFilter = (): {
   setDateFilter: (dFilter: DateFilter) => void;
 } => {
   const initialOptions = useRouter().query;
+  const { beginDate = '', endDate = '' } = initialOptions;
 
-  const beginDate = initialOptions.beginDate ? initialOptions.beginDate.toString() : '';
-  const endDate = initialOptions.endDate ? initialOptions.endDate.toString() : '';
-
-  const [dateFilter, setDateFilterState] = useState<DateFilter>({ beginDate, endDate });
-
-  const setDateFilter = (dFilter: DateFilter) => {
-    setDateFilterState(dFilter);
-  };
+  const [dateFilter, setDateFilter] = useState<DateFilter>({
+    beginDate: beginDate.toString(),
+    endDate: endDate.toString(),
+  });
 
   return {
     dateFilter,
