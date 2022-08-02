@@ -10,6 +10,6 @@ export const useDetailsHeader = (sectionsReferences: MutableRefObject<DetailsHea
     if (sectionsReferences.current !== undefined && sectionsReferences.current !== null) {
       setDetailsHeaderSection(sectionsReferences.current);
     }
-  }, [sectionsReferences.current]);
+  }, [sectionsReferences]);
   return { detailsHeaderSection, currentSectionId: visibleSection };
 };
