@@ -42,7 +42,7 @@ export const PointsSecondary: React.FC<PointsSecondaryProps> = ({
         position: [geometry.coordinates[1], geometry.coordinates[0]],
         type: type.label,
       }));
-  }, []);
+  }, [Icon, dictionary]);
 
   if (locations.length === 0) {
     return null;

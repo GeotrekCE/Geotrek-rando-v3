@@ -43,17 +43,19 @@ const TileLayerExtended: React.FC<TileLayerExtendedProps> = ({ url, bounds, opti
     };
     void loadLayer();
     return () => {
-      if (map === undefined) {
-        return;
-      }
       if (options?.attribution !== undefined) {
         map.attributionControl?.removeAttribution(options?.attribution);
       }
-      if (tile !== null) {
+    };
+  }, [bounds, options, map, url]);
+
+  useEffect(() => {
+    return () => {
+      if (map !== undefined && tile !== null) {
         map.removeLayer(tile);
       }
     };
-  }, [map]);
+  }, [map, tile]);
 
   return null;
 };

@@ -11,20 +11,21 @@ interface Props {
 const MoveHandler: React.FC<Props> = ({ onMove }) => {
   const map = useMap();
 
+  const handleMove = useCallback(
+    () =>
+      debounce(
+        () => {
+          onMove(map.getBounds());
+        },
+        1000,
+        false,
+      ),
+    [map, onMove],
+  );
+
   useEffect(() => {
     map.on('moveend', handleMove);
-  }, [map]);
-
-  const handleMove = useCallback(
-    debounce(
-      () => {
-        onMove(map.getBounds());
-      },
-      1000,
-      false,
-    ),
-    [],
-  );
+  }, [handleMove, map]);
 
   return null;
 };

@@ -26,6 +26,6 @@ export const HoverablePolygon: React.FC<Props> = props => {
         weight={weight}
       />
     ),
-    [props.id, isCorrespondingCardHovered],
+    [props.id, props.positions, weight],
   );
 };
