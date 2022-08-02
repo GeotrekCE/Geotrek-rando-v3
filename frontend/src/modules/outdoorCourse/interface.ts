@@ -25,17 +25,17 @@ export interface RawOutdoorCourse {
   attachments: RawAttachment[];
   name: string;
   geometry: RawGeometryCollection;
-  duration: number;
+  duration: number | null;
   max_elevation?: number;
-  height?: number;
+  height?: number | null;
   length?: number;
   cities: string[];
 }
 
-interface RawOutdoorCourseDetailsProperties extends RawOutdoorCourse {
+export interface RawOutdoorCourseDetailsProperties extends RawOutdoorCourse {
   accessibility?: string;
   advice?: string;
-  children?: string;
+  children?: number[];
   description?: string;
   equipment?: string;
   gear?: string;
@@ -44,7 +44,7 @@ interface RawOutdoorCourseDetailsProperties extends RawOutdoorCourse {
   ratings_description: string;
   site: number;
   structure: number;
-  type?: number;
+  type?: number | null;
   url: string;
   pdf: string;
 }
