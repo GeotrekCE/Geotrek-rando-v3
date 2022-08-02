@@ -27,15 +27,16 @@ interface PropsPC {
   type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT';
   parentId?: number;
 }
+
+const getRoute = (type: string) => {
+  if (type === 'TOURISTIC_CONTENT') return routes.TOURISTIC_CONTENT;
+  if (type === 'OUTDOOR_SITE') return routes.OUTDOOR_SITE;
+  if (type === 'TOURISTIC_EVENT') return routes.TOURISTIC_EVENT;
+  return routes.DETAILS;
+};
+
 const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId }) => {
   const { isLoading, trekPopupResult } = usePopupResult(id.toString(), true, type);
-
-  const getRoute = (type: string) => {
-    if (type === 'TREK') return routes.DETAILS;
-    if (type === 'TOURISTIC_CONTENT') return routes.TOURISTIC_CONTENT;
-    if (type === 'OUTDOOR_SITE') return routes.OUTDOOR_SITE;
-    if (type === 'TOURISTIC_EVENT') return routes.TOURISTIC_EVENT;
-  };
 
   return (
     <Loader
