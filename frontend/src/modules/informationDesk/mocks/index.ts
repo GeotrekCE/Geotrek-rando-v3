@@ -1,6 +1,13 @@
 import { mockRoute } from 'services/testing/utils';
+import { RawInformationDesk } from '../interface';
 
-export const mockInformationDeskResponse = () => ({
+interface InformationDeskResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: RawInformationDesk[];
+}
+export const mockInformationDeskResponse = (): InformationDeskResponse => ({
   count: 1,
   next: null,
   previous: null,
@@ -23,6 +30,9 @@ export const mockInformationDeskResponse = () => ({
         pictogram: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/desktype-info.svg',
       },
       website: 'http://www.ecrins-parcnational.fr',
+      accessibility: '',
+      longitude: 2,
+      latitude: 3,
     },
   ],
 });
