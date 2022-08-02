@@ -1,7 +1,7 @@
 export interface SignageType {
   id: number;
   label: string;
-  pictogram: string;
+  pictogram: string | null;
 }
 
 export interface SignageTypeDictionary {
