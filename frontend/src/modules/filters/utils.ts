@@ -4,6 +4,7 @@ import { getActivityFilter } from 'modules/activities/connector';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
 import { getLabelsFilter } from 'modules/label/connector';
 
+import { ParsedUrlQuery } from 'querystring';
 import { getOutdoorPracticesFilter } from '../outdoorPractice/connector';
 import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { OutdoorRatingMapping } from '../outdoorRating/interface';
@@ -370,13 +371,13 @@ const getInitialFiltersStateWithRelevantFilters = ({
   return result;
 };
 
-const sanitizeInitialOptions = (initialOptions: {
-  [filterId: string]: string;
-}): { [filterId: string]: string[] } =>
-  Object.keys(initialOptions).reduce(
-    (sanitizedOptions, key) => ({
+const sanitizeInitialOptions = (initialOptions: ParsedUrlQuery): { [filterId: string]: string[] } =>
+  Object.entries(initialOptions).reduce(
+    (sanitizedOptions, [key, value]) => ({
       ...sanitizedOptions,
-      ...(initialOptions[key] === '' ? {} : { [key]: initialOptions[key].split(',') }),
+      ...(value === '' || value === undefined
+        ? {}
+        : { [key]: Array.isArray(value) ? value : value.split(',') }),
     }),
     {},
   );
@@ -390,7 +391,7 @@ export const getInitialFiltersStateWithSelectedOptions = ({
   outdoorPractice,
 }: {
   initialFiltersState: FilterState[];
-  initialOptions: { [filterId: string]: string };
+  initialOptions: ParsedUrlQuery;
   touristicContentCategoryMapping: TouristicContentCategoryMapping;
   outdoorRatingMapping: OutdoorRatingMapping;
   outdoorRatingScale: OutdoorRatingScale[];
