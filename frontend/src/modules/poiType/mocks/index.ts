@@ -1,6 +1,14 @@
 import { mockRoute } from 'services/testing/utils';
+import { RawPoiType } from '../interface';
 
-export const mockPoiTypeResponse = () => ({
+interface PoiTypeResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: RawPoiType[];
+}
+
+export const mockPoiTypeResponse = (): PoiTypeResponse => ({
   count: 15,
   next: null,
   previous: null,
