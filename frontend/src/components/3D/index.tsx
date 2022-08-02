@@ -60,7 +60,6 @@ export const ThreeD: React.FC<ThreeDProps> = ({
 
   useEffect(() => {
     if (window === undefined) {
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
       return;
     }
 
@@ -75,7 +74,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
     }
 
     void loadLibraries();
-  }, []);
+  }, [setLibLoaded]);
 
   useEffect(() => {
     if (
