@@ -74,7 +74,7 @@ const Popup: React.FC<PopupProps> = props => {
     return () => {
       document.body.removeChild(container);
     };
-  }, []);
+  }, [container]);
 
   return createPortal(<PopupContent {...props} />, container);
 };
