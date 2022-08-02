@@ -26,7 +26,7 @@ export const TouristicContent: React.FC<PropsType> = ({ contents, type = 'TOURIS
                 <Fragment key={id}>
                   {(geometry.type === 'Point' ? [geometry.coordinates] : geometry.coordinates).map(
                     coordinates =>
-                      pictogramUri ? (
+                      pictogramUri !== null ? (
                         <HoverableMarker
                           key={`${id}${JSON.stringify(coordinates)}`}
                           id={id}
