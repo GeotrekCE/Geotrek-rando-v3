@@ -1,6 +1,13 @@
 import { mockRoute } from 'services/testing/utils';
+import { TrekRatingScale } from '../interface';
 
-export const mockTrekRatingScaleResponse = () => ({
+interface TrekRatingScaleResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: TrekRatingScale[];
+}
+export const mockTrekRatingScaleResponse = (): TrekRatingScaleResponse => ({
   count: 5,
   next: null,
   previous: null,
