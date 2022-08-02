@@ -1,23 +1,23 @@
 import { generateResultDetailsUrl } from 'components/pages/search/utils';
-import { NextApiRequest, NextApiResponse, Redirect } from 'next';
+import { Redirect } from 'next';
 import { getHeaderConfig } from '../header/utills';
 import { getGlobalConfig } from './api.config';
 
 export const redirectIfWrongUrl = (
   id: string,
   title: string,
-  context: { locale: string; req: NextApiRequest; res: NextApiResponse; resolvedUrl: string },
+  context: { locale: string; resolvedUrl: string },
   route: string,
   parentId?: number,
-) => {
+): Redirect | null => {
   const baseUrl = getGlobalConfig().baseUrl;
-  const baseUrlLocalised =
+  const baseUrlLocalized =
     getHeaderConfig().menu.defaultLanguage === context.locale
       ? baseUrl
       : `${baseUrl}/${context.locale}`;
-  const baseUrlTrimmed = baseUrlLocalised.endsWith('/')
-    ? baseUrlLocalised.slice(0, -1)
-    : baseUrlLocalised;
+  const baseUrlTrimmed = baseUrlLocalized.endsWith('/')
+    ? baseUrlLocalized.slice(0, -1)
+    : baseUrlLocalized;
   const pathname = generateResultDetailsUrl(id, title, route, parentId);
 
   const url = `${baseUrlTrimmed}${pathname}`;
@@ -31,4 +31,5 @@ export const redirectIfWrongUrl = (
       permanent: true,
     } as Redirect;
   }
+  return null;
 };

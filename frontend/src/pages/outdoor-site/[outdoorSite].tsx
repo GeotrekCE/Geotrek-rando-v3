@@ -1,5 +1,5 @@
 import { OutdoorSiteUI } from 'components/pages/site';
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { QueryClient } from 'react-query';
@@ -9,25 +9,25 @@ import { isUrlString } from '../../modules/utils/string';
 import { redirectIfWrongUrl } from '../../modules/utils/url';
 import Custom404 from '../404';
 
-export const getServerSideProps = async (context: {
-  locale: string;
-  resolvedUrl: string;
-  query: { outdoorSite: string };
-  res: any;
-  req: any;
-}) => {
+export const getServerSideProps: GetServerSideProps = async context => {
   try {
     const id = isUrlString(context.query.outdoorSite)
       ? context.query.outdoorSite.split('-')[0]
       : '';
+    const { locale = 'fr' } = context;
 
     const queryClient = new QueryClient();
 
-    const details = await getOutdoorSiteDetails(id, context.locale);
+    const details = await getOutdoorSiteDetails(id, locale);
 
-    await queryClient.prefetchQuery(`outdoorSiteDetails-${id}-${context.locale}`, () => details);
+    await queryClient.prefetchQuery(`outdoorSiteDetails-${id}-${locale}`, () => details);
 
-    const redirect = redirectIfWrongUrl(id, details.name, context, routes.OUTDOOR_SITE);
+    const redirect = redirectIfWrongUrl(
+      id,
+      details.name,
+      { ...context, locale },
+      routes.OUTDOOR_SITE,
+    );
     if (redirect)
       return {
         redirect,
