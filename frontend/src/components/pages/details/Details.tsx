@@ -605,7 +605,30 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
         )}
       </>
     ),
-    [details, isLoading, mobileMapState],
+    [
+      details,
+      displayAltimetricProfile,
+      displayMobileMap,
+      hideMobileMap,
+      id,
+      intl,
+      isLoading,
+      isMobile,
+      language,
+      mobileMapState,
+      refetch,
+      sectionsReferences,
+      setAccessibilityRef,
+      setChildrenRef,
+      setDescriptionRef,
+      setPoisRef,
+      setPracticalInformationsRef,
+      setPreviewRef,
+      setReportRef,
+      setSensitiveAreasRef,
+      setTouristicContentsRef,
+      trekFamily,
+    ],
   );
 };
 
