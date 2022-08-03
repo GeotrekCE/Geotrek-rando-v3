@@ -90,9 +90,7 @@ export const adaptResults = ({
       attachmentsAccessibility: rawDetailsProperties.attachments_accessibility ?? null,
       id: Number(rawDetailsProperties.id),
       title: rawDetailsProperties.name,
-      place: cityDictionnary[rawDetailsProperties.departure_city]
-        ? cityDictionnary[rawDetailsProperties.departure_city].name
-        : '',
+      place: cityDictionnary[rawDetailsProperties.departure_city]?.name ?? '',
       imgs: getAttachments(rawDetailsProperties.attachments),
       practice: activity,
       transport: rawDetailsProperties.public_transport,
@@ -123,7 +121,7 @@ export const adaptResults = ({
       trekArrival: adaptGeometry2D(coordinates[coordinates.length - 1]),
       departure: rawDetailsProperties.departure,
       arrival: rawDetailsProperties.arrival,
-      cities: (rawDetailsProperties.cities || []).map(id => cityDictionnary[id].name),
+      cities: rawDetailsProperties.cities.map(id => cityDictionnary[id].name),
       cities_raw: rawDetailsProperties.cities,
       touristicContents,
       parkingLocation:
@@ -134,24 +132,18 @@ export const adaptResults = ({
       gpxUri: rawDetailsProperties.gpx,
       kmlUri: rawDetailsProperties.kml,
       disabledInfrastructure: rawDetailsProperties.disabled_infrastructure,
-      accessibilities:
-        rawDetailsProperties.accessibilities !== undefined &&
-        rawDetailsProperties.accessibilities !== null
-          ? rawDetailsProperties.accessibilities.map(accessId => accessibilityDictionnary[accessId])
-          : [],
-      sources:
-        rawDetailsProperties.source !== undefined && rawDetailsProperties.source !== null
-          ? rawDetailsProperties.source.map(sourceId => sourceDictionnary[sourceId])
-          : [],
-      informationDesks:
-        rawDetailsProperties.information_desks !== undefined &&
-        rawDetailsProperties.information_desks !== null
-          ? rawDetailsProperties.information_desks.map(deskId => informationDeskDictionnary[deskId])
-          : [],
-      labels:
-        rawDetailsProperties.labels !== undefined && rawDetailsProperties.labels !== null
-          ? rawDetailsProperties.labels.map(labelId => labelsDictionnary[labelId])
-          : [],
+      accessibilities: Array.isArray(rawDetailsProperties.accessibilities)
+        ? rawDetailsProperties.accessibilities.map(accessId => accessibilityDictionnary[accessId])
+        : [],
+      sources: Array.isArray(rawDetailsProperties.source)
+        ? rawDetailsProperties.source.map(sourceId => sourceDictionnary[sourceId])
+        : [],
+      informationDesks: Array.isArray(rawDetailsProperties.information_desks)
+        ? rawDetailsProperties.information_desks.map(deskId => informationDeskDictionnary[deskId])
+        : [],
+      labels: Array.isArray(rawDetailsProperties.labels)
+        ? rawDetailsProperties.labels.map(labelId => labelsDictionnary[labelId])
+        : [],
       advice: rawDetailsProperties.advice,
       gear:
         rawDetailsProperties.gear !== undefined && rawDetailsProperties.gear !== ''

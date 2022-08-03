@@ -349,7 +349,7 @@ export const getTrekResultsById = async (
   }
 };
 
-export const getTrekResults = async (language: string, query = {}) => {
+export const getTrekResults = async (language: string, query = {}): Promise<TrekResult[]> => {
   const [rawTrekResults, difficulties, themes, activities, cityDictionnary] = await Promise.all([
     fetchTrekResults({ language, ...query }),
     getDifficulties(language),

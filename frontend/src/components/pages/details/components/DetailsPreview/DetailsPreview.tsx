@@ -143,7 +143,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             </RemoteIconInformation>
           </ToolTip>
         )}
-        {informations.period && (
+        {Boolean(informations.period) && (
           <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.period' })}>
             <LocalIconInformation icon={Calendar} className={classNameInformation}>
               {informations.period}
@@ -186,28 +186,28 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             </LocalIconInformation>
           </ToolTip>
         )}
-        {informations.duration && (
+        {Boolean(informations.duration) && (
           <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.duration' })}>
             <LocalIconInformation icon={Clock} className={classNameInformation}>
               {informations.duration}
             </LocalIconInformation>
           </ToolTip>
         )}
-        {informations.distance && (
+        {Boolean(informations.distance) && (
           <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.distance' })}>
             <LocalIconInformation icon={CodeBrackets} className={classNameInformation}>
               {informations.distance}
             </LocalIconInformation>
           </ToolTip>
         )}
-        {informations.elevation && (
+        {Boolean(informations.elevation) && (
           <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.elevation' })}>
             <LocalIconInformation icon={TrendingUp} className={classNameInformation}>
               {informations.elevation}
             </LocalIconInformation>
           </ToolTip>
         )}
-        {informations.negativeElevation && (
+        {Boolean(informations.negativeElevation) && (
           <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.negativeElevation' })}>
             <LocalIconInformation
               icon={TrendingUp}
@@ -220,7 +220,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             </LocalIconInformation>
           </ToolTip>
         )}
-        {informations.maxElevation && (
+        {Number(informations.maxElevation) > 0 && (
           <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.altitude' })}>
             <LocalIconInformation icon={Altitude} className={classNameInformation}>
               {informations.maxElevation}
@@ -228,21 +228,21 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             </LocalIconInformation>
           </ToolTip>
         )}
-        {informations.meetingPoint && (
+        {Boolean(informations.meetingPoint) && (
           <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.assemblyPoint' })}>
             <LocalIconInformation icon={MeetingPoint} className={classNameInformation}>
               {informations.meetingPoint}
             </LocalIconInformation>
           </ToolTip>
         )}
-        {informations.participantNumber && (
+        {Number(informations.participantNumber) > 0 && (
           <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.numberOfParticipants' })}>
             <LocalIconInformation icon={Participant} className={classNameInformation}>
               {informations.participantNumber}
             </LocalIconInformation>
           </ToolTip>
         )}
-        {informations.courseType && (
+        {!!informations.courseType && (
           <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.courseType' })}>
             <RemoteIconInformation
               iconUri={informations.courseType.pictogramUri}
@@ -267,10 +267,10 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       </div>
       {informations.types !== undefined && informations.types.length > 0 && (
         <div className="mt-2 desktop:mt-4 text-Mobile-C2 desktop:text-P1">
-          {informations.types.map((type, i, allTypes) => (
+          {informations.types.map((info, i, allTypes) => (
             <div key={i} className={`${i < allTypes.length - 1 ? 'mb-1 desktop:mb-2' : ''}`}>
-              <span className="font-bold">{`${type.label} : `}</span>
-              <span>{type.values.join(', ')}</span>
+              <span className="font-bold">{`${info.label} : `}</span>
+              <span>{info.values.join(', ')}</span>
             </div>
           ))}
         </div>
@@ -302,7 +302,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       <div className="desktop:hidden mt-4">
         <OfflineButton details={details} type={type} />
       </div>
-      {teaser && teaser?.length > 0 && (
+      {teaser !== undefined && teaser?.length > 0 && (
         <div
           id="details_teaser"
           className="text-Mobile-C1 desktop:text-H4 font-bold mt-4 desktop:mt-9"
@@ -310,7 +310,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           <HtmlText>{parse(teaser)}</HtmlText>
         </div>
       )}
-      {ambiance && ambiance?.length > 0 && (
+      {ambiance !== undefined && ambiance?.length > 0 && (
         <div id="details_ambiance" className="text-Mobile-C1 desktop:text-P1 mt-4 desktop:mt-8">
           <HtmlText>{parse(ambiance)}</HtmlText>
         </div>

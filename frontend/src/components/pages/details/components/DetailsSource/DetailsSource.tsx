@@ -4,7 +4,7 @@ import { colorPalette, fillSvgWithColor } from 'stylesheet';
 interface DetailsSourceProps {
   name: string;
   pictogramUri: string;
-  website: string;
+  website: string | null;
 }
 
 export const DetailsSource: React.FC<DetailsSourceProps> = ({ name, pictogramUri, website }) => {

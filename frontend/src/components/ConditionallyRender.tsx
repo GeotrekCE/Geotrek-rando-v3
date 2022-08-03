@@ -10,11 +10,11 @@ const ConditionallyRender: React.FC<ConditionallyRenderProps> = props => {
 
   useEffect(() => setIsMounted(true), []);
 
-  if (!isMounted && props.client) {
+  if (!isMounted && props.client === true) {
     return null;
   }
 
-  if (isMounted && props.server) {
+  if (isMounted && props.server === true) {
     return null;
   }
 
