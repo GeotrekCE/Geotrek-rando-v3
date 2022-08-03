@@ -1,6 +1,4 @@
-// @ts-nocheck
-import { NextRouter } from 'next/dist/next-server/lib/router/router';
-
+import { NextRouter } from 'next/dist/shared/lib/router/router';
 export const routerMock = (routerProps: Partial<NextRouter> = {}): NextRouter => ({
   basePath: '',
   pathname: '/',
@@ -19,5 +17,8 @@ export const routerMock = (routerProps: Partial<NextRouter> = {}): NextRouter =>
     emit: jest.fn(),
   },
   isFallback: false,
+  isReady: false,
+  isPreview: false,
+  isLocaleDomain: false,
   ...routerProps,
 });
