@@ -10,17 +10,20 @@ const useSectionsReferences = () => {
   const [sectionsPositions, setSectionsPositions] = useState<DetailsSectionsPosition>({});
 
   const useSectionReferenceCallback = (sectionName: string) =>
-    useCallback((node: HTMLDivElement | null): void => {
-      if (node !== null) {
-        sectionsReferences.current[sectionName] = node;
-        setSectionsPositions(currentSectionsPositions => ({
-          ...currentSectionsPositions,
-          [sectionName]: getDimensions(node),
-        }));
-      }
-    }, []);
+    useCallback(
+      (node: HTMLDivElement | null): void => {
+        if (node !== null) {
+          sectionsReferences.current[sectionName] = node;
+          setSectionsPositions(currentSectionsPositions => ({
+            ...currentSectionsPositions,
+            [sectionName]: getDimensions(node),
+          }));
+        }
+      },
+      [sectionName],
+    );
 
-  const handleResize = useCallback(
+  const handleResize = () =>
     debounce(
       () => {
         setSectionsPositions(currentSectionsPositions => {
@@ -38,9 +41,7 @@ const useSectionsReferences = () => {
       },
       1000,
       false,
-    ),
-    [],
-  );
+    );
 
   useIsomorphicLayoutEffect(() => {
     global.addEventListener('resize', handleResize);
