@@ -42,22 +42,22 @@
       {
         "minValue": 0,
         "maxValue": 1,
-        "label": "0 - 1h"
+        "translatedKey": "search.filters.durationOptions.H:0-1"
       },
       {
         "minValue": 1,
         "maxValue": 2,
-        "label": "1h - 2h"
+        "translatedKey": "search.filters.durationOptions.H:1-2"
       },
       {
         "minValue": 2,
         "maxValue": 5,
-        "label": "2h - 5h"
+        "translatedKey": "search.filters.durationOptions.H:2-5"
       },
       {
         "minValue": 5,
         "maxValue": 10,
-        "label": "5h - 10h"
+        "translatedKey": "search.filters.durationOptions.H:5-10"
       }
     ]
   },
@@ -69,22 +69,22 @@
       {
         "minValue": 0,
         "maxValue": 5000,
-        "label": "0 - 5km"
+        "translatedKey": "search.filters.lengthOptions.KM:0-5"
       },
       {
         "minValue": 5000,
         "maxValue": 10000,
-        "label": "5km - 10km"
+        "translatedKey": "search.filters.lengthOptions.KM:5-10"
       },
       {
         "minValue": 10000,
         "maxValue": 15000,
-        "label": "10km - 15km"
+        "translatedKey": "search.filters.lengthOptions.KM:10-15"
       },
       {
         "minValue": 15000,
         "maxValue": 50000,
-        "label": "15km - 50km"
+        "translatedKey": "search.filters.lengthOptions.KM:15-50"
       }
     ]
   },
@@ -96,12 +96,12 @@
       {
         "minValue": 0,
         "maxValue": 500,
-        "label": "0 - 500m"
+        "translatedKey": "search.filters.ascentOptions.M:0-500"
       },
       {
         "minValue": 500,
         "maxValue": 1000,
-        "label": "500m - 1km"
+        "translatedKey": "search.filters.ascentOptions.M:500-1000"
       }
     ]
   },

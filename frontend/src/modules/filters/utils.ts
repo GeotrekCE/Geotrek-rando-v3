@@ -49,6 +49,7 @@ const adaptFilterConfigWithOptionsToFilter = (
   options: filterConfigWithOptions.options.map(option => ({
     value: `${option.minValue}`,
     label: option.label,
+    translatedKey: option.translatedKey,
   })),
 });
 
