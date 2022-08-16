@@ -1,4 +1,3 @@
-import { flatten } from 'lodash';
 import { getActivitySuggestions } from 'modules/activitySuggestions/connector';
 import { ActivitySuggestion } from 'modules/activitySuggestions/interface';
 import { getDefaultLanguage } from 'modules/header/utills';
@@ -20,7 +19,7 @@ export const useHome = (): UseHome => {
     return { config: homePageConfig, suggestions: [] };
   }
 
-  const activitySuggestionIds = flatten(suggestions.map(s => s.ids));
+  const activitySuggestionIds = suggestions.flatMap(s => s.ids);
 
   const { data = [] } = useQuery<ActivitySuggestion[], Error>(
     ['activitySuggestions', activitySuggestionIds.join('-'), language],
