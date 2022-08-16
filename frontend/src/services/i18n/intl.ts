@@ -1,5 +1,3 @@
-import keys from 'lodash/keys';
-
 type Message = string | NestedDictionary;
 interface NestedDictionary {
   [x: string]: Message;
@@ -12,7 +10,7 @@ export const flattenMessages = (
   nestedMessages: NestedDictionary,
   prefix = '',
 ): FlattenedDictionary =>
-  keys(nestedMessages).reduce((messages: FlattenedDictionary, key) => {
+  Object.keys(nestedMessages).reduce((messages: FlattenedDictionary, key) => {
     const value = nestedMessages[key];
     const prefixedKey = prefix !== '' ? `${prefix}.${key}` : key;
 
