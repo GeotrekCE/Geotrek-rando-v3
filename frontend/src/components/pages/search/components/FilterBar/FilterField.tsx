@@ -4,7 +4,8 @@ import ShowFilters from 'components/pages/search/components/FilterBar/ShowFilter
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import { colorPalette, sizes } from 'stylesheet';
-import { groupBy } from 'lodash';
+import { groupBy } from 'modules/utils/array';
+
 import { FormattedMessage } from 'react-intl';
 import { DateFilter, FilterState, Option } from '../../../../../modules/filters/interface';
 import { countFiltersSelected } from '../../../../../modules/filters/utils';
