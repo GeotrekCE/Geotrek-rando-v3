@@ -46,12 +46,28 @@
       "cities": "pueblo",
       "localization": "Localización",
       "duration": "Duración",
+      "durationOptions": {
+        "H:0-1": "0 - 1h",
+        "H:1-2": "1h - 2h",
+        "H:2-5": "2h - 5h",
+        "H:5-10": "5h - 10h"
+      },
       "districts": "Sector",
       "themes": "Temas",
       "routes": "Tipo de recorrido",
       "accessibilities": "Accesibilidad",
       "ascent": "Denivel positivo",
+      "ascentOptions": {
+        "M:0-500": "0 - 500m",
+        "M:500-1000": "500m - 1km"
+      },
       "length": "Largo",
+      "lengthOptions": {
+        "KM:0-5": "0 - 5km",
+        "KM:5-10": "5km - 10km",
+        "KM:10-15": "10km - 15km",
+        "KM:15-50": "15km - 50km"
+      },
       "structures": "Estructura",
       "clearAll": "Borrar todo",
       "filters": "Filtros",

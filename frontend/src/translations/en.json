@@ -48,12 +48,28 @@
       "localization": "Localization",
       "cities": "City",
       "duration": "Duration",
+      "durationOptions": {
+        "H:0-1": "0 - 1h",
+        "H:1-2": "1h - 2h",
+        "H:2-5": "2h - 5h",
+        "H:5-10": "5h - 10h"
+      },
       "districts": "District",
       "themes": "Themes",
       "routes": "Type",
       "accessibilities": "Accessibility",
       "ascent": "Ascent",
+      "ascentOptions": {
+        "M:0-500": "0 - 500m",
+        "M:500-1000": "500m - 1km"
+      },
       "length": "Length",
+      "lengthOptions": {
+        "KM:0-5": "0 - 5km",
+        "KM:5-10": "5km - 10km",
+        "KM:10-15": "10km - 15km",
+        "KM:15-50": "15km - 50km"
+      },
       "structures": "Structure",
       "clearAll": "Clear all",
       "filters": "Filters",
