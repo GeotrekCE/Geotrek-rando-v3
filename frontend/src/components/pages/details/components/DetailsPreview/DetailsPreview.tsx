@@ -171,14 +171,22 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
               {informations.date.beginDate === informations.date.endDate ? (
                 <FormattedMessage
                   id={'dates.singleDate'}
-                  values={{ date: intl.formatDate(informations.date.beginDate) }}
+                  values={{
+                    date: new Intl.DateTimeFormat(intl.locale).format(
+                      new Date(informations.date.beginDate),
+                    ),
+                  }}
                 />
               ) : (
                 <FormattedMessage
                   id={'dates.multipleDates'}
                   values={{
-                    beginDate: intl.formatDate(informations.date.beginDate),
-                    endDate: intl.formatDate(informations.date.endDate),
+                    beginDate: new Intl.DateTimeFormat(intl.locale).format(
+                      new Date(informations.date.beginDate),
+                    ),
+                    endDate: new Intl.DateTimeFormat(intl.locale).format(
+                      new Date(informations.date.endDate),
+                    ),
                   }}
                 />
               )}
