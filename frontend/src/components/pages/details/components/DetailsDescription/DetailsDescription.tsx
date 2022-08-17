@@ -64,8 +64,21 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
           : {cities.join(', ')}
         </div>
       )}
-      {email && <div>{email}</div>}
-      {website && <div>{website}</div>}
+
+      {Boolean(email) && (
+        <div>
+          <a href={`mailto:${email as string}`} className="underline">
+            {email}
+          </a>
+        </div>
+      )}
+      {Boolean(website) && (
+        <div>
+          <a href={website} target="_blank" rel="noopener noreferrer">
+            {website}
+          </a>
+        </div>
+      )}
     </div>
   );
 };
