@@ -63,7 +63,11 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
             >
               <span className={`flex items-center ${option.pictogramUrl ? 'mr-1' : ''}`}>
                 {getIcon(option, Boolean(selectedOption))}
-                {option.label}
+                {
+                  option.translatedKey !== undefined
+                    ? intl.formatMessage({ id: option.translatedKey })
+                    : option.label // Deprecated: Backward compatibility
+                }
               </span>
             </button>
           );

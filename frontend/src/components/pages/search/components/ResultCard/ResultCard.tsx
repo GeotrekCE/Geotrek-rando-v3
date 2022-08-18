@@ -130,7 +130,7 @@ export const ResultCard: React.FC<
   } = props;
   const { setHoveredCardId } = useContext(ListAndMapContext);
 
-  const intl = useIntl();
+  const { locale } = useIntl();
   const router = useRouter();
 
   return (
@@ -183,19 +183,27 @@ export const ResultCard: React.FC<
             </TagContainer>
             {isTouristicEvent(props) && (
               <InformationContainer>
-                {props.informations.date && (
+                {props.informations.date !== undefined && (
                   <LocalIconInformation icon={Calendar}>
                     {props.informations.date.beginDate === props.informations.date.endDate ? (
                       <FormattedMessage
                         id={'dates.singleDate'}
-                        values={{ date: intl.formatDate(props.informations.date.beginDate) }}
+                        values={{
+                          date: new Intl.DateTimeFormat(locale).format(
+                            new Date(props.informations.date.beginDate),
+                          ),
+                        }}
                       />
                     ) : (
                       <FormattedMessage
                         id={'dates.multipleDates'}
                         values={{
-                          beginDate: intl.formatDate(props.informations.date.beginDate),
-                          endDate: intl.formatDate(props.informations.date.endDate),
+                          beginDate: new Intl.DateTimeFormat(locale).format(
+                            new Date(props.informations.date.beginDate),
+                          ),
+                          endDate: new Intl.DateTimeFormat(locale).format(
+                            new Date(props.informations.date.endDate),
+                          ),
                         }}
                       />
                     )}

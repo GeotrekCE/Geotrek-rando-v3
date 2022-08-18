@@ -30,10 +30,11 @@ export interface RawDuration {
 // Config file interface
 
 export interface Option {
-  label: string;
+  label?: string;
   value: string;
   pictogramUrl?: string;
   include?: boolean;
+  translatedKey?: string;
 }
 
 export interface FilterWithoutType {
@@ -60,7 +61,8 @@ export interface FilterConfigWithOptions {
   options: {
     minValue: number;
     maxValue: number;
-    label: string;
+    label?: string;
+    translatedKey?: string;
   }[];
   withExclude?: boolean;
 }
