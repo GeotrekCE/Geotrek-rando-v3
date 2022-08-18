@@ -9,7 +9,7 @@ import { Participant } from 'components/Icons/Participant';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 import { Wind } from 'components/Icons/Wind';
 import OfflineButton from 'components/pages/details/components/OfflineButton';
-import { groupBy } from 'lodash';
+import { groupBy } from 'modules/utils/array';
 import { Details, DetailsInformation, TrekFamily } from 'modules/details/interface';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { LocalIconInformation } from 'components/Information/LocalIconInformation';

@@ -4,7 +4,6 @@ import { Modal } from 'components/Modal';
 import { CardSingleImage } from 'components/pages/details/components/DetailsCard';
 import { HtmlText } from 'components/pages/details/utils';
 import parse from 'html-react-parser';
-import { sum } from 'lodash';
 import { AccessibilityAttachment, Details } from 'modules/details/interface';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { FormattedMessage } from 'react-intl';
@@ -21,16 +20,14 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
   const accessibilityCodeNumber = getGlobalConfig().accessibilityCodeNumber;
 
   const shouldPictureRowBeDisplayed = details.attachmentsAccessibility
-    ? sum(
-        ['slope', 'width', 'signage']
-          .filter(k => (details as any)[`accessibility_${k}`])
-          .map(k => {
-            const attachments = details.attachmentsAccessibility.filter(
-              a => a.info_accessibility === k,
-            );
-            return attachments.length;
-          }),
-      ) > 0
+    ? ['slope', 'width', 'signage']
+        .filter(k => (details as any)[`accessibility_${k}`])
+        .flatMap(k => {
+          const attachments = details.attachmentsAccessibility.filter(
+            a => a.info_accessibility === k,
+          );
+          return attachments.length;
+        }).length > 0
     : false;
 
   return (

@@ -1,5 +1,4 @@
 import { Home } from 'components/pages/home';
-import { flatten } from 'lodash';
 import { getActivityBarContent } from 'modules/activities/connector';
 import { getActivitySuggestions } from 'modules/activitySuggestions/connector';
 import { adaptSuggestions, getHomePageConfig } from 'modules/home/utils';
@@ -16,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const suggestions = adaptSuggestions(homePageConfig.suggestions, locale);
 
   if (suggestions !== null) {
-    const activitySuggestionIds = flatten(suggestions.map(s => s.ids));
+    const activitySuggestionIds = suggestions.flatMap(s => s.ids);
 
     await queryClient.prefetchQuery(
       ['activitySuggestions', activitySuggestionIds.join('-'), locale],
