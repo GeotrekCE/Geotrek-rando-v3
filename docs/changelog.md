@@ -1,5 +1,17 @@
 # Changelog
 
+3.10.3 (2022-08-18)
+------------------
+
+**🚀 New features**
+
+* Allow to provide translations for filters labels in ``config/filter.json`` (#749)
+
+**🐛 Fixes**
+
+* Enable emails and URL links in touristic events detail pages (#742)
+* Translate dates without trying to determine the current timezone (#751)
+
 3.10.2 (2022-07-18)
 -------------------
 
