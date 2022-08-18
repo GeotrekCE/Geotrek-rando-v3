@@ -5,7 +5,7 @@ import { TouristicEvent } from 'modules/touristicEvent/interface';
 
 export interface ActivitySuggestion {
   type: 'events' | 'trek' | 'service' | 'outdoor';
-  results: TouristicContentDetails[] | TrekResult[] | OutdoorSite[] | TouristicEvent[];
+  results: (TouristicContentDetails[] | TrekResult[] | OutdoorSite[] | TouristicEvent[])[];
   titleTranslationId: string;
   iconUrl: string;
   ids: string[];

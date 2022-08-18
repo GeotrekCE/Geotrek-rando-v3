@@ -1,5 +1,3 @@
-import { ActivitySuggestion } from 'modules/activitySuggestions/interface';
-
 interface ActivityBar {
   shouldDisplay: boolean;
 }
@@ -23,12 +21,6 @@ export type DeprecatedSuggestionList = Array<Suggestion>;
 
 export interface SuggestionList {
   [language: 'default' | string]: Suggestion[];
-}
-
-export interface DisplayableSuggestionCategory {
-  titleTranslationId: string;
-  iconUrl: string;
-  suggestions: ActivitySuggestion[];
 }
 
 export interface HomePageConfig {
