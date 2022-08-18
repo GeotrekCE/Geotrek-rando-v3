@@ -1,3 +1,4 @@
+import { FilterWithoutType } from 'modules/filters/interface';
 import { getGlobalConfig } from '../utils/api.config';
 import { adaptTouristicEventTypes, adaptTouristicEventTypesFilter } from './adapter';
 import { fetchTouristicEventTypes } from './api';
@@ -15,7 +16,9 @@ export const getTouristicEventTypes = async (
   });
 };
 
-export const getTouristicEventTypesFilter = async (language: string) => {
+export const getTouristicEventTypesFilter = async (
+  language: string,
+): Promise<FilterWithoutType> => {
   const rawTouristicEventTypes = getGlobalConfig().enableTouristicEvents
     ? await fetchTouristicEventTypes({ language })
     : null;

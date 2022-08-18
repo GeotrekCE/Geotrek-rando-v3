@@ -17,7 +17,6 @@ export const adaptTrekRatingHashMap = (rawTrekRating: RawTrekRating[]): TrekRati
   const result: Record<string, TrekRating[]> = {};
 
   rawTrekRating.forEach(currentTrekRating => {
-    if (!result[currentTrekRating.scale]) result[currentTrekRating.scale] = [];
     result[currentTrekRating.scale].push(currentTrekRating);
   });
 

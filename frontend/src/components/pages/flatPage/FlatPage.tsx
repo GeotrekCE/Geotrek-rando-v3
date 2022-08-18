@@ -52,7 +52,11 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
               className="relative coverDetailsMobile desktop:h-coverDetailsDesktop text-center"
               id="flatPage_cover"
             >
-              <img src={flatPage.attachment} className="h-full w-full object-top object-cover" />
+              <img
+                src={flatPage.attachment}
+                className="h-full w-full object-top object-cover"
+                alt=""
+              />
               <TextWithShadow
                 className="text-H3 desktop:text-H1
                 font-bold text-white

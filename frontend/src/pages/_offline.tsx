@@ -1,6 +1,5 @@
 import { Button } from 'components/Button';
 import { Layout } from 'components/Layout/Layout';
-import { Link } from 'components/Link';
 import { NextPage } from 'next';
 import { FormattedMessage } from 'react-intl';
 import { routes } from 'services/routes';

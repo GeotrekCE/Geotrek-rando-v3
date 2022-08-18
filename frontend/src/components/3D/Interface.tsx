@@ -103,7 +103,12 @@ const Interface: React.FC = () => {
           target="_blank"
           rel="noreferrer"
         >
-          <Image width={80} height={80} src="/images/3d/logo-makina-corpus.svg" />
+          <Image
+            width={80}
+            height={80}
+            src="/images/3d/logo-makina-corpus.svg"
+            alt="Makina Corpus"
+          />
         </a>
       </div>
 

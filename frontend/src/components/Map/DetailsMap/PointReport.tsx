@@ -18,11 +18,18 @@ export const PointReport: React.FC = () => {
     setCoordinatesReport,
     setCoordinatesReportTouched,
   } = useDetailsAndMapContext();
+
+  const isMobile = useMediaPredicate('(max-width: 1024px)');
+
+  useMapEvents({
+    click: ({ latlng }: { latlng: LatLngLiteral }) => {
+      handleChange(latlng);
+    },
+  });
+
   if (coordinatesReport === null) {
     return null;
   }
-
-  const isMobile = useMediaPredicate('(max-width: 1024px)');
 
   const pictogram = TrekMarker(
     renderToStaticMarkup(<AlertCircle color="white" />),
@@ -40,12 +47,6 @@ export const PointReport: React.FC = () => {
       },
     });
   };
-
-  useMapEvents({
-    click: ({ latlng }: { latlng: LatLngLiteral }) => {
-      handleChange(latlng);
-    },
-  });
 
   const {
     coordinates: { x: lng, y: lat },

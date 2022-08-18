@@ -1,3 +1,4 @@
+import { FilterWithoutType } from 'modules/filters/interface';
 import { adaptLabels, adaptLabelsFilter } from './adapter';
 import { fetchLabels } from './api';
 import { LabelDictionnary } from './interface';
@@ -7,7 +8,10 @@ export const getLabels = async (language: string): Promise<LabelDictionnary> => 
   return adaptLabels(rawLabels.results);
 };
 
-export const getLabelsFilter = async (language: string, withExclude = false) => {
+export const getLabelsFilter = async (
+  language: string,
+  withExclude = false,
+): Promise<FilterWithoutType> => {
   const rawLabels = await fetchLabels({ language });
   return adaptLabelsFilter(rawLabels.results, withExclude);
 };

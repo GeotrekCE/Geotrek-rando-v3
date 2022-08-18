@@ -4,7 +4,7 @@ import { getDetails, getTrekFamily } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { isRessourceMissing } from 'services/routeUtils';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import { routes } from 'services/routes';
@@ -83,8 +83,8 @@ export const useDetails = (
   const intl = useIntl();
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN' | null>('HIDDEN');
-  const displayMobileMap = () => setMobileMapState('DISPLAYED');
-  const hideMobileMap = () => setMobileMapState('HIDDEN');
+  const displayMobileMap = useCallback(() => setMobileMapState('DISPLAYED'), [setMobileMapState]);
+  const hideMobileMap = useCallback(() => setMobileMapState('HIDDEN'), [setMobileMapState]);
 
   useEffect(() => {
     if (!isMobile) {

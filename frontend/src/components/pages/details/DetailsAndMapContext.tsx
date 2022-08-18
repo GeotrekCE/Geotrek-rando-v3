@@ -26,7 +26,7 @@ export const DetailsAndMapContext = createContext<DetailsAndMapProps>({
 
 export const useDetailsAndMapContext = () => useContext(DetailsAndMapContext);
 
-export const DetailsAndMapProvider = ({ children }: { children: React.ReactNode }) => {
+export const DetailsAndMapProvider: React.FC = ({ children }) => {
   const [coordinatesReport, setCoordinatesReport] = useState<PointGeometry | null>(null);
   const [coordinatesReportTouched, setCoordinatesReportTouched] = useState<boolean>(false);
   const [reportVisibility, setReportVisibility] = useState<boolean>(false);

@@ -1,16 +1,22 @@
 import { mockRoute } from 'services/testing/utils';
+import { ServiceType } from '../interface';
 
-export const mockServiceTypeResponse = () => ({
+interface ServiceTypeResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: ServiceType[];
+}
+
+export const mockServiceTypeResponse = (): ServiceTypeResponse => ({
   count: 1,
   next: null,
   previous: null,
   results: [
     {
-      type: {
-        id: 1,
-        name: "Petit cours d'eau",
-        pictogram: null,
-      },
+      id: 1,
+      name: "Petit cours d'eau",
+      pictogram: null,
     },
   ],
 });

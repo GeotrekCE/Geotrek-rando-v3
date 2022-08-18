@@ -99,7 +99,7 @@ const SearchMapChildrens: React.FC<PropsType> = props => {
         />
       )}
       {props.segments && <DecoratedPolyline positions={props.segments} />}
-      {selectedMarkerId && selectedMarkerType && (
+      {selectedMarkerId !== null && selectedMarkerType && (
         <TrekCourse id={selectedMarkerId} type={selectedMarkerType} />
       )}
       {hoveredPoint && <TrekCourse id={hoveredPoint.id} type={hoveredPoint.type} />}

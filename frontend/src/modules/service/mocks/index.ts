@@ -1,14 +1,22 @@
 import { mockRoute } from 'services/testing/utils';
+import { RawService } from '../interface';
 
-export const mockServiceResponse = () => ({
+interface ServiceResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: RawService[];
+}
+export const mockServiceResponse = (): ServiceResponse => ({
   count: 1,
   next: null,
   previous: null,
   results: [
     {
       id: 1,
-      geometry: { type: 'Point', coordinates: [1, 2] },
+      geometry: { type: 'Point', coordinates: [1, 2, 3] },
       type: 1,
+      structure: 'foo',
     },
   ],
 });

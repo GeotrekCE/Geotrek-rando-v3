@@ -11,7 +11,7 @@ interface Props {
   positions: [number, number][];
 }
 
-export const HoverablePolyline = (props: Props) => {
+export const HoverablePolyline: React.FC<Props> = props => {
   const { hoveredCardId } = useContext(ListAndMapContext);
   const isCorrespondingCardHovered = props.id === hoveredCardId;
 
@@ -26,6 +26,6 @@ export const HoverablePolyline = (props: Props) => {
         weight={weight}
       />
     ),
-    [props.id, isCorrespondingCardHovered],
+    [props.id, props.positions, weight],
   );
 };

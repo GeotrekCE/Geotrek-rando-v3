@@ -1,6 +1,11 @@
 import { render } from 'services/testing/reactTestingLibraryWrapper';
 import { BannerWithAsset } from '../BannerWithAsset';
 
+// CF https://github.com/testing-library/react-testing-library/issues/470
+Object.defineProperty(HTMLMediaElement.prototype, 'muted', {
+  set: () => true,
+});
+
 describe('BannerWithAsset', () => {
   it('should well render with a video', () => {
     const component = render(<BannerWithAsset shouldDisplayText videoUrl="test.mp4" />);

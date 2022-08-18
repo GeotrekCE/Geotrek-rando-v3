@@ -1,6 +1,13 @@
 import { mockRoute } from 'services/testing/utils';
+import { RawSignage } from '../interface';
 
-export const mockSignageResponse = () => ({
+interface SignagesResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: RawSignage[];
+}
+export const mockSignageResponse = (): SignagesResponse => ({
   count: 1,
   next: null,
   previous: null,
@@ -15,8 +22,14 @@ export const mockSignageResponse = () => ({
       id: 1,
       description: 'Signage description',
       name: 'Signage name',
-      geometry: { type: 'Point', coordinates: [1, 2] },
+      geometry: { type: 'Point', coordinates: [1, 2, 3] },
       type: 1,
+      code: '21548',
+      condition: 1,
+      implantation_year: 2018,
+      printed_elevation: 2854,
+      sealing: 2,
+      structure: 'foo',
     },
   ],
 });

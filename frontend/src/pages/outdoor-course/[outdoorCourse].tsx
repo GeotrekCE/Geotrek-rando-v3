@@ -1,5 +1,5 @@
 import { OutdoorCourseUI } from 'components/pages/site/OutdoorCourseUI';
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { QueryClient } from 'react-query';
@@ -9,25 +9,25 @@ import { getOutdoorCourseDetails } from '../../modules/outdoorCourse/connector';
 import { isUrlString } from '../../modules/utils/string';
 import Custom404 from '../404';
 
-export const getServerSideProps = async (context: {
-  locale: string;
-  resolvedUrl: string;
-  query: { outdoorSite: string; outdoorCourse: string };
-  res: any;
-  req: any;
-}) => {
+export const getServerSideProps: GetServerSideProps = async context => {
   try {
     const id = isUrlString(context.query.outdoorCourse)
       ? context.query.outdoorCourse.split('-')[0]
       : '';
+    const { locale = 'fr' } = context;
 
     const queryClient = new QueryClient();
 
-    const details = await getOutdoorCourseDetails(id, context.locale);
+    const details = await getOutdoorCourseDetails(id, locale);
 
-    await queryClient.prefetchQuery(`outdoorCourseDetails-${id}-${context.locale}`, () => details);
+    await queryClient.prefetchQuery(`outdoorCourseDetails-${id}-${locale}`, () => details);
 
-    const redirect = redirectIfWrongUrl(id, details.name, context, routes.OUTDOOR_COURSE);
+    const redirect = redirectIfWrongUrl(
+      id,
+      details.name,
+      { ...context, locale },
+      routes.OUTDOOR_COURSE,
+    );
     if (redirect)
       return {
         redirect,

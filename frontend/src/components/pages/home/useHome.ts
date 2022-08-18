@@ -14,17 +14,14 @@ interface UseHome {
 export const useHome = (): UseHome => {
   const homePageConfig = getHomePageConfig();
   const language = useRouter().locale ?? getDefaultLanguage();
-  const suggestions = adaptSuggestions(homePageConfig.suggestions, language);
-
-  if (suggestions === null) {
-    return { config: homePageConfig, suggestions: [] };
-  }
+  const suggestions = adaptSuggestions(homePageConfig.suggestions, language) ?? [];
 
   const activitySuggestionIds = flatten(suggestions.map(s => s.ids));
 
-  const { data = [] } = useQuery<ActivitySuggestion[], Error>(
-    ['activitySuggestions', activitySuggestionIds.join('-'), language],
+  const { data = [] } = useQuery<ActivitySuggestion[] | [], Error>(
+    ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}`, language],
     () => getActivitySuggestions(suggestions, language),
+    { enabled: suggestions.length > 0 },
   );
 
   return { config: homePageConfig, suggestions: data };

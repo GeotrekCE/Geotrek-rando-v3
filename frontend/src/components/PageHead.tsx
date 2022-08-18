@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { getGlobalConfig } from 'modules/utils/api.config';
-import { getDefaultLanguage, getHeaderConfig } from 'modules/header/utills';
+import { getDefaultLanguage } from 'modules/header/utills';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
@@ -26,17 +26,17 @@ export const PageHead = ({ title, description, sharingImageUrl }: Props) => {
     currentLanguage !== getDefaultLanguage() ? `/${currentLanguage}` : ''
   }${router.asPath}`;
 
-  const getOthersLinks = () => {
-    const supportedLanguages = getHeaderConfig()?.menu?.supportedLanguages || [];
+  // const getOthersLinks = () => {
+  //   const supportedLanguages = getHeaderConfig()?.menu?.supportedLanguages || [];
 
-    return supportedLanguages.map(oneLocale => {
-      const href = `${baseUrl}${oneLocale !== getDefaultLanguage() ? `/${oneLocale}` : ''}${
-        router.asPath
-      }`;
+  //   return supportedLanguages.map(oneLocale => {
+  //     const href = `${baseUrl}${oneLocale !== getDefaultLanguage() ? `/${oneLocale}` : ''}${
+  //       router.asPath
+  //     }`;
 
-      return <link key={href} rel="alternate" hrefLang={oneLocale} href={href} />;
-    });
-  };
+  //     return <link key={href} rel="alternate" hrefLang={oneLocale} href={href} />;
+  //   });
+  // };
 
   return (
     <Head>

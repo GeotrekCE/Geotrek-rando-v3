@@ -1,8 +1,9 @@
+import { FilterWithoutType } from '../interface';
 import { adaptCourseType, adaptSingleCourseType } from './adapter';
 import { fetchCourseType, fetchCourseTypes } from './api';
 import { CourseType } from './interface';
 
-export const getCourseTypeFilter = async (language: string) => {
+export const getCourseTypeFilter = async (language: string): Promise<FilterWithoutType> => {
   const rawCourseTypes = await fetchCourseTypes({ language });
   return adaptCourseType(rawCourseTypes.results);
 };

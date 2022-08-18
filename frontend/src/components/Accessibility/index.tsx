@@ -12,7 +12,12 @@ import styled, { css } from 'styled-components';
 import { colorPalette, desktopOnly } from 'stylesheet';
 import PhoneIcon from './PhoneIcon';
 
-const Accessibility = ({ details, language }: { details: Details; language: string }) => {
+interface Props {
+  details: Details;
+  language: string;
+}
+
+const Accessibility: React.FC<Props> = ({ details, language }) => {
   const accessibilityCodeNumber = getGlobalConfig().accessibilityCodeNumber;
 
   const shouldPictureRowBeDisplayed = details.attachmentsAccessibility

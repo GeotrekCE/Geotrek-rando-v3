@@ -1,13 +1,20 @@
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { mockRoute } from 'services/testing/utils';
+import { RawOutdoorCourseDetailsProperties } from '../interface';
 
-export const mockOutdoorCoursesResponse = () => ({
+interface OutdoorCoursesResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: RawOutdoorCourseDetailsProperties[];
+}
+export const mockOutdoorCoursesResponse = (): OutdoorCoursesResponse => ({
   count: 1,
   next: null,
   previous: null,
   results: [
     {
-      id: 22,
+      id: '22',
       advice:
         'BONUS:<br /> Il est possible decontinuer apr&egrave;s la Vachette (sans d&eacute;barquer!), traverser le village<br /> un petit rapide de cl III terminera cette descente<br /> deb imp&eacute;ratif en bas du rapide &agrave; droite sinon vous attaquez Malafosse cl V !!<br /> La navette est possible par un chemin qui descent &agrave; la d&eacute;chetterie sur la RN\r\n<div class="titre_rubrique span-3">Paysage</div>\r\n<div id="paysage-parcours_148" class="contenu_rubrique eip eip-texte_multiligne span-12">sublime</div>',
       attachments: [],
@@ -15,13 +22,8 @@ export const mockOutdoorCoursesResponse = () => ({
       description:
         '<div class="attribut_parcours">\r\n<div class="libelle">Difficult&eacute;</div>\r\n<div id="cotation-parcours_148" class="info_parcours eip eip-cotation span-10">II-III, E1</div>\r\n</div>\r\n<div class="attribut_parcours">\r\n<div class="libelle">Longueur</div>\r\n<div id="longueur-parcours_148" class="info_parcours eip eip-longueur span-10"><span class="info_parcours">12&nbsp;km<br /><br /></span></div>\r\n</div>\r\n<div id="points_acces" class="attribut_parcours"><img src="https://www.eauxvives.org/img/communes/topos/point_embarquement.gif" alt="D&eacute;part" />\r\n<div id="embarquement-parcours_148" class="acces eip eip-texte span-10">Plampinet</div>\r\n<img src="https://www.eauxvives.org/img/communes/topos/point_debarquement.gif" alt="Arriv&eacute;e" />\r\n<div id="debarquement-parcours_148" class="acces eip eip-texte span-10">La Vachette<br /><br /></div>\r\n</div>\r\n<div class="rubrique">\r\n<div class="titre_rubrique span-3">Logistique</div>\r\n<div id="logistique-parcours_148" class="contenu_rubrique eip eip-texte_multiligne span-12">Emb au village de plampinet(parking a droite apr&egrave;s le pont)<br /> Deb &agrave; l\'entr&eacute;e de la Vachette ( grand parking au pont des amoureux)<br /> Tr&egrave;s beau parcours,&agrave; l\'entr&eacute;e de Val des pr&eacute;s la rivi&egrave;re se partage en une multitude de bras, attention aux branches, puis<br /> petit rapide au pont</div>\r\n</div>',
       duration: null,
-      eid: null,
       equipment: '',
-      gear: {
-        fr: '',
-        en: null,
-        it: null,
-      },
+      gear: '',
       geometry: {
         type: 'GeometryCollection',
         geometries: [
@@ -225,17 +227,14 @@ export const mockOutdoorCoursesResponse = () => ({
       max_elevation: 1481,
       min_elevation: 0,
       name: 'P3 de Plampinet à la Vachette',
-      parents: [20, 21],
       ratings: [],
-      ratings_description: {
-        fr: '',
-        en: null,
-        it: null,
-      },
+      ratings_description: '',
       site: 22,
       structure: 1,
       type: null,
       url: 'https://geotrekdemo.ecrins-parcnational.fr/api/v2/outdoor_course/22/',
+      pdf: '',
+      cities: ['foo'],
     },
   ],
 });

@@ -33,17 +33,17 @@ export interface RawTouristicContentResult {
   description_teaser: string;
   themes: number[];
   types: Record<number, number[]>;
-  cities: number[];
+  cities: string[];
 }
 
 export interface RawTouristicContentPopupResult {
   id: string;
   attachments: RawAttachment[];
   name: string;
-  cities: number[];
+  cities: string[];
 }
 
-interface RawTouristicContentDetailsProperties extends RawTouristicContent {
+export interface RawTouristicContentDetailsProperties extends RawTouristicContent {
   accessibility?: string;
   practical_info?: string;
   description: string;
@@ -51,7 +51,7 @@ interface RawTouristicContentDetailsProperties extends RawTouristicContent {
   contact: string;
   email: string;
   website: string;
-  cities: number[];
+  cities: string[];
   themes: number[];
   types: Record<number, number[]>;
   pdf: string;

@@ -1,10 +1,11 @@
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { generatePageNumbersArray } from 'modules/utils/connector';
+import { FilterWithoutType } from '../interface';
 import { adaptCityFilter } from './adapter';
 import { fetchCities } from './api';
 import { RawCity } from './interface';
 
-export const getCityFilter = async (language: string) => {
+export const getCityFilter = async (language: string): Promise<FilterWithoutType> => {
   const resultsNumber = getGlobalConfig().mapResultsPageSize;
   // First call to get the count of result - actual result size is limited by page_size
   const cities = await fetchCities({

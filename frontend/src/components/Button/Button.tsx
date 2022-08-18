@@ -11,11 +11,15 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button: React.FC<Props> = ({
   icon: Icon,
   children,
-  className,
+  className = '',
   ...nativeButtonsProps
 }) => {
   return (
-    <StyledButton className={`flex items-center ${className ?? ''}`} {...nativeButtonsProps}>
+    <StyledButton
+      type="button"
+      className={`flex items-center ${className}`}
+      {...nativeButtonsProps}
+    >
       {Icon && <Icon size={24} className="mr-1" />}
       {children}
     </StyledButton>

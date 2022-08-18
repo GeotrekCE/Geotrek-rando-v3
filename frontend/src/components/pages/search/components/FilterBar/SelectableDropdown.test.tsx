@@ -18,8 +18,7 @@ test('SelectableDropdown should render properly', () => {
           value: '2',
         },
       ]}
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      setFilterSelectedOptions={(values: Option[]) => {}}
+      setFilterSelectedOptions={(values: Option[]) => values}
       selectedFilters={[
         {
           label: 'Très Facile',

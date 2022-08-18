@@ -8,7 +8,7 @@ import {
 import { getDefaultLanguage } from 'modules/header/utills';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 import { OutdoorPracticeChoices } from '../../../../modules/outdoorPractice/interface';
 import { OutdoorRatingMapping } from '../../../../modules/outdoorRating/interface';
@@ -36,9 +36,10 @@ export const useFilter = () => {
   const outdoorRatingMapping = data ? data.outdoorRatingMapping : {};
   const outdoorRatingScale = data ? data.outdoorRatingScale : [];
   const outdoorPractice = data ? data.outdoorPractice : {};
-  const initialFiltersStateWithSelectedOptions = data
-    ? data.initialFiltersStateWithSelectedOptions
-    : [];
+  const initialFiltersStateWithSelectedOptions = useMemo(
+    () => (data ? data.initialFiltersStateWithSelectedOptions : []),
+    [data],
+  );
 
   const [filtersState, setFiltersState] = useState<FilterState[]>(
     initialFiltersStateWithSelectedOptions,
@@ -46,13 +47,13 @@ export const useFilter = () => {
 
   useEffect(() => {
     setFiltersState(initialFiltersStateWithSelectedOptions);
-  }, [initialFiltersStateWithSelectedOptions.length]);
+  }, [initialFiltersStateWithSelectedOptions, initialFiltersStateWithSelectedOptions.length]);
 
   useEffect(() => {
     setFiltersState(currentFiltersState =>
       getNewLanguageFiltersState(currentFiltersState, initialFiltersStateWithSelectedOptions),
     );
-  }, [language]);
+  }, [initialFiltersStateWithSelectedOptions, language]);
 
   const setFilterSelectedOptions = (filterId: string, options: Option[]) => {
     setFiltersState(currentState => {

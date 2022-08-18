@@ -33,15 +33,15 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
   language,
 }) => {
   const { asPath } = useRouter();
-  const layer = {
-    map: { lib: 'MapLeafletDevice' },
-    langue: language,
-    partner,
-    routeId: id,
-    routePage: asPath,
-  };
 
   const onLoad = useCallback(() => {
+    const layer = {
+      map: { lib: 'MapLeafletDevice' },
+      langue: language,
+      partner,
+      routeId: id,
+      routePage: asPath,
+    };
     (core => {
       void waitForGlobal('eitinerance')
         .then(() => waitForGlobal('AllianceReseaux'))
@@ -52,14 +52,14 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
           });
         });
     })(window?.eitinerance?.core);
-  }, [id, partner, language]);
+  }, [asPath, id, language, partner]);
 
   useEffect(() => {
     // Hydratation once scripts loaded
     if (window.eitinerance !== undefined) {
       onLoad();
     }
-  }, []);
+  }, [onLoad]);
 
   return (
     <>

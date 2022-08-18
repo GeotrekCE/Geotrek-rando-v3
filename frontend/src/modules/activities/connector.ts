@@ -1,3 +1,4 @@
+import { FilterWithoutType } from 'modules/filters/interface';
 import { adaptTouristicContentCategoryList } from 'modules/touristicContentCategory/adapter';
 import { fetchTouristicContentCategories } from 'modules/touristicContentCategory/api';
 import { adaptOutdoorPracticesForActivities } from '../outdoorPractice/adapter';
@@ -19,7 +20,7 @@ export const getActivities = async (language: string): Promise<ActivityChoices> 
   return adaptActivities(rawActivities.results);
 };
 
-export const getActivityFilter = async (language: string) => {
+export const getActivityFilter = async (language: string): Promise<FilterWithoutType> => {
   const rawActivities = await fetchActivities({ language });
   return adaptActivityFilter(rawActivities.results);
 };

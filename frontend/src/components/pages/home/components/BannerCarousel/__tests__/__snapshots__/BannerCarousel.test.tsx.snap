@@ -32,6 +32,7 @@ Object {
               >
                 <div>
                   <img
+                    alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
                     src="photoB.jpg"
                     style="width: 100%; display: inline-block;"
@@ -48,6 +49,7 @@ Object {
               >
                 <div>
                   <img
+                    alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
                     src="photoA.jpg"
                     style="width: 100%; display: inline-block;"
@@ -64,6 +66,7 @@ Object {
               >
                 <div>
                   <img
+                    alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
                     src="photoB.jpg"
                     style="width: 100%; display: inline-block;"
@@ -80,6 +83,7 @@ Object {
               >
                 <div>
                   <img
+                    alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
                     src="photoA.jpg"
                     style="width: 100%; display: inline-block;"
@@ -96,6 +100,7 @@ Object {
               >
                 <div>
                   <img
+                    alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
                     src="photoB.jpg"
                     style="width: 100%; display: inline-block;"
@@ -140,6 +145,7 @@ Object {
             >
               <div>
                 <img
+                  alt=""
                   class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
                   src="photoB.jpg"
                   style="width: 100%; display: inline-block;"
@@ -156,6 +162,7 @@ Object {
             >
               <div>
                 <img
+                  alt=""
                   class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
                   src="photoA.jpg"
                   style="width: 100%; display: inline-block;"
@@ -172,6 +179,7 @@ Object {
             >
               <div>
                 <img
+                  alt=""
                   class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
                   src="photoB.jpg"
                   style="width: 100%; display: inline-block;"
@@ -188,6 +196,7 @@ Object {
             >
               <div>
                 <img
+                  alt=""
                   class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
                   src="photoA.jpg"
                   style="width: 100%; display: inline-block;"
@@ -204,6 +213,7 @@ Object {
             >
               <div>
                 <img
+                  alt=""
                   class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
                   src="photoB.jpg"
                   style="width: 100%; display: inline-block;"

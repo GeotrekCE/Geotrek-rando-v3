@@ -1,7 +1,7 @@
 export interface RawLabel {
   id: number;
   advice: string;
-  pictogram: string; // nullable
+  pictogram: string | null;
   name: string;
   filter: boolean;
 }
@@ -9,7 +9,7 @@ export interface RawLabel {
 export interface Label {
   id: number;
   advice: string;
-  pictogramUri: string;
+  pictogramUri: string | null;
   name: string;
   filter?: boolean;
 }

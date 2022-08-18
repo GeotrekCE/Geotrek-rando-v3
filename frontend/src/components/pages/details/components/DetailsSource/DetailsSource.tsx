@@ -4,7 +4,7 @@ import { colorPalette, fillSvgWithColor } from 'stylesheet';
 interface DetailsSourceProps {
   name: string;
   pictogramUri: string;
-  website: string;
+  website: string | null;
 }
 
 export const DetailsSource: React.FC<DetailsSourceProps> = ({ name, pictogramUri, website }) => {
@@ -50,5 +50,5 @@ const SourceIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri }) => {
       </div>
     );
   }
-  return <img className="object-center object-contain h-20" src={pictogramUri} />;
+  return <img className="object-center object-contain h-20" src={pictogramUri} alt="" />;
 };

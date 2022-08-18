@@ -26,7 +26,7 @@ export const DraggableMarker: React.FC<Props> = ({ onChange, position, pictogram
         }
       },
     }),
-    [],
+    [onChange],
   );
 
   return (

@@ -5,7 +5,7 @@ export interface RawTrekRating {
   name: string;
   description: string;
   scale: number;
-  order: number;
+  order: number | null;
   color: string;
 }
 
@@ -14,7 +14,7 @@ export interface TrekRating {
   name: string;
   description: string;
   scale: number;
-  order: number;
+  order: number | null;
   color: string;
 }
 
