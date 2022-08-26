@@ -13,7 +13,6 @@ import Interface from './Interface';
 
 declare global {
   interface Window {
-    jQuery?: any;
     Rando3D?: any;
   }
 }
@@ -63,26 +62,18 @@ export const ThreeD: React.FC<ThreeDProps> = ({
       return;
     }
 
-    // Dynamicly loads jQuery and Rando3D
-    async function loadLibraries() {
+    // Dynamicly loads Rando3D package
+    async function loadRando3D() {
       // @ts-ignore next-line
-      const { default: jQuery } = await import('jquery');
-      // @ts-ignore next-line
-      await import('@makina-corpus/rando3d/dist/rando3D');
-      window.jQuery = jQuery;
+      await import('@makina-corpus/rando3d');
       setLibLoaded(true);
     }
 
-    void loadLibraries();
+    void loadRando3D();
   }, [setLibLoaded]);
 
   useEffect(() => {
-    if (
-      window?.jQuery === undefined ||
-      window?.Rando3D === undefined ||
-      !libLoaded ||
-      !isAvailableWebGL
-    ) {
+    if (window?.Rando3D === undefined || !libLoaded || !isAvailableWebGL) {
       return;
     }
 
@@ -108,6 +99,14 @@ export const ThreeD: React.FC<ThreeDProps> = ({
         examine: messages['rando3D.views.examine.description'],
         hiker: messages['rando3D.views.hiker.description'],
       },
+      MODE: {
+        bird: {
+          enabled: false,
+        },
+        hiker: {
+          enabled: false,
+        },
+      },
     };
 
     if (scene.current !== null) {
@@ -117,7 +116,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
 
     const app3D = new window.Rando3D();
     scene.current = app3D.init(customSettings, canvasRef.current, 'examine');
-    scene.current && scene.current.init(() => setLoading(false));
+    scene.current?.init(() => setLoading(false));
   }, [
     currentLanguage,
     demURL,
@@ -142,11 +141,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
             </LoaderOverlay>
           )}
           <Interface />
-          <canvas
-            id="canvas_renderer"
-            className="h-full w-full overflow-hidden border-0"
-            ref={canvasRef}
-          />
+          <canvas className="h-full w-full overflow-hidden border-0" ref={canvasRef} />
           <PoiSide className="poi_side absolute flex flex-col">
             <button type="button" className="close_btn m-2 flex items-center self-end">
               <Cross size={20} />

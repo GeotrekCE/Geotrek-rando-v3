@@ -91,6 +91,7 @@ const Interface: React.FC = () => {
             <button type="button" className="block">
               <Image width="100%" height="100%" src={`/images/3d/camera-${control}.svg`} alt="" />
               <span className="block">{cameraTitle}</span>
+              <span className="camera-description absolute invisible" />
             </button>
           </CameraItem>
         ))}
