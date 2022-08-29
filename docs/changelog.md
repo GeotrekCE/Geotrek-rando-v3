@@ -1,5 +1,15 @@
 # Changelog
 
+3.10.4 (unreleased)
+------------------
+
+**🔧 Maintenance**
+
+* Decrease warnings of the linter (#748)
+* Clean suggestion connector (#710)
+* Update rando3d package, remove jQuery and enable only examine mode (#760)
+* Remove lodash package from the project (#758)
+
 3.10.3 (2022-08-18)
 ------------------
 
