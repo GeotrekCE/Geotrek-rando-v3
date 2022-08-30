@@ -3,6 +3,11 @@
 3.10.4 (unreleased)
 ------------------
 
+**🐛 Fixes**
+
+* Paginate API pages of the information desks API (#765)
+* Set explicit timezone to GMT+0 (#751)
+
 **🔧 Maintenance**
 
 * Decrease warnings of the linter (#748)
