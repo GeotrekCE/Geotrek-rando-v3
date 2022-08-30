@@ -44,6 +44,7 @@ export const mockInformationDeskRoute = (times: number): void =>
     additionalQueries: {
       fields:
         'id,name,street,postal_code,municipality,website,email,phone,description,photo_url,type,accessibility,latitude,longitude',
+      page_size: 50,
     },
     times,
   });
