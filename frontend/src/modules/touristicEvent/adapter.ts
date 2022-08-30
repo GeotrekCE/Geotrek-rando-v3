@@ -37,8 +37,12 @@ export const adaptTouristicEvents = ({
       themes: rawTouristicEvent?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       place: cityDictionnary?.[rawTouristicEvent?.cities?.[0]]?.name ?? '',
       typeEvent: touristicEventType[Number(rawTouristicEvent?.type)],
-      beginDate: rawTouristicEvent.begin_date,
-      endDate: rawTouristicEvent.end_date,
+      beginDate: rawTouristicEvent.begin_date.includes('T')
+        ? rawTouristicEvent.begin_date
+        : `${rawTouristicEvent.begin_date}T00:00:00`,
+      endDate: rawTouristicEvent.end_date.includes('T')
+        ? rawTouristicEvent.end_date
+        : `${rawTouristicEvent.end_date}T00:00:00`,
       logoUri: rawTouristicEvent.approved ? getGlobalConfig().touristicContentLabelImageUri : null,
     };
   });
