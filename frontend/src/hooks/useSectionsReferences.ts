@@ -23,7 +23,7 @@ const useSectionsReferences = () => {
       [sectionName],
     );
 
-  const handleResize = () =>
+  const handleResize = useCallback(
     debounce(
       () => {
         setSectionsPositions(currentSectionsPositions => {
@@ -41,7 +41,9 @@ const useSectionsReferences = () => {
       },
       1000,
       false,
-    );
+    ),
+    [],
+  );
 
   useIsomorphicLayoutEffect(() => {
     global.addEventListener('resize', handleResize);
