@@ -5,7 +5,7 @@
 
 **🐛 Fixes**
 
-* Paginate API pages of the information desks API (#765)
+* Paginate API pages of the information desks (#765)
 * Set explicit timezone to GMT+0 (#751)
 
 **🔧 Maintenance**
