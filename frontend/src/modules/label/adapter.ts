@@ -27,6 +27,6 @@ export const adaptLabelsFilter = (
   options: rawLabels.map(rawLabel => ({
     value: `${rawLabel.id}`,
     label: rawLabel.name,
-    pictogramUrl: rawLabel.pictogram,
+    pictogramUrl: rawLabel.pictogram ?? undefined,
   })),
 });

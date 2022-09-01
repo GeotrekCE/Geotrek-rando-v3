@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { DetailsUI } from 'components/pages/details';
 import { useEffect } from 'react';
@@ -11,31 +11,25 @@ import { routes } from 'services/routes';
 import { redirectIfWrongUrl } from '../../modules/utils/url';
 import Custom404 from '../404';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const getServerSideProps = async (context: {
-  locale: string;
-  resolvedUrl: string;
-  query: { detailsId: string | undefined; parentId: string | undefined };
-  res: any;
-  req: any;
-}) => {
+export const getServerSideProps: GetServerSideProps = async context => {
   const id = isUrlString(context.query.detailsId) ? context.query.detailsId.split('-')[0] : '';
   const parentIdString = isUrlString(context.query.parentId) ? context.query.parentId : '';
+  const { locale = 'fr' } = context;
 
   const queryClient = new QueryClient();
 
   try {
-    const details = await getDetails(id, context.locale);
+    const details = await getDetails(id, locale);
 
-    await queryClient.prefetchQuery(`details-${id}-${context.locale}`, () => details);
-    await queryClient.prefetchQuery(`trekFamily-${parentIdString}-${context.locale}`, () =>
-      getTrekFamily(parentIdString, context.locale),
+    await queryClient.prefetchQuery(`details-${id}-${locale}`, () => details);
+    await queryClient.prefetchQuery(`trekFamily-${parentIdString}-${locale}`, () =>
+      getTrekFamily(parentIdString, locale),
     );
 
     const redirect = redirectIfWrongUrl(
       id,
       details.title,
-      context,
+      { ...context, locale },
       routes.DETAILS,
       Number(parentIdString),
     );

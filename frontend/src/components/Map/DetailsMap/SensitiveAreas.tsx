@@ -8,11 +8,10 @@ export type PropsType = {
 };
 
 export const SensitiveAreas: React.FC<PropsType> = ({ contents }) => {
-  if (contents === undefined) {
-    return null;
-  }
-
   const polygons = useMemo(() => {
+    if (contents === undefined) {
+      return null;
+    }
     return contents
       .map(({ color, geometry }) => {
         if (geometry.type === 'MultiPolygon') {
@@ -31,7 +30,11 @@ export const SensitiveAreas: React.FC<PropsType> = ({ contents }) => {
         };
       })
       .flat();
-  }, contents);
+  }, [contents]);
+
+  if (polygons === null) {
+    return null;
+  }
 
   return (
     <>

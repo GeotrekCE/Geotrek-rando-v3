@@ -32,6 +32,7 @@ export const ActivitySuggestionCard: React.FC<ActivitySuggestionCardProps> = ({
             bg-greySoft
             h-30 desktop:h-60
             object-center object-cover overflow-hidden"
+            alt=""
           />
         ) : (
           <div

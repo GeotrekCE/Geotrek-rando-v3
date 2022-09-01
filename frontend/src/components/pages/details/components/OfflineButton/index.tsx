@@ -1,7 +1,7 @@
 import { WifiOff } from 'components/Icons/WifiOff';
 import Loader from 'components/Loader';
 import Popup from 'components/Popup';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { Check } from 'components/Icons/Check';
@@ -30,15 +30,14 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isInCache, setIsInCache] = useState<boolean>(false);
 
+  const fetchState = useCallback(() => {
+    const result = CacheManager.isInCache(String(details.id));
+    setIsInCache(result);
+  }, [details.id]);
+
   useEffect(() => {
     fetchState();
-  }, []);
-
-  const fetchState = () => {
-    const result = CacheManager.isInCache(String(details.id));
-
-    setIsInCache(result);
-  };
+  }, [fetchState]);
 
   const handleSave = async () => {
     setIsLoading(true);

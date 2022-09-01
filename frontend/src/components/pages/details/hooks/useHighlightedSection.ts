@@ -72,7 +72,14 @@ export const useOnScreenSection = ({
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [sectionsPositions, visibleSection]);
+  }, [
+    screenProportionToTriggerElementHighlight,
+    scrollOffset,
+    sectionsPositions,
+    setVisibleSection,
+    visibleScreenHeight,
+    visibleSection,
+  ]);
 
   return { visibleSection };
 };

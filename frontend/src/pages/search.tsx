@@ -4,6 +4,7 @@ import { getInitialFilters } from 'modules/filters/connector';
 import { getFiltersState } from 'modules/filters/utils';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { getSearchResults } from 'modules/results/connector';
+import { GetServerSideProps } from 'next';
 import { QueryClient } from 'react-query';
 import { dehydrate, DehydratedState } from 'react-query/hydration';
 import { getGlobalConfig } from '../modules/utils/api.config';
@@ -11,14 +12,15 @@ import { getGlobalConfig } from '../modules/utils/api.config';
 const sanitizeState = (unsafeState: DehydratedState): DehydratedState =>
   JSON.parse(JSON.stringify(unsafeState));
 
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps: GetServerSideProps = async context => {
+  const { locale = 'fr' } = context;
   const queryClient = new QueryClient();
-  const initialFiltersState = await getFiltersState(context.locale);
+  const initialFiltersState = await getFiltersState(locale);
   const parsedInitialFiltersState = parseFilters(initialFiltersState);
-  const initialTextFilter = context.query.text !== undefined ? context.query.text : null;
+  const initialTextFilter = context.query.text?.toString() ?? null;
 
-  await queryClient.prefetchQuery(['initialFilterState', context.locale], () =>
-    getInitialFilters(context.locale, context.query),
+  await queryClient.prefetchQuery(['initialFilterState', locale], () =>
+    getInitialFilters(locale, context.query),
   );
 
   await queryClient.prefetchInfiniteQuery(
@@ -37,7 +39,7 @@ export const getServerSideProps = async (context: any) => {
           outdoorSites: getGlobalConfig().enableOutdoor ? 1 : null,
           touristicEvents: getGlobalConfig().enableTouristicEvents ? 1 : null,
         },
-        context.locale,
+        locale,
       ),
   );
 
@@ -47,7 +49,7 @@ export const getServerSideProps = async (context: any) => {
   return {
     props: {
       dehydratedState: safeState,
-      language: context.locale ?? getDefaultLanguage(),
+      language: locale ?? getDefaultLanguage(),
     },
   };
 };

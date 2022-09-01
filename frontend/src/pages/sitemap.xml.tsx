@@ -2,6 +2,7 @@ import React from 'react';
 import { getHeaderConfig } from 'modules/header/utills';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { convertStringForSitemap, generateResultDetailsUrl } from 'components/pages/search/utils';
+import { NextPageContext } from 'next';
 
 const LIMIT = 10000; // This limit is high so we don't have to iterate through result, one call will get us every treks or touristic content we need
 
@@ -152,12 +153,12 @@ const generateSitemap = async () => {
 };
 
 class Sitemap extends React.Component {
-  static async getInitialProps({ res }: { res: any }) {
+  public static async getInitialProps({ res }: NextPageContext): Promise<void> {
     const sitemap = await generateSitemap();
 
-    res.setHeader('Content-Type', 'text/xml');
-    res.write(sitemap);
-    res.end();
+    res?.setHeader('Content-Type', 'text/xml');
+    res?.write(sitemap);
+    res?.end();
   }
 }
 

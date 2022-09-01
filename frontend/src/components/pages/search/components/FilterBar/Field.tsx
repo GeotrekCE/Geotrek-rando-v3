@@ -31,7 +31,7 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
   };
 
   const getIcon = (option: Option, isSelected: boolean): React.ReactElement | null => {
-    if (option.pictogramUrl)
+    if (option.pictogramUrl !== undefined)
       return isSelected ? (
         <FilledSvgActive src={option.pictogramUrl} />
       ) : (
@@ -61,7 +61,9 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
                   : 'border-black'
               } ${selectedOption?.include === false ? 'line-through' : ''}`}
             >
-              <span className={`flex items-center ${option.pictogramUrl ? 'mr-1' : ''}`}>
+              <span
+                className={`flex items-center ${option.pictogramUrl !== undefined ? 'mr-1' : ''}`}
+              >
                 {getIcon(option, Boolean(selectedOption))}
                 {
                   option.translatedKey !== undefined

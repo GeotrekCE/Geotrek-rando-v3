@@ -33,12 +33,19 @@ export const adaptOutdoorCourses = ({
       attachments: getAttachments(rawOutdoorCourse.attachments),
       geometry: adaptGeometry(rawOutdoorCourse.geometry.geometries[0]),
       thumbnailUris: getThumbnails(rawOutdoorCourse.attachments),
-      duration: rawOutdoorCourse.duration ? formatHours(rawOutdoorCourse.duration) : null,
+      duration:
+        typeof rawOutdoorCourse.duration === 'number'
+          ? formatHours(rawOutdoorCourse.duration)
+          : null,
       maxElevation: Number(rawOutdoorCourse.max_elevation),
-      length: rawOutdoorCourse.length
-        ? `${Math.round(rawOutdoorCourse.length)}${dataUnits.distance}`
-        : null,
-      height: rawOutdoorCourse.height ? `${rawOutdoorCourse.height}${dataUnits.distance}` : null,
+      length:
+        typeof rawOutdoorCourse.length === 'number'
+          ? `${Math.round(rawOutdoorCourse.length)}${dataUnits.distance}`
+          : null,
+      height:
+        typeof rawOutdoorCourse.height === 'number'
+          ? `${rawOutdoorCourse.height}${dataUnits.distance}`
+          : null,
       place: cityDictionnary?.[rawOutdoorCourse?.cities?.[0]]?.name ?? '',
     };
   });

@@ -47,7 +47,7 @@ export const adaptOutdoorSites = ({
       geometry: adaptGeometry(rawOutdoorSite.geometry.geometries[0]),
       themes: rawOutdoorSite?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       practice: outdoorPracticeDictionnary[rawOutdoorSite.practice] ?? null,
-      period: rawOutdoorSite?.period ? rawOutdoorSite?.period : null,
+      period: rawOutdoorSite?.period ?? null,
       wind: rawOutdoorSite?.wind ?? [],
       orientation: rawOutdoorSite?.orientation ?? [],
       place:

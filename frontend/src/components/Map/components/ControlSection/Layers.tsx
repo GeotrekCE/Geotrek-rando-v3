@@ -1,12 +1,7 @@
 import { GenericIconProps } from 'components/Icons/types';
 import React from 'react';
 
-export const Layers: React.FC<GenericIconProps> = ({
-  color = 'currentColor',
-  opacity,
-  className,
-  size,
-}) => {
+export const Layers: React.FC<GenericIconProps> = ({ opacity, className, size }) => {
   return (
     <svg
       width={size}

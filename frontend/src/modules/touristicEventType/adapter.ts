@@ -1,5 +1,5 @@
 import { ActivityFilter } from '../activities/interface';
-import { EVENT_ID, OUTDOOR_ID } from '../filters/constant';
+import { EVENT_ID } from '../filters/constant';
 import { FilterWithoutType } from '../filters/interface';
 import { RawTouristicEventType, TouristicEventTypeChoices } from './interface';
 

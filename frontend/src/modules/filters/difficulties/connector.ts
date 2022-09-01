@@ -1,3 +1,4 @@
+import { FilterWithoutType } from '../interface';
 import { Difficulty } from './interface';
 import { adaptDifficulties, adaptDifficulty, adaptDifficultyFilter } from './adapter';
 import { fetchDifficulties, fetchDifficulty } from './api';
@@ -19,7 +20,7 @@ export const getDifficulty = async (
   return adaptDifficulty(rawDifficulty);
 };
 
-export const getDifficultyFilter = async (language: string) => {
+export const getDifficultyFilter = async (language: string): Promise<FilterWithoutType> => {
   const rawDifficulties = await fetchDifficulties({ language }); //TODO
   return adaptDifficultyFilter(rawDifficulties.results);
 };

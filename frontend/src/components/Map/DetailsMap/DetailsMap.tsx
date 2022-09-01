@@ -141,7 +141,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
       }),
   };
 
-  const hasDrawer = Boolean(props.title);
+  const hasTitle = Boolean(props.title);
 
   return (
     <MapWrapper {...mapWrapperProps}>
@@ -159,7 +159,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         zoomControl={props.type === 'DESKTOP'}
         whenCreated={setMapInstance}
         bounds={bounds}
-        hasDrawer={hasDrawer}
+        hasDrawer={hasTitle}
       >
         <TileLayerManager />
         {reportVisibility && coordinatesReportTouched ? (
@@ -257,7 +257,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         {props.displayAltimetricProfile === true && props.trekGeoJSON && (
           <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
         )}
-        {props.title && (
+        {props.title !== undefined && (
           <div className="desktop:hidden z-10">
             <DetailsMapDrawer
               title={props.title}

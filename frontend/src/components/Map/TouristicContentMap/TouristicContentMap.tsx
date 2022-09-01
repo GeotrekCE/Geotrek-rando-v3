@@ -1,6 +1,6 @@
 import { LatLngBoundsExpression } from 'leaflet';
 import React from 'react';
-import { MapContainer, ScaleControl, TileLayer } from 'react-leaflet';
+import { MapContainer, ScaleControl } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';

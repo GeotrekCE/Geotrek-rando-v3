@@ -1,7 +1,7 @@
 export interface ServiceType {
   id: number;
   name: string;
-  pictogram: string;
+  pictogram: string | null;
 }
 
 export interface ServiceTypeDictionary {

@@ -1,9 +1,10 @@
 import { getMapConfig } from 'components/Map/config';
 import { MapContainer as LeafMapContainer } from 'react-leaflet';
 import React, { memo } from 'react';
+import { Map } from 'leaflet';
 
 interface Props {
-  whenCreated: (map: any) => void;
+  whenCreated: (map: Map) => void;
   type: string;
   children: React.ReactNode;
 }

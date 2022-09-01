@@ -30,7 +30,7 @@ const OfflinePage: NextPage = () => {
     setResults(resultsInCache);
   };
 
-  const handleErase = async (id: string) => {
+  const handleErase = async (id: string): Promise<void> => {
     if (confirm(intl.formatMessage({ id: 'actions.confirmRemove' }))) {
       await CacheManager.eraseItem(id);
 

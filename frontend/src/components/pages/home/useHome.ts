@@ -1,4 +1,3 @@
-import { flatten } from 'lodash';
 import { getActivitySuggestions } from 'modules/activitySuggestions/connector';
 import { ActivitySuggestion } from 'modules/activitySuggestions/interface';
 import { getDefaultLanguage } from 'modules/header/utills';
@@ -14,17 +13,14 @@ interface UseHome {
 export const useHome = (): UseHome => {
   const homePageConfig = getHomePageConfig();
   const language = useRouter().locale ?? getDefaultLanguage();
-  const suggestions = adaptSuggestions(homePageConfig.suggestions, language);
+  const suggestions = adaptSuggestions(homePageConfig.suggestions, language) ?? [];
 
-  if (suggestions === null) {
-    return { config: homePageConfig, suggestions: [] };
-  }
+  const activitySuggestionIds = suggestions.flatMap(s => s.ids);
 
-  const activitySuggestionIds = flatten(suggestions.map(s => s.ids));
-
-  const { data = [] } = useQuery<ActivitySuggestion[], Error>(
-    ['activitySuggestions', activitySuggestionIds.join('-'), language],
+  const { data = [] } = useQuery<ActivitySuggestion[] | [], Error>(
+    ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}`, language],
     () => getActivitySuggestions(suggestions, language),
+    { enabled: suggestions.length > 0 },
   );
 
   return { config: homePageConfig, suggestions: data };

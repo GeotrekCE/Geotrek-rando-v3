@@ -1,6 +1,13 @@
 import { mockRoute } from 'services/testing/utils';
+import { RawTouristicContentCategory } from '../interface';
 
-export const mockTouristicContentCategoryResponse = () => ({
+interface TouristicContentCategoryResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: RawTouristicContentCategory[];
+}
+export const mockTouristicContentCategoryResponse = (): TouristicContentCategoryResponse => ({
   count: 8,
   next: null,
   previous: null,

@@ -1783,15 +1783,14 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@makina-corpus/rando3d@^1.3.1":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@makina-corpus/rando3d/-/rando3d-1.3.1.tgz#6ef9a66b3df3f8b8b3c409c0487a09d1141a7ab3"
-  integrity sha512-BaqHWWpKCsWsZiZdMN/IVXadVDoXSVIdzJdzcT8d8gk4xQFHSgaod6T9J4zmNy6KHGLEH2Zz/SmPE9ZXOVxXFQ==
+"@makina-corpus/rando3d@^1.3.3":
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/@makina-corpus/rando3d/-/rando3d-1.3.3.tgz#9cf8edc8908a65d963735dc63b976aa99ac53751"
+  integrity sha512-ivncFQhD6hKnU9JjN06LGQXZL2h2ibSId8ONBZktX2tBjM0NxkyzN2gl+qNeHVfTVYAAYUY6ad2yvyF0qnGbfw==
   dependencies:
     babylonjs "~1.13.3"
-    gsap "~1.16.1"
-    jquery "~1.x.x"
-    lodash "~3.x.x"
+    gsap "^3.11.0"
+    ts-deepmerge "^3.0.0"
 
 "@napi-rs/triples@1.0.3":
   version "1.0.3"
@@ -2363,11 +2362,6 @@
   integrity sha512-+Myo00Yb5OuvUyrH+vUwn9DRgOaBJsF/etIMdMcNhWGBMo58Mo1cxLInvCd0ZpvItju/AeDYFB/Od2pLiHB3VA==
   dependencies:
     "@types/geojson" "*"
-
-"@types/lodash@4.14.173":
-  version "4.14.173"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.173.tgz#9d3b674c67a26cf673756f6aca7b429f237f91ed"
-  integrity sha512-vv0CAYoaEjCw/mLy96GBTnRoZrSxkGE0BKzKimdR8P3OzrNYNvBgtW7p055A+E8C31vXNUhWKoFCbhq7gbyhFg==
 
 "@types/mdast@^3.0.0":
   version "3.0.3"
@@ -6094,10 +6088,15 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.4:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
-gsap@1.16.1, gsap@~1.16.1:
+gsap@1.16.1:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/gsap/-/gsap-1.16.1.tgz#1c45f72797f0591c7c23e50c9869bc486b410e56"
   integrity sha1-HEX3J5fwWRx8I+UMmGm8SGtBDlY=
+
+gsap@^3.11.0:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.11.0.tgz#5a45da0f35b49e2c479e1e274feb6ac51e86478b"
+  integrity sha512-TV5aFGqXht+0o/CelnhCikSe3QGeG+q1XA/fyFFsMzesILHgWgFWIz0NuXIgcMaL5h7MG2l+j0BTupS5YyYkrw==
 
 gzip-size@^6.0.0:
   version "6.0.0"
@@ -7497,11 +7496,6 @@ joi@^17.4.0:
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
 
-jquery@~1.x.x:
-  version "1.12.4"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.12.4.tgz#01e1dfba290fe73deba77ceeacb0f9ba2fec9e0c"
-  integrity sha1-AeHfuikP5z3rp3zurLD5ui/sngw=
-
 js-sha3@0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/js-sha3/-/js-sha3-0.8.0.tgz#b9b7a5da73afad7dedd0f8c463954cbde6818840"
@@ -7971,20 +7965,15 @@ lodash.truncate@^4.4.2:
   resolved "https://registry.yarnpkg.com/lodash.truncate/-/lodash.truncate-4.4.2.tgz#5a350da0b1113b837ecfffd5812cbe58d6eae193"
   integrity sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=
 
-lodash@4.17.21, lodash@^4.17.21, lodash@^4.7.0, lodash@~4.17.21:
-  version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
-  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
-
 lodash@^4.17.11, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.4:
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
 
-lodash@~3.x.x:
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
-  integrity sha1-W/Rejkm6QYnhfUgnid/RW9FAt7Y=
+lodash@^4.17.21, lodash@^4.7.0, lodash@~4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 log-symbols@^1.0.2:
   version "1.0.2"
@@ -11639,6 +11628,11 @@ trough@^1.0.0:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/trough/-/trough-1.0.5.tgz#b8b639cefad7d0bb2abd37d433ff8293efa5f406"
   integrity sha512-rvuRbTarPXmMb79SmzEp8aqXNKcK+y0XaB298IXueQ8I2PsrATcPBCSPyK/dDNa2iWOhKlfNnOjdAOTBU/nkFA==
+
+ts-deepmerge@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ts-deepmerge/-/ts-deepmerge-3.0.0.tgz#231c48901606eb104ab51a74cb447af0e9e669e4"
+  integrity sha512-gpjFrde/nE3jp7l5cJTDpyhdbGdAIO/AkNjaz4V9odnopdLd9NVrQcBDEBiE/ucMV9dmNOcdgzOVwS7U6SsBhA==
 
 ts-node@10.2.1:
   version "10.2.1"

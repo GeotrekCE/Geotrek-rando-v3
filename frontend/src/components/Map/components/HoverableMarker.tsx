@@ -28,7 +28,7 @@ interface TrekChildProps extends BaseProps {
 const isTrekChild = (trek: TrekOrTouristicContentProps | TrekChildProps): trek is TrekChildProps =>
   trek.type === 'TREK_CHILD';
 
-export const HoverableMarker = (props: TrekOrTouristicContentProps | TrekChildProps) => {
+export const HoverableMarker: React.FC<TrekOrTouristicContentProps | TrekChildProps> = props => {
   const { hoveredCardId } = useContext(ListAndMapContext);
   const isCorrespondingCardHovered = props.id === hoveredCardId;
   const color = getActivityColor(props.type);
@@ -51,6 +51,6 @@ export const HoverableMarker = (props: TrekOrTouristicContentProps | TrekChildPr
         {props.children}
       </Marker>
     ),
-    [props.id, isCorrespondingCardHovered],
+    [props, isCorrespondingCardHovered, color],
   );
 };

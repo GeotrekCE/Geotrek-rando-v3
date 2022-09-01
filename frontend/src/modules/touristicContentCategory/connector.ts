@@ -1,3 +1,4 @@
+import { FilterWithoutType } from 'modules/filters/interface';
 import {
   adaptTouristicContentCategories,
   adaptTouristicContentCategory,
@@ -5,7 +6,11 @@ import {
   adaptTouristicContentCategoryHashMap,
 } from './adapter';
 import { fetchTouristicContentCategories, fetchTouristicContentCategory } from './api';
-import { TouristicContentCategory, TouristicContentCategoryDictionnary } from './interface';
+import {
+  TouristicContentCategory,
+  TouristicContentCategoryDictionnary,
+  TouristicContentCategoryMapping,
+} from './interface';
 
 export const getTouristicContentCategories = async (
   language: string,
@@ -14,12 +19,16 @@ export const getTouristicContentCategories = async (
   return adaptTouristicContentCategories(rawTouristicContentCats.results);
 };
 
-export const getTouristicContentCategoryFilter = async (language: string) => {
+export const getTouristicContentCategoryFilter = async (
+  language: string,
+): Promise<FilterWithoutType> => {
   const rawTouristicContentCategories = await fetchTouristicContentCategories({ language });
   return adaptTouristicContentCategoryFilter(rawTouristicContentCategories.results);
 };
 
-export const getTouristicContentCategoryHashMap = async (language: string) => {
+export const getTouristicContentCategoryHashMap = async (
+  language: string,
+): Promise<TouristicContentCategoryMapping> => {
   const rawTouristicContentCategories = await fetchTouristicContentCategories({ language });
   return adaptTouristicContentCategoryHashMap(rawTouristicContentCategories.results);
 };

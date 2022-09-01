@@ -1,6 +1,14 @@
 import { mockRoute } from 'services/testing/utils';
+import { RawSensitiveAreaPractice } from '../interface';
 
-export const mockSensitiveAreaPracticesResponse = () => ({
+interface SensitiveAreaPracticesResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: RawSensitiveAreaPractice[];
+}
+
+export const mockSensitiveAreaPracticesResponse = (): SensitiveAreaPracticesResponse => ({
   count: 1,
   next: null,
   previous: null,

@@ -1,13 +1,20 @@
-import Link from 'components/Link';
 import { generateResultDetailsUrl } from 'components/pages/search/utils';
-import React from 'react';
-import styled from 'styled-components';
-import { colorPalette, MAX_WIDTH_MOBILE } from 'stylesheet';
+import { Details } from 'modules/details/interface';
+import { OutdoorCourseDetails } from 'modules/outdoorCourse/interface';
+import { OutdoorSiteDetails } from 'modules/outdoorSite/interface';
+import { TouristicContentDetails } from 'modules/touristicContent/interface';
+import { TouristicEventDetails } from 'modules/touristicEvent/interface';
+import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import Breadcrumb from './Breadcrumb';
 
 interface DetailsBreadcrumb {
-  details: any;
+  details:
+    | Details
+    | TouristicContentDetails
+    | OutdoorSiteDetails
+    | OutdoorCourseDetails
+    | TouristicEventDetails;
   type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
   title: string;
   parent?: {
@@ -25,59 +32,62 @@ search?practices=4&categories=3&themes=5&districts=1&outdoorPractice=3&event=3
 const DetailsBreadcrumb: React.FC<DetailsBreadcrumb> = ({ details, title, type, parent }) => {
   const intl = useIntl();
 
-  const toSearchLink = (type: string) =>
-    ({
-      TREK: (d: any) =>
-        d.practice
-          ? {
-              label: d.practice.name,
-              link: `/search?practices=${d.practice.id as number}`,
-            }
-          : null,
-      OUTDOOR_SITE: (d: any) =>
-        d.practice
-          ? {
-              label: d.practice.name,
-              link: `/search?outdoorPractice=${d.practice.id as number}`,
-            }
-          : null,
-      TOURISTIC_CONTENT: (d: any) =>
-        d.category
-          ? {
-              label: d.category.label,
-              link: `/search?categories=${d.category.id as number}`,
-            }
-          : null,
-      TOURISTIC_EVENT: (d: any) =>
-        d.typeEvent
-          ? {
-              label: d.typeEvent.type,
-              link: `/search?event=${d.typeEvent.id as number}`,
-            }
-          : null,
-      OUTDOOR_COURSE: null,
-    }[type]);
-
-  const search = toSearchLink(type);
+  const getLabelAndLinkByDetails = useMemo(() => {
+    let result;
+    switch (type) {
+      case 'TREK':
+        result = ({ practice }: Details) =>
+          practice
+            ? {
+                label: practice.name,
+                link: `/search?practices=${practice.id}`,
+              }
+            : null;
+        break;
+      case 'OUTDOOR_SITE':
+        result = ({ practice }: OutdoorSiteDetails) => ({
+          label: practice.name,
+          link: `/search?outdoorPractice=${practice.id}`,
+        });
+        break;
+      case 'TOURISTIC_CONTENT':
+        result = ({ category }: TouristicContentDetails) => ({
+          label: category.label,
+          link: `/search?categories=${category.id}`,
+        });
+        break;
+      case 'TOURISTIC_EVENT':
+        result = ({ typeEvent }: TouristicEventDetails) => ({
+          label: typeEvent.type,
+          link: `/search?event=${typeEvent.id}`,
+        });
+        break;
+      case 'OUTDOOR_COURSE':
+      default:
+        result = () => null;
+    }
+    return result as (
+      detailsByType: DetailsBreadcrumb['details'],
+    ) => { label: string; link: string } | null;
+  }, [type]);
 
   const breadcrumb = [
     {
       label: intl.formatMessage({ id: 'header.home' }),
       link: '/',
     },
-    search &&
-      search(details) && {
-        label: search(details)?.label,
-        link: search(details)?.link,
-      },
-    parent && {
+    getLabelAndLinkByDetails(details) && {
+      label: getLabelAndLinkByDetails(details)?.label,
+      link: getLabelAndLinkByDetails(details)?.link,
+    },
+    parent !== undefined && {
       label: parent.name,
       link: generateResultDetailsUrl(parent.id, parent.name),
     },
     {
       label: title,
     },
-  ].filter(e => e) as { label: string; link: string }[];
+  ].filter(Boolean) as { label: string; link: string }[];
 
   return <Breadcrumb breadcrumb={breadcrumb} />;
 };

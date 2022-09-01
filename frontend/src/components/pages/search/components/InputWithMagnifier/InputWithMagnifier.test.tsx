@@ -7,6 +7,9 @@ describe('InputWithMagnifier', () => {
     const inputWithMagnifier = render(
       <InputWithMagnifier
         value={null}
+        onChange={() => {
+          /* does nothing */
+        }}
         onButtonClick={() => {
           /* does nothing */
         }}

@@ -11,7 +11,7 @@ interface Props {
   positions: [number, number][][];
 }
 
-export const HoverablePolygon = (props: Props) => {
+export const HoverablePolygon: React.FC<Props> = props => {
   const { hoveredCardId } = useContext(ListAndMapContext);
   const isCorrespondingCardHovered = props.id === hoveredCardId;
 
@@ -26,6 +26,6 @@ export const HoverablePolygon = (props: Props) => {
         weight={weight}
       />
     ),
-    [props.id, isCorrespondingCardHovered],
+    [props.id, props.positions, weight],
   );
 };

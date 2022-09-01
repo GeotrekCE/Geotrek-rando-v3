@@ -1,6 +1,14 @@
 import { mockRoute } from 'services/testing/utils';
+import { RawSource } from '../interface';
 
-export const mockSourcesResponse = () => ({
+interface SourcesResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: RawSource[];
+}
+
+export const mockSourcesResponse = (): SourcesResponse => ({
   count: 3,
   next: null,
   previous: null,

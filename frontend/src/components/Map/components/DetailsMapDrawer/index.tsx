@@ -2,7 +2,7 @@ import { TrekFamily } from 'modules/details/interface';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { colorPalette } from 'stylesheet';
-import getConfig from 'next/config';
+import { getMapConfig } from 'components/Map/config';
 import { AltimetricProfile } from '../AltimetricProfile';
 import Siblings from './Siblings';
 
@@ -54,20 +54,16 @@ const DetailsMapDrawer: React.FC<{
   trekFamily?: TrekFamily | null;
   trekId?: number;
 }> = ({ title, trekGeoJSON, trekFamily, trekId }) => {
+  const { mobileMapPanelDefaultOpened } = getMapConfig();
+
+  const [open, setOpen] = useState<boolean>(mobileMapPanelDefaultOpened);
+
   if (
     Boolean(trekGeoJSON) === false &&
-    (!trekFamily || !trekId || trekFamily.trekChildren.length < 2)
+    (!trekFamily || trekId === null || trekFamily.trekChildren.length < 2)
   ) {
     return null;
   }
-
-  const {
-    publicRuntimeConfig: {
-      map: { mobileMapPanelDefaultOpened },
-    },
-  } = getConfig();
-
-  const [open, setOpen] = useState(mobileMapPanelDefaultOpened);
 
   return (
     <Wrapper open={open}>
@@ -83,7 +79,7 @@ const DetailsMapDrawer: React.FC<{
       </Puller>
       <Content>
         <Siblings trekFamily={trekFamily} trekId={trekId} />
-        {trekGeoJSON && (
+        {typeof trekGeoJSON === 'string' && (
           <>
             <AltimetricProfile id="altimetric-profile-map" trekGeoJSON={trekGeoJSON} />
             <div className="h-90" id="altimetric-profile-map"></div>

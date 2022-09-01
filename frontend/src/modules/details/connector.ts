@@ -77,9 +77,10 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       rawDetails.properties.children.map(childId => getChildGeometry(`${childId}`, language)),
     );
 
-    const accessbilityLevel = rawDetails.properties.accessibility_level
-      ? await fetchAccessibilityLevel(rawDetails.properties.accessibility_level)
-      : null;
+    const accessbilityLevel =
+      rawDetails.properties.accessibility_level !== null
+        ? await fetchAccessibilityLevel(rawDetails.properties.accessibility_level)
+        : null;
 
     return adaptResults({
       accessbilityLevel,

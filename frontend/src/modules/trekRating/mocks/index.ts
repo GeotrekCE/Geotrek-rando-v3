@@ -1,12 +1,19 @@
 import { mockRoute } from 'services/testing/utils';
+import { RawTrekRating } from '../interface';
 
-export const mockTrekRatingResponse = () => ({
+interface TrekRatingResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: RawTrekRating[];
+}
+export const mockTrekRatingResponse = (): TrekRatingResponse => ({
   count: 5,
   next: null,
   previous: null,
   results: [
     {
-      id: 3,
+      id: '3',
       name: '3 - Peu difficile',
       description: '',
       scale: 1,
@@ -14,7 +21,7 @@ export const mockTrekRatingResponse = () => ({
       color: '',
     },
     {
-      id: 4,
+      id: '4',
       name: '4 - Assez difficile',
       description: '',
       scale: 1,
@@ -22,7 +29,7 @@ export const mockTrekRatingResponse = () => ({
       color: '',
     },
     {
-      id: 7,
+      id: '7',
       name: '2 - Assez facile',
       description: '',
       scale: 2,
@@ -30,7 +37,7 @@ export const mockTrekRatingResponse = () => ({
       color: '',
     },
     {
-      id: 13,
+      id: '13',
       name: '3 - Peu difficile',
       description: '',
       scale: 3,
@@ -38,7 +45,7 @@ export const mockTrekRatingResponse = () => ({
       color: '',
     },
     {
-      id: 14,
+      id: '14',
       name: '4 - Assez difficile',
       description: '',
       scale: 3,

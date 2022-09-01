@@ -1,12 +1,11 @@
 import { FILTERS_CATEGORIES } from 'components/pages/search/components/FilterBar';
 import MobileBottomClear from 'components/pages/search/components/FilterBar/MobileBottomClear';
 import ShowFilters from 'components/pages/search/components/FilterBar/ShowFilters';
-import { groupBy } from 'lodash';
+import { groupBy } from 'modules/utils/array';
 import styled from 'styled-components';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { DateFilter, FilterCategory, FilterState, Option } from 'modules/filters/interface';
-import React from 'react';
 // @ts-ignore Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
 import { colorPalette } from 'stylesheet';

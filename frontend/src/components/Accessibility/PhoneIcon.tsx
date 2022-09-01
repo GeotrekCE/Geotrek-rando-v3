@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { SVGProps } from 'react';
 
-const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
+const SvgComponent: React.FC = (props: SVGProps<SVGSVGElement>) => (
   <svg width={22} height={22} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <path
       clipRule="evenodd"
