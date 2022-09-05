@@ -1,6 +1,6 @@
 # Changelog
 
-3.10.5 (unreleased)
+3.10.5 (2022-09-05)
 ------------------
 
 **🚀 New features**
