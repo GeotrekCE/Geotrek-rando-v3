@@ -46,19 +46,6 @@
   top: -6px;
 }
 
-.dropdown {
-  display: inline-block;
-}
-
-.dropdown__content {
-  display: none;
-  position: absolute;
-}
-
-.dropdown--active .dropdown__content {
-  display: block;
-}
-
 .elevation-div {
   height: 25%;
   font: 12px/1.5 'Helvetica Neue', Arial, Helvetica, sans-serif;
