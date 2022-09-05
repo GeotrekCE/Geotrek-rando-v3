@@ -1,5 +1,12 @@
 # Changelog
 
+3.10.5 (unreleased)
+------------------
+
+**🚀 New features**
+
+* Allow to display additional GeoJSON layers on the maps (#385)
+
 3.10.4 (2022-09-01)
 ------------------
 
