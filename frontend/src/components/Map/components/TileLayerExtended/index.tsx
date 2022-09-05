@@ -1,5 +1,5 @@
-import L, { LayerOptions } from 'leaflet';
-import { useEffect, useState } from 'react';
+import L, { GeoJSONOptions, LayerOptions } from 'leaflet';
+import { useCallback, useEffect, useState } from 'react';
 import { useMap } from 'react-leaflet';
 import 'leaflet-boundary-canvas';
 
@@ -9,7 +9,14 @@ interface TileLayerExtendedProps {
   options?: LayerOptions;
 }
 
-const getBoundary = async (geoJSONUrl: string) => {
+interface ExtendedProperties {
+  description?: string;
+  name?: string;
+  photo_url?: string;
+  website?: string;
+}
+
+const getGeoJSONFromUrl = async (geoJSONUrl: string) => {
   try {
     return fetch(geoJSONUrl).then(response => response.json());
   } catch {
@@ -17,37 +24,100 @@ const getBoundary = async (geoJSONUrl: string) => {
   }
 };
 
+const getGeoJSONLayer = async (url: string, options: LayerOptions) => {
+  const geoJSON = await getGeoJSONFromUrl(url);
+  return L.geoJSON(
+    geoJSON,
+    Object.assign(
+      {
+        style: feature => {
+          const styles = {} as { fillColor?: string; color?: string };
+          if (feature?.properties?.fill !== undefined) {
+            styles.fillColor = feature.properties.fill;
+          }
+          if (feature?.properties?.stroke !== undefined) {
+            styles.color = feature.properties.stroke;
+          }
+          return styles;
+        },
+        onEachFeature: (feature, layer) => {
+          const markup = [];
+          const { description, name, photo_url, website }: ExtendedProperties =
+            feature?.properties ?? {};
+
+          if (name) {
+            markup.push(`<div class="info-point-title font-bold my-2">${name}</div>`);
+          }
+
+          if (photo_url) {
+            markup.push(
+              `<div class="info-point-photo my-2"><img src="${photo_url}" alt="" /></div>`,
+            );
+          }
+
+          if (description) {
+            markup.push(`<div class="info-point-description my-2">${description}</div>`);
+          }
+
+          if (website) {
+            markup.push(
+              `<div class="info-point-link my-2"><a target="_blank" rel="noopener noreferrer" href="${website}">${website}</a></div>`,
+            );
+          }
+
+          if (markup.length > 0) {
+            layer.bindPopup(markup.join('\n'));
+          }
+
+          if (layer instanceof L.Marker) {
+            layer.setZIndexOffset(-5000);
+          }
+        },
+      } as GeoJSONOptions,
+      options,
+    ),
+  );
+};
+
 const TileLayerExtended: React.FC<TileLayerExtendedProps> = ({ url, bounds, options = {} }) => {
   const [tile, setTile] = useState(null);
   const map = useMap();
+
+  const loadLayer = useCallback(async (): Promise<void> => {
+    let nextTile = null;
+    if (bounds === undefined) {
+      if (url.endsWith('.geojson') ?? url.endsWith('.json')) {
+        const geoJSON = await getGeoJSONLayer(url, options);
+        nextTile = geoJSON;
+      } else {
+        nextTile = new L.TileLayer(url, options);
+      }
+    } else {
+      const boundary = await getGeoJSONFromUrl(bounds);
+      // @ts-ignore no type available in this plugin
+      nextTile = L.TileLayer.boundaryCanvas(url, {
+        boundary,
+        ...options,
+      });
+    }
+    if (nextTile !== null) {
+      setTile(nextTile);
+      map.addLayer(nextTile);
+    }
+    map.attributionControl?.setPrefix('');
+  }, [url, bounds, options]);
 
   useEffect(() => {
     if (map === undefined) {
       return;
     }
-    const loadLayer = async (): Promise<void> => {
-      let nextTile;
-      if (bounds === undefined) {
-        nextTile = new L.TileLayer(url, options);
-      } else {
-        const boundary = await getBoundary(bounds);
-        // @ts-ignore no type available in this plugin
-        nextTile = L.TileLayer.boundaryCanvas(url, {
-          boundary,
-          ...options,
-        });
-      }
-      setTile(nextTile);
-      map.addLayer(nextTile);
-      map.attributionControl?.setPrefix('');
-    };
     void loadLayer();
     return () => {
       if (options?.attribution !== undefined) {
         map.attributionControl?.removeAttribution(options?.attribution);
       }
     };
-  }, [bounds, options, map, url]);
+  }, [map]);
 
   useEffect(() => {
     return () => {
