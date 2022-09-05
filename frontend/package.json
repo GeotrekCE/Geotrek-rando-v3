@@ -100,7 +100,6 @@
     "@types/react-loader": "2.4.5",
     "@types/react-select": "4.0.17",
     "@types/react-slick": "0.23.5",
-    "@types/react-test-renderer": "17.0.1",
     "@types/store": "^2.0.2",
     "@types/styled-components": "5.1.14",
     "@typescript-eslint/eslint-plugin": "4.31.2",
