@@ -125,11 +125,17 @@ In json files, you can just override the primary keys you need. You have to over
   You can also update the map layers. Three types of map layers are available: classic, satellite and offline. Each of them is structured as follows:
     ```ts
       interface LayerObject {
-        url: string; // Url of the layer. It needs to be a valid tiles server url.
+        url: string; // Url of the layer. It needs to be a valid tiles server url or a geoJSON file
         options: TileLayerOptions; // See https://leafletjs.com/reference.html#tilelayer-option
         bounds: string; // Url of a geoJSON polygon to display this layer inside.
       }
     ```
+    The `url` prop should be a valid tiles server to use as base map.
+
+    If its value ends in `.geojson` (or `.json`), its features are displayed on the map. The application looks at the `stroke-width`,`stroke-opacity`, `fill`, `fill-opacity` values of each `feature` `properties` to apply the colors. You can override these values by setting them in the `options` property (identical name but in camelCase format).
+
+    If you define `name`, `photo_url`, `description` and/or `website` in the `properties` of a `feature`, it will be displayed in a tooltip when its feature is clicked in the map.
+
     - `mapClassicLayers`: array of `LayerObjects` for the default version.
     - `mapSatelliteLayers`: array of `LayerObjects` for the satellite version.
     - `mapOfflineLayer`: `LayerObject` registered for offline use. If it's explicitly set to `null`, the application uses the first layer of `mapClassicLayers` as a fallback.
