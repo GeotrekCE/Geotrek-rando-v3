@@ -1,14 +1,21 @@
 # Changelog
 
+3.10.6 (2022-09-06)
+-------------------
+
+**🐛 Fixes**
+
+* Fix Search by map, broken since version 3.10.4
+
 3.10.5 (2022-09-05)
-------------------
+-------------------
 
 **🚀 New features**
 
 * Allow to display additional GeoJSON layers on the maps (#385)
 
 3.10.4 (2022-09-01)
-------------------
+-------------------
 
 **🐛 Fixes**
 
@@ -23,7 +30,7 @@
 * Remove lodash package from the project (#758)
 
 3.10.3 (2022-08-18)
-------------------
+-------------------
 
 **🚀 New features**
 
