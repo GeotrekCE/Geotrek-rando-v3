@@ -12,14 +12,13 @@ const MoveHandler: React.FC<Props> = ({ onMove }) => {
   const map = useMap();
 
   const handleMove = useCallback(
-    () =>
-      debounce(
-        () => {
-          onMove(map.getBounds());
-        },
-        1000,
-        false,
-      ),
+    debounce(
+      () => {
+        onMove(map.getBounds());
+      },
+      1000,
+      false,
+    ),
     [map, onMove],
   );
 
