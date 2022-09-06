@@ -53,7 +53,6 @@
     "leaflet.offline": "^2.2.0",
     "next": "12",
     "next-compose-plugins": "^2.2.1",
-    "next-cookies": "^2.0.3",
     "next-pwa": "^5.4.4",
     "postcss": "8.3.6",
     "react": "^17.0.2",
