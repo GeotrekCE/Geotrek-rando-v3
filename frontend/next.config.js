@@ -24,12 +24,6 @@ const plugins = [[withPWA], [withSourceMaps()], [withBundleAnalyzer]];
 module.exports = withPlugins(plugins, {
   webpack(config) {
     config.resolve.modules.push(path.resolve('./src'));
-
-    config.module.rules.push({
-      test: /\.html$/,
-      use: 'raw-loader',
-    });
-
     return config;
   },
   pwa: {
