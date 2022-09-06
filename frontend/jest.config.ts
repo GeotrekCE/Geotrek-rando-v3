@@ -7,8 +7,7 @@ const config: Config.InitialOptions = {
   setupFilesAfterEnv: ['<rootDir>/jestAfterEnv.setup.tsx'],
   testRegex: TEST_REGEX,
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
-    '^.+\\.html?$': 'html-loader-jest',
+    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }]
   },
   transformIgnorePatterns: ['/node_modules/', '^.+\\.module\\.(css|sass|scss)$'],
   moduleNameMapper: {
