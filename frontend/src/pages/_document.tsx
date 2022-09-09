@@ -38,7 +38,7 @@ export default class MyDocument extends Document {
     const { googleAnalyticsId } = getGlobalConfig();
 
     return (
-      <Html style={{ scrollBehavior: 'smooth' }}>
+      <Html className="scroll-smooth">
         <Head>
           {!!googleAnalyticsId && (
             <>

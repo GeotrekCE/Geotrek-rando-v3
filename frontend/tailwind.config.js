@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss/plugin');
 const SPACING_UNIT = 4;
 
 module.exports = {
@@ -157,5 +158,19 @@ module.exports = {
       margin: ['last'],
     },
   },
-  plugins: [],
+  plugins: [
+    // plugin should be drop with TW v3
+    plugin(function ({ addUtilities, variants }) {
+      const scrollBehaviors = {
+        '.scroll-smooth': {
+          'scroll-behavior': 'smooth',
+        },
+        '.scroll-auto': {
+          'scroll-behavior': 'auto',
+        },
+      };
+
+      addUtilities(scrollBehaviors, variants('scrollBehavior', ['motion-safe', 'motion-reduce']));
+    })
+  ],
 };
