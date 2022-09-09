@@ -3,7 +3,6 @@ import { Calendar } from 'components/Icons/Calendar';
 import { Height } from 'components/Icons/Height';
 import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
-import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -19,7 +18,7 @@ import { TouristicContentDetailsType } from 'modules/touristicContent/interface'
 import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
-import { ListAndMapContext } from 'modules/map/ListAndMapContext';
+import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { useRouter } from 'next/router';
 
 import { Attachment } from '../../../../../modules/interface';
@@ -128,7 +127,7 @@ export const ResultCard: React.FC<
     type,
     asColumn,
   } = props;
-  const { setHoveredCardId } = useContext(ListAndMapContext);
+  const { setHoveredCardId } = useListAndMapContext();
 
   const { locale } = useIntl();
   const router = useRouter();
