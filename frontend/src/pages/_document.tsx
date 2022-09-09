@@ -58,7 +58,6 @@ export default class MyDocument extends Document {
               />
             </>
           )}
-          <style dangerouslySetInnerHTML={{ __html: style }} />
           <style>{`
 :root {
   --color-primary1-default: ${String(colors.primary1?.DEFAULT || '#AA397D')};
@@ -74,6 +73,7 @@ export default class MyDocument extends Document {
   --color-redMarker: ${String(colors.redMarker || '#E83737')};
 }
 `}</style>
+          {style !== undefined && <style dangerouslySetInnerHTML={{ __html: style }} />}
           {scriptsHeaderHtml !== undefined && <>{parse(scriptsHeaderHtml)}</>}
         </Head>
         <body>
