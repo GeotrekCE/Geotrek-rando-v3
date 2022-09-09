@@ -26,6 +26,7 @@ export const Root: React.FC = props => {
   return (
     <IntlProvider locale={language} messages={(locales as Messages)[language]}>
       <Head>
+        <title>{applicationName}</title>
         <link rel="manifest" href="/manifest.json" />
 
         <meta name="application-name" content={applicationName} />
