@@ -3,6 +3,12 @@ import { fireEvent, render, screen } from 'services/testing/reactTestingLibraryW
 import { Sentry } from 'services/sentry';
 import { AppCrashFallback } from '../AppCrashFallback';
 
+const OLD_ENV = process.env;
+
+beforeEach(() => {
+  process.env = { ...OLD_ENV, SENTRY_DSN: '<sentryDSNKey>' };
+});
+
 jest.mock('services/sentry', () => ({
   Sentry: {
     showReportDialog: jest.fn(),
