@@ -1,4 +1,4 @@
-import { Sentry } from 'services/sentry';
+import * as Sentry from '@sentry/nextjs';
 
 import { Button, Title } from './AppCrashFallback.style';
 
