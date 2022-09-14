@@ -2373,7 +2373,7 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@sentry/browser@7.12.1", "@sentry/browser@^7.12.1":
+"@sentry/browser@7.12.1":
   version "7.12.1"
   resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-7.12.1.tgz#2be6fa5c2529a2a75abac4d00aca786362302a1a"
   integrity sha512-pgyL65CrGFLe8sKcEG8KXAuVTE8zkAsyTlv/AuME06cSdxzO/memPK/r3BI6EM7WupIdga+V5tQUldeT1kgHNA==
@@ -2446,7 +2446,7 @@
     rollup "2.78.0"
     tslib "^1.9.3"
 
-"@sentry/node@7.12.1", "@sentry/node@^7.12.1":
+"@sentry/node@7.12.1":
   version "7.12.1"
   resolved "https://registry.yarnpkg.com/@sentry/node/-/node-7.12.1.tgz#ced12d0db3ca5715d699858acb1e2f2ea1d7c59b"
   integrity sha512-ZVT2+lLd3gbhOuCOczlFLHH2KnD4EXrq6jRp5Sb2vsSZGVHnVsbD5j7i54zbSBqcydlFqzVMqWSysGTKoYiimw==
