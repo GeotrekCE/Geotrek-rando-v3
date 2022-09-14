@@ -46,19 +46,6 @@
   top: -6px;
 }
 
-.dropdown {
-  display: inline-block;
-}
-
-.dropdown__content {
-  display: none;
-  position: absolute;
-}
-
-.dropdown--active .dropdown__content {
-  display: block;
-}
-
 .elevation-div {
   height: 25%;
   font: 12px/1.5 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -97,4 +84,10 @@
 
 .over-all {
   z-index: 10001;
+}
+
+/* Fix Safari issue related to <summary> / <details> arrow */
+details > summary.list-none::-webkit-details-marker,
+details > summary.list-none::marker {
+  display: none;
 }
