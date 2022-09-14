@@ -36,6 +36,7 @@
     "@makina-corpus/rando3d": "^1.3.3",
     "@raruto/leaflet-elevation": "1.7.0",
     "@sentry/browser": "^7.12.1",
+    "@sentry/nextjs": "^7.12.1",
     "@sentry/node": "^7.12.1",
     "@zeit/next-source-maps": "^0.0.4-canary.1",
     "autoprefixer": "10.3.4",
