@@ -1,15 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-import { FunctionComponent } from 'react';
+import * as Sentry from '@sentry/nextjs';
 
-import { Sentry } from 'services/sentry';
-
-import { Button, Container, HelperList, PageContent, Title } from './AppCrashFallback.style';
-
-/**
- * Error page inspiration https://medium.com/design-ideas-thoughts/designing-error-pages-8d82e16e3472
- */
+import { Button, Title } from './AppCrashFallback.style';
 
 export interface FallbackProps {
   eventId: string;
@@ -20,27 +11,23 @@ export interface FallbackProps {
 // @ts-ignore-next-line
 const reportDialog = (eventId: string) => () => Sentry.showReportDialog({ eventId });
 
-export const AppCrashFallback: FunctionComponent<FallbackProps> = ({ eventId }) => {
+export const AppCrashFallback: React.FC<FallbackProps> = ({ eventId }) => {
   return (
-    <main>
-      {/* The <main> tag needs to wrap this component because with redux errors,
-      style is not applied to the root tag of this component */}
-      <Container>
-        <PageContent>
-          <Title>Sorry, this is not working properly.</Title>
-          <br />
-          <p>We know about this issue and are working to fix it.</p>
-          <br />
-          <p>In the meantime, here is what you can do:</p>
-          <HelperList>
-            <li>Refresh the page (sometimes it helps).</li>
-            <li>Try again in 30 minutes.</li>
-            <li>
+    <main className="flex justify-center">
+      <div className="mx-5 my-10">
+        <Title>Sorry, this is not working properly.</Title>
+        <p className="my-6">We know about this issue and are working to fix it.</p>
+        <p>In the meantime, here is what you can do:</p>
+        <ul className="list-disc m-3">
+          <li className="my-2">Refresh the page (sometimes it helps).</li>
+          <li className="my-2">Try again in 30 minutes.</li>
+          {process.env.SENTRY_DSN !== undefined && (
+            <li className="my-2">
               <Button onClick={reportDialog(eventId)}>Tell us what happened</Button>
             </li>
-          </HelperList>
-        </PageContent>
-      </Container>
+          )}
+        </ul>
+      </div>
     </main>
   );
 };

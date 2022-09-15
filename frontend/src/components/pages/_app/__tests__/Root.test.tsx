@@ -11,5 +11,5 @@ jest.mock('next/config', () => () => ({
 }));
 
 test('AAU, I can see a Root', () => {
-  render(<Root hasError={false} />);
+  render(<Root />);
 });
