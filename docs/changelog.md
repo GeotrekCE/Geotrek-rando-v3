@@ -1,5 +1,20 @@
 # Changelog
 
+3.10.7 (unreleased)
+-------------------
+
+**🐛 Fixes**
+
+* Fix map position on Search page (#776)
+* Fix display of truncated cards (#693)
+* Fix location filter loading in mobile version (#779)
+* Do not try to display themes without name (#781)
+
+**🔧 Maintenance**
+
+* Update, improve and document Sentry configuration (#777)
+* Clean packages with removing useless dependencies (#771)
+
 3.10.6 (2022-09-06)
 -------------------
 
