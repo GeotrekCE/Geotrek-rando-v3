@@ -80,7 +80,9 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
 
         <div className="flex flex-col desktop:flex-row desktop:items-end mt-4">
           {truncateState === 'TRUNCATE' ? (
-            <TruncatedHtmlText>{parse(description)}</TruncatedHtmlText>
+            <TruncatedHtmlText>
+              <div>{parse(description)}</div>
+            </TruncatedHtmlText>
           ) : (
             <HtmlText>{parse(description)}</HtmlText>
           )}

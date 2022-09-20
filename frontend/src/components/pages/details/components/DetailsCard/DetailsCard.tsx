@@ -33,14 +33,14 @@ export interface DetailsCardProps {
 export const DetailsCard: React.FC<DetailsCardProps> = ({
   id,
   name,
-  description,
+  description = '',
   thumbnailUris,
   attachments,
   iconUri,
   iconName,
   place,
   logoUri,
-  className,
+  className = '',
   redirectionUrl,
   type,
 }) => {
@@ -48,10 +48,10 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   const descriptionStyled =
     truncateState === 'TRUNCATE' ? (
       <TruncatedHtmlText className="text-greyDarkColored">
-        {parse(description ?? '')}
+        <div>{parse(description)}</div>
       </TruncatedHtmlText>
     ) : (
-      <HtmlText className="text-greyDarkColored">{parse(description ?? '')}</HtmlText>
+      <HtmlText className="text-greyDarkColored">{parse(description)}</HtmlText>
     );
 
   const { setHoveredCardId } = useContext(ListAndMapContext);
@@ -65,7 +65,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
-      ${className ?? ''}`}
+      ${className}`}
       onMouseEnter={() => {
         setHoveredCardId(id);
       }}
