@@ -2,9 +2,10 @@ const path = require('path');
 const withPlugins = require('next-compose-plugins');
 const withSourceMaps = require('@zeit/next-source-maps');
 const withPWA = require('next-pwa');
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
+// https://github.com/vercel/next.js/discussions/29697
+const withBundleAnalyzer = process.env.ANALYZE === 'true'
+  ? require('@next/bundle-analyzer')()
+  : x => x;
 const dotenv = require('dotenv-flow');
 const runtimeCachingStrategy = require('./cache');
 const headerConfig = require('./config/header.json');
@@ -20,7 +21,12 @@ const mergedHeaderConfig = {
 
 const env = dotenv.config().parsed;
 
-const plugins = [[withPWA], [withSourceMaps()], [withBundleAnalyzer], (nextConfig) => withSentryConfig(nextConfig, { silent: true })];
+const plugins = [
+  [withPWA],
+  [withSourceMaps()],
+  [withBundleAnalyzer],
+  (nextConfig) => withSentryConfig(nextConfig, { silent: true })
+];
 
 module.exports = withPlugins(plugins, {
   webpack(config) {
