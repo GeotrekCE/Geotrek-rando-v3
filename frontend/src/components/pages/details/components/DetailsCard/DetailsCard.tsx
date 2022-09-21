@@ -5,9 +5,8 @@ import { DetailsCoverCarousel } from 'components/pages/details/components/Detail
 import { HtmlText } from 'components/pages/details/utils';
 import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
 import parse from 'html-react-parser';
-import { ListAndMapContext } from 'modules/map/ListAndMapContext';
+import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import styled from 'styled-components';
@@ -54,7 +53,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
       <HtmlText className="text-greyDarkColored">{parse(description)}</HtmlText>
     );
 
-  const { setHoveredCardId } = useContext(ListAndMapContext);
+  const { setHoveredCardId } = useListAndMapContext();
 
   const router = useRouter();
 

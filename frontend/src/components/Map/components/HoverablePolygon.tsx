@@ -1,5 +1,5 @@
-import { ListAndMapContext } from 'modules/map/ListAndMapContext';
-import React, { useContext, useMemo } from 'react';
+import { useListAndMapContext } from 'modules/map/ListAndMapContext';
+import React, { useMemo } from 'react';
 import { Polygon } from 'react-leaflet';
 import { colorPalette } from 'stylesheet';
 
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const HoverablePolygon: React.FC<Props> = props => {
-  const { hoveredCardId } = useContext(ListAndMapContext);
+  const { hoveredCardId } = useListAndMapContext();
   const isCorrespondingCardHovered = props.id === hoveredCardId;
 
   const weight = isCorrespondingCardHovered ? ZOOMED_WEIGHT : DEFAULT_WEIGHT;

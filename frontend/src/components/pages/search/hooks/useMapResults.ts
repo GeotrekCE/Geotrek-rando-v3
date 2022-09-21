@@ -1,10 +1,8 @@
-import { useContext } from 'react';
 import { useQuery } from 'react-query';
 
 import { getMapResults } from 'modules/mapResults/connector';
 import { MapResults } from 'modules/mapResults/interface';
 import { DateFilter, FilterState } from 'modules/filters/interface';
-import { ListAndMapContext } from '../../../../modules/map/ListAndMapContext';
 import { parseFilters, parseTextFilter } from '../utils';
 
 interface ReturnType {
@@ -20,8 +18,6 @@ export const useMapResults = (
   },
   language: string,
 ): ReturnType => {
-  const { setPoints } = useContext(ListAndMapContext);
-
   const { filtersState, textFilterState, dateFilter } = filters;
 
   const parsedFiltersState = parseFilters(filtersState);
@@ -32,10 +28,8 @@ export const useMapResults = (
       getMapResults({ filtersState: parsedFiltersState, textFilterState, dateFilter }, language),
   );
 
-  if (mapResults) setPoints(mapResults);
-
   return {
-    mapResults,
     isMapLoading,
+    mapResults,
   };
 };

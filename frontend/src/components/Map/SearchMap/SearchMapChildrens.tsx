@@ -8,9 +8,8 @@ import { ArrivalMarker } from 'components/Map/Markers/ArrivalMarker';
 import { DepartureMarker } from 'components/Map/Markers/DepartureMarker';
 import { ParkingMarker } from 'components/Map/Markers/ParkingMarker';
 import { getHoverId } from 'components/pages/search/utils';
-import React, { useContext } from 'react';
 import { Marker } from 'react-leaflet';
-import { ListAndMapContext } from '../../../modules/map/ListAndMapContext';
+import { useListAndMapContext } from '../../../modules/map/ListAndMapContext';
 
 export type PropsType = {
   segments?: { x: number; y: number }[];
@@ -34,7 +33,7 @@ const SearchMapChildrens: React.FC<PropsType> = props => {
     resetSelectedMarker,
   } = useSelectedMarker();
 
-  const { hoveredCardId, points } = useContext(ListAndMapContext);
+  const { hoveredCardId, points } = useListAndMapContext();
   const hoveredPoint = points?.find(point => getHoverId(point) === hoveredCardId);
 
   return (
