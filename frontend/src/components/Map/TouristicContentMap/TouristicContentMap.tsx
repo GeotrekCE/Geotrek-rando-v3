@@ -16,9 +16,9 @@ import {
 import { useTileLayer } from 'hooks/useTileLayer';
 import { BackButton } from '../components/BackButton';
 
-import { TouristicContent } from '../DetailsMap/TouristicContent';
+import { GeometryList } from '../DetailsMap/GeometryList';
 import { getMapConfig } from '../config';
-import { TouristicContentGeometry } from '../DetailsMap/DetailsMap';
+import { GeometryListProps } from '../DetailsMap/DetailsMap';
 import { ResetView } from '../components/ResetView';
 import TileLayerManager from '../components/TileLayerManager';
 
@@ -81,9 +81,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
         <TileLayerManager />
         <ScaleControl />
         {props.touristicContentGeometry !== null && (
-          <TouristicContent
-            contents={[props.touristicContentGeometry as TouristicContentGeometry]}
-          />
+          <GeometryList contents={[props.touristicContentGeometry as GeometryListProps]} />
         )}
       </MapContainer>
     </>
