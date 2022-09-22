@@ -18,7 +18,7 @@ export interface DetailsCardProps {
   id: string;
   name: string;
   place?: string;
-  description?: string;
+  description?: string | null;
   thumbnailUris: string[];
   attachments: Attachment[];
   iconUri?: string;
@@ -32,7 +32,7 @@ export interface DetailsCardProps {
 export const DetailsCard: React.FC<DetailsCardProps> = ({
   id,
   name,
-  description = '',
+  description,
   thumbnailUris,
   attachments,
   iconUri,
@@ -47,10 +47,10 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   const descriptionStyled =
     truncateState === 'TRUNCATE' ? (
       <TruncatedHtmlText className="text-greyDarkColored">
-        <div>{parse(description)}</div>
+        <div>{parse(description ?? '')}</div>
       </TruncatedHtmlText>
     ) : (
-      <HtmlText className="text-greyDarkColored">{parse(description)}</HtmlText>
+      <HtmlText className="text-greyDarkColored">{parse(description ?? '')}</HtmlText>
     );
 
   const { setHoveredCardId } = useListAndMapContext();
