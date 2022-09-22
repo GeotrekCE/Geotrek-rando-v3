@@ -1,4 +1,4 @@
-import { TouristicContent } from 'components/Map/DetailsMap/TouristicContent';
+import { GeometryList } from 'components/Map/DetailsMap/GeometryList';
 import { LatLngBoundsExpression } from 'leaflet';
 import React, { useContext, useEffect } from 'react';
 import { MapContainer, ScaleControl } from 'react-leaflet';
@@ -39,7 +39,7 @@ import DetailsMapDrawer from '../components/DetailsMapDrawer';
 import { ResetView } from '../components/ResetView';
 import TileLayerManager from '../components/TileLayerManager';
 
-export interface TouristicContentGeometry {
+export interface GeometryListProps {
   geometry:
     | PolygonGeometry
     | MultiPolygonGeometry
@@ -57,10 +57,10 @@ export type PropsType = {
   experiences?: any;
   courses?: any;
   poiPoints?: PointWithIcon[];
-  touristicContentPoints?: TouristicContentGeometry[];
+  touristicContentPoints?: GeometryListProps[];
   trekGeometry?: Coordinate2D[];
-  outdoorGeometry?: TouristicContentGeometry;
-  eventGeometry?: TouristicContentGeometry;
+  outdoorGeometry?: GeometryListProps;
+  eventGeometry?: GeometryListProps;
   trekGeoJSON?: string;
   pointsReference?: Coordinate2D[] | null;
   hideMap?: () => void;
@@ -225,9 +225,9 @@ export const DetailsMap: React.FC<PropsType> = props => {
             advisedParking={props.advisedParking}
           />
         )}
-        {props.outdoorGeometry && <TouristicContent contents={[props.outdoorGeometry]} />}
+        {props.outdoorGeometry && <GeometryList contents={[props.outdoorGeometry]} />}
         {props.eventGeometry && (
-          <TouristicContent contents={[props.eventGeometry]} type={'TOURISTIC_EVENT'} />
+          <GeometryList contents={[props.eventGeometry]} type={'TOURISTIC_EVENT'} />
         )}
         <MapChildren
           courses={props.courses}

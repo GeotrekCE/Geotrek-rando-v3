@@ -9,7 +9,7 @@ import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import React, { useContext } from 'react';
 import { useMediaPredicate } from 'react-media-hook';
 import { Infrastructure } from 'components/Icons/Infrastructure';
-import { TouristicContentGeometry } from './DetailsMap';
+import { GeometryListProps } from './DetailsMap';
 
 import { MarkersWithIcon } from './MarkersWithIcon';
 import { PointReport } from './PointReport';
@@ -17,7 +17,7 @@ import { PointsInformationDesk } from './PointsInformationDesk';
 import { PointsReference } from './PointsReference';
 import { PointsSecondary } from './PointsSecondary';
 import { SensitiveAreas } from './SensitiveAreas';
-import { TouristicContent } from './TouristicContent';
+import { GeometryList } from './GeometryList';
 import { TrekChildren } from './TrekChildren';
 import { Visibility } from './useDetailsMap';
 
@@ -32,7 +32,7 @@ type Props = {
   courses: OutdoorSite[];
   experiences: OutdoorSite[];
   poiPoints?: PointWithIcon[];
-  touristicContentPoints?: TouristicContentGeometry[];
+  touristicContentPoints?: GeometryListProps[];
   pointsReference?: Coordinate2D[] | null;
   trekChildrenGeometry?: TrekChildGeometry[];
   sensitiveAreasGeometry?: SensitiveAreaGeometry[];
@@ -72,24 +72,24 @@ export const MapChildren: React.FC<Props> = props => {
       )}
 
       {(visibleSection === 'experiences' || props.experiencesVisibility === 'DISPLAYED') && (
-        <TouristicContent
+        <GeometryList
           contents={
             props.experiences.map(e => ({
               ...e,
               pictogramUri: e.practice?.pictogram,
-            })) as TouristicContentGeometry[]
+            })) as GeometryListProps[]
           }
           type="OUTDOOR_SITE"
         />
       )}
 
       {(visibleSection === 'courses' || props.coursesVisibility === 'DISPLAYED') && (
-        <TouristicContent
+        <GeometryList
           contents={
             props.courses.map(e => ({
               ...e,
               pictogramUri: null,
-            })) as TouristicContentGeometry[]
+            })) as GeometryListProps[]
           }
           type="OUTDOOR_SITE"
         />
@@ -101,7 +101,7 @@ export const MapChildren: React.FC<Props> = props => {
 
       {(visibleSection === 'touristicContent' ||
         props.touristicContentMobileVisibility === 'DISPLAYED') && (
-        <TouristicContent contents={props.touristicContentPoints} />
+        <GeometryList contents={props.touristicContentPoints} />
       )}
 
       {visibleSection === 'sensitiveAreasRef' && (
