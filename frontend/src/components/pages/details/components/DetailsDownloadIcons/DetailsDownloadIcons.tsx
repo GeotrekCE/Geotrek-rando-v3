@@ -50,24 +50,20 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
     !isTouchScreen;
 
   const dropdownButtonOptions = [];
-  if ('gpxUri' in details && details.gpxUri !== undefined)
+  if ('gpxUri' in details) {
     dropdownButtonOptions.push({
-      label: (
-        <div className={'flex items-center'}>
-          <Download className="text-primary1 m-2" size={size} /> GPX
-        </div>
-      ),
+      label: 'GPX',
+      size,
       value: details.gpxUri,
     });
-  if ('kmlUri' in details && details.kmlUri !== undefined)
+  }
+  if ('kmlUri' in details) {
     dropdownButtonOptions.push({
-      label: (
-        <div className={'flex items-center'}>
-          <Download className="text-primary1 m-2" size={size} /> KML
-        </div>
-      ),
+      label: 'KML',
+      size,
       value: details.kmlUri,
     });
+  }
 
   return (
     <div

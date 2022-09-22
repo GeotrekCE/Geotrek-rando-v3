@@ -2,15 +2,17 @@ const path = require('path');
 const withPlugins = require('next-compose-plugins');
 const withSourceMaps = require('@zeit/next-source-maps');
 const withPWA = require('next-pwa');
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
+// https://github.com/vercel/next.js/discussions/29697
+const withBundleAnalyzer = process.env.ANALYZE === 'true'
+  ? require('@next/bundle-analyzer')()
+  : x => x;
 const dotenv = require('dotenv-flow');
 const runtimeCachingStrategy = require('./cache');
 const headerConfig = require('./config/header.json');
 const customHeaderConfig = require('./customization/config/header.json');
 const { getConfig, getTemplates } = require('./src/services/getConfig');
 const { getLocales } = require('./src/services/getLocales');
+const { withSentryConfig } = require('@sentry/nextjs');
 
 const mergedHeaderConfig = {
   ...headerConfig,
@@ -19,17 +21,16 @@ const mergedHeaderConfig = {
 
 const env = dotenv.config().parsed;
 
-const plugins = [[withPWA], [withSourceMaps()], [withBundleAnalyzer]];
+const plugins = [
+  [withPWA],
+  [withSourceMaps()],
+  [withBundleAnalyzer],
+  (nextConfig) => withSentryConfig(nextConfig, { silent: true })
+];
 
 module.exports = withPlugins(plugins, {
   webpack(config) {
     config.resolve.modules.push(path.resolve('./src'));
-
-    config.module.rules.push({
-      test: /\.html$/,
-      use: 'raw-loader',
-    });
-
     return config;
   },
   pwa: {
@@ -52,6 +53,11 @@ module.exports = withPlugins(plugins, {
   i18n: {
     locales: mergedHeaderConfig.menu.supportedLanguages,
     defaultLocale: mergedHeaderConfig.menu.defaultLanguage,
+  },
+  sentry: {
+    hideSourceMaps: true,
+    disableServerWebpackPlugin: true, //process.env.SENTRY_DSN === undefined,
+    disableClientWebpackPlugin: true //process.env.SENTRY_DSN === undefined,
   },
   publicRuntimeConfig: {
     homeBottomHtml: getTemplates(

@@ -276,3 +276,7 @@ You can also add images and other files in the `medias` folder to be used as log
 ## Apply changes
 
 After each customization changes, you'll have to restart the Docker container by running `docker-compose restart`.
+
+## Production
+
+To set environnement variables such as Sentry configuration, build and run the application see the [Installation documentation](installation.md).

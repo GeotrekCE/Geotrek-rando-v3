@@ -5,9 +5,8 @@ import { DetailsCoverCarousel } from 'components/pages/details/components/Detail
 import { HtmlText } from 'components/pages/details/utils';
 import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
 import parse from 'html-react-parser';
-import { ListAndMapContext } from 'modules/map/ListAndMapContext';
+import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import styled from 'styled-components';
@@ -19,7 +18,7 @@ export interface DetailsCardProps {
   id: string;
   name: string;
   place?: string;
-  description?: string;
+  description?: string | null;
   thumbnailUris: string[];
   attachments: Attachment[];
   iconUri?: string;
@@ -40,7 +39,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   iconName,
   place,
   logoUri,
-  className,
+  className = '',
   redirectionUrl,
   type,
 }) => {
@@ -48,13 +47,13 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   const descriptionStyled =
     truncateState === 'TRUNCATE' ? (
       <TruncatedHtmlText className="text-greyDarkColored">
-        {parse(description ?? '')}
+        <div>{parse(description ?? '')}</div>
       </TruncatedHtmlText>
     ) : (
       <HtmlText className="text-greyDarkColored">{parse(description ?? '')}</HtmlText>
     );
 
-  const { setHoveredCardId } = useContext(ListAndMapContext);
+  const { setHoveredCardId } = useListAndMapContext();
 
   const router = useRouter();
 
@@ -65,7 +64,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
-      ${className ?? ''}`}
+      ${className}`}
       onMouseEnter={() => {
         setHoveredCardId(id);
       }}

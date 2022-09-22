@@ -99,7 +99,7 @@ export const adaptResults = ({
       description_teaser: rawDetailsProperties.description_teaser,
       ambiance: rawDetailsProperties.ambiance,
       description: rawDetailsProperties.description,
-      tags: rawDetailsProperties.themes.map(themeId => themes[themeId]?.label),
+      tags: rawDetailsProperties.themes.map(themeId => themes[themeId]?.label).filter(Boolean),
       informations: {
         duration:
           rawDetailsProperties.duration !== null

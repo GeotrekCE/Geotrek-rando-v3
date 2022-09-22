@@ -110,7 +110,7 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
                     <div className={'font-bold mb-2'}>
                       {key !== 'undefined' && key !== 'event'
                         ? key
-                        : filtersToDisplay[index].selectedOptions
+                        : filtersToDisplay[index]?.selectedOptions
                             .map(({ label }) => label)
                             .join('/')}
                     </div>

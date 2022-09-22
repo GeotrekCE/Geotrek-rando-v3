@@ -1,6 +1,6 @@
 import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
-import { ListAndMapContext } from 'modules/map/ListAndMapContext';
-import React, { ReactNode, useContext, useMemo } from 'react';
+import { useListAndMapContext } from 'modules/map/ListAndMapContext';
+import React, { ReactNode, useMemo } from 'react';
 import { Marker } from 'react-leaflet';
 import { TrekChildMarker } from '../Markers/TrekChildMarker';
 import { TrekMarker } from '../Markers/TrekMarker';
@@ -29,7 +29,7 @@ const isTrekChild = (trek: TrekOrTouristicContentProps | TrekChildProps): trek i
   trek.type === 'TREK_CHILD';
 
 export const HoverableMarker: React.FC<TrekOrTouristicContentProps | TrekChildProps> = props => {
-  const { hoveredCardId } = useContext(ListAndMapContext);
+  const { hoveredCardId } = useListAndMapContext();
   const isCorrespondingCardHovered = props.id === hoveredCardId;
   const color = getActivityColor(props.type);
 

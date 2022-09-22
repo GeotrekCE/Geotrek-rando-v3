@@ -2,6 +2,17 @@
 
 Install Geotrek-rando on your own computer or server.
 
+## Environnements variables
+
+Whichever installation you choose below, you can set some environment variables related to your project.  
+If you follow the [Install with Docker (recommended)](#install-with-docker-recommended) section you can create the optional `.env` file based on the example (`cp .env.example .env`),
+If you follow the [Install without Docker (not recommended)](#install-without-docker-not-recommended) section you can modify `.env.production` file.
+
+### Sentry
+
+To report application crashes and any errors encountered by users, you can use [Sentry](https://sentry.io/).
+In the Sentry backoffice, create your project and copy the DSN key which you can paste into the `SENTRY_DSN` environment variable. 
+
 # Install with Docker (recommended)
 
 ## Global process

@@ -4,8 +4,7 @@ import parse from 'html-react-parser';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
-import { ListAndMapContext } from 'modules/map/ListAndMapContext';
-import { useContext } from 'react';
+import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { HtmlText } from '../../utils';
 import { useDetailsInformationDesk } from './useDetailsInformationDesk';
 import DetailsInformationDeskLocation from './DetailsInformationDeskLocation';
@@ -30,7 +29,7 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
   longitude,
 }) => {
   const { truncateState, toggleTruncateState } = useDetailsInformationDesk();
-  const { setHoveredCardId } = useContext(ListAndMapContext);
+  const { setHoveredCardId } = useListAndMapContext();
   return (
     <div
       className="flex mb-8 desktop:mb-12 last:mb-0"
@@ -80,7 +79,9 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
 
         <div className="flex flex-col desktop:flex-row desktop:items-end mt-4">
           {truncateState === 'TRUNCATE' ? (
-            <TruncatedHtmlText>{parse(description)}</TruncatedHtmlText>
+            <TruncatedHtmlText>
+              <div>{parse(description)}</div>
+            </TruncatedHtmlText>
           ) : (
             <HtmlText>{parse(description)}</HtmlText>
           )}

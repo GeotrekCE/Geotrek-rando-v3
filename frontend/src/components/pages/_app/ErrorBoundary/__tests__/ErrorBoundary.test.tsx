@@ -26,13 +26,13 @@ describe('ErrorBoundary without an error in child component', () => {
     expect(screen.getByText(childText)).toBeInTheDocument();
   });
 
-  test('AAU, if hasError=true is passed to the ErrorBoundary, I can see the fallback component', () => {
+  test('AAU, if eventId is passed to the ErrorBoundary, I can see the fallback component', () => {
     // Suppress expected error message in console:s
     jest.spyOn(global.console, 'error').mockImplementation(() => {
       /* noop */
     });
     render(
-      <ErrorBoundary {...defaultErrorBoundaryProps} hasError={true}>
+      <ErrorBoundary {...defaultErrorBoundaryProps} eventId="eventID">
         <ChildComponent />
       </ErrorBoundary>,
     );
@@ -55,13 +55,13 @@ describe('ErrorBoundary with erroring child component', () => {
     expect(screen.queryByText(childText)).not.toBeInTheDocument();
     expect(screen.getByText(fallbackText)).toBeInTheDocument();
   });
-  test('AAU, if hasError=false is passed to the ErrorBoundary, I can still see the fallback component', () => {
+  test('AAU, if eventId is passed to the ErrorBoundary, I can still see the fallback component', () => {
     // Suppress expected error message in console:s
     jest.spyOn(global.console, 'error').mockImplementation(() => {
       /* noop */
     });
     render(
-      <ErrorBoundary {...defaultErrorBoundaryProps} hasError={false}>
+      <ErrorBoundary {...defaultErrorBoundaryProps} eventId="eventID">
         <ChildComponentWithError />
       </ErrorBoundary>,
     );

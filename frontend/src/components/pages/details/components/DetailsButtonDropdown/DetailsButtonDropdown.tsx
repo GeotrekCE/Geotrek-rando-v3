@@ -1,43 +1,37 @@
-import Dropdown, { Option } from 'react-dropdown';
+import { Download } from 'components/Icons/Download';
 
 interface DetailsButtonDropdownProps {
-  options: Array<OptionExtended>;
+  options: {
+    value?: string;
+    label: string;
+    size: number;
+  }[];
   children: JSX.Element;
 }
-
-interface OptionExtended extends Option {
-  onClick?: () => void;
-}
-
-const onChange = (v: OptionExtended) => {
-  const link = document.createElement('a');
-  link.setAttribute('href', v.value);
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-};
 
 export const DetailsButtonDropdown: React.FC<DetailsButtonDropdownProps> = ({
   options,
   children,
 }) => {
   return (
-    <Dropdown
-      className="h-12 w-12 rounded-full shadow-lg bg-white"
-      options={options.filter(o => o.value !== undefined).map(getOptionStyled)}
-      controlClassName="w-full h-full cursor-pointer grid place-items-center "
-      menuClassName="bg-white text-greyDarkColored rounded-lg shadow-sm text-P2 overflow-hidden absolute py-2 -ml-8 menu-download"
-      placeholderClassName="hidden"
-      arrowOpen={children}
-      arrowClosed={children}
-      onChange={onChange}
-    />
+    <details className="h-12 w-12 rounded-full shadow-lg bg-white">
+      <summary className="w-full h-full cursor-pointer grid place-items-center list-none">
+        {children}
+      </summary>
+      <ul className="bg-white text-greyDarkColored rounded-lg shadow-sm text-P2 overflow-hidden absolute py-2 -ml-8 menu-download">
+        {options
+          .filter(({ value }) => Boolean(value))
+          .map(option => (
+            <li
+              className="hover:bg-greySoft-light focus:bg-greySoft cursor-pointer px-5 py-2 leading-3"
+              key={option.label}
+            >
+              <a href={option.value} className="flex items-center">
+                <Download className="text-primary1 m-2" size={option.size} /> {option.label}
+              </a>
+            </li>
+          ))}
+      </ul>
+    </details>
   );
-};
-
-const getOptionStyled = (option: Option): Option => {
-  return {
-    ...option,
-    className: 'hover:bg-greySoft-light focus:bg-greySoft cursor-pointer px-5 py-2 leading-3',
-  };
 };

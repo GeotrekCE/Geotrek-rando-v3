@@ -1,27 +1,29 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { MapResults } from '../mapResults/interface';
 
-interface ListAndMap {
+export interface ListAndMapContext {
   hoveredCardId: string | null;
   points: MapResults;
   setPoints: (value: MapResults) => void;
   setHoveredCardId: (hoveredCardId: string | null) => void;
 }
 
-export const ListAndMapContext = createContext<ListAndMap>({
+const listAndMapContext = createContext<ListAndMapContext>({
   hoveredCardId: null,
   points: [],
   setPoints: (value: MapResults) => value,
   setHoveredCardId: (_: string | null) => _,
 });
 
+export const useListAndMapContext = () => useContext(listAndMapContext);
+
 export const ListAndMapProvider: React.FC = ({ children }) => {
   const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
   const [points, setPoints] = useState<MapResults>([]);
 
   return (
-    <ListAndMapContext.Provider value={{ hoveredCardId, setHoveredCardId, points, setPoints }}>
+    <listAndMapContext.Provider value={{ hoveredCardId, setHoveredCardId, points, setPoints }}>
       {children}
-    </ListAndMapContext.Provider>
+    </listAndMapContext.Provider>
   );
 };

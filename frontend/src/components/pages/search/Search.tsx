@@ -1,6 +1,6 @@
 import FilterBarNew from 'components/pages/search/components/FilterBar';
 import useBbox from 'components/pages/search/components/useBbox';
-import React from 'react';
+import { useEffect } from 'react';
 import { useMediaPredicate } from 'react-media-hook';
 import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -21,6 +21,7 @@ import {
 import { PageHead } from 'components/PageHead';
 import { FilterState } from 'modules/filters/interface';
 import { SearchMapDynamicComponent } from 'components/Map';
+import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { countFiltersSelected } from '../../../modules/filters/utils';
 import { OutdoorSite } from '../../../modules/outdoorSite/interface';
 import { TrekResult } from '../../../modules/results/interface';
@@ -83,7 +84,16 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     hideMobileMap,
   } = useTrekResults({ filtersState, textFilterState, bboxState, dateFilter }, language);
 
-  const { isMapLoading } = useMapResults({ filtersState, textFilterState, dateFilter }, language);
+  const { isMapLoading, mapResults } = useMapResults(
+    { filtersState, textFilterState, dateFilter },
+    language,
+  );
+
+  const { setPoints } = useListAndMapContext();
+
+  useEffect(() => {
+    if (mapResults) setPoints(mapResults);
+  }, [mapResults]);
 
   const intl = useIntl();
 
