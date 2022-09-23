@@ -2,6 +2,7 @@ import { Bbox } from 'modules/details/interface';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import {
   Attachment,
+  GeometryCollection,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -66,7 +67,8 @@ export interface OutdoorCourse {
     | LineStringGeometry
     | MultiLineStringGeometry
     | PointGeometry
-    | MultiPointGeometry;
+    | MultiPointGeometry
+    | GeometryCollection;
   thumbnailUris: string[];
   duration: string | null;
   maxElevation: number;

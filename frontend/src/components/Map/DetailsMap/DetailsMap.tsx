@@ -9,6 +9,7 @@ import { ArrowLeft } from 'components/Icons/ArrowLeft';
 
 import {
   Coordinate2D,
+  GeometryCollection,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -46,7 +47,8 @@ export interface GeometryListProps {
     | LineStringGeometry
     | MultiLineStringGeometry
     | PointGeometry
-    | MultiPointGeometry;
+    | MultiPointGeometry
+    | GeometryCollection;
   pictogramUri: string | null;
   name: string;
   id: string;

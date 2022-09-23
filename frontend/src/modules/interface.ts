@@ -63,6 +63,7 @@ export interface RawGeometryCollection {
     | RawMultiLineStringGeometry
     | RawPointGeometry2D
     | RawMultiPointGeometry2D
+    | RawGeometryCollection
   >;
 }
 
@@ -167,6 +168,19 @@ export interface PolygonGeometry {
 export interface MultiPolygonGeometry {
   type: 'MultiPolygon';
   coordinates: Coordinate2D[][][];
+}
+
+export interface GeometryCollection {
+  type: 'GeometryCollection';
+  geometries: Array<
+    | PolygonGeometry
+    | MultiPolygonGeometry
+    | LineStringGeometry
+    | MultiLineStringGeometry
+    | PointGeometry
+    | MultiPointGeometry
+    | GeometryCollection
+  >;
 }
 
 export interface RawWebLink {
