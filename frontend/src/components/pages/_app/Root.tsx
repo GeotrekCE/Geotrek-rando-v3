@@ -26,6 +26,7 @@ export const Root: React.FC = props => {
   return (
     <IntlProvider locale={language} messages={(locales as Messages)[language]}>
       <Head>
+        <title>{applicationName}</title>
         <link rel="manifest" href="/manifest.json" />
 
         <meta name="application-name" content={applicationName} />
@@ -43,10 +44,6 @@ export const Root: React.FC = props => {
         <link rel="icon" type="image/png" sizes="16x16" href="/medias/favicon.png" />
         <link rel="mask-icon" href="/medias/favicon.png" color={colorPalette.primary1} />
         <link rel="shortcut icon" href="/medias/favicon.png" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
-        />
         {googleSiteVerificationToken !== null && (
           <meta name="google-site-verification" content={googleSiteVerificationToken} />
         )}

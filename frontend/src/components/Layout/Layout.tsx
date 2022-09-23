@@ -1,30 +1,16 @@
-import React, { FunctionComponent } from 'react';
-import styled from 'styled-components';
-
 import { Header } from 'components/Header';
 import ConditionallyRender from 'components/ConditionallyRender';
 import { colorPalette, zIndex } from 'stylesheet';
 import Loader from 'react-loader';
 import { useNavigationLoader } from './useRedirection';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-Container.displayName = 'Container';
-
-export const PageContent = styled.main`
-  flex-grow: 1;
-`;
-PageContent.displayName = 'PageContent';
-
-export const Layout: FunctionComponent = props => {
+export const Layout: React.FC = ({ children }) => {
   const { isNavigationLoading } = useNavigationLoader();
 
   return (
-    <Container>
+    <div className="flex flex-col">
       <Header />
-      <PageContent>
+      <main className="flex-grow">
         <ConditionallyRender client>
           <Loader
             loaded={!isNavigationLoading}
@@ -33,11 +19,11 @@ export const Layout: FunctionComponent = props => {
               zIndex: zIndex.loader,
             }}
           >
-            {props.children}
+            {children}
           </Loader>
         </ConditionallyRender>
-        <ConditionallyRender server>{props.children}</ConditionallyRender>
-      </PageContent>
-    </Container>
+        <ConditionallyRender server>{children}</ConditionallyRender>
+      </main>
+    </div>
   );
 };

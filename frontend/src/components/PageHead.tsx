@@ -10,17 +10,18 @@ interface Props {
   sharingImageUrl?: string;
 }
 
-export const PageHead = ({ title, description, sharingImageUrl }: Props) => {
+export const PageHead: React.FC<Props> = ({ title, description, sharingImageUrl }) => {
   const { baseUrl, applicationName } = getGlobalConfig();
   const router = useRouter();
   const currentLanguage = router.locale ?? getDefaultLanguage();
   const intl = useIntl();
+  const homeTitle = intl.formatMessage({ id: 'home.title' });
   const titleWithSiteName =
     title !== undefined
-      ? title.includes(intl.formatMessage({ id: 'home.title' }))
+      ? title.includes(homeTitle)
         ? title
-        : `${title} - ${intl.formatMessage({ id: 'home.title' })}`
-      : intl.formatMessage({ id: 'home.title' });
+        : `${title} - ${homeTitle}`
+      : homeTitle;
 
   const canonicalURL = `${baseUrl}${
     currentLanguage !== getDefaultLanguage() ? `/${currentLanguage}` : ''
@@ -42,7 +43,6 @@ export const PageHead = ({ title, description, sharingImageUrl }: Props) => {
     <Head>
       <title>{titleWithSiteName}</title>
       {description !== undefined && <meta name="description" content={description} />}
-      <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
       <link rel="canonical" href={canonicalURL} />
