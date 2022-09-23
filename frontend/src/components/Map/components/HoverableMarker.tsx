@@ -51,6 +51,6 @@ export const HoverableMarker: React.FC<TrekOrTouristicContentProps | TrekChildPr
         {props.children}
       </Marker>
     ),
-    [props, isCorrespondingCardHovered, color],
+    [props.id, isCorrespondingCardHovered, color],
   );
 };
