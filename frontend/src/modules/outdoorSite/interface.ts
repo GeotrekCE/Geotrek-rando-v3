@@ -2,6 +2,7 @@ import { Bbox, WebLink } from 'modules/details/interface';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import {
   Attachment,
+  GeometryCollection,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -79,7 +80,8 @@ export interface OutdoorSite {
     | LineStringGeometry
     | MultiLineStringGeometry
     | PointGeometry
-    | MultiPointGeometry;
+    | MultiPointGeometry
+    | GeometryCollection;
   type: 'OUTDOOR_SITE';
   thumbnailUris: string[];
   themes: string[];

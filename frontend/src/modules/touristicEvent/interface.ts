@@ -1,6 +1,7 @@
 import { Bbox } from 'modules/details/interface';
 import {
   Attachment,
+  GeometryCollection,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -8,6 +9,7 @@ import {
   PointGeometry,
   PolygonGeometry,
   RawAttachment,
+  RawGeometryCollection,
   RawLineStringGeometry2D,
   RawMultiLineStringGeometry,
   RawMultiPointGeometry2D,
@@ -29,7 +31,8 @@ export interface RawTouristicEvent {
     | RawLineStringGeometry2D
     | RawMultiLineStringGeometry
     | RawPointGeometry2D
-    | RawMultiPointGeometry2D;
+    | RawMultiPointGeometry2D
+    | RawGeometryCollection;
   themes?: number[];
   cities: string[];
   type: number;
@@ -75,7 +78,8 @@ export interface TouristicEvent {
     | LineStringGeometry
     | MultiLineStringGeometry
     | PointGeometry
-    | MultiPointGeometry;
+    | MultiPointGeometry
+    | GeometryCollection;
   thumbnailUris: string[];
   themes: string[];
   place: string;

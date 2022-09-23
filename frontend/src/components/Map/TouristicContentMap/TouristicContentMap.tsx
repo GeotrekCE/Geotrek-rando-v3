@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { Bbox } from 'modules/details/interface';
 import {
+  GeometryCollection,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -16,9 +17,9 @@ import {
 import { useTileLayer } from 'hooks/useTileLayer';
 import { BackButton } from '../components/BackButton';
 
-import { TouristicContent } from '../DetailsMap/TouristicContent';
+import { GeometryList } from '../DetailsMap/GeometryList';
 import { getMapConfig } from '../config';
-import { TouristicContentGeometry } from '../DetailsMap/DetailsMap';
+import { GeometryListProps } from '../DetailsMap/DetailsMap';
 import { ResetView } from '../components/ResetView';
 import TileLayerManager from '../components/TileLayerManager';
 
@@ -30,6 +31,7 @@ interface TouristicContentGeometryNullable {
     | MultiLineStringGeometry
     | PointGeometry
     | MultiPointGeometry
+    | GeometryCollection
     | null;
   pictogramUri: string;
   name: string;
@@ -81,9 +83,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
         <TileLayerManager />
         <ScaleControl />
         {props.touristicContentGeometry !== null && (
-          <TouristicContent
-            contents={[props.touristicContentGeometry as TouristicContentGeometry]}
-          />
+          <GeometryList contents={[props.touristicContentGeometry as GeometryListProps]} />
         )}
       </MapContainer>
     </>
