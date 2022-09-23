@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { Bbox } from 'modules/details/interface';
 import {
+  GeometryCollection,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -30,6 +31,7 @@ interface TouristicContentGeometryNullable {
     | MultiLineStringGeometry
     | PointGeometry
     | MultiPointGeometry
+    | GeometryCollection
     | null;
   pictogramUri: string;
   name: string;

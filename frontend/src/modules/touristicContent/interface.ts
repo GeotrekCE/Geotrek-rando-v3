@@ -1,6 +1,7 @@
 import { Bbox } from 'modules/details/interface';
 import {
   Attachment,
+  GeometryCollection,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -82,6 +83,7 @@ export interface TouristicContent {
     | MultiLineStringGeometry
     | PointGeometry
     | MultiPointGeometry
+    | GeometryCollection
     | null;
   logoUri: string | null;
 }

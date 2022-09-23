@@ -31,7 +31,7 @@ export const adaptOutdoorCourses = ({
       id: rawOutdoorCourse.id,
       name: rawOutdoorCourse.name,
       attachments: getAttachments(rawOutdoorCourse.attachments),
-      geometry: adaptGeometry(rawOutdoorCourse.geometry.geometries[0]),
+      geometry: adaptGeometry(rawOutdoorCourse.geometry),
       thumbnailUris: getThumbnails(rawOutdoorCourse.attachments),
       duration:
         typeof rawOutdoorCourse.duration === 'number'

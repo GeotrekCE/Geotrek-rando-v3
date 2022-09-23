@@ -12,9 +12,27 @@ interface PropsType extends GeometryListProps {
 export const GeometryItem = ({
   id,
   geometry,
+  name,
   pictogramUri,
   type = 'TOURISTIC_CONTENT',
 }: PropsType) => {
+  if (geometry.type === 'GeometryCollection') {
+    return (
+      <>
+        {geometry.geometries.map((geom, index) => (
+          <GeometryItem
+            key={`${String(id)}-${String(index)}`}
+            id={id}
+            geometry={geom}
+            name={name}
+            pictogramUri={pictogramUri}
+            type={type}
+          />
+        ))}
+      </>
+    );
+  }
+
   if ((geometry.type === 'Point' || geometry.type === 'MultiPoint') && pictogramUri !== null) {
     const coordinatesAsMultiPoint =
       geometry.type === 'Point' ? [geometry.coordinates] : geometry.coordinates;

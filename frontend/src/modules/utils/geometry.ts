@@ -1,6 +1,7 @@
 import {
   Coordinate2D,
   Coordinate3D,
+  GeometryCollection,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -37,14 +38,16 @@ export const adaptGeometry = (
     | RawLineStringGeometry2D
     | RawMultiLineStringGeometry
     | RawPointGeometry2D
-    | RawMultiPointGeometry2D,
+    | RawMultiPointGeometry2D
+    | RawGeometryCollection,
 ):
   | PolygonGeometry
   | MultiPolygonGeometry
   | LineStringGeometry
   | MultiLineStringGeometry
   | PointGeometry
-  | MultiPointGeometry => {
+  | MultiPointGeometry
+  | GeometryCollection => {
   switch (geometry.type) {
     case 'Polygon':
       return adaptPolygonGeometry(geometry);
@@ -63,6 +66,9 @@ export const adaptGeometry = (
 
     case 'MultiPoint':
       return adaptMultiPoint(geometry);
+
+    case 'GeometryCollection':
+      return adaptGeometryCollection(geometry);
   }
 };
 
@@ -99,6 +105,11 @@ export const adaptPoint = (geometry: RawPointGeometry2D): PointGeometry => ({
 export const adaptMultiPoint = (geometry: RawMultiPointGeometry2D): MultiPointGeometry => ({
   type: geometry.type,
   coordinates: geometry.coordinates.map(point => adaptGeometry2D(point)),
+});
+
+const adaptGeometryCollection = (geometry: RawGeometryCollection): GeometryCollection => ({
+  type: geometry.type,
+  geometries: geometry.geometries.map(geom => adaptGeometry(geom)),
 });
 export const extractFirstPointOfGeometry = (
   geometry:
