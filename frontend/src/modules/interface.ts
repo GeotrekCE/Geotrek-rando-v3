@@ -54,17 +54,18 @@ export interface RawMultiPolygonGeometry {
   coordinates: RawCoordinate2D[][][];
 }
 
+export type RawGeometryObject =
+  | RawPolygonGeometry
+  | RawMultiPolygonGeometry
+  | RawLineStringGeometry2D
+  | RawMultiLineStringGeometry
+  | RawPointGeometry2D
+  | RawMultiPointGeometry2D
+  | RawGeometryCollection;
+
 export interface RawGeometryCollection {
   type: 'GeometryCollection';
-  geometries: Array<
-    | RawPolygonGeometry
-    | RawMultiPolygonGeometry
-    | RawLineStringGeometry2D
-    | RawMultiLineStringGeometry
-    | RawPointGeometry2D
-    | RawMultiPointGeometry2D
-    | RawGeometryCollection
-  >;
+  geometries: Array<RawGeometryObject>;
 }
 
 export interface ColorsConfig {
@@ -170,17 +171,18 @@ export interface MultiPolygonGeometry {
   coordinates: Coordinate2D[][][];
 }
 
+export type GeometryObject =
+  | PolygonGeometry
+  | MultiPolygonGeometry
+  | LineStringGeometry
+  | MultiLineStringGeometry
+  | PointGeometry
+  | MultiPointGeometry
+  | GeometryCollection;
+
 export interface GeometryCollection {
   type: 'GeometryCollection';
-  geometries: Array<
-    | PolygonGeometry
-    | MultiPolygonGeometry
-    | LineStringGeometry
-    | MultiLineStringGeometry
-    | PointGeometry
-    | MultiPointGeometry
-    | GeometryCollection
-  >;
+  geometries: Array<GeometryObject>;
 }
 
 export interface RawWebLink {
