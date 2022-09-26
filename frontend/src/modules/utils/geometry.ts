@@ -2,6 +2,7 @@ import {
   Coordinate2D,
   Coordinate3D,
   GeometryCollection,
+  GeometryObject,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -11,6 +12,7 @@ import {
   RawCoordinate2D,
   RawCoordinate3D,
   RawGeometryCollection,
+  RawGeometryObject,
   RawLineStringGeometry2D,
   RawMultiLineStringGeometry,
   RawMultiPointGeometry2D,
@@ -31,23 +33,7 @@ export const adaptGeometry3D = (geometry: RawCoordinate3D): Coordinate3D => ({
 });
 
 /** Adapt any type of raw geometry */
-export const adaptGeometry = (
-  geometry:
-    | RawPolygonGeometry
-    | RawMultiPolygonGeometry
-    | RawLineStringGeometry2D
-    | RawMultiLineStringGeometry
-    | RawPointGeometry2D
-    | RawMultiPointGeometry2D
-    | RawGeometryCollection,
-):
-  | PolygonGeometry
-  | MultiPolygonGeometry
-  | LineStringGeometry
-  | MultiLineStringGeometry
-  | PointGeometry
-  | MultiPointGeometry
-  | GeometryCollection => {
+export const adaptGeometry = (geometry: RawGeometryObject): GeometryObject => {
   switch (geometry.type) {
     case 'Polygon':
       return adaptPolygonGeometry(geometry);
@@ -107,7 +93,7 @@ export const adaptMultiPoint = (geometry: RawMultiPointGeometry2D): MultiPointGe
   coordinates: geometry.coordinates.map(point => adaptGeometry2D(point)),
 });
 
-const adaptGeometryCollection = (geometry: RawGeometryCollection): GeometryCollection => ({
+export const adaptGeometryCollection = (geometry: RawGeometryCollection): GeometryCollection => ({
   type: geometry.type,
   geometries: geometry.geometries.map(geom => adaptGeometry(geom)),
 });
