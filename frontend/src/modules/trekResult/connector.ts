@@ -1,6 +1,8 @@
-import { adaptTrekGeometryResults, adaptTrekPopupResults } from './adapter';
+import { GeometryObject } from 'modules/interface';
+import { adaptGeometry } from 'modules/utils/geometry';
+import { adaptTrekPopupResults } from './adapter';
 import { fetchTrekGeometryResult, fetchTrekPopupResult } from './api';
-import { PopupResult, TrekGeometryResult } from './interface';
+import { PopupResult } from './interface';
 
 export const getTrekPopupResult = async (id: string, language: string): Promise<PopupResult> => {
   const rawTrekPopupResult = await fetchTrekPopupResult({ language }, id);
@@ -11,8 +13,7 @@ export const getTrekPopupResult = async (id: string, language: string): Promise<
 export const getTrekGeometryResult = async (
   id: string,
   language: string,
-): Promise<TrekGeometryResult> => {
+): Promise<GeometryObject> => {
   const rawTrekGeometryResult = await fetchTrekGeometryResult({ language }, id);
-
-  return adaptTrekGeometryResults(rawTrekGeometryResult);
+  return adaptGeometry(rawTrekGeometryResult.geometry);
 };
