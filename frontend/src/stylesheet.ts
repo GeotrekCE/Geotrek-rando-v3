@@ -82,9 +82,6 @@ export const colorPalette = {
     gradientOnImages: tailwindConfig.theme.extend.colors.gradientOnImages,
     shadowOnImages: tailwindConfig.theme.extend.colors.gradientOnImages,
   },
-  map: {
-    touristicContentLines: '#D65600',
-  },
 } as const;
 
 // This function collects in a list all the colors defined at the root of the color palette object. Duplicated colors are eliminated.
