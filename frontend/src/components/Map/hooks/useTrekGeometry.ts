@@ -5,6 +5,7 @@ import { GeometryObject } from 'modules/interface';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { getTouristicContentGeometryResult } from 'modules/touristicContent/connector';
+import { getOutdoorSiteGeometryResult } from 'modules/outdoorSite/connector';
 
 export const useObjectGeometry = (
   id: number,
@@ -12,11 +13,19 @@ export const useObjectGeometry = (
 ) => {
   const language = useRouter().locale ?? getDefaultLanguage();
 
-  const func = type === 'TREK' ? getTrekGeometryResult : getTouristicContentGeometryResult;
+  const func = () => {
+    if (type === 'TREK') {
+      return getTrekGeometryResult;
+    }
+    if (type === 'OUTDOOR_SITE') {
+      return getOutdoorSiteGeometryResult;
+    }
+    return getTouristicContentGeometryResult;
+  };
 
   const { data: trekGeometry } = useQuery<GeometryObject, Error>(
     ['trekPopupResult', id, language],
-    () => func(String(id), language),
+    () => func()(String(id), language),
   );
 
   return { trekGeometry };
