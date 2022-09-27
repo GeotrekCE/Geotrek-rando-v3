@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
 
 import { getTrekGeometryResult } from 'modules/trekResult/connector';
-import { TrekGeometryResult } from 'modules/trekResult/interface';
+import { GeometryObject } from 'modules/interface';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
-import { getTouristicContentGeometryResult } from '../../../modules/touristicContent/connector';
+import { getTouristicContentGeometryResult } from 'modules/touristicContent/connector';
 
 export const useObjectGeometry = (
   id: number,
@@ -14,7 +14,7 @@ export const useObjectGeometry = (
 
   const func = type === 'TREK' ? getTrekGeometryResult : getTouristicContentGeometryResult;
 
-  const { data: trekGeometry } = useQuery<TrekGeometryResult, Error>(
+  const { data: trekGeometry } = useQuery<GeometryObject, Error>(
     ['trekPopupResult', id, language],
     () => func(String(id), language),
   );

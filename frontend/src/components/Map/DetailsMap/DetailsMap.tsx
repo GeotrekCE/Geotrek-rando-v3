@@ -49,8 +49,8 @@ export interface GeometryListProps {
     | PointGeometry
     | MultiPointGeometry
     | GeometryCollection;
-  pictogramUri: string | null;
-  name: string;
+  pictogramUri?: string | null;
+  name?: string;
   id: string;
 }
 

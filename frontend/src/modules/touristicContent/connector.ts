@@ -1,13 +1,14 @@
 import { getCities } from 'modules/city/connector';
 import { getThemes } from 'modules/filters/theme/connector';
+import { GeometryObject } from 'modules/interface';
 import { getSources } from 'modules/source/connector';
 import {
   getTouristicContentCategories,
   getTouristicContentCategory,
 } from 'modules/touristicContentCategory/connector';
-import { PopupResult, TrekGeometryResult } from 'modules/trekResult/interface';
+import { PopupResult } from 'modules/trekResult/interface';
 import { getGlobalConfig } from 'modules/utils/api.config';
-import { adaptTrekGeometryResults } from '../trekResult/adapter';
+import { adaptGeometry } from 'modules/utils/geometry';
 import {
   adaptTouristicContent,
   adaptTouristicContentDetails,
@@ -92,8 +93,10 @@ export const getTouristicContentPopupResult = async (
 export const getTouristicContentGeometryResult = async (
   id: string,
   language: string,
-): Promise<TrekGeometryResult> => {
-  const rawTrekGeometryResult = await fetchTouristicContentGeometryResult({ language }, id);
-
-  return adaptTrekGeometryResults(rawTrekGeometryResult);
+): Promise<GeometryObject> => {
+  const rawTouristicContentGeometryResult = await fetchTouristicContentGeometryResult(
+    { language },
+    id,
+  );
+  return adaptGeometry(rawTouristicContentGeometryResult.geometry);
 };
