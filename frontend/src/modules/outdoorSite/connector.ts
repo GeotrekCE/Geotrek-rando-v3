@@ -2,6 +2,8 @@ import { getSensitiveAreas } from 'modules/sensitiveArea/connector';
 import { getSignage } from 'modules/signage/connector';
 import { getService } from 'modules/service/connector';
 import { getInfrastructure } from 'modules/infrastructure/connector';
+import { adaptGeometry } from 'modules/utils/geometry';
+import { GeometryObject } from 'modules/interface';
 import { getCities } from '../city/connector';
 import { getThemes } from '../filters/theme/connector';
 import { getInformationDesks } from '../informationDesk/connector';
@@ -22,7 +24,7 @@ import {
   adaptOutdoorSitePopupResults,
   adaptOutdoorSites,
 } from './adapter';
-import { fetchOutdoorSiteDetails, fetchOutdoorSites } from './api';
+import { fetchOutdoorSiteDetails, fetchOutdoorSiteResult, fetchOutdoorSites } from './api';
 import { OutdoorSite, OutdoorSiteDetails } from './interface';
 
 export const getOutdoorSites = async (language: string, query = {}): Promise<OutdoorSite[]> => {
@@ -134,4 +136,12 @@ export const getOutdoorSitePopupResult = async (
   const [cityDictionnary] = await Promise.all([getCities(language)]);
 
   return adaptOutdoorSitePopupResults({ rawOutdoorSitePopupResult, cityDictionnary });
+};
+
+export const getOutdoorSiteGeometryResult = async (
+  id: string,
+  language: string,
+): Promise<GeometryObject> => {
+  const rawOutdoorGeometryResult = await fetchOutdoorSiteResult({ language }, id);
+  return adaptGeometry(rawOutdoorGeometryResult.geometry);
 };
