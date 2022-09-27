@@ -67,6 +67,7 @@ export const GeometryItem = ({
             key={`${id}${JSON.stringify(group)}`}
             id={id}
             positions={group.map(point => [point.y, point.x])}
+            type={type}
           />
         ))}
       </>
@@ -83,6 +84,7 @@ export const GeometryItem = ({
             key={`${id}${JSON.stringify(group)}`}
             id={id}
             positions={group.map(line => line.map<[number, number]>(point => [point.y, point.x]))}
+            type={type}
           />
         ))}
       </>
