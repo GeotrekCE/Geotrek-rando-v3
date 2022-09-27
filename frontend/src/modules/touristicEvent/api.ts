@@ -1,3 +1,4 @@
+import { RawGeometryObject } from 'modules/interface';
 import { portalsFilter } from 'modules/utils/api.config';
 import { GeotrekAPI } from 'services/api/client';
 import { APIQuery, APIResponseForList } from 'services/api/interface';
@@ -31,3 +32,11 @@ export const fetchTouristicEventDetails = (
   GeotrekAPI.get(`/touristicevent/${id}/`, {
     params: { ...query, ...fieldsParamsDetails, ...portalsFilter },
   }).then(r => r.data);
+
+export const fetchTouristicEventResult = (
+  query: APIQuery,
+  id: string,
+): Promise<{ geometry: RawGeometryObject }> =>
+  GeotrekAPI.get(`/touristicevent/${id}/`, { params: { ...query, fields: 'geometry' } }).then(
+    r => r.data,
+  );
