@@ -1,3 +1,5 @@
+import { GeometryObject } from 'modules/interface';
+import { adaptGeometry } from 'modules/utils/geometry';
 import { getCities } from '../city/connector';
 import { getThemes } from '../filters/theme/connector';
 import { getSources } from '../source/connector';
@@ -9,7 +11,7 @@ import {
   adaptTouristicEventPopupResults,
   adaptTouristicEvents,
 } from './adapter';
-import { fetchTouristicEventDetails, fetchTouristicEvents } from './api';
+import { fetchTouristicEventDetails, fetchTouristicEventResult, fetchTouristicEvents } from './api';
 import { TouristicEvent, TouristicEventDetails } from './interface';
 
 export const getTouristicEvents = async (
@@ -76,4 +78,12 @@ export const getTouristicEventPopupResult = async (
   const [cityDictionnary] = await Promise.all([getCities(language)]);
 
   return adaptTouristicEventPopupResults({ rawTouristicEventPopupResult, cityDictionnary });
+};
+
+export const getTouristicEventGeometryResult = async (
+  id: string,
+  language: string,
+): Promise<GeometryObject> => {
+  const rawTouristicEventGeometryResult = await fetchTouristicEventResult({ language }, id);
+  return adaptGeometry(rawTouristicEventGeometryResult.geometry);
 };
