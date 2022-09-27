@@ -1,3 +1,4 @@
+import { RawGeometryObject } from 'modules/interface';
 import { portalsFilter } from 'modules/utils/api.config';
 import { GeotrekAPI } from 'services/api/client';
 import { APIQuery, APIResponseForList } from 'services/api/interface';
@@ -26,3 +27,11 @@ export const fetchOutdoorSiteDetails = (
     params: { ...fieldsParamsDetails, ...query, ...portalsFilter },
   }).then(r => r.data);
 };
+
+export const fetchOutdoorSiteResult = (
+  query: APIQuery,
+  id: string,
+): Promise<{ geometry: RawGeometryObject }> =>
+  GeotrekAPI.get(`/outdoor_site/${id}/`, { params: { ...query, fields: 'geometry' } }).then(
+    r => r.data,
+  );
