@@ -77,7 +77,7 @@
     "striptags": "^3.2.0",
     "styled-components": "5.3.1",
     "tailwindcss": "^2.0.2",
-    "ts-node": "10.2.1",
+    "ts-node": "^10.9.1",
     "typesafe-actions": "^5.1.0",
     "wait-on": "6.0.0"
   },
