@@ -25,6 +25,30 @@ interface Props {
   type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
 }
 
+const ActionButton = ({
+  onClick,
+  isInCache,
+}: {
+  onClick: () => Promise<void>;
+  isInCache: boolean;
+}) => {
+  return (
+    <Button
+      onClick={void onClick}
+      style={{
+        color: isInCache ? colorPalette.easyOK : undefined,
+        borderColor: isInCache ? colorPalette.easyOK : undefined,
+      }}
+    >
+      {isInCache ? (
+        <FormattedMessage id={'offline.isInCache'} />
+      ) : (
+        <FormattedMessage id={'offline.download'} />
+      )}
+    </Button>
+  );
+};
+
 const OfflineButton: React.FC<Props> = ({ details, type }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,11 +63,11 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
     fetchState();
   }, [fetchState]);
 
-  const handleSave = async () => {
+  const handleSave = async (): Promise<void> => {
     setIsLoading(true);
 
     const scriptsUrl = Array.from(document.getElementsByTagName('script'))
-      .map(e => e.src)
+      .map(({ src }) => src)
       .filter(
         src =>
           src.includes('chunks/pages/trek') ||
@@ -63,7 +87,7 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
     setIsLoading(false);
   };
 
-  const handleRemove = async () => {
+  const handleRemove = async (): Promise<void> => {
     setIsLoading(true);
 
     await CacheManager.eraseItem(String(details.id));
@@ -71,24 +95,6 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
     fetchState();
 
     setIsLoading(false);
-  };
-
-  const getButton = (onClick: () => any) => {
-    return (
-      <Button
-        onClick={onClick}
-        style={{
-          color: isInCache ? colorPalette.easyOK : undefined,
-          borderColor: isInCache ? colorPalette.easyOK : undefined,
-        }}
-      >
-        {isInCache ? (
-          <FormattedMessage id={'offline.isInCache'} />
-        ) : (
-          <FormattedMessage id={'offline.download'} />
-        )}
-      </Button>
-    );
   };
 
   return (
@@ -121,7 +127,7 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
                 </Button>
                 {isInCache ? (
                   <Button
-                    onClick={handleRemove}
+                    onClick={void handleRemove}
                     icon={Bin}
                     style={{
                       color: colorPalette.hardKO,
@@ -131,7 +137,7 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
                     <FormattedMessage id={'actions.remove'} />
                   </Button>
                 ) : (
-                  getButton(handleSave)
+                  <ActionButton isInCache={isInCache} onClick={handleSave} />
                 )}
               </div>
             </>
