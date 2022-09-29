@@ -20,9 +20,13 @@ import * as Sentry from '@sentry/nextjs';
 import { AppCrashFallback } from 'components/AppCrashFallback';
 import { ErrorBoundary } from 'components/pages/_app/ErrorBoundary/ErrorBoundary';
 import { NextPageContext } from 'next';
-import NextErrorComponent from 'next/error';
+import NextErrorComponent, { ErrorProps } from 'next/error';
 
-const CustomErrorComponent = (props: any) => {
+type GetInitialPropsResult = ErrorProps & {
+  eventId?: string;
+};
+
+const CustomErrorComponent = (props: GetInitialPropsResult) => {
   // If you're using a Nextjs version prior to 12.2.1, uncomment this to
   // compensate for https://github.com/vercel/next.js/issues/8592
   void Sentry.captureUnderscoreErrorException(props);
@@ -30,15 +34,19 @@ const CustomErrorComponent = (props: any) => {
   return <ErrorBoundary FallbackComponent={AppCrashFallback} eventId={props.eventId} />;
 };
 
-CustomErrorComponent.getInitialProps = async (contextData: NextPageContext) => {
+CustomErrorComponent.getInitialProps = async (
+  contextData: NextPageContext,
+): Promise<GetInitialPropsResult> => {
   // In case this is running in a serverless function, await this in order to give Sentry
   // time to send the error before the lambda exits
   await Sentry.captureUnderscoreErrorException(contextData);
   const eventId = Sentry.lastEventId();
 
+  const result = await NextErrorComponent.getInitialProps(contextData);
+
   // This will contain the status code of the response
   return {
-    ...NextErrorComponent.getInitialProps(contextData),
+    ...result,
     eventId,
   };
 };
