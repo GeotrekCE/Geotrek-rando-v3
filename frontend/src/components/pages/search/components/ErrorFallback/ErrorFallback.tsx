@@ -6,9 +6,10 @@ import { Reload } from 'components/Icons/Reload';
 
 import { getSpacing, sizes } from 'stylesheet';
 import { buttonCssResets } from 'services/cssHelpers';
+import { UseQueryResult } from 'react-query/types/react';
 
 interface Props {
-  refetch: () => void;
+  refetch: (options: { throwOnError: boolean; cancelRefetch: boolean }) => Promise<UseQueryResult>;
 }
 
 export const ErrorFallback: React.FC<Props> = ({ refetch }) => {
@@ -17,7 +18,7 @@ export const ErrorFallback: React.FC<Props> = ({ refetch }) => {
       <div className="text-H2 text-center">
         <FormattedMessage id="search.anErrorOccured" />
       </div>
-      <ReloadButton className="flex flex-col items-center" onClick={refetch}>
+      <ReloadButton className="flex flex-col items-center" onClick={void refetch}>
         <Reload size={48} />
         <span>
           <FormattedMessage id="search.reload" />

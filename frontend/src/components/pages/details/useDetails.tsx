@@ -46,11 +46,12 @@ export const useDetails = (
     () => getDetails(id, language),
     {
       enabled: isUrlString(detailsUrl),
-      onError: async error => {
-        if (isRessourceMissing(error)) {
-          await router.push(routes.HOME);
-        }
-      },
+      onError: error =>
+        void (async () => {
+          if (isRessourceMissing(error)) {
+            await router.push(routes.HOME);
+          }
+        })(),
       staleTime: ONE_DAY,
     },
   );
