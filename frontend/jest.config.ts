@@ -7,7 +7,7 @@ const createJestConfig = nextJest();
 const TEST_REGEX = '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|js?|tsx?|ts?)$';
 
 const config: Config.InitialOptions = {
-  testEnvironment: 'jsdom',
+  testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: ['<rootDir>/jestAfterEnv.setup.tsx'],
   testRegex: TEST_REGEX,
   moduleNameMapper: {
