@@ -42,7 +42,7 @@ const OfflineFallback: NextPage = () => {
       <Spacer />
 
       <Container>
-        <Button onClick={() => window.open(routes.OFFLINE, '_self')}>
+        <Button onClick={() => void window.open(routes.OFFLINE, '_self')}>
           <FormattedMessage id={'page.goToOffline'} />
         </Button>
       </Container>

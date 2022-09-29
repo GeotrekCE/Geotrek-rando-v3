@@ -157,7 +157,7 @@ export const ResultCard: React.FC<
                 thumbnailUris={thumbnailUris}
                 iconUri={badgeIconUri}
                 iconName={badgeName as string}
-                onClickImage={() => router.push(redirectionUrl)}
+                onClickImage={() => void router.push(redirectionUrl)}
               />
             )}
           </>

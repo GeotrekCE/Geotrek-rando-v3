@@ -128,12 +128,12 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                           navigator?.onLine ? (
                             <DetailsCoverCarousel
                               attachments={touristicEventContent.attachments}
-                              onClickImage={toggleFullscreen}
+                              onClickImage={void toggleFullscreen}
                             />
                           ) : (
                             <ImageWithLegend
                               attachment={touristicEventContent.attachments[0]}
-                              onClick={toggleFullscreen}
+                              onClick={void toggleFullscreen}
                             />
                           )}
                         </div>
