@@ -3,7 +3,7 @@ import { Reservation } from 'components/Icons/Reservation';
 import { ThreeDMap } from 'components/Icons/ThreeDMap';
 import { Printer } from 'components/Icons/Printer';
 import { DetailsButton } from 'components/pages/details/components/DetailsButton';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ToolTip from 'components/ToolTip';
 import { useIntl } from 'react-intl';
 import { Download } from 'components/Icons/Download';
@@ -11,6 +11,7 @@ import { Details } from 'modules/details/interface';
 import { ThreeD } from 'components/3D';
 import { getMapConfig } from 'components/Map/config';
 import { useMediaPredicate } from 'react-media-hook';
+import useHasMounted from 'hooks/useHasMounted';
 import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
@@ -41,8 +42,10 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
   const intl = useIntl();
 
   const isTouchScreen = useMediaPredicate('(hover: none)');
+  const hasWebGLRenderingContext = useHasMounted('WebGLRenderingContext' in global);
+
   const is3DfeatureEnabled =
-    'WebGLRenderingContext' in global &&
+    hasWebGLRenderingContext &&
     getMapConfig().mapSatelliteLayers !== null &&
     'length2d' in details &&
     getGlobalConfig().maxLengthTrekAllowedFor3DRando >= details.length2d &&
