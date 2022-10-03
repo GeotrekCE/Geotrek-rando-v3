@@ -95,14 +95,13 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
                         <div id="details_cover" className={!isFullscreen ? '' : 'h-full'}>
                           <StyledSmallCarousel isFullscreen={isFullscreen}>
                             {attachments.map((attachment, i) => (
-                              <div className="relative" key={attachment.uuid}>
+                              <div className="relative" key={i}>
                                 {isFullscreen && (
                                   <Legend>
                                     {attachment.author} - {attachment.legend}
                                   </Legend>
                                 )}
                                 <CardSingleImage
-                                  key={i}
                                   src={attachment.url}
                                   height={200}
                                   onClick={toggleFullscreen}
