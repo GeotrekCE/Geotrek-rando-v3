@@ -1,7 +1,6 @@
 import React from 'react';
-import Select from 'react-select';
+import Select, { CSSObjectWithLabel } from 'react-select';
 import { FormattedMessage } from 'react-intl';
-import { CSSObject } from 'styled-components';
 
 import { colorPalette, getSpacing, shadow } from 'stylesheet';
 import { routes } from 'services/routes';
@@ -16,7 +15,7 @@ export const ActivitySearchFilterMobile: React.FC<{
   className?: string;
   activities: ActivityFilter[];
   getId: (type: string) => string;
-}> = ({ className, activities, getId }) => {
+}> = ({ className = '', activities, getId }) => {
   const { selectedActivityId, updateSelectedActivityId } = useActivitySearchFilterMobile();
 
   const selectedActivity = activities.find(
@@ -24,7 +23,7 @@ export const ActivitySearchFilterMobile: React.FC<{
   );
 
   return (
-    <div className={`${className ?? ''} flex space-x-4 items-center`}>
+    <div className={`${className} flex space-x-4 items-center`}>
       <Select
         className="flex-1"
         options={activities.map(({ id, name, type }) => ({
@@ -32,6 +31,7 @@ export const ActivitySearchFilterMobile: React.FC<{
           label: name,
         }))}
         styles={selectStyles}
+        instanceId="activitySearchFilterMobile"
         isSearchable={false}
         placeholder={<FormattedMessage id="home.selectPlaceholder" />}
         onChange={activity => updateSelectedActivityId(activity?.value ?? null)}
@@ -58,7 +58,7 @@ const ValidateButton: React.FC = () => (
 );
 
 const selectStyles = {
-  control: (styles: CSSObject) => ({
+  control: (styles: CSSObjectWithLabel) => ({
     ...styles,
     backgroundColor: 'white',
     boxShadow: shadow.large,
@@ -70,17 +70,17 @@ const selectStyles = {
       border: 'none',
     },
   }),
-  valueContainer: (styles: CSSObject) => ({
+  valueContainer: (styles: CSSObjectWithLabel) => ({
     ...styles,
     padding: 'none',
     overflow: 'visible',
   }),
-  singleValue: (styles: CSSObject) => ({
+  singleValue: (styles: CSSObjectWithLabel) => ({
     ...styles,
     color: colorPalette.greyDarkColored,
     paddingLeft: getSpacing(2),
   }),
-  menu: (styles: CSSObject) => ({
+  menu: (styles: CSSObjectWithLabel) => ({
     ...styles,
     padding: `${getSpacing(2)} 0`,
     margin: 0,
@@ -88,7 +88,7 @@ const selectStyles = {
     boxShadow: shadow.large,
     borderRadius: getSpacing(2),
   }),
-  option: (styles: CSSObject) => ({
+  option: (styles: CSSObjectWithLabel) => ({
     ...styles,
     backgroundColor: 'white',
     paddingLeft: getSpacing(4),
@@ -100,7 +100,7 @@ const selectStyles = {
   indicatorSeparator: () => ({
     color: 'transparent',
   }),
-  placeholder: (styles: CSSObject) => ({
+  placeholder: (styles: CSSObjectWithLabel) => ({
     ...styles,
     color: colorPalette.greyDarkColored,
     paddingLeft: '8px',
