@@ -4,6 +4,7 @@ import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
 import { HtmlText } from 'components/pages/details/utils';
 import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
+import useHasMounted from 'hooks/useHasMounted';
 import parse from 'html-react-parser';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { useRouter } from 'next/router';
@@ -56,6 +57,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   const { setHoveredCardId } = useListAndMapContext();
 
   const router = useRouter();
+  const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
   return (
     <DetailsCardContainer
@@ -86,8 +88,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
                 type === 'TOURISTIC_CONTENT' &&
                 redirectionUrl &&
                 attachments.length > 0 &&
-                typeof navigator !== 'undefined' &&
-                navigator?.onLine && (
+                hasNavigator && (
                   <DetailsCoverCarousel
                     attachments={attachments}
                     onClickImage={() => void router.push(redirectionUrl)}
@@ -97,8 +98,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
                 type === 'TOURISTIC_CONTENT' &&
                 redirectionUrl &&
                 attachments.length > 0 &&
-                typeof navigator !== 'undefined' &&
-                navigator?.onLine && (
+                hasNavigator && (
                   <DetailsCoverCarousel
                     attachments={attachments}
                     onClickImage={() => void router.push(redirectionUrl)}
@@ -107,30 +107,14 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
               {isFullscreen &&
                 type !== 'TOURISTIC_CONTENT' &&
                 attachments.length > 0 &&
-                typeof navigator !== 'undefined' &&
-                navigator?.onLine && (
-                  <DetailsCoverCarousel
-                    onClickImage={
-                      typeof navigator !== 'undefined' && navigator?.onLine
-                        ? toggleFullscreen
-                        : undefined
-                    }
-                    attachments={attachments}
-                  />
+                hasNavigator && (
+                  <DetailsCoverCarousel onClickImage={toggleFullscreen} attachments={attachments} />
                 )}
               {!isFullscreen && type !== 'TOURISTIC_CONTENT' && (
                 <DetailsCardCarousel
-                  thumbnailUris={
-                    typeof navigator !== 'undefined' && navigator?.onLine
-                      ? thumbnailUris
-                      : thumbnailUris.slice(0, 1)
-                  }
+                  thumbnailUris={hasNavigator ? thumbnailUris : thumbnailUris.slice(0, 1)}
                   height={heightState}
-                  onClickImage={
-                    typeof navigator !== 'undefined' && navigator?.onLine
-                      ? toggleFullscreen
-                      : undefined
-                  }
+                  onClickImage={hasNavigator ? toggleFullscreen : undefined}
                 />
               )}
             </>

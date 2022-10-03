@@ -3,6 +3,7 @@ import { useCallback, useEffect } from 'react';
 import Script from 'next/script';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import useHasMounted from 'hooks/useHasMounted';
 
 declare global {
   interface Window {
@@ -33,6 +34,7 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
   language,
 }) => {
   const { asPath } = useRouter();
+  const isMounted = useHasMounted();
 
   const onLoad = useCallback(() => {
     const layer = {
@@ -55,11 +57,15 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
   }, [asPath, id, language, partner]);
 
   useEffect(() => {
-    // Hydratation once scripts loaded
-    if (window.eitinerance !== undefined) {
+    // Hydration once scripts loaded
+    if (isMounted && window.eitinerance !== undefined) {
       onLoad();
     }
   }, [onLoad]);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <>
