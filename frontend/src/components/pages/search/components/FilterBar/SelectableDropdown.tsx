@@ -1,11 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-
-/**
- * We disable unsafe return because the lib react-select types it styles with any
- */
-
 import { ReactElement } from 'react';
-import Select, { ValueType } from 'react-select';
+import Select, { CSSObjectWithLabel, OnChangeValue } from 'react-select';
 import { Option } from 'modules/filters/interface';
 import { useIntl } from 'react-intl';
 import { colorPalette, sizes } from 'stylesheet';
@@ -21,7 +15,7 @@ interface Props {
 }
 
 const colourStyles = {
-  control: (styles: any) => ({
+  control: (styles: CSSObjectWithLabel) => ({
     ...styles,
     backgroundColor: 'white',
     boxShadow: 'none',
@@ -32,7 +26,7 @@ const colourStyles = {
     },
     minHeight: sizes.button,
   }),
-  option: (styles: any, { data }: { data: Option }) => {
+  option: (styles: CSSObjectWithLabel, { data }: { data: Option }) => {
     return {
       ...styles,
       backgroundColor: colorPalette.filter.background,
@@ -61,7 +55,7 @@ const colourStyles = {
       },
     };
   },
-  multiValue: (styles: any, { data }: { data: Option }) => {
+  multiValue: (styles: CSSObjectWithLabel, { data }: { data: Option }) => {
     return {
       ...styles,
       padding: '4px 0',
@@ -83,11 +77,14 @@ const colourStyles = {
       },
     };
   },
-  input: (styles: any) => ({ ...styles, backgroundColor: 'black' }),
-  placeholder: (styles: any) => ({ ...styles, color: colorPalette.filter.placeholder.color }),
+  input: (styles: CSSObjectWithLabel) => ({ ...styles, backgroundColor: 'black' }),
+  placeholder: (styles: CSSObjectWithLabel) => ({
+    ...styles,
+    color: colorPalette.filter.placeholder.color,
+  }),
 };
 
-const computeAction = (action: ValueType<Option, true>): Option[] => {
+const computeAction = (action: OnChangeValue<Option, true>): Option[] => {
   if (action === undefined || action === null) return [];
   if (action.length >= 0) return [...action];
   //@ts-ignore We ignore because the issue is between a readonly array and an array
@@ -105,9 +102,10 @@ export const SelectableDropdown = (props: Props): ReactElement => {
       placeholder={intl.formatMessage({ id: props.placeholder })}
       classNamePrefix="select"
       isMulti={props.filterType === 'MULTIPLE' ? true : undefined}
+      instanceId={props.name}
       styles={colourStyles}
       value={props.selectedFilters}
-      onChange={(action: ValueType<Option, true>) => {
+      onChange={(action: OnChangeValue<Option, true>) => {
         const options = computeAction(action);
         props.setFilterSelectedOptions(options);
       }}
