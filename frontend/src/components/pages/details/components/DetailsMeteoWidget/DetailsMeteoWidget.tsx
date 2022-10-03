@@ -1,3 +1,4 @@
+import useHasMounted from 'hooks/useHasMounted';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -19,6 +20,12 @@ const Wrapper = styled.div`
 `;
 
 export const DetailsMeteoWidget: React.FC<{ code: string }> = ({ code }) => {
+  const display = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
+
+  if (display === false) {
+    return null;
+  }
+
   return (
     <Wrapper>
       <iframe

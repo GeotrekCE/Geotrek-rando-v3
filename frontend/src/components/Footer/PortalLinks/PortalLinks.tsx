@@ -2,6 +2,7 @@ import NextLink from 'next/link';
 import { Plus } from 'components/Icons/Plus';
 import { Minus } from 'components/Icons/Minus';
 import { FormattedMessage } from 'react-intl';
+import useHasMounted from 'hooks/useHasMounted';
 import { usePortalLinks } from './usePortalLinks';
 import { PortalLinkStatic } from '../interface';
 import { isLinkInternal, linkWithoutHost } from '../utils';
@@ -95,7 +96,8 @@ const PortalLinksMobileContent: React.FC<PortalLinksContentProps> = ({ className
 const PortalLinkRendered: React.FC<{ link: PortalLinkStatic }> = ({ link }) => {
   const className =
     'text-greySoft text-Mobile-C3 desktop:text-P1 cursor-pointer hover:text-white transition-all desktop:text-right';
-  if (typeof window !== 'undefined') {
+  const isWindow = useHasMounted(typeof window !== 'undefined');
+  if (isWindow) {
     return isLinkInternal(link.url) ? (
       <NextLink href={linkWithoutHost(link.url)}>
         <a className={className}>

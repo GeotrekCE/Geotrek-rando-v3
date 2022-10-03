@@ -4,6 +4,7 @@ import ReactFullscreen from 'react-easyfullscreen';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapButton } from 'components/Map/components/MapButton';
 import ConditionallyRender from 'components/ConditionallyRender';
+import useHasMounted from 'hooks/useHasMounted';
 
 type Props = {
   children: ({
@@ -26,9 +27,11 @@ const Inner: React.FC<Props> = ({ children }) => {
     return () => document.removeEventListener('fullscreenchange', handler);
   }, [handler]);
 
-  const iOSiPadOS =
-    /^iP/.test(navigator.platform) ||
-    (/^Mac/.test(navigator.platform) && navigator.maxTouchPoints > 4);
+  const iOSiPadOS = useHasMounted(
+    typeof navigator !== 'undefined' &&
+      (/^iP/.test(navigator.platform) ||
+        (/^Mac/.test(navigator.platform) && navigator.maxTouchPoints > 4)),
+  );
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const noop = () => {};

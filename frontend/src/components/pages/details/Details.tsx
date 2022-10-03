@@ -20,6 +20,7 @@ import { getGlobalConfig } from 'modules/utils/api.config';
 import { Footer } from 'components/Footer';
 import Accessibility, { shouldDisplayAccessibility } from 'components/Accessibility';
 
+import useHasMounted from 'hooks/useHasMounted';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MapPin } from 'components/Icons/MapPin';
 import { DetailsPreview } from './components/DetailsPreview';
@@ -81,6 +82,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
 
   /** Ref of the parent of all sections */
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
+  const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
   useOnScreenSection({
     sectionsPositions,
@@ -150,9 +152,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           id="details_cover"
                           className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                         >
-                          {details.imgs.length > 1 &&
-                          typeof navigator !== 'undefined' &&
-                          navigator?.onLine ? (
+                          {details.imgs.length > 1 && hasNavigator ? (
                             <DetailsCoverCarousel
                               attachments={details.imgs}
                               onClickImage={toggleFullscreen}
@@ -241,10 +241,8 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         </div>
                       )}
                       {getGlobalConfig().enableMeteoWidget &&
-                        typeof navigator !== 'undefined' &&
-                        navigator.onLine &&
-                        details.cities_raw &&
-                        details.cities_raw[0] && (
+                        details.cities_raw?.[0] &&
+                        hasNavigator && (
                           <DetailsSection>
                             <DetailsMeteoWidget code={details.cities_raw[0]} />
                           </DetailsSection>
@@ -447,22 +445,19 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                         </div>
                       )}
 
-                      {details.reservation &&
-                        details.reservation_id &&
-                        typeof navigator !== 'undefined' &&
-                        navigator.onLine && (
-                          <DetailsSection
-                            className={marginDetailsChild}
-                            htmlId="details_reservation"
-                            titleId="details.reservation"
-                          >
-                            <DetailsReservationWidget
-                              language={language}
-                              reservation={details.reservation}
-                              id={details.reservation_id}
-                            />
-                          </DetailsSection>
-                        )}
+                      {details.reservation && details.reservation_id && hasNavigator && (
+                        <DetailsSection
+                          className={marginDetailsChild}
+                          htmlId="details_reservation"
+                          titleId="details.reservation"
+                        >
+                          <DetailsReservationWidget
+                            language={language}
+                            reservation={details.reservation}
+                            id={details.reservation_id}
+                          />
+                        </DetailsSection>
+                      )}
                     </div>
                     <Footer />
                   </div>

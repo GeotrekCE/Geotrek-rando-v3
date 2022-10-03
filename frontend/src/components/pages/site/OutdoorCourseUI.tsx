@@ -25,6 +25,7 @@ import { MobileMapContainer } from 'components/pages/search';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MapPin } from 'components/Icons/MapPin';
+import useHasMounted from 'hooks/useHasMounted';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { ErrorFallback } from '../search/components/ErrorFallback';
@@ -62,6 +63,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
 
   /** Ref of the parent of all sections */
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
+  const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
   useOnScreenSection({
     sectionsPositions,
@@ -125,9 +127,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                           id="outdoorCourseContent_cover"
                           className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                         >
-                          {outdoorCourseContent.attachments.length > 1 &&
-                          typeof navigator !== 'undefined' &&
-                          navigator?.onLine ? (
+                          {outdoorCourseContent.attachments.length > 1 && hasNavigator ? (
                             <DetailsCoverCarousel
                               attachments={outdoorCourseContent.attachments}
                               onClickImage={toggleFullscreen}
@@ -316,8 +316,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                         </div>
                       )}
                       {getGlobalConfig().enableMeteoWidget &&
-                        typeof navigator !== 'undefined' &&
-                        navigator.onLine &&
+                        hasNavigator &&
                         outdoorCourseContent.cities_raw &&
                         outdoorCourseContent.cities_raw[0] && (
                           <DetailsSection>
