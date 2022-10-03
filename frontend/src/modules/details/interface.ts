@@ -39,7 +39,6 @@ export interface AccessibilityAttachment {
   legend: string;
   title: string;
   url: string;
-  uuid: string;
 }
 
 export interface RawDetailsProperties {
