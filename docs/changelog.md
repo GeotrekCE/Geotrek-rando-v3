@@ -1,5 +1,25 @@
 # Changelog
 
+3.10.8 ()
+-------------------
+
+**✨ Improvements**
+
+* Display main geometry of all kinds of geometry (Polygon, MultiPolygon, LineString, MultilineString, and GeometryCollection)
+Points and MultiPoints are filtered out and not displayed because it looks visually strange/buggy (this is my opinion, we might rethink it).
+Each Geometry get now the defined color of each type (https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/docs/customization.md#colors)
+Before this pull-request the feature was available for Trek and Touristic content, and now it supports Outdoor site and Touristic event geometries.
+* Search page: Add main geometrey on hover on other objects and manage geometry collections (#497)
+* Improve and update Italian translations (#795)
+
+**🐛 Fixes**
+
+* Fix hoverable marker refreshing (#774)
+
+**🔧 Maintenance**
+
+* Improve and refactor geometry management, including geometry collections (#791)
+
 3.10.7 (2022-09-22)
 -------------------
 
