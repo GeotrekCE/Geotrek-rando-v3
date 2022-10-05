@@ -1,5 +1,4 @@
 import { Heart } from 'components/Icons/Heart';
-//@ts-ignore
 import ReactCountryFlag from 'react-country-flag';
 import { useIntl } from 'react-intl';
 import { Link } from 'components/Link';
@@ -9,6 +8,7 @@ import { ChevronDown } from 'components/Icons/ChevronDown';
 import { useRouter } from 'next/router';
 import { isInternalFlatPageUrl } from 'services/routeUtils';
 import { getDefaultLanguage } from 'modules/header/utills';
+import { getCountryCodeFromLanguage } from 'services/i18n/intl';
 
 export interface InlineMenuProps {
   className?: string;
@@ -71,7 +71,7 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
         <div className="flex items-center text-white" key="language">
           {language !== undefined && (
             <ReactCountryFlag
-              countryCode={language === 'en' ? 'GB' : language.toUpperCase()}
+              countryCode={getCountryCodeFromLanguage(language)}
               className="mr-2"
               svg
             />
