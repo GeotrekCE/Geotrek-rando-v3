@@ -12,6 +12,7 @@
 **🐛 Fixes**
 
 * Fix hoverable marker refreshing (#774)
+* Display Catalan flag for Catalan version (#601)
 
 **🔧 Maintenance**
 
