@@ -49,22 +49,11 @@ const Inner: React.FC<Props> = ({ children }) => {
           <div
             // @ts-ignore Wrong type in the lib
             ref={ref}
-            style={{
-              backgroundColor: 'white',
-              position: 'relative',
-            }}
+            className="relative bg-white"
           >
             {isFullscreen && <MapButton icon={<ArrowLeft size={24} />} onClick={onToggle} />}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '100%',
-                height: '100%',
-              }}
-            >
-              <div style={{ width: '100%', height: '100%' }}>
+            <div className="flex items-center justify-center w-full h-full">
+              <div className="w-full h-full">
                 {typeof children === 'function'
                   ? children({ isFullscreen, toggleFullscreen: onToggle })
                   : children}

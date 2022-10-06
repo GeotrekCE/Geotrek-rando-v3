@@ -10,13 +10,13 @@ Object {
         id="result_card"
       >
         <div
-          style="background-color: white; position: relative;"
+          class="relative bg-white"
         >
           <div
-            style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;"
+            class="flex items-center justify-center w-full h-full"
           >
             <div
-              style="width: 100%; height: 100%;"
+              class="w-full h-full"
             >
               <div
                 class="sc-hBEYId hCIdqa h-full w-full flex-grow relative desktop:w-resultCardDesktop"
@@ -202,13 +202,13 @@ Object {
       id="result_card"
     >
       <div
-        style="background-color: white; position: relative;"
+        class="relative bg-white"
       >
         <div
-          style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;"
+          class="flex items-center justify-center w-full h-full"
         >
           <div
-            style="width: 100%; height: 100%;"
+            class="w-full h-full"
           >
             <div
               class="sc-hBEYId hCIdqa h-full w-full flex-grow relative desktop:w-resultCardDesktop"
