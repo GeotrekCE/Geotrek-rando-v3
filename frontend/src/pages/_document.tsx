@@ -22,7 +22,7 @@ const {
   primary3 = '#791150',
   greySoft: { DEFAULT: greySoft = '#d7d6d9', light: greySoftLight = '#d7d6d950' } = {},
   warning = '#d77E00',
-  easyOK = '4fad79',
+  easyOK = '#4fad79',
   hardKO = '#e25316',
   red = '#ff7373',
   redMarker = '#e83737',
