@@ -24,6 +24,9 @@ const MoveHandler: React.FC<Props> = ({ onMove }) => {
 
   useEffect(() => {
     map.on('moveend', handleMove);
+    return () => {
+      map.off('moveend', handleMove);
+    };
   }, [handleMove, map]);
 
   return null;
