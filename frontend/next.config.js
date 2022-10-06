@@ -1,7 +1,6 @@
 const path = require('path');
 const withPlugins = require('next-compose-plugins');
 const withSourceMaps = require('@zeit/next-source-maps');
-const withPWA = require('next-pwa');
 // https://github.com/vercel/next.js/discussions/29697
 const withBundleAnalyzer = process.env.ANALYZE === 'true'
   ? require('@next/bundle-analyzer')()
@@ -13,6 +12,11 @@ const customHeaderConfig = require('./customization/config/header.json');
 const { getConfig, getTemplates } = require('./src/services/getConfig');
 const { getLocales } = require('./src/services/getLocales');
 const { withSentryConfig } = require('@sentry/nextjs');
+const withPWA = require('next-pwa')({
+  disable: process.env.NODE_ENV === 'development',
+  dest: 'public',
+  runtimeCaching: runtimeCachingStrategy,
+});
 
 const mergedHeaderConfig = {
   ...headerConfig,
@@ -32,14 +36,6 @@ module.exports = withPlugins(plugins, {
   webpack(config) {
     config.resolve.modules.push(path.resolve('./src'));
     return config;
-  },
-  pwa: {
-    disable: process.env.NODE_ENV === 'development',
-    dest: 'public',
-    runtimeCaching: runtimeCachingStrategy,
-    fallbacks: {
-      document: '/_offline',
-    },
   },
   /**
    * environment variables that will be shared for the client and server-side
