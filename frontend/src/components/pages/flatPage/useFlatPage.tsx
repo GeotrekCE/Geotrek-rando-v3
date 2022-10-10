@@ -3,7 +3,7 @@ import { FlatPageDetails } from 'modules/flatpage/interface';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { isUrlString } from 'modules/utils/string';
 import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { ONE_DAY } from 'services/constants/staleTime';
 
 export const useFlatPage = (flatPageUrl: string | undefined) => {

@@ -5,8 +5,7 @@ import { getFiltersState } from 'modules/filters/utils';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { getSearchResults } from 'modules/results/connector';
 import { GetServerSideProps } from 'next';
-import { QueryClient } from 'react-query';
-import { dehydrate, DehydratedState } from 'react-query/hydration';
+import { dehydrate, DehydratedState, QueryClient } from '@tanstack/react-query';
 import { getGlobalConfig } from '../modules/utils/api.config';
 
 const sanitizeState = (unsafeState: DehydratedState): DehydratedState =>

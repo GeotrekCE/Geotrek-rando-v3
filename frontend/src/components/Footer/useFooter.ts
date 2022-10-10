@@ -1,6 +1,6 @@
 import getNextConfig from 'next/config';
 import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getFlatPages } from 'modules/flatpage/connector';
 import { MenuItem } from 'modules/header/interface';
 import { getDefaultLanguage } from 'modules/header/utills';

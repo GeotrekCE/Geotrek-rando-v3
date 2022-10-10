@@ -1,7 +1,7 @@
 import nock from 'nock';
 import { render } from 'services/testing/reactTestingLibraryWrapper';
 import 'isomorphic-fetch';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { mockThemeResponse } from 'components/pages/search/mocks';
 import { GeotrekAPI } from 'services/api/client';
 import { mockPoiTypeRoute } from 'modules/poiType/mocks';

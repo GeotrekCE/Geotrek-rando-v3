@@ -2,7 +2,7 @@ import { OutdoorSiteUI } from 'components/pages/site';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
-import { QueryClient } from 'react-query';
+import { QueryClient } from '@tanstack/react-query';
 import { routes } from 'services/routes';
 import { getOutdoorSiteDetails } from '../../modules/outdoorSite/connector';
 import { isUrlString } from '../../modules/utils/string';
@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
     const details = await getOutdoorSiteDetails(id, locale);
 
-    await queryClient.prefetchQuery(`outdoorSiteDetails-${id}-${locale}`, () => details);
+    await queryClient.prefetchQuery(['outdoorSiteDetails', id, locale], () => details);
 
     const redirect = redirectIfWrongUrl(
       id,

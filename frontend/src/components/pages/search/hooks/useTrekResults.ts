@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { useEffect, useRef, useState } from 'react';
 
 import { getSearchResults } from 'modules/results/connector';
