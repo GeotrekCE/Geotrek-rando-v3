@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { getTrekGeometryResult } from 'modules/trekResult/connector';
 import { GeometryObject } from 'modules/interface';

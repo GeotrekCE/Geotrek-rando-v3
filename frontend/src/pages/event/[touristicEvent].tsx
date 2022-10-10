@@ -2,7 +2,7 @@ import { TouristicEventUI } from 'components/pages/touristicEvent/TouristicEvent
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
-import { QueryClient } from 'react-query';
+import { QueryClient } from '@tanstack/react-query';
 import { routes } from 'services/routes';
 import { redirectIfWrongUrl } from 'modules/utils/url';
 import { getTouristicEventDetails } from '../../modules/touristicEvent/connector';
@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
     const details = await getTouristicEventDetails(id, locale);
 
-    await queryClient.prefetchQuery(`touristicEventDetails-${id}-${locale}`, () => details);
+    await queryClient.prefetchQuery(['touristicEventDetails', id, locale], () => details);
 
     const redirect = redirectIfWrongUrl(
       id,

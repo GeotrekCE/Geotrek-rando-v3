@@ -1,7 +1,7 @@
 import useSectionsReferences from 'hooks/useSectionsReferences';
 import { isUrlString } from 'modules/utils/string';
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { getOutdoorSiteDetails } from '../../../modules/outdoorSite/connector';
 import { OutdoorSiteDetails } from '../../../modules/outdoorSite/interface';

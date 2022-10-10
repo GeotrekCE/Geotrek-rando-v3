@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { isUrlString } from 'modules/utils/string';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import useSectionsReferences from 'hooks/useSectionsReferences';
 import { getTouristicEventDetails } from '../../../modules/touristicEvent/connector';
 import { TouristicEventDetails } from '../../../modules/touristicEvent/interface';

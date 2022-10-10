@@ -4,7 +4,7 @@ import { getDefaultLanguage } from 'modules/header/utills';
 import { HomePageConfig } from 'modules/home/interface';
 import { adaptSuggestions, getHomePageConfig } from 'modules/home/utils';
 import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 interface UseHome {
   config: HomePageConfig;
   suggestions: ActivitySuggestion[];

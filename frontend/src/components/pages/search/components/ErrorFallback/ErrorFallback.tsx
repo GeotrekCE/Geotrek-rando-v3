@@ -6,7 +6,7 @@ import { Reload } from 'components/Icons/Reload';
 
 import { getSpacing, sizes } from 'stylesheet';
 import { buttonCssResets } from 'services/cssHelpers';
-import { UseQueryResult } from 'react-query/types/react';
+import { UseQueryResult } from '@tanstack/react-query';
 
 interface Props {
   refetch: (options: { throwOnError: boolean; cancelRefetch: boolean }) => Promise<UseQueryResult>;

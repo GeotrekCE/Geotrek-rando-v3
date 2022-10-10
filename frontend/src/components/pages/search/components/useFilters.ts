@@ -9,7 +9,7 @@ import { getDefaultLanguage } from 'modules/header/utills';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { OutdoorPracticeChoices } from '../../../../modules/outdoorPractice/interface';
 import { OutdoorRatingMapping } from '../../../../modules/outdoorRating/interface';
 import { OutdoorRatingScale } from '../../../../modules/outdoorRatingScale/interface';

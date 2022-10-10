@@ -3,7 +3,7 @@ import { MenuItem } from 'modules/header/interface';
 import { getDefaultLanguage, getHeaderConfig } from 'modules/header/utills';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 export const useHeader = () => {
   const config = getHeaderConfig();

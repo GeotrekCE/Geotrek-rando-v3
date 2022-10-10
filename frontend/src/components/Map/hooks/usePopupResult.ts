@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { getTrekPopupResult } from 'modules/trekResult/connector';
 import { PopupResult } from 'modules/trekResult/interface';

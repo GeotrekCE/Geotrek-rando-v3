@@ -2,7 +2,7 @@ import { getTouristicContentDetails } from 'modules/touristicContent/connector';
 import { TouristicContentDetails } from 'modules/touristicContent/interface';
 import { isUrlString } from 'modules/utils/string';
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 export const useTouristicContent = (
   touristicContentUrl: string | string[] | undefined,
