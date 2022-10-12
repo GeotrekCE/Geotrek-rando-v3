@@ -10,6 +10,7 @@ import {
   LeafletContextInterface,
   LeafletElement,
   LeafletProvider,
+  useLeafletContext,
 } from '@react-leaflet/core';
 
 interface PropsWithChildren {
@@ -28,16 +29,15 @@ const DumbControl = Control.extend({
   },
 
   onAdd() {
-    // eslint-disable-next-line no-underscore-dangle
-    const _controlDiv = DomUtil.create('div', this.options.className);
+    const controlDiv = DomUtil.create('div', this.options.className);
 
-    DomEvent.on(_controlDiv, 'click', event => {
+    DomEvent.on(controlDiv, 'click', event => {
       DomEvent.stopPropagation(event);
     });
-    DomEvent.disableScrollPropagation(_controlDiv);
-    DomEvent.disableClickPropagation(_controlDiv);
+    DomEvent.disableScrollPropagation(controlDiv);
+    DomEvent.disableClickPropagation(controlDiv);
 
-    return _controlDiv;
+    return controlDiv;
   },
 
   onRemove(map: Map) {
@@ -54,22 +54,25 @@ const useForceUpdate = () => {
   return () => setValue(value => value + 1); // update the state to force render
 };
 
-export function createContainerComponent<E, P extends PropsWithChildren>(
+export function createContainerComponent<E extends Control, P extends PropsWithChildren>(
   useElement: ElementHook<E, P>,
 ) {
   function ContainerComponent(props: P, ref: Ref<E>) {
     const forceUpdate = useForceUpdate();
-    // @ts-ignore next-line
-    const { instance, context } = useElement(props, null).current;
+    const context = useLeafletContext();
+    const elementRef = useElement(props, context);
+    const { instance } = elementRef.current;
     const children = props.children;
-    const contentNode = (instance as any).getContainer();
+    const contentNode = instance.getContainer();
 
     useImperativeHandle(ref, () => instance);
     useEffect(() => {
       forceUpdate();
     }, [contentNode]);
 
-    if (!children || !contentNode) return null;
+    if (!children || !contentNode) {
+      return <></>;
+    }
 
     return createPortal(<LeafletProvider value={context}>{children}</LeafletProvider>, contentNode);
   }
