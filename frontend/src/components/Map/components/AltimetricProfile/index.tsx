@@ -55,7 +55,7 @@ export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSO
     L.setLocale(language);
 
     elevationControl.load(trekGeoJSON);
-  }, [id, intl, language, map, trekGeoJSON]);
+  }, [id, intl, isMounted, language, map, trekGeoJSON]);
 
   return null;
 };
