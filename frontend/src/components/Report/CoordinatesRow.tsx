@@ -1,5 +1,4 @@
 import Input from 'components/Input';
-import { FunctionComponent } from 'react';
 import { Label, Row } from 'components/InputRow/InputRow.style';
 import { MessageFormatElement } from 'react-intl';
 
@@ -12,7 +11,7 @@ interface Props {
   helpText?: string | MessageFormatElement[];
 }
 
-const InputRow: FunctionComponent<Props> = props => {
+const InputRow: React.FC<Props> = props => {
   return (
     <Row>
       <div className="flex gap-6">
@@ -23,9 +22,9 @@ const InputRow: FunctionComponent<Props> = props => {
           </div>
         ))}
       </div>
-      {Boolean(props.helpText) && (
+      {props.helpText !== undefined && (
         <p className="text-sm">
-          <em>{props.helpText}</em>
+          <em>{props.helpText.toString()}</em>
         </p>
       )}
     </Row>
