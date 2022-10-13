@@ -1,6 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
 import { DetailsSectionsPosition } from 'components/pages/details/useDetails';
-// @ts-ignore
 import debounce from 'debounce';
 import { getDimensions } from 'components/pages/details/utils';
 import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect';

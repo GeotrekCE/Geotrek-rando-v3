@@ -1,7 +1,6 @@
 import { LatLngBounds } from 'leaflet';
 import { useCallback, useEffect } from 'react';
 import { useMap } from 'react-leaflet';
-// @ts-ignore
 import debounce from 'debounce';
 
 interface Props {
