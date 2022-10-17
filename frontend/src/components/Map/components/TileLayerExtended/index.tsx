@@ -7,6 +7,7 @@ interface TileLayerExtendedProps {
   url: string;
   bounds?: string;
   options?: LayerOptions;
+  rangeZoom?: number[];
 }
 
 interface ExtendedProperties {
@@ -79,7 +80,12 @@ const getGeoJSONLayer = async (url: string, options: LayerOptions) => {
   );
 };
 
-const TileLayerExtended: React.FC<TileLayerExtendedProps> = ({ url, bounds, options = {} }) => {
+const TileLayerExtended: React.FC<TileLayerExtendedProps> = ({
+  url,
+  bounds,
+  options = {},
+  rangeZoom = [0, 20],
+}) => {
   const [tile, setTile] = useState(null);
   const map = useMap();
 
@@ -105,24 +111,24 @@ const TileLayerExtended: React.FC<TileLayerExtendedProps> = ({ url, bounds, opti
       map.addLayer(nextTile);
     }
     map.attributionControl?.setPrefix('');
-  }, [url, bounds, options]);
+  }, [url, bounds, options, map]);
 
   useEffect(() => {
     if (map === undefined) {
       return;
     }
+    map.setMinZoom(rangeZoom[0]);
+    map.setMaxZoom(rangeZoom[1]);
     void loadLayer();
-    return () => {
-      if (options?.attribution !== undefined) {
-        map.attributionControl?.removeAttribution(options?.attribution);
-      }
-    };
-  }, [map]);
+  }, [loadLayer, map]);
 
   useEffect(() => {
     return () => {
       if (map !== undefined && tile !== null) {
         map.removeLayer(tile);
+        if (options?.attribution !== undefined) {
+          map.attributionControl?.removeAttribution(options?.attribution);
+        }
       }
     };
   }, [map, tile]);
