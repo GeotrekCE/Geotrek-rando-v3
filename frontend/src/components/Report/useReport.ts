@@ -149,7 +149,7 @@ const useReport = ({ startPoint }: Props) => {
       .catch(localError => {
         console.error(localError);
         const [context, key, field] = (localError.message as string).split('.');
-        setError({ id: `${context}.${key}`, values: { field: `${context}.${field}` } });
+        setError({ id: `${context}.${key}`, values: { field: `report.${field}` } });
       });
     setCoordinatesReportTouched(false);
   };

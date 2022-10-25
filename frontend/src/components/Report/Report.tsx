@@ -37,7 +37,7 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
     startPoint,
   });
 
-  const { contact: { name, number, mail } = {} } = getFooterConfig();
+  const { contact: { name, number = '', mail } = {} } = getFooterConfig();
 
   const { reportVisibility, setReportVisibility } = useDetailsAndMapContext();
   const [displayForm, setDisplayForm] = useState<boolean>(false);
@@ -81,7 +81,7 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
               <FormattedMessage id={'report.success'} />
             </div>
           ) : (
-            <form encType="multipart/form-data" onSubmit={void submit}>
+            <form encType="multipart/form-data" onSubmit={submit}>
               {(!isMobile || coordinatesReportTouched) && (
                 <CoordinatesRow
                   coordinates={[
@@ -199,7 +199,7 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
                           a: () => (
                             <a
                               className="underline"
-                              href={mail !== undefined ? `mailto:${mail}` : `tel:${number ?? ''}`}
+                              href={mail !== undefined ? `mailto:${mail}` : `tel:${number}`}
                             >
                               {mail ?? number}
                             </a>
