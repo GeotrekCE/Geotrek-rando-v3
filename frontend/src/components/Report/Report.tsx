@@ -36,7 +36,7 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
     startPoint,
   });
 
-  const { contact: { name, number, mail } = {} } = getFooterConfig();
+  const { contact: { name, number = '', mail } = {} } = getFooterConfig();
 
   const { reportVisibility, setReportVisibility } = useDetailsAndMapContext();
   const [displayForm, setDisplayForm] = useState<boolean>(false);
@@ -198,7 +198,7 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
                           a: () => (
                             <a
                               className="underline"
-                              href={mail !== undefined ? `mailto:${mail}` : `tel:${number ?? ''}`}
+                              href={mail !== undefined ? `mailto:${mail}` : `tel:${number}`}
                             >
                               {mail ?? number}
                             </a>
