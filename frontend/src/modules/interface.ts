@@ -108,6 +108,7 @@ export interface APICallsConfig {
   minAltitudeDifferenceToDisplayElevationProfile: number;
   accessibilityCodeNumber: string | null;
   groupTreksAndOutdoorFilters: boolean;
+  hCaptchaKey: string | null;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */

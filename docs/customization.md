@@ -34,9 +34,11 @@ In json files, you can just override the primary keys you need. You have to over
     ![Activity Icon on filter list](assets/labeledTouristicContentExample.png)
   - `applicationName`: application name appearing on PWA
   - `enableReport`: to enable report form in trek detail pages
+  - `hCaptchaKey`: string key to enable Captcha validation in the report form. To create/define a key, see https://www.hcaptcha.com/
   - `enableSearchByMap`: to enable searching by map displayed area (bbox)
   - `maxLengthTrekAllowedFor3DRando`: Maximum length of meters allowed to enable 3D mode in the current trek. Adjust this setting carefully as too long a trek could freeze your browser. If this setting is defined to `0` (or  `mapSatelliteLayers` from `map.json` is defined to `null`) the 3D mode feature is disabled for the whole application
   - `minAltitudeDifferenceToDisplayElevationProfile`: Minimum altitude difference in meters required to display the elevation profile in the current trek
+  - `accessibilityCodeNumber`: emergency number. Default set to `114`.
 
 - `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
 

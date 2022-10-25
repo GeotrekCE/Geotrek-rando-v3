@@ -11,6 +11,7 @@ import { useMediaPredicate } from 'react-media-hook';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { Arrow } from 'components/Icons/Arrow';
 import { getFooterConfig } from 'components/Footer/useFooter';
+import HCaptcha from 'components/HCaptcha';
 import { Option } from '../../modules/filters/interface';
 import { PointGeometry } from '../../modules/interface';
 import { MapReportButton } from './MapReportButton';
@@ -189,23 +190,25 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
                     </p>
                   )}
 
-                  <div className="flex items-center gap-6">
-                    <p className="text-sm text-italic">
-                      <FormattedMessage
-                        id={'report.GDPRDisclaimer'}
-                        values={{
-                          b: () => <strong className="font-bold">{name}</strong>,
-                          a: () => (
-                            <a
-                              className="underline"
-                              href={mail !== undefined ? `mailto:${mail}` : `tel:${number}`}
-                            >
-                              {mail ?? number}
-                            </a>
-                          ),
-                        }}
-                      />
-                    </p>
+                  <p className="text-sm text-italic">
+                    <FormattedMessage
+                      id={'report.GDPRDisclaimer'}
+                      values={{
+                        b: () => <strong className="font-bold">{name}</strong>,
+                        a: () => (
+                          <a
+                            className="underline"
+                            href={mail !== undefined ? `mailto:${mail}` : `tel:${number}`}
+                          >
+                            {mail ?? number}
+                          </a>
+                        ),
+                      }}
+                    />
+                  </p>
+
+                  <div className="desktop:flex items-center justify-end mt-4 gap-6">
+                    <HCaptcha />
 
                     <Button type="submit">
                       <FormattedMessage id={'report.button'} />
