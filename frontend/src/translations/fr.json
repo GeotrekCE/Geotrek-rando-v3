@@ -187,6 +187,7 @@
     "title": "Signaler un problème ou une erreur",
     "intro": "Vous avez repéré une erreur sur cette page ou constaté un problème lors de votre randonnée, signalez-les nous ici :",
     "activity": "Activité",
+    "captcha": "Captcha",
     "category": "Catégorie",
     "magnitude": "Ampleur du problème",
     "comment": "Commentaires",
