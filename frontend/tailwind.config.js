@@ -159,7 +159,7 @@ module.exports = {
     },
   },
   plugins: [
-    // plugin should be drop with TW v3
+    // plugins should be drop with TW v3
     plugin(function ({ addUtilities, variants }) {
       const scrollBehaviors = {
         '.scroll-smooth': {
@@ -169,8 +169,32 @@ module.exports = {
           'scroll-behavior': 'auto',
         },
       };
+      const srOnly = {
+        '.sr-only': {
+          position: 'absolute',
+          width: '1px',
+          height: '1px',
+          padding: 0,
+          margin: '-1px',
+          overflow: 'hidden',
+          clip: 'rect(0, 0, 0, 0)',
+          'white-space': 'nowrap',
+          'border-width': 0,
+        },
+        '.not-sr-only': {
+          position: 'static',
+          width: 'auto',
+          height: 'auto',
+          padding: 0,
+          margin: 0,
+          overflow: 'visible',
+          clip: 'auto',
+          'white-space': 'normal',
+        },
+      };
 
       addUtilities(scrollBehaviors, variants('scrollBehavior', ['motion-safe', 'motion-reduce']));
-    })
+      addUtilities(srOnly);
+    }),
   ],
 };
