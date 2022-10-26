@@ -19,9 +19,9 @@ import { OutdoorCoursesChildrenSection } from 'components/pages/site/components/
 import { OutdoorSiteChildrenSection } from 'components/pages/site/components/OutdoorSiteChildrenSection';
 import React, { useMemo, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Loader from 'react-loader';
+import Loader from 'components/Loader';
 import { useMediaPredicate } from 'react-media-hook';
-import { colorPalette, sizes, zIndex } from 'stylesheet';
+import { sizes } from 'stylesheet';
 import { DetailsMapDynamicComponent } from 'components/Map';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
@@ -103,18 +103,13 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
           }
         />
         {outdoorSiteContent === undefined ? (
-          isLoading ? (
-            <Loader
-              loaded={!isLoading}
-              options={{
-                top: `${sizes.desktopHeader + sizes.filterBar}px`,
-                color: colorPalette.primary1,
-                zIndex: zIndex.loader,
-              }}
-            />
-          ) : (
-            <ErrorFallback refetch={refetch} />
-          )
+          <Layout>
+            {isLoading ? (
+              <Loader className="absolute inset-0" />
+            ) : (
+              <ErrorFallback refetch={refetch} />
+            )}
+          </Layout>
         ) : (
           <>
             <Layout>
