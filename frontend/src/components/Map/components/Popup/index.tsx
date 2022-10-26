@@ -3,7 +3,7 @@ import { routes } from 'services/routes';
 import styled, { css } from 'styled-components';
 import { Popup as LeafletPopup, Tooltip as LeafletTooltip } from 'react-leaflet';
 import { FormattedMessage } from 'react-intl';
-import Loader from 'react-loader';
+import Loader from 'components/Loader';
 
 import { colorPalette, desktopOnly, getSpacing } from 'stylesheet';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
@@ -39,12 +39,7 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId }) => 
   const { isLoading, trekPopupResult } = usePopupResult(id.toString(), true, type);
 
   return (
-    <Loader
-      loaded={!isLoading}
-      options={{
-        color: colorPalette.primary1,
-      }}
-    >
+    <Loader className="absolute inset-0" loaded={!isLoading}>
       {trekPopupResult && (
         <div className="flex flex-col">
           <CoverImage src={trekPopupResult.imgUrl} />

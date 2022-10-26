@@ -3,12 +3,11 @@ import InputRow from 'components/InputRow';
 import TextareaRow from 'components/TextareaRow';
 import React, { useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Loader from 'react-loader';
+import Loader from 'components/Loader';
 
 import { SelectableDropdown } from 'components/pages/search/components/FilterBar/SelectableDropdown';
 import useReport from 'components/Report/useReport';
 import { useMediaPredicate } from 'react-media-hook';
-import styled from 'styled-components';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { Arrow } from 'components/Icons/Arrow';
 import { getFooterConfig } from 'components/Footer/useFooter';
@@ -62,7 +61,7 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
   };
 
   return (
-    <ReportWrapper>
+    <>
       <div className="flex gap-5 items-center mb-5">
         <p className="text-lg">
           <FormattedMessage id={'report.intro'} />
@@ -218,16 +217,8 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
           )}
         </Loader>
       )}
-    </ReportWrapper>
+    </>
   );
 };
-
-const ReportWrapper = styled.div`
-  position: relative;
-  z-index: 0;
-  > .loader {
-    min-height: 80px;
-  }
-`;
 
 export default Report;

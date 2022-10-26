@@ -1,7 +1,7 @@
 import MoreLink from 'components/Information/MoreLink';
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
-import Loader from 'react-loader';
+import Loader from 'components/Loader';
 
 import parse from 'html-react-parser';
 import { FormattedMessage } from 'react-intl';
@@ -11,7 +11,7 @@ import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
 import { useShowOnScrollPosition } from 'hooks/useShowOnScrollPosition';
 import { useMediaPredicate } from 'react-media-hook';
-import { colorPalette, sizes, zIndex } from 'stylesheet';
+import { sizes } from 'stylesheet';
 import React, { useMemo, useRef } from 'react';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { cleanHTMLElementsFromString } from 'modules/utils/string';
@@ -118,18 +118,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
           }
         />
         {details === undefined ? (
-          isLoading ? (
-            <Loader
-              loaded={!isLoading}
-              options={{
-                top: `${sizes.desktopHeader + sizes.filterBar}px`,
-                color: colorPalette.primary1,
-                zIndex: zIndex.loader,
-              }}
-            />
-          ) : (
-            <ErrorFallback refetch={refetch} />
-          )
+          <Layout>
+            {isLoading ? (
+              <Loader className="absolute inset-0" />
+            ) : (
+              <ErrorFallback refetch={refetch} />
+            )}
+          </Layout>
         ) : (
           <>
             <Layout>

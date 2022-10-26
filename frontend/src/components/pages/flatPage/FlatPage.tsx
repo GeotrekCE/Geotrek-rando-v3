@@ -1,5 +1,5 @@
 import { Layout } from 'components/Layout/Layout';
-import Loader from 'react-loader';
+import Loader from 'components/Loader';
 import { colorPalette, sizes, zIndex } from 'stylesheet';
 import parse from 'html-react-parser';
 import { Footer } from 'components/Footer';
@@ -34,14 +34,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
       />
       {flatPage === undefined ? (
         isLoading === true ? (
-          <Loader
-            loaded={!isLoading}
-            options={{
-              top: `${sizes.desktopHeader + sizes.filterBar}px`,
-              color: colorPalette.primary1,
-              zIndex: zIndex.loader,
-            }}
-          />
+          <Loader />
         ) : (
           <ErrorFallback refetch={refetch} />
         )
