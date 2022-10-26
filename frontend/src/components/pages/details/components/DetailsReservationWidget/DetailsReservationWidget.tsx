@@ -1,5 +1,6 @@
 import { Reservation } from 'modules/details/interface';
 import { useCallback, useEffect } from 'react';
+import Loader from 'components/Loader';
 import Script from 'next/script';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -91,7 +92,9 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
         strategy="lazyOnload"
       />
       <div className="OsItinerance OsItPartner CssCustom">
-        <div id="eiti-partner"></div>
+        <div id="eiti-partner">
+          <Loader />
+        </div>
       </div>
     </>
   );
