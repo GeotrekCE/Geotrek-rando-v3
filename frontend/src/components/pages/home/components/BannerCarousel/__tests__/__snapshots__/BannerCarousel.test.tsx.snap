@@ -14,7 +14,7 @@ Object {
           dir="ltr"
         >
           <div
-            class="sc-gsTEea sc-hKgJUU sc-kEjbQP sc-crrszt cWbnrH gUGcfP hLBskb hrDxCl slick-arrow slick-prev"
+            class="sc-gswNZR sc-hLBbgP sc-kDvujY sc-csuSiG eEZug iXwfzt hza-DBk cqVOWQ slick-arrow slick-prev"
           />
           <div
             class="slick-list"
@@ -111,7 +111,7 @@ Object {
             </div>
           </div>
           <div
-            class="sc-gsTEea sc-hKgJUU sc-kEjbQP sc-iqHYmW cWbnrH gUGcfP hLBskb ksDbZr slick-arrow slick-next"
+            class="sc-gswNZR sc-hLBbgP sc-kDvujY sc-ipEyDJ eEZug iXwfzt hza-DBk fAHpGs slick-arrow slick-next"
           />
         </div>
       </div>
@@ -127,7 +127,7 @@ Object {
         dir="ltr"
       >
         <div
-          class="sc-gsTEea sc-hKgJUU sc-kEjbQP sc-crrszt cWbnrH gUGcfP hLBskb hrDxCl slick-arrow slick-prev"
+          class="sc-gswNZR sc-hLBbgP sc-kDvujY sc-csuSiG eEZug iXwfzt hza-DBk cqVOWQ slick-arrow slick-prev"
         />
         <div
           class="slick-list"
@@ -224,7 +224,7 @@ Object {
           </div>
         </div>
         <div
-          class="sc-gsTEea sc-hKgJUU sc-kEjbQP sc-iqHYmW cWbnrH gUGcfP hLBskb ksDbZr slick-arrow slick-next"
+          class="sc-gswNZR sc-hLBbgP sc-kDvujY sc-ipEyDJ eEZug iXwfzt hza-DBk fAHpGs slick-arrow slick-next"
         />
       </div>
     </div>

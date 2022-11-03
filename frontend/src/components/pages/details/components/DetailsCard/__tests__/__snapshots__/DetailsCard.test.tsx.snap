@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-bqyKOL jnBCfI border border-solid border-greySoft rounded-card
+        class="sc-bqWxrE bXrUBS border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -29,7 +29,7 @@ Object {
                   class=""
                 >
                   <img
-                    class="sc-kstqJO cpcdgp"
+                    class="sc-ksBlkl iMdHGj"
                     height="200"
                     src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                   />
@@ -38,7 +38,7 @@ Object {
             </div>
           </div>
           <div
-            class="sc-bdfBQB kFdGRg absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
+            class="sc-bcXHqe hQbWpf absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
             color="#AA397D"
           >
             <div
@@ -61,7 +61,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-dQoVA sc-hBEYId bfjBXp bXrNA text-greyDarkColored"
+              class="sc-eDWCr sc-hBxehG feBdY jPBufU text-greyDarkColored"
             >
               <div>
                 <span>
@@ -80,7 +80,7 @@ Object {
     </div>
     <div>
       <div
-        class="sc-bqyKOL jnBCfI border border-solid border-greySoft rounded-card
+        class="sc-bqWxrE bXrUBS border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -100,11 +100,11 @@ Object {
                 class="w-full h-full"
               >
                 <div
-                  class="slick-slider sc-hKgJUU jgBzgR slick-initialized"
+                  class="slick-slider sc-hLBbgP fJlqCz slick-initialized"
                   dir="ltr"
                 >
                   <div
-                    class="sc-eCstlR sc-jSgvzq sc-fubCzh iIDDLN iBGNoE jigmQT slick-arrow slick-prev"
+                    class="sc-eDvSVe sc-jSUZER sc-ftTHYK gXeKSe fLdGOJ dVnNOE slick-arrow slick-prev"
                   />
                   <div
                     class="slick-list"
@@ -129,7 +129,7 @@ Object {
                       >
                         <div>
                           <img
-                            class="sc-kstqJO cpcdgp"
+                            class="sc-ksBlkl iMdHGj"
                             height="200"
                             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                             style="width: 100%; display: inline-block;"
@@ -153,7 +153,7 @@ Object {
                       >
                         <div>
                           <img
-                            class="sc-kstqJO cpcdgp"
+                            class="sc-ksBlkl iMdHGj"
                             height="200"
                             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                             style="width: 100%; display: inline-block;"
@@ -171,10 +171,10 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="sc-eCstlR sc-jSgvzq sc-iBPTik iIDDLN iBGNoE jdjHAl slick-arrow slick-next"
+                    class="sc-eDvSVe sc-jSUZER sc-iBYQkv gXeKSe fLdGOJ fnuqjJ slick-arrow slick-next"
                   />
                   <div
-                    class="sc-kEjbQP sc-iqHYmW dqcwUK slick-dots"
+                    class="sc-kDvujY sc-ipEyDJ dfnhxh slick-dots"
                   >
                     <ul>
                       <li
@@ -198,7 +198,7 @@ Object {
             </div>
           </div>
           <div
-            class="sc-bdfBQB kFdGRg absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
+            class="sc-bcXHqe hQbWpf absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
             color="#AA397D"
           >
             <div
@@ -221,7 +221,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-dQoVA sc-hBEYId bfjBXp bXrNA text-greyDarkColored"
+              class="sc-eDWCr sc-hBxehG feBdY jPBufU text-greyDarkColored"
             >
               <div>
                 <span>
@@ -241,7 +241,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-bqyKOL jnBCfI border border-solid border-greySoft rounded-card
+      class="sc-bqWxrE bXrUBS border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -264,7 +264,7 @@ Object {
                 class=""
               >
                 <img
-                  class="sc-kstqJO cpcdgp"
+                  class="sc-ksBlkl iMdHGj"
                   height="200"
                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                 />
@@ -273,7 +273,7 @@ Object {
           </div>
         </div>
         <div
-          class="sc-bdfBQB kFdGRg absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
+          class="sc-bcXHqe hQbWpf absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
           color="#AA397D"
         >
           <div
@@ -296,7 +296,7 @@ Object {
           class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
         >
           <div
-            class="sc-dQoVA sc-hBEYId bfjBXp bXrNA text-greyDarkColored"
+            class="sc-eDWCr sc-hBxehG feBdY jPBufU text-greyDarkColored"
           >
             <div>
               <span>
@@ -373,7 +373,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-bqyKOL jnBCfI border border-solid border-greySoft rounded-card
+        class="sc-bqWxrE bXrUBS border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -396,7 +396,7 @@ Object {
                   class=""
                 >
                   <img
-                    class="sc-kstqJO cpcdgp"
+                    class="sc-ksBlkl iMdHGj"
                     height="200"
                     src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                   />
@@ -405,7 +405,7 @@ Object {
             </div>
           </div>
           <div
-            class="sc-bdfBQB kFdGRg absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
+            class="sc-bcXHqe hQbWpf absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
             color="#AA397D"
           >
             <div
@@ -428,7 +428,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-dQoVA sc-hBEYId bfjBXp bXrNA text-greyDarkColored"
+              class="sc-eDWCr sc-hBxehG feBdY jPBufU text-greyDarkColored"
             >
               <div>
                 <span>
@@ -447,7 +447,7 @@ Object {
     </div>
     <div>
       <div
-        class="sc-bqyKOL jnBCfI border border-solid border-greySoft rounded-card
+        class="sc-bqWxrE bXrUBS border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -467,11 +467,11 @@ Object {
                 class="w-full h-full"
               >
                 <div
-                  class="slick-slider sc-hKgJUU jgBzgR slick-initialized"
+                  class="slick-slider sc-hLBbgP fJlqCz slick-initialized"
                   dir="ltr"
                 >
                   <div
-                    class="sc-eCstlR sc-jSgvzq sc-fubCzh iIDDLN iBGNoE jigmQT slick-arrow slick-prev"
+                    class="sc-eDvSVe sc-jSUZER sc-ftTHYK gXeKSe fLdGOJ dVnNOE slick-arrow slick-prev"
                   />
                   <div
                     class="slick-list"
@@ -496,7 +496,7 @@ Object {
                       >
                         <div>
                           <img
-                            class="sc-kstqJO cpcdgp"
+                            class="sc-ksBlkl iMdHGj"
                             height="200"
                             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                             style="width: 100%; display: inline-block;"
@@ -520,7 +520,7 @@ Object {
                       >
                         <div>
                           <img
-                            class="sc-kstqJO cpcdgp"
+                            class="sc-ksBlkl iMdHGj"
                             height="200"
                             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                             style="width: 100%; display: inline-block;"
@@ -538,10 +538,10 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="sc-eCstlR sc-jSgvzq sc-iBPTik iIDDLN iBGNoE jdjHAl slick-arrow slick-next"
+                    class="sc-eDvSVe sc-jSUZER sc-iBYQkv gXeKSe fLdGOJ fnuqjJ slick-arrow slick-next"
                   />
                   <div
-                    class="sc-kEjbQP sc-iqHYmW dqcwUK slick-dots"
+                    class="sc-kDvujY sc-ipEyDJ dfnhxh slick-dots"
                   >
                     <ul>
                       <li
@@ -565,7 +565,7 @@ Object {
             </div>
           </div>
           <div
-            class="sc-bdfBQB kFdGRg absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
+            class="sc-bcXHqe hQbWpf absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
             color="#AA397D"
           >
             <div
@@ -588,7 +588,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-dQoVA sc-hBEYId bfjBXp bXrNA text-greyDarkColored"
+              class="sc-eDWCr sc-hBxehG feBdY jPBufU text-greyDarkColored"
             >
               <div>
                 <span>
@@ -608,7 +608,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-bqyKOL jnBCfI border border-solid border-greySoft rounded-card
+      class="sc-bqWxrE bXrUBS border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -628,11 +628,11 @@ Object {
               class="w-full h-full"
             >
               <div
-                class="slick-slider sc-hKgJUU jgBzgR slick-initialized"
+                class="slick-slider sc-hLBbgP fJlqCz slick-initialized"
                 dir="ltr"
               >
                 <div
-                  class="sc-eCstlR sc-jSgvzq sc-fubCzh iIDDLN iBGNoE jigmQT slick-arrow slick-prev"
+                  class="sc-eDvSVe sc-jSUZER sc-ftTHYK gXeKSe fLdGOJ dVnNOE slick-arrow slick-prev"
                 />
                 <div
                   class="slick-list"
@@ -657,7 +657,7 @@ Object {
                     >
                       <div>
                         <img
-                          class="sc-kstqJO cpcdgp"
+                          class="sc-ksBlkl iMdHGj"
                           height="200"
                           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                           style="width: 100%; display: inline-block;"
@@ -681,7 +681,7 @@ Object {
                     >
                       <div>
                         <img
-                          class="sc-kstqJO cpcdgp"
+                          class="sc-ksBlkl iMdHGj"
                           height="200"
                           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                           style="width: 100%; display: inline-block;"
@@ -699,10 +699,10 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="sc-eCstlR sc-jSgvzq sc-iBPTik iIDDLN iBGNoE jdjHAl slick-arrow slick-next"
+                  class="sc-eDvSVe sc-jSUZER sc-iBYQkv gXeKSe fLdGOJ fnuqjJ slick-arrow slick-next"
                 />
                 <div
-                  class="sc-kEjbQP sc-iqHYmW dqcwUK slick-dots"
+                  class="sc-kDvujY sc-ipEyDJ dfnhxh slick-dots"
                 >
                   <ul>
                     <li
@@ -726,7 +726,7 @@ Object {
           </div>
         </div>
         <div
-          class="sc-bdfBQB kFdGRg absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
+          class="sc-bcXHqe hQbWpf absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
           color="#AA397D"
         >
           <div
@@ -749,7 +749,7 @@ Object {
           class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
         >
           <div
-            class="sc-dQoVA sc-hBEYId bfjBXp bXrNA text-greyDarkColored"
+            class="sc-eDWCr sc-hBxehG feBdY jPBufU text-greyDarkColored"
           >
             <div>
               <span>
