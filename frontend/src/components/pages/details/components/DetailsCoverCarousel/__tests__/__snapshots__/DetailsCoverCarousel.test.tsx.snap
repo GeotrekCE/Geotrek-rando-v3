@@ -6,11 +6,11 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="slick-slider sc-bdfBQB jMaIKC relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
+        class="slick-slider sc-bcXHqe joHfNd relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
         dir="ltr"
       >
         <div
-          class="sc-gsTEea sc-hKgJUU sc-iBPTik cWbnrH gUGcfP jkeBMW slick-arrow slick-prev"
+          class="sc-gswNZR sc-hLBbgP sc-iBYQkv eEZug iXwfzt cBrSnO slick-arrow slick-prev"
         />
         <div
           class="slick-list"
@@ -125,10 +125,10 @@ Object {
           </div>
         </div>
         <div
-          class="sc-gsTEea sc-hKgJUU sc-gKseQn cWbnrH gUGcfP czcALh slick-arrow slick-next"
+          class="sc-gswNZR sc-hLBbgP sc-gKPRtg eEZug iXwfzt bMoIHG slick-arrow slick-next"
         />
         <div
-          class="sc-fubCzh sc-jrAFXE kOcqGB slick-dots"
+          class="sc-ftTHYK sc-jrcTuL ktEDNK slick-dots"
         >
           <ul>
             <li
@@ -159,11 +159,11 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="slick-slider sc-bdfBQB jMaIKC relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
+      class="slick-slider sc-bcXHqe joHfNd relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
       dir="ltr"
     >
       <div
-        class="sc-gsTEea sc-hKgJUU sc-iBPTik cWbnrH gUGcfP jkeBMW slick-arrow slick-prev"
+        class="sc-gswNZR sc-hLBbgP sc-iBYQkv eEZug iXwfzt cBrSnO slick-arrow slick-prev"
       />
       <div
         class="slick-list"
@@ -278,10 +278,10 @@ Object {
         </div>
       </div>
       <div
-        class="sc-gsTEea sc-hKgJUU sc-gKseQn cWbnrH gUGcfP czcALh slick-arrow slick-next"
+        class="sc-gswNZR sc-hLBbgP sc-gKPRtg eEZug iXwfzt bMoIHG slick-arrow slick-next"
       />
       <div
-        class="sc-fubCzh sc-jrAFXE kOcqGB slick-dots"
+        class="sc-ftTHYK sc-jrcTuL ktEDNK slick-dots"
       >
         <ul>
           <li
