@@ -2,15 +2,13 @@ const path = require('path');
 const withPlugins = require('next-compose-plugins');
 const withSourceMaps = require('@zeit/next-source-maps');
 // https://github.com/vercel/next.js/discussions/29697
-const withBundleAnalyzer = process.env.ANALYZE === 'true'
-  ? require('@next/bundle-analyzer')()
-  : x => x;
+const withBundleAnalyzer =
+  process.env.ANALYZE === 'true' ? require('@next/bundle-analyzer')() : x => x;
 const dotenv = require('dotenv-flow');
 const runtimeCachingStrategy = require('./cache');
 const headerConfig = require('./config/header.json');
 const customHeaderConfig = require('./customization/config/header.json');
-const { getConfig, getTemplates } = require('./src/services/getConfig');
-const { getLocales } = require('./src/services/getLocales');
+const { getAllConfigs } = require('./src/services/getConfig');
 const { withSentryConfig } = require('@sentry/nextjs');
 const withPWA = require('next-pwa')({
   disable: process.env.NODE_ENV === 'development',
@@ -29,7 +27,7 @@ const plugins = [
   [withPWA],
   [withSourceMaps()],
   [withBundleAnalyzer],
-  (nextConfig) => withSentryConfig(nextConfig, { silent: true })
+  nextConfig => withSentryConfig(nextConfig, { silent: true }),
 ];
 
 module.exports = withPlugins(plugins, {
@@ -53,46 +51,9 @@ module.exports = withPlugins(plugins, {
   sentry: {
     hideSourceMaps: true,
     disableServerWebpackPlugin: true, //process.env.SENTRY_DSN === undefined,
-    disableClientWebpackPlugin: true //process.env.SENTRY_DSN === undefined,
+    disableClientWebpackPlugin: true, //process.env.SENTRY_DSN === undefined,
   },
-  publicRuntimeConfig: {
-    homeBottomHtml: getTemplates(
-      '../html/homeBottom.html',
-      mergedHeaderConfig.menu.supportedLanguages,
-    ),
-    homeTopHtml: getTemplates(
-      '../html/homeTop.html',
-      mergedHeaderConfig.menu.supportedLanguages,
-    ),
-    headerTopHtml: getTemplates(
-      '../html/headerTop.html',
-      mergedHeaderConfig.menu.supportedLanguages,
-    ),
-    headerBottomHtml: getTemplates(
-      '../html/headerBottom.html',
-      mergedHeaderConfig.menu.supportedLanguages,
-    ),
-    footerTopHtml: getTemplates(
-      '../html/footerTop.html',
-      mergedHeaderConfig.menu.supportedLanguages,
-    ),
-    footerBottomHtml: getTemplates(
-      '../html/footerBottom.html',
-      mergedHeaderConfig.menu.supportedLanguages,
-    ),
-    scriptsHeaderHtml: getConfig('../html/scriptsHeader.html', false),
-    scriptsFooterHtml: getConfig('../html/scriptsFooter.html', false),
-    style: getConfig('../theme/style.css', false),
-    colors: getConfig('../theme/colors.json', true),
-    header: getConfig('header.json', true),
-    global: getConfig('global.json', true),
-    home: getConfig('home.json', true),
-    map: getConfig('map.json', true),
-    filter: getConfig('filter.json', true),
-    footer: getConfig('footer.json', true),
-    manifest: getConfig('manifest.json', true),
-    locales: getLocales(mergedHeaderConfig.menu.supportedLanguages),
-  },
+  publicRuntimeConfig: getAllConfigs,
   compiler: {
     styledComponents: true,
   },
