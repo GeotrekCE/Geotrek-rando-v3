@@ -9,6 +9,7 @@
     "build": "next build ./src",
     "bundle-analyze": "ANALYZE=true yarn build",
     "generate": "plop --plopfile scripts/generators/index.js",
+    "prestart": "node ./src/services/rewriteBuildedPages.mjs",
     "start": "NODE_ENV=production node ./src/server.js",
     "test": "jest --coverage=false --runInBand",
     "test:coverage": "jest --coverage --runInBand",
