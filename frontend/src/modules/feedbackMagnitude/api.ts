@@ -5,5 +5,5 @@ import { RawFeedbackMagnitude } from './interface';
 export const fetchFeedbackMagnitude = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawFeedbackMagnitude>> => {
-  return GeotrekAPI.get('/feedback_magnitude', { params: { ...query } }).then(r => r.data);
+  return GeotrekAPI.get('/feedback_magnitude/', { params: { ...query } }).then(r => r.data);
 };

@@ -57,7 +57,7 @@ export const mockTrekRatingResponse = (): TrekRatingResponse => ({
 
 export const mockTrekRatingRoute = (): void =>
   mockRoute({
-    route: '/trek_rating',
+    route: '/trek_rating/',
     mockData: mockTrekRatingResponse(),
     additionalQueries: {
       fields: 'id,name,description,order,color,scale',

@@ -241,7 +241,7 @@ export const mockOutdoorCoursesResponse = (): OutdoorCoursesResponse => ({
 
 export const mockOutdoorCoursesRoute = (times: number): void =>
   mockRoute({
-    route: '/outdoor_course',
+    route: '/outdoor_course/',
     mockData: mockOutdoorCoursesResponse(),
     additionalQueries: {
       fields: 'id,attachments,name,category,description,geometry',

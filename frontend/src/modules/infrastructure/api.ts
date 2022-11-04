@@ -10,7 +10,7 @@ export const fetchInfrastructure = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawInfrastructure>> => {
   try {
-    return GeotrekAPI.get('/infrastructure', { params: { ...query, ...fieldsParams } }).then(
+    return GeotrekAPI.get('/infrastructure/', { params: { ...query, ...fieldsParams } }).then(
       r => r.data,
     );
   } catch (e) {

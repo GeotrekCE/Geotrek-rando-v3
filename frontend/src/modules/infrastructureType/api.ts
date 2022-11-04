@@ -9,6 +9,6 @@ const fieldsParams = {
 export const fetchInfrastructureType = (
   query: APIQuery,
 ): Promise<APIResponseForList<InfrastructureType>> =>
-  GeotrekAPI.get('/infrastructure_type', {
+  GeotrekAPI.get('/infrastructure_type/', {
     params: { ...query, ...fieldsParams },
   }).then(r => r.data);

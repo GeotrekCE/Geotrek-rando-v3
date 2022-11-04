@@ -36,7 +36,7 @@ export const mockSignageResponse = (): SignagesResponse => ({
 
 export const mockSignageRoute = (times: number, nearTrek: number): void =>
   mockRoute({
-    route: '/signage',
+    route: '/signage/',
     mockData: mockSignageResponse(),
     additionalQueries: {
       fields: 'attachments,description,id,geometry,name,type',

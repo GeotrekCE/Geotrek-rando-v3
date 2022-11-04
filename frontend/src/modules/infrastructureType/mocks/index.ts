@@ -23,7 +23,7 @@ export const mockInfrastructureTypeResponse = (): InfrastructureTypeResponse => 
 
 export const mockInfrastructureTypeRoute = (times: number): void =>
   mockRoute({
-    route: '/infrastructure_type',
+    route: '/infrastructure_type/',
     mockData: mockInfrastructureTypeResponse(),
     additionalQueries: {
       fields: 'id,label,pictogram',

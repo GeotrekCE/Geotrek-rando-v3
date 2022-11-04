@@ -7,4 +7,4 @@ const fieldsParams = {
 };
 
 export const fetchPois = (query: APIQuery): Promise<APIResponseForList<RawPoi>> =>
-  GeotrekAPI.get(`/poi`, { params: { ...query, ...fieldsParams } }).then(r => r.data);
+  GeotrekAPI.get('/poi/', { params: { ...query, ...fieldsParams } }).then(r => r.data);

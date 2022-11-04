@@ -5,5 +5,5 @@ import { RawFeedbackCategory } from './interface';
 export const fetchFeedbackCategory = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawFeedbackCategory>> => {
-  return GeotrekAPI.get('/feedback_category', { params: { ...query } }).then(r => r.data);
+  return GeotrekAPI.get('/feedback_category/', { params: { ...query } }).then(r => r.data);
 };

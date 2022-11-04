@@ -212,7 +212,7 @@ export const mockTouristicContentCategoryResponse = (): TouristicContentCategory
 
 export const mockTouristicContentCategoryRoute = (times: number): void =>
   mockRoute({
-    route: '/touristiccontent_category',
+    route: '/touristiccontent_category/',
     mockData: mockTouristicContentCategoryResponse(),
     additionalQueries: {},
     times,

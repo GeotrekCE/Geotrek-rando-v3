@@ -5,5 +5,5 @@ import { RawFeedbackActivity } from './interface';
 export const fetchFeedbackActivity = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawFeedbackActivity>> => {
-  return GeotrekAPI.get('/feedback_activity', { params: { ...query } }).then(r => r.data);
+  return GeotrekAPI.get('/feedback_activity/', { params: { ...query } }).then(r => r.data);
 };
