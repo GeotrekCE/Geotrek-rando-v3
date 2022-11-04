@@ -3,8 +3,8 @@
 import fs from 'fs';
 import { getAllConfigs } from './getConfig.js';
 
-import headerConfig from '../../config/header.json' assert { type: 'json' };
-import customHeaderConfig from '../../customization/config/header.json' assert { type: 'json' };
+const headerConfig = JSON.parse(fs.readFileSync('./config/header.json' , 'utf8'));
+const customHeaderConfig = JSON.parse(fs.readFileSync('./customization/config/header.json' , 'utf8'));
 
 const mergedHeaderConfig = Object.assign(headerConfig, customHeaderConfig);
 
@@ -21,6 +21,21 @@ const getColorsAsString = Object.entries(getAllConfigs.colors ?? []).reduce((lis
 
 const rewriteBuildedPages = () => {
   const pages = ['404', '_offline', 'offline'];
+  // Delete all HTML configuration as it will not be displayed.
+  const {
+    homeBottomHtml,
+    homeTopHtml,
+    headerTopHtml,
+    headerBottomHtml,
+    footerTopHtml,
+    footerBottomHtml,
+    scriptsHeaderHtml,
+    scriptsFooterHtml,
+    ...JSONConfig
+  } = getAllConfigs
+
+  const runTimeConfig = JSON.stringify(JSONConfig);
+
 
   mergedHeaderConfig.menu.supportedLanguages.forEach(lang => {
     pages.forEach(page => {
@@ -38,7 +53,7 @@ const rewriteBuildedPages = () => {
       // Replace config
       file = `${file}`.replace(
         new RegExp('"runtimeConfig":(.*?)}}}'),
-        `"runtimeConfig":${JSON.stringify(getAllConfigs)}`
+        `"runtimeConfig":${runTimeConfig}`
       )
 
       // Rewrite file
