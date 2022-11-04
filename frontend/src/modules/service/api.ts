@@ -8,7 +8,7 @@ const fieldsParams = {
 
 export const fetchService = (query: APIQuery): Promise<APIResponseForList<RawService>> => {
   try {
-    return GeotrekAPI.get('/service', { params: { ...query, ...fieldsParams } }).then(r => r.data);
+    return GeotrekAPI.get('/service/', { params: { ...query, ...fieldsParams } }).then(r => r.data);
   } catch (e) {
     console.error('Error in service/api/fetch', e);
     throw e;

@@ -6,9 +6,9 @@ import { AccessibilityLevel, RawAccessibility } from './interface';
 export const fetchAccessibilities = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawAccessibility>> =>
-  GeotrekAPI.get('/trek_accessibility', { params: { ...query, ...portalsFilter } }).then(
+  GeotrekAPI.get('/trek_accessibility/', { params: { ...query, ...portalsFilter } }).then(
     r => r.data,
   );
 
 export const fetchAccessibilityLevel = (id: number): Promise<AccessibilityLevel> =>
-  GeotrekAPI.get(`/trek_accessibility_level/${id}`).then(r => r.data);
+  GeotrekAPI.get(`/trek_accessibility_level/${id}/`).then(r => r.data);

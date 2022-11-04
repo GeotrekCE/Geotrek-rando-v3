@@ -23,7 +23,7 @@ export const mockServiceResponse = (): ServiceResponse => ({
 
 export const mockServiceRoute = (times: number, nearTrek: number): void =>
   mockRoute({
-    route: '/service',
+    route: '/service/',
     mockData: mockServiceResponse(),
     additionalQueries: {
       fields: 'id,geometry,type',

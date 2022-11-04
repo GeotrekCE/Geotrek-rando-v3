@@ -75,14 +75,14 @@ describe('Details', () => {
       .reply(200, rawRoute);
 
     nock(getGlobalConfig().apiUrl)
-      .get(`/theme`)
+      .get(`/theme/`)
       .query({
         language: 'fr',
       })
       .reply(200, mockThemeResponse);
 
     nock(getGlobalConfig().apiUrl)
-      .get(`/trek_network`)
+      .get(`/trek_network/`)
       .query({
         language: 'fr',
       })

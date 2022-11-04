@@ -36,7 +36,7 @@ export const mockSensitiveAreasResponse = (): SensitiveAreasResponse => ({
 
 export const mockSensitiveAreaRoute = (times: number): void =>
   mockRoute({
-    route: '/sensitivearea',
+    route: '/sensitivearea/',
     mockData: mockSensitiveAreasResponse(),
     additionalQueries: {
       period: 'ignore',

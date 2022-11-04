@@ -11,37 +11,37 @@ const fieldsParams = {
 export const fetchTrekResults = (
   query: APIQuery,
 ): Promise<APIResponseForList<Partial<RawTrekResult>>> =>
-  GeotrekAPI.get('/trek', { params: { ...query, ...fieldsParams, ...portalsFilter } }).then(
+  GeotrekAPI.get('/trek/', { params: { ...query, ...fieldsParams, ...portalsFilter } }).then(
     r => r.data,
   );
 
 export const fetchTrekResult = (query: APIQuery, id: number | string): Promise<RawTrekResult> =>
-  GeotrekAPI.get(`/trek/${id}`, { params: { ...query, ...fieldsParams } }).then(r => r.data);
+  GeotrekAPI.get(`/trek/${id}/`, { params: { ...query, ...fieldsParams } }).then(r => r.data);
 
 export const fetchTrekResultsNumber = (
   query: APIQuery,
 ): Promise<APIResponseForList<{ id: number }>> =>
-  GeotrekAPI.get('/trek', { params: { fields: 'id', ...portalsFilter, ...query } }).then(
+  GeotrekAPI.get('/trek/', { params: { fields: 'id', ...portalsFilter, ...query } }).then(
     r => r.data,
   );
 
 export const fetchTouristicContentResultsNumber = (
   query: APIQuery,
 ): Promise<APIResponseForList<{ id: number }>> =>
-  GeotrekAPI.get('/touristiccontent', {
+  GeotrekAPI.get('/touristiccontent/', {
     params: { ...query, fields: 'id', ...portalsFilter },
   }).then(r => r.data);
 
 export const fetchOutdoorSitesResultsNumber = (
   query: APIQuery,
 ): Promise<APIResponseForList<{ id: number }>> =>
-  GeotrekAPI.get('/outdoor_site', { params: { ...query, fields: 'id', ...portalsFilter } }).then(
+  GeotrekAPI.get('/outdoor_site/', { params: { ...query, fields: 'id', ...portalsFilter } }).then(
     r => r.data,
   );
 
 export const fetchTouristicEventsResultsNumber = (
   query: APIQuery,
 ): Promise<APIResponseForList<{ id: number }>> =>
-  GeotrekAPI.get('/touristicevent', { params: { ...query, fields: 'id', ...portalsFilter } }).then(
+  GeotrekAPI.get('/touristicevent/', { params: { ...query, fields: 'id', ...portalsFilter } }).then(
     r => r.data,
   );

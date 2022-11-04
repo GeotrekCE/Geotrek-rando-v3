@@ -6,7 +6,7 @@ import { RawTouristicContentCategory } from './interface';
 export const fetchTouristicContentCategories = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawTouristicContentCategory>> =>
-  GeotrekAPI.get(`/touristiccontent_category`, { params: { ...query, ...portalsFilter } }).then(
+  GeotrekAPI.get(`/touristiccontent_category/`, { params: { ...query, ...portalsFilter } }).then(
     r => r.data,
   );
 

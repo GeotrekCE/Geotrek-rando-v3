@@ -7,6 +7,6 @@ const fieldsParams = {
 };
 
 export const fetchDistricts = (query: APIQuery): Promise<APIResponseForList<RawDistrict>> =>
-  GeotrekAPI.get('/district', { params: { ...query, ...fieldsParams } }).then(r => {
+  GeotrekAPI.get('/district/', { params: { ...query, ...fieldsParams } }).then(r => {
     return r.data;
   });

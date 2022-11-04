@@ -8,6 +8,6 @@ const fieldsParams = {
 };
 
 export const fetchTrekRating = (query: APIQuery): Promise<APIResponseForList<RawTrekRating>> =>
-  GeotrekAPI.get(`/trek_rating`, {
+  GeotrekAPI.get('/trek_rating/', {
     params: { ...query, ...fieldsParams, ...portalsFilter },
   }).then(r => r.data);

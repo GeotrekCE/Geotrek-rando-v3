@@ -10,6 +10,6 @@ const fieldsParams = {
 export const fetchOutdoorRatingScale = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawOutdoorRatingScale>> =>
-  GeotrekAPI.get(`/outdoor_ratingscale`, {
+  GeotrekAPI.get(`/outdoor_ratingscale/`, {
     params: { ...query, ...fieldsParams, ...portalsFilter },
   }).then(r => r.data);

@@ -36,7 +36,7 @@ export const mockSourcesResponse = (): SourcesResponse => ({
 
 export const mockSourceRoute = (times: number): void =>
   mockRoute({
-    route: '/source',
+    route: '/source/',
     mockData: mockSourcesResponse(),
     additionalQueries: {},
     times,

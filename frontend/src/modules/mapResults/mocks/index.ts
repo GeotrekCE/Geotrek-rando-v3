@@ -54,7 +54,7 @@ const mockMapTouristicContentResultsResponse = () => ({
 
 export const mockMapResultsRoute = (times: number): void => {
   mockRoute({
-    route: '/trek',
+    route: '/trek/',
     mockData: mockMapTrekResultsResponse(),
     additionalQueries: {
       fields: 'id,departure_geom,practice',
@@ -63,7 +63,7 @@ export const mockMapResultsRoute = (times: number): void => {
     times,
   });
   mockRoute({
-    route: '/trek',
+    route: '/trek/',
     mockData: mockMapTrekResultsResponse(),
     additionalQueries: {
       fields: 'id,departure_geom,practice',
@@ -74,7 +74,7 @@ export const mockMapResultsRoute = (times: number): void => {
   });
 
   mockRoute({
-    route: '/touristiccontent',
+    route: '/touristiccontent/',
     mockData: mockMapTouristicContentResultsResponse(),
     additionalQueries: {
       fields: 'id,geometry,category',
@@ -83,7 +83,7 @@ export const mockMapResultsRoute = (times: number): void => {
     times,
   });
   mockRoute({
-    route: '/touristiccontent',
+    route: '/touristiccontent/',
     mockData: mockMapTouristicContentResultsResponse(),
     additionalQueries: {
       fields: 'id,geometry,category',

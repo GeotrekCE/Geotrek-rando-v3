@@ -5,4 +5,4 @@ import { RawSensitiveAreaPractice } from './interface';
 export const fetchSensitiveAreaPractices = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawSensitiveAreaPractice>> =>
-  GeotrekAPI.get(`/sensitivearea_practice`, { params: query }).then(r => r.data);
+  GeotrekAPI.get('/sensitivearea_practice/', { params: query }).then(r => r.data);

@@ -35,7 +35,7 @@ export const mockAccessibilitiesResponse = (): AccessibilitiesResponse => ({
 
 export const mockAccessibilitiesRoute = (times: number): void =>
   mockRoute({
-    route: '/trek_accessibility',
+    route: '/trek_accessibility/',
     mockData: mockAccessibilitiesResponse(),
     additionalQueries: {},
     times,

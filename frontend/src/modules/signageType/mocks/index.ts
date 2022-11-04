@@ -22,7 +22,7 @@ export const mockSignageTypeResponse = (): SignageTypeResponse => ({
 
 export const mockSignageTypeRoute = (times: number): void =>
   mockRoute({
-    route: '/signage_type',
+    route: '/signage_type/',
     mockData: mockSignageTypeResponse(),
     additionalQueries: {
       fields: 'id,label,pictogram',

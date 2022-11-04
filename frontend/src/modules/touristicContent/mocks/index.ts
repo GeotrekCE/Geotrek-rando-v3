@@ -77,7 +77,7 @@ export const mockTouristicContentResponse = (): TouristicContentResponse => ({
 
 export const mockTouristicContentRoute = (times: number, nearTrekId: number): void =>
   mockRoute({
-    route: '/touristiccontent',
+    route: '/touristiccontent/',
     mockData: mockTouristicContentResponse(),
     additionalQueries: {
       fields: 'id,attachments,name,category,description_teaser,geometry',

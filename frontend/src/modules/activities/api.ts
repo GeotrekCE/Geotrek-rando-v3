@@ -10,7 +10,7 @@ export const fetchActivity = (query: APIQuery, id: number): Promise<RawListActiv
 export const fetchActivities = (
   query: APIQuery,
 ): Promise<APIResponseForList<Partial<RawListActivity>>> => {
-  return GeotrekAPI.get('/trek_practice', { params: { ...query, ...portalsFilter } }).then(
+  return GeotrekAPI.get('/trek_practice/', { params: { ...query, ...portalsFilter } }).then(
     r => r.data,
   );
 };

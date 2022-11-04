@@ -10,7 +10,7 @@ interface LabelResponse {
 
 export const mockLabelRoute = (times: number): void =>
   mockRoute({
-    route: '/label',
+    route: '/label/',
     mockData: mockLabelResponse(),
     additionalQueries: {},
     times,
