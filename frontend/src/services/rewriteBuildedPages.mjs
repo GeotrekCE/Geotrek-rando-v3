@@ -39,6 +39,10 @@ const rewriteBuildedPages = () => {
 
   mergedHeaderConfig.menu.supportedLanguages.forEach(lang => {
     pages.forEach(page => {
+      if (!fs.existsSync(`./src/.next/server/pages/${lang}/${page}.html`)) {
+        return;
+      }
+
       let file = fs.readFileSync(`./src/.next/server/pages/${lang}/${page}.html`);
 
       // Replace colors
