@@ -120,7 +120,7 @@ const TileLayerExtended: React.FC<TileLayerExtendedProps> = ({
     map.setMinZoom(rangeZoom[0]);
     map.setMaxZoom(rangeZoom[1]);
     void loadLayer();
-  }, [loadLayer, map]);
+  }, [map]);
 
   useEffect(() => {
     return () => {
