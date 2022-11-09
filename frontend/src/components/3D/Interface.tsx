@@ -58,7 +58,7 @@ const getControls = (t: Record<string, string> | Record<string, MessageFormatEle
         action: t['rando3D.actions.enter'],
       },
     ],
-    cameraTitle: t['rando3D.views.examine.hiker'],
+    cameraTitle: t['rando3D.views.hiker.cameraTitle'],
   },
 ];
 
