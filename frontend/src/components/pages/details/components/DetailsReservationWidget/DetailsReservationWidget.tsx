@@ -49,9 +49,13 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
       void waitForGlobal('eitinerance')
         .then(() => waitForGlobal('AllianceReseaux'))
         .then(() => {
-          const spaClient = core.pages.getSinglePageApplicationClient({ layer });
+          const spaClient = core.pages?.getSinglePageApplicationClient({ layer });
           window.AllianceReseaux.jQuery(function () {
-            spaClient.executePage();
+            if (spaClient !== undefined) {
+              spaClient.executePage();
+            } else {
+              onLoad();
+            }
           });
         });
     })(window?.eitinerance?.core);
