@@ -22,6 +22,8 @@ const getColorsAsString = Object.entries(getAllConfigs.colors ?? []).reduce((lis
 const rewriteBuildedPages = () => {
   const pages = ['404', '_offline', 'offline'];
 
+  const logoUrl = getAllConfigs.header.logo;
+
 
   const runTimeConfig = JSON.stringify(getAllConfigs)
     // All HTML configuration will not be displayed. Scripts are removed to avoid breaking the page
@@ -34,6 +36,14 @@ const rewriteBuildedPages = () => {
       }
 
       let file = fs.readFileSync(`./src/.next/server/pages/${lang}/${page}.html`);
+
+      // Replace logo
+      if (logoUrl) {
+        file = `${file}`.replace(
+        new RegExp('<img id="header_logoImg"(.*?) src="(.*?)"/>'),
+        `<img id="header_logoImg"$1 src="${logoUrl}">`
+        )
+      }
 
       // Replace colors
       getColorsAsString.forEach(item => {
