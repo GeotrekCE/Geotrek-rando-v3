@@ -21,21 +21,11 @@ const getColorsAsString = Object.entries(getAllConfigs.colors ?? []).reduce((lis
 
 const rewriteBuildedPages = () => {
   const pages = ['404', '_offline', 'offline'];
-  // Delete all HTML configuration as it will not be displayed.
-  const {
-    homeBottomHtml,
-    homeTopHtml,
-    headerTopHtml,
-    headerBottomHtml,
-    footerTopHtml,
-    footerBottomHtml,
-    scriptsHeaderHtml,
-    scriptsFooterHtml,
-    ...JSONConfig
-  } = getAllConfigs
 
-  const runTimeConfig = JSON.stringify(JSONConfig);
 
+  const runTimeConfig = JSON.stringify(getAllConfigs)
+    // All HTML configuration will not be displayed. Scripts are removed to avoid breaking the page
+    .replace(new RegExp("<script(.*?)</script>"), "");
 
   mergedHeaderConfig.menu.supportedLanguages.forEach(lang => {
     pages.forEach(page => {
