@@ -80,7 +80,7 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
               <FormattedMessage id={'report.success'} />
             </div>
           ) : (
-            <form encType="multipart/form-data" onSubmit={void submit}>
+            <form encType="multipart/form-data" onSubmit={submit}>
               {(!isMobile || coordinatesReportTouched) && (
                 <CoordinatesRow
                   coordinates={[

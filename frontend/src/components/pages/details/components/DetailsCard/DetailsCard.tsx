@@ -91,7 +91,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
                 hasNavigator && (
                   <DetailsCoverCarousel
                     attachments={attachments}
-                    onClickImage={() => void router.push(redirectionUrl)}
+                    onClickImage={() => router.push(redirectionUrl)}
                   />
                 )}
               {!isFullscreen &&
@@ -101,7 +101,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
                 hasNavigator && (
                   <DetailsCoverCarousel
                     attachments={attachments}
-                    onClickImage={() => void router.push(redirectionUrl)}
+                    onClickImage={() => router.push(redirectionUrl)}
                   />
                 )}
               {isFullscreen &&

@@ -9,7 +9,7 @@ import { buttonCssResets } from 'services/cssHelpers';
 import { UseQueryResult } from '@tanstack/react-query';
 
 interface Props {
-  refetch: (options: { throwOnError: boolean; cancelRefetch: boolean }) => Promise<UseQueryResult>;
+  refetch: () => Promise<UseQueryResult>;
 }
 
 export const ErrorFallback: React.FC<Props> = ({ refetch }) => {
@@ -18,7 +18,7 @@ export const ErrorFallback: React.FC<Props> = ({ refetch }) => {
       <div className="text-H2 text-center">
         <FormattedMessage id="search.anErrorOccured" />
       </div>
-      <ReloadButton className="flex flex-col items-center" onClick={void refetch}>
+      <ReloadButton className="flex flex-col items-center" onClick={refetch}>
         <Reload size={48} />
         <span>
           <FormattedMessage id="search.reload" />

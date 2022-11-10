@@ -34,7 +34,7 @@ const ActionButton = ({
 }) => {
   return (
     <Button
-      onClick={void onClick}
+      onClick={onClick}
       style={{
         color: isInCache ? colorPalette.easyOK : undefined,
         borderColor: isInCache ? colorPalette.easyOK : undefined,
@@ -127,7 +127,7 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
                 </Button>
                 {isInCache ? (
                   <Button
-                    onClick={void handleRemove}
+                    onClick={handleRemove}
                     icon={Bin}
                     style={{
                       color: colorPalette.hardKO,
