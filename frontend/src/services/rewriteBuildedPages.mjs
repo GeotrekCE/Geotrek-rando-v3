@@ -41,7 +41,7 @@ const rewriteBuildedPages = () => {
       if (logoUrl) {
         file = `${file}`.replace(
         new RegExp('<img id="header_logoImg"(.*?) src="(.*?)"/>'),
-        `<img id="header_logoImg"$1 src="${logoUrl}">`
+        `<img id="header_logoImg"$1 src="${logoUrl}"/>`
         )
       }
 
