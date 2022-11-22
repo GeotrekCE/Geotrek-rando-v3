@@ -58,11 +58,11 @@
     "next-pwa": "^5.6.0",
     "postcss": "8.3.6",
     "qs": "6.7.0",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "react-accessible-accordion": "3.3.5",
     "react-burger-menu": "3.0.6",
     "react-country-flag": "^3.0.2",
-    "react-dom": "^17.0.2",
+    "react-dom": "^18.2.0",
     "react-easyfullscreen": "^1.1.1",
     "react-infinite-scroll-component": "6.1.0",
     "react-inlinesvg": "^3.0.1",
@@ -92,9 +92,9 @@
     "@types/leaflet": "1.7.5",
     "@types/node": "16.9.4",
     "@types/qs": "^6.9.7",
-    "@types/react": "17.0.22",
+    "@types/react": "^18.0.25",
     "@types/react-burger-menu": "2.8.1",
-    "@types/react-dom": "17.0.9",
+    "@types/react-dom": "^18.0.9",
     "@types/react-leaflet": "2.8.2",
     "@types/react-leaflet-markercluster": "^2.0.0",
     "@types/react-loader": "2.4.5",
@@ -128,6 +128,7 @@
     "typescript": "4.4.4"
   },
   "resolutions": {
-    "bl": "^4.0.3"
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8"
   }
 }
