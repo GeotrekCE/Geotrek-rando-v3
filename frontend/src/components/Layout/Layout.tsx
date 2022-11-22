@@ -3,7 +3,7 @@ import ConditionallyRender from 'components/ConditionallyRender';
 import Loader from 'components/Loader';
 import { useNavigationLoader } from './useRedirection';
 
-export const Layout: React.FC = ({ children }) => {
+export const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { isNavigationLoading } = useNavigationLoader();
 
   return (

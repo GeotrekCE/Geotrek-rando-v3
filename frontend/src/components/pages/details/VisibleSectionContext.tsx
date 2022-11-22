@@ -11,7 +11,7 @@ export const VisibleSectionContext = createContext<VisibleSection>({
   setVisibleSection: (section: DetailsSections | null) => section,
 });
 
-export const VisibleSectionProvider: React.FC = ({ children }) => {
+export const VisibleSectionProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [visibleSection, setVisibleSection] = useState<DetailsSections | null>(null);
   return (
     <VisibleSectionContext.Provider value={{ visibleSection, setVisibleSection }}>

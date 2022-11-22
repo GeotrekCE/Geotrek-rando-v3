@@ -5,6 +5,7 @@ import { captureException } from '@sentry/nextjs';
 export interface ErrorBoundaryProps {
   FallbackComponent: ComponentType<FallbackProps>;
   eventId?: string;
+  children?: React.ReactElement;
 }
 interface ErrorBoundaryState {
   eventId: string;

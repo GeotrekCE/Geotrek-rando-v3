@@ -1,5 +1,4 @@
 import getNextConfig from 'next/config';
-import { AppCrashFallback } from 'components/AppCrashFallback';
 import Head from 'next/head';
 import { IntlProvider } from 'react-intl';
 import { getGlobalConfig } from 'modules/utils/api.config';
@@ -18,7 +17,7 @@ const {
   publicRuntimeConfig: { locales },
 } = getNextConfig();
 
-export const Root: React.FC = props => {
+export const Root: React.FC<React.PropsWithChildren> = props => {
   const router = useRouter();
   const language: string = router.locale ?? getDefaultLanguage() ?? 'fr';
   const { googleSiteVerificationToken, applicationName } = getGlobalConfig();
