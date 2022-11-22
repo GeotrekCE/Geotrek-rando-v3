@@ -3,6 +3,17 @@ import { HomePageConfig } from './src/modules/home/interface';
 import nock from 'nock';
 import { setConfig } from 'next/config';
 
+// TextEncoder / TextDecoder APIs are used, but are not provided by
+// jsdom, all node versions supported provide these via the util module
+if (
+  typeof globalThis.TextEncoder === "undefined" ||
+  typeof globalThis.TextDecoder === "undefined"
+) {
+  const utils = require("util");
+  globalThis.TextEncoder = utils.TextEncoder;
+  globalThis.TextDecoder = utils.TextDecoder;
+};
+
 jest.mock('./src/components/Map', () => ({
   SearchMapDynamicComponent: () => null,
   DetailsMapDynamicComponent: () => null,
