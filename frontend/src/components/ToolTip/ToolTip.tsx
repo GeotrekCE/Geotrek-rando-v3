@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useId } from 'react';
 import { colorPalette } from 'stylesheet';
 import { ToolTip, ToolTipText } from './ToolTip.style';
 
@@ -19,7 +19,7 @@ const ToolTipGT: FC<Props> = ({
   backgroundColor = colorPalette.primary2,
   invertPosition = false,
   role = 'tooltip',
-  id = `tooltip-${Math.random().toString(36).substring(2, 9)}`,
+  id = useId(),
 }) => (
   <ToolTip role={role} aria-describedby={id}>
     {children}
