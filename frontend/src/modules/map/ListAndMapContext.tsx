@@ -17,7 +17,7 @@ const listAndMapContext = createContext<ListAndMapContext>({
 
 export const useListAndMapContext = () => useContext(listAndMapContext);
 
-export const ListAndMapProvider: React.FC = ({ children }) => {
+export const ListAndMapProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
   const [points, setPoints] = useState<MapResults>([]);
 
