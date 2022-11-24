@@ -5,6 +5,7 @@ export const routerMock = (routerProps: Partial<NextRouter> = {}): NextRouter =>
   route: '/',
   asPath: '/',
   query: {},
+  forward: jest.fn().mockResolvedValue(true),
   push: jest.fn().mockResolvedValue(true),
   replace: jest.fn().mockResolvedValue(true),
   reload: jest.fn(),
