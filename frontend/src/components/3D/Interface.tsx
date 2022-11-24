@@ -91,7 +91,7 @@ const Interface = () => {
             className={`camera camera--${control} camera--disabled text-center cursor-pointer`}
           >
             <button type="button" className="block">
-              <Image width="100%" height="100%" src={`/images/3d/camera-${control}.svg`} alt="" />
+              <Image width={60} height={60} src={`/images/3d/camera-${control}.svg`} alt="" />
               <span className="block">{cameraTitle.toString()}</span>
               <span className="camera-description absolute invisible" />
             </button>
