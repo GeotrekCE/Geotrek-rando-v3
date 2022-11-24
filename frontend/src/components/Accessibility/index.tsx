@@ -27,7 +27,8 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
             a => a.info_accessibility === k,
           );
           return attachments.length;
-        }).length > 0
+        })
+        .filter(Boolean).length > 0
     : false;
 
   return (

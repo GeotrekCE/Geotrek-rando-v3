@@ -21,15 +21,19 @@ Object {
               <div
                 class="sc-hBEYId hCIdqa h-full w-full flex-grow relative desktop:w-resultCardDesktop"
               >
-                <div
-                  class="relative h-full"
+                <span
+                  class=""
                 >
-                  <img
-                    alt=""
-                    class="object-cover object-top w-full h-full"
-                    src=""
-                  />
-                </div>
+                  <div
+                    class="relative h-full"
+                  >
+                    <img
+                      alt=""
+                      class="object-cover object-top w-full h-full"
+                      src=""
+                    />
+                  </div>
+                </span>
               </div>
             </div>
           </div>
@@ -213,15 +217,19 @@ Object {
             <div
               class="sc-hBEYId hCIdqa h-full w-full flex-grow relative desktop:w-resultCardDesktop"
             >
-              <div
-                class="relative h-full"
+              <span
+                class=""
               >
-                <img
-                  alt=""
-                  class="object-cover object-top w-full h-full"
-                  src=""
-                />
-              </div>
+                <div
+                  class="relative h-full"
+                >
+                  <img
+                    alt=""
+                    class="object-cover object-top w-full h-full"
+                    src=""
+                  />
+                </div>
+              </span>
             </div>
           </div>
         </div>
