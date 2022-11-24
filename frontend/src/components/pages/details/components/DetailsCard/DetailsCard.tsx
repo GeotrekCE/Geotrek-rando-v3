@@ -78,6 +78,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         <img
           className="hidden desktop:absolute h-12 object-cover object-center right-6 top-6"
           src={logoUri}
+          alt=""
         />
       )}
       <div className="flex-none desktop:w-2/5">

@@ -16,19 +16,19 @@ interface LargeOrSmallCarouselProps {
 }
 
 export const Carousel: React.FC<CarouselProps> = ({
-  className,
+  className = '',
   children,
   nextArrow,
   prevArrow,
   dots,
 }) => {
   if (Array.isArray(children) && children.length <= 1) {
-    return <>{children}</>;
+    return <span className={className}>{children}</span>;
   }
   return (
     <StyledSlider
       lazyLoad="ondemand"
-      className={className ?? ''}
+      className={className}
       dots
       infinite
       speed={500}
