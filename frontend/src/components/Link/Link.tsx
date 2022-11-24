@@ -1,6 +1,4 @@
-import styled from 'styled-components';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
-import { colorPalette, typography } from 'stylesheet';
 
 interface Props extends NextLinkProps {
   children: React.ReactNode;
@@ -8,26 +6,16 @@ interface Props extends NextLinkProps {
   testId?: string;
 }
 
-export const Link: React.FC<Props> = ({ children, className, testId, ...nextLinkProps }) => {
+export const Link: React.FC<Props> = ({ children, className = '', testId, ...nextLinkProps }) => {
   return (
-    <NextLink passHref {...nextLinkProps}>
-      <StyledLink className={className} data-testid={testId}>
+    <NextLink passHref legacyBehavior {...nextLinkProps}>
+      <a
+        className={`text-primary1 hover:text-primary3 transition-colors ${className}`}
+        data-testid={testId}
+      >
         {children}
-      </StyledLink>
+      </a>
     </NextLink>
   );
 };
-
-export const StyledLink = styled.a`
-  text-decoration: none;
-  cursor: pointer;
-  ${typography.main}
-
-  color: ${colorPalette.primary1};
-  transition: color 0.3s ease-in-out;
-  :hover {
-    color: ${colorPalette.primary3};
-  }
-`;
-
 export default Link;

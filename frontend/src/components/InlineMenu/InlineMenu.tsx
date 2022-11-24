@@ -46,13 +46,14 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
           <div className={menuClassName}>
             {subSections.map(menuItem => {
               return (
-                <NextLink href={menuItem.url} passHref locale={language} key={menuItem.title}>
-                  <a
-                    className={optionClassName}
-                    target={isInternalFlatPageUrl(menuItem.url) ? undefined : '_blank'}
-                  >
-                    {menuItem.title}
-                  </a>
+                <NextLink
+                  href={menuItem.url}
+                  className={optionClassName}
+                  target={isInternalFlatPageUrl(menuItem.url) ? undefined : '_blank'}
+                  locale={language}
+                  key={menuItem.title}
+                >
+                  {menuItem.title}
                 </NextLink>
               );
             })}
@@ -85,7 +86,6 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
               {supportedLanguages.map(locale => (
                 <Link
                   href={router.asPath}
-                  passHref
                   locale={locale}
                   replace
                   scroll={false}

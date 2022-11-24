@@ -1,10 +1,5 @@
 import Link from 'components/Link';
-import React from 'react';
-import styled from 'styled-components';
-
-const StyledLink = styled(Link)`
-  font-size: 14px;
-`;
+import { Fragment } from 'react';
 
 const Breadcrumb: React.FC<{ breadcrumb: { label: string; link?: string }[] }> = ({
   breadcrumb,
@@ -14,16 +9,16 @@ const Breadcrumb: React.FC<{ breadcrumb: { label: string; link?: string }[] }> =
       {breadcrumb.map(({ label, link }, index) => {
         const separator = index === 0 ? '>>' : '>';
         return (
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             <div className="mx-2">{separator}</div>
             {link !== undefined ? (
-              <StyledLink href={link} className="hover:underline">
+              <Link href={link} className="text-sm hover:underline">
                 {label}
-              </StyledLink>
+              </Link>
             ) : (
               label
             )}
-          </React.Fragment>
+          </Fragment>
         );
       })}
     </div>

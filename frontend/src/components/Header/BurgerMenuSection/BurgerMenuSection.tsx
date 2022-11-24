@@ -55,7 +55,13 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
               {isItemString(item) ? (
                 <span>{item}</span>
               ) : (
-                <NextLink href={item.url} passHref locale={currentLanguage} key={item.url}>
+                <NextLink
+                  href={item.url}
+                  passHref
+                  locale={currentLanguage}
+                  key={item.url}
+                  legacyBehavior
+                >
                   <a target={isInternalFlatPageUrl(item.url) ? undefined : '_blank'}>
                     {item.title}
                   </a>

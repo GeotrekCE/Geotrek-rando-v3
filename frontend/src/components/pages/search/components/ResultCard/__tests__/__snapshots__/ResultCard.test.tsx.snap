@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-fnGiBr bjHsfK"
+        class="sc-hBxehG kCtiEo"
         id="result_card"
       >
         <div
@@ -19,7 +19,7 @@ Object {
               class="w-full h-full"
             >
               <div
-                class="sc-hBxehG fKA-DUS h-full w-full flex-grow relative desktop:w-resultCardDesktop"
+                class="sc-ksBlkl jXEHIL h-full w-full flex-grow relative desktop:w-resultCardDesktop"
               >
                 <span
                   class=""
@@ -39,31 +39,31 @@ Object {
           </div>
         </div>
         <a
-          class="sc-csuSiG ccMOzW w-full"
+          class="text-primary1 hover:text-primary3 transition-colors w-full"
           data-testid="Link-ResultCard-2"
           href="/details-2-Balade-au-pays-des-menhirs"
         >
           <div
-            class="sc-fEXmlR jVUClN"
+            class="sc-fnGiBr hLXsHP"
           >
             <div
-              class="sc-bjfHbI ewrNTU"
+              class="sc-fEXmlR xEypB"
             >
               <span
-                class="sc-dIfARi fVoIuU"
+                class="sc-idXgbr hbjwlr"
               >
                 Saint-Etienne-du-Valdonnez
               </span>
               <span
-                class="sc-hHTYSt jtgBNO"
+                class="sc-dIfARi llpkwN"
               >
                 Balade au pays des menhirs
               </span>
               <div
-                class="sc-dmctIk kJqYUc"
+                class="sc-hHTYSt kxFEvi"
               >
                 <div
-                  class="sc-kgTSHT hhxIHm"
+                  class="sc-dmctIk jkhDhp"
                 >
                   <div
                     class="sc-kDvujY deVWMJ"
@@ -89,10 +89,10 @@ Object {
                 </div>
               </div>
               <div
-                class="sc-fLcnxK cTNOFn"
+                class="sc-kgTSHT ksCOQs"
               >
                 <div
-                  class="sc-bBABsx jmyeyv"
+                  class="sc-fLcnxK dUBOFD"
                 >
                   <div
                     class="flex items-center text-primary1  "
@@ -102,7 +102,7 @@ Object {
                       src=""
                     />
                     <span
-                      class="sc-eDWCr hpIYHp"
+                      class="sc-csuSiG bJfjQe"
                     />
                   </div>
                   <div
@@ -132,7 +132,7 @@ Object {
                       />
                     </svg>
                     <span
-                      class="sc-eDWCr hpIYHp"
+                      class="sc-csuSiG bJfjQe"
                     >
                       2h
                     </span>
@@ -156,7 +156,7 @@ Object {
                       />
                     </svg>
                     <span
-                      class="sc-eDWCr hpIYHp"
+                      class="sc-csuSiG bJfjQe"
                     >
                       5km
                     </span>
@@ -187,7 +187,7 @@ Object {
                       />
                     </svg>
                     <span
-                      class="sc-eDWCr hpIYHp"
+                      class="sc-csuSiG bJfjQe"
                     >
                       +360m
                     </span>
@@ -202,7 +202,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-fnGiBr bjHsfK"
+      class="sc-hBxehG kCtiEo"
       id="result_card"
     >
       <div
@@ -215,7 +215,7 @@ Object {
             class="w-full h-full"
           >
             <div
-              class="sc-hBxehG fKA-DUS h-full w-full flex-grow relative desktop:w-resultCardDesktop"
+              class="sc-ksBlkl jXEHIL h-full w-full flex-grow relative desktop:w-resultCardDesktop"
             >
               <span
                 class=""
@@ -235,31 +235,31 @@ Object {
         </div>
       </div>
       <a
-        class="sc-csuSiG ccMOzW w-full"
+        class="text-primary1 hover:text-primary3 transition-colors w-full"
         data-testid="Link-ResultCard-2"
         href="/details-2-Balade-au-pays-des-menhirs"
       >
         <div
-          class="sc-fEXmlR jVUClN"
+          class="sc-fnGiBr hLXsHP"
         >
           <div
-            class="sc-bjfHbI ewrNTU"
+            class="sc-fEXmlR xEypB"
           >
             <span
-              class="sc-dIfARi fVoIuU"
+              class="sc-idXgbr hbjwlr"
             >
               Saint-Etienne-du-Valdonnez
             </span>
             <span
-              class="sc-hHTYSt jtgBNO"
+              class="sc-dIfARi llpkwN"
             >
               Balade au pays des menhirs
             </span>
             <div
-              class="sc-dmctIk kJqYUc"
+              class="sc-hHTYSt kxFEvi"
             >
               <div
-                class="sc-kgTSHT hhxIHm"
+                class="sc-dmctIk jkhDhp"
               >
                 <div
                   class="sc-kDvujY deVWMJ"
@@ -285,10 +285,10 @@ Object {
               </div>
             </div>
             <div
-              class="sc-fLcnxK cTNOFn"
+              class="sc-kgTSHT ksCOQs"
             >
               <div
-                class="sc-bBABsx jmyeyv"
+                class="sc-fLcnxK dUBOFD"
               >
                 <div
                   class="flex items-center text-primary1  "
@@ -298,7 +298,7 @@ Object {
                     src=""
                   />
                   <span
-                    class="sc-eDWCr hpIYHp"
+                    class="sc-csuSiG bJfjQe"
                   />
                 </div>
                 <div
@@ -328,7 +328,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="sc-eDWCr hpIYHp"
+                    class="sc-csuSiG bJfjQe"
                   >
                     2h
                   </span>
@@ -352,7 +352,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="sc-eDWCr hpIYHp"
+                    class="sc-csuSiG bJfjQe"
                   >
                     5km
                   </span>
@@ -383,7 +383,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="sc-eDWCr hpIYHp"
+                    class="sc-csuSiG bJfjQe"
                   >
                     +360m
                   </span>

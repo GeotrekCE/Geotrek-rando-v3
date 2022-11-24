@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { colorPalette } from 'stylesheet';
 import { Link } from 'components/Link';
-import { ActivityButtonContainer, Text } from './ActivityButton.style';
 
 interface Props {
   iconUrl: string;
@@ -15,17 +14,17 @@ interface Props {
 export const ActivityButton: React.FC<Props> = ({ iconUrl, href, label }) => {
   return (
     <Link href={href}>
-      <ActivityButtonContainer>
-        <FilledSvg src={iconUrl} className="desktop:w-12" />
-        <Text>{label}</Text>
-      </ActivityButtonContainer>
+      <span className="flex flex-col items-center mt-6 text-greyDarkColored bg-white transition-colors hover:text-primary3">
+        <FilledSvg src={iconUrl} className="h-9 desktop:w-12" />
+        <span className="w-20 text-sm text-center text-greyDarkColored mt-2 overflow-ellipsis overflow-hidden">
+          {label}
+        </span>
+      </span>
     </Link>
   );
 };
 
 const FilledSvg = styled(SVG)`
-  height: 36px;
-
   & * {
     fill: ${colorPalette.home.activity.color} !important;
   }

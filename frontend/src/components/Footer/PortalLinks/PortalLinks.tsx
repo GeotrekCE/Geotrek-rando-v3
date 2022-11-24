@@ -99,10 +99,8 @@ const PortalLinkRendered: React.FC<{ link: PortalLinkStatic }> = ({ link }) => {
   const isWindow = useHasMounted(typeof window !== 'undefined');
   if (isWindow) {
     return isLinkInternal(link.url) ? (
-      <NextLink href={linkWithoutHost(link.url)}>
-        <a className={className}>
-          <FormattedMessage id={link.label} />
-        </a>
+      <NextLink className={className} href={linkWithoutHost(link.url)}>
+        <FormattedMessage id={link.label} />
       </NextLink>
     ) : (
       <a href={link.url} target="_blank" rel="noopener noreferrer" className={className}>
