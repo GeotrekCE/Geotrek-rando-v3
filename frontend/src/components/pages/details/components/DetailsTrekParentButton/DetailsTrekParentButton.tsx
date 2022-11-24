@@ -15,10 +15,10 @@ export const DetailsTrekParentButton: React.FC<DetailsTrekParentButtonProps> = (
 }) => {
   return (
     <Link href={generateResultDetailsUrl(parentId, parentName)} className={className}>
-      <div className="flex items-center">
+      <span className="flex items-center">
         <ArrowLeft size={20} className="mr-1" />
         <span className="underline text-Mobile-C2 desktop:text-P1">{parentName}</span>
-      </div>
+      </span>
     </Link>
   );
 };

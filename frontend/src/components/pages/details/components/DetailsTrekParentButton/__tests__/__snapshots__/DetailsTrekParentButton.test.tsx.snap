@@ -6,10 +6,10 @@ Object {
   "baseElement": <body>
     <div>
       <a
-        class="sc-bcXHqe dCCdZn"
+        class="text-primary1 hover:text-primary3 transition-colors "
         href="/trek/1-Test-rando-mere"
       >
-        <div
+        <span
           class="flex items-center"
         >
           <svg
@@ -40,16 +40,16 @@ Object {
           >
             Test rando mère
           </span>
-        </div>
+        </span>
       </a>
     </div>
   </body>,
   "container": <div>
     <a
-      class="sc-bcXHqe dCCdZn"
+      class="text-primary1 hover:text-primary3 transition-colors "
       href="/trek/1-Test-rando-mere"
     >
-      <div
+      <span
         class="flex items-center"
       >
         <svg
@@ -80,7 +80,7 @@ Object {
         >
           Test rando mère
         </span>
-      </div>
+      </span>
     </a>
   </div>,
   "debug": [Function],

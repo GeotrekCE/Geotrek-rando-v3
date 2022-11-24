@@ -208,7 +208,7 @@ Object {
                     role="region"
                   >
                     <a
-                      class="sc-bcXHqe dCCdZn block text-Mobile-C2 py-2 text-greyDarkColored"
+                      class="text-primary1 hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
                       href="/"
                     >
                       FR
@@ -217,13 +217,11 @@ Object {
                 </div>
               </div>
               <a
-                class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
                 href="/search"
               >
                 Recherche
               </a>
               <a
-                class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
                 href="/offline"
               >
                 Contenus hors ligne
@@ -467,7 +465,7 @@ Object {
                   role="region"
                 >
                   <a
-                    class="sc-bcXHqe dCCdZn block text-Mobile-C2 py-2 text-greyDarkColored"
+                    class="text-primary1 hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
                     href="/"
                   >
                     FR
@@ -476,13 +474,11 @@ Object {
               </div>
             </div>
             <a
-              class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
               href="/search"
             >
               Recherche
             </a>
             <a
-              class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
               href="/offline"
             >
               Contenus hors ligne
