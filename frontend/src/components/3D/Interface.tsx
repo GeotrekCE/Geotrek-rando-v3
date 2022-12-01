@@ -75,9 +75,12 @@ const Interface = () => {
           <h2 className="text-2xl mb-2">{title.toString()}</h2>
           <p className="controls-description mb-2" />
           {steps.map(({ label, action }, index) => (
-            <span key={index} className="block m-1">
+            <span key={index} className="flex items-center m-1">
               <>
-                {label} <strong className="font-bold">{action.toString()}</strong>
+                <span className="mr-1">{label.toString()}</span>
+                <strong className="font-bold">
+                  {Array.isArray(action) ? action.toString() : action}
+                </strong>
               </>
             </span>
           ))}
