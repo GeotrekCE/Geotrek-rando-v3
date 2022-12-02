@@ -27,10 +27,6 @@ type GetInitialPropsResult = ErrorProps & {
 };
 
 const CustomErrorComponent = (props: GetInitialPropsResult) => {
-  // If you're using a Nextjs version prior to 12.2.1, uncomment this to
-  // compensate for https://github.com/vercel/next.js/issues/8592
-  void Sentry.captureUnderscoreErrorException(props);
-
   return <ErrorBoundary FallbackComponent={AppCrashFallback} eventId={props.eventId} />;
 };
 
