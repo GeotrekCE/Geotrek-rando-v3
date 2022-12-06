@@ -90,8 +90,8 @@ export interface OutdoorCourseDetails extends OutdoorCourse {
   cities: string[];
   cities_raw: string[];
   ratings: OutdoorRatingWithScale[];
-  ratingsDescription: string;
-  typeCourse?: OutdoorCourseType;
+  ratingsDescription: string | null;
+  typeCourse: OutdoorCourseType | null;
   sensitiveAreas: SensitiveArea[];
   signage: SignageDictionary | null;
   service: Service[] | null;

@@ -142,8 +142,8 @@ export const adaptOutdoorSiteDetails = ({
         scale: outdoorRatingScale.find(oRS => oRS.id === outdoorRating[String(r)]?.scale),
       };
     }) ?? [],
-  ratingsDescription: rawOutdoorSiteDetails.properties.ratings_description,
-  typeSite: outdoorSiteType[Number(rawOutdoorSiteDetails?.properties?.type)],
+  ratingsDescription: rawOutdoorSiteDetails.properties.ratings_description ?? null,
+  typeSite: outdoorSiteType[Number(rawOutdoorSiteDetails?.properties?.type)] ?? null,
   sensitiveAreas,
   signage,
   service,
