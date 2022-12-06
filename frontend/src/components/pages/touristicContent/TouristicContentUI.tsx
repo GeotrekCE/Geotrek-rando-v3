@@ -44,7 +44,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
   const isMobile = useMediaPredicate('(max-width: 1024px)');
 
   return (
-    <Layout>
+    <>
       <PageHead
         title={touristicContent?.name}
         description={touristicContent ? touristicContent.descriptionTeaser : ''}
@@ -56,14 +56,16 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
       />
       {touristicContent === undefined ? (
         <Layout>
-          {isLoading ? (
-            <Loader className="absolute inset-0" />
-          ) : (
-            <ErrorFallback refetch={refetch} />
-          )}
+          <>
+            {isLoading ? (
+              <Loader className="absolute inset-0" />
+            ) : (
+              <ErrorFallback refetch={refetch} />
+            )}
+          </>
         </Layout>
       ) : (
-        <>
+        <Layout>
           <div id="touristicContent_page" className="flex flex-1">
             <div id="touristicContent_informations" className="flex flex-col w-full desktop:w-3/5">
               <OpenMapButton displayMap={displayMobileMap} />
@@ -254,8 +256,8 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
               />
             </MobileMapContainer>
           )}
-        </>
+        </Layout>
       )}
-    </Layout>
+    </>
   );
 };
