@@ -113,10 +113,10 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   cities: string[];
   cities_raw: string[];
   ratings: OutdoorRatingWithScale[];
-  ratingsDescription: string;
+  ratingsDescription: string | null;
   signage: SignageDictionary | null;
   service: Service[] | null;
   infrastructure: InfrastructureDictionary | null;
-  typeSite?: OutdoorSiteType;
+  typeSite: OutdoorSiteType | null;
   sensitiveAreas: SensitiveArea[];
 }

@@ -9,7 +9,6 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { colorPalette, sizes } from 'stylesheet';
 
 import { Layout } from 'components/Layout/Layout';
-import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
 import { OpenMapButton } from 'components/OpenMapButton';
 import {
   MobileFilterMenu,
@@ -45,9 +44,6 @@ import { useTextFilter } from './hooks/useTextFilter';
 import { useDateFilter } from './hooks/useDateFilter';
 
 interface Props {
-  initialFiltersState: FilterState[];
-  touristicContentCategoryMapping: TouristicContentCategoryMapping;
-  initialFiltersStateWithSelectedOptions: FilterState[];
   language: string;
 }
 

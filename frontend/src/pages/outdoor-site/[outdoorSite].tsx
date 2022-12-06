@@ -2,7 +2,7 @@ import { OutdoorSiteUI } from 'components/pages/site';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
-import { QueryClient } from '@tanstack/react-query';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { routes } from 'services/routes';
 import { getOutdoorSiteDetails } from '../../modules/outdoorSite/connector';
 import { isUrlString } from '../../modules/utils/string';
@@ -10,14 +10,12 @@ import { redirectIfWrongUrl } from '../../modules/utils/url';
 import Custom404 from '../404';
 
 export const getServerSideProps: GetServerSideProps = async context => {
+  const id = isUrlString(context.query.outdoorSite) ? context.query.outdoorSite.split('-')[0] : '';
+  const { locale = 'fr' } = context;
+
+  const queryClient = new QueryClient();
+
   try {
-    const id = isUrlString(context.query.outdoorSite)
-      ? context.query.outdoorSite.split('-')[0]
-      : '';
-    const { locale = 'fr' } = context;
-
-    const queryClient = new QueryClient();
-
     const details = await getOutdoorSiteDetails(id, locale);
 
     await queryClient.prefetchQuery(['outdoorSiteDetails', id, locale], () => details);
@@ -33,7 +31,11 @@ export const getServerSideProps: GetServerSideProps = async context => {
         redirect,
       };
 
-    return { props: {} };
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+      },
+    };
   } catch (error) {
     return {
       props: {

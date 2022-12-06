@@ -2,7 +2,7 @@ import { TouristicEventUI } from 'components/pages/touristicEvent/TouristicEvent
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
-import { QueryClient } from '@tanstack/react-query';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { routes } from 'services/routes';
 import { redirectIfWrongUrl } from 'modules/utils/url';
 import { getTouristicEventDetails } from '../../modules/touristicEvent/connector';
@@ -10,14 +10,13 @@ import { isUrlString } from '../../modules/utils/string';
 import Custom404 from '../404';
 
 export const getServerSideProps: GetServerSideProps = async context => {
+  const id = isUrlString(context.query.touristicEvent)
+    ? context.query.touristicEvent.split('-')[0]
+    : '';
+  const { locale = 'fr' } = context;
+
+  const queryClient = new QueryClient();
   try {
-    const id = isUrlString(context.query.touristicEvent)
-      ? context.query.touristicEvent.split('-')[0]
-      : '';
-    const { locale = 'fr' } = context;
-
-    const queryClient = new QueryClient();
-
     const details = await getTouristicEventDetails(id, locale);
 
     await queryClient.prefetchQuery(['touristicEventDetails', id, locale], () => details);
@@ -33,7 +32,11 @@ export const getServerSideProps: GetServerSideProps = async context => {
         redirect,
       };
 
-    return { props: {} };
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+      },
+    };
   } catch (error) {
     return {
       props: {

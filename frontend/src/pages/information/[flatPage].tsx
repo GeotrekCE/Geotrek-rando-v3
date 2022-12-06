@@ -1,7 +1,7 @@
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { FlatPageUI } from 'components/pages/flatPage';
-import { QueryClient } from '@tanstack/react-query';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { routes } from 'services/routes';
 import { getFlatPageDetails } from '../../modules/flatpage/connector';
 import { isUrlString } from '../../modules/utils/string';
@@ -30,7 +30,11 @@ export const getServerSideProps: GetServerSideProps = async context => {
         redirect,
       };
 
-    return { props: {} };
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+      },
+    };
   } catch (error) {
     return {
       props: {
