@@ -30,6 +30,40 @@ module.exports = [
     },
   },
   {
+    urlPattern: ({ url, request }) => {
+      return self.origin !== url.origin
+        && !url.host.includes('opentopomap')
+        && !url.host.includes('openstreetmap')
+        && !url.host.includes('stamen-tiles')
+        && !url.host.includes('wxs.ign.fr')
+        && request.destination === 'image'
+    },
+    handler: 'NetworkFirst',
+    options: {
+      cacheName: 'cross-origin-media',
+      expiration: {
+        maxEntries: 128,
+        maxAgeSeconds: 90 * 60 * 60 * 24, // 90 days
+      },
+      networkTimeoutSeconds: 10,
+    },
+  },
+  {
+    urlPattern: ({ url }) => {
+      return self.origin !== url.origin 
+        && url.pathname.startsWith('/api/')
+    },
+    handler: 'NetworkFirst',
+    options: {
+      cacheName: 'API',
+      expiration: {
+        maxEntries: 512,
+        maxAgeSeconds: 90 * 60 * 60 * 24, // 90 day
+      },
+      networkTimeoutSeconds: 10,
+    }
+  },
+  {
     urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
     handler: 'CacheFirst',
     options: {
@@ -135,15 +169,18 @@ module.exports = [
     },
   },
   {
-    urlPattern: /^(?!.*opentopomap|.*openstreetmap|.*\/trek\/|.*\/service\/).*$/i,
+    urlPattern: ({ url }) => {
+      return self.origin === url.origin
+        && url.pathname.startsWith('/information')
+    },
     handler: 'NetworkFirst',
     options: {
-      cacheName: 'others',
+      cacheName: 'information-pages',
       expiration: {
-        maxEntries: 512,
-        maxAgeSeconds: 90 * 60 * 60 * 24, // 90 days
+        maxEntries: 32,
+        maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
       },
-      networkTimeoutSeconds: 10,
+      networkTimeoutSeconds: 10, // fall back to cache if api does not response within 10 seconds
     },
   },
 ];
