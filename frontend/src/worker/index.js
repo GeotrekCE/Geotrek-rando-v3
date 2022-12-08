@@ -17,7 +17,7 @@ const fromCache = async request => {
   const cache = await caches.open(cacheName);
   const matching = await cache.match(request);
 
-  return matching || cache.match('/offline/');
+  return matching || cache.match('/offline');
 };
 
 self.addEventListener('fetch', event => {
