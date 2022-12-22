@@ -11,6 +11,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import '../public/style.css';
 
 import { ListAndMapProvider } from 'modules/map/ListAndMapContext';
+import useCustomRegisterServiceWorker from 'hooks/useCustomRegisterServiceWorker';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,6 +22,7 @@ const queryClient = new QueryClient({
 });
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+  useCustomRegisterServiceWorker();
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>

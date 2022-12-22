@@ -37,3 +37,16 @@ self.addEventListener('activate', async () => {
   const cache = await caches.open('offline');
   return cache.add('/offline');
 });
+
+// Cache search-page/information-pages on dynamic navigation
+self.addEventListener('message', async event => {
+  if (event.data?.action === 'information-pages' || event.data?.action === 'search-pages') {
+    caches.open(event.data.action).then(cache =>
+      cache.match(event.source.url).then(res => {
+        if (res === undefined) {
+          return cache.add(event.source.url)
+        }
+      })
+    )
+  }
+})
