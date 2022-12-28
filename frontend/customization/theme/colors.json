@@ -1,1 +1,7 @@
-{}
+{
+  "primary1": {
+    "DEFAULT": "#221157",
+    "light": "#8781ad"
+  },
+  "primary3": "#d57b04"
+}
