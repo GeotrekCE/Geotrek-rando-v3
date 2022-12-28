@@ -4,11 +4,11 @@
   ],
   "links": [
     {
-      "label": "footer.geotrek",
-      "url": "https://geotrek.fr/"
+      "informationID": 4
     },
     {
-      "informationID": 4
+      "label": "footer.geotrek",
+      "url": "https://geotrek.fr/"
     },
     { "label": "footer.access", "url": "https://www.ecrins-parcnational.fr/venir-dans-les-ecrins" }
   ],
