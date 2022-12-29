@@ -11,9 +11,15 @@ Installation in development:
 nvm use 17
 ```
 
+Install yarn
+
+```bash
+npm install -g yarn
+```
+
 ## Install dependencies
 
-Head to the frontend folder and run:
+Head to the `frontend` folder and run:
 
 ```bash
 yarn
