@@ -30,9 +30,14 @@ const plugins = [
   nextConfig => withSentryConfig(nextConfig, { silent: true }),
 ];
 
-module.exports = withPlugins(plugins, {
+const nextConfig = {
   webpack(config) {
     config.resolve.modules.push(path.resolve('./src'));
+
+    if (typeof config.webpack === 'function') {
+      return config.webpack(config, options);
+    }
+
     return config;
   },
   /**
@@ -57,4 +62,8 @@ module.exports = withPlugins(plugins, {
   compiler: {
     styledComponents: true,
   },
-});
+};
+
+module.exports = async (phase, { defaultConfig }) => (
+  withPlugins(plugins, nextConfig)(phase, { ...defaultConfig, ...nextConfig })
+);
