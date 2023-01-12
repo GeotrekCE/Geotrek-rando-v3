@@ -4,19 +4,9 @@
   "searchMapZoom": 10,
   "mapClassicLayers": [
     {
-      "url": "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
-      "options": {
-        "attribution": "Map data: © <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors, SRTM | Map style: © <a href=\"https://opentopomap.org\" target=\"_blank\">OpenTopoMap</a> (<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\" target=\"_blank\">CC-BY-SA</a>)",
-        "minZoom": 1,
-        "maxZoom": 14
-      }
-    },
-    {
       "url": "https://wxs.ign.fr/cartes/geoportail/wmts?&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&STYLE=normal&TILEMATRIXSET=PM&FORMAT=image/png&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",
       "options": {
-        "attribution": "© IGN",
-        "minZoom": 15,
-        "maxZoom": 20
+        "attribution": "© IGN"
       }
     }
   ],
