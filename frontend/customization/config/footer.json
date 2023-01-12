@@ -1,16 +1,24 @@
 {
   "socialNetworks": [
+    { "id": "facebook", "url": "https://www.facebook.com/GeotrekCommunity/" },
     { "id": "twitter", "url": "https://twitter.com/GeotrekCom" }
   ],
   "links": [
     {
-      "informationID": 4
+      "informationID": 3
     },
     {
       "label": "footer.geotrek",
       "url": "https://geotrek.fr/"
     },
-    { "label": "footer.access", "url": "https://www.ecrins-parcnational.fr/venir-dans-les-ecrins" }
+    {
+      "label": "footer.geotrekRando",
+      "url": "https://github.com/GeotrekCE/Geotrek-rando-v3"
+    },
+    {
+     "label": "footer.legalMentions",
+     "url": "https://www.ecrins-parcnational.fr/mentions-legales"
+    }
   ],
   "contact": {
     "name": "Parc National des Écrins",
