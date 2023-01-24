@@ -27,13 +27,13 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/geotrek-rando
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta-builder
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-builder
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/geotrek-rando-builder
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
