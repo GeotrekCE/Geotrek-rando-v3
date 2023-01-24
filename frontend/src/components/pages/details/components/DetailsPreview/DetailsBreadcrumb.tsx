@@ -45,10 +45,13 @@ const DetailsBreadcrumb: React.FC<DetailsBreadcrumb> = ({ details, title, type, 
             : null;
         break;
       case 'OUTDOOR_SITE':
-        result = ({ practice }: OutdoorSiteDetails) => ({
-          label: practice.name,
-          link: `/search?outdoorPractice=${practice.id}`,
-        });
+        result = ({ practice }: OutdoorSiteDetails) =>
+          practice
+            ? {
+                label: practice.name,
+                link: `/search?outdoorPractice=${practice.id}`,
+              }
+            : null;
         break;
       case 'TOURISTIC_CONTENT':
         result = ({ category }: TouristicContentDetails) => ({
