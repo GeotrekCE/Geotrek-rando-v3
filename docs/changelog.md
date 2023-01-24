@@ -1,5 +1,13 @@
 # Changelog
 
+3.11.0 (2023-01-24)
+-------------------
+
+**🔧 Maintenance**
+
+* Add workflow githubaction with 2 stages : builder, final 
+
+
 3.10.9 (2022-10-06)
 -------------------
 
