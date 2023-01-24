@@ -132,7 +132,7 @@ export const adaptOutdoorSiteDetails = ({
   id: rawOutdoorSiteDetails.id,
   access,
   pdfUri: rawOutdoorSiteDetails?.properties?.pdf || '',
-  practice: outdoorPractice[String(rawOutdoorSiteDetails?.properties?.practice)],
+  practice: outdoorPractice[String(rawOutdoorSiteDetails?.properties?.practice)] ?? null,
   cities: rawOutdoorSiteDetails.properties.cities?.map(id => cityDictionnary[id]?.name) ?? [],
   cities_raw: rawOutdoorSiteDetails.properties.cities,
   ratings:

@@ -17,7 +17,7 @@ interface DetailsTopIconsProps {
     | OutdoorSiteDetails
     | OutdoorCourseDetails
     | TouristicEventDetails;
-  practice?: Activity;
+  practice?: Activity | null;
   type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
 }
 
