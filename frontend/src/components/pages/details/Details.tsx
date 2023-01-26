@@ -430,7 +430,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                               attachments: touristicContent.attachments,
                               iconUri: touristicContent.category.pictogramUri,
                               iconName: touristicContent.category.label,
-                              logoUri: touristicContent.logoUri ?? undefined,
                             }))}
                             type="TOURISTIC_CONTENT"
                           />

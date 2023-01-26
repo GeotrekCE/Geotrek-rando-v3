@@ -301,7 +301,6 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                                 attachments: touristicContent.attachments,
                                 iconUri: touristicContent.category.pictogramUri,
                                 iconName: touristicContent.category.label,
-                                logoUri: touristicContent.logoUri ?? undefined,
                               }),
                             )}
                             type="TOURISTIC_CONTENT"

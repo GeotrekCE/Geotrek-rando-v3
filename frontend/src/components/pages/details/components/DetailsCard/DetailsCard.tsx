@@ -24,7 +24,6 @@ export interface DetailsCardProps {
   attachments: Attachment[];
   iconUri?: string;
   iconName?: string;
-  logoUri?: string;
   className?: string;
   redirectionUrl?: string;
   type?: string;
@@ -39,7 +38,6 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   iconUri,
   iconName,
   place,
-  logoUri,
   className = '',
   redirectionUrl,
   type,
@@ -74,13 +72,6 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         setHoveredCardId(null);
       }}
     >
-      {Boolean(logoUri) && (
-        <img
-          className="hidden desktop:absolute h-12 object-cover object-center right-6 top-6"
-          src={logoUri}
-          alt=""
-        />
-      )}
       <div className="flex-none desktop:w-2/5">
         <Modal>
           {({ isFullscreen, toggleFullscreen }) => (
