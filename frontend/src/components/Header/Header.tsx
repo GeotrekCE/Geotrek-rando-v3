@@ -40,7 +40,7 @@ export const Header: React.FC = () => {
             <img
               id="header_logoImg"
               className="h-9 desktop:h-18 mr-3 rounded-md"
-              alt="logo"
+              alt=""
               src={config.logo}
             />
           </div>
