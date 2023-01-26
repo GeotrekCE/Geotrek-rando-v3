@@ -5,6 +5,7 @@ import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
+import Image from 'next/image';
 import { HtmlText } from '../../utils';
 import { useDetailsInformationDesk } from './useDetailsInformationDesk';
 import DetailsInformationDeskLocation from './DetailsInformationDeskLocation';
@@ -113,10 +114,13 @@ const InformationDeskIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri 
     return <SVG src={pictogramUri} className="h-full w-full m-1" />;
   }
   return (
-    <img
-      className="object-cover object-contain h-full w-full rounded-full overflow-hidden"
+    <Image
+      loading="lazy"
+      className="object-cover h-full w-full rounded-full overflow-hidden"
       src={pictogramUri}
       alt=""
+      width={100}
+      height={100}
     />
   );
 };

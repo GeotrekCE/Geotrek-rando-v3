@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-hBxehG kCtiEo"
+        class="sc-ksBlkl gXjBwh"
         id="result_card"
       >
         <div
@@ -19,7 +19,7 @@ Object {
               class="w-full h-full"
             >
               <div
-                class="sc-ksBlkl jXEHIL h-full w-full flex-grow relative desktop:w-resultCardDesktop"
+                class="sc-bqWxrE cixPnt h-full w-full flex-grow relative desktop:w-resultCardDesktop"
               >
                 <span
                   class=""
@@ -44,26 +44,26 @@ Object {
           href="/details-2-Balade-au-pays-des-menhirs"
         >
           <div
-            class="sc-fnGiBr hLXsHP"
+            class="sc-hBxehG eGaylx"
           >
             <div
-              class="sc-fEXmlR xEypB"
+              class="sc-fnGiBr fVGjLL"
             >
               <span
-                class="sc-idXgbr hbjwlr"
+                class="sc-bjfHbI ghNbNM"
               >
                 Saint-Etienne-du-Valdonnez
               </span>
               <span
-                class="sc-dIfARi llpkwN"
+                class="sc-idXgbr ddobji"
               >
                 Balade au pays des menhirs
               </span>
               <div
-                class="sc-hHTYSt kxFEvi"
+                class="sc-dIfARi dGGJBR"
               >
                 <div
-                  class="sc-dmctIk jkhDhp"
+                  class="sc-hHTYSt cMfGvz"
                 >
                   <div
                     class="sc-kDvujY deVWMJ"
@@ -89,24 +89,24 @@ Object {
                 </div>
               </div>
               <div
-                class="sc-kgTSHT ksCOQs"
+                class="sc-dmctIk hhgiMz"
               >
                 <div
-                  class="sc-fLcnxK dUBOFD"
+                  class="sc-kgTSHT exTgGk"
                 >
                   <div
-                    class="flex items-center text-primary1  "
+                    class="flex items-center text-primary1 "
                   >
                     <img
                       class="object-cover object-center w-6 h-6"
                       src=""
                     />
                     <span
-                      class="sc-csuSiG bJfjQe"
+                      class="ml-2 text-sm text-greyDarkColored"
                     />
                   </div>
                   <div
-                    class="flex items-center text-primary1  "
+                    class="flex items-center text-primary1 "
                   >
                     <svg
                       fill="none"
@@ -132,13 +132,13 @@ Object {
                       />
                     </svg>
                     <span
-                      class="sc-csuSiG bJfjQe"
+                      class="ml-2 text-sm text-greyDarkColored"
                     >
                       2h
                     </span>
                   </div>
                   <div
-                    class="flex items-center text-primary1  "
+                    class="flex items-center text-primary1 "
                   >
                     <svg
                       fill="none"
@@ -156,13 +156,13 @@ Object {
                       />
                     </svg>
                     <span
-                      class="sc-csuSiG bJfjQe"
+                      class="ml-2 text-sm text-greyDarkColored"
                     >
                       5km
                     </span>
                   </div>
                   <div
-                    class="flex items-center text-primary1 desktop:flex hidden "
+                    class="flex items-center text-primary1 desktop:flex hidden"
                   >
                     <svg
                       fill="none"
@@ -187,7 +187,7 @@ Object {
                       />
                     </svg>
                     <span
-                      class="sc-csuSiG bJfjQe"
+                      class="ml-2 text-sm text-greyDarkColored"
                     >
                       +360m
                     </span>
@@ -202,7 +202,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-hBxehG kCtiEo"
+      class="sc-ksBlkl gXjBwh"
       id="result_card"
     >
       <div
@@ -215,7 +215,7 @@ Object {
             class="w-full h-full"
           >
             <div
-              class="sc-ksBlkl jXEHIL h-full w-full flex-grow relative desktop:w-resultCardDesktop"
+              class="sc-bqWxrE cixPnt h-full w-full flex-grow relative desktop:w-resultCardDesktop"
             >
               <span
                 class=""
@@ -240,26 +240,26 @@ Object {
         href="/details-2-Balade-au-pays-des-menhirs"
       >
         <div
-          class="sc-fnGiBr hLXsHP"
+          class="sc-hBxehG eGaylx"
         >
           <div
-            class="sc-fEXmlR xEypB"
+            class="sc-fnGiBr fVGjLL"
           >
             <span
-              class="sc-idXgbr hbjwlr"
+              class="sc-bjfHbI ghNbNM"
             >
               Saint-Etienne-du-Valdonnez
             </span>
             <span
-              class="sc-dIfARi llpkwN"
+              class="sc-idXgbr ddobji"
             >
               Balade au pays des menhirs
             </span>
             <div
-              class="sc-hHTYSt kxFEvi"
+              class="sc-dIfARi dGGJBR"
             >
               <div
-                class="sc-dmctIk jkhDhp"
+                class="sc-hHTYSt cMfGvz"
               >
                 <div
                   class="sc-kDvujY deVWMJ"
@@ -285,24 +285,24 @@ Object {
               </div>
             </div>
             <div
-              class="sc-kgTSHT ksCOQs"
+              class="sc-dmctIk hhgiMz"
             >
               <div
-                class="sc-fLcnxK dUBOFD"
+                class="sc-kgTSHT exTgGk"
               >
                 <div
-                  class="flex items-center text-primary1  "
+                  class="flex items-center text-primary1 "
                 >
                   <img
                     class="object-cover object-center w-6 h-6"
                     src=""
                   />
                   <span
-                    class="sc-csuSiG bJfjQe"
+                    class="ml-2 text-sm text-greyDarkColored"
                   />
                 </div>
                 <div
-                  class="flex items-center text-primary1  "
+                  class="flex items-center text-primary1 "
                 >
                   <svg
                     fill="none"
@@ -328,13 +328,13 @@ Object {
                     />
                   </svg>
                   <span
-                    class="sc-csuSiG bJfjQe"
+                    class="ml-2 text-sm text-greyDarkColored"
                   >
                     2h
                   </span>
                 </div>
                 <div
-                  class="flex items-center text-primary1  "
+                  class="flex items-center text-primary1 "
                 >
                   <svg
                     fill="none"
@@ -352,13 +352,13 @@ Object {
                     />
                   </svg>
                   <span
-                    class="sc-csuSiG bJfjQe"
+                    class="ml-2 text-sm text-greyDarkColored"
                   >
                     5km
                   </span>
                 </div>
                 <div
-                  class="flex items-center text-primary1 desktop:flex hidden "
+                  class="flex items-center text-primary1 desktop:flex hidden"
                 >
                   <svg
                     fill="none"
@@ -383,7 +383,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="sc-csuSiG bJfjQe"
+                    class="ml-2 text-sm text-greyDarkColored"
                   >
                     +360m
                   </span>
