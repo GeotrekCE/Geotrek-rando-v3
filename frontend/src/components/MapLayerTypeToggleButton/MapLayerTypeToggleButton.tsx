@@ -19,18 +19,19 @@ export const MapLayerTypeToggleButton: React.FC<MapLayerTypeToggleButton> = ({
 
   return (
     <Control position={position}>
-      <div
+      <button
         className="leaflet-toggleLayer"
         onClick={() => {
           setTileLayerType(otherLayer);
           onChange(otherLayer);
         }}
+        type="button"
       >
         <SquaredButtonWithImage
           titleKey={`map.layerButton.${otherLayer}`}
           imageUrl={`/images/${otherLayer}-toggle-button-image.png`}
         />
-      </div>
+      </button>
     </Control>
   );
 };

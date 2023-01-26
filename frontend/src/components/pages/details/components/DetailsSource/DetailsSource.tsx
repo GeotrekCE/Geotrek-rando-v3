@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
 
@@ -50,5 +51,14 @@ const SourceIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri }) => {
       </div>
     );
   }
-  return <img className="object-center object-contain h-20" src={pictogramUri} alt="" />;
+  return (
+    <Image
+      loading="lazy"
+      className="object-center object-contain h-20"
+      src={pictogramUri}
+      alt=""
+      width={120}
+      height={80}
+    />
+  );
 };
