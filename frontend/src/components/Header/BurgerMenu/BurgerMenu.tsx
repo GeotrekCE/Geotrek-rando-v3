@@ -22,8 +22,6 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
   }`;
 
   const intl = useIntl();
-  const router = useRouter();
-  const currentLanguage = router.locale ?? getDefaultLanguage();
 
   return (
     <Slide
@@ -57,8 +55,6 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
       <NextLink
         className="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
         href={routes.SEARCH}
-        locale={currentLanguage}
-        key={routes.SEARCH}
       >
         {intl.formatMessage({ id: 'header.goToSearch' })}
       </NextLink>
@@ -66,8 +62,6 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
         className="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
         href={routes.OFFLINE}
         prefetch={false}
-        locale={currentLanguage}
-        key={routes.OFFLINE}
       >
         {intl.formatMessage({ id: 'header.offline' })}
       </NextLink>
