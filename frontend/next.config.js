@@ -62,6 +62,13 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: '*',
+      },
+    ],
+  },
 };
 
 module.exports = async (phase, { defaultConfig }) => (
