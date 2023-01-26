@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import Image from 'next/image';
 import { FormattedMessage } from 'react-intl';
 
 interface SquaredButtonWithImageProps {
@@ -6,16 +6,23 @@ interface SquaredButtonWithImageProps {
   imageUrl: string;
 }
 
-export const SquaredButtonWithImage: FunctionComponent<SquaredButtonWithImageProps> = ({
+export const SquaredButtonWithImage: React.FC<SquaredButtonWithImageProps> = ({
   imageUrl,
   titleKey,
 }) => {
   return (
-    <div className="h-12 w-12 relative overflow-hidden shadow-md rounded-medium border-2 border-solid border-white cursor-pointer">
-      <img src={imageUrl} className="object-cover h-full w-full rounded-medium" alt="" />
+    <div className="h-12 w-12 relative overflow-hidden shadow-md rounded-medium border-2 border-solid border-white">
+      <Image
+        loading="lazy"
+        src={imageUrl}
+        className="object-cover h-full w-full rounded-medium"
+        width={44}
+        height={44}
+        alt=""
+      />
       <span
         className="font-bold text-white text-CTA text-center w-full
-      absolute bottom-1 z-text"
+      absolute bottom-1 left-0 right-0 z-text"
       >
         <FormattedMessage id={titleKey} />
       </span>

@@ -1,6 +1,7 @@
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import SVG from 'react-inlinesvg';
 import styled from 'styled-components';
+import Image from 'next/image';
 
 interface IconProps {
   className?: string;
@@ -39,7 +40,7 @@ const Icon: React.FC<IconProps> = ({ iconUri = '', className = '', color }) => {
       />
     );
   }
-  return <img className={className} src={iconUri} alt="" />;
+  return <Image loading="lazy" className={className} src={iconUri} alt="" width={28} height={28} />;
 };
 
 export const CardIcon: React.FC<Props> = ({ iconUri = '', iconName = '', color }) => {
