@@ -50,7 +50,6 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
             iconUri={card.iconUri}
             iconName={card.iconName}
             place={card.place}
-            logoUri={card.logoUri}
             className="w-60"
             redirectionUrl={
               generateUrlFunction && card.id !== undefined
