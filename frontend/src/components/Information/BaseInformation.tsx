@@ -1,8 +1,3 @@
-import React from 'react';
-
-import { colorPalette, getSpacing, typography } from 'stylesheet';
-import styled from 'styled-components';
-
 interface Props {
   icon: React.ReactNode;
   children: React.ReactNode;
@@ -15,15 +10,9 @@ interface Props {
  */
 export const Information: React.FC<Props> = ({ icon, children, className = '' }) => {
   return (
-    <div className={`flex items-center text-primary1 ${className} `}>
+    <div className={`flex items-center text-primary1 ${className}`}>
       {icon}
-      <InformationText>{children}</InformationText>
+      <span className="ml-2 text-sm text-greyDarkColored">{children}</span>
     </div>
   );
 };
-
-const InformationText = styled.span`
-  margin-left: ${getSpacing(2)};
-  ${typography.small}
-  color: ${colorPalette.darkPurple}
-`;
