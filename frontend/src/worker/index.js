@@ -30,6 +30,11 @@ self.addEventListener('fetch', event => {
   ) {
     event.respondWith(fromNetwork(event.request, 10000).catch(() => fromCache(event.request)));
   }
+
+  // Avoid to save search.json to redirect to offline page
+  if (event.request.url.includes('/search.json')) {
+    event.respondWith(fromNetwork(event.request, 10000).catch(() => {}));
+  }
 });
 
 // Prefetch offline page to be ready on mobile
@@ -38,9 +43,23 @@ self.addEventListener('activate', async () => {
   return cache.add('/offline');
 });
 
-// Cache search-page/information-pages on dynamic navigation
 self.addEventListener('message', async event => {
-  if (event.data?.action === 'information-pages' || event.data?.action === 'search-pages') {
+  // Cache search-page as offline page on dynamic navigation
+  if (event.data?.action === 'search-pages') {
+    const offlineCache = await caches.open('offline').then(cache => cache.match('/offline'));
+    caches.open(event.data.action).then(cache =>
+      cache.match(event.source.url).then(async (res) => {
+        if (res === undefined) {
+          fetch(event.source.url).then(() => (
+            cache.put(event.source.url, offlineCache)
+          ));
+        }
+      })
+      )
+    }
+
+  // Cache information-pages on dynamic navigation
+  if (event.data?.action === 'information-pages') {
     caches.open(event.data.action).then(cache =>
       cache.match(event.source.url).then(res => {
         if (res === undefined) {
