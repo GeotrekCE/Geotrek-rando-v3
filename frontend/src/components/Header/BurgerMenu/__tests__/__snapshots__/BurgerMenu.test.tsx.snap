@@ -217,12 +217,18 @@ Object {
                 </div>
               </div>
               <a
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
                 href="/search"
+                style="display: block;"
+                tabindex="-1"
               >
                 Recherche
               </a>
               <a
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
                 href="/offline"
+                style="display: block;"
+                tabindex="-1"
               >
                 Contenus hors ligne
               </a>
@@ -474,12 +480,18 @@ Object {
               </div>
             </div>
             <a
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
               href="/search"
+              style="display: block;"
+              tabindex="-1"
             >
               Recherche
             </a>
             <a
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
               href="/offline"
+              style="display: block;"
+              tabindex="-1"
             >
               Contenus hors ligne
             </a>
