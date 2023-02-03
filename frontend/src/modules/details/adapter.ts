@@ -5,7 +5,12 @@ import { CourseType } from 'modules/filters/courseType/interface';
 import { Difficulty } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
 import { InformationDeskDictionnary } from 'modules/informationDesk/interface';
-import { RawLineStringGeometry3D, RawMultiLineStringGeometry3D } from 'modules/interface';
+import {
+  Coordinate2D,
+  RawLineStringGeometry3D,
+  RawMultiLineStringGeometry3D,
+  RawPointGeometry3D,
+} from 'modules/interface';
 import { LabelDictionnary } from 'modules/label/interface';
 import { NetworkDictionnary } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
@@ -19,7 +24,11 @@ import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { SourceDictionnary } from 'modules/source/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
 import { getAttachments } from 'modules/utils/adapter';
-import { adaptGeometry2D, flattenMultiLineStringCoordinates } from 'modules/utils/geometry';
+import {
+  adaptGeometry2D,
+  extractFirstPointOfGeometry,
+  getTrekGeometryAsLineStringCoordinates,
+} from 'modules/utils/geometry';
 import { formatHours } from 'modules/utils/time';
 import { TrekRatingScale } from '../trekRatingScale/interface';
 import { TrekRatingChoices } from '../trekRating/interface';
@@ -75,10 +84,7 @@ export const adaptResults = ({
   trekRatingScale: TrekRatingScale[];
 }): Details => {
   try {
-    const coordinates =
-      geometry.type === 'MultiLineString'
-        ? flattenMultiLineStringCoordinates(geometry.coordinates)
-        : geometry.coordinates;
+    const coordinates = getTrekGeometryAsLineStringCoordinates(geometry);
     return {
       accessbilityLevel,
       accessibility_signage: rawDetailsProperties.accessibility_signage ?? null,
@@ -206,12 +212,10 @@ export const adaptChildren = ({
 
 export const adaptTrekChildGeometry = (
   id: string,
-  geometry: RawLineStringGeometry3D | RawMultiLineStringGeometry3D,
-): TrekChildGeometry => {
-  const rawDeparture =
-    geometry.type === 'MultiLineString' ? geometry.coordinates[0][0] : geometry.coordinates[0];
+  geometry: RawLineStringGeometry3D | RawMultiLineStringGeometry3D | RawPointGeometry3D,
+): { id: string; departure: Coordinate2D } => {
   return {
     id,
-    departure: adaptGeometry2D(rawDeparture),
+    departure: extractFirstPointOfGeometry(geometry) as Coordinate2D,
   };
 };
