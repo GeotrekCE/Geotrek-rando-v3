@@ -8,9 +8,11 @@ import {
   Coordinate2D,
   RawAttachment,
   RawCoordinate2D,
+  RawGeometryObject,
   RawLineStringGeometry3D,
   RawMultiLineStringGeometry3D,
   RawMultiPointGeometry,
+  RawPointGeometry3D,
   RawWebLink,
 } from 'modules/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
@@ -28,7 +30,7 @@ import { TrekRatingWithScale } from '../trekRating/interface';
 export interface RawDetails {
   type: string;
   bbox: number[];
-  geometry: RawLineStringGeometry3D | RawMultiLineStringGeometry3D;
+  geometry: RawLineStringGeometry3D | RawMultiLineStringGeometry3D | RawPointGeometry3D;
   properties: RawDetailsProperties;
 }
 
@@ -130,7 +132,7 @@ export interface TrekResultWithGeometry extends TrekResult {
   geometry?: TrekChildGeometry;
 }
 export interface RawTrekChildGeometry {
-  geometry: RawLineStringGeometry3D;
+  geometry: RawLineStringGeometry3D | RawMultiLineStringGeometry3D | RawPointGeometry3D;
 }
 export interface TrekChildGeometry {
   id: string;

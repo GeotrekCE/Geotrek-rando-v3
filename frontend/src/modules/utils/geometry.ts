@@ -14,10 +14,13 @@ import {
   RawGeometryCollection,
   RawGeometryObject,
   RawLineStringGeometry2D,
+  RawLineStringGeometry3D,
   RawMultiLineStringGeometry,
+  RawMultiLineStringGeometry3D,
   RawMultiPointGeometry2D,
   RawMultiPolygonGeometry,
   RawPointGeometry2D,
+  RawPointGeometry3D,
   RawPolygonGeometry,
 } from 'modules/interface';
 
@@ -102,8 +105,11 @@ export const extractFirstPointOfGeometry = (
     | RawPolygonGeometry
     | RawMultiPolygonGeometry
     | RawLineStringGeometry2D
+    | RawLineStringGeometry3D
     | RawMultiLineStringGeometry
+    | RawMultiLineStringGeometry3D
     | RawPointGeometry2D
+    | RawPointGeometry3D
     | RawMultiPointGeometry2D
     | RawGeometryCollection
     | null,
@@ -141,4 +147,17 @@ export function flattenMultiLineStringCoordinates<T>(coordinates: T[][]): T[] {
     (reducedInLineCoordinates, currentLine) => [...reducedInLineCoordinates, ...currentLine],
     [],
   );
+}
+
+export function getTrekGeometryAsLineStringCoordinates(
+  geometry: RawLineStringGeometry3D | RawMultiLineStringGeometry3D | RawPointGeometry3D,
+) {
+  if (geometry.type === 'MultiLineString') {
+    return flattenMultiLineStringCoordinates(geometry.coordinates);
+  }
+  // Sometimes a geometry from API is broken and returns a Point
+  if (geometry.type === 'Point') {
+    return [geometry.coordinates, geometry.coordinates];
+  }
+  return geometry.coordinates;
 }
