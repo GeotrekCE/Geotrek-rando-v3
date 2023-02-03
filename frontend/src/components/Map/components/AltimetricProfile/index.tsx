@@ -6,6 +6,7 @@ import { useMap } from 'react-leaflet';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
+import useHasMounted from 'hooks/useHasMounted';
 
 interface AltimetricProfileProps {
   trekGeoJSON: string;
@@ -16,8 +17,12 @@ export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSO
   const map = useMap();
   const intl = useIntl();
   const language = useRouter().locale ?? getDefaultLanguage();
+  const isMounted = useHasMounted();
 
   useEffect(() => {
+    if (!isMounted) {
+      return;
+    }
     const div = document.getElementById(id);
     if (div) div.innerHTML = '';
 
@@ -50,7 +55,7 @@ export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSO
     L.setLocale(language);
 
     elevationControl.load(trekGeoJSON);
-  }, [id, intl, language, map, trekGeoJSON]);
+  }, [id, intl, isMounted, language, map, trekGeoJSON]);
 
-  return <div />;
+  return null;
 };

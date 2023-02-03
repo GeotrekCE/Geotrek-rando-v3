@@ -1,24 +1,17 @@
 import { Header } from 'components/Header';
 import ConditionallyRender from 'components/ConditionallyRender';
-import { colorPalette, zIndex } from 'stylesheet';
-import Loader from 'react-loader';
+import Loader from 'components/Loader';
 import { useNavigationLoader } from './useRedirection';
 
-export const Layout: React.FC = ({ children }) => {
+export const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { isNavigationLoading } = useNavigationLoader();
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-full">
       <Header />
-      <main className="flex-grow">
+      <main className="relative flex-grow">
         <ConditionallyRender client>
-          <Loader
-            loaded={!isNavigationLoading}
-            options={{
-              color: colorPalette.primary1,
-              zIndex: zIndex.loader,
-            }}
-          >
+          <Loader loaded={!isNavigationLoading} className="z-loader absolute inset-0">
             {children}
           </Loader>
         </ConditionallyRender>

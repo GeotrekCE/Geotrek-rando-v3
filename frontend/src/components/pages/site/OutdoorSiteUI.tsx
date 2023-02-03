@@ -19,9 +19,9 @@ import { OutdoorCoursesChildrenSection } from 'components/pages/site/components/
 import { OutdoorSiteChildrenSection } from 'components/pages/site/components/OutdoorSiteChildrenSection';
 import React, { useMemo, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Loader from 'react-loader';
+import Loader from 'components/Loader';
 import { useMediaPredicate } from 'react-media-hook';
-import { colorPalette, sizes, zIndex } from 'stylesheet';
+import { sizes } from 'stylesheet';
 import { DetailsMapDynamicComponent } from 'components/Map';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
@@ -30,6 +30,7 @@ import { MobileMapContainer } from 'components/pages/search';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MapPin } from 'components/Icons/MapPin';
+import useHasMounted from 'hooks/useHasMounted';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { useOutdoorSite } from './useOutdoorSite';
 import { DetailsPreview } from '../details/components/DetailsPreview';
@@ -74,6 +75,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
 
   /** Ref of the parent of all sections */
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
+  const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
   useOnScreenSection({
     sectionsPositions,
@@ -101,18 +103,13 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
           }
         />
         {outdoorSiteContent === undefined ? (
-          isLoading ? (
-            <Loader
-              loaded={!isLoading}
-              options={{
-                top: `${sizes.desktopHeader + sizes.filterBar}px`,
-                color: colorPalette.primary1,
-                zIndex: zIndex.loader,
-              }}
-            />
-          ) : (
-            <ErrorFallback refetch={refetch} />
-          )
+          <Layout>
+            {isLoading ? (
+              <Loader className="absolute inset-0" />
+            ) : (
+              <ErrorFallback refetch={refetch} />
+            )}
+          </Layout>
         ) : (
           <>
             <Layout>
@@ -137,9 +134,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                           id="outdoorSiteContent_cover"
                           className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                         >
-                          {outdoorSiteContent.attachments.length > 1 &&
-                          typeof navigator !== 'undefined' &&
-                          navigator?.onLine ? (
+                          {outdoorSiteContent.attachments.length > 1 && hasNavigator ? (
                             <DetailsCoverCarousel
                               attachments={outdoorSiteContent.attachments}
                               onClickImage={toggleFullscreen}
@@ -337,8 +332,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                       )}
 
                       {getGlobalConfig().enableMeteoWidget &&
-                        typeof navigator !== 'undefined' &&
-                        navigator.onLine &&
+                        hasNavigator &&
                         outdoorSiteContent.cities_raw &&
                         outdoorSiteContent.cities_raw[0] && (
                           <DetailsSection>

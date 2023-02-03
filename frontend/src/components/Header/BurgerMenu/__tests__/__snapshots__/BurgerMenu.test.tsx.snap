@@ -208,7 +208,7 @@ Object {
                     role="region"
                   >
                     <a
-                      class="Link__StyledLink-sc-oanbk8-0 htOOkH block text-Mobile-C2 py-2 text-greyDarkColored"
+                      class="text-primary1 hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
                       href="/"
                     >
                       FR
@@ -217,14 +217,18 @@ Object {
                 </div>
               </div>
               <a
-                class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
                 href="/search"
+                style="display: block;"
+                tabindex="-1"
               >
                 Recherche
               </a>
               <a
-                class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
                 href="/offline"
+                style="display: block;"
+                tabindex="-1"
               >
                 Contenus hors ligne
               </a>
@@ -467,7 +471,7 @@ Object {
                   role="region"
                 >
                   <a
-                    class="Link__StyledLink-sc-oanbk8-0 htOOkH block text-Mobile-C2 py-2 text-greyDarkColored"
+                    class="text-primary1 hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
                     href="/"
                   >
                     FR
@@ -476,14 +480,18 @@ Object {
               </div>
             </div>
             <a
-              class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
               href="/search"
+              style="display: block;"
+              tabindex="-1"
             >
               Recherche
             </a>
             <a
-              class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
               href="/offline"
+              style="display: block;"
+              tabindex="-1"
             >
               Contenus hors ligne
             </a>

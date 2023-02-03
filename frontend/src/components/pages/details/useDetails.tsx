@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Details, TrekFamily } from 'modules/details/interface';
 import { getDetails, getTrekFamily } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
@@ -42,7 +42,7 @@ export const useDetails = (
   const path = isUrlString(detailsUrl) ? decodeURI(detailsUrl) : '';
   const router = useRouter();
   const { data, refetch, isLoading } = useQuery<Details, Error>(
-    `details-${id}-${language}`,
+    ['details', id, language],
     () => getDetails(id, language),
     {
       enabled: isUrlString(detailsUrl),
@@ -59,7 +59,7 @@ export const useDetails = (
 
   const parentIdString = isUrlString(parentId) ? parentId : '';
   const { data: trekFamily } = useQuery<TrekFamily | null, Error>(
-    `trekFamily-${parentIdString}-${language}`,
+    ['trekFamily', parentIdString, language],
     () => getTrekFamily(isUrlString(parentId) ? parentId : '', language),
     {
       enabled: isUrlString(parentId),

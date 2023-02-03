@@ -36,7 +36,7 @@ export const mockResultsResponse = (): APIResponseForList<RawTrekResult> => ({
 
 export const mockResultsRoute = (times: number): void =>
   mockRoute({
-    route: '/trek',
+    route: '/trek/',
     mockData: mockResultsResponse(),
     additionalQueries: {
       fields:
@@ -56,7 +56,7 @@ export const mockTouristicContentResultsResponse = (): APIResponseForList<RawTre
 
 export const mockTouristicContentResultsRoute = (times: number): void =>
   mockRoute({
-    route: '/touristiccontent',
+    route: '/touristiccontent/',
     mockData: mockTouristicContentResultsResponse(),
     additionalQueries: {
       fields: 'id,attachments,name,category,description_teaser,themes,types,departure_city',

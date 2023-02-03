@@ -11,7 +11,7 @@ const fieldsParams = {
 export const fetchTouristicEvents = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawTouristicEvent>> => {
-  return GeotrekAPI.get(`/touristicevent`, {
+  return GeotrekAPI.get('/touristicevent/', {
     params: {
       ...query,
       ...fieldsParams,

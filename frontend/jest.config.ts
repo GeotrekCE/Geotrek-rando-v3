@@ -1,15 +1,15 @@
 import type { Config } from '@jest/types';
 
+const nextJest = require('next/jest');
+
+const createJestConfig = nextJest();
+
 const TEST_REGEX = '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|js?|tsx?|ts?)$';
 
 const config: Config.InitialOptions = {
-  testEnvironment: 'jsdom',
+  testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: ['<rootDir>/jestAfterEnv.setup.tsx'],
   testRegex: TEST_REGEX,
-  transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }]
-  },
-  transformIgnorePatterns: ['/node_modules/', '^.+\\.module\\.(css|sass|scss)$'],
   moduleNameMapper: {
     '^components/(.*)$': '<rootDir>/src/components/$1',
     '^__fixtures__/(.*)$': '<rootDir>/src/__fixtures__/$1',
@@ -19,19 +19,11 @@ const config: Config.InitialOptions = {
     '^stylesheet$': '<rootDir>/src/stylesheet.ts',
     '^customization(.*)$': '<rootDir>/customization/$1',
   },
-  testPathIgnorePatterns: ['<rootDir>/src/.next/', '<rootDir>/node_modules/', '<rootDir>/cypress/'],
+  testPathIgnorePatterns: ['<rootDir>/cypress/'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   collectCoverage: true,
   collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx,ts,tsx}'],
-  coveragePathIgnorePatterns: [
-    '<rootDir>/src/.next/',
-    '<rootDir>/src/pages/_app.tsx',
-    '<rootDir>/src/pages/_document.tsx',
-    '<rootDir>/src/server.js',
-    '<rootDir>/src/services/api/client.ts',
-    '<rootDir>/src/services/sentry.js',
-  ],
   moduleDirectories: ['node_modules', 'src'],
 };
 
-export default config;
+module.exports = createJestConfig(config);

@@ -4,8 +4,7 @@ import { getActivitySuggestions } from 'modules/activitySuggestions/connector';
 import { adaptSuggestions, getHomePageConfig } from 'modules/home/utils';
 import { GetServerSideProps } from 'next';
 
-import { QueryClient } from 'react-query';
-import { dehydrate } from 'react-query/hydration';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const { locale = 'fr' } = context;
@@ -18,11 +17,11 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const activitySuggestionIds = suggestions.flatMap(s => s.ids);
 
     await queryClient.prefetchQuery(
-      ['activitySuggestions', activitySuggestionIds.join('-'), locale],
+      ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}`, locale],
       () => getActivitySuggestions(suggestions, locale),
     );
 
-    await queryClient.prefetchQuery(`homeActivities-${locale}`, () =>
+    await queryClient.prefetchQuery(['homeActivities, locale'], () =>
       getActivityBarContent(locale),
     );
   }

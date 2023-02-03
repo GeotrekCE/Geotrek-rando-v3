@@ -8,7 +8,7 @@ const fieldsParamFlatPages = {
 };
 
 export const fetchFlatPages = (query: APIQuery): Promise<APIResponseForList<RawFlatPage>> =>
-  GeotrekAPI.get(`/flatpage`, {
+  GeotrekAPI.get(`/flatpage/`, {
     params: { ...query, ...fieldsParamFlatPages, ...portalsFilter },
   }).then(r => r.data);
 

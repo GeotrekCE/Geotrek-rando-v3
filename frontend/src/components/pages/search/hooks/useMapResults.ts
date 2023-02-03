@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { getMapResults } from 'modules/mapResults/connector';
 import { MapResults } from 'modules/mapResults/interface';

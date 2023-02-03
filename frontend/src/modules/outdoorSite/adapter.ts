@@ -132,7 +132,7 @@ export const adaptOutdoorSiteDetails = ({
   id: rawOutdoorSiteDetails.id,
   access,
   pdfUri: rawOutdoorSiteDetails?.properties?.pdf || '',
-  practice: outdoorPractice[String(rawOutdoorSiteDetails?.properties?.practice)],
+  practice: outdoorPractice[String(rawOutdoorSiteDetails?.properties?.practice)] ?? null,
   cities: rawOutdoorSiteDetails.properties.cities?.map(id => cityDictionnary[id]?.name) ?? [],
   cities_raw: rawOutdoorSiteDetails.properties.cities,
   ratings:
@@ -142,8 +142,8 @@ export const adaptOutdoorSiteDetails = ({
         scale: outdoorRatingScale.find(oRS => oRS.id === outdoorRating[String(r)]?.scale),
       };
     }) ?? [],
-  ratingsDescription: rawOutdoorSiteDetails.properties.ratings_description,
-  typeSite: outdoorSiteType[Number(rawOutdoorSiteDetails?.properties?.type)],
+  ratingsDescription: rawOutdoorSiteDetails.properties.ratings_description ?? null,
+  typeSite: outdoorSiteType[Number(rawOutdoorSiteDetails?.properties?.type)] ?? null,
   sensitiveAreas,
   signage,
   service,

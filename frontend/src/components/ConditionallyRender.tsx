@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import useHasMounted from 'hooks/useHasMounted';
 
-export interface ConditionallyRenderProps {
+type ConditionallyRenderProps = {
   client?: boolean;
   server?: boolean;
-}
+};
 
-const ConditionallyRender: React.FC<ConditionallyRenderProps> = props => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => setIsMounted(true), []);
+const ConditionallyRender: React.FC<React.PropsWithChildren<ConditionallyRenderProps>> = props => {
+  const isMounted = useHasMounted();
 
   if (!isMounted && props.client === true) {
     return null;
@@ -18,7 +16,7 @@ const ConditionallyRender: React.FC<ConditionallyRenderProps> = props => {
     return null;
   }
 
-  return props.children as React.ReactElement;
+  return <>{props.children}</>;
 };
 
 export default ConditionallyRender;

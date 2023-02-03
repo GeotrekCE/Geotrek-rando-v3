@@ -3,6 +3,17 @@ import { HomePageConfig } from './src/modules/home/interface';
 import nock from 'nock';
 import { setConfig } from 'next/config';
 
+// TextEncoder / TextDecoder APIs are used, but are not provided by
+// jsdom, all node versions supported provide these via the util module
+if (
+  typeof globalThis.TextEncoder === "undefined" ||
+  typeof globalThis.TextDecoder === "undefined"
+) {
+  const utils = require("util");
+  globalThis.TextEncoder = utils.TextEncoder;
+  globalThis.TextDecoder = utils.TextDecoder;
+};
+
 jest.mock('./src/components/Map', () => ({
   SearchMapDynamicComponent: () => null,
   DetailsMapDynamicComponent: () => null,
@@ -74,7 +85,7 @@ const mockConfig: HomePageConfig = {
   welcomeBanner: {
     pictureUrl: 'https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg',
     shouldDisplayText: true,
-    videoUrl: null,
+    videoUrl: undefined,
   },
   activityBar: {
     shouldDisplay: true,
@@ -84,6 +95,7 @@ const mockConfig: HomePageConfig = {
       titleTranslationId: 'home.territoryTreks',
       iconUrl: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg',
       ids: ['2'],
+      type: 'trek'
     },
   ],
 };
@@ -97,15 +109,20 @@ jest.mock('screenfull', () => ({
   on: jest.fn(),
 }));
 
-window.matchMedia =
-  window.matchMedia ||
-  function () {
-    return {
-      matches: false,
-      addListener: function () {},
-      removeListener: function () {},
-    };
-  };
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: jest.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(), // Deprecated
+    removeListener: jest.fn(), // Deprecated
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
 
 setConfig({
   publicRuntimeConfig: {

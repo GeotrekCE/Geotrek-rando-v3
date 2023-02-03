@@ -2,19 +2,32 @@ import { getTouristicContentDetails } from 'modules/touristicContent/connector';
 import { TouristicContentDetails } from 'modules/touristicContent/interface';
 import { isUrlString } from 'modules/utils/string';
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
+import { isRessourceMissing } from 'services/routeUtils';
+import { useRouter } from 'next/router';
+import { ONE_DAY } from 'services/constants/staleTime';
+import { routes } from 'services/routes';
 
 export const useTouristicContent = (
   touristicContentUrl: string | string[] | undefined,
   language: string,
 ) => {
-  const id = isUrlString(touristicContentUrl) ? touristicContentUrl.split('-')[0] : '';
-  const path = isUrlString(touristicContentUrl) ? decodeURI(touristicContentUrl) : '';
+  const isTouristicContentUrlString = isUrlString(touristicContentUrl);
+
+  const id = isTouristicContentUrlString ? touristicContentUrl.split('-')[0] : '';
+  const path = isTouristicContentUrlString ? decodeURI(touristicContentUrl) : '';
+  const router = useRouter();
   const { data, refetch, isLoading } = useQuery<TouristicContentDetails, Error>(
     ['touristicContentDetails', id, language],
     () => getTouristicContentDetails(id, language),
     {
-      enabled: isUrlString(touristicContentUrl),
+      enabled: isTouristicContentUrlString,
+      onError: async error => {
+        if (isRessourceMissing(error)) {
+          await router.push(routes.HOME);
+        }
+      },
+      staleTime: ONE_DAY,
     },
   );
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');

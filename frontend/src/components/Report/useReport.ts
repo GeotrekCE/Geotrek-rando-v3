@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { useQueries } from 'react-query';
+import { useQueries } from '@tanstack/react-query';
 
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { useIntl } from 'react-intl';
@@ -87,20 +87,22 @@ const useReport = ({ startPoint }: Props) => {
     }
   }, [coordinatesReport]);
 
-  const results = useQueries([
-    {
-      queryKey: ['feedbackActivity', language],
-      queryFn: () => getFeedbackActivity(language),
-    },
-    {
-      queryKey: ['feedbackCategory', language],
-      queryFn: () => getFeedbackCategory(language),
-    },
-    {
-      queryKey: ['feedbackMagnitude', language],
-      queryFn: () => getFeedbackMagnitude(language),
-    },
-  ]);
+  const results = useQueries({
+    queries: [
+      {
+        queryKey: ['feedbackActivity', language],
+        queryFn: () => getFeedbackActivity(language),
+      },
+      {
+        queryKey: ['feedbackCategory', language],
+        queryFn: () => getFeedbackCategory(language),
+      },
+      {
+        queryKey: ['feedbackMagnitude', language],
+        queryFn: () => getFeedbackMagnitude(language),
+      },
+    ],
+  });
 
   const isLoading = results.some(i => i.isLoading);
 
@@ -147,7 +149,7 @@ const useReport = ({ startPoint }: Props) => {
       .catch(localError => {
         console.error(localError);
         const [context, key, field] = (localError.message as string).split('.');
-        setError({ id: `${context}.${key}`, values: { field: `${context}.${field}` } });
+        setError({ id: `${context}.${key}`, values: { field: `report.${field}` } });
       });
     setCoordinatesReportTouched(false);
   };

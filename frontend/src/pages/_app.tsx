@@ -1,7 +1,8 @@
 import { AppProps } from 'next/app';
 
 import { Root } from 'components/pages/_app/Root';
-import { Hydrate } from 'react-query/hydration';
+import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ONE_MINUTE } from 'services/constants/staleTime';
 import 'tailwindcss/tailwind.css';
 import '../public/fonts.css';
@@ -9,9 +10,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../public/style.css';
 
-import { ReactQueryDevtools } from 'react-query/devtools';
 import { ListAndMapProvider } from 'modules/map/ListAndMapContext';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import useCustomRegisterServiceWorker from 'hooks/useCustomRegisterServiceWorker';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,6 +22,7 @@ const queryClient = new QueryClient({
 });
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+  useCustomRegisterServiceWorker();
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>

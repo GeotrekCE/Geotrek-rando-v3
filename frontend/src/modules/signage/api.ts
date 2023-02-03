@@ -8,7 +8,7 @@ const fieldsParams = {
 
 export const fetchSignage = (query: APIQuery): Promise<APIResponseForList<RawSignage>> => {
   try {
-    return GeotrekAPI.get('/signage', { params: { ...query, ...fieldsParams } }).then(r => r.data);
+    return GeotrekAPI.get('/signage/', { params: { ...query, ...fieldsParams } }).then(r => r.data);
   } catch (e) {
     console.error('Error in signage/api/fetch', e);
     throw e;

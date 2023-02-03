@@ -1,8 +1,7 @@
 import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
-import Loader from 'react-loader';
+import Loader from 'components/Loader';
 import { useMediaPredicate } from 'react-media-hook';
-import { colorPalette, sizes, zIndex } from 'stylesheet';
 import parse from 'html-react-parser';
 import { FormattedMessage } from 'react-intl';
 import { TouristicContentMapDynamicComponent } from 'components/Map';
@@ -45,7 +44,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
   const isMobile = useMediaPredicate('(max-width: 1024px)');
 
   return (
-    <Layout>
+    <>
       <PageHead
         title={touristicContent?.name}
         description={touristicContent ? touristicContent.descriptionTeaser : ''}
@@ -56,20 +55,17 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
         }
       />
       {touristicContent === undefined ? (
-        isLoading ? (
-          <Loader
-            loaded={!isLoading}
-            options={{
-              top: `${sizes.desktopHeader + sizes.filterBar}px`,
-              color: colorPalette.primary1,
-              zIndex: zIndex.loader,
-            }}
-          />
-        ) : (
-          <ErrorFallback refetch={refetch} />
-        )
+        <Layout>
+          <>
+            {isLoading ? (
+              <Loader className="absolute inset-0" />
+            ) : (
+              <ErrorFallback refetch={refetch} />
+            )}
+          </>
+        </Layout>
       ) : (
-        <>
+        <Layout>
           <div id="touristicContent_page" className="flex flex-1">
             <div id="touristicContent_informations" className="flex flex-col w-full desktop:w-3/5">
               <OpenMapButton displayMap={displayMobileMap} />
@@ -260,8 +256,8 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
               />
             </MobileMapContainer>
           )}
-        </>
+        </Layout>
       )}
-    </Layout>
+    </>
   );
 };

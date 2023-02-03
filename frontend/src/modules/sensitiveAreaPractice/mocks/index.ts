@@ -22,7 +22,7 @@ export const mockSensitiveAreaPracticesResponse = (): SensitiveAreaPracticesResp
 
 export const mockSensitiveAreaPracticeRoute = (times: number): void =>
   mockRoute({
-    route: '/sensitivearea_practice',
+    route: '/sensitivearea_practice/',
     mockData: mockSensitiveAreaPracticesResponse(),
     times,
   });

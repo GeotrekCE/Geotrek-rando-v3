@@ -2,8 +2,7 @@ import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { DetailsUI } from 'components/pages/details';
 import { useEffect } from 'react';
-import { QueryClient } from 'react-query';
-import { dehydrate } from 'react-query/hydration';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { getDetails, getTrekFamily } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
 import { getDefaultLanguage } from 'modules/header/utills';
@@ -21,8 +20,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
   try {
     const details = await getDetails(id, locale);
 
-    await queryClient.prefetchQuery(`details-${id}-${locale}`, () => details);
-    await queryClient.prefetchQuery(`trekFamily-${parentIdString}-${locale}`, () =>
+    await queryClient.prefetchQuery(['details', id, locale], () => details);
+    await queryClient.prefetchQuery(['trekFamily', parentIdString, locale], () =>
       getTrekFamily(parentIdString, locale),
     );
 

@@ -23,7 +23,7 @@ export const mockServiceTypeResponse = (): ServiceTypeResponse => ({
 
 export const mockServiceTypeRoute = (times: number): void =>
   mockRoute({
-    route: '/service_type',
+    route: '/service_type/',
     mockData: mockServiceTypeResponse(),
     additionalQueries: {
       fields: 'id,label,pictogram',

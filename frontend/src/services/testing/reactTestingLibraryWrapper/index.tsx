@@ -1,6 +1,6 @@
 // edited slightly from : https://formatjs.io/docs/react-intl/testing/#react-testing-library
 
-import { FunctionComponent, ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { RenderOptions, RenderResult, render as rtlRender } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
@@ -31,7 +31,7 @@ const render = (
     ...renderOptions
   }: RenderOptionsWithWrapperOptions = {},
 ): RenderResult => {
-  const Wrapper: FunctionComponent = ({ children }) => {
+  const Wrapper: React.FC<React.PropsWithChildren> = ({ children }) => {
     return (
       <RouterContext.Provider value={routerMock(router)}>
         <IntlProvider locale={locale} messages={locales[locale]}>

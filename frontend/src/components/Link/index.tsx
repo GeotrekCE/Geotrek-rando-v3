@@ -1,1 +1,1 @@
-export { Link, StyledLink, default } from './Link';
+export { Link, default } from './Link';

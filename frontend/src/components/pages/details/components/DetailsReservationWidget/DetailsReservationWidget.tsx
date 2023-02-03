@@ -1,8 +1,10 @@
 import { Reservation } from 'modules/details/interface';
 import { useCallback, useEffect } from 'react';
+import Loader from 'components/Loader';
 import Script from 'next/script';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import useHasMounted from 'hooks/useHasMounted';
 
 declare global {
   interface Window {
@@ -33,6 +35,7 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
   language,
 }) => {
   const { asPath } = useRouter();
+  const isMounted = useHasMounted();
 
   const onLoad = useCallback(() => {
     const layer = {
@@ -46,20 +49,28 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
       void waitForGlobal('eitinerance')
         .then(() => waitForGlobal('AllianceReseaux'))
         .then(() => {
-          const spaClient = core.pages.getSinglePageApplicationClient({ layer });
+          const spaClient = core.pages?.getSinglePageApplicationClient({ layer });
           window.AllianceReseaux.jQuery(function () {
-            spaClient.executePage();
+            if (spaClient !== undefined) {
+              spaClient.executePage();
+            } else {
+              onLoad();
+            }
           });
         });
     })(window?.eitinerance?.core);
   }, [asPath, id, language, partner]);
 
   useEffect(() => {
-    // Hydratation once scripts loaded
-    if (window.eitinerance !== undefined) {
+    // Hydration once scripts loaded
+    if (isMounted && window.eitinerance !== undefined) {
       onLoad();
     }
   }, [onLoad]);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <>
@@ -85,7 +96,9 @@ export const DetailsReservationWidget: React.FC<DetailsReservationWidgetProps> =
         strategy="lazyOnload"
       />
       <div className="OsItinerance OsItPartner CssCustom">
-        <div id="eiti-partner"></div>
+        <div id="eiti-partner">
+          <Loader />
+        </div>
       </div>
     </>
   );

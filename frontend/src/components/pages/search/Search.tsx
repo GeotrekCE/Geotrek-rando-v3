@@ -4,12 +4,11 @@ import { useEffect } from 'react';
 import { useMediaPredicate } from 'react-media-hook';
 import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Loader from 'react-loader';
+import Loader from 'components/Loader';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { colorPalette, sizes, zIndex } from 'stylesheet';
+import { colorPalette, sizes } from 'stylesheet';
 
 import { Layout } from 'components/Layout/Layout';
-import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
 import { OpenMapButton } from 'components/OpenMapButton';
 import {
   MobileFilterMenu,
@@ -45,9 +44,6 @@ import { useTextFilter } from './hooks/useTextFilter';
 import { useDateFilter } from './hooks/useDateFilter';
 
 interface Props {
-  initialFiltersState: FilterState[];
-  touristicContentCategoryMapping: TouristicContentCategoryMapping;
-  initialFiltersStateWithSelectedOptions: FilterState[];
   language: string;
 }
 
@@ -112,14 +108,20 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
           id,
           selectedOptions: [
             ...list[index].selectedOptions,
-            ...item.selectedOptions.map(option => ({ ...option, include: false })),
+            ...item.selectedOptions.map(option => ({
+              ...option,
+              include: false,
+            })),
           ],
         };
       }
     } else {
       list.push({
         ...item,
-        selectedOptions: item.selectedOptions.map(option => ({ ...option, include: true })),
+        selectedOptions: item.selectedOptions.map(option => ({
+          ...option,
+          include: true,
+        })),
       });
     }
     return list;
@@ -128,7 +130,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   const numberSelected = countFiltersSelected(filtersState, null, null);
 
   return (
-    <div id="Search">
+    <div id="Search" className="h-full">
       <PageHead
         title={`${intl.formatMessage({ id: 'search.title' })}`}
         description={`${intl.formatMessage({ id: 'search.description' })}`}
@@ -181,15 +183,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
               className="flex flex-col w-full desktop:w-1/2 overflow-y-scroll"
             >
               <div className="p-4 flex-1">
-                <Loader
-                  loaded={!isLoading}
-                  options={{
-                    top: '40px',
-                    color: colorPalette.primary1,
-                    zIndex: zIndex.loader,
-                    position: 'relative',
-                  }}
-                >
+                <Loader loaded={!isLoading}>
                   <div className="flex flex-col desktop:flex-row desktop:justify-between">
                     <div className="flex justify-between items-end" id="search_resultMapTitle">
                       <SearchResultsMeta resultsNumber={searchResults?.resultsNumber ?? 0} />
@@ -213,14 +207,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                     next={fetchNextPage}
                     hasMore={hasNextPage ?? false}
                     loader={
-                      <div className={` my-10 ${isFetchingNextPage ? 'h-10' : ''}`}>
-                        <Loader
-                          loaded={!isFetchingNextPage}
-                          options={{
-                            color: colorPalette.primary1,
-                            zIndex: zIndex.loader,
-                          }}
-                        ></Loader>
+                      <div className={`relative my-10 ${isFetchingNextPage ? 'h-10' : ''}`}>
+                        <Loader loaded={!isFetchingNextPage} />
                       </div>
                     }
                     scrollableTarget="search_resultCardList"
@@ -332,20 +320,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
               className="hidden desktop:flex desktop:z-content desktop:w-1/2 desktop:fixed desktop:right-0 desktop:bottom-0 desktop:top-headerAndFilterBar"
               id="search_resultMap"
             >
-              {isMapLoading && (
-                <div
-                  className="absolute bg-primary2 opacity-40 w-full h-full"
-                  style={{ zIndex: 2000 }}
-                />
-              )}
-              <Loader
-                loaded={!isMapLoading}
-                options={{
-                  color: colorPalette.primary1,
-                  zIndex: 2500,
-                  scale: 2,
-                }}
-              />
+              {isMapLoading && <div className="absolute bg-primary2 opacity-40 inset-0 z-map" />}
+              <Loader loaded={!isMapLoading} className="absolute inset-0 z-map" />
               {!isMobile && (
                 <SearchMapDynamicComponent
                   type="DESKTOP"
@@ -389,7 +365,9 @@ const Separator = styled.hr`
   border: 0;
 `;
 
-export const MobileMapContainer = styled.div<{ displayState: 'DISPLAYED' | 'HIDDEN' | null }>`
+export const MobileMapContainer = styled.div<{
+  displayState: 'DISPLAYED' | 'HIDDEN' | null;
+}>`
   transition: top 0.3s ease-in-out 0.1s;
   top: ${({ displayState }) => (displayState === 'DISPLAYED' ? 0 : 100)}%;
 `;

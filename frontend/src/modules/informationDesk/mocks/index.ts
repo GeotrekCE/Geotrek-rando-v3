@@ -39,7 +39,7 @@ export const mockInformationDeskResponse = (): InformationDeskResponse => ({
 
 export const mockInformationDeskRoute = (times: number): void =>
   mockRoute({
-    route: '/informationdesk',
+    route: '/informationdesk/',
     mockData: mockInformationDeskResponse(),
     additionalQueries: {
       fields:

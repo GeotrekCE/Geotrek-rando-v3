@@ -3,7 +3,6 @@ import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { FormattedDate, FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { borderRadius, colorPalette, getSpacing } from 'stylesheet';
-import { StyledLink } from '../../../../../components/Link';
 import { HtmlText } from '../../utils';
 
 type DetailsSensitiveAreaProps = Omit<SensitiveArea, 'geometry'> & { className?: string };
@@ -51,9 +50,9 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
       )}
       {infoUrl !== null && (
         <SensitiveAreaSection>
-          <StyledLink href={infoUrl}>
+          <a className="text-primary1 hover:text-primary3 transition-colors" href={infoUrl}>
             <FormattedMessage id={'details.knowMore'} />
-          </StyledLink>
+          </a>
         </SensitiveAreaSection>
       )}
     </div>

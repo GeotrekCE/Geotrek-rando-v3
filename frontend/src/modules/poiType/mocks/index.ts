@@ -93,7 +93,7 @@ export const mockPoiTypeResponse = (): PoiTypeResponse => ({
 
 export const mockPoiTypeRoute = (times: number): void =>
   mockRoute({
-    route: '/poi_type',
+    route: '/poi_type/',
     mockData: mockPoiTypeResponse(),
     additionalQueries: {},
     times,

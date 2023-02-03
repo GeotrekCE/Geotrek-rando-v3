@@ -1,4 +1,4 @@
-import { InfiniteData } from 'react-query';
+import { InfiniteData } from '@tanstack/react-query';
 // @ts-ignore
 import { remove as removeDiacritics } from 'diacritics';
 

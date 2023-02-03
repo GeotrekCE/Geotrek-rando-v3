@@ -9,11 +9,11 @@ const getControls = (t: Record<string, string> | Record<string, MessageFormatEle
     steps: [
       {
         label: t['rando3D.instructions.zoom'],
-        action: <strong>{t['rando3D.actions.scrollMouse']}</strong>,
+        action: t['rando3D.actions.scrollMouse'],
       },
       {
         label: t['rando3D.instructions.lookAround'],
-        action: <strong>{t['rando3D.actions.leftClick']}</strong>,
+        action: t['rando3D.actions.leftClick'],
       },
       {
         label: t['rando3D.instructions.moveAround'],
@@ -28,11 +28,11 @@ const getControls = (t: Record<string, string> | Record<string, MessageFormatEle
     steps: [
       {
         label: t['rando3D.instructions.zoom'],
-        action: <strong>{t['rando3D.actions.scrollMouse']}</strong>,
+        action: t['rando3D.actions.scrollMouse'],
       },
       {
         label: t['rando3D.instructions.lookAround'],
-        action: <strong>{t['rando3D.actions.leftClick']}</strong>,
+        action: t['rando3D.actions.leftClick'],
       },
       {
         label: t['rando3D.instructions.moveAround'],
@@ -47,22 +47,22 @@ const getControls = (t: Record<string, string> | Record<string, MessageFormatEle
     steps: [
       {
         label: t['rando3D.instructions.lookAround'],
-        action: <strong>{t['rando3D.actions.leftClick']}</strong>,
+        action: t['rando3D.actions.leftClick'],
       },
       {
         label: t['rando3D.instructions.playPause'],
-        action: <strong>{t['rando3D.actions.space']}</strong>,
+        action: t['rando3D.actions.space'],
       },
       {
         label: t['rando3D.instructions.stop'],
-        action: <strong>{t['rando3D.actions.enter']}</strong>,
+        action: t['rando3D.actions.enter'],
       },
     ],
-    cameraTitle: t['rando3D.views.examine.hiker'],
+    cameraTitle: t['rando3D.views.hiker.cameraTitle'],
   },
 ];
 
-const Interface: React.FC = () => {
+const Interface = () => {
   const { messages } = useIntl();
   const controls = getControls(messages);
   return (
@@ -72,11 +72,16 @@ const Interface: React.FC = () => {
           key={control}
           className={`controls controls--${control} absolute top-0 right-0 w-70 p-4 hidden`}
         >
-          <h2 className="text-2xl mb-2">{title}</h2>
+          <h2 className="text-2xl mb-2">{title.toString()}</h2>
           <p className="controls-description mb-2" />
           {steps.map(({ label, action }, index) => (
-            <span key={index} className="block m-1">
-              {label} <span className="font-bold">{action}</span>
+            <span key={index} className="flex items-center m-1">
+              <>
+                <span className="mr-1">{label.toString()}</span>
+                <strong className="font-bold">
+                  {Array.isArray(action) ? action.toString() : action}
+                </strong>
+              </>
             </span>
           ))}
         </Control>
@@ -89,8 +94,8 @@ const Interface: React.FC = () => {
             className={`camera camera--${control} camera--disabled text-center cursor-pointer`}
           >
             <button type="button" className="block">
-              <Image width="100%" height="100%" src={`/images/3d/camera-${control}.svg`} alt="" />
-              <span className="block">{cameraTitle}</span>
+              <Image width={60} height={60} src={`/images/3d/camera-${control}.svg`} alt="" />
+              <span className="block">{cameraTitle.toString()}</span>
               <span className="camera-description absolute invisible" />
             </button>
           </CameraItem>

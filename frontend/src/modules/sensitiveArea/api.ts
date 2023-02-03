@@ -9,5 +9,5 @@ export const fetchSensitiveAreas = (
 ): Promise<APIResponseForList<RawSensitiveArea>> => {
   const typeKey = type.startsWith('outdoor') ? `near_${type.toLowerCase()}` : 'trek';
   const params = { ...query, period: 'ignore', [typeKey]: id };
-  return GeotrekAPI.get(`/sensitivearea`, { params }).then(r => r.data);
+  return GeotrekAPI.get('/sensitivearea/', { params }).then(r => r.data);
 };

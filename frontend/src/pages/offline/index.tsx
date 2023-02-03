@@ -33,8 +33,7 @@ const OfflinePage: NextPage = () => {
   const handleErase = async (id: string): Promise<void> => {
     if (confirm(intl.formatMessage({ id: 'actions.confirmRemove' }))) {
       await CacheManager.eraseItem(id);
-
-      return fetchData();
+      void fetchData();
     }
   };
 
@@ -141,7 +140,7 @@ const OfflinePage: NextPage = () => {
             )}
 
             <div className={'absolute top-2 right-2'}>
-              <Button onClick={() => handleErase(String(result.id))} icon={Bin}>
+              <Button onClick={() => void handleErase(String(result.id))} icon={Bin}>
                 <FormattedMessage id={'actions.remove'} />
               </Button>
             </div>

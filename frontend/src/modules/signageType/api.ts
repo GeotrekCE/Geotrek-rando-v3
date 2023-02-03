@@ -7,6 +7,6 @@ const fieldsParams = {
 };
 
 export const fetchSignageType = (query: APIQuery): Promise<APIResponseForList<SignageType>> =>
-  GeotrekAPI.get('/signage_type', {
+  GeotrekAPI.get('/signage_type/', {
     params: { ...query, ...fieldsParams },
   }).then(r => r.data);

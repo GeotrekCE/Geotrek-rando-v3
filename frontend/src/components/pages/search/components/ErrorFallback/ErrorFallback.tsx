@@ -6,9 +6,10 @@ import { Reload } from 'components/Icons/Reload';
 
 import { getSpacing, sizes } from 'stylesheet';
 import { buttonCssResets } from 'services/cssHelpers';
+import { UseQueryResult } from '@tanstack/react-query';
 
 interface Props {
-  refetch: () => void;
+  refetch: () => Promise<UseQueryResult>;
 }
 
 export const ErrorFallback: React.FC<Props> = ({ refetch }) => {

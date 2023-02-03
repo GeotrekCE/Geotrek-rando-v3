@@ -32,7 +32,7 @@ export const mockCityResponse = (): CityResponse => ({
 
 export const mockCityRoute = (times: number): void =>
   mockRoute({
-    route: '/city',
+    route: '/city/',
     mockData: mockCityResponse(),
     additionalQueries: { fields: 'id,name', page_size: getGlobalConfig().searchResultsPageSize },
     times,

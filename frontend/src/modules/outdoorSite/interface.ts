@@ -1,5 +1,5 @@
 import { Bbox, WebLink } from 'modules/details/interface';
-import { SensitiveArea } from 'modules/sensitiveArea/interface';
+import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import {
   Attachment,
   GeometryCollection,
@@ -13,9 +13,9 @@ import {
   RawGeometryCollection,
   RawWebLink,
 } from 'modules/interface';
-import { SignageDictionary } from 'modules/signage/interface';
+import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { Service } from 'modules/service/interface';
-import { InfrastructureDictionary } from 'modules/infrastructure/interface';
+import { SignageDictionary } from 'modules/signage/interface';
 import { Activity } from '../activities/interface';
 import { InformationDesk } from '../informationDesk/interface';
 import { Label } from '../label/interface';
@@ -109,14 +109,14 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   courses: OutdoorCourse[];
   access: TrekResult[];
   pdfUri: string;
-  practice: OutdoorPractice;
+  practice: OutdoorPractice | null;
   cities: string[];
   cities_raw: string[];
   ratings: OutdoorRatingWithScale[];
-  ratingsDescription: string;
+  ratingsDescription: string | null;
   signage: SignageDictionary | null;
   service: Service[] | null;
   infrastructure: InfrastructureDictionary | null;
-  typeSite?: OutdoorSiteType;
+  typeSite: OutdoorSiteType | null;
   sensitiveAreas: SensitiveArea[];
 }
