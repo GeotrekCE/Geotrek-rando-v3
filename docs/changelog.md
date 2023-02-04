@@ -1,12 +1,44 @@
 # Changelog
 
+3.12.0 (2023-02-04)
+-------------------
+
+**✨ Improvements**
+
+* Always keep the layout (header/footer) when transitionning from page to another
+* Add the loading spinner when reservation widget is loading (#732)
+* Remove offline page from SEO indexation (#819)
+* Make sure API endpoints have a final slash to avoid an API redirection (#822)
+* Improve SSR display for all details pages + suggestions from homepage (#848)
+* Improve rules of cache strategy (#849)
+* Save cache page on dynamic navigation (#849)
+* In search page and in offline mode serve offline content instead of search content (#849)
+* Better handle when the geometry of a trek is a point instead of a linestring (#850)
+* Handle outdoor without practice
+
+**🔧 Maintenance**
+
+* Upgrade Node.js version 17 to 18
+* Upgrade NextJS version 12 to 13 and its dependencies, to prepare upgrade from React 17 to 18 (#634)
+* Upgrade next-pwa package from version 5.4.4 to 5.6.0 (#804)
+* Upgrade react-query from version 3.24.3 to 4.10.3 (#807)
+* Rewrite usage of loading spinner by removing react-loader package (#817)
+* Synchronize pre-rending SSR with browser hydration (#802)
+
+**🐛 Fixes**
+
+* Fix accessibility images display (#832)
+* Fix customisation of 404 and offline pages (#816)
+* Remove duplicated gear block on trek detail pages (#844)
+* Fix loading spinner location when loading more objects on search page (#414)
+* Define explicitly a range zoom for group layers (#811)
+
 3.11.0 (2023-01-24)
 -------------------
 
 **🔧 Maintenance**
 
-* Add workflow githubaction with 2 stages : builder, final 
-
+* Add Github action workflow with 2 stages: builder, final (#816)
 
 3.10.9 (2022-10-06)
 -------------------
