@@ -1,5 +1,13 @@
 # Changelog
 
+3.12.1 (2023-02-08)
+-------------------
+
+**🐛 Fixes**
+
+* Fix sync SSR display with none-fullscreen support (for iOS) (#855)
+* Fix sync SSR display with meteo in Touristic contents and events pages (#855)
+
 3.12.0 (2023-02-04)
 -------------------
 
