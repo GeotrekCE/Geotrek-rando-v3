@@ -10,6 +10,7 @@ import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
 import { getGlobalConfig } from 'modules/utils/api.config';
+import useHasMounted from 'hooks/useHasMounted';
 import { useTouristicContent } from './useTouristicContent';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { DetailsSection } from '../details/components/DetailsSection';
@@ -42,6 +43,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
   } = useTouristicContent(touristicContentUrl, language);
 
   const isMobile = useMediaPredicate('(max-width: 1024px)');
+  const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
   return (
     <>
@@ -72,9 +74,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
               <Modal>
                 {({ toggleFullscreen }) => (
                   <div id="touristicContent_cover">
-                    {touristicContent.attachments.length > 1 &&
-                    typeof navigator !== 'undefined' &&
-                    navigator?.onLine ? (
+                    {touristicContent.attachments.length > 1 && hasNavigator ? (
                       <DetailsCoverCarousel
                         attachments={touristicContent.attachments}
                         onClickImage={toggleFullscreen}
@@ -187,8 +187,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   </DetailsSection>
                 )}
                 {getGlobalConfig().enableMeteoWidget &&
-                  typeof navigator !== 'undefined' &&
-                  navigator.onLine &&
+                  hasNavigator &&
                   touristicContent.cities_raw &&
                   touristicContent.cities_raw[0] && (
                     <DetailsSection>

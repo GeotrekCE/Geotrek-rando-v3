@@ -21,6 +21,7 @@ import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
 import { getGlobalConfig } from 'modules/utils/api.config';
+import useHasMounted from 'hooks/useHasMounted';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { ErrorFallback } from '../search/components/ErrorFallback';
@@ -60,6 +61,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
 
   /** Ref of the parent of all sections */
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
+  const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
   useOnScreenSection({
     sectionsPositions,
@@ -118,9 +120,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                           id="outdoorCourseContent_cover"
                           className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                         >
-                          {touristicEventContent.attachments.length > 1 &&
-                          typeof navigator !== 'undefined' &&
-                          navigator?.onLine ? (
+                          {touristicEventContent.attachments.length > 1 && hasNavigator ? (
                             <DetailsCoverCarousel
                               attachments={touristicEventContent.attachments}
                               onClickImage={toggleFullscreen}
@@ -258,8 +258,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                         )}
 
                         {getGlobalConfig().enableMeteoWidget &&
-                          typeof navigator !== 'undefined' &&
-                          navigator.onLine &&
+                          hasNavigator &&
                           touristicEventContent.cities_raw &&
                           touristicEventContent.cities_raw[0] && (
                             <DetailsSection>
