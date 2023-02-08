@@ -21,11 +21,7 @@ const Inner: React.FC<Props> = ({ children }) => {
 
   const handler = useCallback(() => setIsFullscreen(!isFullscreen), [isFullscreen]);
 
-  useEffect(() => {
-    document.addEventListener('fullscreenchange', handler);
-
-    return () => document.removeEventListener('fullscreenchange', handler);
-  }, [handler]);
+  const mounted = useHasMounted();
 
   const iOSiPadOS = useHasMounted(
     typeof navigator !== 'undefined' &&
@@ -33,14 +29,27 @@ const Inner: React.FC<Props> = ({ children }) => {
         (/^Mac/.test(navigator.platform) && navigator.maxTouchPoints > 4)),
   );
 
+  useEffect(() => {
+    if (!iOSiPadOS) {
+      document.addEventListener('fullscreenchange', handler);
+    }
+
+    return () => {
+      if (!iOSiPadOS) {
+        document.removeEventListener('fullscreenchange', handler);
+      }
+    };
+  }, [handler, iOSiPadOS]);
+
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const noop = () => {};
 
   // iOS doesn't support fullscreen API. We must disable the fullscreen mode in IOS to prevent javascript error in react-easyfullscreen
-  if (iOSiPadOS)
+  if (iOSiPadOS || !mounted) {
     return typeof children === 'function'
       ? children({ isFullscreen: false, toggleFullscreen: noop })
       : children;
+  }
 
   return (
     <ReactFullscreen>
@@ -55,7 +64,10 @@ const Inner: React.FC<Props> = ({ children }) => {
             <div className="flex items-center justify-center w-full h-full">
               <div className="w-full h-full">
                 {typeof children === 'function'
-                  ? children({ isFullscreen, toggleFullscreen: onToggle })
+                  ? children({
+                      isFullscreen,
+                      toggleFullscreen: onToggle,
+                    })
                   : children}
               </div>
             </div>
