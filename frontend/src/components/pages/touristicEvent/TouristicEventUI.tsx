@@ -22,12 +22,12 @@ import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import useHasMounted from 'hooks/useHasMounted';
+import { ImageWithLegend } from 'components/ImageWithLegend';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
-import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 
 interface Props {
@@ -123,11 +123,13 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                           {touristicEventContent.attachments.length > 1 && hasNavigator ? (
                             <DetailsCoverCarousel
                               attachments={touristicEventContent.attachments}
+                              classNameImage={isFullscreen ? 'object-contain' : ''}
                               onClickImage={toggleFullscreen}
                             />
                           ) : (
                             <ImageWithLegend
                               attachment={touristicEventContent.attachments[0]}
+                              classNameImage={isFullscreen ? 'object-contain' : ''}
                               onClick={toggleFullscreen}
                             />
                           )}

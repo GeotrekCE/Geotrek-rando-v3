@@ -34,30 +34,37 @@ Object {
               tabindex="-1"
             >
               <div>
-                <div
-                  class="relative"
+                <figure
+                  aria-labelledby=":r0:"
+                  class="relative "
                   id="details_cover_image"
-                  style="cursor: initial;"
+                  role="figure"
                 >
-                  <div
-                    class="w-full h-12 desktop:h-40
-          absolute top-0 flex items-start justify-center
-          py-1 px-2 pt-3 px-10
-          bg-gradient-to-b from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                  >
-                    <span
-                      class="mx-15 truncate"
-                    >
-                      Lac - admin
-                    </span>
-                  </div>
                   <img
-                    alt=""
-                    class="object-cover object-top overflow-hidden w-full h-full"
+                    alt="Lac"
+                    class="object-center overflow-hidden w-full h-full object-cover"
+                    id=":r1:"
+                    loading="eager"
                     src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                   />
-                </div>
+                  <figcaption
+                    id=":r0:"
+                  >
+                    <span
+                      class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                    >
+                      <span
+                        class="mx-10percent px-10percent truncate"
+                      >
+                        Lac - admin
+                      </span>
+                    </span>
+                  </figcaption>
+                </figure>
               </div>
             </div>
             <div
@@ -82,30 +89,37 @@ Object {
               tabindex="-1"
             >
               <div>
-                <div
-                  class="relative"
+                <figure
+                  aria-labelledby=":r2:"
+                  class="relative "
                   id="details_cover_image"
-                  style="cursor: initial;"
+                  role="figure"
                 >
-                  <div
-                    class="w-full h-12 desktop:h-40
-          absolute top-0 flex items-start justify-center
-          py-1 px-2 pt-3 px-10
-          bg-gradient-to-b from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                  >
-                    <span
-                      class="mx-15 truncate"
-                    >
-                      Lac - admin
-                    </span>
-                  </div>
                   <img
-                    alt=""
-                    class="object-cover object-top overflow-hidden w-full h-full"
+                    alt="Lac"
+                    class="object-center overflow-hidden w-full h-full object-cover"
+                    id=":r3:"
+                    loading="eager"
                     src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                   />
-                </div>
+                  <figcaption
+                    id=":r2:"
+                  >
+                    <span
+                      class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                    >
+                      <span
+                        class="mx-10percent px-10percent truncate"
+                      >
+                        Lac - admin
+                      </span>
+                    </span>
+                  </figcaption>
+                </figure>
               </div>
             </div>
             <div
@@ -187,30 +201,37 @@ Object {
             tabindex="-1"
           >
             <div>
-              <div
-                class="relative"
+              <figure
+                aria-labelledby=":r0:"
+                class="relative "
                 id="details_cover_image"
-                style="cursor: initial;"
+                role="figure"
               >
-                <div
-                  class="w-full h-12 desktop:h-40
-          absolute top-0 flex items-start justify-center
-          py-1 px-2 pt-3 px-10
-          bg-gradient-to-b from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                >
-                  <span
-                    class="mx-15 truncate"
-                  >
-                    Lac - admin
-                  </span>
-                </div>
                 <img
-                  alt=""
-                  class="object-cover object-top overflow-hidden w-full h-full"
+                  alt="Lac"
+                  class="object-center overflow-hidden w-full h-full object-cover"
+                  id=":r1:"
+                  loading="eager"
                   src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                 />
-              </div>
+                <figcaption
+                  id=":r0:"
+                >
+                  <span
+                    class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                  >
+                    <span
+                      class="mx-10percent px-10percent truncate"
+                    >
+                      Lac - admin
+                    </span>
+                  </span>
+                </figcaption>
+              </figure>
             </div>
           </div>
           <div
@@ -235,30 +256,37 @@ Object {
             tabindex="-1"
           >
             <div>
-              <div
-                class="relative"
+              <figure
+                aria-labelledby=":r2:"
+                class="relative "
                 id="details_cover_image"
-                style="cursor: initial;"
+                role="figure"
               >
-                <div
-                  class="w-full h-12 desktop:h-40
-          absolute top-0 flex items-start justify-center
-          py-1 px-2 pt-3 px-10
-          bg-gradient-to-b from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                >
-                  <span
-                    class="mx-15 truncate"
-                  >
-                    Lac - admin
-                  </span>
-                </div>
                 <img
-                  alt=""
-                  class="object-cover object-top overflow-hidden w-full h-full"
+                  alt="Lac"
+                  class="object-center overflow-hidden w-full h-full object-cover"
+                  id=":r3:"
+                  loading="eager"
                   src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                 />
-              </div>
+                <figcaption
+                  id=":r2:"
+                >
+                  <span
+                    class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                  >
+                    <span
+                      class="mx-10percent px-10percent truncate"
+                    >
+                      Lac - admin
+                    </span>
+                  </span>
+                </figcaption>
+              </figure>
             </div>
           </div>
           <div
