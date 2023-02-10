@@ -23,6 +23,7 @@ import Accessibility, { shouldDisplayAccessibility } from 'components/Accessibil
 import useHasMounted from 'hooks/useHasMounted';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MapPin } from 'components/Icons/MapPin';
+import { ImageWithLegend } from 'components/ImageWithLegend';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -41,7 +42,6 @@ import { DetailsChildrenSection } from './components/DetailsChildrenSection';
 import { DetailsCoverCarousel } from './components/DetailsCoverCarousel';
 import { DetailsReservationWidget } from './components/DetailsReservationWidget';
 import { DetailsMeteoWidget } from './components/DetailsMeteoWidget';
-import { ImageWithLegend } from './components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { VisibleSectionProvider } from './VisibleSectionContext';
 import { DetailsAndMapProvider } from './DetailsAndMapContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
@@ -150,11 +150,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           {details.imgs.length > 1 && hasNavigator ? (
                             <DetailsCoverCarousel
                               attachments={details.imgs}
+                              classNameImage={isFullscreen ? 'object-contain' : ''}
                               onClickImage={toggleFullscreen}
                             />
                           ) : (
                             <ImageWithLegend
                               attachment={details.imgs[0]}
+                              classNameImage={isFullscreen ? 'object-contain' : ''}
                               onClick={toggleFullscreen}
                             />
                           )}
