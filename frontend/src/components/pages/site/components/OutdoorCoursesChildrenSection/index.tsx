@@ -42,7 +42,6 @@ export const OutdoorCoursesChildrenSection: React.FC<DetailsChildrenSectionProps
               place={''}
               title={trekChild.name}
               tags={[]}
-              thumbnailUris={trekChild.thumbnailUris}
               attachments={trekChild.attachments}
               informations={{
                 duration: trekChild.duration,

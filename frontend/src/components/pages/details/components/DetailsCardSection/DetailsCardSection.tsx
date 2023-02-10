@@ -45,7 +45,6 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
             id={`DETAILS-${type}-${card.id}`}
             name={card.name}
             description={card.description}
-            thumbnailUris={card.thumbnailUris}
             attachments={card.attachments}
             iconUri={card.iconUri}
             iconName={card.iconName}
