@@ -39,6 +39,8 @@ const CacheManager = {
     await Promise.all(url.map(_ => cache.add(_)));
 
     const title = 'title' in details ? details.title : details.name;
+
+    const attachments = 'attachments' in details ? details.attachments : details.imgs;
     const thumbnailUris =
       'thumbnailUris' in details ? details.thumbnailUris : details.imgs.map(i => i.url);
     const informations =
@@ -61,6 +63,7 @@ const CacheManager = {
         type,
         id: details.id,
         place,
+        attachments,
         thumbnailUris,
         informations,
         practice,

@@ -1,52 +1,50 @@
 import { CardIcon } from 'components/CardIcon';
 import { SmallCarousel } from 'components/Carousel';
-import styled, { css } from 'styled-components';
+import { ImageWithLegend } from 'components/ImageWithLegend';
+import { Attachment } from 'modules/interface';
 import getActivityColor from '../getActivityColor';
 
 interface ResultCardCarouselProps {
   type: 'TREK' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_CONTENT' | 'TOURISTIC_EVENT';
-  thumbnailUris: string[];
+  attachments: Attachment[];
   iconUri?: string;
   iconName: string;
   onClickImage?: () => void;
   asColumn?: boolean;
+
+  redirect?: string;
 }
 
 export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
   type,
-  thumbnailUris,
+  attachments,
   iconUri,
   iconName,
   onClickImage,
+  redirect,
   asColumn,
 }) => {
   const files =
-    typeof navigator !== 'undefined' && navigator?.onLine
-      ? thumbnailUris
-      : thumbnailUris.slice(0, 1);
+    typeof navigator !== 'undefined' && navigator?.onLine ? attachments : attachments.slice(0, 1);
 
   return (
-    <Wrapper
-      className={`h-full w-full flex-grow relative desktop:w-resultCardDesktop`}
-      asColumn={asColumn}
+    <div
+      className={`h-full w-full flex-grow relative ${
+        asColumn !== true ? 'desktop:w-resultCardDesktop' : ''
+      }`}
     >
       <SmallCarousel>
-        {files.map((thumbnailUri, i) => (
-          <div key={i} className="relative h-full" onClick={onClickImage}>
-            <img src={thumbnailUri} className="object-cover object-top w-full h-full" alt="" />
-          </div>
+        {files.map((attachment, index) => (
+          <ImageWithLegend
+            attachment={attachment}
+            key={index}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            onClick={onClickImage}
+            redirect={redirect}
+          />
         ))}
       </SmallCarousel>
       <CardIcon iconUri={iconUri} iconName={iconName} color={getActivityColor(type)} />
-    </Wrapper>
+    </div>
   );
 };
-
-const Wrapper = styled.div<{ asColumn?: boolean }>`
-    ${({ asColumn }) =>
-      asColumn === true &&
-      css`
-        width: 100%;
-      `}
-  }
-`;
