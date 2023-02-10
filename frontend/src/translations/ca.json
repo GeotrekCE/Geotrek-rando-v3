@@ -155,7 +155,9 @@
     "targetAudience": "Públic apuntat",
     "practicalInfo": "Informació pràctica",
     "booking": "Reservació",
-    "centerOnMap": "Center on map"
+    "centerOnMap": "Center on map",
+    "openPictureInFullScreen": "View picture in full screen",
+    "closeFullScreen": "Close full screen mode"
   },
   "touristicContent": {
     "contact": "Contacte",

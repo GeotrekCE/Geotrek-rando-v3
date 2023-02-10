@@ -159,7 +159,9 @@
     "targetAudience": "Public visé",
     "practicalInfo": "Information pratique",
     "booking": "Réservation",
-    "centerOnMap": "Centrer sur la carte"
+    "centerOnMap": "Centrer sur la carte",
+    "openPictureInFullScreen": "Voir l'image en plein écran",
+    "closeFullScreen": "Fermer le mode plein écran"
   },
   "touristicContent": {
     "contact": "Contact",
