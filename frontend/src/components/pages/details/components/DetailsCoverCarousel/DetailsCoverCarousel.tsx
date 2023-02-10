@@ -1,13 +1,21 @@
+import { twMerge } from 'tailwind-merge';
 import { Attachment } from 'modules/interface';
 import { LargeCarousel } from 'components/Carousel';
+import { ImageWithLegend } from 'components/ImageWithLegend';
 
 interface DetailsCoverCarouselProps {
   attachments: Attachment[];
+
+  classNameImage?: string;
   onClickImage?: () => void;
+
+  redirect?: string;
 }
 
 export const DetailsCoverCarousel: React.FC<DetailsCoverCarouselProps> = ({
   attachments,
+  redirect,
+  classNameImage = '',
   onClickImage,
 }) => {
   const files =
@@ -15,59 +23,16 @@ export const DetailsCoverCarousel: React.FC<DetailsCoverCarouselProps> = ({
 
   return (
     <LargeCarousel className="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop">
-      {files.map((attachment, i) => (
-        <ImageWithLegend attachment={attachment} key={i} onClick={onClickImage} />
+      {files.map((attachment, index) => (
+        <ImageWithLegend
+          attachment={attachment}
+          classNameImage={twMerge('object-cover', classNameImage)}
+          key={index}
+          loading={index === 0 ? 'eager' : 'lazy'}
+          onClick={onClickImage}
+          redirect={redirect}
+        />
       ))}
     </LargeCarousel>
   );
-};
-
-interface ImageWithLegendProps {
-  attachment: Attachment;
-  onClick?: () => void;
-}
-
-export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({ attachment, onClick }) => (
-  <div
-    id="details_cover_image"
-    style={{ cursor: onClick ? 'pointer' : 'initial' }}
-    className="relative"
-    onClick={onClick}
-  >
-    <Legend author={attachment.author} legend={attachment.legend} />
-    <img
-      src={attachment.url}
-      className="object-cover object-top overflow-hidden w-full h-full"
-      alt=""
-    />
-  </div>
-);
-
-interface LegendProps {
-  author: string;
-  legend: string;
-}
-
-const Legend: React.FC<LegendProps> = ({ author, legend }) => {
-  const hasLegendOrAuthor =
-    (legend !== null && legend.length > 0) || (author !== null && author.length > 0);
-  const hasLegendAndAuthor =
-    legend !== null && legend.length > 0 && author !== null && author.length > 0;
-  const fullText = `${legend}${hasLegendAndAuthor ? ' - ' : ''}${author}`;
-  if (hasLegendOrAuthor) {
-    return (
-      hasLegendOrAuthor && (
-        <div
-          className={`w-full h-12 desktop:h-40
-          absolute top-0 flex items-start justify-center
-          py-1 px-2 pt-3 px-10
-          bg-gradient-to-b from-blackSemiTransparent to-transparent
-          text-white text-opacity-90 text-Mobile-C3 desktop:text-P2`}
-        >
-          <span className="mx-15 truncate">{fullText}</span>
-        </div>
-      )
-    );
-  }
-  return null;
 };

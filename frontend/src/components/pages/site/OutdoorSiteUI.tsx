@@ -31,13 +31,13 @@ import { getGlobalConfig } from 'modules/utils/api.config';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MapPin } from 'components/Icons/MapPin';
 import useHasMounted from 'hooks/useHasMounted';
+import { ImageWithLegend } from 'components/ImageWithLegend';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { useOutdoorSite } from './useOutdoorSite';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
-import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
 import { DetailsAndMapProvider } from '../details/DetailsAndMapContext';
@@ -129,7 +129,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                   >
                     <OpenMapButton displayMap={displayMobileMap} />
                     <Modal>
-                      {({ toggleFullscreen, isFullscreen }) => (
+                      {({ isFullscreen, toggleFullscreen }) => (
                         <div
                           id="outdoorSiteContent_cover"
                           className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
@@ -137,11 +137,13 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                           {outdoorSiteContent.attachments.length > 1 && hasNavigator ? (
                             <DetailsCoverCarousel
                               attachments={outdoorSiteContent.attachments}
+                              classNameImage={isFullscreen ? 'object-contain' : ''}
                               onClickImage={toggleFullscreen}
                             />
                           ) : (
                             <ImageWithLegend
                               attachment={outdoorSiteContent.attachments[0]}
+                              classNameImage={isFullscreen ? 'object-contain' : ''}
                               onClick={toggleFullscreen}
                             />
                           )}

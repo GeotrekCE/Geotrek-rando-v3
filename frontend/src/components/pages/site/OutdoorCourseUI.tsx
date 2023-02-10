@@ -26,12 +26,12 @@ import { getGlobalConfig } from 'modules/utils/api.config';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MapPin } from 'components/Icons/MapPin';
 import useHasMounted from 'hooks/useHasMounted';
+import { ImageWithLegend } from 'components/ImageWithLegend';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
-import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
 
@@ -125,11 +125,13 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                           {outdoorCourseContent.attachments.length > 1 && hasNavigator ? (
                             <DetailsCoverCarousel
                               attachments={outdoorCourseContent.attachments}
+                              classNameImage={isFullscreen ? 'object-contain' : ''}
                               onClickImage={toggleFullscreen}
                             />
                           ) : (
                             <ImageWithLegend
                               attachment={outdoorCourseContent.attachments[0]}
+                              classNameImage={isFullscreen ? 'object-contain' : ''}
                               onClick={toggleFullscreen}
                             />
                           )}

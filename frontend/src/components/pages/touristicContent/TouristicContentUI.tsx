@@ -11,6 +11,7 @@ import { OpenMapButton } from 'components/OpenMapButton';
 import { MobileMapContainer } from 'components/pages/search';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import useHasMounted from 'hooks/useHasMounted';
+import { ImageWithLegend } from 'components/ImageWithLegend';
 import { useTouristicContent } from './useTouristicContent';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { DetailsSection } from '../details/components/DetailsSection';
@@ -18,7 +19,6 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsSource } from '../details/components/DetailsSource';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
-import { ImageWithLegend } from '../details/components/DetailsCoverCarousel/DetailsCoverCarousel';
 import { marginDetailsChild } from '../details/Details';
 import { HtmlText } from '../details/utils';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
@@ -69,19 +69,27 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
       ) : (
         <Layout>
           <div id="touristicContent_page" className="flex flex-1">
-            <div id="touristicContent_informations" className="flex flex-col w-full desktop:w-3/5">
+            <div
+              id="touristicContent_informations"
+              className="flex flex-col w-full -top-detailsHeaderMobile desktop:top-0 desktop:w-3/5"
+            >
               <OpenMapButton displayMap={displayMobileMap} />
               <Modal>
-                {({ toggleFullscreen }) => (
-                  <div id="touristicContent_cover">
+                {({ isFullscreen, toggleFullscreen }) => (
+                  <div
+                    id="touristicContent_cover"
+                    className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
+                  >
                     {touristicContent.attachments.length > 1 && hasNavigator ? (
                       <DetailsCoverCarousel
                         attachments={touristicContent.attachments}
+                        classNameImage={isFullscreen ? 'object-contain' : ''}
                         onClickImage={toggleFullscreen}
                       />
                     ) : (
                       <ImageWithLegend
                         attachment={touristicContent.attachments[0]}
+                        classNameImage={isFullscreen ? 'object-contain' : ''}
                         onClick={toggleFullscreen}
                       />
                     )}
