@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-eDWCr fSKizW border border-solid border-greySoft rounded-card
+        class="sc-ipEyDJ fkiwq border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -29,7 +29,7 @@ Object {
                   class=""
                 >
                   <img
-                    class="sc-bqWxrE kMLIOd"
+                    class="sc-csuSiG cnmnrm"
                     height="200"
                     src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                   />
@@ -61,7 +61,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-csuSiG sc-ksBlkl gfeqkz hRmunx text-greyDarkColored"
+              class="sc-kDvujY sc-eDWCr iXXQYE TmBlb text-greyDarkColored"
             >
               <div>
                 <span>
@@ -80,7 +80,7 @@ Object {
     </div>
     <div>
       <div
-        class="sc-eDWCr fSKizW border border-solid border-greySoft rounded-card
+        class="sc-ipEyDJ fkiwq border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -103,8 +103,9 @@ Object {
                   class="slick-slider sc-dkrFOg elmwrv slick-initialized"
                   dir="ltr"
                 >
-                  <div
-                    class="sc-hLBbgP sc-eDvSVe sc-iBYQkv gRySIi jvGGbb cBrSnO slick-arrow slick-prev"
+                  <button
+                    class="sc-hLBbgP sc-eDvSVe sc-iBYQkv fmYHPc jvGGbb cBrSnO slick-arrow slick-prev"
+                    type="button"
                   />
                   <div
                     class="slick-list"
@@ -129,7 +130,7 @@ Object {
                       >
                         <div>
                           <img
-                            class="sc-bqWxrE kMLIOd"
+                            class="sc-csuSiG cnmnrm"
                             height="200"
                             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                             style="width: 100%; display: inline-block;"
@@ -153,7 +154,7 @@ Object {
                       >
                         <div>
                           <img
-                            class="sc-bqWxrE kMLIOd"
+                            class="sc-csuSiG cnmnrm"
                             height="200"
                             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                             style="width: 100%; display: inline-block;"
@@ -170,11 +171,12 @@ Object {
                       />
                     </div>
                   </div>
-                  <div
-                    class="sc-hLBbgP sc-eDvSVe sc-gKPRtg gRySIi jvGGbb bMoIHG slick-arrow slick-next"
+                  <button
+                    class="sc-hLBbgP sc-eDvSVe sc-gKPRtg fmYHPc jvGGbb bMoIHG slick-arrow slick-next"
+                    type="button"
                   />
                   <div
-                    class="sc-jrcTuL sc-kDvujY eNRqSA slick-dots"
+                    class="sc-jrcTuL eNRqSA slick-dots"
                   >
                     <ul>
                       <li
@@ -221,7 +223,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-csuSiG sc-ksBlkl gfeqkz hRmunx text-greyDarkColored"
+              class="sc-kDvujY sc-eDWCr iXXQYE TmBlb text-greyDarkColored"
             >
               <div>
                 <span>
@@ -241,7 +243,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-eDWCr fSKizW border border-solid border-greySoft rounded-card
+      class="sc-ipEyDJ fkiwq border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -264,7 +266,7 @@ Object {
                 class=""
               >
                 <img
-                  class="sc-bqWxrE kMLIOd"
+                  class="sc-csuSiG cnmnrm"
                   height="200"
                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                 />
@@ -296,7 +298,7 @@ Object {
           class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
         >
           <div
-            class="sc-csuSiG sc-ksBlkl gfeqkz hRmunx text-greyDarkColored"
+            class="sc-kDvujY sc-eDWCr iXXQYE TmBlb text-greyDarkColored"
           >
             <div>
               <span>
@@ -373,7 +375,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-eDWCr fSKizW border border-solid border-greySoft rounded-card
+        class="sc-ipEyDJ fkiwq border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -396,7 +398,7 @@ Object {
                   class=""
                 >
                   <img
-                    class="sc-bqWxrE kMLIOd"
+                    class="sc-csuSiG cnmnrm"
                     height="200"
                     src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                   />
@@ -428,7 +430,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-csuSiG sc-ksBlkl gfeqkz hRmunx text-greyDarkColored"
+              class="sc-kDvujY sc-eDWCr iXXQYE TmBlb text-greyDarkColored"
             >
               <div>
                 <span>
@@ -447,7 +449,7 @@ Object {
     </div>
     <div>
       <div
-        class="sc-eDWCr fSKizW border border-solid border-greySoft rounded-card
+        class="sc-ipEyDJ fkiwq border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -470,8 +472,9 @@ Object {
                   class="slick-slider sc-dkrFOg elmwrv slick-initialized"
                   dir="ltr"
                 >
-                  <div
-                    class="sc-hLBbgP sc-eDvSVe sc-iBYQkv gRySIi jvGGbb cBrSnO slick-arrow slick-prev"
+                  <button
+                    class="sc-hLBbgP sc-eDvSVe sc-iBYQkv fmYHPc jvGGbb cBrSnO slick-arrow slick-prev"
+                    type="button"
                   />
                   <div
                     class="slick-list"
@@ -496,7 +499,7 @@ Object {
                       >
                         <div>
                           <img
-                            class="sc-bqWxrE kMLIOd"
+                            class="sc-csuSiG cnmnrm"
                             height="200"
                             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                             style="width: 100%; display: inline-block;"
@@ -520,7 +523,7 @@ Object {
                       >
                         <div>
                           <img
-                            class="sc-bqWxrE kMLIOd"
+                            class="sc-csuSiG cnmnrm"
                             height="200"
                             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                             style="width: 100%; display: inline-block;"
@@ -537,11 +540,12 @@ Object {
                       />
                     </div>
                   </div>
-                  <div
-                    class="sc-hLBbgP sc-eDvSVe sc-gKPRtg gRySIi jvGGbb bMoIHG slick-arrow slick-next"
+                  <button
+                    class="sc-hLBbgP sc-eDvSVe sc-gKPRtg fmYHPc jvGGbb bMoIHG slick-arrow slick-next"
+                    type="button"
                   />
                   <div
-                    class="sc-jrcTuL sc-kDvujY eNRqSA slick-dots"
+                    class="sc-jrcTuL eNRqSA slick-dots"
                   >
                     <ul>
                       <li
@@ -588,7 +592,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-csuSiG sc-ksBlkl gfeqkz hRmunx text-greyDarkColored"
+              class="sc-kDvujY sc-eDWCr iXXQYE TmBlb text-greyDarkColored"
             >
               <div>
                 <span>
@@ -608,7 +612,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-eDWCr fSKizW border border-solid border-greySoft rounded-card
+      class="sc-ipEyDJ fkiwq border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
       flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
       cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
@@ -631,8 +635,9 @@ Object {
                 class="slick-slider sc-dkrFOg elmwrv slick-initialized"
                 dir="ltr"
               >
-                <div
-                  class="sc-hLBbgP sc-eDvSVe sc-iBYQkv gRySIi jvGGbb cBrSnO slick-arrow slick-prev"
+                <button
+                  class="sc-hLBbgP sc-eDvSVe sc-iBYQkv fmYHPc jvGGbb cBrSnO slick-arrow slick-prev"
+                  type="button"
                 />
                 <div
                   class="slick-list"
@@ -657,7 +662,7 @@ Object {
                     >
                       <div>
                         <img
-                          class="sc-bqWxrE kMLIOd"
+                          class="sc-csuSiG cnmnrm"
                           height="200"
                           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                           style="width: 100%; display: inline-block;"
@@ -681,7 +686,7 @@ Object {
                     >
                       <div>
                         <img
-                          class="sc-bqWxrE kMLIOd"
+                          class="sc-csuSiG cnmnrm"
                           height="200"
                           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
                           style="width: 100%; display: inline-block;"
@@ -698,11 +703,12 @@ Object {
                     />
                   </div>
                 </div>
-                <div
-                  class="sc-hLBbgP sc-eDvSVe sc-gKPRtg gRySIi jvGGbb bMoIHG slick-arrow slick-next"
+                <button
+                  class="sc-hLBbgP sc-eDvSVe sc-gKPRtg fmYHPc jvGGbb bMoIHG slick-arrow slick-next"
+                  type="button"
                 />
                 <div
-                  class="sc-jrcTuL sc-kDvujY eNRqSA slick-dots"
+                  class="sc-jrcTuL eNRqSA slick-dots"
                 >
                   <ul>
                     <li
@@ -749,7 +755,7 @@ Object {
           class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
         >
           <div
-            class="sc-csuSiG sc-ksBlkl gfeqkz hRmunx text-greyDarkColored"
+            class="sc-kDvujY sc-eDWCr iXXQYE TmBlb text-greyDarkColored"
           >
             <div>
               <span>

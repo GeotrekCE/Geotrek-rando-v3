@@ -47,7 +47,7 @@ export const SmallCarousel: React.FC<LargeOrSmallCarouselProps> = ({ children, c
       className={className}
       nextArrow={<SmallNextArrow />}
       prevArrow={<SmallPrevArrow />}
-      dots={smallAppendDots}
+      dots={appendDots}
     >
       {children}
     </Carousel>
@@ -60,7 +60,7 @@ export const LargeCarousel: React.FC<LargeOrSmallCarouselProps> = ({ children, c
       className={className}
       nextArrow={<LargeNextArrow />}
       prevArrow={<LargePrevArrow />}
-      dots={largeAppendDots}
+      dots={appendDots}
     >
       {children}
     </Carousel>
@@ -84,25 +84,25 @@ const StyledSlider = styled(Slider)`
 
 const LargePrevArrow: React.FC<CustomArrowProps> = props => {
   const { className, onClick } = props;
-  return <LargeStyledLeftArrow className={className} onClick={onClick} />;
+  return <LargeStyledLeftArrow className={className} onClick={onClick} type="button" />;
 };
 
 const LargeNextArrow: React.FC<CustomArrowProps> = props => {
   const { className, onClick } = props;
-  return <LargeStyledRightArrow className={className} onClick={onClick} />;
+  return <LargeStyledRightArrow className={className} onClick={onClick} type="button" />;
 };
 
 const SmallPrevArrow: React.FC<CustomArrowProps> = props => {
   const { className, onClick } = props;
-  return <SmallStyledLeftArrow className={className} onClick={onClick} />;
+  return <SmallStyledLeftArrow className={className} onClick={onClick} type="button" />;
 };
 
 const SmallNextArrow: React.FC<CustomArrowProps> = props => {
   const { className, onClick } = props;
-  return <SmallStyledRightArrow className={className} onClick={onClick} />;
+  return <SmallStyledRightArrow className={className} onClick={onClick} type="button" />;
 };
 
-const StyledArrow = styled.div`
+const StyledArrow = styled.button`
   z-index: 10;
   height: 100%;
   display: flex;
@@ -111,7 +111,8 @@ const StyledArrow = styled.div`
   opacity: 0.75;
   transition-property: opacity;
   transition-duration: 500ms;
-  &:hover {
+  &:hover,
+  &:focus {
     opacity: 1;
   }
   &::before {
@@ -158,16 +159,10 @@ const LargeStyledLeftArrow = styled(LargeStyledArrow)`
   left: 0;
 `;
 
-const smallAppendDots = (dots: JSX.Element) => (
-  <SmallStyledDots>
+const appendDots = (dots: JSX.Element) => (
+  <StyledDots>
     <ul>{dots}</ul>
-  </SmallStyledDots>
-);
-
-const largeAppendDots = (dots: JSX.Element) => (
-  <LargeStyledDots>
-    <ul>{dots}</ul>
-  </LargeStyledDots>
+  </StyledDots>
 );
 
 const StyledDots = styled.div`
@@ -195,7 +190,3 @@ const StyledDots = styled.div`
     text-shadow: 0 0 4px black;
   }
 `;
-
-const SmallStyledDots = styled(StyledDots)``;
-
-const LargeStyledDots = styled(StyledDots)``;

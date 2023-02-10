@@ -17,8 +17,9 @@ Object {
             class="slick-slider h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full slick-initialized"
             dir="ltr"
           >
-            <div
-              class="sc-gswNZR sc-hLBbgP sc-kDvujY sc-csuSiG eEZug iXwfzt hza-DBk cqVOWQ slick-arrow slick-prev"
+            <button
+              class="sc-gswNZR sc-hLBbgP sc-pyfCe sc-kDvujY dQACwy iXwfzt eJVvAi jhFMyn slick-arrow slick-prev"
+              type="button"
             />
             <div
               class="slick-list"
@@ -38,6 +39,7 @@ Object {
                     <img
                       alt=""
                       class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                      loading="lazy"
                       src="test2.jpg"
                       style="width: 100%; display: inline-block;"
                       tabindex="-1"
@@ -55,6 +57,7 @@ Object {
                     <img
                       alt=""
                       class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                      loading="eager"
                       src="test1.jpg"
                       style="width: 100%; display: inline-block;"
                       tabindex="-1"
@@ -72,6 +75,7 @@ Object {
                     <img
                       alt=""
                       class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                      loading="lazy"
                       src="test2.jpg"
                       style="width: 100%; display: inline-block;"
                       tabindex="-1"
@@ -89,6 +93,7 @@ Object {
                     <img
                       alt=""
                       class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                      loading="eager"
                       src="test1.jpg"
                       style="width: 100%; display: inline-block;"
                       tabindex="-1"
@@ -106,6 +111,7 @@ Object {
                     <img
                       alt=""
                       class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                      loading="lazy"
                       src="test2.jpg"
                       style="width: 100%; display: inline-block;"
                       tabindex="-1"
@@ -114,8 +120,9 @@ Object {
                 </div>
               </div>
             </div>
-            <div
-              class="sc-gswNZR sc-hLBbgP sc-kDvujY sc-ipEyDJ eEZug iXwfzt hza-DBk fAHpGs slick-arrow slick-next"
+            <button
+              class="sc-gswNZR sc-hLBbgP sc-pyfCe sc-jrcTuL dQACwy iXwfzt eJVvAi kakIFt slick-arrow slick-next"
+              type="button"
             />
           </div>
         </div>
@@ -123,7 +130,7 @@ Object {
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
         <h1
-          class="sc-eDWCr CioGm text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+          class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -144,8 +151,9 @@ Object {
           class="slick-slider h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full slick-initialized"
           dir="ltr"
         >
-          <div
-            class="sc-gswNZR sc-hLBbgP sc-kDvujY sc-csuSiG eEZug iXwfzt hza-DBk cqVOWQ slick-arrow slick-prev"
+          <button
+            class="sc-gswNZR sc-hLBbgP sc-pyfCe sc-kDvujY dQACwy iXwfzt eJVvAi jhFMyn slick-arrow slick-prev"
+            type="button"
           />
           <div
             class="slick-list"
@@ -165,6 +173,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    loading="lazy"
                     src="test2.jpg"
                     style="width: 100%; display: inline-block;"
                     tabindex="-1"
@@ -182,6 +191,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    loading="eager"
                     src="test1.jpg"
                     style="width: 100%; display: inline-block;"
                     tabindex="-1"
@@ -199,6 +209,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    loading="lazy"
                     src="test2.jpg"
                     style="width: 100%; display: inline-block;"
                     tabindex="-1"
@@ -216,6 +227,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    loading="eager"
                     src="test1.jpg"
                     style="width: 100%; display: inline-block;"
                     tabindex="-1"
@@ -233,6 +245,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    loading="lazy"
                     src="test2.jpg"
                     style="width: 100%; display: inline-block;"
                     tabindex="-1"
@@ -241,8 +254,9 @@ Object {
               </div>
             </div>
           </div>
-          <div
-            class="sc-gswNZR sc-hLBbgP sc-kDvujY sc-ipEyDJ eEZug iXwfzt hza-DBk fAHpGs slick-arrow slick-next"
+          <button
+            class="sc-gswNZR sc-hLBbgP sc-pyfCe sc-jrcTuL dQACwy iXwfzt eJVvAi kakIFt slick-arrow slick-next"
+            type="button"
           />
         </div>
       </div>
@@ -250,7 +264,7 @@ Object {
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
       <h1
-        class="sc-eDWCr CioGm text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+        class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -331,7 +345,7 @@ Object {
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
         <h1
-          class="sc-eDWCr CioGm text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+          class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -355,7 +369,7 @@ Object {
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
       <h1
-        class="sc-eDWCr CioGm text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+        class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -437,7 +451,7 @@ Object {
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
         <h1
-          class="sc-eDWCr CioGm text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+          class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -462,7 +476,7 @@ Object {
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
       <h1
-        class="sc-eDWCr CioGm text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+        class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !

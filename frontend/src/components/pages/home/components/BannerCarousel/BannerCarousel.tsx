@@ -23,6 +23,7 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = ({ picturesUrl }) =
       >
         {picturesUrl.map((pictureUrl, i) => (
           <img
+            loading={i === 0 ? 'eager' : 'lazy'}
             src={pictureUrl}
             key={i}
             className="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
@@ -35,13 +36,13 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = ({ picturesUrl }) =
 };
 
 const PrevArrow = (props: CustomArrowProps) => {
-  const { className, onClick } = props;
-  return <StyledLeftArrow className={className} onClick={onClick} />;
+  const { className = '', onClick } = props;
+  return <StyledLeftArrow className={className} onClick={onClick} type="button" />;
 };
 
 const NextArrow = (props: CustomArrowProps) => {
-  const { className, onClick } = props;
-  return <StyledRightArrow className={className} onClick={onClick} />;
+  const { className = '', onClick } = props;
+  return <StyledRightArrow className={className} onClick={onClick} type="button" />;
 };
 
 const BannerStyledArrow = styled(LargeStyledArrow)`
@@ -61,6 +62,7 @@ const BannerStyledArrow = styled(LargeStyledArrow)`
     `,
   )}
 `;
+
 const StyledRightArrow = styled(BannerStyledArrow)`
   right: 0;
 `;

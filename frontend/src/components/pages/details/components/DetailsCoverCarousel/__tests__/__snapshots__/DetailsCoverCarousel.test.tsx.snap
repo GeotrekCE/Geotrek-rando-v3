@@ -9,8 +9,9 @@ Object {
         class="slick-slider sc-bcXHqe joHfNd relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
         dir="ltr"
       >
-        <div
-          class="sc-gswNZR sc-hLBbgP sc-iBYQkv eEZug iXwfzt cBrSnO slick-arrow slick-prev"
+        <button
+          class="sc-gswNZR sc-hLBbgP sc-iBYQkv dQACwy iXwfzt cBrSnO slick-arrow slick-prev"
+          type="button"
         />
         <div
           class="slick-list"
@@ -138,11 +139,12 @@ Object {
             />
           </div>
         </div>
-        <div
-          class="sc-gswNZR sc-hLBbgP sc-gKPRtg eEZug iXwfzt bMoIHG slick-arrow slick-next"
+        <button
+          class="sc-gswNZR sc-hLBbgP sc-gKPRtg dQACwy iXwfzt bMoIHG slick-arrow slick-next"
+          type="button"
         />
         <div
-          class="sc-ftTHYK sc-jrcTuL ktEDNK slick-dots"
+          class="sc-ftTHYK ktEDNK slick-dots"
         >
           <ul>
             <li
@@ -176,8 +178,9 @@ Object {
       class="slick-slider sc-bcXHqe joHfNd relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
       dir="ltr"
     >
-      <div
-        class="sc-gswNZR sc-hLBbgP sc-iBYQkv eEZug iXwfzt cBrSnO slick-arrow slick-prev"
+      <button
+        class="sc-gswNZR sc-hLBbgP sc-iBYQkv dQACwy iXwfzt cBrSnO slick-arrow slick-prev"
+        type="button"
       />
       <div
         class="slick-list"
@@ -305,11 +308,12 @@ Object {
           />
         </div>
       </div>
-      <div
-        class="sc-gswNZR sc-hLBbgP sc-gKPRtg eEZug iXwfzt bMoIHG slick-arrow slick-next"
+      <button
+        class="sc-gswNZR sc-hLBbgP sc-gKPRtg dQACwy iXwfzt bMoIHG slick-arrow slick-next"
+        type="button"
       />
       <div
-        class="sc-ftTHYK sc-jrcTuL ktEDNK slick-dots"
+        class="sc-ftTHYK ktEDNK slick-dots"
       >
         <ul>
           <li
