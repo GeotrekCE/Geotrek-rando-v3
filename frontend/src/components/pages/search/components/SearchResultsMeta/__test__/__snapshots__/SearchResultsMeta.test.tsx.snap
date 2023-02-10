@@ -6,19 +6,26 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="flex"
+        class="flex items-center"
       >
         <div>
           <img
-            class="sc-bcXHqe gqwZjM hidden desktop:block"
-            src="/images/little-forest.png"
+            alt=""
+            class="hidden desktop:block"
+            data-nimg="1"
+            decoding="async"
+            height="64"
+            loading="lazy"
+            src="/images/little-forest.svg"
+            style="color: transparent;"
+            width="64"
           />
         </div>
         <div
           class="desktop:ml-6"
         >
           <div
-            class="sc-gswNZR jUlnRR"
+            class="sc-bcXHqe kGVUHJ"
           >
             0 résultat trouvé
           </div>
@@ -28,19 +35,26 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="flex"
+      class="flex items-center"
     >
       <div>
         <img
-          class="sc-bcXHqe gqwZjM hidden desktop:block"
-          src="/images/little-forest.png"
+          alt=""
+          class="hidden desktop:block"
+          data-nimg="1"
+          decoding="async"
+          height="64"
+          loading="lazy"
+          src="/images/little-forest.svg"
+          style="color: transparent;"
+          width="64"
         />
       </div>
       <div
         class="desktop:ml-6"
       >
         <div
-          class="sc-gswNZR jUlnRR"
+          class="sc-bcXHqe kGVUHJ"
         >
           0 résultat trouvé
         </div>
@@ -107,19 +121,26 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="flex"
+        class="flex items-center"
       >
         <div>
           <img
-            class="sc-bcXHqe gqwZjM hidden desktop:block"
-            src="/images/little-forest.png"
+            alt=""
+            class="hidden desktop:block"
+            data-nimg="1"
+            decoding="async"
+            height="64"
+            loading="lazy"
+            src="/images/little-forest.svg"
+            style="color: transparent;"
+            width="64"
           />
         </div>
         <div
           class="desktop:ml-6"
         >
           <div
-            class="sc-gswNZR jUlnRR"
+            class="sc-bcXHqe kGVUHJ"
           >
             1 résultat trouvé
           </div>
@@ -129,19 +150,26 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="flex"
+      class="flex items-center"
     >
       <div>
         <img
-          class="sc-bcXHqe gqwZjM hidden desktop:block"
-          src="/images/little-forest.png"
+          alt=""
+          class="hidden desktop:block"
+          data-nimg="1"
+          decoding="async"
+          height="64"
+          loading="lazy"
+          src="/images/little-forest.svg"
+          style="color: transparent;"
+          width="64"
         />
       </div>
       <div
         class="desktop:ml-6"
       >
         <div
-          class="sc-gswNZR jUlnRR"
+          class="sc-bcXHqe kGVUHJ"
         >
           1 résultat trouvé
         </div>
@@ -208,19 +236,26 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="flex"
+        class="flex items-center"
       >
         <div>
           <img
-            class="sc-bcXHqe gqwZjM hidden desktop:block"
-            src="/images/little-forest.png"
+            alt=""
+            class="hidden desktop:block"
+            data-nimg="1"
+            decoding="async"
+            height="64"
+            loading="lazy"
+            src="/images/little-forest.svg"
+            style="color: transparent;"
+            width="64"
           />
         </div>
         <div
           class="desktop:ml-6"
         >
           <div
-            class="sc-gswNZR jUlnRR"
+            class="sc-bcXHqe kGVUHJ"
           >
             123 résultats trouvés
           </div>
@@ -230,19 +265,26 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="flex"
+      class="flex items-center"
     >
       <div>
         <img
-          class="sc-bcXHqe gqwZjM hidden desktop:block"
-          src="/images/little-forest.png"
+          alt=""
+          class="hidden desktop:block"
+          data-nimg="1"
+          decoding="async"
+          height="64"
+          loading="lazy"
+          src="/images/little-forest.svg"
+          style="color: transparent;"
+          width="64"
         />
       </div>
       <div
         class="desktop:ml-6"
       >
         <div
-          class="sc-gswNZR jUlnRR"
+          class="sc-bcXHqe kGVUHJ"
         >
           123 résultats trouvés
         </div>
