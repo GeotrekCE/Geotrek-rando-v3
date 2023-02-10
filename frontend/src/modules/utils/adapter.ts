@@ -4,8 +4,8 @@ import { getGlobalConfig } from './api.config';
 
 const fallbackAttachment: Attachment = {
   url: getGlobalConfig().fallbackImageUri,
-  author: 'Default Author',
-  legend: 'Default legend',
+  author: '',
+  legend: '',
 };
 
 export const getThumbnail = (rawAttachments: RawAttachment[]): string | null => {
