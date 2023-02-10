@@ -1,7 +1,7 @@
-import React from 'react';
+import Image from 'next/image';
 import styled, { css } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
-import { colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
+import { colorPalette, desktopOnly, typography } from 'stylesheet';
 
 interface Props {
   resultsNumber: number | undefined;
@@ -9,9 +9,16 @@ interface Props {
 
 export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber }) => {
   return (
-    <div className="flex">
+    <div className="flex items-center">
       <div>
-        <Illustration className="hidden desktop:block" src="/images/little-forest.png" />
+        <Image
+          loading="lazy"
+          className="hidden desktop:block"
+          src="/images/little-forest.svg"
+          height={64}
+          width={64}
+          alt=""
+        />
       </div>
 
       <div className="desktop:ml-6">
@@ -22,11 +29,6 @@ export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber }) => {
     </div>
   );
 };
-
-const Illustration = styled.img`
-  height: ${getSpacing(16)};
-  width: ${getSpacing(16)};
-`;
 
 const ResultsNumber = styled.div`
   ${typography.h3};
