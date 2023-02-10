@@ -19,7 +19,6 @@ import { Clock } from 'components/Icons/Clock';
 import { CodeBrackets } from 'components/Icons/CodeBrackets';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
-import { useRouter } from 'next/router';
 
 import { Attachment } from '../../../../../modules/interface';
 import { dataUnits } from '../../../../../modules/results/adapter';
@@ -31,9 +30,8 @@ interface BaseProps {
   place: string | null;
   title: string;
   tags: string[];
-  thumbnailUris: string[];
   redirectionUrl: string;
-  attachments?: Attachment[];
+  attachments: Attachment[];
   badgeIconUri?: string;
   badgeName?: string;
   className?: string;
@@ -118,7 +116,6 @@ export const ResultCard: React.FC<
     place,
     title,
     tags,
-    thumbnailUris,
     attachments,
     badgeIconUri,
     badgeName,
@@ -130,7 +127,6 @@ export const ResultCard: React.FC<
   const { setHoveredCardId } = useListAndMapContext();
 
   const { locale } = useIntl();
-  const router = useRouter();
 
   return (
     <Container
@@ -147,17 +143,17 @@ export const ResultCard: React.FC<
       <Modal>
         {({ isFullscreen }) => (
           <>
-            {isFullscreen && attachments && attachments.length > 0 && (
-              <DetailsCoverCarousel attachments={attachments} />
+            {isFullscreen && attachments.length > 0 && (
+              <DetailsCoverCarousel attachments={attachments} classNameImage="object-contain" />
             )}
-            {(!isFullscreen || !attachments) && (
+            {!isFullscreen && (
               <ResultCardCarousel
                 asColumn={asColumn}
                 type={type}
-                thumbnailUris={thumbnailUris}
+                attachments={attachments}
                 iconUri={badgeIconUri}
                 iconName={badgeName as string}
-                onClickImage={() => router.push(redirectionUrl)}
+                redirect={redirectionUrl}
               />
             )}
           </>

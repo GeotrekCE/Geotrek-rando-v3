@@ -224,7 +224,6 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             place={searchResult.place}
                             title={searchResult.title}
                             tags={searchResult.tags}
-                            thumbnailUris={searchResult.thumbnailUris}
                             attachments={searchResult.attachments}
                             badgeIconUri={searchResult.practice?.pictogram}
                             badgeName={searchResult.practice?.name}
@@ -246,7 +245,6 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             place={searchResult.place}
                             title={searchResult.name}
                             tags={searchResult.themes}
-                            thumbnailUris={searchResult.thumbnailUris}
                             attachments={searchResult.attachments}
                             badgeIconUri={searchResult.category.pictogramUri}
                             badgeName={searchResult.category.label}
@@ -268,7 +266,6 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             place={searchResult.place}
                             title={searchResult.name}
                             tags={searchResult.themes}
-                            thumbnailUris={searchResult.thumbnailUris}
                             attachments={searchResult.attachments}
                             badgeIconUri={searchResult.practice?.pictogram}
                             badgeName={searchResult.practice?.name}
@@ -290,7 +287,6 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                             place={searchResult.place}
                             title={searchResult.name}
                             tags={searchResult.themes}
-                            thumbnailUris={searchResult.thumbnailUris}
                             attachments={searchResult.attachments}
                             badgeIconUri={searchResult.typeEvent?.pictogram}
                             badgeName={searchResult.typeEvent?.type}

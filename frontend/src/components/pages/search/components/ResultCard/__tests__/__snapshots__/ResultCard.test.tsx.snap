@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-eDWCr iTNyJD"
+        class="sc-csuSiG tzpCM"
         id="result_card"
       >
         <div
@@ -19,21 +19,11 @@ Object {
               class="w-full h-full"
             >
               <div
-                class="sc-csuSiG eWowau h-full w-full flex-grow relative desktop:w-resultCardDesktop"
+                class="h-full w-full flex-grow relative desktop:w-resultCardDesktop"
               >
                 <span
                   class=""
-                >
-                  <div
-                    class="relative h-full"
-                  >
-                    <img
-                      alt=""
-                      class="object-cover object-top w-full h-full"
-                      src=""
-                    />
-                  </div>
-                </span>
+                />
               </div>
             </div>
           </div>
@@ -44,26 +34,26 @@ Object {
           href="/details-2-Balade-au-pays-des-menhirs"
         >
           <div
-            class="sc-bqWxrE bQBQoO"
+            class="sc-eDWCr Fpvvy"
           >
             <div
-              class="sc-ksBlkl hJJqNs"
+              class="sc-bqWxrE fQSmfG"
             >
               <span
-                class="sc-fnGiBr kkrZGP"
+                class="sc-hBxehG bzEkpl"
               >
                 Saint-Etienne-du-Valdonnez
               </span>
               <span
-                class="sc-fEXmlR kNHqSw"
+                class="sc-fnGiBr dWlqoa"
               >
                 Balade au pays des menhirs
               </span>
               <div
-                class="sc-bjfHbI dgbGKB"
+                class="sc-fEXmlR jEpRUM"
               >
                 <div
-                  class="sc-idXgbr kaegsT"
+                  class="sc-bjfHbI fYUGpo"
                 >
                   <div
                     class="sc-pyfCe fwHJCn"
@@ -89,10 +79,10 @@ Object {
                 </div>
               </div>
               <div
-                class="sc-dIfARi cDDpa"
+                class="sc-idXgbr kLzZgh"
               >
                 <div
-                  class="sc-hHTYSt fXLVSx"
+                  class="sc-dIfARi fEPGAK"
                 >
                   <div
                     class="flex items-center text-primary1 "
@@ -202,7 +192,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-eDWCr iTNyJD"
+      class="sc-csuSiG tzpCM"
       id="result_card"
     >
       <div
@@ -215,21 +205,11 @@ Object {
             class="w-full h-full"
           >
             <div
-              class="sc-csuSiG eWowau h-full w-full flex-grow relative desktop:w-resultCardDesktop"
+              class="h-full w-full flex-grow relative desktop:w-resultCardDesktop"
             >
               <span
                 class=""
-              >
-                <div
-                  class="relative h-full"
-                >
-                  <img
-                    alt=""
-                    class="object-cover object-top w-full h-full"
-                    src=""
-                  />
-                </div>
-              </span>
+              />
             </div>
           </div>
         </div>
@@ -240,26 +220,26 @@ Object {
         href="/details-2-Balade-au-pays-des-menhirs"
       >
         <div
-          class="sc-bqWxrE bQBQoO"
+          class="sc-eDWCr Fpvvy"
         >
           <div
-            class="sc-ksBlkl hJJqNs"
+            class="sc-bqWxrE fQSmfG"
           >
             <span
-              class="sc-fnGiBr kkrZGP"
+              class="sc-hBxehG bzEkpl"
             >
               Saint-Etienne-du-Valdonnez
             </span>
             <span
-              class="sc-fEXmlR kNHqSw"
+              class="sc-fnGiBr dWlqoa"
             >
               Balade au pays des menhirs
             </span>
             <div
-              class="sc-bjfHbI dgbGKB"
+              class="sc-fEXmlR jEpRUM"
             >
               <div
-                class="sc-idXgbr kaegsT"
+                class="sc-bjfHbI fYUGpo"
               >
                 <div
                   class="sc-pyfCe fwHJCn"
@@ -285,10 +265,10 @@ Object {
               </div>
             </div>
             <div
-              class="sc-dIfARi cDDpa"
+              class="sc-idXgbr kLzZgh"
             >
               <div
-                class="sc-hHTYSt fXLVSx"
+                class="sc-dIfARi fEPGAK"
               >
                 <div
                   class="flex items-center text-primary1 "

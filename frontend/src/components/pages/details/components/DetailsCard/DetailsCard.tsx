@@ -7,20 +7,17 @@ import getActivityColor from 'components/pages/search/components/ResultCard/getA
 import useHasMounted from 'hooks/useHasMounted';
 import parse from 'html-react-parser';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
-import { useRouter } from 'next/router';
 import { FormattedMessage } from 'react-intl';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import styled from 'styled-components';
 import { getSpacing, MAX_WIDTH_MOBILE } from 'stylesheet';
 import { Attachment } from '../../../../../modules/interface';
-import { DetailsCardCarousel } from '../DetailsCardCarousel';
 import { useDetailsCard } from './useDetailsCard';
 export interface DetailsCardProps {
   id: string;
   name: string;
   place?: string;
   description?: string | null;
-  thumbnailUris: string[];
   attachments: Attachment[];
   iconUri?: string;
   iconName?: string;
@@ -33,7 +30,6 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   id,
   name,
   description,
-  thumbnailUris,
   attachments,
   iconUri,
   iconName,
@@ -54,7 +50,6 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
 
   const { setHoveredCardId } = useListAndMapContext();
 
-  const router = useRouter();
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
   return (
@@ -76,37 +71,21 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         <Modal>
           {({ isFullscreen, toggleFullscreen }) => (
             <>
-              {isFullscreen &&
-                type === 'TOURISTIC_CONTENT' &&
+              {type === 'TOURISTIC_CONTENT' &&
                 redirectionUrl &&
                 attachments.length > 0 &&
                 hasNavigator && (
                   <DetailsCoverCarousel
                     attachments={attachments}
-                    onClickImage={() => router.push(redirectionUrl)}
+                    classNameImage={isFullscreen ? 'object-contain' : ''}
+                    redirect={redirectionUrl}
                   />
                 )}
-              {!isFullscreen &&
-                type === 'TOURISTIC_CONTENT' &&
-                redirectionUrl &&
-                attachments.length > 0 &&
-                hasNavigator && (
-                  <DetailsCoverCarousel
-                    attachments={attachments}
-                    onClickImage={() => router.push(redirectionUrl)}
-                  />
-                )}
-              {isFullscreen &&
-                type !== 'TOURISTIC_CONTENT' &&
-                attachments.length > 0 &&
-                hasNavigator && (
-                  <DetailsCoverCarousel onClickImage={toggleFullscreen} attachments={attachments} />
-                )}
-              {!isFullscreen && type !== 'TOURISTIC_CONTENT' && (
-                <DetailsCardCarousel
-                  thumbnailUris={hasNavigator ? thumbnailUris : thumbnailUris.slice(0, 1)}
-                  height={heightState}
-                  onClickImage={hasNavigator ? toggleFullscreen : undefined}
+              {type !== 'TOURISTIC_CONTENT' && attachments.length > 0 && hasNavigator && (
+                <DetailsCoverCarousel
+                  attachments={attachments}
+                  classNameImage={isFullscreen ? 'object-contain' : ''}
+                  onClickImage={toggleFullscreen}
                 />
               )}
             </>
@@ -177,21 +156,6 @@ const DetailsCardContainer = styled.div<{ height: number }>`
     width: auto;
     flex-direction: row;
     margin-bottom: ${getSpacing(6)};
-  }
-`;
-
-export const CardSingleImage = styled.img<{ height: number }>`
-  height: ${getSpacing(50)};
-  width: ${getSpacing(60)};
-  object-fit: cover;
-  object-position: top;
-  @media (min-width: ${MAX_WIDTH_MOBILE}px) {
-    height: ${props => props.height}px;
-    width: 100%;
-  }
-  @media (display-mode: fullscreen) {
-    height: 100%;
-    width: 100%;
   }
 `;
 

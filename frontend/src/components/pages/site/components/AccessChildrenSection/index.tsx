@@ -45,7 +45,6 @@ export const AccessChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
               place={''}
               title={trekChild.title}
               tags={trekChild.tags}
-              thumbnailUris={trekChild.thumbnailUris}
               attachments={trekChild.attachments}
               badgeIconUri={trekChild.practice?.pictogram}
               informations={trekChild.informations}
