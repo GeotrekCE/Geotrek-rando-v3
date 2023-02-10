@@ -23,7 +23,20 @@ Object {
               >
                 <span
                   class=""
-                />
+                >
+                  <div
+                    class="relative "
+                    id="details_cover_image"
+                  >
+                    <img
+                      alt=""
+                      class="object-cover object-center overflow-hidden w-full h-full"
+                      id=":r3:"
+                      loading="eager"
+                      src="/test.jpg"
+                    />
+                  </div>
+                </span>
               </div>
             </div>
           </div>
@@ -88,8 +101,16 @@ Object {
                     class="flex items-center text-primary1 "
                   >
                     <img
+                      alt=""
                       class="object-cover object-center w-6 h-6"
-                      src=""
+                      data-nimg="1"
+                      decoding="async"
+                      height="24"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fdifficulty.jpg&w=48&q=75"
+                      srcset="/_next/image?url=%2Fdifficulty.jpg&w=32&q=75 1x, /_next/image?url=%2Fdifficulty.jpg&w=48&q=75 2x"
+                      style="color: transparent;"
+                      width="24"
                     />
                     <span
                       class="ml-2 text-sm text-greyDarkColored"
@@ -209,7 +230,20 @@ Object {
             >
               <span
                 class=""
-              />
+              >
+                <div
+                  class="relative "
+                  id="details_cover_image"
+                >
+                  <img
+                    alt=""
+                    class="object-cover object-center overflow-hidden w-full h-full"
+                    id=":r3:"
+                    loading="eager"
+                    src="/test.jpg"
+                  />
+                </div>
+              </span>
             </div>
           </div>
         </div>
@@ -274,8 +308,16 @@ Object {
                   class="flex items-center text-primary1 "
                 >
                   <img
+                    alt=""
                     class="object-cover object-center w-6 h-6"
-                    src=""
+                    data-nimg="1"
+                    decoding="async"
+                    height="24"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fdifficulty.jpg&w=48&q=75"
+                    srcset="/_next/image?url=%2Fdifficulty.jpg&w=32&q=75 1x, /_next/image?url=%2Fdifficulty.jpg&w=48&q=75 2x"
+                    style="color: transparent;"
+                    width="24"
                   />
                   <span
                     class="ml-2 text-sm text-greyDarkColored"
