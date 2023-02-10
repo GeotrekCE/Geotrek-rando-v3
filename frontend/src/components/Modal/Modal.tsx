@@ -5,6 +5,7 @@ import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { MapButton } from 'components/Map/components/MapButton';
 import ConditionallyRender from 'components/ConditionallyRender';
 import useHasMounted from 'hooks/useHasMounted';
+import { useIntl } from 'react-intl';
 
 type Props = {
   children: ({
@@ -18,6 +19,7 @@ type Props = {
 
 const Inner: React.FC<Props> = ({ children }) => {
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+  const intl = useIntl();
 
   const handler = useCallback(() => setIsFullscreen(!isFullscreen), [isFullscreen]);
 
@@ -60,7 +62,13 @@ const Inner: React.FC<Props> = ({ children }) => {
             ref={ref}
             className="relative bg-white"
           >
-            {isFullscreen && <MapButton icon={<ArrowLeft size={24} />} onClick={onToggle} />}
+            {isFullscreen && (
+              <MapButton
+                aria-label={intl.formatMessage({ id: 'details.closeFullScreen' })}
+                icon={<ArrowLeft size={24} />}
+                onClick={onToggle}
+              />
+            )}
             <div className="flex items-center justify-center w-full h-full">
               <div className="w-full h-full">
                 {typeof children === 'function'
