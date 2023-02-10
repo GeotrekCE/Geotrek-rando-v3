@@ -14,13 +14,13 @@ describe('Results Card', () => {
       place="Saint-Etienne-du-Valdonnez"
       title={title}
       tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
-      attachments={[]}
+      attachments={[{ author: '', legend: '', url: '/test.jpg' }]}
       badgeIconUri=""
       informations={{
         duration: '2h',
         distance: '5km',
         elevation: '+360m',
-        difficulty: { label: '', pictogramUri: '' },
+        difficulty: { label: '', pictogramUri: '/difficulty.jpg' },
         reservationSystem: 1,
       }}
       redirectionUrl={urlToTest}
@@ -34,7 +34,7 @@ describe('Results Card', () => {
 
   it('AAU, I will be redirected to the right details page', () => {
     const component = render(resultCard);
-    const link = component.getByRole('link');
+    const link = component.queryByTestId(`Link-ResultCard-${id}`);
     expect(link).toHaveAttribute('href', urlToTest);
   });
 });
