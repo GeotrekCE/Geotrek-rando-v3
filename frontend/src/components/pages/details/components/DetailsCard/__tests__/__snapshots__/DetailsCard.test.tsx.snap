@@ -26,13 +26,50 @@ Object {
                 class="w-full h-full"
               >
                 <span
-                  class=""
+                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
                 >
-                  <img
-                    class="sc-csuSiG cnmnrm"
-                    height="200"
-                    src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
-                  />
+                  <figure
+                    aria-labelledby=":r2:"
+                    class="relative "
+                    id="details_cover_image"
+                    role="figure"
+                  >
+                    <img
+                      alt="Lorem ipsum"
+                      class="object-center overflow-hidden w-full h-full object-cover"
+                      id=":r3:"
+                      loading="eager"
+                      src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                    />
+                    <figcaption
+                      id=":r2:"
+                    >
+                      <span
+                        class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                      >
+                        <span
+                          class="mx-10percent px-10percent truncate"
+                        >
+                          Lorem ipsum - Lorem ipsum
+                        </span>
+                      </span>
+                      <button
+                        aria-describedby=":r3:"
+                        class="absolute inset-0 w-full h-full"
+                        type="button"
+                      >
+                        <span
+                          class="sr-only"
+                        >
+                          Voir l'image en plein écran
+                        </span>
+                      </button>
+                    </figcaption>
+                  </figure>
                 </span>
               </div>
             </div>
@@ -61,7 +98,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-kDvujY sc-eDWCr iXXQYE TmBlb text-greyDarkColored"
+              class="sc-kDvujY sc-csuSiG iXXQYE jfeXWc text-greyDarkColored"
             >
               <div>
                 <span>
@@ -100,11 +137,11 @@ Object {
                 class="w-full h-full"
               >
                 <div
-                  class="slick-slider sc-dkrFOg elmwrv slick-initialized"
+                  class="slick-slider sc-dkrFOg elmwrv relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
                   dir="ltr"
                 >
                   <button
-                    class="sc-hLBbgP sc-eDvSVe sc-iBYQkv fmYHPc jvGGbb cBrSnO slick-arrow slick-prev"
+                    class="sc-hLBbgP sc-jSUZER sc-pyfCe fmYHPc gDGNxP kdsrVF slick-arrow slick-prev"
                     type="button"
                   />
                   <div
@@ -129,13 +166,48 @@ Object {
                         tabindex="-1"
                       >
                         <div>
-                          <img
-                            class="sc-csuSiG cnmnrm"
-                            height="200"
-                            src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
-                            style="width: 100%; display: inline-block;"
-                            tabindex="-1"
-                          />
+                          <figure
+                            aria-labelledby=":r8:"
+                            class="relative "
+                            id="details_cover_image"
+                            role="figure"
+                          >
+                            <img
+                              alt="Lorem ipsum"
+                              class="object-center overflow-hidden w-full h-full object-cover"
+                              id=":r9:"
+                              loading="eager"
+                              src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                            />
+                            <figcaption
+                              id=":r8:"
+                            >
+                              <span
+                                class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                              >
+                                <span
+                                  class="mx-10percent px-10percent truncate"
+                                >
+                                  Lorem ipsum - Lorem ipsum
+                                </span>
+                              </span>
+                              <button
+                                aria-describedby=":r9:"
+                                class="absolute inset-0 w-full h-full"
+                                type="button"
+                              >
+                                <span
+                                  class="sr-only"
+                                >
+                                  Voir l'image en plein écran
+                                </span>
+                              </button>
+                            </figcaption>
+                          </figure>
                         </div>
                       </div>
                       <div
@@ -153,13 +225,48 @@ Object {
                         tabindex="-1"
                       >
                         <div>
-                          <img
-                            class="sc-csuSiG cnmnrm"
-                            height="200"
-                            src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
-                            style="width: 100%; display: inline-block;"
-                            tabindex="-1"
-                          />
+                          <figure
+                            aria-labelledby=":ra:"
+                            class="relative "
+                            id="details_cover_image"
+                            role="figure"
+                          >
+                            <img
+                              alt="Lorem ipsum"
+                              class="object-center overflow-hidden w-full h-full object-cover"
+                              id=":rb:"
+                              loading="eager"
+                              src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                            />
+                            <figcaption
+                              id=":ra:"
+                            >
+                              <span
+                                class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                              >
+                                <span
+                                  class="mx-10percent px-10percent truncate"
+                                >
+                                  Lorem ipsum - Lorem ipsum
+                                </span>
+                              </span>
+                              <button
+                                aria-describedby=":rb:"
+                                class="absolute inset-0 w-full h-full"
+                                type="button"
+                              >
+                                <span
+                                  class="sr-only"
+                                >
+                                  Voir l'image en plein écran
+                                </span>
+                              </button>
+                            </figcaption>
+                          </figure>
                         </div>
                       </div>
                       <div
@@ -172,7 +279,7 @@ Object {
                     </div>
                   </div>
                   <button
-                    class="sc-hLBbgP sc-eDvSVe sc-gKPRtg fmYHPc jvGGbb bMoIHG slick-arrow slick-next"
+                    class="sc-hLBbgP sc-jSUZER sc-ftTHYK fmYHPc gDGNxP gPrhgT slick-arrow slick-next"
                     type="button"
                   />
                   <div
@@ -223,7 +330,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-kDvujY sc-eDWCr iXXQYE TmBlb text-greyDarkColored"
+              class="sc-kDvujY sc-csuSiG iXXQYE jfeXWc text-greyDarkColored"
             >
               <div>
                 <span>
@@ -263,13 +370,50 @@ Object {
               class="w-full h-full"
             >
               <span
-                class=""
+                class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
               >
-                <img
-                  class="sc-csuSiG cnmnrm"
-                  height="200"
-                  src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
-                />
+                <figure
+                  aria-labelledby=":r2:"
+                  class="relative "
+                  id="details_cover_image"
+                  role="figure"
+                >
+                  <img
+                    alt="Lorem ipsum"
+                    class="object-center overflow-hidden w-full h-full object-cover"
+                    id=":r3:"
+                    loading="eager"
+                    src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                  />
+                  <figcaption
+                    id=":r2:"
+                  >
+                    <span
+                      class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                    >
+                      <span
+                        class="mx-10percent px-10percent truncate"
+                      >
+                        Lorem ipsum - Lorem ipsum
+                      </span>
+                    </span>
+                    <button
+                      aria-describedby=":r3:"
+                      class="absolute inset-0 w-full h-full"
+                      type="button"
+                    >
+                      <span
+                        class="sr-only"
+                      >
+                        Voir l'image en plein écran
+                      </span>
+                    </button>
+                  </figcaption>
+                </figure>
               </span>
             </div>
           </div>
@@ -298,7 +442,7 @@ Object {
           class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
         >
           <div
-            class="sc-kDvujY sc-eDWCr iXXQYE TmBlb text-greyDarkColored"
+            class="sc-kDvujY sc-csuSiG iXXQYE jfeXWc text-greyDarkColored"
           >
             <div>
               <span>
@@ -395,13 +539,50 @@ Object {
                 class="w-full h-full"
               >
                 <span
-                  class=""
+                  class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
                 >
-                  <img
-                    class="sc-csuSiG cnmnrm"
-                    height="200"
-                    src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
-                  />
+                  <figure
+                    aria-labelledby=":r2:"
+                    class="relative "
+                    id="details_cover_image"
+                    role="figure"
+                  >
+                    <img
+                      alt="Lorem ipsum"
+                      class="object-center overflow-hidden w-full h-full object-cover"
+                      id=":r3:"
+                      loading="eager"
+                      src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                    />
+                    <figcaption
+                      id=":r2:"
+                    >
+                      <span
+                        class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                      >
+                        <span
+                          class="mx-10percent px-10percent truncate"
+                        >
+                          Lorem ipsum - Lorem ipsum
+                        </span>
+                      </span>
+                      <button
+                        aria-describedby=":r3:"
+                        class="absolute inset-0 w-full h-full"
+                        type="button"
+                      >
+                        <span
+                          class="sr-only"
+                        >
+                          Voir l'image en plein écran
+                        </span>
+                      </button>
+                    </figcaption>
+                  </figure>
                 </span>
               </div>
             </div>
@@ -430,7 +611,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-kDvujY sc-eDWCr iXXQYE TmBlb text-greyDarkColored"
+              class="sc-kDvujY sc-csuSiG iXXQYE jfeXWc text-greyDarkColored"
             >
               <div>
                 <span>
@@ -469,11 +650,11 @@ Object {
                 class="w-full h-full"
               >
                 <div
-                  class="slick-slider sc-dkrFOg elmwrv slick-initialized"
+                  class="slick-slider sc-dkrFOg elmwrv relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
                   dir="ltr"
                 >
                   <button
-                    class="sc-hLBbgP sc-eDvSVe sc-iBYQkv fmYHPc jvGGbb cBrSnO slick-arrow slick-prev"
+                    class="sc-hLBbgP sc-jSUZER sc-pyfCe fmYHPc gDGNxP kdsrVF slick-arrow slick-prev"
                     type="button"
                   />
                   <div
@@ -498,13 +679,48 @@ Object {
                         tabindex="-1"
                       >
                         <div>
-                          <img
-                            class="sc-csuSiG cnmnrm"
-                            height="200"
-                            src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
-                            style="width: 100%; display: inline-block;"
-                            tabindex="-1"
-                          />
+                          <figure
+                            aria-labelledby=":r8:"
+                            class="relative "
+                            id="details_cover_image"
+                            role="figure"
+                          >
+                            <img
+                              alt="Lorem ipsum"
+                              class="object-center overflow-hidden w-full h-full object-cover"
+                              id=":r9:"
+                              loading="eager"
+                              src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                            />
+                            <figcaption
+                              id=":r8:"
+                            >
+                              <span
+                                class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                              >
+                                <span
+                                  class="mx-10percent px-10percent truncate"
+                                >
+                                  Lorem ipsum - Lorem ipsum
+                                </span>
+                              </span>
+                              <button
+                                aria-describedby=":r9:"
+                                class="absolute inset-0 w-full h-full"
+                                type="button"
+                              >
+                                <span
+                                  class="sr-only"
+                                >
+                                  Voir l'image en plein écran
+                                </span>
+                              </button>
+                            </figcaption>
+                          </figure>
                         </div>
                       </div>
                       <div
@@ -522,13 +738,48 @@ Object {
                         tabindex="-1"
                       >
                         <div>
-                          <img
-                            class="sc-csuSiG cnmnrm"
-                            height="200"
-                            src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
-                            style="width: 100%; display: inline-block;"
-                            tabindex="-1"
-                          />
+                          <figure
+                            aria-labelledby=":ra:"
+                            class="relative "
+                            id="details_cover_image"
+                            role="figure"
+                          >
+                            <img
+                              alt="Lorem ipsum"
+                              class="object-center overflow-hidden w-full h-full object-cover"
+                              id=":rb:"
+                              loading="eager"
+                              src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                            />
+                            <figcaption
+                              id=":ra:"
+                            >
+                              <span
+                                class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                              >
+                                <span
+                                  class="mx-10percent px-10percent truncate"
+                                >
+                                  Lorem ipsum - Lorem ipsum
+                                </span>
+                              </span>
+                              <button
+                                aria-describedby=":rb:"
+                                class="absolute inset-0 w-full h-full"
+                                type="button"
+                              >
+                                <span
+                                  class="sr-only"
+                                >
+                                  Voir l'image en plein écran
+                                </span>
+                              </button>
+                            </figcaption>
+                          </figure>
                         </div>
                       </div>
                       <div
@@ -541,7 +792,7 @@ Object {
                     </div>
                   </div>
                   <button
-                    class="sc-hLBbgP sc-eDvSVe sc-gKPRtg fmYHPc jvGGbb bMoIHG slick-arrow slick-next"
+                    class="sc-hLBbgP sc-jSUZER sc-ftTHYK fmYHPc gDGNxP gPrhgT slick-arrow slick-next"
                     type="button"
                   />
                   <div
@@ -592,7 +843,7 @@ Object {
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-kDvujY sc-eDWCr iXXQYE TmBlb text-greyDarkColored"
+              class="sc-kDvujY sc-csuSiG iXXQYE jfeXWc text-greyDarkColored"
             >
               <div>
                 <span>
@@ -632,11 +883,11 @@ Object {
               class="w-full h-full"
             >
               <div
-                class="slick-slider sc-dkrFOg elmwrv slick-initialized"
+                class="slick-slider sc-dkrFOg elmwrv relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
                 dir="ltr"
               >
                 <button
-                  class="sc-hLBbgP sc-eDvSVe sc-iBYQkv fmYHPc jvGGbb cBrSnO slick-arrow slick-prev"
+                  class="sc-hLBbgP sc-jSUZER sc-pyfCe fmYHPc gDGNxP kdsrVF slick-arrow slick-prev"
                   type="button"
                 />
                 <div
@@ -661,13 +912,48 @@ Object {
                       tabindex="-1"
                     >
                       <div>
-                        <img
-                          class="sc-csuSiG cnmnrm"
-                          height="200"
-                          src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
-                          style="width: 100%; display: inline-block;"
-                          tabindex="-1"
-                        />
+                        <figure
+                          aria-labelledby=":r8:"
+                          class="relative "
+                          id="details_cover_image"
+                          role="figure"
+                        >
+                          <img
+                            alt="Lorem ipsum"
+                            class="object-center overflow-hidden w-full h-full object-cover"
+                            id=":r9:"
+                            loading="eager"
+                            src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                          />
+                          <figcaption
+                            id=":r8:"
+                          >
+                            <span
+                              class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                            >
+                              <span
+                                class="mx-10percent px-10percent truncate"
+                              >
+                                Lorem ipsum - Lorem ipsum
+                              </span>
+                            </span>
+                            <button
+                              aria-describedby=":r9:"
+                              class="absolute inset-0 w-full h-full"
+                              type="button"
+                            >
+                              <span
+                                class="sr-only"
+                              >
+                                Voir l'image en plein écran
+                              </span>
+                            </button>
+                          </figcaption>
+                        </figure>
                       </div>
                     </div>
                     <div
@@ -685,13 +971,48 @@ Object {
                       tabindex="-1"
                     >
                       <div>
-                        <img
-                          class="sc-csuSiG cnmnrm"
-                          height="200"
-                          src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
-                          style="width: 100%; display: inline-block;"
-                          tabindex="-1"
-                        />
+                        <figure
+                          aria-labelledby=":ra:"
+                          class="relative "
+                          id="details_cover_image"
+                          role="figure"
+                        >
+                          <img
+                            alt="Lorem ipsum"
+                            class="object-center overflow-hidden w-full h-full object-cover"
+                            id=":rb:"
+                            loading="eager"
+                            src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                          />
+                          <figcaption
+                            id=":ra:"
+                          >
+                            <span
+                              class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                            >
+                              <span
+                                class="mx-10percent px-10percent truncate"
+                              >
+                                Lorem ipsum - Lorem ipsum
+                              </span>
+                            </span>
+                            <button
+                              aria-describedby=":rb:"
+                              class="absolute inset-0 w-full h-full"
+                              type="button"
+                            >
+                              <span
+                                class="sr-only"
+                              >
+                                Voir l'image en plein écran
+                              </span>
+                            </button>
+                          </figcaption>
+                        </figure>
                       </div>
                     </div>
                     <div
@@ -704,7 +1025,7 @@ Object {
                   </div>
                 </div>
                 <button
-                  class="sc-hLBbgP sc-eDvSVe sc-gKPRtg fmYHPc jvGGbb bMoIHG slick-arrow slick-next"
+                  class="sc-hLBbgP sc-jSUZER sc-ftTHYK fmYHPc gDGNxP gPrhgT slick-arrow slick-next"
                   type="button"
                 />
                 <div
@@ -755,7 +1076,7 @@ Object {
           class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
         >
           <div
-            class="sc-kDvujY sc-eDWCr iXXQYE TmBlb text-greyDarkColored"
+            class="sc-kDvujY sc-csuSiG iXXQYE jfeXWc text-greyDarkColored"
           >
             <div>
               <span>

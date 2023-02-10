@@ -45,7 +45,6 @@ export const OutdoorSiteChildrenSection: React.FC<DetailsChildrenSectionProps> =
               place={''}
               title={trekChild.name}
               tags={trekChild.themes}
-              thumbnailUris={trekChild.thumbnailUris}
               attachments={trekChild.attachments}
               badgeIconUri={trekChild.practice?.pictogram}
               badgeName={trekChild.practice?.name}
