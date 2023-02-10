@@ -13,8 +13,9 @@ Object {
           class="slick-slider h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full slick-initialized"
           dir="ltr"
         >
-          <div
-            class="sc-gswNZR sc-hLBbgP sc-kDvujY sc-csuSiG eEZug iXwfzt hza-DBk cqVOWQ slick-arrow slick-prev"
+          <button
+            class="sc-gswNZR sc-hLBbgP sc-pyfCe sc-kDvujY dQACwy iXwfzt eJVvAi jhFMyn slick-arrow slick-prev"
+            type="button"
           />
           <div
             class="slick-list"
@@ -34,6 +35,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    loading="lazy"
                     src="photoB.jpg"
                     style="width: 100%; display: inline-block;"
                     tabindex="-1"
@@ -51,6 +53,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    loading="eager"
                     src="photoA.jpg"
                     style="width: 100%; display: inline-block;"
                     tabindex="-1"
@@ -68,6 +71,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    loading="lazy"
                     src="photoB.jpg"
                     style="width: 100%; display: inline-block;"
                     tabindex="-1"
@@ -85,6 +89,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    loading="eager"
                     src="photoA.jpg"
                     style="width: 100%; display: inline-block;"
                     tabindex="-1"
@@ -102,6 +107,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    loading="lazy"
                     src="photoB.jpg"
                     style="width: 100%; display: inline-block;"
                     tabindex="-1"
@@ -110,8 +116,9 @@ Object {
               </div>
             </div>
           </div>
-          <div
-            class="sc-gswNZR sc-hLBbgP sc-kDvujY sc-ipEyDJ eEZug iXwfzt hza-DBk fAHpGs slick-arrow slick-next"
+          <button
+            class="sc-gswNZR sc-hLBbgP sc-pyfCe sc-jrcTuL dQACwy iXwfzt eJVvAi kakIFt slick-arrow slick-next"
+            type="button"
           />
         </div>
       </div>
@@ -126,8 +133,9 @@ Object {
         class="slick-slider h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full slick-initialized"
         dir="ltr"
       >
-        <div
-          class="sc-gswNZR sc-hLBbgP sc-kDvujY sc-csuSiG eEZug iXwfzt hza-DBk cqVOWQ slick-arrow slick-prev"
+        <button
+          class="sc-gswNZR sc-hLBbgP sc-pyfCe sc-kDvujY dQACwy iXwfzt eJVvAi jhFMyn slick-arrow slick-prev"
+          type="button"
         />
         <div
           class="slick-list"
@@ -147,6 +155,7 @@ Object {
                 <img
                   alt=""
                   class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                  loading="lazy"
                   src="photoB.jpg"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
@@ -164,6 +173,7 @@ Object {
                 <img
                   alt=""
                   class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                  loading="eager"
                   src="photoA.jpg"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
@@ -181,6 +191,7 @@ Object {
                 <img
                   alt=""
                   class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                  loading="lazy"
                   src="photoB.jpg"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
@@ -198,6 +209,7 @@ Object {
                 <img
                   alt=""
                   class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                  loading="eager"
                   src="photoA.jpg"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
@@ -215,6 +227,7 @@ Object {
                 <img
                   alt=""
                   class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                  loading="lazy"
                   src="photoB.jpg"
                   style="width: 100%; display: inline-block;"
                   tabindex="-1"
@@ -223,8 +236,9 @@ Object {
             </div>
           </div>
         </div>
-        <div
-          class="sc-gswNZR sc-hLBbgP sc-kDvujY sc-ipEyDJ eEZug iXwfzt hza-DBk fAHpGs slick-arrow slick-next"
+        <button
+          class="sc-gswNZR sc-hLBbgP sc-pyfCe sc-jrcTuL dQACwy iXwfzt eJVvAi kakIFt slick-arrow slick-next"
+          type="button"
         />
       </div>
     </div>
