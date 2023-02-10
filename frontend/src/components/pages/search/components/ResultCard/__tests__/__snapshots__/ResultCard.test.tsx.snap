@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-ksBlkl gXjBwh"
+        class="sc-eDWCr iTNyJD"
         id="result_card"
       >
         <div
@@ -19,7 +19,7 @@ Object {
               class="w-full h-full"
             >
               <div
-                class="sc-bqWxrE cixPnt h-full w-full flex-grow relative desktop:w-resultCardDesktop"
+                class="sc-csuSiG eWowau h-full w-full flex-grow relative desktop:w-resultCardDesktop"
               >
                 <span
                   class=""
@@ -44,43 +44,43 @@ Object {
           href="/details-2-Balade-au-pays-des-menhirs"
         >
           <div
-            class="sc-hBxehG eGaylx"
+            class="sc-bqWxrE bQBQoO"
           >
             <div
-              class="sc-fnGiBr fVGjLL"
+              class="sc-ksBlkl hJJqNs"
             >
               <span
-                class="sc-bjfHbI ghNbNM"
+                class="sc-fnGiBr kkrZGP"
               >
                 Saint-Etienne-du-Valdonnez
               </span>
               <span
-                class="sc-idXgbr ddobji"
+                class="sc-fEXmlR kNHqSw"
               >
                 Balade au pays des menhirs
               </span>
               <div
-                class="sc-dIfARi dGGJBR"
+                class="sc-bjfHbI dgbGKB"
               >
                 <div
-                  class="sc-hHTYSt cMfGvz"
+                  class="sc-idXgbr kaegsT"
                 >
                   <div
-                    class="sc-kDvujY deVWMJ"
+                    class="sc-pyfCe fwHJCn"
                   >
                     <span>
                       En famille
                     </span>
                   </div>
                   <div
-                    class="sc-kDvujY deVWMJ"
+                    class="sc-pyfCe fwHJCn"
                   >
                     <span>
                       Ciel étoilé
                     </span>
                   </div>
                   <div
-                    class="sc-kDvujY deVWMJ"
+                    class="sc-pyfCe fwHJCn"
                   >
                     <span>
                       Beau paysage
@@ -89,10 +89,10 @@ Object {
                 </div>
               </div>
               <div
-                class="sc-dmctIk hhgiMz"
+                class="sc-dIfARi cDDpa"
               >
                 <div
-                  class="sc-kgTSHT exTgGk"
+                  class="sc-hHTYSt fXLVSx"
                 >
                   <div
                     class="flex items-center text-primary1 "
@@ -202,7 +202,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-ksBlkl gXjBwh"
+      class="sc-eDWCr iTNyJD"
       id="result_card"
     >
       <div
@@ -215,7 +215,7 @@ Object {
             class="w-full h-full"
           >
             <div
-              class="sc-bqWxrE cixPnt h-full w-full flex-grow relative desktop:w-resultCardDesktop"
+              class="sc-csuSiG eWowau h-full w-full flex-grow relative desktop:w-resultCardDesktop"
             >
               <span
                 class=""
@@ -240,43 +240,43 @@ Object {
         href="/details-2-Balade-au-pays-des-menhirs"
       >
         <div
-          class="sc-hBxehG eGaylx"
+          class="sc-bqWxrE bQBQoO"
         >
           <div
-            class="sc-fnGiBr fVGjLL"
+            class="sc-ksBlkl hJJqNs"
           >
             <span
-              class="sc-bjfHbI ghNbNM"
+              class="sc-fnGiBr kkrZGP"
             >
               Saint-Etienne-du-Valdonnez
             </span>
             <span
-              class="sc-idXgbr ddobji"
+              class="sc-fEXmlR kNHqSw"
             >
               Balade au pays des menhirs
             </span>
             <div
-              class="sc-dIfARi dGGJBR"
+              class="sc-bjfHbI dgbGKB"
             >
               <div
-                class="sc-hHTYSt cMfGvz"
+                class="sc-idXgbr kaegsT"
               >
                 <div
-                  class="sc-kDvujY deVWMJ"
+                  class="sc-pyfCe fwHJCn"
                 >
                   <span>
                     En famille
                   </span>
                 </div>
                 <div
-                  class="sc-kDvujY deVWMJ"
+                  class="sc-pyfCe fwHJCn"
                 >
                   <span>
                     Ciel étoilé
                   </span>
                 </div>
                 <div
-                  class="sc-kDvujY deVWMJ"
+                  class="sc-pyfCe fwHJCn"
                 >
                   <span>
                     Beau paysage
@@ -285,10 +285,10 @@ Object {
               </div>
             </div>
             <div
-              class="sc-dmctIk hhgiMz"
+              class="sc-dIfARi cDDpa"
             >
               <div
-                class="sc-kgTSHT exTgGk"
+                class="sc-hHTYSt fXLVSx"
               >
                 <div
                   class="flex items-center text-primary1 "
