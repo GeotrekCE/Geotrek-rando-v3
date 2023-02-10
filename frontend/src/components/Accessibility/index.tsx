@@ -1,14 +1,14 @@
 import { SmallCarousel } from 'components/Carousel';
+import ImageWithLegend from 'components/ImageWithLegend';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { Modal } from 'components/Modal';
-import { CardSingleImage } from 'components/pages/details/components/DetailsCard';
 import { HtmlText } from 'components/pages/details/utils';
 import parse from 'html-react-parser';
 import { AccessibilityAttachment, Details } from 'modules/details/interface';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { FormattedMessage } from 'react-intl';
 import styled, { css } from 'styled-components';
-import { colorPalette, desktopOnly } from 'stylesheet';
+import { desktopOnly } from 'stylesheet';
 import PhoneIcon from './PhoneIcon';
 
 interface Props {
@@ -66,10 +66,13 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
             <FormattedMessage id="details.emergency_number" />
           </strong>{' '}
           :
-          <EmergencyNumber>
+          <a
+            className="flex text-primary1 bg-primary2 font-bold text-lg my-auto ml-2 p-2 rounded-full items-center"
+            href={`tel:${accessibilityCodeNumber}`}
+          >
             <PhoneIcon />
-            {accessibilityCodeNumber}
-          </EmergencyNumber>
+            <span className="ml-2">{accessibilityCodeNumber}</span>
+          </a>
         </Section>
       )}
       <Columns>
@@ -95,19 +98,15 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
                       {({ isFullscreen, toggleFullscreen }) => (
                         <div id="details_cover" className={!isFullscreen ? '' : 'h-full'}>
                           <StyledSmallCarousel isFullscreen={isFullscreen}>
-                            {attachments.map((attachment, i) => (
-                              <div className="relative" key={i}>
-                                {isFullscreen && (
-                                  <Legend>
-                                    {attachment.author} - {attachment.legend}
-                                  </Legend>
-                                )}
-                                <CardSingleImage
-                                  src={attachment.url}
-                                  height={200}
-                                  onClick={toggleFullscreen}
-                                />
-                              </div>
+                            {attachments.map((attachment, index) => (
+                              <ImageWithLegend
+                                attachment={attachment}
+                                className="overflow-hidden rounded-2xl"
+                                classNameImage={isFullscreen ? 'object-contain' : ''}
+                                key={index}
+                                loading="lazy"
+                                onClick={toggleFullscreen}
+                              />
                             ))}
                           </StyledSmallCarousel>
                         </div>
@@ -153,24 +152,6 @@ const Legend = styled.div`
 const StyledRemoteIconInformation = styled(RemoteIconInformation)`
   * {
     font-size: 16px;
-  }
-`;
-
-const EmergencyNumber = styled.div`
-  color: ${colorPalette.primary1};
-  display: flex;
-  /* border: 3px solid ${colorPalette.primary1}; */
-  background-color: ${colorPalette.primary2};
-  border-radius: 30px;
-  font-size: 20px;
-  font-weight: bold;
-  padding: 8px;
-  margin-left: 10px;
-  margin-top: auto;
-  margin-bottom: auto;
-
-  & svg {
-    margin-right: 10px;
   }
 `;
 
@@ -225,7 +206,6 @@ const StyledSmallCarousel = styled(SmallCarousel)<{ isFullscreen: boolean }>`
   height: auto;
 
   & img {
-    border-radius: ${props => (props.isFullscreen ? 0 : '30px')};
     height: ${props => (props.isFullscreen ? '100vh' : '200px')};
     margin: auto;
     cursor: pointer;
