@@ -1,13 +1,9 @@
 import Image from 'next/image';
-import styled, { css } from 'styled-components';
-import { FormattedMessage } from 'react-intl';
-import { colorPalette, desktopOnly, typography } from 'stylesheet';
-
 interface Props {
-  resultsNumber: number | undefined;
+  textContent: string;
 }
 
-export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber }) => {
+export const SearchResultsMeta: React.FC<Props> = ({ textContent }) => {
   return (
     <div className="flex items-center">
       <div>
@@ -22,19 +18,8 @@ export const SearchResultsMeta: React.FC<Props> = ({ resultsNumber }) => {
       </div>
 
       <div className="desktop:ml-6">
-        <ResultsNumber>
-          <FormattedMessage values={{ count: resultsNumber }} id="search.resultsFound" />
-        </ResultsNumber>
+        <h1 className="font-bold text-2xl color-greyDarkColored desktop:text-3xl">{textContent}</h1>
       </div>
     </div>
   );
 };
-
-const ResultsNumber = styled.div`
-  ${typography.h3};
-  color: ${colorPalette.darkPurple};
-
-  ${desktopOnly(css`
-    ${typography.h2}
-  `)}
-`;
