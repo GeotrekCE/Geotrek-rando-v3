@@ -27,6 +27,7 @@
   },
   "search": {
     "title": "Busca",
+    "titleWithOneCategory": "{category}: {options}",
     "description": "Descubre las excursiones que coinciden con tus deseos en nuestro motor de búsqueda",
     "book": "Reserva",
     "resultsFound": "{count, plural, =0 {# resultado encontrado} one {# resultado encontrado} other {# resultados encontrados}}",
