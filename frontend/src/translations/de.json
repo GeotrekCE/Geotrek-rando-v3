@@ -27,6 +27,7 @@
   },
   "search": {
     "title": "Suche",
+    "titleWithOneCategory": "{category}: {options}",
     "description": "Entdecken Sie mit unserer Suchmaschine Wanderungen, die Ihren Wünschen entsprechen",
     "book": "Reservieren",
     "resultsFound": "{count, plural, =0 {# Ergebnis gefunden} one {# Ergebnis gefunden} other {# gefundene Ergebnisse}}",
