@@ -108,7 +108,7 @@ export const ResultCard: React.FC<
     | OutdoorSiteProps
     | OutdoorCourseProps
     | TouristicEventProps
-  ) & { asColumn?: boolean }
+  ) & { asColumn?: boolean; titleTag?: keyof JSX.IntrinsicElements }
 > = props => {
   const {
     id,
@@ -121,8 +121,9 @@ export const ResultCard: React.FC<
     badgeName,
     className,
     redirectionUrl,
-    type,
     asColumn,
+    titleTag: TitleTag = 'h3',
+    type,
   } = props;
   const { setHoveredCardId } = useListAndMapContext();
 
@@ -165,7 +166,9 @@ export const ResultCard: React.FC<
           <DetailsLayout>
             {place !== null && <Place>{place}</Place>}
 
-            <Title>{title}</Title>
+            <TitleTag className="mt-1 overflow-ellipsis overflow-hidden whitespace-nowrap font-bold text-2xl color-primary1 desktop:overflow-clip desktop:whitespace-normal">
+              {title}
+            </TitleTag>
 
             <TagContainer>
               <TagLayout>
@@ -353,24 +356,6 @@ const BookingButtonContainer = styled.div`
 const Place = styled.span`
   color: ${colorPalette.greyDarkColored};
   ${typography.small}
-`;
-
-const Title = styled.span`
-  margin-top: ${getSpacing(1)};
-
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-
-  ${typography.h3}
-  color: ${colorPalette.primary1};
-
-  ${desktopOnly(
-    css`
-      text-overflow: clip;
-      white-space: normal;
-    `,
-  )}
 `;
 
 const TagContainer = styled.div`

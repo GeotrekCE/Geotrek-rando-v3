@@ -57,16 +57,16 @@ Object {
               >
                 Saint-Etienne-du-Valdonnez
               </span>
-              <span
-                class="sc-fnGiBr dWlqoa"
+              <h3
+                class="mt-1 overflow-ellipsis overflow-hidden whitespace-nowrap font-bold text-2xl color-primary1 desktop:overflow-clip desktop:whitespace-normal"
               >
                 Balade au pays des menhirs
-              </span>
+              </h3>
               <div
-                class="sc-fEXmlR jEpRUM"
+                class="sc-fnGiBr dTwFJK"
               >
                 <div
-                  class="sc-bjfHbI fYUGpo"
+                  class="sc-fEXmlR kNjzYN"
                 >
                   <div
                     class="sc-pyfCe fwHJCn"
@@ -92,10 +92,10 @@ Object {
                 </div>
               </div>
               <div
-                class="sc-idXgbr kLzZgh"
+                class="sc-bjfHbI bXemvC"
               >
                 <div
-                  class="sc-dIfARi fEPGAK"
+                  class="sc-idXgbr ieLZFJ"
                 >
                   <div
                     class="flex items-center text-primary1 "
@@ -264,16 +264,16 @@ Object {
             >
               Saint-Etienne-du-Valdonnez
             </span>
-            <span
-              class="sc-fnGiBr dWlqoa"
+            <h3
+              class="mt-1 overflow-ellipsis overflow-hidden whitespace-nowrap font-bold text-2xl color-primary1 desktop:overflow-clip desktop:whitespace-normal"
             >
               Balade au pays des menhirs
-            </span>
+            </h3>
             <div
-              class="sc-fEXmlR jEpRUM"
+              class="sc-fnGiBr dTwFJK"
             >
               <div
-                class="sc-bjfHbI fYUGpo"
+                class="sc-fEXmlR kNjzYN"
               >
                 <div
                   class="sc-pyfCe fwHJCn"
@@ -299,10 +299,10 @@ Object {
               </div>
             </div>
             <div
-              class="sc-idXgbr kLzZgh"
+              class="sc-bjfHbI bXemvC"
             >
               <div
-                class="sc-dIfARi fEPGAK"
+                class="sc-idXgbr ieLZFJ"
               >
                 <div
                   class="flex items-center text-primary1 "
