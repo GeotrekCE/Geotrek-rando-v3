@@ -42,6 +42,7 @@ import {
 import InputWithMagnifier from './components/InputWithMagnifier';
 import { useTextFilter } from './hooks/useTextFilter';
 import { useDateFilter } from './hooks/useDateFilter';
+import { useTitle } from './hooks/useTitle';
 
 interface Props {
   language: string;
@@ -79,6 +80,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     displayMobileMap,
     hideMobileMap,
   } = useTrekResults({ filtersState, textFilterState, bboxState, dateFilter }, language);
+
+  const { pageTitle, resultsTitle } = useTitle(filtersState, searchResults?.resultsNumber);
 
   const { isMapLoading, mapResults } = useMapResults(
     { filtersState, textFilterState, dateFilter },
@@ -132,7 +135,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   return (
     <div id="Search" className="h-full">
       <PageHead
-        title={`${intl.formatMessage({ id: 'search.title' })}`}
+        title={pageTitle}
         description={`${intl.formatMessage({ id: 'search.description' })}`}
       />
 
@@ -186,7 +189,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                 <Loader loaded={!isLoading}>
                   <div className="flex flex-col desktop:flex-row desktop:justify-between">
                     <div className="flex justify-between items-end" id="search_resultMapTitle">
-                      <SearchResultsMeta resultsNumber={searchResults?.resultsNumber ?? 0} />
+                      <SearchResultsMeta textContent={resultsTitle} />
                       <ToggleFilterButton onClick={displayMenu} numberSelected={numberSelected} />
                     </div>
                     <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
