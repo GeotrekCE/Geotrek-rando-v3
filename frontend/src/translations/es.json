@@ -40,8 +40,8 @@
     "filters": {
       "difficulty": "Dificultad",
       "practices": "excursiones",
-      "outdoor": "Exterior",
-      "events": "Eventos",
+      "outdoorPractice": "Exterior",
+      "event": "Eventos",
       "treksOutdoorGrouped": "Activities",
       "categories": "Servicios",
       "cities": "pueblo",

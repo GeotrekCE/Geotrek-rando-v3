@@ -40,9 +40,9 @@
     "filters": {
       "difficulty": "Dificultat",
       "practices": "excursions",
-      "outdoor": "Exterior",
+      "outdoorPractice": "Exterior",
       "treksOutdoorGrouped": "Activities",
-      "events": "Esdeveniments",
+      "event": "Esdeveniments",
       "categories": "Serveis",
       "cities": "poble",
       "localization": "Localització",
