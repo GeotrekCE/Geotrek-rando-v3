@@ -42,9 +42,9 @@
     "filters": {
       "difficulty": "Difficulty",
       "practices": "Practice",
-      "outdoor": "Outdoor",
+      "outdoorPractice": "Outdoor",
       "treksOutdoorGrouped": "Activities",
-      "events": "Events",
+      "event": "Events",
       "categories": "Service",
       "localization": "Localization",
       "cities": "City",
