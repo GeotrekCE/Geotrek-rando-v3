@@ -27,7 +27,7 @@ const rewriteBuildedPages = () => {
 
   const runTimeConfig = JSON.stringify(getAllConfigs)
     // All HTML configuration will not be displayed. Scripts are removed to avoid breaking the page
-    .replace(new RegExp("<script(.*?)</script>"), "");
+    .replace(new RegExp("<script(.*?)</script>", "g"), "")
 
   mergedHeaderConfig.menu.supportedLanguages.forEach(lang => {
     pages.forEach(page => {
