@@ -33,9 +33,9 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
       border-solid border-greySoft border-b
       ${className ?? ''}`}
     >
-      <p id="details_descriptionTitle" className="text-Mobile-H1 desktop:text-H2 font-bold">
+      <h2 id="details_descriptionTitle" className="text-Mobile-H1 desktop:text-H2 font-bold">
         {title}
-      </p>
+      </h2>
       <div id="details_descriptionContent" className="mt-3 desktop:mt-4 mb-6 desktop:mb-12">
         <StyledListWithSteps>{parse(descriptionHtml)}</StyledListWithSteps>
       </div>
