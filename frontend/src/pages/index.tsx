@@ -20,8 +20,10 @@ export const getServerSideProps: GetServerSideProps = async context => {
       ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}`, locale],
       () => getActivitySuggestions(suggestions, locale),
     );
+  }
 
-    await queryClient.prefetchQuery(['homeActivities, locale'], () =>
+  if (homePageConfig.activityBar.shouldDisplay === true) {
+    await queryClient.prefetchQuery(['homeActivities', locale], () =>
       getActivityBarContent(locale),
     );
   }
