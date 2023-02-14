@@ -72,8 +72,12 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
         <div className="flex items-center text-white" key="language">
           {language !== undefined && (
             <ReactCountryFlag
+              alt=""
               countryCode={getCountryCodeFromLanguage(language)}
               className="mr-2"
+              loading="lazy"
+              height={16}
+              width={16}
               svg
             />
           )}
