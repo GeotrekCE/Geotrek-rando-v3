@@ -27,9 +27,9 @@ export const DetailsSection: React.FC<DetailsSectionProps> = ({
           `}
       >
         {titleId !== undefined && (
-          <p className="text-Mobile-H1 desktop:text-H2 font-bold" id="details_sectionTitle">
+          <h2 className="text-Mobile-H1 desktop:text-H2 font-bold" id="details_sectionTitle">
             <FormattedMessage id={titleId} />
-          </p>
+          </h2>
         )}
         <div
           id="details_sectionContent"

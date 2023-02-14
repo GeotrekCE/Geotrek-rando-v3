@@ -12,12 +12,12 @@ Object {
       "
         id="details_description"
       >
-        <p
+        <h2
           class="text-Mobile-H1 desktop:text-H2 font-bold"
           id="details_descriptionTitle"
         >
           Description
-        </p>
+        </h2>
         <div
           class="mt-3 desktop:mt-4 mb-6 desktop:mb-12"
           id="details_descriptionContent"
@@ -61,12 +61,12 @@ Object {
       "
       id="details_description"
     >
-      <p
+      <h2
         class="text-Mobile-H1 desktop:text-H2 font-bold"
         id="details_descriptionTitle"
       >
         Description
-      </p>
+      </h2>
       <div
         class="mt-3 desktop:mt-4 mb-6 desktop:mb-12"
         id="details_descriptionContent"
