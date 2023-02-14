@@ -29,6 +29,7 @@
   },
   "search": {
     "title": "Ricerca",
+    "titleWithOneCategory": "{category}: {options}",
     "description": "Scopri le escursioni che desideri sul nostro sito internet",
     "book": "Prenotare",
     "resultsFound": "{count, plural, =0 {# Nessun risultato trovato} one {# risultato trovato} other {# risultati trovati}}",
