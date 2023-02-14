@@ -44,7 +44,7 @@ const treksAndOutdoorCategories =
           id: PRACTICE_ID,
           name: [
             <FormattedMessage key="practices" id={'search.filters.practices'} />,
-            <FormattedMessage key="outdoors" id={'search.filters.outdoor'} />,
+            <FormattedMessage key="outdoors" id={'search.filters.outdoorPractice'} />,
           ],
           filters: [PRACTICE_ID, OUTDOOR_ID],
           subFilters: [
@@ -70,7 +70,7 @@ const treksAndOutdoorCategories =
         },
         {
           id: OUTDOOR_ID,
-          name: <FormattedMessage id={'search.filters.outdoor'} />,
+          name: <FormattedMessage id={'search.filters.outdoorPractice'} />,
           filters: [OUTDOOR_ID],
           subFilters: ['type-outdoorRating-.+'],
         },
@@ -86,7 +86,7 @@ export const FILTERS_CATEGORIES: FilterCategory[] = [
   },
   {
     id: EVENT_ID,
-    name: <FormattedMessage id={'search.filters.events'} />,
+    name: <FormattedMessage id={'search.filters.event'} />,
     filters: [EVENT_ID],
     subFilters: [DATE_FILTER],
   },

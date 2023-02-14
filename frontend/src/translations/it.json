@@ -42,9 +42,9 @@
     "filters": {
       "difficulty": "Difficoltà",
       "practices": "Escursioni",
-      "outdoor": "Outdoor",
+      "outdoorPractice": "Outdoor",
       "treksOutdoorGrouped": "Activities",
-      "events": "Eventi",
+      "event": "Eventi",
       "categories": "Servizi",
       "cities": "Comune",
       "localization": "Posizione",

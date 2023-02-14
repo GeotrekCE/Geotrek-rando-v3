@@ -40,9 +40,9 @@
     "filters": {
       "difficulty": "Schwierigkeit",
       "practices": "Wanderungen",
-      "outdoor": "Draußen",
+      "outdoorPractice": "Draußen",
       "treksOutdoorGrouped": "Activities",
-      "events": "Veranstaltungen",
+      "event": "Veranstaltungen",
       "categories": "Dienstleistungen",
       "cities": "Gemeinde",
       "localization": "Lokalisierung",
