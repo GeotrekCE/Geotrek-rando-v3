@@ -20,7 +20,7 @@ export interface HomeSectionProps {
 export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, results, type }) => {
   return (
     <div id={'home_section'} className={`flex flex-col`}>
-      <div
+      <h2
         id="home_sectionTitle"
         className="flex border-t border-greySoft border-solid pt-4 desktop:pt-10 mb-2 desktop:mb-6 mx-4 desktop:mx-10percent"
       >
@@ -30,7 +30,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
           className="h-10 mr-2 desktop:mr-3"
         />
         <span className="mt-1 desktop:mt-0 text-H2 desktop:text-H2 font-bold">{title}</span>
-      </div>
+      </h2>
       <ScrollContainer>
         {results !== undefined &&
           // eslint-disable-next-line
