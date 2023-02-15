@@ -1,6 +1,5 @@
 import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
 import { Footer } from 'components/Footer';
-import { Layout } from 'components/Layout/Layout';
 import { PageHead } from 'components/PageHead';
 import parse from 'html-react-parser';
 import getNextConfig from 'next/config';
@@ -33,48 +32,46 @@ const HomeUI: FunctionComponent = () => {
         title={intl.formatMessage({ id: 'home.title' })}
         description={intl.formatMessage({ id: 'home.description' })}
       />
-      <Layout>
-        <HomeContainer id="home_container">
-          <BannerWithAsset
-            shouldDisplayText={config.welcomeBanner.shouldDisplayText}
-            carouselUrls={config.welcomeBanner.carouselUrls}
-            pictureUrl={config.welcomeBanner.pictureUrl}
-            videoUrl={config.welcomeBanner.videoUrl}
-          />
-          <div id="home_content" className={contentContainerClassname}>
-            {config.activityBar.shouldDisplay && (
-              <div
-                className={`desktop:flex desktop:justify-center ${classNameHomeChild}`}
-                id="home_activitiesBar"
-              >
-                <ActivitySearchFilter />
-              </div>
-            )}
-            {homeTop !== undefined && (
-              <div id="home_topHtml" className={classNameHomeChild}>
-                {parse(homeTop)}
-              </div>
-            )}
-            {suggestions
-              .filter(({ results }) => results.length > 0)
-              .map(({ titleTranslationId, iconUrl, results, type }) => (
-                <HomeSection
-                  title={intl.formatMessage({ id: titleTranslationId })}
-                  iconUrl={iconUrl}
-                  key={titleTranslationId}
-                  results={results}
-                  type={type}
-                />
-              ))}
-            {homeBottom !== undefined && (
-              <div id="home_bottomHtml" className={classNameHomeChild}>
-                {parse(homeBottom)}
-              </div>
-            )}
-          </div>
-        </HomeContainer>
-        <Footer />
-      </Layout>
+      <HomeContainer id="home_container">
+        <BannerWithAsset
+          shouldDisplayText={config.welcomeBanner.shouldDisplayText}
+          carouselUrls={config.welcomeBanner.carouselUrls}
+          pictureUrl={config.welcomeBanner.pictureUrl}
+          videoUrl={config.welcomeBanner.videoUrl}
+        />
+        <div id="home_content" className={contentContainerClassname}>
+          {config.activityBar.shouldDisplay && (
+            <div
+              className={`desktop:flex desktop:justify-center ${classNameHomeChild}`}
+              id="home_activitiesBar"
+            >
+              <ActivitySearchFilter />
+            </div>
+          )}
+          {homeTop !== undefined && (
+            <div id="home_topHtml" className={classNameHomeChild}>
+              {parse(homeTop)}
+            </div>
+          )}
+          {suggestions
+            .filter(({ results }) => results.length > 0)
+            .map(({ titleTranslationId, iconUrl, results, type }) => (
+              <HomeSection
+                title={intl.formatMessage({ id: titleTranslationId })}
+                iconUrl={iconUrl}
+                key={titleTranslationId}
+                results={results}
+                type={type}
+              />
+            ))}
+          {homeBottom !== undefined && (
+            <div id="home_bottomHtml" className={classNameHomeChild}>
+              {parse(homeBottom)}
+            </div>
+          )}
+        </div>
+      </HomeContainer>
+      <Footer />
     </>
   );
 };

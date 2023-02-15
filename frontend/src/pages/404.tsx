@@ -1,5 +1,4 @@
 import { Button } from 'components/Button';
-import { Layout } from 'components/Layout/Layout';
 import { Link } from 'components/Link';
 import { NextPage } from 'next';
 import { FormattedMessage } from 'react-intl';
@@ -27,7 +26,7 @@ const Spacer = styled.div`
 
 const Custom404: NextPage = () => {
   return (
-    <Layout>
+    <>
       <Spacer />
 
       <Container>
@@ -46,7 +45,7 @@ const Custom404: NextPage = () => {
           </Button>
         </Link>
       </Container>
-    </Layout>
+    </>
   );
 };
 
