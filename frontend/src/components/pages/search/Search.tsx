@@ -8,7 +8,6 @@ import Loader from 'components/Loader';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { colorPalette, sizes } from 'stylesheet';
 
-import { Layout } from 'components/Layout/Layout';
 import { OpenMapButton } from 'components/OpenMapButton';
 import {
   MobileFilterMenu,
@@ -167,176 +166,175 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
         </>
       )}
 
-      <Layout>
-        <Container className="flex flex-col" id="search_container">
-          {!isMobile && (
-            <FilterBarNew
-              dateFilter={dateFilter}
-              filtersState={filtersStateWithExclude}
-              setFilterSelectedOptions={setFilterSelectedOptions}
-              setDateFilter={setDateFilter}
-              resetFilters={onRemoveAllFiltersClick}
-              resultsNumber={searchResults?.resultsNumber ?? 0}
-              language={language}
-            />
-          )}
-          <div className="flex flex-row flex-1 overflow-y-hidden">
-            <div
-              id="search_resultCardList"
-              className="flex flex-col w-full desktop:w-1/2 overflow-y-scroll"
-            >
-              <div className="p-4 flex-1">
-                <Loader loaded={!isLoading}>
-                  <div className="flex flex-col desktop:flex-row desktop:justify-between">
-                    <div className="flex justify-between items-end" id="search_resultMapTitle">
-                      <SearchResultsMeta textContent={resultsTitle} />
-                      <ToggleFilterButton onClick={displayMenu} numberSelected={numberSelected} />
-                    </div>
-                    <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
-                      <InputWithMagnifier
-                        value={textFilterInput}
-                        onChange={onTextFilterInputChange}
-                        onButtonClick={onTextFilterSubmit}
-                      />
-                    </div>
+      <Container className="flex flex-col" id="search_container">
+        {!isMobile && (
+          <FilterBarNew
+            dateFilter={dateFilter}
+            filtersState={filtersStateWithExclude}
+            setFilterSelectedOptions={setFilterSelectedOptions}
+            setDateFilter={setDateFilter}
+            resetFilters={onRemoveAllFiltersClick}
+            resultsNumber={searchResults?.resultsNumber ?? 0}
+            language={language}
+          />
+        )}
+        <div className="flex flex-row flex-1 overflow-y-hidden">
+          <div
+            id="search_resultCardList"
+            className="flex flex-col w-full desktop:w-1/2 overflow-y-scroll"
+          >
+            <div className="p-4 flex-1">
+              <Loader loaded={!isLoading}>
+                <div className="flex flex-col desktop:flex-row desktop:justify-between">
+                  <div className="flex justify-between items-end" id="search_resultMapTitle">
+                    <SearchResultsMeta textContent={resultsTitle} />
+                    <ToggleFilterButton onClick={displayMenu} numberSelected={numberSelected} />
                   </div>
+                  <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
+                    <InputWithMagnifier
+                      value={textFilterInput}
+                      onChange={onTextFilterInputChange}
+                      onButtonClick={onTextFilterSubmit}
+                    />
+                  </div>
+                </div>
 
-                  <Separator className="w-full mt-6 desktop:block hidden" />
+                <Separator className="w-full mt-6 desktop:block hidden" />
 
-                  <OpenMapButton displayMap={displayMobileMap} />
+                <OpenMapButton displayMap={displayMobileMap} />
 
-                  <InfiniteScroll
-                    dataLength={searchResults?.results.length ?? 0}
-                    next={fetchNextPage}
-                    hasMore={hasNextPage ?? false}
-                    loader={
-                      <div className={`relative my-10 ${isFetchingNextPage ? 'h-10' : ''}`}>
-                        <Loader loaded={!isFetchingNextPage} />
-                      </div>
-                    }
-                    scrollableTarget="search_resultCardList"
-                  >
-                    {searchResults?.results.map(searchResult => {
-                      if (isTrek(searchResult))
-                        return (
-                          <ResultCard
-                            type={searchResult.type}
-                            key={`trek-${searchResult.id}`}
-                            id={`${searchResult.id}`}
-                            hoverId={getHoverId(searchResult)}
-                            place={searchResult.place}
-                            title={searchResult.title}
-                            tags={searchResult.tags}
-                            attachments={searchResult.attachments}
-                            badgeIconUri={searchResult.practice?.pictogram}
-                            badgeName={searchResult.practice?.name}
-                            informations={searchResult.informations}
-                            redirectionUrl={generateResultDetailsUrl(
-                              searchResult.id,
-                              searchResult.title,
-                            )}
-                            className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
-                            titleTag="h2"
-                          />
-                        );
-                      else if (isTouristicContent(searchResult))
-                        return (
-                          <ResultCard
-                            type={searchResult.type}
-                            key={`touristicContent-${searchResult.id}`}
-                            id={`${searchResult.id}`}
-                            hoverId={getHoverId(searchResult)}
-                            place={searchResult.place}
-                            title={searchResult.name}
-                            tags={searchResult.themes}
-                            attachments={searchResult.attachments}
-                            badgeIconUri={searchResult.category.pictogramUri}
-                            badgeName={searchResult.category.label}
-                            informations={searchResult.types}
-                            redirectionUrl={generateTouristicContentUrl(
-                              searchResult.id,
-                              searchResult.name,
-                            )}
-                            className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
-                            titleTag="h2"
-                          />
-                        );
-                      else if (isOutdoorSite(searchResult))
-                        return (
-                          <ResultCard
-                            type={searchResult.type}
-                            key={`outdoor-${searchResult.id}`}
-                            id={`${searchResult.id}`}
-                            hoverId={getHoverId(searchResult)}
-                            place={searchResult.place}
-                            title={searchResult.name}
-                            tags={searchResult.themes}
-                            attachments={searchResult.attachments}
-                            badgeIconUri={searchResult.practice?.pictogram}
-                            badgeName={searchResult.practice?.name}
-                            informations={[]}
-                            redirectionUrl={generateOutdoorSiteUrl(
-                              searchResult.id,
-                              searchResult.name,
-                            )}
-                            className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
-                            titleTag="h2"
-                          />
-                        );
-                      else if (isTouristicEvent(searchResult))
-                        return (
-                          <ResultCard
-                            type={searchResult.type}
-                            key={`touristicEvent-${searchResult.id}`}
-                            id={`${searchResult.id}`}
-                            hoverId={getHoverId(searchResult)}
-                            place={searchResult.place}
-                            title={searchResult.name}
-                            tags={searchResult.themes}
-                            attachments={searchResult.attachments}
-                            badgeIconUri={searchResult.typeEvent?.pictogram}
-                            badgeName={searchResult.typeEvent?.type}
-                            informations={{
-                              date: {
-                                beginDate: searchResult.beginDate,
-                                endDate: searchResult.endDate,
-                              },
-                            }}
-                            redirectionUrl={generateTouristicEventUrl(
-                              searchResult.id,
-                              searchResult.name,
-                            )}
-                            className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
-                            titleTag="h2"
-                          />
-                        );
-                    })}
-                  </InfiniteScroll>
-                  {isError && (
-                    <ErrorFallback refetch={searchResults === null ? refetch : fetchNextPage} />
-                  )}
-                </Loader>
-              </div>
-            </div>
-
-            <div
-              className="hidden desktop:flex desktop:z-content desktop:w-1/2 desktop:fixed desktop:right-0 desktop:bottom-0 desktop:top-headerAndFilterBar"
-              id="search_resultMap"
-            >
-              {isMapLoading && <div className="absolute bg-primary2 opacity-40 inset-0 z-map" />}
-              <Loader loaded={!isMapLoading} className="absolute inset-0 z-map" />
-              {!isMobile && (
-                <SearchMapDynamicComponent
-                  type="DESKTOP"
-                  onMove={handleMoveMap}
-                  shouldUseClusters
-                  shouldUsePopups
-                />
-              )}
+                <InfiniteScroll
+                  dataLength={searchResults?.results.length ?? 0}
+                  next={fetchNextPage}
+                  hasMore={hasNextPage ?? false}
+                  loader={
+                    <div className={`relative my-10 ${isFetchingNextPage ? 'h-10' : ''}`}>
+                      <Loader loaded={!isFetchingNextPage} />
+                    </div>
+                  }
+                  scrollableTarget="search_resultCardList"
+                >
+                  {searchResults?.results.map(searchResult => {
+                    if (isTrek(searchResult))
+                      return (
+                        <ResultCard
+                          type={searchResult.type}
+                          key={`trek-${searchResult.id}`}
+                          id={`${searchResult.id}`}
+                          hoverId={getHoverId(searchResult)}
+                          place={searchResult.place}
+                          title={searchResult.title}
+                          tags={searchResult.tags}
+                          attachments={searchResult.attachments}
+                          badgeIconUri={searchResult.practice?.pictogram}
+                          badgeName={searchResult.practice?.name}
+                          informations={searchResult.informations}
+                          redirectionUrl={generateResultDetailsUrl(
+                            searchResult.id,
+                            searchResult.title,
+                          )}
+                          className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
+                          titleTag="h2"
+                        />
+                      );
+                    else if (isTouristicContent(searchResult))
+                      return (
+                        <ResultCard
+                          type={searchResult.type}
+                          key={`touristicContent-${searchResult.id}`}
+                          id={`${searchResult.id}`}
+                          hoverId={getHoverId(searchResult)}
+                          place={searchResult.place}
+                          title={searchResult.name}
+                          tags={searchResult.themes}
+                          attachments={searchResult.attachments}
+                          badgeIconUri={searchResult.category.pictogramUri}
+                          badgeName={searchResult.category.label}
+                          informations={searchResult.types}
+                          redirectionUrl={generateTouristicContentUrl(
+                            searchResult.id,
+                            searchResult.name,
+                          )}
+                          className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
+                          titleTag="h2"
+                        />
+                      );
+                    else if (isOutdoorSite(searchResult))
+                      return (
+                        <ResultCard
+                          type={searchResult.type}
+                          key={`outdoor-${searchResult.id}`}
+                          id={`${searchResult.id}`}
+                          hoverId={getHoverId(searchResult)}
+                          place={searchResult.place}
+                          title={searchResult.name}
+                          tags={searchResult.themes}
+                          attachments={searchResult.attachments}
+                          badgeIconUri={searchResult.practice?.pictogram}
+                          badgeName={searchResult.practice?.name}
+                          informations={[]}
+                          redirectionUrl={generateOutdoorSiteUrl(
+                            searchResult.id,
+                            searchResult.name,
+                          )}
+                          className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
+                          titleTag="h2"
+                        />
+                      );
+                    else if (isTouristicEvent(searchResult))
+                      return (
+                        <ResultCard
+                          type={searchResult.type}
+                          key={`touristicEvent-${searchResult.id}`}
+                          id={`${searchResult.id}`}
+                          hoverId={getHoverId(searchResult)}
+                          place={searchResult.place}
+                          title={searchResult.name}
+                          tags={searchResult.themes}
+                          attachments={searchResult.attachments}
+                          badgeIconUri={searchResult.typeEvent?.pictogram}
+                          badgeName={searchResult.typeEvent?.type}
+                          informations={{
+                            date: {
+                              beginDate: searchResult.beginDate,
+                              endDate: searchResult.endDate,
+                            },
+                          }}
+                          redirectionUrl={generateTouristicEventUrl(
+                            searchResult.id,
+                            searchResult.name,
+                          )}
+                          className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
+                          titleTag="h2"
+                        />
+                      );
+                  })}
+                </InfiniteScroll>
+                {isError && (
+                  <ErrorFallback refetch={searchResults === null ? refetch : fetchNextPage} />
+                )}
+              </Loader>
             </div>
           </div>
-        </Container>
-      </Layout>
+
+          <div
+            className="hidden desktop:flex desktop:z-content desktop:w-1/2 desktop:fixed desktop:right-0 desktop:bottom-0 desktop:top-headerAndFilterBar"
+            id="search_resultMap"
+          >
+            {isMapLoading && <div className="absolute bg-primary2 opacity-40 inset-0 z-map" />}
+            <Loader loaded={!isMapLoading} className="absolute inset-0 z-map" />
+            {!isMobile && (
+              <SearchMapDynamicComponent
+                type="DESKTOP"
+                onMove={handleMoveMap}
+                shouldUseClusters
+                shouldUsePopups
+              />
+            )}
+          </div>
+        </div>
+      </Container>
+
       {isMobile && (
         <MobileMapContainer
           className={`desktop:hidden fixed right-0 left-0 h-full z-map ${

@@ -1,5 +1,4 @@
 import { Button } from 'components/Button';
-import { Layout } from 'components/Layout/Layout';
 import { NextPage } from 'next';
 import { FormattedMessage } from 'react-intl';
 import { routes } from 'services/routes';
@@ -27,7 +26,7 @@ const Spacer = styled.div`
 
 const OfflineFallback: NextPage = () => {
   return (
-    <Layout>
+    <>
       <Spacer />
 
       <Container>
@@ -46,7 +45,7 @@ const OfflineFallback: NextPage = () => {
           <FormattedMessage id={'page.goToOffline'} />
         </Button>
       </Container>
-    </Layout>
+    </>
   );
 };
 

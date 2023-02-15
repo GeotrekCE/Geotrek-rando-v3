@@ -1,4 +1,3 @@
-import { Layout } from 'components/Layout/Layout';
 import { Modal } from 'components/Modal';
 import Loader from 'components/Loader';
 import { useMediaPredicate } from 'react-media-hook';
@@ -57,17 +56,15 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
         }
       />
       {touristicContent === undefined ? (
-        <Layout>
-          <>
-            {isLoading ? (
-              <Loader className="absolute inset-0" />
-            ) : (
-              <ErrorFallback refetch={refetch} />
-            )}
-          </>
-        </Layout>
+        <>
+          {isLoading ? (
+            <Loader className="absolute inset-0" />
+          ) : (
+            <ErrorFallback refetch={refetch} />
+          )}
+        </>
       ) : (
-        <Layout>
+        <>
           <div id="touristicContent_page" className="flex flex-1">
             <div
               id="touristicContent_informations"
@@ -263,7 +260,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
               />
             </MobileMapContainer>
           )}
-        </Layout>
+        </>
       )}
     </>
   );
