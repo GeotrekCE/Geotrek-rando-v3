@@ -61,7 +61,7 @@ export const useFilter = () => {
         if (filterState.id === filterId) {
           return {
             ...filterState,
-            selectedOptions: options,
+            selectedOptions: options.sort((a, b) => a.value.localeCompare(b.value)),
           };
         }
         return filterState;
