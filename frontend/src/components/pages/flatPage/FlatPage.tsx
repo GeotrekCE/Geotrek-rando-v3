@@ -1,6 +1,5 @@
-import { Layout } from 'components/Layout/Layout';
 import Loader from 'components/Loader';
-import { colorPalette, sizes, zIndex } from 'stylesheet';
+import { colorPalette } from 'stylesheet';
 import parse from 'html-react-parser';
 import { Footer } from 'components/Footer';
 import { Separator } from 'components/Separator';
@@ -27,7 +26,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
   const intl = useIntl();
 
   return (
-    <Layout>
+    <>
       <PageHead
         title={flatPage?.title}
         description={`${String(flatPage?.title)} information page`}
@@ -103,7 +102,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
           <Footer />
         </div>
       )}
-    </Layout>
+    </>
   );
 };
 
