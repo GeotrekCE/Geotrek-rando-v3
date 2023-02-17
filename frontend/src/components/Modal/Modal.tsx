@@ -60,7 +60,7 @@ const Inner: React.FC<Props> = ({ children }) => {
           <div
             // @ts-ignore Wrong type in the lib
             ref={ref}
-            className="relative bg-white"
+            className="relative bg-dark"
           >
             {isFullscreen && (
               <MapButton

@@ -10,7 +10,7 @@ Object {
         id="result_card"
       >
         <div
-          class="relative bg-white"
+          class="relative bg-dark"
         >
           <div
             class="flex items-center justify-center w-full h-full"
@@ -217,7 +217,7 @@ Object {
       id="result_card"
     >
       <div
-        class="relative bg-white"
+        class="relative bg-dark"
       >
         <div
           class="flex items-center justify-center w-full h-full"
