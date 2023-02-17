@@ -17,7 +17,7 @@ Object {
           class="flex-none desktop:w-2/5"
         >
           <div
-            class="relative bg-white"
+            class="relative bg-dark"
           >
             <div
               class="flex items-center justify-center w-full h-full"
@@ -128,7 +128,7 @@ Object {
           class="flex-none desktop:w-2/5"
         >
           <div
-            class="relative bg-white"
+            class="relative bg-dark"
           >
             <div
               class="flex items-center justify-center w-full h-full"
@@ -361,7 +361,7 @@ Object {
         class="flex-none desktop:w-2/5"
       >
         <div
-          class="relative bg-white"
+          class="relative bg-dark"
         >
           <div
             class="flex items-center justify-center w-full h-full"
@@ -530,7 +530,7 @@ Object {
           class="flex-none desktop:w-2/5"
         >
           <div
-            class="relative bg-white"
+            class="relative bg-dark"
           >
             <div
               class="flex items-center justify-center w-full h-full"
@@ -641,7 +641,7 @@ Object {
           class="flex-none desktop:w-2/5"
         >
           <div
-            class="relative bg-white"
+            class="relative bg-dark"
           >
             <div
               class="flex items-center justify-center w-full h-full"
@@ -874,7 +874,7 @@ Object {
         class="flex-none desktop:w-2/5"
       >
         <div
-          class="relative bg-white"
+          class="relative bg-dark"
         >
           <div
             class="flex items-center justify-center w-full h-full"
