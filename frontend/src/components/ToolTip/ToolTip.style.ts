@@ -4,7 +4,7 @@ export const ToolTipText = styled.span<{ color: string; bgcolor: string; invertP
   background-color: ${props => props.color};
   color: ${props => props.bgcolor};
   visibility: hidden;
-  width: 120px;
+  width: 0;
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
@@ -33,5 +33,6 @@ export const ToolTip = styled('div')({
   display: 'inline-block',
   ':hover > .tooltipSpan:last-of-type': {
     visibility: 'visible',
+    width: '120px',
   },
 });
