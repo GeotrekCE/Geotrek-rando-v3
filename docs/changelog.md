@@ -1,5 +1,21 @@
 # Changelog
 
+3.13.0 (2023-02-23)
+-------------------
+
+**✨ Improvements**
+
+* Add captcha to the report form if an API key from HCAPTCHA is defined in `global.json` settings (#815)
+* Rewrite a component dedicated to image and their captions (= legend + author) (#858)
+* Add some accessibility to display image related to their captions (#858)
+* Page in fullscreen are not cropped anymore (#858)
+* Improve headlines and titles of pages (#861)
+
+**🐛 Fixes**
+
+* Fix the display of input error message (#815)
+* Remove all scripts tags from HTML/script templates when rewriting builded pages (#860)
+
 3.12.1 (2023-02-08)
 -------------------
 
