@@ -13,8 +13,8 @@ export const adaptOutdoorPractices = ({
       ...items,
       [id]: {
         id,
-        name,
-        pictogram,
+        label: name,
+        pictogramUri: pictogram,
       },
     }),
     {} as OutdoorPracticeChoices,
@@ -25,9 +25,9 @@ export const adaptOutdoorPracticesForActivities = (
 ): ActivityFilter[] =>
   rawOutdoorPractices.map(({ name, id, pictogram, order = null }) => ({
     id,
-    name,
+    label: name,
     order,
-    pictogram,
+    pictogramUri: pictogram,
     type: 'OUTDOOR_PRACTICE',
   }));
 

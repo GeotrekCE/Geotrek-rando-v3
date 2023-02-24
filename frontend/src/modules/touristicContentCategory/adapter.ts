@@ -30,8 +30,8 @@ export const adaptTouristicContentCategoryList = (
   rawToutisticContentCategories
     .filter(isCompleteRawListTouristicContentCategory)
     .map(({ label, pictogram, id, order = null }) => ({
-      name: label,
-      pictogram,
+      label,
+      pictogramUri: pictogram,
       id: `${id}`,
       order,
       type: 'CATEGORY',

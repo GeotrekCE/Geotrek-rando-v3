@@ -42,7 +42,7 @@ const CacheManager = {
 
     const attachments = 'attachments' in details ? details.attachments : details.imgs;
     const thumbnailUris =
-      'thumbnailUris' in details ? details.thumbnailUris : details.imgs.map(i => i.url);
+      'thumbnailUris' in details ? details.thumbnailUris : attachments.map(i => i.url);
     const informations =
       'informations' in details ? { ...details.informations, reservationSystem: null } : [];
 

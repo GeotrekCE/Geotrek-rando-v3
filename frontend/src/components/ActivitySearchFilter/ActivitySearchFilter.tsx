@@ -49,10 +49,10 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
             <div className="flex content-evenly flex-wrap flex-1 items-center">
               {visibleActivities?.map(activity => (
                 <ActivityButton
-                  iconUrl={activity.pictogram}
+                  iconUrl={activity.pictogramUri}
                   href={`${routes.SEARCH}?${getId(activity.type)}=${activity.id}`}
                   key={`${activity.type}-${activity.id}`}
-                  label={activity.name}
+                  label={activity.label}
                 />
               ))}
             </div>

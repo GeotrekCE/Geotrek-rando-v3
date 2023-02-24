@@ -80,12 +80,13 @@ export interface TouristicEvent {
     | PointGeometry
     | MultiPointGeometry
     | GeometryCollection;
-  thumbnailUris: string[];
   themes: string[];
   place: string;
-  typeEvent: TouristicEventType;
-  beginDate: string;
-  endDate: string;
+  category: TouristicEventType;
+  informations: {
+    beginDate: string;
+    endDate: string;
+  };
   logoUri: string | null;
 }
 

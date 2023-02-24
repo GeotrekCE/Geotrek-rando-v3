@@ -39,7 +39,7 @@ const DetailsBreadcrumb: React.FC<DetailsBreadcrumb> = ({ details, title, type, 
         result = ({ practice }: Details) =>
           practice
             ? {
-                label: practice.name,
+                label: practice.label,
                 link: `/search?practices=${practice.id}`,
               }
             : null;
@@ -48,7 +48,7 @@ const DetailsBreadcrumb: React.FC<DetailsBreadcrumb> = ({ details, title, type, 
         result = ({ practice }: OutdoorSiteDetails) =>
           practice
             ? {
-                label: practice.name,
+                label: practice.label,
                 link: `/search?outdoorPractice=${practice.id}`,
               }
             : null;
@@ -60,9 +60,9 @@ const DetailsBreadcrumb: React.FC<DetailsBreadcrumb> = ({ details, title, type, 
         });
         break;
       case 'TOURISTIC_EVENT':
-        result = ({ typeEvent }: TouristicEventDetails) => ({
-          label: typeEvent.type,
-          link: `/search?event=${typeEvent.id}`,
+        result = ({ category }: TouristicEventDetails) => ({
+          label: category.label,
+          link: `/search?event=${category.id}`,
         });
         break;
       case 'OUTDOOR_COURSE':

@@ -57,7 +57,7 @@ const OfflinePage: NextPage = () => {
                 title={result.title}
                 tags={[]}
                 attachments={attachments}
-                badgeIconUri={result.practice?.pictogram}
+                badgeIconUri={result.practice?.pictogramUri}
                 hoverId={String(result.id)}
                 informations={{
                   duration: String(result.informations.duration),
@@ -78,7 +78,7 @@ const OfflinePage: NextPage = () => {
                 title={result.title}
                 tags={[]}
                 attachments={attachments}
-                badgeIconUri={result.practice?.pictogram}
+                badgeIconUri={result.practice?.pictogramUri}
                 hoverId={String(result.id)}
                 informations={[]}
                 redirectionUrl={generateTouristicContentUrl(result.id, result.title)}
@@ -93,7 +93,7 @@ const OfflinePage: NextPage = () => {
                 title={result.title}
                 tags={[]}
                 attachments={attachments}
-                badgeIconUri={result.practice?.pictogram}
+                badgeIconUri={result.practice?.pictogramUri}
                 hoverId={String(result.id)}
                 informations={[]}
                 redirectionUrl={generateOutdoorSiteUrl(result.id, result.title)}
@@ -108,7 +108,7 @@ const OfflinePage: NextPage = () => {
                 title={result.title}
                 tags={[]}
                 attachments={attachments}
-                badgeIconUri={result.practice?.pictogram}
+                badgeIconUri={result.practice?.pictogramUri}
                 hoverId={String(result.id)}
                 informations={{
                   duration: '',
@@ -128,7 +128,7 @@ const OfflinePage: NextPage = () => {
                 title={result.title}
                 tags={[]}
                 attachments={attachments}
-                badgeIconUri={result.practice?.pictogram}
+                badgeIconUri={result.practice?.pictogramUri}
                 hoverId={String(result.id)}
                 informations={{
                   duration: '',

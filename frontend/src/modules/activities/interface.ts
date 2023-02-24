@@ -14,8 +14,8 @@ export interface RawListActivity extends RawActivity {
 
 export interface Activity {
   id: number | string;
-  pictogram: string;
-  name: string;
+  pictogramUri: string;
+  label: string;
 }
 
 export interface ActivityChoices {

@@ -33,16 +33,17 @@ export const adaptTouristicEvents = ({
       name: rawTouristicEvent.name,
       attachments: getAttachments(rawTouristicEvent.attachments),
       geometry: adaptGeometry(rawTouristicEvent.geometry),
-      thumbnailUris: getThumbnails(rawTouristicEvent.attachments),
       themes: rawTouristicEvent?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       place: cityDictionnary?.[rawTouristicEvent?.cities?.[0]]?.name ?? '',
-      typeEvent: touristicEventType[Number(rawTouristicEvent?.type)],
-      beginDate: rawTouristicEvent.begin_date.includes('T')
-        ? rawTouristicEvent.begin_date
-        : `${rawTouristicEvent.begin_date}T00:00:00`,
-      endDate: rawTouristicEvent.end_date.includes('T')
-        ? rawTouristicEvent.end_date
-        : `${rawTouristicEvent.end_date}T00:00:00`,
+      category: touristicEventType[Number(rawTouristicEvent?.type)],
+      informations: {
+        beginDate: rawTouristicEvent.begin_date.includes('T')
+          ? rawTouristicEvent.begin_date
+          : `${rawTouristicEvent.begin_date}T00:00:00`,
+        endDate: rawTouristicEvent.end_date.includes('T')
+          ? rawTouristicEvent.end_date
+          : `${rawTouristicEvent.end_date}T00:00:00`,
+      },
       logoUri: rawTouristicEvent.approved ? getGlobalConfig().touristicContentLabelImageUri : null,
     };
   });

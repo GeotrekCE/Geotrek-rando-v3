@@ -7,8 +7,8 @@ export interface RawTouristicEventType {
 
 export interface TouristicEventType {
   id: string;
-  type: string;
-  pictogram: string;
+  label: string;
+  pictogramUri: string;
 }
 
 export interface TouristicEventTypeChoices {

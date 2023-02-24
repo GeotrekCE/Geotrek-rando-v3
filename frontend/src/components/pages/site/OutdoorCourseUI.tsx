@@ -147,8 +147,8 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                       details={outdoorCourseContent}
                       practice={{
                         id: 0,
-                        pictogram: '',
-                        name: '',
+                        pictogramUri: '',
+                        label: '',
                       }}
                       type={'OUTDOOR_COURSE'}
                     />

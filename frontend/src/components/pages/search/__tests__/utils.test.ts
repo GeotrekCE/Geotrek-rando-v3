@@ -68,13 +68,9 @@ const MockSelectedOptions = [
 const mockTrekResult: TrekResult = {
   id: '2',
   type: 'TREK',
-  activityIcon: 'TODO',
   place: 'Molines-en-Champsaur',
-  title: 'Col de Font Froide',
-  tags: ['Faune', 'Géologie', 'Archéologie et histoire'],
-  thumbnailUris: [
-    'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
-  ],
+  name: 'Col de Font Froide',
+  themes: ['Faune', 'Géologie', 'Archéologie et histoire'],
   attachments: [
     {
       url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
@@ -82,10 +78,11 @@ const mockTrekResult: TrekResult = {
       legend: 'Lorem Ipsum',
     },
   ],
-  practice: {
+  category: {
     id: '',
-    name: 'Pédestre',
-    pictogram: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg',
+    label: 'Pédestre',
+    pictogramUri:
+      'https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg',
   },
   informations: {
     duration: '7h',

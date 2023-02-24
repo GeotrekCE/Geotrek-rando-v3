@@ -13,8 +13,8 @@ export const adaptTouristicEventTypes = ({
       ...items,
       [id]: {
         id,
-        type,
-        pictogram,
+        label: type,
+        pictogramUri: pictogram,
       },
     }),
     {} as TouristicEventTypeChoices,
@@ -25,9 +25,9 @@ export const adaptTouristicEventTypesForActivities = (
 ): ActivityFilter[] =>
   rawTouristicEventTypes.map(({ type, id, pictogram, order = null }) => ({
     id,
-    name: type,
+    label: type,
     order,
-    pictogram,
+    pictogramUri: pictogram,
     type: 'TOURISTIC_EVENT_TYPE',
   }));
 
@@ -38,6 +38,6 @@ export const adaptTouristicEventTypesFilter = (
   options: rawTouristicEventTypes.map(rawOutdoorPractice => ({
     value: `${rawOutdoorPractice.id}`,
     label: rawOutdoorPractice.type,
-    pictogramUrl: rawOutdoorPractice.pictogram,
+    pictogramUri: rawOutdoorPractice.pictogram,
   })),
 });

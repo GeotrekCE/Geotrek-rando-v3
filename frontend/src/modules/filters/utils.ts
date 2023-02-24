@@ -203,7 +203,7 @@ const getOutdoorRatingFiltersState = ({
       if (data)
         result.push({
           id: `type-outdoorRating-${String(scale.id)}`,
-          category: String(outdoorPractice?.[scale.practice]?.name),
+          category: String(outdoorPractice?.[scale.practice]?.label),
           label: scale?.name ?? 'Error',
           type: 'MULTIPLE',
           options: data.map(i => ({

@@ -32,7 +32,7 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
         id="details_topRoundIcons"
         className="flex justify-between items-center mx-4 desktop:mx-12 menu-download"
       >
-        {practice && <ActivityLogo type={type} src={practice.pictogram} />}
+        {practice && <ActivityLogo type={type} src={practice.pictogramUri} />}
         <div className="flex space-x-4">
           <div
             className={
