@@ -2,7 +2,7 @@ import { ActivityChoices } from 'modules/activities/interface';
 import { CityDictionnary } from 'modules/city/interface';
 import { DifficultyChoices } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
-import { getAttachments, getThumbnails } from 'modules/utils/adapter';
+import { getAttachments } from 'modules/utils/adapter';
 import { formatHours } from 'modules/utils/time';
 import { RawTrekResult, TrekResult } from './interface';
 import { formatDistance } from './utils';
@@ -43,13 +43,11 @@ export const adaptTrekResultList = ({
   resultsList.filter(isRawTrekResultComplete).map(rawResult => ({
     type: 'TREK',
     id: `${rawResult.id}`,
-    activityIcon: 'TODO',
     place: cityDictionnary[rawResult.departure_city]?.name ?? null,
-    title: rawResult.name,
-    tags: rawResult.themes.map(themeId => themes[themeId]?.label || ''),
-    thumbnailUris: getThumbnails(rawResult.attachments),
+    name: rawResult.name,
+    themes: rawResult.themes.map(themeId => themes[themeId]?.label || ''),
     attachments: getAttachments(rawResult.attachments),
-    practice: activities[rawResult.practice] ?? null,
+    category: activities[rawResult.practice] ?? null,
     informations: {
       duration: rawResult.duration !== null ? formatHours(rawResult.duration) : null,
       distance: `${formatDistance(rawResult.length_2d)}`,

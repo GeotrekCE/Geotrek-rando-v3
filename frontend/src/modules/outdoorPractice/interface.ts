@@ -8,8 +8,8 @@ export interface RawOutdoorPractice {
 
 export interface OutdoorPractice {
   id: string;
-  name: string;
-  pictogram: string;
+  label: string;
+  pictogramUri: string;
 }
 
 export interface OutdoorPracticeChoices {

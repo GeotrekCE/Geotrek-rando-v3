@@ -54,13 +54,13 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
                   hoverId={`DETAILS-TREK_CHILDREN-${trekChild.id}`}
                   type="TREK"
                   place={trekChild.place}
-                  title={trekChild.title}
-                  tags={trekChild.tags || []}
+                  title={trekChild.name}
+                  tags={trekChild.themes}
                   attachments={trekChild.attachments}
-                  badgeIconUri={trekChild.practice?.pictogram}
-                  badgeName={trekChild.practice?.name}
+                  badgeIconUri={trekChild.category?.pictogramUri}
+                  badgeName={trekChild.category?.label}
                   informations={trekChild.informations}
-                  redirectionUrl={generateChildrenDetailsUrl(trekChild.id, trekChild.title, trekId)}
+                  redirectionUrl={generateChildrenDetailsUrl(trekChild.id, trekChild.name, trekId)}
                   className="w-60 desktop:w-auto"
                 />
               </div>

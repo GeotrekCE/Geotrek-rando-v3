@@ -92,12 +92,11 @@ export interface TouristicContentResult {
   id: string;
   type: 'TOURISTIC_CONTENT';
   name: string;
-  thumbnailUris: string[];
   attachments: Attachment[];
   category: TouristicContentCategory;
   place: string;
   themes: string[];
-  types: TouristicContentDetailsType[];
+  informations: TouristicContentDetailsType[];
 }
 
 export interface TouristicContentDetails extends TouristicContent {

@@ -24,13 +24,11 @@ export interface SearchResults {
 export interface TrekResult {
   type: 'TREK';
   id: string;
-  activityIcon: string; // TODO (call API supplémentaire surement)
   place: string | null;
-  title: string;
-  tags: string[];
-  thumbnailUris: string[];
+  name: string;
+  themes: string[];
   attachments: Attachment[];
-  practice: Activity | null; // should be an object
+  category: Activity | null; // should be an object
   informations: {
     duration: string | null;
     distance: string;

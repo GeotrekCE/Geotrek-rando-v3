@@ -145,8 +145,8 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                       details={touristicEventContent}
                       practice={{
                         id: 0,
-                        pictogram: touristicEventContent.typeEvent.pictogram,
-                        name: touristicEventContent.typeEvent.type,
+                        pictogramUri: touristicEventContent.category.pictogramUri,
+                        label: touristicEventContent.category.label,
                       }}
                       type={'TOURISTIC_EVENT'}
                     />
@@ -163,8 +163,8 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                             touristicEventContent.duration,
                           ].join(' - '),
                           date: {
-                            beginDate: touristicEventContent.beginDate,
-                            endDate: touristicEventContent.endDate,
+                            beginDate: touristicEventContent.informations.beginDate,
+                            endDate: touristicEventContent.informations.endDate,
                           },
                         }}
                         place={touristicEventContent.place}
@@ -319,7 +319,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                       type="DESKTOP"
                       eventGeometry={{
                         geometry: touristicEventContent.geometry,
-                        pictogramUri: touristicEventContent.typeEvent.pictogram,
+                        pictogramUri: touristicEventContent.category.pictogramUri,
                         name: touristicEventContent.name,
                         id: touristicEventContent.id,
                       }}
@@ -356,7 +356,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                   type="MOBILE"
                   eventGeometry={{
                     geometry: touristicEventContent.geometry,
-                    pictogramUri: touristicEventContent.typeEvent.pictogram,
+                    pictogramUri: touristicEventContent.category.pictogramUri,
                     name: touristicEventContent.name,
                     id: touristicEventContent.id,
                   }}

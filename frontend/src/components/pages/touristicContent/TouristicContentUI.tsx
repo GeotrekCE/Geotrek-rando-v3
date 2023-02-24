@@ -103,8 +103,8 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   details={touristicContent}
                   practice={{
                     id: 0,
-                    pictogram: touristicContent.category.pictogramUri,
-                    name: touristicContent.category.label,
+                    pictogramUri: touristicContent.category.pictogramUri,
+                    label: touristicContent.category.label,
                   }}
                   type={'TOURISTIC_CONTENT'}
                 />

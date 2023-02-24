@@ -43,12 +43,12 @@ export const AccessChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
               hoverId={`DETAILS-TREK-${trekChild.id}`}
               type="TREK"
               place={''}
-              title={trekChild.title}
-              tags={trekChild.tags}
+              title={trekChild.name}
+              tags={trekChild.themes}
               attachments={trekChild.attachments}
-              badgeIconUri={trekChild.practice?.pictogram}
+              badgeIconUri={trekChild.category?.pictogramUri}
               informations={trekChild.informations}
-              redirectionUrl={generateResultDetailsUrl(trekChild.id, trekChild.title)}
+              redirectionUrl={generateResultDetailsUrl(trekChild.id, trekChild.name)}
               className="w-60 desktop:w-auto"
             />
           </div>
