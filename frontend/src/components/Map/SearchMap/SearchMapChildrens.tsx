@@ -47,7 +47,7 @@ const SearchMapChildrens: React.FC<PropsType> = props => {
                 id={getHoverId(point)}
                 type={point.type}
                 position={[point.location.y, point.location.x]}
-                pictogramUri={point.practice?.pictogram}
+                pictogramUri={point.practice?.pictogramUri}
                 onMouseOver={() => {
                   setSelectedMarkerId(point.id);
                   setSelectedMarkerType(point.type);
@@ -94,7 +94,7 @@ const SearchMapChildrens: React.FC<PropsType> = props => {
           id={hoveredCardId}
           type={hoveredPoint.type}
           position={[hoveredPoint.location.y, hoveredPoint.location.x]}
-          pictogramUri={hoveredPoint.practice?.pictogram}
+          pictogramUri={hoveredPoint.practice?.pictogramUri}
         />
       )}
       {props.segments && <DecoratedPolyline positions={props.segments} />}

@@ -57,20 +57,18 @@ export const adaptTouristicContentResult = ({
     id: rawTouristicObject.id,
     type: 'TOURISTIC_CONTENT',
     name: rawTouristicObject.name,
-    descriptionTeaser: rawTouristicObject.description_teaser,
-    thumbnailUris: getThumbnails(rawTouristicObject.attachments),
     attachments: getAttachments(rawTouristicObject.attachments),
-    category: touristicContentCategories[rawTouristicObject.category],
-    logoUri: '',
+    category: touristicContentCategories[rawTouristicObject.category] ?? null,
     place:
       Array.isArray(rawTouristicObject.cities) && rawTouristicObject.cities.length > 0
         ? cityDictionnary[rawTouristicObject.cities[0]].name
         : '',
     themes:
-      rawTouristicObject.themes != null
+      rawTouristicObject.themes !== null
         ? rawTouristicObject.themes.map(themeId => themeDictionnary[themeId]?.label)
         : [],
-    types: Object.entries(rawTouristicObject.types).reduce<TouristicContentDetailsType[]>(
+
+    informations: Object.entries(rawTouristicObject.types).reduce<TouristicContentDetailsType[]>(
       (adaptedTypes, typeEntry) => {
         const adaptedType = adaptTouristicType(
           typeEntry,

@@ -26,9 +26,9 @@ export const ActivitySearchFilterMobile: React.FC<{
     <div className={`${className} flex space-x-4 items-center`}>
       <Select
         className="flex-1"
-        options={activities.map(({ id, name, type }) => ({
+        options={activities.map(({ id, label, type }) => ({
           value: `${type}-${id}`,
-          label: name,
+          label,
         }))}
         styles={selectStyles}
         instanceId="activitySearchFilterMobile"

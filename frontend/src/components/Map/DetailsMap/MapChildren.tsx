@@ -76,7 +76,7 @@ export const MapChildren: React.FC<Props> = props => {
           contents={
             props.experiences.map(e => ({
               ...e,
-              pictogramUri: e.practice?.pictogram,
+              pictogramUri: e.category?.pictogramUri,
             })) as GeometryListProps[]
           }
           type="OUTDOOR_SITE"

@@ -83,9 +83,8 @@ export interface OutdoorSite {
     | MultiPointGeometry
     | GeometryCollection;
   type: 'OUTDOOR_SITE';
-  thumbnailUris: string[];
   themes: string[];
-  practice: Activity | null;
+  category: Activity | null;
   period: string | null;
   wind: string[];
   orientation: string[];

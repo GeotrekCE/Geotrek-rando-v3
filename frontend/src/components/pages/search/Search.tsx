@@ -219,19 +219,19 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                       return (
                         <ResultCard
                           type={searchResult.type}
-                          key={`trek-${searchResult.id}`}
+                          key={`${searchResult.type}-${searchResult.id}`}
                           id={`${searchResult.id}`}
                           hoverId={getHoverId(searchResult)}
                           place={searchResult.place}
-                          title={searchResult.title}
-                          tags={searchResult.tags}
+                          title={searchResult.name}
+                          tags={searchResult.themes}
                           attachments={searchResult.attachments}
-                          badgeIconUri={searchResult.practice?.pictogram}
-                          badgeName={searchResult.practice?.name}
+                          badgeIconUri={searchResult.category?.pictogramUri}
+                          badgeName={searchResult.category?.label}
                           informations={searchResult.informations}
                           redirectionUrl={generateResultDetailsUrl(
                             searchResult.id,
-                            searchResult.title,
+                            searchResult.name,
                           )}
                           className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
                           titleTag="h2"
@@ -241,16 +241,16 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                       return (
                         <ResultCard
                           type={searchResult.type}
-                          key={`touristicContent-${searchResult.id}`}
+                          key={`${searchResult.type}-${searchResult.id}`}
                           id={`${searchResult.id}`}
                           hoverId={getHoverId(searchResult)}
                           place={searchResult.place}
                           title={searchResult.name}
                           tags={searchResult.themes}
                           attachments={searchResult.attachments}
-                          badgeIconUri={searchResult.category.pictogramUri}
-                          badgeName={searchResult.category.label}
-                          informations={searchResult.types}
+                          badgeIconUri={searchResult.category?.pictogramUri}
+                          badgeName={searchResult.category?.label}
+                          informations={searchResult.informations}
                           redirectionUrl={generateTouristicContentUrl(
                             searchResult.id,
                             searchResult.name,
@@ -263,15 +263,15 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                       return (
                         <ResultCard
                           type={searchResult.type}
-                          key={`outdoor-${searchResult.id}`}
+                          key={`${searchResult.type}-${searchResult.id}`}
                           id={`${searchResult.id}`}
                           hoverId={getHoverId(searchResult)}
                           place={searchResult.place}
                           title={searchResult.name}
                           tags={searchResult.themes}
                           attachments={searchResult.attachments}
-                          badgeIconUri={searchResult.practice?.pictogram}
-                          badgeName={searchResult.practice?.name}
+                          badgeIconUri={searchResult.category?.pictogramUri}
+                          badgeName={searchResult.category?.label}
                           informations={[]}
                           redirectionUrl={generateOutdoorSiteUrl(
                             searchResult.id,
@@ -285,21 +285,16 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                       return (
                         <ResultCard
                           type={searchResult.type}
-                          key={`touristicEvent-${searchResult.id}`}
+                          key={`${searchResult.type}-${searchResult.id}`}
                           id={`${searchResult.id}`}
                           hoverId={getHoverId(searchResult)}
                           place={searchResult.place}
                           title={searchResult.name}
                           tags={searchResult.themes}
                           attachments={searchResult.attachments}
-                          badgeIconUri={searchResult.typeEvent?.pictogram}
-                          badgeName={searchResult.typeEvent?.type}
-                          informations={{
-                            date: {
-                              beginDate: searchResult.beginDate,
-                              endDate: searchResult.endDate,
-                            },
-                          }}
+                          badgeIconUri={searchResult.category?.pictogramUri}
+                          badgeName={searchResult.category?.label}
+                          informations={searchResult.informations}
                           redirectionUrl={generateTouristicEventUrl(
                             searchResult.id,
                             searchResult.name,

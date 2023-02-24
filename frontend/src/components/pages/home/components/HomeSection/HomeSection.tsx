@@ -40,17 +40,17 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
                 <ResultCard
                   asColumn
                   type={e.type}
-                  key={e.title}
+                  key={e.name}
                   id={e.id}
                   hoverId={getHoverId(e)}
                   place={e.place}
-                  title={e.title}
-                  tags={e.tags}
+                  title={e.name}
+                  tags={e.themes}
                   attachments={e.attachments.slice(0, 1)}
-                  badgeIconUri={e.practice?.pictogram}
-                  badgeName={e.practice?.name}
+                  badgeIconUri={e.category?.pictogramUri}
+                  badgeName={e.category?.label}
                   informations={e.informations}
-                  redirectionUrl={generateResultDetailsUrl(e.id, e.title)}
+                  redirectionUrl={generateResultDetailsUrl(e.id, e.name)}
                   className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
                 />
               );
@@ -85,8 +85,8 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
                   title={e.name}
                   tags={e.themes}
                   attachments={e.attachments.slice(0, 1)}
-                  badgeIconUri={e.practice?.pictogram}
-                  badgeName={e.practice?.name}
+                  badgeIconUri={e.category?.pictogramUri}
+                  badgeName={e.category?.label}
                   informations={[]}
                   redirectionUrl={generateOutdoorSiteUrl(e.id, e.name)}
                   className="my-4 desktop:my-6 desktop:mx-1" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
@@ -98,20 +98,15 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
                   asColumn
                   type={e.type}
                   key={e.name}
-                  id={`https://formatjs.io/docs/react-intl/api#formatdate${e.id as string}`}
+                  id={e.id}
                   hoverId={getHoverId(e)}
                   place={e.place}
                   title={e.name}
                   tags={e.themes}
                   attachments={e.attachments.slice(0, 1)}
-                  badgeIconUri={e.typeEvent?.pictogram}
-                  badgeName={e.typeEvent?.type}
-                  informations={{
-                    date: {
-                      beginDate: e.beginDate,
-                      endDate: e.endDate,
-                    },
-                  }}
+                  badgeIconUri={e.category?.pictogramUri}
+                  badgeName={e.category?.label}
+                  informations={e.informations}
                   redirectionUrl={generateTouristicEventUrl(e.id, e.name)}
                   className="my-4 desktop:my-6 desktop:mx-1" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
                 />

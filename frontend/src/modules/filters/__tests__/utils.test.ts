@@ -251,7 +251,9 @@ const outdoorRatingMapping: OutdoorRatingMapping = {
 
 const outdoorRatingScale: OutdoorRatingScale[] = [{ id: 1, name: 'Niveau', practice: 4 }];
 
-const outdoorPractice: OutdoorPracticeChoices = { '4': { name: 'Niveau', id: '1', pictogram: '' } };
+const outdoorPractice: OutdoorPracticeChoices = {
+  '4': { label: 'Niveau', id: '1', pictogramUri: '' },
+};
 
 const trekSpecificFilters = [
   'difficulty',
