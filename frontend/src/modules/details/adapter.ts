@@ -176,7 +176,7 @@ export const adaptResults = ({
         rawDetailsProperties.ratings?.map(r => {
           return {
             ...trekRating[String(r)],
-            scale: trekRatingScale.find(oRS => oRS.id === trekRating[String(r)]?.scale),
+            scale: trekRatingScale.find(oRS => oRS.id === trekRating[String(r)]?.scale) ?? [],
           };
         }) ?? [],
       ratingsDescription: rawDetailsProperties.ratings_description ?? '',

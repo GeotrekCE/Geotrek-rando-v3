@@ -19,7 +19,7 @@ export interface OutdoorRating {
 }
 
 export interface OutdoorRatingWithScale extends Omit<OutdoorRating, 'scale'> {
-  scale?: OutdoorRatingScale;
+  scale: OutdoorRatingScale | [];
 }
 
 export interface OutdoorRatingChoices {
