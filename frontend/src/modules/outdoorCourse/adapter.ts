@@ -107,7 +107,7 @@ export const adaptOutdoorCourseDetails = ({
       rawOutdoorCourseDetails.properties.ratings?.map(r => {
         return {
           ...outdoorRating[String(r)],
-          scale: outdoorRatingScale.find(oRS => oRS.id === outdoorRating[String(r)]?.scale),
+          scale: outdoorRatingScale.find(oRS => oRS.id === outdoorRating[String(r)]?.scale) ?? [],
         };
       }) ?? [],
     ratingsDescription: rawOutdoorCourseDetails.properties.ratings_description ?? null,

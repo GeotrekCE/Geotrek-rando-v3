@@ -19,7 +19,7 @@ export interface TrekRating {
 }
 
 export interface TrekRatingWithScale extends Omit<TrekRating, 'scale'> {
-  scale?: TrekRatingScale;
+  scale: TrekRatingScale | [];
 }
 
 export interface TrekRatingChoices {
