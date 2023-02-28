@@ -16,7 +16,7 @@ export const RemoteIconInformation: React.FC<Props> = ({ iconUri, ...props }) =>
   let icon = null;
   if (RegExp(/(.*).svg/).test(iconUri)) {
     icon = <SVG src={iconUri} className="w-6 h-full fill-current" />;
-  } else if (iconUri.length) {
+  } else if (typeof iconUri === 'string' && iconUri.length) {
     icon = (
       <Image
         loading="lazy"
