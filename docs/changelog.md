@@ -1,5 +1,19 @@
 # Changelog
 
+3.13.1 (2023-02-28)
+-------------------
+
+**✨ Improvements**
+
+* Display home activities directly by SSR (links reachable by search engines)
+
+
+**🐛 Fixes**
+
+* Fix remoteIconInformation with no icons (regression since 3.13.0)
+* Fix error when the scale property is not defined for trek or outdoor detail page
+
+
 3.13.0 (2023-02-23)
 -------------------
 
