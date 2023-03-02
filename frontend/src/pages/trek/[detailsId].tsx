@@ -29,7 +29,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
       id,
       details.title,
       { ...context, locale },
-      routes.DETAILS,
+      routes.TREK,
       Number(parentIdString),
     );
     if (redirect)
