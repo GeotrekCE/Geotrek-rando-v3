@@ -97,7 +97,6 @@ export const adaptOutdoorCourseDetails = ({
     touristicContents,
     pois,
     advice: rawOutdoorCourseDetails.properties.advice,
-    children: [],
     gear: String(rawOutdoorCourseDetails.properties.gear),
     equipment: String(rawOutdoorCourseDetails.properties.equipment),
     pdfUri: rawOutdoorCourseDetails.properties.pdf,

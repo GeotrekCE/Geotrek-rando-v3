@@ -2,7 +2,6 @@ import getActivityColor from 'components/pages/search/components/ResultCard/getA
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { useMemo } from 'react';
 import { Polygon } from 'react-leaflet';
-import { colorPalette } from 'stylesheet';
 
 const ZOOMED_WEIGHT = 10;
 const DEFAULT_WEIGHT = 3;

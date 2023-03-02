@@ -1,11 +1,9 @@
-import { useRouter } from 'next/router';
 // @ts-ignore Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
 import { MenuConfig, MenuItem } from 'modules/header/interface';
 import { useIntl } from 'react-intl';
 import NextLink from 'next/link';
 import { routes } from 'services/routes';
-import { getDefaultLanguage } from '../../../modules/header/utills';
 import { BurgerMenuSection } from '../BurgerMenuSection/BurgerMenuSection';
 import { BurgerMenu as BmIcon } from '../../Icons/BurgerMenu';
 import { Cross } from '../../Icons/Cross';

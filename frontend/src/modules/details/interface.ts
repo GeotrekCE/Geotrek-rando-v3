@@ -8,7 +8,6 @@ import {
   Coordinate2D,
   RawAttachment,
   RawCoordinate2D,
-  RawGeometryObject,
   RawLineStringGeometry3D,
   RawMultiLineStringGeometry3D,
   RawMultiPointGeometry,
