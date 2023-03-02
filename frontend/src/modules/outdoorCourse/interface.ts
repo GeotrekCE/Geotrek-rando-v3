@@ -17,7 +17,6 @@ import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { OutdoorCourseType } from '../outdoorCourseType/interface';
 import { OutdoorRatingWithScale } from '../outdoorRating/interface';
-import { OutdoorSite } from '../outdoorSite/interface';
 import { Poi } from '../poi/interface';
 import { TouristicContent } from '../touristicContent/interface';
 
@@ -83,7 +82,6 @@ export interface OutdoorCourseDetails extends OutdoorCourse {
   touristicContents: TouristicContent[];
   pois: Poi[];
   advice?: string;
-  children: OutdoorSite[];
   gear: string;
   equipment: string;
   pdfUri: string;

@@ -140,15 +140,6 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
   );
 };
 
-const Legend = styled.div`
-  position: absolute;
-  color: white;
-  font-size: 14px;
-  left: 50%;
-  top: 15px;
-  transform: translateX(-50%);
-`;
-
 const StyledRemoteIconInformation = styled(RemoteIconInformation)`
   * {
     font-size: 16px;

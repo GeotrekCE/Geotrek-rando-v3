@@ -9,9 +9,8 @@ import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/detail
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
 import { generateTouristicContentUrl, HtmlText } from 'components/pages/details/utils';
 import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
-import { OutdoorSiteChildrenSection } from 'components/pages/site/components/OutdoorSiteChildrenSection';
 import { useOutdoorCourse } from 'components/pages/site/useOutdoorCourse';
-import React, { useMemo, useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'components/Loader';
 import { useMediaPredicate } from 'react-media-hook';
@@ -176,19 +175,6 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                       />
                     </div>
 
-                    {Number(outdoorCourseContent?.children?.length) > 0 && (
-                      <div id="details_trekChildren_ref">
-                        <OutdoorSiteChildrenSection
-                          outdoorChildren={outdoorCourseContent?.children?.map(child => ({
-                            ...child,
-                            id: `${child.id}`,
-                          }))}
-                          id={id}
-                          title={intl.formatMessage({ id: 'outdoorSite.childrenFullTitle' })}
-                        />
-                      </div>
-                    )}
-
                     {outdoorCourseContent.description && (
                       <div id="details_description_ref">
                         <DetailsDescription
@@ -326,7 +312,6 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                     className="desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:right-0 desktop:w-2/5 desktop:top-headerAndDetailsRecapBar"
                   >
                     <DetailsMapDynamicComponent
-                      experiences={outdoorCourseContent?.children}
                       type="DESKTOP"
                       outdoorGeometry={{
                         geometry: outdoorCourseContent.geometry,
@@ -384,7 +369,6 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                 displayState={mobileMapState}
               >
                 <DetailsMapDynamicComponent
-                  experiences={outdoorCourseContent?.children}
                   type="MOBILE"
                   outdoorGeometry={{
                     geometry: outdoorCourseContent.geometry,

@@ -221,11 +221,11 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     {Number(outdoorSiteContent?.children?.length) > 0 && (
                       <div ref={setExperienceRef} id="details_trekChildren_ref">
                         <OutdoorSiteChildrenSection
-                          outdoorChildren={outdoorSiteContent?.children}
+                          outdoorChildren={outdoorSiteContent.children}
                           id={id}
                           title={intl.formatMessage(
                             { id: 'outdoorSite.sitesFullTitle' },
-                            { count: Number(outdoorSiteContent?.children?.length) },
+                            { count: Number(outdoorSiteContent.children.length) },
                           )}
                         />
                       </div>
@@ -234,11 +234,11 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     {Number(outdoorSiteContent?.courses?.length) > 0 && (
                       <div ref={setCoursesRef} id="details_trekChildren_ref">
                         <OutdoorCoursesChildrenSection
-                          outdoorChildren={outdoorSiteContent?.courses}
+                          outdoorChildren={outdoorSiteContent.courses}
                           id={id}
                           title={intl.formatMessage(
                             { id: 'outdoorSite.coursesFullTitle' },
-                            { count: Number(outdoorSiteContent?.courses?.length) },
+                            { count: Number(outdoorSiteContent.courses.length) },
                           )}
                         />
                       </div>
