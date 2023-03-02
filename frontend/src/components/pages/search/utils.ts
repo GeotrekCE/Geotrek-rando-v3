@@ -73,7 +73,7 @@ export const formatInfiniteQuery = (
 export const generateResultDetailsUrl = (
   id: number | string,
   title: string,
-  route: string = routes.DETAILS,
+  route: string = routes.TREK,
   parentId?: number,
 ): string => {
   const titleWithNoSpace = convertStringForSitemap(title);
