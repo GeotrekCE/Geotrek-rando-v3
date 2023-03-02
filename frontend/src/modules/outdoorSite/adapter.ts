@@ -22,6 +22,7 @@ import { PopupResult } from '../trekResult/interface';
 import {
   OutdoorSite,
   OutdoorSiteDetails,
+  OutdoorSiteResult,
   RawOutdoorSite,
   RawOutdoorSiteDetails,
 } from './interface';
@@ -49,6 +50,32 @@ export const adaptOutdoorSites = ({
       period: rawOutdoorSite?.period ?? null,
       wind: rawOutdoorSite?.wind ?? [],
       orientation: rawOutdoorSite?.orientation ?? [],
+      place:
+        rawOutdoorSite?.cities?.map(city => cityDictionnary?.[city]?.name ?? '').join(', ') ?? '',
+    };
+  });
+
+export const adaptoutdoorSitesResult = ({
+  rawOutdoorSites,
+  themeDictionnary,
+  outdoorPracticeDictionnary,
+  cityDictionnary,
+}: {
+  rawOutdoorSites: RawOutdoorSite[];
+  themeDictionnary: Choices;
+  outdoorPracticeDictionnary: OutdoorPracticeChoices;
+  cityDictionnary: CityDictionnary;
+}): OutdoorSiteResult[] =>
+  rawOutdoorSites.map(rawOutdoorSite => {
+    return {
+      id: rawOutdoorSite.id,
+      type: 'OUTDOOR_SITE',
+      name: rawOutdoorSite.name,
+      attachments: getAttachments(rawOutdoorSite.attachments),
+      geometry: adaptGeometry(rawOutdoorSite.geometry),
+      tags: rawOutdoorSite?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
+      informations: [],
+      category: outdoorPracticeDictionnary[rawOutdoorSite.practice] ?? null,
       place:
         rawOutdoorSite?.cities?.map(city => cityDictionnary?.[city]?.name ?? '').join(', ') ?? '',
     };

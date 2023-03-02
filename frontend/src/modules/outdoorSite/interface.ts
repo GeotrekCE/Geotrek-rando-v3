@@ -24,7 +24,7 @@ import { OutdoorPractice } from '../outdoorPractice/interface';
 import { OutdoorRatingWithScale } from '../outdoorRating/interface';
 import { OutdoorSiteType } from '../outdoorSiteType/interface';
 import { Poi } from '../poi/interface';
-import { TrekResult } from '../results/interface';
+import { ResultCard, TrekResult } from '../results/interface';
 import { Source } from '../source/interface';
 import { TouristicContent } from '../touristicContent/interface';
 
@@ -68,6 +68,11 @@ export interface RawOutdoorSiteDetails extends RawOutdoorSite {
   id: string;
   bbox: number[];
   properties: RawOutdoorSiteDetailsProperties;
+}
+
+export interface OutdoorSiteResult extends ResultCard {
+  category: Activity | null;
+  type: 'OUTDOOR_SITE';
 }
 
 export interface OutdoorSite {
