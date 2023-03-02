@@ -5,7 +5,7 @@ import { Popup as LeafletPopup, Tooltip as LeafletTooltip } from 'react-leaflet'
 import { FormattedMessage } from 'react-intl';
 import Loader from 'components/Loader';
 
-import { colorPalette, desktopOnly, getSpacing } from 'stylesheet';
+import { desktopOnly, getSpacing } from 'stylesheet';
 import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import { Button as RawButton } from 'components/Button';
 import { generateResultDetailsUrl } from 'components/pages/search/utils';
@@ -32,7 +32,7 @@ const getRoute = (type: string) => {
   if (type === 'TOURISTIC_CONTENT') return routes.TOURISTIC_CONTENT;
   if (type === 'OUTDOOR_SITE') return routes.OUTDOOR_SITE;
   if (type === 'TOURISTIC_EVENT') return routes.TOURISTIC_EVENT;
-  return routes.DETAILS;
+  return routes.TREK;
 };
 
 const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId }) => {
