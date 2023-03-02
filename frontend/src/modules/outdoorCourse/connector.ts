@@ -9,9 +9,13 @@ import { getOutdoorRating } from '../outdoorRating/connector';
 import { getOutdoorRatingScale } from '../outdoorRatingScale/connector';
 import { getPois } from '../poi/connector';
 import { getTouristicContentsNearTarget } from '../touristicContent/connector';
-import { adaptOutdoorCourseDetails, adaptOutdoorCourses } from './adapter';
+import {
+  adaptOutdoorCourseDetails,
+  adaptOutdoorCourses,
+  adaptOutdoorCoursesResult,
+} from './adapter';
 import { fetchOutdoorCourseDetails, fetchOutdoorCourses } from './api';
-import { OutdoorCourse, OutdoorCourseDetails } from './interface';
+import { OutdoorCourse, OutdoorCourseDetails, OutdoorCourseResult } from './interface';
 
 export const getOutdoorCourses = async (language: string, query = {}): Promise<OutdoorCourse[]> => {
   const [rawOutdoorCoursesResult, cityDictionnary] = await Promise.all([
@@ -20,6 +24,21 @@ export const getOutdoorCourses = async (language: string, query = {}): Promise<O
   ]);
 
   return adaptOutdoorCourses({
+    rawOutdoorCourses: rawOutdoorCoursesResult.results,
+    cityDictionnary,
+  });
+};
+
+export const getOutdoorCoursesResult = async (
+  language: string,
+  query = {},
+): Promise<OutdoorCourseResult[]> => {
+  const [rawOutdoorCoursesResult, cityDictionnary] = await Promise.all([
+    fetchOutdoorCourses({ ...query, language }),
+    getCities(language),
+  ]);
+
+  return adaptOutdoorCoursesResult({
     rawOutdoorCourses: rawOutdoorCoursesResult.results,
     cityDictionnary,
   });

@@ -15,6 +15,7 @@ import { formatHours } from '../utils/time';
 import {
   OutdoorCourse,
   OutdoorCourseDetails,
+  OutdoorCourseResult,
   RawOutdoorCourse,
   RawOutdoorCourseDetails,
 } from './interface';
@@ -46,6 +47,57 @@ export const adaptOutdoorCourses = ({
         typeof rawOutdoorCourse.height === 'number'
           ? `${rawOutdoorCourse.height}${dataUnits.distance}`
           : null,
+      themes: [],
+      place: cityDictionnary?.[rawOutdoorCourse?.cities?.[0]]?.name ?? '',
+    };
+  });
+};
+
+export const adaptOutdoorCoursesResult = ({
+  rawOutdoorCourses,
+  cityDictionnary,
+}: {
+  rawOutdoorCourses: RawOutdoorCourse[];
+  cityDictionnary: CityDictionnary;
+}): OutdoorCourseResult[] => {
+  return rawOutdoorCourses.map(rawOutdoorCourse => {
+    return {
+      id: rawOutdoorCourse.id,
+      name: rawOutdoorCourse.name,
+      attachments: getAttachments(rawOutdoorCourse.attachments),
+      geometry: adaptGeometry(rawOutdoorCourse.geometry),
+      type: 'OUTDOOR_COURSE',
+      thumbnailUris: getThumbnails(rawOutdoorCourse.attachments),
+      informations: [
+        {
+          label: 'duration',
+          value:
+            typeof rawOutdoorCourse.duration === 'number'
+              ? formatHours(rawOutdoorCourse.duration)
+              : '',
+        },
+        {
+          label: 'maxElevation',
+          value:
+            typeof rawOutdoorCourse.max_elevation === 'number'
+              ? `${rawOutdoorCourse.max_elevation}`
+              : '',
+        },
+        {
+          label: 'distance',
+          value:
+            typeof rawOutdoorCourse.length === 'number'
+              ? `${Math.round(rawOutdoorCourse.length)}${dataUnits.distance}`
+              : '',
+        },
+        {
+          label: 'height',
+          value:
+            typeof rawOutdoorCourse.height === 'number'
+              ? `${rawOutdoorCourse.height}${dataUnits.distance}`
+              : '',
+        },
+      ].filter(item => item.value.length > 0),
       place: cityDictionnary?.[rawOutdoorCourse?.cities?.[0]]?.name ?? '',
     };
   });
