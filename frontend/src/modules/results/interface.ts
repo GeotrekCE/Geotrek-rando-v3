@@ -4,6 +4,39 @@ import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { OutdoorSite } from '../outdoorSite/interface';
 import { TouristicEvent } from '../touristicEvent/interface';
 
+export interface InformationCardTuple {
+  label: 'date';
+  value: [string, string];
+}
+
+export interface InformationCardLabelValues {
+  label: 'types';
+  value: {
+    label: string;
+    values: string[];
+  }[];
+}
+
+interface InformationCardOthers {
+  label: string;
+  value: string | number;
+}
+
+export type InformationCard = (
+  | InformationCardTuple
+  | InformationCardLabelValues
+  | InformationCardOthers
+) & { pictogramUri?: string };
+
+export interface ResultCard {
+  id: string;
+  name: string;
+  attachments: Attachment[];
+  tags?: string[];
+  place: string;
+  informations?: InformationCard[];
+}
+
 export interface SearchResults {
   resultsNumber: number;
   resultsNumberDetails: {
