@@ -23,9 +23,10 @@ import {
   adaptOutdoorSiteDetails,
   adaptOutdoorSitePopupResults,
   adaptOutdoorSites,
+  adaptoutdoorSitesResult,
 } from './adapter';
 import { fetchOutdoorSiteDetails, fetchOutdoorSiteResult, fetchOutdoorSites } from './api';
-import { OutdoorSite, OutdoorSiteDetails } from './interface';
+import { OutdoorSite, OutdoorSiteDetails, OutdoorSiteResult } from './interface';
 
 export const getOutdoorSites = async (language: string, query = {}): Promise<OutdoorSite[]> => {
   const [rawOutdoorSitesResult, themeDictionnary, outdoorPracticeDictionnary, cityDictionnary] =
@@ -37,6 +38,26 @@ export const getOutdoorSites = async (language: string, query = {}): Promise<Out
     ]);
 
   return adaptOutdoorSites({
+    rawOutdoorSites: rawOutdoorSitesResult?.results ?? [],
+    themeDictionnary,
+    outdoorPracticeDictionnary,
+    cityDictionnary,
+  });
+};
+
+export const getOutdoorSitesResult = async (
+  language: string,
+  query = {},
+): Promise<OutdoorSiteResult[]> => {
+  const [rawOutdoorSitesResult, themeDictionnary, outdoorPracticeDictionnary, cityDictionnary] =
+    await Promise.all([
+      getGlobalConfig().enableOutdoor ? fetchOutdoorSites({ ...query, language }) : null,
+      getThemes(language),
+      getOutdoorPractices(language),
+      getCities(language),
+    ]);
+
+  return adaptoutdoorSitesResult({
     rawOutdoorSites: rawOutdoorSitesResult?.results ?? [],
     themeDictionnary,
     outdoorPracticeDictionnary,
