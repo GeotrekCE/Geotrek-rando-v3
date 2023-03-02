@@ -15,6 +15,7 @@ import {
 import { SignageDictionary } from 'modules/signage/interface';
 import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
+import { ResultCard } from 'modules/results/interface';
 import { OutdoorCourseType } from '../outdoorCourseType/interface';
 import { OutdoorRatingWithScale } from '../outdoorRating/interface';
 import { Poi } from '../poi/interface';
@@ -53,6 +54,10 @@ export interface RawOutdoorCourseDetails extends RawOutdoorCourse {
   id: string;
   bbox: number[];
   properties: RawOutdoorCourseDetailsProperties;
+}
+
+export interface OutdoorCourseResult extends ResultCard {
+  type: 'OUTDOOR_COURSE';
 }
 
 export interface OutdoorCourse {
