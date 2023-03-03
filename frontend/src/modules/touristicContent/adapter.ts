@@ -63,24 +63,29 @@ export const adaptTouristicContentResult = ({
       Array.isArray(rawTouristicObject.cities) && rawTouristicObject.cities.length > 0
         ? cityDictionnary[rawTouristicObject.cities[0]].name
         : '',
-    themes:
+    tags:
       rawTouristicObject.themes !== null
         ? rawTouristicObject.themes.map(themeId => themeDictionnary[themeId]?.label)
         : [],
 
-    informations: Object.entries(rawTouristicObject.types).reduce<TouristicContentDetailsType[]>(
-      (adaptedTypes, typeEntry) => {
-        const adaptedType = adaptTouristicType(
-          typeEntry,
-          touristicContentCategories[rawTouristicObject.category],
-        );
-        if (adaptedType) {
-          adaptedTypes.push(adaptedType);
-        }
-        return adaptedTypes;
+    informations: [
+      {
+        label: 'types',
+        value: Object.entries(rawTouristicObject.types).reduce<TouristicContentDetailsType[]>(
+          (adaptedTypes, typeEntry) => {
+            const adaptedType = adaptTouristicType(
+              typeEntry,
+              touristicContentCategories[rawTouristicObject.category],
+            );
+            if (adaptedType) {
+              adaptedTypes.push(adaptedType);
+            }
+            return adaptedTypes;
+          },
+          [],
+        ),
       },
-      [],
-    ),
+    ],
   }));
 
 export const adaptTouristicContentDetails = ({

@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-csuSiG tzpCM"
+        class="sc-ipEyDJ WiwCL"
         id="result_card"
       >
         <div
@@ -47,13 +47,13 @@ Object {
           href="/details-2-Balade-au-pays-des-menhirs"
         >
           <div
-            class="sc-eDWCr Fpvvy"
+            class="sc-csuSiG fEWNcB"
           >
             <div
-              class="sc-bqWxrE fQSmfG"
+              class="sc-eDWCr gZuIOO"
             >
               <span
-                class="sc-hBxehG bzEkpl"
+                class="sc-bqWxrE jgLiBi"
               >
                 Saint-Etienne-du-Valdonnez
               </span>
@@ -63,10 +63,10 @@ Object {
                 Balade au pays des menhirs
               </h3>
               <div
-                class="sc-fnGiBr dTwFJK"
+                class="sc-ksBlkl flWUCh"
               >
                 <div
-                  class="sc-fEXmlR kNjzYN"
+                  class="sc-hBxehG cFOBNt"
                 >
                   <div
                     class="sc-pyfCe fwHJCn"
@@ -91,12 +91,10 @@ Object {
                   </div>
                 </div>
               </div>
-              <div
-                class="sc-bjfHbI bXemvC"
+              <ul
+                class="mt-4 flex flex-wrap gap-2 desktop:gap-4"
               >
-                <div
-                  class="sc-idXgbr ieLZFJ"
-                >
+                <li>
                   <div
                     class="flex items-center text-primary1 "
                   >
@@ -114,8 +112,12 @@ Object {
                     />
                     <span
                       class="ml-2 text-sm text-greyDarkColored"
-                    />
+                    >
+                      Difficile
+                    </span>
                   </div>
+                </li>
+                <li>
                   <div
                     class="flex items-center text-primary1 "
                   >
@@ -148,6 +150,8 @@ Object {
                       2h
                     </span>
                   </div>
+                </li>
+                <li>
                   <div
                     class="flex items-center text-primary1 "
                   >
@@ -172,8 +176,10 @@ Object {
                       5km
                     </span>
                   </div>
+                </li>
+                <li>
                   <div
-                    class="flex items-center text-primary1 desktop:flex hidden"
+                    class="flex items-center text-primary1 "
                   >
                     <svg
                       fill="none"
@@ -203,8 +209,8 @@ Object {
                       +360m
                     </span>
                   </div>
-                </div>
-              </div>
+                </li>
+              </ul>
             </div>
           </div>
         </a>
@@ -213,7 +219,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-csuSiG tzpCM"
+      class="sc-ipEyDJ WiwCL"
       id="result_card"
     >
       <div
@@ -254,13 +260,13 @@ Object {
         href="/details-2-Balade-au-pays-des-menhirs"
       >
         <div
-          class="sc-eDWCr Fpvvy"
+          class="sc-csuSiG fEWNcB"
         >
           <div
-            class="sc-bqWxrE fQSmfG"
+            class="sc-eDWCr gZuIOO"
           >
             <span
-              class="sc-hBxehG bzEkpl"
+              class="sc-bqWxrE jgLiBi"
             >
               Saint-Etienne-du-Valdonnez
             </span>
@@ -270,10 +276,10 @@ Object {
               Balade au pays des menhirs
             </h3>
             <div
-              class="sc-fnGiBr dTwFJK"
+              class="sc-ksBlkl flWUCh"
             >
               <div
-                class="sc-fEXmlR kNjzYN"
+                class="sc-hBxehG cFOBNt"
               >
                 <div
                   class="sc-pyfCe fwHJCn"
@@ -298,12 +304,10 @@ Object {
                 </div>
               </div>
             </div>
-            <div
-              class="sc-bjfHbI bXemvC"
+            <ul
+              class="mt-4 flex flex-wrap gap-2 desktop:gap-4"
             >
-              <div
-                class="sc-idXgbr ieLZFJ"
-              >
+              <li>
                 <div
                   class="flex items-center text-primary1 "
                 >
@@ -321,8 +325,12 @@ Object {
                   />
                   <span
                     class="ml-2 text-sm text-greyDarkColored"
-                  />
+                  >
+                    Difficile
+                  </span>
                 </div>
+              </li>
+              <li>
                 <div
                   class="flex items-center text-primary1 "
                 >
@@ -355,6 +363,8 @@ Object {
                     2h
                   </span>
                 </div>
+              </li>
+              <li>
                 <div
                   class="flex items-center text-primary1 "
                 >
@@ -379,8 +389,10 @@ Object {
                     5km
                   </span>
                 </div>
+              </li>
+              <li>
                 <div
-                  class="flex items-center text-primary1 desktop:flex hidden"
+                  class="flex items-center text-primary1 "
                 >
                   <svg
                     fill="none"
@@ -410,8 +422,8 @@ Object {
                     +360m
                   </span>
                 </div>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
       </a>

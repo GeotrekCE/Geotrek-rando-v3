@@ -8,7 +8,7 @@ import { CityDictionnary } from '../city/interface';
 import { Choices } from '../filters/interface';
 import { InformationDeskDictionnary } from '../informationDesk/interface';
 import { LabelDictionnary } from '../label/interface';
-import { OutdoorCourse } from '../outdoorCourse/interface';
+import { OutdoorCourseResult } from '../outdoorCourse/interface';
 import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { OutdoorRatingChoices } from '../outdoorRating/interface';
 import { OutdoorRatingScale } from '../outdoorRatingScale/interface';
@@ -41,7 +41,6 @@ export const adaptOutdoorSites = ({
   rawOutdoorSites.map(rawOutdoorSite => {
     return {
       id: rawOutdoorSite.id,
-      type: 'OUTDOOR_SITE',
       name: rawOutdoorSite.name,
       attachments: getAttachments(rawOutdoorSite.attachments),
       geometry: adaptGeometry(rawOutdoorSite.geometry),
@@ -106,12 +105,12 @@ export const adaptOutdoorSiteDetails = ({
   rawOutdoorSiteDetails: RawOutdoorSiteDetails;
   pois: Poi[];
   touristicContents: TouristicContent[];
-  children: OutdoorSite[];
+  children: OutdoorSiteResult[];
   themeDictionnary: Choices;
   labelsDictionnary: LabelDictionnary;
   sourcesDictionnary: SourceDictionnary;
   informationDesksDictionnary: InformationDeskDictionnary;
-  courses: OutdoorCourse[];
+  courses: OutdoorCourseResult[];
   outdoorPracticeDictionnary: OutdoorPracticeChoices;
   access: TrekResult[];
   outdoorPractice: OutdoorPracticeChoices;
@@ -133,7 +132,6 @@ export const adaptOutdoorSiteDetails = ({
     cityDictionnary,
   })[0],
   accessibility: rawOutdoorSiteDetails.properties.accessibility ?? null,
-  type: 'OUTDOOR_SITE',
   description: rawOutdoorSiteDetails.properties.description,
   ambiance: rawOutdoorSiteDetails.properties.ambiance,
   advice: rawOutdoorSiteDetails.properties.advice,

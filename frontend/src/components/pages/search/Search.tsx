@@ -21,10 +21,6 @@ import { FilterState } from 'modules/filters/interface';
 import { SearchMapDynamicComponent } from 'components/Map';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { countFiltersSelected } from '../../../modules/filters/utils';
-import { OutdoorSite } from '../../../modules/outdoorSite/interface';
-import { TrekResult } from '../../../modules/results/interface';
-import { TouristicContentResult } from '../../../modules/touristicContent/interface';
-import { TouristicEvent } from '../../../modules/touristicEvent/interface';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
 import { ToggleFilterButton } from './components/ToggleFilterButton';
@@ -32,12 +28,8 @@ import { useFilter } from './components/useFilters';
 import { useTrekResults } from './hooks/useTrekResults';
 import { useMapResults } from './hooks/useMapResults';
 import { ErrorFallback } from './components/ErrorFallback';
-import { generateResultDetailsUrl, getHoverId } from './utils';
-import {
-  generateOutdoorSiteUrl,
-  generateTouristicContentUrl,
-  generateTouristicEventUrl,
-} from '../details/utils';
+import { getHoverId } from './utils';
+import { generateDetailsUrlFromType } from '../details/utils';
 import InputWithMagnifier from './components/InputWithMagnifier';
 import { useTextFilter } from './hooks/useTextFilter';
 import { useDateFilter } from './hooks/useDateFilter';
@@ -215,94 +207,28 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                   scrollableTarget="search_resultCardList"
                 >
                   {searchResults?.results.map(searchResult => {
-                    if (isTrek(searchResult))
-                      return (
-                        <ResultCard
-                          type={searchResult.type}
-                          key={`${searchResult.type}-${searchResult.id}`}
-                          id={`${searchResult.id}`}
-                          hoverId={getHoverId(searchResult)}
-                          place={searchResult.place}
-                          title={searchResult.name}
-                          tags={searchResult.themes}
-                          attachments={searchResult.attachments}
-                          badgeIconUri={searchResult.category?.pictogramUri}
-                          badgeName={searchResult.category?.label}
-                          informations={searchResult.informations}
-                          redirectionUrl={generateResultDetailsUrl(
-                            searchResult.id,
-                            searchResult.name,
-                          )}
-                          className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
-                          titleTag="h2"
-                        />
-                      );
-                    else if (isTouristicContent(searchResult))
-                      return (
-                        <ResultCard
-                          type={searchResult.type}
-                          key={`${searchResult.type}-${searchResult.id}`}
-                          id={`${searchResult.id}`}
-                          hoverId={getHoverId(searchResult)}
-                          place={searchResult.place}
-                          title={searchResult.name}
-                          tags={searchResult.themes}
-                          attachments={searchResult.attachments}
-                          badgeIconUri={searchResult.category?.pictogramUri}
-                          badgeName={searchResult.category?.label}
-                          informations={searchResult.informations}
-                          redirectionUrl={generateTouristicContentUrl(
-                            searchResult.id,
-                            searchResult.name,
-                          )}
-                          className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
-                          titleTag="h2"
-                        />
-                      );
-                    else if (isOutdoorSite(searchResult))
-                      return (
-                        <ResultCard
-                          type={searchResult.type}
-                          key={`${searchResult.type}-${searchResult.id}`}
-                          id={`${searchResult.id}`}
-                          hoverId={getHoverId(searchResult)}
-                          place={searchResult.place}
-                          title={searchResult.name}
-                          tags={searchResult.themes}
-                          attachments={searchResult.attachments}
-                          badgeIconUri={searchResult.category?.pictogramUri}
-                          badgeName={searchResult.category?.label}
-                          informations={[]}
-                          redirectionUrl={generateOutdoorSiteUrl(
-                            searchResult.id,
-                            searchResult.name,
-                          )}
-                          className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
-                          titleTag="h2"
-                        />
-                      );
-                    else if (isTouristicEvent(searchResult))
-                      return (
-                        <ResultCard
-                          type={searchResult.type}
-                          key={`${searchResult.type}-${searchResult.id}`}
-                          id={`${searchResult.id}`}
-                          hoverId={getHoverId(searchResult)}
-                          place={searchResult.place}
-                          title={searchResult.name}
-                          tags={searchResult.themes}
-                          attachments={searchResult.attachments}
-                          badgeIconUri={searchResult.category?.pictogramUri}
-                          badgeName={searchResult.category?.label}
-                          informations={searchResult.informations}
-                          redirectionUrl={generateTouristicEventUrl(
-                            searchResult.id,
-                            searchResult.name,
-                          )}
-                          className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
-                          titleTag="h2"
-                        />
-                      );
+                    return (
+                      <ResultCard
+                        type={searchResult.type}
+                        key={`${searchResult.type}-${searchResult.id}`}
+                        id={`${searchResult.id}`}
+                        hoverId={getHoverId(searchResult)}
+                        place={searchResult.place}
+                        title={searchResult.name}
+                        tags={searchResult.tags}
+                        attachments={searchResult.attachments}
+                        badgeIconUri={searchResult.category?.pictogramUri}
+                        badgeName={searchResult.category?.label}
+                        informations={searchResult.informations ?? []}
+                        redirectionUrl={generateDetailsUrlFromType(
+                          searchResult.type,
+                          searchResult.id,
+                          searchResult.name,
+                        )}
+                        className="my-4 desktop:my-6 desktop:mx-1 desktop:max-h-50" // Height is limited in desktop to restrain vertical images ; not limiting with short text & informations
+                        titleTag="h2"
+                      />
+                    );
                   })}
                 </InfiniteScroll>
                 {isError && (
@@ -367,19 +293,3 @@ export const MobileMapContainer = styled.div<{
   transition: top 0.3s ease-in-out 0.1s;
   top: ${({ displayState }) => (displayState === 'DISPLAYED' ? 0 : 100)}%;
 `;
-
-export const isTrek = (
-  content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
-): content is TrekResult => content.type === 'TREK';
-
-export const isTouristicContent = (
-  content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
-): content is TouristicContentResult => content.type === 'TOURISTIC_CONTENT';
-
-export const isOutdoorSite = (
-  content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
-): content is OutdoorSite => content.type === 'OUTDOOR_SITE';
-
-export const isTouristicEvent = (
-  content: TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent,
-): content is TouristicEvent => content.type === 'TOURISTIC_EVENT';

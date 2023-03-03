@@ -1,133 +1,54 @@
-import { Altitude } from 'components/Icons/Altitude';
-import { Calendar } from 'components/Icons/Calendar';
-import { Height } from 'components/Icons/Height';
 import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
 import styled, { css } from 'styled-components';
-import { FormattedMessage, useIntl } from 'react-intl';
 
 import { borderRadius, colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
 import { flexGap } from 'services/cssHelpers';
 
 import { Chip } from 'components/Chip';
-import { Button } from 'components/Button';
 import { Link } from 'components/Link';
-import { LocalIconInformation, RemoteIconInformation } from 'components/Information';
-import { TouristicContentDetailsType } from 'modules/touristicContent/interface';
-
-import { Clock } from 'components/Icons/Clock';
-import { CodeBrackets } from 'components/Icons/CodeBrackets';
-import { TrendingUp } from 'components/Icons/TrendingUp';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 
+import { InformationCard } from 'modules/results/interface';
 import { Attachment } from '../../../../../modules/interface';
-import { dataUnits } from '../../../../../modules/results/adapter';
 import { ResultCardCarousel } from './ResultCardCarousel';
+import { InformationCardList } from './InformationCardList';
 
-interface BaseProps {
+interface ResultCardProps {
   id: string;
   hoverId: string | null;
   place: string | null;
   title: string;
-  tags: string[];
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
+  tags?: string[];
   redirectionUrl: string;
   attachments: Attachment[];
   badgeIconUri?: string;
   badgeName?: string;
   className?: string;
+  informations?: InformationCard[];
+  asColumn?: boolean;
+  titleTag?: keyof JSX.IntrinsicElements;
 }
 
-interface TrekProps extends BaseProps {
-  type: 'TREK';
-  informations: {
-    duration: string | null;
-    distance: string;
-    elevation: string;
-    difficulty?: { label: string; pictogramUri: string } | null;
-    reservationSystem: number | null;
-  };
-}
-
-interface TouristicContentProps extends BaseProps {
-  type: 'TOURISTIC_CONTENT';
-  informations: TouristicContentDetailsType[];
-}
-
-interface OutdoorSiteProps extends BaseProps {
-  type: 'OUTDOOR_SITE';
-  informations: TouristicContentDetailsType[];
-}
-
-interface OutdoorCourseProps extends BaseProps {
-  type: 'OUTDOOR_COURSE';
-  informations: {
-    duration: string | null;
-    elevation?: string | null;
-    maxElevation?: number;
-    height: string | null;
-    length: string | null;
-  };
-}
-
-interface TouristicEventProps extends BaseProps {
-  type: 'TOURISTIC_EVENT';
-  informations: Record<any, any>;
-}
-
-const isTrek = (
-  content:
-    | TrekProps
-    | TouristicContentProps
-    | OutdoorSiteProps
-    | OutdoorCourseProps
-    | TouristicEventProps,
-): content is TrekProps => content.type === 'TREK';
-
-const isOutdoorCourse = (
-  content:
-    | TrekProps
-    | TouristicContentProps
-    | OutdoorSiteProps
-    | OutdoorCourseProps
-    | TouristicEventProps,
-): content is OutdoorCourseProps => content.type === 'OUTDOOR_COURSE';
-
-const isTouristicEvent = (
-  content:
-    | TrekProps
-    | TouristicContentProps
-    | OutdoorSiteProps
-    | OutdoorCourseProps
-    | TouristicEventProps,
-): content is TouristicEventProps => content.type === 'TOURISTIC_EVENT';
-
-export const ResultCard: React.FC<
-  (
-    | TrekProps
-    | TouristicContentProps
-    | OutdoorSiteProps
-    | OutdoorCourseProps
-    | TouristicEventProps
-  ) & { asColumn?: boolean; titleTag?: keyof JSX.IntrinsicElements }
-> = props => {
+export const ResultCard: React.FC<ResultCardProps> = props => {
   const {
-    id,
-    hoverId,
-    place,
-    title,
-    tags,
+    asColumn,
     attachments,
     badgeIconUri,
     badgeName,
     className,
+    hoverId,
+    id,
+    informations,
+    place,
     redirectionUrl,
-    asColumn,
+    tags,
+    title,
     titleTag: TitleTag = 'h3',
     type,
   } = props;
   const { setHoveredCardId } = useListAndMapContext();
-
-  const { locale } = useIntl();
 
   return (
     <Container
@@ -170,126 +91,19 @@ export const ResultCard: React.FC<
               {title}
             </TitleTag>
 
-            <TagContainer>
-              <TagLayout>
-                {tags
-                  .filter(tag => tag !== null && Number(tag?.length) > 0)
-                  .map(tag => (
-                    <Chip key={tag}>{tag}</Chip>
-                  ))}
-              </TagLayout>
-            </TagContainer>
-            {isTouristicEvent(props) && (
-              <InformationContainer>
-                {props.informations.date !== undefined && (
-                  <LocalIconInformation icon={Calendar}>
-                    {props.informations.date.beginDate === props.informations.date.endDate ? (
-                      <FormattedMessage
-                        id={'dates.singleDate'}
-                        values={{
-                          date: new Intl.DateTimeFormat(locale).format(
-                            new Date(props.informations.date.beginDate),
-                          ),
-                        }}
-                      />
-                    ) : (
-                      <FormattedMessage
-                        id={'dates.multipleDates'}
-                        values={{
-                          beginDate: new Intl.DateTimeFormat(locale).format(
-                            new Date(props.informations.date.beginDate),
-                          ),
-                          endDate: new Intl.DateTimeFormat(locale).format(
-                            new Date(props.informations.date.endDate),
-                          ),
-                        }}
-                      />
-                    )}
-                  </LocalIconInformation>
-                )}
-              </InformationContainer>
+            {tags !== undefined && (
+              <TagContainer>
+                <TagLayout>
+                  {tags
+                    .filter(tag => tag !== null && Number(tag?.length) > 0)
+                    .map(tag => (
+                      <Chip key={tag}>{tag}</Chip>
+                    ))}
+                </TagLayout>
+              </TagContainer>
             )}
-            {isOutdoorCourse(props) && (
-              <InformationContainer>
-                <InformationLayout>
-                  {props.informations.duration && (
-                    <LocalIconInformation icon={Clock}>
-                      {props.informations.duration}
-                    </LocalIconInformation>
-                  )}
-                  {props.informations.elevation && (
-                    <LocalIconInformation icon={TrendingUp}>
-                      {props.informations.elevation}
-                    </LocalIconInformation>
-                  )}
-                  {props.informations.maxElevation && (
-                    <LocalIconInformation icon={Altitude}>
-                      {props.informations.maxElevation}
-                      {dataUnits.distance}
-                    </LocalIconInformation>
-                  )}
-                  {props.informations.length && (
-                    <LocalIconInformation icon={CodeBrackets}>
-                      {props.informations.length}
-                    </LocalIconInformation>
-                  )}
-                  {props.informations.height && (
-                    <LocalIconInformation icon={Height}>
-                      {props.informations.height}
-                    </LocalIconInformation>
-                  )}
-                </InformationLayout>
-              </InformationContainer>
-            )}
-            {isTrek(props) && (
-              <InformationContainer>
-                <InformationLayout>
-                  {props.informations.difficulty && (
-                    <RemoteIconInformation iconUri={props.informations.difficulty.pictogramUri}>
-                      {props.informations.difficulty.label}
-                    </RemoteIconInformation>
-                  )}
-                  {props.informations.duration && (
-                    <LocalIconInformation icon={Clock}>
-                      {props.informations.duration}
-                    </LocalIconInformation>
-                  )}
-                  {props.informations.distance && (
-                    <LocalIconInformation icon={CodeBrackets}>
-                      {props.informations.distance}
-                    </LocalIconInformation>
-                  )}
-                  {props.informations.elevation && (
-                    <LocalIconInformation icon={TrendingUp} className="desktop:flex hidden">
-                      {props.informations.elevation}
-                    </LocalIconInformation>
-                  )}
-                </InformationLayout>
-              </InformationContainer>
-            )}
-            {!isTrek(props) && !isOutdoorCourse(props) && !isTouristicEvent(props) && (
-              <InformationContainer>
-                {props.informations.map(
-                  ({ label, values }) =>
-                    values.length > 0 && (
-                      <div key={label} className="text-greyDarkColored">
-                        <span className="font-bold">{`${label} : `}</span>
-                        {values.join(', ')}
-                      </div>
-                    ),
-                )}
-              </InformationContainer>
-            )}
+            <InformationCardList informations={informations} />
           </DetailsLayout>
-          {isTrek(props) &&
-            props.informations.reservationSystem !== null &&
-            false && ( // we disable this button because the booking behaviour is not implemented yet
-              <BookingButtonContainer>
-                <Button>
-                  <FormattedMessage id="search.book" />
-                </Button>
-              </BookingButtonContainer>
-            )}
         </DetailsContainer>
       </Link>
     </Container>
@@ -342,17 +156,6 @@ const DetailsLayout = styled.div`
   width: 100%;
 `;
 
-const BookingButtonContainer = styled.div`
-  margin-left: ${getSpacing(4)};
-  display: none;
-
-  ${desktopOnly(
-    css`
-      display: block;
-    `,
-  )}
-`;
-
 const Place = styled.span`
   color: ${colorPalette.greyDarkColored};
   ${typography.small}
@@ -372,19 +175,6 @@ const TagContainer = styled.div`
 const TagLayout = styled.div`
   ${flexGap(getSpacing(2))}
 
-  ${desktopOnly(
-    css`
-      ${flexGap(getSpacing(4))}
-    `,
-  )}
-`;
-
-const InformationContainer = styled.div`
-  margin-top: ${getSpacing(4)};
-`;
-
-const InformationLayout = styled.div`
-  ${flexGap(getSpacing(2))}
   ${desktopOnly(
     css`
       ${flexGap(getSpacing(4))}

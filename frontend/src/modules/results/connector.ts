@@ -11,12 +11,12 @@ import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { getCities } from 'modules/city/connector';
 import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
-import { adaptOutdoorSites } from '../outdoorSite/adapter';
+import { adaptoutdoorSitesResult } from '../outdoorSite/adapter';
 import { fetchOutdoorSites } from '../outdoorSite/api';
-import { OutdoorSite } from '../outdoorSite/interface';
-import { adaptTouristicEvents } from '../touristicEvent/adapter';
+import { OutdoorSiteResult } from '../outdoorSite/interface';
+import { adaptTouristicEventsResult } from '../touristicEvent/adapter';
 import { fetchTouristicEvents } from '../touristicEvent/api';
-import { TouristicEvent } from '../touristicEvent/interface';
+import { TouristicEventResult } from '../touristicEvent/interface';
 import { getTouristicEventTypes } from '../touristicEventType/connector';
 
 import { adaptTrekResultList } from './adapter';
@@ -273,14 +273,14 @@ export const getSearchResults = async (
       cityDictionnary,
     });
 
-    const adaptedOutdoorSitesList: OutdoorSite[] = adaptOutdoorSites({
+    const adaptedOutdoorSitesList: OutdoorSiteResult[] = adaptoutdoorSitesResult({
       rawOutdoorSites: rawOutdoorSites.results,
       themeDictionnary: themes,
       outdoorPracticeDictionnary,
       cityDictionnary,
     });
 
-    const adaptedTouristicEventsList: TouristicEvent[] = adaptTouristicEvents({
+    const adaptedTouristicEventsList: TouristicEventResult[] = adaptTouristicEventsResult({
       rawTouristicEvents: rawTouristicEvents.results,
       themeDictionnary: themes,
       cityDictionnary,
