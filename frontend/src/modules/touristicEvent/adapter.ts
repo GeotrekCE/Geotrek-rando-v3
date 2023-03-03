@@ -13,7 +13,10 @@ import {
   RawTouristicEventDetails,
   TouristicEvent,
   TouristicEventDetails,
+  TouristicEventResult,
 } from './interface';
+
+const getISOdate = (date: string) => (date.includes('T') ? date : `${date}T00:00:00`);
 
 export const adaptTouristicEvents = ({
   rawTouristicEvents,
@@ -37,13 +40,41 @@ export const adaptTouristicEvents = ({
       place: cityDictionnary?.[rawTouristicEvent?.cities?.[0]]?.name ?? '',
       category: touristicEventType[Number(rawTouristicEvent?.type)],
       informations: {
-        beginDate: rawTouristicEvent.begin_date.includes('T')
-          ? rawTouristicEvent.begin_date
-          : `${rawTouristicEvent.begin_date}T00:00:00`,
-        endDate: rawTouristicEvent.end_date.includes('T')
-          ? rawTouristicEvent.end_date
-          : `${rawTouristicEvent.end_date}T00:00:00`,
+        beginDate: getISOdate(rawTouristicEvent.begin_date),
+        endDate: getISOdate(rawTouristicEvent.end_date),
       },
+      logoUri: rawTouristicEvent.approved ? getGlobalConfig().touristicContentLabelImageUri : null,
+    };
+  });
+};
+
+export const adaptTouristicEventsResult = ({
+  rawTouristicEvents,
+  themeDictionnary,
+  cityDictionnary,
+  touristicEventType,
+}: {
+  rawTouristicEvents: RawTouristicEvent[];
+  themeDictionnary: Choices;
+  cityDictionnary: CityDictionnary;
+  touristicEventType: TouristicEventTypeChoices;
+}): TouristicEventResult[] => {
+  return rawTouristicEvents.map(rawTouristicEvent => {
+    return {
+      id: rawTouristicEvent.id,
+      type: 'TOURISTIC_EVENT',
+      name: rawTouristicEvent.name,
+      attachments: getAttachments(rawTouristicEvent.attachments),
+      geometry: adaptGeometry(rawTouristicEvent.geometry),
+      tags: rawTouristicEvent?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
+      place: cityDictionnary?.[rawTouristicEvent?.cities?.[0]]?.name ?? '',
+      category: touristicEventType[Number(rawTouristicEvent?.type)],
+      informations: [
+        {
+          label: 'date',
+          value: [getISOdate(rawTouristicEvent.begin_date), getISOdate(rawTouristicEvent.end_date)],
+        },
+      ],
       logoUri: rawTouristicEvent.approved ? getGlobalConfig().touristicContentLabelImageUri : null,
     };
   });
