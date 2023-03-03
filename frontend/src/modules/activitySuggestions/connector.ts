@@ -3,23 +3,22 @@ import { getCities } from 'modules/city/connector';
 import { getDifficulties } from 'modules/filters/difficulties';
 import { getThemes } from 'modules/filters/theme/connector';
 import { getOutdoorPractices } from 'modules/outdoorPractice/connector';
-import { adaptOutdoorSites } from 'modules/outdoorSite/adapter';
+import { adaptoutdoorSitesResult } from 'modules/outdoorSite/adapter';
 import { fetchOutdoorSiteDetails } from 'modules/outdoorSite/api';
-import { OutdoorSite, RawOutdoorSiteDetails } from 'modules/outdoorSite/interface';
+import { OutdoorSiteResult, RawOutdoorSiteDetails } from 'modules/outdoorSite/interface';
 import { adaptTrekResultList } from 'modules/results/adapter';
 import { fetchTrekResult } from 'modules/results/api';
 import { RawTrekResult, TrekResult } from 'modules/results/interface';
-import { getSources } from 'modules/source/connector';
-import { adaptTouristicContentDetails } from 'modules/touristicContent/adapter';
+import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
 import { fetchTouristicContentDetails } from 'modules/touristicContent/api';
 import {
   RawTouristicContentDetails,
-  TouristicContentDetails,
+  TouristicContentResult,
 } from 'modules/touristicContent/interface';
-import { getTouristicContentCategory } from 'modules/touristicContentCategory/connector';
-import { adaptTouristicEvents } from 'modules/touristicEvent/adapter';
+import { getTouristicContentCategories } from 'modules/touristicContentCategory/connector';
+import { adaptTouristicEventsResult } from 'modules/touristicEvent/adapter';
 import { fetchTouristicEventDetails } from 'modules/touristicEvent/api';
-import { RawTouristicEventDetails, TouristicEvent } from 'modules/touristicEvent/interface';
+import { RawTouristicEventDetails, TouristicEventResult } from 'modules/touristicEvent/interface';
 import { getTouristicEventTypes } from 'modules/touristicEventType/connector';
 import { Suggestion } from '../home/interface';
 import { ActivitySuggestion } from './interface';
@@ -32,21 +31,21 @@ export const getActivitySuggestions = async (
     themes,
     activities,
     cityDictionnary,
+    touristicContentCategories,
     outdoorPracticeDictionnary,
     touristicEventType,
-    sources,
   ] = await Promise.all([
     getDifficulties(language),
     getThemes(language),
     getActivities(language),
     getCities(language),
+    getTouristicContentCategories(language),
     getOutdoorPractices(language),
     getTouristicEventTypes(language),
-    getSources(language),
   ]);
 
   const adapt = (type: Suggestion['type']) => {
-    const doAdaptTrekResultList = (results: Partial<RawTrekResult>[]): TrekResult[] =>
+    const doAdaptTrekResultList = (results: RawTrekResult[]): TrekResult[] =>
       adaptTrekResultList({
         resultsList: results,
         difficulties,
@@ -54,36 +53,28 @@ export const getActivitySuggestions = async (
         activities,
         cityDictionnary,
       });
-    const doAdaptTouristicContentResult = async (
+    const doAdaptTouristicContentResult = (
       results: RawTouristicContentDetails[],
-    ): Promise<TouristicContentDetails[]> => {
-      return Promise.all(
-        results.map(async (result: RawTouristicContentDetails) => {
-          const touristicContentCategory = await getTouristicContentCategory(
-            result.properties.category,
-            language,
-          );
-          return adaptTouristicContentDetails({
-            rawTCD: result,
-            touristicContentCategory,
-            sourceDictionnary: sources,
-            cityDictionnary,
-            themeDictionnary: themes,
-          });
-        }),
-      );
-    };
-    const doAdaptOutdoorSites = (results: RawOutdoorSiteDetails[]): OutdoorSite[] =>
-      adaptOutdoorSites({
+    ): TouristicContentResult[] =>
+      adaptTouristicContentResult({
+        rawTouristicContent: results.map(
+          ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons touristic events attributes are in properties field
+        ),
+        touristicContentCategories,
+        themeDictionnary: themes,
+        cityDictionnary,
+      });
+    const doAdaptOutdoorSites = (results: RawOutdoorSiteDetails[]): OutdoorSiteResult[] =>
+      adaptoutdoorSitesResult({
         rawOutdoorSites: results.map(
-          ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons outdoorSites attributes are in properties field
+          ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons touristic events attributes are in properties field
         ),
         themeDictionnary: themes,
         outdoorPracticeDictionnary,
         cityDictionnary,
       });
-    const doAdaptTouristicEvents = (results: RawTouristicEventDetails[]): TouristicEvent[] =>
-      adaptTouristicEvents({
+    const doAdaptTouristicEvents = (results: RawTouristicEventDetails[]): TouristicEventResult[] =>
+      adaptTouristicEventsResult({
         rawTouristicEvents: results.map(
           ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons touristic events attributes are in properties field
         ),
@@ -107,7 +98,7 @@ export const getActivitySuggestions = async (
       ).filter(Boolean);
 
       // TS doesn't see the correspondence between `type` and `raw`
-      const results = raw.length === 0 ? [] : await adapt(type)(raw);
+      const results = raw.length === 0 ? [] : adapt(type)(raw);
       return {
         ...suggestion,
         type,
@@ -132,38 +123,6 @@ const fetch = (id: string, type: Suggestion['type'], language: string) => {
   return doFetch(
     {
       language,
-      fields: [
-        'approved',
-        'ascent',
-        'attachments',
-        'begin_date',
-        'category',
-        'cities',
-        'contact',
-        'departure_city',
-        'departure',
-        'description_teaser',
-        'description',
-        'difficulty',
-        'duration',
-        'email',
-        'end_date',
-        'geometry',
-        'id',
-        'length_2d',
-        'name',
-        'orientation',
-        'pdf',
-        'period',
-        'practice',
-        'reservation_system',
-        'source',
-        'themes',
-        'type',
-        'types',
-        'website',
-        'wind',
-      ].join(','),
     },
     id,
   );

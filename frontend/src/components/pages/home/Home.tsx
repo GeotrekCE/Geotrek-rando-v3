@@ -55,13 +55,12 @@ const HomeUI: FunctionComponent = () => {
           )}
           {suggestions
             .filter(({ results }) => results.length > 0)
-            .map(({ titleTranslationId, iconUrl, results, type }) => (
+            .map(({ titleTranslationId, iconUrl, results }) => (
               <HomeSection
                 title={intl.formatMessage({ id: titleTranslationId })}
                 iconUrl={iconUrl}
                 key={titleTranslationId}
                 results={results}
-                type={type}
               />
             ))}
           {homeBottom !== undefined && (
