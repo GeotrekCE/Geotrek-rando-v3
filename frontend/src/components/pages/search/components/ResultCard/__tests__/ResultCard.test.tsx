@@ -16,13 +16,16 @@ describe('Results Card', () => {
       tags={['En famille', 'Ciel étoilé', 'Beau paysage']}
       attachments={[{ author: '', legend: '', url: '/test.jpg' }]}
       badgeIconUri=""
-      informations={{
-        duration: '2h',
-        distance: '5km',
-        elevation: '+360m',
-        difficulty: { label: '', pictogramUri: '/difficulty.jpg' },
-        reservationSystem: 1,
-      }}
+      informations={[
+        {
+          label: 'difficulty',
+          value: 'Difficile',
+          pictogramUri: '/difficulty.jpg',
+        },
+        { label: 'duration', value: '2h' },
+        { label: 'distance', value: '5km' },
+        { label: 'elevation', value: '+360m' },
+      ]}
       redirectionUrl={urlToTest}
     />
   );
