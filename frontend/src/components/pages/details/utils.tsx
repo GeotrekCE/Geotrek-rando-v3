@@ -142,3 +142,12 @@ export const generateTouristicEventUrl = (id: number | string, title: string): s
   const titleWithNoSpace = convertStringForSitemap(title);
   return `${routes.TOURISTIC_EVENT}/${id}-${encodeURI(titleWithNoSpace)}`;
 };
+
+export const generateDetailsUrlFromType = (
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'TOURISTIC_EVENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE',
+  id: number | string,
+  title: string,
+): string => {
+  const titleWithNoSpace = convertStringForSitemap(title);
+  return `${routes[type]}/${id}-${encodeURI(titleWithNoSpace)}`;
+};
