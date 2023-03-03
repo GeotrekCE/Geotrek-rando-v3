@@ -17,6 +17,7 @@ import {
   RawPointGeometry2D,
   RawPolygonGeometry,
 } from 'modules/interface';
+import { ResultCard } from 'modules/results/interface';
 import { Source } from '../source/interface';
 import { TouristicContent } from '../touristicContent/interface';
 import { TouristicEventType } from '../touristicEventType/interface';
@@ -65,6 +66,11 @@ export interface RawTouristicEventDetails extends RawTouristicEvent {
   id: string;
   bbox: number[];
   properties: RawTouristicEventDetailsProperties;
+}
+
+export interface TouristicEventResult extends ResultCard {
+  type: 'TOURISTIC_EVENT';
+  category: TouristicEventType;
 }
 
 export interface TouristicEvent {
