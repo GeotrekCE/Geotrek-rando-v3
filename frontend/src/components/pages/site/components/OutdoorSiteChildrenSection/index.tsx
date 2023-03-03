@@ -5,10 +5,10 @@ import { ResultCard } from 'components/pages/search/components/ResultCard';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { desktopOnly, scrollBar, sizes } from 'stylesheet';
-import { OutdoorSite } from '../../../../../modules/outdoorSite/interface';
+import { OutdoorSiteResult } from '../../../../../modules/outdoorSite/interface';
 
 interface DetailsChildrenSectionProps {
-  outdoorChildren: OutdoorSite[];
+  outdoorChildren: OutdoorSiteResult[];
   title: string;
   id: string;
 }
@@ -44,11 +44,10 @@ export const OutdoorSiteChildrenSection: React.FC<DetailsChildrenSectionProps> =
               type="OUTDOOR_SITE"
               place={''}
               title={trekChild.name}
-              tags={trekChild.themes}
+              tags={trekChild.tags}
               attachments={trekChild.attachments}
               badgeIconUri={trekChild.category?.pictogramUri}
               badgeName={trekChild.category?.label}
-              informations={[]}
               redirectionUrl={generateOutdoorSiteUrl(trekChild.id, trekChild.name)}
               className="w-60 desktop:w-auto"
             />

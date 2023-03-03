@@ -5,10 +5,10 @@ import { ResultCard } from 'components/pages/search/components/ResultCard';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { desktopOnly, scrollBar, sizes } from 'stylesheet';
-import { OutdoorCourse } from '../../../../../modules/outdoorCourse/interface';
+import { OutdoorCourseResult } from '../../../../../modules/outdoorCourse/interface';
 
 interface DetailsChildrenSectionProps {
-  outdoorChildren: OutdoorCourse[];
+  outdoorChildren: OutdoorCourseResult[];
   title: string;
   id: string;
 }
@@ -43,12 +43,7 @@ export const OutdoorCoursesChildrenSection: React.FC<DetailsChildrenSectionProps
               title={trekChild.name}
               tags={[]}
               attachments={trekChild.attachments}
-              informations={{
-                duration: trekChild.duration,
-                maxElevation: trekChild.maxElevation,
-                height: trekChild.height,
-                length: trekChild.length,
-              }}
+              informations={trekChild.informations}
               redirectionUrl={generateOutdoorCourseUrl(trekChild.id, trekChild.name)}
               className="w-60 desktop:w-auto"
             />

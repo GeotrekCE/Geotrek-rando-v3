@@ -19,7 +19,7 @@ import { SignageDictionary } from 'modules/signage/interface';
 import { Activity } from '../activities/interface';
 import { InformationDesk } from '../informationDesk/interface';
 import { Label } from '../label/interface';
-import { OutdoorCourse } from '../outdoorCourse/interface';
+import { OutdoorCourseResult } from '../outdoorCourse/interface';
 import { OutdoorPractice } from '../outdoorPractice/interface';
 import { OutdoorRatingWithScale } from '../outdoorRating/interface';
 import { OutdoorSiteType } from '../outdoorSiteType/interface';
@@ -87,7 +87,6 @@ export interface OutdoorSite {
     | PointGeometry
     | MultiPointGeometry
     | GeometryCollection;
-  type: 'OUTDOOR_SITE';
   themes: string[];
   category: Activity | null;
   period: string | null;
@@ -109,8 +108,8 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   webLinks?: WebLink[] | null;
   pois: Poi[];
   touristicContents: TouristicContent[];
-  children: OutdoorSite[];
-  courses: OutdoorCourse[];
+  children: OutdoorSiteResult[];
+  courses: OutdoorCourseResult[];
   access: TrekResult[];
   pdfUri: string;
   practice: OutdoorPractice | null;

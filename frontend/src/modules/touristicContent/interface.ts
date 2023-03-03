@@ -13,6 +13,7 @@ import {
   RawPointGeometry2D,
   RawPolygonGeometry,
 } from 'modules/interface';
+import { ResultCard } from 'modules/results/interface';
 import { Source } from 'modules/source/interface';
 import { TouristicContentCategory } from 'modules/touristicContentCategory/interface';
 
@@ -88,15 +89,9 @@ export interface TouristicContent {
   logoUri: string | null;
 }
 
-export interface TouristicContentResult {
-  id: string;
-  type: 'TOURISTIC_CONTENT';
-  name: string;
-  attachments: Attachment[];
+export interface TouristicContentResult extends ResultCard {
   category: TouristicContentCategory;
-  place: string;
-  themes: string[];
-  informations: TouristicContentDetailsType[];
+  type: 'TOURISTIC_CONTENT';
 }
 
 export interface TouristicContentDetails extends TouristicContent {

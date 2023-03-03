@@ -1,8 +1,8 @@
 import { Activity } from 'modules/activities/interface';
 import { Attachment, RawAttachment } from 'modules/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
-import { OutdoorSite } from '../outdoorSite/interface';
-import { TouristicEvent } from '../touristicEvent/interface';
+import { TouristicEventResult } from 'modules/touristicEvent/interface';
+import { OutdoorSiteResult } from '../outdoorSite/interface';
 
 export interface InformationCardTuple {
   label: 'date';
@@ -51,29 +51,11 @@ export interface SearchResults {
     outdoorSites: number | null;
     touristicEvents: number | null;
   };
-  results: (TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent)[];
+  results: (TrekResult | TouristicContentResult | OutdoorSiteResult | TouristicEventResult)[];
 }
-
-export interface TrekResult {
-  type: 'TREK';
-  id: string;
-  place: string | null;
-  name: string;
-  themes: string[];
-  attachments: Attachment[];
+export interface TrekResult extends ResultCard {
   category: Activity | null; // should be an object
-  informations: {
-    duration: string | null;
-    distance: string;
-    elevation: string;
-    difficulty: Difficulty | null;
-    reservationSystem: number | null; // Todo should be string | null
-  };
-}
-
-interface Difficulty {
-  label: string;
-  pictogramUri: string;
+  type: 'TREK';
 }
 
 // API response

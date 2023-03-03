@@ -59,13 +59,25 @@ const OfflinePage: NextPage = () => {
                 attachments={attachments}
                 badgeIconUri={result.practice?.pictogramUri}
                 hoverId={String(result.id)}
-                informations={{
-                  duration: String(result.informations.duration),
-                  distance: String(result.informations.distance),
-                  elevation: String(result.informations.elevation),
-                  difficulty: result.informations.difficulty,
-                  reservationSystem: null,
-                }}
+                informations={[
+                  {
+                    label: 'difficulty',
+                    value: String(result.informations.difficulty?.label ?? ''),
+                    pictogramUri: String(result.informations.difficulty?.pictogramUri ?? ''),
+                  },
+                  {
+                    label: 'duration',
+                    value: String(result.informations.duration),
+                  },
+                  {
+                    label: 'distance',
+                    value: String(result.informations.distance),
+                  },
+                  {
+                    label: 'elevation',
+                    value: String(result.informations.elevation),
+                  },
+                ].filter(item => item.value.length > 0)}
                 redirectionUrl={generateResultDetailsUrl(result.id, result.title)}
                 className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
               />
@@ -110,12 +122,7 @@ const OfflinePage: NextPage = () => {
                 attachments={attachments}
                 badgeIconUri={result.practice?.pictogramUri}
                 hoverId={String(result.id)}
-                informations={{
-                  duration: '',
-                  elevation: '',
-                  height: '',
-                  length: '',
-                }}
+                informations={[]}
                 redirectionUrl={generateOutdoorCourseUrl(result.id, result.title)}
                 className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
               />
@@ -130,12 +137,7 @@ const OfflinePage: NextPage = () => {
                 attachments={attachments}
                 badgeIconUri={result.practice?.pictogramUri}
                 hoverId={String(result.id)}
-                informations={{
-                  duration: '',
-                  elevation: '',
-                  height: '',
-                  length: '',
-                }}
+                informations={[]}
                 redirectionUrl={generateTouristicEventUrl(result.id, result.title)}
                 className="my-4 desktop:my-6 desktop:mx-1" // Height is not limited to let the card grow with long text & informations. Most photos are not vertical, and does not have to be restrained.
               />

@@ -1,4 +1,4 @@
-import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
+import { getAttachments, getThumbnail } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CityDictionnary } from '../city/interface';
 import { Choices } from '../filters/interface';
@@ -32,7 +32,6 @@ export const adaptTouristicEvents = ({
   return rawTouristicEvents.map(rawTouristicEvent => {
     return {
       id: rawTouristicEvent.id,
-      type: 'TOURISTIC_EVENT',
       name: rawTouristicEvent.name,
       attachments: getAttachments(rawTouristicEvent.attachments),
       geometry: adaptGeometry(rawTouristicEvent.geometry),

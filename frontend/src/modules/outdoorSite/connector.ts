@@ -8,7 +8,7 @@ import { getCities } from '../city/connector';
 import { getThemes } from '../filters/theme/connector';
 import { getInformationDesks } from '../informationDesk/connector';
 import { getLabels } from '../label/connector';
-import { getOutdoorCourses } from '../outdoorCourse/connector';
+import { getOutdoorCoursesResult } from '../outdoorCourse/connector';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { getOutdoorRating } from '../outdoorRating/connector';
 import { getOutdoorRatingScale } from '../outdoorRatingScale/connector';
@@ -88,8 +88,8 @@ export const getOutdoorSiteDetails = async (
       getLabels(language),
       getSources(language),
       getInformationDesks(language),
-      getOutdoorSites(language, { near_outdoorsite: id }),
-      getOutdoorCourses(language, { near_outdoorsite: id }),
+      getOutdoorSitesResult(language, { near_outdoorsite: id }),
+      getOutdoorCoursesResult(language, { near_outdoorsite: id }),
       getOutdoorPractices(language),
       getTouristicContentsNearTarget(Number(id), language, 'near_outdoorsite'),
     ]);

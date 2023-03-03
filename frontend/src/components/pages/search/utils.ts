@@ -7,8 +7,8 @@ import { FilterState, Option } from 'modules/filters/interface';
 import { SearchResults, TrekResult } from 'modules/results/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { MapResult } from 'modules/mapResults/interface';
-import { OutdoorSite } from '../../../modules/outdoorSite/interface';
-import { TouristicEvent } from '../../../modules/touristicEvent/interface';
+import { OutdoorSiteResult } from '../../../modules/outdoorSite/interface';
+import { TouristicEventResult } from '../../../modules/touristicEvent/interface';
 
 /**
  * Interface of an objet representing a filter state informations
@@ -48,7 +48,7 @@ export const concatResultsPages = (resultsPages: SearchResults[]): SearchResults
   const resultsNumber = resultsPages[0].resultsNumber;
   const nextPages = resultsPages[0].nextPages;
   const results = resultsPages.reduce<
-    (TrekResult | TouristicContentResult | OutdoorSite | TouristicEvent)[]
+    (TrekResult | TouristicContentResult | OutdoorSiteResult | TouristicEventResult)[]
   >((resultsAcc, currentPage) => resultsAcc.concat(currentPage.results), []);
 
   return {
@@ -87,8 +87,12 @@ export const generateResultDetailsUrl = (
 export const getHoverId = ({
   id,
   type,
-}: TrekResult | TouristicContentResult | MapResult | OutdoorSite | TouristicEvent): string =>
-  `SEARCH-${type}-${id}`;
+}:
+  | TrekResult
+  | TouristicContentResult
+  | MapResult
+  | OutdoorSiteResult
+  | TouristicEventResult): string => `SEARCH-${type}-${id}`;
 
 export const convertStringForSitemap = (text: string): string =>
   removeDiacritics(

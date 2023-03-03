@@ -75,7 +75,6 @@ export interface TouristicEventResult extends ResultCard {
 
 export interface TouristicEvent {
   id: string;
-  type: 'TOURISTIC_EVENT';
   name: string;
   attachments: Attachment[];
   geometry:
