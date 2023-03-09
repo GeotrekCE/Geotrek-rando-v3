@@ -103,7 +103,7 @@ describe('extractNextPageId', () => {
   });
 
   it('should throw an error if it cant find the next page id', () => {
-    expect(() => extractNextPageId('toto')).toThrow();
+    expect(() => extractNextPageId('')).toThrow();
   });
 
   describe('formatTextFilter', () => {

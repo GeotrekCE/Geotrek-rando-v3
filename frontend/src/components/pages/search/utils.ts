@@ -46,6 +46,7 @@ export const concatResultsPages = (resultsPages: SearchResults[]): SearchResults
   if (resultsPages.length === 0) return null;
 
   const resultsNumber = resultsPages[0].resultsNumber;
+  const previousPages = resultsPages[0].previousPages;
   const nextPages = resultsPages[0].nextPages;
   const results = resultsPages.reduce<
     (TrekResult | TouristicContentResult | OutdoorSiteResult | TouristicEventResult)[]
@@ -56,6 +57,7 @@ export const concatResultsPages = (resultsPages: SearchResults[]): SearchResults
     resultsNumberDetails: resultsPages[0].resultsNumberDetails,
     results,
     nextPages,
+    previousPages,
   };
 };
 

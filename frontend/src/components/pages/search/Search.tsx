@@ -20,6 +20,7 @@ import { PageHead } from 'components/PageHead';
 import { FilterState } from 'modules/filters/interface';
 import { SearchMapDynamicComponent } from 'components/Map';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
+import { useRouter } from 'next/router';
 import { countFiltersSelected } from '../../../modules/filters/utils';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
@@ -40,6 +41,7 @@ interface Props {
 }
 
 export const SearchUI: React.FC<Props> = ({ language }) => {
+  const router = useRouter();
   const { filtersState, setFilterSelectedOptions, resetFilters } = useFilter();
 
   const { subMenuState, selectFilter, hideSubMenu, currentFilterId } = useFilterSubMenu();
@@ -48,6 +50,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   const { bboxState, handleMoveMap } = useBbox();
 
   const isMobile = useMediaPredicate('(max-width: 1024px)');
+
+  const page = Number(router.query.page ?? 1);
 
   const {
     textFilterInput,
@@ -67,10 +71,11 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
+    hasPreviousPage,
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-  } = useTrekResults({ filtersState, textFilterState, bboxState, dateFilter }, language);
+  } = useTrekResults({ filtersState, textFilterState, bboxState, dateFilter, page }, language);
 
   const { pageTitle, resultsTitle } = useTitle(filtersState, searchResults?.resultsNumber);
 
@@ -198,7 +203,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                 <InfiniteScroll
                   dataLength={searchResults?.results.length ?? 0}
                   next={fetchNextPage}
-                  hasMore={hasNextPage ?? false}
+                  hasMore={Boolean(hasNextPage)}
                   loader={
                     <div className={`relative my-10 ${isFetchingNextPage ? 'h-10' : ''}`}>
                       <Loader loaded={!isFetchingNextPage} />
