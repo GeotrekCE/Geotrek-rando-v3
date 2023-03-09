@@ -277,5 +277,9 @@ export const extractNextPageId = (nextPageUrl: string | null): number | null => 
   const matches = regex.exec(nextPageUrl);
   if (matches !== null) return parseInt(matches[0].replace('page=', ''), 10);
 
+  if (nextPageUrl.length > 0) {
+    return 1;
+  }
+
   throw Error('results adapter could not parse nextPageUrl to extract nextPageId');
 };

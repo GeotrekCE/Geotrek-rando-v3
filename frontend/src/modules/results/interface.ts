@@ -51,6 +51,12 @@ export interface SearchResults {
     outdoorSites: number | null;
     touristicEvents: number | null;
   };
+  previousPages: {
+    treks: number | null;
+    touristicContents: number | null;
+    outdoorSites: number | null;
+    touristicEvents: number | null;
+  };
   results: (TrekResult | TouristicContentResult | OutdoorSiteResult | TouristicEventResult)[];
 }
 export interface TrekResult extends ResultCard {

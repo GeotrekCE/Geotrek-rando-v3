@@ -292,6 +292,11 @@ export const getSearchResults = async (
     const nextOutdoorSitesPage = extractNextPageId(rawOutdoorSites.next);
     const nextTouristicEventsPage = extractNextPageId(rawTouristicEvents.next);
 
+    const previousTreksPage = extractNextPageId(rawTrekResults.previous);
+    const previousTouristicContentsPage = extractNextPageId(rawTouristicContents.previous);
+    const previousOutdoorSitesPage = extractNextPageId(rawOutdoorSites.previous);
+    const previousTouristicEventsPage = extractNextPageId(rawTouristicEvents.previous);
+
     return {
       resultsNumber: treksCount + touristicContentsCount + outdoorSitesCount + touristicEventsCount,
       resultsNumberDetails: {
@@ -305,6 +310,12 @@ export const getSearchResults = async (
         touristicContents: nextTouristicContentsPage,
         outdoorSites: nextOutdoorSitesPage,
         touristicEvents: nextTouristicEventsPage,
+      },
+      previousPages: {
+        treks: previousTreksPage,
+        touristicContents: previousTouristicContentsPage,
+        outdoorSites: previousOutdoorSitesPage,
+        touristicEvents: previousTouristicEventsPage,
       },
       results: [
         ...adaptedResultsList,
