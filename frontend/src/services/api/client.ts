@@ -11,6 +11,16 @@ const instance = axios.create({
 instance.interceptors.response.use(
   response => response,
   error => {
+    const { page } = error.config?.params || {};
+    if (page !== undefined) {
+      return Promise.resolve({
+        data: {
+          results: [],
+          next: null,
+          previous: page === 1 ? null : `page=${Number(page) - 1}`,
+        },
+      });
+    }
     if (error) {
       captureException(error);
     }
