@@ -97,6 +97,11 @@
         "service": "Autres infos"
       },
       "resetView": "Recentrer la carte"
+    },
+    "pagination": {
+      "previous": "Page précédente",
+      "next": "Page suivante",
+      "goto": "Aller à la page {count}"
     }
   },
   "details": {

@@ -96,6 +96,11 @@
         "service": "Others infos"
       },
       "resetView": "Rimettere a fuoco la mappa"
+    },
+    "pagination": {
+      "previous": "Pagina precedente",
+      "next": "Pagina successiva",
+      "goto": "Vai a pagina {count}"
     }
   },
   "details": {

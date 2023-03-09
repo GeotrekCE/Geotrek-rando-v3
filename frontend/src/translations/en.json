@@ -96,6 +96,11 @@
         "service": "Others infos"
       },
       "resetView": "Recenter map"
+    },
+    "pagination": {
+      "previous": "Previous page",
+      "next": "Next page",
+      "goto": "Go to the page {count}"
     }
   },
   "details": {
