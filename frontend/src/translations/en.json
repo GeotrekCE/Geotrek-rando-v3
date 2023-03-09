@@ -25,11 +25,13 @@
   "loading": "Loading",
   "page": {
     "back": "Back",
-    "not-found": "This page was not found"
+    "not-found": "This page was not found",
+    "goToOffline": "Display offline content"
   },
   "search": {
     "title": "Search",
     "titleWithOneCategory": "{category}: {options}",
+    "titlePagination": "{count, plural, =0 {} one {} other { - Page #}}",
     "description": "Discover the hikes corresponding to your desires with our search engine",
     "book": "Book",
     "resultsFound": "{count, plural, =0 {# result found} one {# result found} other {# results found}}",

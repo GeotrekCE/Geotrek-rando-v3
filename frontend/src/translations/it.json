@@ -25,11 +25,13 @@
   "loading": "Caricamento",
   "page": {
     "back": "Ritorno",
-    "not-found": "Questa pagina non è stata trovata"
+    "not-found": "Questa pagina non è stata trovata",
+    "goToOffline": "Visualizzazione di contenuti offline"
   },
   "search": {
     "title": "Ricerca",
     "titleWithOneCategory": "{category}: {options}",
+    "titlePagination": "{count, plural, =0 {} one {} other { - Pagina #}}",
     "description": "Scopri le escursioni che desideri sul nostro sito internet",
     "book": "Prenotare",
     "resultsFound": "{count, plural, =0 {# Nessun risultato trovato} one {# risultato trovato} other {# risultati trovati}}",
