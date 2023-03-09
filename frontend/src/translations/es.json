@@ -94,6 +94,11 @@
         "service": "Others infos"
       },
       "resetView": "Centrarse la mapa"
+    },
+    "pagination": {
+      "previous": "Página anterior",
+      "next": "Página anterior",
+      "goto": "Ir a la página {count}"
     }
   },
   "details": {
