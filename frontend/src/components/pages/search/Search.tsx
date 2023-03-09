@@ -35,6 +35,7 @@ import InputWithMagnifier from './components/InputWithMagnifier';
 import { useTextFilter } from './hooks/useTextFilter';
 import { useDateFilter } from './hooks/useDateFilter';
 import { useTitle } from './hooks/useTitle';
+import { Pagination } from './components/Pagination';
 
 interface Props {
   language: string;
@@ -236,6 +237,12 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                     );
                   })}
                 </InfiniteScroll>
+
+                {/* noscript: Visible only for SEO purpose */}
+                <noscript>
+                  <Pagination hasPreviousPage={hasPreviousPage} hasNextPage={hasNextPage} />
+                </noscript>
+
                 {isError && (
                   <ErrorFallback refetch={searchResults === null ? refetch : fetchNextPage} />
                 )}
