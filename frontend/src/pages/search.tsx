@@ -17,6 +17,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const { initialFiltersStateWithSelectedOptions } = await getInitialFilters(locale, context.query);
   const parsedInitialFiltersState = parseFilters(initialFiltersStateWithSelectedOptions);
   const initialTextFilter = context.query.text?.toString() ?? null;
+  const page = Number(context.query.page ?? 1);
 
   try {
     await queryClient.prefetchQuery(['initialFilterState', locale], () =>
@@ -37,6 +38,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
         initialTextFilter,
         bboxFilter,
         dateFilter,
+        page,
       ],
       () =>
         getSearchResults(
@@ -47,10 +49,10 @@ export const getServerSideProps: GetServerSideProps = async context => {
             dateFilter: null,
           },
           {
-            treks: 1,
-            touristicContents: 1,
-            outdoorSites: getGlobalConfig().enableOutdoor ? 1 : null,
-            touristicEvents: getGlobalConfig().enableTouristicEvents ? 1 : null,
+            treks: page,
+            touristicContents: page,
+            outdoorSites: getGlobalConfig().enableOutdoor ? page : null,
+            touristicEvents: getGlobalConfig().enableTouristicEvents ? page : null,
           },
           locale,
         ),

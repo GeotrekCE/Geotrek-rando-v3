@@ -44,10 +44,11 @@ export const useTrekResults = (
     textFilterState: string | null;
     bboxState: string | null;
     dateFilter: DateFilter;
+    page: number;
   },
   language: string,
 ) => {
-  const { filtersState, textFilterState, bboxState, dateFilter } = filters;
+  const { filtersState, textFilterState, bboxState, dateFilter, page } = filters;
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => {
@@ -64,47 +65,63 @@ export const useTrekResults = (
 
   const router = useRouter();
 
-  const { data, isLoading, isError, refetch, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery<SearchResults, Error>(
-      [
-        'trekResults',
-        parsedFiltersState,
+  const {
+    data,
+    isLoading,
+    isError,
+    refetch,
+    fetchNextPage,
+    hasNextPage,
+    hasPreviousPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery<SearchResults, Error>(
+    [
+      'trekResults',
+      parsedFiltersState,
+      language,
+      parseTextFilter(textFilterState),
+      parseBboxFilter(bboxState),
+      dateFilter,
+      page,
+    ],
+    ({
+      pageParam = {
+        treks: page,
+        touristicContents: page,
+        outdoorSites: getGlobalConfig().enableOutdoor ? page : null,
+        touristicEvents: getGlobalConfig().enableTouristicEvents ? page : null,
+      },
+    }) => {
+      return getSearchResults(
+        { filtersState: parsedFiltersState, textFilterState, bboxState, dateFilter },
+        pageParam,
         language,
-        parseTextFilter(textFilterState),
-        parseBboxFilter(bboxState),
-        dateFilter,
-      ],
-      ({
-        pageParam = {
-          treks: 1,
-          touristicContents: 1,
-          outdoorSites: getGlobalConfig().enableOutdoor ? 1 : null,
-          touristicEvents: getGlobalConfig().enableTouristicEvents ? 1 : null,
-        },
-      }) => {
-        return getSearchResults(
-          { filtersState: parsedFiltersState, textFilterState, bboxState, dateFilter },
-          pageParam,
-          language,
-        );
-      },
-      {
-        retry: false,
-        // We already have a fallback component to allow the user to refetch
-        // Leaving these on induced issues with our refetching only next page strategy
-        // When it refetched on reconnect/focus the infinite scroll then stopped working
-        refetchOnReconnect: false,
-        refetchOnWindowFocus: false,
-        // hasNextPage will be set to false if getNextPageParam returns undefined
-        getNextPageParam: lastPageResult =>
-          lastPageResult.nextPages.treks !== null ||
-          lastPageResult.nextPages.touristicContents !== null ||
-          lastPageResult.nextPages.outdoorSites !== null ||
-          lastPageResult.nextPages.touristicEvents !== null
-            ? lastPageResult.nextPages
-            : undefined,
-      },
-    );
+      );
+    },
+    {
+      retry: false,
+      // We already have a fallback component to allow the user to refetch
+      // Leaving these on induced issues with our refetching only next page strategy
+      // When it refetched on reconnect/focus the infinite scroll then stopped working
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+      // hasNextPage will be set to false if getNextPageParam returns undefined
+      getNextPageParam: lastPageResult =>
+        lastPageResult.nextPages.treks !== null ||
+        lastPageResult.nextPages.touristicContents !== null ||
+        lastPageResult.nextPages.outdoorSites !== null ||
+        lastPageResult.nextPages.touristicEvents !== null
+          ? lastPageResult.nextPages
+          : undefined,
+      getPreviousPageParam: lastPageResult =>
+        lastPageResult.previousPages.treks !== null ||
+        lastPageResult.previousPages.touristicContents !== null ||
+        lastPageResult.previousPages.outdoorSites !== null ||
+        lastPageResult.previousPages.touristicEvents !== null
+          ? lastPageResult.previousPages
+          : undefined,
+    },
+  );
 
   useEffect(() => {
     const url = computeUrl(filtersState, textFilterState, dateFilter);
@@ -123,6 +140,7 @@ export const useTrekResults = (
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
+    hasPreviousPage,
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
