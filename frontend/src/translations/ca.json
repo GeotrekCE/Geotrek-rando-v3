@@ -29,6 +29,7 @@
     "title": "Cerca",
     "titleWithOneCategory": "{category}: {options}",
     "description": "Descobreix les excursions que coincideixen amb els teus desitjos amb el nostre motor de cerca",
+    "titlePagination": "{count, plural, =0 {} one {} other { - Pàgina #}}",
     "book": "Reserva",
     "resultsFound": "{count, plural, =0 {# resultat trobat} one {# resultat trobat} other {# resultats trobats}}",
     "resultsFoundShort": "{count, plural, =0 {# resultat} one {# resultat} other {# resultats}}",

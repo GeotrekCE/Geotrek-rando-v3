@@ -28,6 +28,7 @@
   "search": {
     "title": "Busca",
     "titleWithOneCategory": "{category}: {options}",
+    "titlePagination": "{count, plural, =0 {} one {} other { - Página #}}",
     "description": "Descubre las excursiones que coinciden con tus deseos en nuestro motor de búsqueda",
     "book": "Reserva",
     "resultsFound": "{count, plural, =0 {# resultado encontrado} one {# resultado encontrado} other {# resultados encontrados}}",
