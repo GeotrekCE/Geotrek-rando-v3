@@ -40,7 +40,7 @@ const fieldsParamsResult = {
 export const fetchTouristicContentResult = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawTouristicContentResult>> =>
-  GeotrekAPI.get(`/touristiccontent`, {
+  GeotrekAPI.get(`/touristiccontent/`, {
     params: { ...query, ...fieldsParamsResult, ...portalsFilter },
   }).then(r => r.data);
 

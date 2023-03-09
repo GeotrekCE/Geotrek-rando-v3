@@ -56,9 +56,10 @@ export const requestInterceptor = (config: any) => {
 
 export const responseInterceptor = (response: any) => {
   if (
+    response?.config !== undefined &&
     // eslint-disable-next-line
-    !response?.config._fromCache &&
-    response?.config.method === 'get' &&
+    !response.config._fromCache &&
+    response.config.method === 'get' &&
     cachedRoute.some(r => r.test(response.config.url))
   ) {
     // eslint-disable-next-line
