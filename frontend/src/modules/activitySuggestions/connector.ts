@@ -8,7 +8,7 @@ import { fetchOutdoorSiteDetails } from 'modules/outdoorSite/api';
 import { OutdoorSiteResult, RawOutdoorSiteDetails } from 'modules/outdoorSite/interface';
 import { adaptTrekResultList } from 'modules/results/adapter';
 import { fetchTrekResult } from 'modules/results/api';
-import { RawTrekResult, TrekResult } from 'modules/results/interface';
+import { InformationCardTuple, RawTrekResult, TrekResult } from 'modules/results/interface';
 import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
 import { fetchTouristicContentDetails } from 'modules/touristicContent/api';
 import {
@@ -20,6 +20,7 @@ import { adaptTouristicEventsResult } from 'modules/touristicEvent/adapter';
 import { fetchTouristicEventDetails } from 'modules/touristicEvent/api';
 import { RawTouristicEventDetails, TouristicEventResult } from 'modules/touristicEvent/interface';
 import { getTouristicEventTypes } from 'modules/touristicEventType/connector';
+import { ONE_DAY } from 'services/constants/staleTime';
 import { Suggestion } from '../home/interface';
 import { ActivitySuggestion } from './interface';
 export const getActivitySuggestions = async (
@@ -73,8 +74,10 @@ export const getActivitySuggestions = async (
         outdoorPracticeDictionnary,
         cityDictionnary,
       });
-    const doAdaptTouristicEvents = (results: RawTouristicEventDetails[]): TouristicEventResult[] =>
-      adaptTouristicEventsResult({
+    const doAdaptTouristicEvents = (
+      results: RawTouristicEventDetails[],
+    ): TouristicEventResult[] => {
+      const eventResult = adaptTouristicEventsResult({
         rawTouristicEvents: results.map(
           ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons touristic events attributes are in properties field
         ),
@@ -82,6 +85,26 @@ export const getActivitySuggestions = async (
         cityDictionnary,
         touristicEventType,
       });
+      const resultsWithUnexpiredEvents = eventResult.filter(result => {
+        const date = result.informations?.find(({ label }) => label === 'date') as
+          | InformationCardTuple
+          | undefined;
+
+        if (date === undefined) {
+          return true;
+        }
+        const [beginDate = 1, endDate = 1] = date.value;
+        const today = new Date().toISOString();
+        const endOfBeginDate = new Date(new Date(beginDate).getTime() + ONE_DAY).toISOString();
+        const endOfEndDate = new Date(new Date(endDate).getTime() + ONE_DAY).toISOString();
+        if ((endDate === 1 && endOfBeginDate < today) || endOfEndDate < today) {
+          return false;
+        }
+        return true;
+      });
+
+      return resultsWithUnexpiredEvents;
+    };
 
     return {
       trek: doAdaptTrekResultList,
