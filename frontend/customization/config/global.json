@@ -8,8 +8,6 @@
   "enableTouristicEvents": true,
   "portalIds": [1],
   "apiUrl": "https://geotrekdemo.ecrins-parcnational.fr/api/v2",
-  "reservationPartner": "parcdesecrins",
-  "reservationProject": "parcdesecrins",
   "baseUrl": "http://localhost:3000",
   "fallbackImageUri": "https://demo-rando.geotrek.fr/images/placeholder.png",
   "touristicContentLabelImageUri": "https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png",
