@@ -15,14 +15,16 @@ export const getCities = async (language: string): Promise<CityDictionnary> => {
     return adaptCitiesSinglePage(cities.results);
   }
   // Second call with loop to load all the necessary pages to reach the count
-  const citiesAllPages = await Promise.all(
-    generatePageNumbersArray(resultsNumber, cities.count).map(pageNumber =>
-      fetchCities({
-        language,
-        page_size: resultsNumber,
-        page: pageNumber,
-      }),
-    ),
+  const citiesOtherPages = await Promise.all(
+    generatePageNumbersArray(resultsNumber, cities.count)
+      .slice(1)
+      .map(pageNumber =>
+        fetchCities({
+          language,
+          page_size: resultsNumber,
+          page: pageNumber,
+        }),
+      ),
   );
-  return adaptCities(citiesAllPages);
+  return adaptCities([cities, ...citiesOtherPages]);
 };
