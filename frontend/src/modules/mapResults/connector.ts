@@ -95,7 +95,9 @@ export const getMapResults = async (
         ),
       );
       const activities = await getActivities(language);
-      mapResults.push(...adaptTrekMapResults({ mapResults: mapTrekResults, activities }));
+      mapResults.push(
+        ...adaptTrekMapResults({ mapResults: [rawMapResults, ...mapTrekResults], activities }),
+      );
     }
 
     if (shouldFetchTouristicContents) {
@@ -119,7 +121,7 @@ export const getMapResults = async (
       const touristicContentCategories = await getTouristicContentCategories(language);
       mapResults.push(
         ...adaptTouristicContentMapResults({
-          mapResults: mapTouristicContentResults,
+          mapResults: [rawMapResults, ...mapTouristicContentResults],
           touristicContentCategories,
         }),
       );
@@ -146,7 +148,7 @@ export const getMapResults = async (
       const outdoorPracticeDictionnary = await getOutdoorPractices(language);
       mapResults.push(
         ...adaptOutdoorSitesMapResults({
-          mapResults: mapOutdoorSiteResults,
+          mapResults: [rawMapResults, ...mapOutdoorSiteResults],
           outdoorPracticeDictionnary,
         }),
       );
@@ -179,7 +181,7 @@ export const getMapResults = async (
 
       mapResults.push(
         ...adaptTouristicEventsMapResults({
-          mapResults: mapTouristicEventsResults,
+          mapResults: [rawMapResults, ...mapTouristicEventsResults],
           touristicEventTypes,
         }),
       );
