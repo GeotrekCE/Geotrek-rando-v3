@@ -10,7 +10,7 @@
   "apiUrl": "https://geotrekdemo.ecrins-parcnational.fr/api/v2",
   "baseUrl": "http://localhost:3000",
   "fallbackImageUri": "https://demo-rando.geotrek.fr/images/placeholder.png",
-  "touristicContentLabelImageUri": "https://upload.wikimedia.org/wikipedia/fr/d/df/Logo_ecrins.png",
+  "touristicContentLabelImageUri": "https://geotrek.fr/assets/img/geotrek-rando.svg",
   "applicationName": "Custom Geotrek",
   "enableReport": true,
   "enableSearchByMap": true,
