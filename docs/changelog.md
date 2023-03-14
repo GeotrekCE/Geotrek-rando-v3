@@ -1,5 +1,17 @@
 # Changelog
 
+3.13.2 (2023-03-15)
+-------------------
+
+**✨ Improvements**
+
+* Improve search page SEO with paginating results for search engines (#833)
+* Don't display expired events in homepage suggestions (#878)
+* Improve and simplify customization example (#842)
+* Improve Layout component wrapping (#874)
+* Refactor and homogenize objects cards (#875)
+* For touristic content in homepage suggestions, the categories are fetched only once instead of the same number of items. (#875)
+
 3.13.1 (2023-02-28)
 -------------------
 
@@ -7,12 +19,10 @@
 
 * Display home activities directly by SSR (links reachable by search engines)
 
-
 **🐛 Fixes**
 
 * Fix remoteIconInformation with no icons (regression since 3.13.0)
 * Fix error when the scale property is not defined for trek or outdoor detail page
-
 
 3.13.0 (2023-02-23)
 -------------------
