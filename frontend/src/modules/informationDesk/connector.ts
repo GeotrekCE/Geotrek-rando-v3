@@ -21,17 +21,19 @@ export const getInformationDesks = async (
     }
 
     // Second call with loop to load all the necessary pages to reach the count
-    const rawInformationDesksAllPages = await Promise.all(
-      generatePageNumbersArray(defaultPageSize, rawInformationDesks.count).map(pageNumber =>
-        fetchInformationDesks({
-          language,
-          page_size: defaultPageSize,
-          page: pageNumber,
-        }),
-      ),
+    const rawInformationDesksOtherPages = await Promise.all(
+      generatePageNumbersArray(defaultPageSize, rawInformationDesks.count)
+        .slice(1)
+        .map(pageNumber =>
+          fetchInformationDesks({
+            language,
+            page_size: defaultPageSize,
+            page: pageNumber,
+          }),
+        ),
     );
 
-    return adaptInformationDeskList(rawInformationDesksAllPages);
+    return adaptInformationDeskList([rawInformationDesks, ...rawInformationDesksOtherPages]);
   } catch (e) {
     console.error('Error in informationDesk/connector', e);
     throw e;

@@ -16,17 +16,19 @@ export const getCityFilter = async (language: string): Promise<FilterWithoutType
     return adaptCityFilter(cities.results);
   }
   // Second call with loop to load all the necessary pages to reach the count
-  const citiesAllPages = await Promise.all(
-    generatePageNumbersArray(resultsNumber, cities.count).map(pageNumber =>
-      fetchCities({
-        language,
-        page_size: resultsNumber,
-        page: pageNumber,
-      }),
-    ),
+  const citiesOtherPages = await Promise.all(
+    generatePageNumbersArray(resultsNumber, cities.count)
+      .slice(1)
+      .map(pageNumber =>
+        fetchCities({
+          language,
+          page_size: resultsNumber,
+          page: pageNumber,
+        }),
+      ),
   );
   const initialCities: RawCity[] = [];
-  const aggregatedCities = citiesAllPages.reduce(
+  const aggregatedCities = [cities, ...citiesOtherPages].reduce(
     (currentlyAggregatedCities, currentCities) => [
       ...currentlyAggregatedCities,
       ...currentCities.results,
