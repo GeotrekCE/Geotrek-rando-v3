@@ -33,6 +33,7 @@ export const Pagination: React.FC<PaginationProps> = ({ hasPreviousPage, hasNext
             pathname: router.pathname,
             query: queryForPreviousPage,
           }}
+          rel="prev"
           shallow
           title={intl.formatMessage({ id: 'search.pagination.goto' }, { count: page - 1 })}
         >
@@ -47,6 +48,7 @@ export const Pagination: React.FC<PaginationProps> = ({ hasPreviousPage, hasNext
             pathname: router.pathname,
             query: { ...router.query, page: page + 1 },
           }}
+          rel="next"
           shallow
           title={intl.formatMessage({ id: 'search.pagination.goto' }, { count: page + 1 })}
         >
