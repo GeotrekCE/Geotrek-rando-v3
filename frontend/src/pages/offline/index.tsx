@@ -7,6 +7,7 @@ import { Bin } from 'components/Icons/Bin';
 import { ResultCard } from 'components/pages/search/components/ResultCard';
 import { generateDetailsUrlFromType } from 'components/pages/details/utils';
 import CacheManager from 'services/offline/CacheManager';
+import { PageHead } from 'components/PageHead';
 import { Offline } from '../../modules/offline/interface';
 
 const OfflinePage: NextPage = () => {
@@ -32,6 +33,9 @@ const OfflinePage: NextPage = () => {
 
   return (
     <div className={'p-4'}>
+      <PageHead>
+        <meta name="robots" content="noindex,nofollow" />
+      </PageHead>
       <div className={'font-bold text-xl'}>
         <FormattedMessage id={'offline.number'} values={{ count: results.length }} />
       </div>
