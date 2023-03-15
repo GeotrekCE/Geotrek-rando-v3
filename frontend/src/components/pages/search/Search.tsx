@@ -134,7 +134,9 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
       <PageHead
         title={pageTitle}
         description={`${intl.formatMessage({ id: 'search.description' })}`}
-      />
+      >
+        {page > 1 && <meta name="robots" content="noindex,follow" />}
+      </PageHead>
 
       {isMobile && (
         <>
