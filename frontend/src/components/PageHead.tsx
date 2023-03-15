@@ -8,9 +8,10 @@ interface Props {
   title?: string;
   description?: string;
   sharingImageUrl?: string;
+  children?: React.ReactNode;
 }
 
-export const PageHead: React.FC<Props> = ({ title, description, sharingImageUrl }) => {
+export const PageHead: React.FC<Props> = ({ title, description, sharingImageUrl, children }) => {
   const { baseUrl, applicationName } = getGlobalConfig();
   const router = useRouter();
   const currentLanguage = router.locale ?? getDefaultLanguage();
@@ -63,6 +64,7 @@ export const PageHead: React.FC<Props> = ({ title, description, sharingImageUrl 
       <meta name="twitter:image" content={sharingImageUrl ?? '/medias/favicon.png'} />
 
       {/*getOthersLinks()*/}
+      {children}
     </Head>
   );
 };
