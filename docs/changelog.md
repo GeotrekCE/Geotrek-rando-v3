@@ -1,5 +1,18 @@
 # Changelog
 
+3.13.3 (2023-03-16)
+-------------------
+
+**✨ Improvements**
+
+* Define lazy loading for all Thumbnails images (#883)
+* Avoid unnecessary fetch for obtaining dictionaries (#880)
+
+**🐛 Fixes**
+
+* Thumbnails image format are defined for all thumbnails (regression since v3.13.0) (#883)
+* BadgeIcons are back for trek contents (regression since v3.13.0) (#883)
+
 3.13.2 (2023-03-15)
 -------------------
 
