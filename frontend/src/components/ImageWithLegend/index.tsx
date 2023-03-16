@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { twMerge } from 'tailwind-merge';
 import { ImgHTMLAttributes, useId } from 'react';
 import Link from 'next/link';
+import { getGlobalConfig } from 'modules/utils/api.config';
 
 interface ImageWithLegendProps {
   attachment?: Attachment;
@@ -40,7 +41,7 @@ export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({
         )}
         id={imageId}
         loading={loading ?? 'eager'}
-        src={attachment?.url}
+        src={attachment?.url ? attachment.url : getGlobalConfig().fallbackImageUri}
       />
       <Legend
         figureId={figureId}
