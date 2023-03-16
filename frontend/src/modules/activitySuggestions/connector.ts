@@ -5,20 +5,17 @@ import { getThemes } from 'modules/filters/theme/connector';
 import { getOutdoorPractices } from 'modules/outdoorPractice/connector';
 import { adaptoutdoorSitesResult } from 'modules/outdoorSite/adapter';
 import { fetchOutdoorSiteDetails } from 'modules/outdoorSite/api';
-import { OutdoorSiteResult, RawOutdoorSiteDetails } from 'modules/outdoorSite/interface';
+import { RawOutdoorSiteDetails } from 'modules/outdoorSite/interface';
 import { adaptTrekResultList } from 'modules/results/adapter';
 import { fetchTrekResult } from 'modules/results/api';
-import { InformationCardTuple, RawTrekResult, TrekResult } from 'modules/results/interface';
+import { InformationCardTuple, RawTrekResult } from 'modules/results/interface';
 import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
 import { fetchTouristicContentDetails } from 'modules/touristicContent/api';
-import {
-  RawTouristicContentDetails,
-  TouristicContentResult,
-} from 'modules/touristicContent/interface';
+import { RawTouristicContentDetails } from 'modules/touristicContent/interface';
 import { getTouristicContentCategories } from 'modules/touristicContentCategory/connector';
 import { adaptTouristicEventsResult } from 'modules/touristicEvent/adapter';
 import { fetchTouristicEventDetails } from 'modules/touristicEvent/api';
-import { RawTouristicEventDetails, TouristicEventResult } from 'modules/touristicEvent/interface';
+import { RawTouristicEventDetails } from 'modules/touristicEvent/interface';
 import { getTouristicEventTypes } from 'modules/touristicEventType/connector';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { Suggestion } from '../home/interface';
@@ -45,108 +42,122 @@ export const getActivitySuggestions = async (
     getTouristicEventTypes(language),
   ]);
 
-  const adapt = (type: Suggestion['type']) => {
-    const doAdaptTrekResultList = (results: RawTrekResult[]): TrekResult[] =>
-      adaptTrekResultList({
-        resultsList: results,
-        difficulties,
-        themes,
-        activities,
-        cityDictionnary,
-      });
-    const doAdaptTouristicContentResult = (
-      results: RawTouristicContentDetails[],
-    ): TouristicContentResult[] =>
-      adaptTouristicContentResult({
-        rawTouristicContent: results.map(
-          ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons touristic events attributes are in properties field
-        ),
-        touristicContentCategories,
-        themeDictionnary: themes,
-        cityDictionnary,
-      });
-    const doAdaptOutdoorSites = (results: RawOutdoorSiteDetails[]): OutdoorSiteResult[] =>
-      adaptoutdoorSitesResult({
-        rawOutdoorSites: results.map(
-          ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons touristic events attributes are in properties field
-        ),
-        themeDictionnary: themes,
-        outdoorPracticeDictionnary,
-        cityDictionnary,
-      });
-    const doAdaptTouristicEvents = (
-      results: RawTouristicEventDetails[],
-    ): TouristicEventResult[] => {
-      const eventResult = adaptTouristicEventsResult({
-        rawTouristicEvents: results.map(
-          ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons touristic events attributes are in properties field
-        ),
-        themeDictionnary: themes,
-        cityDictionnary,
-        touristicEventType,
-      });
-      const resultsWithUnexpiredEvents = eventResult.filter(result => {
-        const date = result.informations?.find(({ label }) => label === 'date') as
-          | InformationCardTuple
-          | undefined;
-
-        if (date === undefined) {
-          return true;
-        }
-        const [beginDate = 1, endDate = 1] = date.value;
-        const today = new Date().toISOString();
-        const endOfBeginDate = new Date(new Date(beginDate).getTime() + ONE_DAY).toISOString();
-        const endOfEndDate = new Date(new Date(endDate).getTime() + ONE_DAY).toISOString();
-        if ((endDate === 1 && endOfBeginDate < today) || endOfEndDate < today) {
-          return false;
-        }
-        return true;
-      });
-
-      return resultsWithUnexpiredEvents;
-    };
-
-    return {
-      trek: doAdaptTrekResultList,
-      service: doAdaptTouristicContentResult,
-      outdoor: doAdaptOutdoorSites,
-      events: doAdaptTouristicEvents,
-    }[type];
-  };
-
   const activitySuggestions = await Promise.all(
-    suggestions.map(async ({ type = 'trek', ids, ...suggestion }) => {
-      const raw = (
-        await Promise.all(ids.map(id => fetch(id, type, language).catch(() => null) as any))
-      ).filter(Boolean);
+    suggestions.map(
+      async ({ type = 'trek', ids, numberOfEventsToDisplay = 999, ...suggestion }) => {
+        const props = {
+          ...suggestion,
+          type,
+        };
 
-      // TS doesn't see the correspondence between `type` and `raw`
-      const results = raw.length === 0 ? [] : adapt(type)(raw);
-      return {
-        ...suggestion,
-        type,
-        ids,
-        results,
-      };
-    }),
+        if (type === 'trek') {
+          const treks = await Promise.all(
+            ids.map(
+              id => fetchTrekResult({ language }, id).catch(() => null) as Promise<RawTrekResult>,
+            ),
+          );
+          return {
+            ...props,
+            results: adaptTrekResultList({
+              resultsList: treks.filter(Boolean),
+              difficulties,
+              themes,
+              activities,
+              cityDictionnary,
+            }),
+          };
+        }
+
+        if (type === 'service') {
+          const services = await Promise.all(
+            ids.map(
+              id =>
+                fetchTouristicContentDetails({ language }, id).catch(
+                  () => null,
+                ) as Promise<RawTouristicContentDetails>,
+            ),
+          );
+          return {
+            ...props,
+            results:
+              services.length === 0
+                ? []
+                : adaptTouristicContentResult({
+                    rawTouristicContent: services.filter(Boolean).map(
+                      ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons touristic events attributes are in properties field
+                    ),
+                    touristicContentCategories,
+                    themeDictionnary: themes,
+                    cityDictionnary,
+                  }),
+          };
+        }
+
+        if (type === 'outdoor') {
+          const outdoors = await Promise.all(
+            ids.map(
+              id =>
+                fetchOutdoorSiteDetails({ language }, id).catch(
+                  () => null,
+                ) as Promise<RawOutdoorSiteDetails>,
+            ),
+          );
+          return {
+            ...props,
+            results: adaptoutdoorSitesResult({
+              rawOutdoorSites: outdoors.filter(Boolean).map(
+                ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons outdoor events attributes are in properties field
+              ),
+              themeDictionnary: themes,
+              outdoorPracticeDictionnary,
+              cityDictionnary,
+            }),
+          };
+        }
+
+        if (type === 'events') {
+          const events = await Promise.all(
+            ids.map(
+              id =>
+                fetchTouristicEventDetails({ language }, id).catch(
+                  () => null,
+                ) as Promise<RawTouristicEventDetails>,
+            ),
+          );
+          const eventResult = adaptTouristicEventsResult({
+            rawTouristicEvents: events.filter(Boolean).map(
+              ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons touristic events attributes are in properties field
+            ),
+            themeDictionnary: themes,
+            cityDictionnary,
+            touristicEventType,
+          });
+          const resultsWithUnexpiredEvents = eventResult.filter(result => {
+            const date = result.informations?.find(({ label }) => label === 'date') as
+              | InformationCardTuple
+              | undefined;
+
+            if (date === undefined) {
+              return true;
+            }
+            const [beginDate = 1, endDate = 1] = date.value;
+            const today = new Date().toISOString();
+            const endOfBeginDate = new Date(new Date(beginDate).getTime() + ONE_DAY).toISOString();
+            const endOfEndDate = new Date(new Date(endDate).getTime() + ONE_DAY).toISOString();
+            if ((endDate === 1 && endOfBeginDate < today) || endOfEndDate < today) {
+              return false;
+            }
+            return true;
+          });
+
+          return {
+            ...props,
+            results: resultsWithUnexpiredEvents,
+          };
+        }
+      },
+    ),
   );
-  return activitySuggestions as unknown as ActivitySuggestion[];
-};
 
-const fetch = (id: string, type: Suggestion['type'], language: string) => {
-  const fetchWithType = {
-    trek: fetchTrekResult,
-    service: fetchTouristicContentDetails,
-    outdoor: fetchOutdoorSiteDetails,
-    events: fetchTouristicEventDetails,
-  };
-
-  const doFetch = fetchWithType[type];
-
-  return doFetch(
-    {
-      language,
-    },
-    id,
-  );
+  return activitySuggestions as ActivitySuggestion[];
 };
