@@ -31,8 +31,8 @@ export const adaptActivities = (rawActivities: Partial<RawListActivity>[]): Acti
     (activities, { name, pictogram, id }) => ({
       ...activities,
       [id]: {
-        name,
-        pictogram,
+        label: name,
+        pictogramUri: pictogram,
       },
     }),
     {} as ActivityChoices,
