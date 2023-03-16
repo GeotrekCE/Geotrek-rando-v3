@@ -45,7 +45,7 @@ Object {
                     alt="Lac"
                     class="object-center overflow-hidden w-full h-full object-cover"
                     id=":r1:"
-                    loading="eager"
+                    loading="lazy"
                     src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                   />
                   <figcaption
@@ -100,7 +100,7 @@ Object {
                     alt="Lac"
                     class="object-center overflow-hidden w-full h-full object-cover"
                     id=":r3:"
-                    loading="eager"
+                    loading="lazy"
                     src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                   />
                   <figcaption
@@ -214,7 +214,7 @@ Object {
                   alt="Lac"
                   class="object-center overflow-hidden w-full h-full object-cover"
                   id=":r1:"
-                  loading="eager"
+                  loading="lazy"
                   src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                 />
                 <figcaption
@@ -269,7 +269,7 @@ Object {
                   alt="Lac"
                   class="object-center overflow-hidden w-full h-full object-cover"
                   id=":r3:"
-                  loading="eager"
+                  loading="lazy"
                   src="https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg"
                 />
                 <figcaption
