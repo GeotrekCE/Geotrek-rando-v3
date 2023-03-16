@@ -38,7 +38,7 @@ Object {
                       alt="Lorem ipsum"
                       class="object-center overflow-hidden w-full h-full object-cover"
                       id=":r3:"
-                      loading="eager"
+                      loading="lazy"
                       src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                     />
                     <figcaption
@@ -176,7 +176,7 @@ Object {
                               alt="Lorem ipsum"
                               class="object-center overflow-hidden w-full h-full object-cover"
                               id=":r9:"
-                              loading="eager"
+                              loading="lazy"
                               src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                             />
                             <figcaption
@@ -235,7 +235,7 @@ Object {
                               alt="Lorem ipsum"
                               class="object-center overflow-hidden w-full h-full object-cover"
                               id=":rb:"
-                              loading="eager"
+                              loading="lazy"
                               src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                             />
                             <figcaption
@@ -382,7 +382,7 @@ Object {
                     alt="Lorem ipsum"
                     class="object-center overflow-hidden w-full h-full object-cover"
                     id=":r3:"
-                    loading="eager"
+                    loading="lazy"
                     src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                   />
                   <figcaption
@@ -551,7 +551,7 @@ Object {
                       alt="Lorem ipsum"
                       class="object-center overflow-hidden w-full h-full object-cover"
                       id=":r3:"
-                      loading="eager"
+                      loading="lazy"
                       src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                     />
                     <figcaption
@@ -689,7 +689,7 @@ Object {
                               alt="Lorem ipsum"
                               class="object-center overflow-hidden w-full h-full object-cover"
                               id=":r9:"
-                              loading="eager"
+                              loading="lazy"
                               src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                             />
                             <figcaption
@@ -748,7 +748,7 @@ Object {
                               alt="Lorem ipsum"
                               class="object-center overflow-hidden w-full h-full object-cover"
                               id=":rb:"
-                              loading="eager"
+                              loading="lazy"
                               src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                             />
                             <figcaption
@@ -922,7 +922,7 @@ Object {
                             alt="Lorem ipsum"
                             class="object-center overflow-hidden w-full h-full object-cover"
                             id=":r9:"
-                            loading="eager"
+                            loading="lazy"
                             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                           />
                           <figcaption
@@ -981,7 +981,7 @@ Object {
                             alt="Lorem ipsum"
                             class="object-center overflow-hidden w-full h-full object-cover"
                             id=":rb:"
-                            loading="eager"
+                            loading="lazy"
                             src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                           />
                           <figcaption

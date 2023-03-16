@@ -28,7 +28,7 @@ export const DetailsCoverCarousel: React.FC<DetailsCoverCarouselProps> = ({
           attachment={attachment}
           classNameImage={twMerge('object-cover', classNameImage)}
           key={index}
-          loading={index === 0 ? 'eager' : 'lazy'}
+          loading="lazy"
           onClick={onClickImage}
           redirect={redirect}
         />

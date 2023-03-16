@@ -32,7 +32,7 @@ Object {
                       alt=""
                       class="object-cover object-center overflow-hidden w-full h-full"
                       id=":r3:"
-                      loading="eager"
+                      loading="lazy"
                       src="/test.jpg"
                     />
                   </div>
@@ -245,7 +245,7 @@ Object {
                     alt=""
                     class="object-cover object-center overflow-hidden w-full h-full"
                     id=":r3:"
-                    loading="eager"
+                    loading="lazy"
                     src="/test.jpg"
                   />
                 </div>
