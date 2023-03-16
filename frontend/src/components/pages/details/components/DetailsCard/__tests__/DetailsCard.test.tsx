@@ -12,6 +12,13 @@ describe('DetailsCard', () => {
           legend: 'Lorem ipsum',
         },
       ],
+      thumbnails: [
+        {
+          url: 'https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg',
+          author: 'Lorem ipsum',
+          legend: 'Lorem ipsum',
+        },
+      ],
       iconUri: 'https://geotrekdemo.ecrins-parcnational.fr/media/upload/practice-foot_GpBv9u1.svg',
       iconName: 'Randonnée pédestre',
       description:
@@ -29,6 +36,18 @@ describe('DetailsCard', () => {
           },
           {
             url: 'https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg',
+            author: 'Lorem ipsum',
+            legend: 'Lorem ipsum',
+          },
+        ]}
+        thumbnails={[
+          {
+            url: 'https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg',
+            author: 'Lorem ipsum',
+            legend: 'Lorem ipsum',
+          },
+          {
+            url: 'https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg',
             author: 'Lorem ipsum',
             legend: 'Lorem ipsum',
           },

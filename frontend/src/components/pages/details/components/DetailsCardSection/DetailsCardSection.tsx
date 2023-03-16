@@ -46,6 +46,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
             name={card.name}
             description={card.description}
             attachments={card.attachments}
+            thumbnails={card.thumbnails}
             iconUri={card.iconUri}
             iconName={card.iconName}
             place={card.place}

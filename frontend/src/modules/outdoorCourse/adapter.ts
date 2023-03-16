@@ -33,7 +33,7 @@ export const adaptOutdoorCourses = ({
       name: rawOutdoorCourse.name,
       attachments: getAttachments(rawOutdoorCourse.attachments),
       geometry: adaptGeometry(rawOutdoorCourse.geometry),
-      thumbnailUris: getThumbnails(rawOutdoorCourse.attachments),
+      thumbnails: getThumbnails(rawOutdoorCourse.attachments),
       duration:
         typeof rawOutdoorCourse.duration === 'number'
           ? formatHours(rawOutdoorCourse.duration)
@@ -64,10 +64,9 @@ export const adaptOutdoorCoursesResult = ({
     return {
       id: rawOutdoorCourse.id,
       name: rawOutdoorCourse.name,
-      attachments: getAttachments(rawOutdoorCourse.attachments),
+      attachments: getThumbnails(rawOutdoorCourse.attachments),
       geometry: adaptGeometry(rawOutdoorCourse.geometry),
       type: 'OUTDOOR_COURSE',
-      thumbnailUris: getThumbnails(rawOutdoorCourse.attachments),
       informations: [
         {
           label: 'duration',

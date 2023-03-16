@@ -2,7 +2,7 @@ import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
-import { getAttachments, getThumbnail } from 'modules/utils/adapter';
+import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CityDictionnary } from '../city/interface';
 import { Choices } from '../filters/interface';
@@ -70,7 +70,7 @@ export const adaptoutdoorSitesResult = ({
       id: rawOutdoorSite.id,
       type: 'OUTDOOR_SITE',
       name: rawOutdoorSite.name,
-      attachments: getAttachments(rawOutdoorSite.attachments),
+      attachments: getThumbnails(rawOutdoorSite.attachments),
       geometry: adaptGeometry(rawOutdoorSite.geometry),
       tags: rawOutdoorSite?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       informations: [],

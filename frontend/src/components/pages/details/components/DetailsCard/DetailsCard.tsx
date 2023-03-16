@@ -19,6 +19,7 @@ export interface DetailsCardProps {
   place?: string;
   description?: string | null;
   attachments: Attachment[];
+  thumbnails: Attachment[];
   iconUri?: string;
   iconName?: string;
   className?: string;
@@ -31,6 +32,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   name,
   description,
   attachments,
+  thumbnails,
   iconUri,
   iconName,
   place,
@@ -76,14 +78,14 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
                 attachments.length > 0 &&
                 hasNavigator && (
                   <DetailsCoverCarousel
-                    attachments={attachments}
+                    attachments={isFullscreen ? attachments : thumbnails}
                     classNameImage={isFullscreen ? 'object-contain' : ''}
                     redirect={redirectionUrl}
                   />
                 )}
               {type !== 'TOURISTIC_CONTENT' && attachments.length > 0 && hasNavigator && (
                 <DetailsCoverCarousel
-                  attachments={attachments}
+                  attachments={isFullscreen ? attachments : thumbnails}
                   classNameImage={isFullscreen ? 'object-contain' : ''}
                   onClickImage={toggleFullscreen}
                 />
