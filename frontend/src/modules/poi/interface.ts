@@ -15,7 +15,7 @@ export interface Poi {
   id: string;
   name: string;
   description?: string;
-  thumbnailUris: string[];
+  thumbnails: Attachment[];
   attachments: Attachment[];
   type: PoiType;
   geometry: Coordinate3D;

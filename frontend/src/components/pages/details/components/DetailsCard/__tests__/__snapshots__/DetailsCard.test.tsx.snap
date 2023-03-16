@@ -39,7 +39,7 @@ Object {
                       class="object-center overflow-hidden w-full h-full object-cover"
                       id=":r3:"
                       loading="eager"
-                      src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                      src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                     />
                     <figcaption
                       id=":r2:"
@@ -177,7 +177,7 @@ Object {
                               class="object-center overflow-hidden w-full h-full object-cover"
                               id=":r9:"
                               loading="eager"
-                              src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                              src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                             />
                             <figcaption
                               id=":r8:"
@@ -236,7 +236,7 @@ Object {
                               class="object-center overflow-hidden w-full h-full object-cover"
                               id=":rb:"
                               loading="eager"
-                              src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                              src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                             />
                             <figcaption
                               id=":ra:"
@@ -383,7 +383,7 @@ Object {
                     class="object-center overflow-hidden w-full h-full object-cover"
                     id=":r3:"
                     loading="eager"
-                    src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                    src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                   />
                   <figcaption
                     id=":r2:"
@@ -552,7 +552,7 @@ Object {
                       class="object-center overflow-hidden w-full h-full object-cover"
                       id=":r3:"
                       loading="eager"
-                      src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                      src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                     />
                     <figcaption
                       id=":r2:"
@@ -690,7 +690,7 @@ Object {
                               class="object-center overflow-hidden w-full h-full object-cover"
                               id=":r9:"
                               loading="eager"
-                              src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                              src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                             />
                             <figcaption
                               id=":r8:"
@@ -749,7 +749,7 @@ Object {
                               class="object-center overflow-hidden w-full h-full object-cover"
                               id=":rb:"
                               loading="eager"
-                              src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                              src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                             />
                             <figcaption
                               id=":ra:"
@@ -923,7 +923,7 @@ Object {
                             class="object-center overflow-hidden w-full h-full object-cover"
                             id=":r9:"
                             loading="eager"
-                            src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                            src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                           />
                           <figcaption
                             id=":r8:"
@@ -982,7 +982,7 @@ Object {
                             class="object-center overflow-hidden w-full h-full object-cover"
                             id=":rb:"
                             loading="eager"
-                            src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg"
+                            src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                           />
                           <figcaption
                             id=":ra:"

@@ -297,7 +297,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                               name: touristicContent.name ?? '',
                               place: touristicContent.category.label,
                               description: touristicContent.descriptionTeaser,
-                              thumbnailUris: touristicContent.thumbnailUris,
+                              thumbnails: touristicContent.thumbnails,
                               attachments: touristicContent.attachments,
                               iconUri: touristicContent.category.pictogramUri,
                               iconName: touristicContent.category.label,

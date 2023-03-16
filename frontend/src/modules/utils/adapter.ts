@@ -29,7 +29,7 @@ export const getAttachment = (rawAttachments: RawAttachment[]): Attachment => {
   return attachment;
 };
 
-export const getAttachments = (rawAttachments: RawAttachment[]): Attachment[] => {
+const getAttachmentsOrThumbnails = (rawAttachments: RawAttachment[], isThumbnail: boolean) => {
   const attachments = rawAttachments
     .filter(
       rawAttachment =>
@@ -37,28 +37,19 @@ export const getAttachments = (rawAttachments: RawAttachment[]): Attachment[] =>
         rawAttachment.url !== null &&
         rawAttachment.url.length > 0,
     )
-    .map(rawAttachmentImg => ({
-      url: rawAttachmentImg.url,
-      legend: rawAttachmentImg.legend,
-      author: rawAttachmentImg.author,
+    .map(rawAttachment => ({
+      url: isThumbnail ? rawAttachment.thumbnail : rawAttachment.url,
+      legend: rawAttachment.legend,
+      author: rawAttachment.author,
     }));
   return attachments.length > 0 ? attachments : [fallbackAttachment];
 };
 
-export const getThumbnails = (rawAttachments: RawAttachment[]): string[] => {
-  const thumbnails = rawAttachments
-    .filter(
-      rawAttachment =>
-        rawAttachment.type === 'image' &&
-        rawAttachment.thumbnail !== null &&
-        rawAttachment.thumbnail.length > 0,
-    )
-    .map(rawAttachment => rawAttachment.thumbnail);
-  if (thumbnails.length > 0) {
-    return thumbnails;
-  }
-  return [getGlobalConfig().fallbackImageUri];
-};
+export const getAttachments = (rawAttachments: RawAttachment[]): Attachment[] =>
+  getAttachmentsOrThumbnails(rawAttachments, false);
+
+export const getThumbnails = (rawAttachments: RawAttachment[]): Attachment[] =>
+  getAttachmentsOrThumbnails(rawAttachments, true);
 
 export function concatResults<T>(rawResults: APIResponseForList<T>[]): T[] {
   return rawResults.reduce<T[]>(

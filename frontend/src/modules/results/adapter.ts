@@ -2,7 +2,7 @@ import { ActivityChoices } from 'modules/activities/interface';
 import { CityDictionnary } from 'modules/city/interface';
 import { DifficultyChoices } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
-import { getAttachments } from 'modules/utils/adapter';
+import { getThumbnails } from 'modules/utils/adapter';
 import { formatHours } from 'modules/utils/time';
 import { RawTrekResult, TrekResult } from './interface';
 import { formatDistance } from './utils';
@@ -46,7 +46,7 @@ export const adaptTrekResultList = ({
     place: cityDictionnary[rawResult.departure_city]?.name ?? null,
     name: rawResult.name,
     tags: rawResult.themes.map(themeId => themes[themeId]?.label || ''),
-    attachments: getAttachments(rawResult.attachments),
+    attachments: getThumbnails(rawResult.attachments),
     category: activities[rawResult.practice] ?? null,
     informations: [
       {
