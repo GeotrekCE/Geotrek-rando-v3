@@ -100,7 +100,11 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
                           <StyledSmallCarousel isFullscreen={isFullscreen}>
                             {attachments.map((attachment, index) => (
                               <ImageWithLegend
-                                attachment={attachment}
+                                attachment={
+                                  isFullscreen
+                                    ? attachment
+                                    : { ...attachment, url: attachment.thumbnail }
+                                }
                                 className="overflow-hidden rounded-2xl"
                                 classNameImage={isFullscreen ? 'object-contain' : ''}
                                 key={index}

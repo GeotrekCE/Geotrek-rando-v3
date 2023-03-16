@@ -34,7 +34,7 @@ export const adaptTouristicContent = ({
     type: 'TOURISTIC_CONTENT',
     name: rawTouristicObject.name,
     descriptionTeaser: rawTouristicObject.description_teaser,
-    thumbnailUris: getThumbnails(rawTouristicObject.attachments),
+    thumbnails: getThumbnails(rawTouristicObject.attachments),
     attachments: getAttachments(rawTouristicObject.attachments),
     category: touristicContentCategories[rawTouristicObject.category],
     geometry: rawTouristicObject.geometry ? adaptGeometry(rawTouristicObject.geometry) : null,
@@ -57,7 +57,7 @@ export const adaptTouristicContentResult = ({
     id: rawTouristicObject.id,
     type: 'TOURISTIC_CONTENT',
     name: rawTouristicObject.name,
-    attachments: getAttachments(rawTouristicObject.attachments),
+    attachments: getThumbnails(rawTouristicObject.attachments),
     category: touristicContentCategories[rawTouristicObject.category] ?? null,
     place:
       Array.isArray(rawTouristicObject.cities) && rawTouristicObject.cities.length > 0
@@ -106,7 +106,7 @@ export const adaptTouristicContentDetails = ({
   id: rawTCD.id,
   name: rawTCD.properties.name,
   descriptionTeaser: rawTCD.properties.description_teaser,
-  thumbnailUris: getThumbnails(rawTCD.properties.attachments),
+  thumbnails: getThumbnails(rawTCD.properties.attachments),
   category: touristicContentCategory,
   geometry: rawTCD.geometry ? adaptGeometry(rawTCD.geometry) : null,
   attachments: getAttachments(rawTCD.properties.attachments),

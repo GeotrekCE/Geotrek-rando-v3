@@ -74,7 +74,7 @@ export interface TouristicContent {
   id: string;
   name: string;
   descriptionTeaser: string;
-  thumbnailUris: string[];
+  thumbnails: Attachment[];
   attachments: Attachment[];
   category: TouristicContentCategory;
   geometry:

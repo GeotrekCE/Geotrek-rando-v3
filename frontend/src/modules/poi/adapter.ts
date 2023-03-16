@@ -13,7 +13,7 @@ export const adaptPoi = ({
     id: `${rawPoi.id}`,
     name: rawPoi.name,
     description: rawPoi.description,
-    thumbnailUris: getThumbnails(rawPoi.attachments),
+    thumbnails: getThumbnails(rawPoi.attachments),
     attachments: getAttachments(rawPoi.attachments),
     type: poiTypes[rawPoi.type],
     geometry: {

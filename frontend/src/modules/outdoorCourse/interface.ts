@@ -73,7 +73,7 @@ export interface OutdoorCourse {
     | PointGeometry
     | MultiPointGeometry
     | GeometryCollection;
-  thumbnailUris: string[];
+  thumbnails: Attachment[];
   duration: string | null;
   maxElevation: number;
   height: string | null;
