@@ -38,7 +38,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
           <ImageWithLegend
             attachment={attachment}
             key={index}
-            loading={index === 0 ? 'eager' : 'lazy'}
+            loading="lazy"
             onClick={onClickImage}
             redirect={redirect}
           />
