@@ -14,7 +14,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const suggestions = adaptSuggestions(homePageConfig.suggestions, locale);
 
   if (suggestions !== null) {
-    const activitySuggestionIds = suggestions.flatMap(s => s.ids);
+    const activitySuggestionIds = suggestions.flatMap(suggestion =>
+      'ids' in suggestion ? suggestion.ids : [suggestion.type],
+    );
 
     await queryClient.prefetchQuery(
       ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}`, locale],

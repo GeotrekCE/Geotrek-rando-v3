@@ -15,7 +15,9 @@ export const useHome = (): UseHome => {
   const language = useRouter().locale ?? getDefaultLanguage();
   const suggestions = adaptSuggestions(homePageConfig.suggestions, language) ?? [];
 
-  const activitySuggestionIds = suggestions.flatMap(s => s.ids);
+  const activitySuggestionIds = suggestions.flatMap(suggestion =>
+    'ids' in suggestion ? suggestion.ids : [suggestion.type],
+  );
 
   const { data = [] } = useQuery<ActivitySuggestion[] | [], Error>(
     ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}`, language],

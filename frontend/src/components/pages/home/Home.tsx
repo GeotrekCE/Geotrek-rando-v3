@@ -3,7 +3,6 @@ import { Footer } from 'components/Footer';
 import { PageHead } from 'components/PageHead';
 import parse from 'html-react-parser';
 import getNextConfig from 'next/config';
-import React, { FunctionComponent } from 'react';
 import { useIntl } from 'react-intl';
 import { BannerWithAsset } from './components/BannerWithAsset';
 import { HomeSection } from './components/HomeSection';
@@ -14,7 +13,7 @@ const {
   publicRuntimeConfig: { homeBottomHtml, homeTopHtml },
 } = getNextConfig();
 
-const HomeUI: FunctionComponent = () => {
+const HomeUI: React.FC = () => {
   const { config, suggestions } = useHome();
 
   const contentContainerClassname = `relative ${

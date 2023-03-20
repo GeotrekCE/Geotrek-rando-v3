@@ -9,12 +9,20 @@ interface WelcomeBanner {
   shouldDisplayText: boolean;
 }
 
-export interface Suggestion {
-  titleTranslationId: string;
-  iconUrl: string;
+interface SuggestionsWithIds {
   ids: string[];
   type: 'trek' | 'service' | 'outdoor' | 'events';
 }
+
+interface SuggestionsWithList {
+  numberOfItemsToDisplay?: number;
+  type: 'upcomingEvents';
+}
+
+export type Suggestion = {
+  iconUrl: string;
+  titleTranslationId: string;
+} & (SuggestionsWithIds | SuggestionsWithList);
 
 /** @deprecated since 3.9.1 version */
 export type DeprecatedSuggestionList = Array<Suggestion>;
