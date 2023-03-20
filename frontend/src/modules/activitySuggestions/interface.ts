@@ -4,9 +4,8 @@ import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { TouristicEventResult } from 'modules/touristicEvent/interface';
 
 export interface ActivitySuggestion {
-  type: 'events' | 'trek' | 'service' | 'outdoor';
+  iconUrl: string;
   results: TouristicContentResult[] | TrekResult[] | OutdoorSiteResult[] | TouristicEventResult[];
   titleTranslationId: string;
-  iconUrl: string;
-  ids: string[];
+  type: 'events' | 'trek' | 'service' | 'outdoor' | 'upcomingEvents';
 }

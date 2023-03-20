@@ -36,7 +36,7 @@ In json files, you can just override the primary keys you need. You have to over
   - `enableReport`: to enable report form in trek detail pages
   - `hCaptchaKey`: string key to enable Captcha validation in the report form. To create/define a key, see https://www.hcaptcha.com/
   - `enableSearchByMap`: to enable searching by map displayed area (bbox)
-  - `maxLengthTrekAllowedFor3DRando`: Maximum length of meters allowed to enable 3D mode in the current trek. Adjust this setting carefully as too long a trek could freeze your browser. If this setting is defined to `0` (or  `mapSatelliteLayers` from `map.json` is defined to `null`) the 3D mode feature is disabled for the whole application
+  - `maxLengthTrekAllowedFor3DRando`: Maximum length of meters allowed to enable 3D mode in the current trek. Adjust this setting carefully as too long a trek could freeze your browser. If this setting is defined to `0` (or `mapSatelliteLayers` from `map.json` is defined to `null`) the 3D mode feature is disabled for the whole application
   - `minAltitudeDifferenceToDisplayElevationProfile`: Minimum altitude difference in meters required to display the elevation profile in the current trek
   - `accessibilityCodeNumber`: emergency number. Default set to `114`.
 
@@ -46,44 +46,32 @@ In json files, you can just override the primary keys you need. You have to over
 
   - `suggestions`: You can define blocks to display suggestions groups with treks ID, outdoor sites ID, services ID or events ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
     Each group has the following properties :
+
     ```typescript
     {
-      "titleTranslationId": string, // you can use locales keys with the files inside `translations` folder
-      "iconUrl": string, // url to the icon file
-      "ids": string[] // list of ids ,
-      "type": 'trek' | 'service' | 'outdoor' | 'events' // if not set, default to `trek`
+      "titleTranslationId": string: // you can use locales keys with the files inside `translations` folder
+      "iconUrl": string; // url to the icon file
+      "ids": string[]; // list of ids ,
+      "type": 'trek' | 'service' | 'outdoor' | 'events'; // if not set, default to `trek`
     }
     ```
-   To define suggestions groups you need to build an `object` with the languages code as keys. By this way you can differentiate the valorization of a territory according to the selected language. If you don't need this feature (or if you want the same configuration for several language), use `default` key instead of a language code. The configuration in the example below displays 2 groups of suggestions for all languages except the English version with one different:
-    ```json
-    "suggestions": {
-      "default": [
-        {
-          "titleTranslationId": "home.territoryTreks",
-          "iconUrl": "/icons/practice-pedestrian.svg",
-          "ids": ["2", "582", "586", "501", "771", "596"],
-          "type": "trek"
-        },
-        {
-          "titleTranslationId": "home.events",
-          "iconUrl": "/icons/category-events.svg",
-          "ids": ["1", "5"],
-          "type": "events"
-        },
-      ],
-      "en": [
-        {
-          "titleTranslationId": "home.treksDiscovery",
-          "iconUrl": "/icons/pedestrian.svg",
-          "ids": ["2", "582", "586"],
-          "type": "trek"
-        },
-      ]
+
+    Or you can define a suggestion block to display upcoming events, the structure is quite different:
+
+    ```typescript
+    {
+      "titleTranslationId": string; // you can use locales keys with the files inside `translations` folder
+      "iconUrl": string; // url to the icon file
+      "numberOfItemsToDisplay": number; // Optional; If not defined all upcoming events will be displayed
+      "type": 'upcomingEvents';
     }
     ```
-    PS: For backward compatibility you can still use an array, this is the same behavior that `object` with only a `default` key. For example:
-    ```json
-    "suggestions": [
+
+  To define suggestions groups you need to build an `object` with the languages code as keys. By this way you can differentiate the valorization of a territory according to the selected language. If you don't need this feature (or if you want the same configuration for several language), use `default` key instead of a language code. The configuration in the example below displays 2 groups of suggestions for all languages except the English version with one different:
+
+  ```json
+  "suggestions": {
+    "default": [
       {
         "titleTranslationId": "home.territoryTreks",
         "iconUrl": "/icons/practice-pedestrian.svg",
@@ -96,8 +84,36 @@ In json files, you can just override the primary keys you need. You have to over
         "ids": ["1", "5"],
         "type": "events"
       },
+    ],
+    "en": [
+      {
+        "titleTranslationId": "home.treksDiscovery",
+        "iconUrl": "/icons/pedestrian.svg",
+        "ids": ["2", "582", "586"],
+        "type": "trek"
+      },
     ]
-    ```
+  }
+  ```
+
+  PS: For backward compatibility you can still use an array, this is the same behavior that `object` with only a `default` key. For example:
+
+  ```json
+  "suggestions": [
+    {
+      "titleTranslationId": "home.territoryTreks",
+      "iconUrl": "/icons/practice-pedestrian.svg",
+      "ids": ["2", "582", "586", "501", "771", "596"],
+      "type": "trek"
+    },
+    {
+      "titleTranslationId": "home.events",
+      "iconUrl": "/icons/category-events.svg",
+      "ids": ["1", "5"],
+      "type": "events"
+    },
+  ]
+  ```
 
   - In `welcomeBanner`, you can personnalize the cover on the homepage. You can add an asset on the top of the page: it can either be a video, a single picture or a carousel of images:
 
@@ -118,31 +134,34 @@ In json files, you can just override the primary keys you need. You have to over
   - Links based on the key pair `label`/`url` (can be based on translation labels for multilingual) and/or the key `informationID` whose value is equal to a flatpage identifier.
 
 - `filter.json` to define filters to hide, their order and values (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/filter.json). If you want to :
+
   - Hide some of filters, you have to override their properties with `"display": false`.
   - Change the label for some filters, you need to define `translatedKey`, and copy the values into the translation files.
-  The `labels` filter contains an additional `withExclude` parameter. Its default value is `true`. By setting it to `true`, the user can filter the search by excluding a label (`withExclude` only works if your version of Geotrek Admin is equal to or higher than [2.77.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.77.0); please set it to `false` if this is not the case)
+    The `labels` filter contains an additional `withExclude` parameter. Its default value is `true`. By setting it to `true`, the user can filter the search by excluding a label (`withExclude` only works if your version of Geotrek Admin is equal to or higher than [2.77.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.77.0); please set it to `false` if this is not the case)
 
 - `map.json` to define basemaps URL and attributions, center (y, x), default and max zoom level (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json).
 
   You can also update the map layers. Three types of map layers are available: classic, satellite and offline. Each of them is structured as follows:
-    ```ts
-      interface LayerObject {
-        url: string; // Url of the layer. It needs to be a valid tiles server url or a geoJSON file
-        options: TileLayerOptions; // See https://leafletjs.com/reference.html#tilelayer-option
-        bounds: string; // Url of a geoJSON polygon to display this layer inside.
-      }
-    ```
-    The `url` prop should be a valid tiles server to use as base map.
 
-    If its value ends in `.geojson` (or `.json`), its features are displayed on the map. The application looks at the `stroke-width`,`stroke-opacity`, `fill`, `fill-opacity` values of each `feature` `properties` to apply the colors. You can override these values by setting them in the `options` property (identical name but in camelCase format).
+  ```ts
+  interface LayerObject {
+    url: string; // Url of the layer. It needs to be a valid tiles server url or a geoJSON file
+    options: TileLayerOptions; // See https://leafletjs.com/reference.html#tilelayer-option
+    bounds: string; // Url of a geoJSON polygon to display this layer inside.
+  }
+  ```
 
-    If you define `name`, `photo_url`, `description` and/or `website` in the `properties` of a `feature`, it will be displayed in a tooltip when its feature is clicked in the map.
+  The `url` prop should be a valid tiles server to use as base map.
 
-    - `mapClassicLayers`: array of `LayerObjects` for the default version.
-    - `mapSatelliteLayers`: array of `LayerObjects` for the satellite version.
-    - `mapOfflineLayer`: `LayerObject` registered for offline use. If it's explicitly set to `null`, the application uses the first layer of `mapClassicLayers` as a fallback.
+  If its value ends in `.geojson` (or `.json`), its features are displayed on the map. The application looks at the `stroke-width`,`stroke-opacity`, `fill`, `fill-opacity` values of each `feature` `properties` to apply the colors. You can override these values by setting them in the `options` property (identical name but in camelCase format).
 
-    NB: If you want to have only one map available, you can add `mapSatelliteLayers: null`. This will remove the button that allows the user to switch between two map layers.
+  If you define `name`, `photo_url`, `description` and/or `website` in the `properties` of a `feature`, it will be displayed in a tooltip when its feature is clicked in the map.
+
+  - `mapClassicLayers`: array of `LayerObjects` for the default version.
+  - `mapSatelliteLayers`: array of `LayerObjects` for the satellite version.
+  - `mapOfflineLayer`: `LayerObject` registered for offline use. If it's explicitly set to `null`, the application uses the first layer of `mapClassicLayers` as a fallback.
+
+  NB: If you want to have only one map available, you can add `mapSatelliteLayers: null`. This will remove the button that allows the user to switch between two map layers.
 
   - `zoomAvailableOffline` allows you to define the zoom modes allowed in offline mode. This allows you to control the amount of disk space required when caching. Default `[13,14,15]`
 
@@ -212,11 +231,12 @@ It's also possible to change category colors :
 }
 ```
 
-NB: If global config `groupTreksAndOutdoorFilters` is set to `true`,  the `outdoor` color is ignored in favor of the `trek` color.
+NB: If global config `groupTreksAndOutdoorFilters` is set to `true`, the `outdoor` color is ignored in favor of the `trek` color.
 
 ## CSS
 
 You can override CSS in `customization/theme/style.css` file. To help overriding CSS, some ID have been added on main DIV components:
+
 - `home_content`, `home_activitiesBar`, `home_topHtml`, `home_section`, `home_activitySuggestion`, `banner_carousel`, etc on Homepage
 - `header_logo` in Header
 - Several similar ID on search and detail pages
@@ -246,6 +266,7 @@ These templates can be translated by using the language code as a suffix (e.g. `
 NB: If you want to display a message common to all languages but not to a particular language (e.g. french), just create the template suffixed with its language code (e.g. `-fr.html`) and leave it empty, and voilà!
 
 You can also include some scripts:
+
 - `customization/html/scriptsHeader.html`: in the `<head>` of the document
 - `customization/html/scriptsFooter.html`: just before the `</body>` end tag
 
