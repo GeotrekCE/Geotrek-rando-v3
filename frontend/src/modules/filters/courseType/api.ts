@@ -7,4 +7,4 @@ export const fetchCourseTypes = (query: APIQuery): Promise<APIResponseForList<Ra
   GeotrekAPI.get('/trek_route/', { params: { ...query, ...portalsFilter } }).then(r => r.data);
 
 export const fetchCourseType = (query: APIQuery, id: number): Promise<RawCourseType> =>
-  GeotrekAPI.get(`/trek_route/${id}/`, { params: query }).then(r => r.data);
+  GeotrekAPI.get(`/trek_route/${encodeURIComponent(id)}/`, { params: query }).then(r => r.data);

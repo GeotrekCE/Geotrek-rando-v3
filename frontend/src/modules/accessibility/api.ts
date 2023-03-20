@@ -11,4 +11,4 @@ export const fetchAccessibilities = (
   );
 
 export const fetchAccessibilityLevel = (id: number): Promise<AccessibilityLevel> =>
-  GeotrekAPI.get(`/trek_accessibility_level/${id}/`).then(r => r.data);
+  GeotrekAPI.get(`/trek_accessibility_level/${encodeURIComponent(id)}/`).then(r => r.data);

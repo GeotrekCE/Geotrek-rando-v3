@@ -79,7 +79,7 @@ export const generateResultDetailsUrl = (
   parentId?: number,
 ): string => {
   const titleWithNoSpace = convertStringForSitemap(title);
-  const detailsPageUrl = `${route}/${id}-${encodeURI(titleWithNoSpace)}${
+  const detailsPageUrl = `${route}/${encodeURIComponent(id)}-${encodeURI(titleWithNoSpace)}${
     parentId ? `?parentId=${parentId}` : ''
   }`;
 

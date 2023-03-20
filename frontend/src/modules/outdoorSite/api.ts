@@ -23,7 +23,7 @@ export const fetchOutdoorSiteDetails = (
   query: APIQuery,
   id: string,
 ): Promise<RawOutdoorSiteDetails> => {
-  return GeotrekAPI.get(`/outdoor_site/${id}/`, {
+  return GeotrekAPI.get(`/outdoor_site/${encodeURIComponent(id)}/`, {
     params: { ...fieldsParamsDetails, ...query, ...portalsFilter },
   }).then(r => r.data);
 };
@@ -32,6 +32,6 @@ export const fetchOutdoorSiteResult = (
   query: APIQuery,
   id: string,
 ): Promise<{ geometry: RawGeometryObject }> =>
-  GeotrekAPI.get(`/outdoor_site/${id}/`, { params: { ...query, fields: 'geometry' } }).then(
-    r => r.data,
-  );
+  GeotrekAPI.get(`/outdoor_site/${encodeURIComponent(id)}/`, {
+    params: { ...query, fields: 'geometry' },
+  }).then(r => r.data);

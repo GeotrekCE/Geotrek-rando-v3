@@ -14,4 +14,6 @@ export const fetchTouristicContentCategory = (
   query: APIQuery,
   id: number,
 ): Promise<RawTouristicContentCategory> =>
-  GeotrekAPI.get(`/touristiccontent_category/${id}/`, { params: query }).then(r => r.data);
+  GeotrekAPI.get(`/touristiccontent_category/${encodeURIComponent(id)}/`, { params: query }).then(
+    r => r.data,
+  );
