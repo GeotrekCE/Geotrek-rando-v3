@@ -84,15 +84,17 @@ export const getMapResults = async (
         ...textFilter,
       });
       const mapTrekResults = await Promise.all(
-        generatePageNumbersArray(resultsNumber, rawMapResults.count).map(pageNumber =>
-          fetchTrekMapResults({
-            language,
-            page_size: resultsNumber,
-            page: pageNumber,
-            ...trekFilters,
-            ...textFilter,
-          }),
-        ),
+        generatePageNumbersArray(resultsNumber, rawMapResults.count)
+          .slice(1)
+          .map(pageNumber =>
+            fetchTrekMapResults({
+              language,
+              page_size: resultsNumber,
+              page: pageNumber,
+              ...trekFilters,
+              ...textFilter,
+            }),
+          ),
       );
       const activities = await getActivities(language);
       mapResults.push(
@@ -108,15 +110,17 @@ export const getMapResults = async (
         ...textFilter,
       });
       const mapTouristicContentResults = await Promise.all(
-        generatePageNumbersArray(resultsNumber, rawMapResults.count).map(pageNumber =>
-          fetchTouristicContentMapResults({
-            language,
-            page_size: resultsNumber,
-            page: pageNumber,
-            ...touristicContentFilter,
-            ...textFilter,
-          }),
-        ),
+        generatePageNumbersArray(resultsNumber, rawMapResults.count)
+          .slice(1)
+          .map(pageNumber =>
+            fetchTouristicContentMapResults({
+              language,
+              page_size: resultsNumber,
+              page: pageNumber,
+              ...touristicContentFilter,
+              ...textFilter,
+            }),
+          ),
       );
       const touristicContentCategories = await getTouristicContentCategories(language);
       mapResults.push(
@@ -135,15 +139,17 @@ export const getMapResults = async (
         ...textFilter,
       });
       const mapOutdoorSiteResults = await Promise.all(
-        generatePageNumbersArray(resultsNumber, rawMapResults.count).map(pageNumber =>
-          fetchOutdoorSites({
-            language,
-            page_size: resultsNumber,
-            page: pageNumber,
-            ...outdoorSiteFilter,
-            ...textFilter,
-          }),
-        ),
+        generatePageNumbersArray(resultsNumber, rawMapResults.count)
+          .slice(1)
+          .map(pageNumber =>
+            fetchOutdoorSites({
+              language,
+              page_size: resultsNumber,
+              page: pageNumber,
+              ...outdoorSiteFilter,
+              ...textFilter,
+            }),
+          ),
       );
       const outdoorPracticeDictionnary = await getOutdoorPractices(language);
       mapResults.push(
@@ -164,17 +170,19 @@ export const getMapResults = async (
         ...textFilter,
       });
       const mapTouristicEventsResults = await Promise.all(
-        generatePageNumbersArray(resultsNumber, rawMapResults.count).map(pageNumber =>
-          fetchTouristicEvents({
-            language,
-            page_size: resultsNumber,
-            page: pageNumber,
-            dates_before: newDateFilter.dates_before,
-            dates_after: newDateFilter.dates_after,
-            ...touristicEventsFilter,
-            ...textFilter,
-          }),
-        ),
+        generatePageNumbersArray(resultsNumber, rawMapResults.count)
+          .slice(1)
+          .map(pageNumber =>
+            fetchTouristicEvents({
+              language,
+              page_size: resultsNumber,
+              page: pageNumber,
+              dates_before: newDateFilter.dates_before,
+              dates_after: newDateFilter.dates_after,
+              ...touristicEventsFilter,
+              ...textFilter,
+            }),
+          ),
       );
 
       const touristicEventTypes = await getTouristicEventTypes(language);
