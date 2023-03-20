@@ -29,7 +29,7 @@ export const fetchTouristicContentDetails = (
   query: APIQuery,
   id: string,
 ): Promise<RawTouristicContentDetails> =>
-  GeotrekAPI.get(`/touristiccontent/${id}/`, {
+  GeotrekAPI.get(`/touristiccontent/${encodeURIComponent(id)}/`, {
     params: { ...fieldsParamsDetails, ...query, ...portalsFilter },
   }).then(r => r.data);
 
@@ -52,7 +52,7 @@ export const fetchTouristicContentPopupResult = (
   query: APIQuery,
   id: string,
 ): Promise<RawTouristicContentPopupResult> =>
-  GeotrekAPI.get(`/touristiccontent/${id}/`, {
+  GeotrekAPI.get(`/touristiccontent/${encodeURIComponent(id)}/`, {
     params: { ...query, ...fieldsParamsPopupResult },
   }).then(r => r.data);
 
@@ -60,6 +60,6 @@ export const fetchTouristicContentGeometryResult = (
   query: APIQuery,
   id: string,
 ): Promise<{ geometry: RawGeometryObject }> =>
-  GeotrekAPI.get(`/touristiccontent/${id}/`, { params: { ...query, fields: 'geometry' } }).then(
-    r => r.data,
-  );
+  GeotrekAPI.get(`/touristiccontent/${encodeURIComponent(id)}/`, {
+    params: { ...query, fields: 'geometry' },
+  }).then(r => r.data);

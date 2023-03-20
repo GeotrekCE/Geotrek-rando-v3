@@ -16,7 +16,9 @@ export const fetchTrekResults = (
   );
 
 export const fetchTrekResult = (query: APIQuery, id: number | string): Promise<RawTrekResult> =>
-  GeotrekAPI.get(`/trek/${id}/`, { params: { ...query, ...fieldsParams } }).then(r => r.data);
+  GeotrekAPI.get(`/trek/${encodeURIComponent(id)}/`, {
+    params: { ...query, ...fieldsParams },
+  }).then(r => r.data);
 
 export const fetchTrekResultsNumber = (
   query: APIQuery,
