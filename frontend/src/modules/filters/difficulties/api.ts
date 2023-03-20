@@ -9,4 +9,6 @@ export const fetchDifficulties = (
   GeotrekAPI.get('/trek_difficulty/', { params: { ...query, ...portalsFilter } }).then(r => r.data);
 
 export const fetchDifficulty = (query: APIQuery, id: number): Promise<RawDifficulty> =>
-  GeotrekAPI.get(`/trek_difficulty/${id}/`, { params: query }).then(r => r.data);
+  GeotrekAPI.get(`/trek_difficulty/${encodeURIComponent(id)}/`, { params: query }).then(
+    r => r.data,
+  );

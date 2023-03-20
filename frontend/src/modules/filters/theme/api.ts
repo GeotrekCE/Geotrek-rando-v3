@@ -7,4 +7,4 @@ export const fetchThemes = (query: APIQuery): Promise<APIResponseForList<Partial
   GeotrekAPI.get('/theme/', { params: { ...query, ...portalsFilter } }).then(r => r.data);
 
 export const fetchTheme = (query: APIQuery, id: number): Promise<RawTheme> =>
-  GeotrekAPI.get(`/theme/${id}/`, { params: query }).then(r => r.data);
+  GeotrekAPI.get(`/theme/${encodeURIComponent(id)}/`, { params: query }).then(r => r.data);

@@ -4,7 +4,9 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawListActivity } from './interface';
 
 export const fetchActivity = (query: APIQuery, id: number): Promise<RawListActivity> => {
-  return GeotrekAPI.get(`/trek_practice/${id}/`, { params: query }).then(r => r.data);
+  return GeotrekAPI.get(`/trek_practice/${encodeURIComponent(id)}/`, { params: query }).then(
+    r => r.data,
+  );
 };
 
 export const fetchActivities = (

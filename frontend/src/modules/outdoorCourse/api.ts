@@ -23,6 +23,6 @@ export const fetchOutdoorCourseDetails = (
   query: APIQuery,
   id: string,
 ): Promise<RawOutdoorCourseDetails> =>
-  GeotrekAPI.get(`/outdoor_course/${id}/`, { params: { ...query, ...fieldsParamsDetails } }).then(
-    r => r.data,
-  );
+  GeotrekAPI.get(`/outdoor_course/${encodeURIComponent(id)}/`, {
+    params: { ...query, ...fieldsParamsDetails },
+  }).then(r => r.data);
