@@ -4,7 +4,7 @@ import { adaptPoi } from './adapter';
 import { fetchPois } from './api';
 import { Poi } from './interface';
 
-export const getPois = async (id: number, language: string, key = 'trek'): Promise<Poi[]> => {
+export const getPois = async (id: number, language: string, key = 'near_trek'): Promise<Poi[]> => {
   const pageSize = getGlobalConfig().maxPoiPerPage;
   const [rawPois, poiTypes] = await Promise.all([
     fetchPois({ language, [key]: id, page_size: pageSize }),

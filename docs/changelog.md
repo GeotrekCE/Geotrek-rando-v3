@@ -1,5 +1,29 @@
 # Changelog
 
+## 3.17.0 (2024-01-10)
+
+**💥 Breaking changes**
+
+- This version of Geotrek Rando may not work correctly if connected to a Geotrek Admin API lower than version [2.98.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.98.0), due to the modification of parameters to obtain treks near POIs and sensitive areas. (#890)
+
+**🚀 New features**
+
+- Define customization for activity bar (#560)
+
+**✨ Improvements**
+
+- Use more efficient filters to get treks near POIs and sensitive areas (#890)
+- Move the mobile menu in the <header> tag and improve accessibility (#1010)
+
+**🔧 Maintenance**
+
+- Upgrade react-accessible-accordion package to 5.0.0 (#1010)
+- Upgrade react-burger-menu package to 3.0.9 (#1010)
+
+**🐛 Fixes**
+
+- Remove language selector from mobile menu if there is only one language (#1010)
+
 ## 3.16.1 (2023-12-13)
 
 **✨ Improvements**
