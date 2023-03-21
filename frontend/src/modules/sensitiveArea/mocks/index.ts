@@ -40,7 +40,7 @@ export const mockSensitiveAreaRoute = (times: number): void =>
     mockData: mockSensitiveAreasResponse(),
     additionalQueries: {
       period: 'ignore',
-      trek: 2,
+      near_trek: 2,
     },
     times,
   });
