@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.13.4 (2023-03-21)
+
+**✨ Improvements**
+
+- Add UpcomingEvents feature to homepage suggestions (#886)
+- Encode ID params send to the API (#888)
+
+**🐛 Fixes**
+
+- Avoid unnecessary fetch for obtaining map items (regression since v3.13.3) (#887)
+
+
 3.13.3 (2023-03-16)
 -------------------
 
