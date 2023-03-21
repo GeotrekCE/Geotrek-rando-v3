@@ -6,7 +6,6 @@ export interface RawPoi {
   name: string;
   description: string;
   type: number;
-  trek: number;
   attachments: RawAttachment[];
   geometry: RawPointGeometry3D;
 }
