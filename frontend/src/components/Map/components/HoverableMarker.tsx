@@ -36,7 +36,6 @@ export const HoverableMarker: React.FC<TrekOrTouristicContentProps | TrekChildPr
   return useMemo(
     () => (
       <Marker
-        key={props.id}
         position={props.position}
         eventHandlers={{
           mouseover: props.onMouseOver,
