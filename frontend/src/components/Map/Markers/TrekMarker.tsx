@@ -1,20 +1,13 @@
 import { MapMarker } from 'components/Icons/MapMarker';
 import { DivIcon } from 'leaflet';
-import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import styled from 'styled-components';
-import { colorPalette } from 'stylesheet';
+import { colorPalette, SPACING_UNIT } from 'stylesheet';
 
 const markerHeight = 44;
 const markerWidth = 36;
 // We emulate a padding on the pictogram by centering it thanks to the "horizontal padding"
 const markerHorizontalPadding = 6;
-const markerTopPadding = 7;
-
-const ActivityPictogram = styled.img<{ zoomRatio: number }>`
-  width: ${props => (markerWidth - 2 * markerHorizontalPadding) * props.zoomRatio}px;
-  top: ${props => markerTopPadding * props.zoomRatio}px;
-`;
+const markerTopPadding = 8;
 
 const ActivityMarker: React.FC<{ pictogramUrl?: string; zoomRatio: number; color: string }> = ({
   pictogramUrl,
@@ -25,10 +18,15 @@ const ActivityMarker: React.FC<{ pictogramUrl?: string; zoomRatio: number; color
     Boolean(pictogramUrl) && pictogramUrl?.[0] === '<'
       ? `data:image/svg+xml;utf8,${pictogramUrl}`
       : pictogramUrl;
+
+  const width = `w-${
+    (markerWidth / SPACING_UNIT - 2 * (markerHorizontalPadding / SPACING_UNIT)) * zoomRatio
+  }`;
+  const top = `top-${(markerTopPadding / SPACING_UNIT) * zoomRatio}`;
   return (
     <div className="relative flex justify-center">
       <MapMarker color={color ?? colorPalette.primary1} size={markerWidth * zoomRatio} />
-      <ActivityPictogram className="absolute z-leafletSvg" src={icon} zoomRatio={zoomRatio} />
+      <img alt="" className={`absolute z-leafletSvg ${width} ${top}`} loading="lazy" src={icon} />
     </div>
   );
 };

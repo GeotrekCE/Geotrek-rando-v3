@@ -33,7 +33,7 @@ const MEASUREMENT_UNIT = 'px';
 export const oldGetSpacing = (multiplier: number): string =>
   `${multiplier * OLD_SPACING_UNIT}${MEASUREMENT_UNIT}`;
 
-const SPACING_UNIT = 4;
+export const SPACING_UNIT = 4;
 export const getSpacing = (multiplier: number): string =>
   `${multiplier * SPACING_UNIT}${MEASUREMENT_UNIT}`;
 /**
