@@ -22,10 +22,20 @@ import { getTrekRatingScale } from '../trekRatingScale/connector';
 import { adaptChildren, adaptResults, adaptTrekChildGeometry } from './adapter';
 import { fetchDetails, fetchTrekChildren, fetchTrekGeometry, fetchTrekName } from './api';
 import { Details, TrekChildGeometry, TrekFamily } from './interface';
+import { getObjectsRelatedToItinerantTreksToDisplay } from './utils';
 
 export const getDetails = async (id: string, language: string): Promise<Details> => {
   try {
     const rawDetails = await fetchDetails({ language }, id);
+    const {
+      displayRelatedPOIs,
+      displayRelatedTouristicContents,
+      displayRelatedSensitiveAreas,
+      displayRelatedInfrastructures,
+      displayRelatedSignages,
+      displayRelatedServices,
+    } = getObjectsRelatedToItinerantTreksToDisplay(rawDetails.properties.children);
+
     // Typescript limit for Promise.all is for 10 promises
     const [
       activity,
@@ -44,8 +54,10 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       getCourseType(rawDetails.properties.route, language),
       getNetworks(language),
       getThemes(language),
-      getPois(rawDetails.properties.id, language),
-      getTouristicContentsNearTarget(rawDetails.properties.id, language),
+      displayRelatedPOIs === true ? getPois(rawDetails.properties.id, language) : [],
+      displayRelatedTouristicContents === true
+        ? getTouristicContentsNearTarget(rawDetails.properties.id, language)
+        : [],
       getCities(language),
       getAccessibilities(language),
       getSources(language),
@@ -64,12 +76,12 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       sensitiveAreas,
     ] = await Promise.all([
       getInformationDesks(language),
-      getSignage(language, id, 'TREK'),
-      getService(language, id, 'TREK'),
-      getInfrastructure(language, id, 'TREK'),
+      displayRelatedSignages === true ? getSignage(language, id, 'TREK') : null,
+      displayRelatedServices === true ? getService(language, id, 'TREK') : null,
+      displayRelatedInfrastructures === true ? getInfrastructure(language, id, 'TREK') : null,
       getLabels(language),
       getTrekResultsById(rawDetails.properties.children, language),
-      getGlobalConfig().enableSensitiveAreas
+      getGlobalConfig().enableSensitiveAreas && displayRelatedSensitiveAreas === true
         ? getSensitiveAreas('trek', rawDetails.properties.id, language)
         : [],
     ]);
