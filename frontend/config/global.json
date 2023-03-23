@@ -25,5 +25,13 @@
   "minAltitudeDifferenceToDisplayElevationProfile": 0,
   "accessibilityCodeNumber": "114",
   "groupTreksAndOutdoorFilters": false,
-  "hCaptchaKey": null
+  "hCaptchaKey": null,
+  "displayObjectsRelatedToItinerantTreks": {
+    "POIs": true,
+    "touristicContents": true,
+    "sensitiveAreas": true,
+    "infrastructures": true,
+    "signages": true,
+    "services": true
+  }
 }
