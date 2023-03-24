@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.13.5 (2023-03-24)
+
+**✨ Improvements**
+
+- Set config to display or not objects related to itinerant treks (#893)
+- Add alt and loading attributes to TrekMarker image (#892)
+
 ## 3.13.4 (2023-03-21)
 
 **✨ Improvements**
