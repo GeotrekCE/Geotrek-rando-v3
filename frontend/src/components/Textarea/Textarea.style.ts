@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { borderRadius, colorPalette, oldGetSpacing, typography } from 'stylesheet';
+import { borderRadius, colorPalette, getSpacing, typography } from 'stylesheet';
 
 const getBorderColor = (hasError = false, originalColor: string): string =>
   hasError ? colorPalette.hardKO : originalColor;
@@ -13,7 +13,7 @@ const Textarea = styled.textarea<Props>`
   width: 100%;
   height: 60px;
   background-color: ${colorPalette.white};
-  padding: ${oldGetSpacing(3)};
+  padding: ${getSpacing(3)};
   border-radius: ${borderRadius.medium};
   border: 1px solid ${props => getBorderColor(props.hasError, colorPalette.greySoft.DEFAULT)};
 
