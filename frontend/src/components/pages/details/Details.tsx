@@ -238,7 +238,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     {getGlobalConfig().enableMeteoWidget &&
                       details.cities_raw?.[0] &&
                       hasNavigator && (
-                        <DetailsSection>
+                        <DetailsSection className={marginDetailsChild}>
                           <DetailsMeteoWidget code={details.cities_raw[0]} />
                         </DetailsSection>
                       )}
