@@ -209,6 +209,9 @@
   "error": {
     "missing": "El formulario no se ha completado"
   },
+  "form": {
+    "calendar": "Calendario"
+  },
   "offline": {
     "number": "{count} contenidos accesibles sin conexión a internet",
     "presentation": "Para disfrutar de vuestros contenidos sin preocuparse de la red.",
