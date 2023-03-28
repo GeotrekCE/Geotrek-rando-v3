@@ -10,7 +10,7 @@ describe('InputWithMagnifier', () => {
         onChange={() => {
           /* does nothing */
         }}
-        onButtonClick={() => {
+        onSubmit={() => {
           /* does nothing */
         }}
       />,
