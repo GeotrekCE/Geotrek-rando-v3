@@ -33,7 +33,7 @@ export const PointReport: React.FC = () => {
 
   const pictogram = TrekMarker(
     renderToStaticMarkup(<AlertCircle color="white" />),
-    1.3,
+    1.5,
     colorPalette.red,
   ) as Icon;
 
