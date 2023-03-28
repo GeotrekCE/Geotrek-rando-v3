@@ -1,5 +1,4 @@
-import Input from 'components/Input';
-import { Label, Row } from 'components/InputRow/InputRow.style';
+import { useId } from 'react';
 import { MessageFormatElement } from 'react-intl';
 
 type coordinates = {
@@ -12,13 +11,18 @@ interface Props {
 }
 
 const InputRow: React.FC<Props> = props => {
+  const inputId = useId();
   return (
-    <Row>
+    <div className="w-full mb-5">
       <div className="flex gap-6">
         {props.coordinates.map(({ label, ...field }, index) => (
           <div key={index}>
-            {label !== undefined && <Label>{label}</Label>}
-            <Input {...field} readOnly />
+            {label !== undefined && (
+              <label className="block font-bold mb-1" htmlFor={inputId}>
+                {label}
+              </label>
+            )}
+            <input className="input" id={inputId} {...field} readOnly />
           </div>
         ))}
       </div>
@@ -27,7 +31,7 @@ const InputRow: React.FC<Props> = props => {
           <em>{props.helpText.toString()}</em>
         </p>
       )}
-    </Row>
+    </div>
   );
 };
 
