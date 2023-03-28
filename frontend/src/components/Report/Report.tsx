@@ -33,6 +33,7 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
     submitted,
     submit,
     error,
+    handleBlurEvent,
   } = useReport({
     startPoint,
   });
@@ -81,7 +82,13 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
               <FormattedMessage id={'report.success'} />
             </div>
           ) : (
-            <form encType="multipart/form-data" onSubmit={submit}>
+            <form encType="multipart/form-data" onSubmit={submit} noValidate>
+              {error.message !== null && (
+                <p className="font-bold mb-4 text-hardKO">
+                  <FormattedMessage id={error.message} />
+                </p>
+              )}
+
               {(!isMobile || coordinatesReportTouched) && (
                 <CoordinatesRow
                   coordinates={[
@@ -157,10 +164,17 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
                   </div>
                   <InputRow
                     label={intl.formatMessage({ id: 'report.email' })}
-                    type="text"
                     field={{
                       name: 'email',
+                      required: true,
+                      type: 'email',
+                      onBlur: handleBlurEvent,
                     }}
+                    error={
+                      error.fields.includes('email') === true
+                        ? intl.formatMessage({ id: 'form.missingField' })
+                        : null
+                    }
                   />
 
                   <div className="desktop:flex gap-2">
@@ -168,27 +182,16 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
                       <InputRow
                         key={index}
                         label={`${intl.formatMessage({ id: 'report.image' })} ${index + 1}`}
-                        type="file"
                         field={{
                           accept: 'image/*',
                           name: `file${index + 1}`,
+                          type: 'file',
                         }}
                       />
                     ))}
                   </div>
 
                   <input type="hidden" name="related_trek" value={trekId} />
-
-                  {error !== null && (
-                    <p className="font-bold mb-4 text-red">
-                      <FormattedMessage
-                        id={error.id}
-                        values={{
-                          field: <FormattedMessage id={error.values.field} />,
-                        }}
-                      />
-                    </p>
-                  )}
 
                   <p className="text-sm text-italic">
                     <FormattedMessage

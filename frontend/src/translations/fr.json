@@ -214,9 +214,6 @@
     },
     "GDPRDisclaimer": "Ces informations sont destinées à <b>organism</b>, qui s'engage à ne pas les communiquer à des tiers. Vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent (art. 34 de la loi \"Informatique et Libertés\"). Pour l'exercer, adressez-vous à <a>contact</a>."
   },
-  "error": {
-    "missing": "Le champ \"{field}\" est requis."
-  },
   "form": {
     "calendar": "Calendrier",
     "missingField" : "Ce champ est requis.",

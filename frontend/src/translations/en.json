@@ -214,11 +214,11 @@
     },
     "GDPRDisclaimer": "These information will be used by <b>organism</b>, which commit to not sell your personal data to third parties. You have the right to read, modify, fix or delete your personal data (art. 34 de la loi \"Informatique et Libertés\"). To apply please send a mail to <a>contact</a>."
   },
-  "error": {
-    "missing": "The \"{field}\" field is required."
-  },
   "form": {
-    "calendar": "Calendar"
+    "calendar": "Calendar",
+    "missingField" : "This field is mandatory.",
+    "required": "(required)",
+    "selectPlaceholder": "Select"
   },
   "offline": {
     "number": "{count} content accessible without internet connection",
