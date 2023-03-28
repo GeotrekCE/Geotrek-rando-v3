@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   padding-top: 25px;
   height: 0;
 
-  max-width: 85%;
+  max-width: 100%;
   margin: auto;
 
   & iframe {
