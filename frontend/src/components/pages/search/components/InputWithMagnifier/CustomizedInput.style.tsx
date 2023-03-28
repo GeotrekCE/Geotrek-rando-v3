@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components';
-import Input from 'components/Input/Input.style';
 import { borderRadius, desktopOnly, getSpacing } from 'stylesheet';
 
-const CustomizedInput = styled(Input)`
+const CustomizedInput = styled.input`
   width: ${getSpacing(54)};
   flex-grow: 2;
   ${desktopOnly(css`
