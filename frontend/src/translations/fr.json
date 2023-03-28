@@ -217,6 +217,12 @@
   "error": {
     "missing": "Le champ \"{field}\" est requis."
   },
+  "form": {
+    "calendar": "Calendrier",
+    "missingField" : "Ce champ est requis.",
+    "required": "(requis)",
+    "selectPlaceholder": "Sélectionnez"
+  },
   "offline": {
     "number": "{count} contenus accessibles sans connexion internet",
     "presentation": "Pour profiter de vos contenus sans vous soucier de votre réseau.",

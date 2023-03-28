@@ -209,6 +209,9 @@
   "error": {
     "missing": "Das Formular ist nicht vollständig"
   },
+  "form": {
+    "calendar": "Kalender"
+  },
   "offline": {
     "number": "{count}Inhalte, die ohne Internetverbindung zugänglich sind",
     "presentation": "Damit Sie Ihre Inhalte genießen können, ohne sich Sorgen um Ihr Netzwerk machen zu müssen",
