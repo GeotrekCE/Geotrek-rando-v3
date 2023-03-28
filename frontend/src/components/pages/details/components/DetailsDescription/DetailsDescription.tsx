@@ -25,59 +25,69 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
   email,
   website,
 }) => {
+  const hasDeparture = departure !== undefined && departure.length > 0;
+  const hasArrival = arrival !== undefined && arrival.length > 0;
+  const hasCities = Array.isArray(cities) && cities.length > 0;
+  const hasEmail = Boolean(email);
+  const hasWebsite = Boolean(website);
+
   return (
     <div
       id="details_description"
       className={`flex flex-col
-      pt-6 desktop:pt-12
+      py-6 desktop:py-12
       border-solid border-greySoft border-b
       ${className ?? ''}`}
     >
       <h2 id="details_descriptionTitle" className="text-Mobile-H1 desktop:text-H2 font-bold">
         {title}
       </h2>
-      <div id="details_descriptionContent" className="mt-3 desktop:mt-4 mb-6 desktop:mb-12">
+      <div id="details_descriptionContent" className="mt-3 desktop:mt-4">
         <StyledListWithSteps>{parse(descriptionHtml)}</StyledListWithSteps>
       </div>
 
-      {departure && (
-        <div>
-          <span className={'font-bold'}>
-            <FormattedMessage id="details.departure" />
-          </span>{' '}
-          : {departure}
-        </div>
-      )}
-      {arrival && (
-        <div>
-          <span className={'font-bold'}>
-            <FormattedMessage id="details.arrival" />
-          </span>{' '}
-          : {arrival}
-        </div>
-      )}
-      {cities && cities.length > 0 && (
-        <div>
-          <span className={'font-bold'}>
-            <FormattedMessage id="details.cities" />
-          </span>{' '}
-          : {cities.join(', ')}
-        </div>
-      )}
+      {(hasDeparture || hasArrival || hasCities || hasCities || hasEmail || hasWebsite) && (
+        <ul className="mt-3 desktop:mt-4">
+          {hasDeparture && (
+            <li>
+              <span className={'font-bold'}>
+                <FormattedMessage id="details.departure" />
+              </span>{' '}
+              : {departure}
+            </li>
+          )}
+          {hasArrival && (
+            <li>
+              <span className={'font-bold'}>
+                <FormattedMessage id="details.arrival" />
+              </span>{' '}
+              : {arrival}
+            </li>
+          )}
+          {hasCities && (
+            <li>
+              <span className={'font-bold'}>
+                <FormattedMessage id="details.cities" />
+              </span>{' '}
+              : {cities.join(', ')}
+            </li>
+          )}
 
-      {Boolean(email) && (
-        <div>
-          <a href={`mailto:${email as string}`} className="underline">
-            {email}
-          </a>
-        </div>
-      )}
-      {Boolean(website) && (
-        <div>
-          <a href={website} target="_blank" rel="noopener noreferrer">
-            {website}
-          </a>
-        </div>
+          {hasEmail && (
+            <li>
+              <a href={`mailto:${email as string}`} className="underline">
+                {email}
+              </a>
+            </li>
+          )}
+          {hasWebsite && (
+            <li>
+              <a href={website} target="_blank" rel="noopener noreferrer">
+                {website}
+              </a>
+            </li>
+          )}
+        </ul>
       )}
     </div>
   );
