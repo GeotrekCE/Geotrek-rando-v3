@@ -1,15 +1,30 @@
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { postReport } from './api';
 
-export const createReport = async (lang: string, params: FormData) => {
+export const getFormErrors = (params: FormData) => {
   const { hCaptchaKey } = getGlobalConfig();
+  const fields = ['email', 'problem_magnitude', 'activity', 'category', 'g-recaptcha-response']
+    .map(field => {
+      if (field === 'g-recaptcha-response' && params.get(field) === '') {
+        return hCaptchaKey !== null ? field : null;
+      }
+      if (params.get(field) === '') {
+        return field;
+      }
+      return null;
+    })
+    .filter(Boolean) as string[];
 
-  if (params.get('email') === '') throw new Error('error.missing.email');
-  if (params.get('problem_magnitude') === '') throw new Error('error.missing.magnitude');
-  if (params.get('activity') === '') throw new Error('error.missing.activity');
-  if (params.get('category') === '') throw new Error('error.missing.category');
-  if (hCaptchaKey !== null && params.get('g-recaptcha-response') === '')
-    throw new Error('error.missing.captcha');
+  if (fields.length === 0) {
+    return null;
+  }
 
+  return {
+    message: 'search.anErrorOccured',
+    fields,
+  };
+};
+
+export const createReport = async (lang: string, params: FormData) => {
   return postReport(lang, params);
 };

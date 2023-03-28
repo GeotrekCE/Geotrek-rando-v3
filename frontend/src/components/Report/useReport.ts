@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useQueries } from '@tanstack/react-query';
 
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
@@ -11,7 +11,7 @@ import { getFeedbackActivity } from '../../modules/feedbackActivity/connector';
 import { getFeedbackCategory } from '../../modules/feedbackCategory/connector';
 import { getFeedbackMagnitude } from '../../modules/feedbackMagnitude/connector';
 import { getDefaultLanguage } from '../../modules/header/utills';
-import { createReport } from '../../modules/report/connector';
+import { createReport, getFormErrors } from '../../modules/report/connector';
 
 interface PropsState {
   activity: Option[];
@@ -26,10 +26,8 @@ interface ConvertedOption {
 }
 
 interface Error {
-  id: string;
-  values: {
-    field: string;
-  };
+  message: string | null;
+  fields: string[];
 }
 
 const initialState: PropsState = {
@@ -56,7 +54,7 @@ interface Props {
 const useReport = ({ startPoint }: Props) => {
   const [state, setState] = useState(initialState);
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<Error>({ message: null, fields: [] });
 
   const language = useRouter().locale ?? getDefaultLanguage();
   const { messages } = useIntl();
@@ -119,6 +117,25 @@ const useReport = ({ startPoint }: Props) => {
     }));
   };
 
+  const scrollIntoView = () => {
+    document.querySelector('#details_report')?.scrollIntoView({
+      behavior: 'smooth',
+    });
+  };
+
+  const handleBlurEvent = (event: { target: { name: string; value: string } }) => {
+    const { name: fieldName, value: fieldValue } = event.target;
+    setError(prevError => {
+      return {
+        ...prevError,
+        fields:
+          fieldValue !== ''
+            ? prevError.fields.filter(item => item !== fieldName)
+            : [...prevError.fields, fieldName],
+      };
+    });
+  };
+
   const submit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -128,6 +145,12 @@ const useReport = ({ startPoint }: Props) => {
         `{"type": "Point", "coordinates": [${state.geom.coordinates.x}, ${state.geom.coordinates.y}]}`,
       );
     }
+    const formErrors = getFormErrors(formData);
+    if (formErrors) {
+      setError(formErrors);
+      scrollIntoView();
+      return;
+    }
     await createReport(language, formData)
       .then(async res => {
         const json = await res.json();
@@ -136,20 +159,22 @@ const useReport = ({ startPoint }: Props) => {
             .map(err => (Array.isArray(err) ? err[0] : err))
             .join('. ');
 
+          setError({
+            message: errors,
+            fields: [],
+          });
           throw new Error(errors);
         } else return json;
       })
       .then(() => {
-        setError(null);
+        setError({ message: null, fields: [] });
         setSubmitted(true);
-        document.querySelector('#details_report')?.scrollIntoView({
-          behavior: 'smooth',
-        });
+        scrollIntoView();
       })
-      .catch(localError => {
-        console.error(localError);
-        const [context, key, field] = (localError.message as string).split('.');
-        setError({ id: `${context}.${key}`, values: { field: `report.${field}` } });
+      .catch(errorServer => {
+        console.error(errorServer);
+        setError({ message: errorServer.message, fields: [] });
+        scrollIntoView();
       });
     setCoordinatesReportTouched(false);
   };
@@ -163,6 +188,7 @@ const useReport = ({ startPoint }: Props) => {
     submit,
     submitted,
     error,
+    handleBlurEvent,
   };
 };
 
