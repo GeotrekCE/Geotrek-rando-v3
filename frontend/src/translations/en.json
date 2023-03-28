@@ -217,6 +217,9 @@
   "error": {
     "missing": "The \"{field}\" field is required."
   },
+  "form": {
+    "calendar": "Calendar"
+  },
   "offline": {
     "number": "{count} content accessible without internet connection",
     "presentation": "To enjoy your content without worrying about your network.",
