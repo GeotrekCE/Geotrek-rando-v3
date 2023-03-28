@@ -19,22 +19,22 @@ Object {
           class="css-1f43avz-a11yText-A11yText"
         />
         <div
-          class="select__control css-io5zd9-control"
+          class="select__control css-4ib9x1-control"
         >
           <div
-            class="select__value-container select__value-container--is-multi select__value-container--has-value css-g1d714-ValueContainer"
+            class="select__value-container select__value-container--is-multi select__value-container--has-value css-3w2yfm-ValueContainer"
           >
             <div
-              class="css-ya8gvn-multiValue select__multi-value"
+              class="select__multi-value css-cyvt2f-multiValue"
             >
               <div
-                class="css-12jo7m5 select__multi-value__label"
+                class="select__multi-value__label css-wsp0cs-MultiValueGeneric"
               >
                 Très Facile
               </div>
               <div
                 aria-label="Remove Très Facile"
-                class="css-xb97g8 select__multi-value__remove"
+                class="select__multi-value__remove css-12a83d4-MultiValueRemove"
                 role="button"
               >
                 <svg
@@ -68,11 +68,11 @@ Object {
             class="select__indicators css-1hb7zxy-IndicatorsContainer"
           >
             <span
-              class="select__indicator-separator css-1okebmr-indicatorSeparator"
+              class="select__indicator-separator css-1u9des2-indicatorSeparator"
             />
             <div
               aria-hidden="true"
-              class="select__indicator select__dropdown-indicator css-tlfecz-indicatorContainer"
+              class="select__indicator select__dropdown-indicator css-1xc3v61-indicatorContainer"
             >
               <svg
                 aria-hidden="true"
@@ -114,22 +114,22 @@ Object {
         class="css-1f43avz-a11yText-A11yText"
       />
       <div
-        class="select__control css-io5zd9-control"
+        class="select__control css-4ib9x1-control"
       >
         <div
-          class="select__value-container select__value-container--is-multi select__value-container--has-value css-g1d714-ValueContainer"
+          class="select__value-container select__value-container--is-multi select__value-container--has-value css-3w2yfm-ValueContainer"
         >
           <div
-            class="css-ya8gvn-multiValue select__multi-value"
+            class="select__multi-value css-cyvt2f-multiValue"
           >
             <div
-              class="css-12jo7m5 select__multi-value__label"
+              class="select__multi-value__label css-wsp0cs-MultiValueGeneric"
             >
               Très Facile
             </div>
             <div
               aria-label="Remove Très Facile"
-              class="css-xb97g8 select__multi-value__remove"
+              class="select__multi-value__remove css-12a83d4-MultiValueRemove"
               role="button"
             >
               <svg
@@ -163,11 +163,11 @@ Object {
           class="select__indicators css-1hb7zxy-IndicatorsContainer"
         >
           <span
-            class="select__indicator-separator css-1okebmr-indicatorSeparator"
+            class="select__indicator-separator css-1u9des2-indicatorSeparator"
           />
           <div
             aria-hidden="true"
-            class="select__indicator select__dropdown-indicator css-tlfecz-indicatorContainer"
+            class="select__indicator select__dropdown-indicator css-1xc3v61-indicatorContainer"
           >
             <svg
               aria-hidden="true"
