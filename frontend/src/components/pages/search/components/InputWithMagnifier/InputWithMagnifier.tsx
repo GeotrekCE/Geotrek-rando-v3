@@ -1,35 +1,36 @@
 import { Search } from 'components/Icons/Search';
-import React, { ChangeEvent, FunctionComponent, KeyboardEvent } from 'react';
-import { useIntl } from 'react-intl';
+import { ChangeEvent, SyntheticEvent, useId } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { colorPalette } from 'stylesheet';
 import CustomizedInput from './CustomizedInput.style';
 
 interface InputWithMagnifierProps {
   value: string | null;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  onButtonClick: () => void;
+  onSubmit: () => void;
 }
 
-const InputWithMagnifier: FunctionComponent<InputWithMagnifierProps> = ({
-  onChange,
-  value,
-  onButtonClick,
-}) => {
+const InputWithMagnifier: React.FC<InputWithMagnifierProps> = ({ onChange, value, onSubmit }) => {
   const intl = useIntl();
+  const inputId = useId();
 
-  const onInputEnterPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      onButtonClick();
-    }
+  const handleSubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
+    onSubmit();
   };
 
   return (
-    <div className="flex flex-row w-full desktop:w-auto">
+    <form action="/search" className="flex flex-row w-full desktop:w-auto" onSubmit={handleSubmit}>
+      <label className="sr-only" htmlFor={inputId}>
+        <FormattedMessage id="search.title" />
+      </label>
       <CustomizedInput
+        className="input"
+        name="text"
+        id={inputId}
         onChange={onChange}
         value={value !== null ? value : ''}
-        type="text"
-        onKeyPress={onInputEnterPress}
+        type="search"
         placeholder={intl.formatMessage({ id: 'search.textFilter' })}
       />
       <div
@@ -39,11 +40,14 @@ const InputWithMagnifier: FunctionComponent<InputWithMagnifierProps> = ({
         cursor-pointer
         "
       >
-        <div onClick={onButtonClick}>
+        <button type="submit">
           <Search size={24} color={colorPalette.primary2} />
-        </div>
+          <span className="sr-only">
+            <FormattedMessage id="search.title" />
+          </span>
+        </button>
       </div>
-    </div>
+    </form>
   );
 };
 
