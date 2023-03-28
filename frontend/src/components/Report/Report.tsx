@@ -1,11 +1,11 @@
 import { Button } from 'components/Button';
 import InputRow from 'components/InputRow';
+import SelectRow from 'components/SelectRow';
 import TextareaRow from 'components/TextareaRow';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'components/Loader';
 
-import { SelectableDropdown } from 'components/pages/search/components/FilterBar/SelectableDropdown';
 import useReport from 'components/Report/useReport';
 import { useMediaPredicate } from 'react-media-hook';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
@@ -116,42 +116,81 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
               {(!isMobile || coordinatesReportTouched) && (
                 <>
                   <div className="mt-8">
-                    <SelectableDropdown
-                      name="activity"
-                      placeholder={'report.activity'}
-                      options={options.activity}
-                      selectedFilters={state.activity}
-                      setFilterSelectedOptions={(selectedOptions: Option[]) => {
-                        setValue('activity', selectedOptions);
+                    <SelectRow
+                      label={intl.formatMessage({ id: 'report.activity' })}
+                      field={{
+                        name: 'activity',
+                        options: options.activity,
+                        selectedFilters: state.activity,
+                        setFilterSelectedOptions: (selectedOptions: Option[]) => {
+                          setValue('activity', selectedOptions);
+                        },
+                        filterType: 'SINGLE',
+                        closeMenuOnSelect: true,
+                        placeholder: 'form.selectPlaceholder',
+                        required: true,
+                        onBlur: () =>
+                          handleBlurEvent({
+                            target: { name: 'activity', value: state.activity[0]?.value ?? '' },
+                          }),
                       }}
-                      filterType={'SINGLE'}
-                      closeMenuOnSelect
+                      error={
+                        error.fields.includes('activity') === true
+                          ? intl.formatMessage({ id: 'form.missingField' })
+                          : null
+                      }
                     />
                   </div>
                   <div className="mt-8">
-                    <SelectableDropdown
-                      name="category"
-                      placeholder={'report.category'}
-                      options={options.category}
-                      selectedFilters={state.category}
-                      setFilterSelectedOptions={(selectedOptions: Option[]) => {
-                        setValue('category', selectedOptions);
+                    <SelectRow
+                      label={intl.formatMessage({ id: 'report.category' })}
+                      field={{
+                        name: 'category',
+                        options: options.category,
+                        selectedFilters: state.category,
+                        setFilterSelectedOptions: (selectedOptions: Option[]) => {
+                          setValue('category', selectedOptions);
+                        },
+                        filterType: 'SINGLE',
+                        closeMenuOnSelect: true,
+                        placeholder: 'form.selectPlaceholder',
+                        required: true,
+                        onBlur: () =>
+                          handleBlurEvent({
+                            target: { name: 'category', value: state.category[0]?.value ?? '' },
+                          }),
                       }}
-                      filterType={'SINGLE'}
-                      closeMenuOnSelect
+                      error={
+                        error.fields.includes('category') === true
+                          ? intl.formatMessage({ id: 'form.missingField' })
+                          : null
+                      }
                     />
                   </div>
                   <div className="mt-8">
-                    <SelectableDropdown
-                      name="problem_magnitude"
-                      placeholder={'report.magnitude'}
-                      options={options.magnitude}
-                      selectedFilters={state.magnitude}
-                      setFilterSelectedOptions={(selectedOptions: Option[]) => {
-                        setValue('magnitude', selectedOptions);
+                    <SelectRow
+                      label={intl.formatMessage({ id: 'report.magnitude' })}
+                      field={{
+                        name: 'problem_magnitude',
+                        options: options.magnitude,
+                        selectedFilters: state.magnitude,
+                        setFilterSelectedOptions: (selectedOptions: Option[]) => {
+                          setValue('magnitude', selectedOptions);
+                        },
+                        filterType: 'SINGLE',
+                        closeMenuOnSelect: true,
+                        placeholder: 'form.selectPlaceholder',
+                        required: true,
+                        onBlur: () =>
+                          handleBlurEvent({
+                            target: { name: 'magnitude', value: state.magnitude[0]?.value ?? '' },
+                          }),
                       }}
-                      filterType={'SINGLE'}
-                      closeMenuOnSelect
+                      error={
+                        error.fields.includes('magnitude') === true
+                          ? intl.formatMessage({ id: 'form.missingField' })
+                          : null
+                      }
                     />
                   </div>
                   <div className="mt-8">
