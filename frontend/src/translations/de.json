@@ -206,11 +206,11 @@
     },
     "GDPRDisclaimer": "These information will be used by <b>organism</b>, which commit to not sell your personal data to third parties. You have the right to read, modify, fix or delete your personal data (art. 34 de la loi \"Informatique et Libertés\"). To apply please send a mail to <a>contact</a>."
   },
-  "error": {
-    "missing": "Das Formular ist nicht vollständig"
-  },
   "form": {
-    "calendar": "Kalender"
+    "calendar": "Kalender",
+    "missingField" : "Dieses Feld ist obligatorisch.",
+    "required": "(requirieren)",
+    "selectPlaceholder": "Wähle"
   },
   "offline": {
     "number": "{count}Inhalte, die ohne Internetverbindung zugänglich sind",
