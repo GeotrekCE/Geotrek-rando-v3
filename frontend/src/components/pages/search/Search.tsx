@@ -194,7 +194,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                     <InputWithMagnifier
                       value={textFilterInput}
                       onChange={onTextFilterInputChange}
-                      onButtonClick={onTextFilterSubmit}
+                      onSubmit={onTextFilterSubmit}
                     />
                   </div>
                 </div>
