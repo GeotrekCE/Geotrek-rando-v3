@@ -1,44 +1,51 @@
 import { Calendar } from 'components/Icons/Calendar';
-import React, { ChangeEvent, FunctionComponent } from 'react';
+import { ChangeEvent, useId, useRef } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { colorPalette } from 'stylesheet';
 import CustomizedInputDate from './CustomizedInputDate.style';
 
 interface InputDateWithMagnifierProps {
-  value: string;
+  label?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
+  value: string;
 }
 
-const InputDateWithMagnifier: FunctionComponent<InputDateWithMagnifierProps> = ({
+const InputDateWithMagnifier: React.FC<InputDateWithMagnifierProps> = ({
+  label,
   onChange,
   value,
-  placeholder,
 }) => {
+  const inputId = useId();
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
   return (
-    <div className="flex flex-row">
-      <CustomizedInputDate
-        onChange={onChange}
-        value={value}
-        type="text"
-        onFocus={e => {
-          e.target.type = 'date';
-          // @ts-ignore: Unreachable code error
-          e.target.showPicker();
-        }}
-        onBlur={e => {
-          e.target.type = 'text';
-        }}
-        placeholder={placeholder}
-      />
-      <div
-        className="w-10 h-10 desktop:h-12 desktop:w-12 bg-primary1 rounded-r-md
+    <div className="flex flex-col">
+      <label className="block font-bold mb-1" htmlFor={inputId}>
+        {label}
+      </label>
+      <div className="flex flex-row">
+        <CustomizedInputDate
+          className="input"
+          onChange={onChange}
+          id={inputId}
+          ref={inputRef}
+          value={value}
+          type="date"
+        />
+        <button
+          className="w-10 h-10 desktop:h-12 desktop:w-12 bg-primary1 rounded-r-md
         flex justify-center items-center
         active:bg-primary1-light
         "
-      >
-        <div>
+          // @ts-ignore: Unreachable code error. Fixed in TypeScript 4.8
+          onClick={() => inputRef?.current?.showPicker()}
+          type="button"
+        >
           <Calendar size={24} color={colorPalette.primary2} />
-        </div>
+          <span className="sr-only">
+            <FormattedMessage id="form.calendar" />
+          </span>
+        </button>
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import { SelectableDropdown } from 'components/pages/search/components/FilterBar/SelectableDropdown';
 import Field from 'components/pages/search/components/FilterBar/Field';
-import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { DATE_FILTER } from 'modules/filters/constant';
 import { DateFilter, FilterState, Option } from '../../../../../modules/filters/interface';
@@ -29,10 +28,10 @@ const ShowFilters: React.FC<Props> = ({
 
   if (item.id === DATE_FILTER) {
     return (
-      <div className="flex flex-col mt-4 desktop:mt-0 desktop:ml-5">
-        <div className="font-bold mb-2 text-lg">
+      <fieldset className="flex flex-col mt-4 desktop:mt-0 desktop:ml-5">
+        <legend className="font-bold mb-2 text-lg">
           <FormattedMessage id="search.diary" />
-        </div>
+        </legend>
         <InputDateWithMagnifier
           value={dateFilter.beginDate}
           onChange={event => {
@@ -42,7 +41,7 @@ const ShowFilters: React.FC<Props> = ({
               endDate: dateFilter.endDate,
             });
           }}
-          placeholder={intl.formatMessage({ id: 'search.beginDateFilter' })}
+          label={intl.formatMessage({ id: 'search.beginDateFilter' })}
         />
         <InputDateWithMagnifier
           value={dateFilter.endDate}
@@ -53,9 +52,9 @@ const ShowFilters: React.FC<Props> = ({
               endDate,
             });
           }}
-          placeholder={intl.formatMessage({ id: 'search.endDateFilter' })}
+          label={intl.formatMessage({ id: 'search.endDateFilter' })}
         />
-      </div>
+      </fieldset>
     );
   }
   // The API can send empty item

@@ -209,6 +209,9 @@
   "error": {
     "missing": "El formulari no està complet"
   },
+  "form": {
+    "calendar": "Calendari"
+  },
   "offline": {
     "number": "{count} continguts accessibles sense connexió a internet",
     "presentation": "Per gaudir dels vostres continguts sense preocupar-se de la xarxa.",

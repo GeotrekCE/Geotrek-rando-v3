@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components';
-import Input from 'components/Input/Input.style';
 import { borderRadius, desktopOnly, getSpacing } from 'stylesheet';
 
-const CustomizedInputDate = styled(Input)`
+const CustomizedInputDate = styled.input`
   width: ${getSpacing(35)};
   ${desktopOnly(css`
     width: ${getSpacing(58)};
