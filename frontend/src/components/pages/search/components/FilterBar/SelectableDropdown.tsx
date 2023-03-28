@@ -1,10 +1,9 @@
-import { ReactElement } from 'react';
 import Select, { CSSObjectWithLabel, OnChangeValue } from 'react-select';
 import { Option } from 'modules/filters/interface';
 import { useIntl } from 'react-intl';
 import { colorPalette, sizes } from 'stylesheet';
 
-interface Props {
+export interface SelectableDropdownProps {
   name: string;
   options: Option[];
   placeholder: string;
@@ -12,6 +11,8 @@ interface Props {
   selectedFilters: Option[];
   filterType: 'SINGLE' | 'MULTIPLE';
   closeMenuOnSelect?: boolean;
+  required?: boolean;
+  onBlur?: () => void;
 }
 
 const colourStyles = {
@@ -91,7 +92,7 @@ const computeAction = (action: OnChangeValue<Option, true>): Option[] => {
   return [action];
 };
 
-export const SelectableDropdown = (props: Props): ReactElement => {
+export const SelectableDropdown = (props: SelectableDropdownProps) => {
   const intl = useIntl();
   return (
     <Select
