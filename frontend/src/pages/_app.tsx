@@ -4,7 +4,7 @@ import { Root } from 'components/pages/_app/Root';
 import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ONE_MINUTE } from 'services/constants/staleTime';
-import 'tailwindcss/tailwind.css';
+import '../styles/global.css';
 import '../public/fonts.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

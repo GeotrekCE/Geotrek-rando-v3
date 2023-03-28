@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input {
+	@apply 
+		bg-white
+		border
+		border-solid
+		border-primary1
+		focus:border-primary1-light
+		font-main 
+		hover:border-primary1-light
+		placeholder-opacity-80
+		p-2
+		rounded
+		w-full
+	;
+}
+
+.input[readonly],
+.input[disabled] {
+	@apply 
+		bg-greySoft
+		border-greySoft
+		focus:border-greySoft
+		hover:border-greySoft
+	;
+}
+
+.input[aria-invalid] {
+	@apply 
+		border-hardKO
+	;
+}
+.textarea {
+	@apply 
+		bg-white
+		border
+		border-solid
+		border-primary1
+		focus:border-primary1-light
+		font-main 
+		h-15
+		hover:border-primary1-light
+		placeholder-opacity-80
+		p-2
+		rounded
+		w-full
+	;
+}
