@@ -1,7 +1,7 @@
 import { DetailsDownloadIcons } from 'components/pages/details/components/DetailsDownloadIcons';
 import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
 import { Activity } from 'modules/activities/interface';
-import React from 'react';
+import Image from 'next/image';
 import SVG from 'react-inlinesvg';
 import { colorPalette, fillSvgWithColor } from 'stylesheet';
 import { Details } from '../../../../../modules/details/interface';
@@ -20,6 +20,22 @@ interface DetailsTopIconsProps {
   practice?: Activity | null;
   type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
 }
+
+interface IconProps {
+  height?: number;
+  width?: number;
+  src?: string;
+}
+
+const Icon: React.FC<IconProps> = ({ src = '', ...props }) => {
+  if (!src) {
+    return null;
+  }
+  if (RegExp(/(.*).svg/).test(src)) {
+    return <SVG src={src} {...props} preProcessor={fillSvgWithColor(colorPalette.white)} />;
+  }
+  return <Image loading="lazy" src={src} {...props} alt="" />;
+};
 
 export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
   details,
@@ -61,10 +77,10 @@ const ActivityLogo: React.FC<{
     style={{ background: getActivityColor(type) }}
   >
     <div className="desktop:hidden">
-      <SVG src={src} preProcessor={fillSvgWithColor(colorPalette.white)} height={40} width={40} />
+      <Icon src={src} height={40} width={40} />
     </div>
     <div className="hidden desktop:block">
-      <SVG src={src} preProcessor={fillSvgWithColor(colorPalette.white)} height={53} width={53} />
+      <Icon src={src} height={53} width={53} />
     </div>
   </div>
 );
