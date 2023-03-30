@@ -38,8 +38,8 @@ export const HoverableMarker: React.FC<TrekOrTouristicContentProps | TrekChildPr
       <Marker
         position={props.position}
         eventHandlers={{
-          mouseover: props.onMouseOver,
-          mouseout: props.onMouseOut,
+          ...(props.onMouseOver && { mouseover: props.onMouseOver }),
+          ...(props.onMouseOut && { mouseout: props.onMouseOut }),
         }}
         icon={
           isTrekChild(props)
