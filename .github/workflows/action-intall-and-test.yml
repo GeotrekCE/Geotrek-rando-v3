@@ -6,13 +6,14 @@ jobs:
   install-and-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Cache Node Modules
+      - uses: actions/checkout@v3
+      - name: Setup node
         id: cache-node-modules
-        uses: actions/cache@v2
+        uses: actions/setup-node@v3
         with:
-          path: ./frontend/node_modules
-          key: node-modules-${{ hashFiles('./frontend/yarn.lock') }}
+          node-version-file: ./frontend/.nvmrc
+          cache: "yarn"
+          cache-dependency-path: "**/yarn.lock"
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
