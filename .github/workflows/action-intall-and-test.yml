@@ -16,7 +16,7 @@ jobs:
           cache-dependency-path: "**/yarn.lock"
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn
+        run: yarn install --frozen-lockfile
         working-directory: ./frontend
       - name: Check types
         run: yarn tsc
