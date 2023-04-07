@@ -34,7 +34,7 @@ export const MobileFilterMenuSection: React.FC<Props> = ({
       <div className={classNameSectionName} style={{ color }}>
         {title}
       </div>
-      <ChevronDown className={`transform -rotate-90 text-primary1`} size={24} color={color} />
+      <ChevronDown className={`-rotate-90 text-primary1`} size={24} color={color} />
     </div>
   );
 };

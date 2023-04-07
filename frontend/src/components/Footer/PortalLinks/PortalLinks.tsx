@@ -35,9 +35,9 @@ export const PortalLinks: React.FC<PortalLinksProps> = ({ name, links }) => {
         >
           <PortalLinksTitle name={name} />
           {openState === 'OPENED' ? (
-            <Minus size={24} className="flex-shrink-0" />
+            <Minus size={24} className="shrink-0" />
           ) : (
-            <Plus size={24} className="flex-shrink-0" />
+            <Plus size={24} className="shrink-0" />
           )}
         </div>
         <PortalLinksMobileContent

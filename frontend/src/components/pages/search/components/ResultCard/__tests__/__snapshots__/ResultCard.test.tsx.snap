@@ -19,7 +19,7 @@ Object {
               class="w-full h-full"
             >
               <div
-                class="h-full w-full flex-grow relative desktop:w-resultCardDesktop"
+                class="h-full w-full grow relative desktop:w-resultCardDesktop"
               >
                 <span
                   class=""
@@ -58,7 +58,7 @@ Object {
                 Saint-Etienne-du-Valdonnez
               </span>
               <h3
-                class="mt-1 overflow-ellipsis overflow-hidden whitespace-nowrap font-bold text-2xl color-primary1 desktop:overflow-clip desktop:whitespace-normal"
+                class="mt-1 text-ellipsis overflow-hidden whitespace-nowrap font-bold text-2xl color-primary1 desktop:text-clip desktop:whitespace-normal"
               >
                 Balade au pays des menhirs
               </h3>
@@ -232,7 +232,7 @@ Object {
             class="w-full h-full"
           >
             <div
-              class="h-full w-full flex-grow relative desktop:w-resultCardDesktop"
+              class="h-full w-full grow relative desktop:w-resultCardDesktop"
             >
               <span
                 class=""
@@ -271,7 +271,7 @@ Object {
               Saint-Etienne-du-Valdonnez
             </span>
             <h3
-              class="mt-1 overflow-ellipsis overflow-hidden whitespace-nowrap font-bold text-2xl color-primary1 desktop:overflow-clip desktop:whitespace-normal"
+              class="mt-1 text-ellipsis overflow-hidden whitespace-nowrap font-bold text-2xl color-primary1 desktop:text-clip desktop:whitespace-normal"
             >
               Balade au pays des menhirs
             </h3>

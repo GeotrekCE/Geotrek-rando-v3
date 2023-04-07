@@ -116,7 +116,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           >
             <OptionalLink redirectionUrl={redirectionUrl}>{descriptionStyled}</OptionalLink>
             <span
-              className="text-primary1 underline cursor-pointer flex-shrink-0 desktop:ml-1"
+              className="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
               onClick={toggleTruncateState}
             >
               <FormattedMessage

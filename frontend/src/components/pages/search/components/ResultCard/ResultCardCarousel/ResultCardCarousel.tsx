@@ -29,7 +29,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
 
   return (
     <div
-      className={`h-full w-full flex-grow relative ${
+      className={`h-full w-full grow relative ${
         asColumn !== true ? 'desktop:w-resultCardDesktop' : ''
       }`}
     >

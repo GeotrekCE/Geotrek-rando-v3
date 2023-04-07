@@ -9,7 +9,7 @@ export const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <div className="flex flex-col min-h-full">
       <Header />
-      <main className="relative flex-grow">
+      <main className="relative grow">
         <ConditionallyRender client>
           <Loader loaded={!isNavigationLoading} className="z-loader absolute inset-0">
             {children}

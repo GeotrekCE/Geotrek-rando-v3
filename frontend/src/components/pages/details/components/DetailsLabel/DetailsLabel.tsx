@@ -24,7 +24,7 @@ export const DetailsLabel: React.FC<DetailsLabelProps> = ({
       rounded-2xl border-2 border-solid border-warning
       ${className}`}
     >
-      <div className="mr-2 desktop:mr-3 flex-shrink-0 w-6 h-6 desktop:h-12 desktop:w-12">
+      <div className="mr-2 desktop:mr-3 shrink-0 w-6 h-6 desktop:h-12 desktop:w-12">
         {pictogramUri !== null ? <LabelIcon pictogramUri={pictogramUri} /> : <AlertTriangle />}
       </div>
       <div className="text-greyDarkColored text-Mobile-C2 desktop:text-P1">

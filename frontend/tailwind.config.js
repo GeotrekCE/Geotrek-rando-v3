@@ -1,9 +1,7 @@
-const plugin = require('tailwindcss/plugin');
 const SPACING_UNIT = 4;
 
 module.exports = {
-  purge: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {
       desktop: '1024px',
@@ -11,10 +9,6 @@ module.exports = {
     fontFamily: {
       main: `'Assistant', 'Helvetica', 'Arial', sans-serif`,
       code: 'Monospace',
-    },
-    scale: {
-      // Rule should be drop with TW v3
-      '-100': '-1',
     },
     boxShadow: {
       DEFAULT: '0 0 30px 0 rgba(0, 0, 0, 0.15)',
@@ -41,6 +35,7 @@ module.exports = {
       11: `${SPACING_UNIT * 11}px`,
       12: `${SPACING_UNIT * 12}px`,
       13: `${SPACING_UNIT * 13}px`,
+      14: `${SPACING_UNIT * 14}px`,
       15: `${SPACING_UNIT * 15}px`,
       16: `${SPACING_UNIT * 16}px`,
       18: `${SPACING_UNIT * 18}px`,
@@ -76,6 +71,7 @@ module.exports = {
     },
     zIndex: {
       content: 0,
+      10: 10,
       leafletSvg: 200,
       text: 200,
       loader: 300,
@@ -126,6 +122,7 @@ module.exports = {
         inner: 'inset 0 0 12px rgba(0, 0, 0, 0.08)',
       },
       colors: {
+        current: 'currentColor',
         primary1: {
           DEFAULT: 'var(--color-primary1-default)',
           light: 'var(--color-primary1-light)',
@@ -151,50 +148,4 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {
-      backgroundColor: ['active'],
-      // Rule should be drop with TW v3
-      margin: ['last'],
-    },
-  },
-  plugins: [
-    // plugins should be drop with TW v3
-    plugin(function ({ addUtilities, variants }) {
-      const scrollBehaviors = {
-        '.scroll-smooth': {
-          'scroll-behavior': 'smooth',
-        },
-        '.scroll-auto': {
-          'scroll-behavior': 'auto',
-        },
-      };
-      const srOnly = {
-        '.sr-only': {
-          position: 'absolute',
-          width: '1px',
-          height: '1px',
-          padding: 0,
-          margin: '-1px',
-          overflow: 'hidden',
-          clip: 'rect(0, 0, 0, 0)',
-          'white-space': 'nowrap',
-          'border-width': 0,
-        },
-        '.not-sr-only': {
-          position: 'static',
-          width: 'auto',
-          height: 'auto',
-          padding: 0,
-          margin: 0,
-          overflow: 'visible',
-          clip: 'auto',
-          'white-space': 'normal',
-        },
-      };
-
-      addUtilities(scrollBehaviors, variants('scrollBehavior', ['motion-safe', 'motion-reduce']));
-      addUtilities(srOnly);
-    }),
-  ],
 };
