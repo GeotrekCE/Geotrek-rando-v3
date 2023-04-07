@@ -3,7 +3,7 @@ import SVG from 'react-inlinesvg';
 import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 import { colorPalette } from 'stylesheet';
-import { twMerge } from 'tailwind-merge';
+import { twJoin } from 'tailwind-merge';
 import { FilterState, Option } from '../../../../../modules/filters/interface';
 
 interface Props {
@@ -56,7 +56,7 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
               key={option.value}
               onClick={() => handleClick(option)}
               type="button"
-              className={twMerge(
+              className={twJoin(
                 `p-1 m-1 inline-block width-auto border border-solid rounded-lg bg-white cursor-pointer ${
                   selectedOption !== undefined
                     ? 'text-primary1 font-bold bg-primary2 border-transparent'
