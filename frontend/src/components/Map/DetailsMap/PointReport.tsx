@@ -54,9 +54,9 @@ export const PointReport: React.FC = () => {
   return (
     <>
       {(!coordinatesReportTouched || !isMobile) && (
-        <div className="text-sm absolute top-6 left-1/2 transform -translate-x-1/2 z-10 py-2 desktop:py-3 px-3 desktop:px-3 rounded-2xl border-2 border-solid border-red bg-white z-mapButton">
+        <div className="text-sm absolute top-6 left-1/2 -translate-x-1/2 z-10 py-2 desktop:py-3 px-3 desktop:px-3 rounded-2xl border-2 border-solid border-red bg-white z-mapButton">
           <p className="flex gap-2 text-red">
-            <AlertCircle className="flex-shrink-0" size={24} />
+            <AlertCircle className="shrink-0" size={24} />
             <span>
               <FormattedMessage id="report.mapButton.create" />
             </span>

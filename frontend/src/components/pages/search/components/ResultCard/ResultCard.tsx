@@ -87,7 +87,7 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
           <DetailsLayout>
             {place !== null && <Place>{place}</Place>}
 
-            <TitleTag className="mt-1 overflow-ellipsis overflow-hidden whitespace-nowrap font-bold text-2xl color-primary1 desktop:overflow-clip desktop:whitespace-normal">
+            <TitleTag className="mt-1 text-ellipsis overflow-hidden whitespace-nowrap font-bold text-2xl color-primary1 desktop:text-clip desktop:whitespace-normal">
               {title}
             </TitleTag>
 

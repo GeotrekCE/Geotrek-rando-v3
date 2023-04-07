@@ -41,7 +41,7 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
             {intl.formatMessage({
               id: 'header.seeMore',
             })}
-            <ChevronDown size={16} className="flex-shrink-0 ml-1" />
+            <ChevronDown size={16} className="shrink-0 ml-1" />
           </summary>
           <div className={menuClassName}>
             {subSections.map(menuItem => {
@@ -84,7 +84,7 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
           <details className="flex-row">
             <summary className={controlClassName}>
               {language?.toUpperCase()}
-              <ChevronDown size={16} className="flex-shrink-0 ml-1" />
+              <ChevronDown size={16} className="shrink-0 ml-1" />
             </summary>
             <div className={menuClassName}>
               {supportedLanguages.map(locale => (

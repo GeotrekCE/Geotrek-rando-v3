@@ -71,7 +71,7 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
         {!isMobile && (
           <MapReportButton className="mr-1" onClick={handleReportButtonClick}>
             <FormattedMessage id={'report.button'} />
-            <Arrow className={`transform ${displayForm ? '-' : ''}rotate-90`} size={24} />
+            <Arrow className={`${displayForm ? '-' : ''}rotate-90`} size={24} />
           </MapReportButton>
         )}
       </div>

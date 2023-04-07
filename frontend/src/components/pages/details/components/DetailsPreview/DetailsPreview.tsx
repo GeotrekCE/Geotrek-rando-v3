@@ -220,7 +220,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             <LocalIconInformation
               icon={TrendingUp}
               iconProps={{
-                className: 'transform -scale-y-100',
+                className: '-scale-y-100',
               }}
               className={classNameInformation}
             >

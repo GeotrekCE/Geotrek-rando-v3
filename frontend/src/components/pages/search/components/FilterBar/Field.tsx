@@ -3,6 +3,7 @@ import SVG from 'react-inlinesvg';
 import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 import { colorPalette } from 'stylesheet';
+import { twMerge } from 'tailwind-merge';
 import { FilterState, Option } from '../../../../../modules/filters/interface';
 
 interface Props {
@@ -55,11 +56,13 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
               key={option.value}
               onClick={() => handleClick(option)}
               type="button"
-              className={`p-1 m-1 inline-block width-auto border border-solid rounded-lg bg-white cursor-pointer ${
-                selectedOption !== undefined
-                  ? 'text-primary1 font-bold bg-primary2 bg-opacity-5 border-transparent'
-                  : 'border-black'
-              } ${selectedOption?.include === false ? 'line-through' : ''}`}
+              className={twMerge(
+                `p-1 m-1 inline-block width-auto border border-solid rounded-lg bg-white cursor-pointer ${
+                  selectedOption !== undefined
+                    ? 'text-primary1 font-bold bg-primary2 border-transparent'
+                    : 'border-black'
+                } ${selectedOption?.include === false ? 'line-through' : ''}`,
+              )}
             >
               <span
                 className={`flex items-center ${option.pictogramUrl !== undefined ? 'mr-1' : ''}`}
