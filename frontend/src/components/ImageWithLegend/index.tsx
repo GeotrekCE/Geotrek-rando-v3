@@ -1,6 +1,6 @@
 import { Attachment } from 'modules/interface';
 import { FormattedMessage } from 'react-intl';
-import { twMerge } from 'tailwind-merge';
+import { twJoin } from 'tailwind-merge';
 import { ImgHTMLAttributes, useId } from 'react';
 import Link from 'next/link';
 import { getGlobalConfig } from 'modules/utils/api.config';
@@ -35,7 +35,7 @@ export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({
     >
       <img
         alt={attachment?.legend ?? ''}
-        className={twMerge(
+        className={twJoin(
           'object-cover object-center overflow-hidden w-full h-full',
           classNameImage,
         )}
