@@ -84,7 +84,7 @@ Object {
                       tabindex="0"
                     >
                       <span
-                        class="flex-grow"
+                        class="grow"
                         id="verticalMenu_section"
                       >
                         En savoir plus
@@ -177,7 +177,7 @@ Object {
                       tabindex="0"
                     >
                       <span
-                        class="flex-grow"
+                        class="grow"
                         id="verticalMenu_section"
                       >
                         Langue
@@ -348,7 +348,7 @@ Object {
                     tabindex="0"
                   >
                     <span
-                      class="flex-grow"
+                      class="grow"
                       id="verticalMenu_section"
                     >
                       En savoir plus
@@ -441,7 +441,7 @@ Object {
                     tabindex="0"
                   >
                     <span
-                      class="flex-grow"
+                      class="grow"
                       id="verticalMenu_section"
                     >
                       Langue

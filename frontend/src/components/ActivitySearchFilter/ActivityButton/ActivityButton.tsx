@@ -16,7 +16,7 @@ export const ActivityButton: React.FC<Props> = ({ iconUrl, href, label }) => {
     <Link href={href}>
       <span className="flex flex-col items-center mt-6 text-greyDarkColored bg-white transition-colors hover:text-primary3">
         <FilledSvg src={iconUrl} className="h-9 desktop:w-12" />
-        <span className="w-20 text-sm text-center text-greyDarkColored mt-2 overflow-ellipsis overflow-hidden">
+        <span className="w-20 text-sm text-center text-greyDarkColored mt-2 text-ellipsis overflow-hidden">
           {label}
         </span>
       </span>

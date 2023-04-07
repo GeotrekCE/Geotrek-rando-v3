@@ -107,7 +107,7 @@ Object {
               </div>
             </div>
             <span
-              class="text-primary1 underline cursor-pointer flex-shrink-0 desktop:ml-1"
+              class="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
             >
               lire la suite
             </span>
@@ -339,7 +339,7 @@ Object {
               </div>
             </div>
             <span
-              class="text-primary1 underline cursor-pointer flex-shrink-0 desktop:ml-1"
+              class="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
             >
               lire la suite
             </span>
@@ -451,7 +451,7 @@ Object {
             </div>
           </div>
           <span
-            class="text-primary1 underline cursor-pointer flex-shrink-0 desktop:ml-1"
+            class="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
           >
             lire la suite
           </span>
@@ -620,7 +620,7 @@ Object {
               </div>
             </div>
             <span
-              class="text-primary1 underline cursor-pointer flex-shrink-0 desktop:ml-1"
+              class="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
             >
               lire la suite
             </span>
@@ -852,7 +852,7 @@ Object {
               </div>
             </div>
             <span
-              class="text-primary1 underline cursor-pointer flex-shrink-0 desktop:ml-1"
+              class="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
             >
               lire la suite
             </span>
@@ -1085,7 +1085,7 @@ Object {
             </div>
           </div>
           <span
-            class="text-primary1 underline cursor-pointer flex-shrink-0 desktop:ml-1"
+            class="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
           >
             lire la suite
           </span>

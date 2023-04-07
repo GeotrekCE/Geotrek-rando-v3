@@ -41,12 +41,12 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
         setHoveredCardId(null);
       }}
     >
-      <div className="h-25 w-25 flex-shrink-0 hidden desktop:block">
+      <div className="h-25 w-25 shrink-0 hidden desktop:block">
         <InformationDeskIcon pictogramUri={photoUrl || type.pictogramUri} />
       </div>
       <div className="w-full desktop:pl-4">
         <div className="flex items-center">
-          <div className="flex-shrink-0 mr-auto">
+          <div className="shrink-0 mr-auto">
             <p className="font-bold">{name}</p>
             <p>
               {street !== null && <span>{`${street}, `}</span>}
@@ -88,7 +88,7 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
               <HtmlText>{parse(description)}</HtmlText>
             )}
             <span
-              className="text-primary1 underline cursor-pointer flex-shrink-0 desktop:ml-1"
+              className="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
               onClick={toggleTruncateState}
             >
               <FormattedMessage

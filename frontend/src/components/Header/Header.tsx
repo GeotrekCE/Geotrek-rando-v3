@@ -32,11 +32,11 @@ export const Header: React.FC = () => {
       <BurgerMenu config={config.menu} displayState={headerState} menuItems={menuItems} />
       <Container
         state={headerState}
-        className="h-11 bg-primary1 flex flex-row items-center sticky z-header px-3 shadow-sm text-primary3 flex-shrink-0"
+        className="h-11 bg-primary1 flex flex-row items-center sticky z-header px-3 shadow-sm text-primary3 shrink-0"
         id="header"
       >
         <Link href={routes.HOME} className="flex items-center">
-          <div className="flex-shrink-0" id="header_logo">
+          <div className="shrink-0" id="header_logo">
             <img
               id="header_logoImg"
               className="h-9 desktop:h-18 mr-3 rounded-md"

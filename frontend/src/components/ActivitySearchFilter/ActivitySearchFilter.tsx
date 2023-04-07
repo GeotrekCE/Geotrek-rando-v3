@@ -75,7 +75,7 @@ const ControlCollapseButton: React.FC<{ expandedState: 'EXPANDED' | 'COLLAPSED' 
   expandedState,
 }) => {
   if (expandedState === 'EXPANDED') {
-    return <ChevronDown size={48} className="transform rotate-180" />;
+    return <ChevronDown size={48} className="rotate-180" />;
   }
   return (
     <div className="flex flex-col items-center mr-4 text-P2">

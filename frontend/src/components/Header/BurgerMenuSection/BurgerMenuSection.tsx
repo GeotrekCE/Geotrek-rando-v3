@@ -43,7 +43,7 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
           <AccordionItemButton
             className={`${classNameTitle} ${openState === 'CLOSED' ? classNameBorder : ''}`}
           >
-            <span id="verticalMenu_section" className="flex-grow">
+            <span id="verticalMenu_section" className="grow">
               {title}
             </span>
             {openState === 'OPENED' ? closeIcon : openIcon}

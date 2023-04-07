@@ -37,9 +37,9 @@ export const PortalContact: React.FC<PortalContactProps> = ({
         >
           {name !== undefined && <PortalContactTitle name={name} />}
           {openState === 'OPENED' ? (
-            <Minus size={24} className="flex-shrink-0" />
+            <Minus size={24} className="shrink-0" />
           ) : (
-            <Plus size={24} className="flex-shrink-0" />
+            <Plus size={24} className="shrink-0" />
           )}
         </div>
         <PortalContactContent

@@ -85,10 +85,7 @@ const FilterField: React.FC<Props> = ({
           </div>
         )}
         {tabLabel !== null && <div className="ml-4 mr-4">{tabLabel}</div>}
-        <ChevronDown
-          className={`transform ${expanded ? '' : '-rotate-90'} text-primary1`}
-          size={30}
-        />
+        <ChevronDown className={`${expanded ? '' : '-rotate-90'} text-primary1`} size={30} />
       </Container>
       <BackgroundFields style={{ display: expanded ? 'block' : 'none' }} onClick={onClick} />
       <ContainerFields
