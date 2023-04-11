@@ -1,29 +1,45 @@
 import { TrekChildrenMarker } from 'components/Icons/TrekChildrenMarker';
 import { DivIcon } from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { colorPalette, SPACING_UNIT } from 'stylesheet';
+import { colorPalette } from 'stylesheet';
 
 const markerHeight = 44;
 const markerWidth = 36;
-// We emulate a padding on the pictogram by centering it thanks to the "horizontal padding"
-const markerHorizontalPadding = 6;
-const markerTopPadding = 8;
+
+const getWidth = (ratio: number) => {
+  if (ratio === 1.5) {
+    return 'w-9';
+  }
+  if (ratio === 2) {
+    return 'w-12';
+  }
+  return 'w-6';
+};
+
+const getTop = (ratio: number) => {
+  if (ratio === 1.5) {
+    return 'top-3';
+  }
+  if (ratio === 2) {
+    return 'top-4';
+  }
+  return 'top-2';
+};
 
 const ChildMarker: React.FC<{ label: string; zoomRatio: number; color: string }> = ({
   label,
   zoomRatio,
   color,
 }) => {
-  const width = `w-${
-    (markerWidth / SPACING_UNIT - 2 * (markerHorizontalPadding / SPACING_UNIT)) * zoomRatio
-  }`;
-  const top = `top-${(markerTopPadding / SPACING_UNIT) * zoomRatio}`;
+  const width = getWidth(zoomRatio);
+  const top = getTop(zoomRatio);
+
   const fontSize = zoomRatio === 1 ? 'text-xl' : 'text-2xl';
   return (
-    <div className="relative flex justify-center">
+    <div className="relative flex items-center justify-center">
       <TrekChildrenMarker color={color ?? colorPalette.primary1} size={markerWidth * zoomRatio} />
       <span
-        className={`absolute z-leafletSvg text-primary font-bold text-center leading-5 ${width} ${top} ${fontSize}`}
+        className={`absolute z-leafletSvg text-primary font-bold text-center ${width} ${top} ${fontSize}`}
       >
         {label}
       </span>
