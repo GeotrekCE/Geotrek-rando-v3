@@ -1,4 +1,4 @@
-import { twJoin } from 'tailwind-merge';
+import { cn } from 'services/utils/cn';
 import { Attachment } from 'modules/interface';
 import { LargeCarousel } from 'components/Carousel';
 import { ImageWithLegend } from 'components/ImageWithLegend';
@@ -26,7 +26,7 @@ export const DetailsCoverCarousel: React.FC<DetailsCoverCarouselProps> = ({
       {files.map((attachment, index) => (
         <ImageWithLegend
           attachment={attachment}
-          classNameImage={twJoin('object-cover', classNameImage)}
+          classNameImage={cn(`object-cover ${classNameImage}`)}
           key={index}
           loading="lazy"
           onClick={onClickImage}
