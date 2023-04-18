@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.13.6 (2023-04-18)
+
+**✨ Improvements**
+
+- Improve forms: semantics, displays error and accessibility (#902)
+- Structure styles around forecast widget in details page (#897)
+
+**🐛 Fixes**
+
+- Bugfixes for trek marker (#900 and #905)
+- Handle cities and districts values as string like others filters values (#907)
+
 ## 3.13.5 (2023-03-24)
 
 **✨ Improvements**
