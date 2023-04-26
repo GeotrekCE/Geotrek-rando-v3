@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
   return (
     <>
       {footerTop !== undefined && <div id="footer_topHtml">{parse(footerTop)}</div>}
-      <div className="bg-black flex flex-col" id="footer">
+      <div className="bg-primary1 flex flex-col" id="footer">
         <div className="mx-4 desktop:mx-10percent" id="footer_content">
           {config.socialNetworks && <SocialNetworks socialNetworkList={config.socialNetworks} />}
           <div
