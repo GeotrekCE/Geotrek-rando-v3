@@ -78,23 +78,25 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
         </a>
         <p className="text-primary1">{phone}</p>
 
-        <div className="flex flex-col desktop:flex-row desktop:items-end mt-4">
-          {truncateState === 'TRUNCATE' ? (
-            <TruncatedHtmlText>
-              <div>{parse(description)}</div>
-            </TruncatedHtmlText>
-          ) : (
-            <HtmlText>{parse(description)}</HtmlText>
-          )}
-          <span
-            className="text-primary1 underline cursor-pointer flex-shrink-0 desktop:ml-1"
-            onClick={toggleTruncateState}
-          >
-            <FormattedMessage
-              id={truncateState === 'TRUNCATE' ? 'details.knowMore' : 'details.close'}
-            />
-          </span>
-        </div>
+        {description && (
+          <div className="flex flex-col desktop:flex-row desktop:items-end mt-4">
+            {truncateState === 'TRUNCATE' ? (
+              <TruncatedHtmlText>
+                <div>{parse(description)}</div>
+              </TruncatedHtmlText>
+            ) : (
+              <HtmlText>{parse(description)}</HtmlText>
+            )}
+            <span
+              className="text-primary1 underline cursor-pointer flex-shrink-0 desktop:ml-1"
+              onClick={toggleTruncateState}
+            >
+              <FormattedMessage
+                id={truncateState === 'TRUNCATE' ? 'details.knowMore' : 'details.close'}
+              />
+            </span>
+          </div>
+        )}
 
         {accessibility && (
           <div className="mt-5">
