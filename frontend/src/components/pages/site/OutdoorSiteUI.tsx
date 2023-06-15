@@ -13,10 +13,8 @@ import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/detail
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
 import { generateTouristicContentUrl, HtmlText } from 'components/pages/details/utils';
 import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
-import { AccessChildrenSection } from 'components/pages/site/components/AccessChildrenSection';
-import { OutdoorCoursesChildrenSection } from 'components/pages/site/components/OutdoorCoursesChildrenSection';
-import { OutdoorSiteChildrenSection } from 'components/pages/site/components/OutdoorSiteChildrenSection';
-import React, { useMemo, useRef } from 'react';
+import { DetailsChildrenSection } from 'components/pages/details/components/DetailsChildrenSection';
+import { useMemo, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'components/Loader';
 import { useMediaPredicate } from 'react-media-hook';
@@ -218,28 +216,30 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                       </div>
                     )}
 
-                    {Number(outdoorSiteContent?.children?.length) > 0 && (
+                    {Number(outdoorSiteContent.children?.length) > 0 && (
                       <div ref={setExperienceRef} id="details_trekChildren_ref">
-                        <OutdoorSiteChildrenSection
-                          outdoorChildren={outdoorSiteContent.children}
-                          id={id}
+                        <DetailsChildrenSection
+                          id="experiences"
+                          items={outdoorSiteContent.children}
                           title={intl.formatMessage(
                             { id: 'outdoorSite.sitesFullTitle' },
-                            { count: Number(outdoorSiteContent.children.length) },
+                            { count: outdoorSiteContent.children.length },
                           )}
+                          type="OUTDOOR_SITE"
                         />
                       </div>
                     )}
 
-                    {Number(outdoorSiteContent?.courses?.length) > 0 && (
+                    {Number(outdoorSiteContent.courses?.length) > 0 && (
                       <div ref={setCoursesRef} id="details_trekChildren_ref">
-                        <OutdoorCoursesChildrenSection
-                          outdoorChildren={outdoorSiteContent.courses}
-                          id={id}
+                        <DetailsChildrenSection
+                          id="courses"
+                          items={outdoorSiteContent.courses}
                           title={intl.formatMessage(
                             { id: 'outdoorSite.coursesFullTitle' },
-                            { count: Number(outdoorSiteContent.courses.length) },
+                            { count: outdoorSiteContent.courses.length },
                           )}
+                          type="OUTDOOR_COURSE"
                         />
                       </div>
                     )}
@@ -304,15 +304,16 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                       </DetailsSection>
                     )}
 
-                    {Number(outdoorSiteContent?.access?.length) > 0 && (
+                    {Number(outdoorSiteContent.access?.length) > 0 && (
                       <div ref={setAccessRef} id="details_trekChildren_ref">
-                        <AccessChildrenSection
-                          accessChildren={outdoorSiteContent?.access}
-                          id={id}
+                        <DetailsChildrenSection
+                          id="access"
+                          items={outdoorSiteContent.access}
                           title={intl.formatMessage(
                             { id: 'outdoorSite.accessFullTitle' },
-                            { count: Number(outdoorSiteContent?.access?.length) },
+                            { count: outdoorSiteContent.access.length },
                           )}
+                          type="TREK"
                         />
                       </div>
                     )}
