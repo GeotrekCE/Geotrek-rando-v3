@@ -31,15 +31,23 @@ export const getOutdoorCourses = async (language: string, query = {}): Promise<O
 
 export const getOutdoorCoursesResult = async (
   language: string,
-  query = {},
+  courses: number[],
 ): Promise<OutdoorCourseResult[]> => {
-  const [rawOutdoorCoursesResult, cityDictionnary] = await Promise.all([
-    fetchOutdoorCourses({ ...query, language }),
-    getCities(language),
-  ]);
+  if (courses.length === 0) {
+    return [];
+  }
+  const rawOutdoorCourses = await Promise.all(
+    courses.map(id => {
+      return fetchOutdoorCourseDetails({ language }, id.toString());
+    }),
+  );
+
+  const cityDictionnary = await getCities(language);
 
   return adaptOutdoorCoursesResult({
-    rawOutdoorCourses: rawOutdoorCoursesResult.results,
+    rawOutdoorCourses: rawOutdoorCourses.map(
+      ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons touristic events attributes are in properties field
+    ),
     cityDictionnary,
   });
 };
