@@ -47,18 +47,27 @@ export const getOutdoorSites = async (language: string, query = {}): Promise<Out
 
 export const getOutdoorSitesResult = async (
   language: string,
-  query = {},
+  children: number[],
 ): Promise<OutdoorSiteResult[]> => {
-  const [rawOutdoorSitesResult, themeDictionnary, outdoorPracticeDictionnary, cityDictionnary] =
-    await Promise.all([
-      getGlobalConfig().enableOutdoor ? fetchOutdoorSites({ ...query, language }) : null,
-      getThemes(language),
-      getOutdoorPractices(language),
-      getCities(language),
-    ]);
+  if (!getGlobalConfig().enableOutdoor || children.length === 0) {
+    return [];
+  }
+
+  const outdoorSiteChildren = await Promise.all(
+    children.map(id => {
+      return fetchOutdoorSiteDetails({ language }, id.toString());
+    }),
+  );
+  const [themeDictionnary, outdoorPracticeDictionnary, cityDictionnary] = await Promise.all([
+    getThemes(language),
+    getOutdoorPractices(language),
+    getCities(language),
+  ]);
 
   return adaptoutdoorSitesResult({
-    rawOutdoorSites: rawOutdoorSitesResult?.results ?? [],
+    rawOutdoorSites: outdoorSiteChildren.map(
+      ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons touristic events attributes are in properties field
+    ),
     themeDictionnary,
     outdoorPracticeDictionnary,
     cityDictionnary,
@@ -70,8 +79,8 @@ export const getOutdoorSiteDetails = async (
   language: string,
 ): Promise<OutdoorSiteDetails> => {
   try {
+    const rawOutdoorSiteDetails = await fetchOutdoorSiteDetails({ language }, id);
     const [
-      rawOutdoorSiteDetails,
       pois,
       themeDictionnary,
       labelsDictionnary,
@@ -82,14 +91,13 @@ export const getOutdoorSiteDetails = async (
       outdoorPracticeDictionnary,
       touristicContents,
     ] = await Promise.all([
-      fetchOutdoorSiteDetails({ language }, id),
       getPois(Number(id), language, 'sites'),
       getThemes(language),
       getLabels(language),
       getSources(language),
       getInformationDesks(language),
-      getOutdoorSitesResult(language, { near_outdoorsite: id }),
-      getOutdoorCoursesResult(language, { near_outdoorsite: id }),
+      getOutdoorSitesResult(language, rawOutdoorSiteDetails.properties.children),
+      getOutdoorCoursesResult(language, rawOutdoorSiteDetails.properties.courses),
       getOutdoorPractices(language),
       getTouristicContentsNearTarget(Number(id), language, 'near_outdoorsite'),
     ]);
