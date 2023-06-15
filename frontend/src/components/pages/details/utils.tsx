@@ -147,7 +147,9 @@ export const generateDetailsUrlFromType = (
   type: 'TREK' | 'TOURISTIC_CONTENT' | 'TOURISTIC_EVENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE',
   id: number | string,
   title: string,
+  params?: Record<string, string>,
 ): string => {
+  const searchParams = params ? `?${new URLSearchParams(params).toString()}` : '';
   const titleWithNoSpace = convertStringForSitemap(title);
-  return `${routes[type]}/${id}-${encodeURI(titleWithNoSpace)}`;
+  return `${routes[type]}/${id}-${encodeURI(titleWithNoSpace)}${searchParams}`;
 };

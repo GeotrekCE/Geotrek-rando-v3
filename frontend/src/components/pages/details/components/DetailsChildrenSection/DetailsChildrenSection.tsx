@@ -1,71 +1,113 @@
 import { Separator } from 'components/Separator';
 import { TrekResult } from 'modules/results/interface';
+import { OutdoorSiteResult } from 'modules/outdoorSite/interface';
+import { OutdoorCourseResult } from 'modules/outdoorCourse/interface';
 import { ResultCard } from 'components/pages/search/components/ResultCard';
 import styled, { css } from 'styled-components';
 import { desktopOnly, scrollBar, sizes } from 'stylesheet';
+import { cn } from 'services/utils/cn';
 import { marginDetailsChild } from '../../Details';
-import { generateChildrenDetailsUrl } from '../../utils';
+import { generateDetailsUrlFromType } from '../../utils';
 
 interface DetailsChildrenSectionProps {
-  trekChildren: TrekResult[];
+  id?: string;
+  items: TrekResult[] | OutdoorSiteResult[] | OutdoorCourseResult[];
+  parentId?: string;
   title: string;
-  trekId: string;
+  type: 'TREK' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE';
 }
 
 export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
-  trekChildren,
+  items,
   title,
-  trekId,
+  parentId,
+  type,
+  id = `${type.toLocaleLowerCase()}Children`,
 }) => {
+  const withSteps = parentId !== undefined;
+  const idAttribute = `details_${id}`;
   return (
-    <div className="mt-6 desktop:mt-12" id="details_trekChildren">
-      <div
-        id="details_trekChildrenTitle"
-        className={`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild}`}
+    <div className="pt-6 desktop:pt-12 scroll-mt-20 desktop:scroll-mt-30" id={idAttribute}>
+      <h2
+        id={`${idAttribute}Title`}
+        className={cn(`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild}`)}
       >
         {title}
-      </div>
+      </h2>
       <ScrollContainer
-        id="details_trekChildrenScrollContainer"
-        className="flex desktop:flex-col
-        desktop:pl-18 desktop:pr-9 desktop:mr-9 desktop:pt-10
-        mt-4 mb-4 desktop:mb-0 px-4
-        items-stretch
-        overflow-x-scroll desktop:overflow-x-hidden
-        overflow-y-hidden desktop:overflow-y-scroll
-        flex-nowrap max-h-screen
-        "
+        id={`${idAttribute}ScrollContainer`}
+        className={cn(
+          `
+          flex desktop:flex-col flex-nowrap items-stretch
+          my-4 px-4
+          desktop:mr-9 desktop:mb-0 desktop:pt-10 desktop:pr-9 desktop:pl-18
+          overflow-x-auto desktop:overflow-x-hidden
+          overflow-y-hidden desktop:overflow-y-auto
+          scroll-smooth snap-x
+          `,
+          withSteps && '[counter-reset:steps]',
+        )}
+        as={withSteps ? 'ol' : 'ul'}
       >
-        {trekChildren.map((trekChild, i) => (
-          <div key={i}>
-            <div className="hidden desktop:block">
-              <Step number={i + 1} />
-            </div>
-            <div
-              className={`mr-3 desktop:ml-5.5 desktop:mr-0 desktop:pl-12 relative ${
-                i < trekChildren.length - 1
-                  ? 'desktop:border-solid desktop:border-primary1 desktop:border-l-3'
-                  : ''
-              }`}
-            >
-              <div className="relative desktop:-top-20">
-                <ResultCard
-                  id={`${trekChild.id}`}
-                  hoverId={`DETAILS-TREK_CHILDREN-${trekChild.id}`}
-                  type="TREK"
-                  place={trekChild.place}
-                  title={trekChild.name}
-                  tags={trekChild.tags}
-                  attachments={trekChild.attachments}
-                  badgeIconUri={trekChild.category?.pictogramUri}
-                  badgeName={trekChild.category?.label}
-                  informations={trekChild.informations}
-                  redirectionUrl={generateChildrenDetailsUrl(trekChild.id, trekChild.name, trekId)}
-                  className="w-60 desktop:w-auto"
-                />
-              </div>
-            </div>
-          </div>
+        {items.map(item => (
+          <li
+            className={cn(
+              'pb-6 mx-1',
+              withSteps &&
+                `
+                flex
+                relative
+                desktop:ml-6
+                [counter-increment:steps]
+                before:content-[counters(steps,'.')]
+                before:hidden before:desktop:block
+                before:relative
+                before:z-10
+                before:mt-8
+                before:mb-auto
+                before:-ml-6
+                before:mr-6
+                before:py-2 before:px-4
+                before:rounded-full
+                before:border-solid before:border-primary1 before:border-3
+                before:text-H4 before:font-bold before:text-primary1
+                before:shadow-md
+                before:bg-white
+                after:content-['']
+                after:hidden after:desktop:block
+                after:w-1
+                after:bg-primary1
+                after:absolute
+                after:top-0
+                after:bottom-0
+                after:-left-2p
+                first:after:top-12
+                last:after:h-8
+                snap-center
+              `,
+            )}
+            key={`${item.type}-${item.id}`}
+          >
+            <ResultCard
+              id={`${item.id}`}
+              hoverId={`${item.type}-${item.id}`}
+              type={type}
+              place={item.place}
+              title={item.name}
+              tags={item.tags}
+              attachments={item.attachments}
+              badgeIconUri={'category' in item ? item.category?.pictogramUri : undefined}
+              badgeName={'category' in item ? item.category?.label : undefined}
+              informations={item.informations}
+              redirectionUrl={generateDetailsUrlFromType(
+                item.type,
+                item.id,
+                item.name,
+                withSteps ? { parentId } : undefined,
+              )}
+              className="w-60 desktop:w-auto"
+            />
+          </li>
         ))}
       </ScrollContainer>
       <div className={marginDetailsChild}>
@@ -77,7 +119,7 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
 
 const offsetTopForTitle = 130;
 
-const ScrollContainer = styled.div`
+const ScrollContainer = styled.ul`
   &::-webkit-scrollbar {
     ${scrollBar.root}
   }
@@ -90,16 +132,3 @@ const ScrollContainer = styled.div`
     );
   `)}
 `;
-
-const Step: React.FC<{ number: number }> = ({ number }) => (
-  <div
-    className="h-8 w-8 desktop:h-12 desktop:w-12
-    rounded-full
-    flex items-center justify-center
-    border-solid border-primary1 border-3
-    text-P1 desktop:text-H4 font-bold text-primary1
-    shadow-md"
-  >
-    {number}
-  </div>
-);

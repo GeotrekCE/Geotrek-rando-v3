@@ -189,15 +189,17 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     {details.children.length > 0 && (
                       <div ref={setChildrenRef} id="details_trekChildren_ref">
                         <DetailsChildrenSection
-                          trekChildren={details.children.map(child => ({
+                          id="children"
+                          items={details.children.map(child => ({
                             ...child,
                             id: `${child.id}`,
                           }))}
-                          trekId={id}
+                          parentId={id}
                           title={intl.formatMessage(
                             { id: 'details.childrenFullTitle' },
                             { count: details.children.length },
                           )}
+                          type="TREK"
                         />
                       </div>
                     )}
