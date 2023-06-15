@@ -174,7 +174,7 @@ export const sizes = {
   button: 48,
   filterBar: 72,
   mobileDetailsTitle: 230,
-  detailsHeaderDesktop: 55,
+  detailsHeaderDesktop: 56,
   coverDetailsDesktop: 550,
   topIconsDetailsDesktop: 72,
   scrollOffsetBeforeElement: 36,
