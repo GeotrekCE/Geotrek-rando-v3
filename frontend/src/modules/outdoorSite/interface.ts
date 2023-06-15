@@ -45,7 +45,7 @@ interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
   accessibility?: string;
   advice?: string;
   ambiance?: string;
-  children?: string;
+  children: number[];
   description?: string;
   description_teaser?: string;
   information_desks?: number[];
@@ -58,7 +58,7 @@ interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
   structure?: number;
   type?: number;
   url?: string;
-  courses?: string;
+  courses: number[];
   web_links?: RawWebLink[];
   pdf: string;
   ratings_description: string;
