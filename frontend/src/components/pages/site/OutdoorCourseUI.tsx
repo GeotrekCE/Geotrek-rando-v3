@@ -231,11 +231,11 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                       <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
                         <DetailsSection
                           htmlId="details_sensitiveAreas"
-                          titleId="details.sensitiveAreas.title"
+                          titleId="details.sensitiveAreasTitle"
                           className={marginDetailsChild}
                         >
                           <span className="mb-4 desktop:mb-8">
-                            <FormattedMessage id="details.sensitiveAreas.intro" />
+                            <FormattedMessage id="details.sensitiveAreasIntro" />
                           </span>
                           {outdoorCourseContent.sensitiveAreas.map((sensitiveArea, i) => (
                             <DetailsSensitiveArea

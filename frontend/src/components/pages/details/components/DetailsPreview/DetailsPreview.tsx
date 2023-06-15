@@ -22,6 +22,7 @@ import {
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import ToolTip from 'components/ToolTip';
+import { cn } from 'services/utils/cn';
 import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { dataUnits } from '../../../../../modules/results/adapter';
@@ -87,7 +88,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   return (
     <div
       id="details_preview"
-      className={`${className ?? ''} flex flex-col mt-2 desktop:mt-10 relative`}
+      className={cn(className, 'flex flex-col mt-2 desktop:mt-10 relative desktop:scroll-mt-20')}
     >
       <DetailsBreadcrumb
         title={title}
