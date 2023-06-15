@@ -2,6 +2,7 @@ import { FormattedMessage } from 'react-intl';
 import styled, { css } from 'styled-components';
 import { colorPalette, desktopOnly, getSpacing, shadow } from 'stylesheet';
 import parse from 'html-react-parser';
+import { cn } from 'services/utils/cn';
 import { HtmlText } from '../../utils';
 
 interface DetailsDescriptionProps {
@@ -34,10 +35,10 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
   return (
     <div
       id="details_description"
-      className={`flex flex-col
-      py-6 desktop:py-12
-      border-solid border-greySoft border-b
-      ${className ?? ''}`}
+      className={cn(
+        'flex flex-col py-6 desktop:py-12 border-solid border-greySoft border-b scroll-mt-20 desktop:scroll-mt-30',
+        className,
+      )}
     >
       <h2 id="details_descriptionTitle" className="text-Mobile-H1 desktop:text-H2 font-bold">
         {title}

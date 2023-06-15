@@ -21,7 +21,7 @@ export type DetailsSections =
   | 'practicalInformations'
   | 'accessibility'
   | 'touristicContent'
-  | 'sensitiveAreasRef'
+  | 'sensitiveAreas'
   | 'courses'
   | 'report'
   | 'experiences';
@@ -77,7 +77,7 @@ export const useDetails = (
   const setPracticalInformationsRef = useSectionReferenceCallback('practicalInformations');
   const setTouristicContentsRef = useSectionReferenceCallback('touristicContent');
   const setAccessibilityRef = useSectionReferenceCallback('accessibility');
-  const setSensitiveAreasRef = useSectionReferenceCallback('sensitiveAreasRef');
+  const setSensitiveAreasRef = useSectionReferenceCallback('sensitiveAreas');
   const setReportRef = useSectionReferenceCallback('report');
 
   const intl = useIntl();

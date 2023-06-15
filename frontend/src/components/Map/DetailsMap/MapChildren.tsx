@@ -104,7 +104,7 @@ export const MapChildren: React.FC<Props> = props => {
         <GeometryList contents={props.touristicContentPoints} />
       )}
 
-      {visibleSection === 'sensitiveAreasRef' && (
+      {visibleSection === 'sensitiveAreas' && (
         <SensitiveAreas contents={props.sensitiveAreasGeometry} />
       )}
 

@@ -248,11 +248,11 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                       <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
                         <DetailsSection
                           htmlId="details_sensitiveAreas"
-                          titleId="details.sensitiveAreas.title"
+                          titleId="details.sensitiveAreasTitle"
                           className={marginDetailsChild}
                         >
                           <span className="mb-4 desktop:mb-8">
-                            <FormattedMessage id="details.sensitiveAreas.intro" />
+                            <FormattedMessage id="details.sensitiveAreasIntro" />
                           </span>
                           {outdoorSiteContent.sensitiveAreas.map((sensitiveArea, i) => (
                             <DetailsSensitiveArea
@@ -321,7 +321,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     {Number(outdoorSiteContent?.informationDesks?.length) > 0 && (
                       <div ref={setPracticalInformationsRef} id="details_practicalInformationRef">
                         <DetailsSection
-                          htmlId="details_informationDesks"
+                          htmlId="details_practicalInformations"
                           titleId="details.informationDesks"
                           className={marginDetailsChild}
                         >

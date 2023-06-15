@@ -30,12 +30,12 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
         </SensitiveAreaSection>
       )}
       {practices.length > 0 && (
-        <SensitiveAreaSection labelId="practices">
+        <SensitiveAreaSection labelId="details.sensitiveAreasPractices">
           <div>{practices.map(practice => practice.name).join(', ')}</div>
         </SensitiveAreaSection>
       )}
       {period !== null && hasPeriodAtLeastOneMonthValid && (
-        <SensitiveAreaSection labelId="period">
+        <SensitiveAreaSection labelId="details.sensitiveAreasPeriod">
           <div>
             {period.map((monthlyValidity, i) =>
               monthlyValidity ? <StyledMonth monthNumber={i} key={i} /> : undefined,
@@ -44,7 +44,7 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
         </SensitiveAreaSection>
       )}
       {contact !== null && (
-        <SensitiveAreaSection labelId="contact">
+        <SensitiveAreaSection labelId="details.sensitiveAreasContact">
           <HtmlText>{parse(contact)}</HtmlText>
         </SensitiveAreaSection>
       )}
@@ -76,7 +76,7 @@ const SensitiveAreaSection: React.FC<SensitiveAreaSectionProps> = ({ labelId, ch
     <div className="mt-1 desktop:mt-2">
       {labelId !== undefined && (
         <div className="font-bold">
-          <FormattedMessage id={`details.sensitiveAreas.${labelId}`} />
+          <FormattedMessage id={labelId} />
         </div>
       )}
       {children}

@@ -23,7 +23,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
   type,
 }) => {
   return (
-    <div id={htmlId} className="mt-6 desktop:mt-12">
+    <div id={htmlId} className="pt-6 desktop:pt-12 scroll-mt-20 desktop:scroll-mt-30">
       <div
         id="details_cardSectionTitle"
         className={`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild} flex items-center`}
