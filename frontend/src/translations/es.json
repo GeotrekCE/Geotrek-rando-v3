@@ -133,14 +133,12 @@
     "transport": "Transporte",
     "stationnement": "Estacionamiento",
     "access_parking": "Acceso por carretera y aparcamientos",
-    "sensitiveAreasRef": "Areas sensibles",
-    "sensitiveAreas": {
-      "title": "Zonas de sensibilidad ecológicas",
-      "intro": "A lo largo de su ruta, cruzará zonas de sensibilidad vinculadas con la presencia de una especie o de un medio particular. En estas zonas, un comportamiento adaptado permite contribuir a su preservación. Para más información detallada, se puede acceder a hojas específicas de cada área.",
-      "period": "Periodo de sensibilidad :",
-      "practices": "Ambitos de actividades afectados :",
-      "contact": "Contacto :"
-    },
+    "sensitiveAreas": "Areas sensibles",
+    "sensitiveAreasTitle": "Zonas de sensibilidad ecológicas",
+    "sensitiveAreasIntro": "A lo largo de su ruta, cruzará zonas de sensibilidad vinculadas con la presencia de una especie o de un medio particular. En estas zonas, un comportamiento adaptado permite contribuir a su preservación. Para más información detallada, se puede acceder a hojas específicas de cada área.",
+    "sensitiveAreasPeriod": "Periodo de sensibilidad :",
+    "sensitiveAreasPractices": "Ambitos de actividades afectados :",
+    "sensitiveAreasContact": "Contacto :",
     "altimetricProfile": {
       "title": "Perfil de elevación",
       "totalLength": "Longitud total",

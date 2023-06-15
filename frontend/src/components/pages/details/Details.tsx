@@ -96,8 +96,8 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
       sizes.detailsHeaderDesktop,
   });
 
-  const positiveElevation = parseInt(details?.informations.elevation ?? '0', 10);
-  const negativeElevation = parseInt(details?.informations.negativeElevation ?? '0', 10);
+  const positiveElevation = Number(details?.informations.elevation ?? 0);
+  const negativeElevation = Number(details?.informations.negativeElevation ?? 0);
 
   const higherDifferenceElevation = Math.max(positiveElevation, Math.abs(negativeElevation));
 
@@ -240,7 +240,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                     {getGlobalConfig().enableMeteoWidget &&
                       details.cities_raw?.[0] &&
                       hasNavigator && (
-                        <DetailsSection className={marginDetailsChild}>
+                        <DetailsSection htmlId="details_forecast" className={marginDetailsChild}>
                           <DetailsMeteoWidget code={details.cities_raw[0]} />
                         </DetailsSection>
                       )}
@@ -259,11 +259,11 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
                         <DetailsSection
                           htmlId="details_sensitiveAreas"
-                          titleId="details.sensitiveAreas.title"
+                          titleId="details.sensitiveAreasTitle"
                           className={marginDetailsChild}
                         >
                           <span className="mb-4 desktop:mb-8">
-                            <FormattedMessage id="details.sensitiveAreas.intro" />
+                            <FormattedMessage id="details.sensitiveAreasIntro" />
                           </span>
                           {details.sensitiveAreas.map((sensitiveArea, i) => (
                             <DetailsSensitiveArea
@@ -308,7 +308,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                       <div ref={setPracticalInformationsRef} id="details_practicalInformationRef">
                         {details.informationDesks.length > 0 && (
                           <DetailsSection
-                            htmlId="details_informationDesks"
+                            htmlId="details_practicalInformations"
                             titleId="details.informationDesks"
                             className={marginDetailsChild}
                           >
@@ -484,7 +484,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
                           if (currentChild.geometry) {
                             children.push({
                               ...currentChild.geometry,
-                              id: `DETAILS-TREK_CHILDREN-${currentChild.geometry.id}`,
+                              id: `TREK-${currentChild.geometry.id}`,
                             });
                           }
                           return children;

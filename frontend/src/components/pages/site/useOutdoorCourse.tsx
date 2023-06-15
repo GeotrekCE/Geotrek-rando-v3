@@ -25,7 +25,7 @@ export const useOutdoorCourse = (
   const setPreviewRef = useSectionReferenceCallback('preview');
   const setPoisRef = useSectionReferenceCallback('poi');
   const setTouristicContentsRef = useSectionReferenceCallback('touristicContent');
-  const setSensitiveAreasRef = useSectionReferenceCallback('sensitiveAreasRef');
+  const setSensitiveAreasRef = useSectionReferenceCallback('sensitiveAreas');
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');

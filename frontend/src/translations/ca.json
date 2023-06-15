@@ -133,14 +133,12 @@
     "transport": "Transport",
     "stationnement": "Estacionament",
     "access_parking": "Accés per carretera i aparcaments",
-    "sensitiveAreasRef": "Arees sensibles",
-    "sensitiveAreas": {
-      "title": "Zones de sensibilitat mediambiental",
-      "intro": "Al llarg de la seva ruta, travessarà zones de sensibilitat vinculades a la presència d'una espècie o d'un medi particular. En aquestes zones, un comportament adaptat permet contribuir a la seva preservació. Per a més informació detallada, es poden accedir a fitxes específiques per a cada àrea.",
-      "period": "Períodes de sensibilitat :",
-      "practices": "Ambits d’activitats afectats :",
-      "contact": "Contacte :"
-    },
+    "sensitiveAreas": "Arees sensibles",
+    "sensitiveAreasTitle": "Zones de sensibilitat mediambiental",
+    "sensitiveAreasIntro": "Al llarg de la seva ruta, travessarà zones de sensibilitat vinculades a la presència d'una espècie o d'un medi particular. En aquestes zones, un comportament adaptat permet contribuir a la seva preservació. Per a més informació detallada, es poden accedir a fitxes específiques per a cada àrea.",
+    "sensitiveAreasPeriod": "Períodes de sensibilitat :",
+    "sensitiveAreasPractices": "Ambits d’activitats afectats :",
+    "sensitiveAreasContact": "Contacte :",
     "altimetricProfile": {
       "title": "Perfil altiomètric",
       "totalLength": "Longitud total",

@@ -137,14 +137,12 @@
     "stationnement": "Parcheggio",
     "access_parking": "Accesso stradale e parcheggi",
     "reservation": "Prenotazione",
-    "sensitiveAreasRef": "Zone sensibili",
-    "sensitiveAreas": {
-      "title": "Zone di sensibilità ambientale",
-      "intro": "Lungo il percorso, attraverserai, legate alla presenza di una specie o di un ambiente particolare. In queste zone, un comportamento adeguato può contribuire alla loro conservazione. ",
-      "period": "Periodi di sensibilità :",
-      "practices": "Aree di attività interessate :",
-      "contact": "Contatto :"
-    },
+    "sensitiveAreas": "Zone sensibili",
+    "sensitiveAreasTitle": "Zone di sensibilità ambientale",
+    "sensitiveAreasIntro": "Lungo il percorso, attraverserai, legate alla presenza di una specie o di un ambiente particolare. In queste zone, un comportamento adeguato può contribuire alla loro conservazione. ",
+    "sensitiveAreasPeriod": "Periodi di sensibilità :",
+    "sensitiveAreasPractices": "Aree di attività interessate :",
+    "sensitiveAreasContact": "Contatto :",
     "altimetricProfile": {
       "title": "Profilo altimetro",
       "totalLength": "Lunghezza totale",
