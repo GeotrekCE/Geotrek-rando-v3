@@ -16,11 +16,11 @@ Object {
             class="sc-gswNZR kgVgmZ"
             color="#AAAAA"
           />
-          <span
+          <h3
             class="font-bold text-H4 space-y-2"
           >
             Zone sensible de test
-          </span>
+          </h3>
         </div>
         <div
           class="mt-1 desktop:mt-2"
@@ -33,55 +33,61 @@ Object {
             </p>
           </div>
         </div>
-        <div
+        <dl
           class="mt-1 desktop:mt-2"
         >
-          <div
+          <dt
             class="font-bold"
           >
             Domaines d'activités concernés :
-          </div>
-          <div>
-            Terrestre, Aquatique
-          </div>
-        </div>
-        <div
+          </dt>
+          <dd>
+            <div>
+              Terrestre, Aquatique
+            </div>
+          </dd>
+        </dl>
+        <dl
           class="mt-1 desktop:mt-2"
         >
-          <div
+          <dt
             class="font-bold"
           >
             Périodes de sensibilité :
-          </div>
-          <div>
-            <span
-              class="mr-2"
-            >
-              janv.
-            </span>
-            <span
-              class="mr-2"
-            >
-              févr.
-            </span>
-          </div>
-        </div>
-        <div
+          </dt>
+          <dd>
+            <div>
+              <span
+                class="mr-2"
+              >
+                janv.
+              </span>
+              <span
+                class="mr-2"
+              >
+                févr.
+              </span>
+            </div>
+          </dd>
+        </dl>
+        <dl
           class="mt-1 desktop:mt-2"
         >
-          <div
+          <dt
             class="font-bold"
           >
             Contact :
-          </div>
-          <div
-            class="sc-bcXHqe hwfUBG"
-          >
-            <h2>
-              Une personne a contacter
-            </h2>
-          </div>
-        </div>
+          </dt>
+          <dd>
+            <div
+              class="sc-bcXHqe hwfUBG"
+            >
+              <h2>
+                Une personne a contacter
+              </h2>
+            </div>
+          </dd>
+        </dl>
         <div
           class="mt-1 desktop:mt-2"
         >
@@ -107,11 +113,11 @@ Object {
           class="sc-gswNZR kgVgmZ"
           color="#AAAAA"
         />
-        <span
+        <h3
           class="font-bold text-H4 space-y-2"
         >
           Zone sensible de test
-        </span>
+        </h3>
       </div>
       <div
         class="mt-1 desktop:mt-2"
@@ -124,55 +130,61 @@ Object {
           </p>
         </div>
       </div>
-      <div
+      <dl
         class="mt-1 desktop:mt-2"
       >
-        <div
+        <dt
           class="font-bold"
         >
           Domaines d'activités concernés :
-        </div>
-        <div>
-          Terrestre, Aquatique
-        </div>
-      </div>
-      <div
+        </dt>
+        <dd>
+          <div>
+            Terrestre, Aquatique
+          </div>
+        </dd>
+      </dl>
+      <dl
         class="mt-1 desktop:mt-2"
       >
-        <div
+        <dt
           class="font-bold"
         >
           Périodes de sensibilité :
-        </div>
-        <div>
-          <span
-            class="mr-2"
-          >
-            janv.
-          </span>
-          <span
-            class="mr-2"
-          >
-            févr.
-          </span>
-        </div>
-      </div>
-      <div
+        </dt>
+        <dd>
+          <div>
+            <span
+              class="mr-2"
+            >
+              janv.
+            </span>
+            <span
+              class="mr-2"
+            >
+              févr.
+            </span>
+          </div>
+        </dd>
+      </dl>
+      <dl
         class="mt-1 desktop:mt-2"
       >
-        <div
+        <dt
           class="font-bold"
         >
           Contact :
-        </div>
-        <div
-          class="sc-bcXHqe hwfUBG"
-        >
-          <h2>
-            Une personne a contacter
-          </h2>
-        </div>
-      </div>
+        </dt>
+        <dd>
+          <div
+            class="sc-bcXHqe hwfUBG"
+          >
+            <h2>
+              Une personne a contacter
+            </h2>
+          </div>
+        </dd>
+      </dl>
       <div
         class="mt-1 desktop:mt-2"
       >
