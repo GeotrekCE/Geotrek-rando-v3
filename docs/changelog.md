@@ -1,5 +1,25 @@
 # Changelog
 
+## 3.14.0 (2023-06-19)
+
+**✨ Improvements**
+
+- Refactoring of children cards in treks and outdoor sites detail pages (#921)
+- Set anchors to navigate between sections of detail pages (#922)
+
+**🐛 Fixes**
+
+- Fix related sites and courses in outdoor site detail pages (#846)
+- Fix carousel on Events, Outdoor sites and courses detail pages (#909)
+- Handle sub-filters values as string like others filters values (#911)
+- Fix display of information desks with null fields (#918)
+
+**💥 Breaking changes**
+
+- The migration from tailwind version 2 to 3 includes some minor breaking change of utility classes. It will be necessary to be careful that the classes used in your customization are still ok. See the upgrade guide from the official documentation https://tailwindcss.com/docs/upgrade-guide
+- Translations keys related to `sensitiveAreas` [changed](https://github.com/GeotrekCE/Geotrek-rando-v3/pull/922/files#diff-5b2422febb084ac7226b93c9cbb7e0406aeac5fcd0bcbee9a21515fdcc0eac6c), check if you have replaced them in your customization
+- The identifier of the information desk section in the details page has changed from `details_informationDesks` to `details_practicalInformations`.
+
 ## 3.13.6 (2023-04-18)
 
 **✨ Improvements**
@@ -29,7 +49,6 @@
 **🐛 Fixes**
 
 - Avoid unnecessary fetch for obtaining map items (regression since v3.13.3) (#887)
-
 
 3.13.3 (2023-03-16)
 -------------------
