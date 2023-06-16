@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.14.0 (unreleased)
+
+**✨ Improvements**
+
+- Refactoring of children cards in treks and outdoor sites detail pages (#921)
+- Set anchors to navigate between sections of detail pages (#922)
+
+**🐛 Fixes**
+
+- Fix related sites and courses in outdoor site detail pages (#846)
+- Handle sub-filters values as string like others filters values (#911)
+- Fix display of information desks with null fields (#918)
+
 ## 3.13.6 (2023-04-18)
 
 **✨ Improvements**
@@ -29,7 +42,6 @@
 **🐛 Fixes**
 
 - Avoid unnecessary fetch for obtaining map items (regression since v3.13.3) (#887)
-
 
 3.13.3 (2023-03-16)
 -------------------
