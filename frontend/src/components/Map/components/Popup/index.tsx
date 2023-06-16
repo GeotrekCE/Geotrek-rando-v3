@@ -6,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 import Loader from 'components/Loader';
 
 import { desktopOnly, getSpacing } from 'stylesheet';
-import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import { Button as RawButton } from 'components/Button';
 import { generateResultDetailsUrl } from 'components/pages/search/utils';
 
@@ -47,7 +46,7 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId }) => 
             <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:inline">
               {trekPopupResult.place}
             </span>
-            <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">
+            <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4 line-clamp-2">
               {trekPopupResult.title}
             </Title>
             {showButton && (
@@ -108,8 +107,6 @@ const Button = styled(RawButton)`
 `;
 
 const Title = styled.span`
-  ${textEllipsisAfterNLines(2)}
-
   ${desktopOnly(css`
     white-space: nowrap;
     text-overflow: ellipsis;

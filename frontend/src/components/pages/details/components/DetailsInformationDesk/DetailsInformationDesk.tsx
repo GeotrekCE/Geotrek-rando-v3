@@ -1,8 +1,6 @@
 import { InformationDesk } from 'modules/informationDesk/interface';
 import SVG from 'react-inlinesvg';
 import parse from 'html-react-parser';
-import { textEllipsisAfterNLines } from 'services/cssHelpers';
-import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import Image from 'next/image';
@@ -81,9 +79,9 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
         {description && (
           <div className="flex flex-col desktop:flex-row desktop:items-end mt-4">
             {truncateState === 'TRUNCATE' ? (
-              <TruncatedHtmlText>
+              <HtmlText className="line-clamp-2">
                 <div>{parse(description)}</div>
-              </TruncatedHtmlText>
+              </HtmlText>
             ) : (
               <HtmlText>{parse(description)}</HtmlText>
             )}
@@ -126,7 +124,3 @@ const InformationDeskIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri 
     />
   );
 };
-
-const TruncatedHtmlText = styled(HtmlText)`
-  ${textEllipsisAfterNLines(2)}
-`;
