@@ -5,7 +5,6 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { SignageDictionary } from 'modules/signage/interface';
 import styled, { css } from 'styled-components';
 import { desktopOnly, getSpacing } from 'stylesheet';
-import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import { RawCoordinate2D } from 'modules/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { FormattedMessage } from 'react-intl';
@@ -63,7 +62,7 @@ export const PointsSecondary: React.FC<PointsSecondaryProps> = ({
               {location.imageUrl !== null && <CoverImage src={location.imageUrl} alt="" />}
               <div className="p-4">
                 <div className="text-P2 mb-1 text-greyDarkColored">{location.type}</div>
-                <Name className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4">
+                <Name className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4 line-clamp-2">
                   {location.name}
                 </Name>
                 {Boolean(location.description) && (
@@ -109,8 +108,6 @@ const StyledTooltip = styled(Tooltip)`
 `;
 
 const Name = styled.span`
-  ${textEllipsisAfterNLines(2)}
-
   ${desktopOnly(css`
     white-space: nowrap;
     text-overflow: ellipsis;

@@ -8,7 +8,6 @@ import useHasMounted from 'hooks/useHasMounted';
 import parse from 'html-react-parser';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { FormattedMessage } from 'react-intl';
-import { textEllipsisAfterNLines } from 'services/cssHelpers';
 import styled from 'styled-components';
 import { getSpacing, MAX_WIDTH_MOBILE } from 'stylesheet';
 import { Attachment } from '../../../../../modules/interface';
@@ -43,9 +42,9 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   const { truncateState, toggleTruncateState, heightState, detailsCardRef } = useDetailsCard();
   const descriptionStyled =
     truncateState === 'TRUNCATE' ? (
-      <TruncatedHtmlText className="text-greyDarkColored">
+      <HtmlText className="line-clamp-2 text-greyDarkColored">
         <div>{parse(description ?? '')}</div>
-      </TruncatedHtmlText>
+      </HtmlText>
     ) : (
       <HtmlText className="text-greyDarkColored">{parse(description ?? '')}</HtmlText>
     );
@@ -159,8 +158,4 @@ const DetailsCardContainer = styled.div<{ height: number }>`
     flex-direction: row;
     margin-bottom: ${getSpacing(6)};
   }
-`;
-
-const TruncatedHtmlText = styled(HtmlText)`
-  ${textEllipsisAfterNLines(2)}
 `;
