@@ -22,7 +22,7 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
     <div id="details_sensitiveArea" className={className}>
       <div className="flex items-center space-x-2" id="details_sensitiveAreaTitle">
         <ColorLegendIcon color={color} />
-        {name !== null && <span className="font-bold text-H4 space-y-2">{name}</span>}
+        {name !== null && <h3 className="font-bold text-H4 space-y-2">{name}</h3>}
       </div>
       {description !== null && (
         <SensitiveAreaSection>
@@ -48,7 +48,7 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
           <HtmlText>{parse(contact)}</HtmlText>
         </SensitiveAreaSection>
       )}
-      {infoUrl !== null && (
+      {infoUrl !== null && infoUrl !== '' && (
         <SensitiveAreaSection>
           <a className="text-primary1 hover:text-primary3 transition-colors" href={infoUrl}>
             <FormattedMessage id={'details.knowMore'} />
@@ -72,15 +72,16 @@ interface SensitiveAreaSectionProps {
 }
 
 const SensitiveAreaSection: React.FC<SensitiveAreaSectionProps> = ({ labelId, children }) => {
+  if (labelId === undefined) {
+    return <div className="mt-1 desktop:mt-2">{children}</div>;
+  }
   return (
-    <div className="mt-1 desktop:mt-2">
-      {labelId !== undefined && (
-        <div className="font-bold">
-          <FormattedMessage id={labelId} />
-        </div>
-      )}
-      {children}
-    </div>
+    <dl className="mt-1 desktop:mt-2">
+      <dt className="font-bold">
+        <FormattedMessage id={labelId} />
+      </dt>
+      <dd>{children}</dd>
+    </dl>
   );
 };
 
