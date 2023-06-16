@@ -176,7 +176,7 @@ const getTypesFiltersState = ({
       category: i.category,
       label: i.label,
       type: 'MULTIPLE',
-      options: i.values,
+      options: i.values.map(item => ({ ...item, value: `${item.value}` })),
       selectedOptions: [],
     };
   });
@@ -207,7 +207,7 @@ const getOutdoorRatingFiltersState = ({
           label: scale?.name ?? 'Error',
           type: 'MULTIPLE',
           options: data.map(i => ({
-            value: i.id,
+            value: `${i.id}`,
             label: i.name,
           })),
           selectedOptions: [],
