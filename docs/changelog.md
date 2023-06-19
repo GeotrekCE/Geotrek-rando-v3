@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.14.0 (unreleased)
+## 3.14.0 (2023-06-19)
 
 **✨ Improvements**
 
@@ -10,8 +10,14 @@
 **🐛 Fixes**
 
 - Fix related sites and courses in outdoor site detail pages (#846)
+- Fix carousel on Events, Outdoor sites and courses detail pages (#909)
 - Handle sub-filters values as string like others filters values (#911)
 - Fix display of information desks with null fields (#918)
+
+**💥 Breaking changes**
+
+- Translations keys related to `sensitiveAreas` [changed](https://github.com/GeotrekCE/Geotrek-rando-v3/pull/922/files#diff-5b2422febb084ac7226b93c9cbb7e0406aeac5fcd0bcbee9a21515fdcc0eac6c), check if you have relaced them in your customization
+- The identifier of the information desk section in the details page has changed from `details_informationDesks` to `details_practicalInformations`.
 
 ## 3.13.6 (2023-04-18)
 
