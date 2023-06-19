@@ -382,7 +382,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
         )}
       </>
     ),
-    [touristicEventContent, isLoading, mobileMapState],
+    [touristicEventContent, isLoading, mobileMapState, hasNavigator],
   );
 };
 
