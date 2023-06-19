@@ -24,18 +24,19 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
 }) => {
   return (
     <div id={htmlId} className="pt-6 desktop:pt-12 scroll-mt-20 desktop:scroll-mt-30">
-      <div
+      <h2
         id="details_cardSectionTitle"
         className={`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild} flex items-center`}
       >
         {title}
         {displayBadge && <Badge label={detailsCards.length} color={getActivityColor(type)} />}
-      </div>
+      </h2>
       <ScrollContainer
         id="details_cardSectionScrollContainer"
         className="flex desktop:flex-col items-stretch
-        overflow-x-scroll desktop:overflow-x-hidden
-        overflow-y-hidden desktop:overflow-y-scroll flex-nowrap
+        overflow-x-auto desktop:overflow-x-hidden
+        overflow-y-hidden desktop:overflow-y-auto
+        scroll-smooth snap-x
         pb-5 mt-4 mb-2 desktop:mb-0
         px-4 desktop:pl-18 desktop:pr-9 desktop:mr-9"
       >
@@ -91,7 +92,7 @@ export const Badge: React.FC<BadgeProps> = ({ label, color }) => {
 
 const offsetTopForTitle = 70;
 
-const ScrollContainer = styled.div`
+const ScrollContainer = styled.ul`
   &::-webkit-scrollbar {
     ${scrollBar.root}
   }

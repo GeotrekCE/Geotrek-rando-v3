@@ -5,16 +5,12 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="sc-ipEyDJ fkiwq border border-solid border-greySoft rounded-card
-      flex-none overflow-hidden relative
-      flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
-      cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
-      "
-        height="200"
+      <li
+        class="sc-ipEyDJ fEmItQ border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        height="0"
       >
         <div
-          class="flex-none desktop:w-2/5"
+          class="flex shrink-0 desktop:w-2/5"
         >
           <div
             class="relative bg-dark"
@@ -89,43 +85,32 @@ Object {
           class="flex flex-col relative
         p-2 desktop:p-6 desktop:my-auto"
         >
-          <p
+          <h3
             class="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
           >
             Église St Louis
-          </p>
+          </h3>
           <div
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-kDvujY sc-csuSiG iXXQYE jfeXWc text-greyDarkColored"
+              class="sc-kDvujY iXXQYE text-greyDarkColored"
             >
-              <div>
-                <span>
-                  Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
-                </span>
-              </div>
+              <span>
+                Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
+              </span>
             </div>
-            <span
-              class="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
-            >
-              lire la suite
-            </span>
           </div>
         </div>
-      </div>
+      </li>
     </div>
     <div>
-      <div
-        class="sc-ipEyDJ fkiwq border border-solid border-greySoft rounded-card
-      flex-none overflow-hidden relative
-      flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
-      cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
-      "
-        height="200"
+      <li
+        class="sc-ipEyDJ fEmItQ border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        height="0"
       >
         <div
-          class="flex-none desktop:w-2/5"
+          class="flex shrink-0 desktop:w-2/5"
         >
           <div
             class="relative bg-dark"
@@ -321,44 +306,33 @@ Object {
           class="flex flex-col relative
         p-2 desktop:p-6 desktop:my-auto"
         >
-          <p
+          <h3
             class="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
           >
             Église St Louis
-          </p>
+          </h3>
           <div
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-kDvujY sc-csuSiG iXXQYE jfeXWc text-greyDarkColored"
+              class="sc-kDvujY iXXQYE text-greyDarkColored"
             >
-              <div>
-                <span>
-                  Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
-                </span>
-              </div>
+              <span>
+                Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
+              </span>
             </div>
-            <span
-              class="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
-            >
-              lire la suite
-            </span>
           </div>
         </div>
-      </div>
+      </li>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="sc-ipEyDJ fkiwq border border-solid border-greySoft rounded-card
-      flex-none overflow-hidden relative
-      flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
-      cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
-      "
-      height="200"
+    <li
+      class="sc-ipEyDJ fEmItQ border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+      height="0"
     >
       <div
-        class="flex-none desktop:w-2/5"
+        class="flex shrink-0 desktop:w-2/5"
       >
         <div
           class="relative bg-dark"
@@ -433,31 +407,24 @@ Object {
         class="flex flex-col relative
         p-2 desktop:p-6 desktop:my-auto"
       >
-        <p
+        <h3
           class="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
         >
           Église St Louis
-        </p>
+        </h3>
         <div
           class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
         >
           <div
-            class="sc-kDvujY sc-csuSiG iXXQYE jfeXWc text-greyDarkColored"
+            class="sc-kDvujY iXXQYE text-greyDarkColored"
           >
-            <div>
-              <span>
-                Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
-              </span>
-            </div>
+            <span>
+              Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
+            </span>
           </div>
-          <span
-            class="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
-          >
-            lire la suite
-          </span>
         </div>
       </div>
-    </div>
+    </li>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -518,16 +485,12 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="sc-ipEyDJ fkiwq border border-solid border-greySoft rounded-card
-      flex-none overflow-hidden relative
-      flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
-      cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
-      "
-        height="200"
+      <li
+        class="sc-ipEyDJ fEmItQ border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        height="0"
       >
         <div
-          class="flex-none desktop:w-2/5"
+          class="flex shrink-0 desktop:w-2/5"
         >
           <div
             class="relative bg-dark"
@@ -602,43 +565,32 @@ Object {
           class="flex flex-col relative
         p-2 desktop:p-6 desktop:my-auto"
         >
-          <p
+          <h3
             class="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
           >
             Église St Louis
-          </p>
+          </h3>
           <div
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-kDvujY sc-csuSiG iXXQYE jfeXWc text-greyDarkColored"
+              class="sc-kDvujY iXXQYE text-greyDarkColored"
             >
-              <div>
-                <span>
-                  Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
-                </span>
-              </div>
+              <span>
+                Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
+              </span>
             </div>
-            <span
-              class="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
-            >
-              lire la suite
-            </span>
           </div>
         </div>
-      </div>
+      </li>
     </div>
     <div>
-      <div
-        class="sc-ipEyDJ fkiwq border border-solid border-greySoft rounded-card
-      flex-none overflow-hidden relative
-      flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
-      cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
-      "
-        height="200"
+      <li
+        class="sc-ipEyDJ fEmItQ border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        height="0"
       >
         <div
-          class="flex-none desktop:w-2/5"
+          class="flex shrink-0 desktop:w-2/5"
         >
           <div
             class="relative bg-dark"
@@ -834,44 +786,33 @@ Object {
           class="flex flex-col relative
         p-2 desktop:p-6 desktop:my-auto"
         >
-          <p
+          <h3
             class="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
           >
             Église St Louis
-          </p>
+          </h3>
           <div
             class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <div
-              class="sc-kDvujY sc-csuSiG iXXQYE jfeXWc text-greyDarkColored"
+              class="sc-kDvujY iXXQYE text-greyDarkColored"
             >
-              <div>
-                <span>
-                  Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
-                </span>
-              </div>
+              <span>
+                Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
+              </span>
             </div>
-            <span
-              class="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
-            >
-              lire la suite
-            </span>
           </div>
         </div>
-      </div>
+      </li>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="sc-ipEyDJ fkiwq border border-solid border-greySoft rounded-card
-      flex-none overflow-hidden relative
-      flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
-      cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
-      "
-      height="200"
+    <li
+      class="sc-ipEyDJ fEmItQ border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+      height="0"
     >
       <div
-        class="flex-none desktop:w-2/5"
+        class="flex shrink-0 desktop:w-2/5"
       >
         <div
           class="relative bg-dark"
@@ -1067,31 +1008,24 @@ Object {
         class="flex flex-col relative
         p-2 desktop:p-6 desktop:my-auto"
       >
-        <p
+        <h3
           class="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
         >
           Église St Louis
-        </p>
+        </h3>
         <div
           class="mt-1 desktop:mt-4 flex flex-col desktop:flex-row desktop:items-end text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
         >
           <div
-            class="sc-kDvujY sc-csuSiG iXXQYE jfeXWc text-greyDarkColored"
+            class="sc-kDvujY iXXQYE text-greyDarkColored"
           >
-            <div>
-              <span>
-                Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
-              </span>
-            </div>
+            <span>
+              Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
+            </span>
           </div>
-          <span
-            class="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
-          >
-            lire la suite
-          </span>
         </div>
       </div>
-    </div>
+    </li>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
