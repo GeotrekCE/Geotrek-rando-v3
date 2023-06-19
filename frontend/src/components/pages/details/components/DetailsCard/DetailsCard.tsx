@@ -9,7 +9,9 @@ import parse from 'html-react-parser';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
-import { getSpacing, MAX_WIDTH_MOBILE } from 'stylesheet';
+import { MAX_WIDTH_MOBILE } from 'stylesheet';
+import { cn } from 'services/utils/cn';
+import { Arrow } from 'components/Icons/Arrow';
 import { Attachment } from '../../../../../modules/interface';
 import { useDetailsCard } from './useDetailsCard';
 export interface DetailsCardProps {
@@ -42,7 +44,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   const { truncateState, toggleTruncateState, heightState, detailsCardRef } = useDetailsCard();
   const descriptionStyled =
     truncateState === 'TRUNCATE' ? (
-      <HtmlText className="line-clamp-2 text-greyDarkColored">
+      <HtmlText className="line-clamp-2 desktop:line-clamp-5 text-greyDarkColored">
         <div>{parse(description ?? '')}</div>
       </HtmlText>
     ) : (
@@ -56,11 +58,13 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   return (
     <DetailsCardContainer
       height={heightState}
-      className={`border border-solid border-greySoft rounded-card
+      className={cn(
+        `border border-solid border-greySoft rounded-card
       flex-none overflow-hidden relative
-      flex flex-col h-auto desktop:flex-row desktop:w-auto mx-1
-      cursor-pointer hover:border-blackSemiTransparent transition-all duration-500
-      ${className}`}
+      flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6
+      hover:border-blackSemiTransparent transition-all duration-500`,
+        className,
+      )}
       onMouseEnter={() => {
         setHoveredCardId(id);
       }}
@@ -68,7 +72,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         setHoveredCardId(null);
       }}
     >
-      <div className="flex-none desktop:w-2/5">
+      <div className="flex shrink-0 desktop:w-2/5">
         <Modal>
           {({ isFullscreen, toggleFullscreen }) => (
             <>
@@ -105,7 +109,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           </OptionalLink>
         )}
         <OptionalLink redirectionUrl={redirectionUrl}>
-          <p className="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold">{name}</p>
+          <h3 className="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold">{name}</h3>
         </OptionalLink>
         {Boolean(description) && (
           <div
@@ -114,14 +118,27 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
             text-Mobile-C2 desktop:text-P1 text-greyDarkColored"
           >
             <OptionalLink redirectionUrl={redirectionUrl}>{descriptionStyled}</OptionalLink>
-            <span
-              className="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
-              onClick={toggleTruncateState}
-            >
-              <FormattedMessage
-                id={truncateState === 'TRUNCATE' ? 'details.readMore' : 'details.readLess'}
-              />
-            </span>
+            {truncateState !== 'NONE' && (
+              <button
+                className="flex items-center text-primary1 underline shrink-0 gap-1 desktop:ml-1"
+                onClick={toggleTruncateState}
+                type="button"
+                aria-hidden
+              >
+                <span className="shrink-0">
+                  <FormattedMessage
+                    id={truncateState === 'TRUNCATE' ? 'details.readMore' : 'details.readLess'}
+                  />
+                </span>
+                <Arrow
+                  size={20}
+                  className={cn(
+                    'shrink-0 transition',
+                    truncateState === 'TRUNCATE' ? 'rotate-90' : '-rotate-90',
+                  )}
+                />
+              </button>
+            )}
           </div>
         )}
       </div>
@@ -142,20 +159,8 @@ const OptionalLink: React.FC<OptionalLinkProps> = ({ redirectionUrl, children })
   );
 };
 
-const DetailsCardContainer = styled.div<{ height: number }>`
-  height: fit-content;
-  flex: none;
-  overflow: hidden;
-  display: flex;
-  // Fix for border radius + overflow hidden in Safari, see https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
-  mask-image: radial-gradient(white, black);
-  position: relative;
-  flex-direction: column;
+const DetailsCardContainer = styled.li<{ height: number }>`
   @media (min-width: ${MAX_WIDTH_MOBILE}px) {
     height: ${props => props.height}px;
-    width: auto;
-    flex-direction: row;
-    margin-bottom: ${getSpacing(6)};
   }
 `;
