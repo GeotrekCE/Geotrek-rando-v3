@@ -6,11 +6,11 @@ Object {
   "baseElement": <body>
     <div>
       <li
-        class="sc-ipEyDJ fEmItQ border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
-        height="0"
+        class="sc-ipEyDJ tuzgC border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        height="200"
       >
         <div
-          class="flex shrink-0 desktop:w-2/5"
+          class="flex shrink-0 h-40 desktop:h-full desktop:w-2/5"
         >
           <div
             class="w-full"
@@ -110,11 +110,11 @@ Object {
     </div>
     <div>
       <li
-        class="sc-ipEyDJ fEmItQ border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
-        height="0"
+        class="sc-ipEyDJ tuzgC border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        height="200"
       >
         <div
-          class="flex shrink-0 desktop:w-2/5"
+          class="flex shrink-0 h-40 desktop:h-full desktop:w-2/5"
         >
           <div
             class="w-full"
@@ -336,11 +336,11 @@ Object {
   </body>,
   "container": <div>
     <li
-      class="sc-ipEyDJ fEmItQ border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
-      height="0"
+      class="sc-ipEyDJ tuzgC border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+      height="200"
     >
       <div
-        class="flex shrink-0 desktop:w-2/5"
+        class="flex shrink-0 h-40 desktop:h-full desktop:w-2/5"
       >
         <div
           class="w-full"
@@ -498,11 +498,11 @@ Object {
   "baseElement": <body>
     <div>
       <li
-        class="sc-ipEyDJ fEmItQ border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
-        height="0"
+        class="sc-ipEyDJ tuzgC border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        height="200"
       >
         <div
-          class="flex shrink-0 desktop:w-2/5"
+          class="flex shrink-0 h-40 desktop:h-full desktop:w-2/5"
         >
           <div
             class="w-full"
@@ -602,11 +602,11 @@ Object {
     </div>
     <div>
       <li
-        class="sc-ipEyDJ fEmItQ border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
-        height="0"
+        class="sc-ipEyDJ tuzgC border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        height="200"
       >
         <div
-          class="flex shrink-0 desktop:w-2/5"
+          class="flex shrink-0 h-40 desktop:h-full desktop:w-2/5"
         >
           <div
             class="w-full"
@@ -828,11 +828,11 @@ Object {
   </body>,
   "container": <div>
     <li
-      class="sc-ipEyDJ fEmItQ border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
-      height="0"
+      class="sc-ipEyDJ tuzgC border border-solid border-greySoft rounded-card flex-none overflow-hidden relative flex flex-col h-fit desktop:flex-row desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+      height="200"
     >
       <div
-        class="flex shrink-0 desktop:w-2/5"
+        class="flex shrink-0 h-40 desktop:h-full desktop:w-2/5"
       >
         <div
           class="w-full"
