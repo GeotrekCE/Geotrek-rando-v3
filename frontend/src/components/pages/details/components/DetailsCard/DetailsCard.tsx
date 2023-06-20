@@ -73,30 +73,32 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
       }}
     >
       <div className="flex shrink-0 desktop:w-2/5">
-        <Modal>
-          {({ isFullscreen, toggleFullscreen }) => (
-            <>
-              {type === 'TOURISTIC_CONTENT' &&
-                redirectionUrl &&
-                attachments.length > 0 &&
-                hasNavigator && (
+        <div className="w-full">
+          <Modal className="h-full">
+            {({ isFullscreen, toggleFullscreen }) => (
+              <>
+                {type === 'TOURISTIC_CONTENT' &&
+                  redirectionUrl &&
+                  attachments.length > 0 &&
+                  hasNavigator && (
+                    <DetailsCoverCarousel
+                      attachments={isFullscreen ? attachments : thumbnails}
+                      classNameImage={cn('object-center', isFullscreen && 'object-contain')}
+                      redirect={redirectionUrl}
+                    />
+                  )}
+                {type !== 'TOURISTIC_CONTENT' && attachments.length > 0 && hasNavigator && (
                   <DetailsCoverCarousel
                     attachments={isFullscreen ? attachments : thumbnails}
-                    classNameImage={isFullscreen ? 'object-contain' : ''}
-                    redirect={redirectionUrl}
+                    classNameImage={cn('object-center', isFullscreen && 'object-contain')}
+                    onClickImage={toggleFullscreen}
                   />
                 )}
-              {type !== 'TOURISTIC_CONTENT' && attachments.length > 0 && hasNavigator && (
-                <DetailsCoverCarousel
-                  attachments={isFullscreen ? attachments : thumbnails}
-                  classNameImage={isFullscreen ? 'object-contain' : ''}
-                  onClickImage={toggleFullscreen}
-                />
-              )}
-            </>
-          )}
-        </Modal>
-        <CardIcon iconUri={iconUri} iconName={iconName} color={getActivityColor(type)} />
+              </>
+            )}
+          </Modal>
+          <CardIcon iconUri={iconUri} iconName={iconName} color={getActivityColor(type)} />
+        </div>
       </div>
       <div
         ref={detailsCardRef}

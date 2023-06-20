@@ -6,8 +6,10 @@ import { MapButton } from 'components/Map/components/MapButton';
 import ConditionallyRender from 'components/ConditionallyRender';
 import useHasMounted from 'hooks/useHasMounted';
 import { useIntl } from 'react-intl';
+import { cn } from 'services/utils/cn';
 
 type Props = {
+  className?: string;
   children: ({
     isFullscreen,
     toggleFullscreen,
@@ -17,7 +19,7 @@ type Props = {
   }) => any | ReactElement<any>;
 };
 
-const Inner: React.FC<Props> = ({ children }) => {
+const Inner: React.FC<Props> = ({ className, children }) => {
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const intl = useIntl();
 
@@ -60,7 +62,7 @@ const Inner: React.FC<Props> = ({ children }) => {
           <div
             // @ts-ignore Wrong type in the lib
             ref={ref}
-            className="relative bg-dark"
+            className={cn('relative bg-dark', className)}
           >
             {isFullscreen && (
               <MapButton
