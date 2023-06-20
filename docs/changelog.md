@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.14.1 (2023-06-19)
+
+**✨ Improvements**
+
+- Rework and improve cards in details pages (#928 / #932)
+
+**🐛 Fixes**
+
+- Fix links to images without legend in search results (#919)
+- Fix the render of the altimetric profile rendering (version 3.14.0 regression) (#930)
+
 ## 3.14.0 (2023-06-19)
 
 **✨ Improvements**
