@@ -96,8 +96,8 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
       sizes.detailsHeaderDesktop,
   });
 
-  const positiveElevation = Number(details?.informations.elevation ?? 0);
-  const negativeElevation = Number(details?.informations.negativeElevation ?? 0);
+  const positiveElevation = parseInt(details?.informations.elevation ?? '0', 10);
+  const negativeElevation = parseInt(details?.informations.negativeElevation ?? '0', 10);
 
   const higherDifferenceElevation = Math.max(positiveElevation, Math.abs(negativeElevation));
 
