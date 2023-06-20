@@ -55,7 +55,7 @@ export const useDetailsCard = () => {
           ) {
             return 'NONE';
           } else if (
-            prevState === 'NONE' &&
+            (prevState === 'NONE' || prevState === 'FULL') &&
             heightState < detailsCardRef.current?.getBoundingClientRect().height
           ) {
             setHeightState(DETAILS_CARD_DEFAULT_HEIGHT);
