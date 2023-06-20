@@ -35,6 +35,10 @@ Object {
                       loading="lazy"
                       src="/test.jpg"
                     />
+                    <a
+                      class="absolute inset-0"
+                      href="/details-2-Balade-au-pays-des-menhirs"
+                    />
                   </div>
                 </span>
               </div>
@@ -247,6 +251,10 @@ Object {
                     id=":r3:"
                     loading="lazy"
                     src="/test.jpg"
+                  />
+                  <a
+                    class="absolute inset-0"
+                    href="/details-2-Balade-au-pays-des-menhirs"
                   />
                 </div>
               </span>
