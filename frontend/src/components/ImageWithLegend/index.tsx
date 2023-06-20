@@ -76,6 +76,9 @@ interface LegendProps {
 
 const Legend: React.FC<LegendProps> = ({ figureId, imageId, legend, onClick, redirect }) => {
   if (legend.length === 0) {
+    if (redirect !== undefined) {
+      return <Link className="absolute inset-0" href={redirect} />;
+    }
     return onClick ? <Button imageId={imageId} onClick={onClick} /> : null;
   }
 
