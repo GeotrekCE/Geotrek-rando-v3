@@ -21,7 +21,7 @@ export const useDetailsCard = () => {
     } else {
       const newHeight = detailsCardRef.current?.getBoundingClientRect().height;
       if (newHeight !== undefined) {
-        setHeightState(newHeight);
+        setHeightState(Math.max(DETAILS_CARD_DEFAULT_HEIGHT, newHeight));
       }
     }
   }, [truncateState, setHeightState]);
