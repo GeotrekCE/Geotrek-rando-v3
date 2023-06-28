@@ -71,7 +71,7 @@ export const MapChildren: React.FC<Props> = props => {
         <PointsReference pointsReference={props.pointsReference ?? undefined} />
       )}
 
-      {(visibleSection === 'experiences' || props.experiencesVisibility === 'DISPLAYED') && (
+      {(visibleSection === 'subsites' || props.experiencesVisibility === 'DISPLAYED') && (
         <GeometryList
           contents={
             props.experiences.map(e => ({

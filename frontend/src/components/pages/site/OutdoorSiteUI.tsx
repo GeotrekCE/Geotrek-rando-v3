@@ -213,9 +213,9 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     )}
 
                     {Number(outdoorSiteContent.children?.length) > 0 && (
-                      <div ref={setExperienceRef} id="details_trekChildren_ref">
+                      <div ref={setExperienceRef} id="details_subsites_ref">
                         <DetailsChildrenSection
-                          id="experiences"
+                          id="subsites"
                           items={outdoorSiteContent.children}
                           title={intl.formatMessage(
                             { id: 'outdoorSite.sitesFullTitle' },
