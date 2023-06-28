@@ -71,7 +71,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
   return (
     <div
       id="details_topDownloadIcons"
-      className="flex justify-between items-center mx-4 desktop:mx-12 menu-download"
+      className="flex justify-between items-center mx-4 desktop:mr-12 desktop:ml-auto menu-download"
       data-testid={'download-button'}
     >
       {open3D && is3DfeatureEnabled && (
