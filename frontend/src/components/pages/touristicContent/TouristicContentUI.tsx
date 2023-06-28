@@ -157,30 +157,32 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                     <HtmlText>{parse(touristicContent.contact)}</HtmlText>
                     {!!touristicContent.email?.length && (
                       <div className="mt-2 desktop:mt-4">
-                        <FormattedMessage id="touristicContent.email" />
-                        <span>{` :`}</span>
+                        <span className="block">
+                          <FormattedMessage id="touristicContent.email" /> :
+                        </span>
                         <a
                           href={`mailto:${touristicContent.email}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-primary1 underline hover:text-primary1-light"
+                          className="text-primary1 underline hover:text-primary1-light focus:text-primary1-light"
                         >
-                          <p>{touristicContent.email}</p>
+                          {touristicContent.email}
                         </a>
                       </div>
                     )}
                     {!!touristicContent.website?.length && (
                       <div className="mt-2 desktop:mt-4">
-                        <FormattedMessage id="touristicContent.website" />
-                        <span>{` :`}</span>
+                        <span className="block">
+                          <FormattedMessage id="touristicContent.website" /> :
+                        </span>
                         <a
                           href={touristicContent.website}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-primary1 underline
-                      hover:text-primary1-light"
+                          hover:text-primary1-light focus:text-primary1-light"
                         >
-                          <p>{touristicContent.website}</p>
+                          {touristicContent.website}
                         </a>
                       </div>
                     )}
