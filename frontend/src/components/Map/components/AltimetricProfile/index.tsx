@@ -40,12 +40,12 @@ export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSO
     elevationControl.addTo(map);
 
     const mylocale = {
-      'Total Length: ': `${intl.formatMessage({ id: 'details.altimetricProfile.totalLength' })} : `,
+      'Total Length: ': `${intl.formatMessage({ id: 'details.altimetricProfileTotalLength' })} : `,
       'Max Elevation: ': `${intl.formatMessage({
-        id: 'details.altimetricProfile.maxElevation',
+        id: 'details.altimetricProfileMaxElevation',
       })} : `,
       'Min Elevation: ': `${intl.formatMessage({
-        id: 'details.altimetricProfile.minElevation',
+        id: 'details.altimetricProfileMinElevation',
       })} : `,
     };
 

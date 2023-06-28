@@ -143,12 +143,10 @@
     "sensitiveAreasPeriod": "Periodi di sensibilità :",
     "sensitiveAreasPractices": "Aree di attività interessate :",
     "sensitiveAreasContact": "Contatto :",
-    "altimetricProfile": {
-      "title": "Profilo altimetro",
-      "totalLength": "Lunghezza totale",
-      "minElevation": "Altitudine min",
-      "maxElevation": "Altitudine massima"
-    },
+    "altimetricProfile": "Profilo altimetro",
+    "altimetricProfileTotalLength": "Lunghezza totale",
+    "altimetricProfileMinElevation": "Altitudine min",
+    "altimetricProfileMaxElevation": "Altitudine massima",
     "departure": "Partenza",
     "arrival": "Arrivo",
     "cities": "Comune attraversato",
