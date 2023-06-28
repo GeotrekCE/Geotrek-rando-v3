@@ -148,7 +148,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                       type={'OUTDOOR_COURSE'}
                     />
 
-                    <div ref={setPreviewRef} id="details_preview_ref">
+                    <div ref={setPreviewRef} id="details_presentation_ref">
                       <DetailsPreview
                         className={marginDetailsChild}
                         informations={{
