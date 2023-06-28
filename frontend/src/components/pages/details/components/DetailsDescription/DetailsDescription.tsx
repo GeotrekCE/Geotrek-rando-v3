@@ -6,6 +6,7 @@ import { cn } from 'services/utils/cn';
 import { HtmlText } from '../../utils';
 
 interface DetailsDescriptionProps {
+  id?: string;
   descriptionHtml: string;
   className?: string;
   departure?: string;
@@ -17,6 +18,7 @@ interface DetailsDescriptionProps {
 }
 
 export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
+  id = 'details_description',
   descriptionHtml,
   className,
   departure,
@@ -34,16 +36,16 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
 
   return (
     <div
-      id="details_description"
+      id={id}
       className={cn(
         'flex flex-col py-6 desktop:py-12 border-solid border-greySoft border-b scroll-mt-20 desktop:scroll-mt-30',
         className,
       )}
     >
-      <h2 id="details_descriptionTitle" className="text-Mobile-H1 desktop:text-H2 font-bold">
+      <h2 id={`${id}Title`} className="text-Mobile-H1 desktop:text-H2 font-bold">
         {title}
       </h2>
-      <div id="details_descriptionContent" className="mt-3 desktop:mt-4">
+      <div id={`${id}Content`} className="mt-3 desktop:mt-4">
         <StyledListWithSteps>{parse(descriptionHtml)}</StyledListWithSteps>
       </div>
 
