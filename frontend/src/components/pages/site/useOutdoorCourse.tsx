@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getOutdoorCourseDetails } from '../../../modules/outdoorCourse/connector';
 import { OutdoorCourseDetails } from '../../../modules/outdoorCourse/interface';
+import { getDetailsConfig } from '../details/config';
+import { DetailsSections } from '../details/useDetails';
 
 export const useOutdoorCourse = (
   outdoorCourseUrl: string | string[] | undefined,
@@ -19,13 +21,19 @@ export const useOutdoorCourse = (
     },
   );
 
+  const { sections } = getDetailsConfig();
+
+  const sectionsOutdoorCourse = sections.outdoorCourse.filter(
+    ({ display, anchor }) => display === true && anchor,
+  );
+
   const { sectionsReferences, sectionsPositions, useSectionReferenceCallback } =
     useSectionsReferences();
 
-  const setPreviewRef = useSectionReferenceCallback('preview');
-  const setPoisRef = useSectionReferenceCallback('poi');
-  const setTouristicContentsRef = useSectionReferenceCallback('touristicContent');
-  const setSensitiveAreasRef = useSectionReferenceCallback('sensitiveAreas');
+  const sectionRef = sectionsOutdoorCourse.reduce(
+    (list, item) => ({ ...list, [item.name]: useSectionReferenceCallback(item.name) }),
+    {} as Record<DetailsSections, (node: HTMLDivElement | null) => void>,
+  );
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
@@ -42,9 +50,7 @@ export const useOutdoorCourse = (
     path,
     sectionsReferences,
     sectionsPositions,
-    setPreviewRef,
-    setPoisRef,
-    setTouristicContentsRef,
-    setSensitiveAreasRef,
+
+    sectionRef,
   };
 };

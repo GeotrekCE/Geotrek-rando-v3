@@ -5,6 +5,8 @@ import { useQuery } from '@tanstack/react-query';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { getOutdoorSiteDetails } from '../../../modules/outdoorSite/connector';
 import { OutdoorSiteDetails } from '../../../modules/outdoorSite/interface';
+import { getDetailsConfig } from '../details/config';
+import { DetailsSections } from '../details/useDetails';
 
 export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, language: string) => {
   const id = isUrlString(outdoorSiteUrl) ? outdoorSiteUrl.split('-')[0] : '';
@@ -18,18 +20,19 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
     },
   );
 
+  const { sections } = getDetailsConfig();
+
+  const sectionsOutdoorSite = sections.outdoorSite.filter(
+    ({ display, anchor }) => display === true && anchor,
+  );
+
   const { sectionsReferences, sectionsPositions, useSectionReferenceCallback } =
     useSectionsReferences();
 
-  const setPreviewRef = useSectionReferenceCallback('preview');
-  const setAccessRef = useSectionReferenceCallback('access');
-  const setPoisRef = useSectionReferenceCallback('poi');
-  const setExperienceRef = useSectionReferenceCallback('experiences');
-  const setCoursesRef = useSectionReferenceCallback('courses');
-  const setDescriptionRef = useSectionReferenceCallback('description');
-  const setPracticalInformationsRef = useSectionReferenceCallback('practicalInformations');
-  const setTouristicContentsRef = useSectionReferenceCallback('touristicContent');
-  const setSensitiveAreasRef = useSectionReferenceCallback('sensitiveAreas');
+  const sectionRef = sectionsOutdoorSite.reduce(
+    (list, item) => ({ ...list, [item.name]: useSectionReferenceCallback(item.name) }),
+    {} as Record<DetailsSections, (node: HTMLDivElement | null) => void>,
+  );
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
@@ -47,14 +50,6 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
     displayMobileMap,
     hideMobileMap,
     path,
-    setPreviewRef,
-    setAccessRef,
-    setPoisRef,
-    setExperienceRef,
-    setCoursesRef,
-    setDescriptionRef,
-    setPracticalInformationsRef,
-    setTouristicContentsRef,
-    setSensitiveAreasRef,
+    sectionRef,
   };
 };

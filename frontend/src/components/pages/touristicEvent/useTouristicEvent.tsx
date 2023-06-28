@@ -4,6 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import useSectionsReferences from 'hooks/useSectionsReferences';
 import { getTouristicEventDetails } from '../../../modules/touristicEvent/connector';
 import { TouristicEventDetails } from '../../../modules/touristicEvent/interface';
+import { getDetailsConfig } from '../details/config';
+import { DetailsSections } from '../details/useDetails';
 
 export const useTouristicEvent = (
   touristicEventUrl: string | string[] | undefined,
@@ -19,13 +21,18 @@ export const useTouristicEvent = (
     },
   );
 
+  const { sections } = getDetailsConfig();
+  const sectionsTouristicEvent = sections.touristicEvent.filter(
+    ({ display, anchor }) => display === true && anchor,
+  );
+
   const { sectionsReferences, sectionsPositions, useSectionReferenceCallback } =
     useSectionsReferences();
 
-  const setPreviewRef = useSectionReferenceCallback('preview');
-  const setDescriptionRef = useSectionReferenceCallback('description');
-  const setPracticalInformationsRef = useSectionReferenceCallback('practicalInformations');
-  const setTouristicContentsRef = useSectionReferenceCallback('touristicContent');
+  const sectionRef = sectionsTouristicEvent.reduce(
+    (list, item) => ({ ...list, [item.name]: useSectionReferenceCallback(item.name) }),
+    {} as Record<DetailsSections, (node: HTMLDivElement | null) => void>,
+  );
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
@@ -42,9 +49,6 @@ export const useTouristicEvent = (
     path,
     sectionsReferences,
     sectionsPositions,
-    setPreviewRef,
-    setDescriptionRef,
-    setPracticalInformationsRef,
-    setTouristicContentsRef,
+    sectionRef,
   };
 };

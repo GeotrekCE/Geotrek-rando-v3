@@ -128,6 +128,14 @@ In json files, you can just override the primary keys you need. You have to over
 
     - `shouldDisplayText`: `true` to display the text on above the asset, `false` to hide it.
 
+- `details.json` allows you to choose whether or not to display sections for each details pages ("trek", "touristicContent", "touristicEvent", "OutdoorSite" and "OutdoorCourse"). See the default configuration at https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/details.json.
+There are 4 properties :
+
+    - `name`: the name of the section
+    - `display`: boolean to display or not this section
+    - `anchor`: boolean to display or not an anchor link in the menu navigation bar
+    - `order`: number to define the position of this section
+
 - In the `footer.json` file, you can define social networks, informations about your organization, and some links (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/footer.json).
 
   - Social networks: `facebook`, `twitter`, `youtube`, `instagram` or `fallback`.
