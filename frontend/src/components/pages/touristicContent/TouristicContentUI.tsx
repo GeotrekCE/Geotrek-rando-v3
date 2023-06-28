@@ -136,16 +136,15 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   </DetailsSection>
                 )}
 
-                <DetailsSection className={marginDetailsChild}>
-                  {touristicContent.accessibility && (
-                    <div style={{ marginBottom: 20 }}>
-                      <strong className="font-bold">
-                        <FormattedMessage id="details.accessibility" /> :{' '}
-                      </strong>
-                      <HtmlText>{parse(touristicContent.accessibility)}</HtmlText>
-                    </div>
-                  )}
-                </DetailsSection>
+                {touristicContent.accessibility && (
+                  <DetailsSection
+                    htmlId="details_accessibility"
+                    titleId="details.accessibility"
+                    className={marginDetailsChild}
+                  >
+                    <HtmlText>{parse(touristicContent.accessibility)}</HtmlText>
+                  </DetailsSection>
+                )}
 
                 {(!!touristicContent.contact?.length ||
                   !!touristicContent.email?.length ||
