@@ -138,6 +138,96 @@ setConfig({
     colors: {},
     header: {},
     global: {},
+    details: {
+      sections: {
+        trek: [      
+          { 
+            "name": "presentation",
+            "display": true,
+            "anchor": true,
+            "order": 10
+          },
+          { 
+            "name": "itinerancySteps",
+            "display": true,
+            "anchor": true,
+            "order": 20
+          },
+          { 
+            "name": "poi",
+            "display": true,
+            "anchor": true,
+            "order": 30
+          },
+          { 
+            "name": "description",
+            "display": true,
+            "anchor": true,
+            "order": 40
+          },
+          { 
+            "name": "forecastWidget",
+            "display": true,
+            "anchor": false,
+            "order": 50
+          },
+          { 
+            "name": "altimetricProfile",
+            "display": true,
+            "anchor": false,
+            "order": 60
+          },
+          { 
+            "name": "sensitiveAreas",
+            "display": true,
+            "anchor": true,
+            "order": 70
+          },
+          { 
+            "name": "practicalInformations",
+            "display": true,
+            "anchor": true,
+            "order": 80
+          },
+          { 
+            "name": "accessibility",
+            "display": true,
+            "anchor": true,
+            "order": 90
+          },
+          { 
+            "name": "more",
+            "display": true,
+            "anchor": false,
+            "order": 100
+          },
+          { 
+            "name": "source",
+            "display": true,
+            "anchor": false,
+            "order": 110
+          },
+          { 
+            "name": "report",
+            "display": true,
+            "anchor": false,
+            "order": 120
+          },
+          { 
+            "name": "touristicContent",
+            "display": true,
+            "anchor": true,
+            "order": 130
+          },
+          { 
+            "name": "reservationWidget",
+            "display": true,
+            "anchor": false,
+            "order": 140
+          }
+        ],
+      }
+    },
     home: {},
     map: {},
     filter: {},
