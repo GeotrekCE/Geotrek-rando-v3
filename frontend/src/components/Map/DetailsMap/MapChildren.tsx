@@ -60,7 +60,7 @@ export const MapChildren: React.FC<Props> = props => {
 
   return (
     <>
-      {(visibleSection === 'children' ||
+      {(visibleSection === 'itinerancySteps' ||
         visibleSection === 'courses' ||
         props.trekChildrenMobileVisibility === 'DISPLAYED') && (
         <TrekChildren trekChildrenGeometry={props.trekChildrenGeometry} parentId={props.parentId} />

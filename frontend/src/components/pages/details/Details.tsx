@@ -185,9 +185,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                     </div>
 
                     {details.children.length > 0 && (
-                      <div ref={setChildrenRef} id="details_trekChildren_ref">
+                      <div ref={setChildrenRef} id="details_itinerancySteps_ref">
                         <DetailsChildrenSection
-                          id="children"
+                          id="itinerancySteps"
                           items={details.children.map(child => ({
                             ...child,
                             id: `${child.id}`,
