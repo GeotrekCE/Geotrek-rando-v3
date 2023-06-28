@@ -112,9 +112,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
         <PageHead
           title={details?.title}
           description={cleanHTMLElementsFromString(details?.description_teaser)}
-          sharingImageUrl={
-            details !== undefined && details.imgs.length > 0 ? details.imgs[0].url : undefined
-          }
+          sharingImageUrl={details?.imgs?.[0]?.url}
         />
         {details === undefined ? (
           <>

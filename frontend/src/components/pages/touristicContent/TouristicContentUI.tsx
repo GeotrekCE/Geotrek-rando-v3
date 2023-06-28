@@ -49,11 +49,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
       <PageHead
         title={touristicContent?.name}
         description={touristicContent ? touristicContent.descriptionTeaser : ''}
-        sharingImageUrl={
-          touristicContent !== undefined && touristicContent.attachments.length > 0
-            ? touristicContent.attachments[0].url
-            : undefined
-        }
+        sharingImageUrl={touristicContent?.attachments?.[0]?.url}
       />
       {touristicContent === undefined ? (
         <>

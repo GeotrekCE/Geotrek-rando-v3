@@ -81,11 +81,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
         <PageHead
           title={touristicEventContent?.name}
           description={cleanHTMLElementsFromString(touristicEventContent?.description)}
-          sharingImageUrl={
-            touristicEventContent !== undefined && touristicEventContent.attachments.length > 0
-              ? touristicEventContent.attachments[0].url
-              : undefined
-          }
+          sharingImageUrl={touristicEventContent?.attachments?.[0]?.url}
         />
         {touristicEventContent === undefined ? (
           <>
