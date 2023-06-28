@@ -11,7 +11,7 @@ import { redirectIfWrongUrl } from '../../modules/utils/url';
 import Custom404 from '../404';
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  const id = isUrlString(context.query.detailsId) ? context.query.detailsId.split('-')[0] : '';
+  const id = isUrlString(context.query.slug) ? context.query.slug.split('-')[0] : '';
   const parentIdString = isUrlString(context.query.parentId) ? context.query.parentId : '';
   const { locale = 'fr' } = context;
 
@@ -55,9 +55,9 @@ interface Props {
   errorCode?: number;
 }
 
-const Details: NextPage<Props> = ({ errorCode }) => {
+const Trek: NextPage<Props> = ({ errorCode }) => {
   const router = useRouter();
-  const { detailsId, parentId } = router.query;
+  const { slug, parentId } = router.query;
   const language = router.locale ?? getDefaultLanguage();
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const Details: NextPage<Props> = ({ errorCode }) => {
 
   if (errorCode === 404) return <Custom404 />;
 
-  return <DetailsUI detailsId={detailsId} parentId={parentId} language={language} />;
+  return <DetailsUI slug={slug} parentId={parentId} language={language} />;
 };
 
-export default Details;
+export default Trek;

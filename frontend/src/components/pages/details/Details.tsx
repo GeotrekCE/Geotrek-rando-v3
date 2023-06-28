@@ -48,12 +48,12 @@ import { useOnScreenSection } from './hooks/useHighlightedSection';
 import { DetailsGear } from './components/DetailsGear';
 
 interface Props {
-  detailsId: string | string[] | undefined;
+  slug: string | string[] | undefined;
   parentId?: string | string[];
   language: string;
 }
 
-export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, language }) => {
+export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, language }) => {
   const {
     id,
     details,
@@ -75,7 +75,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ detailsId, parentId, 
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-  } = useDetails(detailsId, parentId, language);
+  } = useDetails(slug, parentId, language);
 
   const isMobile = useMediaPredicate('(max-width: 1024px)');
 
@@ -640,11 +640,11 @@ export const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title:
   );
 };
 
-export const DetailsUI: React.FC<Props> = ({ detailsId, parentId, language }) => {
+export const DetailsUI: React.FC<Props> = ({ slug, parentId, language }) => {
   return (
     <DetailsAndMapProvider>
       <VisibleSectionProvider>
-        <DetailsUIWithoutContext detailsId={detailsId} parentId={parentId} language={language} />
+        <DetailsUIWithoutContext slug={slug} parentId={parentId} language={language} />
       </VisibleSectionProvider>
     </DetailsAndMapProvider>
   );
