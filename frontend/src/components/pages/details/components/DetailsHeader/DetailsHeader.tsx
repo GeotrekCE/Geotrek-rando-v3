@@ -3,17 +3,23 @@ import React, { MutableRefObject } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { cn } from 'services/utils/cn';
 import useHasMounted from 'hooks/useHasMounted';
-import { Details } from '../../../../../modules/details/interface';
-import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
-import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
-import { TouristicEventDetails } from '../../../../../modules/touristicEvent/interface';
+import { TouristicContentDetails } from 'modules/touristicContent/interface';
+import { Details } from 'modules/details/interface';
+import { OutdoorCourseDetails } from 'modules/outdoorCourse/interface';
+import { OutdoorSiteDetails } from 'modules/outdoorSite/interface';
+import { TouristicEventDetails } from 'modules/touristicEvent/interface';
 import { DetailsHeaderSection } from '../../useDetails';
 import { useDetailsHeader } from './useDetailsHeader';
 
 interface DetailsHeaderProps {
   sectionsReferences: MutableRefObject<DetailsHeaderSection>;
-  details: Details | OutdoorSiteDetails | OutdoorCourseDetails | TouristicEventDetails;
-  type: 'TREK' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
+  details:
+    | Details
+    | OutdoorSiteDetails
+    | OutdoorCourseDetails
+    | TouristicContentDetails
+    | TouristicEventDetails;
+  type: 'TREK' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_CONTENT' | 'TOURISTIC_EVENT';
 }
 
 export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
@@ -23,6 +29,10 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
 }) => {
   const { detailsHeaderSection, currentSectionId } = useDetailsHeader(sectionsReferences);
   const isMounted = useHasMounted();
+  const sections = Object.keys(detailsHeaderSection)
+    // Report anchor is in <DetailsDownloadIcons /> below
+    .filter(sectionId => sectionId !== 'report');
+
   return (
     <nav
       id="details_headerDesktop"
@@ -31,14 +41,12 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
       shadow-md bg-white h-14"
       role="navigation"
     >
-      <ul
-        id="details_headerDesktop_inlineMenu"
-        className="flex flex-1 pb-2.5 pt-4 ml-3 text-center"
-      >
-        {(Object.keys(detailsHeaderSection) as Array<keyof DetailsHeaderSection>)
-          // Report anchor is in <DetailsDownloadIcons /> below
-          .filter(sectionId => sectionId !== 'report')
-          .map(sectionId => (
+      {sections.length > 0 && (
+        <ul
+          id="details_headerDesktop_inlineMenu"
+          className="flex flex-1 pb-2.5 pt-4 ml-3 text-center"
+        >
+          {sections.map(sectionId => (
             <li key={sectionId}>
               <a
                 className={cn(
@@ -51,7 +59,8 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
               </a>
             </li>
           ))}
-      </ul>
+        </ul>
+      )}
       <DetailsDownloadIcons details={details} hideReport={type !== 'TREK'} />
     </nav>
   );
