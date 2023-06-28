@@ -113,7 +113,7 @@ describe('Details', () => {
 
     const component = render(
       <QueryClientProvider client={queryClient}>
-        <DetailsUI detailsId={`${idToTest}-Col-de-Font-Froide`} language={'fr'} />
+        <DetailsUI slug={`${idToTest}-Col-de-Font-Froide`} language={'fr'} />
       </QueryClientProvider>,
     );
     await component.findAllByText(titleToTest);
