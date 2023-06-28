@@ -1,13 +1,6 @@
 const fs = require('fs');
-
-const headerConfig = require('../../config/header.json');
-const customHeaderConfig = require('../../customization/config/header.json');
+const deepmerge = require('deepmerge');
 const { getLocales } = require('./getLocales');
-
-const mergedHeaderConfig = {
-  ...headerConfig,
-  ...customHeaderConfig,
-};
 
 const getContent = (path, parse) => {
   if (fs.existsSync(path)) {
@@ -17,7 +10,7 @@ const getContent = (path, parse) => {
   parse ? {} : '';
 };
 
-const getConfig = (file, parse = true) => {
+const getConfig = (file, parse = true, deepMerge = false) => {
   // Default configuration
   const defaultConfig = getContent(`./config/${file}`, parse);
 
@@ -25,8 +18,15 @@ const getConfig = (file, parse = true) => {
   const overrideConfig = getContent(`./customization/config/${file}`, parse);
 
   const merge = (elem1, elem2) => {
-    if (Array.isArray(elem1)) return [...elem2, ...elem1];
-    else return { ...elem1, ...elem2 };
+    if (Array.isArray(elem1)) {
+      return [...elem2, ...elem1];
+    } 
+    if (deepMerge) {
+      return deepmerge.all([elem2 ?? {}, elem1 ?? {}])
+    }
+    else {
+      return { ...elem1, ...elem2 }
+    };
   };
 
   return parse
@@ -48,35 +48,57 @@ const getTemplates = (file, languages) => {
   );
 };
 
+const headers = getConfig('header.json', true);
+
+const configDetails = getConfig('details.json', true, true);
+
+const filterAndOrderSectionsDetails = sections =>
+  sections
+    .filter(({ name }, index, array) => array.findIndex(item => item.name === name) === index)
+    .sort((a, b) => (a.order ?? Infinity) - (b.order ?? Infinity))
+
+const details = {
+  ...configDetails,
+  sections: {
+    ...configDetails.sections,
+    trek: filterAndOrderSectionsDetails(configDetails.sections.trek),
+    touristicContent: filterAndOrderSectionsDetails(configDetails.sections.touristicContent),
+    touristicEvent: filterAndOrderSectionsDetails(configDetails.sections.touristicEvent),
+    outdoorSite: filterAndOrderSectionsDetails(configDetails.sections.outdoorSite),
+    outdoorCourse: filterAndOrderSectionsDetails(configDetails.sections.outdoorCourse)
+  }
+}
+
 const getAllConfigs = {
   homeBottomHtml: getTemplates(
     '../html/homeBottom.html',
-    mergedHeaderConfig.menu.supportedLanguages,
+    headers.menu.supportedLanguages,
   ),
   homeTopHtml: getTemplates(
     '../html/homeTop.html',
-    mergedHeaderConfig.menu.supportedLanguages,
+    headers.menu.supportedLanguages,
   ),
   headerTopHtml: getTemplates(
     '../html/headerTop.html',
-    mergedHeaderConfig.menu.supportedLanguages,
+    headers.menu.supportedLanguages,
   ),
   headerBottomHtml: getTemplates(
     '../html/headerBottom.html',
-    mergedHeaderConfig.menu.supportedLanguages,
+    headers.menu.supportedLanguages,
   ),
   footerTopHtml: getTemplates(
     '../html/footerTop.html',
-    mergedHeaderConfig.menu.supportedLanguages,
+    headers.menu.supportedLanguages,
   ),
   footerBottomHtml: getTemplates(
     '../html/footerBottom.html',
-    mergedHeaderConfig.menu.supportedLanguages,
+    headers.menu.supportedLanguages,
   ),
   scriptsHeaderHtml: getConfig('../html/scriptsHeader.html', false),
   scriptsFooterHtml: getConfig('../html/scriptsFooter.html', false),
   style: getConfig('../theme/style.css', false),
   colors: getConfig('../theme/colors.json', true),
+  details,
   header: getConfig('header.json', true),
   global: getConfig('global.json', true),
   home: getConfig('home.json', true),
@@ -84,7 +106,7 @@ const getAllConfigs = {
   filter: getConfig('filter.json', true),
   footer: getConfig('footer.json', true),
   manifest: getConfig('manifest.json', true),
-  locales: getLocales(mergedHeaderConfig.menu.supportedLanguages),
+  locales: getLocales(headers.menu.supportedLanguages),
 };
 
 module.exports = {
