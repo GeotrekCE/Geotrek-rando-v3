@@ -246,7 +246,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                     {displayAltimetricProfile === true && (
                       <DetailsSection
                         htmlId="details_altimetricProfile"
-                        titleId="details.altimetricProfile.title"
+                        titleId="details.altimetricProfile"
                         className={marginDetailsChild}
                       >
                         <div className="h-90" id="altimetric-profile"></div>
