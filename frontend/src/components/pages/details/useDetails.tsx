@@ -10,50 +10,52 @@ import { useRouter } from 'next/router';
 import { routes } from 'services/routes';
 import { useMediaPredicate } from 'react-media-hook';
 import useSectionsReferences from 'hooks/useSectionsReferences';
+import { getDetailsConfig } from './config';
+import {
+  DetailsSectionOutdoorCourseNames,
+  DetailsSectionOutdoorSiteNames,
+  DetailsSectionTouristicContentNames,
+  DetailsSectionTouristicEventNames,
+  DetailsSectionTrekNames,
+} from './interface';
 
-export type DetailsHeaderSection = Partial<Record<DetailsSections, HTMLDivElement | null>>;
+export type DetailsHeaderSection = Record<string, HTMLDivElement | null>;
 
 export type DetailsSections =
-  | 'preview'
-  | 'children'
-  | 'poi'
-  | 'description'
-  | 'practicalInformations'
-  | 'accessibility'
-  | 'touristicContent'
-  | 'sensitiveAreas'
-  | 'courses'
-  | 'report'
-  | 'experiences';
+  | DetailsSectionTrekNames
+  | DetailsSectionTouristicContentNames
+  | DetailsSectionTouristicEventNames
+  | DetailsSectionOutdoorSiteNames
+  | DetailsSectionOutdoorCourseNames;
 
 interface SectionPosition {
   top: number;
   bottom: number;
 }
 
-export type DetailsSectionsPosition = Partial<Record<DetailsSections, SectionPosition>>;
+export type DetailsSectionsPosition = Record<Partial<DetailsSections>, Partial<SectionPosition>>;
 
 export const useDetails = (
-  detailsUrl: string | string[] | undefined,
+  slug: string | string[] | undefined,
   parentId: string | string[] | undefined,
   language: string,
 ) => {
-  const id = isUrlString(detailsUrl) ? detailsUrl.split('-')[0] : '';
-  const path = isUrlString(detailsUrl) ? decodeURI(detailsUrl) : '';
+  const id = isUrlString(slug) ? slug.split('-')[0] : '';
+  const path = isUrlString(slug) ? decodeURI(slug) : '';
   const router = useRouter();
-  const { data, refetch, isLoading } = useQuery<Details, Error>(
-    ['details', id, language],
-    () => getDetails(id, language),
-    {
-      enabled: isUrlString(detailsUrl),
-      onError: async error => {
-        if (isRessourceMissing(error)) {
-          await router.push(routes.HOME);
-        }
-      },
-      staleTime: ONE_DAY,
+  const {
+    data: details,
+    refetch,
+    isLoading,
+  } = useQuery<Details, Error>(['details', id, language], () => getDetails(id, language), {
+    enabled: isUrlString(slug),
+    onError: async error => {
+      if (isRessourceMissing(error)) {
+        await router.push(routes.HOME);
+      }
     },
-  );
+    staleTime: ONE_DAY,
+  });
 
   const isMobile = useMediaPredicate('(max-width: 1024px)');
 
@@ -67,18 +69,17 @@ export const useDetails = (
     },
   );
 
+  const { sections } = getDetailsConfig();
+
+  const sectionsTrek = sections.trek.filter(({ display, anchor }) => display === true && anchor);
+
   const { sectionsReferences, sectionsPositions, useSectionReferenceCallback } =
     useSectionsReferences();
 
-  const setPreviewRef = useSectionReferenceCallback('preview');
-  const setChildrenRef = useSectionReferenceCallback('children');
-  const setPoisRef = useSectionReferenceCallback('poi');
-  const setDescriptionRef = useSectionReferenceCallback('description');
-  const setPracticalInformationsRef = useSectionReferenceCallback('practicalInformations');
-  const setTouristicContentsRef = useSectionReferenceCallback('touristicContent');
-  const setAccessibilityRef = useSectionReferenceCallback('accessibility');
-  const setSensitiveAreasRef = useSectionReferenceCallback('sensitiveAreas');
-  const setReportRef = useSectionReferenceCallback('report');
+  const sectionRef = sectionsTrek.reduce(
+    (list, item) => ({ ...list, [item.name]: useSectionReferenceCallback(item.name) }),
+    {} as Record<DetailsSections, (node: HTMLDivElement | null) => void>,
+  );
 
   const intl = useIntl();
 
@@ -99,25 +100,17 @@ export const useDetails = (
 
   return {
     id,
-    details: data,
+    details,
     trekFamily,
     refetch,
     isLoading,
     sectionsReferences,
-    setPreviewRef,
-    setChildrenRef,
-    setPoisRef,
-    setDescriptionRef,
-    setPracticalInformationsRef,
-    setTouristicContentsRef,
-    setAccessibilityRef,
-    setSensitiveAreasRef,
-    setReportRef,
     sectionsPositions,
     intl,
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
     path,
+    sectionRef,
   };
 };
