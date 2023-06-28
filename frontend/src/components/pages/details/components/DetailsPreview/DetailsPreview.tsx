@@ -87,7 +87,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
 
   return (
     <div
-      id="details_preview"
+      id="details_presentation"
       className={cn(className, 'flex flex-col mt-2 desktop:mt-10 relative desktop:scroll-mt-20')}
     >
       <DetailsBreadcrumb

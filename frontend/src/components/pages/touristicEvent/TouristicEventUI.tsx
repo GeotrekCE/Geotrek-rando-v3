@@ -147,7 +147,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                       type={'TOURISTIC_EVENT'}
                     />
 
-                    <div ref={setPreviewRef} id="details_preview_ref">
+                    <div ref={setPreviewRef} id="details_presentation_ref">
                       <DetailsPreview
                         className={marginDetailsChild}
                         informations={{

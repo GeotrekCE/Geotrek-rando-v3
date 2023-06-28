@@ -168,7 +168,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                   >
                     <DetailsTopIcons details={details} practice={details.practice ?? undefined} />
 
-                    <div ref={setPreviewRef} id="details_preview_ref">
+                    <div ref={setPreviewRef} id="details_presentation_ref">
                       <DetailsPreview
                         className={marginDetailsChild}
                         informations={details.informations}
