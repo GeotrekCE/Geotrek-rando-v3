@@ -439,8 +439,8 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                     {details.reservation && details.reservation_id && hasNavigator && (
                       <DetailsSection
                         className={marginDetailsChild}
-                        htmlId="details_reservation"
-                        titleId="details.reservation"
+                        htmlId="details_reservationWidget"
+                        titleId="details.reservationWidget"
                       >
                         <DetailsReservationWidget
                           language={language}
