@@ -133,6 +133,7 @@
     "transport": "Transporte",
     "stationnement": "Estacionamiento",
     "access_parking": "Acceso por carretera y aparcamientos",
+    "reservationWidget": "Reservación",
     "sensitiveAreas": "Areas sensibles",
     "sensitiveAreasTitle": "Zonas de sensibilidad ecológicas",
     "sensitiveAreasIntro": "A lo largo de su ruta, cruzará zonas de sensibilidad vinculadas con la presencia de una especie o de un medio particular. En estas zonas, un comportamiento adaptado permite contribuir a su preservación. Para más información detallada, se puede acceder a hojas específicas de cada área.",

@@ -133,6 +133,7 @@
     "transport": "Transport",
     "stationnement": "Parken",
     "access_parking": "Zufahrt und Parkplätze",
+    "reservationWidget": "Reservierung",
     "sensitiveAreas": "Sensible Bereiche",
     "sensitiveAreasTitle": "Umweltempfindliche Zonen",
     "sensitiveAreasIntro": "Auf Ihrem Weg durchqueren Sie Gebiete, die aufgrund des Vorkommens einer bestimmten Art oder eines bestimmten Lebensraums besonders empfindlich sind. In diesen Zonen können Sie durch angepasstes Verhalten zu deren Erhaltung beitragen. Für weitere Informationen stehen für jedes Gebiet spezielle Informationsblätter zur Verfügung.",
