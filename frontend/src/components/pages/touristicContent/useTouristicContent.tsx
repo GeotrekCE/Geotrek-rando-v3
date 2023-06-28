@@ -7,6 +7,9 @@ import { isRessourceMissing } from 'services/routeUtils';
 import { useRouter } from 'next/router';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { routes } from 'services/routes';
+import useSectionsReferences from 'hooks/useSectionsReferences';
+import { DetailsSections } from '../details/useDetails';
+import { getDetailsConfig } from '../details/config';
 
 export const useTouristicContent = (
   touristicContentUrl: string | string[] | undefined,
@@ -30,6 +33,20 @@ export const useTouristicContent = (
       staleTime: ONE_DAY,
     },
   );
+
+  const { sections } = getDetailsConfig();
+  const sectionsTouristicContent = sections.touristicEvent.filter(
+    ({ display, anchor }) => display === true && anchor,
+  );
+
+  const { sectionsReferences, sectionsPositions, useSectionReferenceCallback } =
+    useSectionsReferences();
+
+  const sectionRef = sectionsTouristicContent.reduce(
+    (list, item) => ({ ...list, [item.name]: useSectionReferenceCallback(item.name) }),
+    {} as Record<DetailsSections, (node: HTMLDivElement | null) => void>,
+  );
+
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
   const hideMobileMap = () => setMobileMapState('HIDDEN');
@@ -42,5 +59,8 @@ export const useTouristicContent = (
     displayMobileMap,
     hideMobileMap,
     path,
+    sectionsReferences,
+    sectionsPositions,
+    sectionRef,
   };
 };

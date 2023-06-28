@@ -28,6 +28,7 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
+import { getDetailsConfig } from '../details/config';
 
 interface Props {
   touristicEventUrl: string | string[] | undefined;
@@ -48,10 +49,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
     hideMobileMap,
     sectionsReferences,
     sectionsPositions,
-    setPreviewRef,
-    setDescriptionRef,
-    setPracticalInformationsRef,
-    setTouristicContentsRef,
+    sectionRef,
   } = useTouristicEvent(touristicEventUrl, language);
 
   const intl = useIntl();
@@ -61,6 +59,9 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
   /** Ref of the parent of all sections */
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
+
+  const { sections } = getDetailsConfig();
+  const sectionsTouristicEvents = sections.touristicEvent.filter(({ display }) => display);
 
   useOnScreenSection({
     sectionsPositions,
@@ -147,162 +148,217 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                       type={'TOURISTIC_EVENT'}
                     />
 
-                    <div ref={setPreviewRef} id="details_presentation_ref">
-                      <DetailsPreview
-                        className={marginDetailsChild}
-                        informations={{
-                          logoUri: touristicEventContent.logoUri ?? undefined,
-                          participantNumber: touristicEventContent.participantNumber,
-                          meetingPoint: touristicEventContent.meetingPoint,
-                          duration: [
-                            touristicEventContent.meetingTime,
-                            touristicEventContent.duration,
-                          ].join(' - '),
-                          date: {
-                            beginDate: touristicEventContent.informations.beginDate,
-                            endDate: touristicEventContent.informations.endDate,
-                          },
-                        }}
-                        place={touristicEventContent.place}
-                        tags={touristicEventContent.themes}
-                        title={touristicEventContent.name}
-                        teaser={touristicEventContent.descriptionTeaser}
-                        ambiance={''}
-                        details={touristicEventContent}
-                        type={'TOURISTIC_EVENT'}
-                        id={id}
-                      />
-                    </div>
-
-                    {touristicEventContent.description && (
-                      <div ref={setDescriptionRef} id="details_description_ref">
-                        <DetailsDescription
-                          descriptionHtml={touristicEventContent.description}
-                          className={marginDetailsChild}
-                          cities={touristicEventContent.cities}
-                        />
-                      </div>
-                    )}
-
-                    <div ref={setPracticalInformationsRef}>
-                      <DetailsDescription
-                        descriptionHtml={touristicEventContent.contact ?? ''}
-                        className={marginDetailsChild}
-                        title={<FormattedMessage id="details.informationDesks" />}
-                        email={touristicEventContent.email}
-                        website={touristicEventContent.website}
-                      />
-
-                      {touristicEventContent.accessibility && (
-                        <div>
-                          <DetailsDescription
-                            descriptionHtml={touristicEventContent.accessibility ?? ''}
-                            className={marginDetailsChild}
-                            title={<FormattedMessage id="details.accessibility" />}
-                          />
-                        </div>
-                      )}
-
-                      {touristicEventContent.organizer && (
-                        <div>
-                          <DetailsDescription
-                            descriptionHtml={touristicEventContent.organizer ?? ''}
-                            className={marginDetailsChild}
-                            title={<FormattedMessage id="details.organizer" />}
-                          />
-                        </div>
-                      )}
-
-                      {touristicEventContent.speaker && (
-                        <div>
-                          <DetailsDescription
-                            descriptionHtml={touristicEventContent.speaker ?? ''}
-                            className={marginDetailsChild}
-                            title={<FormattedMessage id="details.speaker" />}
-                          />
-                        </div>
-                      )}
-
-                      {touristicEventContent.targetAudience && (
-                        <div>
-                          <DetailsDescription
-                            descriptionHtml={touristicEventContent.targetAudience ?? ''}
-                            className={marginDetailsChild}
-                            title={<FormattedMessage id="details.targetAudience" />}
-                          />
-                        </div>
-                      )}
-
-                      {touristicEventContent.practicalInfo && (
-                        <div>
-                          <DetailsDescription
-                            descriptionHtml={touristicEventContent.practicalInfo ?? ''}
-                            className={marginDetailsChild}
-                            title={<FormattedMessage id="details.practicalInfo" />}
-                          />
-                        </div>
-                      )}
-
-                      {touristicEventContent.booking && (
-                        <div>
-                          <DetailsDescription
-                            descriptionHtml={touristicEventContent.booking ?? ''}
-                            className={marginDetailsChild}
-                            title={<FormattedMessage id="details.booking" />}
-                          />
-                        </div>
-                      )}
-
-                      {getGlobalConfig().enableMeteoWidget &&
-                        hasNavigator &&
-                        touristicEventContent.cities_raw &&
-                        touristicEventContent.cities_raw[0] && (
-                          <DetailsSection>
-                            <DetailsMeteoWidget code={touristicEventContent.cities_raw[0]} />
-                          </DetailsSection>
-                        )}
-
-                      {touristicEventContent.sources.length > 0 && (
-                        <DetailsSection
-                          htmlId="details_source"
-                          titleId="details.source"
-                          className={marginDetailsChild}
-                        >
-                          {touristicEventContent.sources.map((source, i) => (
-                            <DetailsSource
-                              key={i}
-                              name={source.name}
-                              website={source.website}
-                              pictogramUri={source.pictogramUri}
+                    {sectionsTouristicEvents.map(section => {
+                      if (section.name === 'presentation') {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            <DetailsPreview
+                              className={marginDetailsChild}
+                              informations={{
+                                logoUri: touristicEventContent.logoUri ?? undefined,
+                                participantNumber: touristicEventContent.participantNumber,
+                                meetingPoint: touristicEventContent.meetingPoint,
+                                duration: [
+                                  touristicEventContent.meetingTime,
+                                  touristicEventContent.duration,
+                                ].join(' - '),
+                                date: {
+                                  beginDate: touristicEventContent.informations.beginDate,
+                                  endDate: touristicEventContent.informations.endDate,
+                                },
+                              }}
+                              place={touristicEventContent.place}
+                              tags={touristicEventContent.themes}
+                              title={touristicEventContent.name}
+                              teaser={touristicEventContent.descriptionTeaser}
+                              ambiance={''}
+                              details={touristicEventContent}
+                              type={'TOURISTIC_EVENT'}
+                              id={id}
                             />
-                          ))}
-                        </DetailsSection>
-                      )}
-                    </div>
+                          </section>
+                        );
+                      }
+                      if (section.name === 'description' && touristicEventContent.description) {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            <DetailsDescription
+                              descriptionHtml={touristicEventContent.description}
+                              className={marginDetailsChild}
+                              cities={touristicEventContent.cities}
+                            />
+                          </section>
+                        );
+                      }
+                      if (section.name === 'practicalInformations') {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            <DetailsDescription
+                              id="details_practicalInformations"
+                              descriptionHtml={touristicEventContent.contact ?? ''}
+                              className={marginDetailsChild}
+                              title={<FormattedMessage id="details.informationDesks" />}
+                              email={touristicEventContent.email}
+                              website={touristicEventContent.website}
+                            />
+                            {touristicEventContent.accessibility && (
+                              <div>
+                                <DetailsDescription
+                                  descriptionHtml={touristicEventContent.accessibility ?? ''}
+                                  className={marginDetailsChild}
+                                  title={<FormattedMessage id="details.accessibility" />}
+                                />
+                              </div>
+                            )}
 
-                    {touristicEventContent.touristicContents.length > 0 && (
-                      <div ref={setTouristicContentsRef} id="details_touristicContent_ref">
-                        <DetailsCardSection
-                          htmlId="details_touristicContent"
-                          title={intl.formatMessage({ id: 'details.touristicContent' })}
-                          displayBadge
-                          generateUrlFunction={generateTouristicContentUrl}
-                          detailsCards={touristicEventContent.touristicContents.map(
-                            touristicContent => ({
-                              id: `${touristicContent.id}`,
-                              name: touristicContent.name ?? '',
-                              place: touristicContent.category.label,
-                              description: touristicContent.descriptionTeaser,
-                              thumbnails: touristicContent.thumbnails,
-                              attachments: touristicContent.attachments,
-                              iconUri: touristicContent.category.pictogramUri,
-                              iconName: touristicContent.category.label,
-                            }),
-                          )}
-                          type="TOURISTIC_CONTENT"
-                        />
-                      </div>
-                    )}
+                            {touristicEventContent.organizer && (
+                              <div>
+                                <DetailsDescription
+                                  descriptionHtml={touristicEventContent.organizer ?? ''}
+                                  className={marginDetailsChild}
+                                  title={<FormattedMessage id="details.organizer" />}
+                                />
+                              </div>
+                            )}
+
+                            {touristicEventContent.speaker && (
+                              <div>
+                                <DetailsDescription
+                                  descriptionHtml={touristicEventContent.speaker ?? ''}
+                                  className={marginDetailsChild}
+                                  title={<FormattedMessage id="details.speaker" />}
+                                />
+                              </div>
+                            )}
+
+                            {touristicEventContent.targetAudience && (
+                              <div>
+                                <DetailsDescription
+                                  descriptionHtml={touristicEventContent.targetAudience ?? ''}
+                                  className={marginDetailsChild}
+                                  title={<FormattedMessage id="details.targetAudience" />}
+                                />
+                              </div>
+                            )}
+
+                            {touristicEventContent.practicalInfo && (
+                              <div>
+                                <DetailsDescription
+                                  descriptionHtml={touristicEventContent.practicalInfo ?? ''}
+                                  className={marginDetailsChild}
+                                  title={<FormattedMessage id="details.practicalInfo" />}
+                                />
+                              </div>
+                            )}
+
+                            {touristicEventContent.booking && (
+                              <div>
+                                <DetailsDescription
+                                  descriptionHtml={touristicEventContent.booking ?? ''}
+                                  className={marginDetailsChild}
+                                  title={<FormattedMessage id="details.booking" />}
+                                />
+                              </div>
+                            )}
+                          </section>
+                        );
+                      }
+
+                      if (
+                        section.name === 'forecastWidget' &&
+                        getGlobalConfig().enableMeteoWidget &&
+                        touristicEventContent.cities_raw?.[0]
+                      ) {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            {hasNavigator && (
+                              <DetailsSection
+                                htmlId="details_forecastWidget"
+                                className={marginDetailsChild}
+                              >
+                                <DetailsMeteoWidget code={touristicEventContent.cities_raw[0]} />
+                              </DetailsSection>
+                            )}
+                          </section>
+                        );
+                      }
+
+                      if (section.name === 'source' && touristicEventContent.sources.length > 0) {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            <DetailsSection
+                              htmlId="details_source"
+                              titleId="details.source"
+                              className={marginDetailsChild}
+                            >
+                              {touristicEventContent.sources.map((source, i) => (
+                                <DetailsSource
+                                  key={i}
+                                  name={source.name}
+                                  website={source.website}
+                                  pictogramUri={source.pictogramUri}
+                                />
+                              ))}
+                            </DetailsSection>
+                          </section>
+                        );
+                      }
+
+                      if (
+                        section.name === 'touristicContent' &&
+                        touristicEventContent.touristicContents.length > 0
+                      ) {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            <DetailsCardSection
+                              htmlId="details_touristicContent"
+                              title={intl.formatMessage({ id: 'details.touristicContent' })}
+                              displayBadge
+                              generateUrlFunction={generateTouristicContentUrl}
+                              detailsCards={touristicEventContent.touristicContents.map(
+                                touristicContent => ({
+                                  id: `${touristicContent.id}`,
+                                  name: touristicContent.name ?? '',
+                                  place: touristicContent.category.label,
+                                  description: touristicContent.descriptionTeaser,
+                                  thumbnails: touristicContent.thumbnails,
+                                  attachments: touristicContent.attachments,
+                                  iconUri: touristicContent.category.pictogramUri,
+                                  iconName: touristicContent.category.label,
+                                }),
+                              )}
+                              type="TOURISTIC_CONTENT"
+                            />
+                          </section>
+                        );
+                      }
+
+                      return null;
+                    })}
                   </div>
                   <Footer />
                 </div>

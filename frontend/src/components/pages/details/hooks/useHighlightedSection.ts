@@ -10,7 +10,7 @@ export const useOnScreenSection = ({
   sectionsPositions,
   scrollOffset,
 }: {
-  sectionsPositions: DetailsSectionsPosition;
+  sectionsPositions: Partial<DetailsSectionsPosition>;
   /**
    * Height of the page not taken into account when computing the sections'
    * bounding clients rect. This happens when the container of the sections

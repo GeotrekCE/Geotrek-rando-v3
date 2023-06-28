@@ -32,6 +32,7 @@ import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
+import { getDetailsConfig } from '../details/config';
 
 interface Props {
   outdoorCourseUrl: string | string[] | undefined;
@@ -49,10 +50,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
     hideMobileMap,
     sectionsReferences,
     sectionsPositions,
-    setPreviewRef,
-    setPoisRef,
-    setTouristicContentsRef,
-    setSensitiveAreasRef,
+    sectionRef,
   } = useOutdoorCourse(outdoorCourseUrl, language);
 
   const intl = useIntl();
@@ -62,6 +60,9 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
   /** Ref of the parent of all sections */
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
+
+  const { sections } = getDetailsConfig();
+  const sectionsOutdoorCourse = sections.outdoorCourse.filter(({ display }) => display);
 
   useOnScreenSection({
     sectionsPositions,
@@ -148,157 +149,239 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                       type={'OUTDOOR_COURSE'}
                     />
 
-                    <div ref={setPreviewRef} id="details_presentation_ref">
-                      <DetailsPreview
-                        className={marginDetailsChild}
-                        informations={{
-                          duration: outdoorCourseContent.duration,
-                          distance: outdoorCourseContent.length,
-                          maxElevation: outdoorCourseContent.maxElevation,
-                          difficulty: null,
-                          courseType: null,
-                          elevation: null,
-                          networks: [],
-                        }}
-                        place={outdoorCourseContent.place}
-                        tags={[]}
-                        title={outdoorCourseContent.name}
-                        teaser={''}
-                        ambiance={''}
-                        details={outdoorCourseContent}
-                        type={'OUTDOOR_COURSE'}
-                        id={id}
-                      />
-                    </div>
-
-                    {outdoorCourseContent.description && (
-                      <div id="details_description_ref">
-                        <DetailsDescription
-                          descriptionHtml={outdoorCourseContent.description}
-                          className={marginDetailsChild}
-                          cities={outdoorCourseContent.cities}
-                        />
-                      </div>
-                    )}
-
-                    {outdoorCourseContent.gear && (
-                      <div id="details_gear_ref">
-                        <DetailsDescription
-                          descriptionHtml={outdoorCourseContent.gear}
-                          className={marginDetailsChild}
-                          title={<FormattedMessage id="details.gear" />}
-                        />
-                      </div>
-                    )}
-
-                    {outdoorCourseContent.equipment && (
-                      <div id="details_equipment_ref">
-                        <DetailsDescription
-                          descriptionHtml={outdoorCourseContent.equipment}
-                          className={marginDetailsChild}
-                          title={<FormattedMessage id="details.equipment" />}
-                        />
-                      </div>
-                    )}
-
-                    {Number(outdoorCourseContent?.pois?.length) > 0 && (
-                      <div ref={setPoisRef} id="details_poi_ref">
-                        <DetailsCardSection
-                          htmlId="details_poi"
-                          title={intl.formatMessage(
-                            { id: 'details.poiFullTitle' },
-                            { count: Number(outdoorCourseContent?.pois?.length) },
-                          )}
-                          detailsCards={outdoorCourseContent?.pois?.map(poi => ({
-                            id: `${poi.id}`,
-                            name: poi.name ?? '',
-                            description: poi.description,
-                            thumbnails: poi.thumbnails,
-                            attachments: poi.attachments,
-                            iconUri: poi.type.pictogramUri,
-                            iconName: poi.type.label,
-                          }))}
-                          type="POI"
-                        />
-                      </div>
-                    )}
-
-                    {outdoorCourseContent.sensitiveAreas.length > 0 && (
-                      <div ref={setSensitiveAreasRef} id="details_sensitiveAreas_ref">
-                        <DetailsSection
-                          htmlId="details_sensitiveAreas"
-                          titleId="details.sensitiveAreasTitle"
-                          className={marginDetailsChild}
-                        >
-                          <span className="mb-4 desktop:mb-8">
-                            <FormattedMessage id="details.sensitiveAreasIntro" />
-                          </span>
-                          {outdoorCourseContent.sensitiveAreas.map((sensitiveArea, i) => (
-                            <DetailsSensitiveArea
-                              key={i}
-                              {...sensitiveArea}
-                              className="my-4 desktop:my-8 ml-3 desktop:ml-6"
+                    {sectionsOutdoorCourse.map(section => {
+                      if (section.name === 'presentation') {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            <DetailsPreview
+                              className={marginDetailsChild}
+                              informations={{
+                                duration: outdoorCourseContent.duration,
+                                distance: outdoorCourseContent.length,
+                                maxElevation: outdoorCourseContent.maxElevation,
+                                difficulty: null,
+                                courseType: null,
+                                elevation: null,
+                                networks: [],
+                              }}
+                              place={outdoorCourseContent.place}
+                              tags={[]}
+                              title={outdoorCourseContent.name}
+                              teaser={''}
+                              ambiance={''}
+                              details={outdoorCourseContent}
+                              type={'OUTDOOR_COURSE'}
+                              id={id}
                             />
-                          ))}
-                        </DetailsSection>
-                      </div>
-                    )}
+                          </section>
+                        );
+                      }
+                      if (section.name === 'description' && outdoorCourseContent.description) {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            <DetailsDescription
+                              descriptionHtml={outdoorCourseContent.description}
+                              className={marginDetailsChild}
+                              cities={outdoorCourseContent.cities}
+                            />
+                          </section>
+                        );
+                      }
+                      if (section.name === 'gear' && outdoorCourseContent.gear) {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            <DetailsDescription
+                              id="details_gear"
+                              descriptionHtml={outdoorCourseContent.gear}
+                              className={marginDetailsChild}
+                              title={<FormattedMessage id="details.gear" />}
+                            />
+                          </section>
+                        );
+                      }
 
-                    {outdoorCourseContent.advice && (
-                      <DetailsSection
-                        htmlId="details_recommandations"
-                        titleId="details.recommandations"
-                        className={marginDetailsChild}
-                      >
-                        {outdoorCourseContent.advice && (
-                          <DetailsAdvice
-                            text={outdoorCourseContent.advice}
-                            className="mb-4 desktop:mb-6"
-                          />
-                        )}
+                      if (section.name === 'equipment' && outdoorCourseContent.equipment) {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            <DetailsDescription
+                              id="details_equipment"
+                              descriptionHtml={outdoorCourseContent.equipment}
+                              className={marginDetailsChild}
+                              title={<FormattedMessage id="details.equipment" />}
+                            />
+                          </section>
+                        );
+                      }
 
-                        {outdoorCourseContent.accessibility && (
-                          <div style={{ marginTop: 20 }}>
-                            <strong className="font-bold">
-                              <FormattedMessage id="details.accessibility" /> :{' '}
-                            </strong>
-                            <HtmlText>{parse(outdoorCourseContent.accessibility)}</HtmlText>
-                          </div>
-                        )}
-                      </DetailsSection>
-                    )}
+                      if (
+                        section.name === 'poi' &&
+                        Number(outdoorCourseContent?.pois?.length) > 0
+                      ) {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            <DetailsCardSection
+                              htmlId="details_poi"
+                              title={intl.formatMessage(
+                                { id: 'details.poiFullTitle' },
+                                { count: Number(outdoorCourseContent?.pois?.length) },
+                              )}
+                              detailsCards={outdoorCourseContent?.pois?.map(poi => ({
+                                id: `${poi.id}`,
+                                name: poi.name ?? '',
+                                description: poi.description,
+                                thumbnails: poi.thumbnails,
+                                attachments: poi.attachments,
+                                iconUri: poi.type.pictogramUri,
+                                iconName: poi.type.label,
+                              }))}
+                              type="POI"
+                            />
+                          </section>
+                        );
+                      }
 
-                    {outdoorCourseContent.touristicContents.length > 0 && (
-                      <div ref={setTouristicContentsRef} id="details_touristicContent_ref">
-                        <DetailsCardSection
-                          htmlId="details_touristicContent"
-                          title={intl.formatMessage({ id: 'details.touristicContent' })}
-                          displayBadge
-                          generateUrlFunction={generateTouristicContentUrl}
-                          detailsCards={outdoorCourseContent.touristicContents.map(
-                            touristicContent => ({
-                              id: `${touristicContent.id}`,
-                              name: touristicContent.name ?? '',
-                              place: touristicContent.category.label,
-                              description: touristicContent.descriptionTeaser,
-                              thumbnails: touristicContent.thumbnails,
-                              attachments: touristicContent.attachments,
-                              iconUri: touristicContent.category.pictogramUri,
-                              iconName: touristicContent.category.label,
-                            }),
-                          )}
-                          type="TOURISTIC_CONTENT"
-                        />
-                      </div>
-                    )}
-                    {getGlobalConfig().enableMeteoWidget &&
-                      hasNavigator &&
-                      outdoorCourseContent.cities_raw &&
-                      outdoorCourseContent.cities_raw[0] && (
-                        <DetailsSection>
-                          <DetailsMeteoWidget code={outdoorCourseContent.cities_raw[0]} />
-                        </DetailsSection>
-                      )}
+                      if (
+                        section.name === 'sensitiveAreas' &&
+                        outdoorCourseContent.sensitiveAreas.length > 0
+                      ) {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            <DetailsSection
+                              htmlId="details_sensitiveAreas"
+                              titleId="details.sensitiveAreasTitle"
+                              className={marginDetailsChild}
+                            >
+                              <span className="mb-4 desktop:mb-8">
+                                <FormattedMessage id="details.sensitiveAreasIntro" />
+                              </span>
+                              {outdoorCourseContent.sensitiveAreas.map((sensitiveArea, i) => (
+                                <DetailsSensitiveArea
+                                  key={i}
+                                  {...sensitiveArea}
+                                  className="my-4 desktop:my-8 ml-3 desktop:ml-6"
+                                />
+                              ))}
+                            </DetailsSection>
+                          </section>
+                        );
+                      }
+
+                      if (
+                        section.name === 'practicalInformations' &&
+                        (outdoorCourseContent.advice || outdoorCourseContent.accessibility)
+                      ) {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            <DetailsSection
+                              htmlId="details_practicalInformations"
+                              titleId="details.recommandations"
+                              className={marginDetailsChild}
+                            >
+                              {outdoorCourseContent.advice && (
+                                <DetailsAdvice
+                                  text={outdoorCourseContent.advice}
+                                  className="mb-4 desktop:mb-6"
+                                />
+                              )}
+
+                              {outdoorCourseContent.accessibility && (
+                                <div className="mt-5">
+                                  <strong className="font-bold">
+                                    <FormattedMessage id="details.accessibility" /> :{' '}
+                                  </strong>
+                                  <HtmlText>{parse(outdoorCourseContent.accessibility)}</HtmlText>
+                                </div>
+                              )}
+                            </DetailsSection>
+                          </section>
+                        );
+                      }
+
+                      if (
+                        section.name === 'touristicContent' &&
+                        outdoorCourseContent.touristicContents.length > 0
+                      ) {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            <DetailsCardSection
+                              htmlId="details_touristicContent"
+                              title={intl.formatMessage({ id: 'details.touristicContent' })}
+                              displayBadge
+                              generateUrlFunction={generateTouristicContentUrl}
+                              detailsCards={outdoorCourseContent.touristicContents.map(
+                                touristicContent => ({
+                                  id: `${touristicContent.id}`,
+                                  name: touristicContent.name ?? '',
+                                  place: touristicContent.category.label,
+                                  description: touristicContent.descriptionTeaser,
+                                  thumbnails: touristicContent.thumbnails,
+                                  attachments: touristicContent.attachments,
+                                  iconUri: touristicContent.category.pictogramUri,
+                                  iconName: touristicContent.category.label,
+                                }),
+                              )}
+                              type="TOURISTIC_CONTENT"
+                            />
+                          </section>
+                        );
+                      }
+
+                      if (
+                        section.name === 'forecastWidget' &&
+                        getGlobalConfig().enableMeteoWidget &&
+                        outdoorCourseContent.cities_raw?.[0]
+                      ) {
+                        return (
+                          <section
+                            key={section.name}
+                            ref={sectionRef[section.name]}
+                            id={`details_${section.name}_ref`}
+                          >
+                            {hasNavigator && (
+                              <DetailsSection
+                                htmlId="details_forecastWidget"
+                                className={marginDetailsChild}
+                              >
+                                <DetailsMeteoWidget code={outdoorCourseContent.cities_raw[0]} />
+                              </DetailsSection>
+                            )}
+                          </section>
+                        );
+                      }
+                      return null;
+                    })}
                   </div>
                   <Footer />
                 </div>

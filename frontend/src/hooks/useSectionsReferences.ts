@@ -1,14 +1,14 @@
 import { useCallback, useRef, useState } from 'react';
-import { DetailsSectionsPosition } from 'components/pages/details/useDetails';
+import { DetailsSections, DetailsSectionsPosition } from 'components/pages/details/useDetails';
 import debounce from 'debounce';
 import { getDimensions } from 'components/pages/details/utils';
 import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect';
 
 const useSectionsReferences = () => {
   const sectionsReferences = useRef<Record<string, HTMLDivElement | null>>({});
-  const [sectionsPositions, setSectionsPositions] = useState<DetailsSectionsPosition>({});
+  const [sectionsPositions, setSectionsPositions] = useState<Partial<DetailsSectionsPosition>>({});
 
-  const useSectionReferenceCallback = (sectionName: string) =>
+  const useSectionReferenceCallback = (sectionName: DetailsSections) =>
     useCallback(
       (node: HTMLDivElement | null): void => {
         if (node !== null) {
