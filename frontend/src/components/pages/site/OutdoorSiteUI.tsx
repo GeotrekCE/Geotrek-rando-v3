@@ -155,7 +155,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                       type={'OUTDOOR_SITE'}
                     />
 
-                    <div ref={setPreviewRef} id="details_preview_ref">
+                    <div ref={setPreviewRef} id="details_presentation_ref">
                       <DetailsPreview
                         className={marginDetailsChild}
                         informations={{
