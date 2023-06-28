@@ -82,11 +82,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
         <PageHead
           title={outdoorCourseContent?.name}
           description={cleanHTMLElementsFromString(outdoorCourseContent?.description)}
-          sharingImageUrl={
-            outdoorCourseContent !== undefined && outdoorCourseContent.attachments.length > 0
-              ? outdoorCourseContent.attachments[0].url
-              : undefined
-          }
+          sharingImageUrl={outdoorCourseContent?.attachments?.[0]?.url}
         />
         {outdoorCourseContent === undefined ? (
           <>
