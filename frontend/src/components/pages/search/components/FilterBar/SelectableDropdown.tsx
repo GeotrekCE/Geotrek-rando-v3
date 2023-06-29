@@ -93,6 +93,7 @@ const computeAction = (action: OnChangeValue<Option, true>): Option[] => {
 };
 
 export const SelectableDropdown = (props: SelectableDropdownProps) => {
+  const placeholderText = props.placeholder || 'form.selectPlaceholder';
   const intl = useIntl();
   return (
     <Select
@@ -100,7 +101,7 @@ export const SelectableDropdown = (props: SelectableDropdownProps) => {
       {...props}
       isClearable={props.filterType === 'SINGLE'}
       isSearchable={false}
-      placeholder={intl.formatMessage({ id: props.placeholder })}
+      placeholder={intl.formatMessage({ id: placeholderText })}
       classNamePrefix="select"
       isMulti={props.filterType === 'MULTIPLE' ? true : undefined}
       instanceId={props.name}
