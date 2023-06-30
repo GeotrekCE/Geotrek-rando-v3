@@ -22,9 +22,7 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
 
   const { sections } = getDetailsConfig();
 
-  const sectionsOutdoorSite = sections.outdoorSite.filter(
-    ({ display, anchor }) => display === true && anchor,
-  );
+  const sectionsOutdoorSite = sections.outdoorSite.filter(({ display }) => display === true);
 
   const { sectionsReferences, sectionsPositions, useSectionReferenceCallback } =
     useSectionsReferences();

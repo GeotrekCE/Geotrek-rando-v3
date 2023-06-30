@@ -70,7 +70,7 @@
       { 
         "name": "report",
         "display": true,
-        "anchor": false,
+        "anchor": true,
         "order": 120
       },
       { 

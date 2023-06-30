@@ -69,6 +69,9 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
 
   const { sections } = getDetailsConfig();
   const sectionsOutdoorSite = sections.outdoorSite.filter(({ display }) => display);
+  const anchors = sectionsOutdoorSite
+    .filter(({ anchor }) => anchor === true)
+    .map(({ name }) => name);
 
   useOnScreenSection({
     sectionsPositions,
@@ -103,6 +106,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
           <>
             <div id="details_container">
               <DetailsHeader
+                anchors={anchors}
                 sectionsReferences={sectionsReferences}
                 details={outdoorSiteContent}
                 type={'OUTDOOR_SITE'}

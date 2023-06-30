@@ -36,7 +36,7 @@ export const useTouristicContent = (
 
   const { sections } = getDetailsConfig();
   const sectionsTouristicContent = sections.touristicEvent.filter(
-    ({ display, anchor }) => display === true && anchor,
+    ({ display }) => display === true,
   );
 
   const { sectionsReferences, sectionsPositions, useSectionReferenceCallback } =
