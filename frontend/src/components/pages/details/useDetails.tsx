@@ -71,7 +71,7 @@ export const useDetails = (
 
   const { sections } = getDetailsConfig();
 
-  const sectionsTrek = sections.trek.filter(({ display, anchor }) => display === true && anchor);
+  const sectionsTrek = sections.trek.filter(({ display }) => display === true);
 
   const { sectionsReferences, sectionsPositions, useSectionReferenceCallback } =
     useSectionsReferences();

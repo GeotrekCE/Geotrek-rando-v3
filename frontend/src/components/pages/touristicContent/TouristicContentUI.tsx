@@ -50,6 +50,9 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
 
   const { sections } = getDetailsConfig();
   const sectionsTouristicContent = sections.touristicContent.filter(({ display }) => display);
+  const anchors = sectionsTouristicContent
+    .filter(({ anchor }) => anchor === true)
+    .map(({ name }) => name);
 
   return (
     <>
@@ -70,6 +73,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
         <>
           <div id="details_container">
             <DetailsHeader
+              anchors={anchors}
               sectionsReferences={sectionsReferences}
               details={touristicContent}
               type={'TOURISTIC_CONTENT'}

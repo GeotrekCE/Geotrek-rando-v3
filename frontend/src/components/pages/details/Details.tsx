@@ -78,6 +78,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
 
   const { sections } = getDetailsConfig();
   const sectionsTrek = sections.trek.filter(({ display }) => display);
+  const anchors = sectionsTrek.filter(({ anchor }) => anchor === true).map(({ name }) => name);
 
   useOnScreenSection({
     sectionsPositions,
@@ -122,6 +123,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
           <>
             <div id="details_container">
               <DetailsHeader
+                anchors={anchors}
                 sectionsReferences={sectionsReferences}
                 details={details}
                 type={'TREK'}

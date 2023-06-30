@@ -62,6 +62,9 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
 
   const { sections } = getDetailsConfig();
   const sectionsTouristicEvents = sections.touristicEvent.filter(({ display }) => display);
+  const anchors = sectionsTouristicEvents
+    .filter(({ anchor }) => anchor === true)
+    .map(({ name }) => name);
 
   useOnScreenSection({
     sectionsPositions,
@@ -96,6 +99,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
           <>
             <div id="details_container">
               <DetailsHeader
+                anchors={anchors}
                 sectionsReferences={sectionsReferences}
                 details={touristicEventContent}
                 type={'TOURISTIC_EVENT'}
