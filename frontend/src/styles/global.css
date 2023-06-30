@@ -49,3 +49,8 @@
 		w-full
 	;
 }
+
+.hasDrawer .leaflet-bottom {
+  @apply mb-12;
+  @apply desktop:mb-0;
+}
