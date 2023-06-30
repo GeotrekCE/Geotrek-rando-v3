@@ -63,6 +63,9 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
 
   const { sections } = getDetailsConfig();
   const sectionsOutdoorCourse = sections.outdoorCourse.filter(({ display }) => display);
+  const anchors = sectionsOutdoorCourse
+    .filter(({ anchor }) => anchor === true)
+    .map(({ name }) => name);
 
   useOnScreenSection({
     sectionsPositions,
@@ -97,6 +100,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
           <>
             <div id="details_container">
               <DetailsHeader
+                anchors={anchors}
                 sectionsReferences={sectionsReferences}
                 details={outdoorCourseContent}
                 type={'OUTDOOR_COURSE'}

@@ -22,9 +22,7 @@ export const useTouristicEvent = (
   );
 
   const { sections } = getDetailsConfig();
-  const sectionsTouristicEvent = sections.touristicEvent.filter(
-    ({ display, anchor }) => display === true && anchor,
-  );
+  const sectionsTouristicEvent = sections.touristicEvent.filter(({ display }) => display === true);
 
   const { sectionsReferences, sectionsPositions, useSectionReferenceCallback } =
     useSectionsReferences();

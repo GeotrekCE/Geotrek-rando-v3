@@ -23,9 +23,7 @@ export const useOutdoorCourse = (
 
   const { sections } = getDetailsConfig();
 
-  const sectionsOutdoorCourse = sections.outdoorCourse.filter(
-    ({ display, anchor }) => display === true && anchor,
-  );
+  const sectionsOutdoorCourse = sections.outdoorCourse.filter(({ display }) => display === true);
 
   const { sectionsReferences, sectionsPositions, useSectionReferenceCallback } =
     useSectionsReferences();

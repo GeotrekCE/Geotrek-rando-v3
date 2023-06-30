@@ -8,10 +8,11 @@ import { Details } from 'modules/details/interface';
 import { OutdoorCourseDetails } from 'modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from 'modules/outdoorSite/interface';
 import { TouristicEventDetails } from 'modules/touristicEvent/interface';
-import { DetailsHeaderSection } from '../../useDetails';
+import { DetailsHeaderSection, DetailsSections } from '../../useDetails';
 import { useDetailsHeader } from './useDetailsHeader';
 
 interface DetailsHeaderProps {
+  anchors: Partial<DetailsSections>[];
   sectionsReferences: MutableRefObject<DetailsHeaderSection>;
   details:
     | Details
@@ -23,13 +24,15 @@ interface DetailsHeaderProps {
 }
 
 export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
+  anchors,
   sectionsReferences,
   details,
   type,
 }) => {
   const { detailsHeaderSection, currentSectionId } = useDetailsHeader(sectionsReferences);
+  const availableSection = anchors.filter(item => Object.keys(detailsHeaderSection).includes(item));
   const isMounted = useHasMounted();
-  const sections = Object.keys(detailsHeaderSection)
+  const sections = availableSection
     // Report anchor is in <DetailsDownloadIcons /> below
     .filter(sectionId => sectionId !== 'report');
 
@@ -50,7 +53,7 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
             <li key={sectionId}>
               <a
                 className={cn(
-                  'mx-5 pb-1 border-b-2 border-transparent border-solid transition-all duration-300  hover:text-primary1 hover:border-primary1  focus:text-primary1 focus:border-primary1',
+                  'mx-5 pb-1 border-b-2 border-transparent border-solid transition-all duration-300  hover:text-primary1 hover:border-primary1 focus:text-primary1 focus:border-primary1',
                   currentSectionId === sectionId && isMounted && 'text-primary1 border-primary1',
                 )}
                 href={`#details_${sectionId}`}
@@ -61,7 +64,10 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
           ))}
         </ul>
       )}
-      <DetailsDownloadIcons details={details} hideReport={type !== 'TREK'} />
+      <DetailsDownloadIcons
+        details={details}
+        hideReport={type !== 'TREK' || !availableSection.includes('report')}
+      />
     </nav>
   );
 };
