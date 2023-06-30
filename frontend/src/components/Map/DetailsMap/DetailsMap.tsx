@@ -21,13 +21,13 @@ import { useTileLayer } from 'hooks/useTileLayer';
 import { TrekChildGeometry, TrekFamily } from 'modules/details/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import { VisibleSectionContext } from 'components/pages/details/VisibleSectionContext';
-import { colorPalette, desktopOnly, MAX_WIDTH_MOBILE } from 'stylesheet';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { Check } from 'components/Icons/Check';
 import { FormattedMessage } from 'react-intl';
 import { InformationDesk } from 'modules/informationDesk/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
+import { cn } from 'services/utils/cn';
 import { BackButton } from '../components/BackButton';
 
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
@@ -136,19 +136,20 @@ export const DetailsMap: React.FC<PropsType> = props => {
   }, [map, center]);
 
   const { visibleSection } = useContext(VisibleSectionContext);
-  const mapWrapperProps = {
-    ...(visibleSection === 'report' &&
-      reportVisibility && {
-        className: 'with-report',
-      }),
-  };
 
   const hasTitle = Boolean(props.title);
 
   return (
-    <MapWrapper {...mapWrapperProps}>
-      <StyledMapContainer
-        className="mapContainer"
+    <div
+      className={cn(
+        'relative w-full h-full',
+        visibleSection === 'report' &&
+          reportVisibility &&
+          "after:content-[''] after:absolute after:inset-0 desktop:after:top-1 after:border-solid after:border-3 after:border-red after:pointer-events-none",
+      )}
+    >
+      <MapContainer
+        className={cn('mapContainer w-full h-full', hasTitle && 'hasDrawer')}
         scrollWheelZoom
         maxZoom={
           navigator.onLine
@@ -161,7 +162,6 @@ export const DetailsMap: React.FC<PropsType> = props => {
         zoomControl={props.type === 'DESKTOP'}
         whenCreated={setMapInstance}
         bounds={bounds}
-        hasDrawer={hasTitle}
       >
         <TileLayerManager />
         {reportVisibility && coordinatesReportTouched ? (
@@ -269,39 +269,9 @@ export const DetailsMap: React.FC<PropsType> = props => {
             />
           </div>
         )}
-      </StyledMapContainer>
-    </MapWrapper>
+      </MapContainer>
+    </div>
   );
 };
-
-const MapWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  &.with-report::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border: 3px solid ${colorPalette.red};
-    pointer-events: none;
-    @media (min-width: ${MAX_WIDTH_MOBILE}px) {
-      top: 2px;
-    }
-  }
-`;
-
-const StyledMapContainer = styled(MapContainer)<{ hasDrawer: boolean }>`
-  width: 100%;
-  height: 100%;
-  .leaflet-bottom {
-    margin-bottom: ${props => (props.hasDrawer ? '50px' : 0)};
-    ${desktopOnly(css`
-      margin-bottom: 0;
-    `)}
-  }
-`;
 
 export default DetailsMap;
