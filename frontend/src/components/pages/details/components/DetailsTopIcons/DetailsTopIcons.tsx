@@ -19,6 +19,7 @@ interface DetailsTopIconsProps {
     | TouristicEventDetails;
   practice?: Activity | null;
   type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
+  displayReservationWidget?: boolean;
 }
 
 interface IconProps {
@@ -41,6 +42,7 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
   details,
   practice,
   type = 'TREK',
+  displayReservationWidget = true,
 }) => {
   return (
     <>
@@ -57,7 +59,12 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
                 : undefined
             }
           >
-            <DetailsDownloadIcons details={details} size={30} hideReport={type !== 'TREK'} />
+            <DetailsDownloadIcons
+              details={details}
+              size={30}
+              displayReport={type === 'TREK'}
+              displayReservationWidget={displayReservationWidget}
+            />
           </div>
         </div>
       </div>
