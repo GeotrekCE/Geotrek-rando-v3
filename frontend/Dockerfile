@@ -13,7 +13,7 @@ COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 RUN yarn build
 
-FROM node:17-alpine AS builder_optim
+FROM node:18-alpine AS builder_optim
 WORKDIR /app
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
