@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.14.2 (2023-07-01)
+
+**🐛 Fixes**
+
+- Synchronously load scripts for the Reservation widget (#936)
+- Define default placeholder to SelectableDropdown (#935)
+- Fix the version of node in dockerfile (#938)
+
 ## 3.14.1 (2023-06-19)
 
 **✨ Improvements**
