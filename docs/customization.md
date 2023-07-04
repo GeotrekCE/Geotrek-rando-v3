@@ -136,6 +136,8 @@ There are 4 properties :
     - `anchor`: boolean to display or not an anchor link in the menu navigation bar
     - `order`: number to define the position of this section
 
+NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, anchor links are not displayed like other elements, but by a dedicated icon.
+
 - In the `footer.json` file, you can define social networks, informations about your organization, and some links (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/footer.json).
 
   - Social networks: `facebook`, `twitter`, `youtube`, `instagram` or `fallback`.

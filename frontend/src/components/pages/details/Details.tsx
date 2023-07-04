@@ -164,7 +164,11 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                     flex flex-col"
                     ref={sectionsContainerRef}
                   >
-                    <DetailsTopIcons details={details} practice={details.practice ?? undefined} />
+                    <DetailsTopIcons
+                      details={details}
+                      practice={details.practice ?? undefined}
+                      displayReservationWidget={anchors.includes('reservationWidget')}
+                    />
 
                     {sectionsTrek.map(section => {
                       if (section.name === 'presentation') {
