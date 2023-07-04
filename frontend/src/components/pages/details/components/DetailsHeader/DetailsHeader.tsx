@@ -33,8 +33,8 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
   const availableSection = anchors.filter(item => Object.keys(detailsHeaderSection).includes(item));
   const isMounted = useHasMounted();
   const sections = availableSection
-    // Report anchor is in <DetailsDownloadIcons /> below
-    .filter(sectionId => sectionId !== 'report');
+    // Report and ReservationWidget anchors are in <DetailsDownloadIcons /> below
+    .filter(sectionId => sectionId !== 'report' && sectionId !== 'reservationWidget');
 
   return (
     <nav
@@ -66,7 +66,8 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
       )}
       <DetailsDownloadIcons
         details={details}
-        hideReport={type !== 'TREK' || !availableSection.includes('report')}
+        displayReport={type === 'TREK' && availableSection.includes('report')}
+        displayReservationWidget={availableSection.includes('reservationWidget')}
       />
     </nav>
   );

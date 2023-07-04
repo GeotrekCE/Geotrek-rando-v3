@@ -28,13 +28,15 @@ interface DetailsTopIconsProps {
     | OutdoorCourseDetails
     | TouristicEventDetails;
   size?: number;
-  hideReport?: boolean;
+  displayReport?: boolean;
+  displayReservationWidget?: boolean;
 }
 
 export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
   details,
   size = 24,
-  hideReport = false,
+  displayReport = true,
+  displayReservationWidget = true,
 }) => {
   const [open3D, setOpen3D] = useState<boolean>(false);
   const { setReportVisibility } = useDetailsAndMapContext();
@@ -101,7 +103,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
           </ToolTip>
         )}
 
-        {Number(details.id) && !hideReport && getGlobalConfig().enableReport && (
+        {displayReport && Number(details.id) && getGlobalConfig().enableReport && (
           <ToolTip toolTipText={intl.formatMessage({ id: 'report.title' })} invertPosition>
             <DetailsButton url="#details_report" onClick={() => setReportVisibility(true)}>
               <AlertTriangle size={size} />
@@ -109,12 +111,13 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
           </ToolTip>
         )}
 
-        {(details as Details).reservation &&
+        {displayReservationWidget &&
+          (details as Details).reservation &&
           (details as Details).reservation_id &&
           getGlobalConfig().reservationPartner &&
           getGlobalConfig().reservationProject && (
             <ToolTip toolTipText={intl.formatMessage({ id: 'search.book' })} invertPosition>
-              <DetailsButton url="#details_reservation">
+              <DetailsButton url="#details_reservationWidget">
                 <Reservation width={30} height={30} />
               </DetailsButton>
             </ToolTip>
