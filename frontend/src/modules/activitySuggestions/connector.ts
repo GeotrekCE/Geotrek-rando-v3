@@ -1,7 +1,5 @@
 import { getActivities } from 'modules/activities/connector';
-import { getCities } from 'modules/city/connector';
 import { getDifficulties } from 'modules/filters/difficulties';
-import { getThemes } from 'modules/filters/theme/connector';
 import { getOutdoorPractices } from 'modules/outdoorPractice/connector';
 import { adaptoutdoorSitesResult } from 'modules/outdoorSite/adapter';
 import { fetchOutdoorSiteDetails } from 'modules/outdoorSite/api';
@@ -18,25 +16,24 @@ import { fetchTouristicEventDetails, fetchTouristicEvents } from 'modules/touris
 import { RawTouristicEventDetails } from 'modules/touristicEvent/interface';
 import { getTouristicEventTypes } from 'modules/touristicEventType/connector';
 import { ONE_DAY } from 'services/constants/staleTime';
+import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { Suggestion } from '../home/interface';
 import { ActivitySuggestion } from './interface';
 export const getActivitySuggestions = async (
   suggestions: Suggestion[],
   language: string,
+  commonDictionaries?: CommonDictionaries,
 ): Promise<ActivitySuggestion[]> => {
+  const { cities = {}, themes = {} } = commonDictionaries ?? {};
   const [
     difficulties,
-    themes,
     activities,
-    cityDictionnary,
     touristicContentCategories,
     outdoorPracticeDictionnary,
     touristicEventType,
   ] = await Promise.all([
     getDifficulties(language),
-    getThemes(language),
     getActivities(language),
-    getCities(language),
     getTouristicContentCategories(language),
     getOutdoorPractices(language),
     getTouristicEventTypes(language),
@@ -62,7 +59,7 @@ export const getActivitySuggestions = async (
             difficulties,
             themes,
             activities,
-            cityDictionnary,
+            cityDictionnary: cities,
           }),
         };
       }
@@ -87,7 +84,7 @@ export const getActivitySuggestions = async (
                   ),
                   touristicContentCategories,
                   themeDictionnary: themes,
-                  cityDictionnary,
+                  cityDictionnary: cities,
                 }),
         };
       }
@@ -109,7 +106,7 @@ export const getActivitySuggestions = async (
             ),
             themeDictionnary: themes,
             outdoorPracticeDictionnary,
-            cityDictionnary,
+            cityDictionnary: cities,
           }),
         };
       }
@@ -128,7 +125,7 @@ export const getActivitySuggestions = async (
             ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons touristic events attributes are in properties field
           ),
           themeDictionnary: themes,
-          cityDictionnary,
+          cityDictionnary: cities,
           touristicEventType,
         });
         const resultsWithUnexpiredEvents = eventResult.filter(result => {
@@ -179,7 +176,7 @@ export const getActivitySuggestions = async (
             // And sliced with the desired items
             rawTouristicEvents: orderedUpcomingEventsResults.slice(0, numberOfItemsToDisplay),
             themeDictionnary: themes,
-            cityDictionnary,
+            cityDictionnary: cities,
             touristicEventType,
           }),
         };
