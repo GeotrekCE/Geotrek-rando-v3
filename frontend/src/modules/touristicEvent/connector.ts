@@ -1,8 +1,8 @@
 import { GeometryObject } from 'modules/interface';
 import { adaptGeometry } from 'modules/utils/geometry';
+import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { getCities } from '../city/connector';
 import { getThemes } from '../filters/theme/connector';
-import { getSources } from '../source/connector';
 import { getTouristicContentsNearTarget } from '../touristicContent/connector';
 import { getTouristicEventTypes } from '../touristicEventType/connector';
 import { PopupResult } from '../trekResult/interface';
@@ -37,30 +37,22 @@ export const getTouristicEvents = async (
 export const getTouristicEventDetails = async (
   id: string,
   language: string,
+  commonDictionaries?: CommonDictionaries,
 ): Promise<TouristicEventDetails> => {
   try {
-    const [
-      rawTouristicEventDetails,
-      themeDictionnary,
-      cityDictionnary,
-      touristicContents,
-      sourcesDictionnary,
-      touristicEventType,
-    ] = await Promise.all([
+    const { themes = {}, cities = {}, sources = [] } = commonDictionaries ?? {};
+    const [rawTouristicEventDetails, touristicContents, touristicEventType] = await Promise.all([
       fetchTouristicEventDetails({ language }, id),
-      getThemes(language),
-      getCities(language),
       getTouristicContentsNearTarget(Number(id), language, 'near_touristicevent'),
-      getSources(language),
       getTouristicEventTypes(language),
     ]);
 
     return adaptTouristicEventDetails({
       rawTouristicEventDetails,
-      themeDictionnary,
-      cityDictionnary,
+      themeDictionnary: themes,
+      cityDictionnary: cities,
       touristicContents,
-      sourcesDictionnary,
+      sourcesDictionnary: sources,
       touristicEventType,
     });
   } catch (e) {
