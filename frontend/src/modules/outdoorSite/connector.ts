@@ -4,10 +4,9 @@ import { getService } from 'modules/service/connector';
 import { getInfrastructure } from 'modules/infrastructure/connector';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { GeometryObject } from 'modules/interface';
+import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { getCities } from '../city/connector';
 import { getThemes } from '../filters/theme/connector';
-import { getInformationDesks } from '../informationDesk/connector';
-import { getLabels } from '../label/connector';
 import { getOutdoorCoursesResult } from '../outdoorCourse/connector';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { getOutdoorRating } from '../outdoorRating/connector';
@@ -15,7 +14,6 @@ import { getOutdoorRatingScale } from '../outdoorRatingScale/connector';
 import { getOutdoorSiteType } from '../outdoorSiteType/connector';
 import { getPois } from '../poi/connector';
 import { getTrekResults } from '../results/connector';
-import { getSources } from '../source/connector';
 import { getTouristicContentsNearTarget } from '../touristicContent/connector';
 import { PopupResult } from '../trekResult/interface';
 import { getGlobalConfig } from '../utils/api.config';
@@ -77,35 +75,30 @@ export const getOutdoorSitesResult = async (
 export const getOutdoorSiteDetails = async (
   id: string,
   language: string,
+  commonDictionaries?: CommonDictionaries,
 ): Promise<OutdoorSiteDetails> => {
   try {
+    const {
+      themes = {},
+      cities = {},
+      sources = [],
+      informationDesk = {},
+      labels = {},
+    } = commonDictionaries ?? {};
+
     const rawOutdoorSiteDetails = await fetchOutdoorSiteDetails({ language }, id);
-    const [
-      pois,
-      themeDictionnary,
-      labelsDictionnary,
-      sourcesDictionnary,
-      informationDesksDictionnary,
-      children,
-      courses,
-      outdoorPracticeDictionnary,
-      touristicContents,
-    ] = await Promise.all([
-      getPois(Number(id), language, 'sites'),
-      getThemes(language),
-      getLabels(language),
-      getSources(language),
-      getInformationDesks(language),
-      getOutdoorSitesResult(language, rawOutdoorSiteDetails.properties.children),
-      getOutdoorCoursesResult(language, rawOutdoorSiteDetails.properties.courses),
-      getOutdoorPractices(language),
-      getTouristicContentsNearTarget(Number(id), language, 'near_outdoorsite'),
-    ]);
+    const [pois, children, courses, outdoorPracticeDictionnary, touristicContents] =
+      await Promise.all([
+        getPois(Number(id), language, 'sites'),
+        getOutdoorSitesResult(language, rawOutdoorSiteDetails.properties.children),
+        getOutdoorCoursesResult(language, rawOutdoorSiteDetails.properties.courses),
+        getOutdoorPractices(language),
+        getTouristicContentsNearTarget(Number(id), language, 'near_outdoorsite'),
+      ]);
 
     const [
       access,
       outdoorPractice,
-      cityDictionnary,
       outdoorRating,
       outdoorRatingScale,
       outdoorSiteType,
@@ -116,7 +109,6 @@ export const getOutdoorSiteDetails = async (
     ] = await Promise.all([
       getTrekResults(language, { near_outdoorsite: Number(id) }),
       getOutdoorPractices(language),
-      getCities(language),
       getOutdoorRating(language),
       getOutdoorRatingScale(language),
       getOutdoorSiteType(language),
@@ -131,17 +123,17 @@ export const getOutdoorSiteDetails = async (
     return adaptOutdoorSiteDetails({
       rawOutdoorSiteDetails,
       pois,
-      themeDictionnary,
-      labelsDictionnary,
-      sourcesDictionnary,
-      informationDesksDictionnary,
+      themeDictionnary: themes,
+      labelsDictionnary: labels,
+      sourcesDictionnary: sources,
+      informationDesksDictionnary: informationDesk,
       children,
       courses,
       outdoorPracticeDictionnary,
       touristicContents,
       access,
       outdoorPractice,
-      cityDictionnary,
+      cityDictionnary: cities,
       outdoorRating,
       outdoorRatingScale,
       outdoorSiteType,
