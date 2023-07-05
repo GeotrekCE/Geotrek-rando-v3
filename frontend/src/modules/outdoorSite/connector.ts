@@ -94,7 +94,17 @@ export const getOutdoorSiteDetails = async (
       infrastructure,
       sensitiveAreas,
     ] = await Promise.all([
-      getTrekResults(language, { near_outdoorsite: Number(id) }),
+      getTrekResults(
+        language,
+        { near_outdoorsite: Number(id) },
+        {
+          cities,
+          themes,
+          sources,
+          informationDesk,
+          labels,
+        },
+      ),
       getOutdoorPractices(language),
       getOutdoorRating(language),
       getOutdoorRatingScale(language),
