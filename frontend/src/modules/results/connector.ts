@@ -10,6 +10,7 @@ import { DateFilter } from 'modules/filters/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { getCities } from 'modules/city/connector';
 import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
+import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { adaptoutdoorSitesResult } from '../outdoorSite/adapter';
 import { fetchOutdoorSites } from '../outdoorSite/api';
@@ -333,16 +334,21 @@ export const getSearchResults = async (
 export const getTrekResultsById = async (
   trekIds: number[],
   language: string,
+  commonDictionaries?: CommonDictionaries,
 ): Promise<TrekResult[]> => {
   try {
-    if (trekIds === null || trekIds === undefined || trekIds.length === 0) {
+    if (
+      trekIds === null ||
+      trekIds === undefined ||
+      trekIds.length === 0 ||
+      commonDictionaries === undefined
+    ) {
       return [];
     }
-    const [difficulties, themes, activities, cityDictionnary] = await Promise.all([
+    const { themes, cities } = commonDictionaries;
+    const [difficulties, activities] = await Promise.all([
       getDifficulties(language),
-      getThemes(language),
       getActivities(language),
-      getCities(language),
     ]);
     const rawTrekResults = await Promise.all(
       trekIds.map(trekId => fetchTrekResult({ language }, trekId)),
@@ -352,7 +358,7 @@ export const getTrekResultsById = async (
       difficulties,
       themes,
       activities,
-      cityDictionnary,
+      cityDictionnary: cities,
     });
   } catch (e) {
     console.error('Error in results connector', e);

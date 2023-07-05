@@ -10,6 +10,8 @@ import { useRouter } from 'next/router';
 import { routes } from 'services/routes';
 import { useMediaPredicate } from 'react-media-hook';
 import useSectionsReferences from 'hooks/useSectionsReferences';
+import { getCommonDictionaries } from 'modules/dictionaries/connector';
+import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { getDetailsConfig } from './config';
 import {
   DetailsSectionOutdoorCourseNames,
@@ -43,19 +45,37 @@ export const useDetails = (
   const id = isUrlString(slug) ? slug.split('-')[0] : '';
   const path = isUrlString(slug) ? decodeURI(slug) : '';
   const router = useRouter();
+
+  const { data: commonDictionaries } = useQuery<CommonDictionaries, Error>(
+    ['commonDictionaries', language],
+    () => getCommonDictionaries(language),
+    {
+      onError: async error => {
+        if (isRessourceMissing(error)) {
+          await router.push(routes.HOME);
+        }
+      },
+      staleTime: ONE_DAY,
+    },
+  );
+
   const {
     data: details,
     refetch,
     isLoading,
-  } = useQuery<Details, Error>(['details', id, language], () => getDetails(id, language), {
-    enabled: isUrlString(slug),
-    onError: async error => {
-      if (isRessourceMissing(error)) {
-        await router.push(routes.HOME);
-      }
+  } = useQuery<Details, Error>(
+    ['details', id, language],
+    () => getDetails(id, language, commonDictionaries),
+    {
+      enabled: isUrlString(slug) && commonDictionaries !== undefined,
+      onError: async error => {
+        if (isRessourceMissing(error)) {
+          await router.push(routes.HOME);
+        }
+      },
+      staleTime: ONE_DAY,
     },
-    staleTime: ONE_DAY,
-  });
+  );
 
   const isMobile = useMediaPredicate('(max-width: 1024px)');
 
