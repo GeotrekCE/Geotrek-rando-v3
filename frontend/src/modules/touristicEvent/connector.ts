@@ -1,38 +1,12 @@
 import { GeometryObject } from 'modules/interface';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
-import { getCities } from '../city/connector';
-import { getThemes } from '../filters/theme/connector';
 import { getTouristicContentsNearTarget } from '../touristicContent/connector';
 import { getTouristicEventTypes } from '../touristicEventType/connector';
 import { PopupResult } from '../trekResult/interface';
-import {
-  adaptTouristicEventDetails,
-  adaptTouristicEventPopupResults,
-  adaptTouristicEvents,
-} from './adapter';
-import { fetchTouristicEventDetails, fetchTouristicEventResult, fetchTouristicEvents } from './api';
-import { TouristicEvent, TouristicEventDetails } from './interface';
-
-export const getTouristicEvents = async (
-  language: string,
-  query = {},
-): Promise<TouristicEvent[]> => {
-  const [rawTouristicEventResult, themeDictionnary, cityDictionnary, touristicEventType] =
-    await Promise.all([
-      fetchTouristicEvents({ ...query, language }),
-      getThemes(language),
-      getCities(language),
-      getTouristicEventTypes(language),
-    ]);
-
-  return adaptTouristicEvents({
-    rawTouristicEvents: rawTouristicEventResult.results,
-    themeDictionnary,
-    cityDictionnary,
-    touristicEventType,
-  });
-};
+import { adaptTouristicEventDetails, adaptTouristicEventPopupResults } from './adapter';
+import { fetchTouristicEventDetails, fetchTouristicEventResult } from './api';
+import { TouristicEventDetails } from './interface';
 
 export const getTouristicEventDetails = async (
   id: string,
@@ -64,12 +38,13 @@ export const getTouristicEventDetails = async (
 export const getTouristicEventPopupResult = async (
   id: string,
   language: string,
+  commonDictionaries?: CommonDictionaries,
 ): Promise<PopupResult> => {
   const rawTouristicEventPopupResult = await fetchTouristicEventDetails({ language }, id);
 
-  const [cityDictionnary] = await Promise.all([getCities(language)]);
+  const { cities = {} } = commonDictionaries ?? {};
 
-  return adaptTouristicEventPopupResults({ rawTouristicEventPopupResult, cityDictionnary });
+  return adaptTouristicEventPopupResults({ rawTouristicEventPopupResult, cityDictionnary: cities });
 };
 
 export const getTouristicEventGeometryResult = async (
