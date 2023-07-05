@@ -7,6 +7,7 @@ import { getDetails, getTrekFamily } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { routes } from 'services/routes';
+import { getCommonDictionaries } from 'modules/dictionaries/connector';
 import { redirectIfWrongUrl } from '../../modules/utils/url';
 import Custom404 from '../404';
 
@@ -18,7 +19,10 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const queryClient = new QueryClient();
 
   try {
-    const details = await getDetails(id, locale);
+    const commonDictionaries = await getCommonDictionaries(locale);
+    await queryClient.prefetchQuery(['commonDictionaries', locale], () => commonDictionaries);
+
+    const details = await getDetails(id, locale, commonDictionaries);
 
     await queryClient.prefetchQuery(['details', id, locale], () => details);
     await queryClient.prefetchQuery(['trekFamily', parentIdString, locale], () =>

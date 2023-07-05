@@ -1,12 +1,8 @@
 import { fetchAccessibilityLevel } from 'modules/accessibility/api';
 import { getAccessibilities } from 'modules/accessibility/connector';
 import { getActivity } from 'modules/activities/connector';
-import { getCities } from 'modules/city/connector';
 import { getCourseType } from 'modules/filters/courseType/connector';
 import { getDifficulty } from 'modules/filters/difficulties/connector';
-import { getThemes } from 'modules/filters/theme/connector';
-import { getInformationDesks } from 'modules/informationDesk/connector';
-import { getLabels } from 'modules/label/connector';
 import { getNetworks } from 'modules/networks/connector';
 import { getPois } from 'modules/poi/connector';
 import { getTrekResultsById } from 'modules/results/connector';
@@ -14,9 +10,9 @@ import { getSensitiveAreas } from 'modules/sensitiveArea/connector';
 import { getSignage } from 'modules/signage/connector';
 import { getService } from 'modules/service/connector';
 import { getInfrastructure } from 'modules/infrastructure/connector';
-import { getSources } from 'modules/source/connector';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { getTouristicContentsNearTarget } from 'modules/touristicContent/connector';
+import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { getTrekRating } from '../trekRating/connector';
 import { getTrekRatingScale } from '../trekRatingScale/connector';
 import { adaptChildren, adaptResults, adaptTrekChildGeometry } from './adapter';
@@ -24,8 +20,20 @@ import { fetchDetails, fetchTrekChildren, fetchTrekGeometry, fetchTrekName } fro
 import { Details, TrekChildGeometry, TrekFamily } from './interface';
 import { getObjectsRelatedToItinerantTreksToDisplay } from './utils';
 
-export const getDetails = async (id: string, language: string): Promise<Details> => {
+export const getDetails = async (
+  id: string,
+  language: string,
+  commonDictionaries?: CommonDictionaries,
+): Promise<Details> => {
   try {
+    const {
+      themes = {},
+      cities = {},
+      sources = [],
+      informationDesk = {},
+      labels = {},
+    } = commonDictionaries ?? {};
+
     const rawDetails = await fetchDetails({ language }, id);
     const {
       displayRelatedPOIs,
@@ -36,51 +44,37 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       displayRelatedServices,
     } = getObjectsRelatedToItinerantTreksToDisplay(rawDetails.properties.children);
 
-    // Typescript limit for Promise.all is for 10 promises
+    // Dictionaries related to Treks
+    const [networks, trekRating, trekRatingScale, accessibilities] = await Promise.all([
+      getNetworks(language),
+      getTrekRating(language),
+      getTrekRatingScale(language),
+      getAccessibilities(language),
+    ]);
+
     const [
       activity,
       difficulty,
       courseType,
-      networks,
-      themes,
       pois,
       touristicContents,
-      cityDictionnary,
-      accessibilityDictionnary,
-      sourceDictionnary,
+      signage,
+      service,
+      infrastructure,
+      children,
+      sensitiveAreas,
     ] = await Promise.all([
       getActivity(rawDetails.properties.practice, language),
       getDifficulty(rawDetails.properties.difficulty, language),
       getCourseType(rawDetails.properties.route, language),
-      getNetworks(language),
-      getThemes(language),
       displayRelatedPOIs === true ? getPois(rawDetails.properties.id, language) : [],
       displayRelatedTouristicContents === true
         ? getTouristicContentsNearTarget(rawDetails.properties.id, language)
         : [],
-      getCities(language),
-      getAccessibilities(language),
-      getSources(language),
-    ]);
-    const [trekRating, trekRatingScale] = await Promise.all([
-      getTrekRating(language),
-      getTrekRatingScale(language),
-    ]);
-    const [
-      informationDeskDictionnary,
-      signage,
-      service,
-      infrastructure,
-      labelsDictionnary,
-      children,
-      sensitiveAreas,
-    ] = await Promise.all([
-      getInformationDesks(language),
       displayRelatedSignages === true ? getSignage(language, id, 'TREK') : null,
       displayRelatedServices === true ? getService(language, id, 'TREK') : null,
       displayRelatedInfrastructures === true ? getInfrastructure(language, id, 'TREK') : null,
-      getLabels(language),
-      getTrekResultsById(rawDetails.properties.children, language),
+      getTrekResultsById(rawDetails.properties.children, language, commonDictionaries),
       getGlobalConfig().enableSensitiveAreas && displayRelatedSensitiveAreas === true
         ? getSensitiveAreas('trek', rawDetails.properties.id, language)
         : [],
@@ -104,11 +98,11 @@ export const getDetails = async (id: string, language: string): Promise<Details>
       themes,
       pois,
       touristicContents,
-      cityDictionnary,
-      accessibilityDictionnary,
-      sourceDictionnary,
-      informationDeskDictionnary,
-      labelsDictionnary,
+      cityDictionnary: cities,
+      accessibilityDictionnary: accessibilities,
+      sourceDictionnary: sources,
+      informationDeskDictionnary: informationDesk,
+      labelsDictionnary: labels,
       children,
       childrenGeometry,
       sensitiveAreas,
