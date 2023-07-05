@@ -6,7 +6,6 @@ import { adaptGeometry } from 'modules/utils/geometry';
 import { GeometryObject } from 'modules/interface';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { getCities } from '../city/connector';
-import { getThemes } from '../filters/theme/connector';
 import { getOutdoorCoursesResult } from '../outdoorCourse/connector';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { getOutdoorRating } from '../outdoorRating/connector';
@@ -20,55 +19,36 @@ import { getGlobalConfig } from '../utils/api.config';
 import {
   adaptOutdoorSiteDetails,
   adaptOutdoorSitePopupResults,
-  adaptOutdoorSites,
   adaptoutdoorSitesResult,
 } from './adapter';
-import { fetchOutdoorSiteDetails, fetchOutdoorSiteResult, fetchOutdoorSites } from './api';
-import { OutdoorSite, OutdoorSiteDetails, OutdoorSiteResult } from './interface';
-
-export const getOutdoorSites = async (language: string, query = {}): Promise<OutdoorSite[]> => {
-  const [rawOutdoorSitesResult, themeDictionnary, outdoorPracticeDictionnary, cityDictionnary] =
-    await Promise.all([
-      getGlobalConfig().enableOutdoor ? fetchOutdoorSites({ ...query, language }) : null,
-      getThemes(language),
-      getOutdoorPractices(language),
-      getCities(language),
-    ]);
-
-  return adaptOutdoorSites({
-    rawOutdoorSites: rawOutdoorSitesResult?.results ?? [],
-    themeDictionnary,
-    outdoorPracticeDictionnary,
-    cityDictionnary,
-  });
-};
+import { fetchOutdoorSiteDetails, fetchOutdoorSiteResult } from './api';
+import { OutdoorSiteDetails, OutdoorSiteResult } from './interface';
 
 export const getOutdoorSitesResult = async (
   language: string,
   children: number[],
+  commonDictionaries?: CommonDictionaries,
 ): Promise<OutdoorSiteResult[]> => {
   if (!getGlobalConfig().enableOutdoor || children.length === 0) {
     return [];
   }
+
+  const { cities = {}, themes = {} } = commonDictionaries ?? {};
 
   const outdoorSiteChildren = await Promise.all(
     children.map(id => {
       return fetchOutdoorSiteDetails({ language }, id.toString());
     }),
   );
-  const [themeDictionnary, outdoorPracticeDictionnary, cityDictionnary] = await Promise.all([
-    getThemes(language),
-    getOutdoorPractices(language),
-    getCities(language),
-  ]);
+  const outdoorPracticeDictionnary = await getOutdoorPractices(language);
 
   return adaptoutdoorSitesResult({
     rawOutdoorSites: outdoorSiteChildren.map(
       ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons touristic events attributes are in properties field
     ),
-    themeDictionnary,
+    themeDictionnary: themes,
     outdoorPracticeDictionnary,
-    cityDictionnary,
+    cityDictionnary: cities,
   });
 };
 
@@ -90,8 +70,16 @@ export const getOutdoorSiteDetails = async (
     const [pois, children, courses, outdoorPracticeDictionnary, touristicContents] =
       await Promise.all([
         getPois(Number(id), language, 'sites'),
-        getOutdoorSitesResult(language, rawOutdoorSiteDetails.properties.children),
-        getOutdoorCoursesResult(language, rawOutdoorSiteDetails.properties.courses),
+        getOutdoorSitesResult(
+          language,
+          rawOutdoorSiteDetails.properties.children,
+          commonDictionaries,
+        ),
+        getOutdoorCoursesResult(
+          language,
+          rawOutdoorSiteDetails.properties.courses,
+          commonDictionaries,
+        ),
         getOutdoorPractices(language),
         getTouristicContentsNearTarget(Number(id), language, 'near_outdoorsite'),
       ]);
@@ -154,7 +142,7 @@ export const getOutdoorSitePopupResult = async (
 ): Promise<PopupResult> => {
   const rawOutdoorSitePopupResult = await fetchOutdoorSiteDetails({ language }, id);
 
-  const [cityDictionnary] = await Promise.all([getCities(language)]);
+  const cityDictionnary = await getCities(language);
 
   return adaptOutdoorSitePopupResults({ rawOutdoorSitePopupResult, cityDictionnary });
 };
