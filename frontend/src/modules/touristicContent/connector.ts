@@ -1,4 +1,3 @@
-import { getCities } from 'modules/city/connector';
 import { GeometryObject } from 'modules/interface';
 import {
   getTouristicContentCategories,
@@ -76,13 +75,12 @@ export const getTouristicContentDetails = async (
 export const getTouristicContentPopupResult = async (
   id: string,
   language: string,
+  commonDictionaries?: CommonDictionaries,
 ): Promise<PopupResult> => {
-  const [rawTouristicContentPopupResult, cityDictionnary] = await Promise.all([
-    fetchTouristicContentPopupResult({ language }, id),
-    getCities(language),
-  ]);
+  const rawTouristicContentPopupResult = await fetchTouristicContentPopupResult({ language }, id);
+  const { cities = {} } = commonDictionaries ?? {};
 
-  return adaptTouristicContentPopupResults(rawTouristicContentPopupResult, cityDictionnary);
+  return adaptTouristicContentPopupResults(rawTouristicContentPopupResult, cities);
 };
 
 export const getTouristicContentGeometryResult = async (

@@ -5,7 +5,6 @@ import { getInfrastructure } from 'modules/infrastructure/connector';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { GeometryObject } from 'modules/interface';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
-import { getCities } from '../city/connector';
 import { getOutdoorCoursesResult } from '../outdoorCourse/connector';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { getOutdoorRating } from '../outdoorRating/connector';
@@ -139,12 +138,13 @@ export const getOutdoorSiteDetails = async (
 export const getOutdoorSitePopupResult = async (
   id: string,
   language: string,
+  commonDictionaries?: CommonDictionaries,
 ): Promise<PopupResult> => {
   const rawOutdoorSitePopupResult = await fetchOutdoorSiteDetails({ language }, id);
 
-  const cityDictionnary = await getCities(language);
+  const { cities = {} } = commonDictionaries ?? {};
 
-  return adaptOutdoorSitePopupResults({ rawOutdoorSitePopupResult, cityDictionnary });
+  return adaptOutdoorSitePopupResults({ rawOutdoorSitePopupResult, cityDictionnary: cities });
 };
 
 export const getOutdoorSiteGeometryResult = async (
