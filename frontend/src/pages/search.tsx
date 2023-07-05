@@ -5,6 +5,7 @@ import { getDefaultLanguage } from 'modules/header/utills';
 import { getSearchResults } from 'modules/results/connector';
 import { GetServerSideProps, NextPage } from 'next';
 import { dehydrate, DehydratedState, QueryClient } from '@tanstack/react-query';
+import { getCommonDictionaries } from 'modules/dictionaries/connector';
 import { getGlobalConfig } from '../modules/utils/api.config';
 import Custom404 from './404';
 
@@ -29,6 +30,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
       beginDate: context.query.beginDate ?? '',
       endDate: context.query.endDate ?? '',
     };
+
+    const commonDictionaries = await getCommonDictionaries(locale);
+    await queryClient.prefetchQuery(['commonDictionaries', locale], () => commonDictionaries);
 
     await queryClient.prefetchInfiniteQuery(
       [
@@ -55,6 +59,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
             touristicEvents: getGlobalConfig().enableTouristicEvents ? page : null,
           },
           locale,
+          commonDictionaries,
         ),
     );
   } catch (error) {

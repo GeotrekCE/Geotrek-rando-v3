@@ -1,14 +1,12 @@
 import { getTouristicContentCategories } from 'modules/touristicContentCategory/connector';
 import { getActivities } from 'modules/activities/connector';
 import { getDifficulties } from 'modules/filters/difficulties';
-import { getThemes } from 'modules/filters/theme/connector';
 import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
 import { QueryFilterState } from 'components/pages/search/utils';
 import { fetchTouristicContentResult } from 'modules/touristicContent/api';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { DateFilter } from 'modules/filters/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
-import { getCities } from 'modules/city/connector';
 import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
@@ -62,8 +60,10 @@ export const getSearchResults = async (
     touristicEvents: number | null;
   },
   language: string,
+  commonDictionaries?: CommonDictionaries,
 ): Promise<SearchResults> => {
   const { filtersState, textFilterState, bboxState, dateFilter } = filters;
+  const { themes = {}, cities = {} } = commonDictionaries ?? {};
 
   try {
     const practiceFilter = filtersState.find(({ id }) => id === PRACTICE_ID);
@@ -236,24 +236,20 @@ export const getSearchResults = async (
     const [
       rawTrekResults,
       difficulties,
-      themes,
       activities,
       rawTouristicContents,
       rawOutdoorSites,
       rawTouristicEvents,
       touristicContentCategories,
-      cityDictionnary,
       outdoorPracticeDictionnary,
     ] = await Promise.all([
       shouldFetchTreks ? getTreksResultsPromise : emptyResultPromise,
       getDifficulties(language), // Todo: Find a way to store this hashmap to avoid calling this every time
-      getThemes(language), // Todo: Find a way to store this hashmap to avoid calling this every time
       getActivities(language), // Todo: Find a way to store this hashmap to avoid calling this every time
       shouldFetchTouristicContents ? getToursticContentsPromise : emptyResultPromise,
       shouldFetchOutdoorSites ? getOutdoorSitesPromise : emptyResultPromise,
       shouldFetchTouristicEvents ? getTouristicEventsPromise : emptyResultPromise,
       getTouristicContentCategories(language), // Todo: Find a way to store this hashmap to avoid calling this every time
-      getCities(language),
       getOutdoorPractices(language),
     ]);
 
@@ -264,27 +260,27 @@ export const getSearchResults = async (
       difficulties,
       themes,
       activities,
-      cityDictionnary,
+      cityDictionnary: cities,
     });
 
     const adaptedTouristicContentsList: TouristicContentResult[] = adaptTouristicContentResult({
       rawTouristicContent: rawTouristicContents.results,
       touristicContentCategories,
       themeDictionnary: themes,
-      cityDictionnary,
+      cityDictionnary: cities,
     });
 
     const adaptedOutdoorSitesList: OutdoorSiteResult[] = adaptoutdoorSitesResult({
       rawOutdoorSites: rawOutdoorSites.results,
       themeDictionnary: themes,
       outdoorPracticeDictionnary,
-      cityDictionnary,
+      cityDictionnary: cities,
     });
 
     const adaptedTouristicEventsList: TouristicEventResult[] = adaptTouristicEventsResult({
       rawTouristicEvents: rawTouristicEvents.results,
       themeDictionnary: themes,
-      cityDictionnary,
+      cityDictionnary: cities,
       touristicEventType,
     });
 
@@ -366,13 +362,16 @@ export const getTrekResultsById = async (
   }
 };
 
-export const getTrekResults = async (language: string, query = {}): Promise<TrekResult[]> => {
-  const [rawTrekResults, difficulties, themes, activities, cityDictionnary] = await Promise.all([
+export const getTrekResults = async (
+  language: string,
+  query = {},
+  commonDictionaries: CommonDictionaries,
+): Promise<TrekResult[]> => {
+  const { cities, themes } = commonDictionaries;
+  const [rawTrekResults, difficulties, activities] = await Promise.all([
     fetchTrekResults({ language, ...query }),
     getDifficulties(language),
-    getThemes(language),
     getActivities(language),
-    getCities(language),
   ]);
 
   return adaptTrekResultList({
@@ -380,6 +379,6 @@ export const getTrekResults = async (language: string, query = {}): Promise<Trek
     difficulties,
     themes,
     activities,
-    cityDictionnary,
+    cityDictionnary: cities,
   });
 };
