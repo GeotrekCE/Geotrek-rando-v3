@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { isUrlString } from 'modules/utils/string';
 import { useQuery } from '@tanstack/react-query';
+import { isRessourceMissing } from 'services/routeUtils';
+import { useRouter } from 'next/router';
+import { ONE_DAY } from 'services/constants/staleTime';
+import { routes } from 'services/routes';
 import useSectionsReferences from 'hooks/useSectionsReferences';
+import { getCommonDictionaries } from 'modules/dictionaries/connector';
+import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { getTouristicEventDetails } from '../../../modules/touristicEvent/connector';
 import { TouristicEventDetails } from '../../../modules/touristicEvent/interface';
 import { getDetailsConfig } from '../details/config';
@@ -13,11 +19,32 @@ export const useTouristicEvent = (
 ) => {
   const id = isUrlString(touristicEventUrl) ? touristicEventUrl.split('-')[0] : '';
   const path = isUrlString(touristicEventUrl) ? decodeURI(touristicEventUrl) : '';
+  const router = useRouter();
+
+  const { data: commonDictionaries } = useQuery<CommonDictionaries, Error>(
+    ['commonDictionaries', language],
+    () => getCommonDictionaries(language),
+    {
+      onError: async error => {
+        if (isRessourceMissing(error)) {
+          await router.push(routes.HOME);
+        }
+      },
+      staleTime: ONE_DAY,
+    },
+  );
+
   const { data, refetch, isLoading } = useQuery<TouristicEventDetails, Error>(
     ['outdoorCourseDetails', id, language],
-    () => getTouristicEventDetails(id, language),
+    () => getTouristicEventDetails(id, language, commonDictionaries),
     {
-      enabled: isUrlString(touristicEventUrl),
+      enabled: isUrlString(touristicEventUrl) && commonDictionaries !== undefined,
+      onError: async error => {
+        if (isRessourceMissing(error)) {
+          await router.push(routes.HOME);
+        }
+      },
+      staleTime: ONE_DAY,
     },
   );
 
