@@ -5,6 +5,7 @@ import { adaptSuggestions, getHomePageConfig } from 'modules/home/utils';
 import { GetServerSideProps } from 'next';
 
 import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { getCommonDictionaries } from 'modules/dictionaries/connector';
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const { locale = 'fr' } = context;
@@ -14,13 +15,16 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const suggestions = adaptSuggestions(homePageConfig.suggestions, locale);
 
   if (suggestions !== null) {
+    const commonDictionaries = await getCommonDictionaries(locale);
+    await queryClient.prefetchQuery(['commonDictionaries', locale], () => commonDictionaries);
+
     const activitySuggestionIds = suggestions.flatMap(suggestion =>
       'ids' in suggestion ? suggestion.ids : [suggestion.type],
     );
 
     await queryClient.prefetchQuery(
       ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}`, locale],
-      () => getActivitySuggestions(suggestions, locale),
+      () => getActivitySuggestions(suggestions, locale, commonDictionaries),
     );
   }
 
