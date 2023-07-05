@@ -4,6 +4,7 @@ import { TouristicContentUI } from 'components/pages/touristicContent';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { routes } from 'services/routes';
+import { getCommonDictionaries } from 'modules/dictionaries/connector';
 import { getTouristicContentDetails } from '../../modules/touristicContent/connector';
 import { isUrlString } from '../../modules/utils/string';
 import { redirectIfWrongUrl } from '../../modules/utils/url';
@@ -18,8 +19,10 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const queryClient = new QueryClient();
 
   try {
-    const details = await getTouristicContentDetails(id, locale);
+    const commonDictionaries = await getCommonDictionaries(locale);
+    await queryClient.prefetchQuery(['commonDictionaries', locale], () => commonDictionaries);
 
+    const details = await getTouristicContentDetails(id, locale, commonDictionaries);
     await queryClient.prefetchQuery(['touristicContentDetails', id, locale], () => details);
 
     const redirect = redirectIfWrongUrl(

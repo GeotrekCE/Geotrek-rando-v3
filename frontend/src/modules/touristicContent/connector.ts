@@ -1,7 +1,5 @@
 import { getCities } from 'modules/city/connector';
-import { getThemes } from 'modules/filters/theme/connector';
 import { GeometryObject } from 'modules/interface';
-import { getSources } from 'modules/source/connector';
 import {
   getTouristicContentCategories,
   getTouristicContentCategory,
@@ -9,6 +7,7 @@ import {
 import { PopupResult } from 'modules/trekResult/interface';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptGeometry } from 'modules/utils/geometry';
+import { CommonDictionaries } from 'modules/dictionaries/interface';
 import {
   adaptTouristicContent,
   adaptTouristicContentDetails,
@@ -52,15 +51,11 @@ export const getTouristicContents = async (language: string): Promise<TouristicC
 export const getTouristicContentDetails = async (
   id: string,
   language: string,
+  commonDictionaries?: CommonDictionaries,
 ): Promise<TouristicContentDetails> => {
   try {
-    const [rawTouristicContentDetails, sourceDictionnary, cityDictionnary, themeDictionnary] =
-      await Promise.all([
-        fetchTouristicContentDetails({ language }, id),
-        getSources(language),
-        getCities(language),
-        getThemes(language),
-      ]);
+    const { themes = {}, cities = {}, sources = [] } = commonDictionaries ?? {};
+    const rawTouristicContentDetails = await fetchTouristicContentDetails({ language }, id);
     const touristicContentCategory = await getTouristicContentCategory(
       rawTouristicContentDetails.properties.category,
       language,
@@ -68,9 +63,9 @@ export const getTouristicContentDetails = async (
     return adaptTouristicContentDetails({
       rawTCD: rawTouristicContentDetails,
       touristicContentCategory,
-      sourceDictionnary,
-      cityDictionnary,
-      themeDictionnary,
+      sourceDictionnary: sources,
+      cityDictionnary: cities,
+      themeDictionnary: themes,
     });
   } catch (e) {
     console.error('Error in touristicContent connector', e);
