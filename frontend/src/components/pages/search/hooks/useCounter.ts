@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { ONE_DAY } from 'services/constants/staleTime';
+import { getCommonDictionaries } from 'modules/dictionaries/connector';
+import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { getSearchResults } from '../../../../modules/results/connector';
 import { getGlobalConfig } from '../../../../modules/utils/api.config';
 
@@ -15,6 +17,14 @@ interface CountResult {
 }
 
 const useCounter = ({ language }: Args): CountResult => {
+  const { data: commonDictionaries } = useQuery<CommonDictionaries, Error>(
+    ['commonDictionaries', language],
+    () => getCommonDictionaries(language),
+    {
+      staleTime: ONE_DAY,
+    },
+  );
+
   const result = useQuery(
     ['counter'],
     ({
@@ -34,6 +44,7 @@ const useCounter = ({ language }: Args): CountResult => {
         },
         pageParam,
         language,
+        commonDictionaries,
       ),
     {
       refetchOnReconnect: false,
