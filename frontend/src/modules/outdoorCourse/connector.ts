@@ -3,35 +3,20 @@ import { getGlobalConfig } from 'modules/utils/api.config';
 import { getSignage } from 'modules/signage/connector';
 import { getService } from 'modules/service/connector';
 import { getInfrastructure } from 'modules/infrastructure/connector';
-import { getCities } from '../city/connector';
+import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { getOutdoorCourseType } from '../outdoorCourseType/connector';
 import { getOutdoorRating } from '../outdoorRating/connector';
 import { getOutdoorRatingScale } from '../outdoorRatingScale/connector';
 import { getPois } from '../poi/connector';
 import { getTouristicContentsNearTarget } from '../touristicContent/connector';
-import {
-  adaptOutdoorCourseDetails,
-  adaptOutdoorCourses,
-  adaptOutdoorCoursesResult,
-} from './adapter';
-import { fetchOutdoorCourseDetails, fetchOutdoorCourses } from './api';
-import { OutdoorCourse, OutdoorCourseDetails, OutdoorCourseResult } from './interface';
-
-export const getOutdoorCourses = async (language: string, query = {}): Promise<OutdoorCourse[]> => {
-  const [rawOutdoorCoursesResult, cityDictionnary] = await Promise.all([
-    fetchOutdoorCourses({ ...query, language }),
-    getCities(language),
-  ]);
-
-  return adaptOutdoorCourses({
-    rawOutdoorCourses: rawOutdoorCoursesResult.results,
-    cityDictionnary,
-  });
-};
+import { adaptOutdoorCourseDetails, adaptOutdoorCoursesResult } from './adapter';
+import { fetchOutdoorCourseDetails } from './api';
+import { OutdoorCourseDetails, OutdoorCourseResult } from './interface';
 
 export const getOutdoorCoursesResult = async (
   language: string,
   courses: number[],
+  commonDictionaries?: CommonDictionaries,
 ): Promise<OutdoorCourseResult[]> => {
   if (courses.length === 0) {
     return [];
@@ -42,27 +27,29 @@ export const getOutdoorCoursesResult = async (
     }),
   );
 
-  const cityDictionnary = await getCities(language);
+  const { cities = {} } = commonDictionaries ?? {};
 
   return adaptOutdoorCoursesResult({
     rawOutdoorCourses: rawOutdoorCourses.map(
       ({ properties, ...result }) => ({ ...result, ...properties }), // Because for some reasons touristic events attributes are in properties field
     ),
-    cityDictionnary,
+    cityDictionnary: cities,
   });
 };
 
 export const getOutdoorCourseDetails = async (
   id: string,
   language: string,
+  commonDictionaries?: CommonDictionaries,
 ): Promise<OutdoorCourseDetails> => {
   try {
+    const { cities = {} } = commonDictionaries ?? {};
+
     // Typescript limit for Promise.all is for 10 promises
     const [
       rawOutdoorCourseDetails,
       pois,
       touristicContents,
-      cityDictionnary,
       outdoorRating,
       outdoorRatingScale,
       outdoorCourseType,
@@ -71,7 +58,6 @@ export const getOutdoorCourseDetails = async (
       fetchOutdoorCourseDetails({ language }, id),
       getPois(Number(id), language, 'courses'),
       getTouristicContentsNearTarget(Number(id), language, 'near_outdoorcourse'),
-      getCities(language),
       getOutdoorRating(language),
       getOutdoorRatingScale(language),
       getOutdoorCourseType(language),
@@ -90,7 +76,7 @@ export const getOutdoorCourseDetails = async (
       rawOutdoorCourseDetails,
       pois,
       touristicContents,
-      cityDictionnary,
+      cityDictionnary: cities,
       outdoorRating,
       outdoorRatingScale,
       outdoorCourseType,
