@@ -145,9 +145,9 @@ export const adaptOutdoorSiteDetails = ({
   source:
     rawOutdoorSiteDetails?.properties?.source?.map(sourceId => sourcesDictionnary[sourceId]) ?? [],
   informationDesks:
-    rawOutdoorSiteDetails?.properties?.information_desks?.map(
-      deskId => informationDesksDictionnary[deskId],
-    ) ?? [],
+    rawOutdoorSiteDetails?.properties?.information_desks
+      ?.map(deskId => informationDesksDictionnary[deskId])
+      .filter(Boolean) ?? [],
   webLinks: rawOutdoorSiteDetails?.properties?.web_links ?? null,
   pois,
   touristicContents,
