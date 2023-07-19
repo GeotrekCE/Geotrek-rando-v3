@@ -145,7 +145,9 @@ export const adaptResults = ({
         ? rawDetailsProperties.source.map(sourceId => sourceDictionnary[sourceId])
         : [],
       informationDesks: Array.isArray(rawDetailsProperties.information_desks)
-        ? rawDetailsProperties.information_desks.map(deskId => informationDeskDictionnary[deskId])
+        ? rawDetailsProperties.information_desks
+            .map(deskId => informationDeskDictionnary[deskId])
+            .filter(Boolean)
         : [],
       labels: Array.isArray(rawDetailsProperties.labels)
         ? rawDetailsProperties.labels.map(labelId => labelsDictionnary[labelId])
