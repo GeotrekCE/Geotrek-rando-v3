@@ -310,7 +310,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
               )}
             >
               <TouristicContentMapDynamicComponent
-                type={isMobile ? 'MOBILE' : 'DESKTOP'}
+                hasZoomControl={!isMobile}
                 bbox={touristicContent.bbox}
                 touristicContentGeometry={{
                   geometry: touristicContent.geometry,

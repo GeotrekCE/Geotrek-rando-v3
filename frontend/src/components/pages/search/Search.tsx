@@ -260,7 +260,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
             <Loader loaded={!isMapLoading} className="absolute inset-0 z-map" />
             {!isMobile && (
               <SearchMapDynamicComponent
-                type="DESKTOP"
+                hasZoomControl
                 onMove={handleMoveMap}
                 shouldUseClusters
                 shouldUsePopups
@@ -279,7 +279,6 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
         >
           <SearchMapDynamicComponent
             hideMap={hideMobileMap}
-            type="MOBILE"
             openFilterMenu={displayMenu}
             hasFilters={numberSelected > 0}
             shouldUseClusters

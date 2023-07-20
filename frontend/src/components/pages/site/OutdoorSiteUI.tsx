@@ -522,7 +522,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                 <DetailsMapDynamicComponent
                   courses={outdoorSiteContent?.courses}
                   experiences={outdoorSiteContent?.children}
-                  type={isMobile ? 'MOBILE' : 'DESKTOP'}
+                  hasZoomControl={!isMobile}
                   outdoorGeometry={{
                     geometry: outdoorSiteContent.geometry,
                     pictogramUri: '',

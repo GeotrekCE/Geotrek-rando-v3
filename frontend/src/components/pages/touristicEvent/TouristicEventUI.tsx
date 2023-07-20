@@ -376,7 +376,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                 )}
               >
                 <DetailsMapDynamicComponent
-                  type={isMobile ? 'MOBILE' : 'DESKTOP'}
+                  hasZoomControl={!isMobile}
                   eventGeometry={{
                     geometry: touristicEventContent.geometry,
                     pictogramUri: touristicEventContent.category.pictogramUri,

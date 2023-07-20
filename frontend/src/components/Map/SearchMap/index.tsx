@@ -16,7 +16,7 @@ import TileLayerManager from '../components/TileLayerManager';
 export type PropsType = {
   segments?: { x: number; y: number }[];
   hideMap?: () => void;
-  type: 'DESKTOP' | 'MOBILE';
+  hasZoomControl?: boolean;
   openFilterMenu?: () => void;
   hasFilters?: boolean;
   arrivalLocation?: { x: number; y: number };
@@ -37,7 +37,7 @@ const SearchMap: React.FC<PropsType> = props => {
   const { setMapInstance } = useTileLayer();
 
   return (
-    <MapContainer whenCreated={setMapInstance} type={props.type}>
+    <MapContainer whenCreated={setMapInstance} hasZoomControl={props.hasZoomControl}>
       {props.onMove && <MoveHandler onMove={props.onMove} />}
       <TileLayerManager />
       <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
