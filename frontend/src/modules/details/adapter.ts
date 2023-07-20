@@ -142,7 +142,7 @@ export const adaptResults = ({
         ? rawDetailsProperties.accessibilities.map(accessId => accessibilityDictionnary[accessId])
         : [],
       sources: Array.isArray(rawDetailsProperties.source)
-        ? rawDetailsProperties.source.map(sourceId => sourceDictionnary[sourceId])
+        ? rawDetailsProperties.source.map(sourceId => sourceDictionnary[sourceId]).filter(Boolean)
         : [],
       informationDesks: Array.isArray(rawDetailsProperties.information_desks)
         ? rawDetailsProperties.information_desks
