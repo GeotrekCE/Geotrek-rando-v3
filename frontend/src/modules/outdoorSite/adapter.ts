@@ -161,7 +161,10 @@ export const adaptOutdoorSiteDetails = ({
   access,
   pdfUri: rawOutdoorSiteDetails?.properties?.pdf || '',
   practice: outdoorPractice[String(rawOutdoorSiteDetails?.properties?.practice)] ?? null,
-  cities: rawOutdoorSiteDetails.properties.cities?.map(id => cityDictionnary[id]?.name) ?? [],
+  cities:
+    rawOutdoorSiteDetails.properties.cities
+      ?.map(id => cityDictionnary[id]?.name ?? null)
+      .filter(Boolean) ?? [],
   cities_raw: rawOutdoorSiteDetails.properties.cities,
   ratings:
     rawOutdoorSiteDetails.properties.ratings?.map(r => {
