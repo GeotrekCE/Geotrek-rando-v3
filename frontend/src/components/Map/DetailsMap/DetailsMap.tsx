@@ -66,7 +66,7 @@ export type PropsType = {
   trekGeoJSON?: string;
   pointsReference?: Coordinate2D[] | null;
   hideMap?: () => void;
-  type: 'DESKTOP' | 'MOBILE';
+  hasZoomControl: boolean;
   openFilterMenu?: () => void;
   hasFilters?: boolean;
   arrivalLocation?: Coordinate2D;
@@ -159,7 +159,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         minZoom={
           navigator.onLine ? undefined : Math.min(...(mapConfig?.zoomAvailableOffline ?? []))
         }
-        zoomControl={props.type === 'DESKTOP'}
+        zoomControl={props.hasZoomControl}
         whenCreated={setMapInstance}
         bounds={bounds}
       >

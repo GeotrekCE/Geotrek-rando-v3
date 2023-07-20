@@ -41,7 +41,7 @@ interface TouristicContentGeometryNullable {
 export type PropsType = {
   touristicContentGeometry: TouristicContentGeometryNullable;
   hideMap?: () => void;
-  type: 'DESKTOP' | 'MOBILE';
+  hasZoomControl: boolean;
   bbox: Bbox;
 };
 
@@ -63,6 +63,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
   return (
     <>
       <MapContainer
+        className="w-full h-full"
         scrollWheelZoom
         maxZoom={
           navigator.onLine
@@ -72,9 +73,8 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
         minZoom={
           navigator.onLine ? undefined : Math.min(...(mapConfig?.zoomAvailableOffline ?? []))
         }
-        style={{ height: '100%', width: '100%' }}
         whenCreated={setMapInstance}
-        zoomControl={props.type === 'DESKTOP'}
+        zoomControl={props.hasZoomControl}
         bounds={center}
         attributionControl={false}
       >

@@ -590,7 +590,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                 )}
               >
                 <DetailsMapDynamicComponent
-                  type={isMobile ? 'MOBILE' : 'DESKTOP'}
+                  hasZoomControl={!isMobile}
                   hideMap={hideMobileMap}
                   title={details.title}
                   arrivalLocation={details.trekArrival}
