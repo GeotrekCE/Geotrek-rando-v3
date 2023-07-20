@@ -1,4 +1,4 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import styled, { css } from 'styled-components';
 import { colorPalette, desktopOnly, getSpacing, shadow } from 'stylesheet';
 import parse from 'html-react-parser';
@@ -33,6 +33,7 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
   const hasCities = Array.isArray(cities) && cities.length > 0;
   const hasEmail = Boolean(email);
   const hasWebsite = Boolean(website);
+  const intl = useIntl();
 
   return (
     <div
@@ -72,7 +73,7 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
               <span className={'font-bold'}>
                 <FormattedMessage id="details.cities" />
               </span>{' '}
-              : {cities.join(', ')}
+              : {intl.formatList(cities, { type: 'conjunction' })}
             </li>
           )}
 
