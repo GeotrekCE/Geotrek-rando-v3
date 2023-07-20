@@ -150,7 +150,7 @@ export const adaptResults = ({
             .filter(Boolean)
         : [],
       labels: Array.isArray(rawDetailsProperties.labels)
-        ? rawDetailsProperties.labels.map(labelId => labelsDictionnary[labelId])
+        ? rawDetailsProperties.labels.map(labelId => labelsDictionnary[labelId]).filter(Boolean)
         : [],
       advice: rawDetailsProperties.advice,
       gear:

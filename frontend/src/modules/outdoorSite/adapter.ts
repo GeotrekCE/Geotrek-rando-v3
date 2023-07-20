@@ -141,7 +141,9 @@ export const adaptOutdoorSiteDetails = ({
     corner2: { x: rawOutdoorSiteDetails.bbox[2], y: rawOutdoorSiteDetails.bbox[3] },
   },
   labels:
-    rawOutdoorSiteDetails?.properties?.labels?.map(labelId => labelsDictionnary[labelId]) ?? [],
+    rawOutdoorSiteDetails?.properties?.labels
+      ?.map(labelId => labelsDictionnary[labelId])
+      .filter(Boolean) ?? [],
   source:
     rawOutdoorSiteDetails?.properties?.source
       ?.map(sourceId => sourcesDictionnary[sourceId])
