@@ -396,7 +396,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                 )}
               >
                 <DetailsMapDynamicComponent
-                  type={isMobile ? 'MOBILE' : 'DESKTOP'}
+                  hasZoomControl={!isMobile}
                   outdoorGeometry={{
                     geometry: outdoorCourseContent.geometry,
                     pictogramUri: '',

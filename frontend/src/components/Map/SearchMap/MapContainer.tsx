@@ -5,22 +5,22 @@ import { Map } from 'leaflet';
 
 interface Props {
   whenCreated: (map: Map) => void;
-  type: string;
+  hasZoomControl?: boolean;
   children: React.ReactNode;
 }
 
-const MapContainer: React.FC<Props> = ({ children, whenCreated, type }) => {
+const MapContainer: React.FC<Props> = ({ children, whenCreated, hasZoomControl = false }) => {
   const mapConfig = getMapConfig();
 
   return (
     <LeafMapContainer
+      className="w-full h-full"
       center={mapConfig.searchMapCenter as [number, number]}
       zoom={mapConfig.searchMapZoom}
       maxZoom={mapConfig.maximumZoomLevel}
       whenCreated={whenCreated}
       scrollWheelZoom
-      style={{ height: '100%', width: '100%' }}
-      zoomControl={type === 'DESKTOP'}
+      zoomControl={hasZoomControl}
       id="search_map"
     >
       {children}

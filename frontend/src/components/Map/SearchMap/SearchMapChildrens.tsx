@@ -14,7 +14,6 @@ import { useListAndMapContext } from '../../../modules/map/ListAndMapContext';
 export type PropsType = {
   segments?: { x: number; y: number }[];
   hideMap?: () => void;
-  type: 'DESKTOP' | 'MOBILE';
   openFilterMenu?: () => void;
   hasFilters?: boolean;
   arrivalLocation?: { x: number; y: number };
