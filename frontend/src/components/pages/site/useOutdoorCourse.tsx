@@ -31,7 +31,7 @@ export const useOutdoorCourse = (
           await router.push(routes.HOME);
         }
       },
-      staleTime: ONE_DAY,
+      staleTime: ONE_DAY / 2,
     },
   );
 
