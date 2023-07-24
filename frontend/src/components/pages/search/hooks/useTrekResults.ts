@@ -72,7 +72,7 @@ export const useTrekResults = (
     ['commonDictionaries', language],
     () => getCommonDictionaries(language),
     {
-      staleTime: ONE_DAY,
+      staleTime: ONE_DAY / 2,
     },
   );
 

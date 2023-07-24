@@ -27,7 +27,7 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
           await router.push(routes.HOME);
         }
       },
-      staleTime: ONE_DAY,
+      staleTime: ONE_DAY / 2,
     },
   );
 
