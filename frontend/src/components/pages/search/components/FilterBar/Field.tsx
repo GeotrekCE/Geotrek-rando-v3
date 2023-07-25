@@ -1,8 +1,7 @@
 import React from 'react';
 import SVG from 'react-inlinesvg';
 import { useIntl } from 'react-intl';
-import styled from 'styled-components';
-import { colorPalette } from 'stylesheet';
+import { fillSvgWithColor } from 'stylesheet';
 import { cn } from 'services/utils/cn';
 import { FilterState, Option } from '../../../../../modules/filters/interface';
 
@@ -11,6 +10,24 @@ interface Props {
   onSelect: (options: Option[], include?: boolean) => void;
   hideLabel?: boolean;
 }
+
+interface IconProps {
+  option: Option;
+  isSelected: boolean;
+}
+
+const Icon: React.FC<IconProps> = ({ option, isSelected }) => {
+  if (option.pictogramUrl === undefined) {
+    return null;
+  }
+  return (
+    <SVG
+      className={cn('w-6 h-6 mr-2', isSelected ? 'text-primary1' : 'text-greyDarkColored')}
+      src={option.pictogramUrl}
+      preProcessor={fillSvgWithColor()}
+    />
+  );
+};
 
 const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
   const intl = useIntl();
@@ -29,17 +46,6 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
     } else {
       onSelect([...filterState.selectedOptions, { ...option, include: true }], true);
     }
-  };
-
-  const getIcon = (option: Option, isSelected: boolean): React.ReactElement | null => {
-    if (option.pictogramUrl !== undefined)
-      return isSelected ? (
-        <FilledSvgActive src={option.pictogramUrl} />
-      ) : (
-        <FilledSvg src={option.pictogramUrl} />
-      );
-
-    return null;
   };
 
   return (
@@ -67,7 +73,7 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
               <span
                 className={`flex items-center ${option.pictogramUrl !== undefined ? 'mr-1' : ''}`}
               >
-                {getIcon(option, Boolean(selectedOption))}
+                <Icon option={option} isSelected={Boolean(selectedOption)} />
                 {
                   option.translatedKey !== undefined
                     ? intl.formatMessage({ id: option.translatedKey })
@@ -81,25 +87,5 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
     </div>
   );
 };
-
-const FilledSvg = styled(SVG)`
-  height: 24px;
-  width: 24px;
-  margin-right: 10px;
-
-  & * {
-    fill: ${colorPalette.home.activity.color} !important;
-  }
-`;
-
-const FilledSvgActive = styled(SVG)`
-  height: 24px;
-  width: 24px;
-  margin-right: 10px;
-
-  & * {
-    fill: ${colorPalette.primary1} !important;
-  }
-`;
 
 export default Field;

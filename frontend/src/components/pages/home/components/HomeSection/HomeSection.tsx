@@ -4,7 +4,7 @@ import { getHoverId } from 'components/pages/search/utils';
 import { ActivitySuggestion } from 'modules/activitySuggestions/interface';
 import SVG from 'react-inlinesvg';
 import styled from 'styled-components';
-import { colorPalette, fillSvgWithColor } from 'stylesheet';
+import { fillSvgWithColor } from 'stylesheet';
 
 export interface HomeSectionProps {
   title: string;
@@ -19,11 +19,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({ title, iconUrl, result
         id="home_sectionTitle"
         className="flex border-t border-greySoft border-solid pt-4 desktop:pt-10 mb-2 desktop:mb-6 mx-4 desktop:mx-10percent"
       >
-        <SVG
-          src={iconUrl}
-          preProcessor={fillSvgWithColor(colorPalette.greyDarkColored)}
-          className="h-10 mr-2 desktop:mr-3"
-        />
+        <SVG src={iconUrl} preProcessor={fillSvgWithColor()} className="h-10 mr-2 desktop:mr-3" />
         <span className="mt-1 desktop:mt-0 text-H2 desktop:text-H2 font-bold">{title}</span>
       </h2>
       <ScrollContainer className="flex p-5 overflow-scroll desktop:overflow-auto desktop:mx-10percent desktop:px-0 desktop:grid desktop:grid-cols-3 desktop:gap-3">

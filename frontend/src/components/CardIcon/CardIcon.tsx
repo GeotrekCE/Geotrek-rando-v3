@@ -1,4 +1,4 @@
-import { colorPalette, fillSvgWithColor } from 'stylesheet';
+import { fillSvgWithColor } from 'stylesheet';
 import SVG from 'react-inlinesvg';
 import styled from 'styled-components';
 import Image from 'next/image';
@@ -35,8 +35,8 @@ const Icon: React.FC<IconProps> = ({ iconUri = '', className = '', color }) => {
     return (
       <SVG
         src={iconUri}
-        className={`fill-current p-1 ${className}`}
-        preProcessor={fillSvgWithColor(colorPalette.white)}
+        className={`p-1 text-white ${className}`}
+        preProcessor={fillSvgWithColor()}
       />
     );
   }

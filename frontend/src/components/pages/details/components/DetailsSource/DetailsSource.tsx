@@ -45,8 +45,8 @@ const SourceIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri }) => {
       <div className="bg-primary1 h-full w-full">
         <SVG
           src={pictogramUri}
-          className="fill-current h-full w-full p-1 text-white"
-          preProcessor={fillSvgWithColor(colorPalette.white)}
+          className="h-full w-full p-1 text-white"
+          preProcessor={fillSvgWithColor()}
         />
       </div>
     );
