@@ -220,6 +220,6 @@ export const optimizeSVG = (svg: string): string => {
 };
 
 export const fillSvgWithColor =
-  (color: string) =>
+  (color = 'currentColor') =>
   (svg: string): string =>
-    svg.replace(/fill:.*?;/g, `fill: ${color};`);
+    optimizeSVG(svg).replace(/(fill|stroke)="(?!none|transparent).*?"/gi, `$1="${color}"`);
