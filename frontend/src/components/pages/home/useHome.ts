@@ -5,9 +5,7 @@ import { HomePageConfig } from 'modules/home/interface';
 import { adaptSuggestions, getHomePageConfig } from 'modules/home/utils';
 import { useRouter } from 'next/router';
 import { useQuery } from '@tanstack/react-query';
-import { CommonDictionaries } from 'modules/dictionaries/interface';
-import { getCommonDictionaries } from 'modules/dictionaries/connector';
-import { ONE_DAY } from 'services/constants/staleTime';
+import { queryCommonDictionaries } from 'modules/dictionaries/api';
 interface UseHome {
   config: HomePageConfig;
   suggestions: ActivitySuggestion[];
@@ -22,13 +20,7 @@ export const useHome = (): UseHome => {
     'ids' in suggestion ? suggestion.ids : [suggestion.type],
   );
 
-  const { data: commonDictionaries } = useQuery<CommonDictionaries, Error>(
-    ['commonDictionaries', language],
-    () => getCommonDictionaries(language),
-    {
-      staleTime: ONE_DAY / 2,
-    },
-  );
+  const commonDictionaries = queryCommonDictionaries(language);
 
   const { data = [] } = useQuery<ActivitySuggestion[] | [], Error>(
     ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}`, language],
