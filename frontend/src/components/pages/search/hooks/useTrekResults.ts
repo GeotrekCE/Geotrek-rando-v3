@@ -1,14 +1,12 @@
 import { useRouter } from 'next/router';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { useEffect, useRef, useState } from 'react';
 
 import { getSearchResults } from 'modules/results/connector';
 import { SearchResults } from 'modules/results/interface';
 import { DateFilter, FilterState } from 'modules/filters/interface';
 
-import { CommonDictionaries } from 'modules/dictionaries/interface';
-import { getCommonDictionaries } from 'modules/dictionaries/connector';
-import { ONE_DAY } from 'services/constants/staleTime';
+import { queryCommonDictionaries } from 'modules/dictionaries/api';
 import { formatInfiniteQuery, parseBboxFilter, parseFilters, parseTextFilter } from '../utils';
 import { getGlobalConfig } from '../../../../modules/utils/api.config';
 
@@ -68,13 +66,7 @@ export const useTrekResults = (
 
   const router = useRouter();
 
-  const { data: commonDictionaries } = useQuery<CommonDictionaries, Error>(
-    ['commonDictionaries', language],
-    () => getCommonDictionaries(language),
-    {
-      staleTime: ONE_DAY / 2,
-    },
-  );
+  const commonDictionaries = queryCommonDictionaries(language);
 
   const {
     data,
