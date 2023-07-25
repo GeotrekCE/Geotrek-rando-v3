@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import SVG from 'react-inlinesvg';
-import { colorPalette, fillSvgWithColor } from 'stylesheet';
+import { optimizeAndDefineColor } from 'stylesheet';
 
 interface DetailsSourceProps {
   name: string;
@@ -46,7 +46,7 @@ const SourceIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri }) => {
         <SVG
           src={pictogramUri}
           className="h-full w-full p-1 text-white"
-          preProcessor={fillSvgWithColor()}
+          preProcessor={optimizeAndDefineColor()}
         />
       </div>
     );

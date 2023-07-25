@@ -1,7 +1,7 @@
 import React from 'react';
 import SVG from 'react-inlinesvg';
 import { useIntl } from 'react-intl';
-import { fillSvgWithColor } from 'stylesheet';
+import { optimizeAndDefineColor } from 'stylesheet';
 import { cn } from 'services/utils/cn';
 import { FilterState, Option } from '../../../../../modules/filters/interface';
 
@@ -24,7 +24,7 @@ const Icon: React.FC<IconProps> = ({ option, isSelected }) => {
     <SVG
       className={cn('w-6 h-6 mr-2', isSelected ? 'text-primary1' : 'text-greyDarkColored')}
       src={option.pictogramUrl}
-      preProcessor={fillSvgWithColor()}
+      preProcessor={optimizeAndDefineColor()}
     />
   );
 };

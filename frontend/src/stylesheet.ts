@@ -219,7 +219,7 @@ export const optimizeSVG = (svg: string): string => {
   return data;
 };
 
-export const fillSvgWithColor =
+export const optimizeAndDefineColor =
   (color = 'currentColor') =>
   (svg: string): string => {
     const optimizedSVG = optimizeSVG(svg);
