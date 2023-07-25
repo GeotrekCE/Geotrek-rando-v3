@@ -221,5 +221,17 @@ export const optimizeSVG = (svg: string): string => {
 
 export const fillSvgWithColor =
   (color = 'currentColor') =>
-  (svg: string): string =>
-    optimizeSVG(svg).replace(/(fill|stroke)="(?!none|transparent).*?"/gi, `$1="${color}"`);
+  (svg: string): string => {
+    const optimizedSVG = optimizeSVG(svg);
+
+    const svgNodesWithoutFillOrStrokeAttributes = /<(?!svg|g|\/)(?![^>]*\b(fill|stroke)\b)[^>]*>/g;
+
+    return optimizedSVG
+      .replace(svgNodesWithoutFillOrStrokeAttributes, (match, p1, offset, string) => {
+        if (offset > 0) {
+          return match.replace('/>', `fill="${color}"/>`);
+        }
+        return string;
+      })
+      .replace(/(fill|stroke)="(?!none|transparent).*?"/gi, `$1="${color}"`);
+  };
