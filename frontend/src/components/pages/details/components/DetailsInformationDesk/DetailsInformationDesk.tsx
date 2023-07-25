@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 import { FormattedMessage } from 'react-intl';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import Image from 'next/image';
+import { optimizeSVG } from 'stylesheet';
 import { HtmlText } from '../../utils';
 import { useDetailsInformationDesk } from './useDetailsInformationDesk';
 import DetailsInformationDeskLocation from './DetailsInformationDeskLocation';
@@ -111,7 +112,7 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
 
 const InformationDeskIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri }) => {
   if (RegExp(/(.*).svg/).test(pictogramUri)) {
-    return <SVG src={pictogramUri} className="h-full w-full m-1" />;
+    return <SVG src={pictogramUri} className="h-full w-full m-1" preProcessor={optimizeSVG} />;
   }
   return (
     <Image
