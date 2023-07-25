@@ -8,8 +8,7 @@ import { useRouter } from 'next/router';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { routes } from 'services/routes';
 import useSectionsReferences from 'hooks/useSectionsReferences';
-import { getCommonDictionaries } from 'modules/dictionaries/connector';
-import { CommonDictionaries } from 'modules/dictionaries/interface';
+import { queryCommonDictionaries } from 'modules/dictionaries/api';
 import { DetailsSections } from '../details/useDetails';
 import { getDetailsConfig } from '../details/config';
 
@@ -23,18 +22,7 @@ export const useTouristicContent = (
   const path = isTouristicContentUrlString ? decodeURI(touristicContentUrl) : '';
   const router = useRouter();
 
-  const { data: commonDictionaries } = useQuery<CommonDictionaries, Error>(
-    ['commonDictionaries', language],
-    () => getCommonDictionaries(language),
-    {
-      onError: async error => {
-        if (isRessourceMissing(error)) {
-          await router.push(routes.HOME);
-        }
-      },
-      staleTime: ONE_DAY / 2,
-    },
-  );
+  const commonDictionaries = queryCommonDictionaries(language);
 
   const { data, refetch, isLoading } = useQuery<TouristicContentDetails, Error>(
     ['touristicContentDetails', id, language],
