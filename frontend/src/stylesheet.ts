@@ -1,4 +1,5 @@
 import { css, FlattenSimpleInterpolation } from 'styled-components';
+import { optimize } from 'svgo/lib/svgo';
 
 import tailwindConfig from '../tailwind.config';
 /**
@@ -196,6 +197,27 @@ export const scrollBar = {
     border-radius: ${getSpacing(2)};
   `,
 } as const;
+export const optimizeSVG = (svg: string): string => {
+  const { data } = optimize(svg, {
+    plugins: [
+      {
+        name: 'preset-default',
+        params: {
+          overrides: {
+            inlineStyles: {
+              onlyMatchedOnce: false,
+            },
+            removeViewBox: false,
+          },
+        },
+      },
+      {
+        name: 'convertStyleToAttrs',
+      },
+    ],
+  });
+  return data;
+};
 
 export const fillSvgWithColor =
   (color: string) =>
