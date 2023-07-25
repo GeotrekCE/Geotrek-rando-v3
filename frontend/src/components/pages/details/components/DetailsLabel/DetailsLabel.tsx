@@ -4,6 +4,7 @@ import { HtmlText } from 'components/pages/details/utils';
 import { Label } from 'modules/label/interface';
 import { AlertTriangle } from 'components/Icons/AlertTriangle';
 import Image from 'next/image';
+import { optimizeSVG } from 'stylesheet';
 
 interface DetailsLabelProps extends Label {
   className?: string;
@@ -39,7 +40,13 @@ export const DetailsLabel: React.FC<DetailsLabelProps> = ({
 
 const LabelIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri }) => {
   if (RegExp(/(.*).svg/).test(pictogramUri)) {
-    return <SVG src={pictogramUri} className="w-6 h-6 desktop:w-10 desktop:h-10" />;
+    return (
+      <SVG
+        src={pictogramUri}
+        className="w-6 h-6 desktop:w-10 desktop:h-10"
+        preProcessor={optimizeSVG}
+      />
+    );
   }
   return (
     <Image
