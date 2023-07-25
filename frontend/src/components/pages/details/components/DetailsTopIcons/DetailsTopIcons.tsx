@@ -3,7 +3,7 @@ import getActivityColor from 'components/pages/search/components/ResultCard/getA
 import { Activity } from 'modules/activities/interface';
 import Image from 'next/image';
 import SVG from 'react-inlinesvg';
-import { colorPalette, fillSvgWithColor } from 'stylesheet';
+import { fillSvgWithColor } from 'stylesheet';
 import { Details } from '../../../../../modules/details/interface';
 import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
@@ -33,7 +33,7 @@ const Icon: React.FC<IconProps> = ({ src = '', ...props }) => {
     return null;
   }
   if (RegExp(/(.*).svg/).test(src)) {
-    return <SVG src={src} {...props} preProcessor={fillSvgWithColor(colorPalette.white)} />;
+    return <SVG src={src} {...props} className="text-white" preProcessor={fillSvgWithColor()} />;
   }
   return <Image loading="lazy" src={src} {...props} alt="" />;
 };
