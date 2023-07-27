@@ -353,27 +353,21 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                                 titleId="details.recommandations"
                                 className={marginDetailsChild}
                               >
-                                {details.advice !== null && details.advice.length > 0 && (
-                                  <DetailsAdvice
-                                    text={details.advice}
-                                    className="mb-4 desktop:mb-6"
-                                  />
-                                )}
-                                {details.gear !== null && (
-                                  <DetailsGear text={details.gear} className="mt-4 desktop:mb-6" />
-                                )}
-                                {details.labels.map((label, i) => (
-                                  <DetailsLabel
-                                    key={i}
-                                    id={label.id}
-                                    name={label.name}
-                                    advice={label.advice}
-                                    pictogramUri={label.pictogramUri}
-                                    className={
-                                      i < details.labels.length - 1 ? 'mt-4 desktop:mt-6' : ''
-                                    }
-                                  />
-                                ))}
+                                <div className="flex flex-col gap-4 desktop:gap-6">
+                                  {details.advice !== null && details.advice.length > 0 && (
+                                    <DetailsAdvice text={details.advice} />
+                                  )}
+                                  {details.gear !== null && <DetailsGear text={details.gear} />}
+                                  {details.labels.map(label => (
+                                    <DetailsLabel
+                                      key={label.id}
+                                      id={label.id}
+                                      name={label.name}
+                                      advice={label.advice}
+                                      pictogramUri={label.pictogramUri}
+                                    />
+                                  ))}
+                                </div>
                               </DetailsSection>
                             </div>
                           )}
