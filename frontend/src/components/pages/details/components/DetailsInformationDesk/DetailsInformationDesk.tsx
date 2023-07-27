@@ -40,10 +40,13 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
         setHoveredCardId(null);
       }}
     >
-      <div className="h-25 w-25 shrink-0 hidden desktop:block">
-        <InformationDeskIcon pictogramUri={photoUrl || type.pictogramUri} />
-      </div>
-      <div className="w-full desktop:pl-4">
+      {(photoUrl || type.pictogramUri) && (
+        <div className="h-25 w-25 shrink-0 hidden desktop:block desktop:pr-4">
+          <InformationDeskIcon pictogramUri={photoUrl || type.pictogramUri} />
+        </div>
+      )}
+
+      <div className="w-full">
         <div className="flex items-center">
           <div className="shrink-0 mr-auto">
             <p className="font-bold">{name}</p>
