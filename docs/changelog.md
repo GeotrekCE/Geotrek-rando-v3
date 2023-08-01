@@ -1,5 +1,27 @@
 # Changelog
 
+## 3.15.0 (2023-08-08)
+
+**🚀 New features**
+
+- Allow to hide and reorder sections in detail pages with the new `details.json` configuration file (#510)
+
+**✨ Improvements**
+
+- Clean and factorize detail pages (#510)
+- Call one map instance instead of two on detail pages (#939)
+- Improve server cache of common dictionaries (themes, cities, sources, informationDesk, labels) (#940)
+- Improve SVG icons display (#942 / #944)
+
+**🐛 Fixes**
+
+- Do not try to display the informationDesk thumbnail if there isn't one (#947)
+- Fix card display bug in some Chrome environments (#951)
+
+**🔧 Maintenance**
+
+- Upgrade NodeJS version 17 to 18 in Dockerfile (#938)
+
 ## 3.14.2 (2023-07-01)
 
 **🐛 Fixes**
