@@ -70,6 +70,7 @@
     "react-inlinesvg": "^3.0.2",
     "react-intl": "^6.2.1",
     "react-leaflet": "3.1.0",
+    "react-leaflet-fullscreen": "^4.1.0",
     "react-leaflet-markercluster": "^3.0.0-rc1",
     "react-leaflet-textpath": "2.1.0",
     "react-media-hook": "^0.5.0",
