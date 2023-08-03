@@ -39,6 +39,7 @@ import { MapChildren, PointWithIcon } from './MapChildren';
 import DetailsMapDrawer from '../components/DetailsMapDrawer';
 import { ResetView } from '../components/ResetView';
 import TileLayerManager from '../components/TileLayerManager';
+import FullscreenControl from '../components/FullScreenControl';
 
 export interface GeometryListProps {
   geometry:
@@ -171,6 +172,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
         ) : (
           <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
         )}
+        {props.hasZoomControl && <FullscreenControl />}
         <ResetView />
         <ScaleControl />
         <ControlSection
