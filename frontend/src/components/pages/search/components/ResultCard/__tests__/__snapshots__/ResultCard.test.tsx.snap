@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-ipEyDJ WiwCL"
+        class="flex flex-auto flex-col items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden cursor-pointer desktop:flex-row"
         id="result_card"
       >
         <div
@@ -51,13 +51,13 @@ Object {
           href="/details-2-Balade-au-pays-des-menhirs"
         >
           <div
-            class="sc-csuSiG fEWNcB"
+            class="flex w-full p-4 desktop:p-6"
           >
             <div
-              class="sc-eDWCr gZuIOO"
+              class="flex flex-col w-full"
             >
               <span
-                class="sc-bqWxrE jgLiBi"
+                class="text-greyDarkColored text-sm"
               >
                 Saint-Etienne-du-Valdonnez
               </span>
@@ -67,10 +67,10 @@ Object {
                 Balade au pays des menhirs
               </h3>
               <div
-                class="sc-ksBlkl flWUCh"
+                class="mt-2 desktop:mt-4"
               >
                 <div
-                  class="sc-hBxehG cFOBNt"
+                  class="flex gap-2 desktop:gap-4"
                 >
                   <div
                     class="sc-pyfCe fwHJCn"
@@ -223,7 +223,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-ipEyDJ WiwCL"
+      class="flex flex-auto flex-col items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden cursor-pointer desktop:flex-row"
       id="result_card"
     >
       <div
@@ -268,13 +268,13 @@ Object {
         href="/details-2-Balade-au-pays-des-menhirs"
       >
         <div
-          class="sc-csuSiG fEWNcB"
+          class="flex w-full p-4 desktop:p-6"
         >
           <div
-            class="sc-eDWCr gZuIOO"
+            class="flex flex-col w-full"
           >
             <span
-              class="sc-bqWxrE jgLiBi"
+              class="text-greyDarkColored text-sm"
             >
               Saint-Etienne-du-Valdonnez
             </span>
@@ -284,10 +284,10 @@ Object {
               Balade au pays des menhirs
             </h3>
             <div
-              class="sc-ksBlkl flWUCh"
+              class="mt-2 desktop:mt-4"
             >
               <div
-                class="sc-hBxehG cFOBNt"
+                class="flex gap-2 desktop:gap-4"
               >
                 <div
                   class="sc-pyfCe fwHJCn"
