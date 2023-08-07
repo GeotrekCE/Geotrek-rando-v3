@@ -1,15 +1,12 @@
 import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
-import styled, { css } from 'styled-components';
-
-import { borderRadius, colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
-import { flexGap } from 'services/cssHelpers';
 
 import { Chip } from 'components/Chip';
 import { Link } from 'components/Link';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 
 import { InformationCard } from 'modules/results/interface';
+import { cn } from 'services/utils/cn';
 import { Attachment } from '../../../../../modules/interface';
 import { ResultCardCarousel } from './ResultCardCarousel';
 import { InformationCardList } from './InformationCardList';
@@ -51,16 +48,19 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
   const { setHoveredCardId } = useListAndMapContext();
 
   return (
-    <Container
+    <div
       onMouseEnter={() => {
         setHoveredCardId(hoverId);
       }}
       onMouseLeave={() => {
         setHoveredCardId(null);
       }}
-      className={className}
+      className={cn(
+        'flex flex-auto flex-col items-stretch border border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden cursor-pointer',
+        asColumn !== true && 'desktop:flex-row',
+        className,
+      )}
       id="result_card"
-      asColumn={asColumn}
     >
       <Modal>
         {({ isFullscreen }) => (
@@ -83,101 +83,29 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
       </Modal>
 
       <Link href={redirectionUrl} testId={`Link-ResultCard-${id}`} className="w-full">
-        <DetailsContainer>
-          <DetailsLayout>
-            {place !== null && <Place>{place}</Place>}
+        <div className="flex w-full p-4 desktop:p-6">
+          <div className="flex flex-col w-full">
+            {place !== null && <span className="text-greyDarkColored text-sm">{place}</span>}
 
             <TitleTag className="mt-1 text-ellipsis overflow-hidden whitespace-nowrap font-bold text-2xl color-primary1 desktop:text-clip desktop:whitespace-normal">
               {title}
             </TitleTag>
 
             {tags !== undefined && (
-              <TagContainer>
-                <TagLayout>
+              <div className="mt-2 desktop:mt-4">
+                <div className="flex gap-2 desktop:gap-4">
                   {tags
                     .filter(tag => tag !== null && Number(tag?.length) > 0)
                     .map(tag => (
                       <Chip key={tag}>{tag}</Chip>
                     ))}
-                </TagLayout>
-              </TagContainer>
+                </div>
+              </div>
             )}
             <InformationCardList informations={informations} />
-          </DetailsLayout>
-        </DetailsContainer>
+          </div>
+        </div>
       </Link>
-    </Container>
+    </div>
   );
 };
-
-const Container = styled.div<{ asColumn?: boolean }>`
-  display: flex;
-  flex: auto;
-  flex-direction: column;
-  cursor: pointer;
-  border: 1px solid ${colorPalette.greySoft.DEFAULT};
-  transition: all 500ms;
-  &:hover {
-    border-color: ${colorPalette.blackSemiTransparent};
-  }
-  border-radius: ${borderRadius.card};
-  overflow: hidden;
-  // Fix for overflow hidden with border radius in Safari, see https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
-  mask-image: radial-gradient(white, black);
-
-  align-items: stretch;
-
-  ${({ asColumn }) =>
-    asColumn !== true &&
-    desktopOnly(
-      css`
-        flex-direction: row;
-      `,
-    )}
-`;
-
-const DetailsContainer = styled.div`
-  display: flex;
-  width: 100%;
-
-  padding: ${getSpacing(4)};
-
-  ${desktopOnly(
-    css`
-      padding: ${getSpacing(6)};
-    `,
-  )}
-`;
-
-const DetailsLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
-const Place = styled.span`
-  color: ${colorPalette.greyDarkColored};
-  ${typography.small}
-`;
-
-const TagContainer = styled.div`
-  display: flex;
-  margin-top: ${getSpacing(2)};
-
-  ${desktopOnly(
-    css`
-      margin-top: ${getSpacing(4)};
-    `,
-  )}
-`;
-
-const TagLayout = styled.div`
-  ${flexGap(getSpacing(2))}
-
-  ${desktopOnly(
-    css`
-      ${flexGap(getSpacing(4))}
-    `,
-  )}
-`;
