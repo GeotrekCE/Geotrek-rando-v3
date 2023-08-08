@@ -57,9 +57,13 @@ export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
               ))}
             </div>
             {collapseIsNeeded && (
-              <div className="self-end cursor-pointer" onClick={toggleExpandedState}>
+              <button
+                type="button"
+                className="self-end hover:text-primary3 transition-colors text-greyDarkColored"
+                onClick={toggleExpandedState}
+              >
                 <ControlCollapseButton expandedState={expandedState} />
-              </div>
+              </button>
             )}
           </div>
           <div className="block desktop:hidden">
