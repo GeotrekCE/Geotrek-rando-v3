@@ -1,4 +1,5 @@
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
+import { cn } from 'services/utils/cn';
 
 interface Props extends NextLinkProps {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ export const Link: React.FC<Props> = ({ children, className = '', testId, ...nex
   return (
     <NextLink passHref legacyBehavior {...nextLinkProps}>
       <a
-        className={`text-primary1 hover:text-primary3 transition-colors ${className}`}
+        className={cn('text-primary1 hover:text-primary3 transition-colors', className)}
         data-testid={testId}
       >
         {children}
