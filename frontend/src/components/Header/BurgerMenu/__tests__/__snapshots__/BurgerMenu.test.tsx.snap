@@ -208,7 +208,7 @@ Object {
                     role="region"
                   >
                     <a
-                      class="text-primary1 hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
+                      class="hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
                       href="/"
                     >
                       FR
@@ -472,7 +472,7 @@ Object {
                   role="region"
                 >
                   <a
-                    class="text-primary1 hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
+                    class="hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
                     href="/"
                   >
                     FR
