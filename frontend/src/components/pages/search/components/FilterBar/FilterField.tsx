@@ -1,12 +1,11 @@
 import { ChevronDown } from 'components/Icons/ChevronDown';
 import { Cross } from 'components/Icons/Cross';
 import ShowFilters from 'components/pages/search/components/FilterBar/ShowFilters';
-import React, { Fragment } from 'react';
-import styled from 'styled-components';
-import { colorPalette, sizes } from 'stylesheet';
+import { Fragment } from 'react';
 import { groupBy } from 'modules/utils/array';
 
 import { FormattedMessage } from 'react-intl';
+import { cn } from 'services/utils/cn';
 import { DateFilter, FilterState, Option } from '../../../../../modules/filters/interface';
 import { countFiltersSelected } from '../../../../../modules/filters/utils';
 import getActivityColor from '../ResultCard/getActivityColor';
@@ -24,8 +23,6 @@ interface Props {
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
   setDateFilter: (dFilter: DateFilter) => void;
 }
-
-const BACKGROUND_EXPANDED = '#fefefe';
 
 const FilterField: React.FC<Props> = ({
   id,
@@ -71,26 +68,37 @@ const FilterField: React.FC<Props> = ({
 
   return (
     <div>
-      <Container
-        className={`inline-flex items-center pl-2 pr-2 ${expanded ? 'shadow-inner' : ''}`}
-        style={{ background: expanded ? BACKGROUND_EXPANDED : 'white' }}
+      <button
+        type="button"
+        className={cn(
+          'h-14 border-l block border-greysoft inline-flex items-center pl-2 pr-2',
+          expanded ? 'shadow-inner' : 'bg-white',
+        )}
         onClick={onClick}
       >
         {numberSelected > 0 && (
-          <div
+          <span
             className="bg-primary1 text-white rounded-full h-6 w-6 flex items-center justify-center font-bold"
             style={{ background: getActivityColor(id) }}
           >
             {numberSelected}
-          </div>
+          </span>
         )}
-        {tabLabel !== null && <div className="ml-4 mr-4">{tabLabel}</div>}
+        {tabLabel !== null && <span className="ml-4 mr-4">{tabLabel}</span>}
         <ChevronDown className={`${expanded ? '' : '-rotate-90'} text-primary1`} size={30} />
-      </Container>
-      <BackgroundFields style={{ display: expanded ? 'block' : 'none' }} onClick={onClick} />
-      <ContainerFields
-        className="shadow-inner"
-        style={{ display: expanded ? 'block' : 'none', background: BACKGROUND_EXPANDED }}
+      </button>
+      <div
+        className={cn(
+          'fixed left-0 right-0 bottom-0 top-headerAndFilterBar bg-greyDarkColored opacity-40 z-[101]',
+          expanded ? 'block' : 'hidden',
+        )}
+        onClick={onClick}
+      />
+      <div
+        className={cn(
+          'fixed left-0 right-0 bg-white p-8 shadow-inner z-[101]',
+          expanded ? 'block' : 'hidden',
+        )}
       >
         {nextFilters.map((filterState, index) => (
           <Fragment key={filterState?.id ?? index}>
@@ -121,36 +129,9 @@ const FilterField: React.FC<Props> = ({
             </div>
           </Fragment>
         ))}
-      </ContainerFields>
+      </div>
     </div>
   );
 };
-
-const ContainerFields = styled.div`
-  position: fixed;
-  left: 0px;
-  right: 0px;
-  background: ${colorPalette.white};
-  width: 100%;
-  z-index: 10;
-  padding: 32px;
-`;
-
-const BackgroundFields = styled.div`
-  position: fixed;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  top: ${sizes.headerAndFilterbar}px;
-  background-color: ${colorPalette.greyDarkColored};
-  opacity: 0.4;
-  z-index: 9;
-`;
-
-const Container = styled.div`
-  height: 55px;
-  border-left: 1px solid ${colorPalette.greySoft.DEFAULT};
-  cursor: pointer;
-`;
 
 export default FilterField;

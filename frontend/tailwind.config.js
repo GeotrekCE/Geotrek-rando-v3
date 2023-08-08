@@ -53,7 +53,7 @@ module.exports = {
       '10percent': '10%',
       '50percent': '50%',
       filterBar: '72px',
-      headerAndFilterBar: '151px',
+      headerAndFilterBar: '152px',
       activitySearchFilter: '865px',
       coverDetailsDesktop: '550px',
       coverDetailsMobile: '35vh',
