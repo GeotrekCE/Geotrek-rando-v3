@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.15.1 (2023-08-09)
+
+**🐛 Fixes**
+
+- Fix z-index issue with search bar (version 3.15.0 regression) (#954)
+- Fix colors on activity bar (#955)
+
 ## 3.15.0 (2023-08-08)
 
 **🚀 New features**
