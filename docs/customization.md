@@ -292,6 +292,13 @@ Icons are provided by Geotrek-admin API. See [icons documentation](icons.md) to 
 There is a default `manifest.json` generated using the `applicationName` parameters of `global.json` and icons/images detailed in the next section below (See: https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/src/pages/manifest.json.tsx#L20).
 You can complete it by creating `manifest.json` file in the `customization/config/` folder and filling it with the props to add and/or override.
 
+## About the cache
+
+When new types of content are added (example: activities, type of places information, label, etc.), the related hiking pages then appear in error on the Geotrek-Rando website. This issue only exists in case of new content categories being added, not with every content update.
+Simply re-deploy the site to force the cache update or wait a few hours for the cache to reset.
+
+It is also possible to completely disable Geotrek-Rando's cache but this may impact performance when loading pages. You'll find more details about disabling cache in this section [Caching](knowledge/caching.md)
+
 ## Images, favicon, mobile phone icons and splashscreens
 
 These files need to be in the correct folder during the build process and therefore, we created a specific `medias` folder in the customization repository.
