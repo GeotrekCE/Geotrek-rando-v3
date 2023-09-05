@@ -175,7 +175,7 @@ export const adaptResults = ({
       altimetricProfileUrl: rawDetailsProperties.altimetric_profile,
       length2d: rawDetailsProperties.length_2d,
       reservation,
-      reservation_id: rawDetailsProperties.reservation_id ?? null,
+      reservation_id: rawDetailsProperties.reservation_id || null,
       ratings:
         rawDetailsProperties.ratings?.map(r => {
           return {
