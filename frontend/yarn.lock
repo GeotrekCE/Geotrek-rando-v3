@@ -7739,6 +7739,13 @@ leaflet-i18n@^0.3.1:
   resolved "https://registry.yarnpkg.com/leaflet-i18n/-/leaflet-i18n-0.3.1.tgz#404e75dc6704f4a2399d1cd05f0dd1dd178300b5"
   integrity sha1-QE513GcE9KI5nRzQXw3R3ReDALU=
 
+leaflet-rastercoords@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/leaflet-rastercoords/-/leaflet-rastercoords-1.0.5.tgz#6a188f8b88d5613333556a01cbd1eef68a60ebca"
+  integrity sha512-PGrxD6dhbChN45acRedZMfG1OvOKidwzUHU+lfD3Save9fNSHUeuL9c8BKg84t29Xp7mgvjoF0KIHzYoNNN+gQ==
+  dependencies:
+    leaflet "^1.7.1"
+
 leaflet-textpath@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/leaflet-textpath/-/leaflet-textpath-1.2.3.tgz#0adef3a2d438c1c781f4e1154b8fa2f963cfd8a7"
