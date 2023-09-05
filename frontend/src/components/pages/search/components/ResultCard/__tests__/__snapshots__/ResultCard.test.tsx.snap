@@ -73,21 +73,21 @@ Object {
                   class="flex gap-2 desktop:gap-4"
                 >
                   <div
-                    class="sc-pyfCe fwHJCn"
+                    class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
                   >
                     <span>
                       En famille
                     </span>
                   </div>
                   <div
-                    class="sc-pyfCe fwHJCn"
+                    class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
                   >
                     <span>
                       Ciel étoilé
                     </span>
                   </div>
                   <div
-                    class="sc-pyfCe fwHJCn"
+                    class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
                   >
                     <span>
                       Beau paysage
@@ -290,21 +290,21 @@ Object {
                 class="flex gap-2 desktop:gap-4"
               >
                 <div
-                  class="sc-pyfCe fwHJCn"
+                  class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
                 >
                   <span>
                     En famille
                   </span>
                 </div>
                 <div
-                  class="sc-pyfCe fwHJCn"
+                  class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
                 >
                   <span>
                     Ciel étoilé
                   </span>
                 </div>
                 <div
-                  class="sc-pyfCe fwHJCn"
+                  class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
                 >
                   <span>
                     Beau paysage
