@@ -6,10 +6,12 @@ import { useIntl } from 'react-intl';
 require('leaflet.locatecontrol');
 import 'leaflet.locatecontrol/dist/L.Control.Locate.min.css';
 import injectOfflineMode from 'services/offline/injectOfflineMode';
+import { ViewPoint } from 'modules/viewPoint/interface';
 
 export const useTileLayer = (
   id?: number,
   center?: LatLngBoundsExpression | null,
+  mapToDisplay: ViewPoint | 'default' = 'default',
 ): {
   map: Map | null;
   setMapInstance: (newMap: Map) => void;
@@ -25,19 +27,21 @@ export const useTileLayer = (
       injectOfflineMode(newMap, id, center);
     }
 
-    L.control
-      // @ts-ignore no type available in this plugin
-      .locate({
-        locateOptions: {
-          enableHighAccuracy: true,
-        },
-        icon: 'gg-track',
-        strings: {
-          title: intl.formatMessage({ id: 'search.map.seeMe' }),
-        },
-        position: 'bottomright',
-      })
-      .addTo(newMap);
+    if (mapToDisplay === 'default') {
+      L.control
+        // @ts-ignore no type available in this plugin
+        .locate({
+          locateOptions: {
+            enableHighAccuracy: true,
+          },
+          icon: 'gg-track',
+          strings: {
+            title: intl.formatMessage({ id: 'search.map.seeMe' }),
+          },
+          position: 'bottomright',
+        })
+        .addTo(newMap);
+    }
   };
 
   return {
