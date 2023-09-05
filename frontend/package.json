@@ -54,6 +54,7 @@
     "html-react-parser": "^2.0.0",
     "leaflet": "^1.7.1",
     "leaflet-boundary-canvas": "^1.0.0",
+    "leaflet-rastercoords": "^1.0.5",
     "leaflet.locatecontrol": "0.74.0",
     "leaflet.offline": "^3.0.1",
     "next": "^13.1.6",
