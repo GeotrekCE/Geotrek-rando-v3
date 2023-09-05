@@ -127,6 +127,7 @@
     "description": "Descripció",
     "recommandations": "Recomanacions",
     "informationDesks": "Llocs d’informació",
+    "medias": "Mitjans de comunicació",
     "practicalInformations": "Infos pràctiques",
     "forecastWidget": "Informe del temps",
     "accessibility": "Accessibilitat",
@@ -239,6 +240,11 @@
     "accessFullTitle": "Accés",
     "coursesFullTitle": "Les {count} parcours à découvrir",
     "sitesFullTitle": "Els {count} llocs de pràcticar a descobrir"
+  },
+  "viewPoint": {
+    "title": "Fotos HD",
+    "credit": "Crèdit fotogràfic :",
+    "browsePicture": "Navega per la foto"
   },
   "Wind": {
     "N": "Nord",
