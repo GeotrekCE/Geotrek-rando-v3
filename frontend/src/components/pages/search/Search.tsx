@@ -280,7 +280,6 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
           <SearchMapDynamicComponent
             hideMap={hideMobileMap}
             openFilterMenu={displayMenu}
-            hasFilters={numberSelected > 0}
             shouldUseClusters
             shouldUsePopups
           />
