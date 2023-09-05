@@ -5,7 +5,7 @@ import { RawDetails, RawTrekChildGeometry, RawTrekChildIds, RawTrekName } from '
 
 const fieldsParams = {
   fields:
-    'id,name,departure,arrival,cities,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,descent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,departure_city,disabled_infrastructure,accessibilities,source,information_desks,labels,advice,gear,points_reference,children,web_links,elevation_area_url,altimetric_profile,reservation_id,accessibility_signage,accessibility_slope,accessibility_width,accessibility_covering,accessibility_exposure,accessibility_advice,attachments_accessibility,accessibility_level,ratings,ratings_description',
+    'id,name,departure,arrival,cities,attachments,practice,public_transport,access,advised_parking,description_teaser,ambiance,themes,duration,length_2d,ascent,descent,difficulty,route,networks,description,geometry,parking_location,pdf,gpx,kml,departure_city,disabled_infrastructure,accessibilities,source,information_desks,labels,advice,gear,points_reference,children,web_links,elevation_area_url,altimetric_profile,reservation_id,accessibility_signage,accessibility_slope,accessibility_width,accessibility_covering,accessibility_exposure,accessibility_advice,attachments_accessibility,accessibility_level,ratings,ratings_description,view_points',
   format: 'geojson',
 };
 

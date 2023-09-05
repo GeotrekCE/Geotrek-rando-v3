@@ -24,6 +24,7 @@ import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
+import { RawViewPoint, ViewPoint } from 'modules/viewPoint/interface';
 import { TrekRatingWithScale } from '../trekRating/interface';
 
 export interface RawDetails {
@@ -93,6 +94,7 @@ export interface RawDetailsProperties {
   gear: string | null;
   ratings: number[];
   ratings_description: string;
+  view_points: RawViewPoint[];
 }
 
 // Fields parsed with react-html-parser in page
@@ -190,6 +192,7 @@ export interface Details extends DetailsHtml {
   signage: SignageDictionary | null;
   service: Service[] | null;
   infrastructure: InfrastructureDictionary | null;
+  viewPoints: ViewPoint[];
 }
 
 export interface WebLink {
