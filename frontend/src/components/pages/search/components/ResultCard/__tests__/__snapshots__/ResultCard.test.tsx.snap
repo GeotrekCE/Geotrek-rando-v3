@@ -67,32 +67,28 @@ Object {
                 Balade au pays des menhirs
               </h3>
               <div
-                class="mt-2 desktop:mt-4"
+                class="mt-2 desktop:mt-4 flex flex-wrap gap-2 desktop:gap-4"
               >
                 <div
-                  class="flex gap-2 desktop:gap-4"
+                  class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
                 >
-                  <div
-                    class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
-                  >
-                    <span>
-                      En famille
-                    </span>
-                  </div>
-                  <div
-                    class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
-                  >
-                    <span>
-                      Ciel étoilé
-                    </span>
-                  </div>
-                  <div
-                    class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
-                  >
-                    <span>
-                      Beau paysage
-                    </span>
-                  </div>
+                  <span>
+                    En famille
+                  </span>
+                </div>
+                <div
+                  class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
+                >
+                  <span>
+                    Ciel étoilé
+                  </span>
+                </div>
+                <div
+                  class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
+                >
+                  <span>
+                    Beau paysage
+                  </span>
                 </div>
               </div>
               <ul
@@ -284,32 +280,28 @@ Object {
               Balade au pays des menhirs
             </h3>
             <div
-              class="mt-2 desktop:mt-4"
+              class="mt-2 desktop:mt-4 flex flex-wrap gap-2 desktop:gap-4"
             >
               <div
-                class="flex gap-2 desktop:gap-4"
+                class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
               >
-                <div
-                  class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
-                >
-                  <span>
-                    En famille
-                  </span>
-                </div>
-                <div
-                  class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
-                >
-                  <span>
-                    Ciel étoilé
-                  </span>
-                </div>
-                <div
-                  class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
-                >
-                  <span>
-                    Beau paysage
-                  </span>
-                </div>
+                <span>
+                  En famille
+                </span>
+              </div>
+              <div
+                class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
+              >
+                <span>
+                  Ciel étoilé
+                </span>
+              </div>
+              <div
+                class="py-1 px-2 rounded-full text-primary3 bg-primary2 text-sm desktop:text-base"
+              >
+                <span>
+                  Beau paysage
+                </span>
               </div>
             </div>
             <ul
