@@ -7,21 +7,18 @@ import { cn } from 'services/utils/cn';
 
 interface DetailsMediasProps {
   viewPoints: ViewPoint[];
-  displayMap: () => void;
-  setMapId: (key: string) => void;
+  handleViewPointClick: (key: string) => void;
 }
 
 export const DetailsMedias: React.FC<DetailsMediasProps> = ({
   viewPoints,
-  displayMap,
-  setMapId,
+  handleViewPointClick,
 }) => {
   const handleClick = useCallback(
-    (id: string) => {
-      displayMap();
-      setMapId(id);
+    (viewPointId: string) => {
+      handleViewPointClick(viewPointId);
     },
-    [displayMap, setMapId],
+    [handleViewPointClick],
   );
 
   return (

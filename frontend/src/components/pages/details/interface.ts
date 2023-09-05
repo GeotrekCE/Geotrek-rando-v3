@@ -1,5 +1,6 @@
 export type DetailsSectionTrekNames =
   | 'presentation'
+  | 'medias'
   | 'itinerancySteps'
   | 'poi'
   | 'description'
@@ -32,6 +33,7 @@ export type DetailsSectionTouristicEventNames =
 
 export type DetailsSectionOutdoorSiteNames =
   | 'presentation'
+  | 'medias'
   | 'poi'
   | 'description'
   | 'subsites'
