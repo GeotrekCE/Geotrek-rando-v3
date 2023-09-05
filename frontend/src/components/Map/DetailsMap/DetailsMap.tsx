@@ -128,7 +128,9 @@ export const DetailsMap: React.FC<PropsType> = props => {
     [props.bbox.corner2.y, props.bbox.corner2.x],
   ];
 
-  const { map, setMapInstance } = useTileLayer(props.trekId, bounds);
+  const mapToDisplay = props.viewPoints?.find(({ id }) => id === props.mapId) ?? 'default';
+
+  const { map, setMapInstance } = useTileLayer(props.trekId, bounds, mapToDisplay);
 
   useEffect(() => {
     if (map && center) {
@@ -137,6 +139,12 @@ export const DetailsMap: React.FC<PropsType> = props => {
   }, [map, center]);
 
   const { visibleSection } = useContext(VisibleSectionContext);
+
+  useEffect(() => {
+    if (visibleSection === 'report' && reportVisibility) {
+      props.setMapId?.('default');
+    }
+  }, [visibleSection, props.setMapId]);
 
   const hasTitle = Boolean(props.title);
 
@@ -150,7 +158,11 @@ export const DetailsMap: React.FC<PropsType> = props => {
       )}
     >
       <MapContainer
-        className={cn('mapContainer w-full h-full', hasTitle && 'hasDrawer')}
+        className={cn(
+          'mapContainer w-full h-full',
+          hasTitle && 'hasDrawer',
+          props.mapId !== 'default' && props.mapId !== undefined && '!bg-black',
+        )}
         scrollWheelZoom
         maxZoom={
           navigator.onLine
@@ -173,103 +185,112 @@ export const DetailsMap: React.FC<PropsType> = props => {
           <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
         )}
         {props.hasZoomControl && <FullscreenControl />}
-        <ResetView />
-        <ScaleControl />
-        <ControlSection
-          trekChildrenVisibility={
-            props.trekChildrenGeometry && props.trekChildrenGeometry.length > 0
-              ? trekChildrenMobileVisibility
-              : null
-          }
-          poiVisibility={props.poiPoints && props.poiPoints.length > 0 ? poiMobileVisibility : null}
-          referencePointsVisibility={
-            props.pointsReference && props.pointsReference.length > 0
-              ? referencePointsMobileVisibility
-              : null
-          }
-          touristicContentVisibility={
-            props.touristicContentPoints && props.touristicContentPoints.length > 0
-              ? touristicContentMobileVisibility
-              : null
-          }
-          informationDeskMobileVisibility={
-            props.informationDesks &&
-            props.informationDesks.some(({ longitude, latitude }) => longitude && latitude)
-              ? informationDeskMobileVisibility
-              : null
-          }
-          coursesVisibility={
-            Boolean(props.courses) && props.courses.length > 0 ? coursesVisibility : null
-          }
-          experiencesVisibility={
-            Boolean(props.experiences) && props.experiences.length > 0
-              ? experiencesVisibility
-              : null
-          }
-          signageVisibility={props.signage ? signageVisibility : null}
-          serviceVisibility={props.service && props.service.length > 0 ? serviceVisibility : null}
-          infrastructureVisibility={props.infrastructure ? infrastructureVisibility : null}
-          toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
-          togglePoiVisibility={togglePoiVisibility}
-          toggleReferencePointsVisibility={toggleReferencePointsVisibility}
-          toggleTouristicContentVisibility={toggleTouristicContentVisibility}
-          toggleInformationDeskVisibility={toggleInformationDeskVisibility}
-          toggleCoursesVisibility={toggleCoursesVisibility}
-          toggleExperiencesVisibility={toggleExperiencesVisibility}
-          toggleSignageVisibility={toggleSignageVisibility}
-          toggleServiceVisibility={toggleServiceVisibility}
-          toggleInfrastructureVisibility={toggleInfrastructureVisibility}
-        />
-        {props.trekGeometry && (
-          <TrekMarkersAndCourse
-            arrivalLocation={props.arrivalLocation}
-            departureLocation={props.departureLocation}
-            parkingLocation={props.parkingLocation}
-            trekGeometry={props.trekGeometry}
-            advisedParking={props.advisedParking}
-          />
-        )}
-        {props.outdoorGeometry && <GeometryList contents={[props.outdoorGeometry]} />}
-        {props.eventGeometry && (
-          <GeometryList contents={[props.eventGeometry]} type={'TOURISTIC_EVENT'} />
-        )}
-        <MapChildren
-          courses={props.courses}
-          experiences={props.experiences}
-          parentId={props.trekId}
-          poiPoints={props.poiPoints}
-          touristicContentPoints={props.touristicContentPoints}
-          pointsReference={props.pointsReference}
-          trekChildrenGeometry={props.trekChildrenGeometry}
-          sensitiveAreasGeometry={props.sensitiveAreas}
-          signage={props.signage}
-          service={props.service}
-          infrastructure={props.infrastructure}
-          trekChildrenMobileVisibility={trekChildrenMobileVisibility}
-          poiMobileVisibility={poiMobileVisibility}
-          referencePointsMobileVisibility={referencePointsMobileVisibility}
-          touristicContentMobileVisibility={touristicContentMobileVisibility}
-          informationDeskMobileVisibility={informationDeskMobileVisibility}
-          reportVisibility={reportVisibility}
-          coursesVisibility={coursesVisibility}
-          experiencesVisibility={experiencesVisibility}
-          informationDesks={props.informationDesks}
-          signageVisibility={signageVisibility}
-          serviceVisibility={serviceVisibility}
-          infrastructureVisibility={infrastructureVisibility}
-        />
-        {props.displayAltimetricProfile === true && props.trekGeoJSON && (
-          <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
-        )}
-        {props.title !== undefined && (
-          <div className="desktop:hidden z-10">
-            <DetailsMapDrawer
-              title={props.title}
-              trekGeoJSON={props.displayAltimetricProfile === true ? props.trekGeoJSON : ''}
-              trekFamily={props.trekFamily}
-              trekId={props.trekId}
+        {mapToDisplay === 'default' && (
+          <>
+            <ResetView />
+            <ScaleControl />
+            <TileLayerManager />
+            <ControlSection
+              trekChildrenVisibility={
+                props.trekChildrenGeometry && props.trekChildrenGeometry.length > 0
+                  ? trekChildrenMobileVisibility
+                  : null
+              }
+              poiVisibility={
+                props.poiPoints && props.poiPoints.length > 0 ? poiMobileVisibility : null
+              }
+              referencePointsVisibility={
+                props.pointsReference && props.pointsReference.length > 0
+                  ? referencePointsMobileVisibility
+                  : null
+              }
+              touristicContentVisibility={
+                props.touristicContentPoints && props.touristicContentPoints.length > 0
+                  ? touristicContentMobileVisibility
+                  : null
+              }
+              informationDeskMobileVisibility={
+                props.informationDesks &&
+                props.informationDesks.some(({ longitude, latitude }) => longitude && latitude)
+                  ? informationDeskMobileVisibility
+                  : null
+              }
+              coursesVisibility={
+                Boolean(props.courses) && props.courses.length > 0 ? coursesVisibility : null
+              }
+              experiencesVisibility={
+                Boolean(props.experiences) && props.experiences.length > 0
+                  ? experiencesVisibility
+                  : null
+              }
+              signageVisibility={props.signage ? signageVisibility : null}
+              serviceVisibility={
+                props.service && props.service.length > 0 ? serviceVisibility : null
+              }
+              infrastructureVisibility={props.infrastructure ? infrastructureVisibility : null}
+              toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
+              togglePoiVisibility={togglePoiVisibility}
+              toggleReferencePointsVisibility={toggleReferencePointsVisibility}
+              toggleTouristicContentVisibility={toggleTouristicContentVisibility}
+              toggleInformationDeskVisibility={toggleInformationDeskVisibility}
+              toggleCoursesVisibility={toggleCoursesVisibility}
+              toggleExperiencesVisibility={toggleExperiencesVisibility}
+              toggleSignageVisibility={toggleSignageVisibility}
+              toggleServiceVisibility={toggleServiceVisibility}
+              toggleInfrastructureVisibility={toggleInfrastructureVisibility}
             />
-          </div>
+            {props.trekGeometry && (
+              <TrekMarkersAndCourse
+                arrivalLocation={props.arrivalLocation}
+                departureLocation={props.departureLocation}
+                parkingLocation={props.parkingLocation}
+                trekGeometry={props.trekGeometry}
+                advisedParking={props.advisedParking}
+              />
+            )}
+            {props.outdoorGeometry && <GeometryList contents={[props.outdoorGeometry]} />}
+            {props.eventGeometry && (
+              <GeometryList contents={[props.eventGeometry]} type={'TOURISTIC_EVENT'} />
+            )}
+            <MapChildren
+              courses={props.courses}
+              experiences={props.experiences}
+              parentId={props.trekId}
+              poiPoints={props.poiPoints}
+              touristicContentPoints={props.touristicContentPoints}
+              pointsReference={props.pointsReference}
+              trekChildrenGeometry={props.trekChildrenGeometry}
+              sensitiveAreasGeometry={props.sensitiveAreas}
+              signage={props.signage}
+              service={props.service}
+              infrastructure={props.infrastructure}
+              trekChildrenMobileVisibility={trekChildrenMobileVisibility}
+              poiMobileVisibility={poiMobileVisibility}
+              referencePointsMobileVisibility={referencePointsMobileVisibility}
+              touristicContentMobileVisibility={touristicContentMobileVisibility}
+              informationDeskMobileVisibility={informationDeskMobileVisibility}
+              reportVisibility={reportVisibility}
+              coursesVisibility={coursesVisibility}
+              experiencesVisibility={experiencesVisibility}
+              informationDesks={props.informationDesks}
+              signageVisibility={signageVisibility}
+              serviceVisibility={serviceVisibility}
+              infrastructureVisibility={infrastructureVisibility}
+            />
+            {props.displayAltimetricProfile === true && props.trekGeoJSON && (
+              <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
+            )}
+            {props.title !== undefined && (
+              <div className="desktop:hidden z-10">
+                <DetailsMapDrawer
+                  title={props.title}
+                  trekGeoJSON={props.displayAltimetricProfile === true ? props.trekGeoJSON : ''}
+                  trekFamily={props.trekFamily}
+                  trekId={props.trekId}
+                />
+              </div>
+            )}
+          </>
         )}
       </MapContainer>
     </div>
