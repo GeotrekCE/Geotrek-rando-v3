@@ -92,14 +92,10 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
             </TitleTag>
 
             {tags !== undefined && (
-              <div className="mt-2 desktop:mt-4">
-                <div className="flex gap-2 desktop:gap-4">
-                  {tags
-                    .filter(tag => tag !== null && Number(tag?.length) > 0)
-                    .map(tag => (
-                      <Chip key={tag}>{tag}</Chip>
-                    ))}
-                </div>
+              <div className="mt-2 desktop:mt-4 flex flex-wrap gap-2 desktop:gap-4">
+                {tags.filter(Boolean).map(tag => (
+                  <Chip key={tag}>{tag}</Chip>
+                ))}
               </div>
             )}
             <InformationCardList informations={informations} />
