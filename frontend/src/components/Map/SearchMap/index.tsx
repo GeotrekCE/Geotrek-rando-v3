@@ -18,7 +18,6 @@ export type PropsType = {
   hideMap?: () => void;
   hasZoomControl?: boolean;
   openFilterMenu?: () => void;
-  hasFilters?: boolean;
   arrivalLocation?: { x: number; y: number };
   departureLocation?: { x: number; y: number };
   parkingLocation?: { x: number; y: number };
@@ -41,7 +40,7 @@ const SearchMap: React.FC<PropsType> = props => {
       {props.onMove && <MoveHandler onMove={props.onMove} />}
       <TileLayerManager />
       <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
-      <FilterButton openFilterMenu={props.openFilterMenu} hasFilters={props.hasFilters} />
+      <FilterButton openFilterMenu={props.openFilterMenu} />
       <ResetView />
       <ScaleControl />
       <SearchMapChildrens {...props} />
