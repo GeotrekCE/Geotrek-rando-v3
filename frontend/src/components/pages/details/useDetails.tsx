@@ -91,6 +91,8 @@ export const useDetails = (
 
   const intl = useIntl();
 
+  // "default" is the world; reals "id" are related to HD viewpoints ids
+  const [mapId, setMapId] = useState<string>('default');
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN' | null>('HIDDEN');
   const displayMobileMap = useCallback(() => setMobileMapState('DISPLAYED'), [setMobileMapState]);
   const hideMobileMap = useCallback(() => setMobileMapState('HIDDEN'), [setMobileMapState]);
@@ -120,5 +122,7 @@ export const useDetails = (
     hideMobileMap,
     path,
     sectionRef,
+    mapId,
+    setMapId,
   };
 };
