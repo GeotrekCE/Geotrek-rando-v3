@@ -477,6 +477,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                           >
                             <Report
                               displayMobileMap={displayMobileMap}
+                              setMapId={setMapId}
                               trekId={details.id}
                               startPoint={{
                                 type: 'Point',
