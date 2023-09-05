@@ -44,7 +44,8 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
     (list, item) => ({ ...list, [item.name]: useSectionReferenceCallback(item.name) }),
     {} as Record<DetailsSections, (node: HTMLDivElement | null) => void>,
   );
-
+  // "default" is the world; reals "id" are related to HD viewpoints ids
+  const [mapId, setMapId] = useState<string>('default');
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => setMobileMapState('DISPLAYED');
   const hideMobileMap = () => setMobileMapState('HIDDEN');
@@ -62,5 +63,7 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
     hideMobileMap,
     path,
     sectionRef,
+    mapId,
+    setMapId,
   };
 };
