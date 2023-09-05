@@ -7,6 +7,12 @@
         "anchor": true,
         "order": 10
       },
+      {
+        "name": "medias",
+        "display": true,
+        "anchor": false,
+        "order": 15
+      },
       { 
         "name": "itinerancySteps",
         "display": true,
@@ -169,6 +175,12 @@
         "display": true,
         "anchor": true,
         "order": 10
+      },
+      {
+        "name": "medias",
+        "display": true,
+        "anchor": false,
+        "order": 15
       },
       { 
         "name": "poi",
