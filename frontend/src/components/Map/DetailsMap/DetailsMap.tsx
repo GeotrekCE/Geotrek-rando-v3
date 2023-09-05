@@ -1,9 +1,8 @@
 import { GeometryList } from 'components/Map/DetailsMap/GeometryList';
 import { LatLngBoundsExpression } from 'leaflet';
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { MapContainer, ScaleControl } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import styled, { css } from 'styled-components';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 
@@ -28,6 +27,8 @@ import { InformationDesk } from 'modules/informationDesk/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { cn } from 'services/utils/cn';
+import { ViewPoint } from 'modules/viewPoint/interface';
+import { BackToMapButton } from 'components/BackToMapButton';
 import { BackButton } from '../components/BackButton';
 
 import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
@@ -40,6 +41,9 @@ import DetailsMapDrawer from '../components/DetailsMapDrawer';
 import { ResetView } from '../components/ResetView';
 import TileLayerManager from '../components/TileLayerManager';
 import FullscreenControl from '../components/FullScreenControl';
+import ViewPointHD from '../components/ViewPointHD';
+import { CRSPixel } from '../components/ViewPointHD/CRSPixel';
+import { AnnotationList } from '../components/ViewPointHD/AnnotationList';
 
 export interface GeometryListProps {
   geometry:
@@ -56,6 +60,7 @@ export interface GeometryListProps {
 }
 
 export type PropsType = {
+  mapId?: string;
   access?: any;
   experiences?: any;
   courses?: any;
@@ -86,6 +91,9 @@ export type PropsType = {
   signage?: SignageDictionary | null;
   service?: PointWithIcon[];
   infrastructure?: InfrastructureDictionary | null;
+  viewPoints?: ViewPoint[];
+  displayMap?: () => void;
+  setMapId?: (id: string) => void;
 };
 export const DetailsMap: React.FC<PropsType> = props => {
   const { reportVisibility, setReportVisibility } = useDetailsAndMapContext();
@@ -175,8 +183,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
         zoomControl={props.hasZoomControl}
         whenCreated={setMapInstance}
         bounds={bounds}
+        {...(mapToDisplay !== 'default' && { crs: CRSPixel(mapToDisplay) })}
       >
-        <TileLayerManager />
         {reportVisibility && coordinatesReportTouched ? (
           <BackButton icon={<Check size={20} />} onClick={hideMap}>
             <FormattedMessage id="report.mapButton.validate" />
@@ -185,6 +193,15 @@ export const DetailsMap: React.FC<PropsType> = props => {
           <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
         )}
         {props.hasZoomControl && <FullscreenControl />}
+        {mapToDisplay !== 'default' && (
+          <>
+            <ViewPointHD {...mapToDisplay} />
+            {'type' in mapToDisplay.annotations && (
+              <AnnotationList contents={mapToDisplay.annotations.features} />
+            )}
+            <BackToMapButton displayMap={props.displayMap} setMapId={props.setMapId} />
+          </>
+        )}
         {mapToDisplay === 'default' && (
           <>
             <ResetView />

@@ -531,6 +531,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                 )}
               >
                 <DetailsMapDynamicComponent
+                  mapId={mapId}
                   courses={outdoorSiteContent?.courses}
                   experiences={outdoorSiteContent?.children}
                   hasZoomControl={!isMobile}
@@ -576,6 +577,9 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                   }))}
                   infrastructure={outdoorSiteContent.infrastructure}
                   hideMap={hideMobileMap}
+                  viewPoints={outdoorSiteContent.viewPoints}
+                  displayMap={displayMobileMap}
+                  setMapId={setMapId}
                 />
               </div>
             </div>
@@ -583,7 +587,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
         )}
       </>
     ),
-    [outdoorSiteContent, isLoading, mobileMapState, sectionsReferences, hasNavigator],
+    [outdoorSiteContent, isLoading, mobileMapState, sectionsReferences, hasNavigator, mapId],
   );
 };
 
