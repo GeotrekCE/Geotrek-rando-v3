@@ -136,6 +136,7 @@ export const rawDetailsProperties: RawDetailsProperties = {
   altimetric_profile: 'https://geotrekdemo.ecrins-parcnational.fr/api/fr/treks/2/profile.json',
   ratings: [],
   ratings_description: '',
+  view_points: [],
 };
 
 export const rawDetails: RawDetails = {

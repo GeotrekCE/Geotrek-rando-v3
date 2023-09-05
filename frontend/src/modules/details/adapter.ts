@@ -30,6 +30,7 @@ import {
   getTrekGeometryAsLineStringCoordinates,
 } from 'modules/utils/geometry';
 import { formatHours } from 'modules/utils/time';
+import { ViewPoint } from 'modules/viewPoint/interface';
 import { TrekRatingScale } from '../trekRatingScale/interface';
 import { TrekRatingChoices } from '../trekRating/interface';
 import { Details, RawDetails, Reservation, TrekChildGeometry, TrekFamily } from './interface';
@@ -58,6 +59,7 @@ export const adaptResults = ({
   reservation,
   trekRating,
   trekRatingScale,
+  viewPoints,
 }: {
   accessbilityLevel: AccessibilityLevel | null;
   rawDetails: RawDetails;
@@ -82,6 +84,7 @@ export const adaptResults = ({
   reservation: Reservation | null;
   trekRating: TrekRatingChoices;
   trekRatingScale: TrekRatingScale[];
+  viewPoints: ViewPoint[];
 }): Details => {
   try {
     const coordinates = getTrekGeometryAsLineStringCoordinates(geometry);
@@ -187,6 +190,7 @@ export const adaptResults = ({
       signage,
       service,
       infrastructure,
+      viewPoints,
     };
   } catch (e) {
     console.error('Error in details/adapter', e);
