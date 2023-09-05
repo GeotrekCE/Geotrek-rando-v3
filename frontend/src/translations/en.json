@@ -130,6 +130,7 @@
     "description": "Description",
     "recommandations": "Recommandations",
     "informationDesks": "Information desks",
+    "medias": "Medias",
     "practicalInformations": "Practical informations",
     "forecastWidget": "Forecast",
     "accessibility": "Accessibility",
@@ -246,6 +247,11 @@
     "accessFullTitle": "Access",
     "coursesFullTitle": "Les {count} parcours à découvrir",
     "sitesFullTitle": "The {count} places of practice to discover"
+  },
+  "viewPoint": {
+    "title": "HD photos",
+    "credit": "Photo credit:",
+    "browsePicture": "Browse photo"
   },
   "Wind": {
     "N": "North",
