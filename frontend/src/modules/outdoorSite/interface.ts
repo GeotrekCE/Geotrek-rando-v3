@@ -16,6 +16,7 @@ import {
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { Service } from 'modules/service/interface';
 import { SignageDictionary } from 'modules/signage/interface';
+import { RawViewPoint, ViewPoint } from 'modules/viewPoint/interface';
 import { Activity } from '../activities/interface';
 import { InformationDesk } from '../informationDesk/interface';
 import { Label } from '../label/interface';
@@ -62,6 +63,7 @@ interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
   web_links?: RawWebLink[];
   pdf: string;
   ratings_description: string;
+  view_points: RawViewPoint[];
 }
 
 export interface RawOutdoorSiteDetails extends RawOutdoorSite {
@@ -122,4 +124,5 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   infrastructure: InfrastructureDictionary | null;
   typeSite: OutdoorSiteType | null;
   sensitiveAreas: SensitiveArea[];
+  viewPoints: ViewPoint[];
 }

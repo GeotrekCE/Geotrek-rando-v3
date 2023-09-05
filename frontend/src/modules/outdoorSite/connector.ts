@@ -5,6 +5,7 @@ import { getInfrastructure } from 'modules/infrastructure/connector';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { GeometryObject } from 'modules/interface';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
+import { adaptViewPoints } from 'modules/viewPoint/adapter';
 import { getOutdoorCoursesResult } from '../outdoorCourse/connector';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { getOutdoorRating } from '../outdoorRating/connector';
@@ -117,6 +118,8 @@ export const getOutdoorSiteDetails = async (
         : [],
     ]);
 
+    const viewPoints = await adaptViewPoints(rawOutdoorSiteDetails.properties.view_points ?? []);
+
     return adaptOutdoorSiteDetails({
       rawOutdoorSiteDetails,
       pois,
@@ -138,6 +141,7 @@ export const getOutdoorSiteDetails = async (
       signage,
       service,
       infrastructure,
+      viewPoints,
     });
   } catch (e) {
     console.error('Error in outdoor course connector', e);
