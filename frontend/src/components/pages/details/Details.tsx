@@ -598,6 +598,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                 )}
               >
                 <DetailsMapDynamicComponent
+                  mapId={mapId}
                   hasZoomControl={!isMobile}
                   hideMap={hideMobileMap}
                   title={details.title}
@@ -658,6 +659,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                     id: `DETAILS-SERVICE-${service.id}`,
                   }))}
                   infrastructure={details.infrastructure}
+                  viewPoints={details.viewPoints}
+                  displayMap={displayMobileMap}
+                  setMapId={setMapId}
                 />
               </div>
             </div>
@@ -679,6 +683,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
       refetch,
       sectionsReferences,
       trekFamily,
+      mapId,
     ],
   );
 };
