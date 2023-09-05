@@ -13,6 +13,7 @@ import { getInfrastructure } from 'modules/infrastructure/connector';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { getTouristicContentsNearTarget } from 'modules/touristicContent/connector';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
+import { adaptViewPoints } from 'modules/viewPoint/adapter';
 import { getTrekRating } from '../trekRating/connector';
 import { getTrekRatingScale } from '../trekRatingScale/connector';
 import { adaptChildren, adaptResults, adaptTrekChildGeometry } from './adapter';
@@ -51,6 +52,8 @@ export const getDetails = async (
       getTrekRatingScale(language),
       getAccessibilities(language),
     ]);
+
+    const viewPoints = await adaptViewPoints(rawDetails.properties.view_points ?? []);
 
     const [
       activity,
@@ -118,6 +121,7 @@ export const getDetails = async (
               project: getGlobalConfig().reservationProject,
             }
           : null,
+      viewPoints,
     });
   } catch (e) {
     console.error('Error in details/connector principal', e);
