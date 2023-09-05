@@ -19,11 +19,12 @@ import CoordinatesRow from './CoordinatesRow';
 
 interface Props {
   displayMobileMap?: () => void;
+  setMapId?: (str: string) => void;
   trekId: number;
   startPoint: PointGeometry;
 }
 
-const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
+const Report: React.FC<Props> = ({ displayMobileMap, setMapId, startPoint, trekId }) => {
   const {
     state,
     coordinatesReportTouched,
@@ -53,6 +54,7 @@ const Report: React.FC<Props> = ({ displayMobileMap, startPoint, trekId }) => {
   const isMobile = useMediaPredicate('(max-width: 1024px)');
 
   const handleReportButtonClick = () => {
+    setMapId?.('default');
     if (isMobile) {
       displayMobileMap?.();
       setReportVisibility(true);
