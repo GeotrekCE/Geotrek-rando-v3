@@ -103,7 +103,8 @@
         "experiences": "Lieux de pratique",
         "signage": "Segnaletica",
         "infrastructure": "Infrastructures",
-        "service": "Others infos"
+        "service": "Others infos",
+        "annotations": "Annotations"
       },
       "resetView": "Rimettere a fuoco la mappa"
     },

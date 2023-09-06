@@ -21,6 +21,8 @@ export const useDetailsMap = () => {
   const [signageVisibility, setSignageVisibility] = useState<Visibility>('HIDDEN');
   const [serviceVisibility, setServiceVisibility] = useState<Visibility>('HIDDEN');
   const [infrastructureVisibility, setInfrastructureVisibility] = useState<Visibility>('HIDDEN');
+  const [annotationViewpointVisibility, setAnnotationViewpointVisibility] =
+    useState<Visibility>('DISPLAYED');
 
   const toggleTrekChildrenVisibility = () => setTrekChildrenVisibility(toggleVisibility);
 
@@ -37,6 +39,8 @@ export const useDetailsMap = () => {
   const toggleSignageVisibility = () => setSignageVisibility(toggleVisibility);
   const toggleServiceVisibility = () => setServiceVisibility(toggleVisibility);
   const toggleInfrastructureVisibility = () => setInfrastructureVisibility(toggleVisibility);
+  const toggleAnnotationViewpointVisibility = () =>
+    setAnnotationViewpointVisibility(toggleVisibility);
 
   return {
     trekChildrenMobileVisibility,
@@ -59,5 +63,7 @@ export const useDetailsMap = () => {
     toggleServiceVisibility,
     infrastructureVisibility,
     toggleInfrastructureVisibility,
+    annotationViewpointVisibility,
+    toggleAnnotationViewpointVisibility,
   };
 };
