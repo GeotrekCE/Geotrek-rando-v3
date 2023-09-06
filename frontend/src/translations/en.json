@@ -103,7 +103,8 @@
         "experiences": "Lieux de pratique",
         "signage": "Signage",
         "infrastructure": "Infrastructures",
-        "service": "Others infos"
+        "service": "Others infos",
+        "annotations": "Annotations"
       },
       "resetView": "Recenter map"
     },

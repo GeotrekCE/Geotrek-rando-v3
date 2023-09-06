@@ -100,7 +100,8 @@
         "experiences": "Lieux de pratique",
         "signage": "Beschilderung",
         "infrastructure": "Infrastructures",
-        "service": "Others infos"
+        "service": "Others infos",
+        "annotations": "Annotations"
       },
       "resetView": "Karte zentrieren"
     },

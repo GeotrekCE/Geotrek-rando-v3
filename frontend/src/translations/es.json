@@ -100,7 +100,8 @@
         "experiences": "Lieux de pratique",
         "signage": "Señalización",
         "infrastructure": "Infrastructures",
-        "service": "Others infos"
+        "service": "Others infos",
+        "annotations": "Annotations"
       },
       "resetView": "Centrarse la mapa"
     },

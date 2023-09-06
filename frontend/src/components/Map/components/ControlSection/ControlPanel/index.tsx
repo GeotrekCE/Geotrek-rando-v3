@@ -33,6 +33,8 @@ export const ControlPanel: React.FC<ControlSectionProps & { id: string }> = ({
   toggleServiceVisibility,
   infrastructureVisibility,
   toggleInfrastructureVisibility,
+  annotationViewpointVisibility,
+  toggleAnnotationViewpointVisibility,
 }) => {
   return (
     <div className="flex flex-col bg-white shadow-lg p-4 rounded-2xl w-[230px] gap-4" id={id}>
@@ -114,6 +116,14 @@ export const ControlPanel: React.FC<ControlSectionProps & { id: string }> = ({
           active={serviceVisibility === 'DISPLAYED'}
           toggle={toggleServiceVisibility}
           transKey="search.map.panel.service"
+        />
+      )}
+      {annotationViewpointVisibility && toggleAnnotationViewpointVisibility && (
+        <Line
+          icon={IconInfo}
+          active={annotationViewpointVisibility === 'DISPLAYED'}
+          toggle={toggleAnnotationViewpointVisibility}
+          transKey="search.map.panel.annotations"
         />
       )}
     </div>

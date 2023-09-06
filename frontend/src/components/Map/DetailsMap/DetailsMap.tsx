@@ -126,6 +126,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
     toggleServiceVisibility,
     infrastructureVisibility,
     toggleInfrastructureVisibility,
+    annotationViewpointVisibility,
+    toggleAnnotationViewpointVisibility,
   } = useDetailsMap();
   const mapConfig = getMapConfig();
 
@@ -196,8 +198,16 @@ export const DetailsMap: React.FC<PropsType> = props => {
         {mapToDisplay !== 'default' && (
           <>
             <ViewPointHD {...mapToDisplay} />
-            {'type' in mapToDisplay.annotations && (
-              <AnnotationList contents={mapToDisplay.annotations.features} />
+            {'type' in mapToDisplay.annotations && annotationViewpointVisibility && (
+              <>
+                <ControlSection
+                  annotationViewpointVisibility={annotationViewpointVisibility}
+                  toggleAnnotationViewpointVisibility={toggleAnnotationViewpointVisibility}
+                />
+                {annotationViewpointVisibility === 'DISPLAYED' && (
+                  <AnnotationList contents={mapToDisplay.annotations.features} />
+                )}
+              </>
             )}
             <BackToMapButton displayMap={props.displayMap} setMapId={props.setMapId} />
           </>
