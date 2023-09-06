@@ -103,7 +103,8 @@
         "experiences": "Lieux de pratique",
         "signage": "Signalétiques",
         "infrastructure": "Aménagements",
-        "service": "Autres infos"
+        "service": "Autres infos",
+        "annotations": "Annotations"
       },
       "resetView": "Recentrer la carte"
     },
