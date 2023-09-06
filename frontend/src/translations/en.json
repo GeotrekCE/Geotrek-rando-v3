@@ -87,6 +87,8 @@
       "seeResult": "Display details",
       "seeMe": "View my position",
       "panel": {
+        "open": "Display layer selector",
+        "close": "Hide layer selector",
         "trekChildren": "Steps",
         "poi": "Heritage",
         "referencePoints": "Landmarks",

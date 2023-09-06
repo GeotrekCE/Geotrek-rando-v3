@@ -30,7 +30,8 @@ const Wrapper = styled.div`
   }
 `;
 
-export const ControlPanel: React.FC<ControlSectionProps> = ({
+export const ControlPanel: React.FC<ControlSectionProps & { id: string }> = ({
+  id,
   trekChildrenVisibility,
   toggleTrekChildrenVisibility,
   poiVisibility,
@@ -53,7 +54,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
   toggleInfrastructureVisibility,
 }) => {
   return (
-    <Wrapper>
+    <Wrapper id={id}>
       {trekChildrenVisibility && toggleTrekChildrenVisibility && (
         <Line
           Icon={IconLocation}
