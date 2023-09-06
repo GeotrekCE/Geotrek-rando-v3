@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.15.1+dev (XXXX-XX-XX)
+
+**✨ Improvements**
+
+- Improve the installation in development procedure in documentation
+
 ## 3.15.1 (2023-08-09)
 
 **🐛 Fixes**
