@@ -76,3 +76,7 @@
 .leaflet-container .leaflet-control-zoom {
   @apply order-first;
 }
+
+.leaflet-container:fullscreen #backToMapButton {
+	@apply hidden;
+}
