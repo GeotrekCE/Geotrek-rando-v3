@@ -54,7 +54,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
 }) => {
   return (
     <Wrapper>
-      {trekChildrenVisibility !== null && (
+      {trekChildrenVisibility && toggleTrekChildrenVisibility && (
         <Line
           Icon={IconLocation}
           active={trekChildrenVisibility === 'DISPLAYED'}
@@ -62,7 +62,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
           transKey="search.map.panel.trekChildren"
         />
       )}
-      {poiVisibility !== null && (
+      {poiVisibility && togglePoiVisibility && (
         <Line
           Icon={Florist}
           active={poiVisibility === 'DISPLAYED'}
@@ -70,7 +70,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
           transKey="search.map.panel.poi"
         />
       )}
-      {referencePointsVisibility !== null && (
+      {referencePointsVisibility && toggleReferencePointsVisibility && (
         <Line
           Icon={IconDrapeau}
           active={referencePointsVisibility === 'DISPLAYED'}
@@ -78,7 +78,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
           transKey="search.map.panel.referencePoints"
         />
       )}
-      {touristicContentVisibility !== null && (
+      {touristicContentVisibility && toggleTouristicContentVisibility && (
         <Line
           Icon={IconPatrimoine}
           active={touristicContentVisibility === 'DISPLAYED'}
@@ -86,7 +86,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
           transKey="search.map.panel.touristicContent"
         />
       )}
-      {informationDeskMobileVisibility !== null && (
+      {informationDeskMobileVisibility && toggleInformationDeskVisibility && (
         <Line
           Icon={IconInfo}
           active={informationDeskMobileVisibility === 'DISPLAYED'}
@@ -94,7 +94,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
           transKey="search.map.panel.informationDesks"
         />
       )}
-      {coursesVisibility !== null && (
+      {coursesVisibility && toggleCoursesVisibility && (
         <Line
           Icon={IconOutdoorRoute}
           active={coursesVisibility === 'DISPLAYED'}
@@ -102,7 +102,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
           transKey="search.map.panel.courses"
         />
       )}
-      {experiencesVisibility !== null && (
+      {experiencesVisibility && toggleExperiencesVisibility && (
         <Line
           Icon={IconOutdoorSite}
           active={experiencesVisibility === 'DISPLAYED'}
@@ -110,7 +110,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
           transKey="search.map.panel.experiences"
         />
       )}
-      {signageVisibility !== null && (
+      {signageVisibility && toggleSignageVisibility && (
         <Line
           Icon={Signage}
           active={signageVisibility === 'DISPLAYED'}
@@ -118,7 +118,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
           transKey="search.map.panel.signage"
         />
       )}
-      {infrastructureVisibility !== null && (
+      {infrastructureVisibility && toggleInfrastructureVisibility && (
         <Line
           Icon={Infrastructure}
           active={infrastructureVisibility === 'DISPLAYED'}
@@ -126,7 +126,7 @@ export const ControlPanel: React.FC<ControlSectionProps> = ({
           transKey="search.map.panel.infrastructure"
         />
       )}
-      {serviceVisibility !== null && (
+      {serviceVisibility && toggleServiceVisibility && (
         <Line
           Icon={MapPin}
           active={serviceVisibility === 'DISPLAYED'}
