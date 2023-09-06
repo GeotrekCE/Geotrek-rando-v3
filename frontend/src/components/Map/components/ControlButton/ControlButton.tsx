@@ -1,26 +1,26 @@
+import { FormattedMessage } from 'react-intl';
+import { cn } from 'services/utils/cn';
+
 interface ControlButtonProps {
   icon: React.ReactNode;
   className?: string;
-  active?: boolean;
   onClick?: () => void;
 }
 
-export const ControlButton: React.FC<ControlButtonProps> = ({
-  icon,
-  className = '',
-  onClick,
-  active = false,
-}) => {
+export const ControlButton: React.FC<ControlButtonProps> = ({ icon, className = '', ...props }) => {
   return (
     <button
-      className={`h-10 w-10 rounded-lg shadow-md z-mapButton
-      ${active ? 'bg-primary1 text-white' : 'bg-white text-greyDarkColored'}
-      flex justify-center items-center mb-3
-      ${className}`}
-      onClick={onClick}
+      className={cn(
+        'h-10 w-10 rounded-lg shadow-md z-mapButton bg-white text-greyDarkColored flex justify-center items-center mb-3',
+        className,
+      )}
       type="button"
+      {...props}
     >
       {icon}
+      <span className="sr-only">
+        <FormattedMessage id={'search.map.panel.open'} />
+      </span>
     </button>
   );
 };

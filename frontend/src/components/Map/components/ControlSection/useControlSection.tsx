@@ -4,11 +4,11 @@ export const useControlSection = () => {
   const [controlSectionState, setControlSectionState] = useState<'EXPANDED' | 'COLLAPSED'>(
     'COLLAPSED',
   );
-  const expandControlSection = () => setControlSectionState('EXPANDED');
-  const collapseControlSection = () => setControlSectionState('COLLAPSED');
+  const toggleControlSection = () =>
+    setControlSectionState(prevState => (prevState === 'COLLAPSED' ? 'EXPANDED' : 'COLLAPSED'));
+
   return {
     controlSectionState,
-    expandControlSection,
-    collapseControlSection,
+    toggleControlSection,
   };
 };

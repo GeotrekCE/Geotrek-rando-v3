@@ -87,6 +87,8 @@
       "seeResult": "Afficher le détail",
       "seeMe": "Voir ma position",
       "panel": {
+        "open": "Afficher le sélecteur de couches",
+        "close": "Masquer le sélecteur de couches",
         "trekChildren": "Étapes",
         "poi": "Patrimoines",
         "referencePoints": "Repères",
