@@ -84,6 +84,8 @@
       "seeResult": "Einzelheiten anzeigen",
       "seeMe": "Meinen Standpunkt sehen",
       "panel": {
+        "open": "Display layer selector",
+        "close": "Hide layer selector",
         "trekChildren": "Steps",
         "poi": "Heritage",
         "referencePoints": "Landmarken",

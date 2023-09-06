@@ -84,6 +84,8 @@
       "seeResult": "Mostrar el detalle",
       "seeMe": "Mostrar mi posición",
       "panel": {
+        "open": "Display layer selector",
+        "close": "Hide layer selector",
         "trekChildren": "Pasos",
         "poi": "Patrimonios",
         "referencePoints": "Puntos de referencia",
