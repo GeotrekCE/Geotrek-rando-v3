@@ -2,15 +2,16 @@
 
 ## 3.15.2 (2023-09-07)
 
-**✨ Improvements**
-
-- Improve the installation in development procedure in documentation (#964)
-
 **🐛 Fixes**
 
 - Fix colorization of the map filter button (#963)
 - Fix no wrapping chips (#962)
-- Fix card display bug in some Chrome environments (#961)
+- Don't load reservation widget if `reservation_id` is an empty string (#961)
+
+**📝 Documentation**
+
+- Improve the installation in development procedure (#964)
+- Mention cache refreshing when adding new contents (#958)
 
 ## 3.15.1 (2023-08-09)
 
