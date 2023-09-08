@@ -10,10 +10,10 @@
   },
   "home": {
     "title": "Geotrek-Wanderung",
-    "Beschreibung": "Entdecken Sie die Wanderungen des Bezirks mit Geotrek-Rando",
+    "description": "Entdecken Sie die Wanderungen des Bezirks mit Geotrek-Rando",
     "selectPlaceholder": "Eine Aktivität auswählen",
     "seeMore": "Mehr anzeigen",
-    "Willkommenstext": "Der digitale und lokale Ökoguide, der meine Entdeckungen in der Region präsentiert !",
+    "welcome-text": "Der digitale und lokale Ökoguide, der meine Entdeckungen in der Region präsentiert !",
     "mailTo": "E-Mail senden",
     "walking": "Wanderung",
     "territoryTreks": "Wanderungen, die es zu entdecken gilt",
