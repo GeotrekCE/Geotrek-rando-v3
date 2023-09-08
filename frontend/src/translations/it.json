@@ -77,7 +77,8 @@
       "structures": "Struttura",
       "clearAll": "Cancellare tutto",
       "filters": "Filtri",
-      "labels": "Altri"
+      "labels": "Altri",
+      "organizer": "Organizzatore"
     },
     "textFilter": "Ricerca...",
     "beginDateFilter": "Data di inizio",

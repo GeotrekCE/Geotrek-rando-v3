@@ -35,12 +35,14 @@ import {
   EVENT_ID,
   LABEL_EXCLUDE_ID,
   LABEL_ID,
+  ORGANIZER_ID,
   OUTDOOR_ID,
   PRACTICE_ID,
   ROUTE_ID,
   STRUCTURE_ID,
   THEME_ID,
 } from './constant';
+import { getOrganizerFilter } from './organizer/connector';
 
 const adaptFilterConfigWithOptionsToFilter = (
   filterConfigWithOptions: FilterConfigWithOptions,
@@ -85,6 +87,8 @@ const getFilterOptions = async (
     case LABEL_ID:
     case LABEL_EXCLUDE_ID:
       return getLabelsFilter(language, withExclude);
+    case ORGANIZER_ID:
+      return getOrganizerFilter(language);
     default:
       return null;
   }
@@ -218,9 +222,8 @@ const getOutdoorRatingFiltersState = ({
   return result;
 };
 
-const getEventsFiltersState = (): FilterState[] => {
+const getEventsFiltersState = (organizerEvent: FilterWithoutType | null): FilterState[] => {
   const result: FilterState[] = [];
-
   result.push({
     id: DATE_FILTER,
     category: 'event',
@@ -229,6 +232,17 @@ const getEventsFiltersState = (): FilterState[] => {
     options: [],
     selectedOptions: [],
   });
+
+  if (organizerEvent !== null) {
+    result.push({
+      id: ORGANIZER_ID,
+      category: 'event',
+      label: 'search.filters.organizer',
+      type: 'MULTIPLE',
+      options: organizerEvent.options,
+      selectedOptions: [],
+    });
+  }
 
   return result;
 };
@@ -241,6 +255,7 @@ export const computeFiltersToDisplay = ({
   outdoorRatingMapping,
   outdoorRatingScale,
   outdoorPractice,
+  organizerEvent,
 }: {
   initialFiltersState: FilterState[];
   currentFiltersState: FilterState[];
@@ -249,6 +264,7 @@ export const computeFiltersToDisplay = ({
   outdoorRatingMapping: OutdoorRatingMapping;
   outdoorRatingScale: OutdoorRatingScale[];
   outdoorPractice: OutdoorPracticeChoices;
+  organizerEvent: FilterWithoutType | null;
 }): FilterState[] => {
   const trekPracticeFilter = currentFiltersState.find(i => i.id === PRACTICE_ID);
   const touristicContentFilter = currentFiltersState.find(i => i.id === CATEGORY_ID);
@@ -296,7 +312,7 @@ export const computeFiltersToDisplay = ({
   // Event filters
   if (currentNumberOfEventsOptionsSelected > 0 || selectedFilterId === EVENT_ID) {
     eventFilter?.selectedOptions.forEach(() => {
-      filtersToAdd.push(getEventsFiltersState());
+      filtersToAdd.push(getEventsFiltersState(organizerEvent));
     });
   }
 
@@ -319,6 +335,7 @@ const getInitialFiltersStateWithRelevantFilters = ({
   outdoorRatingMapping,
   outdoorRatingScale,
   outdoorPractice,
+  organizerEvent,
 }: {
   initialFiltersState: FilterState[];
   initialOptions: { [filterId: string]: string[] | undefined };
@@ -326,6 +343,7 @@ const getInitialFiltersStateWithRelevantFilters = ({
   outdoorRatingMapping: OutdoorRatingMapping;
   outdoorRatingScale: OutdoorRatingScale[];
   outdoorPractice: OutdoorPracticeChoices;
+  organizerEvent: FilterWithoutType | null;
 }): FilterState[] => {
   const initialStateWithOnlyCommon = initialFiltersState.filter(({ id }) =>
     commonFilters.includes(id),
@@ -366,7 +384,7 @@ const getInitialFiltersStateWithRelevantFilters = ({
   }
 
   if (Number(events?.length) > 0) {
-    result.push(...getEventsFiltersState());
+    result.push(...getEventsFiltersState(organizerEvent));
   }
 
   return result;
@@ -390,6 +408,7 @@ export const getInitialFiltersStateWithSelectedOptions = ({
   outdoorRatingMapping,
   outdoorRatingScale,
   outdoorPractice,
+  organizerEvent,
 }: {
   initialFiltersState: FilterState[];
   initialOptions: ParsedUrlQuery;
@@ -397,6 +416,7 @@ export const getInitialFiltersStateWithSelectedOptions = ({
   outdoorRatingMapping: OutdoorRatingMapping;
   outdoorRatingScale: OutdoorRatingScale[];
   outdoorPractice: OutdoorPracticeChoices;
+  organizerEvent: FilterWithoutType | null;
 }): FilterState[] => {
   const sanitizedInitialOptions = sanitizeInitialOptions(initialOptions);
   const initialFiltersStateWithRelevantFilters = getInitialFiltersStateWithRelevantFilters({
@@ -406,6 +426,7 @@ export const getInitialFiltersStateWithSelectedOptions = ({
     outdoorRatingMapping,
     outdoorRatingScale,
     outdoorPractice,
+    organizerEvent,
   });
   return initialFiltersStateWithRelevantFilters.reduce<FilterState[]>(
     (initialStateWithSelectedOptions, currentFilterState) => {

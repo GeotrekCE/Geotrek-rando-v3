@@ -1,5 +1,5 @@
 import { getInitialFilters } from 'modules/filters/connector';
-import { FilterState, Option } from 'modules/filters/interface';
+import { FilterState, FilterWithoutType, Option } from 'modules/filters/interface';
 import {
   commonFilters,
   computeFiltersToDisplay,
@@ -10,9 +10,9 @@ import { TouristicContentCategoryMapping } from 'modules/touristicContentCategor
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { OutdoorPracticeChoices } from '../../../../modules/outdoorPractice/interface';
-import { OutdoorRatingMapping } from '../../../../modules/outdoorRating/interface';
-import { OutdoorRatingScale } from '../../../../modules/outdoorRatingScale/interface';
+import { OutdoorPracticeChoices } from 'modules/outdoorPractice/interface';
+import { OutdoorRatingMapping } from 'modules/outdoorRating/interface';
+import { OutdoorRatingScale } from 'modules/outdoorRatingScale/interface';
 
 export const useFilter = () => {
   const language = useRouter().locale ?? getDefaultLanguage();
@@ -26,12 +26,14 @@ export const useFilter = () => {
       outdoorRatingScale: OutdoorRatingScale[];
       outdoorPractice: OutdoorPracticeChoices;
       initialFiltersStateWithSelectedOptions: FilterState[];
+      organizerEvent: FilterWithoutType | null;
     },
     Error
   >(['initialFilterState', language], () => getInitialFilters(language, initialOptions));
 
   const initialFiltersState = data ? data.initialFiltersState : [];
   const touristicContentCategoryMapping = data ? data.touristicContentCategoryMapping : {};
+  const organizerEvent = data?.organizerEvent ?? null;
 
   const outdoorRatingMapping = data ? data.outdoorRatingMapping : {};
   const outdoorRatingScale = data ? data.outdoorRatingScale : [];
@@ -75,6 +77,7 @@ export const useFilter = () => {
         outdoorRatingMapping,
         outdoorRatingScale,
         outdoorPractice,
+        organizerEvent,
       });
     });
   };
