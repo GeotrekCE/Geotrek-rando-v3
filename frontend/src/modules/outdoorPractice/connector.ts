@@ -5,9 +5,9 @@ import { fetchOutdoorPractices } from './api';
 import { OutdoorPracticeChoices } from './interface';
 
 export const getOutdoorPractices = async (language: string): Promise<OutdoorPracticeChoices> => {
-  const [rawOutdoorPracticesResult] = await Promise.all([
-    getGlobalConfig().enableOutdoor ? fetchOutdoorPractices({ language }) : null,
-  ]);
+  const rawOutdoorPracticesResult = getGlobalConfig().enableOutdoor
+    ? await fetchOutdoorPractices({ language })
+    : null;
 
   return adaptOutdoorPractices({
     rawOutdoorPractices: rawOutdoorPracticesResult ? rawOutdoorPracticesResult.results : [],
