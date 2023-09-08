@@ -74,7 +74,8 @@
       "structures": "Struktur",
       "clearAll": "Alles löschen",
       "filters": "Filter",
-      "labels": "Andere"
+      "labels": "Andere",
+      "organizer": "Veranstalter"
     },
     "textFilter": "Suchen...",
     "beginDateFilter": "Startdatum",

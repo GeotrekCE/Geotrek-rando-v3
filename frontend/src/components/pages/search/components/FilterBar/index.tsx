@@ -13,6 +13,7 @@ import {
   DATE_FILTER,
   DISTRICT_ID,
   EVENT_ID,
+  ORGANIZER_ID,
   OUTDOOR_ID,
   PRACTICE_ID,
   STRUCTURE_ID,
@@ -88,7 +89,7 @@ export const FILTERS_CATEGORIES: FilterCategory[] = [
     id: EVENT_ID,
     name: <FormattedMessage id={'search.filters.event'} />,
     filters: [EVENT_ID],
-    subFilters: [DATE_FILTER],
+    subFilters: [DATE_FILTER, ORGANIZER_ID],
   },
   {
     id: THEME_ID,
