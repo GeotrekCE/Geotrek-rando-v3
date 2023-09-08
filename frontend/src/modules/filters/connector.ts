@@ -7,8 +7,9 @@ import { ParsedUrlQuery } from 'querystring';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { getOutdoorRatingHashMap } from '../outdoorRating/connector';
 import { getOutdoorRatingScale } from '../outdoorRatingScale/connector';
-import { FilterState } from './interface';
+import { FilterState, FilterWithoutType } from './interface';
 import { getFiltersState, getInitialFiltersStateWithSelectedOptions } from './utils';
+import { getOrganizerFilter } from './organizer/connector';
 
 export const getInitialFilters = async (
   language: string,
@@ -20,12 +21,14 @@ export const getInitialFilters = async (
   outdoorRatingScale: OutdoorRatingScale[];
   outdoorPractice: OutdoorPracticeChoices;
   initialFiltersStateWithSelectedOptions: FilterState[];
+  organizerEvent: FilterWithoutType | null;
 }> => {
   const initialFiltersState = await getFiltersState(language);
   const touristicContentCategoryMapping = await getTouristicContentCategoryHashMap(language);
   const outdoorRatingMapping = await getOutdoorRatingHashMap(language);
   const outdoorRatingScale = await getOutdoorRatingScale(language);
   const outdoorPractice = await getOutdoorPractices(language);
+  const organizerEvent = await getOrganizerFilter(language);
 
   const initialFiltersStateWithSelectedOptions = getInitialFiltersStateWithSelectedOptions({
     initialFiltersState,
@@ -34,6 +37,7 @@ export const getInitialFilters = async (
     outdoorRatingMapping,
     outdoorRatingScale,
     outdoorPractice,
+    organizerEvent,
   });
 
   return {
@@ -43,5 +47,6 @@ export const getInitialFilters = async (
     outdoorRatingScale,
     outdoorPractice,
     initialFiltersStateWithSelectedOptions,
+    organizerEvent,
   };
 };

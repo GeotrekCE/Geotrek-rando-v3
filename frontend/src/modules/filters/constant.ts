@@ -11,3 +11,4 @@ export const ROUTE_ID = 'routes';
 export const LABEL_ID = 'labels';
 export const LABEL_EXCLUDE_ID = 'labels_exclude';
 export const DATE_FILTER = 'date-filter';
+export const ORGANIZER_ID = 'organizer';
