@@ -1,5 +1,6 @@
 import { Attachment, Coordinate3D, RawAttachment, RawPointGeometry3D } from 'modules/interface';
 import { PoiType } from 'modules/poiType/interface';
+import { RawViewPoint, ViewPoint } from 'modules/viewPoint/interface';
 
 export interface RawPoi {
   id: number;
@@ -8,6 +9,7 @@ export interface RawPoi {
   type: number;
   attachments: RawAttachment[];
   geometry: RawPointGeometry3D;
+  view_points: RawViewPoint[];
 }
 
 export interface Poi {
@@ -18,4 +20,5 @@ export interface Poi {
   attachments: Attachment[];
   type: PoiType;
   geometry: Coordinate3D;
+  viewPoints: ViewPoint[];
 }

@@ -45,6 +45,7 @@ export const mockPois = (): PoisResponse => ({
         type: 'Point',
         coordinates: [6.2061167, 44.8985958, 1787],
       },
+      view_points: [],
     },
     {
       description: 'Test refuge',
@@ -56,6 +57,7 @@ export const mockPois = (): PoisResponse => ({
         type: 'Point',
         coordinates: [6.1667321, 44.7604322, 2409],
       },
+      view_points: [],
     },
   ],
 });
@@ -66,7 +68,7 @@ export const mockPoiRoute = (times: number, trekId: number): void =>
     mockData: mockPois(),
     additionalQueries: {
       near_trek: trekId,
-      fields: 'id,name,description,attachments,type,geometry',
+      fields: 'id,name,description,attachments,type,geometry,view_points',
       page_size: getGlobalConfig().maxPoiPerPage,
     },
     times,
