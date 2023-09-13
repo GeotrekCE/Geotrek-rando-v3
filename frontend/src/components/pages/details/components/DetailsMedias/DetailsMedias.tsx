@@ -1,19 +1,29 @@
 import ImageWithLegend from 'components/ImageWithLegend';
 import ArrowRight from 'components/Map/components/DetailsMapDrawer/ArrowRight';
 import { ViewPoint } from 'modules/viewPoint/interface';
-import { useCallback } from 'react';
+import { useCallback, useId, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { cn } from 'services/utils/cn';
+import { Minus } from 'components/Icons/Minus';
+import { Plus } from 'components/Icons/Plus';
 
 interface DetailsMediasProps {
+  className?: string;
   viewPoints: ViewPoint[];
   handleViewPointClick: (key: string) => void;
+  asAccordion?: boolean;
+  titleTag?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
 export const DetailsMedias: React.FC<DetailsMediasProps> = ({
+  className,
   viewPoints,
   handleViewPointClick,
+  asAccordion = false,
+  titleTag: TitleTag = 'h2',
 }) => {
+  const SubTitleTag = TitleTag === 'h2' ? 'h3' : 'h4';
+
   const handleClick = useCallback(
     (viewPointId: string) => {
       handleViewPointClick(viewPointId);
@@ -21,12 +31,55 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
     [handleViewPointClick],
   );
 
+  const id = useId();
+  const [isOpen, setOpen] = useState(true);
+
+  if (viewPoints.length === 0) {
+    return null;
+  }
+
   return (
-    <div>
-      <h2 className="text-Mobile-H1 desktop:text-H2 font-bold">
+    <div className={className}>
+      <TitleTag
+        className={cn(
+          'relative flex items-center justify-start gap-1 font-bold',
+          TitleTag === 'h2' ? 'text-Mobile-H1 desktop:text-H2' : 'text-Mobile-C1 desktop:text-H4',
+        )}
+      >
         <FormattedMessage id="viewPoint.title" />
-      </h2>
-      <ul className="flex desktop:flex-col gap-4 text-Mobile-C1 desktop:text-P1 mt-4 desktop:mt-8 pb-5 desktop:pb-0 overflow-x-auto desktop:overflow-x-hidden overflow-y-hidden desktop:overflow-y-auto scroll-smooth snap-x">
+        {asAccordion && (
+          <button
+            type="button"
+            aria-expanded={isOpen ? 'true' : 'false'}
+            aria-controls={id}
+            className="flex gap-1 items-center text-base before:content-[''] before:absolute before:inset-0"
+            onClick={() => setOpen(prevOpen => !prevOpen)}
+          >
+            {isOpen ? (
+              <>
+                <span className="sr-only">
+                  <FormattedMessage id="accordion.close" />
+                </span>
+                <Minus size={24} />
+              </>
+            ) : (
+              <>
+                <span className="sr-only">
+                  <FormattedMessage id="accordion.open" />
+                </span>
+                <Plus size={24} />
+              </>
+            )}
+          </button>
+        )}
+      </TitleTag>
+      <ul
+        id={id}
+        className={cn(
+          'flex desktop:flex-col gap-4 text-Mobile-C1 desktop:text-P1 mt-4 desktop:mt-8 pb-5 desktop:pb-0 overflow-x-auto desktop:overflow-x-hidden overflow-y-hidden desktop:overflow-y-auto scroll-smooth snap-x',
+          !isOpen && 'hidden',
+        )}
+      >
         {viewPoints.map(viewPoint => {
           const legend = [viewPoint.legend, viewPoint.author].filter(Boolean).join(' - ');
           return (
@@ -45,9 +98,9 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
               </div>
               <div className="desktop:flex flex-col items-start w-full p-4 desktop:p-6">
                 <div className="grow">
-                  <h3 className="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold">
+                  <SubTitleTag className="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold">
                     {viewPoint.title}
-                  </h3>
+                  </SubTitleTag>
                   {legend.length > 0 && (
                     <p className="mt-4 text-greyDarkColored text-sm">
                       <FormattedMessage id="viewPoint.credit" /> {legend}

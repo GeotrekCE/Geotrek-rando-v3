@@ -289,6 +289,10 @@
     "courseType": "Tipo de gara",
     "network": "Rete"
   },
+  "accordion": {
+    "open": "Open",
+    "close": "Close"
+  },
   "consents": {
     "modal": {
       "purposes": {
