@@ -279,6 +279,10 @@
     "courseType": "Art des Rennens",
     "network": "Netzwerk"
   },
+  "accordion": {
+    "open": "Open",
+    "close": "Close"
+  },
   "consents": {
     "modal": {
       "purposes": {
