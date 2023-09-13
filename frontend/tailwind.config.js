@@ -45,6 +45,7 @@ module.exports = {
       30: `${SPACING_UNIT * 30}px`,
       40: `${SPACING_UNIT * 40}px`,
       50: `${SPACING_UNIT * 50}px`,
+      55: `${SPACING_UNIT * 55}px`,
       60: `${SPACING_UNIT * 60}px`,
       70: `${SPACING_UNIT * 70}px`,
       90: `${SPACING_UNIT * 90}px`,
