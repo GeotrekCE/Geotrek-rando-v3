@@ -271,6 +271,12 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               iconName: poi.type.label,
                             }))}
                             type="POI"
+                            medias={{
+                              viewPoints: {
+                                data: details.pois.flatMap(({ viewPoints }) => viewPoints),
+                                handleViewPointClick,
+                              },
+                            }}
                           />
                         </section>
                       );
@@ -687,7 +693,10 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                     id: `DETAILS-SERVICE-${service.id}`,
                   }))}
                   infrastructure={details.infrastructure}
-                  viewPoints={details.viewPoints}
+                  viewPoints={[
+                    ...details.viewPoints,
+                    ...details.pois.flatMap(({ viewPoints }) => viewPoints).filter(Boolean),
+                  ]}
                   displayMap={displayMobileMap}
                   setMapId={setMapId}
                 />

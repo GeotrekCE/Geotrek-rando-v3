@@ -2,6 +2,7 @@ import getActivityColor from 'components/pages/search/components/ResultCard/getA
 import { Separator } from 'components/Separator';
 import styled from 'styled-components';
 import { MAX_WIDTH_MOBILE, scrollBar, sizes } from 'stylesheet';
+import { ViewPoint } from 'modules/viewPoint/interface';
 import { marginDetailsChild } from '../../Details';
 import { DetailsCard, DetailsCardProps } from '../DetailsCard/DetailsCard';
 
@@ -12,6 +13,12 @@ interface DetailsCardSectionProps {
   generateUrlFunction?: (id: string | number, title: string) => string;
   type: 'POI' | 'TOURISTIC_CONTENT';
   htmlId?: string;
+  medias?: {
+    viewPoints: {
+      data: ViewPoint[];
+      handleViewPointClick: (id: string) => void;
+    };
+  };
 }
 
 export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
@@ -21,6 +28,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
   displayBadge = false,
   generateUrlFunction,
   type,
+  medias,
 }) => {
   return (
     <div id={htmlId} className="pt-6 desktop:pt-12 scroll-mt-20 desktop:scroll-mt-30">
@@ -58,6 +66,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
                 : undefined
             }
             type={type}
+            medias={medias}
           />
         ))}
       </ScrollContainer>

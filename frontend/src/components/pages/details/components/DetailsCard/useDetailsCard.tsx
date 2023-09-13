@@ -2,63 +2,48 @@ import debounce from 'debounce';
 import useIsomorphicLayoutEffect from 'hooks/useIsomorphicLayoutEffect';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-const DETAILS_CARD_DEFAULT_HEIGHT = 200;
+const DETAILS_CARD_DEFAULT_HEIGHT = 220;
 
-export const useDetailsCard = () => {
+export const useDetailsCard = (hasMedia = false) => {
   const detailsCardRef = useRef<HTMLDivElement>(null);
-  const [heightState, setHeightState] = useState(DETAILS_CARD_DEFAULT_HEIGHT);
-  const [truncateState, setTruncateState] = useState<'NONE' | 'TRUNCATE' | 'FULL'>(
-    () => 'TRUNCATE',
-  );
+  const [truncateState, setTruncateState] = useState<'NONE' | 'TRUNCATE' | 'FULL'>('TRUNCATE');
 
   const toggleTruncateState = () =>
     setTruncateState(currentTruncateState =>
       currentTruncateState === 'TRUNCATE' ? 'FULL' : 'TRUNCATE',
     );
-  useEffect(() => {
-    if (truncateState === 'TRUNCATE') {
-      setHeightState(DETAILS_CARD_DEFAULT_HEIGHT);
-    } else {
-      const newHeight = detailsCardRef.current?.getBoundingClientRect().height;
-      if (newHeight !== undefined) {
-        setHeightState(Math.max(DETAILS_CARD_DEFAULT_HEIGHT, newHeight));
-      }
-    }
-  }, [truncateState, setHeightState]);
 
   useEffect(() => {
-    if (
-      detailsCardRef.current &&
-      detailsCardRef.current.querySelector<HTMLElement>('.line-clamp-2')?.offsetHeight ===
-        detailsCardRef.current.querySelector<HTMLElement>('.line-clamp-2')?.scrollHeight
-    ) {
+    const descriptionNode = detailsCardRef.current?.querySelector<HTMLElement>('.line-clamp-2');
+    if (descriptionNode?.offsetHeight === descriptionNode?.scrollHeight && !hasMedia) {
       setTruncateState('NONE');
     }
-  }, []);
+  }, [hasMedia]);
 
   const handleResize = useCallback(
     debounce(
       () => {
         setTruncateState(prevState => {
-          if (detailsCardRef.current === null) {
+          if (detailsCardRef.current === null || hasMedia) {
             return prevState;
           }
+          const descriptionNode =
+            detailsCardRef.current.querySelector<HTMLElement>('.line-clamp-2');
+
           if (
             prevState === 'TRUNCATE' &&
-            detailsCardRef.current.querySelector<HTMLElement>('.line-clamp-2')?.offsetHeight ===
-              detailsCardRef.current.querySelector<HTMLElement>('.line-clamp-2')?.scrollHeight
+            (!descriptionNode || descriptionNode.offsetHeight <= descriptionNode.scrollHeight)
           ) {
             return 'NONE';
           } else if (
             prevState === 'FULL' &&
-            heightState >= detailsCardRef.current?.getBoundingClientRect().height
+            DETAILS_CARD_DEFAULT_HEIGHT >= detailsCardRef.current.getBoundingClientRect().height
           ) {
             return 'NONE';
           } else if (
-            (prevState === 'NONE' || prevState === 'FULL') &&
-            heightState < detailsCardRef.current?.getBoundingClientRect().height
+            prevState !== 'TRUNCATE' &&
+            DETAILS_CARD_DEFAULT_HEIGHT < detailsCardRef.current.getBoundingClientRect().height
           ) {
-            setHeightState(DETAILS_CARD_DEFAULT_HEIGHT);
             return 'TRUNCATE';
           }
           return prevState;
@@ -67,7 +52,7 @@ export const useDetailsCard = () => {
       1000,
       false,
     ),
-    [setTruncateState, setHeightState, detailsCardRef],
+    [setTruncateState, detailsCardRef],
   );
 
   useIsomorphicLayoutEffect(() => {
@@ -77,5 +62,5 @@ export const useDetailsCard = () => {
     };
   }, []);
 
-  return { truncateState, toggleTruncateState, heightState, detailsCardRef };
+  return { truncateState, toggleTruncateState, detailsCardRef };
 };
