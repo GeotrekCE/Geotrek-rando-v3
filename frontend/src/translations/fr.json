@@ -325,6 +325,10 @@
     "courseType": "Type de parcours",
     "network": "Réseau"
   },
+  "accordion": {
+    "open": "Ouvrir",
+    "close": "Fermer"
+  },
   "consents": {
     "modal": {
       "purposes": {

@@ -279,6 +279,10 @@
     "courseType": "Tipus de cursa",
     "network": "Xarxa"
   },
+  "accordion": {
+    "open": "Open",
+    "close": "Close"
+  },
   "consents": {
     "modal": {
       "purposes": {

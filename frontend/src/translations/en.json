@@ -325,6 +325,10 @@
     "courseType": "Course type",
     "network": "Network"
   },
+  "accordion": {
+    "open": "Open",
+    "close": "Close"
+  },
   "consents": {
     "modal": {
       "purposes": {

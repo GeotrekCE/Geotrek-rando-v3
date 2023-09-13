@@ -279,6 +279,10 @@
     "courseType": "Tipo de carrera",
     "network": "La red"
   },
+  "accordion": {
+    "open": "Open",
+    "close": "Close"
+  },
   "consents": {
     "modal": {
       "purposes": {
