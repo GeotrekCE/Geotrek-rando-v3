@@ -1,4 +1,5 @@
 import { Offline } from 'modules/offline/interface';
+import { ControlSaveTiles } from 'leaflet.offline';
 import { Details } from '../../modules/details/interface';
 import { OutdoorCourseDetails } from '../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../modules/outdoorSite/interface';
@@ -74,15 +75,15 @@ const CacheManager = {
     if (controlInstance?._saveTiles) await controlInstance._saveTiles();
   },
 
-  registerControlInstance: (control: any) => {
+  registerControlInstance: (control: ControlSaveTiles) => {
     controlInstance = control;
   },
 
-  registerStorageSize: (storage: any) => {
+  registerStorageSize: (storage: ControlSaveTiles) => {
     storageSize = storage;
   },
 
-  getStorageSize: (): any => {
+  getStorageSize: () => {
     return storageSize;
   },
 
