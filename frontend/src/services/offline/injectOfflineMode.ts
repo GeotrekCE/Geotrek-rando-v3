@@ -1,30 +1,32 @@
-import L, { LatLngBoundsExpression, Map } from 'leaflet';
+import L, { LatLngBoundsExpression, Layer, Map } from 'leaflet';
 import CacheManager from 'services/offline/CacheManager';
 import { getMapConfig } from 'components/Map/config';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const LeafletOffline = require('leaflet.offline');
+
+import {
+  ControlSaveTiles,
+  getStorageInfo,
+  getStoredTilesAsJson,
+  savetiles as Lsavetiles,
+  tileLayerOffline as LtileLayerOffline,
+} from 'leaflet.offline';
 
 const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression) => {
   const mapConfig = getMapConfig();
 
   const { mapOfflineLayer, mapClassicLayers, zoomAvailableOffline } = mapConfig;
 
-  const tileLayerOffline = L.tileLayer
-    // @ts-ignore no type available in this plugin
-    .offline(`${mapOfflineLayer.url}?${id}`, {
-      attribution: mapOfflineLayer?.options?.attribution,
-      subdomains: 'abc',
-      minZoom: Math.min(...(zoomAvailableOffline ?? [])),
-    })
-    .addTo(map);
+  const tileLayerOffline = LtileLayerOffline(`${mapOfflineLayer.url}?${id}`, {
+    attribution: mapOfflineLayer?.options?.attribution,
+    subdomains: 'abc',
+    minZoom: Math.min(...(zoomAvailableOffline ?? [])),
+  }).addTo(map);
 
-  // @ts-ignore no type available in this plugin
-  const controlInstance = L.control.savetiles(tileLayerOffline, {
+  const controlInstance: ControlSaveTiles = Lsavetiles(tileLayerOffline, {
     zoomlevels: mapConfig.zoomAvailableOffline,
-    confirm(layer: any, successCallback: () => void) {
+    confirm(_layer: Layer, successCallback: () => void) {
       successCallback();
     },
-    confirmRemoval(layer: any, successCallback: () => void) {
+    confirmRemoval(_layer: Layer, successCallback: () => void) {
       successCallback();
     },
     saveText: '',
@@ -36,12 +38,10 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
   let storageLayer: any;
 
   const getGeoJsonData = () =>
-    LeafletOffline.getStorageInfo(mapOfflineLayer.url).then((data: any) =>
-      LeafletOffline.getStoredTilesAsJson(tileLayerOffline, data),
-    );
+    getStorageInfo(mapOfflineLayer.url).then(data => getStoredTilesAsJson(tileLayerOffline, data));
 
   const addStorageLayer = () => {
-    getGeoJsonData().then((geojson: any) => {
+    void getGeoJsonData().then(geojson => {
       storageLayer = L.geoJSON(geojson).bindPopup(
         (clickedLayer: any) => clickedLayer.feature.properties.key,
       );
@@ -50,29 +50,16 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
 
   addStorageLayer();
 
-  tileLayerOffline.on('storagesize', (e: any) => {
-    CacheManager.registerStorageSize(e.storagesize);
+  tileLayerOffline.on('storagesize', (event: any) => {
+    CacheManager.registerStorageSize(event.storagesize);
 
     if (storageLayer) {
       storageLayer.clearLayers();
-      getGeoJsonData().then((data: any) => {
+      void getGeoJsonData().then(data => {
         storageLayer.addData(data);
       });
     }
   });
-
-  // events while saving a tile layer
-  /*let progress: number;
-  tileLayerOffline.on('savestart', (e: any) => {
-    progress = 0;
-    // @ts-ignore no-underscore-dangle
-    document.getElementById('total').innerHTML = e._tilesforSave.length;
-  });
-  tileLayerOffline.on('savetileend', () => {
-    progress += 1;
-    // @ts-ignore
-    document.getElementById('progress').innerHTML = progress;
-  });*/
 
   const recenter = () => {
     const minZoom = Math.min(...(zoomAvailableOffline ?? []));
@@ -80,10 +67,12 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
     map.fitBounds(center);
   };
 
+  // @ts-ignore add method to access in the cache manager
   controlInstance.recenter = recenter;
 
   CacheManager.registerControlInstance(controlInstance);
 
+  // @ts-ignore add method to access in the cache manager
   if (tileLayerOffline.url !== mapClassicLayers[0].url && navigator.onLine) {
     map.removeLayer(tileLayerOffline);
   }
