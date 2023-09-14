@@ -6510,15 +6510,15 @@ iconv-lite@0.6.3:
   dependencies:
     safer-buffer ">= 2.1.2 < 3.0.0"
 
-idb@^6.1.4:
-  version "6.1.5"
-  resolved "https://registry.yarnpkg.com/idb/-/idb-6.1.5.tgz#dbc53e7adf1ac7c59f9b2bf56e00b4ea4fce8c7b"
-  integrity sha512-IJtugpKkiVXQn5Y+LteyBCNk1N8xpGV3wWZk9EVtZWH8DYkjBn0bX1XnGP9RkyZF0sAcywa6unHqSWKe7q4LGw==
-
 idb@^7.0.1:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/idb/-/idb-7.1.0.tgz#2cc886be57738419e57f9aab58f647e5e2160270"
   integrity sha512-Wsk07aAxDsntgYJY4h0knZJuTxM73eQ4reRAO+Z1liOh8eMCJ/MoDS8fCui1vGT9mnjtl1sOu3I2i/W1swPYZg==
+
+idb@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/idb/-/idb-7.1.1.tgz#d910ded866d32c7ced9befc5bfdf36f572ced72b"
+  integrity sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==
 
 ignore@^4.0.6:
   version "4.0.6"
@@ -7843,12 +7843,13 @@ leaflet.markercluster@^1.4.1:
   resolved "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.4.1.tgz#b53f2c4f2ca7306ddab1dbb6f1861d5e8aa6c5e5"
   integrity sha512-ZSEpE/EFApR0bJ1w/dUGwTSUvWlpalKqIzkaYdYB7jaftQA/Y2Jav+eT4CMtEYFj+ZK4mswP13Q2acnPBnhGOw==
 
-leaflet.offline@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/leaflet.offline/-/leaflet.offline-2.2.0.tgz#fce1975ed8871e363fb7d005035c9d51881384aa"
-  integrity sha512-gA/GdIBcCI0pr4HugQl2ImAVLxM+Gr27W8g3HK08jTHEP+hhfz+1hfjAxgGWfh+IWpM4XURgRSw2y05HrFAT3g==
+leaflet.offline@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/leaflet.offline/-/leaflet.offline-3.0.1.tgz#3e3eb21315f0f1a295df9dd88ff565c0fc687e40"
+  integrity sha512-sxGKa0j44bcdytU23bnPMkAPzfCo4mxA7oQeprLbIvkI1TsHO02askIRHPzWupeHA5IK0uUbyf52Ppi7KaRW1w==
   dependencies:
-    idb "^6.1.4"
+    idb "^7.1.1"
+    leaflet "^1.6.0"
 
 leaflet@^1.6.0, leaflet@^1.7.1:
   version "1.7.1"
