@@ -54,7 +54,7 @@
     "leaflet": "^1.7.1",
     "leaflet-boundary-canvas": "^1.0.0",
     "leaflet.locatecontrol": "0.74.0",
-    "leaflet.offline": "^2.2.0",
+    "leaflet.offline": "^3.0.1",
     "next": "^13.1.6",
     "next-compose-plugins": "^2.2.1",
     "next-pwa": "^5.6.0",
