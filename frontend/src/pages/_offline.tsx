@@ -1,50 +1,29 @@
-import { Button } from 'components/Button';
 import { NextPage } from 'next';
+import Link from 'next/link';
 import { FormattedMessage } from 'react-intl';
-import { routes } from 'services/routes';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  display: flex;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-
-  h1 {
-    font-weight: bold;
-    margin: 32px;
-    font-size: 200%;
-    padding-right: 32px;
-    border-right: 1px solid #000;
-  }
-`;
-
-const Spacer = styled.div`
-  height: 64px;
-`;
 
 const OfflineFallback: NextPage = () => {
   return (
     <>
-      <Spacer />
-
-      <Container>
-        <h1>
+      <div className="mt-16 flex h-full w-full items-center justify-center">
+        <h1 className="m-8 pr-8 text-3xl font-bold border-r border-solid border-black">
           <FormattedMessage id={'offline.title'} />
         </h1>
-        <div>
+        <p>
           <FormattedMessage id={'offline.not-available'} />
-        </div>
-      </Container>
+        </p>
+      </div>
 
-      <Spacer />
+      <hr className="h-16 border-0" />
 
-      <Container>
-        <Button onClick={() => window.open(routes.OFFLINE, '_self')}>
+      <div className="flex h-full w-full items-center justify-center">
+        <Link
+          className="py-3 px-4 border border-solid border-primary1 rounded-lg text-primary1 bg-white font-semibold transition transition-color hover:bg-primary2 focus:bg-primary2"
+          href="/offline"
+        >
           <FormattedMessage id={'page.goToOffline'} />
-        </Button>
-      </Container>
+        </Link>
+      </div>
     </>
   );
 };
