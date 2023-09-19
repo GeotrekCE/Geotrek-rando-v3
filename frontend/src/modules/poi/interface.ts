@@ -20,5 +20,5 @@ export interface Poi {
   attachments: Attachment[];
   type: PoiType;
   geometry: Coordinate3D;
-  viewPoints: ViewPoint[];
+  viewPoints?: ViewPoint[];
 }

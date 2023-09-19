@@ -27,15 +27,14 @@ export interface DetailsCardProps {
   className?: string;
   redirectionUrl?: string;
   type?: string;
-  medias?: {
-    viewPoints: {
-      data: ViewPoint[];
-      handleViewPointClick: (id: string) => void;
-    };
-  };
+  viewPoints?: ViewPoint[];
 }
 
-export const DetailsCard: React.FC<DetailsCardProps> = ({
+interface DetailsCardPropsWithHandleViewPointClick extends DetailsCardProps {
+  handleViewPointClick?: (id: string) => void;
+}
+
+export const DetailsCard: React.FC<DetailsCardPropsWithHandleViewPointClick> = ({
   id,
   name,
   description,
@@ -47,9 +46,10 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   className = '',
   redirectionUrl,
   type,
-  medias,
+  handleViewPointClick,
+  viewPoints,
 }) => {
-  const hasMedia = Boolean(medias?.viewPoints.data.length);
+  const hasMedia = Boolean(viewPoints?.length);
   const { truncateState, toggleTruncateState, detailsCardRef } = useDetailsCard(hasMedia);
   const descriptionStyled =
     truncateState === 'TRUNCATE' ? (
@@ -66,7 +66,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   return (
     <li
       className={cn(
-        `border border-solid border-greySoft rounded-card
+        `relative border border-solid border-greySoft rounded-card
   flex-none desktop:w-auto mx-1 desktop:mb-6
   hover:border-blackSemiTransparent transition-all duration-500`,
         className,
@@ -75,12 +75,11 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
       <div
         className={cn(
           `
-      overflow-hidden relative desktop:w-auto
+      overflow-hidden desktop:w-auto
       h-fit desktop:flex-row
       transition-all duration-500`,
-          truncateState !== 'NONE' ? 'desktop:h-auto' : 'desktop:h-55',
+          truncateState !== 'NONE' ? 'desktop:h-auto pb-6' : 'desktop:h-55',
           truncateState === 'TRUNCATE' && hasMedia && 'desktop:h-55',
-          className,
         )}
         onMouseEnter={() => {
           setHoveredCardId(id);
@@ -117,7 +116,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
             <CardIcon iconUri={iconUri} iconName={iconName} color={getActivityColor(type)} />
           </div>
         </div>
-        <div ref={detailsCardRef} className="p-2 desktop:p-6">
+        <div ref={detailsCardRef} className="p-2 pb-6 desktop:p-6">
           {place && (
             <OptionalLink redirectionUrl={redirectionUrl}>
               <p className="text-greyDarkColored">{place}</p>
@@ -129,36 +128,42 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           {Boolean(description) && (
             <>
               <OptionalLink redirectionUrl={redirectionUrl}>{descriptionStyled}</OptionalLink>
-              {medias && Number(medias.viewPoints.data.length) > 0 && truncateState !== 'TRUNCATE' && (
-                <div className="clear-both py-6">
+              {Number(viewPoints?.length) > 0 && truncateState !== 'TRUNCATE' && (
+                <div className="clear-both desktop:clear-none desktop:min-w-[420px] overflow-hidden py-6">
                   <DetailsMedias
-                    viewPoints={medias.viewPoints.data ?? []}
-                    handleViewPointClick={medias.viewPoints.handleViewPointClick}
+                    viewPoints={viewPoints ?? []}
+                    handleViewPointClick={handleViewPointClick}
                     titleTag="h3"
                     asAccordion
                   />
                 </div>
               )}
               {truncateState !== 'NONE' && (
-                <button
-                  className="flex float-right mb-2 desktop:mb-6 items-center text-primary1 underline shrink-0 gap-1"
-                  onClick={toggleTruncateState}
-                  type="button"
-                  aria-hidden
-                >
-                  <span className="shrink-0">
-                    <FormattedMessage
-                      id={truncateState === 'TRUNCATE' ? 'details.readMore' : 'details.readLess'}
+                <div className="flex justify-center absolute bottom-0 border-solid border-t border-greySoft left-0 right-0 py-2 w-full px-4 bg-white rounded-b-card">
+                  <button
+                    className="flex desktop:ml-auto items-center text-primary1 underline shrink-0 gap-1 self-end"
+                    onClick={toggleTruncateState}
+                    type="button"
+                    aria-hidden
+                  >
+                    <span className="shrink-0">
+                      <FormattedMessage
+                        id={
+                          truncateState === 'TRUNCATE'
+                            ? 'details.moreInformation'
+                            : 'details.lessInformation'
+                        }
+                      />
+                    </span>
+                    <Arrow
+                      size={20}
+                      className={cn(
+                        'shrink-0 transition',
+                        truncateState === 'TRUNCATE' ? 'rotate-90' : '-rotate-90',
+                      )}
                     />
-                  </span>
-                  <Arrow
-                    size={20}
-                    className={cn(
-                      'shrink-0 transition',
-                      truncateState === 'TRUNCATE' ? 'rotate-90' : '-rotate-90',
-                    )}
-                  />
-                </button>
+                  </button>
+                </div>
               )}
             </>
           )}

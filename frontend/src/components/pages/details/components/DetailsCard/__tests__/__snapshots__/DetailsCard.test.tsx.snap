@@ -6,10 +6,10 @@ Object {
   "baseElement": <body>
     <div>
       <li
-        class="border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
-          class="overflow-hidden relative desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+          class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
             class="float-left flex shrink-0 h-40 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
@@ -88,7 +88,7 @@ Object {
             </div>
           </div>
           <div
-            class="p-2 desktop:p-6"
+            class="p-2 pb-6 desktop:p-6"
           >
             <h3
               class="mb-1 text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
@@ -108,10 +108,10 @@ Object {
     </div>
     <div>
       <li
-        class="border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
-          class="overflow-hidden relative desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+          class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
             class="float-left flex shrink-0 h-40 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
@@ -311,7 +311,7 @@ Object {
             </div>
           </div>
           <div
-            class="p-2 desktop:p-6"
+            class="p-2 pb-6 desktop:p-6"
           >
             <h3
               class="mb-1 text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
@@ -332,10 +332,10 @@ Object {
   </body>,
   "container": <div>
     <li
-      class="border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+      class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
     >
       <div
-        class="overflow-hidden relative desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+        class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
       >
         <div
           class="float-left flex shrink-0 h-40 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
@@ -414,7 +414,7 @@ Object {
           </div>
         </div>
         <div
-          class="p-2 desktop:p-6"
+          class="p-2 pb-6 desktop:p-6"
         >
           <h3
             class="mb-1 text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
@@ -492,10 +492,10 @@ Object {
   "baseElement": <body>
     <div>
       <li
-        class="border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
-          class="overflow-hidden relative desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+          class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
             class="float-left flex shrink-0 h-40 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
@@ -574,7 +574,7 @@ Object {
             </div>
           </div>
           <div
-            class="p-2 desktop:p-6"
+            class="p-2 pb-6 desktop:p-6"
           >
             <h3
               class="mb-1 text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
@@ -594,10 +594,10 @@ Object {
     </div>
     <div>
       <li
-        class="border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
-          class="overflow-hidden relative desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+          class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
             class="float-left flex shrink-0 h-40 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
@@ -797,7 +797,7 @@ Object {
             </div>
           </div>
           <div
-            class="p-2 desktop:p-6"
+            class="p-2 pb-6 desktop:p-6"
           >
             <h3
               class="mb-1 text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
@@ -818,10 +818,10 @@ Object {
   </body>,
   "container": <div>
     <li
-      class="border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+      class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
     >
       <div
-        class="overflow-hidden relative desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+        class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
       >
         <div
           class="float-left flex shrink-0 h-40 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
@@ -1021,7 +1021,7 @@ Object {
           </div>
         </div>
         <div
-          class="p-2 desktop:p-6"
+          class="p-2 pb-6 desktop:p-6"
         >
           <h3
             class="mb-1 text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
