@@ -10,7 +10,7 @@ import { Plus } from 'components/Icons/Plus';
 interface DetailsMediasProps {
   className?: string;
   viewPoints: ViewPoint[];
-  handleViewPointClick: (key: string) => void;
+  handleViewPointClick?: (key: string) => void;
   asAccordion?: boolean;
   titleTag?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
@@ -26,7 +26,7 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
 
   const handleClick = useCallback(
     (viewPointId: string) => {
-      handleViewPointClick(viewPointId);
+      handleViewPointClick?.(viewPointId);
     },
     [handleViewPointClick],
   );

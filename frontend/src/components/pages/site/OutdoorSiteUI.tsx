@@ -240,16 +240,10 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                               attachments: poi.attachments,
                               iconUri: poi.type.pictogramUri,
                               iconName: poi.type.label,
+                              viewPoints: poi.viewPoints,
                             }))}
                             type="POI"
-                            medias={{
-                              viewPoints: {
-                                data: outdoorSiteContent.pois.flatMap(
-                                  ({ viewPoints }) => viewPoints,
-                                ),
-                                handleViewPointClick,
-                              },
-                            }}
+                            handleViewPointClick={handleViewPointClick}
                           />
                         </section>
                       );
@@ -615,7 +609,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                   viewPoints={[
                     ...outdoorSiteContent.viewPoints,
                     ...outdoorSiteContent.pois
-                      .flatMap(({ viewPoints }) => viewPoints)
+                      .flatMap(({ viewPoints = [] }) => viewPoints)
                       .filter(Boolean),
                   ]}
                   displayMap={displayMobileMap}
