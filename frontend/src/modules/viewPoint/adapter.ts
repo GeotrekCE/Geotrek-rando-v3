@@ -6,18 +6,19 @@ export const adaptViewPoints = async (rawViewpoints: RawViewPoint[]): Promise<Vi
     return [];
   }
   const viewPoints = await Promise.all(
-    rawViewpoints.map(async viewpoints => {
-      const metadata = await getViewPointMetadata(viewpoints.metadata_url);
+    rawViewpoints.map(async viewpoint => {
+      const metadata = await getViewPointMetadata(viewpoint.metadata_url);
       return {
-        annotations: viewpoints.annotations,
-        id: String(viewpoints.id),
-        author: viewpoints.author,
-        legend: viewpoints.legend,
-        license: viewpoints.license,
+        annotations: viewpoint.annotations,
+        id: String(viewpoint.id),
+        author: viewpoint.author,
+        geometry: viewpoint.geometry ?? null,
+        legend: viewpoint.legend,
+        license: viewpoint.license,
         metadata,
-        pictureTilesUrl: decodeURI(viewpoints.picture_tiles_url),
-        title: viewpoints.title,
-        thumbnailUrl: viewpoints.thumbnail_url,
+        pictureTilesUrl: decodeURI(viewpoint.picture_tiles_url),
+        title: viewpoint.title,
+        thumbnailUrl: viewpoint.thumbnail_url,
       };
     }),
   );

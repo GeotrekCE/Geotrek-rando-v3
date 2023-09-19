@@ -1,4 +1,5 @@
 import { FeatureCollection } from 'geojson';
+import { PointGeometry } from 'modules/interface';
 
 export interface RawViewPoint {
   annotations: FeatureCollection;
@@ -10,6 +11,7 @@ export interface RawViewPoint {
   picture_tiles_url: string;
   title: string | null;
   thumbnail_url: string;
+  geometry?: PointGeometry;
 }
 
 export interface ViewPoint {
@@ -28,4 +30,5 @@ export interface ViewPoint {
   pictureTilesUrl: string;
   title: string | null;
   thumbnailUrl: string;
+  geometry: PointGeometry | null;
 }
