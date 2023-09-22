@@ -1,19 +1,21 @@
+import { useCallback, useEffect, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+
 import { WifiOff } from 'components/Icons/WifiOff';
 import Loader from 'components/Loader';
 import Popup from 'components/Popup';
-import React, { useCallback, useEffect, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
-
 import { Check } from 'components/Icons/Check';
 import { Bin } from 'components/Icons/Bin';
+import { Button } from 'components/Button';
+
 import CacheManager from 'services/offline/CacheManager';
-import { colorPalette } from 'stylesheet';
+import { cn } from 'services/utils/cn';
+import { Download } from 'components/Icons/Download';
 import { Details } from '../../../../../modules/details/interface';
 import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
 import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
 import { TouristicEventDetails } from '../../../../../modules/touristicEvent/interface';
-import { Button } from '../../../../Button/Button';
 
 interface Props {
   details:
@@ -24,30 +26,6 @@ interface Props {
     | TouristicEventDetails;
   type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
 }
-
-const ActionButton = ({
-  onClick,
-  isInCache,
-}: {
-  onClick: () => Promise<void>;
-  isInCache: boolean;
-}) => {
-  return (
-    <Button
-      onClick={onClick}
-      style={{
-        color: isInCache ? colorPalette.easyOK : undefined,
-        borderColor: isInCache ? colorPalette.easyOK : undefined,
-      }}
-    >
-      {isInCache ? (
-        <FormattedMessage id={'offline.isInCache'} />
-      ) : (
-        <FormattedMessage id={'offline.download'} />
-      )}
-    </Button>
-  );
-};
 
 const OfflineButton: React.FC<Props> = ({ details, type }) => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -125,20 +103,19 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
                 <Button onClick={() => setOpenDialog(false)}>
                   <FormattedMessage id={'actions.close'} />
                 </Button>
-                {isInCache ? (
-                  <Button
-                    onClick={handleRemove}
-                    icon={Bin}
-                    style={{
-                      color: colorPalette.hardKO,
-                      borderColor: colorPalette.hardKO,
-                    }}
-                  >
-                    <FormattedMessage id={'actions.remove'} />
-                  </Button>
-                ) : (
-                  <ActionButton isInCache={isInCache} onClick={handleSave} />
-                )}
+                <Button
+                  onClick={isInCache ? handleRemove : handleSave}
+                  icon={isInCache ? Bin : Download}
+                  className={cn(
+                    isInCache ? 'text-hardKO border-hardKO' : 'text-easyOK border-easyOK',
+                  )}
+                >
+                  {isInCache ? (
+                    <FormattedMessage id="actions.remove" />
+                  ) : (
+                    <FormattedMessage id="offline.download" />
+                  )}
+                </Button>
               </div>
             </>
           )}

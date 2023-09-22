@@ -1,14 +1,12 @@
 import * as Sentry from '@sentry/nextjs';
 
-import { Button, Title } from './AppCrashFallback.style';
+import Button from 'components/Button';
+import { Title } from './AppCrashFallback.style';
 
 export interface FallbackProps {
   eventId: string;
 }
 
-// TS reports `showReportDialog` as not being a property of `@sentry/node`. This
-// is correct, except we use `@sentry/browser` in the browser!
-// @ts-ignore-next-line
 const reportDialog = (eventId: string) => () => Sentry.showReportDialog({ eventId });
 
 export const AppCrashFallback: React.FC<FallbackProps> = ({ eventId }) => {

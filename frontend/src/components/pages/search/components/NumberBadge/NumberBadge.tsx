@@ -1,5 +1,4 @@
-import React from 'react';
-import styled from 'styled-components';
+import { cn } from 'services/utils/cn';
 
 interface Props {
   children: React.ReactNode;
@@ -8,14 +7,13 @@ interface Props {
 
 export const NumberBadge: React.FC<Props> = ({ children, className }) => {
   return (
-    <Badge className={`h-6 w-6 bg-primary1 text-white text-Mobile-C2 font-bold ${className ?? ''}`}>
+    <span
+      className={cn(
+        'grid place-content-center rounded-full h-6 w-6 bg-primary1 text-white text-Mobile-C2 font-bold',
+        className,
+      )}
+    >
       {children}
-    </Badge>
+    </span>
   );
 };
-
-const Badge = styled.div`
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-`;
