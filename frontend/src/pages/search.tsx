@@ -34,6 +34,25 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const commonDictionaries = await getCommonDictionaries(locale);
     await queryClient.prefetchQuery(['commonDictionaries', locale], () => commonDictionaries);
 
+    await queryClient.prefetchQuery(['counter'], () =>
+      getSearchResults(
+        {
+          filtersState: [],
+          textFilterState: null,
+          bboxState: null,
+          dateFilter: { endDate: '', beginDate: '' },
+        },
+        {
+          treks: 1,
+          touristicContents: 1,
+          outdoorSites: getGlobalConfig().enableOutdoor ? 1 : null,
+          touristicEvents: getGlobalConfig().enableTouristicEvents ? 1 : null,
+        },
+        locale,
+        commonDictionaries,
+      ),
+    );
+
     await queryClient.prefetchInfiniteQuery(
       [
         'trekResults',
