@@ -1,7 +1,8 @@
-import { render } from 'services/testing/reactTestingLibraryWrapper';
+import { act, render } from 'services/testing/reactTestingLibraryWrapper';
 import { DetailsLabel } from '../DetailsLabel';
+
 describe('DetailsLabel', () => {
-  it('should display a DetailsLabel', () => {
+  it('should display a DetailsLabel', async () => {
     const propsLabel = {
       id: 1,
       advice:
@@ -11,7 +12,12 @@ describe('DetailsLabel', () => {
       className: '',
     };
     const component = render(<DetailsLabel {...propsLabel} />);
-
     expect(component).toMatchSnapshot();
+
+    // Useful for avoid a warning with react-inlinesvg package
+    const promise = Promise.resolve();
+    await act(async () => {
+      await promise;
+    });
   });
 });
