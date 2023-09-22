@@ -134,28 +134,30 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                 className="flex flex-col w-full relative -top-detailsHeaderMobile desktop:top-0 desktop:w-3/5"
               >
                 <OpenMapButton displayMap={displayMobileMap} />
-                <Modal>
-                  {({ isFullscreen, toggleFullscreen }) => (
-                    <div
-                      id="details_cover"
-                      className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
-                    >
-                      {details.imgs.length > 1 && hasNavigator ? (
-                        <DetailsCoverCarousel
-                          attachments={details.imgs}
-                          classNameImage={isFullscreen ? 'object-contain' : ''}
-                          onClickImage={toggleFullscreen}
-                        />
-                      ) : (
-                        <ImageWithLegend
-                          attachment={details.imgs[0]}
-                          classNameImage={isFullscreen ? 'object-contain' : ''}
-                          onClick={toggleFullscreen}
-                        />
-                      )}
-                    </div>
-                  )}
-                </Modal>
+                <div className="desktop:h-coverDetailsDesktop">
+                  <Modal>
+                    {({ isFullscreen, toggleFullscreen }) => (
+                      <div
+                        id="details_cover"
+                        className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
+                      >
+                        {details.imgs.length > 1 && hasNavigator ? (
+                          <DetailsCoverCarousel
+                            attachments={details.imgs}
+                            classNameImage={isFullscreen ? 'object-contain' : ''}
+                            onClickImage={toggleFullscreen}
+                          />
+                        ) : (
+                          <ImageWithLegend
+                            attachment={details.imgs[0]}
+                            classNameImage={isFullscreen ? 'object-contain' : ''}
+                            onClick={toggleFullscreen}
+                          />
+                        )}
+                      </div>
+                    )}
+                  </Modal>
+                </div>
                 <div
                   id="details_textContainer"
                   className="desktop:py-0
