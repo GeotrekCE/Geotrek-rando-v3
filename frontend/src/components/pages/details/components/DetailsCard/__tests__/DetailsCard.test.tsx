@@ -1,7 +1,7 @@
-import { render } from 'services/testing/reactTestingLibraryWrapper';
+import { act, render } from 'services/testing/reactTestingLibraryWrapper';
 import { DetailsCard } from '../DetailsCard';
 describe('DetailsCard', () => {
-  it('should display a well parsed description Element', () => {
+  it('should display a well parsed description Element', async () => {
     const propsCard = {
       name: 'Église St Louis',
       id: '2',
@@ -57,5 +57,11 @@ describe('DetailsCard', () => {
 
     expect(detailsDescription).toMatchSnapshot();
     expect(detailsDescriptionWithCarousel).toMatchSnapshot();
+
+    // Useful for avoid a warning with react-inlinesvg package
+    const promise = Promise.resolve();
+    await act(async () => {
+      await promise;
+    });
   });
 });
