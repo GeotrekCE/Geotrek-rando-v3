@@ -2,11 +2,9 @@ import FilterBarNew from 'components/pages/search/components/FilterBar';
 import useBbox from 'components/pages/search/components/useBbox';
 import { useEffect } from 'react';
 import { useMediaPredicate } from 'react-media-hook';
-import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'components/Loader';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { colorPalette, sizes } from 'stylesheet';
 
 import { OpenMapButton } from 'components/OpenMapButton';
 import {
@@ -21,6 +19,7 @@ import { FilterState } from 'modules/filters/interface';
 import { SearchMapDynamicComponent } from 'components/Map';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { useRouter } from 'next/router';
+import { cn } from 'services/utils/cn';
 import { countFiltersSelected } from '../../../modules/filters/utils';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
@@ -166,7 +165,10 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
         </>
       )}
 
-      <Container className="flex flex-col" id="search_container">
+      <div
+        className="flex flex-col h-[calc(100vh-theme(height.desktopHeader))]"
+        id="search_container"
+      >
         {!isMobile && (
           <FilterBarNew
             dateFilter={dateFilter}
@@ -199,7 +201,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                   </div>
                 </div>
 
-                <Separator className="w-full mt-6 desktop:block hidden" />
+                <hr className="w-full mt-6 h-0 border-0 desktop:block hidden" />
 
                 <OpenMapButton displayMap={displayMobileMap} />
 
@@ -253,55 +255,28 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
           </div>
 
           <div
-            className="hidden desktop:flex desktop:z-content desktop:w-1/2 desktop:fixed desktop:right-0 desktop:bottom-0 desktop:top-headerAndFilterBar"
             id="search_resultMap"
+            className={cn(
+              'fixed inset-0 z-map left-full w-full transition-transform',
+              'desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:left-auto desktop:right-0 desktop:w-1/2 desktop:top-headerAndFilterBar',
+              mobileMapState === 'DISPLAYED'
+                ? '-translate-x-full desktop:translate-x-0'
+                : 'translate-x-0',
+            )}
           >
             {isMapLoading && <div className="absolute bg-primary2 opacity-40 inset-0 z-map" />}
             <Loader loaded={!isMapLoading} className="absolute inset-0 z-map" />
-            {!isMobile && (
-              <SearchMapDynamicComponent
-                hasZoomControl
-                onMove={handleMoveMap}
-                shouldUseClusters
-                shouldUsePopups
-              />
-            )}
+            <SearchMapDynamicComponent
+              hasZoomControl={!isMobile}
+              onMove={handleMoveMap}
+              hideMap={hideMobileMap}
+              openFilterMenu={displayMenu}
+              shouldUseClusters
+              shouldUsePopups
+            />
           </div>
         </div>
-      </Container>
-
-      {isMobile && (
-        <MobileMapContainer
-          className={`desktop:hidden fixed right-0 left-0 h-full z-map ${
-            mobileMapState === 'HIDDEN' ? 'hidden' : 'flex'
-          }`}
-          displayState={mobileMapState}
-        >
-          <SearchMapDynamicComponent
-            hideMap={hideMobileMap}
-            openFilterMenu={displayMenu}
-            shouldUseClusters
-            shouldUsePopups
-          />
-        </MobileMapContainer>
-      )}
+      </div>
     </div>
   );
 };
-
-const Container = styled.div`
-  height: calc(100vh - ${sizes.desktopHeader}px);
-`;
-
-const Separator = styled.hr`
-  background-color: ${colorPalette.greySoft};
-  height: 1px;
-  border: 0;
-`;
-
-export const MobileMapContainer = styled.div<{
-  displayState: 'DISPLAYED' | 'HIDDEN' | null;
-}>`
-  transition: top 0.3s ease-in-out 0.1s;
-  top: ${({ displayState }) => (displayState === 'DISPLAYED' ? 0 : 100)}%;
-`;
