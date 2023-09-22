@@ -112,28 +112,30 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                 className="flex flex-col w-full relative -top-detailsHeaderMobile desktop:top-0 desktop:w-3/5"
               >
                 <OpenMapButton displayMap={displayMobileMap} />
-                <Modal>
-                  {({ toggleFullscreen, isFullscreen }) => (
-                    <div
-                      id="outdoorCourseContent_cover"
-                      className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
-                    >
-                      {touristicEventContent.attachments.length > 1 && hasNavigator ? (
-                        <DetailsCoverCarousel
-                          attachments={touristicEventContent.attachments}
-                          classNameImage={isFullscreen ? 'object-contain' : ''}
-                          onClickImage={toggleFullscreen}
-                        />
-                      ) : (
-                        <ImageWithLegend
-                          attachment={touristicEventContent.attachments[0]}
-                          classNameImage={isFullscreen ? 'object-contain' : ''}
-                          onClick={toggleFullscreen}
-                        />
-                      )}
-                    </div>
-                  )}
-                </Modal>
+                <div className="desktop:h-coverDetailsDesktop">
+                  <Modal>
+                    {({ toggleFullscreen, isFullscreen }) => (
+                      <div
+                        id="outdoorCourseContent_cover"
+                        className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
+                      >
+                        {touristicEventContent.attachments.length > 1 && hasNavigator ? (
+                          <DetailsCoverCarousel
+                            attachments={touristicEventContent.attachments}
+                            classNameImage={isFullscreen ? 'object-contain' : ''}
+                            onClickImage={toggleFullscreen}
+                          />
+                        ) : (
+                          <ImageWithLegend
+                            attachment={touristicEventContent.attachments[0]}
+                            classNameImage={isFullscreen ? 'object-contain' : ''}
+                            onClick={toggleFullscreen}
+                          />
+                        )}
+                      </div>
+                    )}
+                  </Modal>
+                </div>
                 <div
                   id="touristicEventContent_text"
                   className="desktop:py-0
