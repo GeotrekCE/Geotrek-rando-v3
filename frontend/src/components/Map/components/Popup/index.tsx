@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import Loader from 'components/Loader';
 
 import { desktopOnly, getSpacing } from 'stylesheet';
-import { Button as RawButton } from 'components/Button';
+import { Button } from 'components/Button';
 import { generateResultDetailsUrl } from 'components/pages/search/utils';
 
 import Link from 'components/Link';
@@ -46,15 +46,15 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId }) => 
             <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:inline">
               {trekPopupResult.place}
             </span>
-            <Title className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4 line-clamp-2">
+            <h3 className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4 line-clamp-1">
               {trekPopupResult.title}
-            </Title>
+            </h3>
             {showButton && (
               <Link
                 href={generateResultDetailsUrl(id, trekPopupResult.title, getRoute(type), parentId)}
               >
-                <Button type="button">
-                  <span className="text-center w-full">
+                <Button className="mt-4 w-full">
+                  <span className="w-full text-center">
                     <FormattedMessage id="search.map.seeResult" />
                   </span>
                 </Button>
@@ -99,21 +99,6 @@ const desktopWidth = 288;
 const desktopImgHeight = 122;
 const mobileWidth = 215;
 const mobileImgHeight = 133;
-
-const Button = styled(RawButton)`
-  margin-top: ${getSpacing(4)};
-  width: 100%;
-  text-align: center;
-`;
-
-const Title = styled.span`
-  ${desktopOnly(css`
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: block;
-  `)}
-`;
 
 const StyledTooltip = styled(LeafletTooltip)`
   padding: 0;

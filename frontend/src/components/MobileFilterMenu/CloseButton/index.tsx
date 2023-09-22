@@ -1,22 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-
-import { buttonCssResets } from 'services/cssHelpers';
-
 interface Props {
   onClick: () => void;
   icon: React.ReactNode;
   className?: string;
 }
 
-export const CloseButton: React.FC<Props> = ({ onClick, className, icon }) => {
+export const CloseButton: React.FC<Props> = ({ icon, ...props }) => {
   return (
-    <Button type="button" onClick={onClick} className={className}>
+    <button type="button" {...props}>
       {icon}
-    </Button>
+    </button>
   );
 };
-
-const Button = styled.button`
-  ${buttonCssResets};
-`;
