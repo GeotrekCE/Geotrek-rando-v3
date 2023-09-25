@@ -1,50 +1,27 @@
-import { Button } from 'components/Button';
-import { Link } from 'components/Link';
 import { NextPage } from 'next';
+import { Link } from 'components/Link';
 import { FormattedMessage } from 'react-intl';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  display: flex;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-
-  h1 {
-    font-weight: bold;
-    margin: 32px;
-    font-size: 200%;
-    padding-right: 32px;
-    border-right: 1px solid #000;
-  }
-`;
-
-const Spacer = styled.div`
-  height: 64px;
-`;
 
 const Custom404: NextPage = () => {
   return (
     <>
-      <Spacer />
-
-      <Container>
-        <h1>404</h1>
-        <div>
+      <div className="mt-16 flex h-full w-full items-center justify-center">
+        <h1 className="m-8 pr-8 text-3xl font-bold border-r border-solid border-black">404</h1>
+        <p>
           <FormattedMessage id={'page.not-found'} />
-        </div>
-      </Container>
+        </p>
+      </div>
 
-      <Spacer />
+      <hr className="h-16 border-0" />
 
-      <Container>
-        <Link href={'/'}>
-          <Button>
-            <FormattedMessage id={'page.back'} />
-          </Button>
+      <div className="flex h-full w-full items-center justify-center">
+        <Link
+          className="py-3 px-4 border border-solid border-primary1 rounded-lg text-primary1 bg-white font-semibold transition transition-color hover:bg-primary2 focus:bg-primary2"
+          href="/"
+        >
+          <FormattedMessage id={'page.back'} />
         </Link>
-      </Container>
+      </div>
     </>
   );
 };
