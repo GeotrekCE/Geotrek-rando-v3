@@ -241,13 +241,11 @@ export const formatTouristicEventsFiltersToUrlParams = (
 ): { [key: string]: string } => {
   const filters = filtersState.reduce<{ [key: string]: string[] }>(
     (currentFilters, currentFilterState) => {
-      if (currentFilterState.id === ORGANIZER_ID) {
-        if (currentFilterState.selectedOptions.length > 0) {
-          return {
-            ...currentFilters,
-            organizer: currentFilterState.selectedOptions,
-          };
-        }
+      if (currentFilterState.id === ORGANIZER_ID && currentFilterState.selectedOptions.length > 0) {
+        return {
+          ...currentFilters,
+          organizer: currentFilterState.selectedOptions,
+        };
       }
 
       if (currentFilterState.id === EVENT_ID)
