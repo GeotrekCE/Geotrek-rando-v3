@@ -32,6 +32,8 @@ export interface ControlSectionProps {
   toggleInfrastructureVisibility?: () => void;
   annotationViewpointVisibility?: Visibility;
   toggleAnnotationViewpointVisibility?: () => void;
+  viewPointVisibility?: Visibility;
+  toggleViewPointVisiblity?: () => void;
   className?: string;
   position?: ControlPosition;
 }
