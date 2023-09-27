@@ -10,4 +10,8 @@ export interface PopupResult {
   title: string;
   place: string;
   imgUrl: string;
+  button?: {
+    label: string;
+    onClick?: () => void;
+  };
 }
