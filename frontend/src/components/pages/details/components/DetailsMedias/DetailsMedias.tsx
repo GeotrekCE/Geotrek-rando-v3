@@ -6,6 +6,8 @@ import { FormattedMessage } from 'react-intl';
 import { cn } from 'services/utils/cn';
 import { Minus } from 'components/Icons/Minus';
 import { Plus } from 'components/Icons/Plus';
+import { useListAndMapContext } from 'modules/map/ListAndMapContext';
+import { ViewPoint as ViewPointIcon } from 'components/Icons/ViewPoint';
 
 interface DetailsMediasProps {
   className?: string;
@@ -38,6 +40,8 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
     return null;
   }
 
+  const { setHoveredCardId } = useListAndMapContext();
+
   return (
     <div className={className}>
       <TitleTag
@@ -46,6 +50,7 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
           TitleTag === 'h2' ? 'text-Mobile-H1 desktop:text-H2' : 'text-Mobile-C1 desktop:text-H4',
         )}
       >
+        <ViewPointIcon size={34} />
         <FormattedMessage id="viewPoint.title" />
         {asAccordion && (
           <button
@@ -86,6 +91,12 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
             <li
               key={viewPoint.id}
               className="shrink-0 relative desktop:flex items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden row w-60 desktop:w-auto"
+              onMouseEnter={() => {
+                !asAccordion && setHoveredCardId(`DETAILS-VIEWPOINT-${viewPoint.id}`);
+              }}
+              onMouseLeave={() => {
+                !asAccordion && setHoveredCardId(null);
+              }}
             >
               <div className="relative shrink-0 w-full overflow-hidden h-resultCardDesktop desktop:w-resultCardDesktop">
                 <ImageWithLegend

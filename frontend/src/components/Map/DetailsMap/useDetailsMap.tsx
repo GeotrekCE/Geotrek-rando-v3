@@ -21,6 +21,7 @@ export const useDetailsMap = () => {
   const [signageVisibility, setSignageVisibility] = useState<Visibility>('HIDDEN');
   const [serviceVisibility, setServiceVisibility] = useState<Visibility>('HIDDEN');
   const [infrastructureVisibility, setInfrastructureVisibility] = useState<Visibility>('HIDDEN');
+  const [viewPointVisibility, setViewPointVisibility] = useState<Visibility>('HIDDEN');
   const [annotationViewpointVisibility, setAnnotationViewpointVisibility] =
     useState<Visibility>('DISPLAYED');
 
@@ -39,6 +40,7 @@ export const useDetailsMap = () => {
   const toggleSignageVisibility = () => setSignageVisibility(toggleVisibility);
   const toggleServiceVisibility = () => setServiceVisibility(toggleVisibility);
   const toggleInfrastructureVisibility = () => setInfrastructureVisibility(toggleVisibility);
+  const toggleViewPointVisibility = () => setViewPointVisibility(toggleVisibility);
   const toggleAnnotationViewpointVisibility = () =>
     setAnnotationViewpointVisibility(toggleVisibility);
 
@@ -63,6 +65,8 @@ export const useDetailsMap = () => {
     toggleServiceVisibility,
     infrastructureVisibility,
     toggleInfrastructureVisibility,
+    viewPointVisibility,
+    toggleViewPointVisibility,
     annotationViewpointVisibility,
     toggleAnnotationViewpointVisibility,
   };
