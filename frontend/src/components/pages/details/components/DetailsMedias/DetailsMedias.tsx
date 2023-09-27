@@ -119,7 +119,7 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
                     `)}
                 >
                   <span className="text-greyDarkColored">
-                    <FormattedMessage id="viewPoint.browsePicture" />
+                    <FormattedMessage id="viewPoint.examinePicture" />
                   </span>
                   <ArrowRight />
                 </button>

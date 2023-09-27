@@ -254,8 +254,9 @@
   },
   "viewPoint": {
     "title": "Foto HD",
+    "label": "Foto HD",
     "credit": "Credito foto:",
-    "browsePicture": "Sfoglia foto"
+    "examinePicture": "Sfoglia foto"
   },
   "Wind": {
     "N": "Nord",
