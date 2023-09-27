@@ -250,9 +250,10 @@
     "sitesFullTitle": "Les {count} lieux de pratique à découvrir"
   },
   "viewPoint": {
-    "title": "Photos HD",
-    "credit": "Crédit photo :",
-    "browsePicture": "Parcourir la photo"
+    "title": "Images HD",
+    "label": "Image HD",
+    "credit": "Crédit image :",
+    "examinePicture": "Examiner l'image"
   },
   "Wind": {
     "N": "Nord",
