@@ -126,6 +126,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
     toggleServiceVisibility,
     infrastructureVisibility,
     toggleInfrastructureVisibility,
+    viewPointVisibility,
+    toggleViewPointVisibility,
     annotationViewpointVisibility,
     toggleAnnotationViewpointVisibility,
   } = useDetailsMap();
@@ -255,6 +257,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
                 props.service && props.service.length > 0 ? serviceVisibility : null
               }
               infrastructureVisibility={props.infrastructure ? infrastructureVisibility : null}
+              viewPointVisibility={props.viewPoints ? viewPointVisibility : null}
               toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
               togglePoiVisibility={togglePoiVisibility}
               toggleReferencePointsVisibility={toggleReferencePointsVisibility}
@@ -265,6 +268,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
               toggleSignageVisibility={toggleSignageVisibility}
               toggleServiceVisibility={toggleServiceVisibility}
               toggleInfrastructureVisibility={toggleInfrastructureVisibility}
+              toggleViewPointVisiblity={toggleViewPointVisibility}
             />
             {props.trekGeometry && (
               <TrekMarkersAndCourse
@@ -303,6 +307,9 @@ export const DetailsMap: React.FC<PropsType> = props => {
               signageVisibility={signageVisibility}
               serviceVisibility={serviceVisibility}
               infrastructureVisibility={infrastructureVisibility}
+              viewPoints={props.viewPoints}
+              viewPointVisibility={viewPointVisibility}
+              setMapId={props.setMapId}
             />
             {props.displayAltimetricProfile === true && props.trekGeoJSON && (
               <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />

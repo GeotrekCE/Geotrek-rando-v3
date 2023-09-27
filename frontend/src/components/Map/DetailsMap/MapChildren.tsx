@@ -6,9 +6,10 @@ import { OutdoorSite } from 'modules/outdoorSite/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useMediaPredicate } from 'react-media-hook';
 import { Infrastructure } from 'components/Icons/Infrastructure';
+import { ViewPoint } from 'modules/viewPoint/interface';
 import { GeometryListProps } from './DetailsMap';
 
 import { MarkersWithIcon } from './MarkersWithIcon';
@@ -20,6 +21,7 @@ import { SensitiveAreas } from './SensitiveAreas';
 import { GeometryList } from './GeometryList';
 import { TrekChildren } from './TrekChildren';
 import { Visibility } from './useDetailsMap';
+import ViewPointMarkers from './ViewPointMarkers';
 
 export interface PointWithIcon {
   location: { x: number; y: number };
@@ -52,6 +54,9 @@ type Props = {
   service?: PointWithIcon[];
   infrastructureVisibility: Visibility;
   infrastructure?: InfrastructureDictionary | null;
+  viewPointVisibility?: Visibility;
+  viewPoints?: ViewPoint[];
+  setMapId?: (id: string) => void;
 };
 
 export const MapChildren: React.FC<Props> = props => {
@@ -122,6 +127,10 @@ export const MapChildren: React.FC<Props> = props => {
       {props.serviceVisibility === 'DISPLAYED' && <MarkersWithIcon points={props.service} />}
 
       {(isMobile || visibleSection === 'report') && props.reportVisibility && <PointReport />}
+
+      {(props.viewPointVisibility === 'DISPLAYED' || visibleSection === 'medias') && (
+        <ViewPointMarkers viewPoints={props.viewPoints} setMapId={props.setMapId} />
+      )}
     </>
   );
 };
