@@ -250,9 +250,10 @@
     "sitesFullTitle": "The {count} places of practice to discover"
   },
   "viewPoint": {
-    "title": "HD photos",
-    "credit": "Photo credit:",
-    "browsePicture": "Browse photo"
+    "title": "HD pictures",
+    "label": "HD picture",
+    "credit": "Picture credit:",
+    "examinePicture": "Exmamine picture"
   },
   "Wind": {
     "N": "North",

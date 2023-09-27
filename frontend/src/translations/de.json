@@ -244,8 +244,9 @@
   },
   "viewPoint": {
     "title": "HD-Fotos",
+    "label": "HD-Foto",
     "credit": "Fotogutschrift:",
-    "browsePicture": "Foto durchsuchen"
+    "examinePicture": "Foto durchsuchen"
   },
   "Wind": {
     "N": "Norden",
