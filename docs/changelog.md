@@ -5,6 +5,7 @@
 **🚀 New features**
 
 - Allow to select an organizer event in filter search (#968)
+- Add map fullscreen control (#952)
 
 **✨ Improvements**
 
