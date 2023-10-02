@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.15.3 (2023-10-02)
+
+**🚀 New features**
+
+- Allow to select an organizer event in filter search (#968)
+
+**✨ Improvements**
+
+- Display search filters for all categories on first page load (#971)
+- Call one map instance instead of two on search pages (#971)
+- Rewrite Header component to use semantics and tailwind (#976)
+- Rewrite 404 component to use tailwind (#975)
+- Set height of featured image area on details pages (#973)
+
+**🔧 Maintenance**
+
+- Upgrade leaflet.offline package to 3.0.1 (#969)
+- Upgrade react-inlinesvg package to 4.0.4 (#972)
+
 ## 3.15.2 (2023-09-07)
 
 **🐛 Fixes**
