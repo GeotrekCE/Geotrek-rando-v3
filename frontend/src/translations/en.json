@@ -214,7 +214,7 @@
   },
   "form": {
     "calendar": "Calendar",
-    "missingField" : "This field is mandatory.",
+    "missingField": "This field is mandatory.",
     "required": "(required)",
     "selectPlaceholder": "Select"
   },
@@ -310,5 +310,14 @@
     "numberOfParticipants": "Number of participants",
     "courseType": "Course type",
     "network": "Network"
+  },
+  "consents": {
+    "modal": {
+      "purposes": {
+        "ads": "Ads",
+        "analytics": "Analytics",
+        "security": "Security"
+      }
+    }
   }
 }

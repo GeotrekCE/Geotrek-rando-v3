@@ -207,7 +207,7 @@
   },
   "form": {
     "calendar": "Calendario",
-    "missingField" : "Este campo es obligatorio.",
+    "missingField": "Este campo es obligatorio.",
     "required": "(obligatorio)",
     "selectPlaceholder": "Seleccione"
   },
@@ -264,5 +264,14 @@
     "numberOfParticipants": "Número de participantes",
     "courseType": "Tipo de carrera",
     "network": "La red"
+  },
+  "consents": {
+    "modal": {
+      "purposes": {
+        "ads": "Anuncios",
+        "analytics": "Análisis",
+        "security": "Seguridad"
+      }
+    }
   }
 }
