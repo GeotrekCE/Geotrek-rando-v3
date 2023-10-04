@@ -1,4 +1,4 @@
-import parse from 'html-react-parser';
+import { HtmlParser } from 'components/HtmlParser';
 import { PortalContact } from './PortalContact';
 import { PortalLinks } from './PortalLinks';
 import { SocialNetworks } from './SocialNetworks';
@@ -10,7 +10,11 @@ export const Footer: React.FC = () => {
   const footerBottom = config.footerBottomHtml[intl.locale] ?? config.footerBottomHtml.default;
   return (
     <>
-      {footerTop !== undefined && <div id="footer_topHtml">{parse(footerTop)}</div>}
+      {footerTop !== undefined && (
+        <div id="footer_topHtml">
+          <HtmlParser template={footerTop} />
+        </div>
+      )}
       <div className="bg-black flex flex-col" id="footer">
         <div className="mx-4 desktop:mx-10percent" id="footer_content">
           {config.socialNetworks && <SocialNetworks socialNetworkList={config.socialNetworks} />}
@@ -25,7 +29,11 @@ export const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-      {footerBottom !== undefined && <div id="footer_bottomHtml">{parse(footerBottom)}</div>}
+      {footerBottom !== undefined && (
+        <div id="footer_bottomHtml">
+          <HtmlParser template={footerBottom} />
+        </div>
+      )}
     </>
   );
 };
