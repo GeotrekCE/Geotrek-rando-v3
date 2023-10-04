@@ -4,10 +4,10 @@ import { routes } from 'services/routes';
 import { Link } from 'components/Link';
 import { Display } from 'hooks/useHideOnScrollDown';
 
-import parse from 'html-react-parser';
 import InlineMenu from 'components/InlineMenu';
 import { GoToSearchButton } from 'components/GoToSearchButton';
 import { cn } from 'services/utils/cn';
+import { HtmlParser } from 'components/HtmlParser';
 import { BurgerMenu } from './BurgerMenu';
 import { useHeader } from './useHeader';
 
@@ -27,7 +27,11 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      {headerTop !== undefined && <div id="header_topHtml">{parse(headerTop)}</div>}
+      {headerTop !== undefined && (
+        <div id="header_topHtml">
+          <HtmlParser template={headerTop} />
+        </div>
+      )}
       <BurgerMenu config={config.menu} displayState={headerState} menuItems={menuItems} />
       <header
         className={cn(
@@ -68,7 +72,11 @@ export const Header: React.FC = () => {
         )}
         <GoToSearchButton className="hidden desktop:block" />
       </header>
-      {headerBottom !== undefined && <div id="header_bottomHtml">{parse(headerBottom)}</div>}
+      {headerBottom !== undefined && (
+        <div id="header_bottomHtml">
+          <HtmlParser template={headerBottom} />
+        </div>
+      )}
     </>
   );
 };
