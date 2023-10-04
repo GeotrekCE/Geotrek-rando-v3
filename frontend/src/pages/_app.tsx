@@ -8,6 +8,7 @@ import '../styles/global.css';
 import '../public/fonts.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'orejime/dist/orejime.css';
 import '../public/style.css';
 
 import { ListAndMapProvider } from 'modules/map/ListAndMapContext';
