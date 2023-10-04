@@ -109,6 +109,7 @@ export interface APICallsConfig {
   accessibilityCodeNumber: string | null;
   groupTreksAndOutdoorFilters: boolean;
   hCaptchaKey: string | null;
+  privacyPolicyLink: string | null;
 }
 
 /** @deprecated please use Coordinate2D or Coordinate3D instead */
