@@ -1,9 +1,9 @@
 import { ActivitySearchFilter } from 'components/ActivitySearchFilter';
 import { Footer } from 'components/Footer';
 import { PageHead } from 'components/PageHead';
-import parse from 'html-react-parser';
 import getNextConfig from 'next/config';
 import { useIntl } from 'react-intl';
+import { HtmlParser } from 'components/HtmlParser';
 import { BannerWithAsset } from './components/BannerWithAsset';
 import { HomeSection } from './components/HomeSection';
 import { HomeContainer } from './Home.style';
@@ -49,7 +49,7 @@ const HomeUI: React.FC = () => {
           )}
           {homeTop !== undefined && (
             <div id="home_topHtml" className={classNameHomeChild}>
-              {parse(homeTop)}
+              <HtmlParser template={homeTop} />
             </div>
           )}
           {suggestions
@@ -64,7 +64,7 @@ const HomeUI: React.FC = () => {
             ))}
           {homeBottom !== undefined && (
             <div id="home_bottomHtml" className={classNameHomeChild}>
-              {parse(homeBottom)}
+              <HtmlParser template={homeBottom} />
             </div>
           )}
         </div>
