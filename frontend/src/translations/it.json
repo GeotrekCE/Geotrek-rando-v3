@@ -214,7 +214,7 @@
   },
   "error": {
     "missing": "Il modulo non è completo",
-    "missingField" : "Questo campo è obbligatorio.",
+    "missingField": "Questo campo è obbligatorio.",
     "required": "(richiesto)",
     "selectPlaceholder": "Selezionare"
   },
@@ -274,5 +274,14 @@
     "numberOfParticipants": "Numero di partecipanti",
     "courseType": "Tipo de gara",
     "network": "Rete"
+  },
+  "consents": {
+    "modal": {
+      "purposes": {
+        "ads": "Annunci",
+        "analytics": "Analitici",
+        "security": "Sicurezza"
+      }
+    }
   }
 }

@@ -33,5 +33,6 @@
     "infrastructures": true,
     "signages": true,
     "services": true
-  }
+  },
+  "privacyPolicyLink": null
 }

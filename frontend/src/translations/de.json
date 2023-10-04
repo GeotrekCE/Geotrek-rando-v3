@@ -207,7 +207,7 @@
   },
   "form": {
     "calendar": "Kalender",
-    "missingField" : "Dieses Feld ist obligatorisch.",
+    "missingField": "Dieses Feld ist obligatorisch.",
     "required": "(requirieren)",
     "selectPlaceholder": "Wähle"
   },
@@ -264,5 +264,14 @@
     "numberOfParticipants": "Zahl der Teilnehmer",
     "courseType": "Art des Rennens",
     "network": "Netzwerk"
+  },
+  "consents": {
+    "modal": {
+      "purposes": {
+        "ads": "Anzeigen",
+        "analytics": "Analytics",
+        "security": "Sicherheit"
+      }
+    }
   }
 }

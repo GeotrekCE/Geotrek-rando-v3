@@ -76,7 +76,6 @@
       "filters": "Filtres",
       "labels": "Altres",
       "organizer": "Organitzador"
-      
     },
     "textFilter": "Cercar...",
     "beginDateFilter": "Data d'inici",
@@ -208,7 +207,7 @@
   },
   "form": {
     "calendar": "Calendari",
-    "missingField" : "Aquest camp és obligatori.",
+    "missingField": "Aquest camp és obligatori.",
     "required": "(obligatori)",
     "selectPlaceholder": "Seleccioneu"
   },
@@ -265,5 +264,14 @@
     "numberOfParticipants": "Nombre de participants",
     "courseType": "Tipus de cursa",
     "network": "Xarxa"
+  },
+  "consents": {
+    "modal": {
+      "purposes": {
+        "ads": "Anuncis",
+        "analytics": "Analítica",
+        "security": "Seguretat"
+      }
+    }
   }
 }
