@@ -271,7 +271,8 @@
         "ads": "Anzeigen",
         "analytics": "Analytics",
         "security": "Sicherheit"
-      }
+      },
+      "changeCookiePreference": "Cookie-Einstellungen ändern"
     }
   }
 }

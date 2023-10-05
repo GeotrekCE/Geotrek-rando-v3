@@ -271,7 +271,8 @@
         "ads": "Anuncis",
         "analytics": "Analítica",
         "security": "Seguretat"
-      }
+      },
+      "changeCookiePreference": "Canvia les preferències de galetes"
     }
   }
 }

@@ -317,7 +317,8 @@
         "ads": "Ads",
         "analytics": "Analytics",
         "security": "Security"
-      }
+      },
+      "changeCookiePreference": "Change cookie preference"
     }
   }
 }
