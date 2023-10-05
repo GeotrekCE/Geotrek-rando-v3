@@ -272,6 +272,7 @@
         "analytics": "Análisis",
         "security": "Seguridad"
       }
-    }
+    },
+    "changeCookiePreference": "Cambiar las preferencias de cookies"
   }
 }

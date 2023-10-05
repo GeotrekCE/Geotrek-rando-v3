@@ -318,6 +318,7 @@
         "analytics": "Mesure d'audience",
         "security": "Sécurité"
       }
-    }
+    },
+    "changeCookiePreference": "Changer les préférences cookies"
   }
 }

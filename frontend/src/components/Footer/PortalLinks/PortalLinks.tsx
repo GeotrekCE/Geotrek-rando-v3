@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import useHasMounted from 'hooks/useHasMounted';
 import { cn } from 'services/utils/cn';
 import { useId } from 'react';
+import { useExternalsScripts } from 'components/Layout/useExternalScripts';
 import { usePortalLinks } from './usePortalLinks';
 import { PortalLinkStatic } from '../interface';
 import { isLinkInternal, linkWithoutHost } from '../utils';
@@ -77,20 +78,31 @@ const PortalLinksTitle: React.FC<{ name: string }> = ({ name }) => (
 );
 
 const PortalLinksContent: React.FC<PortalLinksContentProps> = ({ id, className = '', links }) => {
+  const { needsConsent, triggerConsentModal } = useExternalsScripts();
+  const classNameLink =
+    'text-greySoft text-Mobile-C3 desktop:text-P1 hover:text-white focus:text-white transition-all';
   return (
     <ul id={id} className={cn('columns-2 desktop:columns-auto flex-col w-full pb-4', className)}>
       {links.map((l, i) => (
         <li key={i} className="desktop:text-right">
-          <PortalLinkRendered link={l} />
+          <PortalLinkRendered link={l} className={classNameLink} />
         </li>
       ))}
+      {needsConsent && (
+        <li className="desktop:text-right desktop:mt-2">
+          <button type="button" onClick={() => triggerConsentModal()} className={classNameLink}>
+            <FormattedMessage id="consents.changeCookiePreference" />
+          </button>
+        </li>
+      )}
     </ul>
   );
 };
 
-const PortalLinkRendered: React.FC<{ link: PortalLinkStatic }> = ({ link }) => {
-  const className =
-    'text-greySoft text-Mobile-C3 desktop:text-P1 hover:text-white focus:text-white transition-all';
+const PortalLinkRendered: React.FC<{ link: PortalLinkStatic; className?: string }> = ({
+  link,
+  className,
+}) => {
   const isWindow = useHasMounted(typeof window !== 'undefined');
   if (isWindow) {
     return isLinkInternal(link.url) ? (
