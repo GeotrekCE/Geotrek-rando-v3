@@ -40,6 +40,7 @@ In json files, you can just override the primary keys you need. You have to over
   - `minAltitudeDifferenceToDisplayElevationProfile`: Minimum altitude difference in meters required to display the elevation profile in the current trek
   - `accessibilityCodeNumber`: emergency number. Default set to `114`.
   - `displayObjectsRelatedToItinerantTreks`: An object containing many booleans to display/hide objects related to itinerant treks. The keys are `POIs`,`touristicContents`,`sensitiveAreas`,`infrastructures`,`signages`,`service` and are all set to `true` by default. Indeed multi-days treks can be long and have a lot a related objects which is very long to display and not really readable. That's why you can disable some related objects that will not be displayed on itinerant main detail page, but will be displayed on steps detail pages and any other treks detail pages.
+  - `privacyPolicyLink`: link of the privacy policy (More information in [GDPR documentation](customization-scripts-GDPR.md#GDPR)).
 
 - `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
 
@@ -129,12 +130,12 @@ In json files, you can just override the primary keys you need. You have to over
     - `shouldDisplayText`: `true` to display the text on above the asset, `false` to hide it.
 
 - `details.json` allows you to choose whether or not to display sections for each details pages ("trek", "touristicContent", "touristicEvent", "OutdoorSite" and "OutdoorCourse"). See the default configuration at https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/details.json.
-There are 4 properties :
+  There are 4 properties :
 
-    - `name`: the name of the section
-    - `display`: boolean to display or not this section
-    - `anchor`: boolean to display or not an anchor link in the menu navigation bar
-    - `order`: number to define the position of this section
+      - `name`: the name of the section
+      - `display`: boolean to display or not this section
+      - `anchor`: boolean to display or not an anchor link in the menu navigation bar
+      - `order`: number to define the position of this section
 
 NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, anchor links are not displayed like other elements, but by a dedicated icon.
 
@@ -277,14 +278,16 @@ You can include some HTML parts in different sections of the layout application,
 These templates can be translated by using the language code as a suffix (e.g. `homeTop-en.html` will be rendered only for the English interface). The application tries to find the localized template first, otherwise it tries the non-localized template, otherwise it displays nothing.
 NB: If you want to display a message common to all languages but not to a particular language (e.g. french), just create the template suffixed with its language code (e.g. `-fr.html`) and leave it empty, and voilà!
 
+See examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html.
+
 You can also include some scripts:
 
 - `customization/html/scriptsHeader.html`: in the `<head>` of the document
 - `customization/html/scriptsFooter.html`: just before the `</body>` end tag
 
-The scripts templates are intended for third party scripts. Unlike the HTML parts, there is not possibility of translations.
+The scripts templates are intended for third party scripts. Unlike the HTML parts, there is not possibility of translations. More information on how to write them can be found in the [Scripts and GDPR documentation](customization-scripts-GDPR.md).
 
-See examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html.
+## Icons
 
 Icons are provided by Geotrek-admin API. See [icons documentation](icons.md) to know how they have to be designed.
 
