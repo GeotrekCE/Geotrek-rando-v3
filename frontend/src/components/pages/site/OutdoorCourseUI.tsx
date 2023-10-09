@@ -32,7 +32,7 @@ import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
-import { getDetailsConfig } from '../details/config';
+import { useDetailsSections } from '../details/useDetailsSections';
 
 interface Props {
   outdoorCourseUrl: string | string[] | undefined;
@@ -61,11 +61,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
-  const { sections } = getDetailsConfig();
-  const sectionsOutdoorCourse = sections.outdoorCourse.filter(({ display }) => display);
-  const anchors = sectionsOutdoorCourse
-    .filter(({ anchor }) => anchor === true)
-    .map(({ name }) => name);
+  const { sections, anchors } = useDetailsSections('outdoorCourse');
 
   useOnScreenSection({
     sectionsPositions,
@@ -154,7 +150,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                     type={'OUTDOOR_COURSE'}
                   />
 
-                  {sectionsOutdoorCourse.map(section => {
+                  {sections.map(section => {
                     if (section.name === 'presentation') {
                       return (
                         <section

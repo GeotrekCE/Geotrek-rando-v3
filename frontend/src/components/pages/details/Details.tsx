@@ -46,7 +46,7 @@ import { DetailsAndMapProvider } from './DetailsAndMapContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
 import { useOnScreenSection } from './hooks/useHighlightedSection';
 import { DetailsGear } from './components/DetailsGear';
-import { getDetailsConfig } from './config';
+import { useDetailsSections } from './useDetailsSections';
 
 interface Props {
   slug: string | string[] | undefined;
@@ -76,9 +76,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
-  const { sections } = getDetailsConfig();
-  const sectionsTrek = sections.trek.filter(({ display }) => display);
-  const anchors = sectionsTrek.filter(({ anchor }) => anchor === true).map(({ name }) => name);
+  const { sections, anchors } = useDetailsSections('trek');
 
   useOnScreenSection({
     sectionsPositions,
@@ -171,7 +169,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                     displayReservationWidget={anchors.includes('reservationWidget')}
                   />
 
-                  {sectionsTrek.map(section => {
+                  {sections.map(section => {
                     if (section.name === 'presentation') {
                       return (
                         <section

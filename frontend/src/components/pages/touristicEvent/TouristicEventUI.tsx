@@ -28,7 +28,7 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
-import { getDetailsConfig } from '../details/config';
+import { useDetailsSections } from '../details/useDetailsSections';
 
 interface Props {
   touristicEventUrl: string | string[] | undefined;
@@ -60,11 +60,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
-  const { sections } = getDetailsConfig();
-  const sectionsTouristicEvents = sections.touristicEvent.filter(({ display }) => display);
-  const anchors = sectionsTouristicEvents
-    .filter(({ anchor }) => anchor === true)
-    .map(({ name }) => name);
+  const { sections, anchors } = useDetailsSections('touristicEvent');
 
   useOnScreenSection({
     sectionsPositions,
@@ -153,7 +149,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                     type={'TOURISTIC_EVENT'}
                   />
 
-                  {sectionsTouristicEvents.map(section => {
+                  {sections.map(section => {
                     if (section.name === 'presentation') {
                       return (
                         <section
