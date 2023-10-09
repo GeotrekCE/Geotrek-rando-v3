@@ -21,8 +21,8 @@ import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel
 import { DetailsHeaderMobile, marginDetailsChild } from '../details/Details';
 import { HtmlText } from '../details/utils';
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
-import { getDetailsConfig } from '../details/config';
 import { DetailsHeader } from '../details/components/DetailsHeader';
+import { useDetailsSections } from '../details/useDetailsSections';
 
 interface TouristicContentUIProps {
   touristicContentUrl: string | string[] | undefined;
@@ -48,11 +48,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
   const isMobile = useMediaPredicate('(max-width: 1024px)');
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
-  const { sections } = getDetailsConfig();
-  const sectionsTouristicContent = sections.touristicContent.filter(({ display }) => display);
-  const anchors = sectionsTouristicContent
-    .filter(({ anchor }) => anchor === true)
-    .map(({ name }) => name);
+  const { sections, anchors } = useDetailsSections('touristicContent');
 
   return (
     <>
@@ -126,7 +122,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   type={'TOURISTIC_CONTENT'}
                 />
 
-                {sectionsTouristicContent.map(section => {
+                {sections.map(section => {
                   if (section.name === 'presentation') {
                     return (
                       <section
