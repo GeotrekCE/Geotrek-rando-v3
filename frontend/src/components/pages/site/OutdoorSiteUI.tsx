@@ -38,7 +38,7 @@ import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel
 import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
 import { DetailsAndMapProvider } from '../details/DetailsAndMapContext';
-import { getDetailsConfig } from '../details/config';
+import { useDetailsSections } from '../details/useDetailsSections';
 
 interface Props {
   outdoorSiteUrl: string | string[] | undefined;
@@ -67,11 +67,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
-  const { sections } = getDetailsConfig();
-  const sectionsOutdoorSite = sections.outdoorSite.filter(({ display }) => display);
-  const anchors = sectionsOutdoorSite
-    .filter(({ anchor }) => anchor === true)
-    .map(({ name }) => name);
+  const { sections, anchors } = useDetailsSections('outdoorSite');
 
   useOnScreenSection({
     sectionsPositions,
@@ -156,7 +152,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     type={'OUTDOOR_SITE'}
                   />
 
-                  {sectionsOutdoorSite.map(section => {
+                  {sections.map(section => {
                     if (section.name === 'presentation') {
                       return (
                         <section
