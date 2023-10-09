@@ -126,7 +126,7 @@ export const useExternalsScripts = (executeOnLoad = false) => {
   }, [executeOnLoad, locale, privacyPolicyLink]);
 
   return {
-    needsConsent,
+    needsConsent: needsConsent && Boolean(privacyPolicyLink),
     scriptsHeader,
     scriptsFooter,
     triggerConsentModal,
