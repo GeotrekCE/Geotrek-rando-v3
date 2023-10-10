@@ -25,7 +25,8 @@ In json files, you can just override the primary keys you need. You have to over
   - `enableOutdoor`: boolean, default to false. Set it to true to enable Outdoor sites and courses
   - `groupTreksAndOutdoorFilters`: boolean, default to false. Groups treks and outdoor filters into a single tab. For this setting to work, `enableOutdoor` must be set to `true`.
   - `apiUrl` : Geotrek-admin API URL
-  - `googleAnalyticsId`: eventual Google Analytics Id
+  - `privacyPolicyLink`: link of the privacy policy (More information in [GDPR documentation](customization-scripts-GDPR.md#GDPR)).
+  - `googleAnalyticsId`: eventual Google Analytics Id (to activate it, you must set `privacyPolicyLink`)
   - `googleSiteVerificationToken`: eventual code to enable Google Search Console and Google developer tools
   - `enableIndexation` to disable search engine indexation
   - `baseUrl`: base URL of your portal (for dynamic sitemap.xml)
@@ -40,7 +41,6 @@ In json files, you can just override the primary keys you need. You have to over
   - `minAltitudeDifferenceToDisplayElevationProfile`: Minimum altitude difference in meters required to display the elevation profile in the current trek
   - `accessibilityCodeNumber`: emergency number. Default set to `114`.
   - `displayObjectsRelatedToItinerantTreks`: An object containing many booleans to display/hide objects related to itinerant treks. The keys are `POIs`,`touristicContents`,`sensitiveAreas`,`infrastructures`,`signages`,`service` and are all set to `true` by default. Indeed multi-days treks can be long and have a lot a related objects which is very long to display and not really readable. That's why you can disable some related objects that will not be displayed on itinerant main detail page, but will be displayed on steps detail pages and any other treks detail pages.
-  - `privacyPolicyLink`: link of the privacy policy (More information in [GDPR documentation](customization-scripts-GDPR.md#GDPR)).
 
 - `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
 
