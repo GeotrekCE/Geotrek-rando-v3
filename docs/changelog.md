@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.15.4 (2023-10-10)
+
+**🚀 New features**
+
+- Ask the user's consent to deposit cookies (#982)
+
+**✨ Improvements**
+
+- Add the `privacyPolicyLink` key in `global.json` to define the link of privacy policy page (#982)
+
+**🔧 Maintenance**
+
+- Upgrade html-react-parser package to 2.0.0 (#982)
+
 ## 3.15.3 (2023-10-02)
 
 **🚀 New features**
