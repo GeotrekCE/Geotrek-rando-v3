@@ -36,6 +36,7 @@ module.exports = [
         && !url.host.includes('openstreetmap')
         && !url.host.includes('stamen-tiles')
         && !url.host.includes('wxs.ign.fr')
+        && !url.host.includes('data.geopf.fr')
         && request.destination === 'image'
     },
     handler: 'NetworkFirst',
