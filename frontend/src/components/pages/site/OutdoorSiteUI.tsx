@@ -262,7 +262,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
 
                     if (
                       section.name === 'courses' &&
-                      Number(outdoorSiteContent.children?.length) > 0
+                      Number(outdoorSiteContent.courses?.length) > 0
                     ) {
                       return (
                         <section
