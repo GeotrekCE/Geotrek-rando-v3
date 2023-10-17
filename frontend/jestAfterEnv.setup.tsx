@@ -226,7 +226,14 @@ setConfig({
             "order": 140
           }
         ],
-      }
+        outdoorSite: [],
+        outdoorCourse: [],
+        touristicContent: [],
+        touristicEvent: []
+      },
+    },
+    detailsSectionHtml: {
+      forecastWidget: { default: '<iframe\n  id="widget_autocomplete_preview"\n  className="w-full"\n  height="150"\n  src="https://meteofrance.com/widget/prevision/{{ cityCode }}0"\n></iframe>\n' }
     },
     home: {},
     map: {},
