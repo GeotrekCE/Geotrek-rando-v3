@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
   const footerTop = config.footerTopHtml[intl.locale] ?? config.footerTopHtml.default;
   const footerBottom = config.footerBottomHtml[intl.locale] ?? config.footerBottomHtml.default;
   return (
-    <>
+    <footer role="contentinfo">
       {footerTop !== undefined && (
         <div id="footer_topHtml">
           <HtmlParser template={footerTop} />
@@ -34,6 +34,6 @@ export const Footer: React.FC = () => {
           <HtmlParser template={footerBottom} />
         </div>
       )}
-    </>
+    </footer>
   );
 };
