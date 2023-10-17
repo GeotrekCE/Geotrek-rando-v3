@@ -23,6 +23,7 @@ import { cn } from 'services/utils/cn';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MapPin } from 'components/Icons/MapPin';
 import { ImageWithLegend } from 'components/ImageWithLegend';
+import { HtmlParser } from 'components/HtmlParser';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -40,7 +41,6 @@ import { DetailsAdvice } from './components/DetailsAdvice';
 import { DetailsChildrenSection } from './components/DetailsChildrenSection';
 import { DetailsCoverCarousel } from './components/DetailsCoverCarousel';
 import { DetailsReservationWidget } from './components/DetailsReservationWidget';
-import { DetailsMeteoWidget } from './components/DetailsMeteoWidget';
 import { VisibleSectionProvider } from './VisibleSectionContext';
 import { DetailsAndMapProvider } from './DetailsAndMapContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
@@ -259,29 +259,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                             cities={details.cities}
                             className={marginDetailsChild}
                           />
-                        </section>
-                      );
-                    }
-
-                    if (
-                      section.name === 'forecastWidget' &&
-                      getGlobalConfig().enableMeteoWidget &&
-                      details.cities_raw?.[0]
-                    ) {
-                      return (
-                        <section
-                          key={section.name}
-                          ref={sectionRef[section.name]}
-                          id={`details_${section.name}_ref`}
-                        >
-                          {hasNavigator && (
-                            <DetailsSection
-                              htmlId="details_forecastWidget"
-                              className={marginDetailsChild}
-                            >
-                              <DetailsMeteoWidget code={details.cities_raw[0]} />
-                            </DetailsSection>
-                          )}
                         </section>
                       );
                     }
@@ -563,6 +540,30 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               />
                             </DetailsSection>
                           )}
+                        </section>
+                      );
+                    }
+
+                    // Custom HTML templates
+                    if (section.template) {
+                      return (
+                        <section
+                          key={section.name}
+                          ref={sectionRef[section.name]}
+                          id={`details_${section.name}_ref`}
+                        >
+                          <DetailsSection
+                            htmlId={`details_${section.name}`}
+                            titleId={`details.${section.name}`}
+                            className={marginDetailsChild}
+                          >
+                            <HtmlParser
+                              template={section.template}
+                              id={details.id.toString()}
+                              type="trek"
+                              cityCode={details.cities_raw[0]}
+                            />
+                          </DetailsSection>
                         </section>
                       );
                     }

@@ -7,10 +7,10 @@ import { TouristicContentMapDynamicComponent } from 'components/Map';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
-import { getGlobalConfig } from 'modules/utils/api.config';
 import useHasMounted from 'hooks/useHasMounted';
 import { ImageWithLegend } from 'components/ImageWithLegend';
 import { cn } from 'services/utils/cn';
+import { HtmlParser } from 'components/HtmlParser';
 import { useTouristicContent } from './useTouristicContent';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { DetailsSection } from '../details/components/DetailsSection';
@@ -20,7 +20,6 @@ import { DetailsSource } from '../details/components/DetailsSource';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { DetailsHeaderMobile, marginDetailsChild } from '../details/Details';
 import { HtmlText } from '../details/utils';
-import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 import { DetailsHeader } from '../details/components/DetailsHeader';
 import { useDetailsSections } from '../details/useDetailsSections';
 
@@ -244,29 +243,6 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                     );
                   }
 
-                  if (
-                    section.name === 'forecastWidget' &&
-                    getGlobalConfig().enableMeteoWidget &&
-                    touristicContent.cities_raw?.[0]
-                  ) {
-                    return (
-                      <section
-                        key={section.name}
-                        ref={sectionRef[section.name]}
-                        id={`details_${section.name}_ref`}
-                      >
-                        {hasNavigator && (
-                          <DetailsSection
-                            htmlId="details_forecastWidget"
-                            className={marginDetailsChild}
-                          >
-                            <DetailsMeteoWidget code={touristicContent.cities_raw[0]} />
-                          </DetailsSection>
-                        )}
-                      </section>
-                    );
-                  }
-
                   if (section.name === 'source' && touristicContent.sources.length > 0) {
                     return (
                       <section
@@ -287,6 +263,30 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                               pictogramUri={source.pictogramUri}
                             />
                           ))}
+                        </DetailsSection>
+                      </section>
+                    );
+                  }
+
+                  // Custom HTML templates
+                  if (section.template) {
+                    return (
+                      <section
+                        key={section.name}
+                        ref={sectionRef[section.name]}
+                        id={`details_${section.name}_ref`}
+                      >
+                        <DetailsSection
+                          htmlId={`details_${section.name}`}
+                          titleId={`details.${section.name}`}
+                          className={marginDetailsChild}
+                        >
+                          <HtmlParser
+                            template={section.template}
+                            id={touristicContent.id.toString()}
+                            type="trek"
+                            cityCode={touristicContent.cities_raw[0]}
+                          />
                         </DetailsSection>
                       </section>
                     );
