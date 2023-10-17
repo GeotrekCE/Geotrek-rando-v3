@@ -266,19 +266,121 @@ You should at least override `home.title`, `home.description` and `home.welcome-
 
 ## HTML / Scripts
 
-You can include some HTML parts in different sections of the layout application, with files:
+### HTML templates :
+
+You can include some HTML parts in different sections of the layout application.  
+These templates can be translated by using the language code as a suffix (e.g. `homeTop-en.html` will be rendered only for the English interface). The application tries to find the localized template first, otherwise it tries the non-localized template, otherwise it displays nothing.  
+NB: If you want to display a message common to all languages but not to a particular language (e.g. french), just create the template suffixed with its language code (e.g. `-fr.html`) and leave it empty, and voilà!
+
+See examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html.
+
+#### Templates available on all pages
 
 - `customization/html/headerTop.html`: before the header section
 - `customization/html/headerBottom.html`: after the header section and before the content page
 - `customization/html/footerTop.html`: before the footer section and after the content page
 - `customization/html/footerBottom.html`: after the footer section
+
+#### Templates available on home page
+
 - `customization/html/homeTop.html`: first section of the homepage
 - `customization/html/homeBottom.html`: last section of the homepage
 
-These templates can be translated by using the language code as a suffix (e.g. `homeTop-en.html` will be rendered only for the English interface). The application tries to find the localized template first, otherwise it tries the non-localized template, otherwise it displays nothing.
-NB: If you want to display a message common to all languages but not to a particular language (e.g. french), just create the template suffixed with its language code (e.g. `-fr.html`) and leave it empty, and voilà!
+#### Templates on details page (trek, touristic content, touristic event, outdoor site and outdoor course)
 
-See examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html.
+You can create your own templates to display practical information or widgets in different parts of the details page. There are 3 steps to follow:
+
+1. Create a new file suffixed with `.html` in `customization/html/details/` (e.g. `example.html`) and fill the the content with html tags
+
+   ```html
+   <div>The id of this {{ type }} is {{ id }}</div>
+   ```
+
+You can define variables in "mustache templates" (meaning between brackets `{{ variable }}`) that will be converted once rendered. For the moment, there are 4 variables available:
+
+- Page ID with `{{ id }}`
+- Content type `{{ type }}`: rendered values are "trek", "touristicContent", "touristicEvent", "outdoorSite", "outdoorCourse").
+- The code of the (departure) city `{{ cityCode }}`: useful for widgets such as forecast.
+- The language code `{{ language }}` The current language of the page.
+
+When choosing a template name, care must be taken not to select a reserved name used by sections defined by the application (e.g `presentation`, see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/details.json).  
+ If you do, the customized template will not be displayed.
+
+2. Copy the template name without the `.html` suffix into the `customization/html/details.json` file.  
+   For example I want to display it in treks and outdoor sites details page:
+   ```json
+   {
+     "sections": {
+       "trek": [
+         {
+           "name": "example",
+           "display": true,
+           "anchor": true,
+           "order": 11
+         }
+       ],
+       "outdoorSite": [
+         {
+           "name": "example",
+           "display": true,
+           "anchor": true,
+           "order": 11
+         }
+       ]
+     }
+   }
+   ```
+3. Copy the section title/anchor into the translations files.  
+    For example in `customization/translations/en.json`:
+   ```json
+   {
+     "details": {
+       "example": "My example"
+     }
+   }
+   ```
+
+You can take a look at `customization/html/details/forecastWidget.html` which shows the implementation.
+By default the "forecast widget" is enabled for all content types; if you want to remove it, you need to write it explicitly in the `customization/html/details.json` file.
+
+```json
+{
+  "sections": {
+    "trek": [
+      {
+        "name": "forecastWidget",
+        "display": false
+      }
+    ],
+    "touristicContent": [
+      {
+        "name": "forecastWidget",
+        "display": false
+      }
+    ],
+    "touristicEvent": [
+      {
+        "name": "forecastWidget",
+        "display": false
+      }
+    ],
+    "outdoorSite": [
+      {
+        "name": "forecastWidget",
+        "display": false
+      }
+    ],
+    "outdoorCourse": [
+      {
+        "name": "forecastWidget",
+        "display": false
+      }
+    ]
+  }
+}
+```
+
+### Scripts
 
 You can also include some scripts:
 
