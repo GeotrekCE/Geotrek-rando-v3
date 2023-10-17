@@ -1,8 +1,12 @@
 import { useExternalsScripts } from 'components/Layout/useExternalScripts';
 import parse, { attributesToProps, DOMNode, domToReact, Element } from 'html-react-parser';
+import { useIntl } from 'react-intl';
 
 interface HtmlParserProps {
   template?: string;
+  id?: string;
+  type?: string;
+  cityCode?: string;
 }
 
 interface ParserOptionsProps {
@@ -31,14 +35,22 @@ const option = ({ needsConsent, triggerConsentModal }: ParserOptionsProps) => ({
   },
 });
 
-export const HtmlParser = ({ template }: HtmlParserProps) => {
+export const HtmlParser = ({ template, ...propsToReplace }: HtmlParserProps) => {
   const { needsConsent, triggerConsentModal } = useExternalsScripts();
+  const { locale } = useIntl();
 
   if (!template) {
     return null;
   }
 
-  return <>{parse(template, option({ needsConsent, triggerConsentModal }))}</>;
+  let nextTemplate = template;
+  Object.entries({ language: locale, ...propsToReplace }).forEach(([key, value]) => {
+    if (nextTemplate.includes(`{{ ${key} }}`)) {
+      nextTemplate = nextTemplate.replaceAll(`{{ ${key} }}`, value);
+    }
+  });
+
+  return <>{parse(nextTemplate, option({ needsConsent, triggerConsentModal }))}</>;
 };
 
 export default HtmlParser;
