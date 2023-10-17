@@ -59,6 +59,7 @@ interface SectionsProps {
   display: boolean;
   anchor: boolean;
   order: number;
+  template?: string;
 }
 
 export type SectionsTrek = SectionsProps & {

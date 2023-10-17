@@ -37,7 +37,7 @@ export const useOutdoorCourse = (
     },
   );
 
-  const { sections } = getDetailsConfig();
+  const { sections } = getDetailsConfig(language);
 
   const sectionsOutdoorCourse = sections.outdoorCourse.filter(({ display }) => display === true);
 

@@ -1,8 +1,10 @@
+import { useIntl } from 'react-intl';
 import { getDetailsConfig } from './config';
 import { Sections, SectionsTypes } from './interface';
 
 export const useDetailsSections = (type: keyof Sections) => {
-  const { sections } = getDetailsConfig();
+  const { locale } = useIntl();
+  const { sections } = getDetailsConfig(locale);
 
   const sectionsFilteredByType = (sections[type] as SectionsTypes[]).filter(
     ({ display }) => display,

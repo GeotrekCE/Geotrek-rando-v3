@@ -33,7 +33,7 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
     },
   );
 
-  const { sections } = getDetailsConfig();
+  const { sections } = getDetailsConfig(language);
 
   const sectionsOutdoorSite = sections.outdoorSite.filter(({ display }) => display === true);
 
