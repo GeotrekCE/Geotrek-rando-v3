@@ -1,1 +1,0 @@
-export { DetailsMeteoWidget } from './DetailsMeteoWidget';
