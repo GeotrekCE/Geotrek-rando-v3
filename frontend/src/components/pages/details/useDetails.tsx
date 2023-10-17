@@ -77,7 +77,7 @@ export const useDetails = (
     },
   );
 
-  const { sections } = getDetailsConfig();
+  const { sections } = getDetailsConfig(language);
 
   const sectionsTrek = sections.trek.filter(({ display }) => display === true);
 
