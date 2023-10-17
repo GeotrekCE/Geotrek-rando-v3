@@ -19,18 +19,17 @@ import { DetailsMapDynamicComponent } from 'components/Map';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
-import { getGlobalConfig } from 'modules/utils/api.config';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MapPin } from 'components/Icons/MapPin';
 import useHasMounted from 'hooks/useHasMounted';
 import { ImageWithLegend } from 'components/ImageWithLegend';
 import { cn } from 'services/utils/cn';
+import { HtmlParser } from 'components/HtmlParser';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
-import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
 import { useDetailsSections } from '../details/useDetailsSections';
 
@@ -356,25 +355,26 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                       );
                     }
 
-                    if (
-                      section.name === 'forecastWidget' &&
-                      getGlobalConfig().enableMeteoWidget &&
-                      outdoorCourseContent.cities_raw?.[0]
-                    ) {
+                    // Custom HTML templates
+                    if (section.template) {
                       return (
                         <section
                           key={section.name}
                           ref={sectionRef[section.name]}
                           id={`details_${section.name}_ref`}
                         >
-                          {hasNavigator && (
-                            <DetailsSection
-                              htmlId="details_forecastWidget"
-                              className={marginDetailsChild}
-                            >
-                              <DetailsMeteoWidget code={outdoorCourseContent.cities_raw[0]} />
-                            </DetailsSection>
-                          )}
+                          <DetailsSection
+                            htmlId={`details_${section.name}`}
+                            titleId={`details.${section.name}`}
+                            className={marginDetailsChild}
+                          >
+                            <HtmlParser
+                              template={section.template}
+                              id={outdoorCourseContent.id.toString()}
+                              type="trek"
+                              cityCode={outdoorCourseContent.cities_raw[0]}
+                            />
+                          </DetailsSection>
                         </section>
                       );
                     }

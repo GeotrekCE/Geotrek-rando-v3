@@ -23,19 +23,18 @@ import { DetailsMapDynamicComponent } from 'components/Map';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
-import { getGlobalConfig } from 'modules/utils/api.config';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MapPin } from 'components/Icons/MapPin';
 import useHasMounted from 'hooks/useHasMounted';
 import { ImageWithLegend } from 'components/ImageWithLegend';
 import { cn } from 'services/utils/cn';
+import { HtmlParser } from 'components/HtmlParser';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { useOutdoorSite } from './useOutdoorSite';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
-import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
 import { DetailsAndMapProvider } from '../details/DetailsAndMapContext';
 import { useDetailsSections } from '../details/useDetailsSections';
@@ -396,29 +395,6 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     }
 
                     if (
-                      section.name === 'forecastWidget' &&
-                      getGlobalConfig().enableMeteoWidget &&
-                      outdoorSiteContent.cities_raw?.[0]
-                    ) {
-                      return (
-                        <section
-                          key={section.name}
-                          ref={sectionRef[section.name]}
-                          id={`details_${section.name}_ref`}
-                        >
-                          {hasNavigator && (
-                            <DetailsSection
-                              htmlId="details_forecastWidget"
-                              className={marginDetailsChild}
-                            >
-                              <DetailsMeteoWidget code={outdoorSiteContent.cities_raw[0]} />
-                            </DetailsSection>
-                          )}
-                        </section>
-                      );
-                    }
-
-                    if (
                       section.name === 'source' &&
                       Number(outdoorSiteContent?.source?.length) > 0
                     ) {
@@ -498,6 +474,30 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                             )}
                             type="TOURISTIC_CONTENT"
                           />
+                        </section>
+                      );
+                    }
+
+                    // Custom HTML templates
+                    if (section.template) {
+                      return (
+                        <section
+                          key={section.name}
+                          ref={sectionRef[section.name]}
+                          id={`details_${section.name}_ref`}
+                        >
+                          <DetailsSection
+                            htmlId={`details_${section.name}`}
+                            titleId={`details.${section.name}`}
+                            className={marginDetailsChild}
+                          >
+                            <HtmlParser
+                              template={section.template}
+                              id={outdoorSiteContent.id.toString()}
+                              type="trek"
+                              cityCode={outdoorSiteContent.cities_raw[0]}
+                            />
+                          </DetailsSection>
                         </section>
                       );
                     }
