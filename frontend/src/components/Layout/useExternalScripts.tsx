@@ -77,13 +77,15 @@ export const useExternalsScripts = (executeOnLoad = false) => {
     gtag('config', '${googleAnalyticsId}');
 
     window.next.router.events.on('routeChangeComplete', function(url) {
-      if (JSON.parse(new URLSearchParams(document.cookie.replaceAll('; ', '&')).get('orejime') ?? null)?.["google-tag-manager"] !== true) {
-        return;
-      }
-      window.dataLayer.push({
-        event: "pageview",
-        page: url,
-      })
+      (function(allowsGTMCookies) {
+        window['ga-disable-${googleAnalyticsId}'] = !allowsGTMCookies;
+        if (allowsGTMCookies) {
+          window.dataLayer.push({
+            event: "pageview",
+            page: url,
+          })
+        }
+      })(JSON.parse(new URLSearchParams(document.cookie.replaceAll('; ', '&')).get('orejime') ?? null)?.["google-tag-manager"]);
     });
   </script>
   `
