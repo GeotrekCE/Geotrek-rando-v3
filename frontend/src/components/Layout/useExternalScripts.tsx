@@ -116,7 +116,7 @@ export const useExternalsScripts = (executeOnLoad = false) => {
     // @ts-ignore the lib is not typed
     const Orejime = await import('orejime');
     const { show } = Orejime.init(orejimeConfig(consentList, locale, privacyPolicyLink));
-    if (!executeOnLoad || !document.cookie.includes('orejime=')) {
+    if (!executeOnLoad) {
       show();
     }
   }
