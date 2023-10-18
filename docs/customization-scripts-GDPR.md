@@ -111,14 +111,17 @@ To avoid this, one solution is to check the user's acceptance in the cookies.
 >
   // Send visit on each dynamic page change
   window.next.router.events.on('routeChangeComplete', function(url) {
++   (function(allowsGTMCookies) {
++     // Tell Google if it can use the service
++     window['ga-disable-<GOOGLE_ANALYTICS_ID>'] = !allowsGTMCookies;
++      if (allowsGTMCookies) {
+        window.dataLayer.push({
+          event: "pageview",
+          page: url,
+        })
++     }
 +   // Check the user's acceptance of "google-tag-manager" in the cookies
-+   if (JSON.parse(new URLSearchParams(document.cookie.replaceAll('; ', '&')).get('orejime') ?? null)?.["google-tag-manager"] !== true) {
-+       return;
-+   }
-    window.dataLayer.push({
-      event: "pageview",
-      page: url,
-    })
++   })(JSON.parse(new URLSearchParams(document.cookie.replaceAll('; ', '&')).get('orejime') ?? null)?.["google-tag-manager"]);
   });
 </script>
 ```
