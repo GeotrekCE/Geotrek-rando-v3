@@ -19,7 +19,7 @@ import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsSource } from '../details/components/DetailsSource';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { DetailsHeaderMobile, marginDetailsChild } from '../details/Details';
-import { HtmlText } from '../details/utils';
+import { HtmlText, templatesVariablesAreDefinedAndUsed } from '../details/utils';
 import { DetailsHeader } from '../details/components/DetailsHeader';
 import { useDetailsSections } from '../details/useDetailsSections';
 
@@ -269,7 +269,13 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   }
 
                   // Custom HTML templates
-                  if (section.template) {
+                  if (
+                    templatesVariablesAreDefinedAndUsed({
+                      template: section.template,
+                      id: touristicContent.id.toString(),
+                      cityCode: touristicContent.cities_raw?.[0],
+                    })
+                  ) {
                     return (
                       <section
                         key={section.name}
