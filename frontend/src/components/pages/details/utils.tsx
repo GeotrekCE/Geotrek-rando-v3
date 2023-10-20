@@ -153,3 +153,19 @@ export const generateDetailsUrlFromType = (
   const titleWithNoSpace = convertStringForSitemap(title);
   return `${routes[type]}/${id}-${encodeURI(titleWithNoSpace)}${searchParams}`;
 };
+
+export const templatesVariablesAreDefinedAndUsed = ({
+  template,
+  ...variables
+}: {
+  template?: string;
+  id: string;
+  cityCode?: string;
+}) => {
+  if (!template) {
+    return false;
+  }
+  return Object.entries(variables).every(
+    ([key, value]) => !template.includes(`{{ ${key} }}`) || value,
+  );
+};

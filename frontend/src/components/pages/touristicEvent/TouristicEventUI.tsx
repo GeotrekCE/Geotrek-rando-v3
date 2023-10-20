@@ -6,7 +6,10 @@ import { DetailsSection } from 'components/pages/details/components/DetailsSecti
 import { DetailsSource } from 'components/pages/details/components/DetailsSource';
 import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/details/Details';
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
-import { generateTouristicContentUrl } from 'components/pages/details/utils';
+import {
+  generateTouristicContentUrl,
+  templatesVariablesAreDefinedAndUsed,
+} from 'components/pages/details/utils';
 import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
 import { useTouristicEvent } from 'components/pages/touristicEvent/useTouristicEvent';
 import { useMemo, useRef } from 'react';
@@ -335,7 +338,13 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                     }
 
                     // Custom HTML templates
-                    if (section.template) {
+                    if (
+                      templatesVariablesAreDefinedAndUsed({
+                        template: section.template,
+                        id: touristicEventContent.id.toString(),
+                        cityCode: touristicEventContent.cities_raw?.[0],
+                      })
+                    ) {
                       return (
                         <section
                           key={section.name}

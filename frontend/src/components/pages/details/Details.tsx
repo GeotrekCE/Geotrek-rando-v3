@@ -32,7 +32,11 @@ import { DetailsCardSection } from './components/DetailsCardSection';
 import { useDetails } from './useDetails';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from './components/DetailsTopIcons';
-import { generateTouristicContentUrl, HtmlText } from './utils';
+import {
+  generateTouristicContentUrl,
+  HtmlText,
+  templatesVariablesAreDefinedAndUsed,
+} from './utils';
 import { DetailsSource } from './components/DetailsSource';
 
 import { DetailsInformationDesk } from './components/DetailsInformationDesk';
@@ -545,7 +549,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                     }
 
                     // Custom HTML templates
-                    if (section.template) {
+                    if (
+                      templatesVariablesAreDefinedAndUsed({
+                        template: section.template,
+                        id: details.id.toString(),
+                        cityCode: details.cities_raw?.[0],
+                      })
+                    ) {
                       return (
                         <section
                           key={section.name}
