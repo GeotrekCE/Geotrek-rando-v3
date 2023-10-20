@@ -7,7 +7,11 @@ import { DetailsHeader } from 'components/pages/details/components/DetailsHeader
 import { DetailsSection } from 'components/pages/details/components/DetailsSection';
 import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/details/Details';
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
-import { generateTouristicContentUrl, HtmlText } from 'components/pages/details/utils';
+import {
+  generateTouristicContentUrl,
+  HtmlText,
+  templatesVariablesAreDefinedAndUsed,
+} from 'components/pages/details/utils';
 import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
 import { useOutdoorCourse } from 'components/pages/site/useOutdoorCourse';
 import { useMemo, useRef } from 'react';
@@ -356,7 +360,13 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                     }
 
                     // Custom HTML templates
-                    if (section.template) {
+                    if (
+                      templatesVariablesAreDefinedAndUsed({
+                        template: section.template,
+                        id: outdoorCourseContent.id.toString(),
+                        cityCode: outdoorCourseContent.cities_raw?.[0],
+                      })
+                    ) {
                       return (
                         <section
                           key={section.name}
