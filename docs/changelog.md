@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.15.5 (2023-10-23)
+
+**🐛 Fixes**
+
+- Fix the condition for displaying outdoorSite course: it checked the number of children (i.e. the children site of the current outdoorSite) instead of the outdoor courses related (#985)
+- Fix dynamic acceptance/refusal of GA cookies (#990)
+
+**✨ Improvements**
+
+- Avoid saving tiles from data.geopf.fr to cache storage (#984)
+- Add semantics to Footer components (#989)
+- Rewrite buttons components to use tailwind (#974)
+
 ## 3.15.4 (2023-10-10)
 
 **🚀 New features**
