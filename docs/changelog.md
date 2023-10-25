@@ -2,13 +2,13 @@
 
 ## 3.16.0 (2023-10-25)
 
-**✨ Improvements**
+**💥 Breaking changes**
+
+- The `enableMeteoWidget` in `global.json` is no longer supported. By default the widget is activated on all instances. [Read the doc](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/docs/customization.md#html--scripts) to see how to deactivate this widget on the details page
+
+**🚀 New features**
 
 - Define custom template sections for details pages #988
-
-**📝 Documentation**
-
-- ⚠️ The `enableMeteoWidge` in `global.json` is no longer supported, read the doc to see how to deactivate this widget on the details page
 
 ## 3.15.5 (2023-10-23)
 
@@ -28,6 +28,10 @@
 **🚀 New features**
 
 - Ask the user's consent to deposit cookies (#982)
+
+**💥 Breaking changes**
+
+- To keep Google Analytics running (if defined by `googleAnalyticsId` in `global.json`), you need to define the new `privacyPolicyLink` key in `global.json` with the url of your privacy policy page (See #459).
 
 **✨ Improvements**
 
