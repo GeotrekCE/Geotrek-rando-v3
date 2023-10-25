@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.16.0 (2023-10-25)
+
+**✨ Improvements**
+
+- Define custom template sections for details pages #988
+
+**📝 Documentation**
+
+- ⚠️ The `enableMeteoWidge` in `global.json` is no longer supported, read the doc to see how to deactivate this widget on the details page
+
 ## 3.15.5 (2023-10-23)
 
 **🐛 Fixes**
