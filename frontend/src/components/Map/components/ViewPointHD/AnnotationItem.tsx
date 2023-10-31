@@ -12,7 +12,11 @@ const MetaData = ({ properties }: { properties: GeoJsonProperties }) => {
   if (properties === null || !properties.name) {
     return null;
   }
-  return <Tooltip>{properties.name}</Tooltip>;
+  return (
+    <Tooltip>
+      <span className="text-base">{properties.name}</span>
+    </Tooltip>
+  );
 };
 
 export const AnnotationItem = ({ geometry, properties, id }: Props) => {
@@ -40,7 +44,12 @@ export const AnnotationItem = ({ geometry, properties, id }: Props) => {
         {coordinatesAsMultiPoint.map((coordinates, index) => {
           const [lat, lng] = coordinates;
           return (
-            <CircleMarker key={`point-${id}-${index}`} center={[lng, lat]} radius={6}>
+            <CircleMarker
+              className="annotation annotation-point"
+              key={`point-${id}-${index}`}
+              center={[lng, lat]}
+              radius={6}
+            >
               <MetaData properties={properties} />
             </CircleMarker>
           );
@@ -59,6 +68,7 @@ export const AnnotationItem = ({ geometry, properties, id }: Props) => {
           return (
             <Polyline
               key={`linestring-${id}-${index}`}
+              className="annotation annotation-line"
               positions={group.map(([lat, lng]) => [lng, lat])}
             >
               <MetaData properties={properties} />
@@ -82,7 +92,7 @@ export const AnnotationItem = ({ geometry, properties, id }: Props) => {
       const radius = Math.sqrt(Math.pow(diagonal, 2) / 2);
 
       return (
-        <Circle center={L.latLng(center)} radius={radius}>
+        <Circle className="annotation annotation-circle" center={L.latLng(center)} radius={radius}>
           <MetaData properties={properties} />
         </Circle>
       );
@@ -94,6 +104,7 @@ export const AnnotationItem = ({ geometry, properties, id }: Props) => {
         {coordinatesAsMultiPolygon.map((group, index) => (
           <Polygon
             key={`polygon-${id}-${index}`}
+            className="annotation annotation-polygone"
             positions={group.map(line => line.map<[number, number]>(([lat, lng]) => [lng, lat]))}
           >
             <MetaData properties={properties} />
