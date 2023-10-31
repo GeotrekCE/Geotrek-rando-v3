@@ -246,7 +246,7 @@
     "title": "HD-Fotos",
     "label": "HD-Foto",
     "credit": "Fotogutschrift:",
-    "examinePicture": "Foto durchsuchen"
+    "displayPicture": "Foto durchsuchen"
   },
   "Wind": {
     "N": "Norden",

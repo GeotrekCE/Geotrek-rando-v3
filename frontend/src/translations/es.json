@@ -246,7 +246,7 @@
     "title": "Fotos HD",
     "label": "Foto HD",
     "credit": "Crédito de la foto:",
-    "examinePicture": "Examinar foto"
+    "displayPicture": "Examinar foto"
   },
   "Wind": {
     "N": "Norte",

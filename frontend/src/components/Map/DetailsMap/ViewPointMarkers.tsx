@@ -32,7 +32,7 @@ export const ViewPointMarkers = ({ viewPoints, setMapId }: ViewPointMarkersProps
           onClick: () => {
             setMapId?.(id);
           },
-          label: 'viewPoint.examinePicture',
+          label: 'viewPoint.displayPicture',
         },
       },
     }));
