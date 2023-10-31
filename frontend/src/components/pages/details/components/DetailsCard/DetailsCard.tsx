@@ -78,7 +78,7 @@ export const DetailsCard: React.FC<DetailsCardPropsWithHandleViewPointClick> = (
       overflow-hidden desktop:w-auto
       h-fit desktop:flex-row
       transition-all duration-500`,
-          truncateState !== 'NONE' ? 'desktop:h-auto pb-6' : 'desktop:h-55',
+          truncateState !== 'NONE' ? 'desktop:h-auto' : 'desktop:h-55',
           truncateState === 'TRUNCATE' && hasMedia && 'desktop:h-55',
         )}
         onMouseEnter={() => {
@@ -116,7 +116,7 @@ export const DetailsCard: React.FC<DetailsCardPropsWithHandleViewPointClick> = (
             <CardIcon iconUri={iconUri} iconName={iconName} color={getActivityColor(type)} />
           </div>
         </div>
-        <div ref={detailsCardRef} className="p-2 pb-6 desktop:p-6">
+        <div ref={detailsCardRef} className="p-2 desktop:p-6">
           {place && (
             <OptionalLink redirectionUrl={redirectionUrl}>
               <p className="text-greyDarkColored">{place}</p>
@@ -139,31 +139,29 @@ export const DetailsCard: React.FC<DetailsCardPropsWithHandleViewPointClick> = (
                 </div>
               )}
               {truncateState !== 'NONE' && (
-                <div className="flex justify-center absolute bottom-0 border-solid border-t border-greySoft left-0 right-0 py-2 w-full px-4 bg-white rounded-b-card">
-                  <button
-                    className="flex desktop:ml-auto items-center text-primary1 underline shrink-0 gap-1 self-end"
-                    onClick={toggleTruncateState}
-                    type="button"
-                    aria-hidden
-                  >
-                    <span className="shrink-0">
-                      <FormattedMessage
-                        id={
-                          truncateState === 'TRUNCATE'
-                            ? 'details.moreInformation'
-                            : 'details.lessInformation'
-                        }
-                      />
-                    </span>
-                    <Arrow
-                      size={20}
-                      className={cn(
-                        'shrink-0 transition',
-                        truncateState === 'TRUNCATE' ? 'rotate-90' : '-rotate-90',
-                      )}
+                <button
+                  className="flex m-auto desktop:mr-0 items-center text-primary1 underline shrink-0 gap-1 self-end"
+                  onClick={toggleTruncateState}
+                  type="button"
+                  aria-hidden
+                >
+                  <span className="shrink-0">
+                    <FormattedMessage
+                      id={
+                        truncateState === 'TRUNCATE'
+                          ? 'details.moreInformation'
+                          : 'details.lessInformation'
+                      }
                     />
-                  </button>
-                </div>
+                  </span>
+                  <Arrow
+                    size={20}
+                    className={cn(
+                      'shrink-0 transition',
+                      truncateState === 'TRUNCATE' ? 'rotate-90' : '-rotate-90',
+                    )}
+                  />
+                </button>
               )}
             </>
           )}
