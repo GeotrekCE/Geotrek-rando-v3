@@ -256,7 +256,7 @@
     "title": "Foto HD",
     "label": "Foto HD",
     "credit": "Credito foto:",
-    "examinePicture": "Sfoglia foto"
+    "displayPicture": "Sfoglia foto"
   },
   "Wind": {
     "N": "Nord",

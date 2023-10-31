@@ -246,7 +246,7 @@
     "title": "Fotos HD",
     "label": "Foto HD",
     "credit": "Crèdit fotogràfic :",
-    "examinePicture": "Navega per la foto"
+    "displayPicture": "Navega per la foto"
   },
   "Wind": {
     "N": "Nord",

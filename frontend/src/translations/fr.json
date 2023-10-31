@@ -253,7 +253,7 @@
     "title": "Images HD",
     "label": "Image HD",
     "credit": "Crédit image :",
-    "examinePicture": "Examiner l'image"
+    "displayPicture": "Afficher l'image"
   },
   "Wind": {
     "N": "Nord",
