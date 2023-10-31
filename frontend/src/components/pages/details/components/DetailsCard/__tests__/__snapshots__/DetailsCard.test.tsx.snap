@@ -88,7 +88,7 @@ Object {
             </div>
           </div>
           <div
-            class="p-2 pb-6 desktop:p-6"
+            class="p-2 desktop:p-6"
           >
             <h3
               class="mb-1 text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
@@ -311,7 +311,7 @@ Object {
             </div>
           </div>
           <div
-            class="p-2 pb-6 desktop:p-6"
+            class="p-2 desktop:p-6"
           >
             <h3
               class="mb-1 text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
@@ -414,7 +414,7 @@ Object {
           </div>
         </div>
         <div
-          class="p-2 pb-6 desktop:p-6"
+          class="p-2 desktop:p-6"
         >
           <h3
             class="mb-1 text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
@@ -574,7 +574,7 @@ Object {
             </div>
           </div>
           <div
-            class="p-2 pb-6 desktop:p-6"
+            class="p-2 desktop:p-6"
           >
             <h3
               class="mb-1 text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
@@ -797,7 +797,7 @@ Object {
             </div>
           </div>
           <div
-            class="p-2 pb-6 desktop:p-6"
+            class="p-2 desktop:p-6"
           >
             <h3
               class="mb-1 text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
@@ -1021,7 +1021,7 @@ Object {
           </div>
         </div>
         <div
-          class="p-2 pb-6 desktop:p-6"
+          class="p-2 desktop:p-6"
         >
           <h3
             class="mb-1 text-Mobile-C1 desktop:text-H4 text-primary1 font-bold"
