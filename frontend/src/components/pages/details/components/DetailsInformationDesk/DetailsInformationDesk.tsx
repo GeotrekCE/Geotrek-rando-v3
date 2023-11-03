@@ -60,25 +60,36 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
             <DetailsInformationDeskLocation longitude={longitude} latitude={latitude} />
           )}
         </div>
-        <a className="break-all" href={website} target="_blank" rel="noopener noreferrer">
-          <p
-            className="mt-2
-            text-primary1 underline
-            hover:text-primary1-light"
+        {website && (
+          <a
+            className="break-all mt-2 table text-primary1 underline hover:text-primary1-light focus:text-primary1-light"
+            href={website}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {website}
-          </p>
-        </a>
-        <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">
-          <p
-            className="
-            text-primary1 underline
-            hover:text-primary1-light"
+          </a>
+        )}
+        {email && (
+          <a
+            className="text-primary1 table underline hover:text-primary1-light focus:text-primary1-light"
+            href={`mailto:${email}`}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {email}
-          </p>
-        </a>
-        <p className="text-primary1">{phone}</p>
+          </a>
+        )}
+        {phone && (
+          <a
+            className="text-primary1 table hover:text-primary1-light focus:text-primary1-light"
+            href={`tel:${phone}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {phone}
+          </a>
+        )}
 
         {description && (
           <div className="flex flex-col desktop:flex-row desktop:items-end mt-4">
