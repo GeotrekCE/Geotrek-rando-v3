@@ -1,11 +1,10 @@
 import { useState } from 'react';
+import Image from 'next/image';
 import { routes } from 'services/routes';
-import styled, { css } from 'styled-components';
 import { Popup as LeafletPopup, Tooltip as LeafletTooltip } from 'react-leaflet';
 import { FormattedMessage } from 'react-intl';
 import Loader from 'components/Loader';
 
-import { desktopOnly, getSpacing } from 'stylesheet';
 import { Button } from 'components/Button';
 import { generateResultDetailsUrl } from 'components/pages/search/utils';
 
@@ -54,7 +53,14 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId, conte
     <Loader className="absolute inset-0" loaded={!isLoading}>
       {trekPopupResult && (
         <div className="flex flex-col">
-          <CoverImage src={trekPopupResult.imgUrl} />
+          <Image
+            loading="lazy"
+            className="h-40 w-auto desktop:h-30 object-cover"
+            width={300}
+            height={130}
+            src={trekPopupResult.imgUrl}
+            alt=""
+          />
           <div className="p-4">
             {trekPopupResult.place && (
               <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:inline">
@@ -109,11 +115,11 @@ export const Popup: React.FC<Props> = ({
   return (
     <>
       {!hideTooltip && (
-        <StyledTooltip>
+        <LeafletTooltip className="!p-0 !border-0 !rounded-xl !overflow-hidden w-55 desktop:w-70 !whitespace-normal">
           <PopupContent type={type} id={id} showButton={false} content={content} />
-        </StyledTooltip>
+        </LeafletTooltip>
       )}
-      <StyledPopup
+      <LeafletPopup
         closeButton={false}
         onOpen={() => {
           setHideTooltip(true);
@@ -126,62 +132,7 @@ export const Popup: React.FC<Props> = ({
         offset={[0, -12]}
       >
         <PopupContent type={type} id={id} showButton={true} parentId={parentId} content={content} />
-      </StyledPopup>
+      </LeafletPopup>
     </>
   );
 };
-
-const desktopWidth = 288;
-const desktopImgHeight = 122;
-const mobileWidth = 215;
-const mobileImgHeight = 133;
-
-const StyledTooltip = styled(LeafletTooltip)`
-  padding: 0;
-  border: 0px !important;
-  border-radius: ${getSpacing(4)} !important;
-  overflow: hidden;
-  white-space: initial !important;
-  width: ${mobileWidth}px;
-  ${desktopOnly(css`
-    width: ${desktopWidth}px;
-  `)};
-`;
-
-const StyledPopup = styled(LeafletPopup)`
-  .leaflet-popup-content {
-    margin: 0;
-
-    // Show the loader properly
-    position: relative;
-    min-height: 120px;
-    min-width: 120px;
-  }
-
-  .leaflet-popup-content-wrapper {
-    padding: 0;
-
-    border-radius: ${getSpacing(4)};
-    overflow: hidden;
-
-    width: ${mobileWidth}px;
-    ${desktopOnly(css`
-      width: ${desktopWidth}px;
-    `)};
-  }
-
-  // Removes native leaflet popup triangle below the content
-  // https://stackoverflow.com/a/51457598/14707543
-  .leaflet-popup-tip {
-    background: rgba(0, 0, 0, 0) !important;
-    box-shadow: none !important;
-  }
-`;
-
-const CoverImage = styled.img`
-  height: ${mobileImgHeight}px;
-  ${desktopOnly(css`
-    height: ${desktopImgHeight}px;
-  `)}
-  object-fit: cover;
-`;
