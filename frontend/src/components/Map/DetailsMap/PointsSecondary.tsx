@@ -1,10 +1,9 @@
-import React, { FC, useMemo } from 'react';
+import { useMemo } from 'react';
+import Image from 'next/image';
 import { Tooltip } from 'react-leaflet';
 import { Signage } from 'components/Icons/Signage';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { SignageDictionary } from 'modules/signage/interface';
-import styled, { css } from 'styled-components';
-import { desktopOnly, getSpacing } from 'stylesheet';
 import { RawCoordinate2D } from 'modules/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { FormattedMessage } from 'react-intl';
@@ -12,7 +11,7 @@ import { HoverableMarker } from '../components/HoverableMarker';
 
 export type PointsSecondaryProps = {
   dictionary?: SignageDictionary | InfrastructureDictionary | null;
-  icon?: FC;
+  icon?: React.FC;
 };
 
 type Locations = {
@@ -57,14 +56,23 @@ export const PointsSecondary: React.FC<PointsSecondaryProps> = ({
           pictogramUri={location.pictogramUri}
           type={null}
         >
-          <StyledTooltip>
+          <Tooltip className="!p-0 !border-0 !rounded-xl !overflow-hidden w-55 desktop:w-70 !whitespace-normal">
             <div className="flex flex-col">
-              {location.imageUrl !== null && <CoverImage src={location.imageUrl} alt="" />}
+              {location.imageUrl !== null && (
+                <Image
+                  loading="lazy"
+                  className="h-40 w-auto desktop:h-30 object-cover"
+                  width={300}
+                  height={130}
+                  src={location.imageUrl}
+                  alt=""
+                />
+              )}
               <div className="p-4">
                 <div className="text-P2 mb-1 text-greyDarkColored">{location.type}</div>
-                <Name className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4 line-clamp-2">
+                <h3 className="text-Mobile-C1 text-primary1 font-bold desktop:text-H4 line-clamp-2">
                   {location.name}
-                </Name>
+                </h3>
                 {Boolean(location.description) && (
                   <p
                     className="text-P2 my-2"
@@ -83,43 +91,9 @@ export const PointsSecondary: React.FC<PointsSecondaryProps> = ({
                 )}
               </div>
             </div>
-          </StyledTooltip>
+          </Tooltip>
         </HoverableMarker>
       ))}
     </>
   );
 };
-
-const desktopWidth = 288;
-const desktopImgHeight = 122;
-const mobileWidth = 215;
-const mobileImgHeight = 133;
-
-const StyledTooltip = styled(Tooltip)`
-  padding: 0;
-  border: 0px !important;
-  border-radius: ${getSpacing(4)} !important;
-  overflow: hidden;
-  white-space: initial !important;
-  width: ${mobileWidth}px;
-  ${desktopOnly(css`
-    width: ${desktopWidth}px;
-  `)};
-`;
-
-const Name = styled.span`
-  ${desktopOnly(css`
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: block;
-  `)}
-`;
-
-const CoverImage = styled.img`
-  height: ${mobileImgHeight}px;
-  ${desktopOnly(css`
-    height: ${desktopImgHeight}px;
-  `)}
-  object-fit: cover;
-`;
