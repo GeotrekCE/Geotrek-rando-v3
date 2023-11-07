@@ -2,8 +2,17 @@ const fs = require('fs');
 const deepmerge = require('deepmerge');
 const { getLocales } = require('./getLocales');
 
+function isPathExists(path) {
+  try {
+    fs.accessSync(path, fs.R_OK);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+
 function getFiles(dir, files = []) {
-  if (!fs.existsSync(dir)) {
+  if (!isPathExists(dir)) {
     return files;
   }
   const fileList = fs.readdirSync(dir);
@@ -19,7 +28,7 @@ function getFiles(dir, files = []) {
 }
 
 const getContent = (path, parse) => {
-  if (fs.existsSync(path)) {
+  if (isPathExists(path)) {
     const content = fs.readFileSync(path).toString();
     return parse ? JSON.parse(content) : content;
   }
