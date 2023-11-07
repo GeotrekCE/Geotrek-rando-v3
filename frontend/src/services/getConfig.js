@@ -3,6 +3,9 @@ const deepmerge = require('deepmerge');
 const { getLocales } = require('./getLocales');
 
 function getFiles(dir, files = []) {
+  if (!fs.existsSync(dir)) {
+    return files;
+  }
   const fileList = fs.readdirSync(dir);
   for (const file of fileList) {
     const name = `${dir}/${file}`;
