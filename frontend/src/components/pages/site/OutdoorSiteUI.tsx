@@ -324,10 +324,13 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                           ref={sectionRef[section.name]}
                           id={`details_${section.name}_ref`}
                         >
+                          <div
+                            id="details_practicalInformations"
+                            className="scroll-mt-20 desktop:scroll-mt-30"
+                          />
                           {(outdoorSiteContent.advice ||
                             Number(outdoorSiteContent?.labels?.length) > 0) && (
                             <DetailsSection
-                              htmlId="details_practicalInformations"
                               titleId="details.recommandations"
                               className={marginDetailsChild}
                             >

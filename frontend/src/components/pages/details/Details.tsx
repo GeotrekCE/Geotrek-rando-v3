@@ -326,11 +326,14 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                           ref={sectionRef[section.name]}
                           id={`details_${section.name}_ref`}
                         >
+                          <div
+                            id="details_practicalInformations"
+                            className="scroll-mt-20 desktop:scroll-mt-30"
+                          />
                           {(details.labels.length > 0 ||
                             (details.advice !== null && details.advice.length > 0)) && (
                             <div id="details_recommandations_ref">
                               <DetailsSection
-                                htmlId="details_practicalInformations"
                                 titleId="details.recommandations"
                                 className={marginDetailsChild}
                               >
