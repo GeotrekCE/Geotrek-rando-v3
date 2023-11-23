@@ -1,5 +1,6 @@
 import { PRACTICE_ID } from 'modules/filters/constant';
 import { FilterWithoutType } from 'modules/filters/interface';
+import { sortedByOrder } from 'modules/utils/array';
 import { Activity, ActivityChoices, ActivityFilter, RawListActivity } from './interface';
 
 const isCompleteRawListActivity = (
@@ -13,11 +14,14 @@ export const adaptActivityFilter = (
   rawActivities: Partial<RawListActivity>[],
 ): FilterWithoutType => ({
   id: PRACTICE_ID,
-  options: rawActivities.filter(isCompleteRawListActivity).map(rawActivity => ({
-    value: `${rawActivity.id}`,
-    label: rawActivity.name,
-    pictogramUrl: rawActivity.pictogram,
-  })),
+  options: rawActivities
+    .filter(isCompleteRawListActivity)
+    .sort(sortedByOrder)
+    .map(rawActivity => ({
+      value: `${rawActivity.id}`,
+      label: rawActivity.name,
+      pictogramUrl: rawActivity.pictogram,
+    })),
 });
 
 export const adaptActivity = (rawActivity: RawListActivity): Activity => ({
@@ -27,24 +31,30 @@ export const adaptActivity = (rawActivity: RawListActivity): Activity => ({
 });
 
 export const adaptActivities = (rawActivities: Partial<RawListActivity>[]): ActivityChoices =>
-  rawActivities.filter(isCompleteRawListActivity).reduce(
-    (activities, { name, pictogram, id }) => ({
-      ...activities,
-      [id]: {
-        label: name,
-        pictogramUri: pictogram,
-      },
-    }),
-    {} as ActivityChoices,
-  );
+  rawActivities
+    .filter(isCompleteRawListActivity)
+    .sort(sortedByOrder)
+    .reduce(
+      (activities, { name, pictogram, id }) => ({
+        ...activities,
+        [id]: {
+          label: name,
+          pictogramUri: pictogram,
+        },
+      }),
+      {} as ActivityChoices,
+    );
 
 export const adaptActivitiesFilter = (
   rawActivities: Partial<RawListActivity>[],
 ): ActivityFilter[] =>
-  rawActivities.filter(isCompleteRawListActivity).map(({ name, pictogram, id, order = null }) => ({
-    label: name,
-    pictogramUri: pictogram,
-    id: `${id}`,
-    order,
-    type: 'PRACTICE',
-  }));
+  rawActivities
+    .filter(isCompleteRawListActivity)
+    .sort(sortedByOrder)
+    .map(({ name, pictogram, id, order = null }) => ({
+      label: name,
+      pictogramUri: pictogram,
+      id: `${id}`,
+      order,
+      type: 'PRACTICE',
+    }));

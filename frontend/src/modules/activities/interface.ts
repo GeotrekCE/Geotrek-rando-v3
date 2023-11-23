@@ -1,6 +1,6 @@
 export interface RawActivity {
   id: number;
-  order: null;
+  order: null | number;
   pictogram: string;
 }
 
