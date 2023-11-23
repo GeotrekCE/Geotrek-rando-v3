@@ -1,3 +1,7 @@
+interface ItemWithOrder {
+  order?: null | number;
+}
+
 export const uniqBy = <T extends Record<string, any>, K extends keyof T>(arr: T[], key: K): T[] =>
   Array.isArray(arr)
     ? arr.filter((item, index, self) => index === self.findIndex(y => item[key] === y[key]))
@@ -21,3 +25,6 @@ export const groupBy = <T extends Record<string, any>>(
     ),
     {} as Record<string, T[]>,
   );
+
+export const sortedByOrder = (a: ItemWithOrder, b: ItemWithOrder) =>
+  (a.order ?? Infinity) - (b.order ?? Infinity);
