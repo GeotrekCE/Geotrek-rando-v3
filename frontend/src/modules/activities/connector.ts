@@ -1,6 +1,7 @@
 import { FilterWithoutType } from 'modules/filters/interface';
 import { adaptTouristicContentCategoryList } from 'modules/touristicContentCategory/adapter';
 import { fetchTouristicContentCategories } from 'modules/touristicContentCategory/api';
+import { sortedByOrder } from 'modules/utils/array';
 import { adaptOutdoorPracticesForActivities } from '../outdoorPractice/adapter';
 import { fetchOutdoorPractices } from '../outdoorPractice/api';
 import { adaptTouristicEventTypesForActivities } from '../touristicEventType/adapter';
@@ -37,9 +38,6 @@ export const getActivity = async (
   return adaptActivity(rawActivity);
 };
 
-const sortedActivitiesByOrder = (a: ActivityFilter, b: ActivityFilter) =>
-  (a.order ?? Infinity) - (b.order ?? Infinity);
-
 export const getActivityBarContent = async (language: string): Promise<ActivityFilter[]> => {
   const [rawPractices, rawTouristicContentCategories, rawOutdoorPractices, rawTouristicEvents] =
     await Promise.all([
@@ -50,15 +48,13 @@ export const getActivityBarContent = async (language: string): Promise<ActivityF
     ]);
 
   return [
-    ...adaptActivitiesFilter(rawPractices.results).sort(sortedActivitiesByOrder),
+    ...adaptActivitiesFilter(rawPractices.results).sort(sortedByOrder),
     ...adaptOutdoorPracticesForActivities(
       rawOutdoorPractices ? rawOutdoorPractices.results : [],
-    ).sort(sortedActivitiesByOrder),
-    ...adaptTouristicContentCategoryList(rawTouristicContentCategories.results).sort(
-      sortedActivitiesByOrder,
-    ),
+    ).sort(sortedByOrder),
+    ...adaptTouristicContentCategoryList(rawTouristicContentCategories.results).sort(sortedByOrder),
     ...adaptTouristicEventTypesForActivities(
       rawTouristicEvents ? rawTouristicEvents.results : [],
-    ).sort(sortedActivitiesByOrder),
+    ).sort(sortedByOrder),
   ];
 };
