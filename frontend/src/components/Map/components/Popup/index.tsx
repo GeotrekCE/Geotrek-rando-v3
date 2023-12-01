@@ -66,7 +66,7 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId, conte
             </h3>
             {showButton && (
               <>
-                {trekPopupResult?.button?.onClick ? (
+                {trekPopupResult.button?.onClick ? (
                   <Button className="mt-4 w-full" {...trekPopupResult.button}>
                     <span className="w-full">
                       <FormattedMessage id={trekPopupResult.button.label} />
