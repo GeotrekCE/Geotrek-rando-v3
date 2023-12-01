@@ -35,8 +35,9 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId, conte
   let isLoading = false;
   let trekPopupResult = null;
 
+  const popupResult = usePopupResult(id.toString(), true, type);
+
   if (!content && type) {
-    const popupResult = usePopupResult(id.toString(), true, type);
     isLoading = popupResult.isLoading;
     trekPopupResult = popupResult.trekPopupResult;
   } else {
