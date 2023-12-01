@@ -29,13 +29,7 @@ interface PropsPC {
   content?: PopupResult;
 }
 
-const getRoute = (type: PropsPC['type']) => {
-  if (type === 'TOURISTIC_CONTENT') return routes.TOURISTIC_CONTENT;
-  if (type === 'OUTDOOR_SITE') return routes.OUTDOOR_SITE;
-  if (type === 'TOURISTIC_EVENT') return routes.TOURISTIC_EVENT;
-  if (type === 'TREK') return routes.TREK;
-  return routes.TREK;
-};
+const getRoute = (type: PropsPC['type']) => (type && routes[type]) ?? routes.TREK;
 
 const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId, content }) => {
   let isLoading = false;
