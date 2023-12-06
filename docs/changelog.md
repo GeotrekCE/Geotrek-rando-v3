@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.16.1 (2023-12-13)
+
+**✨ Improvements**
+
+- Update IGN links to match with latest changes of IGN (#999)
+- Add loading lazy attributes to iframes (#1003)
+- Improve map popup component (#1002)
+- Improve ControlSection component (#1001)
+- Display only filled information desk website/email/phone (#995)
+
+**🐛 Fixes**
+
+- Fix activities order in search page (#998)
+- Fix practical information anchor from details page (#1000)
+- Avoid app crashes if /customization/html/details folder is missing (#996)
+- Display zoom+fullscreen map control at first position (#1008)
+
 ## 3.16.0 (2023-10-25)
 
 **💥 Breaking changes**
