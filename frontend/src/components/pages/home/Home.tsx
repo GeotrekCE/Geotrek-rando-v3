@@ -42,7 +42,9 @@ const HomeUI: React.FC = () => {
               className={`desktop:flex desktop:justify-center ${classNameHomeChild}`}
               id="home_activitiesBar"
             >
-              <ActivitySearchFilter />
+              <ActivitySearchFilter
+                itemsToDisplayBeforeTruncation={activityBar.numberOfItemsBeforeTruncation}
+              />
             </div>
           )}
           {homeTop !== undefined && (

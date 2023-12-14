@@ -1,5 +1,6 @@
 interface ActivityBar {
   shouldDisplay: boolean;
+  numberOfItemsBeforeTruncation: number;
 }
 
 interface WelcomeBanner {
