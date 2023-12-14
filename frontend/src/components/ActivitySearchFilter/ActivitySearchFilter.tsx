@@ -12,20 +12,22 @@ import { ActivitySearchFilterMobile } from './ActivitySearchFilterMobile';
 
 interface Props {
   className?: string;
+  itemsToDisplayBeforeTruncation: number;
 }
 
-const MAX_VISIBLE_ACTIVITIES = 8;
-
-export const ActivitySearchFilter: React.FC<Props> = ({ className }) => {
+export const ActivitySearchFilter: React.FC<Props> = ({
+  className,
+  itemsToDisplayBeforeTruncation = 8,
+}) => {
   const { activities, expandedState, toggleExpandedState } = useActivitySearchFilter();
 
   const collapseIsNeeded: boolean =
-    activities !== undefined && activities.length > MAX_VISIBLE_ACTIVITIES;
+    activities !== undefined && activities.length > itemsToDisplayBeforeTruncation;
 
   const visibleActivities: ActivityFilter[] | undefined =
     activities !== undefined
       ? collapseIsNeeded && expandedState === 'COLLAPSED'
-        ? activities.slice(0, MAX_VISIBLE_ACTIVITIES)
+        ? activities.slice(0, itemsToDisplayBeforeTruncation)
         : activities
       : undefined;
 
