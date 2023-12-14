@@ -14,10 +14,13 @@ const {
 } = getNextConfig();
 
 const HomeUI: React.FC = () => {
-  const { config, suggestions } = useHome();
+  const {
+    config: { activityBar, welcomeBanner },
+    suggestions,
+  } = useHome();
 
   const contentContainerClassname = `relative ${
-    config.activityBar.shouldDisplay ? '-top-6 desktop:-top-15' : 'pt-6 desktop:pt-18'
+    activityBar.shouldDisplay ? '-top-6 desktop:-top-15' : 'pt-6 desktop:pt-18'
   }`;
 
   const intl = useIntl();
@@ -32,14 +35,9 @@ const HomeUI: React.FC = () => {
         description={intl.formatMessage({ id: 'home.description' })}
       />
       <HomeContainer id="home_container">
-        <BannerWithAsset
-          shouldDisplayText={config.welcomeBanner.shouldDisplayText}
-          carouselUrls={config.welcomeBanner.carouselUrls}
-          pictureUrl={config.welcomeBanner.pictureUrl}
-          videoUrl={config.welcomeBanner.videoUrl}
-        />
+        <BannerWithAsset {...welcomeBanner} />
         <div id="home_content" className={contentContainerClassname}>
-          {config.activityBar.shouldDisplay && (
+          {activityBar.shouldDisplay && (
             <div
               className={`desktop:flex desktop:justify-center ${classNameHomeChild}`}
               id="home_activitiesBar"
