@@ -17,7 +17,13 @@
     "mailTo": "E-Mail senden",
     "walking": "Wanderung",
     "territoryTreks": "Wanderungen, die es zu entdecken gilt",
-    "itinerantTreks": "Reiserouten zum Entdecken"
+    "itinerantTreks": "Reiserouten zum Entdecken",
+    "activityBar": {
+      "practices": "Wanderungen",
+      "outdoorPractices": "Draußen",
+      "touristicContent": "Dienstleistungen",
+      "touristicEvent": "Veranstaltungen"
+    }
   },
   "loading": "Laden",
   "page": {

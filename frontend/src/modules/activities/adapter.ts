@@ -1,6 +1,7 @@
 import { PRACTICE_ID } from 'modules/filters/constant';
 import { FilterWithoutType } from 'modules/filters/interface';
 import { sortedByOrder } from 'modules/utils/array';
+import { ActivityBarLinks } from 'modules/home/interface';
 import { Activity, ActivityChoices, ActivityFilter, RawListActivity } from './interface';
 
 const isCompleteRawListActivity = (
@@ -47,8 +48,25 @@ export const adaptActivities = (rawActivities: Partial<RawListActivity>[]): Acti
 
 export const adaptActivitiesFilter = (
   rawActivities: Partial<RawListActivity>[],
-): ActivityFilter[] =>
-  rawActivities
+  { grouped }: Partial<ActivityBarLinks>,
+): ActivityFilter[] => {
+  if (grouped) {
+    return [
+      {
+        label: 'Practices',
+        titleTranslationId: 'home.activityBar.practices',
+        pictogramUri: '/icons/practice-trek.svg',
+        id: rawActivities
+          .filter(isCompleteRawListActivity)
+          .map(({ id }) => `${id}`)
+          .sort()
+          .join(','),
+        order: null,
+        type: 'PRACTICE',
+      },
+    ];
+  }
+  return rawActivities
     .filter(isCompleteRawListActivity)
     .sort(sortedByOrder)
     .map(({ name, pictogram, id, order = null }) => ({
@@ -58,3 +76,4 @@ export const adaptActivitiesFilter = (
       order,
       type: 'PRACTICE',
     }));
+};
