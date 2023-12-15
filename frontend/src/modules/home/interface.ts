@@ -1,6 +1,12 @@
-interface ActivityBar {
+export interface ActivityBar {
   shouldDisplay: boolean;
   numberOfItemsBeforeTruncation: number;
+  links: ActivityBarLinks[];
+}
+
+export interface ActivityBarLinks {
+  type: 'trek' | 'outdoorSite' | 'touristicContent' | 'touristicEvent';
+  grouped: boolean;
 }
 
 interface WelcomeBanner {
