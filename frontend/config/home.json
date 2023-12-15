@@ -9,7 +9,23 @@
   },
   "activityBar": {
     "shouldDisplay": true,
-    "numberOfItemsBeforeTruncation": 8
+    "numberOfItemsBeforeTruncation": 8,
+    "links": [{
+      "type": "trek",
+      "grouped": false
+    },
+    {
+      "type": "outdoorSite",
+      "grouped": false
+    },
+    {
+      "type": "touristicContent",
+      "grouped": false
+    },
+    {
+      "type": "touristicEvent",
+      "grouped": false
+    }]
   },
   "suggestions": {
     "default": []
