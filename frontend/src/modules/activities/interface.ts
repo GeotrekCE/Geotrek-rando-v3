@@ -26,4 +26,5 @@ export interface ActivityFilter extends Activity {
   id: number | string;
   order: null | number;
   type: 'PRACTICE' | 'OUTDOOR_PRACTICE' | 'CATEGORY' | 'TOURISTIC_EVENT_TYPE';
+  titleTranslationId?: string;
 }

@@ -1,6 +1,6 @@
 import { ChevronDown } from 'components/Icons/ChevronDown';
 import { MoreHorizontal } from 'components/Icons/MoreHorizontal';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { routes } from 'services/routes';
 import { ActivityFilter } from 'modules/activities/interface';
 import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
@@ -20,6 +20,7 @@ export const ActivitySearchFilter: React.FC<Props> = ({
   itemsToDisplayBeforeTruncation = 8,
 }) => {
   const { activities, expandedState, toggleExpandedState } = useActivitySearchFilter();
+  const intl = useIntl();
 
   const getId = (type: string) => {
     if (type === 'PRACTICE') return PRACTICE_ID;
@@ -29,7 +30,7 @@ export const ActivitySearchFilter: React.FC<Props> = ({
     return CATEGORY_ID;
   };
 
-  if (activities === undefined) {
+  if (!activities) {
     return null;
   }
 
@@ -54,7 +55,11 @@ export const ActivitySearchFilter: React.FC<Props> = ({
               iconUrl={activity.pictogramUri}
               href={`${routes.SEARCH}?${getId(activity.type)}=${activity.id}`}
               key={`${activity.type}-${activity.id}`}
-              label={activity.label}
+              label={
+                activity.titleTranslationId
+                  ? intl.formatMessage({ id: activity.titleTranslationId })
+                  : activity.label
+              }
             />
           ))}
         </div>
