@@ -1,6 +1,6 @@
 import React from 'react';
 import Select, { CSSObjectWithLabel } from 'react-select';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { colorPalette, getSpacing, shadow } from 'stylesheet';
 import { routes } from 'services/routes';
@@ -17,6 +17,7 @@ export const ActivitySearchFilterMobile: React.FC<{
   getId: (type: string) => string;
 }> = ({ className = '', activities, getId }) => {
   const { selectedActivityId, updateSelectedActivityId } = useActivitySearchFilterMobile();
+  const intl = useIntl();
 
   const selectedActivity = activities.find(
     ({ id, type }) => `${type}-${id}` === selectedActivityId,
@@ -26,9 +27,9 @@ export const ActivitySearchFilterMobile: React.FC<{
     <div className={`${className} flex space-x-4 items-center`}>
       <Select
         className="flex-1"
-        options={activities.map(({ id, label, type }) => ({
+        options={activities.map(({ id, label, titleTranslationId, type }) => ({
           value: `${type}-${id}`,
-          label,
+          label: titleTranslationId ? intl.formatMessage({ id: titleTranslationId }) : label,
         }))}
         styles={selectStyles}
         instanceId="activitySearchFilterMobile"

@@ -2,6 +2,7 @@ import { FilterWithoutType } from 'modules/filters/interface';
 import { adaptTouristicContentCategoryList } from 'modules/touristicContentCategory/adapter';
 import { fetchTouristicContentCategories } from 'modules/touristicContentCategory/api';
 import { sortedByOrder } from 'modules/utils/array';
+import { ActivityBar, ActivityBarLinks } from 'modules/home/interface';
 import { adaptOutdoorPracticesForActivities } from '../outdoorPractice/adapter';
 import { fetchOutdoorPractices } from '../outdoorPractice/api';
 import { adaptTouristicEventTypesForActivities } from '../touristicEventType/adapter';
@@ -38,23 +39,37 @@ export const getActivity = async (
   return adaptActivity(rawActivity);
 };
 
-export const getActivityBarContent = async (language: string): Promise<ActivityFilter[]> => {
-  const [rawPractices, rawTouristicContentCategories, rawOutdoorPractices, rawTouristicEvents] =
-    await Promise.all([
-      fetchActivities({ language }),
-      fetchTouristicContentCategories({ language }),
-      getGlobalConfig().enableOutdoor ? fetchOutdoorPractices({ language }) : null,
-      getGlobalConfig().enableTouristicEvents ? fetchTouristicEventTypes({ language }) : null,
-    ]);
+export const getActivityBarContent = async (
+  language: string,
+  links: ActivityBar['links'],
+): Promise<ActivityFilter[]> => {
+  const getActivitiesAccordingToType = ({ type, ...config }: ActivityBarLinks) => {
+    if (type === 'trek') {
+      return fetchActivities({ language }).then(({ results }) =>
+        adaptActivitiesFilter(results, config).sort(sortedByOrder),
+      );
+    }
+    if (type === 'outdoorSite' && getGlobalConfig().enableOutdoor) {
+      return fetchOutdoorPractices({ language }).then(({ results }) =>
+        adaptOutdoorPracticesForActivities(results, config).sort(sortedByOrder),
+      );
+    }
+    if (type === 'touristicContent') {
+      return fetchTouristicContentCategories({ language }).then(({ results }) =>
+        adaptTouristicContentCategoryList(results, config).sort(sortedByOrder),
+      );
+    }
+    if (type === 'touristicEvent' && getGlobalConfig().enableTouristicEvents) {
+      return fetchTouristicEventTypes({ language }).then(({ results }) =>
+        adaptTouristicEventTypesForActivities(results, config).sort(sortedByOrder),
+      );
+    }
+    return [];
+  };
 
-  return [
-    ...adaptActivitiesFilter(rawPractices.results).sort(sortedByOrder),
-    ...adaptOutdoorPracticesForActivities(
-      rawOutdoorPractices ? rawOutdoorPractices.results : [],
-    ).sort(sortedByOrder),
-    ...adaptTouristicContentCategoryList(rawTouristicContentCategories.results).sort(sortedByOrder),
-    ...adaptTouristicEventTypesForActivities(
-      rawTouristicEvents ? rawTouristicEvents.results : [],
-    ).sort(sortedByOrder),
-  ];
+  const activityFilters = await Promise.all(
+    links.map(async item => await getActivitiesAccordingToType(item)),
+  );
+
+  return activityFilters.flat();
 };

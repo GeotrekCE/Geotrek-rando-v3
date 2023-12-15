@@ -20,7 +20,13 @@
     "itinerantTreks": "Itinerari da scoprire",
     "services": "Servizi da scoprire",
     "events": "Eventi da non perdere",
-    "outdoor": "Siti outdoor da scoprire"
+    "outdoor": "Siti outdoor da scoprire",
+    "activityBar": {
+      "practices": "Escursioni",
+      "outdoorPractices": "Outdoor",
+      "touristicContent": "Servizi",
+      "touristicEvent": "Eventi"
+    }
   },
   "loading": "Caricamento",
   "page": {

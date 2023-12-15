@@ -1,6 +1,7 @@
 import { ActivityFilter } from 'modules/activities/interface';
 import { CATEGORY_ID } from 'modules/filters/constant';
 import { FilterWithoutType } from 'modules/filters/interface';
+import { ActivityBarLinks } from 'modules/home/interface';
 import {
   RawTouristicContentCategory,
   TouristicContentCategory,
@@ -26,8 +27,25 @@ const isCompleteRawListTouristicContentCategory = (
 
 export const adaptTouristicContentCategoryList = (
   rawToutisticContentCategories: Partial<RawTouristicContentCategory>[],
-): ActivityFilter[] =>
-  rawToutisticContentCategories
+  { grouped }: Partial<ActivityBarLinks>,
+): ActivityFilter[] => {
+  if (grouped) {
+    return [
+      {
+        label: 'Touristic content categories',
+        titleTranslationId: 'home.activityBar.touristicContent',
+        pictogramUri: '/icons/category-services.svg',
+        id: rawToutisticContentCategories
+          .filter(isCompleteRawListTouristicContentCategory)
+          .map(({ id }) => `${id}`)
+          .sort()
+          .join(','),
+        order: null,
+        type: 'CATEGORY',
+      },
+    ];
+  }
+  return rawToutisticContentCategories
     .filter(isCompleteRawListTouristicContentCategory)
     .map(({ label, pictogram, id, order = null }) => ({
       label,
@@ -36,6 +54,7 @@ export const adaptTouristicContentCategoryList = (
       order,
       type: 'CATEGORY',
     }));
+};
 
 export const adaptTouristicContentCategories = (
   rawCats: RawTouristicContentCategory[],

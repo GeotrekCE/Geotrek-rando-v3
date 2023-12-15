@@ -17,7 +17,13 @@
     "mailTo": "Enviar un email",
     "walking": "Senderisme",
     "territoryTreks": "Excursions a descobrir",
-    "itinerantTreks": "Itineràncies a descobrir"
+    "itinerantTreks": "Itineràncies a descobrir",
+    "activityBar": {
+      "practices": "Excursions",
+      "outdoorPractices": "Exterior",
+      "touristicContent": "Serveis",
+      "touristicEvent": "Esdeveniments"
+    }
   },
   "loading": "Carregant",
   "page": {
@@ -41,7 +47,7 @@
     "diary": "Diari",
     "filters": {
       "difficulty": "Dificultat",
-      "practices": "excursions",
+      "practices": "Excursions",
       "outdoorPractice": "Exterior",
       "treksOutdoorGrouped": "Activities",
       "event": "Esdeveniments",

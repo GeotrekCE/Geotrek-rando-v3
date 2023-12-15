@@ -17,7 +17,13 @@
     "mailTo": "Enviar un email",
     "walking": "Senderismo",
     "territoryTreks": "Excursiones para descubrir",
-    "itinerantTreks": "Itinerancias para descubrir"
+    "itinerantTreks": "Itinerancias para descubrir",
+    "activityBar": {
+      "practices": "Excursiones",
+      "outdoorPractices": "Exterior",
+      "touristicContent": "Servicios",
+      "touristicEvent": "Eventos"
+    }
   },
   "loading": "Cargando",
   "page": {
@@ -41,7 +47,7 @@
     "diary": "Diario",
     "filters": {
       "difficulty": "Dificultad",
-      "practices": "excursiones",
+      "practices": "Excursiones",
       "outdoorPractice": "Exterior",
       "event": "Eventos",
       "treksOutdoorGrouped": "Activities",
