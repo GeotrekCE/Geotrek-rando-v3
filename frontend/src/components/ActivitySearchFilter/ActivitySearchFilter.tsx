@@ -60,6 +60,7 @@ export const ActivitySearchFilter: React.FC<Props> = ({
                   ? intl.formatMessage({ id: activity.titleTranslationId })
                   : activity.label
               }
+              type={activity.type}
             />
           ))}
         </div>
