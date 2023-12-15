@@ -7,6 +7,7 @@ export interface ActivityBar {
 export interface ActivityBarLinks {
   type: 'trek' | 'outdoorSite' | 'touristicContent' | 'touristicEvent';
   grouped: boolean;
+  iconUrl?: string;
 }
 
 interface WelcomeBanner {

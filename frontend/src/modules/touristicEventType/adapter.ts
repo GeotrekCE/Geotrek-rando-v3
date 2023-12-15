@@ -23,14 +23,14 @@ export const adaptTouristicEventTypes = ({
 
 export const adaptTouristicEventTypesForActivities = (
   rawTouristicEventTypes: RawTouristicEventType[],
-  { grouped }: Partial<ActivityBarLinks>,
+  { grouped, iconUrl }: Partial<ActivityBarLinks>,
 ): ActivityFilter[] => {
   if (grouped) {
     return [
       {
         label: 'Touristic event categories',
         titleTranslationId: 'home.activityBar.touristicEvent',
-        pictogramUri: '/icons/category-events.svg',
+        pictogramUri: iconUrl ?? '/icons/category-events.svg',
         id: rawTouristicEventTypes
           .map(({ id }) => `${id}`)
           .sort()

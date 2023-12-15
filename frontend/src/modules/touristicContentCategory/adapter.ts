@@ -27,14 +27,14 @@ const isCompleteRawListTouristicContentCategory = (
 
 export const adaptTouristicContentCategoryList = (
   rawToutisticContentCategories: Partial<RawTouristicContentCategory>[],
-  { grouped }: Partial<ActivityBarLinks>,
+  { grouped, iconUrl }: Partial<ActivityBarLinks>,
 ): ActivityFilter[] => {
   if (grouped) {
     return [
       {
         label: 'Touristic content categories',
         titleTranslationId: 'home.activityBar.touristicContent',
-        pictogramUri: '/icons/category-services.svg',
+        pictogramUri: iconUrl ?? '/icons/category-services.svg',
         id: rawToutisticContentCategories
           .filter(isCompleteRawListTouristicContentCategory)
           .map(({ id }) => `${id}`)
