@@ -23,14 +23,14 @@ export const adaptOutdoorPractices = ({
 
 export const adaptOutdoorPracticesForActivities = (
   rawOutdoorPractices: RawOutdoorPractice[],
-  { grouped }: Partial<ActivityBarLinks>,
+  { grouped, iconUrl }: Partial<ActivityBarLinks>,
 ): ActivityFilter[] => {
   if (grouped) {
     return [
       {
         label: 'Outdoor Practices',
         titleTranslationId: 'home.activityBar.outdoorPractices',
-        pictogramUri: '/icons/practice-outdoor.svg',
+        pictogramUri: iconUrl ?? '/icons/practice-outdoor.svg',
         id: rawOutdoorPractices
           .map(({ id }) => `${id}`)
           .sort()

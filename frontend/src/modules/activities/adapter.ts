@@ -48,14 +48,14 @@ export const adaptActivities = (rawActivities: Partial<RawListActivity>[]): Acti
 
 export const adaptActivitiesFilter = (
   rawActivities: Partial<RawListActivity>[],
-  { grouped }: Partial<ActivityBarLinks>,
+  { grouped, iconUrl }: Partial<ActivityBarLinks>,
 ): ActivityFilter[] => {
   if (grouped) {
     return [
       {
         label: 'Practices',
         titleTranslationId: 'home.activityBar.practices',
-        pictogramUri: '/icons/practice-trek.svg',
+        pictogramUri: iconUrl ?? '/icons/practice-trek.svg',
         id: rawActivities
           .filter(isCompleteRawListActivity)
           .map(({ id }) => `${id}`)
