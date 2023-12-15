@@ -1,3 +1,4 @@
+import { ActivityBarLinks } from 'modules/home/interface';
 import { ActivityFilter } from '../activities/interface';
 import { OUTDOOR_ID } from '../filters/constant';
 import { FilterWithoutType } from '../filters/interface';
@@ -22,14 +23,31 @@ export const adaptOutdoorPractices = ({
 
 export const adaptOutdoorPracticesForActivities = (
   rawOutdoorPractices: RawOutdoorPractice[],
-): ActivityFilter[] =>
-  rawOutdoorPractices.map(({ name, id, pictogram, order = null }) => ({
+  { grouped }: Partial<ActivityBarLinks>,
+): ActivityFilter[] => {
+  if (grouped) {
+    return [
+      {
+        label: 'Outdoor Practices',
+        titleTranslationId: 'home.activityBar.outdoorPractices',
+        pictogramUri: '/icons/practice-outdoor.svg',
+        id: rawOutdoorPractices
+          .map(({ id }) => `${id}`)
+          .sort()
+          .join(','),
+        order: null,
+        type: 'OUTDOOR_PRACTICE',
+      },
+    ];
+  }
+  return rawOutdoorPractices.map(({ name, id, pictogram, order = null }) => ({
     id,
     label: name,
     order,
     pictogramUri: pictogram,
     type: 'OUTDOOR_PRACTICE',
   }));
+};
 
 export const adaptOutdoorPracticesFilter = (
   rawOutdoorPractices: RawOutdoorPractice[],

@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   if (homePageConfig.activityBar.shouldDisplay === true) {
     await queryClient.prefetchQuery(['homeActivities', locale], () =>
-      getActivityBarContent(locale),
+      getActivityBarContent(locale, homePageConfig.activityBar.links),
     );
   }
 

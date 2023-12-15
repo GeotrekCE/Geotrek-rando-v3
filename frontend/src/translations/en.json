@@ -20,7 +20,13 @@
     "itinerantTreks": "Multi-day treks to discover",
     "services": "Services to discover",
     "events": "Events not to miss",
-    "outdoor": "Outdoor to discover"
+    "outdoor": "Outdoor to discover",
+    "activityBar": {
+      "practices": "Practices",
+      "outdoorPractices": "Outdoor",
+      "touristicContent": "Services",
+      "touristicEvent": "Events"
+    }
   },
   "loading": "Loading",
   "page": {
