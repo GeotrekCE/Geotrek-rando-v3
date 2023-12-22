@@ -293,6 +293,7 @@ describe.only('computeFiltersToDisplay', () => {
       outdoorRatingScale,
       outdoorRatingMapping,
       outdoorPractice,
+      organizerEvent: null,
     }).map(({ id }) => id);
     [...commonFilters, ...trekSpecificFilters].forEach(id => expect(displayedIds.includes(id)));
 
@@ -317,6 +318,7 @@ describe.only('computeFiltersToDisplay', () => {
       outdoorRatingScale,
       outdoorRatingMapping,
       outdoorPractice,
+      organizerEvent: null,
     }).map(({ id }) => id);
     commonFilters.forEach(id => expect(displayedIds.includes(id)));
     expect(displayedIds.length).toEqual(
@@ -337,6 +339,7 @@ describe.only('computeFiltersToDisplay', () => {
       outdoorRatingScale,
       outdoorRatingMapping,
       outdoorPractice,
+      organizerEvent: null,
     }).map(({ id }) => id);
     commonFilters.forEach(id => expect(displayedIds.includes(id)));
     expect(displayedIds.length).toEqual(commonFilters.length);
@@ -365,6 +368,7 @@ describe.only('computeFiltersToDisplay', () => {
       outdoorRatingScale,
       outdoorRatingMapping,
       outdoorPractice,
+      organizerEvent: null,
     }).map(({ id }) => id);
 
     const data = [...commonFilters, ...touristicContentSpecificFilters, ...trekSpecificFilters];

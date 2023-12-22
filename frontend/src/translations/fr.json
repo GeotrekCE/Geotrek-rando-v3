@@ -77,7 +77,8 @@
       "structures": "Structure",
       "clearAll": "Tout effacer",
       "filters": "Filtres",
-      "labels": "Autres"
+      "labels": "Autres",
+      "organizer": "Organisateur"
     },
     "textFilter": "Rechercher...",
     "beginDateFilter": "Date de début",
@@ -86,6 +87,8 @@
       "seeResult": "Afficher le détail",
       "seeMe": "Voir ma position",
       "panel": {
+        "open": "Afficher le sélecteur de couches",
+        "close": "Masquer le sélecteur de couches",
         "trekChildren": "Étapes",
         "poi": "Patrimoines",
         "referencePoints": "Repères",
@@ -144,7 +147,7 @@
     "sensitiveAreasPeriod": "Périodes de sensibilité :",
     "sensitiveAreasPractices": "Domaines d'activités concernés :",
     "sensitiveAreasContact": "Contact :",
-    "altimetricProfile":"Profil altimétrique", 
+    "altimetricProfile": "Profil altimétrique",
     "altimetricProfileTotalLength": "Longueur totale",
     "altimetricProfileMinElevation": "Altitude min",
     "altimetricProfileMaxElevation": "Altitude max",
@@ -213,7 +216,7 @@
   },
   "form": {
     "calendar": "Calendrier",
-    "missingField" : "Ce champ est requis.",
+    "missingField": "Ce champ est requis.",
     "required": "(requis)",
     "selectPlaceholder": "Sélectionnez"
   },
@@ -309,5 +312,15 @@
     "numberOfParticipants": "Nombre de participants",
     "courseType": "Type de parcours",
     "network": "Réseau"
+  },
+  "consents": {
+    "modal": {
+      "purposes": {
+        "ads": "Publicité",
+        "analytics": "Mesure d'audience",
+        "security": "Sécurité"
+      }
+    },
+    "changeCookiePreference": "Changer les préférences cookies"
   }
 }

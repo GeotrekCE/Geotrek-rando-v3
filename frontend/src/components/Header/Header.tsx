@@ -1,14 +1,13 @@
 import { FormattedMessage } from 'react-intl';
-import styled, { css } from 'styled-components';
 import { routes } from 'services/routes';
-import { desktopOnly, sizes } from 'stylesheet';
 
 import { Link } from 'components/Link';
 import { Display } from 'hooks/useHideOnScrollDown';
 
-import parse from 'html-react-parser';
 import InlineMenu from 'components/InlineMenu';
 import { GoToSearchButton } from 'components/GoToSearchButton';
+import { cn } from 'services/utils/cn';
+import { HtmlParser } from 'components/HtmlParser';
 import { BurgerMenu } from './BurgerMenu';
 import { useHeader } from './useHeader';
 
@@ -21,18 +20,25 @@ export const Header: React.FC = () => {
    * Disabled for now to handle the map on the search page
    */
   // const headerState = useHideOnScrollDown(sizes.desktopHeader);
-  const headerState = 'DISPLAYED';
+  const headerState: Display = 'DISPLAYED';
 
   const headerTop = config.headerTopHtml[intl.locale] ?? config.headerTopHtml.default;
   const headerBottom = config.headerBottomHtml[intl.locale] ?? config.headerBottomHtml.default;
 
   return (
     <>
-      {headerTop !== undefined && <div id="header_topHtml">{parse(headerTop)}</div>}
+      {headerTop !== undefined && (
+        <div id="header_topHtml">
+          <HtmlParser template={headerTop} />
+        </div>
+      )}
       <BurgerMenu config={config.menu} displayState={headerState} menuItems={menuItems} />
-      <Container
-        state={headerState}
-        className="h-11 bg-primary1 flex flex-row items-center sticky z-header px-3 shadow-sm text-primary3 shrink-0"
+      <header
+        className={cn(
+          'h-11 desktop:h-desktopHeader bg-primary1 flex flex-row items-center sticky z-header px-3 shadow-sm text-primary3 shrink-0 transition-all duration-300 delay-100',
+          headerState === 'DISPLAYED' ? 'top-0' : '-top-desktopHeader',
+        )}
+        role="banner"
         id="header"
       >
         <Link href={routes.HOME} className="flex items-center">
@@ -65,17 +71,12 @@ export const Header: React.FC = () => {
           />
         )}
         <GoToSearchButton className="hidden desktop:block" />
-      </Container>
-      {headerBottom !== undefined && <div id="header_bottomHtml">{parse(headerBottom)}</div>}
+      </header>
+      {headerBottom !== undefined && (
+        <div id="header_bottomHtml">
+          <HtmlParser template={headerBottom} />
+        </div>
+      )}
     </>
   );
 };
-
-const Container = styled.div<{ state: Display }>`
-  ${desktopOnly(css`
-    height: ${sizes.desktopHeader}px;
-  `)}
-
-  transition: top 0.3s ease-in-out 0.1s;
-  top: ${({ state }) => (state === 'DISPLAYED' ? 0 : -sizes.desktopHeader)}px;
-`;

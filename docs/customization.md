@@ -25,7 +25,8 @@ In json files, you can just override the primary keys you need. You have to over
   - `enableOutdoor`: boolean, default to false. Set it to true to enable Outdoor sites and courses
   - `groupTreksAndOutdoorFilters`: boolean, default to false. Groups treks and outdoor filters into a single tab. For this setting to work, `enableOutdoor` must be set to `true`.
   - `apiUrl` : Geotrek-admin API URL
-  - `googleAnalyticsId`: eventual Google Analytics Id
+  - `privacyPolicyLink`: link of the privacy policy (More information in [GDPR documentation](customization-scripts-GDPR.md#GDPR)).
+  - `googleAnalyticsId`: eventual Google Analytics Id (to activate it, you must set `privacyPolicyLink`)
   - `googleSiteVerificationToken`: eventual code to enable Google Search Console and Google developer tools
   - `enableIndexation` to disable search engine indexation
   - `baseUrl`: base URL of your portal (for dynamic sitemap.xml)
@@ -129,12 +130,12 @@ In json files, you can just override the primary keys you need. You have to over
     - `shouldDisplayText`: `true` to display the text on above the asset, `false` to hide it.
 
 - `details.json` allows you to choose whether or not to display sections for each details pages ("trek", "touristicContent", "touristicEvent", "OutdoorSite" and "OutdoorCourse"). See the default configuration at https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/details.json.
-There are 4 properties :
+  There are 4 properties :
 
-    - `name`: the name of the section
-    - `display`: boolean to display or not this section
-    - `anchor`: boolean to display or not an anchor link in the menu navigation bar
-    - `order`: number to define the position of this section
+      - `name`: the name of the section
+      - `display`: boolean to display or not this section
+      - `anchor`: boolean to display or not an anchor link in the menu navigation bar
+      - `order`: number to define the position of this section
 
 NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, anchor links are not displayed like other elements, but by a dedicated icon.
 
@@ -148,7 +149,8 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
 
   - Hide some of filters, you have to override their properties with `"display": false`.
   - Change the label for some filters, you need to define `translatedKey`, and copy the values into the translation files.
-    The `labels` filter contains an additional `withExclude` parameter. Its default value is `true`. By setting it to `true`, the user can filter the search by excluding a label (`withExclude` only works if your version of Geotrek Admin is equal to or higher than [2.77.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.77.0); please set it to `false` if this is not the case)
+  - The `labels` filter contains an additional `withExclude` parameter. Its default value is `true`. By setting it to `true`, the user can filter the search by excluding a label (`withExclude` only works if your version of Geotrek Admin is equal to or higher than [2.77.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.77.0); please set it to `false` if this is not the case)
+  - The `organizer` event filter only works if your version of Geotrek Admin is equal to or higher than [2.100.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.100.0)
 
 - `map.json` to define basemaps URL and attributions, center (y, x), default and max zoom level (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json).
 
@@ -264,26 +266,130 @@ You should at least override `home.title`, `home.description` and `home.welcome-
 
 ## HTML / Scripts
 
-You can include some HTML parts in different sections of the layout application, with files:
+### HTML templates :
+
+You can include some HTML parts in different sections of the layout application.  
+These templates can be translated by using the language code as a suffix (e.g. `homeTop-en.html` will be rendered only for the English interface). The application tries to find the localized template first, otherwise it tries the non-localized template, otherwise it displays nothing.  
+NB: If you want to display a message common to all languages but not to a particular language (e.g. french), just create the template suffixed with its language code (e.g. `-fr.html`) and leave it empty, and voilà!
+
+See examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html.
+
+#### Templates available on all pages
 
 - `customization/html/headerTop.html`: before the header section
 - `customization/html/headerBottom.html`: after the header section and before the content page
 - `customization/html/footerTop.html`: before the footer section and after the content page
 - `customization/html/footerBottom.html`: after the footer section
+
+#### Templates available on home page
+
 - `customization/html/homeTop.html`: first section of the homepage
 - `customization/html/homeBottom.html`: last section of the homepage
 
-These templates can be translated by using the language code as a suffix (e.g. `homeTop-en.html` will be rendered only for the English interface). The application tries to find the localized template first, otherwise it tries the non-localized template, otherwise it displays nothing.
-NB: If you want to display a message common to all languages but not to a particular language (e.g. french), just create the template suffixed with its language code (e.g. `-fr.html`) and leave it empty, and voilà!
+#### Templates on details page (trek, touristic content, touristic event, outdoor site and outdoor course)
+
+You can create your own templates to display practical information or widgets in different parts of the details page. There are 3 steps to follow:
+
+1. Create a new file suffixed with `.html` in `customization/html/details/` (e.g. `example.html`) and fill the the content with html tags
+
+   ```html
+   <div>The id of this {{ type }} is {{ id }}</div>
+   ```
+
+You can define variables in "mustache templates" (meaning between brackets `{{ variable }}`) that will be converted once rendered. For the moment, there are 4 variables available:
+
+- Page ID with `{{ id }}`
+- Content type `{{ type }}`: rendered values are "trek", "touristicContent", "touristicEvent", "outdoorSite", "outdoorCourse").
+- The code of the (departure) city `{{ cityCode }}`: useful for widgets such as forecast.
+- The language code `{{ language }}` The current language of the page.
+
+When choosing a template name, care must be taken not to select a reserved name used by sections defined by the application (e.g `presentation`, see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/details.json).  
+ If you do, the customized template will not be displayed.
+
+2. Copy the template name without the `.html` suffix into the `customization/html/details.json` file.  
+   For example I want to display it in treks and outdoor sites details page:
+   ```json
+   {
+     "sections": {
+       "trek": [
+         {
+           "name": "example",
+           "display": true,
+           "anchor": true,
+           "order": 11
+         }
+       ],
+       "outdoorSite": [
+         {
+           "name": "example",
+           "display": true,
+           "anchor": true,
+           "order": 11
+         }
+       ]
+     }
+   }
+   ```
+3. Copy the section title/anchor into the translations files.  
+    For example in `customization/translations/en.json`:
+   ```json
+   {
+     "details": {
+       "example": "My example"
+     }
+   }
+   ```
+
+You can take a look at `customization/html/details/forecastWidget.html` which shows the implementation.
+By default the "forecast widget" is enabled for all content types; if you want to remove it, you need to write it explicitly in the `customization/html/details.json` file.
+
+```json
+{
+  "sections": {
+    "trek": [
+      {
+        "name": "forecastWidget",
+        "display": false
+      }
+    ],
+    "touristicContent": [
+      {
+        "name": "forecastWidget",
+        "display": false
+      }
+    ],
+    "touristicEvent": [
+      {
+        "name": "forecastWidget",
+        "display": false
+      }
+    ],
+    "outdoorSite": [
+      {
+        "name": "forecastWidget",
+        "display": false
+      }
+    ],
+    "outdoorCourse": [
+      {
+        "name": "forecastWidget",
+        "display": false
+      }
+    ]
+  }
+}
+```
+
+### Scripts
 
 You can also include some scripts:
 
 - `customization/html/scriptsHeader.html`: in the `<head>` of the document
 - `customization/html/scriptsFooter.html`: just before the `</body>` end tag
 
-The scripts templates are intended for third party scripts. Unlike the HTML parts, there is not possibility of translations.
+The scripts templates are intended for third party scripts. Unlike the HTML parts, there is not possibility of translations. More information on how to write them can be found in the [Scripts and GDPR documentation](customization-scripts-GDPR.md).
 
-See examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html.
+## Icons
 
 Icons are provided by Geotrek-admin API. See [icons documentation](icons.md) to know how they have to be designed.
 

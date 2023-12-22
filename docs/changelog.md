@@ -1,5 +1,83 @@
 # Changelog
 
+## 3.16.1 (2023-12-13)
+
+**✨ Improvements**
+
+- Update IGN links to match with latest changes of IGN (#999)
+- Add loading lazy attributes to iframes (#1003)
+- Improve map popup component (#1002)
+- Improve ControlSection component (#1001)
+- Display only filled information desk website/email/phone (#995)
+
+**🐛 Fixes**
+
+- Fix activities order in search page (#998)
+- Fix practical information anchor from details page (#1000)
+- Avoid app crashes if /customization/html/details folder is missing (#996)
+- Display zoom+fullscreen map control at first position (#1008)
+
+## 3.16.0 (2023-10-25)
+
+**💥 Breaking changes**
+
+- The `enableMeteoWidget` in `global.json` is no longer supported. By default the widget is activated on all instances. [Read the doc](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/docs/customization.md#html--scripts) to see how to deactivate this widget on the details page
+
+**🚀 New features**
+
+- Define custom template sections for details pages #988
+
+## 3.15.5 (2023-10-23)
+
+**🐛 Fixes**
+
+- Fix the condition for displaying outdoorSite course: it checked the number of children (i.e. the children site of the current outdoorSite) instead of the outdoor courses related (#985)
+- Fix dynamic acceptance/refusal of GA cookies (#990)
+
+**✨ Improvements**
+
+- Avoid saving tiles from data.geopf.fr to cache storage (#984)
+- Add semantics to Footer components (#989)
+- Rewrite buttons components to use tailwind (#974)
+
+## 3.15.4 (2023-10-10)
+
+**🚀 New features**
+
+- Ask the user's consent to deposit cookies (#982)
+
+**💥 Breaking changes**
+
+- To keep Google Analytics running (if defined by `googleAnalyticsId` in `global.json`), you need to define the new `privacyPolicyLink` key in `global.json` with the url of your privacy policy page (See #459).
+
+**✨ Improvements**
+
+- Add the `privacyPolicyLink` key in `global.json` to define the link of privacy policy page (#982)
+
+**🔧 Maintenance**
+
+- Upgrade html-react-parser package to 2.0.0 (#982)
+
+## 3.15.3 (2023-10-02)
+
+**🚀 New features**
+
+- Allow to select an organizer event in filter search (#968)
+- Add map fullscreen control (#952)
+
+**✨ Improvements**
+
+- Display search filters for all categories on first page load (#971)
+- Call one map instance instead of two on search pages (#971)
+- Rewrite Header component to use semantics and tailwind (#976)
+- Rewrite 404 component to use tailwind (#975)
+- Set height of featured image area on details pages (#973)
+
+**🔧 Maintenance**
+
+- Upgrade leaflet.offline package to 3.0.1 (#969)
+- Upgrade react-inlinesvg package to 4.0.4 (#972)
+
 ## 3.15.2 (2023-09-07)
 
 **🐛 Fixes**

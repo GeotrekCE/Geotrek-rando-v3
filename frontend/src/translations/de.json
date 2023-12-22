@@ -10,10 +10,10 @@
   },
   "home": {
     "title": "Geotrek-Wanderung",
-    "Beschreibung": "Entdecken Sie die Wanderungen des Bezirks mit Geotrek-Rando",
+    "description": "Entdecken Sie die Wanderungen des Bezirks mit Geotrek-Rando",
     "selectPlaceholder": "Eine Aktivität auswählen",
     "seeMore": "Mehr anzeigen",
-    "Willkommenstext": "Der digitale und lokale Ökoguide, der meine Entdeckungen in der Region präsentiert !",
+    "welcome-text": "Der digitale und lokale Ökoguide, der meine Entdeckungen in der Region präsentiert !",
     "mailTo": "E-Mail senden",
     "walking": "Wanderung",
     "territoryTreks": "Wanderungen, die es zu entdecken gilt",
@@ -74,7 +74,8 @@
       "structures": "Struktur",
       "clearAll": "Alles löschen",
       "filters": "Filter",
-      "labels": "Andere"
+      "labels": "Andere",
+      "organizer": "Veranstalter"
     },
     "textFilter": "Suchen...",
     "beginDateFilter": "Startdatum",
@@ -83,6 +84,8 @@
       "seeResult": "Einzelheiten anzeigen",
       "seeMe": "Meinen Standpunkt sehen",
       "panel": {
+        "open": "Display layer selector",
+        "close": "Hide layer selector",
         "trekChildren": "Steps",
         "poi": "Heritage",
         "referencePoints": "Landmarken",
@@ -206,7 +209,7 @@
   },
   "form": {
     "calendar": "Kalender",
-    "missingField" : "Dieses Feld ist obligatorisch.",
+    "missingField": "Dieses Feld ist obligatorisch.",
     "required": "(requirieren)",
     "selectPlaceholder": "Wähle"
   },
@@ -263,5 +266,15 @@
     "numberOfParticipants": "Zahl der Teilnehmer",
     "courseType": "Art des Rennens",
     "network": "Netzwerk"
+  },
+  "consents": {
+    "modal": {
+      "purposes": {
+        "ads": "Anzeigen",
+        "analytics": "Analytics",
+        "security": "Sicherheit"
+      },
+      "changeCookiePreference": "Cookie-Einstellungen ändern"
+    }
   }
 }

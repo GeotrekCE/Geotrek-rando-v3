@@ -55,37 +55,48 @@ export type DetailsSectionOutdoorCourseNames =
   | 'touristicContent'
   | 'forecastWidget';
 
-export interface DetailsConfig {
-  sections: {
-    trek: {
-      name: DetailsSectionTrekNames;
-      display: boolean;
-      anchor: boolean;
-      order: number;
-    }[];
-    touristicContent: {
-      name: DetailsSectionTouristicContentNames;
-      display: boolean;
-      anchor: boolean;
-      order: number;
-    }[];
-    touristicEvent: {
-      name: DetailsSectionTouristicEventNames;
-      display: boolean;
-      anchor: boolean;
-      order: number;
-    }[];
-    outdoorSite: {
-      name: DetailsSectionOutdoorSiteNames;
-      display: boolean;
-      anchor: boolean;
-      order: number;
-    }[];
-    outdoorCourse: {
-      name: DetailsSectionOutdoorCourseNames;
-      display: boolean;
-      anchor: boolean;
-      order: number;
-    }[];
-  };
+interface SectionsProps {
+  display: boolean;
+  anchor: boolean;
+  order: number;
+  template?: string;
 }
+
+export type SectionsTrek = SectionsProps & {
+  name: DetailsSectionTrekNames;
+};
+
+export type SectionsTouristicContent = SectionsProps & {
+  name: DetailsSectionTouristicContentNames;
+};
+
+export type SectionsTouristicEvent = SectionsProps & {
+  name: DetailsSectionTouristicEventNames;
+};
+
+export type SectionsOutdoorSite = SectionsProps & {
+  name: DetailsSectionOutdoorSiteNames;
+};
+
+export type SectionsOutdoorCourse = SectionsProps & {
+  name: DetailsSectionOutdoorCourseNames;
+};
+
+export type Sections = {
+  trek: SectionsTrek[];
+  touristicContent: SectionsTouristicContent[];
+  touristicEvent: SectionsTouristicEvent[];
+  outdoorSite: SectionsOutdoorSite[];
+  outdoorCourse: SectionsOutdoorCourse[];
+};
+
+export type SectionsTypes =
+  | SectionsTrek
+  | SectionsTouristicContent
+  | SectionsTouristicEvent
+  | SectionsOutdoorSite
+  | SectionsOutdoorCourse;
+
+export type DetailsConfig = {
+  sections: Sections;
+};

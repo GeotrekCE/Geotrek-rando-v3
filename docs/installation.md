@@ -32,7 +32,6 @@ You need to have Docker and Docker Compose installed on your own computer or ser
 
 - Docker installation documentation is [right here](https://docs.docker.com/engine/install/).
 - You will also need to follow the [post install process](https://docs.docker.com/engine/install/linux-postinstall/) as well to be able to download the Geotrek-rando container with your non-root Linux user.
-- Once Docker is installed, install Docker Compose with following its [installation documentation](https://docs.docker.com/compose/install/).
 
 ## Install Geotrek-rando
 

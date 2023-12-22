@@ -5,6 +5,7 @@ import {
   CITY_ID,
   DISTRICT_ID,
   EVENT_ID,
+  ORGANIZER_ID,
   OUTDOOR_ID,
   STRUCTURE_ID,
   THEME_ID,
@@ -240,6 +241,13 @@ export const formatTouristicEventsFiltersToUrlParams = (
 ): { [key: string]: string } => {
   const filters = filtersState.reduce<{ [key: string]: string[] }>(
     (currentFilters, currentFilterState) => {
+      if (currentFilterState.id === ORGANIZER_ID && currentFilterState.selectedOptions.length > 0) {
+        return {
+          ...currentFilters,
+          organizer: currentFilterState.selectedOptions,
+        };
+      }
+
       if (currentFilterState.id === EVENT_ID)
         return {
           ...currentFilters,

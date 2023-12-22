@@ -12,7 +12,7 @@ import { getOutdoorSitePopupResult } from '../../../modules/outdoorSite/connecto
 export const usePopupResult = (
   id: string,
   shouldFetch: boolean,
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT',
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | null,
 ) => {
   const language = useRouter().locale ?? getDefaultLanguage();
   const commonDictionaries = queryCommonDictionaries(language);
@@ -31,7 +31,7 @@ export const usePopupResult = (
   const { data: trekPopupResult, isLoading } = useQuery<PopupResult, Error>(
     ['popupResult', id, language],
     fetchData,
-    { enabled: shouldFetch && commonDictionaries !== undefined },
+    { enabled: type !== null && shouldFetch && commonDictionaries !== undefined },
   );
 
   return {

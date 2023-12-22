@@ -7,10 +7,10 @@ import { TouristicContentMapDynamicComponent } from 'components/Map';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
-import { getGlobalConfig } from 'modules/utils/api.config';
 import useHasMounted from 'hooks/useHasMounted';
 import { ImageWithLegend } from 'components/ImageWithLegend';
 import { cn } from 'services/utils/cn';
+import { HtmlParser } from 'components/HtmlParser';
 import { useTouristicContent } from './useTouristicContent';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { DetailsSection } from '../details/components/DetailsSection';
@@ -19,10 +19,9 @@ import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsSource } from '../details/components/DetailsSource';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { DetailsHeaderMobile, marginDetailsChild } from '../details/Details';
-import { HtmlText } from '../details/utils';
-import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
-import { getDetailsConfig } from '../details/config';
+import { HtmlText, templatesVariablesAreDefinedAndUsed } from '../details/utils';
 import { DetailsHeader } from '../details/components/DetailsHeader';
+import { useDetailsSections } from '../details/useDetailsSections';
 
 interface TouristicContentUIProps {
   touristicContentUrl: string | string[] | undefined;
@@ -48,11 +47,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
   const isMobile = useMediaPredicate('(max-width: 1024px)');
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
-  const { sections } = getDetailsConfig();
-  const sectionsTouristicContent = sections.touristicContent.filter(({ display }) => display);
-  const anchors = sectionsTouristicContent
-    .filter(({ anchor }) => anchor === true)
-    .map(({ name }) => name);
+  const { sections, anchors } = useDetailsSections('touristicContent');
 
   return (
     <>
@@ -86,28 +81,30 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
               className="flex flex-col w-full -top-detailsHeaderMobile desktop:top-0 desktop:w-3/5"
             >
               <OpenMapButton displayMap={displayMobileMap} />
-              <Modal>
-                {({ isFullscreen, toggleFullscreen }) => (
-                  <div
-                    id="touristicContent_cover"
-                    className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
-                  >
-                    {touristicContent.attachments.length > 1 && hasNavigator ? (
-                      <DetailsCoverCarousel
-                        attachments={touristicContent.attachments}
-                        classNameImage={isFullscreen ? 'object-contain' : ''}
-                        onClickImage={toggleFullscreen}
-                      />
-                    ) : (
-                      <ImageWithLegend
-                        attachment={touristicContent.attachments[0]}
-                        classNameImage={isFullscreen ? 'object-contain' : ''}
-                        onClick={toggleFullscreen}
-                      />
-                    )}
-                  </div>
-                )}
-              </Modal>
+              <div className="desktop:h-coverDetailsDesktop">
+                <Modal>
+                  {({ isFullscreen, toggleFullscreen }) => (
+                    <div
+                      id="touristicContent_cover"
+                      className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
+                    >
+                      {touristicContent.attachments.length > 1 && hasNavigator ? (
+                        <DetailsCoverCarousel
+                          attachments={touristicContent.attachments}
+                          classNameImage={isFullscreen ? 'object-contain' : ''}
+                          onClickImage={toggleFullscreen}
+                        />
+                      ) : (
+                        <ImageWithLegend
+                          attachment={touristicContent.attachments[0]}
+                          classNameImage={isFullscreen ? 'object-contain' : ''}
+                          onClick={toggleFullscreen}
+                        />
+                      )}
+                    </div>
+                  )}
+                </Modal>
+              </div>
               <div
                 id="touristicContent_text"
                 className="desktop:py-0
@@ -124,7 +121,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   type={'TOURISTIC_CONTENT'}
                 />
 
-                {sectionsTouristicContent.map(section => {
+                {sections.map(section => {
                   if (section.name === 'presentation') {
                     return (
                       <section
@@ -246,29 +243,6 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                     );
                   }
 
-                  if (
-                    section.name === 'forecastWidget' &&
-                    getGlobalConfig().enableMeteoWidget &&
-                    touristicContent.cities_raw?.[0]
-                  ) {
-                    return (
-                      <section
-                        key={section.name}
-                        ref={sectionRef[section.name]}
-                        id={`details_${section.name}_ref`}
-                      >
-                        {hasNavigator && (
-                          <DetailsSection
-                            htmlId="details_forecastWidget"
-                            className={marginDetailsChild}
-                          >
-                            <DetailsMeteoWidget code={touristicContent.cities_raw[0]} />
-                          </DetailsSection>
-                        )}
-                      </section>
-                    );
-                  }
-
                   if (section.name === 'source' && touristicContent.sources.length > 0) {
                     return (
                       <section
@@ -289,6 +263,36 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                               pictogramUri={source.pictogramUri}
                             />
                           ))}
+                        </DetailsSection>
+                      </section>
+                    );
+                  }
+
+                  // Custom HTML templates
+                  if (
+                    templatesVariablesAreDefinedAndUsed({
+                      template: section.template,
+                      id: touristicContent.id.toString(),
+                      cityCode: touristicContent.cities_raw?.[0],
+                    })
+                  ) {
+                    return (
+                      <section
+                        key={section.name}
+                        ref={sectionRef[section.name]}
+                        id={`details_${section.name}_ref`}
+                      >
+                        <DetailsSection
+                          htmlId={`details_${section.name}`}
+                          titleId={`details.${section.name}`}
+                          className={marginDetailsChild}
+                        >
+                          <HtmlParser
+                            template={section.template}
+                            id={touristicContent.id.toString()}
+                            type="trek"
+                            cityCode={touristicContent.cities_raw[0]}
+                          />
                         </DetailsSection>
                       </section>
                     );

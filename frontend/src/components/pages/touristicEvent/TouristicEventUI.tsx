@@ -6,7 +6,10 @@ import { DetailsSection } from 'components/pages/details/components/DetailsSecti
 import { DetailsSource } from 'components/pages/details/components/DetailsSource';
 import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/details/Details';
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
-import { generateTouristicContentUrl } from 'components/pages/details/utils';
+import {
+  generateTouristicContentUrl,
+  templatesVariablesAreDefinedAndUsed,
+} from 'components/pages/details/utils';
 import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
 import { useTouristicEvent } from 'components/pages/touristicEvent/useTouristicEvent';
 import { useMemo, useRef } from 'react';
@@ -18,17 +21,16 @@ import { DetailsMapDynamicComponent } from 'components/Map';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
-import { getGlobalConfig } from 'modules/utils/api.config';
 import useHasMounted from 'hooks/useHasMounted';
 import { ImageWithLegend } from 'components/ImageWithLegend';
 import { cn } from 'services/utils/cn';
+import { HtmlParser } from 'components/HtmlParser';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
-import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
-import { getDetailsConfig } from '../details/config';
+import { useDetailsSections } from '../details/useDetailsSections';
 
 interface Props {
   touristicEventUrl: string | string[] | undefined;
@@ -60,11 +62,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
-  const { sections } = getDetailsConfig();
-  const sectionsTouristicEvents = sections.touristicEvent.filter(({ display }) => display);
-  const anchors = sectionsTouristicEvents
-    .filter(({ anchor }) => anchor === true)
-    .map(({ name }) => name);
+  const { sections, anchors } = useDetailsSections('touristicEvent');
 
   useOnScreenSection({
     sectionsPositions,
@@ -112,28 +110,30 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                 className="flex flex-col w-full relative -top-detailsHeaderMobile desktop:top-0 desktop:w-3/5"
               >
                 <OpenMapButton displayMap={displayMobileMap} />
-                <Modal>
-                  {({ toggleFullscreen, isFullscreen }) => (
-                    <div
-                      id="outdoorCourseContent_cover"
-                      className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
-                    >
-                      {touristicEventContent.attachments.length > 1 && hasNavigator ? (
-                        <DetailsCoverCarousel
-                          attachments={touristicEventContent.attachments}
-                          classNameImage={isFullscreen ? 'object-contain' : ''}
-                          onClickImage={toggleFullscreen}
-                        />
-                      ) : (
-                        <ImageWithLegend
-                          attachment={touristicEventContent.attachments[0]}
-                          classNameImage={isFullscreen ? 'object-contain' : ''}
-                          onClick={toggleFullscreen}
-                        />
-                      )}
-                    </div>
-                  )}
-                </Modal>
+                <div className="desktop:h-coverDetailsDesktop">
+                  <Modal>
+                    {({ toggleFullscreen, isFullscreen }) => (
+                      <div
+                        id="outdoorCourseContent_cover"
+                        className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
+                      >
+                        {touristicEventContent.attachments.length > 1 && hasNavigator ? (
+                          <DetailsCoverCarousel
+                            attachments={touristicEventContent.attachments}
+                            classNameImage={isFullscreen ? 'object-contain' : ''}
+                            onClickImage={toggleFullscreen}
+                          />
+                        ) : (
+                          <ImageWithLegend
+                            attachment={touristicEventContent.attachments[0]}
+                            classNameImage={isFullscreen ? 'object-contain' : ''}
+                            onClick={toggleFullscreen}
+                          />
+                        )}
+                      </div>
+                    )}
+                  </Modal>
+                </div>
                 <div
                   id="touristicEventContent_text"
                   className="desktop:py-0
@@ -151,7 +151,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                     type={'TOURISTIC_EVENT'}
                   />
 
-                  {sectionsTouristicEvents.map(section => {
+                  {sections.map(section => {
                     if (section.name === 'presentation') {
                       return (
                         <section
@@ -279,29 +279,6 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                       );
                     }
 
-                    if (
-                      section.name === 'forecastWidget' &&
-                      getGlobalConfig().enableMeteoWidget &&
-                      touristicEventContent.cities_raw?.[0]
-                    ) {
-                      return (
-                        <section
-                          key={section.name}
-                          ref={sectionRef[section.name]}
-                          id={`details_${section.name}_ref`}
-                        >
-                          {hasNavigator && (
-                            <DetailsSection
-                              htmlId="details_forecastWidget"
-                              className={marginDetailsChild}
-                            >
-                              <DetailsMeteoWidget code={touristicEventContent.cities_raw[0]} />
-                            </DetailsSection>
-                          )}
-                        </section>
-                      );
-                    }
-
                     if (section.name === 'source' && touristicEventContent.sources.length > 0) {
                       return (
                         <section
@@ -356,6 +333,36 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                             )}
                             type="TOURISTIC_CONTENT"
                           />
+                        </section>
+                      );
+                    }
+
+                    // Custom HTML templates
+                    if (
+                      templatesVariablesAreDefinedAndUsed({
+                        template: section.template,
+                        id: touristicEventContent.id.toString(),
+                        cityCode: touristicEventContent.cities_raw?.[0],
+                      })
+                    ) {
+                      return (
+                        <section
+                          key={section.name}
+                          ref={sectionRef[section.name]}
+                          id={`details_${section.name}_ref`}
+                        >
+                          <DetailsSection
+                            htmlId={`details_${section.name}`}
+                            titleId={`details.${section.name}`}
+                            className={marginDetailsChild}
+                          >
+                            <HtmlParser
+                              template={section.template}
+                              id={touristicEventContent.id.toString()}
+                              type="trek"
+                              cityCode={touristicEventContent.cities_raw[0]}
+                            />
+                          </DetailsSection>
                         </section>
                       );
                     }

@@ -20,7 +20,6 @@
   "enableReport": true,
   "enableSearchByMap": true,
   "enableServerCache": true,
-  "enableMeteoWidget": true,
   "maxLengthTrekAllowedFor3DRando": 25000,
   "minAltitudeDifferenceToDisplayElevationProfile": 0,
   "accessibilityCodeNumber": "114",
@@ -33,5 +32,6 @@
     "infrastructures": true,
     "signages": true,
     "services": true
-  }
+  },
+  "privacyPolicyLink": null
 }

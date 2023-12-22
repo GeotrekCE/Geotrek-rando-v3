@@ -77,7 +77,8 @@
       "structures": "Struttura",
       "clearAll": "Cancellare tutto",
       "filters": "Filtri",
-      "labels": "Altri"
+      "labels": "Altri",
+      "organizer": "Organizzatore"
     },
     "textFilter": "Ricerca...",
     "beginDateFilter": "Data di inizio",
@@ -86,6 +87,8 @@
       "seeResult": "Mostrare i dettagli",
       "seeMe": "Vedere la mia posizione",
       "panel": {
+        "open": "Display layer selector",
+        "close": "Hide layer selector",
         "trekChildren": "Fasi",
         "poi": "Eredità",
         "referencePoints": "Riferimenti",
@@ -213,7 +216,7 @@
   },
   "error": {
     "missing": "Il modulo non è completo",
-    "missingField" : "Questo campo è obbligatorio.",
+    "missingField": "Questo campo è obbligatorio.",
     "required": "(richiesto)",
     "selectPlaceholder": "Selezionare"
   },
@@ -273,5 +276,15 @@
     "numberOfParticipants": "Numero di partecipanti",
     "courseType": "Tipo de gara",
     "network": "Rete"
+  },
+  "consents": {
+    "modal": {
+      "purposes": {
+        "ads": "Annunci",
+        "analytics": "Analitici",
+        "security": "Sicurezza"
+      }
+    },
+    "changeCookiePreference": "Modificare le preferenze sui cookie"
   }
 }

@@ -11,7 +11,11 @@ import { DetailsSection } from 'components/pages/details/components/DetailsSecti
 import { DetailsSource } from 'components/pages/details/components/DetailsSource';
 import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/details/Details';
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
-import { generateTouristicContentUrl, HtmlText } from 'components/pages/details/utils';
+import {
+  generateTouristicContentUrl,
+  HtmlText,
+  templatesVariablesAreDefinedAndUsed,
+} from 'components/pages/details/utils';
 import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
 import { DetailsChildrenSection } from 'components/pages/details/components/DetailsChildrenSection';
 import { useMemo, useRef } from 'react';
@@ -23,22 +27,21 @@ import { DetailsMapDynamicComponent } from 'components/Map';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
 import { OpenMapButton } from 'components/OpenMapButton';
-import { getGlobalConfig } from 'modules/utils/api.config';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MapPin } from 'components/Icons/MapPin';
 import useHasMounted from 'hooks/useHasMounted';
 import { ImageWithLegend } from 'components/ImageWithLegend';
 import { cn } from 'services/utils/cn';
+import { HtmlParser } from 'components/HtmlParser';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { useOutdoorSite } from './useOutdoorSite';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
-import { DetailsMeteoWidget } from '../details/components/DetailsMeteoWidget';
 import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
 import { DetailsAndMapProvider } from '../details/DetailsAndMapContext';
-import { getDetailsConfig } from '../details/config';
+import { useDetailsSections } from '../details/useDetailsSections';
 
 interface Props {
   outdoorSiteUrl: string | string[] | undefined;
@@ -67,11 +70,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
-  const { sections } = getDetailsConfig();
-  const sectionsOutdoorSite = sections.outdoorSite.filter(({ display }) => display);
-  const anchors = sectionsOutdoorSite
-    .filter(({ anchor }) => anchor === true)
-    .map(({ name }) => name);
+  const { sections, anchors } = useDetailsSections('outdoorSite');
 
   useOnScreenSection({
     sectionsPositions,
@@ -119,28 +118,30 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                 className="flex flex-col w-full relative -top-detailsHeaderMobile desktop:top-0 desktop:w-3/5"
               >
                 <OpenMapButton displayMap={displayMobileMap} />
-                <Modal>
-                  {({ isFullscreen, toggleFullscreen }) => (
-                    <div
-                      id="outdoorSiteContent_cover"
-                      className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
-                    >
-                      {outdoorSiteContent.attachments.length > 1 && hasNavigator ? (
-                        <DetailsCoverCarousel
-                          attachments={outdoorSiteContent.attachments}
-                          classNameImage={isFullscreen ? 'object-contain' : ''}
-                          onClickImage={toggleFullscreen}
-                        />
-                      ) : (
-                        <ImageWithLegend
-                          attachment={outdoorSiteContent.attachments[0]}
-                          classNameImage={isFullscreen ? 'object-contain' : ''}
-                          onClick={toggleFullscreen}
-                        />
-                      )}
-                    </div>
-                  )}
-                </Modal>
+                <div className="desktop:h-coverDetailsDesktop">
+                  <Modal>
+                    {({ isFullscreen, toggleFullscreen }) => (
+                      <div
+                        id="outdoorSiteContent_cover"
+                        className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
+                      >
+                        {outdoorSiteContent.attachments.length > 1 && hasNavigator ? (
+                          <DetailsCoverCarousel
+                            attachments={outdoorSiteContent.attachments}
+                            classNameImage={isFullscreen ? 'object-contain' : ''}
+                            onClickImage={toggleFullscreen}
+                          />
+                        ) : (
+                          <ImageWithLegend
+                            attachment={outdoorSiteContent.attachments[0]}
+                            classNameImage={isFullscreen ? 'object-contain' : ''}
+                            onClick={toggleFullscreen}
+                          />
+                        )}
+                      </div>
+                    )}
+                  </Modal>
+                </div>
                 <div
                   id="outdoorSiteContent_text"
                   className="desktop:py-0
@@ -154,7 +155,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     type={'OUTDOOR_SITE'}
                   />
 
-                  {sectionsOutdoorSite.map(section => {
+                  {sections.map(section => {
                     if (section.name === 'presentation') {
                       return (
                         <section
@@ -260,7 +261,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
 
                     if (
                       section.name === 'courses' &&
-                      Number(outdoorSiteContent.children?.length) > 0
+                      Number(outdoorSiteContent.courses?.length) > 0
                     ) {
                       return (
                         <section
@@ -323,10 +324,13 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                           ref={sectionRef[section.name]}
                           id={`details_${section.name}_ref`}
                         >
+                          <div
+                            id="details_practicalInformations"
+                            className="scroll-mt-20 desktop:scroll-mt-30"
+                          />
                           {(outdoorSiteContent.advice ||
                             Number(outdoorSiteContent?.labels?.length) > 0) && (
                             <DetailsSection
-                              htmlId="details_practicalInformations"
                               titleId="details.recommandations"
                               className={marginDetailsChild}
                             >
@@ -393,29 +397,6 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                             )}
                             type="TREK"
                           />
-                        </section>
-                      );
-                    }
-
-                    if (
-                      section.name === 'forecastWidget' &&
-                      getGlobalConfig().enableMeteoWidget &&
-                      outdoorSiteContent.cities_raw?.[0]
-                    ) {
-                      return (
-                        <section
-                          key={section.name}
-                          ref={sectionRef[section.name]}
-                          id={`details_${section.name}_ref`}
-                        >
-                          {hasNavigator && (
-                            <DetailsSection
-                              htmlId="details_forecastWidget"
-                              className={marginDetailsChild}
-                            >
-                              <DetailsMeteoWidget code={outdoorSiteContent.cities_raw[0]} />
-                            </DetailsSection>
-                          )}
                         </section>
                       );
                     }
@@ -500,6 +481,36 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                             )}
                             type="TOURISTIC_CONTENT"
                           />
+                        </section>
+                      );
+                    }
+
+                    // Custom HTML templates
+                    if (
+                      templatesVariablesAreDefinedAndUsed({
+                        template: section.template,
+                        id: outdoorSiteContent.id.toString(),
+                        cityCode: outdoorSiteContent.cities_raw?.[0],
+                      })
+                    ) {
+                      return (
+                        <section
+                          key={section.name}
+                          ref={sectionRef[section.name]}
+                          id={`details_${section.name}_ref`}
+                        >
+                          <DetailsSection
+                            htmlId={`details_${section.name}`}
+                            titleId={`details.${section.name}`}
+                            className={marginDetailsChild}
+                          >
+                            <HtmlParser
+                              template={section.template}
+                              id={outdoorSiteContent.id.toString()}
+                              type="trek"
+                              cityCode={outdoorSiteContent.cities_raw[0]}
+                            />
+                          </DetailsSection>
                         </section>
                       );
                     }

@@ -1,15 +1,12 @@
-import { getGlobalConfig } from 'modules/utils/api.config';
-import parse from 'html-react-parser';
 import getNextConfig from 'next/config';
 import { Head, Html, Main, NextScript } from 'next/document';
 import { ColorsConfig } from 'modules/interface';
 
 const {
-  publicRuntimeConfig: { style, colors, scriptsHeaderHtml, scriptsFooterHtml },
+  publicRuntimeConfig: { style, colors },
 } = getNextConfig();
 
 const MyDocument: React.FC = () => {
-  const { googleAnalyticsId } = getGlobalConfig();
   const {
     primary1: { DEFAULT: primary1 = '#aa397d', light: primary1Light = '#bd3e8b' } = {},
     primary2 = '#f5E7ef',
@@ -25,24 +22,6 @@ const MyDocument: React.FC = () => {
   return (
     <Html className="scroll-smooth">
       <Head>
-        {googleAnalyticsId !== null && (
-          <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
-            />
-            <script
-              async
-              dangerouslySetInnerHTML={{
-                __html: `window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-
-                  gtag('config', '${googleAnalyticsId}');`,
-              }}
-            />
-          </>
-        )}
         <style>{`
 :root {
   --color-primary1-default: ${primary1};
@@ -59,12 +38,10 @@ const MyDocument: React.FC = () => {
 }
 `}</style>
         {style !== undefined && <style dangerouslySetInnerHTML={{ __html: style }} />}
-        {scriptsHeaderHtml !== undefined && <>{parse(scriptsHeaderHtml)}</>}
       </Head>
       <body>
         <Main />
         <NextScript />
-        {scriptsFooterHtml !== undefined && <>{parse(scriptsFooterHtml)}</>}
       </body>
     </Html>
   );

@@ -58,7 +58,7 @@ const ShowFilters: React.FC<Props> = ({
     );
   }
   // The API can send empty item
-  if (item.label === '' || item.options.length === 0) {
+  if (item.options === undefined || item.label === '' || item.options.length === 0) {
     return null;
   }
   return item.options.length > 10 ? (

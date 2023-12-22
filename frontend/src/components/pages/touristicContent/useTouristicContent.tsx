@@ -38,7 +38,7 @@ export const useTouristicContent = (
     },
   );
 
-  const { sections } = getDetailsConfig();
+  const { sections } = getDetailsConfig(language);
   const sectionsTouristicContent = sections.touristicEvent.filter(
     ({ display }) => display === true,
   );

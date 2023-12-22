@@ -77,7 +77,8 @@
       "structures": "Structure",
       "clearAll": "Clear all",
       "filters": "Filters",
-      "labels": "Others"
+      "labels": "Others",
+      "organizer": "Organizer"
     },
     "textFilter": "Search...",
     "beginDateFilter": "Start date",
@@ -86,6 +87,8 @@
       "seeResult": "Display details",
       "seeMe": "View my position",
       "panel": {
+        "open": "Display layer selector",
+        "close": "Hide layer selector",
         "trekChildren": "Steps",
         "poi": "Heritage",
         "referencePoints": "Landmarks",
@@ -213,7 +216,7 @@
   },
   "form": {
     "calendar": "Calendar",
-    "missingField" : "This field is mandatory.",
+    "missingField": "This field is mandatory.",
     "required": "(required)",
     "selectPlaceholder": "Select"
   },
@@ -309,5 +312,15 @@
     "numberOfParticipants": "Number of participants",
     "courseType": "Course type",
     "network": "Network"
+  },
+  "consents": {
+    "modal": {
+      "purposes": {
+        "ads": "Ads",
+        "analytics": "Analytics",
+        "security": "Security"
+      },
+      "changeCookiePreference": "Change cookie preference"
+    }
   }
 }

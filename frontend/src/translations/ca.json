@@ -74,7 +74,8 @@
       "structures": "Estructura",
       "clearAll": "Esborrar-ho tot",
       "filters": "Filtres",
-      "labels": "Altres"
+      "labels": "Altres",
+      "organizer": "Organitzador"
     },
     "textFilter": "Cercar...",
     "beginDateFilter": "Data d'inici",
@@ -83,6 +84,8 @@
       "seeResult": "Mostrar el detall",
       "seeMe": "Mostrar la meva posició",
       "panel": {
+        "open": "Display layer selector",
+        "close": "Hide layer selector",
         "trekChildren": "Steps",
         "poi": "Heritage",
         "referencePoints": "Landmarks",
@@ -206,7 +209,7 @@
   },
   "form": {
     "calendar": "Calendari",
-    "missingField" : "Aquest camp és obligatori.",
+    "missingField": "Aquest camp és obligatori.",
     "required": "(obligatori)",
     "selectPlaceholder": "Seleccioneu"
   },
@@ -263,5 +266,15 @@
     "numberOfParticipants": "Nombre de participants",
     "courseType": "Tipus de cursa",
     "network": "Xarxa"
+  },
+  "consents": {
+    "modal": {
+      "purposes": {
+        "ads": "Anuncis",
+        "analytics": "Analítica",
+        "security": "Seguretat"
+      },
+      "changeCookiePreference": "Canvia les preferències de galetes"
+    }
   }
 }

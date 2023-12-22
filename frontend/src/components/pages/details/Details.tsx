@@ -23,6 +23,7 @@ import { cn } from 'services/utils/cn';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MapPin } from 'components/Icons/MapPin';
 import { ImageWithLegend } from 'components/ImageWithLegend';
+import { HtmlParser } from 'components/HtmlParser';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -31,7 +32,11 @@ import { DetailsCardSection } from './components/DetailsCardSection';
 import { useDetails } from './useDetails';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from './components/DetailsTopIcons';
-import { generateTouristicContentUrl, HtmlText } from './utils';
+import {
+  generateTouristicContentUrl,
+  HtmlText,
+  templatesVariablesAreDefinedAndUsed,
+} from './utils';
 import { DetailsSource } from './components/DetailsSource';
 
 import { DetailsInformationDesk } from './components/DetailsInformationDesk';
@@ -40,13 +45,12 @@ import { DetailsAdvice } from './components/DetailsAdvice';
 import { DetailsChildrenSection } from './components/DetailsChildrenSection';
 import { DetailsCoverCarousel } from './components/DetailsCoverCarousel';
 import { DetailsReservationWidget } from './components/DetailsReservationWidget';
-import { DetailsMeteoWidget } from './components/DetailsMeteoWidget';
 import { VisibleSectionProvider } from './VisibleSectionContext';
 import { DetailsAndMapProvider } from './DetailsAndMapContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
 import { useOnScreenSection } from './hooks/useHighlightedSection';
 import { DetailsGear } from './components/DetailsGear';
-import { getDetailsConfig } from './config';
+import { useDetailsSections } from './useDetailsSections';
 
 interface Props {
   slug: string | string[] | undefined;
@@ -76,9 +80,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
-  const { sections } = getDetailsConfig();
-  const sectionsTrek = sections.trek.filter(({ display }) => display);
-  const anchors = sectionsTrek.filter(({ anchor }) => anchor === true).map(({ name }) => name);
+  const { sections, anchors } = useDetailsSections('trek');
 
   useOnScreenSection({
     sectionsPositions,
@@ -134,28 +136,30 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                 className="flex flex-col w-full relative -top-detailsHeaderMobile desktop:top-0 desktop:w-3/5"
               >
                 <OpenMapButton displayMap={displayMobileMap} />
-                <Modal>
-                  {({ isFullscreen, toggleFullscreen }) => (
-                    <div
-                      id="details_cover"
-                      className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
-                    >
-                      {details.imgs.length > 1 && hasNavigator ? (
-                        <DetailsCoverCarousel
-                          attachments={details.imgs}
-                          classNameImage={isFullscreen ? 'object-contain' : ''}
-                          onClickImage={toggleFullscreen}
-                        />
-                      ) : (
-                        <ImageWithLegend
-                          attachment={details.imgs[0]}
-                          classNameImage={isFullscreen ? 'object-contain' : ''}
-                          onClick={toggleFullscreen}
-                        />
-                      )}
-                    </div>
-                  )}
-                </Modal>
+                <div className="desktop:h-coverDetailsDesktop">
+                  <Modal>
+                    {({ isFullscreen, toggleFullscreen }) => (
+                      <div
+                        id="details_cover"
+                        className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
+                      >
+                        {details.imgs.length > 1 && hasNavigator ? (
+                          <DetailsCoverCarousel
+                            attachments={details.imgs}
+                            classNameImage={isFullscreen ? 'object-contain' : ''}
+                            onClickImage={toggleFullscreen}
+                          />
+                        ) : (
+                          <ImageWithLegend
+                            attachment={details.imgs[0]}
+                            classNameImage={isFullscreen ? 'object-contain' : ''}
+                            onClick={toggleFullscreen}
+                          />
+                        )}
+                      </div>
+                    )}
+                  </Modal>
+                </div>
                 <div
                   id="details_textContainer"
                   className="desktop:py-0
@@ -169,7 +173,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                     displayReservationWidget={anchors.includes('reservationWidget')}
                   />
 
-                  {sectionsTrek.map(section => {
+                  {sections.map(section => {
                     if (section.name === 'presentation') {
                       return (
                         <section
@@ -263,29 +267,6 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                       );
                     }
 
-                    if (
-                      section.name === 'forecastWidget' &&
-                      getGlobalConfig().enableMeteoWidget &&
-                      details.cities_raw?.[0]
-                    ) {
-                      return (
-                        <section
-                          key={section.name}
-                          ref={sectionRef[section.name]}
-                          id={`details_${section.name}_ref`}
-                        >
-                          {hasNavigator && (
-                            <DetailsSection
-                              htmlId="details_forecastWidget"
-                              className={marginDetailsChild}
-                            >
-                              <DetailsMeteoWidget code={details.cities_raw[0]} />
-                            </DetailsSection>
-                          )}
-                        </section>
-                      );
-                    }
-
                     if (section.name === 'altimetricProfile' && displayAltimetricProfile === true) {
                       return (
                         <section
@@ -345,11 +326,14 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                           ref={sectionRef[section.name]}
                           id={`details_${section.name}_ref`}
                         >
+                          <div
+                            id="details_practicalInformations"
+                            className="scroll-mt-20 desktop:scroll-mt-30"
+                          />
                           {(details.labels.length > 0 ||
                             (details.advice !== null && details.advice.length > 0)) && (
                             <div id="details_recommandations_ref">
                               <DetailsSection
-                                htmlId="details_practicalInformations"
                                 titleId="details.recommandations"
                                 className={marginDetailsChild}
                               >
@@ -563,6 +547,36 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               />
                             </DetailsSection>
                           )}
+                        </section>
+                      );
+                    }
+
+                    // Custom HTML templates
+                    if (
+                      templatesVariablesAreDefinedAndUsed({
+                        template: section.template,
+                        id: details.id.toString(),
+                        cityCode: details.cities_raw?.[0],
+                      })
+                    ) {
+                      return (
+                        <section
+                          key={section.name}
+                          ref={sectionRef[section.name]}
+                          id={`details_${section.name}_ref`}
+                        >
+                          <DetailsSection
+                            htmlId={`details_${section.name}`}
+                            titleId={`details.${section.name}`}
+                            className={marginDetailsChild}
+                          >
+                            <HtmlParser
+                              template={section.template}
+                              id={details.id.toString()}
+                              type="trek"
+                              cityCode={details.cities_raw[0]}
+                            />
+                          </DetailsSection>
                         </section>
                       );
                     }

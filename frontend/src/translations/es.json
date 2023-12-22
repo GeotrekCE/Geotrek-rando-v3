@@ -74,7 +74,8 @@
       "structures": "Estructura",
       "clearAll": "Borrar todo",
       "filters": "Filtros",
-      "labels": "Otros"
+      "labels": "Otros",
+      "organizer": "Organizador"
     },
     "textFilter": "Buscar...",
     "beginDateFilter": "Fecha de inicio",
@@ -83,6 +84,8 @@
       "seeResult": "Mostrar el detalle",
       "seeMe": "Mostrar mi posición",
       "panel": {
+        "open": "Display layer selector",
+        "close": "Hide layer selector",
         "trekChildren": "Pasos",
         "poi": "Patrimonios",
         "referencePoints": "Puntos de referencia",
@@ -206,7 +209,7 @@
   },
   "form": {
     "calendar": "Calendario",
-    "missingField" : "Este campo es obligatorio.",
+    "missingField": "Este campo es obligatorio.",
     "required": "(obligatorio)",
     "selectPlaceholder": "Seleccione"
   },
@@ -263,5 +266,15 @@
     "numberOfParticipants": "Número de participantes",
     "courseType": "Tipo de carrera",
     "network": "La red"
+  },
+  "consents": {
+    "modal": {
+      "purposes": {
+        "ads": "Anuncios",
+        "analytics": "Análisis",
+        "security": "Seguridad"
+      }
+    },
+    "changeCookiePreference": "Cambiar las preferencias de cookies"
   }
 }
