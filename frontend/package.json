@@ -63,7 +63,7 @@
     "qs": "6.7.0",
     "react": "^18.2.0",
     "react-accessible-accordion": "^5.0.0",
-    "react-burger-menu": "3.0.6",
+    "react-burger-menu": "^3.0.9",
     "react-country-flag": "^3.0.2",
     "react-dom": "^18.2.0",
     "react-easyfullscreen": "^1.1.1",
