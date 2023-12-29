@@ -30,9 +30,10 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
       burgerButtonClassName={burgerButtonClassName}
       burgerBarClassName="bg-white"
       menuClassName="bg-white p-4"
-      // We use mt-2 because we can't easily override the default element style with tailwind (default is top: 8 and we would like top: 16)
       crossButtonClassName="left-4 mt-2"
       crossClassName="bg-greyDarkColored"
+      overlayClassName="top-0"
+      className="top-0"
     >
       <span
         id="verticalMenu_title"

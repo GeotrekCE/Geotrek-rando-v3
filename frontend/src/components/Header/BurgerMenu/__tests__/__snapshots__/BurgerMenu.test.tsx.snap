@@ -7,7 +7,7 @@ Object {
     <div>
       <div>
         <div
-          class="bm-overlay"
+          class="bm-overlay top-0"
           style="position: fixed; z-index: 1000; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); opacity: 0; transform: translate3d(100%, 0, 0); transition: opacity 0.3s, transform 0s 0.3s;"
         />
         <div>
@@ -39,7 +39,7 @@ Object {
         </div>
         <div
           aria-hidden="true"
-          class="bm-menu-wrap"
+          class="bm-menu-wrap top-0"
           id="verticalMenu"
           style="position: fixed; right: 0px; z-index: 1100; width: 300px; height: 100%; transform: translate3d(100%, 0, 0); transition: all 0.5s;"
         >
@@ -267,7 +267,7 @@ Object {
   "container": <div>
     <div>
       <div
-        class="bm-overlay"
+        class="bm-overlay top-0"
         style="position: fixed; z-index: 1000; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); opacity: 0; transform: translate3d(100%, 0, 0); transition: opacity 0.3s, transform 0s 0.3s;"
       />
       <div>
@@ -299,7 +299,7 @@ Object {
       </div>
       <div
         aria-hidden="true"
-        class="bm-menu-wrap"
+        class="bm-menu-wrap top-0"
         id="verticalMenu"
         style="position: fixed; right: 0px; z-index: 1100; width: 300px; height: 100%; transform: translate3d(100%, 0, 0); transition: all 0.5s;"
       >

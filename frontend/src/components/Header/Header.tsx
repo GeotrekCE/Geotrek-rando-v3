@@ -32,45 +32,47 @@ export const Header: React.FC = () => {
           <HtmlParser template={headerTop} />
         </div>
       )}
-      <BurgerMenu config={config.menu} displayState={headerState} menuItems={menuItems} />
       <header
         className={cn(
-          'h-11 desktop:h-desktopHeader bg-primary1 flex flex-row items-center sticky z-header px-3 shadow-sm text-primary3 shrink-0 transition-all duration-300 delay-100',
+          'sticky z-header',
           headerState === 'DISPLAYED' ? 'top-0' : '-top-desktopHeader',
         )}
         role="banner"
         id="header"
       >
-        <Link href={routes.HOME} className="flex items-center">
-          <div className="shrink-0" id="header_logo">
-            <img
-              id="header_logoImg"
-              className="h-9 desktop:h-18 mr-3 rounded-md"
-              alt=""
-              src={config.logo}
+        <BurgerMenu config={config.menu} displayState={headerState} menuItems={menuItems} />
+        <div className="h-11 desktop:h-desktopHeader bg-primary1 flex flex-row items-center sticky z-header px-3 shadow-sm text-primary3 shrink-0 transition-all duration-300 delay-100">
+          <Link href={routes.HOME} className="flex items-center">
+            <div className="shrink-0" id="header_logo">
+              <img
+                id="header_logoImg"
+                className="h-9 desktop:h-18 mr-3 rounded-md"
+                alt=""
+                src={config.logo}
+              />
+            </div>
+            <p
+              id="header_title"
+              className="
+              flex-auto text-white
+              desktop:text-H2 desktop:leading-8
+              font-semibold desktop:font-bold"
+            >
+              <FormattedMessage id={'home.title'} />
+            </p>
+          </Link>
+          <div className="flex-1 w-0" />
+          {(sectionsDesktop || subSections) && (
+            <InlineMenu
+              className="hidden desktop:flex items-center justify-end flex-auto"
+              sections={sectionsDesktop}
+              subSections={subSections}
+              shouldDisplayFavorites={config.menu.shouldDisplayFavorite}
+              supportedLanguages={config.menu.supportedLanguages}
             />
-          </div>
-          <p
-            id="header_title"
-            className="
-            flex-auto text-white
-            desktop:text-H2 desktop:leading-8
-            font-semibold desktop:font-bold"
-          >
-            <FormattedMessage id={'home.title'} />
-          </p>
-        </Link>
-        <div className="flex-1 w-0" />
-        {(sectionsDesktop || subSections) && (
-          <InlineMenu
-            className="hidden desktop:flex items-center justify-end flex-auto"
-            sections={sectionsDesktop}
-            subSections={subSections}
-            shouldDisplayFavorites={config.menu.shouldDisplayFavorite}
-            supportedLanguages={config.menu.supportedLanguages}
-          />
-        )}
-        <GoToSearchButton className="hidden desktop:block" />
+          )}
+          <GoToSearchButton className="hidden desktop:block" />
+        </div>
       </header>
       {headerBottom !== undefined && (
         <div id="header_bottomHtml">
