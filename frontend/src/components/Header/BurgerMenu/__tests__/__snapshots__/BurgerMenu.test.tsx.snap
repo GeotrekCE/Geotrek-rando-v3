@@ -74,12 +74,12 @@ Object {
                     role="heading"
                   >
                     <div
-                      aria-controls="accordion__panel-raa-0"
+                      aria-controls="accordion__panel-:r0:"
                       aria-disabled="false"
                       aria-expanded="false"
                       class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
                       data-accordion-component="AccordionItemButton"
-                      id="accordion__heading-raa-0"
+                      id="accordion__heading-:r0:"
                       role="button"
                       tabindex="0"
                     >
@@ -107,12 +107,10 @@ Object {
                     </div>
                   </div>
                   <div
-                    aria-labelledby="accordion__heading-raa-0"
                     class=""
                     data-accordion-component="AccordionItemPanel"
                     hidden=""
-                    id="accordion__panel-raa-0"
-                    role="region"
+                    id="accordion__panel-:r0:"
                   >
                     <p
                       class="text-Mobile-C2 m-3"
@@ -167,12 +165,12 @@ Object {
                     role="heading"
                   >
                     <div
-                      aria-controls="accordion__panel-raa-0"
+                      aria-controls="accordion__panel-:r1:"
                       aria-disabled="false"
                       aria-expanded="false"
                       class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
                       data-accordion-component="AccordionItemButton"
-                      id="accordion__heading-raa-0"
+                      id="accordion__heading-:r1:"
                       role="button"
                       tabindex="0"
                     >
@@ -200,12 +198,10 @@ Object {
                     </div>
                   </div>
                   <div
-                    aria-labelledby="accordion__heading-raa-0"
                     class=""
                     data-accordion-component="AccordionItemPanel"
                     hidden=""
-                    id="accordion__panel-raa-0"
-                    role="region"
+                    id="accordion__panel-:r1:"
                   >
                     <a
                       class="hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
@@ -338,12 +334,12 @@ Object {
                   role="heading"
                 >
                   <div
-                    aria-controls="accordion__panel-raa-0"
+                    aria-controls="accordion__panel-:r0:"
                     aria-disabled="false"
                     aria-expanded="false"
                     class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
                     data-accordion-component="AccordionItemButton"
-                    id="accordion__heading-raa-0"
+                    id="accordion__heading-:r0:"
                     role="button"
                     tabindex="0"
                   >
@@ -371,12 +367,10 @@ Object {
                   </div>
                 </div>
                 <div
-                  aria-labelledby="accordion__heading-raa-0"
                   class=""
                   data-accordion-component="AccordionItemPanel"
                   hidden=""
-                  id="accordion__panel-raa-0"
-                  role="region"
+                  id="accordion__panel-:r0:"
                 >
                   <p
                     class="text-Mobile-C2 m-3"
@@ -431,12 +425,12 @@ Object {
                   role="heading"
                 >
                   <div
-                    aria-controls="accordion__panel-raa-0"
+                    aria-controls="accordion__panel-:r1:"
                     aria-disabled="false"
                     aria-expanded="false"
                     class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
                     data-accordion-component="AccordionItemButton"
-                    id="accordion__heading-raa-0"
+                    id="accordion__heading-:r1:"
                     role="button"
                     tabindex="0"
                   >
@@ -464,12 +458,10 @@ Object {
                   </div>
                 </div>
                 <div
-                  aria-labelledby="accordion__heading-raa-0"
                   class=""
                   data-accordion-component="AccordionItemPanel"
                   hidden=""
-                  id="accordion__panel-raa-0"
-                  role="region"
+                  id="accordion__panel-:r1:"
                 >
                   <a
                     class="hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"

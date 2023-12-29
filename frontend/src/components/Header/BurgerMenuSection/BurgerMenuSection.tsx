@@ -4,7 +4,6 @@ import {
   AccordionItemButton,
   AccordionItemHeading,
   AccordionItemPanel,
-  resetNextUuid,
 } from 'react-accessible-accordion';
 import { MenuItem } from 'modules/header/interface';
 import NextLink from 'next/link';
@@ -36,7 +35,6 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
   const updatePanelState = (openPanelIds: string[]) => {
     openPanelIds.length > 0 ? setOpenState('OPENED') : setOpenState('CLOSED');
   };
-  resetNextUuid();
   if (!items && !languages) {
     return <a className={cn(classNameTitle, classNameBorder)}>{title}</a>;
   }
