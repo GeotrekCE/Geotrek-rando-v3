@@ -12,6 +12,7 @@ import { Link } from 'components/Link';
 import { isInternalFlatPageUrl } from 'services/routeUtils';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
+import { cn } from 'services/utils/cn';
 import { Plus } from '../../Icons/Plus';
 import { Minus } from '../../Icons/Minus';
 import { useBurgerMenuSection } from './useBurgerMenuSection';
@@ -28,28 +29,27 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
   const router = useRouter();
   const currentLanguage = router.locale ?? getDefaultLanguage();
   const classNameTitle = 'flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer';
-  const classNameBorder = 'border-b pb-2 border-solid border-greySoft';
-  const openIcon = <Plus size={24} />;
-  const closeIcon = <Minus size={24} />;
+  const classNameBorder = 'border-b border-solid border-greySoft';
+  const openIcon = <Plus size={24} aria-hidden />;
+  const closeIcon = <Minus size={24} aria-hidden />;
   const { openState, setOpenState } = useBurgerMenuSection();
   const updatePanelState = (openPanelIds: string[]) => {
     openPanelIds.length > 0 ? setOpenState('OPENED') : setOpenState('CLOSED');
   };
   resetNextUuid();
-  return items || languages ? (
+  if (!items && !languages) {
+    return <a className={cn(classNameTitle, classNameBorder)}>{title}</a>;
+  }
+  return (
     <Accordion allowZeroExpanded onChange={updatePanelState}>
-      <AccordionItem>
+      <AccordionItem className={cn('accordion__item', classNameBorder)}>
         <AccordionItemHeading>
-          <AccordionItemButton
-            className={`${classNameTitle} ${openState === 'CLOSED' ? classNameBorder : ''}`}
-          >
-            <span id="verticalMenu_section" className="grow">
-              {title}
-            </span>
+          <AccordionItemButton className={cn(classNameTitle)}>
+            <span className="verticalMenu_section grow">{title}</span>
             {openState === 'OPENED' ? closeIcon : openIcon}
           </AccordionItemButton>
         </AccordionItemHeading>
-        <AccordionItemPanel className={openState === 'OPENED' ? classNameBorder : ''}>
+        <AccordionItemPanel className={cn(openState === 'OPENED' && 'pb-2')}>
           {items?.map((item, i) => (
             <p key={i} className="text-Mobile-C2 m-3">
               {isItemString(item) ? (
@@ -75,7 +75,7 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
               key={language}
               href={{
                 pathname: router.pathname,
-                query: { ...router.query },
+                query: router.query,
               }}
               locale={language}
             >
@@ -85,7 +85,5 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
         </AccordionItemPanel>
       </AccordionItem>
     </Accordion>
-  ) : (
-    <a className={`${classNameTitle} ${classNameBorder}`}>{title}</a>
   );
 };

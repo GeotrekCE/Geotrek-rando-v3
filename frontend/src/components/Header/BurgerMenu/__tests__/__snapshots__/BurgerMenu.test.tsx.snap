@@ -64,7 +64,7 @@ Object {
                 data-accordion-component="Accordion"
               >
                 <div
-                  class="accordion__item"
+                  class="accordion__item border-b border-solid border-greySoft"
                   data-accordion-component="AccordionItem"
                 >
                   <div
@@ -77,19 +77,19 @@ Object {
                       aria-controls="accordion__panel-raa-0"
                       aria-disabled="false"
                       aria-expanded="false"
-                      class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
+                      class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
                       data-accordion-component="AccordionItemButton"
                       id="accordion__heading-raa-0"
                       role="button"
                       tabindex="0"
                     >
                       <span
-                        class="grow"
-                        id="verticalMenu_section"
+                        class="verticalMenu_section grow"
                       >
                         En savoir plus
                       </span>
                       <svg
+                        aria-hidden="true"
                         fill="none"
                         height="24"
                         viewBox="0 0 24 24"
@@ -148,7 +148,7 @@ Object {
                 </div>
               </div>
               <a
-                class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
+                class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
               >
                 Favoris
               </a>
@@ -157,7 +157,7 @@ Object {
                 data-accordion-component="Accordion"
               >
                 <div
-                  class="accordion__item"
+                  class="accordion__item border-b border-solid border-greySoft"
                   data-accordion-component="AccordionItem"
                 >
                   <div
@@ -170,19 +170,19 @@ Object {
                       aria-controls="accordion__panel-raa-0"
                       aria-disabled="false"
                       aria-expanded="false"
-                      class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
+                      class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
                       data-accordion-component="AccordionItemButton"
                       id="accordion__heading-raa-0"
                       role="button"
                       tabindex="0"
                     >
                       <span
-                        class="grow"
-                        id="verticalMenu_section"
+                        class="verticalMenu_section grow"
                       >
                         Langue
                       </span>
                       <svg
+                        aria-hidden="true"
                         fill="none"
                         height="24"
                         viewBox="0 0 24 24"
@@ -328,7 +328,7 @@ Object {
               data-accordion-component="Accordion"
             >
               <div
-                class="accordion__item"
+                class="accordion__item border-b border-solid border-greySoft"
                 data-accordion-component="AccordionItem"
               >
                 <div
@@ -341,19 +341,19 @@ Object {
                     aria-controls="accordion__panel-raa-0"
                     aria-disabled="false"
                     aria-expanded="false"
-                    class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
+                    class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
                     data-accordion-component="AccordionItemButton"
                     id="accordion__heading-raa-0"
                     role="button"
                     tabindex="0"
                   >
                     <span
-                      class="grow"
-                      id="verticalMenu_section"
+                      class="verticalMenu_section grow"
                     >
                       En savoir plus
                     </span>
                     <svg
+                      aria-hidden="true"
                       fill="none"
                       height="24"
                       viewBox="0 0 24 24"
@@ -412,7 +412,7 @@ Object {
               </div>
             </div>
             <a
-              class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
+              class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
             >
               Favoris
             </a>
@@ -421,7 +421,7 @@ Object {
               data-accordion-component="Accordion"
             >
               <div
-                class="accordion__item"
+                class="accordion__item border-b border-solid border-greySoft"
                 data-accordion-component="AccordionItem"
               >
                 <div
@@ -434,19 +434,19 @@ Object {
                     aria-controls="accordion__panel-raa-0"
                     aria-disabled="false"
                     aria-expanded="false"
-                    class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b pb-2 border-solid border-greySoft"
+                    class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
                     data-accordion-component="AccordionItemButton"
                     id="accordion__heading-raa-0"
                     role="button"
                     tabindex="0"
                   >
                     <span
-                      class="grow"
-                      id="verticalMenu_section"
+                      class="verticalMenu_section grow"
                     >
                       Langue
                     </span>
                     <svg
+                      aria-hidden="true"
                       fill="none"
                       height="24"
                       viewBox="0 0 24 24"
