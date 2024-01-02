@@ -29,9 +29,6 @@ const ShowFilters: React.FC<Props> = ({
   if (item.id === DATE_FILTER) {
     return (
       <fieldset className="flex flex-col mt-4 desktop:mt-0 desktop:ml-5">
-        <legend className="font-bold mb-2 text-lg">
-          <FormattedMessage id="search.diary" />
-        </legend>
         <InputDateWithMagnifier
           value={dateFilter.beginDate}
           onChange={event => {
