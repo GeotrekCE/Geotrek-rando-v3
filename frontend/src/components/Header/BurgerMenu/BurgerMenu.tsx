@@ -30,9 +30,10 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
       burgerButtonClassName={burgerButtonClassName}
       burgerBarClassName="bg-white"
       menuClassName="bg-white p-4"
-      // We use mt-2 because we can't easily override the default element style with tailwind (default is top: 8 and we would like top: 16)
       crossButtonClassName="left-4 mt-2"
       crossClassName="bg-greyDarkColored"
+      overlayClassName="top-0"
+      className="top-0"
     >
       <span
         id="verticalMenu_title"
@@ -46,10 +47,12 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
       {config.shouldDisplayFavorite && (
         <BurgerMenuSection title={intl.formatMessage({ id: 'header.favorites' })} />
       )}
-      <BurgerMenuSection
-        title={intl.formatMessage({ id: 'header.language' })}
-        languages={config.supportedLanguages}
-      />
+      {config.supportedLanguages.length > 1 && (
+        <BurgerMenuSection
+          title={intl.formatMessage({ id: 'header.language' })}
+          languages={config.supportedLanguages}
+        />
+      )}
       <NextLink
         className="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
         href={routes.SEARCH}
