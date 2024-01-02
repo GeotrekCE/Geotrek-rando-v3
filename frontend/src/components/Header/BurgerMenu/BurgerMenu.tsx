@@ -47,10 +47,12 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
       {config.shouldDisplayFavorite && (
         <BurgerMenuSection title={intl.formatMessage({ id: 'header.favorites' })} />
       )}
-      <BurgerMenuSection
-        title={intl.formatMessage({ id: 'header.language' })}
-        languages={config.supportedLanguages}
-      />
+      {config.supportedLanguages.length > 1 && (
+        <BurgerMenuSection
+          title={intl.formatMessage({ id: 'header.language' })}
+          languages={config.supportedLanguages}
+        />
+      )}
       <NextLink
         className="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
         href={routes.SEARCH}

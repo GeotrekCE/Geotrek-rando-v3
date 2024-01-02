@@ -1,6 +1,463 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AAU, I can see a BurgerMenu 1`] = `
+exports[`AAU, I can see a BurgerMenu with only one language 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <div
+          class="bm-overlay top-0"
+          style="position: fixed; z-index: 1000; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); opacity: 0; transform: translate3d(100%, 0, 0); transition: opacity 0.3s, transform 0s 0.3s;"
+        />
+        <div>
+          <div
+            class="bm-burger-button fixed w-6 h-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 top-2.5"
+            style="z-index: 1000;"
+          >
+            <button
+              id="react-burger-menu-btn"
+              style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; height: 100%; margin: 0px; padding: 0px; font-size: 0px; background: transparent; cursor: pointer;"
+              type="button"
+            >
+              Open Menu
+            </button>
+            <svg
+              class="bm-icon text-white"
+              fill="none"
+              viewBox="0 0 24 25"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3 12h18M3 6h18M3 18h18"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          class="bm-menu-wrap top-0"
+          id="verticalMenu"
+          style="position: fixed; right: 0px; z-index: 1100; width: 300px; height: 100%; transform: translate3d(100%, 0, 0); transition: all 0.5s;"
+        >
+          <div
+            class="bm-menu bg-white p-4"
+            style="height: 100%; box-sizing: border-box; overflow: auto;"
+          >
+            <nav
+              class="bm-item-list"
+              style="height: 100%;"
+            >
+              <span
+                class="bm-item pb-4 font-bold text-center border-b border-solid border-greySoft outline-none"
+                id="verticalMenu_title"
+                style="display: block;"
+                tabindex="-1"
+              >
+                Menu
+              </span>
+              <div
+                class="accordion"
+                data-accordion-component="Accordion"
+              >
+                <div
+                  class="accordion__item border-b border-solid border-greySoft"
+                  data-accordion-component="AccordionItem"
+                >
+                  <div
+                    aria-level="3"
+                    class="accordion__heading"
+                    data-accordion-component="AccordionItemHeading"
+                    role="heading"
+                  >
+                    <div
+                      aria-controls="accordion__panel-:r2:"
+                      aria-disabled="false"
+                      aria-expanded="false"
+                      class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
+                      data-accordion-component="AccordionItemButton"
+                      id="accordion__heading-:r2:"
+                      role="button"
+                      tabindex="0"
+                    >
+                      <span
+                        class="verticalMenu_section grow"
+                      >
+                        En savoir plus
+                      </span>
+                      <svg
+                        aria-hidden="true"
+                        fill="none"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12 5v14M5 12h14"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div
+                    class=""
+                    data-accordion-component="AccordionItemPanel"
+                    hidden=""
+                    id="accordion__panel-:r2:"
+                  >
+                    <p
+                      class="text-Mobile-C2 m-3"
+                    >
+                      <a
+                        href="https://www.ecrins-parcnational.fr/"
+                        target="_blank"
+                      >
+                        NationalPark
+                      </a>
+                    </p>
+                    <p
+                      class="text-Mobile-C2 m-3"
+                    >
+                      <a
+                        href="https://www.ecrins-parcnational.fr/"
+                        target="_blank"
+                      >
+                        Maisons du Parc
+                      </a>
+                    </p>
+                    <p
+                      class="text-Mobile-C2 m-3"
+                    >
+                      <a
+                        href="https://www.ecrins-parcnational.fr/"
+                        target="_blank"
+                      >
+                        Informations utiles
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <a
+                class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              >
+                Favoris
+              </a>
+              <a
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+                href="/search"
+                style="display: block;"
+                tabindex="-1"
+              >
+                Recherche
+              </a>
+              <a
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+                href="/offline"
+                rel="nofollow"
+                style="display: block;"
+                tabindex="-1"
+              >
+                Contenus hors ligne
+              </a>
+            </nav>
+          </div>
+          <div>
+            <div
+              class="bm-cross-button left-4 mt-2"
+              style="position: absolute; width: 24px; height: 24px; right: 8px; top: 8px;"
+            >
+              <button
+                id="react-burger-cross-btn"
+                style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; height: 100%; margin: 0px; padding: 0px; font-size: 0px; background: transparent; cursor: pointer;"
+                tabindex="-1"
+                type="button"
+              >
+                Close Menu
+              </button>
+              <svg
+                class="bm-cross"
+                fill="none"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M18.707 6.707a1 1 0 00-1.414-1.414L12 10.586 6.707 5.293a1 1 0 00-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 101.414 1.414L12 13.414l5.293 5.293a1 1 0 001.414-1.414L13.414 12l5.293-5.293z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <div
+        class="bm-overlay top-0"
+        style="position: fixed; z-index: 1000; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); opacity: 0; transform: translate3d(100%, 0, 0); transition: opacity 0.3s, transform 0s 0.3s;"
+      />
+      <div>
+        <div
+          class="bm-burger-button fixed w-6 h-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 top-2.5"
+          style="z-index: 1000;"
+        >
+          <button
+            id="react-burger-menu-btn"
+            style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; height: 100%; margin: 0px; padding: 0px; font-size: 0px; background: transparent; cursor: pointer;"
+            type="button"
+          >
+            Open Menu
+          </button>
+          <svg
+            class="bm-icon text-white"
+            fill="none"
+            viewBox="0 0 24 25"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 12h18M3 6h18M3 18h18"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        class="bm-menu-wrap top-0"
+        id="verticalMenu"
+        style="position: fixed; right: 0px; z-index: 1100; width: 300px; height: 100%; transform: translate3d(100%, 0, 0); transition: all 0.5s;"
+      >
+        <div
+          class="bm-menu bg-white p-4"
+          style="height: 100%; box-sizing: border-box; overflow: auto;"
+        >
+          <nav
+            class="bm-item-list"
+            style="height: 100%;"
+          >
+            <span
+              class="bm-item pb-4 font-bold text-center border-b border-solid border-greySoft outline-none"
+              id="verticalMenu_title"
+              style="display: block;"
+              tabindex="-1"
+            >
+              Menu
+            </span>
+            <div
+              class="accordion"
+              data-accordion-component="Accordion"
+            >
+              <div
+                class="accordion__item border-b border-solid border-greySoft"
+                data-accordion-component="AccordionItem"
+              >
+                <div
+                  aria-level="3"
+                  class="accordion__heading"
+                  data-accordion-component="AccordionItemHeading"
+                  role="heading"
+                >
+                  <div
+                    aria-controls="accordion__panel-:r2:"
+                    aria-disabled="false"
+                    aria-expanded="false"
+                    class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
+                    data-accordion-component="AccordionItemButton"
+                    id="accordion__heading-:r2:"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span
+                      class="verticalMenu_section grow"
+                    >
+                      En savoir plus
+                    </span>
+                    <svg
+                      aria-hidden="true"
+                      fill="none"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 5v14M5 12h14"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class=""
+                  data-accordion-component="AccordionItemPanel"
+                  hidden=""
+                  id="accordion__panel-:r2:"
+                >
+                  <p
+                    class="text-Mobile-C2 m-3"
+                  >
+                    <a
+                      href="https://www.ecrins-parcnational.fr/"
+                      target="_blank"
+                    >
+                      NationalPark
+                    </a>
+                  </p>
+                  <p
+                    class="text-Mobile-C2 m-3"
+                  >
+                    <a
+                      href="https://www.ecrins-parcnational.fr/"
+                      target="_blank"
+                    >
+                      Maisons du Parc
+                    </a>
+                  </p>
+                  <p
+                    class="text-Mobile-C2 m-3"
+                  >
+                    <a
+                      href="https://www.ecrins-parcnational.fr/"
+                      target="_blank"
+                    >
+                      Informations utiles
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <a
+              class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+            >
+              Favoris
+            </a>
+            <a
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              href="/search"
+              style="display: block;"
+              tabindex="-1"
+            >
+              Recherche
+            </a>
+            <a
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              href="/offline"
+              rel="nofollow"
+              style="display: block;"
+              tabindex="-1"
+            >
+              Contenus hors ligne
+            </a>
+          </nav>
+        </div>
+        <div>
+          <div
+            class="bm-cross-button left-4 mt-2"
+            style="position: absolute; width: 24px; height: 24px; right: 8px; top: 8px;"
+          >
+            <button
+              id="react-burger-cross-btn"
+              style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; height: 100%; margin: 0px; padding: 0px; font-size: 0px; background: transparent; cursor: pointer;"
+              tabindex="-1"
+              type="button"
+            >
+              Close Menu
+            </button>
+            <svg
+              class="bm-cross"
+              fill="none"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M18.707 6.707a1 1 0 00-1.414-1.414L12 10.586 6.707 5.293a1 1 0 00-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 101.414 1.414L12 13.414l5.293 5.293a1 1 0 001.414-1.414L13.414 12l5.293-5.293z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`AAU, I can see a BurgerMenu with several languages 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -209,6 +666,12 @@ Object {
                       href="/"
                     >
                       FR
+                    </a>
+                    <a
+                      class="hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
+                      href="/"
+                    >
+                      EN
                     </a>
                   </div>
                 </div>
@@ -471,6 +934,12 @@ Object {
                     href="/"
                   >
                     FR
+                  </a>
+                  <a
+                    class="hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
+                    href="/"
+                  >
+                    EN
                   </a>
                 </div>
               </div>
