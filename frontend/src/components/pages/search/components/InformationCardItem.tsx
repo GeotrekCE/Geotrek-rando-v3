@@ -47,6 +47,15 @@ const getInformationItemProps = (information: InformationCard, intl: IntlShape) 
       children: <>{value}</>,
     };
   }
+  if (label === 'negativeElevation') {
+    return {
+      icon: TrendingUp,
+      iconProps: {
+        className: '-scale-y-100',
+      },
+      children: <>{value}</>,
+    };
+  }
   if (label === 'maxElevation') {
     return {
       icon: Altitude,
@@ -112,12 +121,12 @@ const getInformationItemProps = (information: InformationCard, intl: IntlShape) 
 
 export const InformationCardItem: React.FC<InformationCard> = item => {
   const intl = useIntl();
-  const { icon, children } = getInformationItemProps(item, intl);
+  const { icon, ...rest } = getInformationItemProps(item, intl);
   if (!icon) {
-    return <>{children}</>;
+    return <>{rest.children}</>;
   }
   if (typeof icon === 'string') {
-    return <RemoteIconInformation iconUri={icon}>{children}</RemoteIconInformation>;
+    return <RemoteIconInformation iconUri={icon} {...rest} />;
   }
-  return <LocalIconInformation icon={icon}>{children}</LocalIconInformation>;
+  return <LocalIconInformation icon={icon} {...rest} />;
 };

@@ -76,6 +76,7 @@ export interface RawTrekResults {
 export interface RawTrekResult {
   id: number;
   ascent: number;
+  descent: number;
   departure: string;
   difficulty: number | null;
   duration: number | null;
