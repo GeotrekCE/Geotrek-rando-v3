@@ -24,7 +24,7 @@ describe('Results Card', () => {
         },
         { label: 'duration', value: '2h' },
         { label: 'distance', value: '5km' },
-        { label: 'elevation', value: '+360m' },
+        { label: 'positiveElevation', value: '+360m' },
       ]}
       redirectionUrl={urlToTest}
     />

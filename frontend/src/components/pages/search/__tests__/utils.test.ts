@@ -93,7 +93,7 @@ const mockTrekResult: TrekResult = {
     { label: 'duration', value: '7h' },
 
     { label: 'distance', value: '15,2km' },
-    { label: 'elevation', value: '+1457m' },
+    { label: 'positiveElevation', value: '+1457m' },
   ],
 };
 
