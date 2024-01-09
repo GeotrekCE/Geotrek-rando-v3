@@ -41,7 +41,7 @@ const getInformationItemProps = (information: InformationCard, intl: IntlShape) 
       children: <>{value}</>,
     };
   }
-  if (label === 'elevation') {
+  if (label === 'positiveElevation') {
     return {
       icon: TrendingUp,
       children: <>{value}</>,

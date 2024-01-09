@@ -64,7 +64,7 @@ export const adaptTrekResultList = ({
         value: `${formatDistance(rawResult.length_2d)}`,
       },
       {
-        label: 'elevation',
+        label: 'positiveElevation',
         value: `+${rawResult.ascent}${dataUnits.distance}`,
       },
       // we disable this button because the booking behaviour is not implemented yet
