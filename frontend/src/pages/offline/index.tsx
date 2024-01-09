@@ -70,7 +70,7 @@ const OfflinePage: NextPage = () => {
                   value: result.informations.distance ?? '',
                 },
                 {
-                  label: 'elevation',
+                  label: 'positiveElevation',
                   value: result.informations.elevation ?? '',
                 },
               ].filter(item => item.value.length > 0)}
