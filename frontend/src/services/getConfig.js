@@ -117,6 +117,7 @@ const getAllConfigs = {
   footer: getConfig('footer.json', true),
   manifest: getConfig('manifest.json', true),
   locales: getLocales(headers.menu.supportedLanguages),
+  resultCard: getConfig('resultCard.json', true),
 };
 
 module.exports = {
