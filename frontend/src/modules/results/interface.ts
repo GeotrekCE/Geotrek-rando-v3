@@ -33,7 +33,7 @@ export interface ResultCard {
   name: string;
   attachments: Attachment[];
   tags?: string[];
-  place: string;
+  place: string | null;
   informations?: InformationCard[];
 }
 

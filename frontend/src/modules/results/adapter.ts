@@ -1,3 +1,4 @@
+import getNextConfig from 'next/config';
 import { ActivityChoices } from 'modules/activities/interface';
 import { CityDictionnary } from 'modules/city/interface';
 import { DifficultyChoices } from 'modules/filters/difficulties/interface';
@@ -6,6 +7,14 @@ import { getThumbnails } from 'modules/utils/adapter';
 import { formatHours } from 'modules/utils/time';
 import { RawTrekResult, TrekResult } from './interface';
 import { formatDistance } from './utils';
+
+const {
+  publicRuntimeConfig: {
+    resultCard: {
+      trek: { location, labels, informations = [] },
+    },
+  },
+} = getNextConfig();
 
 export const dataUnits = {
   distance: 'm',
@@ -43,9 +52,10 @@ export const adaptTrekResultList = ({
   resultsList.filter(isRawTrekResultComplete).map(rawResult => ({
     type: 'TREK',
     id: `${rawResult.id}`,
-    place: cityDictionnary[rawResult.departure_city]?.name ?? null,
+    place: (location.display === true && cityDictionnary[rawResult.departure_city]?.name) || null,
     name: rawResult.name,
-    tags: rawResult.themes.map(themeId => themes[themeId]?.label || ''),
+    tags:
+      labels.display === true ? rawResult.themes.map(themeId => themes[themeId]?.label || '') : [],
     attachments: getThumbnails(rawResult.attachments),
     category: activities[rawResult.practice] ?? null,
     informations: [
@@ -75,5 +85,7 @@ export const adaptTrekResultList = ({
       //       ? `${rawResult.reservation_system}`
       //       : null,
       // },
-    ].filter(item => item.value.length > 0),
+    ]
+      .filter(item => informations.includes(item.label) && item.value.length > 0)
+      .sort((a, b) => informations.indexOf(a.label) - informations.indexOf(b.label)),
   }));
