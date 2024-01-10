@@ -1,3 +1,4 @@
+import getNextConfig from 'next/config';
 import { getActivities } from 'modules/activities/connector';
 import { getDifficulties } from 'modules/filters/difficulties';
 import { getOutdoorPractices } from 'modules/outdoorPractice/connector';
@@ -21,6 +22,14 @@ import { getCourseType } from 'modules/filters/courseType/connector';
 import { getNetworks } from 'modules/networks/connector';
 import { Suggestion } from '../home/interface';
 import { ActivitySuggestion } from './interface';
+const {
+  publicRuntimeConfig: {
+    resultCard: {
+      trek: { informations = [] },
+    },
+  },
+} = getNextConfig();
+
 export const getActivitySuggestions = async (
   suggestions: Suggestion[],
   language: string,
@@ -55,12 +64,15 @@ export const getActivitySuggestions = async (
             if (!trek) {
               return {};
             }
+            if (!informations.includes('courseType')) {
+              return trek;
+            }
             const courseType = await getCourseType(trek.route, language);
             return { ...trek, courseType };
           }),
         );
 
-        const networks = await getNetworks(language);
+        const networks = informations.includes('networks') ? await getNetworks(language) : {};
         return {
           ...props,
           results: adaptTrekResultList({
