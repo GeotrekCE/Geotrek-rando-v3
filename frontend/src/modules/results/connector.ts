@@ -1,3 +1,4 @@
+import getNextConfig from 'next/config';
 import { getTouristicContentCategories } from 'modules/touristicContentCategory/connector';
 import { getActivities } from 'modules/activities/connector';
 import { getDifficulties } from 'modules/filters/difficulties';
@@ -20,6 +21,13 @@ import { adaptTouristicEventsResult } from '../touristicEvent/adapter';
 import { fetchTouristicEvents } from '../touristicEvent/api';
 import { TouristicEventResult } from '../touristicEvent/interface';
 import { getTouristicEventTypes } from '../touristicEventType/connector';
+const {
+  publicRuntimeConfig: {
+    resultCard: {
+      trek: { informations = [] },
+    },
+  },
+} = getNextConfig();
 
 import { adaptTrekResultList } from './adapter';
 import {
@@ -371,6 +379,9 @@ export const getTrekResultsById = async (
         if (!trek) {
           return trek;
         }
+        if (!informations.includes('courseType')) {
+          return trek;
+        }
         const courseType = await getCourseType(trek.route, language);
         return { ...trek, courseType };
       }),
@@ -399,7 +410,7 @@ export const getTrekResults = async (
     fetchTrekResults({ language, ...query }),
     getDifficulties(language),
     getActivities(language),
-    getNetworks(language),
+    informations.includes('networks') ? getNetworks(language) : {},
   ]);
 
   const trekResultWithCourseType =
@@ -407,6 +418,9 @@ export const getTrekResults = async (
       ? await Promise.all(
           rawTrekResults.results.map(async trek => {
             if (!trek.route) {
+              return trek;
+            }
+            if (!informations.includes('courseType')) {
               return trek;
             }
             const courseType = await getCourseType(trek.route, language);
