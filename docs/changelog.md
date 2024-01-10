@@ -2,9 +2,11 @@
 
 ## 3.17.0 (2024-01-10)
 
+Require Geotrek-admin 2.98.0 (March 2023) minimum.
+
 **💥 Breaking changes**
 
-- This version of Geotrek Rando may not work correctly if connected to a Geotrek Admin API lower than version [2.98.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.98.0), due to the modification of parameters to obtain treks near POIs and sensitive areas. (#890)
+- This version of Geotrek-rando may not work correctly if connected to a Geotrek-admin API lower than version [2.98.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.98.0), due to the modification of parameters to obtain treks near POIs and sensitive areas. (#890)
 
 **🚀 New features**
 
@@ -14,6 +16,7 @@
 
 - Use more efficient filters to get treks near POIs and sensitive areas (#890)
 - Move the mobile menu in the <header> tag and improve accessibility (#1010)
+- Remove "diary" entry from touristic events filters (#1012)
 
 **🔧 Maintenance**
 
