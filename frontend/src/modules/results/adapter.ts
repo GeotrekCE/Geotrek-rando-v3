@@ -85,6 +85,11 @@ export const adaptTrekResultList = ({
         value: `${rawResult.descent}${dataUnits.distance}`,
       },
       {
+        label: 'courseType',
+        value: rawResult.courseType?.label ?? '',
+        pictogramUri: rawResult.courseType?.pictogramUri ?? '',
+      },
+      {
         label: 'networks',
         value: rawResult.networks.map(networkId => networks[networkId]),
       } as InformationCardArray,
