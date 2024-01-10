@@ -12,7 +12,11 @@ import { formatDistance } from './utils';
 const {
   publicRuntimeConfig: {
     resultCard: {
-      trek: { location, labels, informations = [] },
+      trek: {
+        location,
+        themes: { display: displayThemes },
+        informations = [],
+      },
     },
   },
 } = getNextConfig();
@@ -58,7 +62,7 @@ export const adaptTrekResultList = ({
     place: (location.display === true && cityDictionnary[rawResult.departure_city]?.name) || null,
     name: rawResult.name,
     tags:
-      labels.display === true ? rawResult.themes.map(themeId => themes[themeId]?.label || '') : [],
+      displayThemes === true ? rawResult.themes.map(themeId => themes[themeId]?.label || '') : [],
     attachments: getThumbnails(rawResult.attachments),
     category: activities[rawResult.practice] ?? null,
     informations: [

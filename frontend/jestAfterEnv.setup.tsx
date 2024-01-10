@@ -234,14 +234,17 @@ setConfig({
     },
     resultCard: {
       trek: {
-          location: {
-            display: true
-          },
-          labels: {
-            display: true
-          },
-        informations: ["difficulty", "duration", "distance", "positiveElevation"]
-      }
+        location: {
+          display: true,
+        },
+        themes: {
+          display: true,
+        },
+        labels: {
+          display: true,
+        },
+        informations: ['difficulty', 'duration', 'distance', 'positiveElevation'],
+      },
     },
     detailsSectionHtml: {
       forecastWidget: { default: '<iframe\n  id="widget_autocomplete_preview"\n  className="w-full"\n  height="150"\n  src="https://meteofrance.com/widget/prevision/{{ cityCode }}0"\n></iframe>\n' }
