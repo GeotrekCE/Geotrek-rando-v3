@@ -1,11 +1,11 @@
 {
   "trek": {
-     "location": {
-       "display": true
-     },
-     "labels": {
-       "display": true
-     },
+    "location": {
+      "display": true
+    },
+    "themes": {
+      "display": true
+    },
     "informations": ["difficulty", "duration", "distance", "positiveElevation"]
   }
 }
