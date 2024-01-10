@@ -9,6 +9,8 @@ import { DateFilter } from 'modules/filters/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
+import { getNetworks } from 'modules/networks/connector';
+import { NetworkDictionnary } from 'modules/networks/interface';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { adaptoutdoorSitesResult } from '../outdoorSite/adapter';
 import { fetchOutdoorSites } from '../outdoorSite/api';
@@ -253,7 +255,8 @@ export const getSearchResults = async (
       getOutdoorPractices(language),
     ]);
 
-    const [touristicEventType] = await Promise.all([getTouristicEventTypes(language)]);
+    const touristicEventType = await getTouristicEventTypes(language);
+    const networks = await getNetworks(language);
 
     const adaptedResultsList: TrekResult[] = adaptTrekResultList({
       resultsList: rawTrekResults.results,
@@ -261,6 +264,7 @@ export const getSearchResults = async (
       themes,
       activities,
       cityDictionnary: cities,
+      networks,
     });
 
     const adaptedTouristicContentsList: TouristicContentResult[] = adaptTouristicContentResult({
@@ -330,6 +334,7 @@ export const getSearchResults = async (
 export const getTrekResultsById = async (
   trekIds: number[],
   language: string,
+  networks: NetworkDictionnary,
   commonDictionaries?: CommonDictionaries,
 ): Promise<TrekResult[]> => {
   try {
@@ -355,6 +360,7 @@ export const getTrekResultsById = async (
       themes,
       activities,
       cityDictionnary: cities,
+      networks,
     });
   } catch (e) {
     console.error('Error in results connector', e);
@@ -368,10 +374,11 @@ export const getTrekResults = async (
   commonDictionaries: CommonDictionaries,
 ): Promise<TrekResult[]> => {
   const { cities, themes } = commonDictionaries;
-  const [rawTrekResults, difficulties, activities] = await Promise.all([
+  const [rawTrekResults, difficulties, activities, networks] = await Promise.all([
     fetchTrekResults({ language, ...query }),
     getDifficulties(language),
     getActivities(language),
+    getNetworks(language),
   ]);
 
   return adaptTrekResultList({
@@ -380,5 +387,6 @@ export const getTrekResults = async (
     themes,
     activities,
     cityDictionnary: cities,
+    networks,
   });
 };

@@ -74,7 +74,7 @@ export const getDetails = async (
       displayRelatedSignages === true ? getSignage(language, id, 'TREK') : null,
       displayRelatedServices === true ? getService(language, id, 'TREK') : null,
       displayRelatedInfrastructures === true ? getInfrastructure(language, id, 'TREK') : null,
-      getTrekResultsById(rawDetails.properties.children, language, commonDictionaries),
+      getTrekResultsById(rawDetails.properties.children, language, networks, commonDictionaries),
       getGlobalConfig().enableSensitiveAreas && displayRelatedSensitiveAreas === true
         ? getSensitiveAreas('trek', rawDetails.properties.id, language)
         : [],

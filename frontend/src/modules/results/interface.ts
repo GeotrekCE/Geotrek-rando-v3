@@ -2,6 +2,7 @@ import { Activity } from 'modules/activities/interface';
 import { Attachment, RawAttachment } from 'modules/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { TouristicEventResult } from 'modules/touristicEvent/interface';
+import { Network } from 'modules/networks/interface';
 import { OutdoorSiteResult } from '../outdoorSite/interface';
 
 export interface InformationCardTuple {
@@ -17,6 +18,11 @@ export interface InformationCardLabelValues {
   }[];
 }
 
+export interface InformationCardArray {
+  label: 'networks';
+  value: Network[];
+}
+
 interface InformationCardOthers {
   label: string;
   value: string | number;
@@ -25,6 +31,7 @@ interface InformationCardOthers {
 export type InformationCard = (
   | InformationCardTuple
   | InformationCardLabelValues
+  | InformationCardArray
   | InformationCardOthers
 ) & { pictogramUri?: string };
 
@@ -87,6 +94,7 @@ export interface RawTrekResult {
   reservation_system: null | number;
   attachments: RawAttachment[];
   practice: number;
+  networks: number[];
 }
 
 export interface Thumbnail {

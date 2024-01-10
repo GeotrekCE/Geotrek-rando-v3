@@ -5,7 +5,8 @@ import { DifficultyChoices } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
 import { getThumbnails } from 'modules/utils/adapter';
 import { formatHours } from 'modules/utils/time';
-import { RawTrekResult, TrekResult } from './interface';
+import { NetworkDictionnary } from 'modules/networks/interface';
+import { InformationCardArray, RawTrekResult, TrekResult } from './interface';
 import { formatDistance } from './utils';
 
 const {
@@ -42,12 +43,14 @@ export const adaptTrekResultList = ({
   themes,
   activities,
   cityDictionnary,
+  networks,
 }: {
   resultsList: Partial<RawTrekResult>[];
   difficulties: DifficultyChoices;
   themes: Choices;
   activities: ActivityChoices;
   cityDictionnary: CityDictionnary;
+  networks: NetworkDictionnary;
 }): TrekResult[] =>
   resultsList.filter(isRawTrekResultComplete).map(rawResult => ({
     type: 'TREK',
@@ -81,6 +84,10 @@ export const adaptTrekResultList = ({
         label: 'negativeElevation',
         value: `${rawResult.descent}${dataUnits.distance}`,
       },
+      {
+        label: 'networks',
+        value: rawResult.networks.map(networkId => networks[networkId]),
+      } as InformationCardArray,
       // we disable this button because the booking behaviour is not implemented yet
       // {
       //   label: 'reservationSystem',
