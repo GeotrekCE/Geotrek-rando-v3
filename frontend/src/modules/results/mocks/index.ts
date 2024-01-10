@@ -19,6 +19,8 @@ export const mockResultsResponse = (): APIResponseForList<RawTrekResult> => ({
       practice: 4,
       reservation_system: null,
       themes: [1, 7, 11],
+      networks: [1, 2],
+      descent: 1600,
       attachments: [
         {
           author: 'Parc national des Ecrins',
