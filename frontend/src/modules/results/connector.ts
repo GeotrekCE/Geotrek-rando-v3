@@ -11,6 +11,7 @@ import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { getNetworks } from 'modules/networks/connector';
 import { NetworkDictionnary } from 'modules/networks/interface';
+import { getCourseType } from 'modules/filters/courseType/connector';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { adaptoutdoorSitesResult } from '../outdoorSite/adapter';
 import { fetchOutdoorSites } from '../outdoorSite/api';
@@ -258,8 +259,21 @@ export const getSearchResults = async (
     const touristicEventType = await getTouristicEventTypes(language);
     const networks = await getNetworks(language);
 
+    const trekResultWithCourseType =
+      rawTrekResults.results.length > 0
+        ? await Promise.all(
+            rawTrekResults.results.map(async trek => {
+              if (!trek.route) {
+                return trek;
+              }
+              const courseType = await getCourseType(trek.route, language);
+              return { ...trek, courseType };
+            }),
+          )
+        : [];
+
     const adaptedResultsList: TrekResult[] = adaptTrekResultList({
-      resultsList: rawTrekResults.results,
+      resultsList: trekResultWithCourseType,
       difficulties,
       themes,
       activities,
@@ -352,7 +366,14 @@ export const getTrekResultsById = async (
       getActivities(language),
     ]);
     const rawTrekResults = await Promise.all(
-      trekIds.map(trekId => fetchTrekResult({ language }, trekId)),
+      trekIds.map(async trekId => {
+        const trek = await fetchTrekResult({ language }, trekId);
+        if (!trek) {
+          return trek;
+        }
+        const courseType = await getCourseType(trek.route, language);
+        return { ...trek, courseType };
+      }),
     );
     return adaptTrekResultList({
       resultsList: rawTrekResults,
@@ -381,8 +402,21 @@ export const getTrekResults = async (
     getNetworks(language),
   ]);
 
+  const trekResultWithCourseType =
+    rawTrekResults.results.length > 0
+      ? await Promise.all(
+          rawTrekResults.results.map(async trek => {
+            if (!trek.route) {
+              return trek;
+            }
+            const courseType = await getCourseType(trek.route, language);
+            return { ...trek, courseType };
+          }),
+        )
+      : [];
+
   return adaptTrekResultList({
-    resultsList: rawTrekResults.results,
+    resultsList: trekResultWithCourseType,
     difficulties,
     themes,
     activities,

@@ -3,6 +3,7 @@ import { Attachment, RawAttachment } from 'modules/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { TouristicEventResult } from 'modules/touristicEvent/interface';
 import { Network } from 'modules/networks/interface';
+import { CourseType } from 'modules/filters/courseType/interface';
 import { OutdoorSiteResult } from '../outdoorSite/interface';
 
 export interface InformationCardTuple {
@@ -95,6 +96,8 @@ export interface RawTrekResult {
   attachments: RawAttachment[];
   practice: number;
   networks: number[];
+  route: number | null;
+  courseType?: CourseType | null;
 }
 
 export interface Thumbnail {

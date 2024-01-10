@@ -74,6 +74,12 @@ const getInformationItemProps = (information: InformationCard, intl: IntlShape) 
       children: <>{value}</>,
     };
   }
+  if (label === 'courseType') {
+    return {
+      icon: pictogramUri,
+      children: <>{value}</>,
+    };
+  }
   if (label === 'networks' && isInformationCardArray(information)) {
     return {
       icon: null,

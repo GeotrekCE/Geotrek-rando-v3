@@ -20,6 +20,7 @@ export const mockResultsResponse = (): APIResponseForList<RawTrekResult> => ({
       reservation_system: null,
       themes: [1, 7, 11],
       networks: [1, 2],
+      route: 2,
       descent: 1600,
       attachments: [
         {

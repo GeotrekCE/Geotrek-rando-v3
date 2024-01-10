@@ -6,7 +6,7 @@ import { fetchOutdoorSiteDetails } from 'modules/outdoorSite/api';
 import { RawOutdoorSiteDetails } from 'modules/outdoorSite/interface';
 import { adaptTrekResultList } from 'modules/results/adapter';
 import { fetchTrekResult } from 'modules/results/api';
-import { InformationCardTuple, RawTrekResult } from 'modules/results/interface';
+import { InformationCardTuple } from 'modules/results/interface';
 import { adaptTouristicContentResult } from 'modules/touristicContent/adapter';
 import { fetchTouristicContentDetails } from 'modules/touristicContent/api';
 import { RawTouristicContentDetails } from 'modules/touristicContent/interface';
@@ -17,6 +17,7 @@ import { RawTouristicEventDetails } from 'modules/touristicEvent/interface';
 import { getTouristicEventTypes } from 'modules/touristicEventType/connector';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
+import { getCourseType } from 'modules/filters/courseType/connector';
 import { getNetworks } from 'modules/networks/connector';
 import { Suggestion } from '../home/interface';
 import { ActivitySuggestion } from './interface';
@@ -49,9 +50,14 @@ export const getActivitySuggestions = async (
 
       if (type === 'trek' && 'ids' in suggestion) {
         const treks = await Promise.all(
-          suggestion.ids.map(
-            id => fetchTrekResult({ language }, id).catch(() => null) as Promise<RawTrekResult>,
-          ),
+          suggestion.ids.map(async id => {
+            const trek = await fetchTrekResult({ language }, id).catch(() => null);
+            if (!trek) {
+              return {};
+            }
+            const courseType = await getCourseType(trek.route, language);
+            return { ...trek, courseType };
+          }),
         );
 
         const networks = await getNetworks(language);
