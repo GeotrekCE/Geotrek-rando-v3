@@ -17,6 +17,7 @@ import { RawTouristicEventDetails } from 'modules/touristicEvent/interface';
 import { getTouristicEventTypes } from 'modules/touristicEventType/connector';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
+import { getNetworks } from 'modules/networks/connector';
 import { Suggestion } from '../home/interface';
 import { ActivitySuggestion } from './interface';
 export const getActivitySuggestions = async (
@@ -52,6 +53,8 @@ export const getActivitySuggestions = async (
             id => fetchTrekResult({ language }, id).catch(() => null) as Promise<RawTrekResult>,
           ),
         );
+
+        const networks = await getNetworks(language);
         return {
           ...props,
           results: adaptTrekResultList({
@@ -59,6 +62,7 @@ export const getActivitySuggestions = async (
             difficulties,
             themes,
             activities,
+            networks,
             cityDictionnary: cities,
           }),
         };

@@ -6,8 +6,10 @@ import { Height } from 'components/Icons/Height';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 import { RemoteIconInformation } from 'components/Information';
 import { LocalIconInformation } from 'components/Information/LocalIconInformation';
+import { Network } from 'modules/networks/interface';
 import {
   InformationCard,
+  InformationCardArray,
   InformationCardLabelValues,
   InformationCardTuple,
 } from 'modules/results/interface';
@@ -20,6 +22,10 @@ const isInformationCardTuple = (
 const isInformationCardLabeLValues = (
   information: InformationCard,
 ): information is InformationCardLabelValues => information.label === 'types';
+
+const isInformationCardArray = (
+  information: InformationCard,
+): information is InformationCardArray => information.label === 'networks';
 
 const getInformationItemProps = (information: InformationCard, intl: IntlShape) => {
   const { label, pictogramUri, value } = information;
@@ -66,6 +72,26 @@ const getInformationItemProps = (information: InformationCard, intl: IntlShape) 
     return {
       icon: Height,
       children: <>{value}</>,
+    };
+  }
+  if (label === 'networks' && isInformationCardArray(information)) {
+    return {
+      icon: null,
+      children: (
+        <>
+          {Array.isArray(value) && value.length > 0 && (
+            <ul className="flex gap-2">
+              {(value as Network[]).map(item => (
+                <li key={item.label}>
+                  <RemoteIconInformation iconUri={item.pictogramUri}>
+                    {item.label}
+                  </RemoteIconInformation>
+                </li>
+              ))}
+            </ul>
+          )}
+        </>
+      ),
     };
   }
   if (label === 'types' && isInformationCardLabeLValues(information)) {
