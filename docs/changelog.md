@@ -8,7 +8,7 @@
 
 **🚀 New features**
 
-- Define customization for activity bar (#560)
+- Define customization for activity bar (#560 and #568)
 
 **✨ Improvements**
 
