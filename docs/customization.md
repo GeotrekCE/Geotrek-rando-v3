@@ -193,6 +193,19 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
 
   - `zoomAvailableOffline` allows you to define the zoom modes allowed in offline mode. This allows you to control the amount of disk space required when caching. Default `[13,14,15]`
 
+- `resultCard.json` to customize the elements to be displayed on featured cards that link to a details page (only trek cards for now).
+
+  - You can display/hide the `location` and `themes` by defining a `display` key.
+  - You can define an array of keywords in `informations` to display them (their order in the array matters). The keywords are as follows:
+    - `'difficulty'`,
+    - `'duration'`,
+    - `'distance'`,
+    - `'positiveElevation'`,
+    - `'negativeElevation'`,
+    - `'courseType'`,
+    - `'networks'`,
+      Default value is `"informations": ["difficulty", "duration", "distance", "positiveElevation"]`. See https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/resultCard.json.
+
 - `redirects.json` to define URL rewriting for your instance. For example, you can use this customization to redirect old URL style (Geotrek-rando V2) to the new URL style (Geotrek-rando V3) or to redirect old URL to a new URL after changing the name of a hike in the backend.
 
   - In `rules`, you can define all the rules needed to redirect clients
