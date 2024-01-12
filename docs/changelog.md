@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.17.0 (2024-01-10)
+## 3.17.0 (2024-01-12)
 
 Require Geotrek-admin 2.98.0 (March 2023) minimum.
 
