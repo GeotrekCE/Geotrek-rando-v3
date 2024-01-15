@@ -1,0 +1,29 @@
+name: E2E tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup node
+        id: cache-node-modules
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ./frontend/.nvmrc
+          cache: "yarn"
+          cache-dependency-path: "**/yarn.lock"
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+        working-directory: ./frontend
+
+      - name: Run Cypress
+        run: cypress run
