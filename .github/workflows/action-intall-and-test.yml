@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup node
         id: cache-node-modules
         uses: actions/setup-node@v4
@@ -22,16 +23,19 @@ jobs:
           node-version-file: ./frontend/.nvmrc
           cache: "yarn"
           cache-dependency-path: "**/yarn.lock"
+
       - name: Install dependencies
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
         working-directory: ./frontend
+
       - name: Check types
         run: yarn tsc
         working-directory: ./frontend
+
       - name: Run tests
         run: yarn test:coverage
         working-directory: ./frontend
+
       - name: Check linter
         run: yarn lint
         working-directory: ./frontend
