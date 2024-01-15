@@ -1,4 +1,4 @@
-name: Install and test
+name: E2E tests
 
 on:
   pull_request:
@@ -10,12 +10,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  CYPRESS_INSTALL_BINARY: 0
-
 jobs:
-  install-and-test:
+  e2e:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
@@ -31,14 +29,16 @@ jobs:
         run: yarn install --frozen-lockfile
         working-directory: ./frontend
 
-      - name: Check types
-        run: yarn tsc
-        working-directory: ./frontend
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          start: yarn dev
+          working-directory: ./frontend
 
-      - name: Run tests
-        run: yarn test:coverage
-        working-directory: ./frontend
-
-      - name: Check linter
-        run: yarn lint
-        working-directory: ./frontend
+      - name: Archive results as artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress
+          path: |
+            /home/runner/work/Geotrek-rando-v3/Geotrek-rando-v3/frontend/cypress/videos/*.mp4
+            /home/runner/work/Geotrek-rando-v3/Geotrek-rando-v3/frontend/cypress/screenshots/*.png
