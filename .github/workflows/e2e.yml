@@ -31,7 +31,8 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        working-directory: ./frontend
+        with:
+          working-directory: ./frontend
 
       - name: Archive results as artifacts
         uses: actions/upload-artifact@v3
