@@ -10,9 +10,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  CYPRESS_INSTALL_BINARY: 0
-
 jobs:
   e2e:
     runs-on: ubuntu-latest
