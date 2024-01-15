@@ -32,3 +32,11 @@ jobs:
       - name: Run Cypress
         working-directory: ./frontend
         run: npx cypress run
+
+      - name: Archive results as artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress
+          path: |
+            /home/runner/work/Geotrek-rando-v3/Geotrek-rando-v3/frontend/cypress/videos/*.mp4
+            /home/runner/work/Geotrek-rando-v3/Geotrek-rando-v3/frontend/cypress/screenshots/*.png
