@@ -2,6 +2,7 @@ import { defineConfig } from "cypress";
 
 export default defineConfig({
   e2e: {
+    baseUrl: "http://rando.localhost:3000",
     retries: {
       runMode: 3,
     },
