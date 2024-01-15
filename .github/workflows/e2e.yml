@@ -29,9 +29,8 @@ jobs:
         run: yarn install --frozen-lockfile
         working-directory: ./frontend
 
-      - name: Run Cypress
-        working-directory: ./frontend
-        run: npx cypress run
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
 
       - name: Archive results as artifacts
         uses: actions/upload-artifact@v3
