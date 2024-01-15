@@ -80,3 +80,12 @@
 .leaflet-container:fullscreen #backToMapButton {
 	@apply hidden;
 }
+
+.leaflet-interactive.annotation {
+  stroke: red;
+  fill: green;
+}
+
+.leaflet-interactive.annotation-line {
+  fill: none;
+}
