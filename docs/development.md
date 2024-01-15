@@ -4,7 +4,7 @@ Installation in development:
 
 ## Prerequisite
 
-- You need to use a node version equal or above 18
+- You need to use a node version equal or above 20
 - Use nvm and then:
 
 ```bash
