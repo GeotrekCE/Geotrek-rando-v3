@@ -34,14 +34,14 @@ export const Header: React.FC = () => {
       )}
       <header
         className={cn(
-          'sticky z-header',
+          'sticky z-header bg-primary1 text-primary3',
           headerState === 'DISPLAYED' ? 'top-0' : '-top-desktopHeader',
         )}
         role="banner"
         id="header"
       >
         <BurgerMenu config={config.menu} displayState={headerState} menuItems={menuItems} />
-        <div className="h-11 desktop:h-desktopHeader bg-primary1 flex flex-row items-center sticky z-header px-3 shadow-sm text-primary3 shrink-0 transition-all duration-300 delay-100">
+        <div className="h-11 desktop:h-desktopHeader flex flex-row items-center sticky z-header px-3 shadow-sm shrink-0 transition-all duration-300 delay-100">
           <Link href={routes.HOME} className="flex items-center">
             <div className="shrink-0" id="header_logo">
               <img
