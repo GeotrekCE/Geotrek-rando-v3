@@ -30,4 +30,5 @@ jobs:
         working-directory: ./frontend
 
       - name: Run Cypress
+        working-directory: ./frontend
         run: npx cypress run
