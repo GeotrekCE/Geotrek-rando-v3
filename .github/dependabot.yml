@@ -11,6 +11,6 @@ updates:
       interval: "weekly"
 
   - package-ecosystem: "npm"
-    directory: "/" # Location of package manifests
+    directory: "./frontend" # Location of package manifests
     schedule:
       interval: "weekly"
