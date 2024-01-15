@@ -36,7 +36,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          start: yarn start
+          start: yarn dev
           working-directory: ./frontend
 
       - name: Archive results as artifacts
