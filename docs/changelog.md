@@ -7,6 +7,7 @@ Require Geotrek-admin 2.98.0 (March 2023) minimum.
 **💥 Breaking changes**
 
 - This version of Geotrek-rando may not work correctly if connected to a Geotrek-admin API lower than version [2.98.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.98.0), due to the modification of parameters to obtain treks near POIs and sensitive areas. (#890)
+- If you've defined the `home.json` file with `activityBar` property in your customization files, make sure your override contains the `links` property.
 
 **🚀 New features**
 
