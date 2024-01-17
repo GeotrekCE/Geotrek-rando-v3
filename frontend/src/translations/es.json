@@ -244,6 +244,7 @@
   },
   "viewPoint": {
     "title": "Fotos HD",
+    "description": "Navegue por imágenes enriquecidas e interactivas de \"ultra alta definición\"",
     "label": "Foto HD",
     "credit": "Crédito de la foto:",
     "displayPicture": "Examinar foto"
