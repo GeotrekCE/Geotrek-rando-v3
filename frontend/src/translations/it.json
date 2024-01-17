@@ -255,6 +255,7 @@
   "viewPoint": {
     "title": "Foto HD",
     "label": "Foto HD",
+    "description": "Navigare attraverso immagini arricchite e interattive ad \"altissima definizione\"",
     "credit": "Credito foto:",
     "displayPicture": "Sfoglia foto"
   },

@@ -245,6 +245,7 @@
   "viewPoint": {
     "title": "HD-Fotos",
     "label": "HD-Foto",
+    "description": "Navigieren Sie durch angereicherte, interaktive \"ultrahochauflösende\" Bilder",
     "credit": "Fotogutschrift:",
     "displayPicture": "Foto durchsuchen"
   },
