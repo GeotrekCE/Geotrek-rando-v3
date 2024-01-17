@@ -50,7 +50,7 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
           TitleTag === 'h2' ? 'text-Mobile-H1 desktop:text-H2' : 'text-Mobile-C1 desktop:text-H4',
         )}
       >
-        <ViewPointIcon size={34} />
+        <ViewPointIcon size={40} />
         <FormattedMessage id="viewPoint.title" />
         {asAccordion && (
           <button
@@ -78,10 +78,13 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
           </button>
         )}
       </TitleTag>
+      <p className="text-lg desktop:mt-6">
+        <FormattedMessage id="viewPoint.description" />
+      </p>
       <ul
         id={id}
         className={cn(
-          'flex desktop:flex-col gap-4 text-Mobile-C1 desktop:text-P1 mt-4 desktop:mt-8 pb-5 desktop:pb-0 overflow-x-auto desktop:overflow-x-hidden overflow-y-hidden desktop:overflow-y-auto scroll-smooth snap-x',
+          'flex desktop:flex-col gap-4 text-Mobile-C1 desktop:text-P1 mt-4 pb-5 desktop:pb-0 overflow-x-auto desktop:overflow-x-hidden overflow-y-hidden desktop:overflow-y-auto scroll-smooth snap-x',
           !isOpen && 'hidden',
         )}
       >

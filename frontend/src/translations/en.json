@@ -252,6 +252,7 @@
   "viewPoint": {
     "title": "HD pictures",
     "label": "HD picture",
+    "description": "Navigate through enriched, interactive \"ultra High Definition\" pictures",
     "credit": "Picture credit:",
     "displayPicture": "Display picture"
   },
