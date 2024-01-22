@@ -12,6 +12,8 @@ Useful commands:
 
 - `npm run test` to launch tests in watch mode
 
+- `npm run e2e` to launch cypress end-to-end tests (after ```npm run dev```)
+
 - * `npm run generate` to generate a new component or a new page. You will be prompted the following questions:
 
   * Do you want a page or a component?
