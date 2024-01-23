@@ -96,7 +96,7 @@ export const useExternalsScripts = (executeOnLoad = false) => {
   const { locale } = useIntl();
 
   const consentList = uniqBy(
-    [...scriptsHeader, ...scriptsFooter].flatMap(({ props }) => [
+    [scriptsHeader, scriptsFooter].flat().flatMap(({ props }) => [
       {
         name: props?.['data-name'],
         title: props?.['data-title'] ?? props?.['data-name'],
