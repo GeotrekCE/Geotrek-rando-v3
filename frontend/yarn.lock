@@ -2978,10 +2978,10 @@
   resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.7.tgz#63bb7d067db107cc1e457c303bc25d511febf6cb"
   integrity sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==
 
-"@types/react-burger-menu@2.8.1":
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/@types/react-burger-menu/-/react-burger-menu-2.8.1.tgz#05bfebea7cca55897298083527d5572fb41eba48"
-  integrity sha512-MLS6jRQi6H2At2en3KQhIhl7rBhBLcwGMviOT+BBthXv4c+HTg5gNziMUIxKzCzSWf5VyaXcyMWNvh+b+A+heA==
+"@types/react-burger-menu@2.8.7":
+  version "2.8.7"
+  resolved "https://registry.yarnpkg.com/@types/react-burger-menu/-/react-burger-menu-2.8.7.tgz#587498c5e74a7fe3f1f610601c81b6efa7334a53"
+  integrity sha512-MNAvK/pXRtGGpmeV1id2Xd9W9rkIC9ehULPmBiIIcF2oo7C8WPGfHcIBx17HqExbeJIXARXFkenQ7tg2pHZPvQ==
   dependencies:
     "@types/react" "*"
 
