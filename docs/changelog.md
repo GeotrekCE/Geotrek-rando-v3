@@ -1,5 +1,25 @@
 # Changelog
 
+## 3.17.1 (2024-01-25)
+
+**🚀 New features**
+
+- Customization of result card (#987)
+
+**✨ Improvements**
+
+- Remove the limitation of result card max height (#1012)
+
+**🔧 Maintenance**
+
+- Upgrade Cypress package to 13.6.3 (#1028)
+- Run Cypress tests on CI (#948 and #1028)
+
+**🐛 Fixes**
+
+- Fix regression customization header - regression since v3.17.0 (#1019 and #1020)
+- Fix scriptsHeader/Footer containing only one node - regression since v3.15.4 (#1029 and #1030)
+
 ## 3.17.0 (2024-01-12)
 
 Require Geotrek-admin 2.98.0 (March 2023) minimum.
