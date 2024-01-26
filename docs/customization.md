@@ -28,7 +28,7 @@ In json files, you can just override the primary keys you need. You have to over
   - `privacyPolicyLink`: link of the privacy policy (More information in [GDPR documentation](customization-scripts-GDPR.md#GDPR)).
   - `googleAnalyticsId`: eventual Google Analytics Id (to activate it, you must set `privacyPolicyLink`)
   - `googleSiteVerificationToken`: eventual code to enable Google Search Console and Google developer tools
-  - `enableIndexation` to disable search engine indexation
+  - `enableIndexation`: set this parameter to `false` to disable search engine indexing (default `true`)
   - `baseUrl`: base URL of your portal (for dynamic sitemap.xml)
   - `fallbackImageUri`: this uri is used to generate a default image for a trek or a touristic content if none is defined
   - `touristicContentLabelImageUri` : this uri is used to define the logo of the labeled touristic contents:
