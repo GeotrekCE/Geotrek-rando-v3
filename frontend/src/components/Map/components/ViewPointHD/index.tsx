@@ -1,20 +1,18 @@
 import L from 'leaflet';
 import { ViewPoint } from 'modules/viewPoint/interface';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
-L.RasterCoords = require('leaflet-rastercoords');
+import 'leaflet-rastercoords';
 
 const ViewPointHD: React.FC<ViewPoint> = ({ pictureTilesUrl, metadata }) => {
-  if (!metadata || !pictureTilesUrl) {
-    return null;
-  }
-
-  const { sizeX, sizeY, tileWidth } = metadata;
   const map = useMap();
-
-  const [raster] = useState(new L.RasterCoords(map, [sizeX, sizeY], tileWidth));
-
   useEffect(() => {
+    if (!metadata || !pictureTilesUrl) {
+      return;
+    }
+    const { sizeX, sizeY, tileWidth } = metadata;
+
+    const raster = new L.RasterCoords(map, [sizeX, sizeY], tileWidth);
     if (map === undefined) {
       return;
     }
@@ -38,7 +36,7 @@ const ViewPointHD: React.FC<ViewPoint> = ({ pictureTilesUrl, metadata }) => {
         map.removeLayer(layer);
       }
     };
-  }, [map, raster]);
+  }, [map, pictureTilesUrl, metadata]);
 
   return null;
 };
