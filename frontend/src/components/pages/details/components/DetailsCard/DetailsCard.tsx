@@ -28,13 +28,10 @@ export interface DetailsCardProps {
   redirectionUrl?: string;
   type?: string;
   viewPoints?: ViewPoint[];
-}
-
-interface DetailsCardPropsWithHandleViewPointClick extends DetailsCardProps {
   handleViewPointClick?: (id: string) => void;
 }
 
-export const DetailsCard: React.FC<DetailsCardPropsWithHandleViewPointClick> = ({
+export const DetailsCard: React.FC<DetailsCardProps> = ({
   id,
   name,
   description,
