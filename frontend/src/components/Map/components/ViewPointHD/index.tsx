@@ -2,7 +2,6 @@ import L from 'leaflet';
 import { ViewPoint } from 'modules/viewPoint/interface';
 import { useEffect, useState } from 'react';
 import { useMap } from 'react-leaflet';
-// @ts-ignore
 L.RasterCoords = require('leaflet-rastercoords');
 
 const ViewPointHD: React.FC<ViewPoint> = ({ pictureTilesUrl, metadata }) => {
@@ -13,7 +12,6 @@ const ViewPointHD: React.FC<ViewPoint> = ({ pictureTilesUrl, metadata }) => {
   const { sizeX, sizeY, tileWidth } = metadata;
   const map = useMap();
 
-  // @ts-ignore
   const [raster] = useState(new L.RasterCoords(map, [sizeX, sizeY], tileWidth));
 
   useEffect(() => {
