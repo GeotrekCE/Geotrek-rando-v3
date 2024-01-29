@@ -199,7 +199,11 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                         </section>
                       );
                     }
-                    if (section.name === 'medias' && outdoorSiteContent.viewPoints.length > 0) {
+                    if (
+                      hasNavigator &&
+                      section.name === 'medias' &&
+                      outdoorSiteContent.viewPoints.length > 0
+                    ) {
                       return (
                         <section
                           key={section.name}
