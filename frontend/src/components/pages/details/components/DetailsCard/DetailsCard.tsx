@@ -125,7 +125,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           {Boolean(description) && (
             <>
               <OptionalLink redirectionUrl={redirectionUrl}>{descriptionStyled}</OptionalLink>
-              {Number(viewPoints?.length) > 0 && truncateState !== 'TRUNCATE' && (
+              {hasNavigator && Number(viewPoints?.length) > 0 && truncateState !== 'TRUNCATE' && (
                 <div className="clear-both desktop:clear-none desktop:min-w-[420px] overflow-hidden py-6">
                   <DetailsMedias
                     viewPoints={viewPoints ?? []}
