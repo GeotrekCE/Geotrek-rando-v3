@@ -208,7 +208,11 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                         </section>
                       );
                     }
-                    if (section.name === 'medias' && details.viewPoints.length > 0) {
+                    if (
+                      hasNavigator &&
+                      section.name === 'medias' &&
+                      details.viewPoints.length > 0
+                    ) {
                       return (
                         <section
                           key={section.name}

@@ -37,6 +37,7 @@ module.exports = [
         && !url.host.includes('stamen-tiles')
         && !url.host.includes('wxs.ign.fr')
         && !url.host.includes('data.geopf.fr')
+        && !url.pathname.startsWith('/api/hdviewpoint/drf/hdviewpoints/')
         && request.destination === 'image'
     },
     handler: 'NetworkFirst',
