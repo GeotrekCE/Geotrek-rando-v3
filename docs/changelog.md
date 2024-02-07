@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.18.0 (2024-02-08)
+
+**🚀 New features**
+
+- Add HD viewpoints on treks, outdoor sites and POIs (#943)
+
+**🔧 Maintenance**
+
+- Bump @types/node from 16.9.4 to 20.11.10 #1042
+- Bump actions/upload-artifact from 3 to 4 #1036
+- Bump docker/metadata-action from 4 to 5 #1035
+- Bump actions/checkout from 3 to 4 #1034
+- Bump docker/build-push-action from 3 to 5 #1033
+- Bump docker/login-action from 2 to 3 #1032
+
 ## 3.17.1 (2024-01-25)
 
 **🚀 New features**
