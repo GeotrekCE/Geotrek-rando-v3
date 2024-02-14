@@ -257,7 +257,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
                 props.service && props.service.length > 0 ? serviceVisibility : null
               }
               infrastructureVisibility={props.infrastructure ? infrastructureVisibility : null}
-              viewPointVisibility={props.viewPoints ? viewPointVisibility : null}
+              viewPointVisibility={props.viewPoints?.length ? viewPointVisibility : null}
               toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
               togglePoiVisibility={togglePoiVisibility}
               toggleReferencePointsVisibility={toggleReferencePointsVisibility}
