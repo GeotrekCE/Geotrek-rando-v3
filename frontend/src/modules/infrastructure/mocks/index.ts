@@ -1,14 +1,8 @@
 import { mockRoute } from 'services/testing/utils';
+import { APIResponseForList } from 'services/api/interface';
 import { RawInfrastructure } from '../interface';
 
-interface InfrastructureResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: RawInfrastructure[];
-}
-
-export const mockInfrastructureResponse = (): InfrastructureResponse => ({
+export const mockInfrastructureResponse = (): APIResponseForList<RawInfrastructure> => ({
   count: 1,
   next: null,
   previous: null,

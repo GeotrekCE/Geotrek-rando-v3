@@ -1,15 +1,9 @@
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { mockRoute } from 'services/testing/utils';
+import { APIResponseForList } from 'services/api/interface';
 import { RawCity } from '../interface';
 
-interface CityResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: RawCity[];
-}
-
-export const mockCityResponse = (): CityResponse => ({
+export const mockCityResponse = (): APIResponseForList<RawCity> => ({
   count: 3,
   next: 'https://geotrekdemo.ecrins-parcnational.fr/api/v2/city/?fields=name%2Cid&page=2',
   previous: null,

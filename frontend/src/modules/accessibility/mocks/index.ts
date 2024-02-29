@@ -1,13 +1,8 @@
 import { mockRoute } from 'services/testing/utils';
+import { APIResponseForList } from 'services/api/interface';
 import { RawAccessibility } from '../interface';
 
-interface AccessibilitiesResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: RawAccessibility[];
-}
-export const mockAccessibilitiesResponse = (): AccessibilitiesResponse => ({
+export const mockAccessibilitiesResponse = (): APIResponseForList<RawAccessibility> => ({
   count: 3,
   next: null,
   previous: null,

@@ -1,12 +1,6 @@
 import { mockRoute } from 'services/testing/utils';
+import { APIResponseForList } from 'services/api/interface';
 import { RawLabel } from '../interface';
-
-interface LabelResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: RawLabel[];
-}
 
 export const mockLabelRoute = (times: number): void =>
   mockRoute({
@@ -16,7 +10,7 @@ export const mockLabelRoute = (times: number): void =>
     times,
   });
 
-export const mockLabelResponse = (): LabelResponse => ({
+export const mockLabelResponse = (): APIResponseForList<RawLabel> => ({
   count: 1,
   next: null,
   previous: null,
