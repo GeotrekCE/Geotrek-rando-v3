@@ -29,7 +29,7 @@ export const useTileLayer = (
 
     if (mapToDisplay === 'default') {
       L.control
-        // @ts-ignore no type available in this plugin
+        // @ts-expect-error no type available in this plugin
         .locate({
           locateOptions: {
             enableHighAccuracy: true,

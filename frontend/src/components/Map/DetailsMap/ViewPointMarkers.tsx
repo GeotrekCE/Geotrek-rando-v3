@@ -20,7 +20,7 @@ export const ViewPointMarkers = ({ viewPoints, setMapId }: ViewPointMarkersProps
     .filter(({ geometry }) => geometry !== null)
     .map(({ id, geometry, title, thumbnailUrl }) => ({
       id: `DETAILS-VIEWPOINT-${id}`,
-      // @ts-ignore geometry cannot be null because it's filtered above
+      // @ts-expect-error geometry cannot be null because it's filtered above
       location: { x: geometry.coordinates[0], y: geometry.coordinates[1] },
       name: title,
       pictogramUri: renderToStaticMarkup(<ViewPointIcon color="white" />),

@@ -26,7 +26,7 @@ export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSO
     const div = document.getElementById(id);
     if (div) div.innerHTML = '';
 
-    // @ts-ignore
+    // @ts-expect-error the lib is not typed
     const elevationControl = L.control.elevation({
       theme: 'lightblue-theme',
       collapsed: false,
@@ -49,9 +49,9 @@ export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSO
       })} : `,
     };
 
-    // @ts-ignore
+    // @ts-expect-error the lib is not typed
     L.registerLocale(language, mylocale);
-    // @ts-ignore
+    // @ts-expect-error the lib is not typed
     L.setLocale(language);
 
     elevationControl.load(trekGeoJSON);
