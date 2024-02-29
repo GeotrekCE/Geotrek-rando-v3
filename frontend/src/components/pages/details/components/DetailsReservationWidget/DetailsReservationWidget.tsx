@@ -8,8 +8,21 @@ import useHasMounted from 'hooks/useHasMounted';
 
 declare global {
   interface Window {
-    AllianceReseaux?: any;
-    eitinerance?: any;
+    eitinerance?: {
+      core?: {
+        pages?: {
+          getSinglePageApplicationClient: (prop: {
+            layer: {
+              map: { lib: string };
+              langue: string;
+              partner: string;
+              routeId: string;
+              routePage: string;
+            };
+          }) => { executePage: () => void };
+        };
+      };
+    };
   }
 }
 interface DetailsReservationWidgetProps {
