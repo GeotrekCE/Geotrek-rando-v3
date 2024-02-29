@@ -84,7 +84,7 @@ const Report: React.FC<Props> = ({ displayMobileMap, setMapId, startPoint, trekI
               <FormattedMessage id={'report.success'} />
             </div>
           ) : (
-            <form encType="multipart/form-data" onSubmit={submit} noValidate>
+            <form encType="multipart/form-data" onSubmit={event => void submit(event)} noValidate>
               {error.message !== null && (
                 <p className="font-bold mb-4 text-hardKO">
                   <FormattedMessage id={error.message} />
