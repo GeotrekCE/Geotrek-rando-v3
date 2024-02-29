@@ -10,7 +10,7 @@ let controlInstance: any = null;
 
 const PATTER_LOCAL_STORAGE = 'item-';
 
-let storageSize: any;
+let storageSize: ControlSaveTiles;
 
 const CacheManager = {
   getTreksCached: (): Offline[] => {
