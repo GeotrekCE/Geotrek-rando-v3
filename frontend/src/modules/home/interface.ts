@@ -36,7 +36,7 @@ export type Suggestion = {
 export type DeprecatedSuggestionList = Array<Suggestion>;
 
 export interface SuggestionList {
-  [language: 'default' | string]: Suggestion[];
+  [language: string]: Suggestion[];
 }
 
 export interface HomePageConfig {
