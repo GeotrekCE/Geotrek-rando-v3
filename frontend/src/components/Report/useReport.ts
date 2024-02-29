@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQueries } from '@tanstack/react-query';
 
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
@@ -37,11 +37,11 @@ const initialState: PropsState = {
   magnitude: [],
 };
 
-const getFormattedOptions = (data: unknown | undefined): Option[] | [] => {
+const getFormattedOptions = (data?: ConvertedOption[]): Option[] | [] => {
   if (data === undefined) {
     return [];
   }
-  return (data as ConvertedOption[]).map(({ label, id }) => ({
+  return data.map(({ label, id }) => ({
     label,
     value: String(id),
   }));
@@ -155,7 +155,7 @@ const useReport = ({ startPoint }: Props) => {
       .then(async res => {
         const json = await res.json();
         if (res.status < 200 || res.status > 299) {
-          const errors = [messages['search.anErrorOccured'], ...Object.values(json)]
+          const errors = [messages['search.anErrorOccured'], ...Object.values(json as FormData)]
             .map(err => (Array.isArray(err) ? err[0] : err))
             .join('. ');
 
