@@ -3,7 +3,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useEffect, useRef, useState } from 'react';
 
 import { getSearchResults } from 'modules/results/connector';
-import { SearchResults } from 'modules/results/interface';
+import { SearchParams, SearchResults } from 'modules/results/interface';
 import { DateFilter, FilterState } from 'modules/filters/interface';
 
 import { queryCommonDictionaries } from 'modules/dictionaries/api';
@@ -97,7 +97,7 @@ export const useTrekResults = (
     }) => {
       return getSearchResults(
         { filtersState: parsedFiltersState, textFilterState, bboxState, dateFilter },
-        pageParam,
+        pageParam as SearchParams,
         language,
         commonDictionaries,
       );

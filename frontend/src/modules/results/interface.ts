@@ -45,6 +45,13 @@ export interface ResultCard {
   informations?: InformationCard[];
 }
 
+export interface SearchParams {
+  treks: number | null;
+  touristicContents: number | null;
+  outdoorSites: number | null;
+  touristicEvents: number | null;
+}
+
 export interface SearchResults {
   resultsNumber: number;
   resultsNumberDetails: {
@@ -53,18 +60,8 @@ export interface SearchResults {
     outdoorSitesCount: number;
     touristicEventsCount: number;
   };
-  nextPages: {
-    treks: number | null;
-    touristicContents: number | null;
-    outdoorSites: number | null;
-    touristicEvents: number | null;
-  };
-  previousPages: {
-    treks: number | null;
-    touristicContents: number | null;
-    outdoorSites: number | null;
-    touristicEvents: number | null;
-  };
+  nextPages: SearchParams;
+  previousPages: SearchParams;
   results: (TrekResult | TouristicContentResult | OutdoorSiteResult | TouristicEventResult)[];
 }
 export interface TrekResult extends ResultCard {
