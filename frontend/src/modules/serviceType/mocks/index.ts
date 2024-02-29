@@ -1,14 +1,8 @@
 import { mockRoute } from 'services/testing/utils';
+import { APIResponseForList } from 'services/api/interface';
 import { ServiceType } from '../interface';
 
-interface ServiceTypeResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: ServiceType[];
-}
-
-export const mockServiceTypeResponse = (): ServiceTypeResponse => ({
+export const mockServiceTypeResponse = (): APIResponseForList<ServiceType> => ({
   count: 1,
   next: null,
   previous: null,

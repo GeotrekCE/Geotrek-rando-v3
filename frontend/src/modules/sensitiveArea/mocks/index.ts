@@ -1,14 +1,8 @@
 import { mockRoute } from 'services/testing/utils';
+import { APIResponseForList } from 'services/api/interface';
 import { RawSensitiveArea } from '../interface';
 
-interface SensitiveAreasResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: RawSensitiveArea[];
-}
-
-export const mockSensitiveAreasResponse = (): SensitiveAreasResponse => ({
+export const mockSensitiveAreasResponse = (): APIResponseForList<RawSensitiveArea> => ({
   count: 1,
   next: null,
   previous: null,

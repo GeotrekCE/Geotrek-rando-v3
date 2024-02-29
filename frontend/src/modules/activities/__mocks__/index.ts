@@ -1,14 +1,8 @@
 import { mockRoute } from 'services/testing/utils';
+import { APIResponseForList } from 'services/api/interface';
 import { RawListActivity } from '../interface';
 
-interface ActivitiesResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: RawListActivity[];
-}
-
-export const mockActivitiesResponse = (): ActivitiesResponse => ({
+export const mockActivitiesResponse = (): APIResponseForList<RawListActivity> => ({
   count: 4,
   next: null,
   previous: null,

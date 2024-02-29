@@ -1,6 +1,6 @@
 import { getGlobalConfig } from 'modules/utils/api.config';
 import nock from 'nock';
-import { APIQuery } from 'services/api/interface';
+import { APIQuery, APIResponseForList } from 'services/api/interface';
 
 export const pushArgsFromLinkHref = <T extends string>(href: T): [T, T, { shallow: undefined }] => [
   href,
@@ -16,8 +16,7 @@ export const mockRoute = ({
   times = 1,
 }: {
   route: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  mockData: any;
+  mockData: APIResponseForList<unknown>;
   additionalQueries?: Partial<APIQuery>;
   times?: number;
 }): void => {
