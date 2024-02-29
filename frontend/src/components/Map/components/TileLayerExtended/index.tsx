@@ -1,4 +1,5 @@
-import L, { GeoJSONOptions, LayerOptions } from 'leaflet';
+import L, { GeoJSON, GeoJSONOptions, LayerOptions, TileLayer } from 'leaflet';
+import { GeoJsonObject } from 'geojson';
 import { useCallback, useEffect, useState } from 'react';
 import { useMap } from 'react-leaflet';
 import 'leaflet-boundary-canvas';
@@ -26,7 +27,7 @@ const getGeoJSONFromUrl = async (geoJSONUrl: string) => {
 };
 
 const getGeoJSONLayer = async (url: string, options: LayerOptions) => {
-  const geoJSON = await getGeoJSONFromUrl(url);
+  const geoJSON = (await getGeoJSONFromUrl(url)) as GeoJsonObject;
   return L.geoJSON(
     geoJSON,
     Object.assign(
@@ -86,7 +87,8 @@ const TileLayerExtended: React.FC<TileLayerExtendedProps> = ({
   options = {},
   rangeZoom = [0, 20],
 }) => {
-  const [tile, setTile] = useState(null);
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+  const [tile, setTile] = useState<null | TileLayer | GeoJSON>(null);
   const map = useMap();
 
   const loadLayer = useCallback(async (): Promise<void> => {
@@ -100,8 +102,8 @@ const TileLayerExtended: React.FC<TileLayerExtendedProps> = ({
       }
     } else {
       const boundary = await getGeoJSONFromUrl(bounds);
-      // @ts-ignore no type available in this plugin
-      nextTile = L.TileLayer.boundaryCanvas(url, {
+      // @ts-expect-error no type available in this plugin
+      nextTile = TileLayer.boundaryCanvas(url, {
         boundary,
         ...options,
       });
