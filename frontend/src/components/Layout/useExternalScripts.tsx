@@ -92,7 +92,7 @@ export const useExternalsScripts = (executeOnLoad = false) => {
       : '';
 
   const scriptsHeader = parse(`${scriptsGA}${scriptsHeaderHtml as string}`) as ReactElement[];
-  const scriptsFooter = parse(scriptsFooterHtml) as ReactElement[];
+  const scriptsFooter = parse(scriptsFooterHtml as string) as ReactElement[];
   const { locale } = useIntl();
 
   const consentList = uniqBy(
@@ -109,21 +109,29 @@ export const useExternalsScripts = (executeOnLoad = false) => {
 
   const needsConsent = Boolean(consentList.length);
 
-  async function triggerConsentModal(): Promise<void> {
+  async function showModal() {
+    try {
+      // @ts-expect-error the lib is not typed
+      const Orejime = await import('orejime');
+      const { show } = Orejime.init(orejimeConfig(consentList, locale, privacyPolicyLink));
+      if (!executeOnLoad) {
+        show();
+      }
+    } catch (e) {
+      return;
+    }
+  }
+
+  function triggerConsentModal() {
     if (!privacyPolicyLink || !needsConsent) {
       return;
     }
-    // @ts-ignore the lib is not typed
-    const Orejime = await import('orejime');
-    const { show } = Orejime.init(orejimeConfig(consentList, locale, privacyPolicyLink));
-    if (!executeOnLoad) {
-      show();
-    }
+    void showModal();
   }
 
   useIsomorphicLayoutEffect(() => {
     if (executeOnLoad && typeof window !== 'undefined') {
-      void triggerConsentModal();
+      triggerConsentModal();
     }
   }, [executeOnLoad, locale, privacyPolicyLink]);
 
