@@ -37,7 +37,6 @@ const InputDateWithMagnifier: React.FC<InputDateWithMagnifierProps> = ({
         flex justify-center items-center
         active:bg-primary1-light
         "
-          // @ts-ignore: Unreachable code error. Fixed in TypeScript 4.8
           onClick={() => inputRef?.current?.showPicker()}
           type="button"
         >
