@@ -1,5 +1,13 @@
 import getNextConfig from 'next/config';
-import { DetailsConfig, SectionsTypes } from './interface';
+import {
+  DetailsConfig,
+  SectionsOutdoorCourse,
+  SectionsOutdoorSite,
+  SectionsTouristicContent,
+  SectionsTouristicEvent,
+  SectionsTrek,
+  SectionsTypes,
+} from './interface';
 
 export const getDetailsConfig = (language: string): DetailsConfig => {
   const {
@@ -21,11 +29,13 @@ export const getDetailsConfig = (language: string): DetailsConfig => {
   return {
     ...details,
     sections: {
-      outdoorCourse: destailsSection(details.sections.outdoorCourse),
-      outdoorSite: destailsSection(details.sections.outdoorSite),
-      touristicContent: destailsSection(details.sections.touristicContent),
-      touristicEvent: destailsSection(details.sections.touristicEvent),
-      trek: destailsSection(details.sections.trek),
+      outdoorCourse: destailsSection(details.sections.outdoorCourse as SectionsOutdoorCourse[]),
+      outdoorSite: destailsSection(details.sections.outdoorSite as SectionsOutdoorSite[]),
+      touristicContent: destailsSection(
+        details.sections.touristicContent as SectionsTouristicContent[],
+      ),
+      touristicEvent: destailsSection(details.sections.touristicEvent as SectionsTouristicEvent[]),
+      trek: destailsSection(details.sections.trek as SectionsTrek[]),
     },
   };
 };
