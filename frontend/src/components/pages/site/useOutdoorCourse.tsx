@@ -28,9 +28,9 @@ export const useOutdoorCourse = (
     () => getOutdoorCourseDetails(id, language, commonDictionaries),
     {
       enabled: isUrlString(outdoorCourseUrl) && commonDictionaries !== undefined,
-      onError: async error => {
+      onError: error => {
         if (isRessourceMissing(error)) {
-          await router.push(routes.HOME);
+          void router.push(routes.HOME);
         }
       },
       staleTime: ONE_DAY,
