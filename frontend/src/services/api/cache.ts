@@ -60,7 +60,7 @@ export const responseInterceptor = (response: any) => {
     // eslint-disable-next-line
     !response.config._fromCache &&
     response.config.method === 'get' &&
-    cachedRoute.some(r => r.test(response.config.url))
+    cachedRoute.some(r => r.test(response.config.url as string))
   ) {
     // eslint-disable-next-line
     const key = `${apiUrl}${response.config.url}?${qs.stringify(response.config.params)}`;
@@ -70,8 +70,10 @@ export const responseInterceptor = (response: any) => {
   return response;
 };
 
-export default (axios: Axios) => {
+const cache = (axios: Axios) => {
   axios.interceptors.request.use(requestInterceptor);
   axios.interceptors.response.use(responseInterceptor);
   return axios;
 };
+
+export default cache;
