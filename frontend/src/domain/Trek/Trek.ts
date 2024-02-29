@@ -9,7 +9,7 @@ export interface Trek {
   arrival: string;
   ascent: number;
   attachments: Attachment[];
-  children: any[];
+  children: number[];
   create_datetime: string;
   departure: string;
   descent: number;
@@ -33,7 +33,7 @@ export interface Trek {
   name: string;
   networks: number[];
   next: number;
-  parents: any[];
+  parents: number[];
   parking_location: number[];
   points_reference: null;
   portal: number[];
