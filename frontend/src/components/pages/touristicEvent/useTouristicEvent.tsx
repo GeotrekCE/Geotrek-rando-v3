@@ -27,9 +27,9 @@ export const useTouristicEvent = (
     () => getTouristicEventDetails(id, language, commonDictionaries),
     {
       enabled: isUrlString(touristicEventUrl) && commonDictionaries !== undefined,
-      onError: async error => {
+      onError: error => {
         if (isRessourceMissing(error)) {
-          await router.push(routes.HOME);
+          void router.push(routes.HOME);
         }
       },
       staleTime: ONE_DAY,
