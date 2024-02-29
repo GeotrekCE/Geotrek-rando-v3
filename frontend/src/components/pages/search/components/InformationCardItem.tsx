@@ -6,7 +6,6 @@ import { Height } from 'components/Icons/Height';
 import { TrendingUp } from 'components/Icons/TrendingUp';
 import { RemoteIconInformation } from 'components/Information';
 import { LocalIconInformation } from 'components/Information/LocalIconInformation';
-import { Network } from 'modules/networks/interface';
 import {
   InformationCard,
   InformationCardArray,
@@ -87,7 +86,7 @@ const getInformationItemProps = (information: InformationCard, intl: IntlShape) 
         <>
           {Array.isArray(value) && value.length > 0 && (
             <ul className="flex gap-2">
-              {(value as Network[]).map(item => (
+              {value.map(item => (
                 <li key={item.label}>
                   <RemoteIconInformation iconUri={item.pictogramUri}>
                     {item.label}
