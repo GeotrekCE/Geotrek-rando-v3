@@ -29,9 +29,9 @@ export const useTouristicContent = (
     () => getTouristicContentDetails(id, language, commonDictionaries),
     {
       enabled: isTouristicContentUrlString && commonDictionaries !== undefined,
-      onError: async error => {
+      onError: error => {
         if (isRessourceMissing(error)) {
-          await router.push(routes.HOME);
+          void router.push(routes.HOME);
         }
       },
       staleTime: ONE_DAY,
