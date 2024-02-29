@@ -60,7 +60,7 @@ const Inner: React.FC<Props> = ({ className, children }) => {
       {({ ref, onToggle }) => {
         return (
           <div
-            // @ts-ignore Wrong type in the lib
+            // @ts-expect-error Wrong type in the lib
             ref={ref}
             className={cn('relative bg-dark', className)}
           >

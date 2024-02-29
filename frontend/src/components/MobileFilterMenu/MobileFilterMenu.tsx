@@ -1,6 +1,6 @@
 import MobileBottomClear from 'components/pages/search/components/FilterBar/MobileBottomClear';
 import React from 'react';
-// @ts-ignore Not official but useful to reduce bundle size
+// @ts-expect-error Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
 
 import { Cross } from 'components/Icons/Cross';

@@ -88,7 +88,7 @@ const colourStyles = {
 const computeAction = (action: OnChangeValue<Option, true>): Option[] => {
   if (action === undefined || action === null) return [];
   if (action.length >= 0) return [...action];
-  //@ts-ignore We ignore because the issue is between a readonly array and an array
+  // @ts-expect-error We ignore because the issue is between a readonly array and an array
   return [action];
 };
 

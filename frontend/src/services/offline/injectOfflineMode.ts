@@ -67,12 +67,12 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
     map.fitBounds(center);
   };
 
-  // @ts-ignore add method to access in the cache manager
+  // @ts-expect-error add method to access in the cache manager
   controlInstance.recenter = recenter;
 
   CacheManager.registerControlInstance(controlInstance);
 
-  // @ts-ignore add method to access in the cache manager
+  // @ts-expect-error add method to access in the cache manager
   if (tileLayerOffline.url !== mapClassicLayers[0].url && navigator.onLine) {
     map.removeLayer(tileLayerOffline);
   }
