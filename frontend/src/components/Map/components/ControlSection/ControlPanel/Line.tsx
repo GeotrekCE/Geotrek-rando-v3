@@ -1,9 +1,10 @@
 import { useIntl } from 'react-intl';
 import { cn } from 'services/utils/cn';
+import { GenericIconProps } from 'components/Icons/types';
 import Check from './Check';
 
 export const Line: React.FC<{
-  icon: any;
+  icon: React.FC<GenericIconProps>;
   active: boolean;
   toggle: () => void;
   transKey: string;
