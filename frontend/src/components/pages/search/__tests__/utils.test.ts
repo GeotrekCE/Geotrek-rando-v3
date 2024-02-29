@@ -164,7 +164,7 @@ describe('parseTextFilter', () => {
     ${'col de font froide'} | ${'col de font froide'}
     ${null}                 | ${undefined}
   `('parses text filter properly with $textfilter', ({ textfilter, expectedParsedTextFilter }) => {
-    const formattedText = parseTextFilter(textfilter);
+    const formattedText = parseTextFilter(textfilter as string | null);
 
     expect(formattedText).toEqual(expectedParsedTextFilter);
   });

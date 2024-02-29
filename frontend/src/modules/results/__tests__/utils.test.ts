@@ -114,7 +114,7 @@ describe('extractNextPageId', () => {
     `(
       'formats the textfilter properly with $textfilter',
       ({ textfilter, expectedFormattedTextFilter }) => {
-        const formattedText = formatTextFilter(textfilter);
+        const formattedText = formatTextFilter(textfilter as string | null);
 
         expect(formattedText).toEqual(expectedFormattedTextFilter);
       },
