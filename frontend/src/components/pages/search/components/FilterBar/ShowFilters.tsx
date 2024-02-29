@@ -1,6 +1,6 @@
 import { SelectableDropdown } from 'components/pages/search/components/FilterBar/SelectableDropdown';
 import Field from 'components/pages/search/components/FilterBar/Field';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { DATE_FILTER } from 'modules/filters/constant';
 import { DateFilter, FilterState, Option } from '../../../../../modules/filters/interface';
 import InputDateWithMagnifier from '../InputDateWithMagnifier';
