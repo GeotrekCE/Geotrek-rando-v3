@@ -21,7 +21,7 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
 
   const shouldPictureRowBeDisplayed = details.attachmentsAccessibility
     ? ['slope', 'width', 'signage']
-        .filter(k => (details as any)[`accessibility_${k}`])
+        .filter(k => details[`accessibility_${k}` as keyof Details])
         .flatMap(k => {
           const attachments = details.attachmentsAccessibility.filter(
             a => a.info_accessibility === k,
@@ -78,7 +78,7 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
       <Columns>
         {details.attachmentsAccessibility &&
           ['slope', 'width', 'signage']
-            .filter(k => (details as any)[`accessibility_${k}`])
+            .filter(k => details[`accessibility_${k}` as keyof Details])
             .map(k => {
               let attachments = details.attachmentsAccessibility.filter(
                 a => a.info_accessibility === k,
@@ -122,21 +122,23 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
                     <FormattedMessage id={`details.accessibility_${k}`} /> :
                   </h2>
                   <div>
-                    <HtmlText>{parse((details as any)[`accessibility_${k}`])}</HtmlText>
+                    <HtmlText>
+                      {parse(details[`accessibility_${k}` as keyof Details] as string)}
+                    </HtmlText>
                   </div>
                 </div>
               );
             })}
       </Columns>
       {['accessibility_covering', 'accessibility_exposure', 'accessibility_advice']
-        .filter(k => (details as any)[k])
+        .filter(k => details[k as keyof Details])
         .map(k => (
           <Row key={k}>
             <h2>
               <FormattedMessage id={`details.${k}`} /> :
             </h2>
             <div>
-              <HtmlText>{parse((details as any)[k])}</HtmlText>
+              <HtmlText>{parse(details[k as keyof Details] as string)}</HtmlText>
             </div>
           </Row>
         ))}
@@ -214,23 +216,14 @@ const StyledSmallCarousel = styled(SmallCarousel)<{ isFullscreen: boolean }>`
 
 export const shouldDisplayAccessibility = (details: Details) => {
   return Boolean(
-    // eslint-disable-next-line
     details.disabledInfrastructure ||
-      // eslint-disable-next-line
       details.accessibilities.length > 0 ||
-      // eslint-disable-next-line
       details.accessbilityLevel ||
-      // eslint-disable-next-line
       details.accessibility_covering ||
-      // eslint-disable-next-line
       details.accessibility_exposure ||
-      // eslint-disable-next-line
       details.accessibility_advice ||
-      // eslint-disable-next-line
       details.accessibility_signage ||
-      // eslint-disable-next-line
       details.accessibility_slope ||
-      // eslint-disable-next-line
       details.accessibility_width,
   );
 };
