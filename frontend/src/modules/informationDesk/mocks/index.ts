@@ -1,13 +1,8 @@
 import { mockRoute } from 'services/testing/utils';
+import { APIResponseForList } from 'services/api/interface';
 import { RawInformationDesk } from '../interface';
 
-interface InformationDeskResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: RawInformationDesk[];
-}
-export const mockInformationDeskResponse = (): InformationDeskResponse => ({
+export const mockInformationDeskResponse = (): APIResponseForList<RawInformationDesk> => ({
   count: 1,
   next: null,
   previous: null,

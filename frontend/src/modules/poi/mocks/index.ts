@@ -1,14 +1,9 @@
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { mockRoute } from 'services/testing/utils';
+import { APIResponseForList } from 'services/api/interface';
 import { RawPoi } from '../interface';
 
-interface PoisResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: RawPoi[];
-}
-export const mockPois = (): PoisResponse => ({
+export const mockPois = (): APIResponseForList<RawPoi> => ({
   count: 2,
   next: null,
   previous: null,

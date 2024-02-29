@@ -1,13 +1,8 @@
 import { mockRoute } from 'services/testing/utils';
+import { APIResponseForList } from 'services/api/interface';
 import { RawSignage } from '../interface';
 
-interface SignagesResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: RawSignage[];
-}
-export const mockSignageResponse = (): SignagesResponse => ({
+export const mockSignageResponse = (): APIResponseForList<RawSignage> => ({
   count: 1,
   next: null,
   previous: null,

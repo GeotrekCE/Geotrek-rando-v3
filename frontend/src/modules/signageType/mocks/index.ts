@@ -1,13 +1,8 @@
 import { mockRoute } from 'services/testing/utils';
+import { APIResponseForList } from 'services/api/interface';
 import { SignageType } from '../interface';
 
-interface SignageTypeResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: SignageType[];
-}
-export const mockSignageTypeResponse = (): SignageTypeResponse => ({
+export const mockSignageTypeResponse = (): APIResponseForList<SignageType> => ({
   count: 1,
   next: null,
   previous: null,
