@@ -104,7 +104,7 @@ const OfflineButton: React.FC<Props> = ({ details, type }) => {
                   <FormattedMessage id={'actions.close'} />
                 </Button>
                 <Button
-                  onClick={isInCache ? handleRemove : handleSave}
+                  onClick={() => (isInCache ? void handleRemove() : void handleSave())}
                   icon={isInCache ? Bin : Download}
                   className={cn(
                     isInCache ? 'text-hardKO border-hardKO' : 'text-easyOK border-easyOK',
