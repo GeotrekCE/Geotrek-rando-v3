@@ -64,7 +64,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
 
     // Dynamicly loads Rando3D package
     async function loadRando3D() {
-      // @ts-ignore next-line
+      // @ts-expect-error the lib is not typed
       await import('@makina-corpus/rando3d');
       setLibLoaded(true);
     }

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { DateFilter, FilterCategory, FilterState, Option } from 'modules/filters/interface';
-// @ts-ignore Not official but useful to reduce bundle size
+// @ts-expect-error Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
 import { colorPalette } from 'stylesheet';
 

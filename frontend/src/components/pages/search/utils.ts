@@ -1,5 +1,5 @@
 import { InfiniteData } from '@tanstack/react-query';
-// @ts-ignore
+// @ts-expect-error the lib is not typed
 import { remove as removeDiacritics } from 'diacritics';
 
 import { routes } from 'services/routes';

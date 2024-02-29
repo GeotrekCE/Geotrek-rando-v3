@@ -517,7 +517,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                                 coordinates:
                                   'trekDeparture' in details
                                     ? details.trekDeparture
-                                    : // @ts-ignore next-line
+                                    : // @ts-expect-error next-line
                                       details.geometry?.coordinates,
                               }}
                             />
