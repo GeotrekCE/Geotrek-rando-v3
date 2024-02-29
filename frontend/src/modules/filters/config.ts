@@ -7,11 +7,11 @@ export const getFiltersConfig = (): (FilterConfig | FilterConfigWithOptions)[] =
     publicRuntimeConfig: { filter },
   } = getNextConfig();
 
-  const filtersLocal = uniqBy(filter, 'id');
+  const filtersLocal = uniqBy(filter as FilterConfig[], 'id');
 
   return filtersLocal
-    .filter((f: any) => f.display !== false)
-    .map((f: any) => ({
+    .filter(f => f.display !== false)
+    .map(f => ({
       ...f,
       type: f.type === 'SINGLE' ? 'SINGLE' : 'MULTIPLE',
     }));
