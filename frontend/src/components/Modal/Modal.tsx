@@ -16,7 +16,7 @@ type Props = {
   }: {
     isFullscreen: boolean;
     toggleFullscreen: () => void;
-  }) => any | ReactElement<any>;
+  }) => ReactElement;
 };
 
 const Inner: React.FC<Props> = ({ className, children }) => {
