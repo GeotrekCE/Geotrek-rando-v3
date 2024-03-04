@@ -6,7 +6,7 @@ import { getSearchResults } from 'modules/results/connector';
 import { SearchParams, SearchResults } from 'modules/results/interface';
 import { DateFilter, FilterState } from 'modules/filters/interface';
 
-import { queryCommonDictionaries } from 'modules/dictionaries/api';
+import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { formatInfiniteQuery, parseBboxFilter, parseFilters, parseTextFilter } from '../utils';
 import { getGlobalConfig } from '../../../../modules/utils/api.config';
 
@@ -66,7 +66,7 @@ export const useTrekResults = (
 
   const router = useRouter();
 
-  const commonDictionaries = queryCommonDictionaries(language);
+  const commonDictionaries = useQueryCommonDictionaries(language);
 
   const {
     data,
