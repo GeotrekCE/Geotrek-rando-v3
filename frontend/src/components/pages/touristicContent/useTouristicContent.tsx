@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { routes } from 'services/routes';
 import useSectionsReferences from 'hooks/useSectionsReferences';
-import { queryCommonDictionaries } from 'modules/dictionaries/api';
+import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { DetailsSections } from '../details/useDetails';
 import { getDetailsConfig } from '../details/config';
 
@@ -22,7 +22,7 @@ export const useTouristicContent = (
   const path = isTouristicContentUrlString ? decodeURI(touristicContentUrl) : '';
   const router = useRouter();
 
-  const commonDictionaries = queryCommonDictionaries(language);
+  const commonDictionaries = useQueryCommonDictionaries(language);
 
   const { data, refetch, isLoading } = useQuery<TouristicContentDetails, Error>(
     ['touristicContentDetails', id, language],

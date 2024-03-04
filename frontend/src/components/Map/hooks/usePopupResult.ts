@@ -5,7 +5,7 @@ import { PopupResult } from 'modules/trekResult/interface';
 import { getTouristicContentPopupResult } from 'modules/touristicContent/connector';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
-import { queryCommonDictionaries } from 'modules/dictionaries/api';
+import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { getTouristicEventPopupResult } from '../../../modules/touristicEvent/connector';
 import { getOutdoorSitePopupResult } from '../../../modules/outdoorSite/connector';
 
@@ -15,7 +15,7 @@ export const usePopupResult = (
   type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | null,
 ) => {
   const language = useRouter().locale ?? getDefaultLanguage();
-  const commonDictionaries = queryCommonDictionaries(language);
+  const commonDictionaries = useQueryCommonDictionaries(language);
 
   const fetchData = () => {
     if (type === 'TREK') return getTrekPopupResult(id, language);

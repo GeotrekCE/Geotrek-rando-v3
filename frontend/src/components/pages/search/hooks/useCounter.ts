@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { ONE_DAY } from 'services/constants/staleTime';
-import { queryCommonDictionaries } from 'modules/dictionaries/api';
+import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { SearchParams } from 'modules/results/interface';
 import { getSearchResults } from '../../../../modules/results/connector';
 import { getGlobalConfig } from '../../../../modules/utils/api.config';
@@ -17,7 +17,7 @@ interface CountResult {
 }
 
 const useCounter = ({ language }: Args): CountResult => {
-  const commonDictionaries = queryCommonDictionaries(language);
+  const commonDictionaries = useQueryCommonDictionaries(language);
 
   const result = useQuery(
     ['counter'],

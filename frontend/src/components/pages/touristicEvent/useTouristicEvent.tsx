@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { routes } from 'services/routes';
 import useSectionsReferences from 'hooks/useSectionsReferences';
-import { queryCommonDictionaries } from 'modules/dictionaries/api';
+import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { getTouristicEventDetails } from '../../../modules/touristicEvent/connector';
 import { TouristicEventDetails } from '../../../modules/touristicEvent/interface';
 import { getDetailsConfig } from '../details/config';
@@ -20,7 +20,7 @@ export const useTouristicEvent = (
   const path = isUrlString(touristicEventUrl) ? decodeURI(touristicEventUrl) : '';
   const router = useRouter();
 
-  const commonDictionaries = queryCommonDictionaries(language);
+  const commonDictionaries = useQueryCommonDictionaries(language);
 
   const { data, refetch, isLoading } = useQuery<TouristicEventDetails, Error>(
     ['outdoorCourseDetails', id, language],

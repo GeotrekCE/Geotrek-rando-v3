@@ -6,7 +6,7 @@ import { ONE_DAY } from 'services/constants/staleTime';
 import { isRessourceMissing } from 'services/routeUtils';
 import { useRouter } from 'next/router';
 import { routes } from 'services/routes';
-import { queryCommonDictionaries } from 'modules/dictionaries/api';
+import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { getOutdoorSiteDetails } from '../../../modules/outdoorSite/connector';
 import { OutdoorSiteDetails } from '../../../modules/outdoorSite/interface';
 import { getDetailsConfig } from '../details/config';
@@ -17,7 +17,7 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
   const path = isUrlString(outdoorSiteUrl) ? decodeURI(outdoorSiteUrl) : '';
   const router = useRouter();
 
-  const commonDictionaries = queryCommonDictionaries(language);
+  const commonDictionaries = useQueryCommonDictionaries(language);
 
   const { data, refetch, isLoading } = useQuery<OutdoorSiteDetails, Error>(
     ['outdoorSiteDetails', id, language],
