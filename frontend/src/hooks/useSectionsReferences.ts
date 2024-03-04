@@ -23,24 +23,25 @@ const useSectionsReferences = () => {
     );
 
   const handleResize = useCallback(
-    debounce(
-      () => {
-        setSectionsPositions(currentSectionsPositions => {
-          if (sectionsReferences.current === null) {
-            return currentSectionsPositions;
-          }
-          return Object.entries(sectionsReferences.current).reduce(
-            (obj, [name, ref]) => ({
-              ...obj,
-              [name]: getDimensions(ref),
-            }),
-            {},
-          );
-        });
-      },
-      1000,
-      false,
-    ),
+    () =>
+      debounce(
+        () => {
+          setSectionsPositions(currentSectionsPositions => {
+            if (sectionsReferences.current === null) {
+              return currentSectionsPositions;
+            }
+            return Object.entries(sectionsReferences.current).reduce(
+              (obj, [name, ref]) => ({
+                ...obj,
+                [name]: getDimensions(ref),
+              }),
+              {},
+            );
+          });
+        },
+        1000,
+        false,
+      ),
     [],
   );
 
