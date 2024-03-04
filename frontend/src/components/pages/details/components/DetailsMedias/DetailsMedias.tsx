@@ -36,11 +36,12 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
   const id = useId();
   const [isOpen, setOpen] = useState(true);
 
+  const { setHoveredCardId } = useListAndMapContext();
+
   if (viewPoints.length === 0) {
     return null;
   }
 
-  const { setHoveredCardId } = useListAndMapContext();
 
   return (
     <div className={className}>

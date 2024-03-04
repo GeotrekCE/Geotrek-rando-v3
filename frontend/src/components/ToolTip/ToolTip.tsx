@@ -19,20 +19,23 @@ const ToolTipGT: FC<Props> = ({
   backgroundColor = colorPalette.primary2,
   invertPosition = false,
   role = 'tooltip',
-  id = useId(),
-}) => (
+  id,
+}) => {
+  const uniqId = useId()
+  return (
   <ToolTip role={role} aria-describedby={id}>
     {children}
     <ToolTipText
       invertPosition={invertPosition}
       color={color}
       bgcolor={backgroundColor}
-      id={id}
+      id={id ?? uniqId}
       className="tooltipSpan"
     >
       {toolTipText}
     </ToolTipText>
   </ToolTip>
-);
+  )
+  };
 
 export default ToolTipGT;
