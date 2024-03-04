@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 import { routes } from 'services/routes';
 import { useMediaPredicate } from 'react-media-hook';
 import useSectionsReferences from 'hooks/useSectionsReferences';
-import { queryCommonDictionaries } from 'modules/dictionaries/api';
+import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { getDetailsConfig } from './config';
 import {
   DetailsSectionOutdoorCourseNames,
@@ -45,7 +45,7 @@ export const useDetails = (
   const path = isUrlString(slug) ? decodeURI(slug) : '';
   const router = useRouter();
 
-  const commonDictionaries = queryCommonDictionaries(language);
+  const commonDictionaries = useQueryCommonDictionaries(language);
 
   const {
     data: details,
