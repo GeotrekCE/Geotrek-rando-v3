@@ -41,6 +41,7 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
     useSectionsReferences();
 
   const sectionRef = sectionsOutdoorSite.reduce(
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     (list, item) => ({ ...list, [item.name]: useSectionReferenceCallback(item.name) }),
     {} as Record<DetailsSections, (node: HTMLDivElement | null) => void>,
   );

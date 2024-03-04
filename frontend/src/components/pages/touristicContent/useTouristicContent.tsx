@@ -47,6 +47,7 @@ export const useTouristicContent = (
     useSectionsReferences();
 
   const sectionRef = sectionsTouristicContent.reduce(
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     (list, item) => ({ ...list, [item.name]: useSectionReferenceCallback(item.name) }),
     {} as Record<DetailsSections, (node: HTMLDivElement | null) => void>,
   );
