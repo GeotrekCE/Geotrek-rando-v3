@@ -1,28 +1,24 @@
 import { generateFlatPageUrl } from 'modules/header/utills';
 import { SourceDictionnary } from 'modules/source/interface';
+import { isInternalFlatPageUrl } from 'services/routeUtils';
 import { FlatPageDetails, RawFlatPage, RawFlatPageDetails } from './interface';
-import { MenuItem, OrderableMenuItem } from '../header/interface';
+import { MenuItem } from '../header/interface';
 
-const adaptFlatPageToMenuItem = (rawFlatPage: RawFlatPage): MenuItem => ({
-  url:
-    rawFlatPage.external_url !== null && rawFlatPage.external_url.length > 0
-      ? rawFlatPage.external_url
-      : generateFlatPageUrl(rawFlatPage.id, rawFlatPage.title),
-  title: rawFlatPage.title,
-  order: rawFlatPage.order,
-  id: rawFlatPage.id,
-});
-
-export const adaptFlatPages = (rawFlatPages: RawFlatPage[]): MenuItem[] => {
-  const menuItemsUnsorted = rawFlatPages.map(adaptFlatPageToMenuItem);
-  const menuItemsNullOrder = menuItemsUnsorted.filter(menuItem => menuItem.order === null);
-  const menuItemsWithOrder = menuItemsUnsorted
-    .filter(isOrderableMenuItem)
-    .sort((menuItemA, menuItemB) => menuItemA.order - menuItemB.order);
-  return [...menuItemsWithOrder, ...menuItemsNullOrder];
+const adaptFlatPageToMenuItem = (rawFlatPage: RawFlatPage) => {
+  const url = rawFlatPage.external_url || generateFlatPageUrl(rawFlatPage.id, rawFlatPage.title);
+  return {
+    url,
+    title: rawFlatPage.title,
+    id: rawFlatPage.id,
+    openInAnotherTab: !isInternalFlatPageUrl(url),
+  };
 };
 
-const isOrderableMenuItem = (item: MenuItem): item is OrderableMenuItem => item.order !== null;
+export const adaptFlatPages = (rawFlatPages: RawFlatPage[]): MenuItem[] => {
+  return rawFlatPages
+    .sort((menuItemA, menuItemB) => (menuItemA.order ?? Infinity) - (menuItemB.order ?? Infinity))
+    .map(adaptFlatPageToMenuItem);
+};
 
 export const adaptFlatPageDetails = ({
   rawFlatPageDetails,

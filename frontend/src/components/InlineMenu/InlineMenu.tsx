@@ -6,7 +6,6 @@ import NextLink from 'next/link';
 import { MenuItem } from 'modules/header/interface';
 import { ChevronDown } from 'components/Icons/ChevronDown';
 import { useRouter } from 'next/router';
-import { isInternalFlatPageUrl } from 'services/routeUtils';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { getCountryCodeFromLanguage } from 'services/i18n/intl';
 
@@ -33,7 +32,13 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
     <div className={className} id="header_inlineMenu">
       {sections &&
         sections.map((menuItem, i) => (
-          <Section name={menuItem.title} key={i} url={menuItem.url} language={language} />
+          <Section
+            name={menuItem.title}
+            key={i}
+            url={menuItem.url}
+            language={language}
+            openInAnotherTab={menuItem.openInAnotherTab}
+          />
         ))}
       {subSections && subSections.length > 0 && (
         <details className="flex-row">
@@ -45,13 +50,19 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
           </summary>
           <div className={menuClassName}>
             {subSections.map(menuItem => {
+              if (menuItem.url === null) {
+                <span className={optionClassName}>{menuItem.title}</span>;
+              }
               return (
                 <NextLink
-                  href={menuItem.url}
+                  href={menuItem.url as string}
                   className={optionClassName}
-                  target={isInternalFlatPageUrl(menuItem.url) ? undefined : '_blank'}
                   locale={language}
                   key={menuItem.title}
+                  {...(menuItem.openInAnotherTab && {
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                  })}
                 >
                   {menuItem.title}
                 </NextLink>
@@ -115,17 +126,25 @@ const controlClassName =
 
 const optionClassName = 'flex hover:bg-greySoft-light focus:bg-greySoft cursor-pointer px-5 py-2';
 
-const Section: React.FC<{ name: string; url?: string; language?: string }> = ({
-  name,
-  url,
-  language,
-}) => (
+const Section: React.FC<{
+  name: string;
+  url?: string | null;
+  language?: string;
+  openInAnotherTab?: boolean;
+}> = ({ name, url, language, openInAnotherTab }) => (
   <div
     id="header_inlineMenuSection"
     className="pt-3 pb-2 mr-5 text-white cursor-pointer duration-500 transition-all border-b-4 hover:border-white border-transparent border-solid"
   >
-    {url !== undefined ? (
-      <NextLink href={url} locale={language}>
+    {url ? (
+      <NextLink
+        href={url}
+        locale={language}
+        {...(openInAnotherTab && {
+          target: '_blank',
+          rel: 'noopener noreferrer',
+        })}
+      >
         {name}
       </NextLink>
     ) : (

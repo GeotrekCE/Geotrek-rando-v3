@@ -8,7 +8,6 @@ import {
 import { MenuItem } from 'modules/header/interface';
 import NextLink from 'next/link';
 import { Link } from 'components/Link';
-import { isInternalFlatPageUrl } from 'services/routeUtils';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { cn } from 'services/utils/cn';
@@ -18,11 +17,9 @@ import { useBurgerMenuSection } from './useBurgerMenuSection';
 
 export interface Props {
   title: string;
-  items?: Array<string | MenuItem>;
+  items?: Array<MenuItem>;
   languages?: string[];
 }
-
-const isItemString = (item: MenuItem | string): item is string => typeof item === 'string';
 
 export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) => {
   const router = useRouter();
@@ -50,19 +47,20 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
         <AccordionItemPanel className={cn(openState === 'OPENED' && 'pb-2')}>
           {items?.map((item, i) => (
             <p key={i} className="text-Mobile-C2 m-3">
-              {isItemString(item) ? (
-                <span>{item}</span>
+              {item.url === null ? (
+                <span>{item.title}</span>
               ) : (
                 <NextLink
                   href={item.url}
                   passHref
                   locale={currentLanguage}
                   key={item.url}
-                  legacyBehavior
+                  {...(item.openInAnotherTab && {
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                  })}
                 >
-                  <a target={isInternalFlatPageUrl(item.url) ? undefined : '_blank'}>
-                    {item.title}
-                  </a>
+                  {item.title}
                 </NextLink>
               )}
             </p>

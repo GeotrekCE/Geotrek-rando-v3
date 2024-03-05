@@ -1,15 +1,9 @@
 export interface MenuItem {
-  id: number;
+  url: string | null;
   title: string;
-  url: string;
-  order: number | null;
-}
-
-export interface OrderableMenuItem {
   id: number;
-  title: string;
-  url: string;
-  order: number;
+  openInAnotherTab: boolean;
+  children?: MenuItem[];
 }
 export interface MenuConfig {
   primaryItemsNumber: number;
