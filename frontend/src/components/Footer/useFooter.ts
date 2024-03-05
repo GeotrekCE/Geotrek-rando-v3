@@ -21,7 +21,7 @@ export const useFooter = (): { config: FooterConfigOutput; intl: IntlShape } => 
   const containsInformationIDLinks = links.some(link => 'informationID' in link);
 
   const { data = [] } = useQuery<MenuItem[], Error>(
-    ['header', language],
+    ['footer', language],
     () => getFlatPages(language),
     {
       enabled: containsInformationIDLinks,
