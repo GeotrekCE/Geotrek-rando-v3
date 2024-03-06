@@ -80,21 +80,19 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
       )}
 
       {supportedLanguages.length > 1 && (
-        <div className="flex items-center text-white" key="language">
-          {language !== undefined && (
-            <ReactCountryFlag
-              alt=""
-              countryCode={getCountryCodeFromLanguage(language)}
-              className="mr-2"
-              loading="lazy"
-              height={16}
-              width={16}
-              svg
-            />
-          )}
+        <div className="flex items-center text-white">
+          <ReactCountryFlag
+            alt=""
+            countryCode={getCountryCodeFromLanguage(language)}
+            className="mr-2"
+            loading="lazy"
+            height={16}
+            width={16}
+            svg
+          />
           <details className="flex-row">
             <summary className={controlClassName}>
-              {language?.toUpperCase()}
+              {language.toUpperCase()}
               <ChevronDown size={16} className="shrink-0 ml-1" aria-hidden />
             </summary>
             <div className={menuClassName}>
