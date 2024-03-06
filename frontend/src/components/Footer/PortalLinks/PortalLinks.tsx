@@ -2,13 +2,11 @@ import NextLink from 'next/link';
 import { Plus } from 'components/Icons/Plus';
 import { Minus } from 'components/Icons/Minus';
 import { FormattedMessage } from 'react-intl';
-import useHasMounted from 'hooks/useHasMounted';
 import { cn } from 'services/utils/cn';
 import { useId } from 'react';
 import { useExternalsScripts } from 'components/Layout/useExternalScripts';
 import { usePortalLinks } from './usePortalLinks';
 import { PortalLinkStatic } from '../interface';
-import { isLinkInternal, linkWithoutHost } from '../utils';
 
 interface PortalLinksContentProps {
   id: string;
@@ -102,18 +100,15 @@ const PortalLinksContent: React.FC<PortalLinksContentProps> = ({ id, className =
 const PortalLinkRendered: React.FC<{ link: PortalLinkStatic; className?: string }> = ({
   link,
   className,
-}) => {
-  const isWindow = useHasMounted(typeof window !== 'undefined');
-  if (isWindow) {
-    return isLinkInternal(link.url) ? (
-      <NextLink className={className} href={linkWithoutHost(link.url)}>
-        <FormattedMessage id={link.label} />
-      </NextLink>
-    ) : (
-      <a href={link.url} target="_blank" rel="noopener noreferrer" className={className}>
-        <FormattedMessage id={link.label} />
-      </a>
-    );
-  }
-  return null;
-};
+}) => (
+  <NextLink
+    className={className}
+    href={link.url}
+    {...(link.openInAnotherTab && {
+      target: '_blank',
+      rel: 'noopener noreferrer',
+    })}
+  >
+    <FormattedMessage id={link.label} />
+  </NextLink>
+);

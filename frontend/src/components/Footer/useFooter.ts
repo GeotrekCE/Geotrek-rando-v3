@@ -35,11 +35,11 @@ export const useFooter = (): { config: FooterConfigOutput; intl: IntlShape } => 
         if ('informationID' in link) {
           const page = data.find(({ id }) => id === link.informationID);
           if (page) {
-            return { label: page.title, url: page.url };
+            return { label: page.title, url: page.url, openInAnotherTab: page.openInAnotherTab };
           }
           return null;
         }
-        return link;
+        return { ...link, openInAnotherTab: true };
       })
       // If the informationID doesn't match with any flatPage id, it won't be displayed
       .filter(Boolean) as PortalLinkStatic[];
