@@ -14,6 +14,7 @@ export interface PortalContact {
 export interface PortalLinkStatic {
   label: string;
   url: string;
+  openInAnotherTab: boolean;
 }
 
 interface PortalLinkDynamic {
