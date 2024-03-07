@@ -8,6 +8,7 @@ import { ChevronDown } from 'components/Icons/ChevronDown';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { getCountryCodeFromLanguage } from 'services/i18n/intl';
+import { DropdownMenu } from 'components/DropdownMenu';
 
 export interface InlineMenuProps {
   className?: string;
@@ -18,7 +19,7 @@ export interface InlineMenuProps {
 const InlineMenu: React.FC<InlineMenuProps> = ({
   className,
   menuItems,
-  config: { primaryItemsNumber, shouldDisplayFavorite, supportedLanguages}
+  config: { primaryItemsNumber, shouldDisplayFavorite, supportedLanguages },
 }) => {
   const intl = useIntl();
   const router = useRouter();
@@ -30,44 +31,48 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
   return (
     <div className={className} id="header_inlineMenu">
       {sections.map((menuItem, i) => (
-          <Section
-            name={menuItem.title}
-            key={i}
-            url={menuItem.url}
-            language={language}
-            openInAnotherTab={menuItem.openInAnotherTab}
-          />
-        ))}
+        <Section
+          name={menuItem.title}
+          key={i}
+          url={menuItem.url}
+          language={language}
+          openInAnotherTab={menuItem.openInAnotherTab}
+        />
+      ))}
       {subSections.length > 0 && (
-        <details className="flex-row">
-          <summary className={controlClassName}>
-            {intl.formatMessage({
-              id: 'header.seeMore',
-            })}
-            <ChevronDown size={16} className="shrink-0 ml-1" aria-hidden />
-          </summary>
-          <div className={menuClassName}>
-            {subSections.map(menuItem => {
-              if (menuItem.url === null) {
-                <span className={optionClassName}>{menuItem.title}</span>;
-              }
-              return (
-                <NextLink
-                  href={menuItem.url as string}
-                  className={optionClassName}
-                  locale={language}
-                  key={menuItem.title}
-                  {...(menuItem.openInAnotherTab && {
-                    target: '_blank',
-                    rel: 'noopener noreferrer',
-                  })}
-                >
-                  {menuItem.title}
-                </NextLink>
-              );
-            })}
-          </div>
-        </details>
+        <DropdownMenu
+          trigger={
+            <>
+              {intl.formatMessage({
+                id: 'header.seeMore',
+              })}
+              <ChevronDown size={16} className="shrink-0 ml-1" aria-hidden />
+            </>
+          }
+          className={controlClassName}
+          wrapperClassName="flex-row"
+          contentClassName={menuClassName}
+        >
+          {subSections.map(menuItem => {
+            if (menuItem.url === null) {
+              <span className={optionClassName}>{menuItem.title}</span>;
+            }
+            return (
+              <NextLink
+                href={menuItem.url as string}
+                className={optionClassName}
+                locale={language}
+                key={menuItem.title}
+                {...(menuItem.openInAnotherTab && {
+                  target: '_blank',
+                  rel: 'noopener noreferrer',
+                })}
+              >
+                {menuItem.title}
+              </NextLink>
+            );
+          })}
+        </DropdownMenu>
       )}
 
       {shouldDisplayFavorite && (
@@ -88,26 +93,30 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
             width={16}
             svg
           />
-          <details className="flex-row">
-            <summary className={controlClassName}>
-              {language.toUpperCase()}
-              <ChevronDown size={16} className="shrink-0 ml-1" aria-hidden />
-            </summary>
-            <div className={menuClassName}>
-              {supportedLanguages.map(locale => (
-                <Link
-                  href={router.asPath}
-                  locale={locale}
-                  replace
-                  scroll={false}
-                  key={locale}
-                  className={optionClassName}
-                >
-                  {locale.toUpperCase()}
-                </Link>
-              ))}
-            </div>
-          </details>
+          <DropdownMenu
+            trigger={
+              <>
+                {language.toUpperCase()}
+                <ChevronDown size={16} className="shrink-0 ml-1" aria-hidden />
+              </>
+            }
+            className={controlClassName}
+            wrapperClassName="flex-row"
+            contentClassName={menuClassName}
+          >
+            {supportedLanguages.map(locale => (
+              <Link
+                href={router.asPath}
+                locale={locale}
+                replace
+                scroll={false}
+                key={locale}
+                className={optionClassName}
+              >
+                {locale.toUpperCase()}
+              </Link>
+            ))}
+          </DropdownMenu>
         </div>
       )}
     </div>
