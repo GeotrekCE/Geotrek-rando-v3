@@ -13,9 +13,6 @@ import { useHeader } from './useHeader';
 
 export const Header: React.FC = () => {
   const { config, menuItems, intl } = useHeader();
-
-  const sectionsDesktop = menuItems?.slice(0, config.menu.primaryItemsNumber);
-  const subSections = menuItems?.slice(config.menu.primaryItemsNumber);
   /**
    * Disabled for now to handle the map on the search page
    */
@@ -62,13 +59,11 @@ export const Header: React.FC = () => {
             </p>
           </Link>
           <div className="flex-1 w-0" />
-          {(sectionsDesktop || subSections) && (
+          {menuItems?.length && (
             <InlineMenu
               className="hidden desktop:flex items-center justify-end flex-auto"
-              sections={sectionsDesktop}
-              subSections={subSections}
-              shouldDisplayFavorites={config.menu.shouldDisplayFavorite}
-              supportedLanguages={config.menu.supportedLanguages}
+              menuItems={menuItems}
+              config={config.menu}
             />
           )}
           <GoToSearchButton className="hidden desktop:block" />
