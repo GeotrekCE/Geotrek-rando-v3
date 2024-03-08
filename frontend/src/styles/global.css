@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  [hidden] {
+    @apply hidden !important;
+  }
+}
+
 .input {
   @apply bg-white
 		border
