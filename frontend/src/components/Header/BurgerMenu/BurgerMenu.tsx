@@ -1,6 +1,7 @@
 // @ts-expect-error Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
-import { MenuConfig, MenuItem } from 'modules/header/interface';
+import { MenuConfig } from 'modules/header/interface';
+import { MenuItem } from 'modules/menuItems/interface';
 import { useIntl } from 'react-intl';
 import NextLink from 'next/link';
 import { routes } from 'services/routes';

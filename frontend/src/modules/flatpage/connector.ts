@@ -1,4 +1,4 @@
-import { MenuItem } from 'modules/header/interface';
+import { MenuItem } from 'modules/menuItems/interface';
 import { getSources } from 'modules/source/connector';
 import { adaptFlatPageDetails, adaptFlatPages } from './adapter';
 import { fetchFlatPageDetails, fetchFlatPages } from './api';
