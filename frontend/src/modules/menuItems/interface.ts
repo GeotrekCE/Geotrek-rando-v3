@@ -1,3 +1,5 @@
+import { RawAttachment } from 'modules/interface';
+
 interface RawMenuLinkItem {
   target_type: 'link';
   link_url: string;
@@ -22,6 +24,7 @@ export type RawMenuItem = (RawMenuLinkItem | RawMenuPageItem | RawMenuNullItem) 
   page: number;
   open_in_new_tab: boolean;
   pictogram: null | string;
+  attachments: RawAttachment[];
   children?: RawMenuItem[];
 };
 
@@ -32,4 +35,5 @@ export interface MenuItem {
   openInAnotherTab: boolean;
   pictogram: null | string;
   children?: MenuItem[];
+  thumbnail: null | string;
 }
