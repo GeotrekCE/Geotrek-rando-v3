@@ -17,6 +17,7 @@ describe('AAU, I can see a BurgerMenu', () => {
         openInAnotherTab: true,
         order: 1,
         id: 2,
+        pictogram: null,
       },
       {
         title: 'Maisons du Parc',
@@ -24,6 +25,7 @@ describe('AAU, I can see a BurgerMenu', () => {
         openInAnotherTab: true,
         order: 2,
         id: 1,
+        pictogram: null,
       },
       {
         title: 'Informations utiles',
@@ -31,6 +33,7 @@ describe('AAU, I can see a BurgerMenu', () => {
         openInAnotherTab: true,
         order: 3,
         id: 3,
+        pictogram: null,
       },
     ],
   };

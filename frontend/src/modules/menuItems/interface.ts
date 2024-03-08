@@ -21,6 +21,7 @@ export type RawMenuItem = (RawMenuLinkItem | RawMenuPageItem | RawMenuNullItem) 
   label: string;
   page: number;
   open_in_new_tab: boolean;
+  pictogram: null | string;
   children?: RawMenuItem[];
 };
 
@@ -29,5 +30,6 @@ export interface MenuItem {
   title: string;
   id: number;
   openInAnotherTab: boolean;
+  pictogram: null | string;
   children?: MenuItem[];
 }
