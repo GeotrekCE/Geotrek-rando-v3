@@ -11,6 +11,7 @@ const adaptFlatPageToMenuItem = (rawFlatPage: RawFlatPage) => {
     title: rawFlatPage.title,
     id: rawFlatPage.id,
     openInAnotherTab: !isInternalFlatPageUrl(url),
+    pictogram: null,
   };
 };
 
