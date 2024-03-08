@@ -2,7 +2,7 @@ import getNextConfig from 'next/config';
 import { useRouter } from 'next/router';
 import { useQuery } from '@tanstack/react-query';
 import { getFlatPages } from 'modules/flatpage/connector';
-import { MenuItem } from 'modules/header/interface';
+import { MenuItem } from 'modules/menuItems/interface';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { IntlShape, useIntl } from 'react-intl';
 import { FooterConfigInput, FooterConfigOutput, PortalLinkStatic } from './interface';

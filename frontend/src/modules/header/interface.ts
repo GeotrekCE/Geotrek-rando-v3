@@ -1,10 +1,3 @@
-export interface MenuItem {
-  url: string | null;
-  title: string;
-  id: number;
-  openInAnotherTab: boolean;
-  children?: MenuItem[];
-}
 export interface MenuConfig {
   primaryItemsNumber: number;
   shouldDisplayFavorite: boolean;
