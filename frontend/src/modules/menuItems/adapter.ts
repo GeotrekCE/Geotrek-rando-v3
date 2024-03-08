@@ -14,6 +14,7 @@ const adaptMenuItem = (rawMenuItems: RawMenuItem): MenuItem => ({
   id: rawMenuItems.id,
   openInAnotherTab: rawMenuItems.open_in_new_tab,
   children: rawMenuItems.children?.map(adaptMenuItem),
+  pictogram: rawMenuItems.pictogram,
 });
 
 export const adaptMenuItems = (rawMenuItems: RawMenuItem[]): MenuItem[] => {
