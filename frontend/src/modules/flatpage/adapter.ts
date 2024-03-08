@@ -1,8 +1,8 @@
 import { generateFlatPageUrl } from 'modules/header/utills';
 import { SourceDictionnary } from 'modules/source/interface';
+import { MenuItem } from 'modules/menuItems/interface';
 import { isInternalFlatPageUrl } from 'services/routeUtils';
 import { FlatPageDetails, RawFlatPage, RawFlatPageDetails } from './interface';
-import { MenuItem } from '../header/interface';
 
 const adaptFlatPageToMenuItem = (rawFlatPage: RawFlatPage) => {
   const url = rawFlatPage.external_url || generateFlatPageUrl(rawFlatPage.id, rawFlatPage.title);

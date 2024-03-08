@@ -5,7 +5,7 @@ import {
   AccordionItemHeading,
   AccordionItemPanel,
 } from 'react-accessible-accordion';
-import { MenuItem } from 'modules/header/interface';
+import { MenuItem } from 'modules/menuItems/interface';
 import NextLink from 'next/link';
 import { Link } from 'components/Link';
 import { useRouter } from 'next/router';
