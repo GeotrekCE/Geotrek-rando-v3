@@ -78,7 +78,7 @@ Object {
                       aria-controls="accordion__panel-:r2:"
                       aria-disabled="false"
                       aria-expanded="false"
-                      class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
+                      class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
                       data-accordion-component="AccordionItemButton"
                       id="accordion__heading-:r2:"
                       role="button"
@@ -113,41 +113,44 @@ Object {
                     hidden=""
                     id="accordion__panel-:r2:"
                   >
-                    <p
+                    <div
                       class="text-Mobile-C2 m-3"
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
+                        rel="noopener noreferrer"
                         target="_blank"
                       >
                         NationalPark
                       </a>
-                    </p>
-                    <p
+                    </div>
+                    <div
                       class="text-Mobile-C2 m-3"
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
+                        rel="noopener noreferrer"
                         target="_blank"
                       >
                         Maisons du Parc
                       </a>
-                    </p>
-                    <p
+                    </div>
+                    <div
                       class="text-Mobile-C2 m-3"
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
+                        rel="noopener noreferrer"
                         target="_blank"
                       >
                         Informations utiles
                       </a>
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
               <a
-                class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+                class="flex items-center pt-4 pb-4 font-bold border-b border-solid border-greySoft"
               >
                 Favoris
               </a>
@@ -278,7 +281,7 @@ Object {
                     aria-controls="accordion__panel-:r2:"
                     aria-disabled="false"
                     aria-expanded="false"
-                    class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
+                    class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
                     data-accordion-component="AccordionItemButton"
                     id="accordion__heading-:r2:"
                     role="button"
@@ -313,41 +316,44 @@ Object {
                   hidden=""
                   id="accordion__panel-:r2:"
                 >
-                  <p
+                  <div
                     class="text-Mobile-C2 m-3"
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
+                      rel="noopener noreferrer"
                       target="_blank"
                     >
                       NationalPark
                     </a>
-                  </p>
-                  <p
+                  </div>
+                  <div
                     class="text-Mobile-C2 m-3"
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
+                      rel="noopener noreferrer"
                       target="_blank"
                     >
                       Maisons du Parc
                     </a>
-                  </p>
-                  <p
+                  </div>
+                  <div
                     class="text-Mobile-C2 m-3"
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
+                      rel="noopener noreferrer"
                       target="_blank"
                     >
                       Informations utiles
                     </a>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
             <a
-              class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              class="flex items-center pt-4 pb-4 font-bold border-b border-solid border-greySoft"
             >
               Favoris
             </a>
@@ -535,7 +541,7 @@ Object {
                       aria-controls="accordion__panel-:r0:"
                       aria-disabled="false"
                       aria-expanded="false"
-                      class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
+                      class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
                       data-accordion-component="AccordionItemButton"
                       id="accordion__heading-:r0:"
                       role="button"
@@ -570,41 +576,44 @@ Object {
                     hidden=""
                     id="accordion__panel-:r0:"
                   >
-                    <p
+                    <div
                       class="text-Mobile-C2 m-3"
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
+                        rel="noopener noreferrer"
                         target="_blank"
                       >
                         NationalPark
                       </a>
-                    </p>
-                    <p
+                    </div>
+                    <div
                       class="text-Mobile-C2 m-3"
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
+                        rel="noopener noreferrer"
                         target="_blank"
                       >
                         Maisons du Parc
                       </a>
-                    </p>
-                    <p
+                    </div>
+                    <div
                       class="text-Mobile-C2 m-3"
                     >
                       <a
                         href="https://www.ecrins-parcnational.fr/"
+                        rel="noopener noreferrer"
                         target="_blank"
                       >
                         Informations utiles
                       </a>
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
               <a
-                class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+                class="flex items-center pt-4 pb-4 font-bold border-b border-solid border-greySoft"
               >
                 Favoris
               </a>
@@ -626,7 +635,7 @@ Object {
                       aria-controls="accordion__panel-:r1:"
                       aria-disabled="false"
                       aria-expanded="false"
-                      class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
+                      class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
                       data-accordion-component="AccordionItemButton"
                       id="accordion__heading-:r1:"
                       role="button"
@@ -803,7 +812,7 @@ Object {
                     aria-controls="accordion__panel-:r0:"
                     aria-disabled="false"
                     aria-expanded="false"
-                    class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
+                    class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
                     data-accordion-component="AccordionItemButton"
                     id="accordion__heading-:r0:"
                     role="button"
@@ -838,41 +847,44 @@ Object {
                   hidden=""
                   id="accordion__panel-:r0:"
                 >
-                  <p
+                  <div
                     class="text-Mobile-C2 m-3"
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
+                      rel="noopener noreferrer"
                       target="_blank"
                     >
                       NationalPark
                     </a>
-                  </p>
-                  <p
+                  </div>
+                  <div
                     class="text-Mobile-C2 m-3"
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
+                      rel="noopener noreferrer"
                       target="_blank"
                     >
                       Maisons du Parc
                     </a>
-                  </p>
-                  <p
+                  </div>
+                  <div
                     class="text-Mobile-C2 m-3"
                   >
                     <a
                       href="https://www.ecrins-parcnational.fr/"
+                      rel="noopener noreferrer"
                       target="_blank"
                     >
                       Informations utiles
                     </a>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
             <a
-              class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              class="flex items-center pt-4 pb-4 font-bold border-b border-solid border-greySoft"
             >
               Favoris
             </a>
@@ -894,7 +906,7 @@ Object {
                     aria-controls="accordion__panel-:r1:"
                     aria-disabled="false"
                     aria-expanded="false"
-                    class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
+                    class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
                     data-accordion-component="AccordionItemButton"
                     id="accordion__heading-:r1:"
                     role="button"
