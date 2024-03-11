@@ -9,7 +9,6 @@ import { MenuItem } from 'modules/menuItems/interface';
 import NextLink from 'next/link';
 import { Link } from 'components/Link';
 import { useRouter } from 'next/router';
-import { getDefaultLanguage } from 'modules/header/utills';
 import { cn } from 'services/utils/cn';
 import { Plus } from '../../Icons/Plus';
 import { Minus } from '../../Icons/Minus';
@@ -23,8 +22,7 @@ export interface Props {
 
 export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) => {
   const router = useRouter();
-  const currentLanguage = router.locale ?? getDefaultLanguage();
-  const classNameTitle = 'flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer';
+  const classNameTitle = 'flex items-center pt-4 pb-4 font-bold';
   const classNameBorder = 'border-b border-solid border-greySoft';
   const openIcon = <Plus size={24} aria-hidden />;
   const closeIcon = <Minus size={24} aria-hidden />;
@@ -39,21 +37,19 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
     <Accordion allowZeroExpanded onChange={updatePanelState}>
       <AccordionItem className={cn('accordion__item', classNameBorder)}>
         <AccordionItemHeading>
-          <AccordionItemButton className={cn(classNameTitle)}>
+          <AccordionItemButton className={cn(classNameTitle, 'cursor-pointer')}>
             <span className="verticalMenu_section grow">{title}</span>
             {openState === 'OPENED' ? closeIcon : openIcon}
           </AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel className={cn(openState === 'OPENED' && 'pb-2')}>
           {items?.map((item, i) => (
-            <p key={i} className="text-Mobile-C2 m-3">
+            <div key={i} className="text-Mobile-C2 m-3">
               {item.url === null ? (
                 <span>{item.title}</span>
               ) : (
                 <NextLink
                   href={item.url}
-                  passHref
-                  locale={currentLanguage}
                   key={item.url}
                   {...(item.openInAnotherTab && {
                     target: '_blank',
@@ -63,7 +59,25 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
                   {item.title}
                 </NextLink>
               )}
-            </p>
+              {item.children?.map((child, childIndex) => (
+                <div key={childIndex} className="text-Mobile-C2 m-3">
+                  {child.url === null ? (
+                    <span>{child.title}</span>
+                  ) : (
+                    <NextLink
+                      href={child.url}
+                      key={child.url}
+                      {...(child.openInAnotherTab && {
+                        target: '_blank',
+                        rel: 'noopener noreferrer',
+                      })}
+                    >
+                      {child.title}
+                    </NextLink>
+                  )}
+                </div>
+              ))}
+            </div>
           ))}
           {languages?.map(language => (
             <Link
