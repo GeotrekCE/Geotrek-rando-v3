@@ -242,7 +242,8 @@
     "cancel": "Annuler",
     "close": "Fermer",
     "remove": "Supprimer",
-    "confirmRemove": "Êtes-vous sûr de vouloir supprimer cet élément ?"
+    "confirmRemove": "Êtes-vous sûr de vouloir supprimer cet élément ?",
+    "openInANewWindow": "Ouvrir dans une nouvelle fenêtre"
   },
   "outdoorSite": {
     "accessFullTitle": "Accès",
