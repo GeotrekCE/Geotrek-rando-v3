@@ -32,7 +32,7 @@ export const adaptFlatPageDetails = ({
   id: rawFlatPageDetails.id,
   title: rawFlatPageDetails.title,
   content: rawFlatPageDetails.content,
-  sources: rawFlatPageDetails.source.map(sourceId => sourceDictionnary[sourceId]),
+  sources: rawFlatPageDetails.source.map(sourceId => sourceDictionnary[sourceId]).filter(Boolean),
   attachment:
     rawFlatPageDetails.attachments.length > 0 && rawFlatPageDetails.attachments[0].type === 'image'
       ? rawFlatPageDetails.attachments[0].url
