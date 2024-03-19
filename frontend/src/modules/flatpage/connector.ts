@@ -1,5 +1,5 @@
 import { MenuItem } from 'modules/menuItems/interface';
-import { getSources } from 'modules/source/connector';
+import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { adaptFlatPageDetails, adaptFlatPages } from './adapter';
 import { fetchFlatPageDetails, fetchFlatPages } from './api';
 import { FlatPageDetails } from './interface';
@@ -12,15 +12,14 @@ export const getFlatPages = async (language: string): Promise<MenuItem[]> => {
 export const getFlatPageDetails = async (
   id: string,
   language: string,
+  commonDictionaries?: CommonDictionaries,
 ): Promise<FlatPageDetails> => {
+  const { sources = {} } = commonDictionaries ?? {};
   try {
-    const [rawFlatPageDetails, sourceDictionnary] = await Promise.all([
-      fetchFlatPageDetails({ language }, id),
-      getSources(language),
-    ]);
+    const rawFlatPageDetails = await fetchFlatPageDetails({ language }, id);
     return adaptFlatPageDetails({
       rawFlatPageDetails,
-      sourceDictionnary,
+      sourceDictionnary: sources,
     });
   } catch (e) {
     console.error('Error in flatpage connector', e);
