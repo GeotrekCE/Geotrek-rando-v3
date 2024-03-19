@@ -33,8 +33,8 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
       menuClassName="bg-white p-4"
       crossButtonClassName="left-4 mt-2"
       crossClassName="bg-greyDarkColored"
-      overlayClassName="top-0"
-      className="top-0"
+      overlayClassName="top-0 desktop:hidden"
+      className="top-0 desktop:hidden"
     >
       <span
         id="verticalMenu_title"
