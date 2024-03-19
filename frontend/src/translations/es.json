@@ -235,7 +235,8 @@
     "cancel": "Cancelar",
     "close": "Cerrar",
     "remove": "Suprimir",
-    "confirmRemove": "Confirmar que quieren suprimir este elemento ?"
+    "confirmRemove": "Confirmar que quieren suprimir este elemento ?",
+    "openInANewWindow": "Abrir en una página nueva"
   },
   "outdoorSite": {
     "accessFullTitle": "Acceso",
