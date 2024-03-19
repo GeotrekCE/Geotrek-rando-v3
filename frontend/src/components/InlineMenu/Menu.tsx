@@ -7,6 +7,7 @@ import { useIntl } from 'react-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from 'services/utils/cn';
+import { ExternalLink } from 'components/Icons/ExternalLink';
 
 export interface MenuProps {
   menuItems: MenuItem[];
@@ -75,12 +76,20 @@ export const Menu: React.FC<MenuProps> = ({
                 <>
                   <RemoteIcon iconUri={menuItem.pictogram} />
                   {menuItem.title}
+                  {menuItem.openInAnotherTab && (
+                    <ExternalLink
+                      size={20}
+                      role="img"
+                      aria-label={intl.formatMessage({ id: 'actions.openInANewWindow' })}
+                    />
+                  )}
                   <ChevronDown size={16} className="shrink-0 ml-1" aria-hidden />
                 </>
               }
-              className={cn(`custo-menu-item custo-menu-item--lvl1 custo-menu-item--is-dropdown custo-menu-item--index-${index} 
+              className={cn(
+                `custo-menu-item custo-menu-item--lvl1 custo-menu-item--is-dropdown custo-menu-item--index-${index}
               relative flex gap-2 pt-3 pb-2 mr-4 flex items-center border-b-4 border-solid border-transparent text-white duration-500 transition-color`,
-              "after:content-[''] after:absolute after:top-10 after:-left-6 after:-right-6 after:h-15 hover:after:z-10"
+                "after:content-[''] after:absolute after:top-10 after:-left-6 after:-right-6 after:h-15 hover:after:z-10",
               )}
               expandedClassName={expandedClassName}
               wrapperClassName="flex-row"
@@ -98,14 +107,7 @@ export const Menu: React.FC<MenuProps> = ({
                 {menuItem.children
                   .filter(item => item.thumbnail === null)
                   .map(item => {
-                    return (
-                      <MenuItem
-                        key={item.id}
-                        item={item}
-                        className={itemClassName}
-                        setActiveID={setActiveID}
-                      />
-                    );
+                    return <MenuItem key={item.id} item={item} className={itemClassName} />;
                   })}
               </div>
               <div className={cn('custo-menu-group--with-imgs', groupClassName)}>
@@ -117,9 +119,8 @@ export const Menu: React.FC<MenuProps> = ({
                         key={item.id}
                         item={item}
                         className={
-                          "custo-menu-item custo-menu-item--lvl2 relative rounded-xl overflow-hidden group after:absolute after:inset-0 after:content-[''] after:bg-black/25"
+                          "relative rounded-xl overflow-hidden group after:absolute after:inset-0 after:content-[''] after:bg-black/25"
                         }
-                        setActiveID={setActiveID}
                       >
                         <Image
                           className="custo-menu-item--media aspect-video object-cover object-center transition-transform group-hover:scale-105"
@@ -150,10 +151,16 @@ export const Menu: React.FC<MenuProps> = ({
                   target: '_blank',
                   rel: 'noopener noreferrer',
                 })}
-                onClick={() => setActiveID(null)}
               >
                 <RemoteIcon iconUri={menuItem.pictogram} />
                 {menuItem.title}
+                {menuItem.openInAnotherTab && (
+                  <ExternalLink
+                    size={20}
+                    role="img"
+                    aria-label={intl.formatMessage({ id: 'actions.openInANewWindow' })}
+                  />
+                )}
               </Link>
             ) : (
               menuItem.title
@@ -169,34 +176,25 @@ const MenuItem = ({
   item,
   className,
   children,
-  setActiveID,
 }: {
   item: MenuItem;
   className?: string;
   children?: ReactNode;
-  setActiveID: (string: string | null) => void;
 }) => {
-  if (item.url === null) {
-    return (
-      <span key={item.id} className={className}>
-        {children}
-        <span className="inline-flex gap-2 font-bold">
-          <RemoteIcon iconUri={item.pictogram} />
-          {item.title}
-        </span>
-      </span>
-    );
-  }
+  const intl = useIntl();
+  const href = item.url || undefined;
+  const Item = href ? Link : 'span';
+
   return (
-    <Link
-      href={item.url}
+    <Item
+      href={href as string}
       className={className}
       key={item.id}
-      {...(item.openInAnotherTab && {
-        target: '_blank',
-        rel: 'noopener noreferrer',
-      })}
-      onClick={() => !item.openInAnotherTab && setActiveID(null)}
+      {...(href &&
+        item.openInAnotherTab && {
+          target: '_blank',
+          rel: 'noopener noreferrer',
+        })}
     >
       {children}
       <span
@@ -207,7 +205,15 @@ const MenuItem = ({
       >
         <RemoteIcon iconUri={item.pictogram} />
         {item.title}
+        {href && item.openInAnotherTab && (
+          <ExternalLink
+            className="shrink-0"
+            size={20}
+            role="img"
+            aria-label={intl.formatMessage({ id: 'actions.openInANewWindow' })}
+          />
+        )}
       </span>
-    </Link>
+    </Item>
   );
 };
