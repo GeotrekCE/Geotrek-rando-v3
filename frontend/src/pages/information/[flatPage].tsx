@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { FlatPageUI } from 'components/pages/flatPage';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { routes } from 'services/routes';
+import { getCommonDictionaries } from 'modules/dictionaries/connector';
 import { getFlatPageDetails } from '../../modules/flatpage/connector';
 import { isUrlString } from '../../modules/utils/string';
 import { redirectIfWrongUrl } from '../../modules/utils/url';
@@ -15,8 +16,10 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
     const queryClient = new QueryClient();
 
-    const details = await getFlatPageDetails(id, locale);
+    const commonDictionaries = await getCommonDictionaries(locale);
+    await queryClient.prefetchQuery(['commonDictionaries', locale], () => commonDictionaries);
 
+    const details = await getFlatPageDetails(id, locale, commonDictionaries);
     await queryClient.prefetchQuery(['flatPageDetails', id, locale], () => details);
 
     const redirect = redirectIfWrongUrl(
