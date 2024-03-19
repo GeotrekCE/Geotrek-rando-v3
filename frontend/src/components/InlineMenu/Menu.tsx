@@ -78,7 +78,10 @@ export const Menu: React.FC<MenuProps> = ({
                   <ChevronDown size={16} className="shrink-0 ml-1" aria-hidden />
                 </>
               }
-              className={`custo-menu-item custo-menu-item--lvl1 custo-menu-item--is-dropdown custo-menu-item--index-${index} flex gap-2 pt-3 pb-2 mr-4 flex items-center border-b-4 border-solid border-transparent text-white duration-500 transition-color`}
+              className={cn(`custo-menu-item custo-menu-item--lvl1 custo-menu-item--is-dropdown custo-menu-item--index-${index} 
+              relative flex gap-2 pt-3 pb-2 mr-4 flex items-center border-b-4 border-solid border-transparent text-white duration-500 transition-color`,
+              "after:content-[''] after:absolute after:top-10 after:-left-6 after:-right-6 after:h-15 hover:after:z-10"
+              )}
               expandedClassName={expandedClassName}
               wrapperClassName="flex-row"
               contentClassName={contentClassName}
@@ -89,8 +92,9 @@ export const Menu: React.FC<MenuProps> = ({
                 target: '_blank',
                 rel: 'noopener noreferrer',
               })}
+              asHover
             >
-              <div className={cn('custo-menu-group--without-imgs  flex-wrap', groupClassName)}>
+              <div className={cn('custo-menu-group--without-imgs flex-wrap', groupClassName)}>
                 {menuItem.children
                   .filter(item => item.thumbnail === null)
                   .map(item => {
