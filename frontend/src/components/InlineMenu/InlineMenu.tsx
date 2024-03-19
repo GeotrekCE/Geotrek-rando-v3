@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { getCountryCodeFromLanguage } from 'services/i18n/intl';
 import { DropdownMenu } from 'components/DropdownMenu';
+import { cn } from 'services/utils/cn';
 import { Menu } from './Menu';
 
 export interface InlineMenuProps {
@@ -65,7 +66,9 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
                 <ChevronDown size={16} className="shrink-0 ml-1" aria-hidden />
               </>
             }
-            className="pt-3 pb-2 mr-4 text-white flex items-center border-b-4 border-solid border-transparent duration-500 transition-color"
+            asHover
+            className={cn("relative pt-3 pb-2 mr-4 text-white flex items-center border-b-4 border-solid border-transparent duration-500 transition-color",
+            "after:content-[''] after:absolute after:top-10 after:-left-5 after:-right-5 after:h-15")}
             wrapperClassName="flex-row"
             contentClassName="flex-col bg-white text-greyDarkColored rounded-2xl border border-solid border-greySoft overflow-hidden absolute py-2 top-18"
           >
