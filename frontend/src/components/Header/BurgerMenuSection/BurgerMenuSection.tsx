@@ -10,6 +10,10 @@ import NextLink from 'next/link';
 import { Link } from 'components/Link';
 import { useRouter } from 'next/router';
 import { cn } from 'services/utils/cn';
+import Image from 'next/image';
+import { ExternalLink } from 'components/Icons/ExternalLink';
+import RemoteIcon from 'components/RemoteIcon';
+import { useIntl } from 'react-intl';
 import { Plus } from '../../Icons/Plus';
 import { Minus } from '../../Icons/Minus';
 import { useBurgerMenuSection } from './useBurgerMenuSection';
@@ -43,42 +47,7 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
           </AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel className={cn(openState === 'OPENED' && 'pb-2')}>
-          {items?.map((item, i) => (
-            <div key={i} className="text-Mobile-C2 m-3">
-              {item.url === null ? (
-                <span>{item.title}</span>
-              ) : (
-                <NextLink
-                  href={item.url}
-                  key={item.url}
-                  {...(item.openInAnotherTab && {
-                    target: '_blank',
-                    rel: 'noopener noreferrer',
-                  })}
-                >
-                  {item.title}
-                </NextLink>
-              )}
-              {item.children?.map((child, childIndex) => (
-                <div key={childIndex} className="text-Mobile-C2 m-3">
-                  {child.url === null ? (
-                    <span>{child.title}</span>
-                  ) : (
-                    <NextLink
-                      href={child.url}
-                      key={child.url}
-                      {...(child.openInAnotherTab && {
-                        target: '_blank',
-                        rel: 'noopener noreferrer',
-                      })}
-                    >
-                      {child.title}
-                    </NextLink>
-                  )}
-                </div>
-              ))}
-            </div>
-          ))}
+          {items?.map((item, index) => <MenuItem key={index} {...item} />)}
           {languages?.map(language => (
             <Link
               className="block text-Mobile-C2 py-2 text-greyDarkColored"
@@ -95,5 +64,60 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
         </AccordionItemPanel>
       </AccordionItem>
     </Accordion>
+  );
+};
+
+const MenuItem = ({ url, title, openInAnotherTab, thumbnail, children, pictogram }: MenuItem) => {
+  const intl = useIntl();
+  const hasThumbnail = thumbnail !== null;
+  const href = url || undefined;
+  const Item = href ? NextLink : 'span';
+  return (
+    <div className="text-Mobile-C2 m-3">
+      <Item
+        href={href as string}
+        {...(href &&
+          openInAnotherTab && {
+            target: '_blank',
+            rel: 'noopener noreferrer',
+          })}
+        className={cn(
+          'flex',
+          hasThumbnail &&
+            "relative rounded-xl overflow-hidden group after:absolute after:inset-0 after:content-[''] after:bg-black/25",
+        )}
+      >
+        {hasThumbnail && (
+          <Image
+            className="aspect-video object-cover object-center transition-transform group-hover:scale-105"
+            loading="lazy"
+            width={300}
+            height={170}
+            src={thumbnail}
+            alt=""
+          />
+        )}
+        <span
+          className={cn(
+            'inline-flex gap-2 font-bold',
+            hasThumbnail && 'text-white absolute z-10 bottom-2 right-2 left-2',
+          )}
+        >
+          <RemoteIcon iconUri={pictogram} className="size-5" size={20} />
+          {title}
+          {href && openInAnotherTab && (
+            <ExternalLink
+              className="shrink-0"
+              size={16}
+              role="img"
+              aria-label={intl.formatMessage({ id: 'actions.openInANewWindow' })}
+            />
+          )}
+        </span>
+      </Item>
+      {children
+        ?.sort((a, b) => (a.thumbnail ? 1 : -1) - (b.thumbnail ? 1 : -1))
+        .map((child, childIndex) => <MenuItem key={childIndex} {...child} />)}
+    </div>
   );
 };
