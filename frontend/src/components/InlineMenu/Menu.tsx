@@ -44,19 +44,23 @@ export const Menu: React.FC<MenuProps> = ({
   }, [intl, menuItems, primaryItemsNumber]);
 
   const { contentClassName, itemClassName, expandedClassName, groupClassName } = useMemo(() => {
-    if (menuItems.some(({ children }) => children && children.length > 5)) {
+    if (
+      menuItems.some(
+        ({ children, thumbnail }) => (children && children.length > 5) || thumbnail !== null,
+      )
+    ) {
       return {
         contentClassName:
-          'custo-menu-sub-menu flex items-center justify-between px-4 desktop:px-10percent bg-white text-greyDarkColored absolute left-0 right-0 top-desktopHeader py-4 shadow-md',
+          'custo-menu-sub-menu flex items-center gap-6 justify-between p-4 bg-white text-greyDarkColored absolute shadow-md z-10 rounded-lg -translate-x-1/2 left-1/2 w-max min-w-[calc(100%+2rem)]',
         itemClassName:
           'custo-menu-item custo-menu-item--lvl2 hover:text-primary1 focus:text-primary-1',
         expandedClassName: 'custo-menu-item-expanded border-white',
-        groupClassName: 'custo-menu-group empty:hidden flex gap-6',
+        groupClassName: 'custo-menu-group empty:hidden flex flex-col gap-6',
       };
     }
     return {
       contentClassName:
-        'flex-col bg-white text-greyDarkColored rounded-2xl min-w-max border border-solid border-greySoft border-t-0 absolute py-2 top-18',
+        'flex-col bg-white text-greyDarkColored rounded-2xl border border-solid border-greySoft border-t-0 absolute py-2 -translate-x-1/2 left-1/2 w-max z-10',
       itemClassName: 'hover:bg-greySoft-light focus:bg-greySoft px-5 py-2',
       expandedClassName: 'custo-menu-item-expanded',
       groupClassName: 'custo-menu-group empty:hidden flex flex-col gap-2',
@@ -78,7 +82,7 @@ export const Menu: React.FC<MenuProps> = ({
                   {menuItem.title}
                   {menuItem.openInAnotherTab && (
                     <ExternalLink
-                      size={20}
+                      size={16}
                       role="img"
                       aria-label={intl.formatMessage({ id: 'actions.openInANewWindow' })}
                     />
@@ -88,11 +92,11 @@ export const Menu: React.FC<MenuProps> = ({
               }
               className={cn(
                 `custo-menu-item custo-menu-item--lvl1 custo-menu-item--is-dropdown custo-menu-item--index-${index}
-              relative flex gap-2 pt-3 pb-2 mr-4 flex items-center border-b-4 border-solid border-transparent text-white duration-500 transition-color`,
+              relative flex gap-2 pt-3 pb-2 flex items-center border-b-4 border-solid border-transparent text-white duration-500 transition-color`,
                 "after:content-[''] after:absolute after:top-10 after:-left-6 after:-right-6 after:h-15 hover:after:z-10",
               )}
               expandedClassName={expandedClassName}
-              wrapperClassName="flex-row"
+              wrapperClassName="custo-menu-item-wrapper flex-row relative"
               contentClassName={contentClassName}
               {...(menuItem.url && {
                 href: menuItem.url,
@@ -125,8 +129,8 @@ export const Menu: React.FC<MenuProps> = ({
                         <Image
                           className="custo-menu-item--media aspect-video object-cover object-center transition-transform group-hover:scale-105"
                           loading="lazy"
-                          width={300}
-                          height={170}
+                          width={200}
+                          height={113}
                           src={item.thumbnail as string}
                           alt=""
                         />
@@ -156,7 +160,7 @@ export const Menu: React.FC<MenuProps> = ({
                 {menuItem.title}
                 {menuItem.openInAnotherTab && (
                   <ExternalLink
-                    size={20}
+                    size={16}
                     role="img"
                     aria-label={intl.formatMessage({ id: 'actions.openInANewWindow' })}
                   />
@@ -199,7 +203,7 @@ const MenuItem = ({
       {children}
       <span
         className={cn(
-          'inline-flex gap-2 font-bold',
+          'inline-flex gap-2 font-bold items-center',
           children && 'text-white absolute z-10 bottom-2 right-2 left-2',
         )}
       >
@@ -208,7 +212,7 @@ const MenuItem = ({
         {href && item.openInAnotherTab && (
           <ExternalLink
             className="shrink-0"
-            size={20}
+            size={16}
             role="img"
             aria-label={intl.formatMessage({ id: 'actions.openInANewWindow' })}
           />

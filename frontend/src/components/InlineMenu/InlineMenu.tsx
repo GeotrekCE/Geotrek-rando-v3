@@ -69,8 +69,10 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
               </>
             }
             asHover
-            className={cn("relative pt-3 pb-2 mr-4 text-white flex items-center border-b-4 border-solid border-transparent duration-500 transition-color",
-            "after:content-[''] after:absolute after:top-10 after:-left-5 after:-right-5 after:h-15")}
+            className={cn(
+              'relative pt-3 pb-2 mr-4 text-white flex items-center border-b-4 border-solid border-transparent duration-500 transition-color',
+              "after:content-[''] after:absolute after:top-10 after:-left-5 after:-right-5 after:h-15",
+            )}
             wrapperClassName="flex-row"
             contentClassName="flex-col bg-white text-greyDarkColored rounded-2xl border border-solid border-greySoft overflow-hidden absolute py-2 top-18"
           >
