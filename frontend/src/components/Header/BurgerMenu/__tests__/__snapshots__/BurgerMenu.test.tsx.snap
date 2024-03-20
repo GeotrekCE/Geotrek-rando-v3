@@ -242,7 +242,7 @@ Object {
                 Favoris
               </a>
               <a
-                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
                 href="/search"
                 style="display: block;"
                 tabindex="-1"
@@ -250,7 +250,7 @@ Object {
                 Recherche
               </a>
               <a
-                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
                 href="/offline"
                 rel="nofollow"
                 style="display: block;"
@@ -532,7 +532,7 @@ Object {
               Favoris
             </a>
             <a
-              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
               href="/search"
               style="display: block;"
               tabindex="-1"
@@ -540,7 +540,7 @@ Object {
               Recherche
             </a>
             <a
-              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
               href="/offline"
               rel="nofollow"
               style="display: block;"
@@ -947,7 +947,7 @@ Object {
                 </div>
               </div>
               <a
-                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
                 href="/search"
                 style="display: block;"
                 tabindex="-1"
@@ -955,7 +955,7 @@ Object {
                 Recherche
               </a>
               <a
-                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
                 href="/offline"
                 rel="nofollow"
                 style="display: block;"
@@ -1305,7 +1305,7 @@ Object {
               </div>
             </div>
             <a
-              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
               href="/search"
               style="display: block;"
               tabindex="-1"
@@ -1313,7 +1313,7 @@ Object {
               Recherche
             </a>
             <a
-              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
               href="/offline"
               rel="nofollow"
               style="display: block;"
