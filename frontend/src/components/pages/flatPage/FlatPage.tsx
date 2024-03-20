@@ -1,4 +1,5 @@
 import Loader from 'components/Loader';
+import Image from 'next/image';
 import { colorPalette } from 'stylesheet';
 import parse from 'html-react-parser';
 import { Footer } from 'components/Footer';
@@ -16,10 +17,6 @@ import Breadcrumb from '../details/components/DetailsPreview/Breadcrumb';
 interface FlatPageUIProps {
   flatPageUrl: string;
 }
-
-const BreadcrumbWrapper = styled.div`
-  margin-left: 2rem;
-`;
 
 export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
   const { flatPage, isLoading, refetch } = useFlatPage(flatPageUrl);
@@ -44,10 +41,12 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
               className="relative coverDetailsMobile desktop:h-coverDetailsDesktop text-center"
               id="flatPage_cover"
             >
-              <img
+              <Image
                 src={flatPage.attachment}
                 className="size-full object-top object-cover"
                 alt=""
+                width={1500}
+                height={550}
               />
               <TextWithShadow
                 className="text-H3 desktop:text-H1
@@ -62,12 +61,12 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
           <div className="px-4 desktop:px-10vw py-4 desktop:py-10" id="flatPage_content">
             {(flatPage.attachment == null || flatPage.attachment.length === 0) && (
               <div className="flex justify-center py-6 desktop:py-12">
-                <p className="text-H3 desktop:text-H1 font-bold text-primary1 text-center">
+                <h1 className="text-H3 desktop:text-H1 font-bold text-primary1 text-center">
                   {flatPage.title}
-                </p>
+                </h1>
               </div>
             )}
-            <BreadcrumbWrapper>
+            <div className="ml-5">
               <Breadcrumb
                 breadcrumb={[
                   {
@@ -77,7 +76,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                   { label: flatPage?.title },
                 ]}
               />
-            </BreadcrumbWrapper>
+            </div>
             {flatPage.content !== null && flatPage.content.length > 0 && (
               <HtmlText>{parse(flatPage.content)}</HtmlText>
             )}
@@ -106,6 +105,6 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
   );
 };
 
-const TextWithShadow = styled.p`
+const TextWithShadow = styled.h1`
   text-shadow: 0 0 20px ${colorPalette.home.shadowOnImages};
 `;
