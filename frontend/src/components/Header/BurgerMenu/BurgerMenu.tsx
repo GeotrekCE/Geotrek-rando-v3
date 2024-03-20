@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 // @ts-expect-error Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
 import { MenuConfig } from 'modules/header/interface';
@@ -22,6 +23,28 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
 
   const intl = useIntl();
 
+  const menuSection = useMemo(() => {
+    if (!menuItems) {
+      return [];
+    }
+    if (menuItems.some(({ children }) => children)) {
+      return menuItems;
+    }
+    // If there are no children, we wrap them in "See More" button
+    return [
+      {
+        url: null,
+        title: intl.formatMessage({
+          id: 'header.seeMore',
+        }),
+        openInAnotherTab: false,
+        children: menuItems,
+        pictogram: null,
+        thumbnail: null,
+      },
+    ];
+  }, [intl, menuItems]);
+
   return (
     <Slide
       id="verticalMenu"
@@ -42,9 +65,23 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
       >
         {intl.formatMessage({ id: 'header.menu' })}
       </span>
-      {menuItems && (
-        <BurgerMenuSection title={intl.formatMessage({ id: 'header.seeMore' })} items={menuItems} />
-      )}
+      {menuSection.map((item, index) => {
+        if (!item.children?.length) {
+          if (item.url) {
+            return (
+              <NextLink
+                key={index}
+                className="flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
+                href={item.url}
+              >
+                {item.title}
+              </NextLink>
+            );
+          }
+          return null;
+        }
+        return <BurgerMenuSection key={index} title={item.title} items={item.children} />;
+      })}
       {config.shouldDisplayFavorite && (
         <BurgerMenuSection title={intl.formatMessage({ id: 'header.favorites' })} />
       )}
@@ -55,13 +92,13 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
         />
       )}
       <NextLink
-        className="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+        className="flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
         href={routes.SEARCH}
       >
         {intl.formatMessage({ id: 'header.goToSearch' })}
       </NextLink>
       <NextLink
-        className="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+        className="flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
         href={routes.OFFLINE}
         prefetch={false}
         rel="nofollow"
