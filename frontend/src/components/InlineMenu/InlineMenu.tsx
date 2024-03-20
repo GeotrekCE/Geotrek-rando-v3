@@ -15,7 +15,7 @@ import { Menu } from './Menu';
 
 export interface InlineMenuProps {
   className?: string;
-  menuItems: MenuItem[];
+  menuItems?: MenuItem[];
   config: MenuConfig;
 }
 
@@ -30,12 +30,14 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
 
   return (
     <div className={className} id="header_inlineMenu">
-      <Menu
-        menuItems={menuItems}
-        primaryItemsNumber={primaryItemsNumber}
-        activeID={activeDropdownID}
-        setActiveID={setActiveDropdownID}
-      />
+      {menuItems?.length ? (
+        <Menu
+          menuItems={menuItems}
+          primaryItemsNumber={primaryItemsNumber}
+          activeID={activeDropdownID}
+          setActiveID={setActiveDropdownID}
+        />
+      ) : null}
 
       {shouldDisplayFavorite && (
         <div className="flex items-center text-white">
