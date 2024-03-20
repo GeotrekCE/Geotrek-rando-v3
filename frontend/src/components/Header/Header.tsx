@@ -63,13 +63,11 @@ export const Header: React.FC = () => {
             </p>
           </Link>
           <div className="flex-1 w-0" />
-          {menuItems?.length && (
-            <InlineMenu
-              className="hidden desktop:flex items-center justify-end flex-auto"
-              menuItems={menuItems}
-              config={config.menu}
-            />
-          )}
+          <InlineMenu
+            className="hidden desktop:flex items-center justify-end flex-auto gap-4"
+            menuItems={menuItems}
+            config={config.menu}
+          />
           <GoToSearchButton className="hidden desktop:block" />
         </div>
       </header>
