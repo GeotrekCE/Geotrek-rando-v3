@@ -47,7 +47,9 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
           </AccordionItemButton>
         </AccordionItemHeading>
         <AccordionItemPanel className={cn(openState === 'OPENED' && 'pb-2')}>
-          {items?.map((item, index) => <MenuItem key={index} {...item} />)}
+          {items
+            ?.sort((a, b) => (a.thumbnail ? 1 : -1) - (b.thumbnail ? 1 : -1))
+            .map((item, index) => <MenuItem key={index} {...item} />)}
           {languages?.map(language => (
             <Link
               className="block text-Mobile-C2 py-2 text-greyDarkColored"
