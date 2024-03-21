@@ -80,7 +80,7 @@ interface BadgeProps {
 export const Badge: React.FC<BadgeProps> = ({ label, color }) => {
   return (
     <div
-      className="h-8 w-8
+      className="size-8
       ml-3
       rounded-lg
       grid place-items-center

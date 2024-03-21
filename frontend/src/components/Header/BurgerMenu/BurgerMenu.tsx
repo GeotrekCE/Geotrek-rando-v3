@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 'DISPLAYED' }) => {
-  const burgerButtonClassName = `fixed w-6 h-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 ${
+  const burgerButtonClassName = `fixed size-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 ${
     displayState === 'HIDDEN' ? '-top-21.5' : 'top-2.5'
   }`;
 

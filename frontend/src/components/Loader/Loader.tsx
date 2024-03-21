@@ -13,11 +13,11 @@ const Loader: React.FC<LoaderProps> = ({ className = '', loaded = false, childre
     return <>{children}</>;
   }
   return (
-    <div className={`flex w-full h-full justify-center items-center text-primary1 ${className}`}>
+    <div className={`flex size-full justify-center items-center text-primary1 ${className}`}>
       <p className="sr-only" aria-live="polite">
         <FormattedMessage id="loading" />
       </p>
-      <div className="relative inline-block w-15 h-15">
+      <div className="relative inline-block size-15">
         <Dot />
         <Dot />
         <Dot />

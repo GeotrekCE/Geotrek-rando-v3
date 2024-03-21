@@ -22,7 +22,7 @@ const Icon: React.FC<IconProps> = ({ option, isSelected }) => {
   }
   return (
     <SVG
-      className={cn('w-6 h-6 mr-2', isSelected ? 'text-primary1' : 'text-greyDarkColored')}
+      className={cn('size-6 mr-2', isSelected ? 'text-primary1' : 'text-greyDarkColored')}
       src={option.pictogramUrl}
       preProcessor={optimizeAndDefineColor()}
     />

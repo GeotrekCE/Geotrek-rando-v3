@@ -71,8 +71,8 @@ const Inner: React.FC<Props> = ({ className, children }) => {
                 onClick={onToggle}
               />
             )}
-            <div className="flex items-center justify-center w-full h-full">
-              <div className="w-full h-full">
+            <div className="flex items-center justify-center size-full">
+              <div className="size-full">
                 {typeof children === 'function'
                   ? children({
                       isFullscreen,

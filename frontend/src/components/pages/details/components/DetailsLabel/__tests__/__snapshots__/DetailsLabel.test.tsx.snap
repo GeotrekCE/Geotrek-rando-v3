@@ -12,7 +12,7 @@ Object {
         id="details_recommandationLabel"
       >
         <div
-          class="mr-2 desktop:mr-3 shrink-0 w-6 h-6 desktop:h-12 desktop:w-12"
+          class="mr-2 desktop:mr-3 shrink-0 size-6 desktop:size-12"
         />
         <div
           class="text-greyDarkColored text-Mobile-C2 desktop:text-P1"
@@ -43,7 +43,7 @@ Object {
       id="details_recommandationLabel"
     >
       <div
-        class="mr-2 desktop:mr-3 shrink-0 w-6 h-6 desktop:h-12 desktop:w-12"
+        class="mr-2 desktop:mr-3 shrink-0 size-6 desktop:size-12"
       />
       <div
         class="text-greyDarkColored text-Mobile-C2 desktop:text-P1"
