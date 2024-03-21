@@ -29,7 +29,10 @@
   "page": {
     "back": "Tornada",
     "not-found": "No s’ha trobat la pàgina",
-    "goToOffline": "Mostrar els continguts fora de línia"
+    "goToOffline": "Mostrar els continguts fora de línia",
+    "children": {
+      "title": "Per a més"
+    }
   },
   "search": {
     "title": "Cerca",
