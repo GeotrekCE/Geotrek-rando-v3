@@ -78,7 +78,7 @@ const FilterField: React.FC<Props> = ({
       >
         {numberSelected > 0 && (
           <span
-            className="bg-primary1 text-white rounded-full h-6 w-6 flex items-center justify-center font-bold"
+            className="bg-primary1 text-white rounded-full size-6 flex items-center justify-center font-bold"
             style={{ background: getActivityColor(id) }}
           >
             {numberSelected}

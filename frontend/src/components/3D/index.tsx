@@ -141,7 +141,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
             </LoaderOverlay>
           )}
           <Interface />
-          <canvas className="h-full w-full overflow-hidden border-0" ref={canvasRef} />
+          <canvas className="size-full overflow-hidden border-0" ref={canvasRef} />
           <PoiSide className="poi_side absolute flex flex-col">
             <button type="button" className="close_btn m-2 flex items-center self-end">
               <Cross size={20} />

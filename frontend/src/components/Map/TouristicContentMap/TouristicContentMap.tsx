@@ -63,7 +63,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
   return (
     <>
       <MapContainer
-        className="w-full h-full"
+        className="size-full"
         scrollWheelZoom
         maxZoom={
           navigator.onLine

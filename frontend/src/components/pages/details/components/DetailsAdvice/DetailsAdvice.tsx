@@ -15,7 +15,7 @@ export const DetailsAdvice: React.FC<DetailsAdviceProps> = ({ className, text })
       rounded-2xl border-2 border-solid border-greyDarkColored
       ${className ?? ''}`}
     >
-      <div className="mr-2 desktop:mr-4 shrink-0 w-6 h-6 desktop:h-12 desktop:w-12 self-start">
+      <div className="mr-2 desktop:mr-4 shrink-0 size-6 desktop:size-12 self-start">
         <AlertTriangle />
       </div>
       <div className="text-greyDarkColored desktop:font-bold text-Mobile-C2 desktop:text-P1 my-auto">

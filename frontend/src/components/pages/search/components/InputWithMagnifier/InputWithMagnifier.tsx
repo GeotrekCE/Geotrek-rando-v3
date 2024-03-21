@@ -34,7 +34,7 @@ const InputWithMagnifier: React.FC<InputWithMagnifierProps> = ({ onChange, value
         placeholder={intl.formatMessage({ id: 'search.textFilter' })}
       />
       <div
-        className="w-10 h-10 desktop:h-12 desktop:w-12 bg-primary1 rounded-r-md
+        className="size-10 desktop:size-12 bg-primary1 rounded-r-md
         flex justify-center items-center
         active:bg-primary1-light
         cursor-pointer

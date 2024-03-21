@@ -19,7 +19,7 @@ export const Line: React.FC<{
       onClick={toggle}
       type="button"
     >
-      <Icon className="w-6 h-6 mr-3" />
+      <Icon className="size-6 mr-3" />
       <span className="flex-auto">{intl.formatMessage({ id: transKey })}</span>
       <Check visibility={active ? 'auto' : 'hidden'} />
     </button>

@@ -11,7 +11,7 @@ export const ControlButton: React.FC<ControlButtonProps> = ({ icon, className = 
   return (
     <button
       className={cn(
-        'h-10 w-10 rounded-lg shadow-md z-mapButton bg-white text-greyDarkColored flex justify-center items-center mb-3',
+        'size-10 rounded-lg shadow-md z-mapButton bg-white text-greyDarkColored flex justify-center items-center mb-3',
         className,
       )}
       type="button"

@@ -42,10 +42,10 @@ export const DetailsSource: React.FC<DetailsSourceProps> = ({ name, pictogramUri
 const SourceIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri }) => {
   if (RegExp(/(.*).svg/).test(pictogramUri)) {
     return (
-      <div className="bg-primary1 h-full w-full">
+      <div className="bg-primary1 size-full">
         <SVG
           src={pictogramUri}
-          className="h-full w-full p-1 text-white"
+          className="size-full p-1 text-white"
           preProcessor={optimizeAndDefineColor()}
         />
       </div>

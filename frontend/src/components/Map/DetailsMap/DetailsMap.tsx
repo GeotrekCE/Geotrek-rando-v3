@@ -163,7 +163,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
   return (
     <div
       className={cn(
-        'relative w-full h-full',
+        'relative size-full',
         visibleSection === 'report' &&
           reportVisibility &&
           "after:content-[''] after:absolute after:inset-0 desktop:after:top-1 after:border-solid after:border-3 after:border-red after:pointer-events-none",
@@ -171,7 +171,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
     >
       <MapContainer
         className={cn(
-          'mapContainer w-full h-full',
+          'mapContainer size-full',
           hasTitle && 'hasDrawer',
           props.mapId !== 'default' && props.mapId !== undefined && '!bg-black',
         )}

@@ -46,7 +46,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
             >
               <img
                 src={flatPage.attachment}
-                className="h-full w-full object-top object-cover"
+                className="size-full object-top object-cover"
                 alt=""
               />
               <TextWithShadow

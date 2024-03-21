@@ -11,11 +11,11 @@ export const SquaredButtonWithImage: React.FC<SquaredButtonWithImageProps> = ({
   titleKey,
 }) => {
   return (
-    <div className="h-12 w-12 relative overflow-hidden shadow-md rounded-medium border-2 border-solid border-white">
+    <div className="size-12 relative overflow-hidden shadow-md rounded-medium border-2 border-solid border-white">
       <Image
         loading="lazy"
         src={imageUrl}
-        className="object-cover h-full w-full rounded-medium"
+        className="object-cover size-full rounded-medium"
         width={44}
         height={44}
         alt=""

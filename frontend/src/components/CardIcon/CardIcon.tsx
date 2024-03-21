@@ -52,7 +52,7 @@ export const CardIcon: React.FC<Props> = ({ iconUri = '', iconName = '', color }
       className="absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
       color={color}
     >
-      <Icon color={color} iconUri={iconUri} className="w-7 h-7 shrink-0" />
+      <Icon color={color} iconUri={iconUri} className="size-7 shrink-0" />
       {iconName && <div className="pr-3 whitespace-nowrap">{iconName}</div>}
     </Wrapper>
   );
