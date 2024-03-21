@@ -1,5 +1,5 @@
 import { extendTailwindMerge, twJoin } from 'tailwind-merge';
-import { ClassNameValue } from 'tailwind-merge/dist/lib/tw-join';
+import { ClassNameValue } from 'tailwind-merge';
 import { theme } from '../../../tailwind.config';
 
 const { fontSize } = theme.extend;
@@ -7,8 +7,10 @@ const { fontSize } = theme.extend;
 // ExtendTailwindMerge to avoid removing ambiguous classNames
 // For example font-size `text-H4` and color `text-primary1`
 const twMerge = extendTailwindMerge({
-  classGroups: {
-    'font-size': Object.keys(fontSize).map(fontSizeKey => `text-${fontSizeKey}`),
+  extend: {
+    classGroups: {
+      'font-size': Object.keys(fontSize).map(fontSizeKey => `text-${fontSizeKey}`),
+    },
   },
 });
 
