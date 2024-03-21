@@ -29,4 +29,5 @@ export interface FlatPageDetails {
   content: string;
   sources: Source[];
   attachment: string | null;
+  children?: FlatPageDetails[];
 }
