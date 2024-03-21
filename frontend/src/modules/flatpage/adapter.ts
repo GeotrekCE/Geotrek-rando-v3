@@ -27,9 +27,11 @@ const isOrderableMenuItem = (item: MenuItem): item is OrderableMenuItem => item.
 export const adaptFlatPageDetails = ({
   rawFlatPageDetails,
   sourceDictionnary,
+  rawFlatPageChildrenDetails,
 }: {
   rawFlatPageDetails: RawFlatPageDetails;
   sourceDictionnary: SourceDictionnary;
+  rawFlatPageChildrenDetails: RawFlatPageDetails[];
 }): FlatPageDetails => ({
   id: rawFlatPageDetails.id,
   title: rawFlatPageDetails.title,
@@ -39,4 +41,14 @@ export const adaptFlatPageDetails = ({
     rawFlatPageDetails.attachments.length > 0 && rawFlatPageDetails.attachments[0].type === 'image'
       ? rawFlatPageDetails.attachments[0].url
       : null,
+  children: rawFlatPageChildrenDetails.map(child => ({
+    id: child.id,
+    title: child.title,
+    content: child.content,
+    sources: child.source.map(sourceId => sourceDictionnary[sourceId]).filter(Boolean),
+    attachment:
+      child.attachments.length > 0 && child.attachments[0].type === 'image'
+        ? child.attachments[0].thumbnail
+        : null,
+  })),
 });

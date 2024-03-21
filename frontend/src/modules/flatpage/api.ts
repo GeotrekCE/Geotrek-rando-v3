@@ -20,3 +20,11 @@ export const fetchFlatPageDetails = (query: APIQuery, id: string): Promise<RawFl
   GeotrekAPI.get(`/flatpage/${encodeURIComponent(id)}/`, {
     params: { ...query, ...fieldsParamFlatPageDetails },
   }).then(r => r.data);
+
+export const fetchChildrenFlatPageDetails = (
+  query: APIQuery,
+  id: string,
+): Promise<APIResponseForList<RawFlatPageDetails>> =>
+  GeotrekAPI.get(`/flatpage/`, {
+    params: { ...query, ...fieldsParamFlatPageDetails, parent: id },
+  }).then(r => r.data);

@@ -1,7 +1,7 @@
 import { MenuItem } from 'modules/header/interface';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { adaptFlatPageDetails, adaptFlatPages } from './adapter';
-import { fetchFlatPageDetails, fetchFlatPages } from './api';
+import { fetchChildrenFlatPageDetails, fetchFlatPageDetails, fetchFlatPages } from './api';
 import { FlatPageDetails } from './interface';
 
 export const getFlatPages = async (language: string): Promise<MenuItem[]> => {
@@ -15,14 +15,24 @@ export const getFlatPageDetails = async (
   commonDictionaries?: CommonDictionaries,
 ): Promise<FlatPageDetails> => {
   const { sources = {} } = commonDictionaries ?? {};
+  let rawFlatPageDetails, rawFlatPageChildrenDetails;
   try {
-    const rawFlatPageDetails = await fetchFlatPageDetails({ language }, id);
-    return adaptFlatPageDetails({
-      rawFlatPageDetails,
-      sourceDictionnary: sources,
-    });
+    rawFlatPageDetails = await fetchFlatPageDetails({ language }, id);
   } catch (e) {
     console.error('Error in flatpage connector', e);
     throw e;
   }
+  try {
+    rawFlatPageChildrenDetails = await fetchChildrenFlatPageDetails({ language }, id);
+    rawFlatPageChildrenDetails = rawFlatPageChildrenDetails.results;
+    // Old version of flatPage don't have `children` property
+  } catch (e) {
+    rawFlatPageChildrenDetails = [];
+    throw e;
+  }
+  return adaptFlatPageDetails({
+    rawFlatPageDetails,
+    sourceDictionnary: sources,
+    rawFlatPageChildrenDetails,
+  });
 };
