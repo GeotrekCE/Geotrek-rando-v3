@@ -32,7 +32,10 @@
   "page": {
     "back": "Ritorno",
     "not-found": "Questa pagina non è stata trovata",
-    "goToOffline": "Visualizzazione di contenuti offline"
+    "goToOffline": "Visualizzazione di contenuti offline",
+    "children": {
+      "title": "Per saperne di più"
+    }
   },
   "search": {
     "title": "Ricerca",

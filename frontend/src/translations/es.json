@@ -29,7 +29,10 @@
   "page": {
     "back": "Vuelta",
     "not-found": "No hemos encontrado la página",
-    "goToOffline": "Mostrar los contenidos sin conexión"
+    "goToOffline": "Mostrar los contenidos sin conexión",
+    "children": {
+      "title": "Para más información"
+    }
   },
   "search": {
     "title": "Busca",

@@ -29,7 +29,10 @@
   "page": {
     "back": "Zurück",
     "not-found": "Diese Seite ist unauffindbar",
-    "goToOffline": "Inhalte offline anzeigen"
+    "goToOffline": "Inhalte offline anzeigen",
+    "children": {
+      "title": "Weiterführende Informationen"
+    }
   },
   "search": {
     "title": "Suche",
