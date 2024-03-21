@@ -6,7 +6,9 @@ import { Footer } from 'components/Footer';
 import { Separator } from 'components/Separator';
 import { PageHead } from 'components/PageHead';
 import styled from 'styled-components';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { generateFlatPageUrl } from 'modules/header/utills';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { useFlatPage } from './useFlatPage';
 import { DetailsSection } from '../details/components/DetailsSection';
 import { ErrorFallback } from '../search/components/ErrorFallback';
@@ -78,12 +80,12 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
               />
             </div>
             {flatPage.content !== null && flatPage.content.length > 0 && (
-              <HtmlText>{parse(flatPage.content)}</HtmlText>
+              <HtmlText className="mb-10">{parse(flatPage.content)}</HtmlText>
             )}
             {flatPage.sources.length > 0 && (
               <>
                 <Separator />
-                <DetailsSection titleId="details.source">
+                <DetailsSection className="mb-10" titleId="details.source">
                   <div>
                     {flatPage.sources.map((source, i) => (
                       <DetailsSource
@@ -95,6 +97,35 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                     ))}
                   </div>
                 </DetailsSection>
+              </>
+            )}
+            {flatPage.children && flatPage.children.length > 0 && (
+              <>
+                <Separator />
+                <h2 className="my-6 desktop:my-10 text-Mobile-H1 desktop:text-H2 font-bold">
+                  <FormattedMessage id="page.children.title" />
+                </h2>
+                <ul className="mb-6 desktop:mb-18 flex flex-wrap gap-5 desktop:grid desktop:grid-cols-3 desktop:gap-6">
+                  {flatPage.children?.map(child => (
+                    <li className="w-70 desktop:w-auto" key={child.id}>
+                      <a
+                        className="relative block rounded-xl overflow-hidden group after:absolute bg-gradient-to-t from-gradientOnImages after:inset-0 after:content-[''] after:bg-black/25"
+                        href={generateFlatPageUrl(child.id, child.title)}
+                      >
+                        <Image
+                          src={child.attachment ?? getGlobalConfig().fallbackImageUri}
+                          className="size-full object-cover object-center transition-transform group-hover:scale-105"
+                          width={400}
+                          height={400}
+                          alt=""
+                        />
+                        <span className="font-bold items-center desktop:text-lg text-white absolute z-10 bottom-4 right-4 left-4">
+                          {child.title}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </>
             )}
           </div>
