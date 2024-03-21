@@ -79,7 +79,7 @@ const ActivityLogo: React.FC<{
   type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
 }> = ({ src, type }) => (
   <div
-    className="h-12 w-12 desktop:h-18 desktop:w-18 rounded-full
+    className="size-12 desktop:size-18 rounded-full
       flex items-center justify-center
       shadow-md
     bg-primary1"

@@ -12,7 +12,7 @@ Object {
         />
         <div>
           <div
-            class="bm-burger-button fixed w-6 h-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 top-2.5"
+            class="bm-burger-button fixed size-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 top-2.5"
             style="z-index: 1000;"
           >
             <button
@@ -212,7 +212,7 @@ Object {
       />
       <div>
         <div
-          class="bm-burger-button fixed w-6 h-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 top-2.5"
+          class="bm-burger-button fixed size-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 top-2.5"
           style="z-index: 1000;"
         >
           <button
@@ -469,7 +469,7 @@ Object {
         />
         <div>
           <div
-            class="bm-burger-button fixed w-6 h-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 top-2.5"
+            class="bm-burger-button fixed size-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 top-2.5"
             style="z-index: 1000;"
           >
             <button
@@ -737,7 +737,7 @@ Object {
       />
       <div>
         <div
-          class="bm-burger-button fixed w-6 h-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 top-2.5"
+          class="bm-burger-button fixed size-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 top-2.5"
           style="z-index: 1000;"
         >
           <button

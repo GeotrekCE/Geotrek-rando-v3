@@ -12,7 +12,7 @@ Object {
         id="details_recommandationGear"
       >
         <div
-          class="mr-2 desktop:mr-4 shrink-0 w-6 h-6 desktop:h-12 desktop:w-12 self-start"
+          class="mr-2 desktop:mr-4 shrink-0 size-6 desktop:size-12 self-start"
         >
           <svg
             id="svg8"
@@ -344,7 +344,7 @@ Object {
       id="details_recommandationGear"
     >
       <div
-        class="mr-2 desktop:mr-4 shrink-0 w-6 h-6 desktop:h-12 desktop:w-12 self-start"
+        class="mr-2 desktop:mr-4 shrink-0 size-6 desktop:size-12 self-start"
       >
         <svg
           id="svg8"

@@ -53,11 +53,11 @@ Object {
                 type="button"
               >
                 <div
-                  class="h-12 w-12 relative overflow-hidden shadow-md rounded-medium border-2 border-solid border-white"
+                  class="size-12 relative overflow-hidden shadow-md rounded-medium border-2 border-solid border-white"
                 >
                   <img
                     alt=""
-                    class="object-cover h-full w-full rounded-medium"
+                    class="object-cover size-full rounded-medium"
                     data-nimg="1"
                     decoding="async"
                     height="44"
@@ -132,11 +132,11 @@ Object {
               type="button"
             >
               <div
-                class="h-12 w-12 relative overflow-hidden shadow-md rounded-medium border-2 border-solid border-white"
+                class="size-12 relative overflow-hidden shadow-md rounded-medium border-2 border-solid border-white"
               >
                 <img
                   alt=""
-                  class="object-cover h-full w-full rounded-medium"
+                  class="object-cover size-full rounded-medium"
                   data-nimg="1"
                   decoding="async"
                   height="44"

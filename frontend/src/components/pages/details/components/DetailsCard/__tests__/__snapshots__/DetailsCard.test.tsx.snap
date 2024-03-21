@@ -21,10 +21,10 @@ Object {
                 class="relative bg-dark h-full"
               >
                 <div
-                  class="flex items-center justify-center w-full h-full"
+                  class="flex items-center justify-center size-full"
                 >
                   <div
-                    class="w-full h-full"
+                    class="size-full"
                   >
                     <span
                       class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
@@ -37,7 +37,7 @@ Object {
                       >
                         <img
                           alt="Lorem ipsum"
-                          class="overflow-hidden w-full h-full object-cover object-center"
+                          class="overflow-hidden size-full object-cover object-center"
                           id=":r3:"
                           loading="lazy"
                           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -60,7 +60,7 @@ Object {
                           </span>
                           <button
                             aria-describedby=":r3:"
-                            class="absolute inset-0 w-full h-full"
+                            class="absolute inset-0 size-full"
                             type="button"
                           >
                             <span
@@ -123,10 +123,10 @@ Object {
                 class="relative bg-dark h-full"
               >
                 <div
-                  class="flex items-center justify-center w-full h-full"
+                  class="flex items-center justify-center size-full"
                 >
                   <div
-                    class="w-full h-full"
+                    class="size-full"
                   >
                     <div
                       class="slick-slider sc-dkrFOg elmwrv relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
@@ -166,7 +166,7 @@ Object {
                               >
                                 <img
                                   alt="Lorem ipsum"
-                                  class="overflow-hidden w-full h-full object-cover object-center"
+                                  class="overflow-hidden size-full object-cover object-center"
                                   id=":r9:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -189,7 +189,7 @@ Object {
                                   </span>
                                   <button
                                     aria-describedby=":r9:"
-                                    class="absolute inset-0 w-full h-full"
+                                    class="absolute inset-0 size-full"
                                     type="button"
                                   >
                                     <span
@@ -225,7 +225,7 @@ Object {
                               >
                                 <img
                                   alt="Lorem ipsum"
-                                  class="overflow-hidden w-full h-full object-cover object-center"
+                                  class="overflow-hidden size-full object-cover object-center"
                                   id=":rb:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -248,7 +248,7 @@ Object {
                                   </span>
                                   <button
                                     aria-describedby=":rb:"
-                                    class="absolute inset-0 w-full h-full"
+                                    class="absolute inset-0 size-full"
                                     type="button"
                                   >
                                     <span
@@ -347,10 +347,10 @@ Object {
               class="relative bg-dark h-full"
             >
               <div
-                class="flex items-center justify-center w-full h-full"
+                class="flex items-center justify-center size-full"
               >
                 <div
-                  class="w-full h-full"
+                  class="size-full"
                 >
                   <span
                     class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
@@ -363,7 +363,7 @@ Object {
                     >
                       <img
                         alt="Lorem ipsum"
-                        class="overflow-hidden w-full h-full object-cover object-center"
+                        class="overflow-hidden size-full object-cover object-center"
                         id=":r3:"
                         loading="lazy"
                         src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -386,7 +386,7 @@ Object {
                         </span>
                         <button
                           aria-describedby=":r3:"
-                          class="absolute inset-0 w-full h-full"
+                          class="absolute inset-0 size-full"
                           type="button"
                         >
                           <span
@@ -507,10 +507,10 @@ Object {
                 class="relative bg-dark h-full"
               >
                 <div
-                  class="flex items-center justify-center w-full h-full"
+                  class="flex items-center justify-center size-full"
                 >
                   <div
-                    class="w-full h-full"
+                    class="size-full"
                   >
                     <span
                       class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
@@ -523,7 +523,7 @@ Object {
                       >
                         <img
                           alt="Lorem ipsum"
-                          class="overflow-hidden w-full h-full object-cover object-center"
+                          class="overflow-hidden size-full object-cover object-center"
                           id=":r3:"
                           loading="lazy"
                           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -546,7 +546,7 @@ Object {
                           </span>
                           <button
                             aria-describedby=":r3:"
-                            class="absolute inset-0 w-full h-full"
+                            class="absolute inset-0 size-full"
                             type="button"
                           >
                             <span
@@ -609,10 +609,10 @@ Object {
                 class="relative bg-dark h-full"
               >
                 <div
-                  class="flex items-center justify-center w-full h-full"
+                  class="flex items-center justify-center size-full"
                 >
                   <div
-                    class="w-full h-full"
+                    class="size-full"
                   >
                     <div
                       class="slick-slider sc-dkrFOg elmwrv relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
@@ -652,7 +652,7 @@ Object {
                               >
                                 <img
                                   alt="Lorem ipsum"
-                                  class="overflow-hidden w-full h-full object-cover object-center"
+                                  class="overflow-hidden size-full object-cover object-center"
                                   id=":r9:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -675,7 +675,7 @@ Object {
                                   </span>
                                   <button
                                     aria-describedby=":r9:"
-                                    class="absolute inset-0 w-full h-full"
+                                    class="absolute inset-0 size-full"
                                     type="button"
                                   >
                                     <span
@@ -711,7 +711,7 @@ Object {
                               >
                                 <img
                                   alt="Lorem ipsum"
-                                  class="overflow-hidden w-full h-full object-cover object-center"
+                                  class="overflow-hidden size-full object-cover object-center"
                                   id=":rb:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -734,7 +734,7 @@ Object {
                                   </span>
                                   <button
                                     aria-describedby=":rb:"
-                                    class="absolute inset-0 w-full h-full"
+                                    class="absolute inset-0 size-full"
                                     type="button"
                                   >
                                     <span
@@ -833,10 +833,10 @@ Object {
               class="relative bg-dark h-full"
             >
               <div
-                class="flex items-center justify-center w-full h-full"
+                class="flex items-center justify-center size-full"
               >
                 <div
-                  class="w-full h-full"
+                  class="size-full"
                 >
                   <div
                     class="slick-slider sc-dkrFOg elmwrv relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
@@ -876,7 +876,7 @@ Object {
                             >
                               <img
                                 alt="Lorem ipsum"
-                                class="overflow-hidden w-full h-full object-cover object-center"
+                                class="overflow-hidden size-full object-cover object-center"
                                 id=":r9:"
                                 loading="lazy"
                                 src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -899,7 +899,7 @@ Object {
                                 </span>
                                 <button
                                   aria-describedby=":r9:"
-                                  class="absolute inset-0 w-full h-full"
+                                  class="absolute inset-0 size-full"
                                   type="button"
                                 >
                                   <span
@@ -935,7 +935,7 @@ Object {
                             >
                               <img
                                 alt="Lorem ipsum"
-                                class="overflow-hidden w-full h-full object-cover object-center"
+                                class="overflow-hidden size-full object-cover object-center"
                                 id=":rb:"
                                 loading="lazy"
                                 src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -958,7 +958,7 @@ Object {
                                 </span>
                                 <button
                                   aria-describedby=":rb:"
-                                  class="absolute inset-0 w-full h-full"
+                                  class="absolute inset-0 size-full"
                                   type="button"
                                 >
                                   <span

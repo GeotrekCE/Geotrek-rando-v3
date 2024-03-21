@@ -13,13 +13,13 @@ Object {
           class="relative bg-dark"
         >
           <div
-            class="flex items-center justify-center w-full h-full"
+            class="flex items-center justify-center size-full"
           >
             <div
-              class="w-full h-full"
+              class="size-full"
             >
               <div
-                class="h-full w-full grow relative desktop:w-resultCardDesktop"
+                class="size-full grow relative desktop:w-resultCardDesktop"
               >
                 <span
                   class=""
@@ -30,7 +30,7 @@ Object {
                   >
                     <img
                       alt=""
-                      class="object-cover object-center overflow-hidden w-full h-full"
+                      class="object-cover object-center overflow-hidden size-full"
                       id=":r3:"
                       loading="lazy"
                       src="/test.jpg"
@@ -100,7 +100,7 @@ Object {
                   >
                     <img
                       alt=""
-                      class="object-cover object-center w-6 h-6"
+                      class="object-cover object-center size-6"
                       data-nimg="1"
                       decoding="async"
                       height="24"
@@ -226,13 +226,13 @@ Object {
         class="relative bg-dark"
       >
         <div
-          class="flex items-center justify-center w-full h-full"
+          class="flex items-center justify-center size-full"
         >
           <div
-            class="w-full h-full"
+            class="size-full"
           >
             <div
-              class="h-full w-full grow relative desktop:w-resultCardDesktop"
+              class="size-full grow relative desktop:w-resultCardDesktop"
             >
               <span
                 class=""
@@ -243,7 +243,7 @@ Object {
                 >
                   <img
                     alt=""
-                    class="object-cover object-center overflow-hidden w-full h-full"
+                    class="object-cover object-center overflow-hidden size-full"
                     id=":r3:"
                     loading="lazy"
                     src="/test.jpg"
@@ -313,7 +313,7 @@ Object {
                 >
                   <img
                     alt=""
-                    class="object-cover object-center w-6 h-6"
+                    class="object-cover object-center size-6"
                     data-nimg="1"
                     decoding="async"
                     height="24"

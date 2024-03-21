@@ -112,7 +112,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       {informations.logoUri !== undefined && informations.logoUri.length > 0 && (
         <img
           id="details_logo"
-          className="hidden desktop:block absolute top-0 right-0 h-30 w-30 object-contain object-center"
+          className="hidden desktop:block absolute top-0 right-0 size-30 object-contain object-center"
           src={informations.logoUri}
           alt=""
         />

@@ -35,7 +35,7 @@ export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({
     >
       <img
         alt={attachment?.legend ?? ''}
-        className={cn(`object-cover object-center overflow-hidden w-full h-full ${classNameImage}`)}
+        className={cn(`object-cover object-center overflow-hidden size-full ${classNameImage}`)}
         id={imageId}
         loading={loading ?? 'eager'}
         src={attachment?.url ? attachment.url : getGlobalConfig().fallbackImageUri}
@@ -115,7 +115,7 @@ const Button: React.FC<ButtonProps> = ({ imageId, onClick }) => {
   return (
     <button
       aria-describedby={imageId}
-      className="absolute inset-0 w-full h-full"
+      className="absolute inset-0 size-full"
       onClick={onClick}
       type="button"
     >
