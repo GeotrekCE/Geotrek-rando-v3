@@ -1,12 +1,7 @@
 import React from 'react';
 import { GenericIconProps } from '../types';
 
-export const Search: React.FC<GenericIconProps> = ({
-  color = 'currentColor',
-  opacity,
-  className,
-  size,
-}) => {
+export const Search: React.FC<GenericIconProps> = ({ color = 'currentColor', size, ...props }) => {
   return (
     <svg
       height={size}
@@ -14,8 +9,7 @@ export const Search: React.FC<GenericIconProps> = ({
       viewBox="0 0 22 22"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      opacity={opacity}
+      {...props}
     >
       <path d="M16 8.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" stroke={color} strokeWidth={2} />
       <path
