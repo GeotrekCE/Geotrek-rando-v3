@@ -6,6 +6,7 @@ import { MenuItem } from 'modules/menuItems/interface';
 import { useIntl } from 'react-intl';
 import NextLink from 'next/link';
 import { routes } from 'services/routes';
+import { cn } from 'services/utils/cn';
 import { BurgerMenuSection } from '../BurgerMenuSection/BurgerMenuSection';
 import { BurgerMenu as BmIcon } from '../../Icons/BurgerMenu';
 import { Cross } from '../../Icons/Cross';
@@ -13,13 +14,21 @@ import { Cross } from '../../Icons/Cross';
 interface Props {
   config: MenuConfig;
   menuItems?: MenuItem[];
+  className?: string;
   displayState?: 'DISPLAYED' | 'HIDDEN';
 }
 
-export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 'DISPLAYED' }) => {
-  const burgerButtonClassName = `fixed size-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 ${
-    displayState === 'HIDDEN' ? '-top-21.5' : 'top-2.5'
-  }`;
+export const BurgerMenu: React.FC<Props> = ({
+  className,
+  config,
+  menuItems,
+  displayState = 'DISPLAYED',
+}) => {
+  const burgerButtonClassName = cn(
+    'fixed size-6 right-2.5 desktop:right-8 transition-all delay-100 duration-300',
+    displayState === 'HIDDEN' ? '-top-21.5' : 'top-2.5 desktop:top-8',
+    className,
+  );
 
   const intl = useIntl();
 
@@ -56,8 +65,8 @@ export const BurgerMenu: React.FC<Props> = ({ config, menuItems, displayState = 
       menuClassName="bg-white p-4"
       crossButtonClassName="left-4 mt-2"
       crossClassName="bg-greyDarkColored"
-      overlayClassName="top-0 desktop:hidden"
-      className="top-0 desktop:hidden"
+      overlayClassName="top-0"
+      className="top-0"
     >
       <span
         id="verticalMenu_title"
