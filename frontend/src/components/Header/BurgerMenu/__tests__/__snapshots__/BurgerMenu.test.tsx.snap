@@ -12,7 +12,7 @@ Object {
         />
         <div>
           <div
-            class="bm-burger-button fixed size-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 top-2.5"
+            class="bm-burger-button fixed size-6 right-2.5 desktop:right-8 transition-all delay-100 duration-300 top-2.5 desktop:top-8"
             style="z-index: 1000;"
           >
             <button
@@ -78,7 +78,7 @@ Object {
                       aria-controls="accordion__panel-:r2:"
                       aria-disabled="false"
                       aria-expanded="false"
-                      class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
+                      class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
                       data-accordion-component="AccordionItemButton"
                       id="accordion__heading-:r2:"
                       role="button"
@@ -113,46 +113,136 @@ Object {
                     hidden=""
                     id="accordion__panel-:r2:"
                   >
-                    <p
+                    <div
                       class="text-Mobile-C2 m-3"
                     >
                       <a
+                        class="flex"
                         href="https://www.ecrins-parcnational.fr/"
+                        rel="noopener noreferrer"
                         target="_blank"
                       >
-                        NationalPark
+                        <span
+                          class="inline-flex gap-2 font-bold"
+                        >
+                          NationalPark
+                          <svg
+                            aria-label="Ouvrir dans une nouvelle fenêtre"
+                            class="shrink-0 external-link"
+                            fill="none"
+                            height="16"
+                            role="img"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M15 3h6v6"
+                            />
+                            <path
+                              d="M10 14 21 3"
+                            />
+                            <path
+                              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                            />
+                          </svg>
+                        </span>
                       </a>
-                    </p>
-                    <p
+                    </div>
+                    <div
                       class="text-Mobile-C2 m-3"
                     >
                       <a
+                        class="flex"
                         href="https://www.ecrins-parcnational.fr/"
+                        rel="noopener noreferrer"
                         target="_blank"
                       >
-                        Maisons du Parc
+                        <span
+                          class="inline-flex gap-2 font-bold"
+                        >
+                          Maisons du Parc
+                          <svg
+                            aria-label="Ouvrir dans une nouvelle fenêtre"
+                            class="shrink-0 external-link"
+                            fill="none"
+                            height="16"
+                            role="img"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M15 3h6v6"
+                            />
+                            <path
+                              d="M10 14 21 3"
+                            />
+                            <path
+                              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                            />
+                          </svg>
+                        </span>
                       </a>
-                    </p>
-                    <p
+                    </div>
+                    <div
                       class="text-Mobile-C2 m-3"
                     >
                       <a
+                        class="flex"
                         href="https://www.ecrins-parcnational.fr/"
+                        rel="noopener noreferrer"
                         target="_blank"
                       >
-                        Informations utiles
+                        <span
+                          class="inline-flex gap-2 font-bold"
+                        >
+                          Informations utiles
+                          <svg
+                            aria-label="Ouvrir dans une nouvelle fenêtre"
+                            class="shrink-0 external-link"
+                            fill="none"
+                            height="16"
+                            role="img"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M15 3h6v6"
+                            />
+                            <path
+                              d="M10 14 21 3"
+                            />
+                            <path
+                              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                            />
+                          </svg>
+                        </span>
                       </a>
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
               <a
-                class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+                class="flex items-center pt-4 pb-4 font-bold border-b border-solid border-greySoft"
               >
                 Favoris
               </a>
               <a
-                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
                 href="/search"
                 style="display: block;"
                 tabindex="-1"
@@ -160,7 +250,7 @@ Object {
                 Recherche
               </a>
               <a
-                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
                 href="/offline"
                 rel="nofollow"
                 style="display: block;"
@@ -212,7 +302,7 @@ Object {
       />
       <div>
         <div
-          class="bm-burger-button fixed size-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 top-2.5"
+          class="bm-burger-button fixed size-6 right-2.5 desktop:right-8 transition-all delay-100 duration-300 top-2.5 desktop:top-8"
           style="z-index: 1000;"
         >
           <button
@@ -278,7 +368,7 @@ Object {
                     aria-controls="accordion__panel-:r2:"
                     aria-disabled="false"
                     aria-expanded="false"
-                    class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
+                    class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
                     data-accordion-component="AccordionItemButton"
                     id="accordion__heading-:r2:"
                     role="button"
@@ -313,46 +403,136 @@ Object {
                   hidden=""
                   id="accordion__panel-:r2:"
                 >
-                  <p
+                  <div
                     class="text-Mobile-C2 m-3"
                   >
                     <a
+                      class="flex"
                       href="https://www.ecrins-parcnational.fr/"
+                      rel="noopener noreferrer"
                       target="_blank"
                     >
-                      NationalPark
+                      <span
+                        class="inline-flex gap-2 font-bold"
+                      >
+                        NationalPark
+                        <svg
+                          aria-label="Ouvrir dans une nouvelle fenêtre"
+                          class="shrink-0 external-link"
+                          fill="none"
+                          height="16"
+                          role="img"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="16"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M15 3h6v6"
+                          />
+                          <path
+                            d="M10 14 21 3"
+                          />
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          />
+                        </svg>
+                      </span>
                     </a>
-                  </p>
-                  <p
+                  </div>
+                  <div
                     class="text-Mobile-C2 m-3"
                   >
                     <a
+                      class="flex"
                       href="https://www.ecrins-parcnational.fr/"
+                      rel="noopener noreferrer"
                       target="_blank"
                     >
-                      Maisons du Parc
+                      <span
+                        class="inline-flex gap-2 font-bold"
+                      >
+                        Maisons du Parc
+                        <svg
+                          aria-label="Ouvrir dans une nouvelle fenêtre"
+                          class="shrink-0 external-link"
+                          fill="none"
+                          height="16"
+                          role="img"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="16"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M15 3h6v6"
+                          />
+                          <path
+                            d="M10 14 21 3"
+                          />
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          />
+                        </svg>
+                      </span>
                     </a>
-                  </p>
-                  <p
+                  </div>
+                  <div
                     class="text-Mobile-C2 m-3"
                   >
                     <a
+                      class="flex"
                       href="https://www.ecrins-parcnational.fr/"
+                      rel="noopener noreferrer"
                       target="_blank"
                     >
-                      Informations utiles
+                      <span
+                        class="inline-flex gap-2 font-bold"
+                      >
+                        Informations utiles
+                        <svg
+                          aria-label="Ouvrir dans une nouvelle fenêtre"
+                          class="shrink-0 external-link"
+                          fill="none"
+                          height="16"
+                          role="img"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="16"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M15 3h6v6"
+                          />
+                          <path
+                            d="M10 14 21 3"
+                          />
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          />
+                        </svg>
+                      </span>
                     </a>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
             <a
-              class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              class="flex items-center pt-4 pb-4 font-bold border-b border-solid border-greySoft"
             >
               Favoris
             </a>
             <a
-              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
               href="/search"
               style="display: block;"
               tabindex="-1"
@@ -360,7 +540,7 @@ Object {
               Recherche
             </a>
             <a
-              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
               href="/offline"
               rel="nofollow"
               style="display: block;"
@@ -469,7 +649,7 @@ Object {
         />
         <div>
           <div
-            class="bm-burger-button fixed size-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 top-2.5"
+            class="bm-burger-button fixed size-6 right-2.5 desktop:right-8 transition-all delay-100 duration-300 top-2.5 desktop:top-8"
             style="z-index: 1000;"
           >
             <button
@@ -535,7 +715,7 @@ Object {
                       aria-controls="accordion__panel-:r0:"
                       aria-disabled="false"
                       aria-expanded="false"
-                      class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
+                      class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
                       data-accordion-component="AccordionItemButton"
                       id="accordion__heading-:r0:"
                       role="button"
@@ -570,41 +750,131 @@ Object {
                     hidden=""
                     id="accordion__panel-:r0:"
                   >
-                    <p
+                    <div
                       class="text-Mobile-C2 m-3"
                     >
                       <a
+                        class="flex"
                         href="https://www.ecrins-parcnational.fr/"
+                        rel="noopener noreferrer"
                         target="_blank"
                       >
-                        NationalPark
+                        <span
+                          class="inline-flex gap-2 font-bold"
+                        >
+                          NationalPark
+                          <svg
+                            aria-label="Ouvrir dans une nouvelle fenêtre"
+                            class="shrink-0 external-link"
+                            fill="none"
+                            height="16"
+                            role="img"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M15 3h6v6"
+                            />
+                            <path
+                              d="M10 14 21 3"
+                            />
+                            <path
+                              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                            />
+                          </svg>
+                        </span>
                       </a>
-                    </p>
-                    <p
+                    </div>
+                    <div
                       class="text-Mobile-C2 m-3"
                     >
                       <a
+                        class="flex"
                         href="https://www.ecrins-parcnational.fr/"
+                        rel="noopener noreferrer"
                         target="_blank"
                       >
-                        Maisons du Parc
+                        <span
+                          class="inline-flex gap-2 font-bold"
+                        >
+                          Maisons du Parc
+                          <svg
+                            aria-label="Ouvrir dans une nouvelle fenêtre"
+                            class="shrink-0 external-link"
+                            fill="none"
+                            height="16"
+                            role="img"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M15 3h6v6"
+                            />
+                            <path
+                              d="M10 14 21 3"
+                            />
+                            <path
+                              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                            />
+                          </svg>
+                        </span>
                       </a>
-                    </p>
-                    <p
+                    </div>
+                    <div
                       class="text-Mobile-C2 m-3"
                     >
                       <a
+                        class="flex"
                         href="https://www.ecrins-parcnational.fr/"
+                        rel="noopener noreferrer"
                         target="_blank"
                       >
-                        Informations utiles
+                        <span
+                          class="inline-flex gap-2 font-bold"
+                        >
+                          Informations utiles
+                          <svg
+                            aria-label="Ouvrir dans une nouvelle fenêtre"
+                            class="shrink-0 external-link"
+                            fill="none"
+                            height="16"
+                            role="img"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M15 3h6v6"
+                            />
+                            <path
+                              d="M10 14 21 3"
+                            />
+                            <path
+                              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                            />
+                          </svg>
+                        </span>
                       </a>
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
               <a
-                class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+                class="flex items-center pt-4 pb-4 font-bold border-b border-solid border-greySoft"
               >
                 Favoris
               </a>
@@ -626,7 +896,7 @@ Object {
                       aria-controls="accordion__panel-:r1:"
                       aria-disabled="false"
                       aria-expanded="false"
-                      class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
+                      class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
                       data-accordion-component="AccordionItemButton"
                       id="accordion__heading-:r1:"
                       role="button"
@@ -677,7 +947,7 @@ Object {
                 </div>
               </div>
               <a
-                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
                 href="/search"
                 style="display: block;"
                 tabindex="-1"
@@ -685,7 +955,7 @@ Object {
                 Recherche
               </a>
               <a
-                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
                 href="/offline"
                 rel="nofollow"
                 style="display: block;"
@@ -737,7 +1007,7 @@ Object {
       />
       <div>
         <div
-          class="bm-burger-button fixed size-6  right-2.5 desktop:hidden transition-all delay-100 duration-300 top-2.5"
+          class="bm-burger-button fixed size-6 right-2.5 desktop:right-8 transition-all delay-100 duration-300 top-2.5 desktop:top-8"
           style="z-index: 1000;"
         >
           <button
@@ -803,7 +1073,7 @@ Object {
                     aria-controls="accordion__panel-:r0:"
                     aria-disabled="false"
                     aria-expanded="false"
-                    class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
+                    class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
                     data-accordion-component="AccordionItemButton"
                     id="accordion__heading-:r0:"
                     role="button"
@@ -838,41 +1108,131 @@ Object {
                   hidden=""
                   id="accordion__panel-:r0:"
                 >
-                  <p
+                  <div
                     class="text-Mobile-C2 m-3"
                   >
                     <a
+                      class="flex"
                       href="https://www.ecrins-parcnational.fr/"
+                      rel="noopener noreferrer"
                       target="_blank"
                     >
-                      NationalPark
+                      <span
+                        class="inline-flex gap-2 font-bold"
+                      >
+                        NationalPark
+                        <svg
+                          aria-label="Ouvrir dans une nouvelle fenêtre"
+                          class="shrink-0 external-link"
+                          fill="none"
+                          height="16"
+                          role="img"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="16"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M15 3h6v6"
+                          />
+                          <path
+                            d="M10 14 21 3"
+                          />
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          />
+                        </svg>
+                      </span>
                     </a>
-                  </p>
-                  <p
+                  </div>
+                  <div
                     class="text-Mobile-C2 m-3"
                   >
                     <a
+                      class="flex"
                       href="https://www.ecrins-parcnational.fr/"
+                      rel="noopener noreferrer"
                       target="_blank"
                     >
-                      Maisons du Parc
+                      <span
+                        class="inline-flex gap-2 font-bold"
+                      >
+                        Maisons du Parc
+                        <svg
+                          aria-label="Ouvrir dans une nouvelle fenêtre"
+                          class="shrink-0 external-link"
+                          fill="none"
+                          height="16"
+                          role="img"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="16"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M15 3h6v6"
+                          />
+                          <path
+                            d="M10 14 21 3"
+                          />
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          />
+                        </svg>
+                      </span>
                     </a>
-                  </p>
-                  <p
+                  </div>
+                  <div
                     class="text-Mobile-C2 m-3"
                   >
                     <a
+                      class="flex"
                       href="https://www.ecrins-parcnational.fr/"
+                      rel="noopener noreferrer"
                       target="_blank"
                     >
-                      Informations utiles
+                      <span
+                        class="inline-flex gap-2 font-bold"
+                      >
+                        Informations utiles
+                        <svg
+                          aria-label="Ouvrir dans une nouvelle fenêtre"
+                          class="shrink-0 external-link"
+                          fill="none"
+                          height="16"
+                          role="img"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="16"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M15 3h6v6"
+                          />
+                          <path
+                            d="M10 14 21 3"
+                          />
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          />
+                        </svg>
+                      </span>
                     </a>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
             <a
-              class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              class="flex items-center pt-4 pb-4 font-bold border-b border-solid border-greySoft"
             >
               Favoris
             </a>
@@ -894,7 +1254,7 @@ Object {
                     aria-controls="accordion__panel-:r1:"
                     aria-disabled="false"
                     aria-expanded="false"
-                    class="flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer"
+                    class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
                     data-accordion-component="AccordionItemButton"
                     id="accordion__heading-:r1:"
                     role="button"
@@ -945,7 +1305,7 @@ Object {
               </div>
             </div>
             <a
-              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
               href="/search"
               style="display: block;"
               tabindex="-1"
@@ -953,7 +1313,7 @@ Object {
               Recherche
             </a>
             <a
-              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none cursor-pointer border-b border-solid border-greySoft"
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
               href="/offline"
               rel="nofollow"
               style="display: block;"

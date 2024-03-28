@@ -235,7 +235,8 @@
     "cancel": "Annuler",
     "close": "Schliessen",
     "remove": "Löschen",
-    "confirmRemove": "Sind Sie sicher, dass Sie dieses Element löschen möchten?"
+    "confirmRemove": "Sind Sie sicher, dass Sie dieses Element löschen möchten?",
+    "openInANewWindow": "In einem neuen Fenster öffnen"
   },
   "outdoorSite": {
     "accessFullTitle": "Zugang",
