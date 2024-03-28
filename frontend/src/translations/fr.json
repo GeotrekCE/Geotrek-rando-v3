@@ -331,6 +331,9 @@
     "open": "Ouvrir",
     "close": "Fermer"
   },
+  "breadcrumb": {
+    "title": "Fil d'ariane"
+  },
   "consents": {
     "modal": {
       "purposes": {
