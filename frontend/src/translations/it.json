@@ -299,6 +299,9 @@
     "open": "Open",
     "close": "Close"
   },
+  "breadcrumb": {
+    "title": "Breadcrumb"
+  },
   "consents": {
     "modal": {
       "purposes": {

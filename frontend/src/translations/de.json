@@ -289,6 +289,9 @@
     "open": "Open",
     "close": "Close"
   },
+  "breadcrumb": {
+    "title": "Navigationspfade"
+  },
   "consents": {
     "modal": {
       "purposes": {
