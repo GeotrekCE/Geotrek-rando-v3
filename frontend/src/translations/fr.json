@@ -32,7 +32,10 @@
   "page": {
     "back": "Retour",
     "not-found": "Cette page est introuvable",
-    "goToOffline": "Afficher les contenus hors ligne"
+    "goToOffline": "Afficher les contenus hors ligne",
+    "children": {
+      "title": "Pour aller plus loin"
+    }
   },
   "search": {
     "title": "Recherche",

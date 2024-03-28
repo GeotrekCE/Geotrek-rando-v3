@@ -32,7 +32,10 @@
   "page": {
     "back": "Back",
     "not-found": "This page was not found",
-    "goToOffline": "Display offline content"
+    "goToOffline": "Display offline content",
+    "children": {
+      "title": "Further information"
+    }
   },
   "search": {
     "title": "Search",

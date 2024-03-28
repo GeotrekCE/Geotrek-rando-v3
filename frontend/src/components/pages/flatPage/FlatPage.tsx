@@ -1,11 +1,14 @@
 import Loader from 'components/Loader';
+import Image from 'next/image';
 import { colorPalette } from 'stylesheet';
 import parse from 'html-react-parser';
 import { Footer } from 'components/Footer';
 import { Separator } from 'components/Separator';
 import { PageHead } from 'components/PageHead';
 import styled from 'styled-components';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { generateFlatPageUrl } from 'modules/header/utills';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { useFlatPage } from './useFlatPage';
 import { DetailsSection } from '../details/components/DetailsSection';
 import { ErrorFallback } from '../search/components/ErrorFallback';
@@ -16,10 +19,6 @@ import Breadcrumb from '../details/components/DetailsPreview/Breadcrumb';
 interface FlatPageUIProps {
   flatPageUrl: string;
 }
-
-const BreadcrumbWrapper = styled.div`
-  margin-left: 2rem;
-`;
 
 export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
   const { flatPage, isLoading, refetch } = useFlatPage(flatPageUrl);
@@ -44,10 +43,12 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
               className="relative coverDetailsMobile desktop:h-coverDetailsDesktop text-center"
               id="flatPage_cover"
             >
-              <img
+              <Image
                 src={flatPage.attachment}
                 className="size-full object-top object-cover"
                 alt=""
+                width={1500}
+                height={550}
               />
               <TextWithShadow
                 className="text-H3 desktop:text-H1
@@ -62,12 +63,12 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
           <div className="px-4 desktop:px-10vw py-4 desktop:py-10" id="flatPage_content">
             {(flatPage.attachment == null || flatPage.attachment.length === 0) && (
               <div className="flex justify-center py-6 desktop:py-12">
-                <p className="text-H3 desktop:text-H1 font-bold text-primary1 text-center">
+                <h1 className="text-H3 desktop:text-H1 font-bold text-primary1 text-center">
                   {flatPage.title}
-                </p>
+                </h1>
               </div>
             )}
-            <BreadcrumbWrapper>
+            <div className="ml-5">
               <Breadcrumb
                 breadcrumb={[
                   {
@@ -77,14 +78,14 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                   { label: flatPage?.title },
                 ]}
               />
-            </BreadcrumbWrapper>
+            </div>
             {flatPage.content !== null && flatPage.content.length > 0 && (
-              <HtmlText>{parse(flatPage.content)}</HtmlText>
+              <HtmlText className="mb-10">{parse(flatPage.content)}</HtmlText>
             )}
             {flatPage.sources.length > 0 && (
               <>
                 <Separator />
-                <DetailsSection titleId="details.source">
+                <DetailsSection className="mb-10" titleId="details.source">
                   <div>
                     {flatPage.sources.map((source, i) => (
                       <DetailsSource
@@ -98,6 +99,35 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                 </DetailsSection>
               </>
             )}
+            {flatPage.children && flatPage.children.length > 0 && (
+              <>
+                <Separator />
+                <h2 className="my-6 desktop:my-10 text-Mobile-H1 desktop:text-H2 font-bold">
+                  <FormattedMessage id="page.children.title" />
+                </h2>
+                <ul className="mb-6 desktop:mb-18 flex flex-wrap gap-5 desktop:grid desktop:grid-cols-3 desktop:gap-6">
+                  {flatPage.children?.map(child => (
+                    <li className="w-70 desktop:w-auto" key={child.id}>
+                      <a
+                        className="relative block rounded-xl overflow-hidden group after:absolute bg-gradient-to-t from-gradientOnImages after:inset-0 after:content-[''] after:bg-black/25"
+                        href={generateFlatPageUrl(child.id, child.title)}
+                      >
+                        <Image
+                          src={child.attachment ?? getGlobalConfig().fallbackImageUri}
+                          className="size-full object-cover object-center transition-transform group-hover:scale-105"
+                          width={400}
+                          height={400}
+                          alt=""
+                        />
+                        <span className="font-bold items-center desktop:text-lg text-white absolute z-10 bottom-4 right-4 left-4">
+                          {child.title}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
           <Footer />
         </div>
@@ -106,6 +136,6 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
   );
 };
 
-const TextWithShadow = styled.p`
+const TextWithShadow = styled.h1`
   text-shadow: 0 0 20px ${colorPalette.home.shadowOnImages};
 `;
