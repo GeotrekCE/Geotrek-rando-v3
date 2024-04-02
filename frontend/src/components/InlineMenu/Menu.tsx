@@ -63,7 +63,7 @@ export const Menu: React.FC<MenuProps> = ({
         'flex-col bg-white text-greyDarkColored rounded-2xl border border-solid border-greySoft border-t-0 absolute py-2 -translate-x-1/2 left-1/2 w-max z-10',
       itemClassName: 'hover:bg-greySoft-light focus:bg-greySoft px-5 py-2',
       expandedClassName: 'custo-menu-item-expanded',
-      groupClassName: 'custo-menu-group empty:hidden flex flex-col gap-2',
+      groupClassName: 'custo-menu-group empty:hidden flex flex-col gap-2 max-w-100',
     };
   }, [menuItems]);
 
