@@ -932,13 +932,13 @@ Object {
                     id="accordion__panel-:r1:"
                   >
                     <a
-                      class="hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
+                      class="hover:text-primary3 focus:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
                       href="/"
                     >
                       FR
                     </a>
                     <a
-                      class="hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
+                      class="hover:text-primary3 focus:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
                       href="/"
                     >
                       EN
@@ -1290,13 +1290,13 @@ Object {
                   id="accordion__panel-:r1:"
                 >
                   <a
-                    class="hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
+                    class="hover:text-primary3 focus:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
                     href="/"
                   >
                     FR
                   </a>
                   <a
-                    class="hover:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
+                    class="hover:text-primary3 focus:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
                     href="/"
                   >
                     EN

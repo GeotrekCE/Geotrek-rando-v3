@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <a
-        class="text-primary1 hover:text-primary3 transition-colors"
+        class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
         href="/trek/1-Test-rando-mere"
       >
         <span
@@ -46,7 +46,7 @@ Object {
   </body>,
   "container": <div>
     <a
-      class="text-primary1 hover:text-primary3 transition-colors"
+      class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
       href="/trek/1-Test-rando-mere"
     >
       <span

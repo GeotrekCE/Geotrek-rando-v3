@@ -11,7 +11,10 @@ export const Link: React.FC<Props> = ({ children, className = '', testId, ...nex
   return (
     <NextLink passHref legacyBehavior {...nextLinkProps}>
       <a
-        className={cn('text-primary1 hover:text-primary3 transition-colors', className)}
+        className={cn(
+          'text-primary1 hover:text-primary3 focus:text-primary3 transition-colors',
+          className,
+        )}
         data-testid={testId}
       >
         {children}
