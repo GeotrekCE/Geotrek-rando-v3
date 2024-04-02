@@ -6,6 +6,9 @@ import { useRouter } from 'next/router';
 import { useQuery } from '@tanstack/react-query';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
+import { getSuggestionsFromContent } from 'modules/flatpage/utils';
+import { ActivitySuggestion } from 'modules/activitySuggestions/interface';
+import { getActivitySuggestions } from 'modules/activitySuggestions/connector';
 
 export const useFlatPage = (flatPageUrl: string | undefined) => {
   const language = useRouter().locale ?? getDefaultLanguage();
@@ -14,7 +17,12 @@ export const useFlatPage = (flatPageUrl: string | undefined) => {
 
   const commonDictionaries = useQueryCommonDictionaries(language);
 
-  const { data, refetch, isLoading, error } = useQuery<FlatPageDetails, Error>(
+  const {
+    data: flatPage,
+    refetch,
+    isLoading,
+    error,
+  } = useQuery<FlatPageDetails, Error>(
     ['flatPageDetails', id, language],
     () => getFlatPageDetails(id, language, commonDictionaries),
     {
@@ -22,5 +30,25 @@ export const useFlatPage = (flatPageUrl: string | undefined) => {
       staleTime: ONE_DAY,
     },
   );
-  return { id, flatPage: data, refetch, isLoading, error, path };
+  const suggestions = getSuggestionsFromContent(flatPage?.content ?? '');
+
+  const activitySuggestionIds = suggestions.flatMap(suggestion =>
+    'ids' in suggestion ? suggestion.ids : [suggestion.type],
+  );
+
+  const { data: activitySuggestions = [] } = useQuery<ActivitySuggestion[] | [], Error>(
+    ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}-page-${id}`, language],
+    () => getActivitySuggestions(suggestions, language, commonDictionaries),
+    { enabled: suggestions.length > 0 && commonDictionaries !== undefined },
+  );
+
+  return {
+    id,
+    flatPage,
+    activitySuggestions,
+    refetch,
+    isLoading,
+    error,
+    path,
+  };
 };
