@@ -106,7 +106,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                   <FormattedMessage id="page.children.title" />
                 </h2>
                 <ul className="mb-6 desktop:mb-18 flex flex-wrap gap-5 desktop:grid desktop:grid-cols-3 desktop:gap-6">
-                  {flatPage.children?.map(child => (
+                  {flatPage.children.map(child => (
                     <li className="w-70 desktop:w-auto" key={child.id}>
                       <a
                         className="relative block rounded-xl overflow-hidden group after:absolute bg-gradient-to-t from-gradientOnImages after:inset-0 after:content-[''] after:bg-black/25"
