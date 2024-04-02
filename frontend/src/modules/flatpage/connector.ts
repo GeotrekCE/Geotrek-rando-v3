@@ -14,7 +14,7 @@ export const getFlatPageDetails = async (
   language: string,
   commonDictionaries?: CommonDictionaries,
 ): Promise<FlatPageDetails> => {
-  const { sources = {} } = commonDictionaries ?? {};
+  const { sources = {} } = commonDictionaries || {};
   let rawFlatPageDetails;
   let rawFlatPageChildrenDetails: RawFlatPageDetails[] = [];
   try {
