@@ -1,5 +1,26 @@
 # Changelog
 
+## 3.19.0 (2024-04-03)
+
+**🚀 New features**
+
+- New menu system and style (#1049, #1079) - Require Geotrek-admin version 2.104.0 minimum
+- Improve flat pages style and content with children pages and suggestions (#1075, #1078)
+
+**🔧 Maintenance**
+
+- Upgrade typescript to 5.3.3 (#1057)
+- Improve ESLint config (#1057)
+- Upgrade tailwind packages to 3.4.1 (#1069)
+- Improve breadcrumb semantics (#1074)
+- Make HomeSection component more generic (#1073)
+
+**🐛 Fixes**
+
+- Fix HD viewpoints layer selector (#943)
+- Fix flat pages not linked in menu (#607)
+- Fix menu external link target (#590)
+
 ## 3.18.0 (2024-02-08)
 
 **🚀 New features**
