@@ -13,7 +13,9 @@
   width: 10px;
   height: 10px;
   border: 2px solid transparent;
-  box-shadow: 0 0 0 2px, inset 0 0 0 10px;
+  box-shadow:
+    0 0 0 2px,
+    inset 0 0 0 10px;
   border-radius: 100px;
 }
 .gg-track::after,
@@ -43,7 +45,11 @@
 
 .elevation-div {
   height: 25%;
-  font: 12px/1.5 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font:
+    12px/1.5 'Helvetica Neue',
+    Arial,
+    Helvetica,
+    sans-serif;
 }
 
 .lightblue-theme.elevation-control.elevation .background {
@@ -85,4 +91,90 @@
 details > summary.list-none::-webkit-details-marker,
 details > summary.list-none::marker {
   display: none;
+}
+
+/* Flatpage WYSIWYG */
+.custo-page-WYSIWYG a:not(.custo-suggestions a, .button-link) {
+  @apply text-primary1 transition-colors hover:text-primary1-light focus:text-primary1-light;
+}
+
+.custo-page-WYSIWYG h1:not(.custo-suggestions h1) {
+  @apply text-H2 font-bold desktop:text-H1;
+}
+
+.custo-page-WYSIWYG h2:not(.custo-suggestions h2) {
+  @apply text-H3 font-bold desktop:text-H2;
+}
+
+.custo-page-WYSIWYG h3:not(.custo-suggestions h3),
+.custo-page-WYSIWYG h4:not(.custo-suggestions h4) {
+  @apply text-H4 font-bold desktop:text-H3;
+}
+
+.custo-page-WYSIWYG p:not(.custo-suggestions p) {
+  @apply mb-4 desktop:mb-6;
+}
+
+.custo-page-WYSIWYG h1:not(.custo-suggestions h1),
+.custo-page-WYSIWYG h2:not(.custo-suggestions h2),
+.custo-page-WYSIWYG h3:not(.custo-suggestions h3) {
+  @apply clear-both;
+}
+
+.custo-page-WYSIWYG h1:not(.custo-suggestions h1),
+.custo-page-WYSIWYG h2:not(.custo-suggestions h2),
+.custo-page-WYSIWYG h3:not(.custo-suggestions h3),
+.custo-page-WYSIWYG h4:not(.custo-suggestions h4),
+.custo-page-WYSIWYG h5:not(.custo-suggestions h5) {
+  @apply my-4 desktop:my-10;
+}
+
+.custo-page-WYSIWYG h6:not(.custo-suggestions h6) {
+  @apply my-4 desktop:my-8;
+}
+
+.custo-page-WYSIWYG img:not(.custo-suggestions img) {
+  @apply w-auto my-auto mx-1;
+}
+
+.custo-page-WYSIWYG iframe:not(.custo-suggestions iframe) {
+  @apply my-8 w-full h-auto desktop:my-12;
+}
+
+.custo-page-WYSIWYG b:not(.custo-suggestions b),
+.custo-page-WYSIWYG strong:not(.custo-suggestions strong) {
+  @apply font-bold;
+}
+
+.custo-page-WYSIWYG em:not(.custo-suggestions em) {
+  @apply text-P2 italic desktop:text-P1;
+}
+
+.custo-page-WYSIWYG ul:not(.custo-suggestions ul) {
+  @apply my-4;
+}
+
+.custo-page-WYSIWYG ul:not(.custo-suggestions ul) > li {
+  @apply pl-4 list-inside list-disc desktop:mb-2;
+}
+
+.custo-page-WYSIWYG .custo-suggestions {
+  @apply clear-both mt-6 desktop:mt-10 w-full;
+}
+
+.custo-page-WYSIWYG .information {
+  @apply clear-both py-4 px-10 rounded-lg bg-greySoft;
+}
+
+.custo-page-WYSIWYG .align-left {
+  @apply mb-8 desktop:float-start desktop:mr-12 desktop:mb-12;
+}
+
+.custo-page-WYSIWYG .align-right {
+  @apply mb-8 desktop:float-end desktop:ml-12 desktop:mb-12;
+}
+
+.custo-page-WYSIWYG .button-link {
+  @apply py-3 px-4 border border-solid border-primary1 text-primary1 bg-white font-semibold transition-colors rounded-lg;
+  @apply hover:bg-primary2 focus:bg-primary2;
 }
