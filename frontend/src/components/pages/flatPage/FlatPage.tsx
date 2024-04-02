@@ -1,7 +1,7 @@
 import Loader from 'components/Loader';
 import Image from 'next/image';
 import { colorPalette } from 'stylesheet';
-import parse from 'html-react-parser';
+import parse, { DOMNode, Element } from 'html-react-parser';
 import { Footer } from 'components/Footer';
 import { Separator } from 'components/Separator';
 import { PageHead } from 'components/PageHead';
@@ -9,19 +9,20 @@ import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { generateFlatPageUrl } from 'modules/header/utills';
 import { getGlobalConfig } from 'modules/utils/api.config';
+import { getSuggestionType } from 'modules/flatpage/utils';
 import { useFlatPage } from './useFlatPage';
 import { DetailsSection } from '../details/components/DetailsSection';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsSource } from '../details/components/DetailsSource';
-import { HtmlText } from '../details/utils';
 import Breadcrumb from '../details/components/DetailsPreview/Breadcrumb';
+import { HomeSection } from '../home/components/HomeSection';
 
 interface FlatPageUIProps {
   flatPageUrl: string;
 }
 
 export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
-  const { flatPage, isLoading, refetch } = useFlatPage(flatPageUrl);
+  const { flatPage, isLoading, refetch, activitySuggestions } = useFlatPage(flatPageUrl);
   const intl = useIntl();
 
   return (
@@ -80,7 +81,38 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
               />
             </div>
             {flatPage.content !== null && flatPage.content.length > 0 && (
-              <HtmlText className="mb-10">{parse(flatPage.content)}</HtmlText>
+              <div className="custo-page-WYSIWYG mb-10 text-lg desktop:text-xl">
+                {parse(flatPage.content, {
+                  replace: (domNode: DOMNode) => {
+                    if (
+                      domNode instanceof Element &&
+                      domNode.attribs &&
+                      'data-ids' in domNode.attribs &&
+                      'data-type' in domNode.attribs &&
+                      domNode.attribs.class.includes('suggestions')
+                    ) {
+                      const suggestion = activitySuggestions.find(
+                        item =>
+                          item.results.map(({ id }) => id).join(',') ===
+                            domNode.attribs['data-ids'] &&
+                          item.type === getSuggestionType(domNode.attribs['data-type']),
+                      );
+                      if (!suggestion || suggestion.results.length === 0) {
+                        return null;
+                      }
+                      return (
+                        <HomeSection
+                          title={suggestion.titleTranslationId}
+                          iconUrl={suggestion.iconUrl}
+                          results={suggestion.results}
+                          asColumn
+                        />
+                      );
+                    }
+                    return domNode;
+                  },
+                })}
+              </div>
             )}
             {flatPage.sources.length > 0 && (
               <>
