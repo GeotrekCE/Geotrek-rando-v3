@@ -24,13 +24,12 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ breadcrumb, className }) => {
           return (
             <li className="flex items-center gap-2" key={index}>
               <span aria-hidden>{separator}</span>
-              {link ? (
+              {link && (
                 <Link href={link} className="text-sm hover:underline focus:underline">
                   {label}
                 </Link>
-              ) : (
-                <span>{label}</span>
               )}
+              {!link && <span>{label}</span>}
             </li>
           );
         })}
