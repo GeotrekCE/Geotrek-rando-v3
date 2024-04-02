@@ -39,7 +39,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
         )
       ) : (
         <div id="flatPage_container">
-          {flatPage.attachment !== null && flatPage.attachment.length > 0 && (
+          {flatPage.attachment && flatPage.attachment.length > 0 && (
             <div
               className="relative coverDetailsMobile desktop:h-coverDetailsDesktop text-center"
               id="flatPage_cover"
@@ -61,7 +61,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
               </TextWithShadow>
             </div>
           )}
-          <div className="px-4 desktop:px-10vw py-4 desktop:py-10" id="flatPage_content">
+          <div className="px-4 mx-auto max-w-[900px]" id="flatPage_content">
             {(flatPage.attachment == null || flatPage.attachment.length === 0) && (
               <div className="flex justify-center py-6 desktop:py-12">
                 <h1 className="text-H3 desktop:text-H1 font-bold text-primary1 text-center">
@@ -69,17 +69,15 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                 </h1>
               </div>
             )}
-            <div className="ml-5">
-              <Breadcrumb
-                breadcrumb={[
-                  {
-                    label: intl.formatMessage({ id: 'header.home' }),
-                    link: '/',
-                  },
-                  { label: flatPage?.title },
-                ]}
-              />
-            </div>
+            <Breadcrumb
+              breadcrumb={[
+                {
+                  label: intl.formatMessage({ id: 'header.home' }),
+                  link: '/',
+                },
+                { label: flatPage?.title },
+              ]}
+            />
             {flatPage.content !== null && flatPage.content.length > 0 && (
               <div className="custo-page-WYSIWYG mb-10 text-lg desktop:text-xl">
                 {parse(flatPage.content, {
