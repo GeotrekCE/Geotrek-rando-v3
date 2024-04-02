@@ -56,7 +56,7 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
         setHoveredCardId(null);
       }}
       className={cn(
-        'flex flex-auto flex-col items-stretch border border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden cursor-pointer',
+        'custo-result-card flex flex-auto flex-col items-stretch border border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden',
         asColumn !== true && 'desktop:flex-row',
         className,
       )}

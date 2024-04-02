@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="flex flex-auto flex-col items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden cursor-pointer desktop:flex-row"
+        class="custo-result-card flex flex-auto flex-col items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden desktop:flex-row"
         id="result_card"
       >
         <div
@@ -219,7 +219,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="flex flex-auto flex-col items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden cursor-pointer desktop:flex-row"
+      class="custo-result-card flex flex-auto flex-col items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden desktop:flex-row"
       id="result_card"
     >
       <div
