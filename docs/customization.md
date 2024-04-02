@@ -42,7 +42,16 @@ In json files, you can just override the primary keys you need. You have to over
   - `accessibilityCodeNumber`: emergency number. Default set to `114`.
   - `displayObjectsRelatedToItinerantTreks`: An object containing many booleans to display/hide objects related to itinerant treks. The keys are `POIs`,`touristicContents`,`sensitiveAreas`,`infrastructures`,`signages`,`service` and are all set to `true` by default. Indeed multi-days treks can be long and have a lot a related objects which is very long to display and not really readable. That's why you can disable some related objects that will not be displayed on itinerant main detail page, but will be displayed on steps detail pages and any other treks detail pages.
 
-- `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
+- `header.json` to define :
+
+  - `logo` : Path to your logo image
+  - `menu`: an object with 3 keys :
+
+    - `supportedLanguages`: Array of available languages: `'CA','DE','FR','EN','ES',IT` are availables.
+    - `defaultLanguage`: Your target audience's main language.
+    - `primaryItemsNumber`: Number of items before dividing the main menu with a "See more" button. _Deprecated_ since 3.19.0: Use the MenuItems feature from Geotrek admin.
+
+(see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
 
 - `home.json` to define homepage settings.
 
@@ -285,6 +294,9 @@ You can override CSS in `customization/theme/style.css` file. To help overriding
 - `search_container` to isolate Search page
 - `details_container` to isolate detail pages
 - `flatPage_container` to isolate static flatpages
+
+In addition, some classes prefixed with `custo-*` are gradually being added to facilitate style overrides for components.
+A dedicated [ticket](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/1079) shows explanations and differents styling for the main menu (available since 3.19.0).
 
 ## Translations
 
