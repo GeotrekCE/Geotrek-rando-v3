@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import Loader from 'components/Loader';
 import Image from 'next/image';
 import { colorPalette } from 'stylesheet';
@@ -24,6 +25,42 @@ interface FlatPageUIProps {
 export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
   const { flatPage, isLoading, refetch, activitySuggestions } = useFlatPage(flatPageUrl);
   const intl = useIntl();
+
+  const parsedFlatPage = useMemo(() => { 
+    if (!flatPage?.content || !flatPage.content.length) { 
+      return null; 
+    } 
+    return parse(flatPage.content, {
+      replace: (domNode: DOMNode) => {
+        if (
+          domNode instanceof Element &&
+          domNode.attribs &&
+          'data-ids' in domNode.attribs &&
+          'data-type' in domNode.attribs &&
+          domNode.attribs.class.includes('suggestions')
+        ) {
+          const suggestion = activitySuggestions.find(
+            item =>
+              item.results.map(({ id }) => id).join(',') ===
+                domNode.attribs['data-ids'] &&
+              item.type === getSuggestionType(domNode.attribs['data-type']),
+          );
+          if (!suggestion || suggestion.results.length === 0) {
+            return null;
+          }
+          return (
+            <HomeSection
+              title={suggestion.titleTranslationId}
+              iconUrl={suggestion.iconUrl}
+              results={suggestion.results}
+              asColumn
+            />
+          );
+        }
+        return domNode;
+      },
+    }); 
+  }, [activitySuggestions, flatPage?.content] );
 
   return (
     <>
@@ -80,36 +117,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
             />
             {flatPage.content !== null && flatPage.content.length > 0 && (
               <div className="custo-page-WYSIWYG mb-10 text-lg desktop:text-xl">
-                {parse(flatPage.content, {
-                  replace: (domNode: DOMNode) => {
-                    if (
-                      domNode instanceof Element &&
-                      domNode.attribs &&
-                      'data-ids' in domNode.attribs &&
-                      'data-type' in domNode.attribs &&
-                      domNode.attribs.class.includes('suggestions')
-                    ) {
-                      const suggestion = activitySuggestions.find(
-                        item =>
-                          item.results.map(({ id }) => id).join(',') ===
-                            domNode.attribs['data-ids'] &&
-                          item.type === getSuggestionType(domNode.attribs['data-type']),
-                      );
-                      if (!suggestion || suggestion.results.length === 0) {
-                        return null;
-                      }
-                      return (
-                        <HomeSection
-                          title={suggestion.titleTranslationId}
-                          iconUrl={suggestion.iconUrl}
-                          results={suggestion.results}
-                          asColumn
-                        />
-                      );
-                    }
-                    return domNode;
-                  },
-                })}
+                {parsedFlatPage}
               </div>
             )}
             {flatPage.sources.length > 0 && (
