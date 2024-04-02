@@ -46,7 +46,7 @@ Object {
           </div>
         </div>
         <a
-          class="text-primary1 hover:text-primary3 transition-colors w-full"
+          class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors w-full"
           data-testid="Link-ResultCard-2"
           href="/details-2-Balade-au-pays-des-menhirs"
         >
@@ -259,7 +259,7 @@ Object {
         </div>
       </div>
       <a
-        class="text-primary1 hover:text-primary3 transition-colors w-full"
+        class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors w-full"
         data-testid="Link-ResultCard-2"
         href="/details-2-Balade-au-pays-des-menhirs"
       >
