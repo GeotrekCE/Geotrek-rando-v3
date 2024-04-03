@@ -138,11 +138,11 @@ details > summary.list-none::marker {
 }
 
 .custo-page-WYSIWYG img:not(.custo-suggestions img) {
-  @apply w-auto my-auto mx-1;
+  @apply mx-1;
 }
 
 .custo-page-WYSIWYG iframe:not(.custo-suggestions iframe) {
-  @apply my-8 w-full h-auto desktop:my-12;
+  @apply my-8 w-full h-auto desktop:my-12 aspect-video;
 }
 
 .custo-page-WYSIWYG b:not(.custo-suggestions b),
@@ -170,12 +170,39 @@ details > summary.list-none::marker {
   @apply clear-both py-4 px-10 rounded-lg bg-greySoft;
 }
 
+.custo-page-WYSIWYG .image {
+  @apply clear-both overflow-hidden desktop:mb-8;
+}
+
+.custo-page-WYSIWYG .image:not(.align-left):not(.align-right) img {
+  @apply w-full;
+}
+
 .custo-page-WYSIWYG .align-left {
-  @apply mb-8 desktop:float-start desktop:mr-12 desktop:mb-12;
+  @apply mb-8 desktop:float-start desktop:mr-10 desktop:mb-8 desktop:w-min;
 }
 
 .custo-page-WYSIWYG .align-right {
-  @apply mb-8 desktop:float-end desktop:ml-12 desktop:mb-12;
+  @apply mb-8 desktop:float-end desktop:ml-10 desktop:mb-8 desktop:w-min;
+}
+
+.custo-page-WYSIWYG .align-left img,
+.custo-page-WYSIWYG .align-right img {
+  @apply mt-2;
+  max-width: revert-layer;
+}
+
+@media (max-width: 1024px) {
+  .custo-page-WYSIWYG .align-left img,
+  .custo-page-WYSIWYG .align-right img {
+    @apply w-auto max-w-full;
+  }
+}
+
+.custo-page-WYSIWYG .align-left figcaption,
+.custo-page-WYSIWYG .align-right figcaption,
+.custo-page-WYSIWYG .image figcaption {
+  @apply text-sm mt-1 text-center;
 }
 
 .custo-page-WYSIWYG .button-link {
