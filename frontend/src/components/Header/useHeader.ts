@@ -15,7 +15,7 @@ export const useHeader = (menuNode: MutableRefObject<HTMLDivElement | null | und
   const config = getHeaderConfig();
   const language = useRouter().locale ?? getDefaultLanguage();
 
-  const { data: currentAPIVersion } = useQuery(['APIVersion'], () => getAPIVersion());
+  const { data: currentAPIVersion } = useQuery(['APIVersion'], getAPIVersion);
 
   const isUpperOrEqualCurrentAPIVersion_2_104 = isUpperOrEqualCurrentAPIVersion(
     '2.104',
