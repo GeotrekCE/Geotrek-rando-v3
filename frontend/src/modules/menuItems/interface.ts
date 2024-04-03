@@ -20,7 +20,7 @@ interface RawMenuNullItem {
 
 export type RawMenuItem = (RawMenuLinkItem | RawMenuPageItem | RawMenuNullItem) & {
   id: number;
-  label: string;
+  title: string;
   page: number;
   open_in_new_tab: boolean;
   pictogram: null | string;
