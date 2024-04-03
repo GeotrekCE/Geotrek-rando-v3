@@ -202,6 +202,8 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
 
   - `zoomAvailableOffline` allows you to define the zoom modes allowed in offline mode. This allows you to control the amount of disk space required when caching. Default `[13,14,15]`
 
+  Warning: It is important that the `searchMapZoom` value is included in the zoom value range of the basemap (`minZoom` and `maxZoom`), otherwise it may generate an error "Sorry, this is not working properly".
+
 - `resultCard.json` to customize the elements to be displayed on featured cards that link to a details page (only trek cards for now).
 
   - You can display/hide the `location` and `themes` by defining a `display` key.
