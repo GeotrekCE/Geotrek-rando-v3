@@ -5,9 +5,9 @@ export const isLowerOrEqualCurrentAPIVersion = (
   version: string,
   currentAPIVersion?: APIVersion,
 ) => {
-  if (currentAPIVersion === undefined) {
+  try {
+    return semver.lte(version, currentAPIVersion?.version as string)
+  } catch {
     return null;
   }
-  const apiVersion = semver.clean(currentAPIVersion.version);
-  return apiVersion === version || semver.lt(version, apiVersion as string);
 };
