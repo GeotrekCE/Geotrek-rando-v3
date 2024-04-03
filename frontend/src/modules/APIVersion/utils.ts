@@ -1,7 +1,7 @@
 import semver from 'semver';
 import { APIVersion } from './interface';
 
-export const isUpperOrEqualCurrentAPIVersion = (
+export const isLowerOrEqualCurrentAPIVersion = (
   version: string,
   currentAPIVersion?: APIVersion,
 ) => {
@@ -9,5 +9,5 @@ export const isUpperOrEqualCurrentAPIVersion = (
     return null;
   }
   const apiVersion = semver.clean(currentAPIVersion.version);
-  return apiVersion === version || semver.gt(version, apiVersion as string);
+  return apiVersion === version || semver.lt(version, apiVersion as string);
 };

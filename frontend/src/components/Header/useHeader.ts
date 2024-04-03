@@ -9,7 +9,7 @@ import { ONE_DAY } from 'services/constants/staleTime';
 import { geMenuItems } from 'modules/menuItems/connector';
 import useSize from 'hooks/useSize';
 import { getAPIVersion } from 'modules/APIVersion/connector';
-import { isUpperOrEqualCurrentAPIVersion } from 'modules/APIVersion/utils';
+import { isLowerOrEqualCurrentAPIVersion } from 'modules/APIVersion/utils';
 
 export const useHeader = (menuNode: MutableRefObject<HTMLDivElement | null | undefined>) => {
   const config = getHeaderConfig();
@@ -17,7 +17,7 @@ export const useHeader = (menuNode: MutableRefObject<HTMLDivElement | null | und
 
   const { data: currentAPIVersion } = useQuery(['APIVersion'], getAPIVersion);
 
-  const isUpperOrEqualCurrentAPIVersion_2_104 = isUpperOrEqualCurrentAPIVersion(
+  const is2_104LowerOrEqualCurrentAPIVersion = isLowerOrEqualCurrentAPIVersion(
     '2.104.0',
     currentAPIVersion,
   );
@@ -25,9 +25,9 @@ export const useHeader = (menuNode: MutableRefObject<HTMLDivElement | null | und
   // Call MenuItems or flatpage as fallback for GTA API Version below 2.104
   const { data: menuItems } = useQuery<MenuItem[], Error>(
     ['header', language],
-    () => (isUpperOrEqualCurrentAPIVersion_2_104 ? geMenuItems(language) : getFlatPages(language)),
+    () => (is2_104LowerOrEqualCurrentAPIVersion ? geMenuItems(language) : getFlatPages(language)),
     {
-      enabled: isUpperOrEqualCurrentAPIVersion_2_104 !== null,
+      enabled: is2_104LowerOrEqualCurrentAPIVersion !== null,
       staleTime: ONE_DAY,
     },
   );
