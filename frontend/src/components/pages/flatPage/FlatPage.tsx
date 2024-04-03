@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useId, useMemo } from 'react';
 import Loader from 'components/Loader';
 import Image from 'next/image';
 import { colorPalette } from 'stylesheet';
@@ -25,6 +25,7 @@ interface FlatPageUIProps {
 export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
   const { flatPage, isLoading, refetch, activitySuggestions } = useFlatPage(flatPageUrl);
   const intl = useIntl();
+  const idCaption = useId();
 
   const parsedFlatPage = useMemo(() => { 
     if (!flatPage?.content || !flatPage.content.length) { 
@@ -59,8 +60,11 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
         }
         return domNode;
       },
-    }); 
-  }, [activitySuggestions, flatPage?.content] );
+  const legendCoverImage = [flatPage?.attachment?.legend, flatPage?.attachment?.author]
+    .filter(Boolean)
+    .join(' - ');
+
+  const ImageCoverTag = legendCoverImage ? 'figure' : 'div';
 
   return (
     <>
@@ -76,18 +80,34 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
         )
       ) : (
         <div id="flatPage_container">
-          {flatPage.attachment && flatPage.attachment.length > 0 && (
-            <div
-              className="relative coverDetailsMobile desktop:h-coverDetailsDesktop text-center"
-              id="flatPage_cover"
-            >
-              <Image
-                src={flatPage.attachment}
-                className="size-full object-top object-cover"
-                alt=""
-                width={1500}
-                height={550}
-              />
+          {flatPage.attachment && (
+            <div className="relative text-center" id="flatPage_cover">
+              <ImageCoverTag
+                className={cn(
+                  'relative',
+                  legendCoverImage &&
+                    'bg-gradient-to-t from-blackSemiTransparent via-to-transparent to-transparent',
+                )}
+                {...(legendCoverImage && {
+                  ['aria-labelledby']: idCaption,
+                })}
+              >
+                <Image
+                  src={flatPage.attachment.url}
+                  className="custo-flatpage-cover size-full object-center object-cover"
+                  alt=""
+                  width={1500}
+                  height={550}
+                />
+                {legendCoverImage && (
+                  <figcaption
+                    id={idCaption}
+                    className="absolute bottom-2 right-2 text-white text-Mobile-C3 desktop:text-P2 z-10"
+                  >
+                    {legendCoverImage}
+                  </figcaption>
+                )}
+              </ImageCoverTag>
               <TextWithShadow
                 className="text-H3 desktop:text-H1
                 font-bold text-white
@@ -99,7 +119,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
             </div>
           )}
           <div className="px-4 mx-auto max-w-[900px]" id="flatPage_content">
-            {(flatPage.attachment == null || flatPage.attachment.length === 0) && (
+            {flatPage.attachment == null && (
               <div className="flex justify-center py-6 desktop:py-12">
                 <h1 className="text-H3 desktop:text-H1 font-bold text-primary1 text-center">
                   {flatPage.title}
@@ -151,7 +171,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                         href={generateFlatPageUrl(child.id, child.title)}
                       >
                         <Image
-                          src={child.attachment ?? getGlobalConfig().fallbackImageUri}
+                          src={child.attachment?.url ?? getGlobalConfig().fallbackImageUri}
                           className="size-full object-cover object-center transition-transform group-hover:scale-105"
                           width={400}
                           height={400}
