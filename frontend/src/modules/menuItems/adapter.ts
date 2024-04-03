@@ -10,7 +10,7 @@ const getLinkFromRawMenuItem = (rawMenuItems: RawMenuItem) => {
 
 const adaptMenuItem = (rawMenuItems: RawMenuItem): MenuItem => ({
   url: getLinkFromRawMenuItem(rawMenuItems),
-  title: rawMenuItems.label,
+  title: rawMenuItems.title,
   id: rawMenuItems.id,
   openInAnotherTab: rawMenuItems.open_in_new_tab,
   children: rawMenuItems.children?.map(adaptMenuItem),
