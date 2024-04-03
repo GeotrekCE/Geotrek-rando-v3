@@ -93,6 +93,10 @@ details > summary.list-none::marker {
   display: none;
 }
 
+.custo-flatpage-cover {
+  max-height: calc(100vh - theme('spacing.desktopHeader'));
+}
+
 /* Flatpage WYSIWYG */
 .custo-page-WYSIWYG a:not(.custo-suggestions a, .button-link) {
   @apply text-primary1 transition-colors hover:text-primary1-light focus:text-primary1-light;
