@@ -28,10 +28,12 @@ export const getFlatPageDetails = async (
   try {
     const currentAPIVersion = await getAPIVersion();
     const isUpperOrEqualCurrentAPIVersion_2_104 = isUpperOrEqualCurrentAPIVersion(
-      '2.104',
+      '2.104.0',
       currentAPIVersion,
     );
-    rawFlatPageChildrenDetails = isUpperOrEqualCurrentAPIVersion_2_104 ? (await fetchChildrenFlatPageDetails({ language }, id)).results : [];
+    rawFlatPageChildrenDetails = isUpperOrEqualCurrentAPIVersion_2_104
+      ? (await fetchChildrenFlatPageDetails({ language }, id)).results
+      : [];
   } catch (e) {
     /* empty */
   }

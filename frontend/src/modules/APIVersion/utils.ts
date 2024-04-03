@@ -1,3 +1,4 @@
+import semver from 'semver';
 import { APIVersion } from './interface';
 
 export const isUpperOrEqualCurrentAPIVersion = (
@@ -7,10 +8,6 @@ export const isUpperOrEqualCurrentAPIVersion = (
   if (currentAPIVersion === undefined) {
     return null;
   }
-  return (
-    version.localeCompare(currentAPIVersion?.version.replace(/\D*$/, ''), undefined, {
-      numeric: true,
-      sensitivity: 'base',
-    }) <= 0
-  );
+  const apiVersion = semver.clean(currentAPIVersion.version);
+  return apiVersion === version || semver.gt(version, apiVersion as string);
 };
