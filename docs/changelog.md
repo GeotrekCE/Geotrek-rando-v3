@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.19.1 (2024-04-03)
+
+**🐛 Fixes**
+
+- Fix the display of MenuItem label (#1085)
+
 ## 3.19.0 (2024-04-03)
 
 **🚀 New features**
