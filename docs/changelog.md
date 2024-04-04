@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.19.2 (2024-04-04)
+
+**🐛 Fixes**
+
+- Fix conversion to large submenu items if a child contains an image (#1087)
+- Fix some flatpage styles (#1089)
+
 ## 3.19.1 (2024-04-03)
 
 **🐛 Fixes**
