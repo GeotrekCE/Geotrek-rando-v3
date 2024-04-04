@@ -46,8 +46,8 @@ export const Menu: React.FC<MenuProps> = ({
   const { contentClassName, itemClassName, expandedClassName, groupClassName } = useMemo(() => {
     if (
       menuItems.some(
-        ({ children }) =>
-          children && (children.length > 5 || children.some(({ thumbnail }) => thumbnail !== null)),
+        ({ children = [] }) =>
+          children.length > 5 || children.some(({ thumbnail }) => thumbnail !== null),
       )
     ) {
       return {
