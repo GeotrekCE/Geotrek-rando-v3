@@ -141,6 +141,19 @@ details > summary.list-none::marker {
   @apply mx-1;
 }
 
+.custo-page-WYSIWYG blockquote:not(.custo-suggestions blockquote) {
+  @apply flex gap-2 text-greyDarkColored/75 italic;
+}
+
+.custo-page-WYSIWYG blockquote:not(.custo-suggestions blockquote) p:last-child {
+  @apply mb-0;
+}
+
+.custo-page-WYSIWYG blockquote:not(.custo-suggestions blockquote)::before {
+  content: "“";
+  @apply text-5xl;
+}
+
 .custo-page-WYSIWYG iframe:not(.custo-suggestions iframe) {
   @apply my-8 w-full h-auto desktop:my-12 aspect-video;
 }
