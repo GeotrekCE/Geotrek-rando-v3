@@ -166,9 +166,9 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                 <h2 className="my-6 desktop:my-10 text-Mobile-H1 desktop:text-H2 font-bold">
                   <FormattedMessage id="page.children.title" />
                 </h2>
-                <ul className="mb-6 desktop:mb-18 flex flex-wrap gap-5 desktop:grid desktop:grid-cols-3 desktop:gap-6">
+                <ul className="mb-6 desktop:mb-18 gap-5 grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] desktop:grid-cols-3 desktop:gap-6">
                   {flatPage.children.map(child => (
-                    <li className="w-70 desktop:w-auto" key={child.id}>
+                    <li key={child.id}>
                       <a
                         className="relative block aspect-square rounded-xl overflow-hidden group after:absolute bg-gradient-to-t from-blackSemiTransparent via-to-transparent to-transparent after:inset-0 after:content-[''] after:bg-black/25"
                         href={generateFlatPageUrl(child.id, child.title)}
