@@ -139,7 +139,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
               ]}
             />
             {flatPage.content !== null && flatPage.content.length > 0 && (
-              <div className="custo-page-WYSIWYG mb-10 text-lg desktop:text-xl">
+              <div className="custo-page-WYSIWYG mb-10 text-lg desktop:text-xl after:content-[''] after:clear-both after:table">
                 {parsedFlatPage}
               </div>
             )}
