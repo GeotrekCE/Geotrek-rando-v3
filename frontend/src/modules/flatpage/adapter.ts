@@ -37,7 +37,11 @@ export const adaptFlatPageDetails = ({
   sources: rawFlatPageDetails.source.map(sourceId => sourceDictionnary[sourceId]).filter(Boolean),
   attachment:
     rawFlatPageDetails.attachments.length > 0 && rawFlatPageDetails.attachments[0].type === 'image'
-      ? rawFlatPageDetails.attachments[0].url
+      ? {
+          author: rawFlatPageDetails.attachments[0].author,
+          legend: rawFlatPageDetails.attachments[0].legend,
+          url: rawFlatPageDetails.attachments[0].url,
+        }
       : null,
   children: rawFlatPageChildrenDetails.map(child => ({
     id: child.id,
@@ -46,7 +50,11 @@ export const adaptFlatPageDetails = ({
     sources: child.source.map(sourceId => sourceDictionnary[sourceId]).filter(Boolean),
     attachment:
       child.attachments.length > 0 && child.attachments[0].type === 'image'
-        ? child.attachments[0].thumbnail
+        ? {
+            author: child.attachments[0].author,
+            legend: child.attachments[0].legend,
+            url: child.attachments[0].url,
+          }
         : null,
   })),
 });

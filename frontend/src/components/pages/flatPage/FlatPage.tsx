@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useId, useMemo } from 'react';
 import Loader from 'components/Loader';
 import Image from 'next/image';
 import { colorPalette } from 'stylesheet';
@@ -11,6 +11,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { generateFlatPageUrl } from 'modules/header/utills';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { getSuggestionType } from 'modules/flatpage/utils';
+import { cn } from 'services/utils/cn';
 import { useFlatPage } from './useFlatPage';
 import { DetailsSection } from '../details/components/DetailsSection';
 import { ErrorFallback } from '../search/components/ErrorFallback';
@@ -25,11 +26,12 @@ interface FlatPageUIProps {
 export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
   const { flatPage, isLoading, refetch, activitySuggestions } = useFlatPage(flatPageUrl);
   const intl = useIntl();
+  const idCaption = useId();
 
-  const parsedFlatPage = useMemo(() => { 
-    if (!flatPage?.content || !flatPage.content.length) { 
-      return null; 
-    } 
+  const parsedFlatPage = useMemo(() => {
+    if (!flatPage?.content || !flatPage.content.length) {
+      return null;
+    }
     return parse(flatPage.content, {
       replace: (domNode: DOMNode) => {
         if (
@@ -41,8 +43,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
         ) {
           const suggestion = activitySuggestions.find(
             item =>
-              item.results.map(({ id }) => id).join(',') ===
-                domNode.attribs['data-ids'] &&
+              item.results.map(({ id }) => id).join(',') === domNode.attribs['data-ids'] &&
               item.type === getSuggestionType(domNode.attribs['data-type']),
           );
           if (!suggestion || suggestion.results.length === 0) {
@@ -59,8 +60,14 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
         }
         return domNode;
       },
-    }); 
-  }, [activitySuggestions, flatPage?.content] );
+    });
+  }, [activitySuggestions, flatPage?.content]);
+
+  const legendCoverImage = [flatPage?.attachment?.legend, flatPage?.attachment?.author]
+    .filter(Boolean)
+    .join(' - ');
+
+  const ImageCoverTag = legendCoverImage ? 'figure' : 'div';
 
   return (
     <>
@@ -76,18 +83,34 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
         )
       ) : (
         <div id="flatPage_container">
-          {flatPage.attachment && flatPage.attachment.length > 0 && (
-            <div
-              className="relative coverDetailsMobile desktop:h-coverDetailsDesktop text-center"
-              id="flatPage_cover"
-            >
-              <Image
-                src={flatPage.attachment}
-                className="size-full object-top object-cover"
-                alt=""
-                width={1500}
-                height={550}
-              />
+          {flatPage.attachment && (
+            <div className="relative text-center" id="flatPage_cover">
+              <ImageCoverTag
+                className={cn(
+                  'relative',
+                  legendCoverImage &&
+                    'bg-gradient-to-t from-blackSemiTransparent via-to-transparent to-transparent',
+                )}
+                {...(legendCoverImage && {
+                  ['aria-labelledby']: idCaption,
+                })}
+              >
+                <Image
+                  src={flatPage.attachment.url}
+                  className="custo-flatpage-cover size-full object-center object-cover"
+                  alt=""
+                  width={1500}
+                  height={550}
+                />
+                {legendCoverImage && (
+                  <figcaption
+                    id={idCaption}
+                    className="absolute bottom-2 right-2 text-white text-Mobile-C3 desktop:text-P2 z-10"
+                  >
+                    {legendCoverImage}
+                  </figcaption>
+                )}
+              </ImageCoverTag>
               <TextWithShadow
                 className="text-H3 desktop:text-H1
                 font-bold text-white
@@ -98,8 +121,8 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
               </TextWithShadow>
             </div>
           )}
-          <div className="px-4 mx-auto max-w-[900px]" id="flatPage_content">
-            {(flatPage.attachment == null || flatPage.attachment.length === 0) && (
+          <div className="px-4 mx-auto max-w-[940px]" id="flatPage_content">
+            {flatPage.attachment == null && (
               <div className="flex justify-center py-6 desktop:py-12">
                 <h1 className="text-H3 desktop:text-H1 font-bold text-primary1 text-center">
                   {flatPage.title}
@@ -139,7 +162,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
             )}
             {flatPage.children && flatPage.children.length > 0 && (
               <>
-                <Separator />
+                {flatPage.sources.length === 0 && <Separator />}
                 <h2 className="my-6 desktop:my-10 text-Mobile-H1 desktop:text-H2 font-bold">
                   <FormattedMessage id="page.children.title" />
                 </h2>
@@ -147,11 +170,11 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                   {flatPage.children.map(child => (
                     <li className="w-70 desktop:w-auto" key={child.id}>
                       <a
-                        className="relative block rounded-xl overflow-hidden group after:absolute bg-gradient-to-t from-gradientOnImages after:inset-0 after:content-[''] after:bg-black/25"
+                        className="relative block aspect-square rounded-xl overflow-hidden group after:absolute bg-gradient-to-t from-blackSemiTransparent via-to-transparent to-transparent after:inset-0 after:content-[''] after:bg-black/25"
                         href={generateFlatPageUrl(child.id, child.title)}
                       >
                         <Image
-                          src={child.attachment ?? getGlobalConfig().fallbackImageUri}
+                          src={child.attachment?.url ?? getGlobalConfig().fallbackImageUri}
                           className="size-full object-cover object-center transition-transform group-hover:scale-105"
                           width={400}
                           height={400}
