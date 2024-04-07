@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { routes } from 'services/routes';
-import Image from 'next/image';
 
 import { Link } from 'components/Link';
 import { Display } from 'hooks/useHideOnScrollDown';
@@ -43,14 +42,11 @@ export const Header: React.FC = () => {
         <div className="h-11 desktop:h-desktopHeader flex justify-between  items-center sticky z-header px-3 shadow-sm shrink-0 transition-all duration-300 delay-100">
           <Link href={routes.HOME} className="flex items-center">
             <div className="shrink-0" id="header_logo">
-              <Image
+              <img
                 id="header_logoImg"
                 className="h-9 w-auto desktop:h-18 mr-3"
                 alt=""
                 src={config.logo}
-                height={36}
-                width={36}
-                priority
               />
             </div>
             <p
