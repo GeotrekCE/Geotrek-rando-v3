@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.19.3 (2024-04-08)
+
+**🐛 Fixes**
+
+- Improve flatPage styling (#1092)
+- Revert Use Image component for the main logo - Regression since 3.19.0 (#1093)
+
+**📝 Documentation**
+
+- Documenting the settings for `map.json` (#1088)
+
 ## 3.19.2 (2024-04-04)
 
 **🐛 Fixes**

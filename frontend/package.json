@@ -1,6 +1,6 @@
 {
   "name": "geotrek-rando-frontend",
-  "version": "3.19.2",
+  "version": "3.19.3",
   "private": true,
   "scripts": {
     "debug": "NODE_OPTIONS='--inspect' next ./src",
