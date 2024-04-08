@@ -418,7 +418,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                     id: `DETAILS-POI-${poi.id}`,
                   }))}
                   bbox={outdoorCourseContent.bbox}
-                  trekChildrenGeometry={[]}
+                  trekChildrenGeometries={[]}
                   touristicContentPoints={outdoorCourseContent.touristicContents
                     .filter(touristicContent => touristicContent.geometry !== null)
                     .map(touristicContent => ({

@@ -514,11 +514,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               trekId={details.id}
                               startPoint={{
                                 type: 'Point',
-                                coordinates:
-                                  'trekDeparture' in details
-                                    ? details.trekDeparture
-                                    : // @ts-expect-error next-line
-                                      details.geometry?.coordinates,
+                                coordinates: details.trekDeparture,
                               }}
                             />
                           </DetailsSection>
@@ -653,12 +649,12 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                   pointsReference={details.pointsReference}
                   bbox={details.bbox}
                   trekFamily={trekFamily}
-                  trekChildrenGeometry={details.children.reduce<TrekChildGeometry[]>(
+                  trekChildrenGeometries={details.children.reduce<TrekChildGeometry[]>(
                     (children, currentChild) => {
-                      if (currentChild.geometry) {
+                      if (currentChild.childGeometry) {
                         children.push({
-                          ...currentChild.geometry,
-                          id: `TREK-${currentChild.geometry.id}`,
+                          ...currentChild.childGeometry,
+                          id: `TREK-${currentChild.childGeometry.id}`,
                         });
                       }
                       return children;

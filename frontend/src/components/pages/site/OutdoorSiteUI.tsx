@@ -581,7 +581,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     id: `DETAILS-POI-${poi.id}`,
                   }))}
                   bbox={outdoorSiteContent.bbox}
-                  trekChildrenGeometry={[]}
+                  trekChildrenGeometries={[]}
                   touristicContentPoints={outdoorSiteContent.touristicContents
                     .filter(touristicContent => touristicContent.geometry !== null)
                     .map(touristicContent => ({
