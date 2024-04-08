@@ -11,16 +11,10 @@ import { DetailsAdvice } from 'components/pages/details/components/DetailsAdvice
 import { LoaderOverlay, Poi, PoiSide, Wrapper } from './3D.style';
 import Interface from './Interface';
 
-declare global {
-  interface Window {
-    Rando3D?: any;
-  }
-}
-
 interface ThreeDProps {
   demURL: string;
   profileURL: string;
-  onRequestClose: () => void | undefined;
+  onRequestClose: () => void;
   title: string;
   trekId: number;
 }
@@ -114,7 +108,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
       scene.current = null;
     }
 
-    const app3D = new window.Rando3D();
+    const app3D = window.Rando3D();
     scene.current = app3D.init(customSettings, canvasRef.current, 'examine');
     scene.current?.init(() => setLoading(false));
   }, [
