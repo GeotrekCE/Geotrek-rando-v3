@@ -6,7 +6,7 @@ const useHasMounted = (boolean = true): boolean => {
 
   useEffect(() => {
     setDomLoaded(boolean);
-  }, []);
+  }, [boolean]);
 
   return domLoaded;
 };
