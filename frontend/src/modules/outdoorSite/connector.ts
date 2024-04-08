@@ -67,26 +67,24 @@ export const getOutdoorSiteDetails = async (
     } = commonDictionaries ?? {};
 
     const rawOutdoorSiteDetails = await fetchOutdoorSiteDetails({ language }, id);
-    const [pois, children, courses, outdoorPracticeDictionnary, touristicContents] =
-      await Promise.all([
-        getPois(Number(id), language, 'sites'),
-        getOutdoorSitesResult(
-          language,
-          rawOutdoorSiteDetails.properties.children,
-          commonDictionaries,
-        ),
-        getOutdoorCoursesResult(
-          language,
-          rawOutdoorSiteDetails.properties.courses,
-          commonDictionaries,
-        ),
-        getOutdoorPractices(language),
-        getTouristicContentsNearTarget(Number(id), language, 'near_outdoorsite'),
-      ]);
+    const [pois, children, courses, outdoorPractice, touristicContents] = await Promise.all([
+      getPois(Number(id), language, 'sites'),
+      getOutdoorSitesResult(
+        language,
+        rawOutdoorSiteDetails.properties.children,
+        commonDictionaries,
+      ),
+      getOutdoorCoursesResult(
+        language,
+        rawOutdoorSiteDetails.properties.courses,
+        commonDictionaries,
+      ),
+      getOutdoorPractices(language),
+      getTouristicContentsNearTarget(Number(id), language, 'near_outdoorsite'),
+    ]);
 
     const [
       access,
-      outdoorPractice,
       outdoorRating,
       outdoorRatingScale,
       outdoorSiteType,
@@ -106,7 +104,6 @@ export const getOutdoorSiteDetails = async (
           labels,
         },
       ),
-      getOutdoorPractices(language),
       getOutdoorRating(language),
       getOutdoorRatingScale(language),
       getOutdoorSiteType(language),
@@ -129,7 +126,6 @@ export const getOutdoorSiteDetails = async (
       informationDesksDictionnary: informationDesk,
       children,
       courses,
-      outdoorPracticeDictionnary,
       touristicContents,
       access,
       outdoorPractice,
