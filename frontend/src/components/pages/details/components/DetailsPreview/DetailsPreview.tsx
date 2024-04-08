@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Altitude } from 'components/Icons/Altitude';
 import { Calendar } from 'components/Icons/Calendar';
 import { Clock } from 'components/Icons/Clock';
@@ -110,10 +111,12 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         </div>
       )}
       {informations.logoUri !== undefined && informations.logoUri.length > 0 && (
-        <img
+        <Image
           id="details_logo"
           className="hidden desktop:block absolute top-0 right-0 size-30 object-contain object-center"
           src={informations.logoUri}
+          width={120}
+          height={120}
           alt=""
         />
       )}
