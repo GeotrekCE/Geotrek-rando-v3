@@ -23,7 +23,7 @@ export const useNavigationLoader = (): {
       Router.events.off('routeChangeError', handleComplete);
       Router.events.off('routeChangeComplete', handleComplete);
     };
-  }, [Router]);
+  }, []);
 
   return {
     isNavigationLoading,
