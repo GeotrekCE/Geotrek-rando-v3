@@ -129,8 +129,8 @@ export interface Bbox {
   corner2: Coordinate2D;
 }
 
-export interface TrekResultWithGeometry extends TrekResult {
-  geometry?: TrekChildGeometry;
+export interface TrekResultWithGeometryChild extends TrekResult {
+  childGeometry?: TrekChildGeometry;
 }
 export interface RawTrekChildGeometry {
   geometry: RawLineStringGeometry3D | RawMultiLineStringGeometry3D | RawPointGeometry3D;
@@ -177,7 +177,7 @@ export interface Details extends DetailsHtml {
   labels: Label[];
   pointsReference: Coordinate2D[] | null;
   bbox: Bbox;
-  children: TrekResultWithGeometry[];
+  children: TrekResultWithGeometryChild[];
   sensitiveAreas: SensitiveArea[];
   departure: string;
   arrival: string;
