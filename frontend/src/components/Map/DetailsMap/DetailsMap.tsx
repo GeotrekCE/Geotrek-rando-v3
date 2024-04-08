@@ -81,7 +81,7 @@ export type PropsType = {
   shouldUsePopups?: boolean;
   bbox: { corner1: Coordinate2D; corner2: Coordinate2D };
   trekFamily?: TrekFamily | null;
-  trekChildrenGeometry?: TrekChildGeometry[];
+  trekChildrenGeometries?: TrekChildGeometry[];
   sensitiveAreas?: SensitiveAreaGeometry[];
   trekId: number;
   advisedParking?: string;
@@ -221,7 +221,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
             <TileLayerManager />
             <ControlSection
               trekChildrenVisibility={
-                props.trekChildrenGeometry && props.trekChildrenGeometry.length > 0
+                props.trekChildrenGeometries && props.trekChildrenGeometries.length > 0
                   ? trekChildrenMobileVisibility
                   : null
               }
@@ -290,7 +290,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
               poiPoints={props.poiPoints}
               touristicContentPoints={props.touristicContentPoints}
               pointsReference={props.pointsReference}
-              trekChildrenGeometry={props.trekChildrenGeometry}
+              trekChildrenGeometries={props.trekChildrenGeometries}
               sensitiveAreasGeometry={props.sensitiveAreas}
               signage={props.signage}
               service={props.service}

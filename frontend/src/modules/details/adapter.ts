@@ -170,7 +170,9 @@ export const adaptResults = ({
       bbox: { corner1: { x: bbox[0], y: bbox[1] }, corner2: { x: bbox[2], y: bbox[3] } },
       children: children.map(child => ({
         ...child,
-        geometry: childrenGeometry.find(childGeometry => childGeometry.id === `${child.id}`),
+        childrenGeometries: childrenGeometry.find(
+          childGeometry => childGeometry.id === `${child.id}`,
+        ),
       })),
       sensitiveAreas,
       webLinks: rawDetailsProperties.web_links ?? null,

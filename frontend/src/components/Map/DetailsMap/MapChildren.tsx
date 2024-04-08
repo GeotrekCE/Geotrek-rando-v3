@@ -36,7 +36,7 @@ type Props = {
   poiPoints?: PointWithIcon[];
   touristicContentPoints?: GeometryListProps[];
   pointsReference?: Coordinate2D[] | null;
-  trekChildrenGeometry?: TrekChildGeometry[];
+  trekChildrenGeometries?: TrekChildGeometry[];
   sensitiveAreasGeometry?: SensitiveAreaGeometry[];
   trekChildrenMobileVisibility: Visibility;
   referencePointsMobileVisibility: Visibility;
@@ -68,7 +68,10 @@ export const MapChildren: React.FC<Props> = props => {
       {(visibleSection === 'itinerancySteps' ||
         visibleSection === 'courses' ||
         props.trekChildrenMobileVisibility === 'DISPLAYED') && (
-        <TrekChildren trekChildrenGeometry={props.trekChildrenGeometry} parentId={props.parentId} />
+        <TrekChildren
+          trekChildrenGeometries={props.trekChildrenGeometries}
+          parentId={props.parentId}
+        />
       )}
 
       {(visibleSection === 'description' ||

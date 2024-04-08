@@ -392,7 +392,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                   }}
                   poiPoints={[]}
                   bbox={touristicEventContent.bbox}
-                  trekChildrenGeometry={[]}
+                  trekChildrenGeometries={[]}
                   touristicContentPoints={touristicEventContent.touristicContents
                     .filter(touristicContent => touristicContent.geometry !== null)
                     .map(touristicContent => ({
