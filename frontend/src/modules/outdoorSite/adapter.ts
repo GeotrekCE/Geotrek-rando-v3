@@ -91,7 +91,6 @@ export const adaptOutdoorSiteDetails = ({
   sourcesDictionnary,
   informationDesksDictionnary,
   courses,
-  outdoorPracticeDictionnary,
   access,
   outdoorPractice,
   cityDictionnary,
@@ -113,7 +112,6 @@ export const adaptOutdoorSiteDetails = ({
   sourcesDictionnary: SourceDictionnary;
   informationDesksDictionnary: InformationDeskDictionnary;
   courses: OutdoorCourseResult[];
-  outdoorPracticeDictionnary: OutdoorPracticeChoices;
   access: TrekResult[];
   outdoorPractice: OutdoorPracticeChoices;
   cityDictionnary: CityDictionnary;
@@ -131,7 +129,7 @@ export const adaptOutdoorSiteDetails = ({
       { ...rawOutdoorSiteDetails.properties, geometry: rawOutdoorSiteDetails.geometry },
     ],
     themeDictionnary,
-    outdoorPracticeDictionnary,
+    outdoorPracticeDictionnary: outdoorPractice,
     cityDictionnary,
   })[0],
   accessibility: rawOutdoorSiteDetails.properties.accessibility ?? null,
