@@ -1,5 +1,5 @@
 import { Activity } from 'modules/activities/interface';
-import { Attachment, RawAttachment } from 'modules/interface';
+import { Attachment, GeometryObject, RawAttachment } from 'modules/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { TouristicEventResult } from 'modules/touristicEvent/interface';
 import { Network } from 'modules/networks/interface';
@@ -43,6 +43,7 @@ export interface ResultCard {
   tags?: string[];
   place: string | null;
   informations?: InformationCard[];
+  geometry?: GeometryObject;
 }
 
 export interface SearchParams {

@@ -26,8 +26,10 @@ import { FormattedMessage } from 'react-intl';
 import { InformationDesk } from 'modules/informationDesk/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
-import { cn } from 'services/utils/cn';
 import { ViewPoint } from 'modules/viewPoint/interface';
+import { OutdoorSiteResult } from 'modules/outdoorSite/interface';
+import { OutdoorCourseResult } from 'modules/outdoorCourse/interface';
+import { cn } from 'services/utils/cn';
 import { BackToMapButton } from 'components/BackToMapButton';
 import { BackButton } from '../components/BackButton';
 
@@ -61,9 +63,8 @@ export interface GeometryListProps {
 
 export type PropsType = {
   mapId?: string;
-  access?: any;
-  experiences?: any;
-  courses?: any;
+  experiences?: OutdoorSiteResult[];
+  courses?: OutdoorCourseResult[];
   poiPoints?: PointWithIcon[];
   touristicContentPoints?: GeometryListProps[];
   trekGeometry?: Coordinate2D[];
@@ -245,12 +246,10 @@ export const DetailsMap: React.FC<PropsType> = props => {
                   : null
               }
               coursesVisibility={
-                Boolean(props.courses) && props.courses.length > 0 ? coursesVisibility : null
+                props.courses && props.courses.length > 0 ? coursesVisibility : null
               }
               experiencesVisibility={
-                Boolean(props.experiences) && props.experiences.length > 0
-                  ? experiencesVisibility
-                  : null
+                props.experiences && props.experiences.length > 0 ? experiencesVisibility : null
               }
               signageVisibility={props.signage ? signageVisibility : null}
               serviceVisibility={

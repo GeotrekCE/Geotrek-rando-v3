@@ -2,7 +2,8 @@ import { VisibleSectionContext } from 'components/pages/details/VisibleSectionCo
 import { TrekChildGeometry } from 'modules/details/interface';
 import { InformationDesk } from 'modules/informationDesk/interface';
 import { Coordinate2D } from 'modules/interface';
-import { OutdoorSite } from 'modules/outdoorSite/interface';
+import { OutdoorSiteResult } from 'modules/outdoorSite/interface';
+import { OutdoorCourseResult } from 'modules/outdoorCourse/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
@@ -31,8 +32,8 @@ export interface PointWithIcon {
 }
 
 type Props = {
-  courses: OutdoorSite[];
-  experiences: OutdoorSite[];
+  courses?: OutdoorCourseResult[];
+  experiences?: OutdoorSiteResult[];
   poiPoints?: PointWithIcon[];
   touristicContentPoints?: GeometryListProps[];
   pointsReference?: Coordinate2D[] | null;
@@ -82,7 +83,7 @@ export const MapChildren: React.FC<Props> = props => {
       {(visibleSection === 'subsites' || props.experiencesVisibility === 'DISPLAYED') && (
         <GeometryList
           contents={
-            props.experiences.map(e => ({
+            props.experiences?.map(e => ({
               ...e,
               pictogramUri: e.category?.pictogramUri,
             })) as GeometryListProps[]
@@ -94,7 +95,7 @@ export const MapChildren: React.FC<Props> = props => {
       {(visibleSection === 'courses' || props.coursesVisibility === 'DISPLAYED') && (
         <GeometryList
           contents={
-            props.courses.map(e => ({
+            props.courses?.map(e => ({
               ...e,
               pictogramUri: null,
             })) as GeometryListProps[]
