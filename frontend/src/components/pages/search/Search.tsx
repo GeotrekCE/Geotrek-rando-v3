@@ -88,7 +88,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
 
   useEffect(() => {
     if (mapResults) setPoints(mapResults);
-  }, [mapResults]);
+  }, [mapResults, setPoints]);
 
   const intl = useIntl();
 
