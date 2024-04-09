@@ -10,6 +10,7 @@ import { generateResultDetailsUrl } from 'components/pages/search/utils';
 
 import Link from 'components/Link';
 import { PopupResult } from 'modules/trekResult/interface';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { usePopupResult } from '../../hooks/usePopupResult';
 
 interface Props {
@@ -53,7 +54,7 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId, conte
             className="h-40 w-auto desktop:h-30 object-cover"
             width={300}
             height={130}
-            src={trekPopupResult.imgUrl}
+            src={trekPopupResult.imgUrl || getGlobalConfig().fallbackImageUri}
             alt=""
           />
           <div className="p-4">
