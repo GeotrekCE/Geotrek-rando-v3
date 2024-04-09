@@ -21,6 +21,6 @@ export const HoverablePolyline: React.FC<Props> = props => {
 
   return useMemo(
     () => <Polyline key={props.id} positions={props.positions} color={color} weight={weight} />,
-    [props.id, props.positions, weight],
+    [color, props.id, props.positions, weight],
   );
 };
