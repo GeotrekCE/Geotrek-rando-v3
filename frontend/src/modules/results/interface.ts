@@ -21,7 +21,7 @@ export interface InformationCardLabelValues {
 
 export interface InformationCardArray {
   label: 'networks';
-  value: Network[];
+  value: Network[] | [];
 }
 
 interface InformationCardOthers {

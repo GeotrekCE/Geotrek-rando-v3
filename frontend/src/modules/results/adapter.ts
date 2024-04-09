@@ -95,7 +95,7 @@ export const adaptTrekResultList = ({
       },
       {
         label: 'networks',
-        value: rawResult.networks.map(networkId => networks[networkId]),
+        value: rawResult.networks.map(networkId => networks[networkId]).filter(Boolean),
       } as InformationCardArray,
       // we disable this button because the booking behaviour is not implemented yet
       // {
