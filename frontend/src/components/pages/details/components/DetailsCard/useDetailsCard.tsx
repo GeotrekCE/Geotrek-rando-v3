@@ -21,25 +21,34 @@ export const useDetailsCard = (hasMedia = false) => {
             if (detailsCardRef.current === null || hasMedia) {
               return prevState;
             }
-            const descriptionNode =
-              detailsCardRef.current.querySelector<HTMLElement>('.line-clamp-2');
+            const descriptionNode = detailsCardRef.current.querySelector<HTMLElement>(
+              '.custo-result-card-description',
+            );
 
-            if (
-              prevState === 'TRUNCATE' &&
-              (!descriptionNode || descriptionNode.offsetHeight <= descriptionNode.scrollHeight)
-            ) {
-              return 'NONE';
-            } else if (
-              prevState === 'FULL' &&
-              DETAILS_CARD_DEFAULT_HEIGHT >= detailsCardRef.current.getBoundingClientRect().height
-            ) {
-              return 'NONE';
-            } else if (
-              prevState !== 'TRUNCATE' &&
-              DETAILS_CARD_DEFAULT_HEIGHT < detailsCardRef.current.getBoundingClientRect().height
-            ) {
-              return 'TRUNCATE';
+            if (!descriptionNode) {
+              return prevState;
             }
+
+            if (prevState === 'TRUNCATE') {
+              if (descriptionNode.offsetHeight <= descriptionNode.scrollHeight) {
+                return 'NONE';
+              }
+            } else if (prevState === 'FULL') {
+              if (
+                DETAILS_CARD_DEFAULT_HEIGHT >= detailsCardRef.current.getBoundingClientRect().height
+              ) {
+                return 'NONE';
+              } else {
+                return 'TRUNCATE';
+              }
+            } else if (prevState === 'NONE') {
+              if (
+                DETAILS_CARD_DEFAULT_HEIGHT < detailsCardRef.current.getBoundingClientRect().height
+              ) {
+                return 'TRUNCATE';
+              }
+            }
+
             return prevState;
           });
         },

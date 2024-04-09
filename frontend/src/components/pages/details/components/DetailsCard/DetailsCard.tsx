@@ -50,11 +50,13 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   const { truncateState, toggleTruncateState, detailsCardRef } = useDetailsCard(hasMedia);
   const descriptionStyled =
     truncateState === 'TRUNCATE' ? (
-      <HtmlText className="line-clamp-2 desktop:line-clamp-5 text-greyDarkColored">
+      <HtmlText className="custo-result-card-description line-clamp-2 desktop:line-clamp-5 text-greyDarkColored">
         <div>{parse(description ?? '')}</div>
       </HtmlText>
     ) : (
-      <HtmlText className="text-greyDarkColored">{parse(description ?? '')}</HtmlText>
+      <HtmlText className="custo-result-card-description text-greyDarkColored">
+        {parse(description ?? '')}
+      </HtmlText>
     );
 
   const { setHoveredCardId } = useListAndMapContext();
@@ -63,7 +65,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   return (
     <li
       className={cn(
-        `relative border border-solid border-greySoft rounded-card
+        `custo-result-card relative border border-solid border-greySoft rounded-card
   flex-none desktop:w-auto mx-1 desktop:mb-6
   hover:border-blackSemiTransparent transition-all duration-500`,
         className,

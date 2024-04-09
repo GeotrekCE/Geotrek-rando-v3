@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <li
-        class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        class="custo-result-card relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
           class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-auto"
@@ -96,7 +96,7 @@ Object {
               Église St Louis
             </h3>
             <div
-              class="sc-kDvujY iXXQYE line-clamp-2 desktop:line-clamp-5 text-greyDarkColored"
+              class="sc-kDvujY iXXQYE custo-result-card-description line-clamp-2 desktop:line-clamp-5 text-greyDarkColored"
             >
               <div>
                 <span>
@@ -137,7 +137,7 @@ Object {
     </div>
     <div>
       <li
-        class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        class="custo-result-card relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
           class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-auto"
@@ -348,7 +348,7 @@ Object {
               Église St Louis
             </h3>
             <div
-              class="sc-kDvujY iXXQYE line-clamp-2 desktop:line-clamp-5 text-greyDarkColored"
+              class="sc-kDvujY iXXQYE custo-result-card-description line-clamp-2 desktop:line-clamp-5 text-greyDarkColored"
             >
               <div>
                 <span>
@@ -390,7 +390,7 @@ Object {
   </body>,
   "container": <div>
     <li
-      class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+      class="custo-result-card relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
     >
       <div
         class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-auto"
@@ -480,7 +480,7 @@ Object {
             Église St Louis
           </h3>
           <div
-            class="sc-kDvujY iXXQYE line-clamp-2 desktop:line-clamp-5 text-greyDarkColored"
+            class="sc-kDvujY iXXQYE custo-result-card-description line-clamp-2 desktop:line-clamp-5 text-greyDarkColored"
           >
             <div>
               <span>
@@ -579,7 +579,7 @@ Object {
   "baseElement": <body>
     <div>
       <li
-        class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        class="custo-result-card relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
           class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-auto"
@@ -669,7 +669,7 @@ Object {
               Église St Louis
             </h3>
             <div
-              class="sc-kDvujY iXXQYE line-clamp-2 desktop:line-clamp-5 text-greyDarkColored"
+              class="sc-kDvujY iXXQYE custo-result-card-description line-clamp-2 desktop:line-clamp-5 text-greyDarkColored"
             >
               <div>
                 <span>
@@ -710,7 +710,7 @@ Object {
     </div>
     <div>
       <li
-        class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        class="custo-result-card relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
           class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-auto"
@@ -921,7 +921,7 @@ Object {
               Église St Louis
             </h3>
             <div
-              class="sc-kDvujY iXXQYE line-clamp-2 desktop:line-clamp-5 text-greyDarkColored"
+              class="sc-kDvujY iXXQYE custo-result-card-description line-clamp-2 desktop:line-clamp-5 text-greyDarkColored"
             >
               <div>
                 <span>
@@ -963,7 +963,7 @@ Object {
   </body>,
   "container": <div>
     <li
-      class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+      class="custo-result-card relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
     >
       <div
         class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-auto"
@@ -1174,7 +1174,7 @@ Object {
             Église St Louis
           </h3>
           <div
-            class="sc-kDvujY iXXQYE line-clamp-2 desktop:line-clamp-5 text-greyDarkColored"
+            class="sc-kDvujY iXXQYE custo-result-card-description line-clamp-2 desktop:line-clamp-5 text-greyDarkColored"
           >
             <div>
               <span>
