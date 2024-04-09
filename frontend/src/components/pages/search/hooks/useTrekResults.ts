@@ -27,14 +27,14 @@ const computeUrl = (
   textFilter: string | null,
   dateFilter: DateFilter | null,
 ) => {
-  const urlParams =
-    textFilter !== null
-      ? [...formatFiltersUrl(filtersState), `text=${textFilter}`]
-      : formatFiltersUrl(filtersState);
+  const urlParams = formatFiltersUrl(filtersState);
 
-  dateFilter && dateFilter.beginDate !== '' && urlParams.push(`beginDate=${dateFilter?.beginDate}`);
-  dateFilter && dateFilter.endDate !== '' && urlParams.push(`endDate=${dateFilter?.endDate}`);
-  const formattedUrl = `search?${urlParams.join('&')}`;
+  textFilter && urlParams.push(`text=${textFilter}`);
+  dateFilter?.beginDate && urlParams.push(`beginDate=${dateFilter.beginDate}`);
+  dateFilter?.endDate && urlParams.push(`endDate=${dateFilter.endDate}`);
+
+  const params = urlParams.join('&');
+  const formattedUrl = `search${params && '?'}${params}`;
 
   return formattedUrl;
 };
@@ -134,7 +134,7 @@ export const useTrekResults = (
       void router.push(url, undefined, { shallow: true });
       void refetch();
     }
-  }, [filtersState, textFilterState, dateFilter, refetch]);
+  }, [filtersState, textFilterState, dateFilter, refetch, router]);
 
   return {
     searchResults: formatInfiniteQuery(data),
