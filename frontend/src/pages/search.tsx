@@ -17,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const queryClient = new QueryClient();
   const { initialFiltersStateWithSelectedOptions } = await getInitialFilters(locale, context.query);
   const parsedInitialFiltersState = parseFilters(initialFiltersStateWithSelectedOptions);
-  const initialTextFilter = context.query.text?.toString() ?? null;
+  const initialTextFilter = context.query.text?.toString() ?? '';
   const page = Number(context.query.page ?? 1);
 
   try {
