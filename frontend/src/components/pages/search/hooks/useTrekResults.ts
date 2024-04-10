@@ -34,7 +34,7 @@ const computeUrl = (
   dateFilter?.endDate && urlParams.push(`endDate=${dateFilter.endDate}`);
 
   const params = urlParams.join('&');
-  const formattedUrl = `search${params && '?'}${params}`;
+  const formattedUrl = params ? `search?${params}` : 'search';
 
   return formattedUrl;
 };
