@@ -49,7 +49,7 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
         <AccordionItemPanel className={cn(openState === 'OPENED' && 'pb-2')}>
           {items
             ?.sort((a, b) => (a.thumbnail ? 1 : -1) - (b.thumbnail ? 1 : -1))
-            .map((item, index) => <MenuItem key={index} {...item} />)}
+            .map((item, index) => <MobileMenuItem key={index} {...item} />)}
           {languages?.map(language => (
             <Link
               className="block text-Mobile-C2 py-2 text-greyDarkColored"
@@ -69,7 +69,14 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
   );
 };
 
-const MenuItem = ({ url, title, openInAnotherTab, thumbnail, children, pictogram }: MenuItem) => {
+const MobileMenuItem = ({
+  url,
+  title,
+  openInAnotherTab,
+  thumbnail,
+  children,
+  pictogram,
+}: MenuItem) => {
   const intl = useIntl();
   const hasThumbnail = thumbnail !== null;
   const href = url || undefined;
@@ -119,7 +126,7 @@ const MenuItem = ({ url, title, openInAnotherTab, thumbnail, children, pictogram
       </Item>
       {children
         ?.sort((a, b) => (a.thumbnail ? 1 : -1) - (b.thumbnail ? 1 : -1))
-        .map((child, childIndex) => <MenuItem key={childIndex} {...child} />)}
+        .map((child, childIndex) => <MobileMenuItem key={childIndex} {...child} />)}
     </div>
   );
 };
