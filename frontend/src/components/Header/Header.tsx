@@ -33,7 +33,7 @@ export const Header: React.FC = () => {
       )}
       <header
         className={cn(
-          'sticky z-header bg-primary1 text-primary3',
+          'sticky z-header bg-primary1',
           headerState === 'DISPLAYED' ? 'top-0' : '-top-desktopHeader',
         )}
         role="banner"

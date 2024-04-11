@@ -41,7 +41,7 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
     <Accordion allowZeroExpanded onChange={updatePanelState}>
       <AccordionItem className={cn('accordion__item', classNameBorder)}>
         <AccordionItemHeading>
-          <AccordionItemButton className={cn(classNameTitle, 'cursor-pointer')}>
+          <AccordionItemButton className={cn(classNameTitle, 'hover:text-primary3 cursor-pointer')}>
             <span className="verticalMenu_section grow">{title}</span>
             {openState === 'OPENED' ? closeIcon : openIcon}
           </AccordionItemButton>

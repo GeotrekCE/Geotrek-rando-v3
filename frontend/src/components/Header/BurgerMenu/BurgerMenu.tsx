@@ -80,7 +80,7 @@ export const BurgerMenu: React.FC<Props> = ({
             return (
               <NextLink
                 key={index}
-                className="flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
+                className="flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3"
                 href={item.url}
               >
                 {item.title}
@@ -101,13 +101,13 @@ export const BurgerMenu: React.FC<Props> = ({
         />
       )}
       <NextLink
-        className="flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
+        className="flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3"
         href={routes.SEARCH}
       >
         {intl.formatMessage({ id: 'header.goToSearch' })}
       </NextLink>
       <NextLink
-        className="flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
+        className="flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3"
         href={routes.OFFLINE}
         prefetch={false}
         rel="nofollow"
