@@ -78,7 +78,7 @@ Object {
                       aria-controls="accordion__panel-:r2:"
                       aria-disabled="false"
                       aria-expanded="false"
-                      class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
+                      class="flex items-center pt-4 pb-4 font-bold hover:text-primary3 cursor-pointer"
                       data-accordion-component="AccordionItemButton"
                       id="accordion__heading-:r2:"
                       role="button"
@@ -242,7 +242,7 @@ Object {
                 Favoris
               </a>
               <a
-                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3"
                 href="/search"
                 style="display: block;"
                 tabindex="-1"
@@ -250,7 +250,7 @@ Object {
                 Recherche
               </a>
               <a
-                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3"
                 href="/offline"
                 rel="nofollow"
                 style="display: block;"
@@ -368,7 +368,7 @@ Object {
                     aria-controls="accordion__panel-:r2:"
                     aria-disabled="false"
                     aria-expanded="false"
-                    class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
+                    class="flex items-center pt-4 pb-4 font-bold hover:text-primary3 cursor-pointer"
                     data-accordion-component="AccordionItemButton"
                     id="accordion__heading-:r2:"
                     role="button"
@@ -532,7 +532,7 @@ Object {
               Favoris
             </a>
             <a
-              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3"
               href="/search"
               style="display: block;"
               tabindex="-1"
@@ -540,7 +540,7 @@ Object {
               Recherche
             </a>
             <a
-              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3"
               href="/offline"
               rel="nofollow"
               style="display: block;"
@@ -715,7 +715,7 @@ Object {
                       aria-controls="accordion__panel-:r0:"
                       aria-disabled="false"
                       aria-expanded="false"
-                      class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
+                      class="flex items-center pt-4 pb-4 font-bold hover:text-primary3 cursor-pointer"
                       data-accordion-component="AccordionItemButton"
                       id="accordion__heading-:r0:"
                       role="button"
@@ -896,7 +896,7 @@ Object {
                       aria-controls="accordion__panel-:r1:"
                       aria-disabled="false"
                       aria-expanded="false"
-                      class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
+                      class="flex items-center pt-4 pb-4 font-bold hover:text-primary3 cursor-pointer"
                       data-accordion-component="AccordionItemButton"
                       id="accordion__heading-:r1:"
                       role="button"
@@ -947,7 +947,7 @@ Object {
                 </div>
               </div>
               <a
-                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3"
                 href="/search"
                 style="display: block;"
                 tabindex="-1"
@@ -955,7 +955,7 @@ Object {
                 Recherche
               </a>
               <a
-                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
+                class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3"
                 href="/offline"
                 rel="nofollow"
                 style="display: block;"
@@ -1073,7 +1073,7 @@ Object {
                     aria-controls="accordion__panel-:r0:"
                     aria-disabled="false"
                     aria-expanded="false"
-                    class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
+                    class="flex items-center pt-4 pb-4 font-bold hover:text-primary3 cursor-pointer"
                     data-accordion-component="AccordionItemButton"
                     id="accordion__heading-:r0:"
                     role="button"
@@ -1254,7 +1254,7 @@ Object {
                     aria-controls="accordion__panel-:r1:"
                     aria-disabled="false"
                     aria-expanded="false"
-                    class="flex items-center pt-4 pb-4 font-bold cursor-pointer"
+                    class="flex items-center pt-4 pb-4 font-bold hover:text-primary3 cursor-pointer"
                     data-accordion-component="AccordionItemButton"
                     id="accordion__heading-:r1:"
                     role="button"
@@ -1305,7 +1305,7 @@ Object {
               </div>
             </div>
             <a
-              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3"
               href="/search"
               style="display: block;"
               tabindex="-1"
@@ -1313,7 +1313,7 @@ Object {
               Recherche
             </a>
             <a
-              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft"
+              class="bm-item flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3"
               href="/offline"
               rel="nofollow"
               style="display: block;"
