@@ -29,7 +29,7 @@ export const getAttachment = (rawAttachments: RawAttachment[]): Attachment => {
   return attachment;
 };
 
-export const getAttachmentsOrThumbnails = (
+export const getLargeImagesOrThumbnailsFromAttachments = (
   rawAttachments: RawAttachment[],
   isThumbnail: boolean,
 ) => {

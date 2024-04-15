@@ -2,7 +2,7 @@ import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
-import { getAttachmentsOrThumbnails } from 'modules/utils/adapter';
+import { getLargeImagesOrThumbnailsFromAttachments } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CityDictionnary } from '../city/interface';
 import { OutdoorRatingChoices } from '../outdoorRating/interface';
@@ -31,9 +31,9 @@ export const adaptOutdoorCourses = ({
     return {
       id: rawOutdoorCourse.id,
       name: rawOutdoorCourse.name,
-      attachments: getAttachmentsOrThumbnails(rawOutdoorCourse.attachments, false),
+      attachments: getLargeImagesOrThumbnailsFromAttachments(rawOutdoorCourse.attachments, false),
       geometry: adaptGeometry(rawOutdoorCourse.geometry),
-      thumbnails: getAttachmentsOrThumbnails(rawOutdoorCourse.attachments, true),
+      thumbnails: getLargeImagesOrThumbnailsFromAttachments(rawOutdoorCourse.attachments, true),
       duration:
         typeof rawOutdoorCourse.duration === 'number'
           ? formatHours(rawOutdoorCourse.duration)
@@ -64,7 +64,7 @@ export const adaptOutdoorCoursesResult = ({
     return {
       id: rawOutdoorCourse.id,
       name: rawOutdoorCourse.name,
-      attachments: getAttachmentsOrThumbnails(rawOutdoorCourse.attachments, true),
+      attachments: getLargeImagesOrThumbnailsFromAttachments(rawOutdoorCourse.attachments, true),
       geometry: adaptGeometry(rawOutdoorCourse.geometry),
       type: 'OUTDOOR_COURSE',
       informations: [

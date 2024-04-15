@@ -3,7 +3,7 @@ import { ActivityChoices } from 'modules/activities/interface';
 import { CityDictionnary } from 'modules/city/interface';
 import { DifficultyChoices } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
-import { getAttachmentsOrThumbnails } from 'modules/utils/adapter';
+import { getLargeImagesOrThumbnailsFromAttachments } from 'modules/utils/adapter';
 import { formatHours } from 'modules/utils/time';
 import { NetworkDictionnary } from 'modules/networks/interface';
 import { InformationCardArray, RawTrekResult, TrekResult } from './interface';
@@ -63,7 +63,7 @@ export const adaptTrekResultList = ({
     name: rawResult.name,
     tags:
       displayThemes === true ? rawResult.themes.map(themeId => themes[themeId]?.label || '') : [],
-    attachments: getAttachmentsOrThumbnails(rawResult.attachments, true),
+    attachments: getLargeImagesOrThumbnailsFromAttachments(rawResult.attachments, true),
     category: activities[rawResult.practice] ?? null,
     informations: [
       {
