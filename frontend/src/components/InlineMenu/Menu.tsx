@@ -24,7 +24,7 @@ export const Menu: React.FC<MenuProps> = ({
 }) => {
   const intl = useIntl();
   const items = useMemo(() => {
-    if (menuItems.some(({ children }) => children)) {
+    if (menuItems.some(({ children }) => children?.length)) {
       return menuItems;
     }
     // If there are no children, we use "primaryItemsNumber" to split menu with "See More" button
@@ -112,7 +112,7 @@ export const Menu: React.FC<MenuProps> = ({
                 {menuItem.children
                   .filter(item => item.thumbnail === null)
                   .map(item => {
-                    return <MenuItem key={item.id} item={item} className={itemClassName} />;
+                    return <DesktopMenuItem key={item.id} item={item} className={itemClassName} />;
                   })}
               </div>
               <div className={cn('custo-menu-group--with-imgs', groupClassName)}>
@@ -120,7 +120,7 @@ export const Menu: React.FC<MenuProps> = ({
                   .filter(item => item.thumbnail !== null)
                   .map(item => {
                     return (
-                      <MenuItem
+                      <DesktopMenuItem
                         key={item.id}
                         item={item}
                         className={
@@ -135,7 +135,7 @@ export const Menu: React.FC<MenuProps> = ({
                           src={item.thumbnail as string}
                           alt=""
                         />
-                      </MenuItem>
+                      </DesktopMenuItem>
                     );
                   })}
               </div>
@@ -177,7 +177,7 @@ export const Menu: React.FC<MenuProps> = ({
   );
 };
 
-const MenuItem = ({
+const DesktopMenuItem = ({
   item,
   className,
   children,
