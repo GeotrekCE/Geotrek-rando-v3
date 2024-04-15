@@ -43,7 +43,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
         ) {
           const suggestion = activitySuggestions.find(
             item =>
-              item.results.map(({ id }) => id).join(',') === domNode.attribs['data-ids'] &&
+              item.results.some(({ id }) => domNode.attribs['data-ids'].split(',').includes(id)) &&
               item.type === getSuggestionType(domNode.attribs['data-type']),
           );
           if (!suggestion || suggestion.results.length === 0) {
