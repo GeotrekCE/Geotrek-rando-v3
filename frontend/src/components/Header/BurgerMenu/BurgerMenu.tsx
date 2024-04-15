@@ -31,6 +31,8 @@ export const BurgerMenu: React.FC<Props> = ({
   );
 
   const intl = useIntl();
+  const menuItemLinkClassNames =
+    'flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3';
 
   const menuSection = useMemo(() => {
     if (!menuItems) {
@@ -78,11 +80,7 @@ export const BurgerMenu: React.FC<Props> = ({
         if (!item.children?.length) {
           if (item.url) {
             return (
-              <NextLink
-                key={index}
-                className="flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3"
-                href={item.url}
-              >
+              <NextLink key={index} className={menuItemLinkClassNames} href={item.url}>
                 {item.title}
               </NextLink>
             );
@@ -100,14 +98,11 @@ export const BurgerMenu: React.FC<Props> = ({
           languages={config.supportedLanguages}
         />
       )}
-      <NextLink
-        className="flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3"
-        href={routes.SEARCH}
-      >
+      <NextLink className={menuItemLinkClassNames} href={routes.SEARCH}>
         {intl.formatMessage({ id: 'header.goToSearch' })}
       </NextLink>
       <NextLink
-        className="flex items-center pt-4 pb-4 font-bold outline-none border-b border-solid border-greySoft hover:text-primary3 focus:text-primary3"
+        className={menuItemLinkClassNames}
         href={routes.OFFLINE}
         prefetch={false}
         rel="nofollow"
