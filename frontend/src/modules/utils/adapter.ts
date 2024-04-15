@@ -29,7 +29,10 @@ export const getAttachment = (rawAttachments: RawAttachment[]): Attachment => {
   return attachment;
 };
 
-const getAttachmentsOrThumbnails = (rawAttachments: RawAttachment[], isThumbnail: boolean) => {
+export const getAttachmentsOrThumbnails = (
+  rawAttachments: RawAttachment[],
+  isThumbnail: boolean,
+) => {
   const attachments = rawAttachments
     .filter(
       rawAttachment =>
@@ -44,12 +47,6 @@ const getAttachmentsOrThumbnails = (rawAttachments: RawAttachment[], isThumbnail
     }));
   return attachments.length > 0 ? attachments : [fallbackAttachment];
 };
-
-export const getAttachments = (rawAttachments: RawAttachment[]): Attachment[] =>
-  getAttachmentsOrThumbnails(rawAttachments, false);
-
-export const getThumbnails = (rawAttachments: RawAttachment[]): Attachment[] =>
-  getAttachmentsOrThumbnails(rawAttachments, true);
 
 export function concatResults<T>(rawResults: APIResponseForList<T>[]): T[] {
   return rawResults.reduce<T[]>(

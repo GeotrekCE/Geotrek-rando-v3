@@ -2,7 +2,7 @@ import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
-import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
+import { getAttachmentsOrThumbnails, getThumbnail } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { ViewPoint } from 'modules/viewPoint/interface';
 import { CityDictionnary } from '../city/interface';
@@ -43,7 +43,7 @@ export const adaptOutdoorSites = ({
     return {
       id: rawOutdoorSite.id,
       name: rawOutdoorSite.name,
-      attachments: getAttachments(rawOutdoorSite.attachments),
+      attachments: getAttachmentsOrThumbnails(rawOutdoorSite.attachments, false),
       geometry: adaptGeometry(rawOutdoorSite.geometry),
       themes: rawOutdoorSite?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       category: outdoorPracticeDictionnary[rawOutdoorSite.practice] ?? null,
@@ -71,7 +71,7 @@ export const adaptoutdoorSitesResult = ({
       id: rawOutdoorSite.id,
       type: 'OUTDOOR_SITE',
       name: rawOutdoorSite.name,
-      attachments: getThumbnails(rawOutdoorSite.attachments),
+      attachments: getAttachmentsOrThumbnails(rawOutdoorSite.attachments, true),
       geometry: adaptGeometry(rawOutdoorSite.geometry),
       tags: rawOutdoorSite?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       informations: [],

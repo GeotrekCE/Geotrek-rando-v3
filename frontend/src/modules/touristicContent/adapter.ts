@@ -6,7 +6,7 @@ import {
   TouristicContentCategoryDictionnary,
 } from 'modules/touristicContentCategory/interface';
 import { PopupResult } from 'modules/trekResult/interface';
-import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
+import { getAttachmentsOrThumbnails, getThumbnail } from 'modules/utils/adapter';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptGeometry } from 'modules/utils/geometry';
 import {
@@ -34,8 +34,8 @@ export const adaptTouristicContent = ({
     type: 'TOURISTIC_CONTENT',
     name: rawTouristicObject.name,
     descriptionTeaser: rawTouristicObject.description_teaser,
-    thumbnails: getThumbnails(rawTouristicObject.attachments),
-    attachments: getAttachments(rawTouristicObject.attachments),
+    thumbnails: getAttachmentsOrThumbnails(rawTouristicObject.attachments, true),
+    attachments: getAttachmentsOrThumbnails(rawTouristicObject.attachments, false),
     category: touristicContentCategories[rawTouristicObject.category],
     geometry: rawTouristicObject.geometry ? adaptGeometry(rawTouristicObject.geometry) : null,
     // An "approuved" touristic content means that the content is labeled by the park. A logo (configurable by the park) appears on the page.
@@ -57,7 +57,7 @@ export const adaptTouristicContentResult = ({
     id: rawTouristicObject.id,
     type: 'TOURISTIC_CONTENT',
     name: rawTouristicObject.name,
-    attachments: getThumbnails(rawTouristicObject.attachments),
+    attachments: getAttachmentsOrThumbnails(rawTouristicObject.attachments, true),
     category: touristicContentCategories[rawTouristicObject.category] ?? null,
     place:
       Array.isArray(rawTouristicObject.cities) && rawTouristicObject.cities.length > 0
@@ -106,10 +106,10 @@ export const adaptTouristicContentDetails = ({
   id: rawTCD.id,
   name: rawTCD.properties.name,
   descriptionTeaser: rawTCD.properties.description_teaser,
-  thumbnails: getThumbnails(rawTCD.properties.attachments),
+  thumbnails: getAttachmentsOrThumbnails(rawTCD.properties.attachments, true),
   category: touristicContentCategory,
   geometry: rawTCD.geometry ? adaptGeometry(rawTCD.geometry) : null,
-  attachments: getAttachments(rawTCD.properties.attachments),
+  attachments: getAttachmentsOrThumbnails(rawTCD.properties.attachments, false),
   description: rawTCD.properties.description,
   sources: Array.isArray(rawTCD.properties.source)
     ? rawTCD.properties.source
