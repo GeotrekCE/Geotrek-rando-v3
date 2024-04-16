@@ -54,7 +54,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
       <PageHead
         title={touristicContent?.name}
         description={touristicContent ? touristicContent.descriptionTeaser : ''}
-        sharingImageUrl={touristicContent?.attachments?.[0]?.url}
+        sharingImageUrl={touristicContent?.images?.[0]?.url}
       />
       {touristicContent === undefined ? (
         <>
@@ -88,15 +88,15 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                       id="touristicContent_cover"
                       className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                     >
-                      {touristicContent.attachments.length > 1 && hasNavigator ? (
+                      {touristicContent.images.length > 1 && hasNavigator ? (
                         <DetailsCoverCarousel
-                          attachments={touristicContent.attachments}
+                          images={touristicContent.images}
                           classNameImage={isFullscreen ? 'object-contain' : ''}
                           onClickImage={toggleFullscreen}
                         />
                       ) : (
                         <ImageWithLegend
-                          attachment={touristicContent.attachments[0]}
+                          image={touristicContent.images[0]}
                           classNameImage={isFullscreen ? 'object-contain' : ''}
                           onClick={toggleFullscreen}
                         />

@@ -4,8 +4,8 @@ import { CourseType } from 'modules/filters/courseType/interface';
 import { Network } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
 import {
-  Attachment,
   Coordinate2D,
+  ImageFromAttachment,
   RawAttachment,
   RawCoordinate2D,
   RawLineStringGeometry3D,
@@ -158,7 +158,7 @@ export interface Details extends DetailsHtml {
   practice: Activity | null;
   title: string;
   place?: string;
-  imgs: Attachment[];
+  imgs: ImageFromAttachment[];
   tags: string[];
   informations: DetailsInformation;
   pois: Poi[];

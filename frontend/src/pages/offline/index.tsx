@@ -42,9 +42,10 @@ const OfflinePage: NextPage = () => {
       <FormattedMessage id={'offline.presentation'} />
 
       {results.map(result => {
-        // Keep `thumbnailUris` for backward compatibily with old caches
-        const attachments =
-          result.attachments ?? result.thumbnailUris.map(url => ({ url, legend: '', author: '' }));
+        // Keep `thumbnailUris` and `attachments` for backward compatibily with old caches
+        const images =
+          (result.images || result.attachments) ??
+          result.thumbnailUris.map(url => ({ url, legend: '', author: '' }));
         return (
           <div className={'relative'} key={`${result.type}-${result.id}`}>
             <ResultCard
@@ -52,7 +53,7 @@ const OfflinePage: NextPage = () => {
               id={String(result.id)}
               place={String(result.place)}
               title={result.title}
-              attachments={attachments}
+              images={images}
               badgeIconUri={result.practice?.pictogramUri}
               hoverId={String(result.id)}
               informations={[

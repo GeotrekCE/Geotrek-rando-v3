@@ -8,7 +8,7 @@ export interface Trek {
   ambiance: string;
   arrival: string;
   ascent: number;
-  attachments: Attachment[];
+  images: Attachment[];
   children: number[];
   create_datetime: string;
   departure: string;

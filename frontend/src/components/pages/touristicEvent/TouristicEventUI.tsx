@@ -83,7 +83,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
         <PageHead
           title={touristicEventContent?.name}
           description={cleanHTMLElementsFromString(touristicEventContent?.description)}
-          sharingImageUrl={touristicEventContent?.attachments?.[0]?.url}
+          sharingImageUrl={touristicEventContent?.images?.[0]?.url}
         />
         {touristicEventContent === undefined ? (
           <>
@@ -117,15 +117,15 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                         id="outdoorCourseContent_cover"
                         className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                       >
-                        {touristicEventContent.attachments.length > 1 && hasNavigator ? (
+                        {touristicEventContent.images.length > 1 && hasNavigator ? (
                           <DetailsCoverCarousel
-                            attachments={touristicEventContent.attachments}
+                            images={touristicEventContent.images}
                             classNameImage={isFullscreen ? 'object-contain' : ''}
                             onClickImage={toggleFullscreen}
                           />
                         ) : (
                           <ImageWithLegend
-                            attachment={touristicEventContent.attachments[0]}
+                            image={touristicEventContent.images[0]}
                             classNameImage={isFullscreen ? 'object-contain' : ''}
                             onClick={toggleFullscreen}
                           />
@@ -326,7 +326,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                                 place: touristicContent.category.label,
                                 description: touristicContent.descriptionTeaser,
                                 thumbnails: touristicContent.thumbnails,
-                                attachments: touristicContent.attachments,
+                                images: touristicContent.images,
                                 iconUri: touristicContent.category.pictogramUri,
                                 iconName: touristicContent.category.label,
                               }),

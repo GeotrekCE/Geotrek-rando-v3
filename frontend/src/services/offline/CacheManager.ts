@@ -41,9 +41,8 @@ const CacheManager = {
 
     const title = 'title' in details ? details.title : details.name;
 
-    const attachments = 'attachments' in details ? details.attachments : details.imgs;
-    const thumbnailUris =
-      'thumbnails' in details ? details.thumbnails : attachments.map(i => i.url);
+    const images = 'images' in details ? details.images : details.imgs;
+    const thumbnailUris = 'thumbnails' in details ? details.thumbnails : images.map(i => i.url);
     const informations =
       'informations' in details ? { ...details.informations, reservationSystem: null } : [];
 
@@ -64,7 +63,7 @@ const CacheManager = {
         type,
         id: details.id,
         place,
-        attachments,
+        images,
         thumbnailUris,
         informations,
         practice,

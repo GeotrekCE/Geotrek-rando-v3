@@ -35,7 +35,7 @@ export const adaptTouristicContent = ({
     name: rawTouristicObject.name,
     descriptionTeaser: rawTouristicObject.description_teaser,
     thumbnails: getLargeImagesOrThumbnailsFromAttachments(rawTouristicObject.attachments, true),
-    attachments: getLargeImagesOrThumbnailsFromAttachments(rawTouristicObject.attachments, false),
+    images: getLargeImagesOrThumbnailsFromAttachments(rawTouristicObject.attachments, false),
     category: touristicContentCategories[rawTouristicObject.category],
     geometry: rawTouristicObject.geometry ? adaptGeometry(rawTouristicObject.geometry) : null,
     // An "approuved" touristic content means that the content is labeled by the park. A logo (configurable by the park) appears on the page.
@@ -57,7 +57,7 @@ export const adaptTouristicContentResult = ({
     id: rawTouristicObject.id,
     type: 'TOURISTIC_CONTENT',
     name: rawTouristicObject.name,
-    attachments: getLargeImagesOrThumbnailsFromAttachments(rawTouristicObject.attachments, true),
+    images: getLargeImagesOrThumbnailsFromAttachments(rawTouristicObject.attachments, true),
     category: touristicContentCategories[rawTouristicObject.category] ?? null,
     place:
       Array.isArray(rawTouristicObject.cities) && rawTouristicObject.cities.length > 0
@@ -109,7 +109,7 @@ export const adaptTouristicContentDetails = ({
   thumbnails: getLargeImagesOrThumbnailsFromAttachments(rawTCD.properties.attachments, true),
   category: touristicContentCategory,
   geometry: rawTCD.geometry ? adaptGeometry(rawTCD.geometry) : null,
-  attachments: getLargeImagesOrThumbnailsFromAttachments(rawTCD.properties.attachments, false),
+  images: getLargeImagesOrThumbnailsFromAttachments(rawTCD.properties.attachments, false),
   description: rawTCD.properties.description,
   sources: Array.isArray(rawTCD.properties.source)
     ? rawTCD.properties.source

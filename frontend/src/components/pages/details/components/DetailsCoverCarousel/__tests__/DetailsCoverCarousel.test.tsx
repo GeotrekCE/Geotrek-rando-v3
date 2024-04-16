@@ -3,7 +3,7 @@ import { DetailsCoverCarousel } from '../DetailsCoverCarousel';
 describe('DetailsCoverCarousel', () => {
   it('should display a DetailsCoverCarousel', () => {
     const propsCoverCarousel = {
-      attachments: [
+      images: [
         {
           url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg',
           legend: 'Lac',

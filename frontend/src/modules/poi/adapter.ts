@@ -20,7 +20,7 @@ export const adaptPoi = ({
         name: rawPoi.name,
         description: rawPoi.description,
         thumbnails: getLargeImagesOrThumbnailsFromAttachments(rawPoi.attachments, true),
-        attachments: getLargeImagesOrThumbnailsFromAttachments(rawPoi.attachments, false),
+        images: getLargeImagesOrThumbnailsFromAttachments(rawPoi.attachments, false),
         type: poiTypes[rawPoi.type],
         geometry: {
           x: rawPoi.geometry.coordinates[0],

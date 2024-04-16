@@ -7,7 +7,7 @@ import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 
 import { InformationCard } from 'modules/results/interface';
 import { cn } from 'services/utils/cn';
-import { Attachment } from '../../../../../modules/interface';
+import { ImageFromAttachment } from 'modules/interface';
 import { ResultCardCarousel } from './ResultCardCarousel';
 import { InformationCardList } from './InformationCardList';
 
@@ -19,7 +19,7 @@ interface ResultCardProps {
   type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
   tags?: string[];
   redirectionUrl: string;
-  attachments: Attachment[];
+  images: ImageFromAttachment[];
   badgeIconUri?: string;
   badgeName?: string;
   className?: string;
@@ -31,7 +31,7 @@ interface ResultCardProps {
 export const ResultCard: React.FC<ResultCardProps> = props => {
   const {
     asColumn,
-    attachments,
+    images,
     badgeIconUri,
     badgeName,
     className,
@@ -65,14 +65,14 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
       <Modal>
         {({ isFullscreen }) => (
           <>
-            {isFullscreen && attachments.length > 0 && (
-              <DetailsCoverCarousel attachments={attachments} classNameImage="object-contain" />
+            {isFullscreen && images.length > 0 && (
+              <DetailsCoverCarousel images={images} classNameImage="object-contain" />
             )}
             {!isFullscreen && (
               <ResultCardCarousel
                 asColumn={asColumn}
                 type={type}
-                attachments={attachments}
+                images={images}
                 iconUri={badgeIconUri}
                 iconName={badgeName as string}
                 redirect={redirectionUrl}
