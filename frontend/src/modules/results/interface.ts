@@ -1,5 +1,5 @@
 import { Activity } from 'modules/activities/interface';
-import { Attachment, GeometryObject, RawAttachment } from 'modules/interface';
+import { GeometryObject, ImageFromAttachment, RawAttachment } from 'modules/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { TouristicEventResult } from 'modules/touristicEvent/interface';
 import { Network } from 'modules/networks/interface';
@@ -39,7 +39,7 @@ export type InformationCard = (
 export interface ResultCard {
   id: string;
   name: string;
-  attachments: Attachment[];
+  images: ImageFromAttachment[];
   tags?: string[];
   place: string | null;
   informations?: InformationCard[];

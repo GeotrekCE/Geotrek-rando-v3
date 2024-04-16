@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import { cn } from 'services/utils/cn';
 import { Arrow } from 'components/Icons/Arrow';
 import { ViewPoint } from 'modules/viewPoint/interface';
-import { Attachment } from '../../../../../modules/interface';
+import { ImageFromAttachment } from 'modules/interface';
 import { useDetailsCard } from './useDetailsCard';
 import { DetailsMedias } from '../DetailsMedias';
 
@@ -20,8 +20,8 @@ export interface DetailsCardProps {
   name: string;
   place?: string;
   description?: string | null;
-  attachments: Attachment[];
-  thumbnails: Attachment[];
+  images: ImageFromAttachment[];
+  thumbnails: ImageFromAttachment[];
   iconUri?: string;
   iconName?: string;
   className?: string;
@@ -35,7 +35,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   id,
   name,
   description,
-  attachments,
+  images,
   thumbnails,
   iconUri,
   iconName,
@@ -94,17 +94,17 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
                 <>
                   {type === 'TOURISTIC_CONTENT' &&
                     redirectionUrl &&
-                    attachments.length > 0 &&
+                    images.length > 0 &&
                     hasNavigator && (
                       <DetailsCoverCarousel
-                        attachments={isFullscreen ? attachments : thumbnails}
+                        images={isFullscreen ? images : thumbnails}
                         classNameImage={cn('object-center', isFullscreen && 'object-contain')}
                         redirect={redirectionUrl}
                       />
                     )}
-                  {type !== 'TOURISTIC_CONTENT' && attachments.length > 0 && hasNavigator && (
+                  {type !== 'TOURISTIC_CONTENT' && images.length > 0 && hasNavigator && (
                     <DetailsCoverCarousel
-                      attachments={isFullscreen ? attachments : thumbnails}
+                      images={isFullscreen ? images : thumbnails}
                       classNameImage={cn('object-center', isFullscreen && 'object-contain')}
                       onClickImage={toggleFullscreen}
                     />

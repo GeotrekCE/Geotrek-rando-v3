@@ -1,4 +1,4 @@
-import { Attachment } from 'modules/interface';
+import { ImageFromAttachment } from 'modules/interface';
 import { Source } from 'modules/source/interface';
 
 export interface RawFlatPage {
@@ -29,6 +29,6 @@ export interface FlatPageDetails {
   title: string;
   content: string;
   sources: Source[];
-  attachment: Attachment | null;
+  image: ImageFromAttachment | null;
   children?: FlatPageDetails[];
 }

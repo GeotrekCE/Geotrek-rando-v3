@@ -63,7 +63,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
     });
   }, [activitySuggestions, flatPage?.content]);
 
-  const legendCoverImage = [flatPage?.attachment?.legend, flatPage?.attachment?.author]
+  const legendCoverImage = [flatPage?.image?.legend, flatPage?.image?.author]
     .filter(Boolean)
     .join(' - ');
 
@@ -83,7 +83,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
         )
       ) : (
         <div id="flatPage_container">
-          {flatPage.attachment && (
+          {flatPage.image && (
             <div className="relative text-center" id="flatPage_cover">
               <ImageCoverTag
                 className={cn(
@@ -96,7 +96,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                 })}
               >
                 <Image
-                  src={flatPage.attachment.url}
+                  src={flatPage.image.url}
                   className="custo-flatpage-cover size-full object-center object-cover"
                   alt=""
                   width={1500}
@@ -122,7 +122,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
             </div>
           )}
           <div className="px-4 mx-auto max-w-[940px]" id="flatPage_content">
-            {flatPage.attachment == null && (
+            {flatPage.image == null && (
               <div className="flex justify-center py-6 desktop:py-12">
                 <h1 className="text-H3 desktop:text-H1 font-bold text-primary1 text-center">
                   {flatPage.title}
@@ -174,7 +174,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                         href={generateFlatPageUrl(child.id, child.title)}
                       >
                         <Image
-                          src={child.attachment?.url ?? getGlobalConfig().fallbackImageUri}
+                          src={child.image?.url ?? getGlobalConfig().fallbackImageUri}
                           className="size-full object-cover object-center transition-transform group-hover:scale-105"
                           width={400}
                           height={400}

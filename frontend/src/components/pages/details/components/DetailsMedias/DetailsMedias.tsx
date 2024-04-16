@@ -104,7 +104,7 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
             >
               <div className="relative shrink-0 w-full overflow-hidden h-resultCardDesktop desktop:w-resultCardDesktop">
                 <ImageWithLegend
-                  attachment={{
+                  image={{
                     url: viewPoint.thumbnailUrl,
                     legend: '',
                     author: '',
@@ -127,8 +127,8 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
                   onClick={() => handleClick(viewPoint.id)}
                   className={cn(`
                     flex justify-center items-center gap-2
-                    mt-4 p-2 desktop:pl-4 
-                    rounded-xl desktop:rounded-full shadow-sm 
+                    mt-4 p-2 desktop:pl-4
+                    rounded-xl desktop:rounded-full shadow-sm
                     text-greyDarkColored hover:bg-primary2 focus:bg-primary2 bg-white transition
                     before:content-[''] before:absolute before:inset-0
                     `)}

@@ -100,7 +100,7 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
                           <StyledSmallCarousel isFullscreen={isFullscreen}>
                             {attachments.map((attachment, index) => (
                               <ImageWithLegend
-                                attachment={
+                                image={
                                   isFullscreen
                                     ? attachment
                                     : { ...attachment, url: attachment.thumbnail }

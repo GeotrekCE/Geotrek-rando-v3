@@ -1,8 +1,8 @@
-import { Attachment, RawAttachment } from 'modules/interface';
+import { ImageFromAttachment, RawAttachment } from 'modules/interface';
 import { APIResponseForList } from 'services/api/interface';
 import { getGlobalConfig } from './api.config';
 
-const fallbackAttachment: Attachment = {
+const fallbackAttachment: ImageFromAttachment = {
   url: getGlobalConfig().fallbackImageUri,
   author: '',
   legend: '',
@@ -14,7 +14,7 @@ export const getThumbnail = (rawAttachments: RawAttachment[]): string | null => 
   return firstImageAttachment.thumbnail;
 };
 
-export const getAttachment = (rawAttachments: RawAttachment[]): Attachment => {
+export const getAttachment = (rawAttachments: RawAttachment[]): ImageFromAttachment => {
   const rawAttachmentImg = rawAttachments.find(
     rawAttachment =>
       rawAttachment.type === 'image' && rawAttachment.url !== null && rawAttachment.url.length > 0,

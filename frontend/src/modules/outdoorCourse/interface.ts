@@ -1,8 +1,8 @@
 import { Bbox } from 'modules/details/interface';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import {
-  Attachment,
   GeometryCollection,
+  ImageFromAttachment,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -64,7 +64,7 @@ export interface OutdoorCourse {
   accessibility?: string;
   id: string;
   name: string;
-  attachments: Attachment[];
+  images: ImageFromAttachment[];
   geometry:
     | PolygonGeometry
     | MultiPolygonGeometry
@@ -73,7 +73,7 @@ export interface OutdoorCourse {
     | PointGeometry
     | MultiPointGeometry
     | GeometryCollection;
-  thumbnails: Attachment[];
+  thumbnails: ImageFromAttachment[];
   duration: string | null;
   maxElevation: number;
   height: string | null;
