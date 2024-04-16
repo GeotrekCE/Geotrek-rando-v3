@@ -14,21 +14,6 @@ export const getThumbnail = (rawAttachments: RawAttachment[]): string | null => 
   return firstImageAttachment.thumbnail;
 };
 
-export const getAttachment = (rawAttachments: RawAttachment[]): ImageFromAttachment => {
-  const rawAttachmentImg = rawAttachments.find(
-    rawAttachment =>
-      rawAttachment.type === 'image' && rawAttachment.url !== null && rawAttachment.url.length > 0,
-  );
-  const attachment = rawAttachmentImg
-    ? {
-        url: rawAttachmentImg.url,
-        legend: rawAttachmentImg.legend,
-        author: rawAttachmentImg.author,
-      }
-    : fallbackAttachment;
-  return attachment;
-};
-
 export const getLargeImagesOrThumbnailsFromAttachments = (
   rawAttachments: RawAttachment[],
   isThumbnail: boolean,
