@@ -1,11 +1,8 @@
-import { RawPointGeometry3D } from 'modules/interface';
+import { RawAttachment, RawPointGeometry3D } from 'modules/interface';
 import { SignageType } from 'modules/signageType/interface';
 
 export interface RawSignage {
-  attachments?: {
-    type: string;
-    thumbnail: string;
-  }[];
+  attachments: RawAttachment[];
   id: number;
   name: string;
   code: string;
