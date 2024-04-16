@@ -85,7 +85,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
         <PageHead
           title={outdoorCourseContent?.name}
           description={cleanHTMLElementsFromString(outdoorCourseContent?.description)}
-          sharingImageUrl={outdoorCourseContent?.attachments?.[0]?.url}
+          sharingImageUrl={outdoorCourseContent?.images?.[0]?.url}
         />
         {outdoorCourseContent === undefined ? (
           <>
@@ -119,15 +119,15 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                         id="outdoorCourseContent_cover"
                         className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                       >
-                        {outdoorCourseContent.attachments.length > 1 && hasNavigator ? (
+                        {outdoorCourseContent.images.length > 1 && hasNavigator ? (
                           <DetailsCoverCarousel
-                            attachments={outdoorCourseContent.attachments}
+                            images={outdoorCourseContent.images}
                             classNameImage={isFullscreen ? 'object-contain' : ''}
                             onClickImage={toggleFullscreen}
                           />
                         ) : (
                           <ImageWithLegend
-                            attachment={outdoorCourseContent.attachments[0]}
+                            image={outdoorCourseContent.images[0]}
                             classNameImage={isFullscreen ? 'object-contain' : ''}
                             onClick={toggleFullscreen}
                           />
@@ -251,7 +251,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                               name: poi.name ?? '',
                               description: poi.description,
                               thumbnails: poi.thumbnails,
-                              attachments: poi.attachments,
+                              images: poi.images,
                               iconUri: poi.type.pictogramUri,
                               iconName: poi.type.label,
                             }))}
@@ -348,7 +348,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                                 place: touristicContent.category.label,
                                 description: touristicContent.descriptionTeaser,
                                 thumbnails: touristicContent.thumbnails,
-                                attachments: touristicContent.attachments,
+                                images: touristicContent.images,
                                 iconUri: touristicContent.category.pictogramUri,
                                 iconName: touristicContent.category.label,
                               }),

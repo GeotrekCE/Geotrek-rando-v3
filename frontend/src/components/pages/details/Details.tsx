@@ -156,13 +156,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                       >
                         {details.imgs.length > 1 && hasNavigator ? (
                           <DetailsCoverCarousel
-                            attachments={details.imgs}
+                            images={details.imgs}
                             classNameImage={isFullscreen ? 'object-contain' : ''}
                             onClickImage={toggleFullscreen}
                           />
                         ) : (
                           <ImageWithLegend
-                            attachment={details.imgs[0]}
+                            image={details.imgs[0]}
                             classNameImage={isFullscreen ? 'object-contain' : ''}
                             onClick={toggleFullscreen}
                           />
@@ -270,7 +270,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               name: poi.name ?? '',
                               description: poi.description,
                               thumbnails: poi.thumbnails,
-                              attachments: poi.attachments,
+                              images: poi.images,
                               iconUri: poi.type.pictogramUri,
                               iconName: poi.type.label,
                               viewPoints: poi.viewPoints,
@@ -543,7 +543,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               place: touristicContent.category.label,
                               description: touristicContent.descriptionTeaser,
                               thumbnails: touristicContent.thumbnails,
-                              attachments: touristicContent.attachments,
+                              images: touristicContent.images,
                               iconUri: touristicContent.category.pictogramUri,
                               iconName: touristicContent.category.label,
                             }))}

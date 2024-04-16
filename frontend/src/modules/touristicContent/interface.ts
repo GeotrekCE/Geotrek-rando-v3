@@ -1,7 +1,7 @@
 import { Bbox } from 'modules/details/interface';
 import {
-  Attachment,
   GeometryCollection,
+  ImageFromAttachment,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -74,8 +74,8 @@ export interface TouristicContent {
   id: string;
   name: string;
   descriptionTeaser: string;
-  thumbnails: Attachment[];
-  attachments: Attachment[];
+  thumbnails: ImageFromAttachment[];
+  images: ImageFromAttachment[];
   category: TouristicContentCategory;
   geometry:
     | PolygonGeometry
@@ -95,7 +95,7 @@ export interface TouristicContentResult extends ResultCard {
 }
 
 export interface TouristicContentDetails extends TouristicContent {
-  attachments: Attachment[];
+  images: ImageFromAttachment[];
   description: string;
   sources: Source[];
   contact: string;

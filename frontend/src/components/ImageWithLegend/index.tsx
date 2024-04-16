@@ -1,4 +1,4 @@
-import { Attachment } from 'modules/interface';
+import { ImageFromAttachment } from 'modules/interface';
 import { FormattedMessage } from 'react-intl';
 import { cn } from 'services/utils/cn';
 import { ImgHTMLAttributes, useId } from 'react';
@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { getGlobalConfig } from 'modules/utils/api.config';
 
 interface ImageWithLegendProps {
-  attachment?: Attachment;
+  image?: ImageFromAttachment;
   className?: string;
   classNameImage?: string;
 
@@ -16,7 +16,7 @@ interface ImageWithLegendProps {
 }
 
 export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({
-  attachment,
+  image,
   className = '',
   classNameImage = '',
   loading,
@@ -25,7 +25,7 @@ export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({
 }) => {
   const figureId = useId();
   const imageId = useId();
-  const legend = [attachment?.legend, attachment?.author].filter(Boolean).join(' - ');
+  const legend = [image?.legend, image?.author].filter(Boolean).join(' - ');
   return (
     <Figure
       id="details_cover_image"
@@ -34,11 +34,11 @@ export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({
       className={`relative ${className}`}
     >
       <img
-        alt={attachment?.legend ?? ''}
+        alt={image?.legend ?? ''}
         className={cn(`object-cover object-center overflow-hidden size-full ${classNameImage}`)}
         id={imageId}
         loading={loading ?? 'eager'}
-        src={attachment?.url ? attachment.url : getGlobalConfig().fallbackImageUri}
+        src={image?.url ? image.url : getGlobalConfig().fallbackImageUri}
       />
       <Legend
         figureId={figureId}

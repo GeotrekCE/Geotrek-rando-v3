@@ -63,7 +63,7 @@ export const adaptTrekResultList = ({
     name: rawResult.name,
     tags:
       displayThemes === true ? rawResult.themes.map(themeId => themes[themeId]?.label || '') : [],
-    attachments: getLargeImagesOrThumbnailsFromAttachments(rawResult.attachments, true),
+    images: getLargeImagesOrThumbnailsFromAttachments(rawResult.attachments, true),
     category: activities[rawResult.practice] ?? null,
     informations: [
       {

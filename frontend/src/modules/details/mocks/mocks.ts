@@ -222,7 +222,7 @@ export const rawPois = {
         coordinates: [6.1667321, 44.7604322, 2409],
       },
       name: 'Lagopède alpin',
-      attachments: [
+      images: [
         {
           author: 'Jean-Philippe Telmon - PNE',
           backend: '',
@@ -259,7 +259,7 @@ export const rawPois = {
         coordinates: [6.2061167, 44.8985958, 1787],
       },
       name: 'Refuge de la Lavey',
-      attachments: [],
+      images: [],
       published: true,
       type: 8,
       update_datetime: '2019-05-22T06:20:43.087083Z',

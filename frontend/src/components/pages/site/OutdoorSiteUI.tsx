@@ -102,7 +102,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
         <PageHead
           title={outdoorSiteContent?.name}
           description={cleanHTMLElementsFromString(outdoorSiteContent?.descriptionTeaser)}
-          sharingImageUrl={outdoorSiteContent?.attachments?.[0]?.url}
+          sharingImageUrl={outdoorSiteContent?.images?.[0]?.url}
         />
         {outdoorSiteContent === undefined ? (
           <>
@@ -136,15 +136,15 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                         id="outdoorSiteContent_cover"
                         className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                       >
-                        {outdoorSiteContent.attachments.length > 1 && hasNavigator ? (
+                        {outdoorSiteContent.images.length > 1 && hasNavigator ? (
                           <DetailsCoverCarousel
-                            attachments={outdoorSiteContent.attachments}
+                            images={outdoorSiteContent.images}
                             classNameImage={isFullscreen ? 'object-contain' : ''}
                             onClickImage={toggleFullscreen}
                           />
                         ) : (
                           <ImageWithLegend
-                            attachment={outdoorSiteContent.attachments[0]}
+                            image={outdoorSiteContent.images[0]}
                             classNameImage={isFullscreen ? 'object-contain' : ''}
                             onClick={toggleFullscreen}
                           />
@@ -241,7 +241,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                               name: poi.name ?? '',
                               description: poi.description,
                               thumbnails: poi.thumbnails,
-                              attachments: poi.attachments,
+                              images: poi.images,
                               iconUri: poi.type.pictogramUri,
                               iconName: poi.type.label,
                               viewPoints: poi.viewPoints,
@@ -507,7 +507,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                                 place: touristicContent.category.label,
                                 description: touristicContent.descriptionTeaser,
                                 thumbnails: touristicContent.thumbnails,
-                                attachments: touristicContent.attachments,
+                                images: touristicContent.images,
                                 iconUri: touristicContent.category.pictogramUri,
                                 iconName: touristicContent.category.label,
                               }),

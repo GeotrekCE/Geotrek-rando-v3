@@ -137,7 +137,7 @@ export interface RawAttachment {
   type: string;
 }
 
-export interface Attachment {
+export interface ImageFromAttachment {
   author: string;
   legend: string;
   url: string;

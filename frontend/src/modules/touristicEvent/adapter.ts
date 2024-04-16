@@ -33,7 +33,7 @@ export const adaptTouristicEvents = ({
     return {
       id: rawTouristicEvent.id,
       name: rawTouristicEvent.name,
-      attachments: getLargeImagesOrThumbnailsFromAttachments(rawTouristicEvent.attachments, false),
+      images: getLargeImagesOrThumbnailsFromAttachments(rawTouristicEvent.attachments, false),
       geometry: adaptGeometry(rawTouristicEvent.geometry),
       themes: rawTouristicEvent?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       place: cityDictionnary?.[rawTouristicEvent?.cities?.[0]]?.name ?? '',
@@ -63,7 +63,7 @@ export const adaptTouristicEventsResult = ({
       id: rawTouristicEvent.id,
       type: 'TOURISTIC_EVENT',
       name: rawTouristicEvent.name,
-      attachments: getLargeImagesOrThumbnailsFromAttachments(rawTouristicEvent.attachments, true),
+      images: getLargeImagesOrThumbnailsFromAttachments(rawTouristicEvent.attachments, true),
       geometry: adaptGeometry(rawTouristicEvent.geometry),
       tags: rawTouristicEvent?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       place: cityDictionnary?.[rawTouristicEvent?.cities?.[0]]?.name ?? '',

@@ -35,7 +35,7 @@ export const adaptFlatPageDetails = ({
   title: rawFlatPageDetails.title,
   content: rawFlatPageDetails.content,
   sources: rawFlatPageDetails.source.map(sourceId => sourceDictionnary[sourceId]).filter(Boolean),
-  attachment:
+  image:
     rawFlatPageDetails.attachments.length > 0 && rawFlatPageDetails.attachments[0].type === 'image'
       ? {
           author: rawFlatPageDetails.attachments[0].author,
@@ -48,7 +48,7 @@ export const adaptFlatPageDetails = ({
     title: child.title,
     content: child.content,
     sources: child.source.map(sourceId => sourceDictionnary[sourceId]).filter(Boolean),
-    attachment:
+    image:
       child.attachments.length > 0 && child.attachments[0].type === 'image'
         ? {
             author: child.attachments[0].author,
