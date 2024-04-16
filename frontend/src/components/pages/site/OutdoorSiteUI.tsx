@@ -42,7 +42,7 @@ import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel
 import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
 import { DetailsAndMapProvider } from '../details/DetailsAndMapContext';
 import { useDetailsSections } from '../details/useDetailsSections';
-import { DetailsMedias } from '../details/components/DetailsMedias';
+import { DetailsViewPoints } from '../details/components/DetailsViewPoints';
 
 interface Props {
   outdoorSiteUrl: string | string[] | undefined;
@@ -211,7 +211,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                           id={`details_${section.name}_ref`}
                         >
                           <DetailsSection htmlId="details_medias" className={marginDetailsChild}>
-                            <DetailsMedias
+                            <DetailsViewPoints
                               viewPoints={outdoorSiteContent.viewPoints}
                               handleViewPointClick={handleViewPointClick}
                             />

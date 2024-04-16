@@ -9,7 +9,7 @@ import { Plus } from 'components/Icons/Plus';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { ViewPoint as ViewPointIcon } from 'components/Icons/ViewPoint';
 
-interface DetailsMediasProps {
+interface DetailsViewPointsProps {
   className?: string;
   viewPoints: ViewPoint[];
   handleViewPointClick?: (key: string) => void;
@@ -17,7 +17,7 @@ interface DetailsMediasProps {
   titleTag?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
-export const DetailsMedias: React.FC<DetailsMediasProps> = ({
+export const DetailsViewPoints: React.FC<DetailsViewPointsProps> = ({
   className,
   viewPoints,
   handleViewPointClick,
@@ -41,7 +41,6 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
   if (viewPoints.length === 0) {
     return null;
   }
-
 
   return (
     <div className={className}>
