@@ -51,7 +51,7 @@ import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
 import { useOnScreenSection } from './hooks/useHighlightedSection';
 import { DetailsGear } from './components/DetailsGear';
 import { useDetailsSections } from './useDetailsSections';
-import { DetailsMedias } from './components/DetailsMedias';
+import { DetailsViewPoints } from './components/DetailsViewPoints';
 
 interface Props {
   slug: string | string[] | undefined;
@@ -220,7 +220,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                           id={`details_${section.name}_ref`}
                         >
                           <DetailsSection htmlId="details_medias" className={marginDetailsChild}>
-                            <DetailsMedias
+                            <DetailsViewPoints
                               viewPoints={details.viewPoints}
                               handleViewPointClick={handleViewPointClick}
                             />

@@ -13,7 +13,7 @@ import { Arrow } from 'components/Icons/Arrow';
 import { ViewPoint } from 'modules/viewPoint/interface';
 import { ImageFromAttachment } from 'modules/interface';
 import { useDetailsCard } from './useDetailsCard';
-import { DetailsMedias } from '../DetailsMedias';
+import { DetailsViewPoints } from '../DetailsViewPoints';
 
 export interface DetailsCardProps {
   id: string;
@@ -129,7 +129,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
               <OptionalLink redirectionUrl={redirectionUrl}>{descriptionStyled}</OptionalLink>
               {hasNavigator && Number(viewPoints?.length) > 0 && truncateState !== 'TRUNCATE' && (
                 <div className="clear-both desktop:clear-none desktop:min-w-[420px] overflow-hidden py-6">
-                  <DetailsMedias
+                  <DetailsViewPoints
                     viewPoints={viewPoints ?? []}
                     handleViewPointClick={handleViewPointClick}
                     titleTag="h3"
