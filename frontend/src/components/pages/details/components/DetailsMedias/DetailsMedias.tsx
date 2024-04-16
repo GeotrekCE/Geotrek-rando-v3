@@ -51,7 +51,7 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
           TitleTag === 'h2' ? 'text-Mobile-H1 desktop:text-H2' : 'text-Mobile-C1 desktop:text-H4',
         )}
       >
-        <ViewPointIcon size={40} />
+        <ViewPointIcon size={40} aria-hidden />
         <FormattedMessage id="viewPoint.title" />
         {asAccordion && (
           <button
@@ -64,14 +64,14 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
             {isOpen ? (
               <>
                 <span className="sr-only">
-                  <FormattedMessage id="accordion.close" />
+                  <FormattedMessage id="accordion.close" aria-hidden />
                 </span>
                 <Minus size={24} />
               </>
             ) : (
               <>
                 <span className="sr-only">
-                  <FormattedMessage id="accordion.open" />
+                  <FormattedMessage id="accordion.open" aria-hidden />
                 </span>
                 <Plus size={24} />
               </>
@@ -136,7 +136,7 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
                   <span className="text-greyDarkColored">
                     <FormattedMessage id="viewPoint.displayPicture" />
                   </span>
-                  <ArrowRight />
+                  <ArrowRight aria-hidden />
                 </button>
               </div>
             </li>

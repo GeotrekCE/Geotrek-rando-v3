@@ -3,18 +3,16 @@ import { GenericIconProps } from '../types';
 
 export const ViewPoint: React.FC<GenericIconProps> = ({
   color = 'currentColor',
-  opacity,
-  className,
   size = 24,
+  ...props
 }) => {
   return (
     <svg
       width={size}
-      className={className}
-      opacity={opacity}
       viewBox="0 0 32 40"
       height={size}
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         fill={color}
