@@ -5,6 +5,7 @@ import { Network } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
 import {
   Coordinate2D,
+  FileFromAttachment,
   ImageFromAttachment,
   RawAttachment,
   RawCoordinate2D,
@@ -159,6 +160,7 @@ export interface Details extends DetailsHtml {
   title: string;
   place?: string;
   imgs: ImageFromAttachment[];
+  filesFromAttachments: FileFromAttachment[];
   tags: string[];
   informations: DetailsInformation;
   pois: Poi[];

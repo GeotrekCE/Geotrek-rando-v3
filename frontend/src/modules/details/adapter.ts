@@ -23,7 +23,10 @@ import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { SourceDictionnary } from 'modules/source/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
-import { getLargeImagesOrThumbnailsFromAttachments } from 'modules/utils/adapter';
+import {
+  geFilesFromAttachments,
+  getLargeImagesOrThumbnailsFromAttachments,
+} from 'modules/utils/adapter';
 import {
   adaptGeometry2D,
   extractFirstPointOfGeometry,
@@ -101,6 +104,7 @@ export const adaptResults = ({
       title: rawDetailsProperties.name,
       place: cityDictionnary[rawDetailsProperties.departure_city]?.name ?? '',
       imgs: getLargeImagesOrThumbnailsFromAttachments(rawDetailsProperties.attachments, false),
+      filesFromAttachments: geFilesFromAttachments(rawDetailsProperties.attachments),
       practice: activity,
       transport: rawDetailsProperties.public_transport,
       access: rawDetailsProperties.access,
