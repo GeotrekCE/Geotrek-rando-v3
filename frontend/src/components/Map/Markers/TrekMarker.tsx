@@ -27,11 +27,11 @@ const getTop = (ratio: number) => {
   return 'top-2';
 };
 
-const ActivityMarker: React.FC<{ pictogramUrl?: string; zoomRatio: number; color: string }> = ({
-  pictogramUrl,
-  zoomRatio,
-  color,
-}) => {
+const ActivityMarker: React.FC<{
+  pictogramUrl?: string | null;
+  zoomRatio: number;
+  color: string;
+}> = ({ pictogramUrl, zoomRatio, color }) => {
   const icon =
     Boolean(pictogramUrl) && pictogramUrl?.[0] === '<'
       ? `data:image/svg+xml;utf8,${pictogramUrl}`
