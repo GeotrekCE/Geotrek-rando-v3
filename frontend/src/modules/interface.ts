@@ -135,6 +135,10 @@ export interface RawAttachment {
   title: string;
   url: string;
   type: string;
+  filetype: {
+    id: number;
+    type: string;
+  };
 }
 
 export interface ImageFromAttachment {

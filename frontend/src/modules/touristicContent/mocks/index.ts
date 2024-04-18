@@ -21,6 +21,10 @@ export const mockTouristicContentResponse =
             title: '',
             url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/tourism_touristiccontent/257/4948000.jpg',
             type: 'image',
+            filetype: {
+              id: 1,
+              type: 'Topoguide',
+            },
           },
           {
             author: '',
@@ -31,6 +35,10 @@ export const mockTouristicContentResponse =
             title: '',
             url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/tourism_touristiccontent/257/4948001.jpg',
             type: 'image',
+            filetype: {
+              id: 1,
+              type: 'Topoguide',
+            },
           },
           {
             author: '',
@@ -41,6 +49,10 @@ export const mockTouristicContentResponse =
             title: '',
             url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/tourism_touristiccontent/257/4947999.jpg',
             type: 'image',
+            filetype: {
+              id: 1,
+              type: 'Topoguide',
+            },
           },
         ],
         approved: false,
