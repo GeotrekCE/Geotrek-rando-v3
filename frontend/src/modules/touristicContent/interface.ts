@@ -1,5 +1,6 @@
 import { Bbox } from 'modules/details/interface';
 import {
+  FileFromAttachment,
   GeometryCollection,
   ImageFromAttachment,
   LineStringGeometry,
@@ -96,6 +97,7 @@ export interface TouristicContentResult extends ResultCard {
 
 export interface TouristicContentDetails extends TouristicContent {
   images: ImageFromAttachment[];
+  filesFromAttachments: FileFromAttachment[];
   description: string;
   sources: Source[];
   contact: string;
