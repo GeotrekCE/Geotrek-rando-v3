@@ -6,7 +6,9 @@ const DETAILS_CARD_DEFAULT_HEIGHT = 220;
 
 export const useDetailsCard = (hasMedia = false) => {
   const detailsCardRef = useRef<HTMLDivElement>(null);
-  const [truncateState, setTruncateState] = useState<'NONE' | 'TRUNCATE' | 'FULL'>('TRUNCATE');
+  const [truncateState, setTruncateState] = useState<'NONE' | 'TRUNCATE' | 'FULL'>(
+    hasMedia ? 'TRUNCATE' : 'NONE',
+  );
 
   const toggleTruncateState = () =>
     setTruncateState(currentTruncateState =>
