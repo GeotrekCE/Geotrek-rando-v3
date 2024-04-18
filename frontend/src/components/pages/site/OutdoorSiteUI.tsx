@@ -43,6 +43,7 @@ import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea
 import { DetailsAndMapProvider } from '../details/DetailsAndMapContext';
 import { useDetailsSections } from '../details/useDetailsSections';
 import { DetailsViewPoints } from '../details/components/DetailsViewPoints';
+import { DetailsFiles } from '../details/components/DetailsFiles';
 
 interface Props {
   outdoorSiteUrl: string | string[] | undefined;
@@ -200,9 +201,9 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                       );
                     }
                     if (
-                      hasNavigator &&
                       section.name === 'medias' &&
-                      outdoorSiteContent.viewPoints.length > 0
+                      ((hasNavigator && outdoorSiteContent.viewPoints.length > 0) ||
+                        outdoorSiteContent.filesFromAttachments.length > 0)
                     ) {
                       return (
                         <section
@@ -211,10 +212,13 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                           id={`details_${section.name}_ref`}
                         >
                           <DetailsSection htmlId="details_medias" className={marginDetailsChild}>
-                            <DetailsViewPoints
-                              viewPoints={outdoorSiteContent.viewPoints}
-                              handleViewPointClick={handleViewPointClick}
-                            />
+                            <DetailsFiles files={outdoorSiteContent.filesFromAttachments} />
+                            {hasNavigator && (
+                              <DetailsViewPoints
+                                viewPoints={outdoorSiteContent.viewPoints}
+                                handleViewPointClick={handleViewPointClick}
+                              />
+                            )}
                           </DetailsSection>
                         </section>
                       );
@@ -245,6 +249,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                               iconUri: poi.type.pictogramUri,
                               iconName: poi.type.label,
                               viewPoints: poi.viewPoints,
+                              filesFromAttachments: poi.filesFromAttachments,
                             }))}
                             type="POI"
                             handleViewPointClick={handleViewPointClick}
