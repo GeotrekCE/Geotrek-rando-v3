@@ -52,6 +52,7 @@ import { useOnScreenSection } from './hooks/useHighlightedSection';
 import { DetailsGear } from './components/DetailsGear';
 import { useDetailsSections } from './useDetailsSections';
 import { DetailsViewPoints } from './components/DetailsViewPoints';
+import { DetailsFiles } from './components/DetailsFiles';
 
 interface Props {
   slug: string | string[] | undefined;
@@ -209,9 +210,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                       );
                     }
                     if (
-                      hasNavigator &&
                       section.name === 'medias' &&
-                      details.viewPoints.length > 0
+                      ((hasNavigator && details.viewPoints.length > 0) ||
+                        details.filesFromAttachments.length > 0)
                     ) {
                       return (
                         <section
@@ -220,10 +221,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                           id={`details_${section.name}_ref`}
                         >
                           <DetailsSection htmlId="details_medias" className={marginDetailsChild}>
-                            <DetailsViewPoints
-                              viewPoints={details.viewPoints}
-                              handleViewPointClick={handleViewPointClick}
-                            />
+                            <DetailsFiles files={details.filesFromAttachments} />
+                            {hasNavigator && (
+                              <DetailsViewPoints
+                                viewPoints={details.viewPoints}
+                                handleViewPointClick={handleViewPointClick}
+                              />
+                            )}
                           </DetailsSection>
                         </section>
                       );
@@ -274,6 +278,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               iconUri: poi.type.pictogramUri,
                               iconName: poi.type.label,
                               viewPoints: poi.viewPoints,
+                              filesFromAttachments: poi.filesFromAttachments,
                             }))}
                             type="POI"
                             handleViewPointClick={handleViewPointClick}
