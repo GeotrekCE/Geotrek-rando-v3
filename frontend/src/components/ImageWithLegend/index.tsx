@@ -16,7 +16,7 @@ interface ImageWithLegendProps {
 }
 
 export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({
-  image,
+  image = {},
   className = '',
   classNameImage = '',
   loading,
@@ -25,7 +25,7 @@ export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({
 }) => {
   const figureId = useId();
   const imageId = useId();
-  const legend = [image?.legend, image?.author].filter(Boolean).join(' - ');
+  const legend = [image.legend, image.author].filter(Boolean).join(' - ');
   return (
     <Figure
       id="details_cover_image"
@@ -34,11 +34,11 @@ export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({
       className={`relative ${className}`}
     >
       <img
-        alt={image?.legend ?? ''}
+        alt={image.legend || ''}
         className={cn(`object-cover object-center overflow-hidden size-full ${classNameImage}`)}
         id={imageId}
         loading={loading ?? 'eager'}
-        src={image?.url ? image.url : getGlobalConfig().fallbackImageUri}
+        src={image.url || getGlobalConfig().fallbackImageUri}
       />
       <Legend
         figureId={figureId}
