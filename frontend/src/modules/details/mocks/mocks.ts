@@ -24,6 +24,10 @@ export const rawDetailsProperties: RawDetailsProperties = {
       title: '',
       url: 'https://www.youtube.com/watch?v=Jm3anSjly0Y',
       type: 'video',
+      filetype: {
+        id: 1,
+        type: 'Topoguide',
+      },
     },
     {
       author: 'admin',
@@ -34,6 +38,10 @@ export const rawDetailsProperties: RawDetailsProperties = {
       title: "Lac_de_l'Eychauda_Parc_National_des_Ecrins",
       url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/lac_de_leychauda_parc_national_des_ecrins.jpg',
       type: 'image',
+      filetype: {
+        id: 1,
+        type: 'Topoguide',
+      },
     },
     {
       author: 'admin',
@@ -44,6 +52,10 @@ export const rawDetailsProperties: RawDetailsProperties = {
       title: 'Marmotte_Parc_National_des_Ecrins',
       url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/marmotte_parc_national_des_ecrins.jpg',
       type: 'image',
+      filetype: {
+        id: 1,
+        type: 'Topoguide',
+      },
     },
     {
       author: 'Dominique Vincent - PNE',
@@ -54,6 +66,10 @@ export const rawDetailsProperties: RawDetailsProperties = {
       title: 'le-depart-du-hameau-de-molines',
       url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
       type: 'image',
+      filetype: {
+        id: 1,
+        type: 'Topoguide',
+      },
     },
     {
       author: 'Dominique Vincent - PNE',
@@ -64,6 +80,10 @@ export const rawDetailsProperties: RawDetailsProperties = {
       title: 'arrivee-au-col-de-font-froide',
       url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/arrivee-au-col-de-font-froide.JPG',
       type: 'image',
+      filetype: {
+        id: 1,
+        type: 'Topoguide',
+      },
     },
     {
       author: 'Dominique Vincent - PNE',
@@ -74,6 +94,10 @@ export const rawDetailsProperties: RawDetailsProperties = {
       title: 'en-chemin-vers-le-col-de-font-froide',
       url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/en-chemin-vers-le-col-de-font-froide.JPG',
       type: 'image',
+      filetype: {
+        id: 1,
+        type: 'Topoguide',
+      },
     },
     {
       author: 'Dominique Vincent - PNE',
@@ -84,6 +108,10 @@ export const rawDetailsProperties: RawDetailsProperties = {
       title: 'signaletique-du-sentier-menant-au-col-de-font-froide',
       url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/signaletique-du-sentier-menant-au-col-de-font-froide.JPG',
       type: 'image',
+      filetype: {
+        id: 1,
+        type: 'Topoguide',
+      },
     },
     {
       author: 'Dominique Vincent - PNE',
@@ -94,6 +122,10 @@ export const rawDetailsProperties: RawDetailsProperties = {
       title: 'randonneur-au-col-de-font-froide',
       url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/randonneur-au-col-de-font-froide.JPG',
       type: 'image',
+      filetype: {
+        id: 1,
+        type: 'Topoguide',
+      },
     },
   ],
   departure_city: '05090',
