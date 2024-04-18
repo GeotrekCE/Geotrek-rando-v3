@@ -1,5 +1,6 @@
 import {
   Coordinate3D,
+  FileFromAttachment,
   ImageFromAttachment,
   RawAttachment,
   RawPointGeometry3D,
@@ -23,6 +24,7 @@ export interface Poi {
   description?: string;
   thumbnails: ImageFromAttachment[];
   images: ImageFromAttachment[];
+  filesFromAttachments: FileFromAttachment[];
   type: PoiType;
   geometry: Coordinate3D;
   viewPoints?: ViewPoint[];
