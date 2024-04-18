@@ -66,7 +66,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
     <li
       className={cn(
         `custo-result-card relative border border-solid border-greySoft rounded-card
-  flex-none desktop:w-auto mx-1 desktop:mb-6
+  flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden
   hover:border-blackSemiTransparent transition-all duration-500`,
         className,
       )}
@@ -87,7 +87,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           setHoveredCardId(null);
         }}
       >
-        <div className="float-left flex shrink-0 h-40 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6">
+        <div className="float-left flex shrink-0 h-40 desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6">
           <div className="w-full">
             <Modal className="h-full">
               {({ isFullscreen, toggleFullscreen }) => (
