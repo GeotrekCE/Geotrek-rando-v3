@@ -1,5 +1,6 @@
 import { Bbox } from 'modules/details/interface';
 import {
+  FileFromAttachment,
   GeometryCollection,
   ImageFromAttachment,
   LineStringGeometry,
@@ -77,6 +78,7 @@ export interface TouristicEvent {
   id: string;
   name: string;
   images: ImageFromAttachment[];
+  filesFromAttachments: FileFromAttachment[];
   geometry:
     | PolygonGeometry
     | MultiPolygonGeometry
