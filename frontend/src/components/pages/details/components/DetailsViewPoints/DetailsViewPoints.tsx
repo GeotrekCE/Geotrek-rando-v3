@@ -43,10 +43,10 @@ export const DetailsViewPoints: React.FC<DetailsViewPointsProps> = ({
   }
 
   return (
-    <div className={className}>
+    <div className={cn(className, asAccordion && 'p-4 bg-neutral-100')}>
       <TitleTag
         className={cn(
-          'relative flex items-center justify-start gap-1 font-bold',
+          'relative flex items-center justify-stretch gap-1 font-bold',
           TitleTag === 'h2' ? 'text-Mobile-H1 desktop:text-H2' : 'text-Mobile-C1 desktop:text-H4',
         )}
       >
@@ -57,34 +57,34 @@ export const DetailsViewPoints: React.FC<DetailsViewPointsProps> = ({
             type="button"
             aria-expanded={isOpen ? 'true' : 'false'}
             aria-controls={id}
-            className="flex gap-1 items-center text-base before:content-[''] before:absolute before:inset-0"
+            className="ml-auto before:content-[''] before:absolute before:inset-0"
             onClick={() => setOpen(prevOpen => !prevOpen)}
           >
             {isOpen ? (
               <>
                 <span className="sr-only">
-                  <FormattedMessage id="accordion.close" aria-hidden />
+                  <FormattedMessage id="accordion.close" />
                 </span>
-                <Minus size={24} />
+                <Minus size={24} aria-hidden />
               </>
             ) : (
               <>
                 <span className="sr-only">
-                  <FormattedMessage id="accordion.open" aria-hidden />
+                  <FormattedMessage id="accordion.open" />
                 </span>
-                <Plus size={24} />
+                <Plus size={24} aria-hidden />
               </>
             )}
           </button>
         )}
       </TitleTag>
-      <p className="text-lg desktop:mt-6">
+      <p className={cn('text-lg desktop:mt-6', !isOpen && 'hidden')}>
         <FormattedMessage id="viewPoint.description" />
       </p>
       <ul
         id={id}
         className={cn(
-          'flex desktop:flex-col gap-4 text-Mobile-C1 desktop:text-P1 mt-4 pb-5 desktop:pb-0 overflow-x-auto desktop:overflow-x-hidden overflow-y-hidden desktop:overflow-y-auto scroll-smooth snap-x',
+          'flex desktop:flex-col gap-4 bg-white text-Mobile-C1 desktop:text-P1 mt-4 pb-5 desktop:pb-0 overflow-x-auto desktop:overflow-x-hidden overflow-y-hidden desktop:overflow-y-auto scroll-smooth snap-x',
           !isOpen && 'hidden',
         )}
       >
