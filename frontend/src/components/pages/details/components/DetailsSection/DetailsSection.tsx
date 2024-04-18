@@ -20,6 +20,7 @@ export const DetailsSection: React.FC<DetailsSectionProps> = ({
       <div
         id="details_section"
         className={cn(`flex flex-col
+          gap-3 desktop:gap-4
           pt-6 desktop:pt-12
           pb-3 desktop:pb-6
           mb-3 desktop:mb-6
@@ -33,7 +34,7 @@ export const DetailsSection: React.FC<DetailsSectionProps> = ({
         )}
         <div
           id="details_sectionContent"
-          className="mt-3 desktop:mt-4
+          className="flex flex-col gap-6
           text-Mobile-C1 desktop:text-P1"
         >
           {children}
