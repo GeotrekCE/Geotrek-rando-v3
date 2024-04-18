@@ -33,6 +33,24 @@ export const getLargeImagesOrThumbnailsFromAttachments = (
   return attachments.length > 0 ? attachments : [fallbackAttachment];
 };
 
+export const geFilesFromAttachments = (rawAttachments: RawAttachment[]) => {
+  const attachments = rawAttachments
+    .filter(rawAttachment => {
+      const lastPartOfUrl = rawAttachment.url?.split('/').pop();
+      // Files without extensions are false positive images (GTA version < 2.97.0)
+      const hasExtension = lastPartOfUrl?.includes('.');
+      return rawAttachment.type === 'file' && hasExtension;
+    })
+    .map(rawAttachment => ({
+      url: rawAttachment.url,
+      legend: rawAttachment.legend,
+      author: rawAttachment.author,
+      fileName: rawAttachment.title,
+      fileType: rawAttachment.filetype?.type ?? null,
+    }));
+  return attachments;
+};
+
 export function concatResults<T>(rawResults: APIResponseForList<T>[]): T[] {
   return rawResults.reduce<T[]>(
     (concatenatedResults, currentResult) => [...concatenatedResults, ...currentResult.results],
