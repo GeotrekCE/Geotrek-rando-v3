@@ -59,7 +59,7 @@ const OfflinePage: NextPage = () => {
                 {
                   label: 'difficulty',
                   value: result.informations.difficulty?.label ?? '',
-                  pictogramUri: String(result.informations.difficulty?.pictogramUri ?? ''),
+                  pictogramUri: result.informations.difficulty?.pictogramUri ?? '',
                 },
                 {
                   label: 'duration',

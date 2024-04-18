@@ -88,7 +88,7 @@ export const adaptTouristicEventsMapResults = ({
           ? {
               id: 0,
               label: String(touristicEventTypes[rawMapResult.type].label),
-              pictogramUri: String(touristicEventTypes[rawMapResult.type].pictogramUri),
+              pictogramUri: touristicEventTypes[rawMapResult.type].pictogramUri,
             }
           : undefined,
       type: 'TOURISTIC_EVENT',
