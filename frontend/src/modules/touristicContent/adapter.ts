@@ -6,7 +6,11 @@ import {
   TouristicContentCategoryDictionnary,
 } from 'modules/touristicContentCategory/interface';
 import { PopupResult } from 'modules/trekResult/interface';
-import { getLargeImagesOrThumbnailsFromAttachments, getThumbnail } from 'modules/utils/adapter';
+import {
+  geFilesFromAttachments,
+  getLargeImagesOrThumbnailsFromAttachments,
+  getThumbnail,
+} from 'modules/utils/adapter';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptGeometry } from 'modules/utils/geometry';
 import {
@@ -110,6 +114,7 @@ export const adaptTouristicContentDetails = ({
   category: touristicContentCategory,
   geometry: rawTCD.geometry ? adaptGeometry(rawTCD.geometry) : null,
   images: getLargeImagesOrThumbnailsFromAttachments(rawTCD.properties.attachments, false),
+  filesFromAttachments: geFilesFromAttachments(rawTCD.properties.attachments),
   description: rawTCD.properties.description,
   sources: Array.isArray(rawTCD.properties.source)
     ? rawTCD.properties.source

@@ -22,6 +22,7 @@ import { DetailsHeaderMobile, marginDetailsChild } from '../details/Details';
 import { HtmlText, templatesVariablesAreDefinedAndUsed } from '../details/utils';
 import { DetailsHeader } from '../details/components/DetailsHeader';
 import { useDetailsSections } from '../details/useDetailsSections';
+import { DetailsFiles } from '../details/components/DetailsFiles';
 
 interface TouristicContentUIProps {
   touristicContentUrl: string | string[] | undefined;
@@ -153,6 +154,24 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                       </section>
                     );
                   }
+
+                  if (
+                    section.name === 'medias' &&
+                    touristicContent.filesFromAttachments.length > 0
+                  ) {
+                    return (
+                      <section
+                        key={section.name}
+                        ref={sectionRef[section.name]}
+                        id={`details_${section.name}_ref`}
+                      >
+                        <DetailsSection htmlId="details_medias" className={marginDetailsChild}>
+                          <DetailsFiles files={touristicContent.filesFromAttachments} />
+                        </DetailsSection>
+                      </section>
+                    );
+                  }
+
                   if (section.name === 'practicalInformations' && touristicContent.practicalInfo) {
                     return (
                       <section
