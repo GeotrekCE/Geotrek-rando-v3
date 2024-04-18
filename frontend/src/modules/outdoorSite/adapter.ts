@@ -2,7 +2,11 @@ import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
-import { getLargeImagesOrThumbnailsFromAttachments, getThumbnail } from 'modules/utils/adapter';
+import {
+  geFilesFromAttachments,
+  getLargeImagesOrThumbnailsFromAttachments,
+  getThumbnail,
+} from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { ViewPoint } from 'modules/viewPoint/interface';
 import { CityDictionnary } from '../city/interface';
@@ -44,6 +48,7 @@ export const adaptOutdoorSites = ({
       id: rawOutdoorSite.id,
       name: rawOutdoorSite.name,
       images: getLargeImagesOrThumbnailsFromAttachments(rawOutdoorSite.attachments, false),
+      filesFromAttachments: geFilesFromAttachments(rawOutdoorSite.attachments),
       geometry: adaptGeometry(rawOutdoorSite.geometry),
       themes: rawOutdoorSite?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       category: outdoorPracticeDictionnary[rawOutdoorSite.practice] ?? null,

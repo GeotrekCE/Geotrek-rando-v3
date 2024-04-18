@@ -1,6 +1,7 @@
 import { Bbox, WebLink } from 'modules/details/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import {
+  FileFromAttachment,
   GeometryCollection,
   ImageFromAttachment,
   LineStringGeometry,
@@ -81,6 +82,7 @@ export interface OutdoorSite {
   id: string;
   name: string;
   images: ImageFromAttachment[];
+  filesFromAttachments: FileFromAttachment[];
   geometry:
     | PolygonGeometry
     | MultiPolygonGeometry
