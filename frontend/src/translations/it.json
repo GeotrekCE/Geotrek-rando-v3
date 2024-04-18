@@ -263,6 +263,11 @@
     "credit": "Credito foto:",
     "displayPicture": "Sfoglia foto"
   },
+  "attachments": {
+    "title": "{count, plural, =0 {Allegato} one {Allegato} other {Allegati}}",
+    "credit": "Credito:",
+    "download": "Scarica"
+  },
   "Wind": {
     "N": "Nord",
     "S": "Sud",
