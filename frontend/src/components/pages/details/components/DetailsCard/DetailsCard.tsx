@@ -11,9 +11,10 @@ import { FormattedMessage } from 'react-intl';
 import { cn } from 'services/utils/cn';
 import { Arrow } from 'components/Icons/Arrow';
 import { ViewPoint } from 'modules/viewPoint/interface';
-import { ImageFromAttachment } from 'modules/interface';
+import { FileFromAttachment, ImageFromAttachment } from 'modules/interface';
 import { useDetailsCard } from './useDetailsCard';
 import { DetailsViewPoints } from '../DetailsViewPoints';
+import { DetailsFiles } from '../DetailsFiles';
 
 export interface DetailsCardProps {
   id: string;
@@ -27,6 +28,7 @@ export interface DetailsCardProps {
   className?: string;
   redirectionUrl?: string;
   type?: string;
+  filesFromAttachments?: FileFromAttachment[];
   viewPoints?: ViewPoint[];
   handleViewPointClick?: (id: string) => void;
 }
@@ -44,6 +46,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   redirectionUrl,
   type,
   handleViewPointClick,
+  filesFromAttachments,
   viewPoints,
 }) => {
   const hasMedia = Boolean(viewPoints?.length);
@@ -128,7 +131,8 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
             <>
               <OptionalLink redirectionUrl={redirectionUrl}>{descriptionStyled}</OptionalLink>
               {hasNavigator && Number(viewPoints?.length) > 0 && truncateState !== 'TRUNCATE' && (
-                <div className="clear-both desktop:clear-none desktop:min-w-[420px] overflow-hidden py-6">
+                <div className="clear-both flex flex-col gap-4 desktop:gap-6 desktop:min-w-[420px] overflow-hidden py-6">
+                  <DetailsFiles files={filesFromAttachments} titleTag="h3" asAccordion />
                   <DetailsViewPoints
                     viewPoints={viewPoints ?? []}
                     handleViewPointClick={handleViewPointClick}
