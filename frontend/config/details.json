@@ -1,7 +1,7 @@
 {
   "sections": {
     "trek": [
-      { 
+      {
         "name": "presentation",
         "display": true,
         "anchor": true,
@@ -13,79 +13,79 @@
         "anchor": false,
         "order": 15
       },
-      { 
+      {
         "name": "itinerancySteps",
         "display": true,
         "anchor": true,
         "order": 20
       },
-      { 
+      {
         "name": "poi",
         "display": true,
         "anchor": true,
         "order": 30
       },
-      { 
+      {
         "name": "description",
         "display": true,
         "anchor": true,
         "order": 40
       },
-      { 
+      {
         "name": "forecastWidget",
         "display": true,
         "anchor": false,
         "order": 50
       },
-      { 
+      {
         "name": "altimetricProfile",
         "display": true,
         "anchor": false,
         "order": 60
       },
-      { 
+      {
         "name": "sensitiveAreas",
         "display": true,
         "anchor": true,
         "order": 70
       },
-      { 
+      {
         "name": "practicalInformations",
         "display": true,
         "anchor": true,
         "order": 80
       },
-      { 
+      {
         "name": "accessibility",
         "display": true,
         "anchor": true,
         "order": 90
       },
-      { 
+      {
         "name": "more",
         "display": true,
         "anchor": false,
         "order": 100
       },
-      { 
+      {
         "name": "source",
         "display": true,
         "anchor": false,
         "order": 110
       },
-      { 
+      {
         "name": "report",
         "display": true,
         "anchor": true,
         "order": 120
       },
-      { 
+      {
         "name": "touristicContent",
         "display": true,
         "anchor": true,
         "order": 130
       },
-      { 
+      {
         "name": "reservationWidget",
         "display": true,
         "anchor": true,
@@ -93,84 +93,7 @@
       }
     ],
     "touristicContent": [
-      { 
-        "name": "presentation",
-        "display": true,
-        "anchor": true,
-        "order": 10
-      },
-      { 
-        "name": "practicalInformations",
-        "display": true,
-        "anchor": true,
-        "order": 20
-      },
-      { 
-        "name": "accessibility",
-        "display": true,
-        "anchor": false,
-        "order": 30
-      },      
-      { 
-        "name": "contact",
-        "display": true,
-        "anchor": false,
-        "order": 40
-      },
-      { 
-        "name": "forecastWidget",
-        "display": true,
-        "anchor": false,
-        "order": 50
-      },
-      { 
-        "name": "source",
-        "display": true,
-        "anchor": false,
-        "order": 60
-      }
-      
-    ],
-    "touristicEvent": [
-      { 
-        "name": "presentation",
-        "display": true,
-        "anchor": true,
-        "order": 10
-      },
-      { 
-        "name": "description",
-        "display": true,
-        "anchor": true,
-        "order": 20
-      },
-      { 
-        "name": "practicalInformations",
-        "display": true,
-        "anchor": true,
-        "order": 30
-      },
-      { 
-        "name": "forecastWidget",
-        "display": true,
-        "anchor": false,
-        "order": 40
-      },
-      { 
-        "name": "source",
-        "display": true,
-        "anchor": false,
-        "order": 50
-      },
-      { 
-        "name": "touristicContent",
-        "display": true,
-        "anchor": false,
-        "order": 60
-      }
-    ],
-    "outdoorSite": [
-      { 
+      {
         "name": "presentation",
         "display": true,
         "anchor": true,
@@ -182,67 +105,155 @@
         "anchor": false,
         "order": 15
       },
-      { 
+      {
+        "name": "practicalInformations",
+        "display": true,
+        "anchor": true,
+        "order": 20
+      },
+      {
+        "name": "accessibility",
+        "display": true,
+        "anchor": false,
+        "order": 30
+      },
+      {
+        "name": "contact",
+        "display": true,
+        "anchor": false,
+        "order": 40
+      },
+      {
+        "name": "forecastWidget",
+        "display": true,
+        "anchor": false,
+        "order": 50
+      },
+      {
+        "name": "source",
+        "display": true,
+        "anchor": false,
+        "order": 60
+      }
+    ],
+    "touristicEvent": [
+      {
+        "name": "presentation",
+        "display": true,
+        "anchor": true,
+        "order": 10
+      },
+      {
+        "name": "medias",
+        "display": true,
+        "anchor": false,
+        "order": 15
+      },
+      {
+        "name": "description",
+        "display": true,
+        "anchor": true,
+        "order": 20
+      },
+      {
+        "name": "practicalInformations",
+        "display": true,
+        "anchor": true,
+        "order": 30
+      },
+      {
+        "name": "forecastWidget",
+        "display": true,
+        "anchor": false,
+        "order": 40
+      },
+      {
+        "name": "source",
+        "display": true,
+        "anchor": false,
+        "order": 50
+      },
+      {
+        "name": "touristicContent",
+        "display": true,
+        "anchor": false,
+        "order": 60
+      }
+    ],
+    "outdoorSite": [
+      {
+        "name": "presentation",
+        "display": true,
+        "anchor": true,
+        "order": 10
+      },
+      {
+        "name": "medias",
+        "display": true,
+        "anchor": false,
+        "order": 15
+      },
+      {
         "name": "poi",
         "display": true,
         "anchor": true,
         "order": 20
       },
-      { 
+      {
         "name": "description",
         "display": true,
         "anchor": true,
         "order": 30
       },
-      { 
+      {
         "name": "subsites",
         "display": true,
         "anchor": true,
         "order": 40
       },
-      { 
+      {
         "name": "courses",
         "display": true,
         "anchor": true,
         "order": 50
       },
-      { 
+      {
         "name": "sensitiveAreas",
         "display": true,
         "anchor": false,
         "order": 60
       },
-      { 
+      {
         "name": "practicalInformations",
         "display": true,
         "anchor": true,
         "order": 70
       },
-      { 
+      {
         "name": "access",
         "display": true,
         "anchor": true,
         "order": 80
       },
-      { 
+      {
         "name": "forecastWidget",
         "display": true,
         "anchor": false,
         "order": 90
       },
-      { 
+      {
         "name": "source",
         "display": true,
         "anchor": false,
         "order": 100
       },
-      { 
+      {
         "name": "more",
         "display": true,
         "anchor": false,
         "order": 110
       },
-      { 
+      {
         "name": "touristicContent",
         "display": true,
         "anchor": false,
@@ -250,55 +261,55 @@
       }
     ],
     "outdoorCourse": [
-      { 
+      {
         "name": "presentation",
         "display": true,
         "anchor": true,
         "order": 10
       },
-      { 
+      {
         "name": "description",
         "display": true,
         "anchor": false,
         "order": 20
       },
-      { 
+      {
         "name": "gear",
         "display": true,
         "anchor": false,
         "order": 30
       },
-      { 
+      {
         "name": "equipment",
         "display": true,
         "anchor": false,
         "order": 40
       },
-      { 
+      {
         "name": "poi",
         "display": true,
         "anchor": true,
         "order": 50
       },
-      { 
+      {
         "name": "sensitiveAreas",
         "display": true,
         "anchor": false,
         "order": 60
       },
-      { 
+      {
         "name": "practicalInformations",
         "display": true,
         "anchor": false,
         "order": 70
       },
-      { 
+      {
         "name": "touristicContent",
         "display": true,
         "anchor": false,
         "order": 80
       },
-      { 
+      {
         "name": "forecastWidget",
         "display": true,
         "anchor": false,
