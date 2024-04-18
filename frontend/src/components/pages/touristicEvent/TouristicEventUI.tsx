@@ -31,6 +31,7 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { useDetailsSections } from '../details/useDetailsSections';
+import { DetailsFiles } from '../details/components/DetailsFiles';
 
 interface Props {
   touristicEventUrl: string | string[] | undefined;
@@ -186,6 +187,24 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                         </section>
                       );
                     }
+
+                    if (
+                      section.name === 'medias' &&
+                      touristicEventContent.filesFromAttachments.length > 0
+                    ) {
+                      return (
+                        <section
+                          key={section.name}
+                          ref={sectionRef[section.name]}
+                          id={`details_${section.name}_ref`}
+                        >
+                          <DetailsSection htmlId="details_medias" className={marginDetailsChild}>
+                            <DetailsFiles files={touristicEventContent.filesFromAttachments} />
+                          </DetailsSection>
+                        </section>
+                      );
+                    }
+
                     if (section.name === 'description' && touristicEventContent.description) {
                       return (
                         <section

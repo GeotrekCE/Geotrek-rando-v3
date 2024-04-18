@@ -1,4 +1,8 @@
-import { getLargeImagesOrThumbnailsFromAttachments, getThumbnail } from 'modules/utils/adapter';
+import {
+  geFilesFromAttachments,
+  getLargeImagesOrThumbnailsFromAttachments,
+  getThumbnail,
+} from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CityDictionnary } from '../city/interface';
 import { Choices } from '../filters/interface';
@@ -34,6 +38,7 @@ export const adaptTouristicEvents = ({
       id: rawTouristicEvent.id,
       name: rawTouristicEvent.name,
       images: getLargeImagesOrThumbnailsFromAttachments(rawTouristicEvent.attachments, false),
+      filesFromAttachments: geFilesFromAttachments(rawTouristicEvent.attachments),
       geometry: adaptGeometry(rawTouristicEvent.geometry),
       themes: rawTouristicEvent?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       place: cityDictionnary?.[rawTouristicEvent?.cities?.[0]]?.name ?? '',
