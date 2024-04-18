@@ -18,6 +18,10 @@ export const mockSignageResponse = (): APIResponseForList<RawSignage> => ({
           title: 'lagopede-alpin-en-tenue-dete',
           url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-tenue-dete.jpg',
           type: 'image',
+          filetype: {
+            id: 1,
+            type: 'Topoguide',
+          },
         },
         {
           author: 'Damien Combrisson - PNE',
@@ -28,6 +32,10 @@ export const mockSignageResponse = (): APIResponseForList<RawSignage> => ({
           title: 'lagopede-alpin-en-plumage-dhiver',
           url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-plumage-dhiver.jpg',
           type: 'image',
+          filetype: {
+            id: 1,
+            type: 'Topoguide',
+          },
         },
       ],
       id: 1,
