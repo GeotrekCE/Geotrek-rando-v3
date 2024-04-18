@@ -254,6 +254,11 @@
     "credit": "Crèdit fotogràfic :",
     "displayPicture": "Navega per la foto"
   },
+  "attachments": {
+    "title": "{count, plural, =0 {Adjunt} one {Adjunt} other {Adjunts}}",
+    "credit": "Crèdit:",
+    "download": "Descarregar"
+  },
   "Wind": {
     "N": "Nord",
     "S": "Sud",

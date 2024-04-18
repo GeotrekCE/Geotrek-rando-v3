@@ -254,6 +254,11 @@
     "credit": "Crédito de la foto:",
     "displayPicture": "Examinar foto"
   },
+  "attachments": {
+    "title": "{count, plural, =0 {Archivo adjunto} one {Archivo adjunto} other {Archivos adjuntos}}",
+    "credit": "Créditos:",
+    "download": "Descargar"
+  },
   "Wind": {
     "N": "Norte",
     "S": "Sur",
