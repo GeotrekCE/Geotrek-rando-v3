@@ -141,10 +141,17 @@ export interface RawAttachment {
   };
 }
 
-export interface ImageFromAttachment {
+interface Attachment {
   author: string;
   legend: string;
   url: string;
+}
+
+export interface ImageFromAttachment extends Attachment {}
+
+export interface FileFromAttachment extends Attachment {
+  fileName: string;
+  fileType: string;
 }
 
 export interface LineStringGeometry {
