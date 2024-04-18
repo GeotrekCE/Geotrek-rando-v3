@@ -261,6 +261,11 @@
     "credit": "Picture credit:",
     "displayPicture": "Display picture"
   },
+  "attachments": {
+    "title": "{count, plural, =0 {Attachment} one {Attachment} other {Attachments}}",
+    "credit": "Credit:",
+    "download": "Download"
+  },
   "Wind": {
     "N": "North",
     "S": "South",

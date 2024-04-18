@@ -261,6 +261,11 @@
     "credit": "Crédit image :",
     "displayPicture": "Afficher l'image"
   },
+  "attachments": {
+    "title": "{count, plural, =0 {Document associé} one {Document associé} other {Documents associés}}",
+    "credit": "Crédit :",
+    "download": "Télécharger"
+  },
   "Wind": {
     "N": "Nord",
     "S": "Sud",

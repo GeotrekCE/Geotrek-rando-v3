@@ -254,6 +254,11 @@
     "credit": "Fotogutschrift:",
     "displayPicture": "Foto durchsuchen"
   },
+  "attachments": {
+    "title": "{count, plural, =0 {Anlage} one {Anlage} other {Anhänge}}",
+    "credit": "Kredit:",
+    "download": "Herunterladen"
+  },
   "Wind": {
     "N": "Norden",
     "S": "Süden",
