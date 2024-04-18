@@ -62,6 +62,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
             type={type}
             handleViewPointClick={handleViewPointClick}
             viewPoints={card.viewPoints}
+            filesFromAttachments={card.filesFromAttachments}
           />
         ))}
       </ScrollContainer>
