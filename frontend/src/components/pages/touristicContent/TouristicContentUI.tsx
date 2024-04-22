@@ -202,8 +202,8 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                         id={`details_${section.name}_ref`}
                       >
                         <DetailsSection
-                          htmlId="touristicContent_contact"
-                          titleId="touristicContent.contact"
+                          htmlId="details_contact"
+                          titleId="details.contact"
                           className={marginDetailsChild}
                         >
                           <HtmlText>{parse(touristicContent.contact)}</HtmlText>
