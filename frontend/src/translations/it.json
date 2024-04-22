@@ -178,10 +178,10 @@
     "booking": "Prenotazione",
     "centerOnMap": "Center on map",
     "openPictureInFullScreen": "View picture in full screen",
-    "closeFullScreen": "Close full screen mode"
+    "closeFullScreen": "Close full screen mode",
+    "contact": "Contatto"
   },
   "touristicContent": {
-    "contact": "Contatto",
     "email": "email",
     "website": "Sito web"
   },

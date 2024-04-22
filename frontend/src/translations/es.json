@@ -175,10 +175,10 @@
     "booking": "Reservación",
     "centerOnMap": "Center on map",
     "openPictureInFullScreen": "View picture in full screen",
-    "closeFullScreen": "Close full screen mode"
+    "closeFullScreen": "Close full screen mode",
+    "contact": "Contacto"
   },
   "touristicContent": {
-    "contact": "Contacto",
     "email": "Correo electrónico",
     "website": "página web"
   },
