@@ -107,7 +107,6 @@ module.exports = {
       },
       borderRadius: {
         button: '8px',
-        card: '16px',
         chip: '20px',
         large: '10px',
         medium: '4px',
