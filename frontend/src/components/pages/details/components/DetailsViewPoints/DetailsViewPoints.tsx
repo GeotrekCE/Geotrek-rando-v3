@@ -34,7 +34,7 @@ export const DetailsViewPoints: React.FC<DetailsViewPointsProps> = ({
   );
 
   const id = useId();
-  const [isOpen, setOpen] = useState(true);
+  const [isOpen, setOpen] = useState(!asAccordion);
 
   const { setHoveredCardId } = useListAndMapContext();
 
@@ -43,7 +43,7 @@ export const DetailsViewPoints: React.FC<DetailsViewPointsProps> = ({
   }
 
   return (
-    <div className={cn(className, asAccordion && 'p-4 bg-neutral-100')}>
+    <div className={cn(className, asAccordion && 'p-2 p-2 desktop:p-6 bg-neutral-100')}>
       <TitleTag
         className={cn(
           'relative flex items-center justify-stretch gap-1 font-bold',
@@ -78,13 +78,19 @@ export const DetailsViewPoints: React.FC<DetailsViewPointsProps> = ({
           </button>
         )}
       </TitleTag>
-      <p className={cn('text-lg desktop:mt-6', !isOpen && 'hidden')}>
+      <p
+        className={cn(
+          'text-lg desktop:mt-6',
+          asAccordion && 'hidden desktop:block',
+          !isOpen && 'hidden desktop:hidden',
+        )}
+      >
         <FormattedMessage id="viewPoint.description" />
       </p>
       <ul
         id={id}
         className={cn(
-          'flex desktop:flex-col gap-4 bg-white text-Mobile-C1 desktop:text-P1 mt-4 pb-5 desktop:pb-0 overflow-x-auto desktop:overflow-x-hidden overflow-y-hidden desktop:overflow-y-auto scroll-smooth snap-x',
+          'flex desktop:flex-col gap-4 text-Mobile-C1 desktop:text-P1 mt-4 pb-5 desktop:pb-0 overflow-x-auto desktop:overflow-x-hidden overflow-y-hidden desktop:overflow-y-auto scroll-smooth snap-x',
           !isOpen && 'hidden',
         )}
       >
@@ -93,7 +99,7 @@ export const DetailsViewPoints: React.FC<DetailsViewPointsProps> = ({
           return (
             <li
               key={viewPoint.id}
-              className="shrink-0 relative desktop:flex items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden row w-60 desktop:w-auto"
+              className="shrink-0 relative desktop:flex items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden row w-60 desktop:w-full bg-white"
               onMouseEnter={() => {
                 !asAccordion && setHoveredCardId(`DETAILS-VIEWPOINT-${viewPoint.id}`);
               }}
