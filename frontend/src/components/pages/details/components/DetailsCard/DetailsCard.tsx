@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import { CardIcon } from 'components/CardIcon';
 import { Link } from 'components/Link';
 import { Modal } from 'components/Modal';
@@ -12,6 +13,8 @@ import { cn } from 'services/utils/cn';
 import { Arrow } from 'components/Icons/Arrow';
 import { ViewPoint } from 'modules/viewPoint/interface';
 import { FileFromAttachment, ImageFromAttachment } from 'modules/interface';
+import { ViewPoint as ViewPointIcon } from 'components/Icons/ViewPoint';
+import { Paperclip } from 'components/Icons/Paperclip';
 import { useDetailsCard } from './useDetailsCard';
 import { DetailsViewPoints } from '../DetailsViewPoints';
 import { DetailsFiles } from '../DetailsFiles';
@@ -46,11 +49,13 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   redirectionUrl,
   type,
   handleViewPointClick,
-  filesFromAttachments,
-  viewPoints,
+  filesFromAttachments = [],
+  viewPoints = [],
 }) => {
   const hasMedia = Boolean(viewPoints?.length);
-  const { truncateState, toggleTruncateState, detailsCardRef } = useDetailsCard(hasMedia);
+  const { truncateState, toggleTruncateState, detailsCardRef, setTruncateState } =
+    useDetailsCard(hasMedia);
+
   const descriptionStyled =
     truncateState === 'TRUNCATE' ? (
       <HtmlText className="custo-result-card-description line-clamp-2 desktop:line-clamp-5 text-greyDarkColored">
@@ -65,10 +70,17 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   const { setHoveredCardId } = useListAndMapContext();
 
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
+
+  const hasViewPoints = hasNavigator && viewPoints.length > 0;
+  const hasFiles = filesFromAttachments.length > 0;
+
+  const viewPointsId = useId();
+  const filesId = useId();
+
   return (
     <li
       className={cn(
-        `custo-result-card relative border border-solid border-greySoft rounded-card
+        `custo-result-card relative border border-solid border-greySoft rounded-lg
   flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden
   hover:border-blackSemiTransparent transition-all duration-500`,
         className,
@@ -77,6 +89,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
       <div
         className={cn(
           `
+      relative
       overflow-hidden desktop:w-auto
       h-fit desktop:flex-row
       transition-all duration-500`,
@@ -90,6 +103,44 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           setHoveredCardId(null);
         }}
       >
+        {(hasFiles || hasViewPoints) && (
+          <ul className="hidden desktop:flex absolute -top-1 right-0">
+            {hasFiles && (
+              <li>
+                <a
+                  className="block -mr-1p p-2 border border-solid border-blackSemiTransparent hover:bg-greySoft focus:bg-greySoft transition rounded-bl-lg"
+                  href={`#${filesId}`}
+                  onClick={() => setTruncateState('FULL')}
+                >
+                  <Paperclip size={20} aria-hidden />
+                  <span className="sr-only">
+                    <FormattedMessage
+                      id="attachments.title"
+                      values={{ count: filesFromAttachments.length }}
+                    />
+                  </span>
+                </a>
+              </li>
+            )}
+            {hasViewPoints && (
+              <li>
+                <a
+                  className={cn(
+                    'block -mr-1p p-2 border border-solid border-blackSemiTransparent hover:bg-greySoft focus:bg-greySoft transition',
+                    !hasFiles && 'rounded-bl-lg',
+                  )}
+                  href={`#${viewPointsId}`}
+                  onClick={() => setTruncateState('FULL')}
+                >
+                  <ViewPointIcon size={20} aria-hidden />
+                  <span className="sr-only">
+                    <FormattedMessage id="viewPoint.title" />
+                  </span>
+                </a>
+              </li>
+            )}
+          </ul>
+        )}
         <div className="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6">
           <div className="w-full">
             <Modal className="h-full">
@@ -130,15 +181,25 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           {Boolean(description) && (
             <>
               <OptionalLink redirectionUrl={redirectionUrl}>{descriptionStyled}</OptionalLink>
-              {hasNavigator && Number(viewPoints?.length) > 0 && truncateState !== 'TRUNCATE' && (
+              {(hasViewPoints || hasFiles) && truncateState !== 'TRUNCATE' && (
                 <div className="clear-both flex flex-col gap-4 desktop:min-w-[420px] overflow-hidden desktop:-mx-6 py-6">
-                  <DetailsFiles files={filesFromAttachments} titleTag="h3" asAccordion />
-                  <DetailsViewPoints
-                    viewPoints={viewPoints ?? []}
-                    handleViewPointClick={handleViewPointClick}
+                  <DetailsFiles
+                    className="scroll-mt-20 desktop:scroll-mt-40"
+                    id={filesId}
+                    files={filesFromAttachments}
                     titleTag="h3"
                     asAccordion
                   />
+                  {hasNavigator && (
+                    <DetailsViewPoints
+                      className="scroll-mt-20 desktop:scroll-mt-40"
+                      id={viewPointsId}
+                      viewPoints={viewPoints}
+                      handleViewPointClick={handleViewPointClick}
+                      titleTag="h3"
+                      asAccordion
+                    />
+                  )}
                 </div>
               )}
               {truncateState !== 'NONE' && (

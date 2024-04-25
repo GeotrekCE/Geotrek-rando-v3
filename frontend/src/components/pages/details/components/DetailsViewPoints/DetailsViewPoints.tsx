@@ -10,6 +10,7 @@ import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { ViewPoint as ViewPointIcon } from 'components/Icons/ViewPoint';
 
 interface DetailsViewPointsProps {
+  id?: string;
   className?: string;
   viewPoints: ViewPoint[];
   handleViewPointClick?: (key: string) => void;
@@ -23,6 +24,7 @@ export const DetailsViewPoints: React.FC<DetailsViewPointsProps> = ({
   handleViewPointClick,
   asAccordion = false,
   titleTag: TitleTag = 'h2',
+  ...props
 }) => {
   const SubTitleTag = TitleTag === 'h2' ? 'h3' : 'h4';
 
@@ -43,7 +45,7 @@ export const DetailsViewPoints: React.FC<DetailsViewPointsProps> = ({
   }
 
   return (
-    <div className={cn(className, asAccordion && 'p-2 p-2 desktop:p-6 bg-neutral-100')}>
+    <div className={cn(className, asAccordion && 'p-2 p-2 desktop:p-6 bg-neutral-100')} {...props}>
       <TitleTag
         className={cn(
           'relative flex items-center justify-stretch gap-1 font-bold',

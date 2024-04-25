@@ -6,10 +6,10 @@ Object {
   "baseElement": <body>
     <div>
       <li
-        class="custo-result-card relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
+        class="custo-result-card relative border border-solid border-greySoft rounded-lg flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
-          class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+          class="relative overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
             class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
@@ -30,7 +30,7 @@ Object {
                       class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
                     >
                       <figure
-                        aria-labelledby=":r2:"
+                        aria-labelledby=":r4:"
                         class="relative "
                         id="details_cover_image"
                         role="figure"
@@ -38,12 +38,12 @@ Object {
                         <img
                           alt="Lorem ipsum"
                           class="overflow-hidden size-full object-cover object-center"
-                          id=":r3:"
+                          id=":r5:"
                           loading="lazy"
                           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                         />
                         <figcaption
-                          id=":r2:"
+                          id=":r4:"
                         >
                           <span
                             class="w-full h-12 desktop:h-40
@@ -59,7 +59,7 @@ Object {
                             </span>
                           </span>
                           <button
-                            aria-describedby=":r3:"
+                            aria-describedby=":r5:"
                             class="absolute inset-0 size-full"
                             type="button"
                           >
@@ -108,10 +108,10 @@ Object {
     </div>
     <div>
       <li
-        class="custo-result-card relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
+        class="custo-result-card relative border border-solid border-greySoft rounded-lg flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
-          class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+          class="relative overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
             class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
@@ -159,7 +159,7 @@ Object {
                           >
                             <div>
                               <figure
-                                aria-labelledby=":r8:"
+                                aria-labelledby=":rc:"
                                 class="relative "
                                 id="details_cover_image"
                                 role="figure"
@@ -167,12 +167,12 @@ Object {
                                 <img
                                   alt="Lorem ipsum"
                                   class="overflow-hidden size-full object-cover object-center"
-                                  id=":r9:"
+                                  id=":rd:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                                 />
                                 <figcaption
-                                  id=":r8:"
+                                  id=":rc:"
                                 >
                                   <span
                                     class="w-full h-12 desktop:h-40
@@ -188,7 +188,7 @@ Object {
                                     </span>
                                   </span>
                                   <button
-                                    aria-describedby=":r9:"
+                                    aria-describedby=":rd:"
                                     class="absolute inset-0 size-full"
                                     type="button"
                                   >
@@ -218,7 +218,7 @@ Object {
                           >
                             <div>
                               <figure
-                                aria-labelledby=":ra:"
+                                aria-labelledby=":re:"
                                 class="relative "
                                 id="details_cover_image"
                                 role="figure"
@@ -226,12 +226,12 @@ Object {
                                 <img
                                   alt="Lorem ipsum"
                                   class="overflow-hidden size-full object-cover object-center"
-                                  id=":rb:"
+                                  id=":rf:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                                 />
                                 <figcaption
-                                  id=":ra:"
+                                  id=":re:"
                                 >
                                   <span
                                     class="w-full h-12 desktop:h-40
@@ -247,7 +247,7 @@ Object {
                                     </span>
                                   </span>
                                   <button
-                                    aria-describedby=":rb:"
+                                    aria-describedby=":rf:"
                                     class="absolute inset-0 size-full"
                                     type="button"
                                   >
@@ -332,10 +332,10 @@ Object {
   </body>,
   "container": <div>
     <li
-      class="custo-result-card relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
+      class="custo-result-card relative border border-solid border-greySoft rounded-lg flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
     >
       <div
-        class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+        class="relative overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
       >
         <div
           class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
@@ -356,7 +356,7 @@ Object {
                     class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
                   >
                     <figure
-                      aria-labelledby=":r2:"
+                      aria-labelledby=":r4:"
                       class="relative "
                       id="details_cover_image"
                       role="figure"
@@ -364,12 +364,12 @@ Object {
                       <img
                         alt="Lorem ipsum"
                         class="overflow-hidden size-full object-cover object-center"
-                        id=":r3:"
+                        id=":r5:"
                         loading="lazy"
                         src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                       />
                       <figcaption
-                        id=":r2:"
+                        id=":r4:"
                       >
                         <span
                           class="w-full h-12 desktop:h-40
@@ -385,7 +385,7 @@ Object {
                           </span>
                         </span>
                         <button
-                          aria-describedby=":r3:"
+                          aria-describedby=":r5:"
                           class="absolute inset-0 size-full"
                           type="button"
                         >
@@ -492,10 +492,10 @@ Object {
   "baseElement": <body>
     <div>
       <li
-        class="custo-result-card relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
+        class="custo-result-card relative border border-solid border-greySoft rounded-lg flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
-          class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+          class="relative overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
             class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
@@ -516,7 +516,7 @@ Object {
                       class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
                     >
                       <figure
-                        aria-labelledby=":r2:"
+                        aria-labelledby=":r4:"
                         class="relative "
                         id="details_cover_image"
                         role="figure"
@@ -524,12 +524,12 @@ Object {
                         <img
                           alt="Lorem ipsum"
                           class="overflow-hidden size-full object-cover object-center"
-                          id=":r3:"
+                          id=":r5:"
                           loading="lazy"
                           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                         />
                         <figcaption
-                          id=":r2:"
+                          id=":r4:"
                         >
                           <span
                             class="w-full h-12 desktop:h-40
@@ -545,7 +545,7 @@ Object {
                             </span>
                           </span>
                           <button
-                            aria-describedby=":r3:"
+                            aria-describedby=":r5:"
                             class="absolute inset-0 size-full"
                             type="button"
                           >
@@ -594,10 +594,10 @@ Object {
     </div>
     <div>
       <li
-        class="custo-result-card relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
+        class="custo-result-card relative border border-solid border-greySoft rounded-lg flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
-          class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+          class="relative overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
             class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
@@ -645,7 +645,7 @@ Object {
                           >
                             <div>
                               <figure
-                                aria-labelledby=":r8:"
+                                aria-labelledby=":rc:"
                                 class="relative "
                                 id="details_cover_image"
                                 role="figure"
@@ -653,12 +653,12 @@ Object {
                                 <img
                                   alt="Lorem ipsum"
                                   class="overflow-hidden size-full object-cover object-center"
-                                  id=":r9:"
+                                  id=":rd:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                                 />
                                 <figcaption
-                                  id=":r8:"
+                                  id=":rc:"
                                 >
                                   <span
                                     class="w-full h-12 desktop:h-40
@@ -674,7 +674,7 @@ Object {
                                     </span>
                                   </span>
                                   <button
-                                    aria-describedby=":r9:"
+                                    aria-describedby=":rd:"
                                     class="absolute inset-0 size-full"
                                     type="button"
                                   >
@@ -704,7 +704,7 @@ Object {
                           >
                             <div>
                               <figure
-                                aria-labelledby=":ra:"
+                                aria-labelledby=":re:"
                                 class="relative "
                                 id="details_cover_image"
                                 role="figure"
@@ -712,12 +712,12 @@ Object {
                                 <img
                                   alt="Lorem ipsum"
                                   class="overflow-hidden size-full object-cover object-center"
-                                  id=":rb:"
+                                  id=":rf:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                                 />
                                 <figcaption
-                                  id=":ra:"
+                                  id=":re:"
                                 >
                                   <span
                                     class="w-full h-12 desktop:h-40
@@ -733,7 +733,7 @@ Object {
                                     </span>
                                   </span>
                                   <button
-                                    aria-describedby=":rb:"
+                                    aria-describedby=":rf:"
                                     class="absolute inset-0 size-full"
                                     type="button"
                                   >
@@ -818,10 +818,10 @@ Object {
   </body>,
   "container": <div>
     <li
-      class="custo-result-card relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
+      class="custo-result-card relative border border-solid border-greySoft rounded-lg flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
     >
       <div
-        class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+        class="relative overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
       >
         <div
           class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
@@ -869,7 +869,7 @@ Object {
                         >
                           <div>
                             <figure
-                              aria-labelledby=":r8:"
+                              aria-labelledby=":rc:"
                               class="relative "
                               id="details_cover_image"
                               role="figure"
@@ -877,12 +877,12 @@ Object {
                               <img
                                 alt="Lorem ipsum"
                                 class="overflow-hidden size-full object-cover object-center"
-                                id=":r9:"
+                                id=":rd:"
                                 loading="lazy"
                                 src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                               />
                               <figcaption
-                                id=":r8:"
+                                id=":rc:"
                               >
                                 <span
                                   class="w-full h-12 desktop:h-40
@@ -898,7 +898,7 @@ Object {
                                   </span>
                                 </span>
                                 <button
-                                  aria-describedby=":r9:"
+                                  aria-describedby=":rd:"
                                   class="absolute inset-0 size-full"
                                   type="button"
                                 >
@@ -928,7 +928,7 @@ Object {
                         >
                           <div>
                             <figure
-                              aria-labelledby=":ra:"
+                              aria-labelledby=":re:"
                               class="relative "
                               id="details_cover_image"
                               role="figure"
@@ -936,12 +936,12 @@ Object {
                               <img
                                 alt="Lorem ipsum"
                                 class="overflow-hidden size-full object-cover object-center"
-                                id=":rb:"
+                                id=":rf:"
                                 loading="lazy"
                                 src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                               />
                               <figcaption
-                                id=":ra:"
+                                id=":re:"
                               >
                                 <span
                                   class="w-full h-12 desktop:h-40
@@ -957,7 +957,7 @@ Object {
                                   </span>
                                 </span>
                                 <button
-                                  aria-describedby=":rb:"
+                                  aria-describedby=":rf:"
                                   class="absolute inset-0 size-full"
                                   type="button"
                                 >
