@@ -6,7 +6,7 @@ import { FileFromAttachment } from 'modules/interface';
 import { cn } from 'services/utils/cn';
 import { Minus } from 'components/Icons/Minus';
 import { Plus } from 'components/Icons/Plus';
-import { Download } from 'components/Icons/Download';
+import { Paperclip } from 'components/Icons/Paperclip';
 
 interface DetailsDetailsFilesProps {
   className?: string;
@@ -38,7 +38,7 @@ export const DetailsFiles: React.FC<DetailsDetailsFilesProps> = ({
           TitleTag === 'h2' ? 'text-Mobile-H1 desktop:text-H2' : 'text-Mobile-C1 desktop:text-H4',
         )}
       >
-        <Download size={30} aria-hidden />
+        <Paperclip size={30} aria-hidden />
         <FormattedMessage id="attachments.title" values={{ count: files.length }} />
         {asAccordion && (
           <button
