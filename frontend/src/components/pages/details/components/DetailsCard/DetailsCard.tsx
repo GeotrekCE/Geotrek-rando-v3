@@ -131,7 +131,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
             <>
               <OptionalLink redirectionUrl={redirectionUrl}>{descriptionStyled}</OptionalLink>
               {hasNavigator && Number(viewPoints?.length) > 0 && truncateState !== 'TRUNCATE' && (
-                <div className="clear-both flex flex-col gap-4 desktop:gap-6 desktop:min-w-[420px] overflow-hidden py-6">
+                <div className="clear-both flex flex-col gap-4 desktop:min-w-[420px] overflow-hidden desktop:-mx-6 py-6">
                   <DetailsFiles files={filesFromAttachments} titleTag="h3" asAccordion />
                   <DetailsViewPoints
                     viewPoints={viewPoints ?? []}

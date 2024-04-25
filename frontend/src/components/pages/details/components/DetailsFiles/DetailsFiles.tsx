@@ -24,14 +24,14 @@ export const DetailsFiles: React.FC<DetailsDetailsFilesProps> = ({
   const SubTitleTag = TitleTag === 'h2' ? 'h3' : 'h4';
 
   const id = useId();
-  const [isOpen, setOpen] = useState(true);
+  const [isOpen, setOpen] = useState(!asAccordion);
 
   if (files.length === 0) {
     return null;
   }
 
   return (
-    <div className={cn(className, asAccordion && 'p-4 bg-neutral-100')}>
+    <div className={cn(className, asAccordion && 'p-2 desktop:p-6 bg-neutral-100')}>
       <TitleTag
         className={cn(
           'relative flex items-center justify-start gap-1 font-bold',
@@ -71,6 +71,7 @@ export const DetailsFiles: React.FC<DetailsDetailsFilesProps> = ({
         className={cn(
           'flex desktop:flex-col gap-4 border border text-Mobile-C1 desktop:text-P1 mt-4 pb-5 desktop:pb-0 overflow-x-auto overflow-y-hidden desktop:overflow-visible scroll-smooth snap-x',
           !isOpen && 'hidden',
+          asAccordion && 'mt-4',
         )}
       >
         {files.map((file, index) => {
@@ -80,19 +81,21 @@ export const DetailsFiles: React.FC<DetailsDetailsFilesProps> = ({
           return (
             <li
               key={index}
-              className="shrink-0 relative desktop:flex w-60 desktop:w-auto border-l desktop:border-l-0 desktop:border-t first:border-0 border-solid border-greySoft pl-5 desktop:pl-0 desktop:pt-5"
+              className={cn(
+                'shrink-0 relative p-4 desktop:flex w-50 desktop:w-auto border rounded-lg border-solid border-greySoft bg-white',
+              )}
             >
               <div className="flex flex-col gap-4 desktop:flex-row items-center justify-between w-full">
                 <div>
-                  <SubTitleTag className="flex flex-wrap gap-4 justify-center">
+                  <SubTitleTag className="flex flex-col gap-1 justify-center desktop:justify-start">
+                    <span className="text-P2 mb-1 text-greyDarkColored hidden desktop:block">
+                      {file.fileType}
+                    </span>
                     {file.fileName && (
                       <span className="text-Mobile-C1 desktop:text-H4 text-primary1 font-bold break-all">
                         {file.fileName}
                       </span>
                     )}
-                    <span className="py-1 px-2 rounded-full  bg-primary2 text-sm desktop:text-base">
-                      {file.fileType}
-                    </span>
                   </SubTitleTag>
                   {legend.length > 0 && (
                     <p className="mt-4 text-greyDarkColored text-sm">
