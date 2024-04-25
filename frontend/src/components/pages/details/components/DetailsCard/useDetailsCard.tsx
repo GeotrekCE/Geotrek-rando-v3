@@ -70,5 +70,5 @@ export const useDetailsCard = (hasMedia = false) => {
     };
   }, [debouncedResize]);
 
-  return { truncateState, toggleTruncateState, detailsCardRef };
+  return { truncateState, toggleTruncateState, setTruncateState, detailsCardRef };
 };

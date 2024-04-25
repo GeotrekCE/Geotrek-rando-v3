@@ -9,6 +9,7 @@ import { Plus } from 'components/Icons/Plus';
 import { Paperclip } from 'components/Icons/Paperclip';
 
 interface DetailsDetailsFilesProps {
+  id?: string;
   className?: string;
   files?: FileFromAttachment[];
   asAccordion?: boolean;
@@ -20,6 +21,7 @@ export const DetailsFiles: React.FC<DetailsDetailsFilesProps> = ({
   files = [],
   asAccordion = false,
   titleTag: TitleTag = 'h2',
+  ...props
 }) => {
   const SubTitleTag = TitleTag === 'h2' ? 'h3' : 'h4';
 
@@ -31,7 +33,7 @@ export const DetailsFiles: React.FC<DetailsDetailsFilesProps> = ({
   }
 
   return (
-    <div className={cn(className, asAccordion && 'p-2 desktop:p-6 bg-neutral-100')}>
+    <div className={cn(className, asAccordion && 'p-2 desktop:p-6 bg-neutral-100')} {...props}>
       <TitleTag
         className={cn(
           'relative flex items-center justify-start gap-1 font-bold',
