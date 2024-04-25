@@ -35,7 +35,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   id,
   name,
   description,
-  images,
+  images = [],
   thumbnails,
   iconUri,
   iconName,
