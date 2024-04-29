@@ -18,7 +18,7 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = ({ picturesUrl }) =
         swipe={false}
         autoplay
         speed={1000}
-        autoplaySpeed={2500}
+        autoplaySpeed={5000}
         pauseOnHover
       >
         {picturesUrl.map((pictureUrl, i) => (
