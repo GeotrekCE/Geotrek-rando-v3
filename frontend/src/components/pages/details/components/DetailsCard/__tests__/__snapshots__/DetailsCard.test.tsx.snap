@@ -12,7 +12,7 @@ Object {
           class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
-            class="float-left flex shrink-0 h-40 desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
+            class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
           >
             <div
               class="w-full"
@@ -114,7 +114,7 @@ Object {
           class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
-            class="float-left flex shrink-0 h-40 desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
+            class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
           >
             <div
               class="w-full"
@@ -338,7 +338,7 @@ Object {
         class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
       >
         <div
-          class="float-left flex shrink-0 h-40 desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
+          class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
         >
           <div
             class="w-full"
@@ -498,7 +498,7 @@ Object {
           class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
-            class="float-left flex shrink-0 h-40 desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
+            class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
           >
             <div
               class="w-full"
@@ -600,7 +600,7 @@ Object {
           class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
-            class="float-left flex shrink-0 h-40 desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
+            class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
           >
             <div
               class="w-full"
@@ -824,7 +824,7 @@ Object {
         class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
       >
         <div
-          class="float-left flex shrink-0 h-40 desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
+          class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
         >
           <div
             class="w-full"

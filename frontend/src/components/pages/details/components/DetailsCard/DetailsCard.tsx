@@ -87,7 +87,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           setHoveredCardId(null);
         }}
       >
-        <div className="float-left flex shrink-0 h-40 desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6">
+        <div className="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6">
           <div className="w-full">
             <Modal className="h-full">
               {({ isFullscreen, toggleFullscreen }) => (
