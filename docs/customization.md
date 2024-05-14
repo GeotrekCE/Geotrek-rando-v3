@@ -181,6 +181,7 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
   - `searchMapCenter`: Array of two numbers `[latitude, longitude]` defining the map center point in the search view,
   - `searchMapZoom`: Default value is `10`. It defines the zoom level in the search view. **Warning**: It is important that the `searchMapZoom` value is included in the zoom value range of the basemap (`minZoom` and `maxZoom`), otherwise it may generate an error.
   - `maximumZoomLevel`: Default value is `17`. The default maximum zoom level if the maxZoom option is not defined in map layer (see below)
+  - `displaySecondaryLayersByDefault`: Default value is `true`. Display or not display secondary layers (signages, infractructures and services) at page load on detail pages.
 
   You can also update the map layers. Three types of map layers are available: classic, satellite and offline. Each of them is structured as follows:
 

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getMapConfig } from '../config';
 
 export type Visibility = 'DISPLAYED' | 'HIDDEN' | null;
 
@@ -6,6 +7,9 @@ const toggleVisibility = (currentVisibility: Visibility) =>
   currentVisibility === 'DISPLAYED' ? 'HIDDEN' : 'DISPLAYED';
 
 export const useDetailsMap = () => {
+  const { displaySecondaryLayersByDefault } = getMapConfig();
+  const displaySecondaryLayers = displaySecondaryLayersByDefault ? 'DISPLAYED' : 'HIDDEN';
+
   const [trekChildrenMobileVisibility, setTrekChildrenVisibility] = useState<Visibility>('HIDDEN');
   const [poiMobileVisibility, setPoiVisibility] = useState<Visibility>('HIDDEN');
   const [referencePointsMobileVisibility, setReferencePointsVisibility] =
@@ -18,9 +22,10 @@ export const useDetailsMap = () => {
 
   const [coursesVisibility, setCoursesVisibility] = useState<Visibility>('HIDDEN');
   const [experiencesVisibility, setExperiencesVisibility] = useState<Visibility>('HIDDEN');
-  const [signageVisibility, setSignageVisibility] = useState<Visibility>('HIDDEN');
-  const [serviceVisibility, setServiceVisibility] = useState<Visibility>('HIDDEN');
-  const [infrastructureVisibility, setInfrastructureVisibility] = useState<Visibility>('HIDDEN');
+  const [signageVisibility, setSignageVisibility] = useState<Visibility>(displaySecondaryLayers);
+  const [serviceVisibility, setServiceVisibility] = useState<Visibility>(displaySecondaryLayers);
+  const [infrastructureVisibility, setInfrastructureVisibility] =
+    useState<Visibility>(displaySecondaryLayers);
   const [viewPointVisibility, setViewPointVisibility] = useState<Visibility>('HIDDEN');
   const [annotationViewpointVisibility, setAnnotationViewpointVisibility] =
     useState<Visibility>('DISPLAYED');
