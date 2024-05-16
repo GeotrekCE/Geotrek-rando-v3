@@ -1,5 +1,4 @@
 import { ChevronDown } from 'components/Icons/ChevronDown';
-import React from 'react';
 
 export interface Props {
   title: string | React.ReactElement;
@@ -19,22 +18,28 @@ export const MobileFilterMenuSection: React.FC<Props> = ({
   }`;
 
   return (
-    <div
+    <button
       onClick={onClick}
-      className="pt-4 pb-4 outline-none border-b border-solid border-greySoft flex items-center"
+      className="pt-4 pb-4 outline-none border-b border-solid border-greySoft flex items-center w-full text-left"
+      type="button"
     >
       {numberSelected > 0 && (
-        <div
-          className="bg-primary1 text-white rounded-full h-6 w-6 flex items-center justify-center font-bold mr-2"
+        <span
+          className="bg-primary1 text-white text-center rounded-full size-6 font-bold mr-2"
           style={{ backgroundColor: color }}
         >
           {numberSelected}
-        </div>
+        </span>
       )}
-      <div className={classNameSectionName} style={{ color }}>
+      <span className={classNameSectionName} style={{ color }}>
         {title}
-      </div>
-      <ChevronDown className={`-rotate-90 text-primary1`} size={24} color={color} />
-    </div>
+      </span>
+      <ChevronDown
+        className="-rotate-90 text-primary1 ml-auto"
+        size={24}
+        color={color}
+        aria-hidden
+      />
+    </button>
   );
 };
