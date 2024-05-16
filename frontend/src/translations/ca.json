@@ -45,6 +45,7 @@
     "forThe": "Per a",
     "seeMap": "mostra el mapa",
     "filter": "Filtrar",
+    "closeFilters": "Tanca els filtres",
     "reload": "Tornar a carregar",
     "anErrorOccured": "S’ha produït un error",
     "filters": {
