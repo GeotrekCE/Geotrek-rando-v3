@@ -422,8 +422,6 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                   touristicContentPoints={outdoorCourseContent.touristicContents
                     .filter(touristicContent => touristicContent.geometry !== null)
                     .map(touristicContent => ({
-                      // It's ok to ignore this rule, we filtered null values 2 lines above
-                      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                       geometry: touristicContent.geometry!,
                       pictogramUri: touristicContent.category.pictogramUri,
                       name: touristicContent.name,
@@ -447,6 +445,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                   }))}
                   infrastructure={outdoorCourseContent.infrastructure}
                   hideMap={hideMobileMap}
+                  type="OUTDOOR_COURSE"
                 />
               </div>
             </div>

@@ -6,7 +6,7 @@ import { HoverablePolyline } from '../components/HoverablePolyline';
 import { HoverablePolygon } from '../components/HoverablePolygon';
 
 interface PropsType extends GeometryListProps {
-  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT';
+  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | 'OUTDOOR_COURSE';
 }
 
 export const GeometryItem = ({

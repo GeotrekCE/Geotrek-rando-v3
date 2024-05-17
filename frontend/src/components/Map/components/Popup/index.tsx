@@ -18,14 +18,14 @@ interface Props {
   parentId?: number;
   handleOpen?: () => void;
   handleClose?: () => void;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | null;
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | 'OUTDOOR_COURSE' | null;
   content?: PopupResult;
 }
 
 interface PropsPC {
   showButton: boolean;
   id: number | string;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | null;
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | 'OUTDOOR_COURSE' | null;
   parentId?: number;
   content?: PopupResult;
 }

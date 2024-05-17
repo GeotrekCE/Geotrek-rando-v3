@@ -9,7 +9,7 @@ const DEFAULT_WEIGHT = 3;
 interface Props {
   id: string;
   positions: [number, number][];
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | null;
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | 'OUTDOOR_COURSE' | null;
 }
 
 export const HoverablePolyline: React.FC<Props> = props => {
