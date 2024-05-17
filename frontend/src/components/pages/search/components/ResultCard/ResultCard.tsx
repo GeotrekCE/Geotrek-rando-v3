@@ -7,7 +7,7 @@ import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 
 import { InformationCard } from 'modules/results/interface';
 import { cn } from 'services/utils/cn';
-import { ImageFromAttachment } from 'modules/interface';
+import { ContentType, ImageFromAttachment } from 'modules/interface';
 import { ResultCardCarousel } from './ResultCardCarousel';
 import { InformationCardList } from './InformationCardList';
 
@@ -16,7 +16,7 @@ interface ResultCardProps {
   hoverId: string | null;
   place: string | null;
   title: string;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
+  type: ContentType;
   tags?: string[];
   redirectionUrl: string;
   images: ImageFromAttachment[];

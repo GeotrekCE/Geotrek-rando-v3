@@ -196,3 +196,10 @@ export interface RawWebLink {
     pictogram: string;
   };
 }
+
+export type ContentType =
+  | 'TREK'
+  | 'TOURISTIC_CONTENT'
+  | 'TOURISTIC_EVENT'
+  | 'OUTDOOR_SITE'
+  | 'OUTDOOR_COURSE';

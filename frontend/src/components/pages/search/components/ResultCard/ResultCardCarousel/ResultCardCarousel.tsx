@@ -1,11 +1,11 @@
 import { CardIcon } from 'components/CardIcon';
 import { SmallCarousel } from 'components/Carousel';
 import { ImageWithLegend } from 'components/ImageWithLegend';
-import { ImageFromAttachment } from 'modules/interface';
+import { ContentType, ImageFromAttachment } from 'modules/interface';
 import getActivityColor from '../getActivityColor';
 
 interface ResultCardCarouselProps {
-  type: 'TREK' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_CONTENT' | 'TOURISTIC_EVENT';
+  type: ContentType;
   images: ImageFromAttachment[];
   iconUri?: string;
   iconName: string;
