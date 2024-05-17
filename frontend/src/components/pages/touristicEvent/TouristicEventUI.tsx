@@ -406,6 +406,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                   sensitiveAreas={[]}
                   trekId={Number(id)}
                   hideMap={hideMobileMap}
+                  type="TOURISTIC_EVENT"
                 />
               </div>
             </div>

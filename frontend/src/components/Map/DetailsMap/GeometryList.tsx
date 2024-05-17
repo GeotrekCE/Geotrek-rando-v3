@@ -3,7 +3,7 @@ import { GeometryItem } from './GeometryItem';
 
 export type PropsType = {
   contents?: GeometryListProps[];
-  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT';
+  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | 'OUTDOOR_COURSE';
 };
 
 export const GeometryList = ({ contents, type = 'TOURISTIC_CONTENT' }: PropsType) => {

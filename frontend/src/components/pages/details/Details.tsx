@@ -695,6 +695,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                   ]}
                   displayMap={displayMobileMap}
                   setMapId={setMapId}
+                  type="TREK"
                 />
               </div>
             </div>
