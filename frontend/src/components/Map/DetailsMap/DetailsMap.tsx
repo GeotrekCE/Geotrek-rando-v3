@@ -95,6 +95,7 @@ export type PropsType = {
   viewPoints?: ViewPoint[];
   displayMap?: () => void;
   setMapId?: (id: string) => void;
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | 'OUTDOOR_COURSE';
 };
 export const DetailsMap: React.FC<PropsType> = props => {
   const { reportVisibility, setReportVisibility } = useDetailsAndMapContext();
@@ -278,9 +279,11 @@ export const DetailsMap: React.FC<PropsType> = props => {
                 advisedParking={props.advisedParking}
               />
             )}
-            {props.outdoorGeometry && <GeometryList contents={[props.outdoorGeometry]} />}
+            {props.outdoorGeometry && (
+              <GeometryList contents={[props.outdoorGeometry]} type={props.type} />
+            )}
             {props.eventGeometry && (
-              <GeometryList contents={[props.eventGeometry]} type={'TOURISTIC_EVENT'} />
+              <GeometryList contents={[props.eventGeometry]} type={props.type} />
             )}
             <MapChildren
               courses={props.courses}

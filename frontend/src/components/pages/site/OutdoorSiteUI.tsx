@@ -623,6 +623,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                   ]}
                   displayMap={displayMobileMap}
                   setMapId={setMapId}
+                  type="OUTDOOR_SITE"
                 />
               </div>
             </div>
