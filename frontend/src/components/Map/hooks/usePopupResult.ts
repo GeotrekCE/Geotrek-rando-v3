@@ -6,13 +6,14 @@ import { getTouristicContentPopupResult } from 'modules/touristicContent/connect
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
-import { getTouristicEventPopupResult } from '../../../modules/touristicEvent/connector';
-import { getOutdoorSitePopupResult } from '../../../modules/outdoorSite/connector';
+import { getTouristicEventPopupResult } from 'modules/touristicEvent/connector';
+import { getOutdoorSitePopupResult } from 'modules/outdoorSite/connector';
+import { getOutdoorCoursePopupResult } from 'modules/outdoorCourse/connector';
 
 export const usePopupResult = (
   id: string,
   shouldFetch: boolean,
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | null,
+  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | 'OUTDOOR_COURSE' | null,
 ) => {
   const language = useRouter().locale ?? getDefaultLanguage();
   const commonDictionaries = useQueryCommonDictionaries(language);
@@ -22,6 +23,8 @@ export const usePopupResult = (
     if (type === 'TOURISTIC_CONTENT')
       return getTouristicContentPopupResult(id, language, commonDictionaries);
     if (type === 'OUTDOOR_SITE') return getOutdoorSitePopupResult(id, language, commonDictionaries);
+    if (type === 'OUTDOOR_COURSE')
+      return getOutdoorCoursePopupResult(id, language, commonDictionaries);
     if (type === 'TOURISTIC_EVENT')
       return getTouristicEventPopupResult(id, language, commonDictionaries);
 
