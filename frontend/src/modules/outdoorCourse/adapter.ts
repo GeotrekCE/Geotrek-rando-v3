@@ -2,8 +2,10 @@ import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
-import { getLargeImagesOrThumbnailsFromAttachments } from 'modules/utils/adapter';
+import { getLargeImagesOrThumbnailsFromAttachments, getThumbnail } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
+import { PopupResult } from 'modules/trekResult/interface';
+import { fallbackImgUri } from 'modules/trekResult/adapter';
 import { CityDictionnary } from '../city/interface';
 import { OutdoorRatingChoices } from '../outdoorRating/interface';
 import { OutdoorRatingScale } from '../outdoorRatingScale/interface';
@@ -170,5 +172,22 @@ export const adaptOutdoorCourseDetails = ({
     signage,
     service,
     infrastructure,
+  };
+};
+
+export const adaptOutdoorCoursePopupResults = ({
+  rawOutdoorSitePopupResult,
+  cityDictionnary,
+}: {
+  rawOutdoorSitePopupResult: RawOutdoorCourseDetails;
+  cityDictionnary: CityDictionnary;
+}): PopupResult => {
+  return {
+    title: rawOutdoorSitePopupResult.properties.name,
+    place:
+      rawOutdoorSitePopupResult?.properties?.cities
+        ?.map(city => cityDictionnary?.[city]?.name ?? '')
+        .join(', ') ?? '',
+    imgUrl: getThumbnail(rawOutdoorSitePopupResult.properties.attachments) ?? fallbackImgUri,
   };
 };
