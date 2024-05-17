@@ -1,10 +1,11 @@
 import { Offline } from 'modules/offline/interface';
 import { ControlSaveTiles } from 'leaflet.offline';
-import { Details } from '../../modules/details/interface';
-import { OutdoorCourseDetails } from '../../modules/outdoorCourse/interface';
-import { OutdoorSiteDetails } from '../../modules/outdoorSite/interface';
-import { TouristicContentDetails } from '../../modules/touristicContent/interface';
-import { TouristicEventDetails } from '../../modules/touristicEvent/interface';
+import { Details } from 'modules/details/interface';
+import { OutdoorCourseDetails } from 'modules/outdoorCourse/interface';
+import { OutdoorSiteDetails } from 'modules/outdoorSite/interface';
+import { TouristicContentDetails } from 'modules/touristicContent/interface';
+import { TouristicEventDetails } from 'modules/touristicEvent/interface';
+import { ContentType } from 'modules/interface';
 
 let controlInstance: any = null;
 
@@ -30,7 +31,7 @@ const CacheManager = {
       | OutdoorSiteDetails
       | OutdoorCourseDetails
       | TouristicEventDetails;
-    type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
+    type: ContentType;
     url: string[];
   }) => {
     controlInstance.recenter();

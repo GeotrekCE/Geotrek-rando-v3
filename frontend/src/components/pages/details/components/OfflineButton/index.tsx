@@ -11,11 +11,12 @@ import { Button } from 'components/Button';
 import CacheManager from 'services/offline/CacheManager';
 import { cn } from 'services/utils/cn';
 import { Download } from 'components/Icons/Download';
-import { Details } from '../../../../../modules/details/interface';
-import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
-import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
-import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
-import { TouristicEventDetails } from '../../../../../modules/touristicEvent/interface';
+import { Details } from 'modules/details/interface';
+import { OutdoorCourseDetails } from 'modules/outdoorCourse/interface';
+import { OutdoorSiteDetails } from 'modules/outdoorSite/interface';
+import { TouristicContentDetails } from 'modules/touristicContent/interface';
+import { TouristicEventDetails } from 'modules/touristicEvent/interface';
+import { ContentType } from 'modules/interface';
 
 interface Props {
   details:
@@ -24,7 +25,7 @@ interface Props {
     | OutdoorSiteDetails
     | OutdoorCourseDetails
     | TouristicEventDetails;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
+  type: ContentType;
 }
 
 const OfflineButton: React.FC<Props> = ({ details, type }) => {

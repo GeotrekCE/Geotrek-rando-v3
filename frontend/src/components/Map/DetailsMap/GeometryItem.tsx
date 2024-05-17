@@ -1,12 +1,13 @@
 import { Popup } from 'components/Map/components/Popup';
 
+import { ContentType } from 'modules/interface';
 import { GeometryListProps } from './DetailsMap';
 import { HoverableMarker } from '../components/HoverableMarker';
 import { HoverablePolyline } from '../components/HoverablePolyline';
 import { HoverablePolygon } from '../components/HoverablePolygon';
 
 interface PropsType extends GeometryListProps {
-  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | 'OUTDOOR_COURSE';
+  type?: ContentType;
 }
 
 export const GeometryItem = ({

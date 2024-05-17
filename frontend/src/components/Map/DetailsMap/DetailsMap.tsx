@@ -7,6 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 
 import {
+  ContentType,
   Coordinate2D,
   GeometryCollection,
   LineStringGeometry,
@@ -95,7 +96,7 @@ export type PropsType = {
   viewPoints?: ViewPoint[];
   displayMap?: () => void;
   setMapId?: (id: string) => void;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | 'OUTDOOR_COURSE';
+  type: ContentType;
 };
 export const DetailsMap: React.FC<PropsType> = props => {
   const { reportVisibility, setReportVisibility } = useDetailsAndMapContext();

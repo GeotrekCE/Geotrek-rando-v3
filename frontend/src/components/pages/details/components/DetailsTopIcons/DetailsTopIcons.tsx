@@ -4,11 +4,12 @@ import { Activity } from 'modules/activities/interface';
 import Image from 'next/image';
 import SVG from 'react-inlinesvg';
 import { optimizeAndDefineColor } from 'stylesheet';
-import { Details } from '../../../../../modules/details/interface';
-import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
-import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
-import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
-import { TouristicEventDetails } from '../../../../../modules/touristicEvent/interface';
+import { Details } from 'modules/details/interface';
+import { OutdoorCourseDetails } from 'modules/outdoorCourse/interface';
+import { OutdoorSiteDetails } from 'modules/outdoorSite/interface';
+import { TouristicContentDetails } from 'modules/touristicContent/interface';
+import { TouristicEventDetails } from 'modules/touristicEvent/interface';
+import { ContentType } from 'modules/interface';
 
 interface DetailsTopIconsProps {
   details:
@@ -18,7 +19,7 @@ interface DetailsTopIconsProps {
     | OutdoorCourseDetails
     | TouristicEventDetails;
   practice?: Activity | null;
-  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
+  type?: ContentType;
   displayReservationWidget?: boolean;
 }
 
@@ -76,7 +77,7 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
 
 const ActivityLogo: React.FC<{
   src: string;
-  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
+  type?: ContentType;
 }> = ({ src, type }) => (
   <div
     className="size-12 desktop:size-18 rounded-full
