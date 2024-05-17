@@ -9,12 +9,9 @@ import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { getTouristicEventPopupResult } from 'modules/touristicEvent/connector';
 import { getOutdoorSitePopupResult } from 'modules/outdoorSite/connector';
 import { getOutdoorCoursePopupResult } from 'modules/outdoorCourse/connector';
+import { ContentType } from 'modules/interface';
 
-export const usePopupResult = (
-  id: string,
-  shouldFetch: boolean,
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | 'OUTDOOR_COURSE' | null,
-) => {
+export const usePopupResult = (id: string, shouldFetch: boolean, type: ContentType | null) => {
   const language = useRouter().locale ?? getDefaultLanguage();
   const commonDictionaries = useQueryCommonDictionaries(language);
 

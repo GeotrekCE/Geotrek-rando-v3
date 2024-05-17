@@ -11,6 +11,7 @@ import { generateResultDetailsUrl } from 'components/pages/search/utils';
 import Link from 'components/Link';
 import { PopupResult } from 'modules/trekResult/interface';
 import { getGlobalConfig } from 'modules/utils/api.config';
+import { ContentType } from 'modules/interface';
 import { usePopupResult } from '../../hooks/usePopupResult';
 
 interface Props {
@@ -18,14 +19,14 @@ interface Props {
   parentId?: number;
   handleOpen?: () => void;
   handleClose?: () => void;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | 'OUTDOOR_COURSE' | null;
+  type: ContentType | null;
   content?: PopupResult;
 }
 
 interface PropsPC {
   showButton: boolean;
   id: number | string;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | 'OUTDOOR_COURSE' | null;
+  type: ContentType | null;
   parentId?: number;
   content?: PopupResult;
 }

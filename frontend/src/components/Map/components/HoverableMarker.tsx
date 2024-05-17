@@ -2,6 +2,7 @@ import getActivityColor from 'components/pages/search/components/ResultCard/getA
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import React, { ReactNode, useMemo } from 'react';
 import { Marker } from 'react-leaflet';
+import { ContentType } from 'modules/interface';
 import { TrekChildMarker } from '../Markers/TrekChildMarker';
 import { TrekMarker } from '../Markers/TrekMarker';
 
@@ -17,13 +18,7 @@ interface BaseProps {
 
 interface TrekOrTouristicContentProps extends BaseProps {
   pictogramUri?: string;
-  type?:
-    | 'TREK'
-    | 'TOURISTIC_CONTENT'
-    | 'OUTDOOR_SITE'
-    | 'TOURISTIC_EVENT'
-    | 'OUTDOOR_COURSE'
-    | null;
+  type?: ContentType | null;
 }
 
 interface TrekChildProps extends BaseProps {

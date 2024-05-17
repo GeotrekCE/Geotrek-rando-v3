@@ -8,6 +8,7 @@ import { Details } from 'modules/details/interface';
 import { OutdoorCourseDetails } from 'modules/outdoorCourse/interface';
 import { OutdoorSiteDetails } from 'modules/outdoorSite/interface';
 import { TouristicEventDetails } from 'modules/touristicEvent/interface';
+import { ContentType } from 'modules/interface';
 import { DetailsHeaderSection, DetailsSections } from '../../useDetails';
 import { useDetailsHeader } from './useDetailsHeader';
 
@@ -20,7 +21,7 @@ interface DetailsHeaderProps {
     | OutdoorCourseDetails
     | TouristicContentDetails
     | TouristicEventDetails;
-  type: 'TREK' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_CONTENT' | 'TOURISTIC_EVENT';
+  type: ContentType;
 }
 
 export const DetailsHeader: React.FC<DetailsHeaderProps> = ({

@@ -24,10 +24,11 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import ToolTip from 'components/ToolTip';
 import { cn } from 'services/utils/cn';
-import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
-import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
-import { dataUnits } from '../../../../../modules/results/adapter';
-import { TouristicEventDetails } from '../../../../../modules/touristicEvent/interface';
+import { ContentType } from 'modules/interface';
+import { OutdoorCourseDetails } from 'modules/outdoorCourse/interface';
+import { OutdoorSiteDetails } from 'modules/outdoorSite/interface';
+import { dataUnits } from 'modules/results/adapter';
+import { TouristicEventDetails } from 'modules/touristicEvent/interface';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { DetailsTrekParentButton } from '../DetailsTrekParentButton';
 import { HtmlText } from '../../utils';
@@ -63,7 +64,7 @@ interface DetailsPreviewProps {
     | OutdoorSiteDetails
     | OutdoorCourseDetails
     | TouristicEventDetails;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
+  type: ContentType;
   id: string;
 }
 
