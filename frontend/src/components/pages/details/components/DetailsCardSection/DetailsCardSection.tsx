@@ -1,7 +1,8 @@
-import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
+import { getActivityColorClassName } from 'components/pages/search/components/ResultCard/getActivityColor';
 import { Separator } from 'components/Separator';
 import styled from 'styled-components';
 import { MAX_WIDTH_MOBILE, scrollBar, sizes } from 'stylesheet';
+import { cn } from 'services/utils/cn';
 import { marginDetailsChild } from '../../Details';
 import { DetailsCard, DetailsCardProps } from '../DetailsCard/DetailsCard';
 
@@ -31,7 +32,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
         className={`text-Mobile-H1 desktop:text-H2 font-bold ${marginDetailsChild} flex items-center`}
       >
         {title}
-        {displayBadge && <Badge label={detailsCards.length} color={getActivityColor(type)} />}
+        {displayBadge && <Badge label={detailsCards.length} type={type} />}
       </h2>
       <ScrollContainer
         id="details_cardSectionScrollContainer"
@@ -74,21 +75,23 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
 };
 
 interface BadgeProps {
-  color: string;
+  type: string;
   label: number;
 }
 
-export const Badge: React.FC<BadgeProps> = ({ label, color }) => {
+export const Badge: React.FC<BadgeProps> = ({ label, type = null }) => {
   return (
     <div
-      className="size-8
+      className={cn(
+        `size-8
       ml-3
       rounded-lg
       grid place-items-center
-      border-solid border-primary1 border-3 shadow-sm
+      border-solid border-3 shadow-sm
       text-P1 desktop:text-H4 font-bold text-primary1
-      "
-      style={{ borderColor: color, color }}
+      `,
+        getActivityColorClassName(type, { withColor: true }),
+      )}
     >
       {label}
     </div>

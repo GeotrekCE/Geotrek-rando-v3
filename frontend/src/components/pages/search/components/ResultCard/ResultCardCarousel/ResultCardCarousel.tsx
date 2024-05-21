@@ -2,7 +2,6 @@ import { CardIcon } from 'components/CardIcon';
 import { SmallCarousel } from 'components/Carousel';
 import { ImageWithLegend } from 'components/ImageWithLegend';
 import { ContentType, ImageFromAttachment } from 'modules/interface';
-import getActivityColor from '../getActivityColor';
 
 interface ResultCardCarouselProps {
   type: ContentType;
@@ -43,7 +42,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
           />
         ))}
       </SmallCarousel>
-      <CardIcon iconUri={iconUri} iconName={iconName} color={getActivityColor(type)} />
+      <CardIcon iconUri={iconUri} iconName={iconName} type={type} />
     </div>
   );
 };

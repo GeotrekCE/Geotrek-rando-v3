@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import { cn } from 'services/utils/cn';
 import { DateFilter, FilterState, Option } from '../../../../../modules/filters/interface';
 import { countFiltersSelected } from '../../../../../modules/filters/utils';
-import getActivityColor from '../ResultCard/getActivityColor';
+import { getActivityColorClassName } from '../ResultCard/getActivityColor';
 import SubFilterField from './SubFilterField';
 
 interface Props {
@@ -78,8 +78,10 @@ const FilterField: React.FC<Props> = ({
       >
         {numberSelected > 0 && (
           <span
-            className="bg-primary1 text-white rounded-full size-6 flex items-center justify-center font-bold"
-            style={{ background: getActivityColor(id) }}
+            className={cn(
+              'bg-primary1 text-white rounded-full size-6 flex items-center justify-center font-bold',
+              getActivityColorClassName(id, { withBackground: true }),
+            )}
           >
             {numberSelected}
           </span>
