@@ -4,8 +4,8 @@
 
 **🚀 New features**
 
-- Add a `displaySecondaryLayersByDefault` settings to display or not secondary layers by default (#997 and #1130)
-- Display Files from attachments to donwload in details pages (#1118)
+- Add a `displaySecondaryLayersByDefault` settings (default to `true`) to display or not secondary layers on maps by default (#997 and #1130)
+- Display Files from attachments to download in details pages (#1118)
 
 **✨ Improvements**
 
@@ -15,7 +15,7 @@
 - Rename attachments props to images props (#1113)
 - Update homepage BannerCarousel autoplaySpeed to 5sec for images (#863 and #1120)
 - Improve mobile filters menu (#1006 and #1131)
-- Break words for large links from description details (#1133)
+- Break words for large links from description details (#1114 and #1133)
 
 **🔧 Maintenance**
 
