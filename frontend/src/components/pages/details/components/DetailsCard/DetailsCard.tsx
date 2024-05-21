@@ -4,7 +4,6 @@ import { Link } from 'components/Link';
 import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
 import { HtmlText } from 'components/pages/details/utils';
-import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
 import useHasMounted from 'hooks/useHasMounted';
 import parse from 'html-react-parser';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
@@ -166,7 +165,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
                 </>
               )}
             </Modal>
-            <CardIcon iconUri={iconUri} iconName={iconName} color={getActivityColor(type)} />
+            <CardIcon iconUri={iconUri} iconName={iconName} type={type} />
           </div>
         </div>
         <div ref={detailsCardRef} className="p-2 desktop:p-6">

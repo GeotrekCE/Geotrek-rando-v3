@@ -1,5 +1,5 @@
 import { DetailsDownloadIcons } from 'components/pages/details/components/DetailsDownloadIcons';
-import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
+import { getActivityColorClassName } from 'components/pages/search/components/ResultCard/getActivityColor';
 import { Activity } from 'modules/activities/interface';
 import Image from 'next/image';
 import SVG from 'react-inlinesvg';
@@ -10,6 +10,7 @@ import { OutdoorSiteDetails } from 'modules/outdoorSite/interface';
 import { TouristicContentDetails } from 'modules/touristicContent/interface';
 import { TouristicEventDetails } from 'modules/touristicEvent/interface';
 import { ContentType } from 'modules/interface';
+import { cn } from 'services/utils/cn';
 
 interface DetailsTopIconsProps {
   details:
@@ -78,13 +79,15 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
 const ActivityLogo: React.FC<{
   src: string;
   type?: ContentType;
-}> = ({ src, type }) => (
+}> = ({ src, type = null }) => (
   <div
-    className="size-12 desktop:size-18 rounded-full
+    className={cn(
+      `size-12 desktop:size-18 rounded-full
       flex items-center justify-center
       shadow-md
-    bg-primary1"
-    style={{ background: getActivityColor(type) }}
+    bg-primary1`,
+      getActivityColorClassName(type, { withBackground: true }),
+    )}
   >
     <div className="desktop:hidden">
       <Icon src={src} height={40} width={40} />
