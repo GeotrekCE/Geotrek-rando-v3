@@ -3,7 +3,11 @@ import { Head, Html, Main, NextScript } from 'next/document';
 import { ColorsConfig } from 'modules/interface';
 
 const {
-  publicRuntimeConfig: { style, colors },
+  publicRuntimeConfig: {
+    style,
+    colors,
+    global: { groupTreksAndOutdoorFilters },
+  },
 } = getNextConfig();
 
 const MyDocument: React.FC = () => {
@@ -17,7 +21,18 @@ const MyDocument: React.FC = () => {
     hardKO = '#e25316',
     red = '#ff7373',
     redMarker = '#e83737',
+    categories: {
+      trek = '#001B84',
+      service = '#3B89A2',
+      events = '#62AB41',
+      outdoor = '#E69736',
+    } = {},
   } = colors as ColorsConfig;
+
+  const outdoorColor =
+    groupTreksAndOutdoorFilters === true
+      ? colors?.categories?.trek || trek
+      : colors?.categories?.outdoor || outdoor;
 
   return (
     <Html className="scroll-smooth">
@@ -35,6 +50,10 @@ const MyDocument: React.FC = () => {
   --color-hardKO: ${hardKO};
   --color-red: ${red};
   --color-redMarker: ${redMarker};
+  --color-trek: ${trek};
+  --color-service: ${service};
+  --color-outdoor: ${outdoorColor};
+  --color-events: ${events};
 }
 `}</style>
         {style !== undefined && <style dangerouslySetInnerHTML={{ __html: style }} />}
