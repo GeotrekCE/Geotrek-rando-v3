@@ -1,5 +1,4 @@
 import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
-import { ContentType } from 'modules/interface';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { useMemo } from 'react';
 import { Polygon } from 'react-leaflet';
@@ -10,7 +9,7 @@ const DEFAULT_WEIGHT = 3;
 interface Props {
   id: string;
   positions: [number, number][][];
-  type: ContentType | null;
+  type: string | null;
 }
 
 export const HoverablePolygon: React.FC<Props> = props => {
