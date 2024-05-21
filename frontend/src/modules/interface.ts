@@ -78,6 +78,12 @@ export interface ColorsConfig {
   hardKO?: string;
   red?: string;
   redMarker?: string;
+  categories?: {
+    trek?: string;
+    events?: string;
+    outdoor?: string;
+    service?: string;
+  };
 }
 
 export interface APICallsConfig {
