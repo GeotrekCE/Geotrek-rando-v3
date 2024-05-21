@@ -1,5 +1,43 @@
 # Changelog
 
+## 3.20.0 (2024-05-21)
+
+**🚀 New features**
+
+- Add a `displaySecondaryLayersByDefault` settings to display or not secondary layers by default (#997 and #1130)
+- Display Files from attachments to donwload in details pages (#1118)
+
+**✨ Improvements**
+
+- Clean search params in search page (#1100)
+- Use Image component for TrekMarker map Popup and DetailsPreview logo images (#1102)
+- Improve detailsCard UI interaction (#1112)
+- Rename attachments props to images props (#1113)
+- Update homepage BannerCarousel autoplaySpeed to 5sec for images (#863 and #1120)
+- Improve mobile filters menu (#1006 and #1131)
+- Break words for large links from description details (#1133)
+
+**🔧 Maintenance**
+
+- Bump @types/react-burger-menu from 2.8.1 to 2.8.7 in /frontend by @dependabot (#1041)
+- Use urlSearchParams feature instead of qs package (#1104)
+
+**🐛 Fixes**
+
+- Fix some types (#1096 for #1057)
+- Remove useless outdoorPractice call (#1097)
+- Avoid to call an unexistant network in the networkDictionary in suggestion (#1099)
+- Add (or remove) hooks dependencies (#1098 for #1057)
+- Fix mobile menutem coloration - Regression since 3.19.0 (#1103)
+- Fix presence of child menu items to divide desktop menu (#1105)
+- Fix flatpage suggestions display if some IDs are missing (#1106)
+- Avoid to stringify potentially nullable props (#1111)
+- Fix details section "contact" anchor/translation (#1117)
+- Fix img display from carousel POIs card on mobile viewport (#1127)
+- Fix Trek association to new typology entry causes an error (#1123 and #1128)
+- Fix map popup for outdoor_course items (#896 and #1119)
+- Fix leaflet CSS override for links - regression since v3.16.1 (#1132)
+
 ## 3.19.3 (2024-04-08)
 
 **🐛 Fixes**
