@@ -1,21 +1,25 @@
 import { ChevronDown } from 'components/Icons/ChevronDown';
+import { getActivityColorClassName } from 'components/pages/search/components/ResultCard/getActivityColor';
+import { cn } from 'services/utils/cn';
 
 export interface Props {
   title: string | React.ReactElement;
   onClick?: () => void;
   numberSelected: number;
-  color: string;
+  type: string;
 }
 
 export const MobileFilterMenuSection: React.FC<Props> = ({
   title,
   onClick,
   numberSelected,
-  color,
+  type = null,
 }) => {
-  const classNameSectionName = `font-bold text-Mobile-C1 w-full ${
-    numberSelected > 0 ? 'text-primary1' : 'text-greyDarkColored'
-  }`;
+  const classNameSectionName = cn(
+    'font-bold text-Mobile-C1 w-full',
+    numberSelected > 0 ? 'text-primary1' : 'text-greyDarkColored',
+    getActivityColorClassName(type, { withColor: true }),
+  );
 
   return (
     <button
@@ -25,19 +29,21 @@ export const MobileFilterMenuSection: React.FC<Props> = ({
     >
       {numberSelected > 0 && (
         <span
-          className="bg-primary1 text-white text-center rounded-full size-6 font-bold mr-2"
-          style={{ backgroundColor: color }}
+          className={cn(
+            'bg-primary1 text-white text-center rounded-full size-6 font-bold mr-2',
+            getActivityColorClassName(type, { withBackground: true }),
+          )}
         >
           {numberSelected}
         </span>
       )}
-      <span className={classNameSectionName} style={{ color }}>
-        {title}
-      </span>
+      <span className={classNameSectionName}>{title}</span>
       <ChevronDown
-        className="-rotate-90 text-primary1 ml-auto"
+        className={cn(
+          '-rotate-90 text-primary1 ml-auto',
+          getActivityColorClassName(type, { withColor: true }),
+        )}
         size={24}
-        color={color}
         aria-hidden
       />
     </button>

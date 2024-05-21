@@ -3,7 +3,6 @@ import MobileBottomClear from 'components/pages/search/components/FilterBar/Mobi
 import Slide from 'react-burger-menu/lib/menus/slide';
 
 import { Cross } from 'components/Icons/Cross';
-import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
 import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
 import useCounter from 'components/pages/search/hooks/useCounter';
 import { FormattedMessage } from 'react-intl';
@@ -80,7 +79,7 @@ export const MobileFilterMenu: React.FC<Props> = ({
           );
           return (
             <MobileFilterMenuSection
-              color={getActivityColor(item.id)}
+              type={item.id}
               title={name}
               key={item.id}
               onClick={item.onSelect}
