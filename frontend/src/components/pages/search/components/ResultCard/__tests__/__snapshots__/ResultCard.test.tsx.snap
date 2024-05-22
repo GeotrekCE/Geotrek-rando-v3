@@ -96,7 +96,7 @@ Object {
               >
                 <li>
                   <div
-                    class="flex items-center text-primary1 "
+                    class="flex items-center text-primary1 text-sm"
                   >
                     <img
                       alt=""
@@ -111,7 +111,7 @@ Object {
                       width="24"
                     />
                     <span
-                      class="ml-2 text-sm text-greyDarkColored"
+                      class="ml-2 text-greyDarkColored"
                     >
                       Difficile
                     </span>
@@ -119,7 +119,7 @@ Object {
                 </li>
                 <li>
                   <div
-                    class="flex items-center text-primary1 "
+                    class="flex items-center text-primary1 text-sm"
                   >
                     <svg
                       fill="none"
@@ -145,7 +145,7 @@ Object {
                       />
                     </svg>
                     <span
-                      class="ml-2 text-sm text-greyDarkColored"
+                      class="ml-2 text-greyDarkColored"
                     >
                       2h
                     </span>
@@ -153,7 +153,7 @@ Object {
                 </li>
                 <li>
                   <div
-                    class="flex items-center text-primary1 "
+                    class="flex items-center text-primary1 text-sm"
                   >
                     <svg
                       fill="none"
@@ -171,7 +171,7 @@ Object {
                       />
                     </svg>
                     <span
-                      class="ml-2 text-sm text-greyDarkColored"
+                      class="ml-2 text-greyDarkColored"
                     >
                       5km
                     </span>
@@ -179,7 +179,7 @@ Object {
                 </li>
                 <li>
                   <div
-                    class="flex items-center text-primary1 "
+                    class="flex items-center text-primary1 text-sm"
                   >
                     <svg
                       fill="none"
@@ -204,7 +204,7 @@ Object {
                       />
                     </svg>
                     <span
-                      class="ml-2 text-sm text-greyDarkColored"
+                      class="ml-2 text-greyDarkColored"
                     >
                       +360m
                     </span>
@@ -309,7 +309,7 @@ Object {
             >
               <li>
                 <div
-                  class="flex items-center text-primary1 "
+                  class="flex items-center text-primary1 text-sm"
                 >
                   <img
                     alt=""
@@ -324,7 +324,7 @@ Object {
                     width="24"
                   />
                   <span
-                    class="ml-2 text-sm text-greyDarkColored"
+                    class="ml-2 text-greyDarkColored"
                   >
                     Difficile
                   </span>
@@ -332,7 +332,7 @@ Object {
               </li>
               <li>
                 <div
-                  class="flex items-center text-primary1 "
+                  class="flex items-center text-primary1 text-sm"
                 >
                   <svg
                     fill="none"
@@ -358,7 +358,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="ml-2 text-sm text-greyDarkColored"
+                    class="ml-2 text-greyDarkColored"
                   >
                     2h
                   </span>
@@ -366,7 +366,7 @@ Object {
               </li>
               <li>
                 <div
-                  class="flex items-center text-primary1 "
+                  class="flex items-center text-primary1 text-sm"
                 >
                   <svg
                     fill="none"
@@ -384,7 +384,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="ml-2 text-sm text-greyDarkColored"
+                    class="ml-2 text-greyDarkColored"
                   >
                     5km
                   </span>
@@ -392,7 +392,7 @@ Object {
               </li>
               <li>
                 <div
-                  class="flex items-center text-primary1 "
+                  class="flex items-center text-primary1 text-sm"
                 >
                   <svg
                     fill="none"
@@ -417,7 +417,7 @@ Object {
                     />
                   </svg>
                   <span
-                    class="ml-2 text-sm text-greyDarkColored"
+                    class="ml-2 text-greyDarkColored"
                   >
                     +360m
                   </span>
