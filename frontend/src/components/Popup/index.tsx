@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { FormattedMessage } from 'react-intl';
 import { Cross } from 'components/Icons/Cross';
-import styled from 'styled-components';
 
 interface PopupProps {
   title?: string;
@@ -25,8 +24,8 @@ const PopupContent: React.FC<PopupProps> = ({ children, onClose, title }) => {
   }, [onClose]);
 
   return (
-    <Overlay
-      className="fixed inset-0 overflow-y-auto overscroll-contain"
+    <div
+      className="fixed inset-0 overflow-y-auto overscroll-contain z-[901]"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
@@ -38,7 +37,13 @@ const PopupContent: React.FC<PopupProps> = ({ children, onClose, title }) => {
           &#8203;
         </span>
 
-        {onClose !== undefined && <ClickOutside onClick={onClose} />}
+        {onClose !== undefined && (
+          <div className="absolute inset-0" onClick={onClose} role="button">
+            <span className="sr-only">
+              <FormattedMessage id={'details.close'} />
+            </span>
+          </div>
+        )}
         <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full z-10">
           <div className="flex flex-col bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div className="flex justify-between mb-4">
@@ -56,7 +61,7 @@ const PopupContent: React.FC<PopupProps> = ({ children, onClose, title }) => {
           </div>
         </div>
       </div>
-    </Overlay>
+    </div>
   );
 };
 
@@ -75,17 +80,5 @@ const Popup: React.FC<PopupProps> = props => {
 
   return createPortal(<PopupContent {...props} />, container);
 };
-
-export const Overlay = styled.div`
-  z-index: 901;
-`;
-
-export const ClickOutside = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-`;
 
 export default Popup;
