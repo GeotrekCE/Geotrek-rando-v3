@@ -88,7 +88,7 @@ const getInformationItemProps = (information: InformationCard, intl: IntlShape) 
             <ul className="flex gap-2">
               {value.map(item => (
                 <li key={item.label}>
-                  <RemoteIconInformation iconUri={item.pictogramUri}>
+                  <RemoteIconInformation className="text-sm" iconUri={item.pictogramUri}>
                     {item.label}
                   </RemoteIconInformation>
                 </li>
@@ -157,7 +157,7 @@ export const InformationCardItem: React.FC<InformationCard> = item => {
     return <>{rest.children}</>;
   }
   if (typeof icon === 'string') {
-    return <RemoteIconInformation iconUri={icon} {...rest} />;
+    return <RemoteIconInformation className="text-sm" iconUri={icon} {...rest} />;
   }
-  return <LocalIconInformation icon={icon} {...rest} />;
+  return <LocalIconInformation className="text-sm" icon={icon} {...rest} />;
 };

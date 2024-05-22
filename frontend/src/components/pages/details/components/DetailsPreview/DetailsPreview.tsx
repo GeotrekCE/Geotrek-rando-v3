@@ -333,4 +333,4 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   );
 };
 
-const classNameInformation = 'mr-3 desktop:mr-6 mt-3 desktop:mt-4 text-primary1';
+const classNameInformation = 'mr-3 desktop:mr-6 mt-3 desktop:mt-4 text-primary1 text-sm';
