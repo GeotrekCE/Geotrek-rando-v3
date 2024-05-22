@@ -1,6 +1,5 @@
 import { optimizeAndDefineColor } from 'stylesheet';
 import SVG from 'react-inlinesvg';
-import styled from 'styled-components';
 import Image from 'next/image';
 import { cn } from 'services/utils/cn';
 import { getActivityColorClassName } from 'components/pages/search/components/ResultCard/getActivityColor';
@@ -14,16 +13,6 @@ interface Props extends IconProps {
   iconName?: string;
 }
 
-const Wrapper = styled.div<{ color?: string }>`
-  z-index: 100;
-  max-width: 32px;
-  transition: max-width 0.6s;
-
-  &:hover {
-    max-width: 300%;
-  }
-`;
-
 const Icon: React.FC<IconProps> = ({ iconUri = '', className = '' }) => {
   if (!iconUri) {
     return <span className={cn('block rounded-full', className)} />;
@@ -34,6 +23,7 @@ const Icon: React.FC<IconProps> = ({ iconUri = '', className = '' }) => {
         src={iconUri}
         className={`p-1 text-white ${className}`}
         preProcessor={optimizeAndDefineColor()}
+        aria-hidden
       />
     );
   }
@@ -46,9 +36,9 @@ export const CardIcon: React.FC<Props> = ({ iconUri = '', iconName = '', type = 
   }
 
   return (
-    <Wrapper
+    <div
       className={cn(
-        'absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden',
+        'absolute max-w-8 hover:max-w-[300%] top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden z-[100] transition-all duration-500',
         getActivityColorClassName(type, { withBackground: true }),
       )}
     >
@@ -57,6 +47,6 @@ export const CardIcon: React.FC<Props> = ({ iconUri = '', iconName = '', type = 
         className={cn('size-7 shrink-0', getActivityColorClassName(type, { withBackground: true }))}
       />
       {iconName && <div className="pr-3 whitespace-nowrap">{iconName}</div>}
-    </Wrapper>
+    </div>
   );
 };
