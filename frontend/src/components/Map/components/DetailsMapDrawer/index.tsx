@@ -1,5 +1,5 @@
 import { TrekFamily } from 'modules/details/interface';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { getMapConfig } from 'components/Map/config';
 import { cn } from 'services/utils/cn';
 import { AltimetricProfile } from '../AltimetricProfile';
@@ -14,6 +14,7 @@ const DetailsMapDrawer: React.FC<{
   const { mobileMapPanelDefaultOpened } = getMapConfig();
 
   const [open, setOpen] = useState<boolean>(mobileMapPanelDefaultOpened);
+  const id = useId();
 
   if (
     Boolean(trekGeoJSON) === false &&
@@ -37,6 +38,8 @@ const DetailsMapDrawer: React.FC<{
             setOpen(prevOpen => !prevOpen);
           }
         }}
+        aria-expanded={open}
+        aria-controls={id}
       >
         <hr className="border-2 border-greySoft w-8 rounded-xl mt-2" />
         <strong className="text-base text-primary1 font-bold m-2 mt-1">{title}</strong>
