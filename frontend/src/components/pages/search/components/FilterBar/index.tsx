@@ -1,12 +1,10 @@
+import { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+
 import { Bin } from 'components/Icons/Bin';
 import { Filter } from 'components/Icons/Filter';
 import FilterField from 'components/pages/search/components/FilterBar/FilterField';
 import useCounter from 'components/pages/search/hooks/useCounter';
-
-import React, { useState } from 'react';
-import { FormattedMessage } from 'react-intl';
-import styled from 'styled-components';
-import { colorPalette } from 'stylesheet';
 
 import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
 import { DateFilter, FilterState, Option } from 'modules/filters/interface';
@@ -22,7 +20,7 @@ interface Props {
   language: string;
 }
 
-const FilterBarNew: React.FC<Props> = ({
+const FilterBar: React.FC<Props> = ({
   filtersState,
   dateFilter,
   setFilterSelectedOptions,
@@ -38,9 +36,9 @@ const FilterBarNew: React.FC<Props> = ({
   const { FILTERS_CATEGORIES } = useFilterBar();
 
   return (
-    <ClearContainer className="flex items-center shadow-lg bg-white z-20">
+    <div className="flex items-center shadow-lg bg-white z-20 border-l border-gresySoft">
       <div className="inline-block ml-4 mr-4 flex items-center">
-        <Filter size={24} className="text-primary1" />
+        <Filter size={24} className="text-primary1" aria-hidden />
         <span className="uppercase text-primary1 ml-2">
           <FormattedMessage id={'search.filters.filters'} />
         </span>
@@ -71,23 +69,20 @@ const FilterBarNew: React.FC<Props> = ({
         );
       })}
 
-      <ClearContainer
-        className="text-primary1 font-bold h-full flex items-center p-4 cursor-pointer"
+      <button
+        type="button"
+        className="text-primary1 font-bold h-full flex items-center p-4 border-l border-greySoft"
         onClick={resetFilters}
       >
-        <Bin size={16} className="mr-2" />
+        <Bin size={16} className="mr-2" aria-hidden />
         <FormattedMessage id={'search.filters.clearAll'} />
-      </ClearContainer>
+      </button>
 
-      <ClearContainer className="pl-2">
+      <div className="pl-2 border-solid border-l border-greySoft">
         <FormattedMessage values={{ count: resultsNumber }} id="search.resultsFoundShort" />
-      </ClearContainer>
-    </ClearContainer>
+      </div>
+    </div>
   );
 };
 
-const ClearContainer = styled.div`
-  border-left: 1px solid ${colorPalette.greySoft.DEFAULT};
-`;
-
-export default FilterBarNew;
+export default FilterBar;
