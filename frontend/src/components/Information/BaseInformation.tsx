@@ -12,7 +12,7 @@ export const Information: React.FC<Props> = ({ icon, children, className = '' })
   return (
     <div className={`flex items-center text-primary1 ${className}`}>
       {icon}
-      <span className="ml-2 text-sm text-greyDarkColored">{children}</span>
+      <span className="ml-2 text-greyDarkColored">{children}</span>
     </div>
   );
 };
