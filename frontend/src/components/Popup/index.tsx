@@ -45,7 +45,7 @@ const PopupContent: React.FC<PopupProps> = ({ children, onClose, title }) => {
               {title !== undefined ? <h1 className="text-xl">{title}</h1> : <span />}
               {onClose !== undefined && (
                 <button className="flex self-end" type="button" onClick={onClose}>
-                  <Cross size={24} />
+                  <Cross size={24} aria-hidden />
                   <FormattedMessage id={'details.close'} />
                 </button>
               )}
