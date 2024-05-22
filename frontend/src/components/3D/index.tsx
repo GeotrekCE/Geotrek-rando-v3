@@ -8,7 +8,6 @@ import { Cross } from 'components/Icons/Cross';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { DetailsAdvice } from 'components/pages/details/components/DetailsAdvice';
-import { LoaderOverlay, Poi, PoiSide, Wrapper } from './3D.style';
 import Interface from './Interface';
 
 interface ThreeDProps {
@@ -128,25 +127,25 @@ export const ThreeD: React.FC<ThreeDProps> = ({
     <Popup onClose={handleClose} title={title}>
       {!isAvailableWebGL && <DetailsAdvice text={noWebGL} />}
       {isAvailableWebGL && (
-        <Wrapper className="relative text-white">
+        <div className="relative w-[90vw] h-[90vh] relative text-white bg-greyDarkColored bg-gradient-to-t from-sky-950 to-cyan-600 overflow-hidden">
           {isLoading && (
-            <LoaderOverlay className="absolute inset-0">
+            <div className="absolute inset-0 bg-white/20">
               <Loader />
-            </LoaderOverlay>
+            </div>
           )}
           <Interface />
           <canvas className="size-full overflow-hidden border-0" ref={canvasRef} />
-          <PoiSide className="poi_side absolute flex flex-col">
+          <div className="poi_side absolute flex flex-col top-0 -left-100 w-100 bg-black/70 h-full transition [&.opened]:translate-x-100">
             <button type="button" className="close_btn m-2 flex items-center self-end">
-              <Cross size={20} />
+              <Cross size={20} aria-hidden />
               <FormattedMessage id={'details.close'} />
             </button>
             <h2 className="text-xl text-center my-3" />
             <div className="description m-3" />
-          </PoiSide>
-          <Poi className="poi poi--clicked" />
-          <Poi className="poi poi--hover" />
-        </Wrapper>
+          </div>
+          <div className="poi poi--clicked bg-white/20 absolute size-auto p-1 rounded-md text-center hidden z-10" />
+          <div className="poi poi--hover bg-white/20 absolute size-auto p-1 rounded-md text-center hidden z-10" />
+        </div>
       )}
     </Popup>
   );
