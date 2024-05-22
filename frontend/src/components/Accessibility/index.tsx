@@ -34,170 +34,118 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
   return (
     <div>
       {details.disabledInfrastructure && (
-        <HtmlText>{parse(details.disabledInfrastructure)}</HtmlText>
+        <div className="custo-page-WYSIWYG">{parse(details.disabledInfrastructure)}</div>
       )}
       {details.accessibilities && details.accessibilities.length > 0 && (
         <div className="flex">
           {details.accessibilities
             .filter(e => e)
             .map((accessibility, i) => (
-              <StyledRemoteIconInformation
+              <RemoteIconInformation
                 key={i}
                 iconUri={accessibility.pictogramUri}
                 className="mr-6 mt-3 desktop:mt-4 text-primary"
               >
                 {accessibility.name}
-              </StyledRemoteIconInformation>
+              </RemoteIconInformation>
             ))}
         </div>
       )}
-      {details.accessbilityLevel && (
-        <Section>
-          <strong>
-            <FormattedMessage id="details.accessibility_level" />
-          </strong>{' '}
-          : {details.accessbilityLevel.name[language]}
-        </Section>
-      )}
+      <dl>
+        {details.accessbilityLevel && (
+          <div className="flex items-center mt-2">
+            <dt className="font-bold">
+              <FormattedMessage id="details.accessibility_level" />
+            </dt>{' '}
+            : <dd>{details.accessbilityLevel.name[language]}</dd>
+          </div>
+        )}
+        {accessibilityCodeNumber && (
+          <div className="flex items-center mt-2">
+            <dt className="font-bold">
+              <FormattedMessage id="details.emergency_number" /> :
+            </dt>
+            <dd>
+              <a
+                className="flex gap-2 text-primary1 bg-primary2 font-bold text-lg my-auto ml-2 p-2 rounded-full items-center"
+                href={`tel:${accessibilityCodeNumber}`}
+              >
+                <PhoneIcon aria-hidden />
+                <span>{accessibilityCodeNumber}</span>
+              </a>
+            </dd>
+          </div>
+        )}
+        <div className="flex flex-col py-3 desktop:flex-row gap-3">
+          {details.attachmentsAccessibility &&
+            ['slope', 'width', 'signage']
+              .filter(k => details[`accessibility_${k}` as keyof Details])
+              .map(k => {
+                let attachments = details.attachmentsAccessibility.filter(
+                  a => a.info_accessibility === k,
+                );
+                if (attachments.length === 0) {
+                  attachments = [
+                    {
+                      url: getGlobalConfig().fallbackImageUri,
+                    } as AccessibilityAttachment,
+                  ];
+                }
 
-      {accessibilityCodeNumber && (
-        <Section>
-          <strong>
-            <FormattedMessage id="details.emergency_number" />
-          </strong>{' '}
-          :
-          <a
-            className="flex text-primary1 bg-primary2 font-bold text-lg my-auto ml-2 p-2 rounded-full items-center"
-            href={`tel:${accessibilityCodeNumber}`}
-          >
-            <PhoneIcon />
-            <span className="ml-2">{accessibilityCodeNumber}</span>
-          </a>
-        </Section>
-      )}
-      <Columns>
-        {details.attachmentsAccessibility &&
-          ['slope', 'width', 'signage']
-            .filter(k => details[`accessibility_${k}` as keyof Details])
-            .map(k => {
-              let attachments = details.attachmentsAccessibility.filter(
-                a => a.info_accessibility === k,
-              );
-              if (attachments.length === 0) {
-                attachments = [
-                  {
-                    url: getGlobalConfig().fallbackImageUri,
-                  } as AccessibilityAttachment,
-                ];
-              }
-
-              return (
-                <div key={k}>
-                  {shouldPictureRowBeDisplayed && (
-                    <Modal>
-                      {({ isFullscreen, toggleFullscreen }) => (
-                        <div id="details_cover" className={!isFullscreen ? '' : 'h-full'}>
-                          <StyledSmallCarousel isFullscreen={isFullscreen}>
-                            {attachments.map((attachment, index) => (
-                              <ImageWithLegend
-                                image={
-                                  isFullscreen
-                                    ? attachment
-                                    : { ...attachment, url: attachment.thumbnail }
-                                }
-                                className="overflow-hidden rounded-2xl"
-                                classNameImage={isFullscreen ? 'object-contain' : ''}
-                                key={index}
-                                loading="lazy"
-                                onClick={toggleFullscreen}
-                              />
-                            ))}
-                          </StyledSmallCarousel>
-                        </div>
-                      )}
-                    </Modal>
-                  )}
-
-                  <h2>
-                    <FormattedMessage id={`details.accessibility_${k}`} /> :
-                  </h2>
-                  <div>
-                    <HtmlText>
-                      {parse(details[`accessibility_${k}` as keyof Details] as string)}
-                    </HtmlText>
+                return (
+                  <div className="flex flex-col flex-1 min-w-0" key={k}>
+                    {shouldPictureRowBeDisplayed && (
+                      <Modal>
+                        {({ isFullscreen, toggleFullscreen }) => (
+                          <div id="details_cover" className={!isFullscreen ? '' : 'h-full'}>
+                            <StyledSmallCarousel isFullscreen={isFullscreen}>
+                              {attachments.map((attachment, index) => (
+                                <ImageWithLegend
+                                  image={
+                                    isFullscreen
+                                      ? attachment
+                                      : { ...attachment, url: attachment.thumbnail }
+                                  }
+                                  className="overflow-hidden rounded-2xl"
+                                  classNameImage={isFullscreen ? 'object-contain' : ''}
+                                  key={index}
+                                  loading="lazy"
+                                  onClick={toggleFullscreen}
+                                />
+                              ))}
+                            </StyledSmallCarousel>
+                          </div>
+                        )}
+                      </Modal>
+                    )}
+                    <dt className="text-xl font-bold">
+                      <FormattedMessage id={`details.accessibility_${k}`} /> :
+                    </dt>
+                    <dd>
+                      <HtmlText>
+                        {parse(details[`accessibility_${k}` as keyof Details] as string)}
+                      </HtmlText>
+                    </dd>
                   </div>
-                </div>
-              );
-            })}
-      </Columns>
-      {['accessibility_covering', 'accessibility_exposure', 'accessibility_advice']
-        .filter(k => details[k as keyof Details])
-        .map(k => (
-          <Row key={k}>
-            <h2>
-              <FormattedMessage id={`details.${k}`} /> :
-            </h2>
-            <div>
-              <HtmlText>{parse(details[k as keyof Details] as string)}</HtmlText>
+                );
+              })}
+        </div>
+        {['accessibility_covering', 'accessibility_exposure', 'accessibility_advice']
+          .filter(k => details[k as keyof Details])
+          .map(k => (
+            <div className="mt-5" key={k}>
+              <dt className="text-xl font-bold">
+                <FormattedMessage id={`details.${k}`} /> :
+              </dt>
+              <dd className="mt-2">
+                <HtmlText>{parse(details[k as keyof Details] as string)}</HtmlText>
+              </dd>
             </div>
-          </Row>
-        ))}
+          ))}
+      </dl>
     </div>
   );
 };
-
-const StyledRemoteIconInformation = styled(RemoteIconInformation)`
-  * {
-    font-size: 16px;
-  }
-`;
-
-const Section = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-
-  & strong {
-    font-weight: bold;
-  }
-`;
-
-const Row = styled.div`
-  margin-top: 20px;
-
-  & h2 {
-    font-size: 20px;
-    font-weight: 700;
-  }
-
-  & p {
-    margin-top: 10px;
-  }
-`;
-
-const Columns = styled.div`
-  display: flex;
-  margin-left: -10px;
-  flex-flow: column;
-  ${desktopOnly(css`
-    flex-flow: row;
-  `)}
-
-  & h2 {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
-
-  & > div {
-    min-width: 150px;
-    flex: 1;
-    display: flex;
-    flex-flow: column;
-    margin: 10px;
-  }
-`;
 
 const StyledSmallCarousel = styled(SmallCarousel)<{ isFullscreen: boolean }>`
   height: auto;
