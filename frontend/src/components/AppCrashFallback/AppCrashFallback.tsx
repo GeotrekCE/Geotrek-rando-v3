@@ -1,7 +1,6 @@
 import * as Sentry from '@sentry/nextjs';
 
 import Button from 'components/Button';
-import { Title } from './AppCrashFallback.style';
 
 export interface FallbackProps {
   eventId: string;
@@ -13,7 +12,7 @@ export const AppCrashFallback: React.FC<FallbackProps> = ({ eventId }) => {
   return (
     <main className="flex justify-center">
       <div className="mx-5 my-10">
-        <Title>Sorry, this is not working properly.</Title>
+        <h1 className="text-5xl font-bold">Sorry, this is not working properly.</h1>
         <p className="my-6">We know about this issue and are working to fix it.</p>
         <p>In the meantime, here is what you can do:</p>
         <ul className="list-disc m-3">
