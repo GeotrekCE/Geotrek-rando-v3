@@ -1,52 +1,9 @@
 import { TrekFamily } from 'modules/details/interface';
 import { useState } from 'react';
-import styled from 'styled-components';
-import { colorPalette } from 'stylesheet';
 import { getMapConfig } from 'components/Map/config';
+import { cn } from 'services/utils/cn';
 import { AltimetricProfile } from '../AltimetricProfile';
 import Siblings from './Siblings';
-
-const Wrapper = styled.div<{ open: boolean }>`
-  background: white;
-  position: absolute;
-  bottom: 0;
-  z-index: 1500;
-
-  transform: translateY(${props => (props.open ? 0 : 'calc(100% - 45px)')});
-  transition: transform 0.25s;
-
-  width: 100vw;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-`;
-
-const Puller = styled.div`
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: space-around;
-`;
-
-const Content = styled.div`
-  padding: 0 10px 1rem;
-`;
-
-const Separator = styled.div`
-  border: 2px solid #d7d6d9;
-  width: 32px;
-  border-radius: 10px;
-  margin-top: 6px;
-`;
-
-const Title = styled.div`
-  color: ${colorPalette.primary1};
-  font-size: 16px;
-  font-weight: bold;
-  justify-self: stretch;
-  margin-bottom: 6px;
-  margin-top: 4px;
-  max-width: 90%;
-`;
 
 const DetailsMapDrawer: React.FC<{
   title: string;
@@ -66,27 +23,34 @@ const DetailsMapDrawer: React.FC<{
   }
 
   return (
-    <Wrapper open={open}>
-      <Puller
+    <div
+      className={cn(
+        'absolute bg-white inset-0 top-auto z-[1500] transition rounded-t-xl translate-y-0',
+        !open && 'translate-y-[calc(100%-45px)]',
+      )}
+    >
+      <button
+        className="flex flex-col w-full items-center justify-around"
+        type="button"
         onClick={e => {
           if (e.isTrusted) {
-            setOpen(!open);
+            setOpen(prevOpen => !prevOpen);
           }
         }}
       >
-        <Separator />
-        <Title>{title}</Title>
-      </Puller>
-      <Content>
+        <hr className="border-2 border-greySoft w-8 rounded-xl mt-2" />
+        <strong className="text-base text-primary1 font-bold m-2 mt-1">{title}</strong>
+      </button>
+      <div className="px-2 pb-4">
         <Siblings trekFamily={trekFamily} trekId={trekId} />
         {typeof trekGeoJSON === 'string' && (
           <>
             <AltimetricProfile id="altimetric-profile-map" trekGeoJSON={trekGeoJSON} />
-            <div className="h-90" id="altimetric-profile-map"></div>
+            <div className="h-90" id="altimetric-profile-map" />
           </>
         )}
-      </Content>
-    </Wrapper>
+      </div>
+    </div>
   );
 };
 
