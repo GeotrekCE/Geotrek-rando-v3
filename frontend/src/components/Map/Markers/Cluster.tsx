@@ -1,5 +1,6 @@
 import { DivIcon } from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
+import { cn } from 'services/utils/cn';
 
 // Not typed by the lib, this is guessed from the documentation
 // https://www.npmjs.com/package/react-leaflet-markercluster#api
@@ -9,7 +10,12 @@ interface ClusterType {
 
 const Cluster: React.FC<{ number: number }> = ({ number }) => {
   return (
-    <div className="size-10 font-bold text-H4 rounded-full bg-primary1 text-white grid place-items-center transition hover:scale-110">
+    <div
+      className={cn(
+        'size-10 font-bold text-H4 rounded-full bg-primary1 text-white grid place-items-center transition hover:scale-110',
+        String(number).length > 2 && 'size-14',
+      )}
+    >
       <span>{number}</span>
     </div>
   );
