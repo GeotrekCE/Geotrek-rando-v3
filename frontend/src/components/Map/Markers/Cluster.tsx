@@ -1,7 +1,5 @@
 import { DivIcon } from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
-import styled from 'styled-components';
-import { colorPalette } from 'stylesheet';
 
 // Not typed by the lib, this is guessed from the documentation
 // https://www.npmjs.com/package/react-leaflet-markercluster#api
@@ -9,24 +7,11 @@ interface ClusterType {
   getChildCount: () => number;
 }
 
-const Round = styled.div`
-  border-radius: 50%;
-  background-color: ${colorPalette.primary1};
-  display: grid;
-  place-items: center;
-  color: ${colorPalette.white};
-
-  transition: transform 150ms;
-  &:hover {
-    transform: scale(1.1);
-  }
-`;
-
 const Cluster: React.FC<{ number: number }> = ({ number }) => {
   return (
-    <Round className="size-10 font-bold text-H4">
+    <div className="size-10 font-bold text-H4 rounded-full bg-primary1 text-white grid place-items-center transition hover:scale-110">
       <span>{number}</span>
-    </Round>
+    </div>
   );
 };
 
