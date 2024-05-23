@@ -1,12 +1,10 @@
 import { useId, useMemo } from 'react';
 import Loader from 'components/Loader';
 import Image from 'next/image';
-import { colorPalette } from 'stylesheet';
 import parse, { DOMNode, Element } from 'html-react-parser';
 import { Footer } from 'components/Footer';
 import { Separator } from 'components/Separator';
 import { PageHead } from 'components/PageHead';
-import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { generateFlatPageUrl } from 'modules/header/utills';
 import { getGlobalConfig } from 'modules/utils/api.config';
@@ -111,14 +109,15 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                   </figcaption>
                 )}
               </ImageCoverTag>
-              <TextWithShadow
-                className="px-10percent text-H3 desktop:text-H1
+              <h1
+                className="text-H3 desktop:text-H1
                 font-bold text-white
                 absolute bottom-0 top-0 right-0 left-0 flex items-center justify-center
-                bg-[radial-gradient(closest-side,rgba(0,0,0,0.2),transparent)]"
+                bg-[radial-gradient(closest-side,rgba(0,0,0,0.2),transparent)]
+                textShadowOnImage"
               >
                 {flatPage.title}
-              </TextWithShadow>
+              </h1>
             </div>
           )}
           <div className="px-4 mx-auto max-w-[940px]" id="flatPage_content">
@@ -194,7 +193,3 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
     </>
   );
 };
-
-const TextWithShadow = styled.h1`
-  text-shadow: 0 0 20px ${colorPalette.home.shadowOnImages};
-`;
