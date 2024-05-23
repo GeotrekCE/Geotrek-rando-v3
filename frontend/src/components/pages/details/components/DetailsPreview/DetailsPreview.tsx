@@ -137,7 +137,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             </Chip>
           ))}
       </div>
-      <div id="details_infoIcons" className="flex flex-wrap">
+      <div id="details_infoIcons" className="flex flex-wrap mt-3 desktop:mt-4">
         {informations.difficulty && (
           <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.difficulty' })}>
             <RemoteIconInformation
@@ -333,4 +333,4 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
   );
 };
 
-const classNameInformation = 'mr-3 desktop:mr-6 mt-3 desktop:mt-4 text-primary1 text-sm';
+const classNameInformation = 'mr-3 desktop:mr-6 text-primary1 text-sm';
