@@ -1,4 +1,5 @@
 const SPACING_UNIT = 4;
+const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
@@ -152,4 +153,20 @@ module.exports = {
       },
     },
   },
+  plugins: [
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          'animation-delay': value => {
+            return {
+              'animation-delay': value,
+            };
+          },
+        },
+        {
+          values: theme('transitionDelay'),
+        },
+      );
+    }),
+  ],
 };
