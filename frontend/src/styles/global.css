@@ -100,3 +100,7 @@ input[type='date']::-webkit-calendar-picker-indicator {
 .leaflet-interactive.annotation-line {
   fill: none;
 }
+
+.textShadowOnImage {
+  text-shadow: 0 0 20px theme('colors.gradientOnImages');
+}
