@@ -5,7 +5,6 @@ import { getGlobalConfig } from 'modules/utils/api.config';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { useRouter } from 'next/router';
 import { colorPalette } from 'stylesheet';
-import CSSResets from './CSSResets';
 
 interface Messages {
   [language: string]: {
@@ -52,7 +51,6 @@ export const Root: React.FC<React.PropsWithChildren> = props => {
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
       </Head>
-      <CSSResets />
       {props.children}
     </IntlProvider>
   );
