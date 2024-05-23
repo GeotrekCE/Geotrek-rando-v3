@@ -162,7 +162,7 @@ describe('parseTextFilter', () => {
   test.each`
     textfilter              | expectedParsedTextFilter
     ${'col de font froide'} | ${'col de font froide'}
-    ${null}                 | ${undefined}
+    ${null}                 | ${''}
   `('parses text filter properly with $textfilter', ({ textfilter, expectedParsedTextFilter }) => {
     const formattedText = parseTextFilter(textfilter as string | null);
 
