@@ -8,6 +8,16 @@
   }
 }
 
+html {
+  font-family: theme('fontFamily.main');
+  height: 100vh;
+}
+
+body,
+#__next {
+  height: 100%;
+}
+
 .input {
   @apply bg-white
 		border
