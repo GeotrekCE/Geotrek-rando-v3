@@ -3,19 +3,17 @@ import { GenericIconProps } from '../types';
 
 export const Calendar: React.FC<GenericIconProps> = ({
   color = 'currentColor',
-  opacity,
-  className,
   size,
+  ...props
 }) => {
   return (
     <svg
       width={size}
       height={size}
-      className={className}
-      opacity={opacity}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <rect
         x="3"
