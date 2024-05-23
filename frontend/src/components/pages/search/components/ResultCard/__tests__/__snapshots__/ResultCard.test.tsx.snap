@@ -25,7 +25,7 @@ Object {
                   class=""
                 >
                   <div
-                    class="relative "
+                    class="relative h-full "
                     id="details_cover_image"
                   >
                     <img
@@ -238,7 +238,7 @@ Object {
                 class=""
               >
                 <div
-                  class="relative "
+                  class="relative h-full "
                   id="details_cover_image"
                 >
                   <img
