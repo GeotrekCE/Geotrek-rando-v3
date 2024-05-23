@@ -2,7 +2,6 @@ import { Calendar } from 'components/Icons/Calendar';
 import { ChangeEvent, useId, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { colorPalette } from 'stylesheet';
-import CustomizedInputDate from './CustomizedInputDate.style';
 
 interface InputDateWithMagnifierProps {
   label?: string;
@@ -24,8 +23,8 @@ const InputDateWithMagnifier: React.FC<InputDateWithMagnifierProps> = ({
         {label}
       </label>
       <div className="flex flex-row">
-        <CustomizedInputDate
-          className="input"
+        <input
+          className="input !w-30 desktop:!w-55 h-10 desktop:h-12 !mb-3 !rounded-r-none !rounded-l-lg"
           onChange={onChange}
           id={inputId}
           ref={inputRef}
@@ -40,7 +39,7 @@ const InputDateWithMagnifier: React.FC<InputDateWithMagnifierProps> = ({
           onClick={() => inputRef?.current?.showPicker()}
           type="button"
         >
-          <Calendar size={24} color={colorPalette.primary2} />
+          <Calendar size={24} color={colorPalette.primary2} aria-hidden />
           <span className="sr-only">
             <FormattedMessage id="form.calendar" />
           </span>
