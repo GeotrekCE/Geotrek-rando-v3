@@ -16,46 +16,45 @@ Object {
           Recherche
         </label>
         <input
-          class="sc-bcXHqe enwRLZ input"
+          class="input !w-30 desktop:!w-55 h-10 desktop:h-12 !rounded-r-none !rounded-l-lg"
           id=":r0:"
           name="text"
           placeholder="Rechercher..."
           type="search"
           value=""
         />
-        <div
-          class="size-10 desktop:size-12 bg-primary1 rounded-r-md flex justify-center items-center active:bg-primary1-light cursor-pointer "
+        <button
+          class="size-10 desktop:size-12 bg-primary1 rounded-r-md flex justify-center items-center active:bg-primary1-light "
+          type="submit"
         >
-          <button
-            type="submit"
+          <svg
+            aria-hidden="true"
+            class="text-primary2"
+            fill="none"
+            height="24"
+            viewBox="0 0 22 22"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              fill="none"
-              height="24"
-              viewBox="0 0 22 22"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 8.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
-                stroke="var(--color-primary2)"
-                stroke-width="2"
-              />
-              <path
-                d="M14.164 14.25l5.586 5.586"
-                stroke="var(--color-primary2)"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-              />
-            </svg>
-            <span
-              class="sr-only"
-            >
-              Recherche
-            </span>
-          </button>
-        </div>
+            <path
+              d="M16 8.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M14.164 14.25l5.586 5.586"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+          <span
+            class="sr-only"
+          >
+            Recherche
+          </span>
+        </button>
       </form>
     </div>
   </body>,
@@ -71,46 +70,45 @@ Object {
         Recherche
       </label>
       <input
-        class="sc-bcXHqe enwRLZ input"
+        class="input !w-30 desktop:!w-55 h-10 desktop:h-12 !rounded-r-none !rounded-l-lg"
         id=":r0:"
         name="text"
         placeholder="Rechercher..."
         type="search"
         value=""
       />
-      <div
-        class="size-10 desktop:size-12 bg-primary1 rounded-r-md flex justify-center items-center active:bg-primary1-light cursor-pointer "
+      <button
+        class="size-10 desktop:size-12 bg-primary1 rounded-r-md flex justify-center items-center active:bg-primary1-light "
+        type="submit"
       >
-        <button
-          type="submit"
+        <svg
+          aria-hidden="true"
+          class="text-primary2"
+          fill="none"
+          height="24"
+          viewBox="0 0 22 22"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <svg
-            fill="none"
-            height="24"
-            viewBox="0 0 22 22"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16 8.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
-              stroke="var(--color-primary2)"
-              stroke-width="2"
-            />
-            <path
-              d="M14.164 14.25l5.586 5.586"
-              stroke="var(--color-primary2)"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            />
-          </svg>
-          <span
-            class="sr-only"
-          >
-            Recherche
-          </span>
-        </button>
-      </div>
+          <path
+            d="M16 8.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <path
+            d="M14.164 14.25l5.586 5.586"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+        <span
+          class="sr-only"
+        >
+          Recherche
+        </span>
+      </button>
     </form>
   </div>,
   "debug": [Function],
