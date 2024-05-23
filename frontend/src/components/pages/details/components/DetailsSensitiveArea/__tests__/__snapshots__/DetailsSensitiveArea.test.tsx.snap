@@ -13,8 +13,7 @@ Object {
           id="details_sensitiveAreaTitle"
         >
           <div
-            class="sc-gswNZR kgVgmZ"
-            color="#AAAAA"
+            class="size-6 rounded-md border-2 border-greyDarkColored bg-#AAAAA"
           />
           <h3
             class="font-bold text-H4 space-y-2"
@@ -110,8 +109,7 @@ Object {
         id="details_sensitiveAreaTitle"
       >
         <div
-          class="sc-gswNZR kgVgmZ"
-          color="#AAAAA"
+          class="size-6 rounded-md border-2 border-greyDarkColored bg-#AAAAA"
         />
         <h3
           class="font-bold text-H4 space-y-2"
