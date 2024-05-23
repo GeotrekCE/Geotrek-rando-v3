@@ -30,3 +30,6 @@ Read more in the [general presentation](./docs/presentation-fr.md).
 
 - [Main framework](./docs/adrs/main_framework.md)
 - [Deployment solution](./docs/adrs/deployment_solution.md)
+
+[![](https://geotrek.fr/assets/img/logo_makina.svg)](https://territoires.makina-corpus.com/)
+[![](https://geotrek.fr/assets/img/logo_autonomens-h120m.png)](https://datatheca.com/)
