@@ -84,7 +84,7 @@ export const colorPalette = {
 // This function collects in a list all the colors defined at the root of the color palette object. Duplicated colors are eliminated.
 // This list can then be used to attribute a different color to each member of a set
 // It is used in sensitiveAreas for example
-export const getListOfColorsInPalette = Object.values(colorPalette).reduce<string[]>(
+export const getListOfColorsInPalette = Object.keys(colorPalette).reduce<string[]>(
   (colorList, currentColor) => {
     if (typeof currentColor === 'string' && !colorList.includes(currentColor)) {
       colorList.push(currentColor);
