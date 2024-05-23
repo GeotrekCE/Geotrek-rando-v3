@@ -1,8 +1,6 @@
 import { Search } from 'components/Icons/Search';
 import { ChangeEvent, SyntheticEvent, useId } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { colorPalette } from 'stylesheet';
-import CustomizedInput from './CustomizedInput.style';
 
 interface InputWithMagnifierProps {
   value: string | null;
@@ -24,8 +22,8 @@ const InputWithMagnifier: React.FC<InputWithMagnifierProps> = ({ onChange, value
       <label className="sr-only" htmlFor={inputId}>
         <FormattedMessage id="search.title" />
       </label>
-      <CustomizedInput
-        className="input"
+      <input
+        className="input !w-30 desktop:!w-55 h-10 desktop:h-12 !rounded-r-none !rounded-l-lg"
         name="text"
         id={inputId}
         onChange={onChange}
@@ -33,20 +31,18 @@ const InputWithMagnifier: React.FC<InputWithMagnifierProps> = ({ onChange, value
         type="search"
         placeholder={intl.formatMessage({ id: 'search.textFilter' })}
       />
-      <div
+      <button
+        type="submit"
         className="size-10 desktop:size-12 bg-primary1 rounded-r-md
         flex justify-center items-center
         active:bg-primary1-light
-        cursor-pointer
         "
       >
-        <button type="submit">
-          <Search size={24} color={colorPalette.primary2} />
-          <span className="sr-only">
-            <FormattedMessage id="search.title" />
-          </span>
-        </button>
-      </div>
+        <Search size={24} className="text-primary2" aria-hidden />
+        <span className="sr-only">
+          <FormattedMessage id="search.title" />
+        </span>
+      </button>
     </form>
   );
 };
