@@ -6,7 +6,6 @@ import { useIntl } from 'react-intl';
 import { HtmlParser } from 'components/HtmlParser';
 import { BannerWithAsset } from './components/BannerWithAsset';
 import { HomeSection } from './components/HomeSection';
-import { HomeContainer } from './Home.style';
 import { useHome } from './useHome';
 
 const {
@@ -34,7 +33,7 @@ const HomeUI: React.FC = () => {
         title={intl.formatMessage({ id: 'home.title' })}
         description={intl.formatMessage({ id: 'home.description' })}
       />
-      <HomeContainer id="home_container">
+      <div id="home_container" className="flex flex-col items-stretch">
         <BannerWithAsset {...welcomeBanner} />
         <div id="home_content" className={contentContainerClassname}>
           {activityBar.shouldDisplay && (
@@ -70,7 +69,7 @@ const HomeUI: React.FC = () => {
             </div>
           )}
         </div>
-      </HomeContainer>
+      </div>
       <Footer />
     </>
   );
