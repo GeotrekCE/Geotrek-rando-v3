@@ -130,7 +130,7 @@ Object {
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
         <h1
-          class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+          class="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full textShadowOnImage"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -264,7 +264,7 @@ Object {
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
       <h1
-        class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+        class="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full textShadowOnImage"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -345,7 +345,7 @@ Object {
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
         <h1
-          class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+          class="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full textShadowOnImage"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -369,7 +369,7 @@ Object {
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
       <h1
-        class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+        class="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full textShadowOnImage"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -452,7 +452,7 @@ Object {
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
         <h1
-          class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+          class="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full textShadowOnImage"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -478,7 +478,7 @@ Object {
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
       <h1
-        class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+        class="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full textShadowOnImage"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !

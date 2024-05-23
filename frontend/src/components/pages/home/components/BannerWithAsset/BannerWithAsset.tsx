@@ -1,11 +1,5 @@
 import { FormattedMessage } from 'react-intl';
-import styled from 'styled-components';
-import { colorPalette } from 'stylesheet';
 import { BannerCarousel } from '../BannerCarousel/BannerCarousel';
-
-const WelcomeText = styled.h1`
-  text-shadow: 0 0 20px ${colorPalette.home.shadowOnImages};
-`;
 
 interface BannerSectionProps {
   videoUrl?: string;
@@ -24,13 +18,13 @@ const Banner: React.FC<BannerSectionWithoutAssetProps> = ({ shouldDisplayText, c
     {children}
     <div className="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent" />
     {shouldDisplayText && (
-      <WelcomeText
+      <h1
         data-testid="text"
         className="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight
-        absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+        absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full textShadowOnImage"
       >
         <FormattedMessage id="home.welcome-text" />
-      </WelcomeText>
+      </h1>
     )}
   </div>
 );
