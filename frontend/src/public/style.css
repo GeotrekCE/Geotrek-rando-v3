@@ -74,17 +74,8 @@
   stroke: #aa397d !important;
 }
 
-#details_cover_image,
-#touristicContent_cover_image {
-  height: 100%;
-}
-
 .menu-download {
   z-index: 299;
-}
-
-.over-all {
-  z-index: 10001;
 }
 
 /* Fix Safari issue related to <summary> / <details> arrow */
@@ -161,7 +152,7 @@ details > summary.list-none::marker {
 }
 
 .custo-page-WYSIWYG blockquote:not(.custo-suggestions blockquote)::before {
-  content: "“";
+  content: '“';
   @apply text-5xl;
 }
 

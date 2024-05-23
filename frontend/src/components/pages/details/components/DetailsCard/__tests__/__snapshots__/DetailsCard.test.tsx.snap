@@ -28,7 +28,7 @@ Object {
                   >
                     <figure
                       aria-labelledby=":r2:"
-                      class="relative "
+                      class="relative h-full "
                       id="details_cover_image"
                       role="figure"
                     >
@@ -155,7 +155,7 @@ Object {
                             <div>
                               <figure
                                 aria-labelledby=":r8:"
-                                class="relative "
+                                class="relative h-full "
                                 id="details_cover_image"
                                 role="figure"
                               >
@@ -214,7 +214,7 @@ Object {
                             <div>
                               <figure
                                 aria-labelledby=":ra:"
-                                class="relative "
+                                class="relative h-full "
                                 id="details_cover_image"
                                 role="figure"
                               >
@@ -348,7 +348,7 @@ Object {
                 >
                   <figure
                     aria-labelledby=":r2:"
-                    class="relative "
+                    class="relative h-full "
                     id="details_cover_image"
                     role="figure"
                   >
@@ -503,7 +503,7 @@ Object {
                   >
                     <figure
                       aria-labelledby=":r2:"
-                      class="relative "
+                      class="relative h-full "
                       id="details_cover_image"
                       role="figure"
                     >
@@ -630,7 +630,7 @@ Object {
                             <div>
                               <figure
                                 aria-labelledby=":r8:"
-                                class="relative "
+                                class="relative h-full "
                                 id="details_cover_image"
                                 role="figure"
                               >
@@ -689,7 +689,7 @@ Object {
                             <div>
                               <figure
                                 aria-labelledby=":ra:"
-                                class="relative "
+                                class="relative h-full "
                                 id="details_cover_image"
                                 role="figure"
                               >
@@ -853,7 +853,7 @@ Object {
                           <div>
                             <figure
                               aria-labelledby=":r8:"
-                              class="relative "
+                              class="relative h-full "
                               id="details_cover_image"
                               role="figure"
                             >
@@ -912,7 +912,7 @@ Object {
                           <div>
                             <figure
                               aria-labelledby=":ra:"
-                              class="relative "
+                              class="relative h-full "
                               id="details_cover_image"
                               role="figure"
                             >
