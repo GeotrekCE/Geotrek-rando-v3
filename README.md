@@ -31,5 +31,5 @@ Read more in the [general presentation](./docs/presentation-fr.md).
 - [Main framework](./docs/adrs/main_framework.md)
 - [Deployment solution](./docs/adrs/deployment_solution.md)
 
-[![](https://geotrek.fr/assets/img/logo_makina.svg)](https://territoires.makina-corpus.com/)
+<a href="https://territoires.makina-corpus.com/"><img src="https://geotrek.fr/assets/img/logo_makina.svg" alt="Logo MCT" width="115"></a>
 [![](https://geotrek.fr/assets/img/logo_autonomens-h120m.png)](https://datatheca.com/)
