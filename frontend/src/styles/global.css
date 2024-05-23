@@ -49,25 +49,30 @@
 		w-full;
 }
 
+input[type='date']::-webkit-calendar-picker-indicator {
+  @apply hidden;
+  -webkit-appearance: none;
+}
+
 /* Leaflet */
 .leaflet-popup .leaflet-popup-content {
-	@apply m-0;
-	/* Show the loader properly */
-	@apply relative;
-	min-height: 120px;
-	min-width: 120px;
+  @apply m-0;
+  /* Show the loader properly */
+  @apply relative;
+  min-height: 120px;
+  min-width: 120px;
 }
 
 .leaflet-popup .leaflet-popup-content-wrapper {
-	@apply p-0 rounded-xl overflow-hidden w-55 desktop:w-70;
+  @apply p-0 rounded-xl overflow-hidden w-55 desktop:w-70;
 }
 
 .leaflet-popup .leaflet-popup-tip {
-	/* Removes native leaflet popup triangle below the content
+  /* Removes native leaflet popup triangle below the content
 		 https://stackoverflow.com/a/51457598/14707543
 	*/
-	background: rgba(0, 0, 0, 0) !important;
-	box-shadow: none !important;
+  background: rgba(0, 0, 0, 0) !important;
+  box-shadow: none !important;
 }
 
 .hasDrawer .leaflet-bottom {
@@ -84,7 +89,7 @@
 }
 
 .leaflet-container:fullscreen #backToMapButton {
-	@apply hidden;
+  @apply hidden;
 }
 
 .leaflet-interactive.annotation {
