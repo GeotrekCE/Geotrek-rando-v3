@@ -56,11 +56,11 @@ export const getServerSideProps: GetServerSideProps = async context => {
     await queryClient.prefetchInfiniteQuery(
       [
         'trekResults',
-        parsedInitialFiltersState,
+        JSON.stringify(parsedInitialFiltersState),
         context.locale,
         initialTextFilter,
         bboxFilter,
-        dateFilter,
+        JSON.stringify(dateFilter),
         page,
       ],
       () =>

@@ -35,8 +35,8 @@ export const parseFilter = (filter: FilterState): QueryFilterState => ({
 export const parseFilters = (filters: FilterState[]): QueryFilterState[] =>
   filters.map(parseFilter);
 
-export const parseTextFilter = (textFilter: string | null): string | undefined =>
-  textFilter !== null ? textFilter : undefined;
+export const parseTextFilter = (textFilter: string | null): string =>
+  textFilter !== null ? textFilter : '';
 
 export const parseBboxFilter = (bboxFilter: string | null): string | undefined =>
   bboxFilter !== null ? bboxFilter : undefined;
