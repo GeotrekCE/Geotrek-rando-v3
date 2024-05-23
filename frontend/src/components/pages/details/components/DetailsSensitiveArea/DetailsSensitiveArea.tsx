@@ -1,8 +1,7 @@
 import parse from 'html-react-parser';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { FormattedDate, FormattedMessage } from 'react-intl';
-import styled from 'styled-components';
-import { borderRadius, colorPalette, getSpacing } from 'stylesheet';
+import { cn } from 'services/utils/cn';
 import { HtmlText } from '../../utils';
 
 type DetailsSensitiveAreaProps = Omit<SensitiveArea, 'geometry'> & { className?: string };
@@ -21,7 +20,7 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
   return (
     <div id="details_sensitiveArea" className={className}>
       <div className="flex items-center space-x-2" id="details_sensitiveAreaTitle">
-        <ColorLegendIcon color={color} />
+        <div className={cn('size-6 rounded-md border-2 border-greyDarkColored', `bg-${color}`)} />
         {name !== null && <h3 className="font-bold text-H4 space-y-2">{name}</h3>}
       </div>
       {description !== null && (
@@ -59,13 +58,6 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
   );
 };
 
-const ColorLegendIcon = styled.div<{ color: string }>`
-  background-color: ${({ color }) => color};
-  border-radius: ${borderRadius.medium};
-  border: 2px solid ${colorPalette.greyDarkColored};
-  height: ${getSpacing(6)};
-  width: ${getSpacing(6)};
-`;
 interface SensitiveAreaSectionProps {
   labelId?: string;
   children: React.ReactNode;
