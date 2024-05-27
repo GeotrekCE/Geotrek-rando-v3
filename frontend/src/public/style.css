@@ -107,6 +107,13 @@
   @apply text-white opacity-100;
 }
 
+/* Custom Utilities */
+@screen desktop {
+  .desktop\:max-h-heightScreenWithoutHeader {
+    max-height: calc(100vh - theme('spacing.desktopHeader') - theme('spacing.55') + 130px);
+  }
+}
+
 /* Fix Safari issue related to <summary> / <details> arrow */
 details > summary.list-none::-webkit-details-marker,
 details > summary.list-none::marker {
