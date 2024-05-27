@@ -1,7 +1,5 @@
 import { getActivityColorClassName } from 'components/pages/search/components/ResultCard/getActivityColor';
 import { Separator } from 'components/Separator';
-import styled from 'styled-components';
-import { MAX_WIDTH_MOBILE, scrollBar, sizes } from 'stylesheet';
 import { cn } from 'services/utils/cn';
 import { marginDetailsChild } from '../../Details';
 import { DetailsCard, DetailsCardProps } from '../DetailsCard/DetailsCard';
@@ -34,14 +32,14 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
         {title}
         {displayBadge && <Badge label={detailsCards.length} type={type} />}
       </h2>
-      <ScrollContainer
+      <ul
         id="details_cardSectionScrollContainer"
         className="flex desktop:flex-col items-start desktop:items-stretch
         overflow-x-auto desktop:overflow-x-hidden
         overflow-y-hidden desktop:overflow-y-auto
         scroll-smooth snap-x
         pb-5 mt-4 mb-2 desktop:mb-0
-        px-4 desktop:pl-18 desktop:pr-9 desktop:mr-9"
+        px-4 desktop:pl-18 desktop:pr-9 desktop:mr-9 desktop:max-h-heightScreenWithoutHeader"
       >
         {detailsCards.map((card, i) => (
           <DetailsCard
@@ -66,7 +64,7 @@ export const DetailsCardSection: React.FC<DetailsCardSectionProps> = ({
             filesFromAttachments={card.filesFromAttachments}
           />
         ))}
-      </ScrollContainer>
+      </ul>
       <div className={marginDetailsChild} id="details_cardSectionBottom">
         <Separator />
       </div>
@@ -97,19 +95,3 @@ export const Badge: React.FC<BadgeProps> = ({ label, type = null }) => {
     </div>
   );
 };
-
-const offsetTopForTitle = 70;
-
-const ScrollContainer = styled.ul`
-  &::-webkit-scrollbar {
-    ${scrollBar.root}
-  }
-  &::-webkit-scrollbar-thumb {
-    ${scrollBar.thumb}
-  }
-  @media (min-width: ${MAX_WIDTH_MOBILE}px) {
-    max-height: calc(
-      100vh - ${sizes.desktopHeader + sizes.detailsHeaderDesktop + offsetTopForTitle}px
-    );
-  }
-`;
