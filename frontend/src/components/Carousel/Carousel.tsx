@@ -1,6 +1,6 @@
+import { FormattedMessage } from 'react-intl';
 import Slider, { CustomArrowProps } from 'react-slick';
-import styled, { css } from 'styled-components';
-import { desktopOnly, getSpacing } from 'stylesheet';
+import { cn } from 'services/utils/cn';
 
 interface CarouselProps {
   className?: string;
@@ -26,9 +26,9 @@ export const Carousel: React.FC<CarouselProps> = ({
     return <span className={className}>{children}</span>;
   }
   return (
-    <StyledSlider
+    <Slider
       lazyLoad="ondemand"
-      className={className}
+      className={cn('!h-full w-auto', className)}
       dots
       infinite
       speed={500}
@@ -37,7 +37,7 @@ export const Carousel: React.FC<CarouselProps> = ({
       appendDots={dots}
     >
       {children}
-    </StyledSlider>
+    </Slider>
   );
 };
 
@@ -45,8 +45,8 @@ export const SmallCarousel: React.FC<LargeOrSmallCarouselProps> = ({ children, c
   return (
     <Carousel
       className={className}
-      nextArrow={<SmallNextArrow />}
-      prevArrow={<SmallPrevArrow />}
+      nextArrow={<Arrow />}
+      prevArrow={<Arrow isPrev />}
       dots={appendDots}
     >
       {children}
@@ -58,8 +58,8 @@ export const LargeCarousel: React.FC<LargeOrSmallCarouselProps> = ({ children, c
   return (
     <Carousel
       className={className}
-      nextArrow={<LargeNextArrow />}
-      prevArrow={<LargePrevArrow />}
+      nextArrow={<Arrow isLarge />}
+      prevArrow={<Arrow isLarge isPrev />}
       dots={appendDots}
     >
       {children}
@@ -67,126 +67,34 @@ export const LargeCarousel: React.FC<LargeOrSmallCarouselProps> = ({ children, c
   );
 };
 
-const StyledSlider = styled(Slider)`
-  height: 100%;
-  width: auto;
-  .slick-container,
-  .slick-slider,
-  .slick-list,
-  .slick-track,
-  .slick-slide {
-    height: 100%;
-  }
-  .slick-slide > div {
-    height: 100%;
-  }
-`;
-
-const LargePrevArrow: React.FC<CustomArrowProps> = props => {
-  const { className, onClick } = props;
-  return <LargeStyledLeftArrow className={className} onClick={onClick} type="button" />;
+const Arrow = (props: CustomArrowProps & { isPrev?: boolean; isLarge?: boolean }) => {
+  const { className, onClick, isPrev, isLarge } = props;
+  const disabledClass = className?.includes('slick-disabled');
+  return (
+    <button
+      type="button"
+      className={cn(
+        '!h-full !p-5 !flex justify-center items-end transition size-7 opacity-75 hover:opacity-100 focus:opacity-100 before:!opacity-100 z-[301] textShadowOnImage',
+        className,
+        isPrev ? '!left-0' : '!right-0',
+        isLarge && '!p-6 desktop:!p-8 desktop:before:!text-2xl',
+      )}
+      onClick={onClick}
+      disabled={disabledClass}
+    >
+      <span className="sr-only">
+        {isPrev ? (
+          <FormattedMessage id="carousel.prevImage" />
+        ) : (
+          <FormattedMessage id="carousel.nextImage" />
+        )}
+      </span>
+    </button>
+  );
 };
-
-const LargeNextArrow: React.FC<CustomArrowProps> = props => {
-  const { className, onClick } = props;
-  return <LargeStyledRightArrow className={className} onClick={onClick} type="button" />;
-};
-
-const SmallPrevArrow: React.FC<CustomArrowProps> = props => {
-  const { className, onClick } = props;
-  return <SmallStyledLeftArrow className={className} onClick={onClick} type="button" />;
-};
-
-const SmallNextArrow: React.FC<CustomArrowProps> = props => {
-  const { className, onClick } = props;
-  return <SmallStyledRightArrow className={className} onClick={onClick} type="button" />;
-};
-
-const StyledArrow = styled.button`
-  z-index: 10;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  opacity: 0.75;
-  transition-property: opacity;
-  transition-duration: 500ms;
-  &:hover,
-  &:focus {
-    opacity: 1;
-  }
-  &::before {
-    opacity: 1;
-    text-shadow: 0 0 4px black;
-  }
-`;
-
-const SmallStyledArrow = styled(StyledArrow)`
-  padding: 20px;
-`;
-
-export const LargeStyledArrow = styled(StyledArrow)`
-  padding: 30px;
-  ${desktopOnly(
-    css`
-      opacity: 0.3;
-      padding: 40px;
-    `,
-  )}
-  &::before {
-    font-size: 20px;
-    ${desktopOnly(
-      css`
-        font-size: 24px;
-      `,
-    )}
-  }
-`;
-
-const SmallStyledRightArrow = styled(SmallStyledArrow)`
-  right: 0;
-`;
-
-const SmallStyledLeftArrow = styled(SmallStyledArrow)`
-  left: 0;
-`;
-
-const LargeStyledRightArrow = styled(LargeStyledArrow)`
-  right: 0;
-`;
-
-const LargeStyledLeftArrow = styled(LargeStyledArrow)`
-  left: 0;
-`;
 
 const appendDots = (dots: JSX.Element) => (
-  <StyledDots>
-    <ul>{dots}</ul>
-  </StyledDots>
+  <>
+    <ul className="slick-dots !bottom-5 z-[300] px-8 max-h-6 text-white">{dots}</ul>
+  </>
 );
-
-const StyledDots = styled.div`
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  bottom: 22px;
-  padding: 0 ${getSpacing(8)};
-  max-height: ${getSpacing(6)};
-  color: white;
-  & > ul > li {
-    margin: 0;
-  }
-  & > ul > li.slick-active > button::before {
-    color: white;
-    opacity: 1;
-    text-shadow: 0 0 4px black;
-  }
-  & > ul > li > button {
-    padding: 2px;
-  }
-  & > ul > li > button::before {
-    color: white;
-    opacity: 0.5;
-    text-shadow: 0 0 4px black;
-  }
-`;

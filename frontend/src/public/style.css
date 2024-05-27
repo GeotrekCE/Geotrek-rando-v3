@@ -78,6 +78,35 @@
   z-index: 299;
 }
 
+/* Slick slider */
+.slick-container,
+.slick-slider,
+.slick-list,
+.slick-track,
+.slick-slide {
+  @apply h-full;
+}
+.slick-slide > div {
+  @apply h-full;
+}
+
+.slick-dots li {
+  @apply m-0;
+}
+
+.slick-dots li > button {
+  @apply p-2p;
+}
+
+.slick-dots li > button::before {
+  @apply text-white opacity-50;
+  text-shadow: 0 0 4px black;
+}
+
+.slick-dots li.slick-active > button::before {
+  @apply text-white opacity-100;
+}
+
 /* Fix Safari issue related to <summary> / <details> arrow */
 details > summary.list-none::-webkit-details-marker,
 details > summary.list-none::marker {
