@@ -7,8 +7,6 @@ import parse from 'html-react-parser';
 import { AccessibilityAttachment, Details } from 'modules/details/interface';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { FormattedMessage } from 'react-intl';
-import styled, { css } from 'styled-components';
-import { desktopOnly } from 'stylesheet';
 import PhoneIcon from './PhoneIcon';
 
 interface Props {
@@ -97,8 +95,8 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
                     {shouldPictureRowBeDisplayed && (
                       <Modal>
                         {({ isFullscreen, toggleFullscreen }) => (
-                          <div id="details_cover" className={!isFullscreen ? '' : 'h-full'}>
-                            <StyledSmallCarousel isFullscreen={isFullscreen}>
+                          <div id="details_cover" className={isFullscreen ? 'h-full' : 'h-50'}>
+                            <SmallCarousel className="h-full">
                               {attachments.map((attachment, index) => (
                                 <ImageWithLegend
                                   image={
@@ -113,7 +111,7 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
                                   onClick={toggleFullscreen}
                                 />
                               ))}
-                            </StyledSmallCarousel>
+                            </SmallCarousel>
                           </div>
                         )}
                       </Modal>
@@ -146,21 +144,6 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
     </div>
   );
 };
-
-const StyledSmallCarousel = styled(SmallCarousel)<{ isFullscreen: boolean }>`
-  height: auto;
-
-  & img {
-    height: ${props => (props.isFullscreen ? '100vh' : '200px')};
-    margin: auto;
-    cursor: pointer;
-    width: 100%;
-
-    ${desktopOnly(css`
-      width: 'auto';
-    `)}
-  }
-`;
 
 export const shouldDisplayAccessibility = (details: Details) => {
   return Boolean(
