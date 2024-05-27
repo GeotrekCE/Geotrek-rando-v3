@@ -309,5 +309,9 @@
       },
       "changeCookiePreference": "Canvia les preferències de galetes"
     }
+  },
+  "carousel": {
+    "prevImage": "Imatge anterior",
+    "nextImage": "Següent imatge"
   }
 }
