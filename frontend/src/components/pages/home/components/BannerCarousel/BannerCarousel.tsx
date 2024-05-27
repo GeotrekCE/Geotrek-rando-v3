@@ -1,7 +1,6 @@
-import { LargeStyledArrow } from 'components/Carousel';
+import { FormattedMessage } from 'react-intl';
 import Slider, { CustomArrowProps } from 'react-slick';
-import styled, { css } from 'styled-components';
-import { colorPalette, desktopOnly, getSpacing } from 'stylesheet';
+import { cn } from 'services/utils/cn';
 
 interface BannerCarouselProps {
   picturesUrl: string[];
@@ -13,8 +12,8 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = ({ picturesUrl }) =
       <Slider
         className="h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
         infinite
-        nextArrow={<NextArrow />}
-        prevArrow={<PrevArrow />}
+        nextArrow={<Arrow />}
+        prevArrow={<Arrow isPrev />}
         swipe={false}
         autoplay
         speed={1000}
@@ -35,38 +34,27 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = ({ picturesUrl }) =
   );
 };
 
-const PrevArrow = (props: CustomArrowProps) => {
-  const { className = '', onClick } = props;
-  return <StyledLeftArrow className={className} onClick={onClick} type="button" />;
+const Arrow = (props: CustomArrowProps & { isPrev?: boolean }) => {
+  const { className, onClick, isPrev } = props;
+  const disabledClass = className?.includes('slick-disabled');
+  return (
+    <button
+      type="button"
+      className={cn(
+        '!py-20 !px-5 !h-full desktop:!py-40 desktop:!px-12 !flex justify-center items-end transition size-7 !opacity-100 z-10 desktop:before:!text-3xl textShadowOnImage',
+        className,
+        isPrev ? '!left-0' : '!right-0',
+      )}
+      onClick={onClick}
+      disabled={disabledClass}
+    >
+      <span className="sr-only">
+        {isPrev ? (
+          <FormattedMessage id="carousel.prevImage" />
+        ) : (
+          <FormattedMessage id="carousel.nextImage" />
+        )}
+      </span>
+    </button>
+  );
 };
-
-const NextArrow = (props: CustomArrowProps) => {
-  const { className = '', onClick } = props;
-  return <StyledRightArrow className={className} onClick={onClick} type="button" />;
-};
-
-const BannerStyledArrow = styled(LargeStyledArrow)`
-  padding: ${getSpacing(20)} ${getSpacing(5)};
-  opacity: 1;
-  &::before {
-    text-shadow: 0 0 20px ${colorPalette.home.shadowOnImages};
-    ${desktopOnly(
-      css`
-        font-size: 30px;
-      `,
-    )}
-  }
-  ${desktopOnly(
-    css`
-      padding: ${getSpacing(40)} ${getSpacing(12)};
-    `,
-  )}
-`;
-
-const StyledRightArrow = styled(BannerStyledArrow)`
-  right: 0;
-`;
-
-const StyledLeftArrow = styled(BannerStyledArrow)`
-  left: 0;
-`;
