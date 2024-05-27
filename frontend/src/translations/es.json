@@ -308,5 +308,9 @@
       }
     },
     "changeCookiePreference": "Cambiar las preferencias de cookies"
+  },
+  "carousel": {
+    "prevImage": "Imagen anterior",
+    "nextImage": "Imagen siguiente"
   }
 }

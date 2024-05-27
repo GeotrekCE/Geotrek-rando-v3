@@ -354,5 +354,9 @@
       }
     },
     "changeCookiePreference": "Changer les préférences cookies"
+  },
+  "carousel": {
+    "prevImage": "Image précédente",
+    "nextImage": "Image suivante"
   }
 }
