@@ -10,7 +10,7 @@ Object {
         dir="ltr"
       >
         <button
-          class="sc-gswNZR sc-hLBbgP sc-iBYQkv dQACwy iXwfzt cBrSnO slick-arrow slick-prev"
+          class="sc-gswNZR sc-hLBbgP sc-iBYQkv dQACwy iQvRhB cBrSnO slick-arrow slick-prev"
           type="button"
         />
         <div
@@ -140,7 +140,7 @@ Object {
           </div>
         </div>
         <button
-          class="sc-gswNZR sc-hLBbgP sc-gKPRtg dQACwy iXwfzt bMoIHG slick-arrow slick-next"
+          class="sc-gswNZR sc-hLBbgP sc-gKPRtg dQACwy iQvRhB bMoIHG slick-arrow slick-next"
           type="button"
         />
         <div
@@ -179,7 +179,7 @@ Object {
       dir="ltr"
     >
       <button
-        class="sc-gswNZR sc-hLBbgP sc-iBYQkv dQACwy iXwfzt cBrSnO slick-arrow slick-prev"
+        class="sc-gswNZR sc-hLBbgP sc-iBYQkv dQACwy iQvRhB cBrSnO slick-arrow slick-prev"
         type="button"
       />
       <div
@@ -309,7 +309,7 @@ Object {
         </div>
       </div>
       <button
-        class="sc-gswNZR sc-hLBbgP sc-gKPRtg dQACwy iXwfzt bMoIHG slick-arrow slick-next"
+        class="sc-gswNZR sc-hLBbgP sc-gKPRtg dQACwy iQvRhB bMoIHG slick-arrow slick-next"
         type="button"
       />
       <div
