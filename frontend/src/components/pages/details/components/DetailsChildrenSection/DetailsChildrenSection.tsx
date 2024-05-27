@@ -4,8 +4,6 @@ import { TrekResultWithGeometryChild } from 'modules/details/interface';
 import { OutdoorSiteResult } from 'modules/outdoorSite/interface';
 import { OutdoorCourseResult } from 'modules/outdoorCourse/interface';
 import { ResultCard } from 'components/pages/search/components/ResultCard';
-import styled, { css } from 'styled-components';
-import { desktopOnly, scrollBar, sizes } from 'stylesheet';
 import { cn } from 'services/utils/cn';
 import { marginDetailsChild } from '../../Details';
 import { generateDetailsUrlFromType } from '../../utils';
@@ -26,6 +24,7 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
   id = `${type.toLocaleLowerCase()}Children`,
 }) => {
   const withSteps = parentId !== undefined;
+  const Tag = withSteps ? 'ol' : 'ul';
   const idAttribute = `details_${id}`;
   return (
     <div className="pt-6 desktop:pt-12 scroll-mt-20 desktop:scroll-mt-30" id={idAttribute}>
@@ -35,7 +34,7 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
       >
         {title}
       </h2>
-      <ScrollContainer
+      <Tag
         id={`${idAttribute}ScrollContainer`}
         className={cn(
           `
@@ -45,10 +44,10 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
           overflow-x-auto desktop:overflow-x-hidden
           overflow-y-hidden desktop:overflow-y-auto
           scroll-smooth snap-x
+          desktop:max-h-heightScreenWithoutHeader
           `,
           withSteps && '[counter-reset:steps]',
         )}
-        as={withSteps ? 'ol' : 'ul'}
       >
         {items.map(item => (
           <li
@@ -110,26 +109,10 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
             />
           </li>
         ))}
-      </ScrollContainer>
+      </Tag>
       <div className={marginDetailsChild}>
         <Separator />
       </div>
     </div>
   );
 };
-
-const offsetTopForTitle = 130;
-
-const ScrollContainer = styled.ul`
-  &::-webkit-scrollbar {
-    ${scrollBar.root}
-  }
-  &::-webkit-scrollbar-thumb {
-    ${scrollBar.thumb}
-  }
-  ${desktopOnly(css`
-    max-height: calc(
-      100vh - ${sizes.desktopHeader + sizes.detailsHeaderDesktop + offsetTopForTitle}px
-    );
-  `)}
-`;
