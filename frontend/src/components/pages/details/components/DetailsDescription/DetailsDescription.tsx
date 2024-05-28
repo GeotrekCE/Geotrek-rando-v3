@@ -1,9 +1,6 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import styled, { css } from 'styled-components';
-import { colorPalette, desktopOnly, getSpacing, shadow } from 'stylesheet';
 import parse from 'html-react-parser';
 import { cn } from 'services/utils/cn';
-import { HtmlText } from '../../utils';
 
 interface DetailsDescriptionProps {
   id?: string;
@@ -47,7 +44,22 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
         {title}
       </h2>
       <div id={`${id}Content`} className="mt-3 desktop:mt-4">
-        <StyledListWithSteps>{parse(descriptionHtml)}</StyledListWithSteps>
+        <div
+          className={cn(
+            'content-WYSIWYG',
+            '[&>ol]:my-2 desktop:[&>ol]:my-4 [&>ol]:ml-3',
+            '[&>ol]:border-l-3 [&>ol]:border-primary3',
+            '[&>ol>li]:relative [&>ol>li]:pl-12 [&>ol>li]:-ml-4 [&>ol>li]:mt-4 first:[&>ol>li]:mt-0 desktop:[&>ol>li]:mt-10 [&>ol>li]:[counter-increment:steps]',
+            'before:[&>ol>li]:absolute before:[&>ol>li]:left-0 before:[&>ol>li]:top-1/2 before:[&>ol>li]:-translate-y-1/2',
+            'before:[&>ol>li]:mr-4 desktop:before:[&>ol>li]:mr-6',
+            'before:[&>ol>li]:content-[counter(steps)] before:[&>ol>li]:rounded-full before:[&>ol>li]:size-7',
+            'before:[&>ol>li]:flex before:[&>ol>li]:items-center before:[&>ol>li]:justify-center',
+            'before:[&>ol>li]:text-sm before:[&>ol>li]:text-white before:[&>ol>li]:bg-redMarker',
+            'before:[&>ol>li]:shadow-md',
+          )}
+        >
+          {parse(descriptionHtml)}
+        </div>
       </div>
 
       {(hasDeparture || hasArrival || hasCities || hasCities || hasEmail || hasWebsite) && (
@@ -101,61 +113,3 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
     </div>
   );
 };
-
-const StyledListWithSteps = styled(HtmlText)`
-  & > ol {
-    position: relative;
-    list-style: none;
-    counter-reset: item;
-    margin: ${getSpacing(2)} 0;
-    ${desktopOnly(css`
-      margin: ${getSpacing(4)} 0;
-    `)}
-  }
-  & > ol::before {
-    content: ' ';
-    background-color: ${colorPalette.primary3};
-    width: 3px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 12px;
-    z-index: -1;
-  }
-  & > ol > li {
-    counter-increment: item;
-    margin-top: ${getSpacing(4)};
-    ${desktopOnly(css`
-      margin-top: ${getSpacing(10)};
-    `)}
-    position: relative;
-    padding-left: ${getSpacing(12)};
-  }
-  & > ol > li:first-child {
-    margin-top: 0;
-  }
-  & > ol > li::before {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14px;
-    content: counter(item);
-    border-radius: 100%;
-    width: ${getSpacing(6.5)};
-    height: ${getSpacing(6.5)};
-    margin-right: ${getSpacing(3.5)};
-    color: white;
-    background-color: ${colorPalette.redMarker};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: ${shadow.medium};
-    ${desktopOnly(css`
-      margin-right: ${getSpacing(5.5)};
-    `)}
-  }
-  a {
-    overflow-wrap: break-word;
-  }
-`;

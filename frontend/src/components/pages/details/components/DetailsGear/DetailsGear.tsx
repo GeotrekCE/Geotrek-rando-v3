@@ -1,5 +1,4 @@
 import parse from 'html-react-parser';
-import { HtmlText } from 'components/pages/details/utils';
 import { BackPack } from 'components/Icons/BackPack';
 
 interface DetailsGearProps {
@@ -19,7 +18,7 @@ export const DetailsGear: React.FC<DetailsGearProps> = ({ className, text }) => 
         <BackPack />
       </div>
       <div className="text-greyDarkColored desktop:font-bold text-Mobile-C2 desktop:text-P1 my-auto">
-        <HtmlText>{parse(text)}</HtmlText>
+        <div className="content-WYSIWYG">{parse(text)}</div>
       </div>
     </div>
   );

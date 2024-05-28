@@ -2,7 +2,6 @@ import parse from 'html-react-parser';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { FormattedDate, FormattedMessage } from 'react-intl';
 import { cn } from 'services/utils/cn';
-import { HtmlText } from '../../utils';
 
 type DetailsSensitiveAreaProps = Omit<SensitiveArea, 'geometry'> & { className?: string };
 
@@ -25,7 +24,7 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
       </div>
       {description !== null && (
         <SensitiveAreaSection>
-          <HtmlText>{parse(description)}</HtmlText>
+          <div className="content-WYSIWYG">{parse(description)}</div>
         </SensitiveAreaSection>
       )}
       {practices.length > 0 && (
@@ -44,7 +43,7 @@ export const DetailsSensitiveArea: React.FC<DetailsSensitiveAreaProps> = ({
       )}
       {contact !== null && (
         <SensitiveAreaSection labelId="details.sensitiveAreasContact">
-          <HtmlText>{parse(contact)}</HtmlText>
+          <div className="content-WYSIWYG">{parse(contact)}</div>
         </SensitiveAreaSection>
       )}
       {infoUrl !== null && infoUrl !== '' && (

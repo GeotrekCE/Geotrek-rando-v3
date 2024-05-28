@@ -32,11 +32,7 @@ import { DetailsCardSection } from './components/DetailsCardSection';
 import { useDetails } from './useDetails';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from './components/DetailsTopIcons';
-import {
-  generateTouristicContentUrl,
-  HtmlText,
-  templatesVariablesAreDefinedAndUsed,
-} from './utils';
+import { generateTouristicContentUrl, templatesVariablesAreDefinedAndUsed } from './utils';
 import { DetailsSource } from './components/DetailsSource';
 
 import { DetailsInformationDesk } from './components/DetailsInformationDesk';
@@ -411,7 +407,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               titleId="details.transport"
                               className={marginDetailsChild}
                             >
-                              <HtmlText>{parse(details.transport)}</HtmlText>
+                              <div className="content-WYSIWYG">{parse(details.transport)}</div>
                             </DetailsSection>
                           )}
 
@@ -422,14 +418,16 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               className={marginDetailsChild}
                             >
                               {details.access && (
-                                <HtmlText id="details_access">{parse(details.access)}</HtmlText>
+                                <div className="content-WYSIWYG" id="details_access">
+                                  {parse(details.access)}
+                                </div>
                               )}
                               {details.parking && (
                                 <div className="mt-4" id="details_parking">
                                   <p className="font-bold desktop:text-H4">
                                     {`${intl.formatMessage({ id: 'details.stationnement' })} :`}
                                   </p>
-                                  <HtmlText>{parse(details.parking)}</HtmlText>
+                                  <div className="content-WYSIWYG">{parse(details.parking)}</div>
                                 </div>
                               )}
                             </DetailsSection>
