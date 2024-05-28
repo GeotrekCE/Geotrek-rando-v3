@@ -9,7 +9,6 @@ import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/detail
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
 import {
   generateTouristicContentUrl,
-  HtmlText,
   templatesVariablesAreDefinedAndUsed,
 } from 'components/pages/details/utils';
 import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
@@ -318,7 +317,9 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                                 <strong className="font-bold">
                                   <FormattedMessage id="details.accessibility" /> :{' '}
                                 </strong>
-                                <HtmlText>{parse(outdoorCourseContent.accessibility)}</HtmlText>
+                                <div className="content-WYSIWYG">
+                                  {parse(outdoorCourseContent.accessibility)}
+                                </div>
                               </div>
                             )}
                           </DetailsSection>

@@ -13,7 +13,6 @@ import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/detail
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
 import {
   generateTouristicContentUrl,
-  HtmlText,
   templatesVariablesAreDefinedAndUsed,
 } from 'components/pages/details/utils';
 import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
@@ -398,7 +397,9 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                                   <strong className="font-bold">
                                     <FormattedMessage id="details.accessibility" /> :{' '}
                                   </strong>
-                                  <HtmlText>{parse(outdoorSiteContent.accessibility)}</HtmlText>
+                                  <div className="content-WYSIWYG">
+                                    {parse(outdoorSiteContent.accessibility)}
+                                  </div>
                                 </div>
                               )}
                             </DetailsSection>

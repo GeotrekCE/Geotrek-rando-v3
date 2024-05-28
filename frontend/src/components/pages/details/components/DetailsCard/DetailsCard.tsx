@@ -3,7 +3,6 @@ import { CardIcon } from 'components/CardIcon';
 import { Link } from 'components/Link';
 import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
-import { HtmlText } from 'components/pages/details/utils';
 import useHasMounted from 'hooks/useHasMounted';
 import parse from 'html-react-parser';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
@@ -56,16 +55,16 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   const { truncateState, toggleTruncateState, detailsCardRef, setTruncateState } =
     useDetailsCard(hasMedia);
 
-  const descriptionStyled =
-    truncateState === 'TRUNCATE' ? (
-      <HtmlText className="custo-result-card-description line-clamp-2 desktop:line-clamp-5 text-greyDarkColored">
-        <div>{parse(description ?? '')}</div>
-      </HtmlText>
-    ) : (
-      <HtmlText className="custo-result-card-description text-greyDarkColored">
-        {parse(description ?? '')}
-      </HtmlText>
-    );
+  const descriptionStyled = (
+    <div
+      className={cn(
+        'custo-result-card-description content-WYSIWYG  text-greyDarkColored',
+        truncateState === 'TRUNCATE' && 'line-clamp-2 desktop:line-clamp-5',
+      )}
+    >
+      <div>{parse(description ?? '')}</div>
+    </div>
+  );
 
   const { setHoveredCardId } = useListAndMapContext();
 

@@ -21,13 +21,13 @@ Object {
             class="text-P1 desktop:text-H4 text-warning font-bold"
           >
             <div
-              class="sc-bcXHqe hwfUBG"
+              class="content-WYSIWYG"
             >
               En coeur de parc
             </div>
           </div>
           <div
-            class="sc-bcXHqe hwfUBG"
+            class="content-WYSIWYG"
           >
             Le Parc national est un territoire naturel, ouvert à tous, mais soumis à une réglementation qu’il est utile de connaître pour préparer son séjour
           </div>
@@ -52,13 +52,13 @@ Object {
           class="text-P1 desktop:text-H4 text-warning font-bold"
         >
           <div
-            class="sc-bcXHqe hwfUBG"
+            class="content-WYSIWYG"
           >
             En coeur de parc
           </div>
         </div>
         <div
-          class="sc-bcXHqe hwfUBG"
+          class="content-WYSIWYG"
         >
           Le Parc national est un territoire naturel, ouvert à tous, mais soumis à une réglementation qu’il est utile de connaître pour préparer son séjour
         </div>

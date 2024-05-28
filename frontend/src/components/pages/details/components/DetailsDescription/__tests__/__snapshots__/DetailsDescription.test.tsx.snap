@@ -20,7 +20,7 @@ Object {
           id="details_descriptionContent"
         >
           <div
-            class="sc-bcXHqe sc-gswNZR hwfUBG crxwVA"
+            class="content-WYSIWYG [&>ol]:my-2 desktop:[&>ol]:my-4 [&>ol]:ml-3 [&>ol]:border-l-3 [&>ol]:border-primary3 [&>ol>li]:relative [&>ol>li]:pl-12 [&>ol>li]:-ml-4 [&>ol>li]:mt-4 first:[&>ol>li]:mt-0 desktop:[&>ol>li]:mt-10 [&>ol>li]:[counter-increment:steps] before:[&>ol>li]:absolute before:[&>ol>li]:left-0 before:[&>ol>li]:top-1/2 before:[&>ol>li]:-translate-y-1/2 before:[&>ol>li]:mr-4 desktop:before:[&>ol>li]:mr-6 before:[&>ol>li]:content-[counter(steps)] before:[&>ol>li]:rounded-full before:[&>ol>li]:size-7 before:[&>ol>li]:flex before:[&>ol>li]:items-center before:[&>ol>li]:justify-center before:[&>ol>li]:text-sm before:[&>ol>li]:text-white before:[&>ol>li]:bg-redMarker before:[&>ol>li]:shadow-md"
           >
             <p>
               Du parking remonter la vallée du Sélé par le sentier qui suit la rive gauche du torrent de Celse Nière. Après une longue montée en faux plat, le sentier remonte des lacets raides jusqu'à la jonction avec le sentier du refuge du Sélé (1993 m).
@@ -66,7 +66,7 @@ Object {
         id="details_descriptionContent"
       >
         <div
-          class="sc-bcXHqe sc-gswNZR hwfUBG crxwVA"
+          class="content-WYSIWYG [&>ol]:my-2 desktop:[&>ol]:my-4 [&>ol]:ml-3 [&>ol]:border-l-3 [&>ol]:border-primary3 [&>ol>li]:relative [&>ol>li]:pl-12 [&>ol>li]:-ml-4 [&>ol>li]:mt-4 first:[&>ol>li]:mt-0 desktop:[&>ol>li]:mt-10 [&>ol>li]:[counter-increment:steps] before:[&>ol>li]:absolute before:[&>ol>li]:left-0 before:[&>ol>li]:top-1/2 before:[&>ol>li]:-translate-y-1/2 before:[&>ol>li]:mr-4 desktop:before:[&>ol>li]:mr-6 before:[&>ol>li]:content-[counter(steps)] before:[&>ol>li]:rounded-full before:[&>ol>li]:size-7 before:[&>ol>li]:flex before:[&>ol>li]:items-center before:[&>ol>li]:justify-center before:[&>ol>li]:text-sm before:[&>ol>li]:text-white before:[&>ol>li]:bg-redMarker before:[&>ol>li]:shadow-md"
         >
           <p>
             Du parking remonter la vallée du Sélé par le sentier qui suit la rive gauche du torrent de Celse Nière. Après une longue montée en faux plat, le sentier remonte des lacets raides jusqu'à la jonction avec le sentier du refuge du Sélé (1993 m).

@@ -1,5 +1,4 @@
 import parse from 'html-react-parser';
-import { HtmlText } from 'components/pages/details/utils';
 import { AlertTriangle } from 'components/Icons/AlertTriangle';
 
 interface DetailsAdviceProps {
@@ -19,7 +18,7 @@ export const DetailsAdvice: React.FC<DetailsAdviceProps> = ({ className, text })
         <AlertTriangle />
       </div>
       <div className="text-greyDarkColored desktop:font-bold text-Mobile-C2 desktop:text-P1 my-auto">
-        <HtmlText>{parse(text)}</HtmlText>
+        <div className="content-WYSIWYG">{parse(text)}</div>
       </div>
     </div>
   );

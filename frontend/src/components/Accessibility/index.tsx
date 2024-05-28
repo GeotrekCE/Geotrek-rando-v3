@@ -2,7 +2,6 @@ import { SmallCarousel } from 'components/Carousel';
 import ImageWithLegend from 'components/ImageWithLegend';
 import { RemoteIconInformation } from 'components/Information/RemoteIconInformation';
 import { Modal } from 'components/Modal';
-import { HtmlText } from 'components/pages/details/utils';
 import parse from 'html-react-parser';
 import { AccessibilityAttachment, Details } from 'modules/details/interface';
 import { getGlobalConfig } from 'modules/utils/api.config';
@@ -32,7 +31,7 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
   return (
     <div>
       {details.disabledInfrastructure && (
-        <div className="custo-page-WYSIWYG">{parse(details.disabledInfrastructure)}</div>
+        <div className="content-WYSIWYG">{parse(details.disabledInfrastructure)}</div>
       )}
       {details.accessibilities && details.accessibilities.length > 0 && (
         <div className="flex">
@@ -120,9 +119,9 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
                       <FormattedMessage id={`details.accessibility_${k}`} /> :
                     </dt>
                     <dd>
-                      <HtmlText>
+                      <div className="content-WYSIWYG">
                         {parse(details[`accessibility_${k}` as keyof Details] as string)}
-                      </HtmlText>
+                      </div>
                     </dd>
                   </div>
                 );
@@ -136,7 +135,9 @@ const Accessibility: React.FC<Props> = ({ details, language }) => {
                 <FormattedMessage id={`details.${k}`} /> :
               </dt>
               <dd className="mt-2">
-                <HtmlText>{parse(details[k as keyof Details] as string)}</HtmlText>
+                <div className="content-WYSIWYG">
+                  {parse(details[k as keyof Details] as string)}
+                </div>
               </dd>
             </div>
           ))}

@@ -31,7 +31,6 @@ import { dataUnits } from 'modules/results/adapter';
 import { TouristicEventDetails } from 'modules/touristicEvent/interface';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { DetailsTrekParentButton } from '../DetailsTrekParentButton';
-import { HtmlText } from '../../utils';
 import DetailsBreadcrumb from './DetailsBreadcrumb';
 
 interface DetailsPreviewInformation extends DetailsInformation {
@@ -299,7 +298,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       )}
       {'ratingsDescription' in details && details.ratingsDescription && (
         <div className={'my-2'}>
-          <HtmlText>{parse(details.ratingsDescription)}</HtmlText>
+          <div className="content-WYSIWYG">{parse(details.ratingsDescription)}</div>
         </div>
       )}
       {'typeSite' in details && details.typeSite && (
@@ -320,12 +319,12 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           id="details_teaser"
           className="text-Mobile-C1 desktop:text-H4 font-bold mt-4 desktop:mt-9"
         >
-          <HtmlText>{parse(teaser)}</HtmlText>
+          <div className="content-WYSIWYG">{parse(teaser)}</div>
         </div>
       )}
       {typeof ambiance === 'string' && ambiance?.length > 0 && (
         <div id="details_ambiance" className="text-Mobile-C1 desktop:text-P1 mt-4 desktop:mt-8">
-          <HtmlText>{parse(ambiance)}</HtmlText>
+          <div className="content-WYSIWYG">{parse(ambiance)}</div>
         </div>
       )}
       <Separator className="mt-6 desktop:mt-12" />
