@@ -124,31 +124,50 @@ details > summary.list-none::marker {
   max-height: calc(100vh - theme('spacing.desktopHeader'));
 }
 
-/* Flatpage WYSIWYG */
-.custo-page-WYSIWYG a:not(.custo-suggestions a, .button-link) {
-  @apply text-primary1 transition-colors hover:text-primary1-light focus:text-primary1-light;
+/* WYSIWYG */
+.content-WYSIWYG {
+  @apply after:content-[''] after:clear-both after:table;
 }
 
+.content-WYSIWYG > *:first-child {
+  @apply mt-0;
+}
+
+.content-WYSIWYG > *:last-child {
+  @apply mb-0;
+}
+
+.content-WYSIWYG a,
+.custo-page-WYSIWYG a:not(.custo-suggestions a, .button-link) {
+  @apply text-primary1 transition-colors hover:text-primary1-light focus:text-primary1-light break-words;
+}
+
+.content-WYSIWYG h1,
 .custo-page-WYSIWYG h1:not(.custo-suggestions h1) {
   @apply text-H2 font-bold desktop:text-H1;
 }
 
+.content-WYSIWYG h2,
 .custo-page-WYSIWYG h2:not(.custo-suggestions h2) {
   @apply text-H2 desktop:text-H1;
 }
 
+.content-WYSIWYG h3,
 .custo-page-WYSIWYG h3:not(.custo-suggestions h3) {
   @apply text-H3 font-bold desktop:text-H2;
 }
 
+.content-WYSIWYG h4,
 .custo-page-WYSIWYG h4:not(.custo-suggestions h4) {
   @apply text-H4 font-bold desktop:text-H3;
 }
 
+.content-WYSIWYG h5,
 .custo-page-WYSIWYG h5:not(.custo-suggestions h5) {
   @apply text-xl font-bold desktop:text-H4;
 }
 
+.content-WYSIWYG h6,
 .custo-page-WYSIWYG h6:not(.custo-suggestions h6) {
   @apply font-bold desktop:text-lg;
 }
@@ -157,12 +176,23 @@ details > summary.list-none::marker {
   @apply mb-4 desktop:mb-6;
 }
 
+.content-WYSIWYG h1,
+.content-WYSIWYG h2,
+.content-WYSIWYG h3,
 .custo-page-WYSIWYG h1:not(.custo-suggestions h1),
 .custo-page-WYSIWYG h2:not(.custo-suggestions h2),
 .custo-page-WYSIWYG h3:not(.custo-suggestions h3) {
   @apply clear-both;
 }
 
+.content-WYSIWYG h1,
+.content-WYSIWYG h2,
+.content-WYSIWYG h3,
+.content-WYSIWYG h4,
+.content-WYSIWYG h5,
+.content-WYSIWYG p {
+  @apply my-2 desktop:my-4;
+}
 .custo-page-WYSIWYG h1:not(.custo-suggestions h1),
 .custo-page-WYSIWYG h2:not(.custo-suggestions h2),
 .custo-page-WYSIWYG h3:not(.custo-suggestions h3),
@@ -171,44 +201,55 @@ details > summary.list-none::marker {
   @apply my-4 desktop:my-10;
 }
 
+.content-WYSIWYG h6,
 .custo-page-WYSIWYG h6:not(.custo-suggestions h6) {
   @apply my-4 desktop:my-8;
 }
 
+.content-WYSIWYG img,
 .custo-page-WYSIWYG img:not(.custo-suggestions img) {
   @apply mx-1;
 }
 
+.content-WYSIWYG blockquote,
 .custo-page-WYSIWYG blockquote:not(.custo-suggestions blockquote) {
   @apply flex gap-2 text-greyDarkColored/75 italic;
 }
 
+.content-WYSIWYG blockquote p:last-child,
 .custo-page-WYSIWYG blockquote:not(.custo-suggestions blockquote) p:last-child {
   @apply mb-0;
 }
 
+.content-WYSIWYG blockquote::before,
 .custo-page-WYSIWYG blockquote:not(.custo-suggestions blockquote)::before {
   content: '“';
   @apply text-5xl;
 }
 
+.content-WYSIWYG iframe,
 .custo-page-WYSIWYG iframe:not(.custo-suggestions iframe) {
   @apply my-8 w-full h-auto desktop:my-12 aspect-video;
 }
 
+.content-WYSIWYG b,
+.content-WYSIWYG strong,
 .custo-page-WYSIWYG b:not(.custo-suggestions b),
 .custo-page-WYSIWYG strong:not(.custo-suggestions strong) {
   @apply font-bold;
 }
 
+.content-WYSIWYG em,
 .custo-page-WYSIWYG em:not(.custo-suggestions em) {
   @apply text-P2 italic desktop:text-P1;
 }
 
+.content-WYSIWYG ul,
 .custo-page-WYSIWYG ul:not(.custo-suggestions ul) {
   @apply my-4;
 }
 
+.content-WYSIWYG ul > li,
 .custo-page-WYSIWYG ul:not(.custo-suggestions ul) > li {
   @apply pl-4 list-inside list-disc desktop:mb-2;
 }
@@ -221,6 +262,7 @@ details > summary.list-none::marker {
   @apply clear-both py-4 px-10 rounded-lg bg-greySoft;
 }
 
+.content-WYSIWYG .image,
 .custo-page-WYSIWYG .image {
   @apply clear-both overflow-hidden desktop:mb-8;
 }
