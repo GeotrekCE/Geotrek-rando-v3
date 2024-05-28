@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.20.1 (2024-05-28)
+
+**🐛 Fixes**
+
+- Fix Search page pre-render - Regression since 3.20.0 (#1139)
+
+**📝 Documentation**
+
+- Add details about portalIds setting (#1144)
+
 ## 3.20.0 (2024-05-21)
 
 **🚀 New features**
