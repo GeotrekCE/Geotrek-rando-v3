@@ -25,7 +25,7 @@ Object {
           class="mt-1 desktop:mt-2"
         >
           <div
-            class="sc-bcXHqe hwfUBG"
+            class="content-WYSIWYG"
           >
             <p>
               Cette zone est très sensible
@@ -79,7 +79,7 @@ Object {
           </dt>
           <dd>
             <div
-              class="sc-bcXHqe hwfUBG"
+              class="content-WYSIWYG"
             >
               <h2>
                 Une personne a contacter
@@ -121,7 +121,7 @@ Object {
         class="mt-1 desktop:mt-2"
       >
         <div
-          class="sc-bcXHqe hwfUBG"
+          class="content-WYSIWYG"
         >
           <p>
             Cette zone est très sensible
@@ -175,7 +175,7 @@ Object {
         </dt>
         <dd>
           <div
-            class="sc-bcXHqe hwfUBG"
+            class="content-WYSIWYG"
           >
             <h2>
               Une personne a contacter
