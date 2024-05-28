@@ -20,7 +20,11 @@ In json files, you can just override the primary keys you need. You have to over
   - `searchResultsPageSize`, `mapResultsPageSize`: used to limit the sizes of results per page when fetching API
   - `maxPoiPerPage`: max number of point of interest (POI) displayed on a single trek page
   - `maxTouristicContentPerPage`: max number of touristic contents displayed on a single trek page
-  - `portalIds`: eventual portal filters (list of ids).
+  - `portalIds`: eventual portal filters (list of ids). 
+
+    - If no id has been set, Geotrek-rando retrieves all objets, whether or not they are associated with a portal in Geotrek-admin. 
+    - If one or more ids have been set (example : [1,3]), Geotrek-rando only retrieves the objets of the configured portals. Therefore, if objects are not associated with any portal in Geotrek-admin, they will not be displayed in Geotrek-rando.
+    
   - `enableSensitiveAreas`: boolean, default to false. Set it to true if sensitive areas are defined in your Geotrek-admin
   - `enableOutdoor`: boolean, default to false. Set it to true to enable Outdoor sites and courses
   - `groupTreksAndOutdoorFilters`: boolean, default to false. Groups treks and outdoor filters into a single tab. For this setting to work, `enableOutdoor` must be set to `true`.
