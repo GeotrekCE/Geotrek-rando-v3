@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import Image from 'next/image';
 import { optimizeSVG } from 'stylesheet';
-import { HtmlText } from '../../utils';
+import { cn } from 'services/utils/cn';
 import { useDetailsInformationDesk } from './useDetailsInformationDesk';
 import DetailsInformationDeskLocation from './DetailsInformationDeskLocation';
 
@@ -93,13 +93,9 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
 
         {description && (
           <div className="flex flex-col desktop:flex-row desktop:items-end mt-4">
-            {truncateState === 'TRUNCATE' ? (
-              <HtmlText className="line-clamp-2">
-                <div>{parse(description)}</div>
-              </HtmlText>
-            ) : (
-              <HtmlText>{parse(description)}</HtmlText>
-            )}
+            <div className={cn('content-WYSIWYG', truncateState === 'TRUNCATE' && 'line-clamp-2')}>
+              <div>{parse(description)}</div>
+            </div>
             <span
               className="text-primary1 underline cursor-pointer shrink-0 desktop:ml-1"
               onClick={toggleTruncateState}
@@ -116,7 +112,7 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
             <strong className="font-bold">
               <FormattedMessage id="details.accessibility" /> :{' '}
             </strong>
-            <HtmlText>{parse(accessibility)}</HtmlText>
+            <div className="content-WYSIWYG">{parse(accessibility)}</div>
           </div>
         )}
       </div>

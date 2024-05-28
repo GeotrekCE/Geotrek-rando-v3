@@ -1,6 +1,5 @@
 import SVG from 'react-inlinesvg';
 import parse from 'html-react-parser';
-import { HtmlText } from 'components/pages/details/utils';
 import { Label } from 'modules/label/interface';
 import { AlertTriangle } from 'components/Icons/AlertTriangle';
 import Image from 'next/image';
@@ -30,9 +29,9 @@ export const DetailsLabel: React.FC<DetailsLabelProps> = ({
       </div>
       <div className="text-greyDarkColored text-Mobile-C2 desktop:text-P1">
         <div className="text-P1 desktop:text-H4 text-warning font-bold">
-          <HtmlText>{parse(name)}</HtmlText>
+          <div className="content-WYSIWYG">{parse(name)}</div>
         </div>
-        {advice && <HtmlText>{parse(advice)}</HtmlText>}
+        {advice && <div className="content-WYSIWYG">{parse(advice)}</div>}
       </div>
     </div>
   );
