@@ -9,7 +9,6 @@ import { DetailsMapDynamicComponent } from 'components/Map';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { useShowOnScrollPosition } from 'hooks/useShowOnScrollPosition';
 import { useMediaPredicate } from 'react-media-hook';
-import { sizes } from 'stylesheet';
 import { useCallback, useMemo, useRef } from 'react';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { cleanHTMLElementsFromString } from 'modules/utils/string';
@@ -49,6 +48,7 @@ import { DetailsGear } from './components/DetailsGear';
 import { useDetailsSections } from './useDetailsSections';
 import { DetailsViewPoints } from './components/DetailsViewPoints';
 import { DetailsFiles } from './components/DetailsFiles';
+import { theme } from '../../../../tailwind.config';
 
 interface Props {
   slug: string | string[] | undefined;
@@ -91,8 +91,8 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
     // relative to the relative parent.
     scrollOffset:
       (sectionsContainerRef.current?.offsetTop ?? 0) -
-      sizes.desktopHeader -
-      sizes.detailsHeaderDesktop,
+      parseInt(theme.spacing.desktopHeader, 10) -
+      parseInt(theme.spacing[14], 10),
   });
 
   const positiveElevation = parseInt(details?.informations.elevation ?? '0', 10);
@@ -732,7 +732,7 @@ interface DetailsHeaderMobileProps {
 }
 
 export const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title: name }) => {
-  const displayState = useShowOnScrollPosition(sizes.mobileDetailsTitle);
+  const displayState = useShowOnScrollPosition(parseInt(theme.spacing.mobileDetailsTitle, 10));
   return (
     <div
       id="details_headerMobile"
