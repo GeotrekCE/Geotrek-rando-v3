@@ -23,7 +23,6 @@ npm install --save-dev
     @types/react-router
     @types/react-router-dom
     @types/react-test-renderer
-    @types/styled-components
     @types/superagent
     @types/webpack-env
 ```
