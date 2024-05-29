@@ -1,8 +1,6 @@
-import React from 'react';
 import Select, { CSSObjectWithLabel } from 'react-select';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { colorPalette, getSpacing, shadow } from 'stylesheet';
 import { routes } from 'services/routes';
 
 import { ActivityFilter } from 'modules/activities/interface';
@@ -14,7 +12,7 @@ import { useActivitySearchFilterMobile } from './useActivitySearchFilterMobile';
 export const ActivitySearchFilterMobile: React.FC<{
   className?: string;
   activities: ActivityFilter[];
-  getId: (type: string) => string;
+  getId: (type: string) => string | null;
 }> = ({ className = '', activities, getId }) => {
   const { selectedActivityId, updateSelectedActivityId } = useActivitySearchFilterMobile();
   const intl = useIntl();
@@ -23,10 +21,16 @@ export const ActivitySearchFilterMobile: React.FC<{
     ({ id, type }) => `${type}-${id}` === selectedActivityId,
   );
 
+  const hrefParams =
+    selectedActivityId !== null && selectedActivity !== undefined
+      ? `?${getId(selectedActivity.type)}=${selectedActivityId.split('-')[1]}`
+      : '';
+
   return (
     <div className={`${className} flex space-x-4 items-center`}>
       <Select
         className="flex-1"
+        classNames={classNameStyles}
         options={activities.map(({ id, label, titleTranslationId, type }) => ({
           value: `${type}-${id}`,
           label: titleTranslationId ? intl.formatMessage({ id: titleTranslationId }) : label,
@@ -37,77 +41,40 @@ export const ActivitySearchFilterMobile: React.FC<{
         placeholder={<FormattedMessage id="home.selectPlaceholder" />}
         onChange={activity => updateSelectedActivityId(activity?.value ?? null)}
       />
-      {selectedActivityId !== null && selectedActivity !== undefined ? (
-        <Link
-          href={`${routes.SEARCH}?${getId(selectedActivity.type)}=${
-            selectedActivityId.split('-')[1]
-          }`}
-        >
-          <ValidateButton />
-        </Link>
-      ) : (
-        <ValidateButton />
-      )}
+      <Link
+        href={`${routes.SEARCH}${hrefParams}`}
+        className="bg-primary1 hover:bg-primary1-light focus:bg-primary1-light shadow-lg !text-white rounded-lg p-3.5 transition"
+      >
+        <Arrow size={24} aria-hidden />
+        <span className="sr-only">
+          <FormattedMessage id="search.title" />
+        </span>
+      </Link>
     </div>
   );
 };
 
-const ValidateButton: React.FC = () => (
-  <div className="bg-primary1 hover:bg-primary1-light shadow-lg text-white rounded-lg p-3.5 cursor-pointer transition-all">
-    <Arrow size={24} />
-  </div>
-);
-
 const selectStyles = {
-  control: (styles: CSSObjectWithLabel) => ({
-    ...styles,
-    backgroundColor: 'white',
-    boxShadow: shadow.large,
-    border: 'none',
-    padding: getSpacing(2),
-    borderRadius: getSpacing(2),
-    flexGrow: 1,
-    ':focus': {
-      border: 'none',
-    },
-  }),
-  valueContainer: (styles: CSSObjectWithLabel) => ({
-    ...styles,
-    padding: 'none',
-    overflow: 'visible',
-  }),
+  control: () => ({}),
+  valueContainer: () => ({}),
   singleValue: (styles: CSSObjectWithLabel) => ({
     ...styles,
-    color: colorPalette.greyDarkColored,
-    paddingLeft: getSpacing(2),
   }),
   menu: (styles: CSSObjectWithLabel) => ({
     ...styles,
-    padding: `${getSpacing(2)} 0`,
-    margin: 0,
-    border: 'none',
-    boxShadow: shadow.large,
-    borderRadius: getSpacing(2),
   }),
   option: (styles: CSSObjectWithLabel) => ({
     ...styles,
-    backgroundColor: 'white',
-    paddingLeft: getSpacing(4),
-    color: colorPalette.greyDarkColored,
-    ':hover': {
-      backgroundColor: colorPalette.primary2,
-    },
   }),
-  indicatorSeparator: () => ({
-    color: 'transparent',
-  }),
-  placeholder: (styles: CSSObjectWithLabel) => ({
-    ...styles,
-    color: colorPalette.greyDarkColored,
-    paddingLeft: '8px',
-    ':focus': {
-      outline: 'none',
-      color: 'white',
-    },
-  }),
+  indicatorSeparator: () => ({}),
+};
+
+const classNameStyles = {
+  control: () => 'flex bg-white shadow-lg p-2 rounded-md',
+  valueContainer: () => 'flex-1 grid items-center',
+  singleValue: () => 'pl-2 text-greyDarkColored',
+  menu: () => 'py-2 !m-0 border-0 !shadow-lg rounded-md',
+  option: () => 'pl-4 !text-greyDarkColored !bg-white hover:!bg-primary2',
+  indicatorSeparator: () => 'text-transparent',
+  placeholder: () => 'pl-2 text-greyDarkColored',
 };

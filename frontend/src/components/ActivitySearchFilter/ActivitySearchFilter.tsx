@@ -22,12 +22,13 @@ export const ActivitySearchFilter: React.FC<Props> = ({
   const { activities, expandedState, toggleExpandedState } = useActivitySearchFilter();
   const intl = useIntl();
 
-  const getId = (type: string) => {
+  const getId = (type: string | null) => {
     if (type === 'PRACTICE') return PRACTICE_ID;
     if (type === 'OUTDOOR_PRACTICE') return OUTDOOR_ID;
     if (type === 'TOURISTIC_EVENT_TYPE') return EVENT_ID;
+    if (type === 'CATEGORIES') return CATEGORY_ID;
 
-    return CATEGORY_ID;
+    return null;
   };
 
   if (!activities) {
