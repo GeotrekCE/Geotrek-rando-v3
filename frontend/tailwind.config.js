@@ -70,6 +70,7 @@ module.exports = {
       button: '48px',
       bannerSectionDesktop: '80vh',
       bannerSectionMobile: '244px',
+      mobileDetailsTitle: '230px',
     },
     zIndex: {
       content: 0,
