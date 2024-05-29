@@ -1,11 +1,6 @@
 module.exports = {
   plugins: ['stylelint-declaration-strict-value'],
-  processors: ['stylelint-processor-styled-components'],
-  extends: [
-    'stylelint-config-standard',
-    'stylelint-config-prettier',
-    'stylelint-config-styled-components',
-  ],
+  extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
   rules: {
     /*
      * These rules are here to prevent CSS bad practices.
