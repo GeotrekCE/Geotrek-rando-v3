@@ -42,21 +42,9 @@ module.exports = {
     },
     {
       type: 'confirm',
-      name: 'wantConnect',
-      default: true,
-      message: 'Do you want to connect your component to redux?',
-    },
-    {
-      type: 'confirm',
       name: 'wantMessages',
       default: true,
       message: 'Do you want to use react-intl?',
-    },
-    {
-      type: 'confirm',
-      name: 'wantStyledComponents',
-      default: true,
-      message: 'Do you want to use styled-components?',
     },
     {
       type: 'confirm',
@@ -67,7 +55,6 @@ module.exports = {
   ],
   actions: data => {
     let componentTemplate;
-    const styleExtension = data.wantStyledComponents ? 'ts' : 'css';
     const componentType = data.componentType === 'Component' ? 'components' : 'pages';
 
     switch (data.component) {
@@ -101,29 +88,12 @@ module.exports = {
       },
       {
         type: 'add',
-        path: `../../src/${componentType}/{{properCase name}}/{{properCase name}}.style.${styleExtension}`,
-        templateFile: `./component/style.${styleExtension}.hbs`,
-        abortOnFail: true,
-        data,
-      },
-      {
-        type: 'add',
         path: `../../src/${componentType}/{{properCase name}}/index.ts`,
         templateFile: './component/index.ts.hbs',
         abortOnFail: true,
         data,
       },
     ];
-
-    if (data.wantConnect) {
-      actions.push({
-        type: 'add',
-        path: `../../src/${componentType}/{{properCase name}}/{{properCase name}}.wrap.tsx`,
-        templateFile: './component/wrap.tsx.hbs',
-        abortOnFail: true,
-        data,
-      });
-    }
 
     if (data.wantSnapshotTests) {
       actions.push({
