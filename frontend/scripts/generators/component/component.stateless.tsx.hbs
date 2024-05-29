@@ -1,14 +1,7 @@
-import React from 'react';
 {{#if wantMessages}}
 import { intlShape, FormattedMessage } from 'react-intl';
 {{/if}}
 
-{{#unless wantStyledComponents}}
-import './{{ properCase name }}.style.css';
-{{/unless}}
-{{#if wantStyledComponents}}
-import Styled{{ properCase name }} from './{{ properCase name }}.style';
-{{/if}}
 
 interface IProps {
   {{#if wantMessages}}
@@ -18,21 +11,11 @@ interface IProps {
 
 const {{ properCase name }} = React.memo<IProps>(props => {
   return (
-    {{#unless wantStyledComponents}}
-    <div className="{{ dashCase name }}-container">
-    {{/unless}}
-    {{#if wantStyledComponents}}
-    <Styled{{ properCase name }}>
-    {{/if}}
+    <div className="custo-{{ dashCase name }}">
       {{#if wantMessages}}
       <FormattedMessage id="please.change.me" />
       {{/if}}
-    {{#unless wantStyledComponents}}
     </div>
-    {{/unless}}
-    {{#if wantStyledComponents}}
-    </Styled{{ properCase name }}>
-    {{/if}}
   );
 };
 
