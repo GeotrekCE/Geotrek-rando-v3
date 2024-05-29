@@ -21,7 +21,6 @@ import { useCallback, useMemo, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'components/Loader';
 import { useMediaPredicate } from 'react-media-hook';
-import { sizes } from 'stylesheet';
 import { DetailsMapDynamicComponent } from 'components/Map';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
@@ -43,6 +42,7 @@ import { DetailsAndMapProvider } from '../details/DetailsAndMapContext';
 import { useDetailsSections } from '../details/useDetailsSections';
 import { DetailsViewPoints } from '../details/components/DetailsViewPoints';
 import { DetailsFiles } from '../details/components/DetailsFiles';
+import { theme } from '../../../../tailwind.config';
 
 interface Props {
   outdoorSiteUrl: string | string[] | undefined;
@@ -84,8 +84,8 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
     // relative to the relative parent.
     scrollOffset:
       (sectionsContainerRef.current?.offsetTop ?? 0) -
-      sizes.desktopHeader -
-      sizes.detailsHeaderDesktop,
+      parseInt(theme.spacing.desktopHeader, 10) -
+      parseInt(theme.spacing[14], 10),
   });
 
   const handleViewPointClick = useCallback(
