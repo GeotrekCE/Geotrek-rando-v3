@@ -1,7 +1,7 @@
 import { TrekChildrenMarker } from 'components/Icons/TrekChildrenMarker';
 import { DivIcon } from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { colorPalette } from 'stylesheet';
+import { theme } from '../../../../tailwind.config';
 
 const markerHeight = 44;
 const markerWidth = 36;
@@ -37,7 +37,10 @@ const ChildMarker: React.FC<{ label: string; zoomRatio: number; color: string }>
   const fontSize = zoomRatio === 1 ? 'text-xl' : 'text-2xl';
   return (
     <div className="relative flex items-center justify-center">
-      <TrekChildrenMarker color={color ?? colorPalette.primary1} size={markerWidth * zoomRatio} />
+      <TrekChildrenMarker
+        color={color ?? theme.extend.colors.primary1.DEFAULT}
+        size={markerWidth * zoomRatio}
+      />
       <span
         className={`absolute z-leafletSvg text-primary font-bold text-center ${width} ${top} ${fontSize}`}
       >
