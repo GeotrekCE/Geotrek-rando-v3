@@ -4,7 +4,7 @@ import { IntlProvider } from 'react-intl';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { useRouter } from 'next/router';
-import { colorPalette } from 'stylesheet';
+import { theme } from '../../../../tailwind.config';
 
 interface Messages {
   [language: string]: {
@@ -40,7 +40,11 @@ export const Root: React.FC<React.PropsWithChildren> = props => {
         <link rel="apple-touch-icon" sizes="180x180" href="/medias/apple-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/medias/favicon.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/medias/favicon.png" />
-        <link rel="mask-icon" href="/medias/favicon.png" color={colorPalette.primary1} />
+        <link
+          rel="mask-icon"
+          href="/medias/favicon.png"
+          color={theme.extend.colors.primary1.DEFAULT}
+        />
         <link rel="shortcut icon" href="/medias/favicon.png" />
         {googleSiteVerificationToken !== null && (
           <meta name="google-site-verification" content={googleSiteVerificationToken} />

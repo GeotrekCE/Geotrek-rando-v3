@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { MapMarker } from 'components/Icons/MapMarker';
 import { DivIcon } from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { colorPalette } from 'stylesheet';
+import { theme } from '../../../../tailwind.config';
 
 const markerHeight = 44;
 const markerWidth = 36;
@@ -41,7 +41,10 @@ const ActivityMarker: React.FC<{
   const top = getTop(zoomRatio);
   return (
     <div className="relative flex justify-center">
-      <MapMarker color={color ?? colorPalette.primary1} size={markerWidth * zoomRatio} />
+      <MapMarker
+        color={color ?? theme.extend.colors.primary1.DEFAULT}
+        size={markerWidth * zoomRatio}
+      />
       {icon && (
         <Image
           alt=""

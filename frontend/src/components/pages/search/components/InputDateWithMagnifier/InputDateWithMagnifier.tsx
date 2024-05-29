@@ -1,7 +1,7 @@
 import { Calendar } from 'components/Icons/Calendar';
 import { ChangeEvent, useId, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { colorPalette } from 'stylesheet';
+import { theme } from '../../../../../../tailwind.config';
 
 interface InputDateWithMagnifierProps {
   label?: string;
@@ -39,7 +39,7 @@ const InputDateWithMagnifier: React.FC<InputDateWithMagnifierProps> = ({
           onClick={() => inputRef?.current?.showPicker()}
           type="button"
         >
-          <Calendar size={24} color={colorPalette.primary2} aria-hidden />
+          <Calendar size={24} color={theme.extend.colors.primary2} aria-hidden />
           <span className="sr-only">
             <FormattedMessage id="form.calendar" />
           </span>
