@@ -45,7 +45,7 @@ export const adaptOutdoorSites = ({
 }): OutdoorSite[] =>
   rawOutdoorSites.map(rawOutdoorSite => {
     return {
-      id: rawOutdoorSite.id,
+      id: `${rawOutdoorSite.id}`,
       name: rawOutdoorSite.name,
       images: getLargeImagesOrThumbnailsFromAttachments(rawOutdoorSite.attachments, false),
       filesFromAttachments: geFilesFromAttachments(rawOutdoorSite.attachments),
