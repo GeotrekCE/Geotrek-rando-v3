@@ -6,8 +6,7 @@ import {
   AccordionItemPanel,
 } from 'react-accessible-accordion';
 import { MenuItem } from 'modules/menuItems/interface';
-import NextLink from 'next/link';
-import { Link } from 'components/Link';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { cn } from 'services/utils/cn';
 import Image from 'next/image';
@@ -22,9 +21,15 @@ export interface Props {
   title: string;
   items?: Array<MenuItem>;
   languages?: string[];
+  handleCloseMenu: () => void;
 }
 
-export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) => {
+export const BurgerMenuSection: React.FC<Props> = ({
+  title,
+  items,
+  languages,
+  handleCloseMenu,
+}) => {
   const router = useRouter();
   const classNameTitle = 'flex items-center pt-4 pb-4 font-bold';
   const classNameBorder = 'border-b border-solid border-greySoft';
@@ -49,16 +54,19 @@ export const BurgerMenuSection: React.FC<Props> = ({ title, items, languages }) 
         <AccordionItemPanel className={cn(openState === 'OPENED' && 'pb-2')}>
           {items
             ?.sort((a, b) => (a.thumbnail ? 1 : -1) - (b.thumbnail ? 1 : -1))
-            .map((item, index) => <MobileMenuItem key={index} {...item} />)}
+            .map((item, index) => (
+              <MobileMenuItem key={index} handleCloseMenu={handleCloseMenu} {...item} />
+            ))}
           {languages?.map(language => (
             <Link
-              className="block text-Mobile-C2 py-2 text-greyDarkColored"
+              className="block text-Mobile-C2 py-2 text-greyDarkColored hover:text-primary3 focus:text-primary3 transition"
               key={language}
               href={{
                 pathname: router.pathname,
                 query: router.query,
               }}
               locale={language}
+              onClick={handleCloseMenu}
             >
               {language.toUpperCase()}
             </Link>
@@ -76,11 +84,12 @@ const MobileMenuItem = ({
   thumbnail,
   children,
   pictogram,
-}: MenuItem) => {
+  handleCloseMenu,
+}: MenuItem & { handleCloseMenu: () => void }) => {
   const intl = useIntl();
   const hasThumbnail = thumbnail !== null;
   const href = url || undefined;
-  const Item = href ? NextLink : 'span';
+  const Item = href ? Link : 'span';
   return (
     <div className="text-Mobile-C2 m-3">
       <Item
@@ -91,10 +100,11 @@ const MobileMenuItem = ({
             rel: 'noopener noreferrer',
           })}
         className={cn(
-          'flex',
+          'flex hover:text-primary3 focus:text-primary3 transition',
           hasThumbnail &&
             "relative rounded-xl overflow-hidden group after:absolute after:inset-0 after:content-[''] after:bg-black/25",
         )}
+        onClick={handleCloseMenu}
       >
         {hasThumbnail && (
           <Image
@@ -126,7 +136,9 @@ const MobileMenuItem = ({
       </Item>
       {children
         ?.sort((a, b) => (a.thumbnail ? 1 : -1) - (b.thumbnail ? 1 : -1))
-        .map((child, childIndex) => <MobileMenuItem key={childIndex} {...child} />)}
+        .map((child, childIndex) => (
+          <MobileMenuItem key={childIndex} handleCloseMenu={handleCloseMenu} {...child} />
+        ))}
     </div>
   );
 };

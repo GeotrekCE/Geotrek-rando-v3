@@ -117,7 +117,7 @@ Object {
                       class="text-Mobile-C2 m-3"
                     >
                       <a
-                        class="flex"
+                        class="flex hover:text-primary3 focus:text-primary3 transition"
                         href="https://www.ecrins-parcnational.fr/"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -157,7 +157,7 @@ Object {
                       class="text-Mobile-C2 m-3"
                     >
                       <a
-                        class="flex"
+                        class="flex hover:text-primary3 focus:text-primary3 transition"
                         href="https://www.ecrins-parcnational.fr/"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -197,7 +197,7 @@ Object {
                       class="text-Mobile-C2 m-3"
                     >
                       <a
-                        class="flex"
+                        class="flex hover:text-primary3 focus:text-primary3 transition"
                         href="https://www.ecrins-parcnational.fr/"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -408,7 +408,7 @@ Object {
                     class="text-Mobile-C2 m-3"
                   >
                     <a
-                      class="flex"
+                      class="flex hover:text-primary3 focus:text-primary3 transition"
                       href="https://www.ecrins-parcnational.fr/"
                       rel="noopener noreferrer"
                       target="_blank"
@@ -448,7 +448,7 @@ Object {
                     class="text-Mobile-C2 m-3"
                   >
                     <a
-                      class="flex"
+                      class="flex hover:text-primary3 focus:text-primary3 transition"
                       href="https://www.ecrins-parcnational.fr/"
                       rel="noopener noreferrer"
                       target="_blank"
@@ -488,7 +488,7 @@ Object {
                     class="text-Mobile-C2 m-3"
                   >
                     <a
-                      class="flex"
+                      class="flex hover:text-primary3 focus:text-primary3 transition"
                       href="https://www.ecrins-parcnational.fr/"
                       rel="noopener noreferrer"
                       target="_blank"
@@ -756,7 +756,7 @@ Object {
                       class="text-Mobile-C2 m-3"
                     >
                       <a
-                        class="flex"
+                        class="flex hover:text-primary3 focus:text-primary3 transition"
                         href="https://www.ecrins-parcnational.fr/"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -796,7 +796,7 @@ Object {
                       class="text-Mobile-C2 m-3"
                     >
                       <a
-                        class="flex"
+                        class="flex hover:text-primary3 focus:text-primary3 transition"
                         href="https://www.ecrins-parcnational.fr/"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -836,7 +836,7 @@ Object {
                       class="text-Mobile-C2 m-3"
                     >
                       <a
-                        class="flex"
+                        class="flex hover:text-primary3 focus:text-primary3 transition"
                         href="https://www.ecrins-parcnational.fr/"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -934,13 +934,13 @@ Object {
                     id="accordion__panel-:r1:"
                   >
                     <a
-                      class="hover:text-primary3 focus:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
+                      class="block text-Mobile-C2 py-2 text-greyDarkColored hover:text-primary3 focus:text-primary3 transition"
                       href="/"
                     >
                       FR
                     </a>
                     <a
-                      class="hover:text-primary3 focus:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
+                      class="block text-Mobile-C2 py-2 text-greyDarkColored hover:text-primary3 focus:text-primary3 transition"
                       href="/"
                     >
                       EN
@@ -1115,7 +1115,7 @@ Object {
                     class="text-Mobile-C2 m-3"
                   >
                     <a
-                      class="flex"
+                      class="flex hover:text-primary3 focus:text-primary3 transition"
                       href="https://www.ecrins-parcnational.fr/"
                       rel="noopener noreferrer"
                       target="_blank"
@@ -1155,7 +1155,7 @@ Object {
                     class="text-Mobile-C2 m-3"
                   >
                     <a
-                      class="flex"
+                      class="flex hover:text-primary3 focus:text-primary3 transition"
                       href="https://www.ecrins-parcnational.fr/"
                       rel="noopener noreferrer"
                       target="_blank"
@@ -1195,7 +1195,7 @@ Object {
                     class="text-Mobile-C2 m-3"
                   >
                     <a
-                      class="flex"
+                      class="flex hover:text-primary3 focus:text-primary3 transition"
                       href="https://www.ecrins-parcnational.fr/"
                       rel="noopener noreferrer"
                       target="_blank"
@@ -1293,13 +1293,13 @@ Object {
                   id="accordion__panel-:r1:"
                 >
                   <a
-                    class="hover:text-primary3 focus:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
+                    class="block text-Mobile-C2 py-2 text-greyDarkColored hover:text-primary3 focus:text-primary3 transition"
                     href="/"
                   >
                     FR
                   </a>
                   <a
-                    class="hover:text-primary3 focus:text-primary3 transition-colors block text-Mobile-C2 py-2 text-greyDarkColored"
+                    class="block text-Mobile-C2 py-2 text-greyDarkColored hover:text-primary3 focus:text-primary3 transition"
                     href="/"
                   >
                     EN
