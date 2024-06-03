@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 // @ts-expect-error Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
 import { MenuConfig } from 'modules/header/interface';
@@ -29,6 +29,12 @@ export const BurgerMenu: React.FC<Props> = ({
     displayState === 'HIDDEN' ? '-top-21.5' : 'top-2.5 desktop:top-8',
     className,
   );
+
+  const [isMenuOpen, handleMenu] = useState(false);
+
+  const handleCloseMenu = () => {
+    handleMenu(false);
+  };
 
   const intl = useIntl();
   const menuItemLinkClassNames =
@@ -69,6 +75,8 @@ export const BurgerMenu: React.FC<Props> = ({
       crossClassName="bg-greyDarkColored"
       overlayClassName="top-0"
       className="top-0"
+      isOpen={isMenuOpen}
+      onStateChange={({ isOpen }: { isOpen: boolean }) => handleMenu(isOpen)}
     >
       <span
         id="verticalMenu_title"
@@ -80,25 +88,41 @@ export const BurgerMenu: React.FC<Props> = ({
         if (!item.children?.length) {
           if (item.url) {
             return (
-              <NextLink key={index} className={menuItemLinkClassNames} href={item.url}>
+              <NextLink
+                key={index}
+                className={menuItemLinkClassNames}
+                href={item.url}
+                onClick={handleCloseMenu}
+              >
                 {item.title}
               </NextLink>
             );
           }
           return null;
         }
-        return <BurgerMenuSection key={index} title={item.title} items={item.children} />;
+        return (
+          <BurgerMenuSection
+            key={index}
+            title={item.title}
+            items={item.children}
+            handleCloseMenu={handleCloseMenu}
+          />
+        );
       })}
       {config.shouldDisplayFavorite && (
-        <BurgerMenuSection title={intl.formatMessage({ id: 'header.favorites' })} />
+        <BurgerMenuSection
+          title={intl.formatMessage({ id: 'header.favorites' })}
+          handleCloseMenu={handleCloseMenu}
+        />
       )}
       {config.supportedLanguages.length > 1 && (
         <BurgerMenuSection
           title={intl.formatMessage({ id: 'header.language' })}
           languages={config.supportedLanguages}
+          handleCloseMenu={handleCloseMenu}
         />
       )}
-      <NextLink className={menuItemLinkClassNames} href={routes.SEARCH}>
+      <NextLink className={menuItemLinkClassNames} href={routes.SEARCH} onClick={handleCloseMenu}>
         {intl.formatMessage({ id: 'header.goToSearch' })}
       </NextLink>
       <NextLink
@@ -106,6 +130,7 @@ export const BurgerMenu: React.FC<Props> = ({
         href={routes.OFFLINE}
         prefetch={false}
         rel="nofollow"
+        onClick={handleCloseMenu}
       >
         {intl.formatMessage({ id: 'header.offline' })}
       </NextLink>
