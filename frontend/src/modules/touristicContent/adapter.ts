@@ -58,7 +58,7 @@ export const adaptTouristicContentResult = ({
   cityDictionnary: CityDictionnary;
 }): TouristicContentResult[] =>
   rawTouristicContent.map(rawTouristicObject => ({
-    id: rawTouristicObject.id,
+    id: `${rawTouristicObject.id}`,
     type: 'TOURISTIC_CONTENT',
     name: rawTouristicObject.name,
     images: getLargeImagesOrThumbnailsFromAttachments(rawTouristicObject.attachments, true),

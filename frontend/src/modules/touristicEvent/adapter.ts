@@ -65,7 +65,7 @@ export const adaptTouristicEventsResult = ({
 }): TouristicEventResult[] => {
   return rawTouristicEvents.map(rawTouristicEvent => {
     return {
-      id: rawTouristicEvent.id,
+      id: `${rawTouristicEvent.id}`,
       type: 'TOURISTIC_EVENT',
       name: rawTouristicEvent.name,
       images: getLargeImagesOrThumbnailsFromAttachments(rawTouristicEvent.attachments, true),
