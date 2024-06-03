@@ -143,26 +143,9 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                 {parsedFlatPage}
               </div>
             )}
-            {flatPage.sources.length > 0 && (
-              <>
-                <Separator />
-                <DetailsSection className="mb-10" titleId="details.source">
-                  <div>
-                    {flatPage.sources.map((source, i) => (
-                      <DetailsSource
-                        key={i}
-                        name={source.name}
-                        website={source.website}
-                        pictogramUri={source.pictogramUri}
-                      />
-                    ))}
-                  </div>
-                </DetailsSection>
-              </>
-            )}
             {flatPage.children && flatPage.children.length > 0 && (
               <>
-                {flatPage.sources.length === 0 && <Separator />}
+                <Separator />
                 <h2 className="my-6 desktop:my-10 text-Mobile-H1 desktop:text-H2 font-bold">
                   <FormattedMessage id="page.children.title" />
                 </h2>
@@ -187,6 +170,21 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                     </li>
                   ))}
                 </ul>
+              </>
+            )}
+            {flatPage.sources.length > 0 && (
+              <>
+                <Separator />
+                <DetailsSection className="mb-10" titleId="details.source">
+                  {flatPage.sources.map((source, i) => (
+                    <DetailsSource
+                      key={i}
+                      name={source.name}
+                      website={source.website}
+                      pictogramUri={source.pictogramUri}
+                    />
+                  ))}
+                </DetailsSection>
               </>
             )}
           </div>
