@@ -94,7 +94,7 @@ export const Menu: React.FC<MenuProps> = ({
               className={cn(
                 `custo-menu-item custo-menu-item--lvl1 custo-menu-item--is-dropdown custo-menu-item--index-${index}
               relative flex gap-2 pt-3 pb-2 flex items-center border-b-4 border-solid border-transparent text-white duration-500 transition-color`,
-                "after:content-[''] after:absolute after:top-10 after:-left-6 after:-right-6 after:h-15 hover:after:z-10",
+                "after:content-[''] after:absolute after:top-10 after:-left-6 after:-right-6 after:h-8 hover:after:z-10",
               )}
               expandedClassName={expandedClassName}
               wrapperClassName="custo-menu-item-wrapper flex-row relative"
