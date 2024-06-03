@@ -219,6 +219,6 @@ details > summary.list-none::marker {
 }
 
 .custo-page-WYSIWYG .button-link {
-  @apply inline-flex py-3 px-4 border border-solid border-white text-white bg-primary1 font-semibold transition-colors rounded-lg;
+  @apply inline-flex mt-2 py-3 px-4 border border-solid border-white text-white bg-primary1 font-semibold transition-colors rounded-lg;
   @apply hover:bg-primary2 focus:bg-primary2 hover:border-primary1 hover:text-primary1 focus:border-primary1 focus:text-primary1;
 }
