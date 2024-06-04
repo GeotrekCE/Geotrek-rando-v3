@@ -89,7 +89,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                 className={cn(
                   'relative',
                   legendCoverImage &&
-                    'bg-gradient-to-t from-blackSemiTransparent via-to-transparent to-transparent',
+                    "after:content-[''] after:absolute after:right-0 after:bottom-0 after:left-0 after:h-20 after:bg-gradient-to-t after:from-blackSemiTransparent",
                 )}
                 {...(legendCoverImage && {
                   ['aria-labelledby']: idCaption,
@@ -112,10 +112,10 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                 )}
               </ImageCoverTag>
               <TextWithShadow
-                className="text-H3 desktop:text-H1
+                className="px-10percent text-H3 desktop:text-H1
                 font-bold text-white
                 absolute bottom-0 top-0 right-0 left-0 flex items-center justify-center
-                bg-gradient-to-t from-gradientOnImages"
+                bg-[radial-gradient(closest-side,rgba(0,0,0,0.2),transparent)]"
               >
                 {flatPage.title}
               </TextWithShadow>
