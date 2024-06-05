@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.20.2 (2024-06-05)
+
+**✨ Improvements**
+
+- Expose "categories" colors to CSS custom properties and tailwind (#1137)
+- Improve flatpage button (#1148)
+- Move "source" section to the flatpage last item (#1150)
+- Close the mobile menu when a link inside is clicked (#1151)
+- Improve contrast and margin for flatPage title (#1156)
+
+**🐛 Fixes**
+
+- Fix user activation zone for main menu dropdown (#1146 and #1149)
+- Fix touristic suggestions for flatpage (#1152)
+- Homogenize id type from suggestions adapter (#1152)
+
 ## 3.20.1 (2024-05-28)
 
 **🐛 Fixes**
