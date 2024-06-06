@@ -107,12 +107,23 @@ details > summary.list-none::marker {
 }
 
 .custo-page-WYSIWYG h2:not(.custo-suggestions h2) {
+  @apply text-H2 desktop:text-H1;
+}
+
+.custo-page-WYSIWYG h3:not(.custo-suggestions h3) {
   @apply text-H3 font-bold desktop:text-H2;
 }
 
-.custo-page-WYSIWYG h3:not(.custo-suggestions h3),
 .custo-page-WYSIWYG h4:not(.custo-suggestions h4) {
   @apply text-H4 font-bold desktop:text-H3;
+}
+
+.custo-page-WYSIWYG h5:not(.custo-suggestions h5) {
+  @apply text-xl font-bold desktop:text-H4;
+}
+
+.custo-page-WYSIWYG h6:not(.custo-suggestions h6) {
+  @apply font-bold desktop:text-lg;
 }
 
 .custo-page-WYSIWYG p:not(.custo-suggestions p) {
