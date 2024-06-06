@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.20.2 (2024-06-05)
+## 3.20.2 (2024-06-06)
 
 **✨ Improvements**
 
@@ -9,12 +9,14 @@
 - Move "source" section to the flatpage last item (#1150)
 - Close the mobile menu when a link inside is clicked (#1151)
 - Improve contrast and margin for flatPage title (#1156)
+- Style all Hn tags differently for the flatpage WYSIWYG (#1161)
 
 **🐛 Fixes**
 
 - Fix user activation zone for main menu dropdown (#1146 and #1149)
 - Fix touristic suggestions for flatpage (#1152)
 - Homogenize id type from suggestions adapter (#1152)
+- Reduce images gray haze on menuItems and flatpage children cards (#1159) 
 
 ## 3.20.1 (2024-05-28)
 
