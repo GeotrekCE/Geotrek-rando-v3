@@ -102,7 +102,7 @@ const MobileMenuItem = ({
         className={cn(
           'flex hover:text-primary3 focus:text-primary3 transition',
           hasThumbnail &&
-            "relative rounded-xl overflow-hidden group after:absolute after:inset-0 after:content-[''] after:bg-black/25",
+            "relative rounded-xl overflow-hidden group after:absolute after:content-[''] after:right-0 after:bottom-0 after:left-0 after:h-1/2 after:bg-gradient-to-t after:from-blackSemiTransparent after:via-blackSemiTransparent",
         )}
         onClick={handleCloseMenu}
       >
