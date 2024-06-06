@@ -153,7 +153,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                   {flatPage.children.map(child => (
                     <li key={child.id}>
                       <a
-                        className="relative block aspect-square rounded-xl overflow-hidden group after:absolute bg-gradient-to-t from-blackSemiTransparent via-to-transparent to-transparent after:inset-0 after:content-[''] after:bg-black/25"
+                        className="relative block aspect-square rounded-xl overflow-hidden group after:absolute after:content-[''] after:right-0 after:bottom-0 after:left-0 after:h-1/2 after:bg-gradient-to-t after:from-blackSemiTransparent after:via-blackSemiTransparent"
                         href={generateFlatPageUrl(child.id, child.title)}
                       >
                         <Image
