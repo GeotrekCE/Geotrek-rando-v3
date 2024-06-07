@@ -438,6 +438,8 @@ You can also include some scripts:
 
 The scripts templates are intended for third party scripts. Unlike the HTML parts, there is not possibility of translations. More information on how to write them can be found in the [Scripts and GDPR documentation](customization-scripts-GDPR.md).
 
+If you want to include an external JSON feed (for external latest news for example), you can check this [https://github.com/GeotrekCE/Geotrek-rando-v3/issues/1157](example documentation).
+
 ## Icons
 
 Icons are provided by Geotrek-admin API. See [icons documentation](icons.md) to know how they have to be designed.
