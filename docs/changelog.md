@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.20.3 (2024-06-10)
+
+**🐛 Fixes**
+
+-  Fix sitemap.xml for connected GTAs >= 2.104 (#1163)
+
+**📝 Documentation**
+
+- Add link to JSON feed example (#1162)
+
 ## 3.20.2 (2024-06-06)
 
 **✨ Improvements**
