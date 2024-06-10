@@ -26,52 +26,48 @@ Object {
                   <div
                     class="size-full"
                   >
-                    <span
-                      class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                    <figure
+                      aria-labelledby=":r2:"
+                      class="relative "
+                      id="details_cover_image"
+                      role="figure"
                     >
-                      <figure
-                        aria-labelledby=":r2:"
-                        class="relative "
-                        id="details_cover_image"
-                        role="figure"
+                      <img
+                        alt="Lorem ipsum"
+                        class="object-cover overflow-hidden size-full object-center"
+                        id=":r3:"
+                        loading="eager"
+                        src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
+                      />
+                      <figcaption
+                        id=":r2:"
                       >
-                        <img
-                          alt="Lorem ipsum"
-                          class="overflow-hidden size-full object-cover object-center"
-                          id=":r3:"
-                          loading="lazy"
-                          src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
-                        />
-                        <figcaption
-                          id=":r2:"
-                        >
-                          <span
-                            class="w-full h-12 desktop:h-40
+                        <span
+                          class="w-full h-12 desktop:h-40
   absolute top-0 flex items-start justify-center
   pb-1 pt-3 px-2
   bg-gradient-to-b from-blackSemiTransparent to-transparent
   text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                        >
+                          <span
+                            class="mx-10percent px-10percent truncate"
                           >
-                            <span
-                              class="mx-10percent px-10percent truncate"
-                            >
-                              Lorem ipsum - Lorem ipsum
-                            </span>
+                            Lorem ipsum - Lorem ipsum
                           </span>
-                          <button
-                            aria-describedby=":r3:"
-                            class="absolute inset-0 size-full"
-                            type="button"
+                        </span>
+                        <button
+                          aria-describedby=":r3:"
+                          class="absolute inset-0 size-full"
+                          type="button"
+                        >
+                          <span
+                            class="sr-only"
                           >
-                            <span
-                              class="sr-only"
-                            >
-                              Voir l'image en plein écran
-                            </span>
-                          </button>
-                        </figcaption>
-                      </figure>
-                    </span>
+                            Voir l'image en plein écran
+                          </span>
+                        </button>
+                      </figcaption>
+                    </figure>
                   </div>
                 </div>
               </div>
@@ -158,65 +154,6 @@ Object {
                           >
                             <div>
                               <figure
-                                aria-labelledby=":r6:"
-                                class="relative "
-                                id="details_cover_image"
-                                role="figure"
-                              >
-                                <img
-                                  alt="Lorem ipsum"
-                                  class="overflow-hidden size-full object-cover object-center"
-                                  id=":r7:"
-                                  loading="lazy"
-                                  src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
-                                />
-                                <figcaption
-                                  id=":r6:"
-                                >
-                                  <span
-                                    class="w-full h-12 desktop:h-40
-  absolute top-0 flex items-start justify-center
-  pb-1 pt-3 px-2
-  bg-gradient-to-b from-blackSemiTransparent to-transparent
-  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                                  >
-                                    <span
-                                      class="mx-10percent px-10percent truncate"
-                                    >
-                                      Lorem ipsum - Lorem ipsum
-                                    </span>
-                                  </span>
-                                  <button
-                                    aria-describedby=":r7:"
-                                    class="absolute inset-0 size-full"
-                                    type="button"
-                                  >
-                                    <span
-                                      class="sr-only"
-                                    >
-                                      Voir l'image en plein écran
-                                    </span>
-                                  </button>
-                                </figcaption>
-                              </figure>
-                            </div>
-                          </div>
-                          <div
-                            aria-hidden="true"
-                            class="slick-slide"
-                            data-index="1"
-                            style="outline: none; width: 0px;"
-                            tabindex="-1"
-                          />
-                          <div
-                            aria-hidden="true"
-                            class="slick-slide slick-cloned"
-                            data-index="2"
-                            style="width: 0px;"
-                            tabindex="-1"
-                          >
-                            <div>
-                              <figure
                                 aria-labelledby=":r8:"
                                 class="relative "
                                 id="details_cover_image"
@@ -247,6 +184,65 @@ Object {
                                   </span>
                                   <button
                                     aria-describedby=":r9:"
+                                    class="absolute inset-0 size-full"
+                                    type="button"
+                                  >
+                                    <span
+                                      class="sr-only"
+                                    >
+                                      Voir l'image en plein écran
+                                    </span>
+                                  </button>
+                                </figcaption>
+                              </figure>
+                            </div>
+                          </div>
+                          <div
+                            aria-hidden="true"
+                            class="slick-slide"
+                            data-index="1"
+                            style="outline: none; width: 0px;"
+                            tabindex="-1"
+                          />
+                          <div
+                            aria-hidden="true"
+                            class="slick-slide slick-cloned"
+                            data-index="2"
+                            style="width: 0px;"
+                            tabindex="-1"
+                          >
+                            <div>
+                              <figure
+                                aria-labelledby=":ra:"
+                                class="relative "
+                                id="details_cover_image"
+                                role="figure"
+                              >
+                                <img
+                                  alt="Lorem ipsum"
+                                  class="overflow-hidden size-full object-cover object-center"
+                                  id=":rb:"
+                                  loading="lazy"
+                                  src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
+                                />
+                                <figcaption
+                                  id=":ra:"
+                                >
+                                  <span
+                                    class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                                  >
+                                    <span
+                                      class="mx-10percent px-10percent truncate"
+                                    >
+                                      Lorem ipsum - Lorem ipsum
+                                    </span>
+                                  </span>
+                                  <button
+                                    aria-describedby=":rb:"
                                     class="absolute inset-0 size-full"
                                     type="button"
                                   >
@@ -350,52 +346,48 @@ Object {
                 <div
                   class="size-full"
                 >
-                  <span
-                    class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                  <figure
+                    aria-labelledby=":r2:"
+                    class="relative "
+                    id="details_cover_image"
+                    role="figure"
                   >
-                    <figure
-                      aria-labelledby=":r2:"
-                      class="relative "
-                      id="details_cover_image"
-                      role="figure"
+                    <img
+                      alt="Lorem ipsum"
+                      class="object-cover overflow-hidden size-full object-center"
+                      id=":r3:"
+                      loading="eager"
+                      src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
+                    />
+                    <figcaption
+                      id=":r2:"
                     >
-                      <img
-                        alt="Lorem ipsum"
-                        class="overflow-hidden size-full object-cover object-center"
-                        id=":r3:"
-                        loading="lazy"
-                        src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
-                      />
-                      <figcaption
-                        id=":r2:"
-                      >
-                        <span
-                          class="w-full h-12 desktop:h-40
+                      <span
+                        class="w-full h-12 desktop:h-40
   absolute top-0 flex items-start justify-center
   pb-1 pt-3 px-2
   bg-gradient-to-b from-blackSemiTransparent to-transparent
   text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                      >
+                        <span
+                          class="mx-10percent px-10percent truncate"
                         >
-                          <span
-                            class="mx-10percent px-10percent truncate"
-                          >
-                            Lorem ipsum - Lorem ipsum
-                          </span>
+                          Lorem ipsum - Lorem ipsum
                         </span>
-                        <button
-                          aria-describedby=":r3:"
-                          class="absolute inset-0 size-full"
-                          type="button"
+                      </span>
+                      <button
+                        aria-describedby=":r3:"
+                        class="absolute inset-0 size-full"
+                        type="button"
+                      >
+                        <span
+                          class="sr-only"
                         >
-                          <span
-                            class="sr-only"
-                          >
-                            Voir l'image en plein écran
-                          </span>
-                        </button>
-                      </figcaption>
-                    </figure>
-                  </span>
+                          Voir l'image en plein écran
+                        </span>
+                      </button>
+                    </figcaption>
+                  </figure>
                 </div>
               </div>
             </div>
@@ -509,52 +501,48 @@ Object {
                   <div
                     class="size-full"
                   >
-                    <span
-                      class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
+                    <figure
+                      aria-labelledby=":r2:"
+                      class="relative "
+                      id="details_cover_image"
+                      role="figure"
                     >
-                      <figure
-                        aria-labelledby=":r2:"
-                        class="relative "
-                        id="details_cover_image"
-                        role="figure"
+                      <img
+                        alt="Lorem ipsum"
+                        class="object-cover overflow-hidden size-full object-center"
+                        id=":r3:"
+                        loading="eager"
+                        src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
+                      />
+                      <figcaption
+                        id=":r2:"
                       >
-                        <img
-                          alt="Lorem ipsum"
-                          class="overflow-hidden size-full object-cover object-center"
-                          id=":r3:"
-                          loading="lazy"
-                          src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
-                        />
-                        <figcaption
-                          id=":r2:"
-                        >
-                          <span
-                            class="w-full h-12 desktop:h-40
+                        <span
+                          class="w-full h-12 desktop:h-40
   absolute top-0 flex items-start justify-center
   pb-1 pt-3 px-2
   bg-gradient-to-b from-blackSemiTransparent to-transparent
   text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                        >
+                          <span
+                            class="mx-10percent px-10percent truncate"
                           >
-                            <span
-                              class="mx-10percent px-10percent truncate"
-                            >
-                              Lorem ipsum - Lorem ipsum
-                            </span>
+                            Lorem ipsum - Lorem ipsum
                           </span>
-                          <button
-                            aria-describedby=":r3:"
-                            class="absolute inset-0 size-full"
-                            type="button"
+                        </span>
+                        <button
+                          aria-describedby=":r3:"
+                          class="absolute inset-0 size-full"
+                          type="button"
+                        >
+                          <span
+                            class="sr-only"
                           >
-                            <span
-                              class="sr-only"
-                            >
-                              Voir l'image en plein écran
-                            </span>
-                          </button>
-                        </figcaption>
-                      </figure>
-                    </span>
+                            Voir l'image en plein écran
+                          </span>
+                        </button>
+                      </figcaption>
+                    </figure>
                   </div>
                 </div>
               </div>
@@ -641,65 +629,6 @@ Object {
                           >
                             <div>
                               <figure
-                                aria-labelledby=":r6:"
-                                class="relative "
-                                id="details_cover_image"
-                                role="figure"
-                              >
-                                <img
-                                  alt="Lorem ipsum"
-                                  class="overflow-hidden size-full object-cover object-center"
-                                  id=":r7:"
-                                  loading="lazy"
-                                  src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
-                                />
-                                <figcaption
-                                  id=":r6:"
-                                >
-                                  <span
-                                    class="w-full h-12 desktop:h-40
-  absolute top-0 flex items-start justify-center
-  pb-1 pt-3 px-2
-  bg-gradient-to-b from-blackSemiTransparent to-transparent
-  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                                  >
-                                    <span
-                                      class="mx-10percent px-10percent truncate"
-                                    >
-                                      Lorem ipsum - Lorem ipsum
-                                    </span>
-                                  </span>
-                                  <button
-                                    aria-describedby=":r7:"
-                                    class="absolute inset-0 size-full"
-                                    type="button"
-                                  >
-                                    <span
-                                      class="sr-only"
-                                    >
-                                      Voir l'image en plein écran
-                                    </span>
-                                  </button>
-                                </figcaption>
-                              </figure>
-                            </div>
-                          </div>
-                          <div
-                            aria-hidden="true"
-                            class="slick-slide"
-                            data-index="1"
-                            style="outline: none; width: 0px;"
-                            tabindex="-1"
-                          />
-                          <div
-                            aria-hidden="true"
-                            class="slick-slide slick-cloned"
-                            data-index="2"
-                            style="width: 0px;"
-                            tabindex="-1"
-                          >
-                            <div>
-                              <figure
                                 aria-labelledby=":r8:"
                                 class="relative "
                                 id="details_cover_image"
@@ -730,6 +659,65 @@ Object {
                                   </span>
                                   <button
                                     aria-describedby=":r9:"
+                                    class="absolute inset-0 size-full"
+                                    type="button"
+                                  >
+                                    <span
+                                      class="sr-only"
+                                    >
+                                      Voir l'image en plein écran
+                                    </span>
+                                  </button>
+                                </figcaption>
+                              </figure>
+                            </div>
+                          </div>
+                          <div
+                            aria-hidden="true"
+                            class="slick-slide"
+                            data-index="1"
+                            style="outline: none; width: 0px;"
+                            tabindex="-1"
+                          />
+                          <div
+                            aria-hidden="true"
+                            class="slick-slide slick-cloned"
+                            data-index="2"
+                            style="width: 0px;"
+                            tabindex="-1"
+                          >
+                            <div>
+                              <figure
+                                aria-labelledby=":ra:"
+                                class="relative "
+                                id="details_cover_image"
+                                role="figure"
+                              >
+                                <img
+                                  alt="Lorem ipsum"
+                                  class="overflow-hidden size-full object-cover object-center"
+                                  id=":rb:"
+                                  loading="lazy"
+                                  src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
+                                />
+                                <figcaption
+                                  id=":ra:"
+                                >
+                                  <span
+                                    class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                                  >
+                                    <span
+                                      class="mx-10percent px-10percent truncate"
+                                    >
+                                      Lorem ipsum - Lorem ipsum
+                                    </span>
+                                  </span>
+                                  <button
+                                    aria-describedby=":rb:"
                                     class="absolute inset-0 size-full"
                                     type="button"
                                   >
@@ -864,65 +852,6 @@ Object {
                         >
                           <div>
                             <figure
-                              aria-labelledby=":r6:"
-                              class="relative "
-                              id="details_cover_image"
-                              role="figure"
-                            >
-                              <img
-                                alt="Lorem ipsum"
-                                class="overflow-hidden size-full object-cover object-center"
-                                id=":r7:"
-                                loading="lazy"
-                                src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
-                              />
-                              <figcaption
-                                id=":r6:"
-                              >
-                                <span
-                                  class="w-full h-12 desktop:h-40
-  absolute top-0 flex items-start justify-center
-  pb-1 pt-3 px-2
-  bg-gradient-to-b from-blackSemiTransparent to-transparent
-  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
-                                >
-                                  <span
-                                    class="mx-10percent px-10percent truncate"
-                                  >
-                                    Lorem ipsum - Lorem ipsum
-                                  </span>
-                                </span>
-                                <button
-                                  aria-describedby=":r7:"
-                                  class="absolute inset-0 size-full"
-                                  type="button"
-                                >
-                                  <span
-                                    class="sr-only"
-                                  >
-                                    Voir l'image en plein écran
-                                  </span>
-                                </button>
-                              </figcaption>
-                            </figure>
-                          </div>
-                        </div>
-                        <div
-                          aria-hidden="true"
-                          class="slick-slide"
-                          data-index="1"
-                          style="outline: none; width: 0px;"
-                          tabindex="-1"
-                        />
-                        <div
-                          aria-hidden="true"
-                          class="slick-slide slick-cloned"
-                          data-index="2"
-                          style="width: 0px;"
-                          tabindex="-1"
-                        >
-                          <div>
-                            <figure
                               aria-labelledby=":r8:"
                               class="relative "
                               id="details_cover_image"
@@ -953,6 +882,65 @@ Object {
                                 </span>
                                 <button
                                   aria-describedby=":r9:"
+                                  class="absolute inset-0 size-full"
+                                  type="button"
+                                >
+                                  <span
+                                    class="sr-only"
+                                  >
+                                    Voir l'image en plein écran
+                                  </span>
+                                </button>
+                              </figcaption>
+                            </figure>
+                          </div>
+                        </div>
+                        <div
+                          aria-hidden="true"
+                          class="slick-slide"
+                          data-index="1"
+                          style="outline: none; width: 0px;"
+                          tabindex="-1"
+                        />
+                        <div
+                          aria-hidden="true"
+                          class="slick-slide slick-cloned"
+                          data-index="2"
+                          style="width: 0px;"
+                          tabindex="-1"
+                        >
+                          <div>
+                            <figure
+                              aria-labelledby=":ra:"
+                              class="relative "
+                              id="details_cover_image"
+                              role="figure"
+                            >
+                              <img
+                                alt="Lorem ipsum"
+                                class="overflow-hidden size-full object-cover object-center"
+                                id=":rb:"
+                                loading="lazy"
+                                src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
+                              />
+                              <figcaption
+                                id=":ra:"
+                              >
+                                <span
+                                  class="w-full h-12 desktop:h-40
+  absolute top-0 flex items-start justify-center
+  pb-1 pt-3 px-2
+  bg-gradient-to-b from-blackSemiTransparent to-transparent
+  text-white text-opacity-90 text-Mobile-C3 desktop:text-P2"
+                                >
+                                  <span
+                                    class="mx-10percent px-10percent truncate"
+                                  >
+                                    Lorem ipsum - Lorem ipsum
+                                  </span>
+                                </span>
+                                <button
+                                  aria-describedby=":rb:"
                                   class="absolute inset-0 size-full"
                                   type="button"
                                 >
