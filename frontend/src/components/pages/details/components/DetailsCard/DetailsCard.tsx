@@ -14,6 +14,7 @@ import { ViewPoint } from 'modules/viewPoint/interface';
 import { FileFromAttachment, ImageFromAttachment } from 'modules/interface';
 import { ViewPoint as ViewPointIcon } from 'components/Icons/ViewPoint';
 import { Paperclip } from 'components/Icons/Paperclip';
+import ImageWithLegend from 'components/ImageWithLegend';
 import { useDetailsCard } from './useDetailsCard';
 import { DetailsViewPoints } from '../DetailsViewPoints';
 import { DetailsFiles } from '../DetailsFiles';
@@ -143,27 +144,29 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
         <div className="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6">
           <div className="w-full">
             <Modal className="h-full">
-              {({ isFullscreen, toggleFullscreen }) => (
-                <>
-                  {type === 'TOURISTIC_CONTENT' &&
-                    redirectionUrl &&
-                    images.length > 0 &&
-                    hasNavigator && (
+              {({ isFullscreen, toggleFullscreen }) => {
+                return (
+                  <>
+                    {images.length > 1 && hasNavigator ? (
                       <DetailsCoverCarousel
                         images={isFullscreen ? images : thumbnails}
                         classNameImage={cn('object-center', isFullscreen && 'object-contain')}
-                        redirect={redirectionUrl}
+                        {...(redirectionUrl
+                          ? { redirect: redirectionUrl }
+                          : { onClickImage: toggleFullscreen })}
+                      />
+                    ) : (
+                      <ImageWithLegend
+                        image={isFullscreen ? images[0] : thumbnails[0]}
+                        classNameImage={cn('object-center', isFullscreen && 'object-contain')}
+                        {...(redirectionUrl
+                          ? { redirect: redirectionUrl }
+                          : { onClick: toggleFullscreen })}
                       />
                     )}
-                  {type !== 'TOURISTIC_CONTENT' && images.length > 0 && hasNavigator && (
-                    <DetailsCoverCarousel
-                      images={isFullscreen ? images : thumbnails}
-                      classNameImage={cn('object-center', isFullscreen && 'object-contain')}
-                      onClickImage={toggleFullscreen}
-                    />
-                  )}
-                </>
-              )}
+                  </>
+                );
+              }}
             </Modal>
             <CardIcon iconUri={iconUri} iconName={iconName} type={type} />
           </div>
@@ -189,7 +192,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
                     titleTag="h3"
                     asAccordion
                   />
-                  {hasNavigator && (
+                  {hasViewPoints && (
                     <DetailsViewPoints
                       className="scroll-mt-20 desktop:scroll-mt-40"
                       id={viewPointsId}
