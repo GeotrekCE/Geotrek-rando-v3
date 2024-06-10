@@ -31,7 +31,7 @@ Object {
                     <img
                       alt=""
                       class="object-cover object-center overflow-hidden size-full"
-                      id=":r3:"
+                      id=":r1:"
                       loading="lazy"
                       src="/test.jpg"
                     />
@@ -244,7 +244,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-center overflow-hidden size-full"
-                    id=":r3:"
+                    id=":r1:"
                     loading="lazy"
                     src="/test.jpg"
                   />
