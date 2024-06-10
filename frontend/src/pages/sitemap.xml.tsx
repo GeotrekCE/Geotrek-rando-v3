@@ -57,7 +57,7 @@ const getOutdoorCourseForLanguage = async (
 
 const getFlatPagesForLanguage = async (
   language: string,
-): Promise<{ id: string; title: string; external_url: string }[]> => {
+): Promise<{ id: string; title: string; external_url?: string }[]> => {
   const flatPages = await fetch(
     `${
       getGlobalConfig().apiUrl
@@ -115,14 +115,14 @@ const getApiContentForLanguage = async (language: string): Promise<string> => {
 
   const flatPages = await getFlatPagesForLanguage(language);
   const flatPageUrls = flatPages
-    .map(({ id, title, external_url }) =>
+    .map(({ id, title, external_url = null }) =>
       external_url !== null && external_url.length > 0
         ? `<url><loc>${external_url}</loc></url>`
         : title && id
-        ? `<url><loc>${baseUrl}/information/${id}-${encodeURI(
-            convertStringForSitemap(title),
-          )}</loc></url>`
-        : '',
+          ? `<url><loc>${baseUrl}/information/${id}-${encodeURI(
+              convertStringForSitemap(title),
+            )}</loc></url>`
+          : '',
     )
     .join('');
   return [
