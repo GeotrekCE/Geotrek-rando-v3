@@ -102,6 +102,11 @@ sudo certbot --nginx
 
 ## Upgrade Geotrek-rando version
 
+To find out the current Geotrek-rando version of your running container, you can execute (by renaming `rando-nodeserver-1` with the name of your container):
+```
+docker exec -t -i rando-nodeserver-1 node -p "require('./package.json').version"
+```
+
 To install a new version of Geotrek-rando, you have to pull the new image of Geotrek-rando, stop and remove the old container and run a new one with the new image:
 
 ```sh
