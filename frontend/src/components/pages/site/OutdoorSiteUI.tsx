@@ -102,7 +102,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
       <>
         <PageHead
           title={outdoorSiteContent?.name}
-          description={cleanHTMLElementsFromString(outdoorSiteContent?.descriptionTeaser)}
+          description={cleanHTMLElementsFromString(outdoorSiteContent?.descriptionTeaser ?? '')}
           sharingImageUrl={outdoorSiteContent?.images?.[0]?.url}
         />
         {outdoorSiteContent === undefined ? (

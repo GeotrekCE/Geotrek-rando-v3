@@ -9,8 +9,8 @@ interface DetailsDescriptionProps {
   id?: string;
   descriptionHtml: string;
   className?: string;
-  departure?: string;
-  arrival?: string;
+  departure?: string | null;
+  arrival?: string | null;
   cities?: string[];
   title?: React.ReactElement;
   email?: string;
@@ -28,8 +28,8 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
   email,
   website,
 }) => {
-  const hasDeparture = departure !== undefined && departure.length > 0;
-  const hasArrival = arrival !== undefined && arrival.length > 0;
+  const hasDeparture = typeof departure === 'string' && departure.length > 0;
+  const hasArrival = typeof arrival === 'string' && arrival.length > 0;
   const hasCities = Array.isArray(cities) && cities.length > 0;
   const hasEmail = Boolean(email);
   const hasWebsite = Boolean(website);
