@@ -50,12 +50,12 @@ interface DetailsPreviewInformation extends DetailsInformation {
 }
 
 interface DetailsPreviewProps {
-  ambiance?: string;
+  ambiance?: string | null;
   className?: string;
   informations: DetailsPreviewInformation;
   place?: string;
   tags: string[];
-  teaser?: string;
+  teaser?: string | null;
   title: string;
   trekFamily?: TrekFamily;
   details:
@@ -315,7 +315,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
       <div className="desktop:hidden mt-4">
         <OfflineButton details={details} type={type} />
       </div>
-      {teaser !== undefined && teaser?.length > 0 && (
+      {typeof teaser === 'string' && teaser?.length > 0 && (
         <div
           id="details_teaser"
           className="text-Mobile-C1 desktop:text-H4 font-bold mt-4 desktop:mt-9"
@@ -323,7 +323,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           <HtmlText>{parse(teaser)}</HtmlText>
         </div>
       )}
-      {ambiance !== undefined && ambiance?.length > 0 && (
+      {typeof ambiance === 'string' && ambiance?.length > 0 && (
         <div id="details_ambiance" className="text-Mobile-C1 desktop:text-P1 mt-4 desktop:mt-8">
           <HtmlText>{parse(ambiance)}</HtmlText>
         </div>

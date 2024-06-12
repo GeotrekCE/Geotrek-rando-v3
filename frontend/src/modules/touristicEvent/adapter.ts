@@ -114,7 +114,7 @@ export const adaptTouristicEventDetails = ({
     })[0],
     // then we add missing fields
     description: rawTouristicEventDetails.properties.description,
-    descriptionTeaser: rawTouristicEventDetails.properties.description_teaser,
+    descriptionTeaser: rawTouristicEventDetails.properties.description_teaser ?? null,
     bbox: {
       corner1: { x: rawTouristicEventDetails.bbox[0], y: rawTouristicEventDetails.bbox[1] },
       corner2: { x: rawTouristicEventDetails.bbox[2], y: rawTouristicEventDetails.bbox[3] },

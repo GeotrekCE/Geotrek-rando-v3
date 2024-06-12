@@ -46,10 +46,10 @@ export interface RawOutdoorSite {
 interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
   accessibility?: string;
   advice?: string;
-  ambiance?: string;
+  ambiance?: string | null;
   children: number[];
   description?: string;
-  description_teaser?: string;
+  description_teaser?: string | null;
   information_desks?: number[];
   labels?: number[];
   managers?: number[];
@@ -102,9 +102,9 @@ export interface OutdoorSite {
 export interface OutdoorSiteDetails extends OutdoorSite {
   accessibility?: string | null;
   description?: string;
-  descriptionTeaser?: string;
+  descriptionTeaser?: string | null;
   bbox: Bbox;
-  ambiance?: string;
+  ambiance?: string | null;
   advice?: string;
   labels?: Label[];
   source?: Source[];
