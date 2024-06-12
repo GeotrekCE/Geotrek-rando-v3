@@ -346,7 +346,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                                 id: `${touristicContent.id}`,
                                 name: touristicContent.name ?? '',
                                 place: touristicContent.category.label,
-                                description: touristicContent.descriptionTeaser,
+                                description: touristicContent.descriptionTeaser ?? '',
                                 thumbnails: touristicContent.thumbnails,
                                 images: touristicContent.images,
                                 iconUri: touristicContent.category.pictogramUri,

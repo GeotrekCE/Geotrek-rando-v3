@@ -122,7 +122,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
       <>
         <PageHead
           title={details?.title}
-          description={cleanHTMLElementsFromString(details?.description_teaser)}
+          description={cleanHTMLElementsFromString(details?.description_teaser ?? '')}
           sharingImageUrl={details?.imgs?.[0]?.url}
         />
         {details === undefined ? (
@@ -546,7 +546,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               id: `${touristicContent.id}`,
                               name: touristicContent.name ?? '',
                               place: touristicContent.category.label,
-                              description: touristicContent.descriptionTeaser,
+                              description: touristicContent.descriptionTeaser ?? '',
                               thumbnails: touristicContent.thumbnails,
                               images: touristicContent.images,
                               iconUri: touristicContent.category.pictogramUri,
