@@ -56,10 +56,12 @@ const HomeUI: React.FC = () => {
             .filter(({ results }) => results.length > 0)
             .map(({ titleTranslationId, iconUrl, results }) => (
               <HomeSection
+                className="mx-4 desktop:mx-10percent"
                 title={intl.formatMessage({ id: titleTranslationId })}
                 iconUrl={iconUrl}
                 key={titleTranslationId}
                 results={results}
+                asColumn
               />
             ))}
           {homeBottom !== undefined && (

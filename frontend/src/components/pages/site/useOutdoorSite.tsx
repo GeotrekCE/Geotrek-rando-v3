@@ -6,7 +6,7 @@ import { ONE_DAY } from 'services/constants/staleTime';
 import { isRessourceMissing } from 'services/routeUtils';
 import { useRouter } from 'next/router';
 import { routes } from 'services/routes';
-import { queryCommonDictionaries } from 'modules/dictionaries/api';
+import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { getOutdoorSiteDetails } from '../../../modules/outdoorSite/connector';
 import { OutdoorSiteDetails } from '../../../modules/outdoorSite/interface';
 import { getDetailsConfig } from '../details/config';
@@ -17,16 +17,16 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
   const path = isUrlString(outdoorSiteUrl) ? decodeURI(outdoorSiteUrl) : '';
   const router = useRouter();
 
-  const commonDictionaries = queryCommonDictionaries(language);
+  const commonDictionaries = useQueryCommonDictionaries(language);
 
   const { data, refetch, isLoading } = useQuery<OutdoorSiteDetails, Error>(
     ['outdoorSiteDetails', id, language],
     () => getOutdoorSiteDetails(id, language, commonDictionaries),
     {
       enabled: isUrlString(outdoorSiteUrl) && commonDictionaries !== undefined,
-      onError: async error => {
+      onError: error => {
         if (isRessourceMissing(error)) {
-          await router.push(routes.HOME);
+          void router.push(routes.HOME);
         }
       },
       staleTime: ONE_DAY,
@@ -41,6 +41,7 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
     useSectionsReferences();
 
   const sectionRef = sectionsOutdoorSite.reduce(
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     (list, item) => ({ ...list, [item.name]: useSectionReferenceCallback(item.name) }),
     {} as Record<DetailsSections, (node: HTMLDivElement | null) => void>,
   );

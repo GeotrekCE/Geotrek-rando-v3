@@ -4,8 +4,9 @@ import { CourseType } from 'modules/filters/courseType/interface';
 import { Network } from 'modules/networks/interface';
 import { Poi } from 'modules/poi/interface';
 import {
-  Attachment,
   Coordinate2D,
+  FileFromAttachment,
+  ImageFromAttachment,
   RawAttachment,
   RawCoordinate2D,
   RawLineStringGeometry3D,
@@ -129,8 +130,8 @@ export interface Bbox {
   corner2: Coordinate2D;
 }
 
-export interface TrekResultWithGeometry extends TrekResult {
-  geometry?: TrekChildGeometry;
+export interface TrekResultWithGeometryChild extends TrekResult {
+  childGeometry?: TrekChildGeometry;
 }
 export interface RawTrekChildGeometry {
   geometry: RawLineStringGeometry3D | RawMultiLineStringGeometry3D | RawPointGeometry3D;
@@ -158,7 +159,8 @@ export interface Details extends DetailsHtml {
   practice: Activity | null;
   title: string;
   place?: string;
-  imgs: Attachment[];
+  imgs: ImageFromAttachment[];
+  filesFromAttachments: FileFromAttachment[];
   tags: string[];
   informations: DetailsInformation;
   pois: Poi[];
@@ -177,7 +179,7 @@ export interface Details extends DetailsHtml {
   labels: Label[];
   pointsReference: Coordinate2D[] | null;
   bbox: Bbox;
-  children: TrekResultWithGeometry[];
+  children: TrekResultWithGeometryChild[];
   sensitiveAreas: SensitiveArea[];
   departure: string;
   arrival: string;

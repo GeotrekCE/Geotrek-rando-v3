@@ -33,7 +33,7 @@ Object {
                   tabindex="-1"
                 >
                   <a
-                    class="text-primary1 hover:text-primary3 transition-colors"
+                    class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
                     href="/trek/596-Boucle-de-malade?parentId=501"
                   >
                     <div
@@ -65,7 +65,7 @@ Object {
                   tabindex="-1"
                 >
                   <a
-                    class="text-primary1 hover:text-primary3 transition-colors"
+                    class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
                     href="/trek/604-Deuxieme-etape?parentId=501"
                   >
                     <div
@@ -97,7 +97,7 @@ Object {
                   tabindex="-1"
                 >
                   <a
-                    class="text-primary1 hover:text-primary3 transition-colors"
+                    class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
                     href="/trek/2-Troisieme-etape?parentId=501"
                   >
                     <div
@@ -129,7 +129,7 @@ Object {
                   tabindex="-1"
                 >
                   <a
-                    class="text-primary1 hover:text-primary3 transition-colors"
+                    class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
                     href="/trek/4-Quatrieme-etape?parentId=501"
                   >
                     <div
@@ -161,7 +161,7 @@ Object {
                   tabindex="-1"
                 >
                   <a
-                    class="text-primary1 hover:text-primary3 transition-colors"
+                    class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
                     href="/trek/5-Encore-une-etape?parentId=501"
                   >
                     <div
@@ -193,7 +193,7 @@ Object {
                   tabindex="-1"
                 >
                   <a
-                    class="text-primary1 hover:text-primary3 transition-colors"
+                    class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
                     href="/trek/6-C-est-la-fin-!?parentId=501"
                   >
                     <div
@@ -248,7 +248,7 @@ Object {
                 tabindex="-1"
               >
                 <a
-                  class="text-primary1 hover:text-primary3 transition-colors"
+                  class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
                   href="/trek/596-Boucle-de-malade?parentId=501"
                 >
                   <div
@@ -280,7 +280,7 @@ Object {
                 tabindex="-1"
               >
                 <a
-                  class="text-primary1 hover:text-primary3 transition-colors"
+                  class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
                   href="/trek/604-Deuxieme-etape?parentId=501"
                 >
                   <div
@@ -312,7 +312,7 @@ Object {
                 tabindex="-1"
               >
                 <a
-                  class="text-primary1 hover:text-primary3 transition-colors"
+                  class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
                   href="/trek/2-Troisieme-etape?parentId=501"
                 >
                   <div
@@ -344,7 +344,7 @@ Object {
                 tabindex="-1"
               >
                 <a
-                  class="text-primary1 hover:text-primary3 transition-colors"
+                  class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
                   href="/trek/4-Quatrieme-etape?parentId=501"
                 >
                   <div
@@ -376,7 +376,7 @@ Object {
                 tabindex="-1"
               >
                 <a
-                  class="text-primary1 hover:text-primary3 transition-colors"
+                  class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
                   href="/trek/5-Encore-une-etape?parentId=501"
                 >
                   <div
@@ -408,7 +408,7 @@ Object {
                 tabindex="-1"
               >
                 <a
-                  class="text-primary1 hover:text-primary3 transition-colors"
+                  class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
                   href="/trek/6-C-est-la-fin-!?parentId=501"
                 >
                   <div

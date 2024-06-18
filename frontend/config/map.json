@@ -25,5 +25,6 @@
     }
   },
   "zoomAvailableOffline": [13, 14, 15],
-  "mobileMapPanelDefaultOpened": false
+  "mobileMapPanelDefaultOpened": false,
+  "displaySecondaryLayersByDefault": true
 }

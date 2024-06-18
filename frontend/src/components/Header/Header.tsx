@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { routes } from 'services/routes';
 
@@ -12,10 +13,8 @@ import { BurgerMenu } from './BurgerMenu';
 import { useHeader } from './useHeader';
 
 export const Header: React.FC = () => {
-  const { config, menuItems, intl } = useHeader();
-
-  const sectionsDesktop = menuItems?.slice(0, config.menu.primaryItemsNumber);
-  const subSections = menuItems?.slice(config.menu.primaryItemsNumber);
+  const menuNode = useRef<HTMLDivElement | null>(null);
+  const { config, menuItems, isDesktopMenu, intl } = useHeader(menuNode);
   /**
    * Disabled for now to handle the map on the search page
    */
@@ -34,19 +33,18 @@ export const Header: React.FC = () => {
       )}
       <header
         className={cn(
-          'sticky z-header bg-primary1 text-primary3',
+          'sticky z-header bg-primary1',
           headerState === 'DISPLAYED' ? 'top-0' : '-top-desktopHeader',
         )}
         role="banner"
         id="header"
       >
-        <BurgerMenu config={config.menu} displayState={headerState} menuItems={menuItems} />
-        <div className="h-11 desktop:h-desktopHeader flex flex-row items-center sticky z-header px-3 shadow-sm shrink-0 transition-all duration-300 delay-100">
+        <div className="h-11 desktop:h-desktopHeader flex justify-between  items-center sticky z-header px-3 shadow-sm shrink-0 transition-all duration-300 delay-100">
           <Link href={routes.HOME} className="flex items-center">
             <div className="shrink-0" id="header_logo">
               <img
                 id="header_logoImg"
-                className="h-9 desktop:h-18 mr-3 rounded-md"
+                className="h-9 w-auto desktop:h-18 mr-3"
                 alt=""
                 src={config.logo}
               />
@@ -56,23 +54,30 @@ export const Header: React.FC = () => {
               className="
               flex-auto text-white
               desktop:text-H2 desktop:leading-8
-              font-semibold desktop:font-bold"
+              font-semibold desktop:font-bold desktop:shrink-0"
             >
               <FormattedMessage id={'home.title'} />
             </p>
           </Link>
-          <div className="flex-1 w-0" />
-          {(sectionsDesktop || subSections) && (
+          <div
+            ref={menuNode}
+            className={cn('items-center hidden desktop:flex', !isDesktopMenu && 'invisible')}
+            aria-hidden={!isDesktopMenu}
+          >
             <InlineMenu
-              className="hidden desktop:flex items-center justify-end flex-auto"
-              sections={sectionsDesktop}
-              subSections={subSections}
-              shouldDisplayFavorites={config.menu.shouldDisplayFavorite}
-              supportedLanguages={config.menu.supportedLanguages}
+              className={cn('flex items-center justify-end flex-auto flex-wrap gap-4')}
+              menuItems={menuItems}
+              config={config.menu}
             />
-          )}
-          <GoToSearchButton className="hidden desktop:block" />
+            <GoToSearchButton />
+          </div>
         </div>
+        <BurgerMenu
+          className={cn(isDesktopMenu && 'hidden')}
+          config={config.menu}
+          displayState={headerState}
+          menuItems={menuItems}
+        />
       </header>
       {headerBottom !== undefined && (
         <div id="header_bottomHtml">

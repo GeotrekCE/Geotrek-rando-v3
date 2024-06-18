@@ -1,16 +1,17 @@
 import { Offline } from 'modules/offline/interface';
 import { ControlSaveTiles } from 'leaflet.offline';
-import { Details } from '../../modules/details/interface';
-import { OutdoorCourseDetails } from '../../modules/outdoorCourse/interface';
-import { OutdoorSiteDetails } from '../../modules/outdoorSite/interface';
-import { TouristicContentDetails } from '../../modules/touristicContent/interface';
-import { TouristicEventDetails } from '../../modules/touristicEvent/interface';
+import { Details } from 'modules/details/interface';
+import { OutdoorCourseDetails } from 'modules/outdoorCourse/interface';
+import { OutdoorSiteDetails } from 'modules/outdoorSite/interface';
+import { TouristicContentDetails } from 'modules/touristicContent/interface';
+import { TouristicEventDetails } from 'modules/touristicEvent/interface';
+import { ContentType } from 'modules/interface';
 
 let controlInstance: any = null;
 
 const PATTER_LOCAL_STORAGE = 'item-';
 
-let storageSize: any;
+let storageSize: ControlSaveTiles;
 
 const CacheManager = {
   getTreksCached: (): Offline[] => {
@@ -30,7 +31,7 @@ const CacheManager = {
       | OutdoorSiteDetails
       | OutdoorCourseDetails
       | TouristicEventDetails;
-    type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_EVENT';
+    type: ContentType;
     url: string[];
   }) => {
     controlInstance.recenter();
@@ -41,9 +42,8 @@ const CacheManager = {
 
     const title = 'title' in details ? details.title : details.name;
 
-    const attachments = 'attachments' in details ? details.attachments : details.imgs;
-    const thumbnailUris =
-      'thumbnails' in details ? details.thumbnails : attachments.map(i => i.url);
+    const images = 'images' in details ? details.images : details.imgs;
+    const thumbnailUris = 'thumbnails' in details ? details.thumbnails : images.map(i => i.url);
     const informations =
       'informations' in details ? { ...details.informations, reservationSystem: null } : [];
 
@@ -64,7 +64,7 @@ const CacheManager = {
         type,
         id: details.id,
         place,
-        attachments,
+        images,
         thumbnailUris,
         informations,
         practice,

@@ -14,8 +14,8 @@ export const DetailsButtonDropdown: React.FC<DetailsButtonDropdownProps> = ({
   children,
 }) => {
   return (
-    <details className="h-12 w-12 rounded-full shadow-lg bg-white">
-      <summary className="w-full h-full cursor-pointer grid place-items-center list-none">
+    <details className="size-12 rounded-full shadow-lg bg-white">
+      <summary className="size-full cursor-pointer grid place-items-center list-none">
         {children}
       </summary>
       <ul className="bg-white text-greyDarkColored rounded-lg shadow-sm text-P2 overflow-hidden absolute py-2 -ml-8 menu-download">

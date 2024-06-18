@@ -1,14 +1,9 @@
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { mockRoute } from 'services/testing/utils';
+import { APIResponseForList } from 'services/api/interface';
 import { RawPoi } from '../interface';
 
-interface PoisResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: RawPoi[];
-}
-export const mockPois = (): PoisResponse => ({
+export const mockPois = (): APIResponseForList<RawPoi> => ({
   count: 2,
   next: null,
   previous: null,
@@ -28,6 +23,10 @@ export const mockPois = (): PoisResponse => ({
           title: 'lagopede-alpin-en-tenue-dete',
           url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-tenue-dete.jpg',
           type: 'image',
+          filetype: {
+            id: 1,
+            type: 'Topoguide',
+          },
         },
         {
           author: 'Damien Combrisson - PNE',
@@ -38,6 +37,10 @@ export const mockPois = (): PoisResponse => ({
           title: 'lagopede-alpin-en-plumage-dhiver',
           url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-plumage-dhiver.jpg',
           type: 'image',
+          filetype: {
+            id: 1,
+            type: 'Topoguide',
+          },
         },
       ],
       type: 3,

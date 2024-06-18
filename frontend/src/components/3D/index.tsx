@@ -11,16 +11,10 @@ import { DetailsAdvice } from 'components/pages/details/components/DetailsAdvice
 import { LoaderOverlay, Poi, PoiSide, Wrapper } from './3D.style';
 import Interface from './Interface';
 
-declare global {
-  interface Window {
-    Rando3D?: any;
-  }
-}
-
 interface ThreeDProps {
   demURL: string;
   profileURL: string;
-  onRequestClose: () => void | undefined;
+  onRequestClose: () => void;
   title: string;
   trekId: number;
 }
@@ -64,7 +58,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
 
     // Dynamicly loads Rando3D package
     async function loadRando3D() {
-      // @ts-ignore next-line
+      // @ts-expect-error the lib is not typed
       await import('@makina-corpus/rando3d');
       setLibLoaded(true);
     }
@@ -114,7 +108,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
       scene.current = null;
     }
 
-    const app3D = new window.Rando3D();
+    const app3D = window.Rando3D();
     scene.current = app3D.init(customSettings, canvasRef.current, 'examine');
     scene.current?.init(() => setLoading(false));
   }, [
@@ -141,7 +135,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
             </LoaderOverlay>
           )}
           <Interface />
-          <canvas className="h-full w-full overflow-hidden border-0" ref={canvasRef} />
+          <canvas className="size-full overflow-hidden border-0" ref={canvasRef} />
           <PoiSide className="poi_side absolute flex flex-col">
             <button type="button" className="close_btn m-2 flex items-center self-end">
               <Cross size={20} />

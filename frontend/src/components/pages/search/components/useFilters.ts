@@ -63,7 +63,9 @@ export const useFilter = () => {
         if (filterState.id === filterId) {
           return {
             ...filterState,
-            selectedOptions: options.sort((a, b) => a.value.localeCompare(b.value)),
+            selectedOptions: options.sort((a, b) =>
+              a.value.localeCompare(b.value, undefined, { numeric: true }),
+            ),
           };
         }
         return filterState;

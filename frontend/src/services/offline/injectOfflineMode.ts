@@ -8,7 +8,12 @@ import {
   getStoredTilesAsJson,
   savetiles as Lsavetiles,
   tileLayerOffline as LtileLayerOffline,
+  TileLayerOffline,
 } from 'leaflet.offline';
+
+type EventStorageSize = TileLayerOffline & {
+  storagesize: ControlSaveTiles;
+};
 
 const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression) => {
   const mapConfig = getMapConfig();
@@ -19,7 +24,9 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
     attribution: mapOfflineLayer?.options?.attribution,
     subdomains: 'abc',
     minZoom: Math.min(...(zoomAvailableOffline ?? [])),
-  }).addTo(map);
+  });
+
+  tileLayerOffline.addTo(map);
 
   const controlInstance: ControlSaveTiles = Lsavetiles(tileLayerOffline, {
     zoomlevels: mapConfig.zoomAvailableOffline,
@@ -35,7 +42,8 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
 
   controlInstance.addTo(map);
 
-  let storageLayer: any;
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+  let storageLayer: L.GeoJSON;
 
   const getGeoJsonData = () =>
     getStorageInfo(mapOfflineLayer.url).then(data => getStoredTilesAsJson(tileLayerOffline, data));
@@ -49,8 +57,8 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
   };
 
   addStorageLayer();
-
-  tileLayerOffline.on('storagesize', (event: any) => {
+  // @ts-expect-error the lib is not typed
+  tileLayerOffline.on('storagesize', (event: EventStorageSize) => {
     CacheManager.registerStorageSize(event.storagesize);
 
     if (storageLayer) {
@@ -67,12 +75,12 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
     map.fitBounds(center);
   };
 
-  // @ts-ignore add method to access in the cache manager
+  // @ts-expect-error add method to access in the cache manager
   controlInstance.recenter = recenter;
 
   CacheManager.registerControlInstance(controlInstance);
 
-  // @ts-ignore add method to access in the cache manager
+  // @ts-expect-error add method to access in the cache manager
   if (tileLayerOffline.url !== mapClassicLayers[0].url && navigator.onLine) {
     map.removeLayer(tileLayerOffline);
   }

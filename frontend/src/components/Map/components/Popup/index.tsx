@@ -10,6 +10,8 @@ import { generateResultDetailsUrl } from 'components/pages/search/utils';
 
 import Link from 'components/Link';
 import { PopupResult } from 'modules/trekResult/interface';
+import { getGlobalConfig } from 'modules/utils/api.config';
+import { ContentType } from 'modules/interface';
 import { usePopupResult } from '../../hooks/usePopupResult';
 
 interface Props {
@@ -17,14 +19,14 @@ interface Props {
   parentId?: number;
   handleOpen?: () => void;
   handleClose?: () => void;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | null;
+  type: ContentType | null;
   content?: PopupResult;
 }
 
 interface PropsPC {
   showButton: boolean;
   id: number | string;
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | null;
+  type: ContentType | null;
   parentId?: number;
   content?: PopupResult;
 }
@@ -53,7 +55,7 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId, conte
             className="h-40 w-auto desktop:h-30 object-cover"
             width={300}
             height={130}
-            src={trekPopupResult.imgUrl}
+            src={trekPopupResult.imgUrl || getGlobalConfig().fallbackImageUri}
             alt=""
           />
           <div className="p-4">
@@ -75,7 +77,7 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId, conte
                   </Button>
                 ) : (
                   <Link
-                    className="mt-4 flex gap-1 items-center py-2 px-4 h-12 border border-solid border-primary1 rounded-lg text-sm text-primary1 bg-white font-semibold transition transition-color hover:bg-primary2 focus:bg-primary2"
+                    className="mt-4 flex gap-1 items-center py-2 px-4 h-12 border border-solid border-primary1 rounded-lg text-sm text-primary1 bg-white font-semibold transition-color hover:bg-primary2 focus:bg-primary2 group"
                     href={generateResultDetailsUrl(
                       id,
                       trekPopupResult.title,
@@ -83,7 +85,7 @@ const PopupContent: React.FC<PropsPC> = ({ showButton, id, type, parentId, conte
                       parentId,
                     )}
                   >
-                    <span className="text-center w-full">
+                    <span className="m-auto text-primary1 group-hover:text-primary3 group-focus:text-primary3 transition-color">
                       <FormattedMessage id="search.map.seeResult" />
                     </span>
                   </Link>

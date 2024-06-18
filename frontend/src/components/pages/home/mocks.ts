@@ -1,7 +1,7 @@
 export const mockActivitySuggestionsResponse = {
   id: 2,
   name: 'Col de Font Froide',
-  attachments: [
+  images: [
     {
       author: 'Parc national des Ecrins',
       backend: 'Attachment',

@@ -17,7 +17,7 @@ interface BaseProps {
 
 interface TrekOrTouristicContentProps extends BaseProps {
   pictogramUri?: string;
-  type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | null;
+  type?: string | null;
 }
 
 interface TrekChildProps extends BaseProps {
@@ -31,7 +31,7 @@ const isTrekChild = (trek: TrekOrTouristicContentProps | TrekChildProps): trek i
 export const HoverableMarker: React.FC<TrekOrTouristicContentProps | TrekChildProps> = props => {
   const { hoveredCardId } = useListAndMapContext();
   const isCorrespondingCardHovered = props.id === hoveredCardId;
-  const color = getActivityColor(props.type);
+  const color = getActivityColor(props.type ?? null);
 
   return useMemo(
     () => (

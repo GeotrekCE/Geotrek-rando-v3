@@ -32,7 +32,10 @@
   "page": {
     "back": "Back",
     "not-found": "This page was not found",
-    "goToOffline": "Display offline content"
+    "goToOffline": "Display offline content",
+    "children": {
+      "title": "Further information"
+    }
   },
   "search": {
     "title": "Search",
@@ -45,6 +48,7 @@
     "forThe": "For the",
     "seeMap": "Display Map",
     "filter": "Filter",
+    "closeFilters": "Close filters",
     "reload": "Reload",
     "anErrorOccured": "An error occured",
     "filters": {
@@ -175,10 +179,10 @@
     "booking": "Booking",
     "centerOnMap": "Center on map",
     "openPictureInFullScreen": "View picture in full screen",
-    "closeFullScreen": "Close full screen mode"
+    "closeFullScreen": "Close full screen mode",
+    "contact": "Contact"
   },
   "touristicContent": {
-    "contact": "Contact",
     "email": "Email",
     "website": "Website"
   },
@@ -242,7 +246,8 @@
     "cancel": "Cancel",
     "close": "Close",
     "remove": "Remove",
-    "confirmRemove": "Are you sure you want to remove this element?"
+    "confirmRemove": "Are you sure you want to remove this element?",
+    "openInANewWindow": "Open in a new window"
   },
   "outdoorSite": {
     "accessFullTitle": "Access",
@@ -255,6 +260,11 @@
     "description": "Navigate through enriched, interactive \"ultra High Definition\" pictures",
     "credit": "Picture credit:",
     "displayPicture": "Display picture"
+  },
+  "attachments": {
+    "title": "{count, plural, =0 {Attachment} one {Attachment} other {Attachments}}",
+    "credit": "Credit:",
+    "download": "Download"
   },
   "Wind": {
     "N": "North",
@@ -330,6 +340,9 @@
   "accordion": {
     "open": "Open",
     "close": "Close"
+  },
+  "breadcrumb": {
+    "title": "Breadcrumb"
   },
   "consents": {
     "modal": {

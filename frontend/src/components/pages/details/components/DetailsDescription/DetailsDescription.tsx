@@ -79,14 +79,19 @@ export const DetailsDescription: React.FC<DetailsDescriptionProps> = ({
 
           {hasEmail && (
             <li>
-              <a href={`mailto:${email as string}`} className="underline">
+              <a href={`mailto:${email as string}`} className="underline break-words">
                 {email}
               </a>
             </li>
           )}
           {hasWebsite && (
             <li>
-              <a href={website} target="_blank" rel="noopener noreferrer">
+              <a
+                href={website}
+                className="underline break-words"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {website}
               </a>
             </li>
@@ -149,5 +154,8 @@ const StyledListWithSteps = styled(HtmlText)`
     ${desktopOnly(css`
       margin-right: ${getSpacing(5.5)};
     `)}
+  }
+  a {
+    overflow-wrap: break-word;
   }
 `;

@@ -1,12 +1,9 @@
-import { RawPointGeometry3D } from 'modules/interface';
+import { RawAttachment, RawPointGeometry3D } from 'modules/interface';
 import { InfrastructureType } from 'modules/infrastructureType/interface';
 
 export interface RawInfrastructure {
   accessibility: string | null;
-  attachments?: {
-    type: string;
-    thumbnail: string;
-  }[];
+  attachments: RawAttachment[];
   id: number;
   name: string;
   code: string;

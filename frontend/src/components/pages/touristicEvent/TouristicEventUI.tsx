@@ -31,6 +31,7 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { useDetailsSections } from '../details/useDetailsSections';
+import { DetailsFiles } from '../details/components/DetailsFiles';
 
 interface Props {
   touristicEventUrl: string | string[] | undefined;
@@ -83,7 +84,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
         <PageHead
           title={touristicEventContent?.name}
           description={cleanHTMLElementsFromString(touristicEventContent?.description)}
-          sharingImageUrl={touristicEventContent?.attachments?.[0]?.url}
+          sharingImageUrl={touristicEventContent?.images?.[0]?.url}
         />
         {touristicEventContent === undefined ? (
           <>
@@ -117,15 +118,15 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                         id="outdoorCourseContent_cover"
                         className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                       >
-                        {touristicEventContent.attachments.length > 1 && hasNavigator ? (
+                        {touristicEventContent.images.length > 1 && hasNavigator ? (
                           <DetailsCoverCarousel
-                            attachments={touristicEventContent.attachments}
+                            images={touristicEventContent.images}
                             classNameImage={isFullscreen ? 'object-contain' : ''}
                             onClickImage={toggleFullscreen}
                           />
                         ) : (
                           <ImageWithLegend
-                            attachment={touristicEventContent.attachments[0]}
+                            image={touristicEventContent.images[0]}
                             classNameImage={isFullscreen ? 'object-contain' : ''}
                             onClick={toggleFullscreen}
                           />
@@ -186,6 +187,24 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                         </section>
                       );
                     }
+
+                    if (
+                      section.name === 'medias' &&
+                      touristicEventContent.filesFromAttachments.length > 0
+                    ) {
+                      return (
+                        <section
+                          key={section.name}
+                          ref={sectionRef[section.name]}
+                          id={`details_${section.name}_ref`}
+                        >
+                          <DetailsSection htmlId="details_medias" className={marginDetailsChild}>
+                            <DetailsFiles files={touristicEventContent.filesFromAttachments} />
+                          </DetailsSection>
+                        </section>
+                      );
+                    }
+
                     if (section.name === 'description' && touristicEventContent.description) {
                       return (
                         <section
@@ -326,7 +345,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                                 place: touristicContent.category.label,
                                 description: touristicContent.descriptionTeaser,
                                 thumbnails: touristicContent.thumbnails,
-                                attachments: touristicContent.attachments,
+                                images: touristicContent.images,
                                 iconUri: touristicContent.category.pictogramUri,
                                 iconName: touristicContent.category.label,
                               }),
@@ -392,7 +411,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                   }}
                   poiPoints={[]}
                   bbox={touristicEventContent.bbox}
-                  trekChildrenGeometry={[]}
+                  trekChildrenGeometries={[]}
                   touristicContentPoints={touristicEventContent.touristicContents
                     .filter(touristicContent => touristicContent.geometry !== null)
                     .map(touristicContent => ({
@@ -406,6 +425,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                   sensitiveAreas={[]}
                   trekId={Number(id)}
                   hideMap={hideMobileMap}
+                  type="TOURISTIC_EVENT"
                 />
               </div>
             </div>

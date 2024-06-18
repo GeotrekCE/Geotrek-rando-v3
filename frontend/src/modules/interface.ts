@@ -78,6 +78,12 @@ export interface ColorsConfig {
   hardKO?: string;
   red?: string;
   redMarker?: string;
+  categories?: {
+    trek?: string;
+    events?: string;
+    outdoor?: string;
+    service?: string;
+  };
 }
 
 export interface APICallsConfig {
@@ -135,12 +141,23 @@ export interface RawAttachment {
   title: string;
   url: string;
   type: string;
+  filetype: {
+    id: number;
+    type: string;
+  };
 }
 
-export interface Attachment {
+interface Attachment {
   author: string;
   legend: string;
   url: string;
+}
+
+export interface ImageFromAttachment extends Attachment {}
+
+export interface FileFromAttachment extends Attachment {
+  fileName: string;
+  fileType: string;
 }
 
 export interface LineStringGeometry {
@@ -196,3 +213,10 @@ export interface RawWebLink {
     pictogram: string;
   };
 }
+
+export type ContentType =
+  | 'TREK'
+  | 'TOURISTIC_CONTENT'
+  | 'TOURISTIC_EVENT'
+  | 'OUTDOOR_SITE'
+  | 'OUTDOOR_COURSE';

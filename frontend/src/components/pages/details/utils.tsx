@@ -1,6 +1,7 @@
 import { routes } from 'services/routes';
 import styled, { css } from 'styled-components';
 import { colorPalette, desktopOnly, getSpacing, typography } from 'stylesheet';
+import { ContentType } from 'modules/interface';
 import { convertStringForSitemap, generateResultDetailsUrl } from '../search/utils';
 
 export const HtmlText = styled.div`
@@ -144,7 +145,7 @@ export const generateTouristicEventUrl = (id: number | string, title: string): s
 };
 
 export const generateDetailsUrlFromType = (
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'TOURISTIC_EVENT' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE',
+  type: ContentType,
   id: number | string,
   title: string,
   params?: Record<string, string>,

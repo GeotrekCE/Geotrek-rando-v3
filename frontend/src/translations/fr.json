@@ -32,7 +32,10 @@
   "page": {
     "back": "Retour",
     "not-found": "Cette page est introuvable",
-    "goToOffline": "Afficher les contenus hors ligne"
+    "goToOffline": "Afficher les contenus hors ligne",
+    "children": {
+      "title": "Pour aller plus loin"
+    }
   },
   "search": {
     "title": "Recherche",
@@ -45,6 +48,7 @@
     "forThe": "Pour le",
     "seeMap": "Voir la carte",
     "filter": "Filtrer",
+    "closeFilters": "Fermer les filtres",
     "reload": "Recharger",
     "anErrorOccured": "Une erreur est survenue",
     "filters": {
@@ -175,10 +179,10 @@
     "booking": "Réservation",
     "centerOnMap": "Centrer sur la carte",
     "openPictureInFullScreen": "Voir l'image en plein écran",
-    "closeFullScreen": "Fermer le mode plein écran"
+    "closeFullScreen": "Fermer le mode plein écran",
+    "contact": "Contact"
   },
   "touristicContent": {
-    "contact": "Contact",
     "email": "Courriel",
     "website": "Site internet"
   },
@@ -242,7 +246,8 @@
     "cancel": "Annuler",
     "close": "Fermer",
     "remove": "Supprimer",
-    "confirmRemove": "Êtes-vous sûr de vouloir supprimer cet élément ?"
+    "confirmRemove": "Êtes-vous sûr de vouloir supprimer cet élément ?",
+    "openInANewWindow": "Ouvrir dans une nouvelle fenêtre"
   },
   "outdoorSite": {
     "accessFullTitle": "Accès",
@@ -255,6 +260,11 @@
     "description": "Naviguez dans des images \"très haute définition\" enrichies et interactives",
     "credit": "Crédit image :",
     "displayPicture": "Afficher l'image"
+  },
+  "attachments": {
+    "title": "{count, plural, =0 {Document associé} one {Document associé} other {Documents associés}}",
+    "credit": "Crédit :",
+    "download": "Télécharger"
   },
   "Wind": {
     "N": "Nord",
@@ -330,6 +340,9 @@
   "accordion": {
     "open": "Ouvrir",
     "close": "Fermer"
+  },
+  "breadcrumb": {
+    "title": "Fil d'ariane"
   },
   "consents": {
     "modal": {

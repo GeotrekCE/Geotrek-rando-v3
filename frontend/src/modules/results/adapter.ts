@@ -3,7 +3,7 @@ import { ActivityChoices } from 'modules/activities/interface';
 import { CityDictionnary } from 'modules/city/interface';
 import { DifficultyChoices } from 'modules/filters/difficulties/interface';
 import { Choices } from 'modules/filters/interface';
-import { getThumbnails } from 'modules/utils/adapter';
+import { getLargeImagesOrThumbnailsFromAttachments } from 'modules/utils/adapter';
 import { formatHours } from 'modules/utils/time';
 import { NetworkDictionnary } from 'modules/networks/interface';
 import { InformationCardArray, RawTrekResult, TrekResult } from './interface';
@@ -63,7 +63,7 @@ export const adaptTrekResultList = ({
     name: rawResult.name,
     tags:
       displayThemes === true ? rawResult.themes.map(themeId => themes[themeId]?.label || '') : [],
-    attachments: getThumbnails(rawResult.attachments),
+    images: getLargeImagesOrThumbnailsFromAttachments(rawResult.attachments, true),
     category: activities[rawResult.practice] ?? null,
     informations: [
       {
@@ -95,7 +95,7 @@ export const adaptTrekResultList = ({
       },
       {
         label: 'networks',
-        value: rawResult.networks.map(networkId => networks[networkId]),
+        value: rawResult.networks.map(networkId => networks[networkId]).filter(Boolean),
       } as InformationCardArray,
       // we disable this button because the booking behaviour is not implemented yet
       // {

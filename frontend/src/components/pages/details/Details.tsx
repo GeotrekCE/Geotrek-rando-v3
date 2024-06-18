@@ -51,7 +51,8 @@ import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
 import { useOnScreenSection } from './hooks/useHighlightedSection';
 import { DetailsGear } from './components/DetailsGear';
 import { useDetailsSections } from './useDetailsSections';
-import { DetailsMedias } from './components/DetailsMedias';
+import { DetailsViewPoints } from './components/DetailsViewPoints';
+import { DetailsFiles } from './components/DetailsFiles';
 
 interface Props {
   slug: string | string[] | undefined;
@@ -156,13 +157,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                       >
                         {details.imgs.length > 1 && hasNavigator ? (
                           <DetailsCoverCarousel
-                            attachments={details.imgs}
+                            images={details.imgs}
                             classNameImage={isFullscreen ? 'object-contain' : ''}
                             onClickImage={toggleFullscreen}
                           />
                         ) : (
                           <ImageWithLegend
-                            attachment={details.imgs[0]}
+                            image={details.imgs[0]}
                             classNameImage={isFullscreen ? 'object-contain' : ''}
                             onClick={toggleFullscreen}
                           />
@@ -209,9 +210,9 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                       );
                     }
                     if (
-                      hasNavigator &&
                       section.name === 'medias' &&
-                      details.viewPoints.length > 0
+                      ((hasNavigator && details.viewPoints.length > 0) ||
+                        details.filesFromAttachments.length > 0)
                     ) {
                       return (
                         <section
@@ -220,10 +221,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                           id={`details_${section.name}_ref`}
                         >
                           <DetailsSection htmlId="details_medias" className={marginDetailsChild}>
-                            <DetailsMedias
-                              viewPoints={details.viewPoints}
-                              handleViewPointClick={handleViewPointClick}
-                            />
+                            <DetailsFiles files={details.filesFromAttachments} />
+                            {hasNavigator && (
+                              <DetailsViewPoints
+                                viewPoints={details.viewPoints}
+                                handleViewPointClick={handleViewPointClick}
+                              />
+                            )}
                           </DetailsSection>
                         </section>
                       );
@@ -270,10 +274,11 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               name: poi.name ?? '',
                               description: poi.description,
                               thumbnails: poi.thumbnails,
-                              attachments: poi.attachments,
+                              images: poi.images,
                               iconUri: poi.type.pictogramUri,
                               iconName: poi.type.label,
                               viewPoints: poi.viewPoints,
+                              filesFromAttachments: poi.filesFromAttachments,
                             }))}
                             type="POI"
                             handleViewPointClick={handleViewPointClick}
@@ -514,11 +519,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               trekId={details.id}
                               startPoint={{
                                 type: 'Point',
-                                coordinates:
-                                  'trekDeparture' in details
-                                    ? details.trekDeparture
-                                    : // @ts-ignore next-line
-                                      details.geometry?.coordinates,
+                                coordinates: details.trekDeparture,
                               }}
                             />
                           </DetailsSection>
@@ -547,7 +548,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               place: touristicContent.category.label,
                               description: touristicContent.descriptionTeaser,
                               thumbnails: touristicContent.thumbnails,
-                              attachments: touristicContent.attachments,
+                              images: touristicContent.images,
                               iconUri: touristicContent.category.pictogramUri,
                               iconName: touristicContent.category.label,
                             }))}
@@ -653,12 +654,12 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                   pointsReference={details.pointsReference}
                   bbox={details.bbox}
                   trekFamily={trekFamily}
-                  trekChildrenGeometry={details.children.reduce<TrekChildGeometry[]>(
+                  trekChildrenGeometries={details.children.reduce<TrekChildGeometry[]>(
                     (children, currentChild) => {
-                      if (currentChild.geometry) {
+                      if (currentChild.childGeometry) {
                         children.push({
-                          ...currentChild.geometry,
-                          id: `TREK-${currentChild.geometry.id}`,
+                          ...currentChild.childGeometry,
+                          id: `TREK-${currentChild.childGeometry.id}`,
                         });
                       }
                       return children;
@@ -699,6 +700,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                   ]}
                   displayMap={displayMobileMap}
                   setMapId={setMapId}
+                  type="TREK"
                 />
               </div>
             </div>

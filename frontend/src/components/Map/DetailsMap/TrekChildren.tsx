@@ -5,30 +5,35 @@ import { TrekChildGeometry } from 'modules/details/interface';
 import { HoverableMarker } from '../components/HoverableMarker';
 
 export type TrekChildrenPropsType = {
-  trekChildrenGeometry?: TrekChildGeometry[];
+  trekChildrenGeometries?: TrekChildGeometry[];
   parentId?: number;
 };
 
-export const TrekChildren: React.FC<TrekChildrenPropsType> = props => {
+export const TrekChildren: React.FC<TrekChildrenPropsType> = ({
+  trekChildrenGeometries,
+  parentId,
+}) => {
+  if (!trekChildrenGeometries) {
+    return null;
+  }
   return (
     <>
-      {props.trekChildrenGeometry !== undefined &&
-        props.trekChildrenGeometry.map((trekChildGeometry, index) => {
-          const idSplitted = trekChildGeometry.id.split('-');
-          const id = Number(idSplitted[idSplitted.length - 1]);
+      {trekChildrenGeometries.map((trekChildGeometry, index) => {
+        const idSplitted = trekChildGeometry.id.split('-');
+        const id = Number(idSplitted[idSplitted.length - 1]);
 
-          return (
-            <HoverableMarker
-              key={trekChildGeometry.id}
-              id={trekChildGeometry.id}
-              position={[trekChildGeometry.departure.y, trekChildGeometry.departure.x]}
-              rank={index + 1}
-              type="TREK_CHILD"
-            >
-              <Popup id={id} type={'TREK'} parentId={props.parentId} />
-            </HoverableMarker>
-          );
-        })}
+        return (
+          <HoverableMarker
+            key={trekChildGeometry.id}
+            id={trekChildGeometry.id}
+            position={[trekChildGeometry.departure.y, trekChildGeometry.departure.x]}
+            rank={index + 1}
+            type="TREK_CHILD"
+          >
+            <Popup id={id} type={'TREK'} parentId={parentId} />
+          </HoverableMarker>
+        );
+      })}
     </>
   );
 };

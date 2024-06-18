@@ -41,7 +41,7 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
       }}
     >
       {(photoUrl || type.pictogramUri) && (
-        <div className="h-25 w-25 shrink-0 hidden desktop:block desktop:pr-4">
+        <div className="size-25 shrink-0 hidden desktop:block desktop:pr-4">
           <InformationDeskIcon pictogramUri={photoUrl || type.pictogramUri} />
         </div>
       )}
@@ -126,12 +126,12 @@ export const DetailsInformationDesk: React.FC<DetailsInformationDeskProps> = ({
 
 const InformationDeskIcon: React.FC<{ pictogramUri: string }> = ({ pictogramUri }) => {
   if (RegExp(/(.*).svg/).test(pictogramUri)) {
-    return <SVG src={pictogramUri} className="h-full w-full m-1" preProcessor={optimizeSVG} />;
+    return <SVG src={pictogramUri} className="size-full m-1" preProcessor={optimizeSVG} />;
   }
   return (
     <Image
       loading="lazy"
-      className="object-cover h-full w-full rounded-full overflow-hidden"
+      className="object-cover size-full rounded-full overflow-hidden"
       src={pictogramUri}
       alt=""
       width={100}

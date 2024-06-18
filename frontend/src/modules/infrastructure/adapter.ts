@@ -1,4 +1,5 @@
 import { InfrastructureTypeDictionary } from 'modules/infrastructureType/interface';
+import { getThumbnail } from 'modules/utils/adapter';
 import { Infrastructure, InfrastructureDictionary, RawInfrastructure } from './interface';
 
 const adaptInfrastructure = (
@@ -7,7 +8,7 @@ const adaptInfrastructure = (
 ): Infrastructure => ({
   accessibility: rawInfrastructure.accessibility ?? null,
   id: rawInfrastructure.id,
-  imageUrl: rawInfrastructure.attachments?.find(({ type }) => type === 'image')?.thumbnail ?? null,
+  imageUrl: getThumbnail(rawInfrastructure.attachments),
   description: rawInfrastructure.description,
   geometry: rawInfrastructure.geometry,
   name: rawInfrastructure.name,

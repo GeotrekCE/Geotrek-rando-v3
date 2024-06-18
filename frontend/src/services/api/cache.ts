@@ -1,5 +1,4 @@
 import { Axios } from 'axios';
-import qs from 'qs';
 import store from 'store';
 import { getGlobalConfig } from 'modules/utils/api.config';
 
@@ -26,8 +25,8 @@ const cachedRoute: RegExp[] = [
 const apiUrl = getGlobalConfig().apiUrl;
 
 export const requestInterceptor = (config: any) => {
-  // eslint-disable-next-line
-  const key = `${apiUrl}${config.url}?${qs.stringify(config.params)}`;
+  const params = new URLSearchParams(config.params as URLSearchParams);
+  const key = `${apiUrl}${config.url}?${params.toString()}`;
 
   if (config.method === 'get' && store.get(key) != null) {
     const cached = store.get(key);
@@ -60,18 +59,20 @@ export const responseInterceptor = (response: any) => {
     // eslint-disable-next-line
     !response.config._fromCache &&
     response.config.method === 'get' &&
-    cachedRoute.some(r => r.test(response.config.url))
+    cachedRoute.some(r => r.test(response.config.url as string))
   ) {
-    // eslint-disable-next-line
-    const key = `${apiUrl}${response.config.url}?${qs.stringify(response.config.params)}`;
+    const params = new URLSearchParams(response.config.params as URLSearchParams);
+    const key = `${apiUrl}${response.config.url}?${params.toString()}`;
 
     store.set(key, { data: response.data, expiration: Date.now() + STALE_CACHE_TIME });
   }
   return response;
 };
 
-export default (axios: Axios) => {
+const cache = (axios: Axios) => {
   axios.interceptors.request.use(requestInterceptor);
   axios.interceptors.response.use(responseInterceptor);
   return axios;
 };
+
+export default cache;

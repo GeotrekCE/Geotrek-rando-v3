@@ -20,7 +20,7 @@ export const Pagination: React.FC<PaginationProps> = ({ hasPreviousPage, hasNext
 
   const queryForPreviousPage = { ...router.query, page: page - 1 };
   if (queryForPreviousPage.page === 1) {
-    // @ts-ignore: Unreachable code error
+    // @ts-expect-error: Unreachable code error
     delete queryForPreviousPage.page;
   }
 

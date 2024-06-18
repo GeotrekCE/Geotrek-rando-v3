@@ -22,7 +22,7 @@ export const RemoteIconInformation: React.FC<Props> = ({ iconUri, ...props }) =>
       <Image
         loading="lazy"
         src={iconUri}
-        className="object-cover object-center w-6 h-6"
+        className="object-cover object-center size-6"
         alt=""
         width={24}
         height={24}

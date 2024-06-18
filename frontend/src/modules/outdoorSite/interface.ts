@@ -1,8 +1,9 @@
 import { Bbox, WebLink } from 'modules/details/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import {
-  Attachment,
+  FileFromAttachment,
   GeometryCollection,
+  ImageFromAttachment,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -80,7 +81,8 @@ export interface OutdoorSiteResult extends ResultCard {
 export interface OutdoorSite {
   id: string;
   name: string;
-  attachments: Attachment[];
+  images: ImageFromAttachment[];
+  filesFromAttachments: FileFromAttachment[];
   geometry:
     | PolygonGeometry
     | MultiPolygonGeometry

@@ -1,12 +1,11 @@
 import { CardIcon } from 'components/CardIcon';
 import { SmallCarousel } from 'components/Carousel';
 import { ImageWithLegend } from 'components/ImageWithLegend';
-import { Attachment } from 'modules/interface';
-import getActivityColor from '../getActivityColor';
+import { ContentType, ImageFromAttachment } from 'modules/interface';
 
 interface ResultCardCarouselProps {
-  type: 'TREK' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE' | 'TOURISTIC_CONTENT' | 'TOURISTIC_EVENT';
-  attachments: Attachment[];
+  type: ContentType;
+  images: ImageFromAttachment[];
   iconUri?: string;
   iconName: string;
   onClickImage?: () => void;
@@ -17,26 +16,25 @@ interface ResultCardCarouselProps {
 
 export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
   type,
-  attachments,
+  images,
   iconUri,
   iconName,
   onClickImage,
   redirect,
   asColumn,
 }) => {
-  const files =
-    typeof navigator !== 'undefined' && navigator?.onLine ? attachments : attachments.slice(0, 1);
+  const files = typeof navigator !== 'undefined' && navigator?.onLine ? images : images.slice(0, 1);
 
   return (
     <div
-      className={`h-full w-full grow relative ${
+      className={`size-full grow relative ${
         asColumn !== true ? 'desktop:w-resultCardDesktop' : ''
       }`}
     >
       <SmallCarousel>
-        {files.map((attachment, index) => (
+        {files.map((image, index) => (
           <ImageWithLegend
-            attachment={attachment}
+            image={image}
             key={index}
             loading="lazy"
             onClick={onClickImage}
@@ -44,7 +42,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
           />
         ))}
       </SmallCarousel>
-      <CardIcon iconUri={iconUri} iconName={iconName} color={getActivityColor(type)} />
+      <CardIcon iconUri={iconUri} iconName={iconName} type={type} />
     </div>
   );
 };

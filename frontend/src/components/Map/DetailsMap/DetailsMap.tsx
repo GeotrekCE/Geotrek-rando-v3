@@ -7,6 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 
 import {
+  ContentType,
   Coordinate2D,
   GeometryCollection,
   LineStringGeometry,
@@ -26,8 +27,10 @@ import { FormattedMessage } from 'react-intl';
 import { InformationDesk } from 'modules/informationDesk/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
-import { cn } from 'services/utils/cn';
 import { ViewPoint } from 'modules/viewPoint/interface';
+import { OutdoorSiteResult } from 'modules/outdoorSite/interface';
+import { OutdoorCourseResult } from 'modules/outdoorCourse/interface';
+import { cn } from 'services/utils/cn';
 import { BackToMapButton } from 'components/BackToMapButton';
 import { BackButton } from '../components/BackButton';
 
@@ -61,9 +64,8 @@ export interface GeometryListProps {
 
 export type PropsType = {
   mapId?: string;
-  access?: any;
-  experiences?: any;
-  courses?: any;
+  experiences?: OutdoorSiteResult[];
+  courses?: OutdoorCourseResult[];
   poiPoints?: PointWithIcon[];
   touristicContentPoints?: GeometryListProps[];
   trekGeometry?: Coordinate2D[];
@@ -81,7 +83,7 @@ export type PropsType = {
   shouldUsePopups?: boolean;
   bbox: { corner1: Coordinate2D; corner2: Coordinate2D };
   trekFamily?: TrekFamily | null;
-  trekChildrenGeometry?: TrekChildGeometry[];
+  trekChildrenGeometries?: TrekChildGeometry[];
   sensitiveAreas?: SensitiveAreaGeometry[];
   trekId: number;
   advisedParking?: string;
@@ -94,6 +96,7 @@ export type PropsType = {
   viewPoints?: ViewPoint[];
   displayMap?: () => void;
   setMapId?: (id: string) => void;
+  type: ContentType;
 };
 export const DetailsMap: React.FC<PropsType> = props => {
   const { reportVisibility, setReportVisibility } = useDetailsAndMapContext();
@@ -163,7 +166,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
   return (
     <div
       className={cn(
-        'relative w-full h-full',
+        'relative size-full',
         visibleSection === 'report' &&
           reportVisibility &&
           "after:content-[''] after:absolute after:inset-0 desktop:after:top-1 after:border-solid after:border-3 after:border-red after:pointer-events-none",
@@ -171,7 +174,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
     >
       <MapContainer
         className={cn(
-          'mapContainer w-full h-full',
+          'mapContainer size-full',
           hasTitle && 'hasDrawer',
           props.mapId !== 'default' && props.mapId !== undefined && '!bg-black',
         )}
@@ -221,7 +224,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
             <TileLayerManager />
             <ControlSection
               trekChildrenVisibility={
-                props.trekChildrenGeometry && props.trekChildrenGeometry.length > 0
+                props.trekChildrenGeometries && props.trekChildrenGeometries.length > 0
                   ? trekChildrenMobileVisibility
                   : null
               }
@@ -245,19 +248,17 @@ export const DetailsMap: React.FC<PropsType> = props => {
                   : null
               }
               coursesVisibility={
-                Boolean(props.courses) && props.courses.length > 0 ? coursesVisibility : null
+                props.courses && props.courses.length > 0 ? coursesVisibility : null
               }
               experiencesVisibility={
-                Boolean(props.experiences) && props.experiences.length > 0
-                  ? experiencesVisibility
-                  : null
+                props.experiences && props.experiences.length > 0 ? experiencesVisibility : null
               }
               signageVisibility={props.signage ? signageVisibility : null}
               serviceVisibility={
                 props.service && props.service.length > 0 ? serviceVisibility : null
               }
               infrastructureVisibility={props.infrastructure ? infrastructureVisibility : null}
-              viewPointVisibility={props.viewPoints ? viewPointVisibility : null}
+              viewPointVisibility={props.viewPoints?.length ? viewPointVisibility : null}
               toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
               togglePoiVisibility={togglePoiVisibility}
               toggleReferencePointsVisibility={toggleReferencePointsVisibility}
@@ -279,9 +280,11 @@ export const DetailsMap: React.FC<PropsType> = props => {
                 advisedParking={props.advisedParking}
               />
             )}
-            {props.outdoorGeometry && <GeometryList contents={[props.outdoorGeometry]} />}
+            {props.outdoorGeometry && (
+              <GeometryList contents={[props.outdoorGeometry]} type={props.type} />
+            )}
             {props.eventGeometry && (
-              <GeometryList contents={[props.eventGeometry]} type={'TOURISTIC_EVENT'} />
+              <GeometryList contents={[props.eventGeometry]} type={props.type} />
             )}
             <MapChildren
               courses={props.courses}
@@ -290,7 +293,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
               poiPoints={props.poiPoints}
               touristicContentPoints={props.touristicContentPoints}
               pointsReference={props.pointsReference}
-              trekChildrenGeometry={props.trekChildrenGeometry}
+              trekChildrenGeometries={props.trekChildrenGeometries}
               sensitiveAreasGeometry={props.sensitiveAreas}
               signage={props.signage}
               service={props.service}

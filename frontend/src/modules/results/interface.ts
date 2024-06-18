@@ -1,5 +1,5 @@
 import { Activity } from 'modules/activities/interface';
-import { Attachment, RawAttachment } from 'modules/interface';
+import { GeometryObject, ImageFromAttachment, RawAttachment } from 'modules/interface';
 import { TouristicContentResult } from 'modules/touristicContent/interface';
 import { TouristicEventResult } from 'modules/touristicEvent/interface';
 import { Network } from 'modules/networks/interface';
@@ -21,7 +21,7 @@ export interface InformationCardLabelValues {
 
 export interface InformationCardArray {
   label: 'networks';
-  value: Network[];
+  value: Network[] | [];
 }
 
 interface InformationCardOthers {
@@ -39,10 +39,18 @@ export type InformationCard = (
 export interface ResultCard {
   id: string;
   name: string;
-  attachments: Attachment[];
+  images: ImageFromAttachment[];
   tags?: string[];
   place: string | null;
   informations?: InformationCard[];
+  geometry?: GeometryObject;
+}
+
+export interface SearchParams {
+  treks: number | null;
+  touristicContents: number | null;
+  outdoorSites: number | null;
+  touristicEvents: number | null;
 }
 
 export interface SearchResults {
@@ -53,18 +61,8 @@ export interface SearchResults {
     outdoorSitesCount: number;
     touristicEventsCount: number;
   };
-  nextPages: {
-    treks: number | null;
-    touristicContents: number | null;
-    outdoorSites: number | null;
-    touristicEvents: number | null;
-  };
-  previousPages: {
-    treks: number | null;
-    touristicContents: number | null;
-    outdoorSites: number | null;
-    touristicEvents: number | null;
-  };
+  nextPages: SearchParams;
+  previousPages: SearchParams;
   results: (TrekResult | TouristicContentResult | OutdoorSiteResult | TouristicEventResult)[];
 }
 export interface TrekResult extends ResultCard {

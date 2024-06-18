@@ -16,7 +16,7 @@ type Props = {
   }: {
     isFullscreen: boolean;
     toggleFullscreen: () => void;
-  }) => any | ReactElement<any>;
+  }) => ReactElement;
 };
 
 const Inner: React.FC<Props> = ({ className, children }) => {
@@ -60,7 +60,7 @@ const Inner: React.FC<Props> = ({ className, children }) => {
       {({ ref, onToggle }) => {
         return (
           <div
-            // @ts-ignore Wrong type in the lib
+            // @ts-expect-error Wrong type in the lib
             ref={ref}
             className={cn('relative bg-dark', className)}
           >
@@ -71,8 +71,8 @@ const Inner: React.FC<Props> = ({ className, children }) => {
                 onClick={onToggle}
               />
             )}
-            <div className="flex items-center justify-center w-full h-full">
-              <div className="w-full h-full">
+            <div className="flex items-center justify-center size-full">
+              <div className="size-full">
                 {typeof children === 'function'
                   ? children({
                       isFullscreen,

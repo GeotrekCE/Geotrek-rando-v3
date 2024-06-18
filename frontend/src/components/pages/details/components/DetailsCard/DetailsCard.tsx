@@ -1,9 +1,9 @@
+import { useId } from 'react';
 import { CardIcon } from 'components/CardIcon';
 import { Link } from 'components/Link';
 import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
 import { HtmlText } from 'components/pages/details/utils';
-import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
 import useHasMounted from 'hooks/useHasMounted';
 import parse from 'html-react-parser';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
@@ -11,22 +11,26 @@ import { FormattedMessage } from 'react-intl';
 import { cn } from 'services/utils/cn';
 import { Arrow } from 'components/Icons/Arrow';
 import { ViewPoint } from 'modules/viewPoint/interface';
-import { Attachment } from '../../../../../modules/interface';
+import { FileFromAttachment, ImageFromAttachment } from 'modules/interface';
+import { ViewPoint as ViewPointIcon } from 'components/Icons/ViewPoint';
+import { Paperclip } from 'components/Icons/Paperclip';
 import { useDetailsCard } from './useDetailsCard';
-import { DetailsMedias } from '../DetailsMedias';
+import { DetailsViewPoints } from '../DetailsViewPoints';
+import { DetailsFiles } from '../DetailsFiles';
 
 export interface DetailsCardProps {
   id: string;
   name: string;
   place?: string;
   description?: string | null;
-  attachments: Attachment[];
-  thumbnails: Attachment[];
+  images: ImageFromAttachment[];
+  thumbnails: ImageFromAttachment[];
   iconUri?: string;
   iconName?: string;
   className?: string;
   redirectionUrl?: string;
   type?: string;
+  filesFromAttachments?: FileFromAttachment[];
   viewPoints?: ViewPoint[];
   handleViewPointClick?: (id: string) => void;
 }
@@ -35,7 +39,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   id,
   name,
   description,
-  attachments,
+  images = [],
   thumbnails,
   iconUri,
   iconName,
@@ -44,27 +48,39 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
   redirectionUrl,
   type,
   handleViewPointClick,
-  viewPoints,
+  filesFromAttachments = [],
+  viewPoints = [],
 }) => {
   const hasMedia = Boolean(viewPoints?.length);
-  const { truncateState, toggleTruncateState, detailsCardRef } = useDetailsCard(hasMedia);
+  const { truncateState, toggleTruncateState, detailsCardRef, setTruncateState } =
+    useDetailsCard(hasMedia);
+
   const descriptionStyled =
     truncateState === 'TRUNCATE' ? (
-      <HtmlText className="line-clamp-2 desktop:line-clamp-5 text-greyDarkColored">
+      <HtmlText className="custo-result-card-description line-clamp-2 desktop:line-clamp-5 text-greyDarkColored">
         <div>{parse(description ?? '')}</div>
       </HtmlText>
     ) : (
-      <HtmlText className="text-greyDarkColored">{parse(description ?? '')}</HtmlText>
+      <HtmlText className="custo-result-card-description text-greyDarkColored">
+        {parse(description ?? '')}
+      </HtmlText>
     );
 
   const { setHoveredCardId } = useListAndMapContext();
 
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
+
+  const hasViewPoints = hasNavigator && viewPoints.length > 0;
+  const hasFiles = filesFromAttachments.length > 0;
+
+  const viewPointsId = useId();
+  const filesId = useId();
+
   return (
     <li
       className={cn(
-        `relative border border-solid border-greySoft rounded-card
-  flex-none desktop:w-auto mx-1 desktop:mb-6
+        `custo-result-card relative border border-solid border-greySoft rounded-lg
+  flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden
   hover:border-blackSemiTransparent transition-all duration-500`,
         className,
       )}
@@ -72,6 +88,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
       <div
         className={cn(
           `
+      relative
       overflow-hidden desktop:w-auto
       h-fit desktop:flex-row
       transition-all duration-500`,
@@ -85,24 +102,62 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           setHoveredCardId(null);
         }}
       >
-        <div className="float-left flex shrink-0 h-40 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6">
+        {(hasFiles || hasViewPoints) && (
+          <ul className="hidden desktop:flex absolute -top-1 right-0">
+            {hasFiles && (
+              <li>
+                <a
+                  className="block -mr-1p p-2 border border-solid border-blackSemiTransparent hover:bg-greySoft focus:bg-greySoft transition rounded-bl-lg"
+                  href={`#${filesId}`}
+                  onClick={() => setTruncateState('FULL')}
+                >
+                  <Paperclip size={20} aria-hidden />
+                  <span className="sr-only">
+                    <FormattedMessage
+                      id="attachments.title"
+                      values={{ count: filesFromAttachments.length }}
+                    />
+                  </span>
+                </a>
+              </li>
+            )}
+            {hasViewPoints && (
+              <li>
+                <a
+                  className={cn(
+                    'block -mr-1p p-2 border border-solid border-blackSemiTransparent hover:bg-greySoft focus:bg-greySoft transition',
+                    !hasFiles && 'rounded-bl-lg',
+                  )}
+                  href={`#${viewPointsId}`}
+                  onClick={() => setTruncateState('FULL')}
+                >
+                  <ViewPointIcon size={20} aria-hidden />
+                  <span className="sr-only">
+                    <FormattedMessage id="viewPoint.title" />
+                  </span>
+                </a>
+              </li>
+            )}
+          </ul>
+        )}
+        <div className="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6">
           <div className="w-full">
             <Modal className="h-full">
               {({ isFullscreen, toggleFullscreen }) => (
                 <>
                   {type === 'TOURISTIC_CONTENT' &&
                     redirectionUrl &&
-                    attachments.length > 0 &&
+                    images.length > 0 &&
                     hasNavigator && (
                       <DetailsCoverCarousel
-                        attachments={isFullscreen ? attachments : thumbnails}
+                        images={isFullscreen ? images : thumbnails}
                         classNameImage={cn('object-center', isFullscreen && 'object-contain')}
                         redirect={redirectionUrl}
                       />
                     )}
-                  {type !== 'TOURISTIC_CONTENT' && attachments.length > 0 && hasNavigator && (
+                  {type !== 'TOURISTIC_CONTENT' && images.length > 0 && hasNavigator && (
                     <DetailsCoverCarousel
-                      attachments={isFullscreen ? attachments : thumbnails}
+                      images={isFullscreen ? images : thumbnails}
                       classNameImage={cn('object-center', isFullscreen && 'object-contain')}
                       onClickImage={toggleFullscreen}
                     />
@@ -110,7 +165,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
                 </>
               )}
             </Modal>
-            <CardIcon iconUri={iconUri} iconName={iconName} color={getActivityColor(type)} />
+            <CardIcon iconUri={iconUri} iconName={iconName} type={type} />
           </div>
         </div>
         <div ref={detailsCardRef} className="p-2 desktop:p-6">
@@ -125,14 +180,25 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
           {Boolean(description) && (
             <>
               <OptionalLink redirectionUrl={redirectionUrl}>{descriptionStyled}</OptionalLink>
-              {hasNavigator && Number(viewPoints?.length) > 0 && truncateState !== 'TRUNCATE' && (
-                <div className="clear-both desktop:clear-none desktop:min-w-[420px] overflow-hidden py-6">
-                  <DetailsMedias
-                    viewPoints={viewPoints ?? []}
-                    handleViewPointClick={handleViewPointClick}
+              {(hasViewPoints || hasFiles) && truncateState !== 'TRUNCATE' && (
+                <div className="clear-both flex flex-col gap-4 desktop:min-w-[420px] overflow-hidden desktop:-mx-6 py-6">
+                  <DetailsFiles
+                    className="scroll-mt-20 desktop:scroll-mt-40"
+                    id={filesId}
+                    files={filesFromAttachments}
                     titleTag="h3"
                     asAccordion
                   />
+                  {hasNavigator && (
+                    <DetailsViewPoints
+                      className="scroll-mt-20 desktop:scroll-mt-40"
+                      id={viewPointsId}
+                      viewPoints={viewPoints}
+                      handleViewPointClick={handleViewPointClick}
+                      titleTag="h3"
+                      asAccordion
+                    />
+                  )}
                 </div>
               )}
               {truncateState !== 'NONE' && (

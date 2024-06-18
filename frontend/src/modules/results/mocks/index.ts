@@ -31,6 +31,10 @@ export const mockResultsResponse = (): APIResponseForList<RawTrekResult> => ({
           title: '',
           url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
           type: 'image',
+          filetype: {
+            id: 1,
+            type: 'Topoguide',
+          },
         },
       ],
     },

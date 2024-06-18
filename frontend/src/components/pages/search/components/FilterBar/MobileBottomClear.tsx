@@ -1,8 +1,5 @@
-import { Bin } from 'components/Icons/Bin';
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import styled from 'styled-components';
-import { colorPalette } from 'stylesheet';
+import { Bin } from 'components/Icons/Bin';
 
 interface Props {
   resultsNumber: number;
@@ -11,35 +8,21 @@ interface Props {
 
 const MobileBottomClear: React.FC<Props> = ({ resultsNumber, resetFilter }) => {
   return (
-    <BottomContainer className="shadow-lg bg-white">
-      <div
+    <div className="flex w-[80vw] h-8 items-center fixed shadow-lg bg-white right-0 bottom-0">
+      <button
+        type="button"
         onClick={resetFilter}
-        className="text-primary1 font-bold text-P2 cursor-pointer flex items-center w-1/2 justify-center"
+        className="text-primary1 font-bold text-P2 flex items-center w-1/2 justify-center"
       >
-        <Bin size={12} className="mr-2" />
+        <Bin size={12} className="mr-2" aria-hidden />
         <FormattedMessage id={'search.filters.clearAll'} />
-      </div>
+      </button>
 
-      <ClearContainer className="w-1/2">
+      <div className="w-1/2 border-l border-solid border-greySoft text-center ">
         <FormattedMessage values={{ count: resultsNumber }} id="search.resultsFoundShort" />
-      </ClearContainer>
-    </BottomContainer>
+      </div>
+    </div>
   );
 };
-
-const BottomContainer = styled.div`
-  display: flex !important;
-  align-items: center;
-  position: fixed;
-  width: 80vw;
-  height: 32px;
-  bottom: 0;
-  right: 0;
-`;
-
-const ClearContainer = styled.div`
-  border-left: 1px solid ${colorPalette.greySoft.DEFAULT};
-  text-align: center;
-`;
 
 export default MobileBottomClear;

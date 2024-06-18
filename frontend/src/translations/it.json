@@ -32,7 +32,10 @@
   "page": {
     "back": "Ritorno",
     "not-found": "Questa pagina non è stata trovata",
-    "goToOffline": "Visualizzazione di contenuti offline"
+    "goToOffline": "Visualizzazione di contenuti offline",
+    "children": {
+      "title": "Per saperne di più"
+    }
   },
   "search": {
     "title": "Ricerca",
@@ -45,6 +48,7 @@
     "forThe": "Per il",
     "seeMap": "Vedere la mappa",
     "filter": "Filtro",
+    "closeFilters": "Chiudere i filtri",
     "reload": "Ricaricare",
     "anErrorOccured": "C'è stato un errore",
     "filters": {
@@ -175,10 +179,10 @@
     "booking": "Prenotazione",
     "centerOnMap": "Center on map",
     "openPictureInFullScreen": "View picture in full screen",
-    "closeFullScreen": "Close full screen mode"
+    "closeFullScreen": "Close full screen mode",
+    "contact": "Contatto"
   },
   "touristicContent": {
-    "contact": "Contatto",
     "email": "email",
     "website": "Sito web"
   },
@@ -245,7 +249,8 @@
     "cancel": "Cancella",
     "close": "Chiudere",
     "remove": "Cancellare",
-    "confirmRemove": "Sei sicuro di voler rimuovere questo elemento?"
+    "confirmRemove": "Sei sicuro di voler rimuovere questo elemento?",
+    "openInANewWindow": "Aprire in una nuova finestra"
   },
   "outdoorSite": {
     "accessFullTitle": "Accesso",
@@ -258,6 +263,11 @@
     "description": "Navigare attraverso immagini arricchite e interattive ad \"altissima definizione\"",
     "credit": "Credito foto:",
     "displayPicture": "Sfoglia foto"
+  },
+  "attachments": {
+    "title": "{count, plural, =0 {Allegato} one {Allegato} other {Allegati}}",
+    "credit": "Credito:",
+    "download": "Scarica"
   },
   "Wind": {
     "N": "Nord",
@@ -294,6 +304,9 @@
   "accordion": {
     "open": "Open",
     "close": "Close"
+  },
+  "breadcrumb": {
+    "title": "Breadcrumb"
   },
   "consents": {
     "modal": {

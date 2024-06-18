@@ -2,7 +2,7 @@ import getNextConfig from 'next/config';
 import { useRouter } from 'next/router';
 import { useQuery } from '@tanstack/react-query';
 import { getFlatPages } from 'modules/flatpage/connector';
-import { MenuItem } from 'modules/header/interface';
+import { MenuItem } from 'modules/menuItems/interface';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { IntlShape, useIntl } from 'react-intl';
 import { FooterConfigInput, FooterConfigOutput, PortalLinkStatic } from './interface';
@@ -21,7 +21,7 @@ export const useFooter = (): { config: FooterConfigOutput; intl: IntlShape } => 
   const containsInformationIDLinks = links.some(link => 'informationID' in link);
 
   const { data = [] } = useQuery<MenuItem[], Error>(
-    ['header', language],
+    ['footer', language],
     () => getFlatPages(language),
     {
       enabled: containsInformationIDLinks,
@@ -35,11 +35,11 @@ export const useFooter = (): { config: FooterConfigOutput; intl: IntlShape } => 
         if ('informationID' in link) {
           const page = data.find(({ id }) => id === link.informationID);
           if (page) {
-            return { label: page.title, url: page.url };
+            return { label: page.title, url: page.url, openInAnotherTab: page.openInAnotherTab };
           }
           return null;
         }
-        return link;
+        return { ...link, openInAnotherTab: true };
       })
       // If the informationID doesn't match with any flatPage id, it won't be displayed
       .filter(Boolean) as PortalLinkStatic[];

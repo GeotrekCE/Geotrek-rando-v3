@@ -3,10 +3,10 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useEffect, useRef, useState } from 'react';
 
 import { getSearchResults } from 'modules/results/connector';
-import { SearchResults } from 'modules/results/interface';
+import { SearchParams, SearchResults } from 'modules/results/interface';
 import { DateFilter, FilterState } from 'modules/filters/interface';
 
-import { queryCommonDictionaries } from 'modules/dictionaries/api';
+import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { formatInfiniteQuery, parseBboxFilter, parseFilters, parseTextFilter } from '../utils';
 import { getGlobalConfig } from '../../../../modules/utils/api.config';
 
@@ -27,14 +27,14 @@ const computeUrl = (
   textFilter: string | null,
   dateFilter: DateFilter | null,
 ) => {
-  const urlParams =
-    textFilter !== null
-      ? [...formatFiltersUrl(filtersState), `text=${textFilter}`]
-      : formatFiltersUrl(filtersState);
+  const urlParams = formatFiltersUrl(filtersState);
 
-  dateFilter && dateFilter.beginDate !== '' && urlParams.push(`beginDate=${dateFilter?.beginDate}`);
-  dateFilter && dateFilter.endDate !== '' && urlParams.push(`endDate=${dateFilter?.endDate}`);
-  const formattedUrl = `search?${urlParams.join('&')}`;
+  textFilter && urlParams.push(`text=${textFilter}`);
+  dateFilter?.beginDate && urlParams.push(`beginDate=${dateFilter.beginDate}`);
+  dateFilter?.endDate && urlParams.push(`endDate=${dateFilter.endDate}`);
+
+  const params = urlParams.join('&');
+  const formattedUrl = params ? `search?${params}` : 'search';
 
   return formattedUrl;
 };
@@ -66,7 +66,7 @@ export const useTrekResults = (
 
   const router = useRouter();
 
-  const commonDictionaries = queryCommonDictionaries(language);
+  const commonDictionaries = useQueryCommonDictionaries(language);
 
   const {
     data,
@@ -80,11 +80,11 @@ export const useTrekResults = (
   } = useInfiniteQuery<SearchResults, Error>(
     [
       'trekResults',
-      parsedFiltersState,
+      JSON.stringify(parsedFiltersState),
       language,
       parseTextFilter(textFilterState),
       parseBboxFilter(bboxState),
-      dateFilter,
+      JSON.stringify(dateFilter),
       page,
     ],
     ({
@@ -97,7 +97,7 @@ export const useTrekResults = (
     }) => {
       return getSearchResults(
         { filtersState: parsedFiltersState, textFilterState, bboxState, dateFilter },
-        pageParam,
+        pageParam as SearchParams,
         language,
         commonDictionaries,
       );
@@ -134,7 +134,7 @@ export const useTrekResults = (
       void router.push(url, undefined, { shallow: true });
       void refetch();
     }
-  }, [filtersState, textFilterState, dateFilter, refetch]);
+  }, [filtersState, textFilterState, dateFilter, refetch, router]);
 
   return {
     searchResults: formatInfiniteQuery(data),

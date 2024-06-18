@@ -23,7 +23,10 @@ import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { SourceDictionnary } from 'modules/source/interface';
 import { TouristicContent } from 'modules/touristicContent/interface';
-import { getAttachments } from 'modules/utils/adapter';
+import {
+  geFilesFromAttachments,
+  getLargeImagesOrThumbnailsFromAttachments,
+} from 'modules/utils/adapter';
 import {
   adaptGeometry2D,
   extractFirstPointOfGeometry,
@@ -100,7 +103,8 @@ export const adaptResults = ({
       id: Number(rawDetailsProperties.id),
       title: rawDetailsProperties.name,
       place: cityDictionnary[rawDetailsProperties.departure_city]?.name ?? '',
-      imgs: getAttachments(rawDetailsProperties.attachments),
+      imgs: getLargeImagesOrThumbnailsFromAttachments(rawDetailsProperties.attachments, false),
+      filesFromAttachments: geFilesFromAttachments(rawDetailsProperties.attachments),
       practice: activity,
       transport: rawDetailsProperties.public_transport,
       access: rawDetailsProperties.access,
@@ -117,7 +121,9 @@ export const adaptResults = ({
         distance: `${formatDistance(rawDetailsProperties.length_2d)}`,
         elevation: `+${rawDetailsProperties.ascent}${dataUnits.distance}`,
         negativeElevation: `${rawDetailsProperties.descent}${dataUnits.distance}`,
-        networks: rawDetailsProperties.networks.map(networkId => networks[networkId]),
+        networks: rawDetailsProperties.networks
+          .map(networkId => networks[networkId])
+          .filter(Boolean),
         difficulty,
         courseType,
       },
@@ -170,7 +176,9 @@ export const adaptResults = ({
       bbox: { corner1: { x: bbox[0], y: bbox[1] }, corner2: { x: bbox[2], y: bbox[3] } },
       children: children.map(child => ({
         ...child,
-        geometry: childrenGeometry.find(childGeometry => childGeometry.id === `${child.id}`),
+        childrenGeometries: childrenGeometry.find(
+          childGeometry => childGeometry.id === `${child.id}`,
+        ),
       })),
       sensitiveAreas,
       webLinks: rawDetailsProperties.web_links ?? null,

@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { isRessourceMissing } from 'services/routeUtils';
 import { routes } from 'services/routes';
 import { ONE_DAY } from 'services/constants/staleTime';
-import { queryCommonDictionaries } from 'modules/dictionaries/api';
+import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { DetailsSections } from '../details/useDetails';
 import { getDetailsConfig } from '../details/config';
 import { OutdoorCourseDetails } from '../../../modules/outdoorCourse/interface';
@@ -21,16 +21,16 @@ export const useOutdoorCourse = (
 
   const router = useRouter();
 
-  const commonDictionaries = queryCommonDictionaries(language);
+  const commonDictionaries = useQueryCommonDictionaries(language);
 
   const { data, refetch, isLoading } = useQuery<OutdoorCourseDetails, Error>(
     ['outdoorCourseDetails', id, language],
     () => getOutdoorCourseDetails(id, language, commonDictionaries),
     {
       enabled: isUrlString(outdoorCourseUrl) && commonDictionaries !== undefined,
-      onError: async error => {
+      onError: error => {
         if (isRessourceMissing(error)) {
-          await router.push(routes.HOME);
+          void router.push(routes.HOME);
         }
       },
       staleTime: ONE_DAY,
@@ -45,6 +45,7 @@ export const useOutdoorCourse = (
     useSectionsReferences();
 
   const sectionRef = sectionsOutdoorCourse.reduce(
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     (list, item) => ({ ...list, [item.name]: useSectionReferenceCallback(item.name) }),
     {} as Record<DetailsSections, (node: HTMLDivElement | null) => void>,
   );

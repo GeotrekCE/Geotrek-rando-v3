@@ -1,8 +1,8 @@
-import { Attachment, RawAttachment } from 'modules/interface';
+import { ImageFromAttachment, RawAttachment } from 'modules/interface';
 import { APIResponseForList } from 'services/api/interface';
 import { getGlobalConfig } from './api.config';
 
-const fallbackAttachment: Attachment = {
+const fallbackAttachment: ImageFromAttachment = {
   url: getGlobalConfig().fallbackImageUri,
   author: '',
   legend: '',
@@ -14,22 +14,10 @@ export const getThumbnail = (rawAttachments: RawAttachment[]): string | null => 
   return firstImageAttachment.thumbnail;
 };
 
-export const getAttachment = (rawAttachments: RawAttachment[]): Attachment => {
-  const rawAttachmentImg = rawAttachments.find(
-    rawAttachment =>
-      rawAttachment.type === 'image' && rawAttachment.url !== null && rawAttachment.url.length > 0,
-  );
-  const attachment = rawAttachmentImg
-    ? {
-        url: rawAttachmentImg.url,
-        legend: rawAttachmentImg.legend,
-        author: rawAttachmentImg.author,
-      }
-    : fallbackAttachment;
-  return attachment;
-};
-
-const getAttachmentsOrThumbnails = (rawAttachments: RawAttachment[], isThumbnail: boolean) => {
+export const getLargeImagesOrThumbnailsFromAttachments = (
+  rawAttachments: RawAttachment[],
+  isThumbnail: boolean,
+) => {
   const attachments = rawAttachments
     .filter(
       rawAttachment =>
@@ -45,11 +33,23 @@ const getAttachmentsOrThumbnails = (rawAttachments: RawAttachment[], isThumbnail
   return attachments.length > 0 ? attachments : [fallbackAttachment];
 };
 
-export const getAttachments = (rawAttachments: RawAttachment[]): Attachment[] =>
-  getAttachmentsOrThumbnails(rawAttachments, false);
-
-export const getThumbnails = (rawAttachments: RawAttachment[]): Attachment[] =>
-  getAttachmentsOrThumbnails(rawAttachments, true);
+export const geFilesFromAttachments = (rawAttachments: RawAttachment[]) => {
+  const attachments = rawAttachments
+    .filter(rawAttachment => {
+      const lastPartOfUrl = rawAttachment.url?.split('/').pop();
+      // Files without extensions are false positive images (GTA version < 2.97.0)
+      const hasExtension = lastPartOfUrl?.includes('.');
+      return rawAttachment.type === 'file' && hasExtension;
+    })
+    .map(rawAttachment => ({
+      url: rawAttachment.url,
+      legend: rawAttachment.legend,
+      author: rawAttachment.author,
+      fileName: rawAttachment.title,
+      fileType: rawAttachment.filetype?.type ?? null,
+    }));
+  return attachments;
+};
 
 export function concatResults<T>(rawResults: APIResponseForList<T>[]): T[] {
   return rawResults.reduce<T[]>(

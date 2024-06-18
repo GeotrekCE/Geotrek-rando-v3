@@ -1,7 +1,8 @@
 import { Bbox } from 'modules/details/interface';
 import {
-  Attachment,
+  FileFromAttachment,
   GeometryCollection,
+  ImageFromAttachment,
   LineStringGeometry,
   MultiLineStringGeometry,
   MultiPointGeometry,
@@ -76,7 +77,8 @@ export interface TouristicEventResult extends ResultCard {
 export interface TouristicEvent {
   id: string;
   name: string;
-  attachments: Attachment[];
+  images: ImageFromAttachment[];
+  filesFromAttachments: FileFromAttachment[];
   geometry:
     | PolygonGeometry
     | MultiPolygonGeometry

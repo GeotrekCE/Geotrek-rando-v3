@@ -1,4 +1,5 @@
 import { SignageTypeDictionary } from 'modules/signageType/interface';
+import { getThumbnail } from 'modules/utils/adapter';
 import { RawSignage, Signage, SignageDictionary } from './interface';
 
 const adaptSignage = (
@@ -6,7 +7,7 @@ const adaptSignage = (
   signageTypeDictionary: SignageTypeDictionary,
 ): Signage => ({
   id: rawSignage.id,
-  imageUrl: rawSignage.attachments?.find(({ type }) => type === 'image')?.thumbnail ?? null,
+  imageUrl: getThumbnail(rawSignage.attachments),
   description: rawSignage.description,
   geometry: rawSignage.geometry,
   name: rawSignage.name,

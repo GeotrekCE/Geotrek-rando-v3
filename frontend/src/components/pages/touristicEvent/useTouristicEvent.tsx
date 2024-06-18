@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { routes } from 'services/routes';
 import useSectionsReferences from 'hooks/useSectionsReferences';
-import { queryCommonDictionaries } from 'modules/dictionaries/api';
+import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { getTouristicEventDetails } from '../../../modules/touristicEvent/connector';
 import { TouristicEventDetails } from '../../../modules/touristicEvent/interface';
 import { getDetailsConfig } from '../details/config';
@@ -20,16 +20,16 @@ export const useTouristicEvent = (
   const path = isUrlString(touristicEventUrl) ? decodeURI(touristicEventUrl) : '';
   const router = useRouter();
 
-  const commonDictionaries = queryCommonDictionaries(language);
+  const commonDictionaries = useQueryCommonDictionaries(language);
 
   const { data, refetch, isLoading } = useQuery<TouristicEventDetails, Error>(
     ['outdoorCourseDetails', id, language],
     () => getTouristicEventDetails(id, language, commonDictionaries),
     {
       enabled: isUrlString(touristicEventUrl) && commonDictionaries !== undefined,
-      onError: async error => {
+      onError: error => {
         if (isRessourceMissing(error)) {
-          await router.push(routes.HOME);
+          void router.push(routes.HOME);
         }
       },
       staleTime: ONE_DAY,
@@ -43,6 +43,7 @@ export const useTouristicEvent = (
     useSectionsReferences();
 
   const sectionRef = sectionsTouristicEvent.reduce(
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     (list, item) => ({ ...list, [item.name]: useSectionReferenceCallback(item.name) }),
     {} as Record<DetailsSections, (node: HTMLDivElement | null) => void>,
   );

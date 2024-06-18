@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <li
-        class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        class="custo-result-card relative border border-solid border-greySoft rounded-lg flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
-          class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+          class="relative overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
-            class="float-left flex shrink-0 h-40 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
+            class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
           >
             <div
               class="w-full"
@@ -21,29 +21,29 @@ Object {
                 class="relative bg-dark h-full"
               >
                 <div
-                  class="flex items-center justify-center w-full h-full"
+                  class="flex items-center justify-center size-full"
                 >
                   <div
-                    class="w-full h-full"
+                    class="size-full"
                   >
                     <span
                       class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
                     >
                       <figure
-                        aria-labelledby=":r2:"
+                        aria-labelledby=":r4:"
                         class="relative "
                         id="details_cover_image"
                         role="figure"
                       >
                         <img
                           alt="Lorem ipsum"
-                          class="overflow-hidden w-full h-full object-cover object-center"
-                          id=":r3:"
+                          class="overflow-hidden size-full object-cover object-center"
+                          id=":r5:"
                           loading="lazy"
                           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                         />
                         <figcaption
-                          id=":r2:"
+                          id=":r4:"
                         >
                           <span
                             class="w-full h-12 desktop:h-40
@@ -59,8 +59,8 @@ Object {
                             </span>
                           </span>
                           <button
-                            aria-describedby=":r3:"
-                            class="absolute inset-0 w-full h-full"
+                            aria-describedby=":r5:"
+                            class="absolute inset-0 size-full"
                             type="button"
                           >
                             <span
@@ -76,8 +76,7 @@ Object {
                 </div>
               </div>
               <div
-                class="sc-bcXHqe hQbWpf absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
-                color="#AA397D"
+                class="sc-bcXHqe fomtNX absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden bg-primary1"
               >
                 <div
                   class="pr-3 whitespace-nowrap"
@@ -96,7 +95,7 @@ Object {
               Église St Louis
             </h3>
             <div
-              class="sc-kDvujY iXXQYE text-greyDarkColored"
+              class="sc-jrcTuL corOBt custo-result-card-description text-greyDarkColored"
             >
               <span>
                 Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
@@ -108,13 +107,13 @@ Object {
     </div>
     <div>
       <li
-        class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        class="custo-result-card relative border border-solid border-greySoft rounded-lg flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
-          class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+          class="relative overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
-            class="float-left flex shrink-0 h-40 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
+            class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
           >
             <div
               class="w-full"
@@ -123,17 +122,17 @@ Object {
                 class="relative bg-dark h-full"
               >
                 <div
-                  class="flex items-center justify-center w-full h-full"
+                  class="flex items-center justify-center size-full"
                 >
                   <div
-                    class="w-full h-full"
+                    class="size-full"
                   >
                     <div
-                      class="slick-slider sc-dkrFOg elmwrv relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
+                      class="slick-slider sc-gswNZR bnUQbR relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
                       dir="ltr"
                     >
                       <button
-                        class="sc-hLBbgP sc-jSUZER sc-pyfCe fmYHPc gDGNxP kdsrVF slick-arrow slick-prev"
+                        class="sc-dkrFOg sc-eDvSVe sc-ftTHYK jejjzI cLyatx dVnNOE slick-arrow slick-prev"
                         type="button"
                       />
                       <div
@@ -159,20 +158,20 @@ Object {
                           >
                             <div>
                               <figure
-                                aria-labelledby=":r8:"
+                                aria-labelledby=":rc:"
                                 class="relative "
                                 id="details_cover_image"
                                 role="figure"
                               >
                                 <img
                                   alt="Lorem ipsum"
-                                  class="overflow-hidden w-full h-full object-cover object-center"
-                                  id=":r9:"
+                                  class="overflow-hidden size-full object-cover object-center"
+                                  id=":rd:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                                 />
                                 <figcaption
-                                  id=":r8:"
+                                  id=":rc:"
                                 >
                                   <span
                                     class="w-full h-12 desktop:h-40
@@ -188,8 +187,8 @@ Object {
                                     </span>
                                   </span>
                                   <button
-                                    aria-describedby=":r9:"
-                                    class="absolute inset-0 w-full h-full"
+                                    aria-describedby=":rd:"
+                                    class="absolute inset-0 size-full"
                                     type="button"
                                   >
                                     <span
@@ -218,20 +217,20 @@ Object {
                           >
                             <div>
                               <figure
-                                aria-labelledby=":ra:"
+                                aria-labelledby=":re:"
                                 class="relative "
                                 id="details_cover_image"
                                 role="figure"
                               >
                                 <img
                                   alt="Lorem ipsum"
-                                  class="overflow-hidden w-full h-full object-cover object-center"
-                                  id=":rb:"
+                                  class="overflow-hidden size-full object-cover object-center"
+                                  id=":rf:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                                 />
                                 <figcaption
-                                  id=":ra:"
+                                  id=":re:"
                                 >
                                   <span
                                     class="w-full h-12 desktop:h-40
@@ -247,8 +246,8 @@ Object {
                                     </span>
                                   </span>
                                   <button
-                                    aria-describedby=":rb:"
-                                    class="absolute inset-0 w-full h-full"
+                                    aria-describedby=":rf:"
+                                    class="absolute inset-0 size-full"
                                     type="button"
                                   >
                                     <span
@@ -271,11 +270,11 @@ Object {
                         </div>
                       </div>
                       <button
-                        class="sc-hLBbgP sc-jSUZER sc-ftTHYK fmYHPc gDGNxP gPrhgT slick-arrow slick-next"
+                        class="sc-dkrFOg sc-eDvSVe sc-iBYQkv jejjzI cLyatx fnuqjJ slick-arrow slick-next"
                         type="button"
                       />
                       <div
-                        class="sc-jrcTuL eNRqSA slick-dots"
+                        class="sc-pyfCe ewrumL slick-dots"
                       >
                         <ul>
                           <li
@@ -299,8 +298,7 @@ Object {
                 </div>
               </div>
               <div
-                class="sc-bcXHqe hQbWpf absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
-                color="#AA397D"
+                class="sc-bcXHqe fomtNX absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden bg-primary1"
               >
                 <div
                   class="pr-3 whitespace-nowrap"
@@ -319,7 +317,7 @@ Object {
               Église St Louis
             </h3>
             <div
-              class="sc-kDvujY iXXQYE text-greyDarkColored"
+              class="sc-jrcTuL corOBt custo-result-card-description text-greyDarkColored"
             >
               <span>
                 Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
@@ -332,13 +330,13 @@ Object {
   </body>,
   "container": <div>
     <li
-      class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+      class="custo-result-card relative border border-solid border-greySoft rounded-lg flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
     >
       <div
-        class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+        class="relative overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
       >
         <div
-          class="float-left flex shrink-0 h-40 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
+          class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
         >
           <div
             class="w-full"
@@ -347,29 +345,29 @@ Object {
               class="relative bg-dark h-full"
             >
               <div
-                class="flex items-center justify-center w-full h-full"
+                class="flex items-center justify-center size-full"
               >
                 <div
-                  class="w-full h-full"
+                  class="size-full"
                 >
                   <span
                     class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
                   >
                     <figure
-                      aria-labelledby=":r2:"
+                      aria-labelledby=":r4:"
                       class="relative "
                       id="details_cover_image"
                       role="figure"
                     >
                       <img
                         alt="Lorem ipsum"
-                        class="overflow-hidden w-full h-full object-cover object-center"
-                        id=":r3:"
+                        class="overflow-hidden size-full object-cover object-center"
+                        id=":r5:"
                         loading="lazy"
                         src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                       />
                       <figcaption
-                        id=":r2:"
+                        id=":r4:"
                       >
                         <span
                           class="w-full h-12 desktop:h-40
@@ -385,8 +383,8 @@ Object {
                           </span>
                         </span>
                         <button
-                          aria-describedby=":r3:"
-                          class="absolute inset-0 w-full h-full"
+                          aria-describedby=":r5:"
+                          class="absolute inset-0 size-full"
                           type="button"
                         >
                           <span
@@ -402,8 +400,7 @@ Object {
               </div>
             </div>
             <div
-              class="sc-bcXHqe hQbWpf absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
-              color="#AA397D"
+              class="sc-bcXHqe fomtNX absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden bg-primary1"
             >
               <div
                 class="pr-3 whitespace-nowrap"
@@ -422,7 +419,7 @@ Object {
             Église St Louis
           </h3>
           <div
-            class="sc-kDvujY iXXQYE text-greyDarkColored"
+            class="sc-jrcTuL corOBt custo-result-card-description text-greyDarkColored"
           >
             <span>
               Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
@@ -492,13 +489,13 @@ Object {
   "baseElement": <body>
     <div>
       <li
-        class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        class="custo-result-card relative border border-solid border-greySoft rounded-lg flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
-          class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+          class="relative overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
-            class="float-left flex shrink-0 h-40 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
+            class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
           >
             <div
               class="w-full"
@@ -507,29 +504,29 @@ Object {
                 class="relative bg-dark h-full"
               >
                 <div
-                  class="flex items-center justify-center w-full h-full"
+                  class="flex items-center justify-center size-full"
                 >
                   <div
-                    class="w-full h-full"
+                    class="size-full"
                   >
                     <span
                       class="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop"
                     >
                       <figure
-                        aria-labelledby=":r2:"
+                        aria-labelledby=":r4:"
                         class="relative "
                         id="details_cover_image"
                         role="figure"
                       >
                         <img
                           alt="Lorem ipsum"
-                          class="overflow-hidden w-full h-full object-cover object-center"
-                          id=":r3:"
+                          class="overflow-hidden size-full object-cover object-center"
+                          id=":r5:"
                           loading="lazy"
                           src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                         />
                         <figcaption
-                          id=":r2:"
+                          id=":r4:"
                         >
                           <span
                             class="w-full h-12 desktop:h-40
@@ -545,8 +542,8 @@ Object {
                             </span>
                           </span>
                           <button
-                            aria-describedby=":r3:"
-                            class="absolute inset-0 w-full h-full"
+                            aria-describedby=":r5:"
+                            class="absolute inset-0 size-full"
                             type="button"
                           >
                             <span
@@ -562,8 +559,7 @@ Object {
                 </div>
               </div>
               <div
-                class="sc-bcXHqe hQbWpf absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
-                color="#AA397D"
+                class="sc-bcXHqe fomtNX absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden bg-primary1"
               >
                 <div
                   class="pr-3 whitespace-nowrap"
@@ -582,7 +578,7 @@ Object {
               Église St Louis
             </h3>
             <div
-              class="sc-kDvujY iXXQYE text-greyDarkColored"
+              class="sc-jrcTuL corOBt custo-result-card-description text-greyDarkColored"
             >
               <span>
                 Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
@@ -594,13 +590,13 @@ Object {
     </div>
     <div>
       <li
-        class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+        class="custo-result-card relative border border-solid border-greySoft rounded-lg flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
       >
         <div
-          class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+          class="relative overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
         >
           <div
-            class="float-left flex shrink-0 h-40 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
+            class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
           >
             <div
               class="w-full"
@@ -609,17 +605,17 @@ Object {
                 class="relative bg-dark h-full"
               >
                 <div
-                  class="flex items-center justify-center w-full h-full"
+                  class="flex items-center justify-center size-full"
                 >
                   <div
-                    class="w-full h-full"
+                    class="size-full"
                   >
                     <div
-                      class="slick-slider sc-dkrFOg elmwrv relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
+                      class="slick-slider sc-gswNZR bnUQbR relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
                       dir="ltr"
                     >
                       <button
-                        class="sc-hLBbgP sc-jSUZER sc-pyfCe fmYHPc gDGNxP kdsrVF slick-arrow slick-prev"
+                        class="sc-dkrFOg sc-eDvSVe sc-ftTHYK jejjzI cLyatx dVnNOE slick-arrow slick-prev"
                         type="button"
                       />
                       <div
@@ -645,20 +641,20 @@ Object {
                           >
                             <div>
                               <figure
-                                aria-labelledby=":r8:"
+                                aria-labelledby=":rc:"
                                 class="relative "
                                 id="details_cover_image"
                                 role="figure"
                               >
                                 <img
                                   alt="Lorem ipsum"
-                                  class="overflow-hidden w-full h-full object-cover object-center"
-                                  id=":r9:"
+                                  class="overflow-hidden size-full object-cover object-center"
+                                  id=":rd:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                                 />
                                 <figcaption
-                                  id=":r8:"
+                                  id=":rc:"
                                 >
                                   <span
                                     class="w-full h-12 desktop:h-40
@@ -674,8 +670,8 @@ Object {
                                     </span>
                                   </span>
                                   <button
-                                    aria-describedby=":r9:"
-                                    class="absolute inset-0 w-full h-full"
+                                    aria-describedby=":rd:"
+                                    class="absolute inset-0 size-full"
                                     type="button"
                                   >
                                     <span
@@ -704,20 +700,20 @@ Object {
                           >
                             <div>
                               <figure
-                                aria-labelledby=":ra:"
+                                aria-labelledby=":re:"
                                 class="relative "
                                 id="details_cover_image"
                                 role="figure"
                               >
                                 <img
                                   alt="Lorem ipsum"
-                                  class="overflow-hidden w-full h-full object-cover object-center"
-                                  id=":rb:"
+                                  class="overflow-hidden size-full object-cover object-center"
+                                  id=":rf:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                                 />
                                 <figcaption
-                                  id=":ra:"
+                                  id=":re:"
                                 >
                                   <span
                                     class="w-full h-12 desktop:h-40
@@ -733,8 +729,8 @@ Object {
                                     </span>
                                   </span>
                                   <button
-                                    aria-describedby=":rb:"
-                                    class="absolute inset-0 w-full h-full"
+                                    aria-describedby=":rf:"
+                                    class="absolute inset-0 size-full"
                                     type="button"
                                   >
                                     <span
@@ -757,11 +753,11 @@ Object {
                         </div>
                       </div>
                       <button
-                        class="sc-hLBbgP sc-jSUZER sc-ftTHYK fmYHPc gDGNxP gPrhgT slick-arrow slick-next"
+                        class="sc-dkrFOg sc-eDvSVe sc-iBYQkv jejjzI cLyatx fnuqjJ slick-arrow slick-next"
                         type="button"
                       />
                       <div
-                        class="sc-jrcTuL eNRqSA slick-dots"
+                        class="sc-pyfCe ewrumL slick-dots"
                       >
                         <ul>
                           <li
@@ -785,8 +781,7 @@ Object {
                 </div>
               </div>
               <div
-                class="sc-bcXHqe hQbWpf absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
-                color="#AA397D"
+                class="sc-bcXHqe fomtNX absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden bg-primary1"
               >
                 <div
                   class="pr-3 whitespace-nowrap"
@@ -805,7 +800,7 @@ Object {
               Église St Louis
             </h3>
             <div
-              class="sc-kDvujY iXXQYE text-greyDarkColored"
+              class="sc-jrcTuL corOBt custo-result-card-description text-greyDarkColored"
             >
               <span>
                 Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.
@@ -818,13 +813,13 @@ Object {
   </body>,
   "container": <div>
     <li
-      class="relative border border-solid border-greySoft rounded-card flex-none desktop:w-auto mx-1 desktop:mb-6 hover:border-blackSemiTransparent transition-all duration-500"
+      class="custo-result-card relative border border-solid border-greySoft rounded-lg flex-none desktop:w-auto mx-1 desktop:mb-6 overflow-hidden hover:border-blackSemiTransparent transition-all duration-500"
     >
       <div
-        class="overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
+        class="relative overflow-hidden desktop:w-auto h-fit desktop:flex-row transition-all duration-500 desktop:h-55"
       >
         <div
-          class="float-left flex shrink-0 h-40 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
+          class="flex shrink-0 h-40 desktop:float-left desktop:min-h-55 desktop:h-full desktop:w-2/5 pr-2 desktop:pr-6"
         >
           <div
             class="w-full"
@@ -833,17 +828,17 @@ Object {
               class="relative bg-dark h-full"
             >
               <div
-                class="flex items-center justify-center w-full h-full"
+                class="flex items-center justify-center size-full"
               >
                 <div
-                  class="w-full h-full"
+                  class="size-full"
                 >
                   <div
-                    class="slick-slider sc-dkrFOg elmwrv relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
+                    class="slick-slider sc-gswNZR bnUQbR relative h-coverDetailsMobile desktop:h-coverDetailsDesktop slick-initialized"
                     dir="ltr"
                   >
                     <button
-                      class="sc-hLBbgP sc-jSUZER sc-pyfCe fmYHPc gDGNxP kdsrVF slick-arrow slick-prev"
+                      class="sc-dkrFOg sc-eDvSVe sc-ftTHYK jejjzI cLyatx dVnNOE slick-arrow slick-prev"
                       type="button"
                     />
                     <div
@@ -869,20 +864,20 @@ Object {
                         >
                           <div>
                             <figure
-                              aria-labelledby=":r8:"
+                              aria-labelledby=":rc:"
                               class="relative "
                               id="details_cover_image"
                               role="figure"
                             >
                               <img
                                 alt="Lorem ipsum"
-                                class="overflow-hidden w-full h-full object-cover object-center"
-                                id=":r9:"
+                                class="overflow-hidden size-full object-cover object-center"
+                                id=":rd:"
                                 loading="lazy"
                                 src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                               />
                               <figcaption
-                                id=":r8:"
+                                id=":rc:"
                               >
                                 <span
                                   class="w-full h-12 desktop:h-40
@@ -898,8 +893,8 @@ Object {
                                   </span>
                                 </span>
                                 <button
-                                  aria-describedby=":r9:"
-                                  class="absolute inset-0 w-full h-full"
+                                  aria-describedby=":rd:"
+                                  class="absolute inset-0 size-full"
                                   type="button"
                                 >
                                   <span
@@ -928,20 +923,20 @@ Object {
                         >
                           <div>
                             <figure
-                              aria-labelledby=":ra:"
+                              aria-labelledby=":re:"
                               class="relative "
                               id="details_cover_image"
                               role="figure"
                             >
                               <img
                                 alt="Lorem ipsum"
-                                class="overflow-hidden w-full h-full object-cover object-center"
-                                id=":rb:"
+                                class="overflow-hidden size-full object-cover object-center"
+                                id=":rf:"
                                 loading="lazy"
                                 src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
                               />
                               <figcaption
-                                id=":ra:"
+                                id=":re:"
                               >
                                 <span
                                   class="w-full h-12 desktop:h-40
@@ -957,8 +952,8 @@ Object {
                                   </span>
                                 </span>
                                 <button
-                                  aria-describedby=":rb:"
-                                  class="absolute inset-0 w-full h-full"
+                                  aria-describedby=":rf:"
+                                  class="absolute inset-0 size-full"
                                   type="button"
                                 >
                                   <span
@@ -981,11 +976,11 @@ Object {
                       </div>
                     </div>
                     <button
-                      class="sc-hLBbgP sc-jSUZER sc-ftTHYK fmYHPc gDGNxP gPrhgT slick-arrow slick-next"
+                      class="sc-dkrFOg sc-eDvSVe sc-iBYQkv jejjzI cLyatx fnuqjJ slick-arrow slick-next"
                       type="button"
                     />
                     <div
-                      class="sc-jrcTuL eNRqSA slick-dots"
+                      class="sc-pyfCe ewrumL slick-dots"
                     >
                       <ul>
                         <li
@@ -1009,8 +1004,7 @@ Object {
               </div>
             </div>
             <div
-              class="sc-bcXHqe hQbWpf absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden"
-              color="#AA397D"
+              class="sc-bcXHqe fomtNX absolute top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden bg-primary1"
             >
               <div
                 class="pr-3 whitespace-nowrap"
@@ -1029,7 +1023,7 @@ Object {
             Église St Louis
           </h3>
           <div
-            class="sc-kDvujY iXXQYE text-greyDarkColored"
+            class="sc-jrcTuL corOBt custo-result-card-description text-greyDarkColored"
           >
             <span>
               Pour espérer apercevoir cet oiseau, partir la nuit au printemps, parcourir un grand dénivelé afin d'arriver sur son terrain de prédilection à plus de 2000 m voire 3000 m d'altitude avant le lever du jour et là, entendre le chant guttural caractéristique qui trahit sa présence. Mais pour le voir, il faudra bien ouvrir les yeux ou se munir d'une paire de jumelles. Et alors là, quel bonheur ! Le lagopède alpin est l'espèce arctique par excellence, menacée entre autre par le réchauffement climatique. Il fait partie des espèces à protéger dans le cœur du Parc national des Ecrins.

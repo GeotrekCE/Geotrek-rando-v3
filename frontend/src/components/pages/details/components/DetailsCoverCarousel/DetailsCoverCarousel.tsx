@@ -1,10 +1,10 @@
 import { cn } from 'services/utils/cn';
-import { Attachment } from 'modules/interface';
+import { ImageFromAttachment } from 'modules/interface';
 import { LargeCarousel } from 'components/Carousel';
 import { ImageWithLegend } from 'components/ImageWithLegend';
 
 interface DetailsCoverCarouselProps {
-  attachments: Attachment[];
+  images: ImageFromAttachment[];
 
   classNameImage?: string;
   onClickImage?: () => void;
@@ -13,19 +13,18 @@ interface DetailsCoverCarouselProps {
 }
 
 export const DetailsCoverCarousel: React.FC<DetailsCoverCarouselProps> = ({
-  attachments,
+  images,
   redirect,
   classNameImage = '',
   onClickImage,
 }) => {
-  const files =
-    typeof navigator !== 'undefined' && navigator?.onLine ? attachments : attachments.slice(0, 1);
+  const files = typeof navigator !== 'undefined' && navigator?.onLine ? images : images.slice(0, 1);
 
   return (
     <LargeCarousel className="relative h-coverDetailsMobile desktop:h-coverDetailsDesktop">
-      {files.map((attachment, index) => (
+      {files.map((image, index) => (
         <ImageWithLegend
-          attachment={attachment}
+          image={image}
           classNameImage={cn(`object-cover ${classNameImage}`)}
           key={index}
           loading="lazy"

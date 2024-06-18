@@ -2,7 +2,11 @@ import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
-import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
+import {
+  geFilesFromAttachments,
+  getLargeImagesOrThumbnailsFromAttachments,
+  getThumbnail,
+} from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { ViewPoint } from 'modules/viewPoint/interface';
 import { CityDictionnary } from '../city/interface';
@@ -41,9 +45,10 @@ export const adaptOutdoorSites = ({
 }): OutdoorSite[] =>
   rawOutdoorSites.map(rawOutdoorSite => {
     return {
-      id: rawOutdoorSite.id,
+      id: `${rawOutdoorSite.id}`,
       name: rawOutdoorSite.name,
-      attachments: getAttachments(rawOutdoorSite.attachments),
+      images: getLargeImagesOrThumbnailsFromAttachments(rawOutdoorSite.attachments, false),
+      filesFromAttachments: geFilesFromAttachments(rawOutdoorSite.attachments),
       geometry: adaptGeometry(rawOutdoorSite.geometry),
       themes: rawOutdoorSite?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       category: outdoorPracticeDictionnary[rawOutdoorSite.practice] ?? null,
@@ -71,7 +76,7 @@ export const adaptoutdoorSitesResult = ({
       id: rawOutdoorSite.id,
       type: 'OUTDOOR_SITE',
       name: rawOutdoorSite.name,
-      attachments: getThumbnails(rawOutdoorSite.attachments),
+      images: getLargeImagesOrThumbnailsFromAttachments(rawOutdoorSite.attachments, true),
       geometry: adaptGeometry(rawOutdoorSite.geometry),
       tags: rawOutdoorSite?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       informations: [],
@@ -91,7 +96,6 @@ export const adaptOutdoorSiteDetails = ({
   sourcesDictionnary,
   informationDesksDictionnary,
   courses,
-  outdoorPracticeDictionnary,
   access,
   outdoorPractice,
   cityDictionnary,
@@ -113,7 +117,6 @@ export const adaptOutdoorSiteDetails = ({
   sourcesDictionnary: SourceDictionnary;
   informationDesksDictionnary: InformationDeskDictionnary;
   courses: OutdoorCourseResult[];
-  outdoorPracticeDictionnary: OutdoorPracticeChoices;
   access: TrekResult[];
   outdoorPractice: OutdoorPracticeChoices;
   cityDictionnary: CityDictionnary;
@@ -131,7 +134,7 @@ export const adaptOutdoorSiteDetails = ({
       { ...rawOutdoorSiteDetails.properties, geometry: rawOutdoorSiteDetails.geometry },
     ],
     themeDictionnary,
-    outdoorPracticeDictionnary,
+    outdoorPracticeDictionnary: outdoorPractice,
     cityDictionnary,
   })[0],
   accessibility: rawOutdoorSiteDetails.properties.accessibility ?? null,

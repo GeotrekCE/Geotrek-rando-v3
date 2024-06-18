@@ -1,14 +1,8 @@
 import { mockRoute } from 'services/testing/utils';
+import { APIResponseForList } from 'services/api/interface';
 import { RawInfrastructure } from '../interface';
 
-interface InfrastructureResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: RawInfrastructure[];
-}
-
-export const mockInfrastructureResponse = (): InfrastructureResponse => ({
+export const mockInfrastructureResponse = (): APIResponseForList<RawInfrastructure> => ({
   count: 1,
   next: null,
   previous: null,
@@ -16,8 +10,32 @@ export const mockInfrastructureResponse = (): InfrastructureResponse => ({
     {
       attachments: [
         {
+          author: 'Jean-Philippe Telmon - PNE',
+          backend: '',
+          thumbnail:
+            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-tenue-dete.jpg.120x120_q85_crop.jpg',
+          legend: "Lagopède alpin en tenue d'été",
+          title: 'lagopede-alpin-en-tenue-dete',
+          url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-tenue-dete.jpg',
           type: 'image',
-          thumbnail: 'url/to/image.jpg',
+          filetype: {
+            id: 1,
+            type: 'Topoguide',
+          },
+        },
+        {
+          author: 'Damien Combrisson - PNE',
+          backend: '',
+          thumbnail:
+            'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-plumage-dhiver.jpg.120x120_q85_crop.jpg',
+          legend: "Lagopède alpin en plumage d'hiver",
+          title: 'lagopede-alpin-en-plumage-dhiver',
+          url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_poi/442/lagopede-alpin-en-plumage-dhiver.jpg',
+          type: 'image',
+          filetype: {
+            id: 1,
+            type: 'Topoguide',
+          },
         },
       ],
       id: 1,

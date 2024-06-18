@@ -9,7 +9,8 @@ import { Plus } from 'components/Icons/Plus';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { ViewPoint as ViewPointIcon } from 'components/Icons/ViewPoint';
 
-interface DetailsMediasProps {
+interface DetailsViewPointsProps {
+  id?: string;
   className?: string;
   viewPoints: ViewPoint[];
   handleViewPointClick?: (key: string) => void;
@@ -17,12 +18,13 @@ interface DetailsMediasProps {
   titleTag?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
-export const DetailsMedias: React.FC<DetailsMediasProps> = ({
+export const DetailsViewPoints: React.FC<DetailsViewPointsProps> = ({
   className,
   viewPoints,
   handleViewPointClick,
   asAccordion = false,
   titleTag: TitleTag = 'h2',
+  ...props
 }) => {
   const SubTitleTag = TitleTag === 'h2' ? 'h3' : 'h4';
 
@@ -34,30 +36,30 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
   );
 
   const id = useId();
-  const [isOpen, setOpen] = useState(true);
+  const [isOpen, setOpen] = useState(!asAccordion);
+
+  const { setHoveredCardId } = useListAndMapContext();
 
   if (viewPoints.length === 0) {
     return null;
   }
 
-  const { setHoveredCardId } = useListAndMapContext();
-
   return (
-    <div className={className}>
+    <div className={cn(className, asAccordion && 'p-2 p-2 desktop:p-6 bg-neutral-100')} {...props}>
       <TitleTag
         className={cn(
-          'relative flex items-center justify-start gap-1 font-bold',
+          'relative flex items-center justify-stretch gap-1 font-bold',
           TitleTag === 'h2' ? 'text-Mobile-H1 desktop:text-H2' : 'text-Mobile-C1 desktop:text-H4',
         )}
       >
-        <ViewPointIcon size={40} />
+        <ViewPointIcon size={40} aria-hidden />
         <FormattedMessage id="viewPoint.title" />
         {asAccordion && (
           <button
             type="button"
             aria-expanded={isOpen ? 'true' : 'false'}
             aria-controls={id}
-            className="flex gap-1 items-center text-base before:content-[''] before:absolute before:inset-0"
+            className="ml-auto before:content-[''] before:absolute before:inset-0"
             onClick={() => setOpen(prevOpen => !prevOpen)}
           >
             {isOpen ? (
@@ -65,20 +67,26 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
                 <span className="sr-only">
                   <FormattedMessage id="accordion.close" />
                 </span>
-                <Minus size={24} />
+                <Minus size={24} aria-hidden />
               </>
             ) : (
               <>
                 <span className="sr-only">
                   <FormattedMessage id="accordion.open" />
                 </span>
-                <Plus size={24} />
+                <Plus size={24} aria-hidden />
               </>
             )}
           </button>
         )}
       </TitleTag>
-      <p className="text-lg desktop:mt-6">
+      <p
+        className={cn(
+          'text-lg desktop:mt-6',
+          asAccordion && 'hidden desktop:block',
+          !isOpen && 'hidden desktop:hidden',
+        )}
+      >
         <FormattedMessage id="viewPoint.description" />
       </p>
       <ul
@@ -93,7 +101,7 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
           return (
             <li
               key={viewPoint.id}
-              className="shrink-0 relative desktop:flex items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden row w-60 desktop:w-auto"
+              className="shrink-0 relative desktop:flex items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden row w-60 desktop:w-full bg-white"
               onMouseEnter={() => {
                 !asAccordion && setHoveredCardId(`DETAILS-VIEWPOINT-${viewPoint.id}`);
               }}
@@ -103,7 +111,7 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
             >
               <div className="relative shrink-0 w-full overflow-hidden h-resultCardDesktop desktop:w-resultCardDesktop">
                 <ImageWithLegend
-                  attachment={{
+                  image={{
                     url: viewPoint.thumbnailUrl,
                     legend: '',
                     author: '',
@@ -126,8 +134,8 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
                   onClick={() => handleClick(viewPoint.id)}
                   className={cn(`
                     flex justify-center items-center gap-2
-                    mt-4 p-2 desktop:pl-4 
-                    rounded-xl desktop:rounded-full shadow-sm 
+                    mt-4 p-2 desktop:pl-4
+                    rounded-xl desktop:rounded-full shadow-sm
                     text-greyDarkColored hover:bg-primary2 focus:bg-primary2 bg-white transition
                     before:content-[''] before:absolute before:inset-0
                     `)}
@@ -135,7 +143,7 @@ export const DetailsMedias: React.FC<DetailsMediasProps> = ({
                   <span className="text-greyDarkColored">
                     <FormattedMessage id="viewPoint.displayPicture" />
                   </span>
-                  <ArrowRight />
+                  <ArrowRight aria-hidden />
                 </button>
               </div>
             </li>

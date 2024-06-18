@@ -14,7 +14,7 @@ const MapContainer: React.FC<Props> = ({ children, whenCreated, hasZoomControl =
 
   return (
     <LeafMapContainer
-      className="w-full h-full"
+      className="size-full"
       center={mapConfig.searchMapCenter as [number, number]}
       zoom={mapConfig.searchMapZoom}
       maxZoom={mapConfig.maximumZoomLevel}

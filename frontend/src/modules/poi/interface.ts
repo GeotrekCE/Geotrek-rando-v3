@@ -1,4 +1,10 @@
-import { Attachment, Coordinate3D, RawAttachment, RawPointGeometry3D } from 'modules/interface';
+import {
+  Coordinate3D,
+  FileFromAttachment,
+  ImageFromAttachment,
+  RawAttachment,
+  RawPointGeometry3D,
+} from 'modules/interface';
 import { PoiType } from 'modules/poiType/interface';
 import { RawViewPoint, ViewPoint } from 'modules/viewPoint/interface';
 
@@ -16,8 +22,9 @@ export interface Poi {
   id: string;
   name: string;
   description?: string;
-  thumbnails: Attachment[];
-  attachments: Attachment[];
+  thumbnails: ImageFromAttachment[];
+  images: ImageFromAttachment[];
+  filesFromAttachments: FileFromAttachment[];
   type: PoiType;
   geometry: Coordinate3D;
   viewPoints?: ViewPoint[];

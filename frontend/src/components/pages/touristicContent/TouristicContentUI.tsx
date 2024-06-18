@@ -22,6 +22,7 @@ import { DetailsHeaderMobile, marginDetailsChild } from '../details/Details';
 import { HtmlText, templatesVariablesAreDefinedAndUsed } from '../details/utils';
 import { DetailsHeader } from '../details/components/DetailsHeader';
 import { useDetailsSections } from '../details/useDetailsSections';
+import { DetailsFiles } from '../details/components/DetailsFiles';
 
 interface TouristicContentUIProps {
   touristicContentUrl: string | string[] | undefined;
@@ -54,7 +55,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
       <PageHead
         title={touristicContent?.name}
         description={touristicContent ? touristicContent.descriptionTeaser : ''}
-        sharingImageUrl={touristicContent?.attachments?.[0]?.url}
+        sharingImageUrl={touristicContent?.images?.[0]?.url}
       />
       {touristicContent === undefined ? (
         <>
@@ -88,15 +89,15 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                       id="touristicContent_cover"
                       className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                     >
-                      {touristicContent.attachments.length > 1 && hasNavigator ? (
+                      {touristicContent.images.length > 1 && hasNavigator ? (
                         <DetailsCoverCarousel
-                          attachments={touristicContent.attachments}
+                          images={touristicContent.images}
                           classNameImage={isFullscreen ? 'object-contain' : ''}
                           onClickImage={toggleFullscreen}
                         />
                       ) : (
                         <ImageWithLegend
-                          attachment={touristicContent.attachments[0]}
+                          image={touristicContent.images[0]}
                           classNameImage={isFullscreen ? 'object-contain' : ''}
                           onClick={toggleFullscreen}
                         />
@@ -153,6 +154,24 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                       </section>
                     );
                   }
+
+                  if (
+                    section.name === 'medias' &&
+                    touristicContent.filesFromAttachments.length > 0
+                  ) {
+                    return (
+                      <section
+                        key={section.name}
+                        ref={sectionRef[section.name]}
+                        id={`details_${section.name}_ref`}
+                      >
+                        <DetailsSection htmlId="details_medias" className={marginDetailsChild}>
+                          <DetailsFiles files={touristicContent.filesFromAttachments} />
+                        </DetailsSection>
+                      </section>
+                    );
+                  }
+
                   if (section.name === 'practicalInformations' && touristicContent.practicalInfo) {
                     return (
                       <section
@@ -202,8 +221,8 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                         id={`details_${section.name}_ref`}
                       >
                         <DetailsSection
-                          htmlId="touristicContent_contact"
-                          titleId="touristicContent.contact"
+                          htmlId="details_contact"
+                          titleId="details.contact"
                           className={marginDetailsChild}
                         >
                           <HtmlText>{parse(touristicContent.contact)}</HtmlText>

@@ -25,6 +25,4 @@ export const getFormErrors = (params: FormData) => {
   };
 };
 
-export const createReport = async (lang: string, params: FormData) => {
-  return postReport(lang, params);
-};
+export const createReport = (lang: string, params: FormData) => postReport(lang, params);

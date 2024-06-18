@@ -5,7 +5,7 @@ describe('DetailsCard', () => {
     const propsCard = {
       name: 'Église St Louis',
       id: '2',
-      attachments: [
+      images: [
         {
           url: 'https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg',
           author: 'Lorem ipsum',
@@ -28,7 +28,7 @@ describe('DetailsCard', () => {
     const detailsDescriptionWithCarousel = render(
       <DetailsCard
         {...propsCard}
-        attachments={[
+        images={[
           {
             url: 'https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_1280.jpg',
             author: 'Lorem ipsum',

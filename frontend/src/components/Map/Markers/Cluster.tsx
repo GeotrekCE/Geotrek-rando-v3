@@ -24,7 +24,7 @@ const Round = styled.div`
 
 const Cluster: React.FC<{ number: number }> = ({ number }) => {
   return (
-    <Round className="h-10 w-10 font-bold text-H4">
+    <Round className="size-10 font-bold text-H4">
       <span>{number}</span>
     </Round>
   );

@@ -3,7 +3,7 @@ import { ONE_DAY } from 'services/constants/staleTime';
 import { CommonDictionaries } from './interface';
 import { getCommonDictionaries } from './connector';
 
-export const queryCommonDictionaries = (language: string) => {
+export const useQueryCommonDictionaries = (language: string) => {
   const { data } = useQuery<CommonDictionaries, Error>(
     ['commonDictionaries', language],
     () => getCommonDictionaries(language),

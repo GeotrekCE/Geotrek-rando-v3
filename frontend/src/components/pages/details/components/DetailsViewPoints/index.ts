@@ -1,0 +1,1 @@
+export { DetailsViewPoints } from './DetailsViewPoints';

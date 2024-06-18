@@ -1,4 +1,5 @@
-import L, { GeoJSONOptions, LayerOptions } from 'leaflet';
+import L, { GeoJSON, GeoJSONOptions, LayerOptions, TileLayer } from 'leaflet';
+import { GeoJsonObject } from 'geojson';
 import { useCallback, useEffect, useState } from 'react';
 import { useMap } from 'react-leaflet';
 import 'leaflet-boundary-canvas';
@@ -17,7 +18,7 @@ interface ExtendedProperties {
   website?: string;
 }
 
-const getGeoJSONFromUrl = async (geoJSONUrl: string) => {
+const getGeoJSONFromUrl = (geoJSONUrl: string) => {
   try {
     return fetch(geoJSONUrl).then(response => response.json());
   } catch {
@@ -26,58 +27,62 @@ const getGeoJSONFromUrl = async (geoJSONUrl: string) => {
 };
 
 const getGeoJSONLayer = async (url: string, options: LayerOptions) => {
-  const geoJSON = await getGeoJSONFromUrl(url);
-  return L.geoJSON(
-    geoJSON,
-    Object.assign(
-      {
-        style: feature => {
-          const styles = {} as { fillColor?: string; color?: string };
-          if (feature?.properties?.fill !== undefined) {
-            styles.fillColor = feature.properties.fill;
-          }
-          if (feature?.properties?.stroke !== undefined) {
-            styles.color = feature.properties.stroke;
-          }
-          return styles;
-        },
-        onEachFeature: (feature, layer) => {
-          const markup = [];
-          const { description, name, photo_url, website }: ExtendedProperties =
-            feature?.properties ?? {};
+  try {
+    const geoJSON = (await getGeoJSONFromUrl(url)) as GeoJsonObject;
+    return L.geoJSON(
+      geoJSON,
+      Object.assign(
+        {
+          style: feature => {
+            const styles = {} as { fillColor?: string; color?: string };
+            if (feature?.properties?.fill !== undefined) {
+              styles.fillColor = feature.properties.fill;
+            }
+            if (feature?.properties?.stroke !== undefined) {
+              styles.color = feature.properties.stroke;
+            }
+            return styles;
+          },
+          onEachFeature: (feature, layer) => {
+            const markup = [];
+            const { description, name, photo_url, website }: ExtendedProperties =
+              feature?.properties ?? {};
 
-          if (name) {
-            markup.push(`<div class="info-point-title font-bold my-2">${name}</div>`);
-          }
+            if (name) {
+              markup.push(`<div class="info-point-title font-bold my-2">${name}</div>`);
+            }
 
-          if (photo_url) {
-            markup.push(
-              `<div class="info-point-photo my-2"><img src="${photo_url}" alt="" /></div>`,
-            );
-          }
+            if (photo_url) {
+              markup.push(
+                `<div class="info-point-photo my-2"><img src="${photo_url}" alt="" /></div>`,
+              );
+            }
 
-          if (description) {
-            markup.push(`<div class="info-point-description my-2">${description}</div>`);
-          }
+            if (description) {
+              markup.push(`<div class="info-point-description my-2">${description}</div>`);
+            }
 
-          if (website) {
-            markup.push(
-              `<div class="info-point-link my-2"><a target="_blank" rel="noopener noreferrer" href="${website}">${website}</a></div>`,
-            );
-          }
+            if (website) {
+              markup.push(
+                `<div class="info-point-link my-2"><a target="_blank" rel="noopener noreferrer" href="${website}">${website}</a></div>`,
+              );
+            }
 
-          if (markup.length > 0) {
-            layer.bindPopup(markup.join('\n'));
-          }
+            if (markup.length > 0) {
+              layer.bindPopup(markup.join('\n'));
+            }
 
-          if (layer instanceof L.Marker) {
-            layer.setZIndexOffset(-5000);
-          }
-        },
-      } as GeoJSONOptions,
-      options,
-    ),
-  );
+            if (layer instanceof L.Marker) {
+              layer.setZIndexOffset(-5000);
+            }
+          },
+        } as GeoJSONOptions,
+        options,
+      ),
+    );
+  } catch (e) {
+    return null;
+  }
 };
 
 const TileLayerExtended: React.FC<TileLayerExtendedProps> = ({
@@ -86,7 +91,8 @@ const TileLayerExtended: React.FC<TileLayerExtendedProps> = ({
   options = {},
   rangeZoom = [0, 20],
 }) => {
-  const [tile, setTile] = useState(null);
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+  const [tile, setTile] = useState<null | TileLayer | GeoJSON>(null);
   const map = useMap();
 
   const loadLayer = useCallback(async (): Promise<void> => {
@@ -100,11 +106,11 @@ const TileLayerExtended: React.FC<TileLayerExtendedProps> = ({
       }
     } else {
       const boundary = await getGeoJSONFromUrl(bounds);
-      // @ts-ignore no type available in this plugin
-      nextTile = L.TileLayer.boundaryCanvas(url, {
+      // @ts-expect-error no type available in this plugin
+      nextTile = TileLayer.boundaryCanvas(url, {
         boundary,
         ...options,
-      });
+      }) as TileLayer;
     }
     if (nextTile !== null) {
       setTile(nextTile);

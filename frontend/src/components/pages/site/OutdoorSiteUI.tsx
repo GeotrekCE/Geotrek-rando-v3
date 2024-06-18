@@ -42,7 +42,8 @@ import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel
 import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
 import { DetailsAndMapProvider } from '../details/DetailsAndMapContext';
 import { useDetailsSections } from '../details/useDetailsSections';
-import { DetailsMedias } from '../details/components/DetailsMedias';
+import { DetailsViewPoints } from '../details/components/DetailsViewPoints';
+import { DetailsFiles } from '../details/components/DetailsFiles';
 
 interface Props {
   outdoorSiteUrl: string | string[] | undefined;
@@ -102,7 +103,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
         <PageHead
           title={outdoorSiteContent?.name}
           description={cleanHTMLElementsFromString(outdoorSiteContent?.descriptionTeaser)}
-          sharingImageUrl={outdoorSiteContent?.attachments?.[0]?.url}
+          sharingImageUrl={outdoorSiteContent?.images?.[0]?.url}
         />
         {outdoorSiteContent === undefined ? (
           <>
@@ -136,15 +137,15 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                         id="outdoorSiteContent_cover"
                         className={!isFullscreen ? 'desktop:h-coverDetailsDesktop' : 'h-full'}
                       >
-                        {outdoorSiteContent.attachments.length > 1 && hasNavigator ? (
+                        {outdoorSiteContent.images.length > 1 && hasNavigator ? (
                           <DetailsCoverCarousel
-                            attachments={outdoorSiteContent.attachments}
+                            images={outdoorSiteContent.images}
                             classNameImage={isFullscreen ? 'object-contain' : ''}
                             onClickImage={toggleFullscreen}
                           />
                         ) : (
                           <ImageWithLegend
-                            attachment={outdoorSiteContent.attachments[0]}
+                            image={outdoorSiteContent.images[0]}
                             classNameImage={isFullscreen ? 'object-contain' : ''}
                             onClick={toggleFullscreen}
                           />
@@ -200,9 +201,9 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                       );
                     }
                     if (
-                      hasNavigator &&
                       section.name === 'medias' &&
-                      outdoorSiteContent.viewPoints.length > 0
+                      ((hasNavigator && outdoorSiteContent.viewPoints.length > 0) ||
+                        outdoorSiteContent.filesFromAttachments.length > 0)
                     ) {
                       return (
                         <section
@@ -211,10 +212,13 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                           id={`details_${section.name}_ref`}
                         >
                           <DetailsSection htmlId="details_medias" className={marginDetailsChild}>
-                            <DetailsMedias
-                              viewPoints={outdoorSiteContent.viewPoints}
-                              handleViewPointClick={handleViewPointClick}
-                            />
+                            <DetailsFiles files={outdoorSiteContent.filesFromAttachments} />
+                            {hasNavigator && (
+                              <DetailsViewPoints
+                                viewPoints={outdoorSiteContent.viewPoints}
+                                handleViewPointClick={handleViewPointClick}
+                              />
+                            )}
                           </DetailsSection>
                         </section>
                       );
@@ -241,10 +245,11 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                               name: poi.name ?? '',
                               description: poi.description,
                               thumbnails: poi.thumbnails,
-                              attachments: poi.attachments,
+                              images: poi.images,
                               iconUri: poi.type.pictogramUri,
                               iconName: poi.type.label,
                               viewPoints: poi.viewPoints,
+                              filesFromAttachments: poi.filesFromAttachments,
                             }))}
                             type="POI"
                             handleViewPointClick={handleViewPointClick}
@@ -507,7 +512,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                                 place: touristicContent.category.label,
                                 description: touristicContent.descriptionTeaser,
                                 thumbnails: touristicContent.thumbnails,
-                                attachments: touristicContent.attachments,
+                                images: touristicContent.images,
                                 iconUri: touristicContent.category.pictogramUri,
                                 iconName: touristicContent.category.label,
                               }),
@@ -565,8 +570,8 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
               >
                 <DetailsMapDynamicComponent
                   mapId={mapId}
-                  courses={outdoorSiteContent?.courses}
-                  experiences={outdoorSiteContent?.children}
+                  courses={outdoorSiteContent.courses}
+                  experiences={outdoorSiteContent.children}
                   hasZoomControl={!isMobile}
                   outdoorGeometry={{
                     geometry: outdoorSiteContent.geometry,
@@ -581,7 +586,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     id: `DETAILS-POI-${poi.id}`,
                   }))}
                   bbox={outdoorSiteContent.bbox}
-                  trekChildrenGeometry={[]}
+                  trekChildrenGeometries={[]}
                   touristicContentPoints={outdoorSiteContent.touristicContents
                     .filter(touristicContent => touristicContent.geometry !== null)
                     .map(touristicContent => ({
@@ -618,6 +623,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                   ]}
                   displayMap={displayMobileMap}
                   setMapId={setMapId}
+                  type="OUTDOOR_SITE"
                 />
               </div>
             </div>

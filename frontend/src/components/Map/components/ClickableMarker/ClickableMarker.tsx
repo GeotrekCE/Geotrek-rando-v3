@@ -1,5 +1,6 @@
 import { HoverableMarker } from 'components/Map/components/HoverableMarker';
 import { Popup } from 'components/Map/components/Popup';
+import { ContentType } from 'modules/interface';
 import { PopupResult } from 'modules/trekResult/interface';
 
 interface ClickableMarkerProps {
@@ -8,7 +9,7 @@ interface ClickableMarkerProps {
     pictogramUri: string;
     id: string;
     content: PopupResult;
-    type?: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | null;
+    type?: ContentType | null;
   }[];
 }
 

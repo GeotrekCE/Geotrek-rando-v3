@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { MapMarker } from 'components/Icons/MapMarker';
 import { DivIcon } from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -26,11 +27,11 @@ const getTop = (ratio: number) => {
   return 'top-2';
 };
 
-const ActivityMarker: React.FC<{ pictogramUrl?: string; zoomRatio: number; color: string }> = ({
-  pictogramUrl,
-  zoomRatio,
-  color,
-}) => {
+const ActivityMarker: React.FC<{
+  pictogramUrl?: string | null;
+  zoomRatio: number;
+  color: string;
+}> = ({ pictogramUrl, zoomRatio, color }) => {
   const icon =
     Boolean(pictogramUrl) && pictogramUrl?.[0] === '<'
       ? `data:image/svg+xml;utf8,${pictogramUrl}`
@@ -41,7 +42,16 @@ const ActivityMarker: React.FC<{ pictogramUrl?: string; zoomRatio: number; color
   return (
     <div className="relative flex justify-center">
       <MapMarker color={color ?? colorPalette.primary1} size={markerWidth * zoomRatio} />
-      <img alt="" className={`absolute z-leafletSvg ${width} ${top}`} loading="lazy" src={icon} />
+      {icon && (
+        <Image
+          alt=""
+          className={`absolute z-leafletSvg ${width} ${top}`}
+          loading="lazy"
+          src={icon}
+          width={markerWidth * zoomRatio}
+          height={markerWidth * zoomRatio}
+        />
+      )}
     </div>
   );
 };

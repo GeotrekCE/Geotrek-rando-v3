@@ -9,7 +9,7 @@ const DEFAULT_WEIGHT = 3;
 interface Props {
   id: string;
   positions: [number, number][];
-  type: 'TREK' | 'TOURISTIC_CONTENT' | 'OUTDOOR_SITE' | 'TOURISTIC_EVENT' | null;
+  type: string | null;
 }
 
 export const HoverablePolyline: React.FC<Props> = props => {
@@ -21,6 +21,6 @@ export const HoverablePolyline: React.FC<Props> = props => {
 
   return useMemo(
     () => <Polyline key={props.id} positions={props.positions} color={color} weight={weight} />,
-    [props.id, props.positions, weight],
+    [color, props.id, props.positions, weight],
   );
 };

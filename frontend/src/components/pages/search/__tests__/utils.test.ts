@@ -71,7 +71,7 @@ const mockTrekResult: TrekResult = {
   place: 'Molines-en-Champsaur',
   name: 'Col de Font Froide',
   tags: ['Faune', 'Géologie', 'Archéologie et histoire'],
-  attachments: [
+  images: [
     {
       url: 'https://geotrekdemo.ecrins-parcnational.fr/media/paperclip/trekking_trek/2/le-depart-du-hameau-de-molines.JPG',
       author: 'Lorem Ipsum',
@@ -162,9 +162,9 @@ describe('parseTextFilter', () => {
   test.each`
     textfilter              | expectedParsedTextFilter
     ${'col de font froide'} | ${'col de font froide'}
-    ${null}                 | ${undefined}
+    ${null}                 | ${''}
   `('parses text filter properly with $textfilter', ({ textfilter, expectedParsedTextFilter }) => {
-    const formattedText = parseTextFilter(textfilter);
+    const formattedText = parseTextFilter(textfilter as string | null);
 
     expect(formattedText).toEqual(expectedParsedTextFilter);
   });

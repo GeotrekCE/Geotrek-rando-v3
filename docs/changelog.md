@@ -1,5 +1,126 @@
 # Changelog
 
+## 3.20.3 (2024-06-10)
+
+**🐛 Fixes**
+
+-  Fix sitemap.xml for connected GTAs >= 2.104 (#1163)
+
+**📝 Documentation**
+
+- Add link to JSON feed example (#1162)
+
+## 3.20.2 (2024-06-06)
+
+**✨ Improvements**
+
+- Expose "categories" colors to CSS custom properties and tailwind (#1137)
+- Improve flatpage button (#1148)
+- Move "source" section to the flatpage last item (#1150)
+- Close the mobile menu when a link inside is clicked (#1151)
+- Improve contrast and margin for flatPage title (#1156)
+- Style all Hn tags differently for the flatpage WYSIWYG (#1161)
+
+**🐛 Fixes**
+
+- Fix user activation zone for main menu dropdown (#1146 and #1149)
+- Fix touristic suggestions for flatpage (#1152)
+- Homogenize id type from suggestions adapter (#1152)
+- Reduce images gray haze on menuItems and flatpage children cards (#1159) 
+
+## 3.20.1 (2024-05-28)
+
+**🐛 Fixes**
+
+- Fix Search page pre-render - Regression since 3.20.0 (#1139)
+
+**📝 Documentation**
+
+- Add details about portalIds setting (#1144)
+
+## 3.20.0 (2024-05-21)
+
+**🚀 New features**
+
+- Add a `displaySecondaryLayersByDefault` settings (default to `true`) to display or not secondary layers on maps by default (#997 and #1130)
+- Display Files from attachments to download in details pages (#1118)
+
+**✨ Improvements**
+
+- Clean search params in search page (#1100)
+- Use Image component for TrekMarker map Popup and DetailsPreview logo images (#1102)
+- Improve detailsCard UI interaction (#1112)
+- Rename attachments props to images props (#1113)
+- Update homepage BannerCarousel autoplaySpeed to 5sec for images (#863 and #1120)
+- Improve mobile filters menu (#1006 and #1131)
+- Break words for large links from description details (#1114 and #1133)
+
+**🔧 Maintenance**
+
+- Bump @types/react-burger-menu from 2.8.1 to 2.8.7 in /frontend by @dependabot (#1041)
+- Use urlSearchParams feature instead of qs package (#1104)
+
+**🐛 Fixes**
+
+- Fix some types (#1096 for #1057)
+- Remove useless outdoorPractice call (#1097)
+- Avoid to call an unexistant network in the networkDictionary in suggestion (#1099)
+- Add (or remove) hooks dependencies (#1098 for #1057)
+- Fix mobile menutem coloration - Regression since 3.19.0 (#1103)
+- Fix presence of child menu items to divide desktop menu (#1105)
+- Fix flatpage suggestions display if some IDs are missing (#1106)
+- Avoid to stringify potentially nullable props (#1111)
+- Fix details section "contact" anchor/translation (#1117)
+- Fix img display from carousel POIs card on mobile viewport (#1127)
+- Fix Trek association to new typology entry causes an error (#1123 and #1128)
+- Fix map popup for outdoor_course items (#896 and #1119)
+- Fix leaflet CSS override for links - regression since v3.16.1 (#1132)
+
+## 3.19.3 (2024-04-08)
+
+**🐛 Fixes**
+
+- Improve flatPage styling (#1092)
+- Revert Use Image component for the main logo - Regression since 3.19.0 (#1093)
+
+**📝 Documentation**
+
+- Documenting the settings for `map.json` (#1088)
+
+## 3.19.2 (2024-04-04)
+
+**🐛 Fixes**
+
+- Fix conversion to large submenu items if a child contains an image (#1087)
+- Fix some flatpage styles (#1089)
+
+## 3.19.1 (2024-04-03)
+
+**🐛 Fixes**
+
+- Fix the display of MenuItem label (#1085)
+
+## 3.19.0 (2024-04-03)
+
+**🚀 New features**
+
+- New menu system and style (#1049, #1079) - Require Geotrek-admin version 2.104.0 minimum
+- Improve flat pages style and content with children pages and suggestions (#1075, #1078)
+
+**🔧 Maintenance**
+
+- Upgrade typescript to 5.3.3 (#1057)
+- Improve ESLint config (#1057)
+- Upgrade tailwind packages to 3.4.1 (#1069)
+- Improve breadcrumb semantics (#1074)
+- Make HomeSection component more generic (#1073)
+
+**🐛 Fixes**
+
+- Fix HD viewpoints layer selector (#943)
+- Fix flat pages not linked in menu (#607)
+- Fix menu external link target (#590)
+
 ## 3.18.0 (2024-02-08)
 
 **🚀 New features**

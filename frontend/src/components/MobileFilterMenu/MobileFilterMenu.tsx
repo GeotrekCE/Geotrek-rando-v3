@@ -1,10 +1,8 @@
 import MobileBottomClear from 'components/pages/search/components/FilterBar/MobileBottomClear';
-import React from 'react';
-// @ts-ignore Not official but useful to reduce bundle size
+// @ts-expect-error Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
 
 import { Cross } from 'components/Icons/Cross';
-import getActivityColor from 'components/pages/search/components/ResultCard/getActivityColor';
 import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
 import useCounter from 'components/pages/search/hooks/useCounter';
 import { FormattedMessage } from 'react-intl';
@@ -44,21 +42,29 @@ export const MobileFilterMenu: React.FC<Props> = ({
      * the content and imperatively closes the drawer.
      */
     <Slide
-      isOpen={true}
+      isOpen
       onClose={handleClose}
       right
       customBurgerIcon={false}
       customCrossIcon={false}
       burgerBarClassName="bg-white"
       menuClassName="bg-white p-4"
-      width={'80vw'}
+      width="80vw"
     >
-      <div className="relative text-center w-full pb-4 font-bold border-b border-solid border-greySoft outline-none">
-        <CloseButton onClick={handleClose} className="absolute left-0" icon={<Cross size={24} />} />
+      <div className="flex flex-col relative text-center w-full pb-4 font-bold border-b border-solid border-greySoft outline-none">
+        <CloseButton
+          onClick={handleClose}
+          className="absolute left-0"
+          icon={<Cross size={24} aria-hidden />}
+        >
+          <span className="sr-only">
+            <FormattedMessage id={'search.closeFilters'} />
+          </span>
+        </CloseButton>
         <span>{title}</span>
       </div>
 
-      <div>
+      <div className="pb-20">
         {filtersList.map(item => {
           if (treksCount === 0 && item.id === PRACTICE_ID) return null;
           if (touristicContentsCount === 0 && item.id === CATEGORY_ID) return null;
@@ -73,7 +79,7 @@ export const MobileFilterMenu: React.FC<Props> = ({
           );
           return (
             <MobileFilterMenuSection
-              color={getActivityColor(item.id)}
+              type={item.id}
               title={name}
               key={item.id}
               onClick={item.onSelect}

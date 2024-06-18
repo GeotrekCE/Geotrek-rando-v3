@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 import { routes } from 'services/routes';
 import { useMediaPredicate } from 'react-media-hook';
 import useSectionsReferences from 'hooks/useSectionsReferences';
-import { queryCommonDictionaries } from 'modules/dictionaries/api';
+import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { getDetailsConfig } from './config';
 import {
   DetailsSectionOutdoorCourseNames,
@@ -45,7 +45,7 @@ export const useDetails = (
   const path = isUrlString(slug) ? decodeURI(slug) : '';
   const router = useRouter();
 
-  const commonDictionaries = queryCommonDictionaries(language);
+  const commonDictionaries = useQueryCommonDictionaries(language);
 
   const {
     data: details,
@@ -56,9 +56,9 @@ export const useDetails = (
     () => getDetails(id, language, commonDictionaries),
     {
       enabled: isUrlString(slug) && commonDictionaries !== undefined,
-      onError: async error => {
+      onError: error => {
         if (isRessourceMissing(error)) {
-          await router.push(routes.HOME);
+          void router.push(routes.HOME);
         }
       },
       staleTime: ONE_DAY,
@@ -85,6 +85,7 @@ export const useDetails = (
     useSectionsReferences();
 
   const sectionRef = sectionsTrek.reduce(
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     (list, item) => ({ ...list, [item.name]: useSectionReferenceCallback(item.name) }),
     {} as Record<DetailsSections, (node: HTMLDivElement | null) => void>,
   );

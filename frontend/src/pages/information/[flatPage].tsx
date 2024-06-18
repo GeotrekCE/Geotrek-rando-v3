@@ -3,9 +3,12 @@ import { useRouter } from 'next/router';
 import { FlatPageUI } from 'components/pages/flatPage';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { routes } from 'services/routes';
-import { getFlatPageDetails } from '../../modules/flatpage/connector';
-import { isUrlString } from '../../modules/utils/string';
-import { redirectIfWrongUrl } from '../../modules/utils/url';
+import { getCommonDictionaries } from 'modules/dictionaries/connector';
+import { getActivitySuggestions } from 'modules/activitySuggestions/connector';
+import { getFlatPageDetails } from 'modules/flatpage/connector';
+import { getSuggestionsFromContent } from 'modules/flatpage/utils';
+import { isUrlString } from 'modules/utils/string';
+import { redirectIfWrongUrl } from 'modules/utils/url';
 import Custom404 from '../404';
 
 export const getServerSideProps: GetServerSideProps = async context => {
@@ -15,9 +18,22 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
     const queryClient = new QueryClient();
 
-    const details = await getFlatPageDetails(id, locale);
+    const commonDictionaries = await getCommonDictionaries(locale);
+    await queryClient.prefetchQuery(['commonDictionaries', locale], () => commonDictionaries);
 
+    const details = await getFlatPageDetails(id, locale, commonDictionaries);
     await queryClient.prefetchQuery(['flatPageDetails', id, locale], () => details);
+
+    const suggestions = getSuggestionsFromContent(details.content);
+
+    const activitySuggestionIds = suggestions.flatMap(suggestion =>
+      'ids' in suggestion ? suggestion.ids : [suggestion.type],
+    );
+
+    await queryClient.prefetchQuery(
+      ['activitySuggestions', ...activitySuggestionIds, id, locale],
+      () => getActivitySuggestions(suggestions, locale, commonDictionaries),
+    );
 
     const redirect = redirectIfWrongUrl(
       id,

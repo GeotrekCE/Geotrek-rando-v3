@@ -1,5 +1,6 @@
 import { Separator } from 'components/Separator';
 import { TrekResult } from 'modules/results/interface';
+import { TrekResultWithGeometryChild } from 'modules/details/interface';
 import { OutdoorSiteResult } from 'modules/outdoorSite/interface';
 import { OutdoorCourseResult } from 'modules/outdoorCourse/interface';
 import { ResultCard } from 'components/pages/search/components/ResultCard';
@@ -11,7 +12,7 @@ import { generateDetailsUrlFromType } from '../../utils';
 
 interface DetailsChildrenSectionProps {
   id?: string;
-  items: TrekResult[] | OutdoorSiteResult[] | OutdoorCourseResult[];
+  items: TrekResult[] | TrekResultWithGeometryChild[] | OutdoorSiteResult[] | OutdoorCourseResult[];
   parentId?: string;
   title: string;
   type: 'TREK' | 'OUTDOOR_SITE' | 'OUTDOOR_COURSE';
@@ -95,7 +96,7 @@ export const DetailsChildrenSection: React.FC<DetailsChildrenSectionProps> = ({
               place={item.place}
               title={item.name}
               tags={item.tags}
-              attachments={item.attachments}
+              images={item.images}
               badgeIconUri={'category' in item ? item.category?.pictogramUri : undefined}
               badgeName={'category' in item ? item.category?.label : undefined}
               informations={item.informations}

@@ -1,5 +1,5 @@
 import { InfiniteData } from '@tanstack/react-query';
-// @ts-ignore
+// @ts-expect-error the lib is not typed
 import { remove as removeDiacritics } from 'diacritics';
 
 import { routes } from 'services/routes';
@@ -35,8 +35,8 @@ export const parseFilter = (filter: FilterState): QueryFilterState => ({
 export const parseFilters = (filters: FilterState[]): QueryFilterState[] =>
   filters.map(parseFilter);
 
-export const parseTextFilter = (textFilter: string | null): string | undefined =>
-  textFilter !== null ? textFilter : undefined;
+export const parseTextFilter = (textFilter: string | null): string =>
+  textFilter !== null ? textFilter : '';
 
 export const parseBboxFilter = (bboxFilter: string | null): string | undefined =>
   bboxFilter !== null ? bboxFilter : undefined;

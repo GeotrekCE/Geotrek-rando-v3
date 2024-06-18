@@ -4,29 +4,29 @@
     "browser": true,
     "node": true,
     "es6": true,
-    "jest": true
+    "jest": true,
   },
   "extends": [
+    "next/core-web-vitals",
     "eslint:recommended",
-    "plugin:react/recommended",
+    "plugin:@next/next/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:prettier/recommended",
     "prettier",
-    "plugin:jest-dom/recommended" // react-testing-libary rules
+    "plugin:jest-dom/recommended", // react-testing-libary rules
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "tsconfig.json",
     "sourceType": "module",
-    "tsconfigRootDir": "./src"
+    "tsconfigRootDir": "./src",
   },
   "plugins": ["@typescript-eslint", "import", "jest-dom", "testing-library"],
   "settings": {
     "react": {
-      "version": "detect"
-    }
+      "version": "detect",
+    },
   },
   "rules": {
     "react/prop-types": "off",
@@ -38,6 +38,7 @@
     "@typescript-eslint/prefer-for-of": "error",
     "@typescript-eslint/unified-signatures": "error",
     "@typescript-eslint/ban-ts-comment": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/no-unsafe-return": "off",
@@ -53,8 +54,8 @@
     "no-shadow": [
       "warn",
       {
-        "hoist": "all"
-      }
+        "hoist": "all",
+      },
     ],
     "no-throw-literal": "error",
     "no-undef-init": "error",
@@ -65,8 +66,8 @@
     "import/order": [
       "error",
       {
-        "groups": [["external", "builtin"], "internal", ["parent", "sibling", "index"]]
-      }
+        "groups": [["external", "builtin"], "internal", ["parent", "sibling", "index"]],
+      },
     ],
     "sort-imports": [
       "error",
@@ -74,8 +75,8 @@
         "ignoreCase": true,
         "ignoreDeclarationSort": true,
         "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
-      }
-    ]
-  }
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+      },
+    ],
+  },
 }

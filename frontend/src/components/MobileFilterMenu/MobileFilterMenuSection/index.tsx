@@ -1,40 +1,51 @@
 import { ChevronDown } from 'components/Icons/ChevronDown';
-import React from 'react';
+import { getActivityColorClassName } from 'components/pages/search/components/ResultCard/getActivityColor';
+import { cn } from 'services/utils/cn';
 
 export interface Props {
   title: string | React.ReactElement;
   onClick?: () => void;
   numberSelected: number;
-  color: string;
+  type: string;
 }
 
 export const MobileFilterMenuSection: React.FC<Props> = ({
   title,
   onClick,
   numberSelected,
-  color,
+  type = null,
 }) => {
-  const classNameSectionName = `font-bold text-Mobile-C1 w-full ${
-    numberSelected > 0 ? 'text-primary1' : 'text-greyDarkColored'
-  }`;
+  const classNameSectionName = cn(
+    'font-bold text-Mobile-C1 w-full',
+    numberSelected > 0 ? 'text-primary1' : 'text-greyDarkColored',
+    getActivityColorClassName(type, { withColor: true }),
+  );
 
   return (
-    <div
+    <button
       onClick={onClick}
-      className="pt-4 pb-4 outline-none border-b border-solid border-greySoft flex items-center"
+      className="pt-4 pb-4 outline-none border-b border-solid border-greySoft flex items-center w-full text-left"
+      type="button"
     >
       {numberSelected > 0 && (
-        <div
-          className="bg-primary1 text-white rounded-full h-6 w-6 flex items-center justify-center font-bold mr-2"
-          style={{ backgroundColor: color }}
+        <span
+          className={cn(
+            'bg-primary1 text-white text-center rounded-full size-6 font-bold mr-2',
+            getActivityColorClassName(type, { withBackground: true }),
+          )}
         >
           {numberSelected}
-        </div>
+        </span>
       )}
-      <div className={classNameSectionName} style={{ color }}>
-        {title}
-      </div>
-      <ChevronDown className={`-rotate-90 text-primary1`} size={24} color={color} />
-    </div>
+      <span className={classNameSectionName}>{title}</span>
+      <ChevronDown
+        className={cn(
+          '-rotate-90 text-primary1 ml-auto',
+          getActivityColorClassName(type, { withColor: true }),
+        )}
+        size={24}
+        aria-hidden
+      />
+    </button>
   );
 };

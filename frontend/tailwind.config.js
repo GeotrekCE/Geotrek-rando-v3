@@ -107,7 +107,6 @@ module.exports = {
       },
       borderRadius: {
         button: '8px',
-        card: '16px',
         chip: '20px',
         large: '10px',
         medium: '4px',
@@ -146,6 +145,10 @@ module.exports = {
         blackSemiOpaque: 'rgba(0, 0, 0, 0.70)',
         greyDarkColored: '#534764',
         gradientOnImages: '#27041970',
+        trek: 'var(--color-trek)',
+        events: 'var(--color-events)',
+        outdoor: 'var(--color-outdoor)',
+        service: 'var(--color-service)',
       },
     },
   },

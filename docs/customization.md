@@ -20,7 +20,11 @@ In json files, you can just override the primary keys you need. You have to over
   - `searchResultsPageSize`, `mapResultsPageSize`: used to limit the sizes of results per page when fetching API
   - `maxPoiPerPage`: max number of point of interest (POI) displayed on a single trek page
   - `maxTouristicContentPerPage`: max number of touristic contents displayed on a single trek page
-  - `portalIds`: eventual portal filters (list of ids).
+  - `portalIds`: eventual portal filters (list of ids). 
+
+    - If no id has been set, Geotrek-rando retrieves all objets, whether or not they are associated with a portal in Geotrek-admin. 
+    - If one or more ids have been set (example : [1,3]), Geotrek-rando only retrieves the objets of the configured portals. Therefore, if objects are not associated with any portal in Geotrek-admin, they will not be displayed in Geotrek-rando.
+    
   - `enableSensitiveAreas`: boolean, default to false. Set it to true if sensitive areas are defined in your Geotrek-admin
   - `enableOutdoor`: boolean, default to false. Set it to true to enable Outdoor sites and courses
   - `groupTreksAndOutdoorFilters`: boolean, default to false. Groups treks and outdoor filters into a single tab. For this setting to work, `enableOutdoor` must be set to `true`.
@@ -42,7 +46,16 @@ In json files, you can just override the primary keys you need. You have to over
   - `accessibilityCodeNumber`: emergency number. Default set to `114`.
   - `displayObjectsRelatedToItinerantTreks`: An object containing many booleans to display/hide objects related to itinerant treks. The keys are `POIs`,`touristicContents`,`sensitiveAreas`,`infrastructures`,`signages`,`service` and are all set to `true` by default. Indeed multi-days treks can be long and have a lot a related objects which is very long to display and not really readable. That's why you can disable some related objects that will not be displayed on itinerant main detail page, but will be displayed on steps detail pages and any other treks detail pages.
 
-- `header.json` to define logo URL, default and available languages, number items to flatpages to display in navbar (see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
+- `header.json` to define :
+
+  - `logo` : Path to your logo image
+  - `menu`: an object with 3 keys :
+
+    - `supportedLanguages`: Array of available languages: `'CA','DE','FR','EN','ES',IT` are availables.
+    - `defaultLanguage`: Your target audience's main language.
+    - `primaryItemsNumber`: Number of items before dividing the main menu with a "See more" button. _Deprecated_ since 3.19.0: Use the MenuItems feature from Geotrek admin.
+
+(see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
 
 - `home.json` to define homepage settings.
 
@@ -169,6 +182,11 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
 
 - `map.json` to define basemaps URL and attributions, center (y, x), default and max zoom level (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json).
 
+  - `searchMapCenter`: Array of two numbers `[latitude, longitude]` defining the map center point in the search view,
+  - `searchMapZoom`: Default value is `10`. It defines the zoom level in the search view. **Warning**: It is important that the `searchMapZoom` value is included in the zoom value range of the basemap (`minZoom` and `maxZoom`), otherwise it may generate an error.
+  - `maximumZoomLevel`: Default value is `17`. The default maximum zoom level if the maxZoom option is not defined in map layer (see below)
+  - `displaySecondaryLayersByDefault`: Default value is `true`. Display or not display secondary layers (signages, infractructures and services) at page load on detail pages.
+
   You can also update the map layers. Three types of map layers are available: classic, satellite and offline. Each of them is structured as follows:
 
   ```ts
@@ -285,6 +303,9 @@ You can override CSS in `customization/theme/style.css` file. To help overriding
 - `search_container` to isolate Search page
 - `details_container` to isolate detail pages
 - `flatPage_container` to isolate static flatpages
+
+In addition, some classes prefixed with `custo-*` are gradually being added to facilitate style overrides for components.
+A dedicated [ticket](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/1079) shows explanations and differents styling for the main menu (available since 3.19.0).
 
 ## Translations
 
@@ -416,6 +437,8 @@ You can also include some scripts:
 - `customization/html/scriptsFooter.html`: just before the `</body>` end tag
 
 The scripts templates are intended for third party scripts. Unlike the HTML parts, there is not possibility of translations. More information on how to write them can be found in the [Scripts and GDPR documentation](customization-scripts-GDPR.md).
+
+If you want to include an external JSON feed (for external latest news for example), you can check this [https://github.com/GeotrekCE/Geotrek-rando-v3/issues/1157](example documentation).
 
 ## Icons
 

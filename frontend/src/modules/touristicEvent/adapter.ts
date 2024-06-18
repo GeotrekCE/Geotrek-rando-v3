@@ -1,4 +1,8 @@
-import { getAttachments, getThumbnail, getThumbnails } from 'modules/utils/adapter';
+import {
+  geFilesFromAttachments,
+  getLargeImagesOrThumbnailsFromAttachments,
+  getThumbnail,
+} from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CityDictionnary } from '../city/interface';
 import { Choices } from '../filters/interface';
@@ -33,7 +37,8 @@ export const adaptTouristicEvents = ({
     return {
       id: rawTouristicEvent.id,
       name: rawTouristicEvent.name,
-      attachments: getAttachments(rawTouristicEvent.attachments),
+      images: getLargeImagesOrThumbnailsFromAttachments(rawTouristicEvent.attachments, false),
+      filesFromAttachments: geFilesFromAttachments(rawTouristicEvent.attachments),
       geometry: adaptGeometry(rawTouristicEvent.geometry),
       themes: rawTouristicEvent?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       place: cityDictionnary?.[rawTouristicEvent?.cities?.[0]]?.name ?? '',
@@ -60,10 +65,10 @@ export const adaptTouristicEventsResult = ({
 }): TouristicEventResult[] => {
   return rawTouristicEvents.map(rawTouristicEvent => {
     return {
-      id: rawTouristicEvent.id,
+      id: `${rawTouristicEvent.id}`,
       type: 'TOURISTIC_EVENT',
       name: rawTouristicEvent.name,
-      attachments: getThumbnails(rawTouristicEvent.attachments),
+      images: getLargeImagesOrThumbnailsFromAttachments(rawTouristicEvent.attachments, true),
       geometry: adaptGeometry(rawTouristicEvent.geometry),
       tags: rawTouristicEvent?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       place: cityDictionnary?.[rawTouristicEvent?.cities?.[0]]?.name ?? '',

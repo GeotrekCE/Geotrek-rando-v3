@@ -88,7 +88,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
 
   useEffect(() => {
     if (mapResults) setPoints(mapResults);
-  }, [mapResults]);
+  }, [mapResults, setPoints]);
 
   const intl = useIntl();
 
@@ -226,7 +226,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                         place={searchResult.place}
                         title={searchResult.name}
                         tags={searchResult.tags}
-                        attachments={searchResult.attachments}
+                        images={searchResult.images}
                         badgeIconUri={searchResult.category?.pictogramUri}
                         badgeName={searchResult.category?.label}
                         informations={searchResult.informations ?? []}

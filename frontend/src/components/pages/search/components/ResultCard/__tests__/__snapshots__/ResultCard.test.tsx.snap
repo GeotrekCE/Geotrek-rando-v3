@@ -6,20 +6,20 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="flex flex-auto flex-col items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden cursor-pointer desktop:flex-row"
+        class="custo-result-card flex flex-auto flex-col items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden desktop:flex-row"
         id="result_card"
       >
         <div
           class="relative bg-dark"
         >
           <div
-            class="flex items-center justify-center w-full h-full"
+            class="flex items-center justify-center size-full"
           >
             <div
-              class="w-full h-full"
+              class="size-full"
             >
               <div
-                class="h-full w-full grow relative desktop:w-resultCardDesktop"
+                class="size-full grow relative desktop:w-resultCardDesktop"
               >
                 <span
                   class=""
@@ -30,7 +30,7 @@ Object {
                   >
                     <img
                       alt=""
-                      class="object-cover object-center overflow-hidden w-full h-full"
+                      class="object-cover object-center overflow-hidden size-full"
                       id=":r3:"
                       loading="lazy"
                       src="/test.jpg"
@@ -46,7 +46,7 @@ Object {
           </div>
         </div>
         <a
-          class="text-primary1 hover:text-primary3 transition-colors w-full"
+          class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors w-full"
           data-testid="Link-ResultCard-2"
           href="/details-2-Balade-au-pays-des-menhirs"
         >
@@ -100,7 +100,7 @@ Object {
                   >
                     <img
                       alt=""
-                      class="object-cover object-center w-6 h-6"
+                      class="object-cover object-center size-6"
                       data-nimg="1"
                       decoding="async"
                       height="24"
@@ -219,20 +219,20 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="flex flex-auto flex-col items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden cursor-pointer desktop:flex-row"
+      class="custo-result-card flex flex-auto flex-col items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden desktop:flex-row"
       id="result_card"
     >
       <div
         class="relative bg-dark"
       >
         <div
-          class="flex items-center justify-center w-full h-full"
+          class="flex items-center justify-center size-full"
         >
           <div
-            class="w-full h-full"
+            class="size-full"
           >
             <div
-              class="h-full w-full grow relative desktop:w-resultCardDesktop"
+              class="size-full grow relative desktop:w-resultCardDesktop"
             >
               <span
                 class=""
@@ -243,7 +243,7 @@ Object {
                 >
                   <img
                     alt=""
-                    class="object-cover object-center overflow-hidden w-full h-full"
+                    class="object-cover object-center overflow-hidden size-full"
                     id=":r3:"
                     loading="lazy"
                     src="/test.jpg"
@@ -259,7 +259,7 @@ Object {
         </div>
       </div>
       <a
-        class="text-primary1 hover:text-primary3 transition-colors w-full"
+        class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors w-full"
         data-testid="Link-ResultCard-2"
         href="/details-2-Balade-au-pays-des-menhirs"
       >
@@ -313,7 +313,7 @@ Object {
                 >
                   <img
                     alt=""
-                    class="object-cover object-center w-6 h-6"
+                    class="object-cover object-center size-6"
                     data-nimg="1"
                     decoding="async"
                     height="24"

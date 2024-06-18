@@ -4,12 +4,17 @@ import { getSignage } from 'modules/signage/connector';
 import { getService } from 'modules/service/connector';
 import { getInfrastructure } from 'modules/infrastructure/connector';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
+import { PopupResult } from 'modules/trekResult/interface';
 import { getOutdoorCourseType } from '../outdoorCourseType/connector';
 import { getOutdoorRating } from '../outdoorRating/connector';
 import { getOutdoorRatingScale } from '../outdoorRatingScale/connector';
 import { getPois } from '../poi/connector';
 import { getTouristicContentsNearTarget } from '../touristicContent/connector';
-import { adaptOutdoorCourseDetails, adaptOutdoorCoursesResult } from './adapter';
+import {
+  adaptOutdoorCourseDetails,
+  adaptOutdoorCoursePopupResults,
+  adaptOutdoorCoursesResult,
+} from './adapter';
 import { fetchOutdoorCourseDetails } from './api';
 import { OutdoorCourseDetails, OutdoorCourseResult } from './interface';
 
@@ -89,4 +94,16 @@ export const getOutdoorCourseDetails = async (
     console.error('Error in outdoor course connector', e);
     throw e;
   }
+};
+
+export const getOutdoorCoursePopupResult = async (
+  id: string,
+  language: string,
+  commonDictionaries?: CommonDictionaries,
+): Promise<PopupResult> => {
+  const rawOutdoorSitePopupResult = await fetchOutdoorCourseDetails({ language }, id);
+
+  const { cities = {} } = commonDictionaries ?? {};
+
+  return adaptOutdoorCoursePopupResults({ rawOutdoorSitePopupResult, cityDictionnary: cities });
 };
