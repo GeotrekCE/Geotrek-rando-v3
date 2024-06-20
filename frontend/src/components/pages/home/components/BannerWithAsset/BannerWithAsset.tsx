@@ -49,6 +49,7 @@ export const BannerWithAsset: React.FC<BannerSectionProps> = ({
           autoPlay
           muted
           loop
+          playsInline
           src={videoUrl}
           className="object-cover object-center overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
           data-testid="video"

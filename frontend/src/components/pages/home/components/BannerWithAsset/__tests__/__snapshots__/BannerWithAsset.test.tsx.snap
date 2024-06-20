@@ -445,6 +445,7 @@ Object {
           data-testid="video"
           id="banner-video"
           loop=""
+          playsinline=""
           src="test.mp4"
         />
         <div
@@ -470,6 +471,7 @@ Object {
         data-testid="video"
         id="banner-video"
         loop=""
+        playsinline=""
         src="test.mp4"
       />
       <div
