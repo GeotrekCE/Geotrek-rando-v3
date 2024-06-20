@@ -21,8 +21,8 @@ export const Modal: React.FC<Props> = ({ className, children }) => {
   const intl = useIntl();
 
   const ref = useRef(null);
-  const [show, toggle] = useState(false);
-  const isFullscreen = useFullscreen(ref, show, { onClose: () => toggle(false) });
+  const [show, setShow] = useState(false);
+  const isFullscreen = useFullscreen(ref, show, { onClose: () => setShow(false) });
 
   return (
     <div ref={ref} className={cn('relative bg-dark', className)}>
@@ -30,7 +30,7 @@ export const Modal: React.FC<Props> = ({ className, children }) => {
         <MapButton
           aria-label={intl.formatMessage({ id: 'details.closeFullScreen' })}
           icon={<ArrowLeft size={24} />}
-          onClick={() => toggle(boolean => !boolean)}
+          onClick={() => setShow(boolean => !boolean)}
         />
       )}
       <div className="flex items-center justify-center size-full">
@@ -38,7 +38,7 @@ export const Modal: React.FC<Props> = ({ className, children }) => {
           {typeof children === 'function'
             ? children({
                 isFullscreen: show,
-                toggleFullscreen: () => toggle(boolean => !boolean),
+                toggleFullscreen: () => setShow(boolean => !boolean),
               })
             : children}
         </div>
