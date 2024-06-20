@@ -139,9 +139,9 @@ export const adaptOutdoorSiteDetails = ({
   })[0],
   accessibility: rawOutdoorSiteDetails.properties.accessibility ?? null,
   description: rawOutdoorSiteDetails.properties.description,
-  ambiance: rawOutdoorSiteDetails.properties.ambiance,
+  ambiance: rawOutdoorSiteDetails.properties.ambiance ?? null,
   advice: rawOutdoorSiteDetails.properties.advice,
-  descriptionTeaser: rawOutdoorSiteDetails.properties.description_teaser,
+  descriptionTeaser: rawOutdoorSiteDetails.properties.description_teaser ?? null,
   bbox: {
     corner1: { x: rawOutdoorSiteDetails.bbox[0], y: rawOutdoorSiteDetails.bbox[1] },
     corner2: { x: rawOutdoorSiteDetails.bbox[2], y: rawOutdoorSiteDetails.bbox[3] },

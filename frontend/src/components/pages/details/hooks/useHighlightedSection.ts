@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
-import { sizes } from 'stylesheet';
 import { DetailsSections, DetailsSectionsPosition } from '../useDetails';
 import { VisibleSectionContext } from '../VisibleSectionContext';
+import { theme } from '../../../../../tailwind.config';
 
 /**
  * Returns the id of the section currently on screen
@@ -31,7 +31,10 @@ export const useOnScreenSection = ({
   let visibleScreenHeight = 0;
   // Necessary check because we use Nextjs
   if (typeof window !== 'undefined') {
-    visibleScreenHeight = window.innerHeight - sizes.desktopHeader - sizes.detailsHeaderDesktop;
+    visibleScreenHeight =
+      window.innerHeight -
+      parseInt(theme.spacing.desktopHeader, 10) -
+      parseInt(theme.spacing[14], 10);
   }
 
   useEffect(() => {

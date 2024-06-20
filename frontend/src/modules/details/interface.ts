@@ -58,7 +58,7 @@ export interface RawDetailsProperties {
   advice: string;
   advised_parking: string;
   altimetric_profile: string;
-  ambiance: string;
+  ambiance?: string | null;
   arrival_city: string;
   arrival: string;
   ascent: number;
@@ -67,7 +67,7 @@ export interface RawDetailsProperties {
   cities: string[];
   departure_city: string;
   departure: string;
-  description_teaser: string;
+  description_teaser: string | null;
   description: string;
   difficulty: number | null;
   disabled_infrastructure: string;
@@ -103,8 +103,8 @@ export interface DetailsHtml {
   transport: string;
   access: string;
   parking: string;
-  description_teaser: string;
-  ambiance: string;
+  description_teaser: string | null;
+  ambiance?: string | null;
   description: string;
   disabledInfrastructure: string;
   advice: string;
@@ -181,8 +181,8 @@ export interface Details extends DetailsHtml {
   bbox: Bbox;
   children: TrekResultWithGeometryChild[];
   sensitiveAreas: SensitiveArea[];
-  departure: string;
-  arrival: string;
+  departure?: string | null;
+  arrival?: string | null;
   cities: string[];
   cities_raw: string[];
   webLinks: WebLink[];

@@ -9,7 +9,6 @@ import { DetailsHeaderMobile, marginDetailsChild } from 'components/pages/detail
 import { useOnScreenSection } from 'components/pages/details/hooks/useHighlightedSection';
 import {
   generateTouristicContentUrl,
-  HtmlText,
   templatesVariablesAreDefinedAndUsed,
 } from 'components/pages/details/utils';
 import { VisibleSectionProvider } from 'components/pages/details/VisibleSectionContext';
@@ -18,7 +17,6 @@ import { useMemo, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'components/Loader';
 import { useMediaPredicate } from 'react-media-hook';
-import { sizes } from 'stylesheet';
 import { DetailsMapDynamicComponent } from 'components/Map';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
@@ -36,6 +34,7 @@ import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
 import { useDetailsSections } from '../details/useDetailsSections';
+import { theme } from '../../../../tailwind.config';
 
 interface Props {
   outdoorCourseUrl: string | string[] | undefined;
@@ -75,8 +74,8 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
     // relative to the relative parent.
     scrollOffset:
       (sectionsContainerRef.current?.offsetTop ?? 0) -
-      sizes.desktopHeader -
-      sizes.detailsHeaderDesktop,
+      parseInt(theme.spacing.desktopHeader, 10) -
+      parseInt(theme.spacing[14], 10),
   });
 
   return useMemo(
@@ -318,7 +317,9 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                                 <strong className="font-bold">
                                   <FormattedMessage id="details.accessibility" /> :{' '}
                                 </strong>
-                                <HtmlText>{parse(outdoorCourseContent.accessibility)}</HtmlText>
+                                <div className="content-WYSIWYG">
+                                  {parse(outdoorCourseContent.accessibility)}
+                                </div>
                               </div>
                             )}
                           </DetailsSection>
@@ -346,7 +347,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                                 id: `${touristicContent.id}`,
                                 name: touristicContent.name ?? '',
                                 place: touristicContent.category.label,
-                                description: touristicContent.descriptionTeaser,
+                                description: touristicContent.descriptionTeaser ?? '',
                                 thumbnails: touristicContent.thumbnails,
                                 images: touristicContent.images,
                                 iconUri: touristicContent.category.pictogramUri,

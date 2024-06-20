@@ -5,7 +5,7 @@ export interface Trek {
   advice: string;
   advised_parking: string;
   altimetric_profile: string;
-  ambiance: string;
+  ambiance: string | null;
   arrival: string;
   ascent: number;
   images: Attachment[];
@@ -14,7 +14,7 @@ export interface Trek {
   departure: string;
   descent: number;
   description: string;
-  description_teaser: string;
+  description_teaser: string | null;
   difficulty: number;
   disabled_infrastructure: string;
   duration: number;

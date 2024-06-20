@@ -1,7 +1,7 @@
 import Select, { CSSObjectWithLabel, OnChangeValue } from 'react-select';
 import { Option } from 'modules/filters/interface';
 import { useIntl } from 'react-intl';
-import { colorPalette, sizes } from 'stylesheet';
+import { theme } from '../../../../../../tailwind.config';
 
 export interface SelectableDropdownProps {
   name: string;
@@ -21,20 +21,20 @@ const colourStyles = {
     backgroundColor: 'white',
     boxShadow: 'none',
     minWidth: '160px',
-    borderColor: colorPalette.filter.borderColor,
+    borderColor: theme.extend.colors.primary1.DEFAULT,
     ':hover': {
-      borderColor: colorPalette.filter.borderColor,
+      borderColor: theme.extend.colors.primary1.DEFAULT,
     },
-    minHeight: sizes.button,
+    minHeight: theme.spacing[12],
   }),
   option: (styles: CSSObjectWithLabel, { data }: { data: Option }) => {
     return {
       ...styles,
-      backgroundColor: colorPalette.filter.background,
-      color: colorPalette.filter.color,
+      backgroundColor: theme.extend.colors.white,
+      color: theme.extend.colors.black,
       ':hover': {
-        backgroundColor: colorPalette.filter.hover.background,
-        color: colorPalette.filter.hover.color,
+        backgroundColor: theme.extend.colors.primary2,
+        color: theme.extend.colors.black,
       },
       display: 'flex',
       alignItems: 'center',
@@ -51,7 +51,7 @@ const colourStyles = {
         backgroundPosition: 'center',
         borderRadius: '50%',
         padding: 4,
-        backgroundColor: colorPalette.primary1,
+        backgroundColor: theme.extend.colors.primary1.DEFAULT,
         backgroundOrigin: 'content-box',
       },
     };
@@ -60,7 +60,7 @@ const colourStyles = {
     return {
       ...styles,
       padding: '4px 0',
-      backgroundColor: colorPalette.filter.selected.background,
+      backgroundColor: theme.extend.colors.primary2,
       ':before': {
         content: data.pictogramUrl !== undefined ? '" "' : undefined,
         background: data.pictogramUrl !== undefined ? `url(${data.pictogramUrl})` : '',
@@ -73,7 +73,7 @@ const colourStyles = {
         backgroundPosition: 'center',
         borderRadius: '50%',
         padding: 4,
-        backgroundColor: colorPalette.primary1,
+        backgroundColor: theme.extend.colors.primary1.DEFAULT,
         backgroundOrigin: 'content-box',
       },
     };
@@ -81,7 +81,7 @@ const colourStyles = {
   input: (styles: CSSObjectWithLabel) => ({ ...styles, backgroundColor: 'black' }),
   placeholder: (styles: CSSObjectWithLabel) => ({
     ...styles,
-    color: colorPalette.filter.placeholder.color,
+    color: theme.extend.colors.greyDarkColored,
   }),
 };
 

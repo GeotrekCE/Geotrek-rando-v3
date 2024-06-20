@@ -1,8 +1,8 @@
 import Slider, { CustomArrowProps } from 'react-slick';
-import styled, { css } from 'styled-components';
-import { colorPalette, desktopOnly, getSpacing } from 'stylesheet';
 import { TrekChild } from 'modules/details/interface';
 import { Link } from 'components/Link';
+import { cn } from 'services/utils/cn';
+import { FormattedMessage } from 'react-intl';
 import { generateChildrenDetailsUrl } from '../../utils';
 
 interface DetailsTrekFamilyCarouselProps {
@@ -22,92 +22,59 @@ export const DetailsTrekFamilyCarousel: React.FC<DetailsTrekFamilyCarouselProps>
     <Slider
       speed={500}
       infinite={false}
-      nextArrow={<NextArrow />}
-      prevArrow={<PrevArrow />}
+      prevArrow={<Arrow isPrev />}
+      nextArrow={<Arrow />}
       swipe={false}
       slidesToShow={3}
       slidesToScroll={2}
       initialSlide={initialSlideId}
-      className="my-1.5 desktop:my-3 mx-7 desktop:mr-10 desktop:ml-8"
+      className="my-1.5 !flex items-center desktop:my-3"
     >
-      {trekChildren.map((trekChild, i) => (
-        <div key={i} className="outline-none align-middle py-1">
-          <Link href={generateChildrenDetailsUrl(trekChild.id, trekChild.name, parentId)}>
-            <div
-              className={`truncate px-2 desktop:px-4 py-2
+      {trekChildren.map((trekChild, index) => (
+        <Link
+          key={index}
+          href={generateChildrenDetailsUrl(trekChild.id, trekChild.name, parentId)}
+          className={cn(
+            `my-1 block truncate px-2 desktop:px-4 py-2
               mx-2p desktop:mx-1.5
               text-P3 desktop:text-P1
-              outline-none border border-solid rounded-full
-              cursor-pointer hover:shadow-sm transition-all ${
-                trekChild.id === trekId ? currentChildClassName : otherChildClassName
-              }`}
-            >
-              <span>{`${trekChild.rank}. ${trekChild.name}`}</span>
-            </div>
-          </Link>
-        </div>
+              border border-solid rounded-full
+              hover:shadow-sm focus:shadow-sm`,
+            trekChild.id === trekId
+              ? 'border-primary1 !text-white bg-primary1'
+              : 'border-greySoft text-primary3 bg-white',
+          )}
+        >
+          {trekChild.rank}. {trekChild.name}
+        </Link>
       ))}
     </Slider>
   );
 };
 
-const otherChildClassName = 'border-greySoft text-primary3 bg-white';
-const currentChildClassName = 'border-primary1 text-white bg-primary1';
-
-const PrevArrow = (props: CustomArrowProps) => {
-  const { className, onClick } = props;
-  return <StyledLeftArrow className={className} onClick={onClick} />;
+const Arrow = (props: CustomArrowProps & { isPrev?: boolean }) => {
+  const { className, onClick, isPrev } = props;
+  const disabledClass = className?.includes('slick-disabled');
+  return (
+    <button
+      type="button"
+      className="flex justify-center items-center transition size-7 disabled:opacity-50"
+      onClick={onClick}
+      disabled={disabledClass}
+    >
+      <span
+        className={cn('text-primary3 text-2xl desktop:text-3xl', isPrev && '-scale-x-100')}
+        aria-hidden
+      >
+        ➜
+      </span>
+      <span className="sr-only">
+        {isPrev ? (
+          <FormattedMessage id="map.drawer.prev" />
+        ) : (
+          <FormattedMessage id="map.drawer.next" />
+        )}
+      </span>
+    </button>
+  );
 };
-
-const NextArrow = (props: CustomArrowProps) => {
-  const { className, onClick } = props;
-  return <StyledRightArrow className={className} onClick={onClick} />;
-};
-
-const StyledArrow = styled.div`
-  z-index: 10;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition-property: opacity;
-  transition-duration: 300ms;
-  &:hover {
-    opacity: 1;
-  }
-  &::before {
-    content: '➜';
-    opacity: 0.85;
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    color: ${colorPalette.primary3};
-    background-color: white;
-    height: ${getSpacing(8)};
-    width: ${getSpacing(8)};
-    flex: none;
-    border-radius: ${getSpacing(4)};
-    border: 1px solid ${colorPalette.greySoft};
-    font-size: ${getSpacing(6.5)};
-    ${desktopOnly(css`
-      font-size: 31px;
-      height: 39px;
-      width: 39px;
-      border-radius: ${getSpacing(5)};
-    `)}
-  }
-`;
-const StyledRightArrow = styled(StyledArrow)`
-  right: -${getSpacing(7)};
-  ${desktopOnly(css`
-    right: -${getSpacing(8)};
-  `)}
-`;
-
-const StyledLeftArrow = styled(StyledArrow)`
-  left: -${getSpacing(7)};
-  &::before {
-    left: -${getSpacing(11)};
-    transform: rotate(180deg);
-  }
-`;

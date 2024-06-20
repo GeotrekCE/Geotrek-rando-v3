@@ -71,7 +71,7 @@ export const DetailsFiles: React.FC<DetailsDetailsFilesProps> = ({
       <ul
         id={id}
         className={cn(
-          'flex desktop:flex-col gap-4 border border text-Mobile-C1 desktop:text-P1 mt-4 pb-5 desktop:pb-0 overflow-x-auto overflow-y-hidden desktop:overflow-visible scroll-smooth snap-x',
+          'flex desktop:flex-col gap-4 text-Mobile-C1 desktop:text-P1 mt-4 pb-5 desktop:pb-0 overflow-x-auto overflow-y-hidden desktop:overflow-visible scroll-smooth snap-x',
           !isOpen && 'hidden',
           asAccordion && 'mt-4',
         )}

@@ -1,15 +1,14 @@
-import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import 'leaflet/dist/leaflet.css';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { AlertCircle } from 'components/Icons/AlertCircle';
 import { Icon, LatLngLiteral } from 'leaflet';
-import { colorPalette } from 'stylesheet';
 import { useMapEvents } from 'react-leaflet';
 import { FormattedMessage } from 'react-intl';
 import { useMediaPredicate } from 'react-media-hook';
 import { DraggableMarker } from '../components/DraggableMarker';
 import { TrekMarker } from '../Markers/TrekMarker';
+import { theme } from '../../../../tailwind.config';
 
 export const PointReport: React.FC = () => {
   const {
@@ -34,7 +33,7 @@ export const PointReport: React.FC = () => {
   const pictogram = TrekMarker(
     renderToStaticMarkup(<AlertCircle color="white" />),
     1.5,
-    colorPalette.red,
+    theme.extend.colors.red,
   ) as Icon;
 
   const handleChange = (latLng: LatLngLiteral) => {

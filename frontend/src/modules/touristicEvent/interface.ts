@@ -45,7 +45,7 @@ export interface RawTouristicEvent {
 
 interface RawTouristicEventDetailsProperties extends RawTouristicEvent {
   description: string;
-  description_teaser: string;
+  description_teaser: string | null;
   participant_number: number;
   pdf: string;
   meeting_point: string;
@@ -99,7 +99,7 @@ export interface TouristicEvent {
 
 export interface TouristicEventDetails extends TouristicEvent {
   description: string;
-  descriptionTeaser: string;
+  descriptionTeaser: string | null;
   bbox: Bbox;
   cities: string[];
   cities_raw: string[];

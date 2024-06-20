@@ -109,8 +109,8 @@ export const adaptResults = ({
       transport: rawDetailsProperties.public_transport,
       access: rawDetailsProperties.access,
       parking: rawDetailsProperties.advised_parking,
-      description_teaser: rawDetailsProperties.description_teaser,
-      ambiance: rawDetailsProperties.ambiance,
+      description_teaser: rawDetailsProperties.description_teaser ?? null,
+      ambiance: rawDetailsProperties.ambiance ?? null,
       description: rawDetailsProperties.description,
       tags: rawDetailsProperties.themes.map(themeId => themes[themeId]?.label).filter(Boolean),
       informations: {

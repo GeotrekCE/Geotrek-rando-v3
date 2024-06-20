@@ -31,7 +31,7 @@ export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({
       id="details_cover_image"
       labelledby={figureId}
       legend={legend}
-      className={`relative ${className}`}
+      className={`relative h-full ${className}`}
     >
       <img
         alt={image.legend || ''}

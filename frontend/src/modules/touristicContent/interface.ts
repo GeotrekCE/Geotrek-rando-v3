@@ -23,7 +23,7 @@ export interface RawTouristicContent {
   attachments: RawAttachment[];
   name: string;
   category: number;
-  description_teaser: string;
+  description_teaser: string | null;
   geometry: RawPointGeometry2D | RawPolygonGeometry | RawLineStringGeometry2D | null;
   approved: boolean;
 }
@@ -33,7 +33,7 @@ export interface RawTouristicContentResult {
   attachments: RawAttachment[];
   name: string;
   category: number;
-  description_teaser: string;
+  description_teaser: string | null;
   themes: number[];
   types: Record<number, number[]>;
   cities: string[];
@@ -74,7 +74,7 @@ export interface TouristicContent {
   practicalInfo?: string | null;
   id: string;
   name: string;
-  descriptionTeaser: string;
+  descriptionTeaser: string | null;
   thumbnails: ImageFromAttachment[];
   images: ImageFromAttachment[];
   category: TouristicContentCategory;
