@@ -209,7 +209,6 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
                   className="flex m-auto desktop:mr-0 items-center text-primary1 underline shrink-0 gap-1 self-end"
                   onClick={toggleTruncateState}
                   type="button"
-                  aria-hidden
                 >
                   <span className="shrink-0">
                     <FormattedMessage
@@ -226,6 +225,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
                       'shrink-0 transition',
                       truncateState === 'TRUNCATE' ? 'rotate-90' : '-rotate-90',
                     )}
+                    aria-hidden
                   />
                 </button>
               )}
