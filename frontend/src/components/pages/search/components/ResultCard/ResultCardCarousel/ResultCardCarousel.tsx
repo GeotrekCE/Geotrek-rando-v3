@@ -1,7 +1,9 @@
 import { CardIcon } from 'components/CardIcon';
 import { SmallCarousel } from 'components/Carousel';
 import { ImageWithLegend } from 'components/ImageWithLegend';
+import useHasMounted from 'hooks/useHasMounted';
 import { ContentType, ImageFromAttachment } from 'modules/interface';
+import { cn } from 'services/utils/cn';
 
 interface ResultCardCarouselProps {
   type: ContentType;
@@ -23,13 +25,12 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
   redirect,
   asColumn,
 }) => {
-  const files = typeof navigator !== 'undefined' && navigator?.onLine ? images : images.slice(0, 1);
+  const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
+  const files = hasNavigator ? images : images.slice(0, 1);
 
   return (
     <div
-      className={`size-full grow relative ${
-        asColumn !== true ? 'desktop:w-resultCardDesktop' : ''
-      }`}
+      className={cn('size-full grow relative', asColumn !== true && 'desktop:w-resultCardDesktop')}
     >
       <SmallCarousel>
         {files.map((image, index) => (
