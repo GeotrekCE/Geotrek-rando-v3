@@ -29,7 +29,10 @@ export const useFilter = () => {
       organizerEvent: FilterWithoutType | null;
     },
     Error
-  >(['initialFilterState', language], () => getInitialFilters(language, initialOptions));
+  >({
+    queryKey: ['initialFilterState', language],
+    queryFn: () => getInitialFilters(language, initialOptions),
+  });
 
   const initialFiltersState = data ? data.initialFiltersState : [];
   const touristicContentCategoryMapping = data ? data.touristicContentCategoryMapping : {};

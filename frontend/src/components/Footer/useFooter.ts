@@ -20,13 +20,11 @@ export const useFooter = (): { config: FooterConfigOutput; intl: IntlShape } => 
   const language = useRouter().locale ?? getDefaultLanguage();
   const containsInformationIDLinks = links.some(link => 'informationID' in link);
 
-  const { data = [] } = useQuery<MenuItem[], Error>(
-    ['footer', language],
-    () => getFlatPages(language),
-    {
-      enabled: containsInformationIDLinks,
-    },
-  );
+  const { data = [] } = useQuery<MenuItem[], Error>({
+    queryKey: ['footer', language],
+    queryFn: () => getFlatPages(language),
+    enabled: containsInformationIDLinks,
+  });
   let nextLinks;
   // If the footer config contains `informationID` keys,the app retrieves "flatpages" to get the corresponding label/url
   if (containsInformationIDLinks === true) {

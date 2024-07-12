@@ -1,7 +1,7 @@
 import { GetServerSideProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
+import router, { useRouter } from 'next/router';
 import { FlatPageUI } from 'components/pages/flatPage';
-import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { dehydrate, QueryCache, QueryClient } from '@tanstack/react-query';
 import { routes } from 'services/routes';
 import { getCommonDictionaries } from 'modules/dictionaries/connector';
 import { getActivitySuggestions } from 'modules/activitySuggestions/connector';
@@ -9,6 +9,7 @@ import { getFlatPageDetails } from 'modules/flatpage/connector';
 import { getSuggestionsFromContent } from 'modules/flatpage/utils';
 import { isUrlString } from 'modules/utils/string';
 import { redirectIfWrongUrl } from 'modules/utils/url';
+import { isRessourceMissing } from 'services/routeUtils';
 import Custom404 from '../404';
 
 export const getServerSideProps: GetServerSideProps = async context => {
@@ -16,13 +17,27 @@ export const getServerSideProps: GetServerSideProps = async context => {
     const id = isUrlString(context.query.flatPage) ? context.query.flatPage.split('-')[0] : '';
     const { locale = 'fr' } = context;
 
-    const queryClient = new QueryClient();
+    const queryClient = new QueryClient({
+      queryCache: new QueryCache({
+        onError: error => {
+          if (isRessourceMissing(error)) {
+            void router.push(routes.HOME);
+          }
+        },
+      }),
+    });
 
     const commonDictionaries = await getCommonDictionaries(locale);
-    await queryClient.prefetchQuery(['commonDictionaries', locale], () => commonDictionaries);
+    await queryClient.prefetchQuery({
+      queryKey: ['commonDictionaries', locale],
+      queryFn: () => commonDictionaries,
+    });
 
     const details = await getFlatPageDetails(id, locale, commonDictionaries);
-    await queryClient.prefetchQuery(['flatPageDetails', id, locale], () => details);
+    await queryClient.prefetchQuery({
+      queryKey: ['flatPageDetails', id, locale],
+      queryFn: () => details,
+    });
 
     const suggestions = getSuggestionsFromContent(details.content);
 
@@ -30,10 +45,10 @@ export const getServerSideProps: GetServerSideProps = async context => {
       'ids' in suggestion ? suggestion.ids : [suggestion.type],
     );
 
-    await queryClient.prefetchQuery(
-      ['activitySuggestions', ...activitySuggestionIds, id, locale],
-      () => getActivitySuggestions(suggestions, locale, commonDictionaries),
-    );
+    await queryClient.prefetchQuery({
+      queryKey: ['activitySuggestions', ...activitySuggestionIds, id, locale],
+      queryFn: () => getActivitySuggestions(suggestions, locale, commonDictionaries),
+    });
 
     const redirect = redirectIfWrongUrl(
       id,
@@ -65,8 +80,8 @@ interface Props {
 }
 
 const TouristicContent: NextPage<Props> = ({ errorCode }) => {
-  const router = useRouter();
-  const { flatPage } = router.query;
+  const { query } = useRouter();
+  const { flatPage } = query;
 
   if (errorCode === 404 || flatPage === undefined) return <Custom404 />;
 

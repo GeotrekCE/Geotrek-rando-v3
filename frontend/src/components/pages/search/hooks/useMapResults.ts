@@ -22,11 +22,17 @@ export const useMapResults = (
 
   const parsedFiltersState = parseFilters(filtersState);
 
-  const { data: mapResults, isLoading: isMapLoading } = useQuery<MapResults, Error>(
-    ['mapResults', parsedFiltersState, language, parseTextFilter(textFilterState), dateFilter],
-    () =>
+  const { data: mapResults, isLoading: isMapLoading } = useQuery<MapResults, Error>({
+    queryKey: [
+      'mapResults',
+      parsedFiltersState,
+      language,
+      parseTextFilter(textFilterState),
+      dateFilter,
+    ],
+    queryFn: () =>
       getMapResults({ filtersState: parsedFiltersState, textFilterState, dateFilter }, language),
-  );
+  });
 
   return {
     isMapLoading,

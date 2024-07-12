@@ -27,10 +27,10 @@ export const useObjectGeometry = (
     return getTouristicContentGeometryResult;
   };
 
-  const { data: trekGeometry } = useQuery<GeometryObject, Error>(
-    ['trekPopupResult', id, language],
-    () => func()(String(id), language),
-  );
+  const { data: trekGeometry } = useQuery<GeometryObject, Error>({
+    queryKey: ['trekPopupResult', id, language],
+    queryFn: () => func()(String(id), language),
+  });
 
   return { trekGeometry };
 };

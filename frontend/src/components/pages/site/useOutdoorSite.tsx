@@ -3,9 +3,6 @@ import { isUrlString } from 'modules/utils/string';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ONE_DAY } from 'services/constants/staleTime';
-import { isRessourceMissing } from 'services/routeUtils';
-import { useRouter } from 'next/router';
-import { routes } from 'services/routes';
 import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { getOutdoorSiteDetails } from '../../../modules/outdoorSite/connector';
 import { OutdoorSiteDetails } from '../../../modules/outdoorSite/interface';
@@ -15,23 +12,15 @@ import { DetailsSections } from '../details/useDetails';
 export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, language: string) => {
   const id = isUrlString(outdoorSiteUrl) ? outdoorSiteUrl.split('-')[0] : '';
   const path = isUrlString(outdoorSiteUrl) ? decodeURI(outdoorSiteUrl) : '';
-  const router = useRouter();
 
   const commonDictionaries = useQueryCommonDictionaries(language);
 
-  const { data, refetch, isLoading } = useQuery<OutdoorSiteDetails, Error>(
-    ['outdoorSiteDetails', id, language],
-    () => getOutdoorSiteDetails(id, language, commonDictionaries),
-    {
-      enabled: isUrlString(outdoorSiteUrl) && commonDictionaries !== undefined,
-      onError: error => {
-        if (isRessourceMissing(error)) {
-          void router.push(routes.HOME);
-        }
-      },
-      staleTime: ONE_DAY,
-    },
-  );
+  const { data, refetch, isLoading } = useQuery<OutdoorSiteDetails, Error>({
+    queryKey: ['outdoorSiteDetails', id, language],
+    queryFn: () => getOutdoorSiteDetails(id, language, commonDictionaries),
+    enabled: isUrlString(outdoorSiteUrl) && commonDictionaries !== undefined,
+    staleTime: ONE_DAY,
+  });
 
   const { sections } = getDetailsConfig(language);
 

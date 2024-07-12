@@ -22,11 +22,11 @@ export const useHome = (): UseHome => {
 
   const commonDictionaries = useQueryCommonDictionaries(language);
 
-  const { data = [] } = useQuery<ActivitySuggestion[] | [], Error>(
-    ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}`, language],
-    () => getActivitySuggestions(suggestions, language, commonDictionaries),
-    { enabled: suggestions.length > 0 && commonDictionaries !== undefined },
-  );
+  const { data = [] } = useQuery<ActivitySuggestion[] | [], Error>({
+    queryKey: ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}`, language],
+    queryFn: () => getActivitySuggestions(suggestions, language, commonDictionaries),
+    enabled: suggestions.length > 0 && commonDictionaries !== undefined,
+  });
 
   return { config: homePageConfig, suggestions: data };
 };
