@@ -1,12 +1,15 @@
+import { GetServerSideProps, NextPage } from 'next';
+import { dehydrate, DehydratedState, QueryCache, QueryClient } from '@tanstack/react-query';
+import router from 'next/router';
 import { SearchUI } from 'components/pages/search';
 import { parseFilters } from 'components/pages/search/utils';
 import { getInitialFilters } from 'modules/filters/connector';
 import { getDefaultLanguage } from 'modules/header/utills';
 import { getSearchResults } from 'modules/results/connector';
-import { GetServerSideProps, NextPage } from 'next';
-import { dehydrate, DehydratedState, QueryClient } from '@tanstack/react-query';
 import { getCommonDictionaries } from 'modules/dictionaries/connector';
-import { getGlobalConfig } from '../modules/utils/api.config';
+import { getGlobalConfig } from 'modules/utils/api.config';
+import { isRessourceMissing } from 'services/routeUtils';
+import { routes } from 'services/routes';
 import Custom404 from './404';
 
 const sanitizeState = (unsafeState: DehydratedState): DehydratedState =>
@@ -14,16 +17,25 @@ const sanitizeState = (unsafeState: DehydratedState): DehydratedState =>
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const { locale = 'fr' } = context;
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    queryCache: new QueryCache({
+      onError: error => {
+        if (isRessourceMissing(error)) {
+          void router.push(routes.HOME);
+        }
+      },
+    }),
+  });
   const { initialFiltersStateWithSelectedOptions } = await getInitialFilters(locale, context.query);
   const parsedInitialFiltersState = parseFilters(initialFiltersStateWithSelectedOptions);
   const initialTextFilter = context.query.text?.toString() ?? '';
   const page = Number(context.query.page ?? 1);
 
   try {
-    await queryClient.prefetchQuery(['initialFilterState', locale], () =>
-      getInitialFilters(locale, context.query),
-    );
+    await queryClient.prefetchQuery({
+      queryKey: ['initialFilterState', locale],
+      queryFn: () => getInitialFilters(locale, context.query),
+    });
 
     const bboxFilter = undefined;
     const dateFilter = {
@@ -32,29 +44,34 @@ export const getServerSideProps: GetServerSideProps = async context => {
     };
 
     const commonDictionaries = await getCommonDictionaries(locale);
-    await queryClient.prefetchQuery(['commonDictionaries', locale], () => commonDictionaries);
+    await queryClient.prefetchQuery({
+      queryKey: ['commonDictionaries', locale],
+      queryFn: () => commonDictionaries,
+    });
 
-    await queryClient.prefetchQuery(['counter'], () =>
-      getSearchResults(
-        {
-          filtersState: [],
-          textFilterState: null,
-          bboxState: null,
-          dateFilter: { endDate: '', beginDate: '' },
-        },
-        {
-          treks: 1,
-          touristicContents: 1,
-          outdoorSites: getGlobalConfig().enableOutdoor ? 1 : null,
-          touristicEvents: getGlobalConfig().enableTouristicEvents ? 1 : null,
-        },
-        locale,
-        commonDictionaries,
-      ),
-    );
+    await queryClient.prefetchQuery({
+      queryKey: ['counter'],
+      queryFn: () =>
+        getSearchResults(
+          {
+            filtersState: [],
+            textFilterState: null,
+            bboxState: null,
+            dateFilter: { endDate: '', beginDate: '' },
+          },
+          {
+            treks: 1,
+            touristicContents: 1,
+            outdoorSites: getGlobalConfig().enableOutdoor ? 1 : null,
+            touristicEvents: getGlobalConfig().enableTouristicEvents ? 1 : null,
+          },
+          locale,
+          commonDictionaries,
+        ),
+    });
 
-    await queryClient.prefetchInfiniteQuery(
-      [
+    await queryClient.prefetchInfiniteQuery({
+      queryKey: [
         'trekResults',
         JSON.stringify(parsedInitialFiltersState),
         context.locale,
@@ -63,7 +80,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
         JSON.stringify(dateFilter),
         page,
       ],
-      () =>
+      queryFn: () =>
         getSearchResults(
           {
             filtersState: parsedInitialFiltersState,
@@ -80,7 +97,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
           locale,
           commonDictionaries,
         ),
-    );
+      initialPageParam: page,
+    });
   } catch (error) {
     return {
       props: {

@@ -22,25 +22,23 @@ export const useFlatPage = (flatPageUrl: string | undefined) => {
     refetch,
     isLoading,
     error,
-  } = useQuery<FlatPageDetails, Error>(
-    ['flatPageDetails', id, language],
-    () => getFlatPageDetails(id, language, commonDictionaries),
-    {
-      enabled: isUrlString(flatPageUrl) && commonDictionaries !== undefined,
-      staleTime: ONE_DAY,
-    },
-  );
+  } = useQuery<FlatPageDetails, Error>({
+    queryKey: ['flatPageDetails', id, language],
+    queryFn: () => getFlatPageDetails(id, language, commonDictionaries),
+    enabled: isUrlString(flatPageUrl) && commonDictionaries !== undefined,
+    staleTime: ONE_DAY,
+  });
   const suggestions = getSuggestionsFromContent(flatPage?.content ?? '');
 
   const activitySuggestionIds = suggestions.flatMap(suggestion =>
     'ids' in suggestion ? suggestion.ids : [suggestion.type],
   );
 
-  const { data: activitySuggestions = [] } = useQuery<ActivitySuggestion[] | [], Error>(
-    ['activitySuggestions', ...activitySuggestionIds, id, language],
-    () => getActivitySuggestions(suggestions, language, commonDictionaries),
-    { enabled: suggestions.length > 0 && commonDictionaries !== undefined },
-  );
+  const { data: activitySuggestions = [] } = useQuery<ActivitySuggestion[] | [], Error>({
+    queryKey: ['activitySuggestions', ...activitySuggestionIds, id, language],
+    queryFn: () => getActivitySuggestions(suggestions, language, commonDictionaries),
+    enabled: suggestions.length > 0 && commonDictionaries !== undefined,
+  });
 
   return {
     id,

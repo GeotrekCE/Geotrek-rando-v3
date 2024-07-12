@@ -21,10 +21,10 @@ import { FormattedMessage } from 'react-intl';
 export const useFilterBar = () => {
   const { groupTreksAndOutdoorFilters, enableOutdoor } = getGlobalConfig();
 
-  const { data: currentAPIVersion } = useQuery<APIVersion | undefined>(
-    ['APIVersion'],
-    getAPIVersion,
-  );
+  const { data: currentAPIVersion } = useQuery<APIVersion | undefined>({
+    queryKey: ['APIVersion'],
+    queryFn: getAPIVersion,
+  });
 
   const is2_108LowerOrEqualCurrentAPIVersion = isLowerOrEqualCurrentAPIVersion(
     '2.108.0',

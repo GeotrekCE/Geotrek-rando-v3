@@ -16,22 +16,26 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   if (suggestions !== null) {
     const commonDictionaries = await getCommonDictionaries(locale);
-    await queryClient.prefetchQuery(['commonDictionaries', locale], () => commonDictionaries);
+    await queryClient.prefetchQuery({
+      queryKey: ['commonDictionaries', locale],
+      queryFn: () => commonDictionaries,
+    });
 
     const activitySuggestionIds = suggestions.flatMap(suggestion =>
       'ids' in suggestion ? suggestion.ids : [suggestion.type],
     );
 
-    await queryClient.prefetchQuery(
-      ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}`, locale],
-      () => getActivitySuggestions(suggestions, locale, commonDictionaries),
-    );
+    await queryClient.prefetchQuery({
+      queryKey: ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}`, locale],
+      queryFn: () => getActivitySuggestions(suggestions, locale, commonDictionaries),
+    });
   }
 
   if (homePageConfig.activityBar.shouldDisplay === true) {
-    await queryClient.prefetchQuery(['homeActivities', locale], () =>
-      getActivityBarContent(locale, homePageConfig.activityBar.links),
-    );
+    await queryClient.prefetchQuery({
+      queryKey: ['homeActivities', locale],
+      queryFn: () => getActivityBarContent(locale, homePageConfig.activityBar.links),
+    });
   }
 
   return {

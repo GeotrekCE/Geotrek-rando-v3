@@ -3,10 +3,7 @@ import { TouristicContentDetails } from 'modules/touristicContent/interface';
 import { isUrlString } from 'modules/utils/string';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { isRessourceMissing } from 'services/routeUtils';
-import { useRouter } from 'next/router';
 import { ONE_DAY } from 'services/constants/staleTime';
-import { routes } from 'services/routes';
 import useSectionsReferences from 'hooks/useSectionsReferences';
 import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { DetailsSections } from '../details/useDetails';
@@ -20,23 +17,15 @@ export const useTouristicContent = (
 
   const id = isTouristicContentUrlString ? touristicContentUrl.split('-')[0] : '';
   const path = isTouristicContentUrlString ? decodeURI(touristicContentUrl) : '';
-  const router = useRouter();
 
   const commonDictionaries = useQueryCommonDictionaries(language);
 
-  const { data, refetch, isLoading } = useQuery<TouristicContentDetails, Error>(
-    ['touristicContentDetails', id, language],
-    () => getTouristicContentDetails(id, language, commonDictionaries),
-    {
-      enabled: isTouristicContentUrlString && commonDictionaries !== undefined,
-      onError: error => {
-        if (isRessourceMissing(error)) {
-          void router.push(routes.HOME);
-        }
-      },
-      staleTime: ONE_DAY,
-    },
-  );
+  const { data, refetch, isLoading } = useQuery<TouristicContentDetails, Error>({
+    queryKey: ['touristicContentDetails', id, language],
+    queryFn: () => getTouristicContentDetails(id, language, commonDictionaries),
+    enabled: isTouristicContentUrlString && commonDictionaries !== undefined,
+    staleTime: ONE_DAY,
+  });
 
   const { sections } = getDetailsConfig(language);
   const sectionsTouristicContent = sections.touristicEvent.filter(

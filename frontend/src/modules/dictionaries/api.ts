@@ -4,12 +4,10 @@ import { CommonDictionaries } from './interface';
 import { getCommonDictionaries } from './connector';
 
 export const useQueryCommonDictionaries = (language: string) => {
-  const { data } = useQuery<CommonDictionaries, Error>(
-    ['commonDictionaries', language],
-    () => getCommonDictionaries(language),
-    {
-      staleTime: ONE_DAY / 2,
-    },
-  );
+  const { data } = useQuery<CommonDictionaries, Error>({
+    queryKey: ['commonDictionaries', language],
+    queryFn: () => getCommonDictionaries(language),
+    staleTime: ONE_DAY / 2,
+  });
   return data;
 };

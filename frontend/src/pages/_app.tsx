@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app';
 
 import { Root } from 'components/pages/_app/Root';
-import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { HydrationBoundary, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ONE_MINUTE } from 'services/constants/staleTime';
 import '../styles/global.css';
@@ -32,7 +32,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
+      <HydrationBoundary state={pageProps.dehydratedState}>
         <Root>
           <ListAndMapProvider>
             <Layout>
@@ -41,7 +41,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           </ListAndMapProvider>
         </Root>
         <ReactQueryDevtools initialIsOpen={false} />
-      </Hydrate>
+      </HydrationBoundary>
     </QueryClientProvider>
   );
 };

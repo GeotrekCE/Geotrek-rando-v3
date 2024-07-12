@@ -28,11 +28,11 @@ export const usePopupResult = (id: string, shouldFetch: boolean, type: ContentTy
     throw new Error('Incorrect type');
   };
 
-  const { data: trekPopupResult, isLoading } = useQuery<PopupResult, Error>(
-    ['popupResult', id, language],
-    fetchData,
-    { enabled: type !== null && shouldFetch && commonDictionaries !== undefined },
-  );
+  const { data: trekPopupResult, isLoading } = useQuery<PopupResult, Error>({
+    queryKey: ['popupResult', id, language],
+    queryFn: fetchData,
+    enabled: type !== null && shouldFetch && commonDictionaries !== undefined,
+  });
 
   return {
     trekPopupResult,
