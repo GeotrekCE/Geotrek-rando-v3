@@ -43,10 +43,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
       endDate: context.query.endDate ?? '',
     };
 
-    const commonDictionaries = await getCommonDictionaries(locale);
-    await queryClient.prefetchQuery({
+    const commonDictionaries = await queryClient.fetchQuery({
       queryKey: ['commonDictionaries', locale],
-      queryFn: () => commonDictionaries,
+      queryFn: () => getCommonDictionaries(locale),
     });
 
     await queryClient.prefetchQuery({
