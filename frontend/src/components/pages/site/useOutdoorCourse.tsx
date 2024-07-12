@@ -2,9 +2,6 @@ import useSectionsReferences from 'hooks/useSectionsReferences';
 import { isUrlString } from 'modules/utils/string';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useRouter } from 'next/router';
-import { isRessourceMissing } from 'services/routeUtils';
-import { routes } from 'services/routes';
 import { ONE_DAY } from 'services/constants/staleTime';
 import { useQueryCommonDictionaries } from 'modules/dictionaries/api';
 import { DetailsSections } from '../details/useDetails';
@@ -19,23 +16,14 @@ export const useOutdoorCourse = (
   const id = isUrlString(outdoorCourseUrl) ? outdoorCourseUrl.split('-')[0] : '';
   const path = isUrlString(outdoorCourseUrl) ? decodeURI(outdoorCourseUrl) : '';
 
-  const router = useRouter();
-
   const commonDictionaries = useQueryCommonDictionaries(language);
 
-  const { data, refetch, isLoading } = useQuery<OutdoorCourseDetails, Error>(
-    ['outdoorCourseDetails', id, language],
-    () => getOutdoorCourseDetails(id, language, commonDictionaries),
-    {
-      enabled: isUrlString(outdoorCourseUrl) && commonDictionaries !== undefined,
-      onError: error => {
-        if (isRessourceMissing(error)) {
-          void router.push(routes.HOME);
-        }
-      },
-      staleTime: ONE_DAY,
-    },
-  );
+  const { data, refetch, isLoading } = useQuery<OutdoorCourseDetails, Error>({
+    queryKey: ['outdoorCourseDetails', id, language],
+    queryFn: () => getOutdoorCourseDetails(id, language, commonDictionaries),
+    enabled: isUrlString(outdoorCourseUrl) && commonDictionaries !== undefined,
+    staleTime: ONE_DAY,
+  });
 
   const { sections } = getDetailsConfig(language);
 

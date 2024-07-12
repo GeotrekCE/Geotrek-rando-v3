@@ -15,7 +15,10 @@ export const useHeader = (menuNode: MutableRefObject<HTMLDivElement | null | und
   const config = getHeaderConfig();
   const language = useRouter().locale ?? getDefaultLanguage();
 
-  const { data: currentAPIVersion } = useQuery(['APIVersion'], getAPIVersion);
+  const { data: currentAPIVersion } = useQuery({
+    queryKey: ['APIVersion'],
+    queryFn: getAPIVersion,
+  });
 
   const is2_104LowerOrEqualCurrentAPIVersion = isLowerOrEqualCurrentAPIVersion(
     '2.104.0',
@@ -23,14 +26,13 @@ export const useHeader = (menuNode: MutableRefObject<HTMLDivElement | null | und
   );
 
   // Call MenuItems or flatpage as fallback for GTA API Version below 2.104
-  const { data: menuItems } = useQuery<MenuItem[], Error>(
-    ['header', language],
-    () => (is2_104LowerOrEqualCurrentAPIVersion ? geMenuItems(language) : getFlatPages(language)),
-    {
-      enabled: is2_104LowerOrEqualCurrentAPIVersion !== null,
-      staleTime: ONE_DAY,
-    },
-  );
+  const { data: menuItems } = useQuery<MenuItem[], Error>({
+    queryKey: ['header', language],
+    queryFn: () =>
+      is2_104LowerOrEqualCurrentAPIVersion ? geMenuItems(language) : getFlatPages(language),
+    enabled: is2_104LowerOrEqualCurrentAPIVersion !== null,
+    staleTime: ONE_DAY,
+  });
   const intl = useIntl();
 
   const { height = 0 } = useSize(menuNode) ?? {};

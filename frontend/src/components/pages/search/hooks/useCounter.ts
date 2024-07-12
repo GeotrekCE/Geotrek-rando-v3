@@ -19,9 +19,9 @@ interface CountResult {
 const useCounter = ({ language }: Args): CountResult => {
   const commonDictionaries = useQueryCommonDictionaries(language);
 
-  const result = useQuery(
-    ['counter'],
-    ({
+  const result = useQuery({
+    queryKey: ['counter'],
+    queryFn: ({
       pageParam = {
         treks: 1,
         touristicContents: 1,
@@ -40,12 +40,10 @@ const useCounter = ({ language }: Args): CountResult => {
         language,
         commonDictionaries,
       ),
-    {
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-      staleTime: ONE_DAY,
-    },
-  );
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+    staleTime: ONE_DAY,
+  });
 
   return {
     treksCount: result?.data?.resultsNumberDetails?.treksCount ?? 0,

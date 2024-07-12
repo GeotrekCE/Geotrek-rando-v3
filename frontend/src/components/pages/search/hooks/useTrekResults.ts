@@ -77,8 +77,8 @@ export const useTrekResults = (
     hasNextPage,
     hasPreviousPage,
     isFetchingNextPage,
-  } = useInfiniteQuery<SearchResults, Error>(
-    [
+  } = useInfiniteQuery<SearchResults, Error>({
+    queryKey: [
       'trekResults',
       JSON.stringify(parsedFiltersState),
       language,
@@ -87,7 +87,7 @@ export const useTrekResults = (
       JSON.stringify(dateFilter),
       page,
     ],
-    ({
+    queryFn: ({
       pageParam = {
         treks: page,
         touristicContents: page,
@@ -102,30 +102,29 @@ export const useTrekResults = (
         commonDictionaries,
       );
     },
-    {
-      retry: false,
-      // We already have a fallback component to allow the user to refetch
-      // Leaving these on induced issues with our refetching only next page strategy
-      // When it refetched on reconnect/focus the infinite scroll then stopped working
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-      // hasNextPage will be set to false if getNextPageParam returns undefined
-      getNextPageParam: lastPageResult =>
-        lastPageResult.nextPages.treks !== null ||
-        lastPageResult.nextPages.touristicContents !== null ||
-        lastPageResult.nextPages.outdoorSites !== null ||
-        lastPageResult.nextPages.touristicEvents !== null
-          ? lastPageResult.nextPages
-          : undefined,
-      getPreviousPageParam: lastPageResult =>
-        lastPageResult.previousPages.treks !== null ||
-        lastPageResult.previousPages.touristicContents !== null ||
-        lastPageResult.previousPages.outdoorSites !== null ||
-        lastPageResult.previousPages.touristicEvents !== null
-          ? lastPageResult.previousPages
-          : undefined,
-    },
-  );
+    initialPageParam: page,
+    retry: false,
+    // We already have a fallback component to allow the user to refetch
+    // Leaving these on induced issues with our refetching only next page strategy
+    // When it refetched on reconnect/focus the infinite scroll then stopped working
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+    // hasNextPage will be set to false if getNextPageParam returns undefined
+    getNextPageParam: lastPageResult =>
+      lastPageResult.nextPages.treks !== null ||
+      lastPageResult.nextPages.touristicContents !== null ||
+      lastPageResult.nextPages.outdoorSites !== null ||
+      lastPageResult.nextPages.touristicEvents !== null
+        ? lastPageResult.nextPages
+        : undefined,
+    getPreviousPageParam: lastPageResult =>
+      lastPageResult.previousPages.treks !== null ||
+      lastPageResult.previousPages.touristicContents !== null ||
+      lastPageResult.previousPages.outdoorSites !== null ||
+      lastPageResult.previousPages.touristicEvents !== null
+        ? lastPageResult.previousPages
+        : undefined,
+  });
 
   useEffect(() => {
     const url = computeUrl(filtersState, textFilterState, dateFilter);

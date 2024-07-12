@@ -1,10 +1,11 @@
 import { OutdoorSiteUI } from 'components/pages/site';
 import { GetServerSideProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
+import router, { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
-import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { dehydrate, QueryCache, QueryClient } from '@tanstack/react-query';
 import { routes } from 'services/routes';
 import { getCommonDictionaries } from 'modules/dictionaries/connector';
+import { isRessourceMissing } from 'services/routeUtils';
 import { getOutdoorSiteDetails } from '../../modules/outdoorSite/connector';
 import { isUrlString } from '../../modules/utils/string';
 import { redirectIfWrongUrl } from '../../modules/utils/url';
@@ -14,14 +15,28 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const id = isUrlString(context.query.outdoorSite) ? context.query.outdoorSite.split('-')[0] : '';
   const { locale = 'fr' } = context;
 
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    queryCache: new QueryCache({
+      onError: error => {
+        if (isRessourceMissing(error)) {
+          void router.push(routes.HOME);
+        }
+      },
+    }),
+  });
 
   try {
     const commonDictionaries = await getCommonDictionaries(locale);
-    await queryClient.prefetchQuery(['commonDictionaries', locale], () => commonDictionaries);
+    await queryClient.prefetchQuery({
+      queryKey: ['commonDictionaries', locale],
+      queryFn: () => commonDictionaries,
+    });
 
     const details = await getOutdoorSiteDetails(id, locale, commonDictionaries);
-    await queryClient.prefetchQuery(['outdoorSiteDetails', id, locale], () => details);
+    await queryClient.prefetchQuery({
+      queryKey: ['outdoorSiteDetails', id, locale],
+      queryFn: () => details,
+    });
 
     const redirect = redirectIfWrongUrl(
       id,
@@ -53,9 +68,9 @@ interface Props {
 }
 
 const OutdoorSite: NextPage<Props> = ({ errorCode }) => {
-  const router = useRouter();
-  const { outdoorSite } = router.query;
-  const language = router.locale ?? getDefaultLanguage();
+  const { query, locale } = useRouter();
+  const { outdoorSite } = query;
+  const language = locale ?? getDefaultLanguage();
 
   if (errorCode === 404) return <Custom404 />;
 

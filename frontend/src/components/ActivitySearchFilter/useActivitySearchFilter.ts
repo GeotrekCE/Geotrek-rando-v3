@@ -10,9 +10,11 @@ const { activityBar } = getHomePageConfig();
 
 export const useActivitySearchFilter = () => {
   const language = useRouter().locale ?? getDefaultLanguage();
-  const { data: activities } = useQuery<ActivityFilter[], Error>(['homeActivities', language], () =>
-    getActivityBarContent(language, activityBar.links),
-  );
+  const { data: activities } = useQuery<ActivityFilter[], Error>({
+    queryKey: ['homeActivities', language],
+
+    queryFn: () => getActivityBarContent(language, activityBar.links),
+  });
 
   const [expandedState, setExpandedState] = useState<'EXPANDED' | 'COLLAPSED'>('COLLAPSED');
 
