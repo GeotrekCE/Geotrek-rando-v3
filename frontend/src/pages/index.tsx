@@ -15,10 +15,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const suggestions = adaptSuggestions(homePageConfig.suggestions, locale);
 
   if (suggestions !== null) {
-    const commonDictionaries = await getCommonDictionaries(locale);
-    await queryClient.prefetchQuery({
+    const commonDictionaries = await queryClient.fetchQuery({
       queryKey: ['commonDictionaries', locale],
-      queryFn: () => commonDictionaries,
+      queryFn: () => getCommonDictionaries(locale),
     });
 
     const activitySuggestionIds = suggestions.flatMap(suggestion =>
