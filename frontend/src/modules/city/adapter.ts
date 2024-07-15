@@ -17,10 +17,4 @@ export const adaptCitiesSinglePage = (rawCities: RawCity[]): CityDictionnary =>
   );
 
 export const adaptCities = (rawCities: APIResponseForList<RawCity>[]): CityDictionnary =>
-  concatResults<RawCity>(rawCities).reduce(
-    (cities, currentCity) => ({
-      ...cities,
-      [`${currentCity.id}`]: adaptCity(currentCity),
-    }),
-    {},
-  );
+  Object.fromEntries(concatResults<RawCity>(rawCities).map(city => [city.id, city]));
