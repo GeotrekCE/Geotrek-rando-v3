@@ -1,4 +1,4 @@
-import { FILTERS_CATEGORIES } from 'components/pages/search/components/FilterBar';
+import { useFilterBar } from 'components/pages/search/components/FilterBar/useFilterBar';
 import { FilterCategory } from 'modules/filters/interface';
 import { useState } from 'react';
 
@@ -13,6 +13,8 @@ export const useFilterMenu = (
   const [menuState, setMenuState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMenu = () => setMenuState('DISPLAYED');
   const hideMenu = () => setMenuState('HIDDEN');
+
+  const { FILTERS_CATEGORIES } = useFilterBar();
 
   const filtersList = FILTERS_CATEGORIES.map(item => ({
     ...item,
