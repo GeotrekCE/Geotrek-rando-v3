@@ -87,7 +87,8 @@
       "clearAll": "Clear all",
       "filters": "Filters",
       "labels": "Others",
-      "organizer": "Organizer"
+      "organizer": "Organizer",
+      "networks": "Network type"
     },
     "textFilter": "Search...",
     "beginDateFilter": "Start date",

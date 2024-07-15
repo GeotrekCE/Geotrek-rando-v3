@@ -84,7 +84,8 @@
       "clearAll": "Alles löschen",
       "filters": "Filter",
       "labels": "Andere",
-      "organizer": "Veranstalter"
+      "organizer": "Veranstalter",
+      "networks": "Netzwerktyp"
     },
     "textFilter": "Suchen...",
     "beginDateFilter": "Startdatum",

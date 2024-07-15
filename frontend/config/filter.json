@@ -135,5 +135,10 @@
     "id": "organizer",
     "type": "MULTIPLE",
     "display": true
+  },
+  {
+    "id": "networks",
+    "type": "MULTIPLE",
+    "display": true
   }
 ]
