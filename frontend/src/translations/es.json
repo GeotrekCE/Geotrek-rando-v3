@@ -84,7 +84,8 @@
       "clearAll": "Borrar todo",
       "filters": "Filtros",
       "labels": "Otros",
-      "organizer": "Organizador"
+      "organizer": "Organizador",
+      "networks": "Tipo de red"
     },
     "textFilter": "Buscar...",
     "beginDateFilter": "Fecha de inicio",
