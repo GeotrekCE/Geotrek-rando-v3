@@ -2,29 +2,15 @@ import { Bin } from 'components/Icons/Bin';
 import { Filter } from 'components/Icons/Filter';
 import FilterField from 'components/pages/search/components/FilterBar/FilterField';
 import useCounter from 'components/pages/search/hooks/useCounter';
-import { getGlobalConfig } from 'modules/utils/api.config';
+
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { colorPalette } from 'stylesheet';
-import {
-  CATEGORY_ID,
-  CITY_ID,
-  DATE_FILTER,
-  DISTRICT_ID,
-  EVENT_ID,
-  ORGANIZER_ID,
-  OUTDOOR_ID,
-  PRACTICE_ID,
-  STRUCTURE_ID,
-  THEME_ID,
-} from '../../../../../modules/filters/constant';
-import {
-  DateFilter,
-  FilterCategory,
-  FilterState,
-  Option,
-} from '../../../../../modules/filters/interface';
+
+import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
+import { DateFilter, FilterState, Option } from 'modules/filters/interface';
+import { useFilterBar } from './useFilterBar';
 
 interface Props {
   filtersState: FilterState[];
@@ -35,83 +21,6 @@ interface Props {
   resultsNumber: number;
   language: string;
 }
-
-const { groupTreksAndOutdoorFilters, enableOutdoor } = getGlobalConfig();
-
-const treksAndOutdoorCategories =
-  groupTreksAndOutdoorFilters === true && enableOutdoor === true
-    ? [
-        {
-          id: PRACTICE_ID,
-          name: [
-            <FormattedMessage key="practices" id={'search.filters.practices'} />,
-            <FormattedMessage key="outdoors" id={'search.filters.outdoorPractice'} />,
-          ],
-          filters: [PRACTICE_ID, OUTDOOR_ID],
-          subFilters: [
-            [
-              'difficulty',
-              'duration',
-              'length',
-              'routes',
-              'ascent',
-              'accessibilities',
-              'networks',
-              'labels',
-            ],
-            ['type-outdoorRating-.+'],
-          ],
-        },
-      ]
-    : [
-        {
-          id: PRACTICE_ID,
-          name: <FormattedMessage id={'search.filters.practices'} />,
-          filters: [PRACTICE_ID],
-          subFilters: [
-            'difficulty',
-            'duration',
-            'length',
-            'routes',
-            'ascent',
-            'accessibilities',
-            'networks',
-            'labels',
-          ],
-        },
-        {
-          id: OUTDOOR_ID,
-          name: <FormattedMessage id={'search.filters.outdoorPractice'} />,
-          filters: [OUTDOOR_ID],
-          subFilters: ['type-outdoorRating-.+'],
-        },
-      ];
-
-export const FILTERS_CATEGORIES: FilterCategory[] = [
-  ...treksAndOutdoorCategories,
-  {
-    id: CATEGORY_ID,
-    name: <FormattedMessage id={'search.filters.categories'} />,
-    filters: [CATEGORY_ID],
-    subFilters: ['type-services-.+'],
-  },
-  {
-    id: EVENT_ID,
-    name: <FormattedMessage id={'search.filters.event'} />,
-    filters: [EVENT_ID],
-    subFilters: [DATE_FILTER, ORGANIZER_ID],
-  },
-  {
-    id: THEME_ID,
-    name: <FormattedMessage id={'search.filters.themes'} />,
-    filters: [THEME_ID],
-  },
-  {
-    id: 'localization',
-    name: <FormattedMessage id={'search.filters.localization'} />,
-    subFilters: [CITY_ID, DISTRICT_ID, STRUCTURE_ID],
-  },
-];
 
 const FilterBarNew: React.FC<Props> = ({
   filtersState,
@@ -125,6 +34,8 @@ const FilterBarNew: React.FC<Props> = ({
   const [expanded, setExpanded] = useState<string>('');
   const { treksCount, touristicContentsCount, outdoorSitesCount, touristicEventsCount } =
     useCounter({ language });
+
+  const { FILTERS_CATEGORIES } = useFilterBar();
 
   return (
     <ClearContainer className="flex items-center shadow-lg bg-white z-20">
