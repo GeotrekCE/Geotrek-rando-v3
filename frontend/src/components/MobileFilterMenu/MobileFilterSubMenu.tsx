@@ -1,4 +1,3 @@
-import { FILTERS_CATEGORIES } from 'components/pages/search/components/FilterBar';
 import MobileBottomClear from 'components/pages/search/components/FilterBar/MobileBottomClear';
 import ShowFilters from 'components/pages/search/components/FilterBar/ShowFilters';
 import { groupBy } from 'modules/utils/array';
@@ -11,6 +10,7 @@ import Slide from 'react-burger-menu/lib/menus/slide';
 import { colorPalette } from 'stylesheet';
 
 import { FormattedMessage } from 'react-intl';
+import { useFilterBar } from 'components/pages/search/components/FilterBar/useFilterBar';
 import { CloseButton } from './CloseButton';
 
 interface Props {
@@ -34,6 +34,8 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   dateFilter,
   setDateFilter,
 }) => {
+  const { FILTERS_CATEGORIES } = useFilterBar();
+
   const categories: FilterCategory | undefined = FILTERS_CATEGORIES.find(i => i.id === filterId);
 
   if (!categories) return null;
