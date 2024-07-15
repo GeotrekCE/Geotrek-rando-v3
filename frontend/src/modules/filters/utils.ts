@@ -35,6 +35,7 @@ import {
   EVENT_ID,
   LABEL_EXCLUDE_ID,
   LABEL_ID,
+  NETWORKS_ID,
   ORGANIZER_ID,
   OUTDOOR_ID,
   PRACTICE_ID,
@@ -43,6 +44,7 @@ import {
   THEME_ID,
 } from './constant';
 import { getOrganizerFilter } from './organizer/connector';
+import { getNetworksFilter } from './networks/connector';
 
 const adaptFilterConfigWithOptionsToFilter = (
   filterConfigWithOptions: FilterConfigWithOptions,
@@ -87,6 +89,8 @@ const getFilterOptions = async (
     case LABEL_ID:
     case LABEL_EXCLUDE_ID:
       return getLabelsFilter(language, withExclude);
+    case NETWORKS_ID:
+      return getNetworksFilter(language);
     case ORGANIZER_ID:
       return getOrganizerFilter(language);
     default:
@@ -133,6 +137,7 @@ const trekSpecificFilters = [
   'ascent',
   ROUTE_ID,
   ACCESSIBILITY_ID,
+  NETWORKS_ID,
   'labels',
   'labels_exclude',
 ];

@@ -84,7 +84,8 @@
       "clearAll": "Esborrar-ho tot",
       "filters": "Filtres",
       "labels": "Altres",
-      "organizer": "Organitzador"
+      "organizer": "Organitzador",
+      "networks": "Tipus de xarxa"
     },
     "textFilter": "Cercar...",
     "beginDateFilter": "Data d'inici",
