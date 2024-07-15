@@ -6,9 +6,10 @@ import { dehydrate, QueryCache, QueryClient } from '@tanstack/react-query';
 import { routes } from 'services/routes';
 import { getCommonDictionaries } from 'modules/dictionaries/connector';
 import { isRessourceMissing } from 'services/routeUtils';
-import { getTouristicContentDetails } from '../../modules/touristicContent/connector';
-import { isUrlString } from '../../modules/utils/string';
-import { redirectIfWrongUrl } from '../../modules/utils/url';
+import { TouristicContentDetails } from 'modules/touristicContent/interface';
+import { getTouristicContentDetails } from 'modules/touristicContent/connector';
+import { isUrlString } from 'modules/utils/string';
+import { redirectIfWrongUrl } from 'modules/utils/url';
 import Custom404 from '../404';
 
 export const getServerSideProps: GetServerSideProps = async context => {
@@ -33,22 +34,28 @@ export const getServerSideProps: GetServerSideProps = async context => {
       queryFn: () => getCommonDictionaries(locale),
     });
 
-    const details = await getTouristicContentDetails(id, locale, commonDictionaries);
     await queryClient.prefetchQuery({
       queryKey: ['touristicContentDetails', id, locale],
-      queryFn: () => details,
+      queryFn: () => getTouristicContentDetails(id, locale, commonDictionaries),
     });
-
-    const redirect = redirectIfWrongUrl(
+    const details = queryClient.getQueryData<TouristicContentDetails>([
+      'touristicContentDetails',
       id,
-      details.name,
-      { ...context, locale },
-      routes.TOURISTIC_CONTENT,
-    );
-    if (redirect)
-      return {
-        redirect,
-      };
+      locale,
+    ]);
+
+    if (details !== undefined) {
+      const redirect = redirectIfWrongUrl(
+        id,
+        details.name,
+        { ...context, locale },
+        routes.TOURISTIC_CONTENT,
+      );
+      if (redirect)
+        return {
+          redirect,
+        };
+    }
 
     return {
       props: {

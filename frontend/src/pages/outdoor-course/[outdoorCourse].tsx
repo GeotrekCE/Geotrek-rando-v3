@@ -7,8 +7,9 @@ import { routes } from 'services/routes';
 import { redirectIfWrongUrl } from 'modules/utils/url';
 import { getCommonDictionaries } from 'modules/dictionaries/connector';
 import { isRessourceMissing } from 'services/routeUtils';
-import { getOutdoorCourseDetails } from '../../modules/outdoorCourse/connector';
-import { isUrlString } from '../../modules/utils/string';
+import { OutdoorCourseDetails } from 'modules/outdoorCourse/interface';
+import { getOutdoorCourseDetails } from 'modules/outdoorCourse/connector';
+import { isUrlString } from 'modules/utils/string';
 import Custom404 from '../404';
 
 export const getServerSideProps: GetServerSideProps = async context => {
@@ -33,22 +34,24 @@ export const getServerSideProps: GetServerSideProps = async context => {
       queryFn: () => getCommonDictionaries(locale),
     });
 
-    const details = await getOutdoorCourseDetails(id, locale, commonDictionaries);
     await queryClient.prefetchQuery({
       queryKey: ['outdoorCourseDetails', id, locale],
-      queryFn: () => details,
+      queryFn: () => getOutdoorCourseDetails(id, locale, commonDictionaries),
     });
+    const details = queryClient.getQueryData<OutdoorCourseDetails>(['outdoorCourseDetails', id, locale]) ;
 
-    const redirect = redirectIfWrongUrl(
-      id,
-      details.name,
-      { ...context, locale },
-      routes.OUTDOOR_COURSE,
-    );
-    if (redirect)
-      return {
+    if (details !==undefined) {
+        const redirect = redirectIfWrongUrl(
+          id,
+          details.name,
+          { ...context, locale },
+          routes.OUTDOOR_COURSE,
+        );
+        if (redirect)
+          return {
         redirect,
       };
+    }
 
     return {
       props: {
