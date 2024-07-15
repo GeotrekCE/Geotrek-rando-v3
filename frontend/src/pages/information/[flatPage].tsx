@@ -10,6 +10,7 @@ import { getSuggestionsFromContent } from 'modules/flatpage/utils';
 import { isUrlString } from 'modules/utils/string';
 import { redirectIfWrongUrl } from 'modules/utils/url';
 import { isRessourceMissing } from 'services/routeUtils';
+import { FlatPageDetails } from 'modules/flatpage/interface';
 import Custom404 from '../404';
 
 export const getServerSideProps: GetServerSideProps = async context => {
@@ -32,33 +33,36 @@ export const getServerSideProps: GetServerSideProps = async context => {
       queryFn: () => getCommonDictionaries(locale),
     });
 
-    const details = await getFlatPageDetails(id, locale, commonDictionaries);
     await queryClient.prefetchQuery({
       queryKey: ['flatPageDetails', id, locale],
-      queryFn: () => details,
+      queryFn: () => getFlatPageDetails(id, locale, commonDictionaries),
     });
 
-    const suggestions = getSuggestionsFromContent(details.content);
+    const details = queryClient.getQueryData<FlatPageDetails>(['flatPageDetails', id, locale]);
 
-    const activitySuggestionIds = suggestions.flatMap(suggestion =>
-      'ids' in suggestion ? suggestion.ids : [suggestion.type],
-    );
+    if (details !== undefined) {
+      const suggestions = getSuggestionsFromContent(details.content);
 
-    await queryClient.prefetchQuery({
-      queryKey: ['activitySuggestions', ...activitySuggestionIds, id, locale],
-      queryFn: () => getActivitySuggestions(suggestions, locale, commonDictionaries),
-    });
+      const activitySuggestionIds = suggestions.flatMap(suggestion =>
+        'ids' in suggestion ? suggestion.ids : [suggestion.type],
+      );
 
-    const redirect = redirectIfWrongUrl(
-      id,
-      details.title,
-      { ...context, locale },
-      routes.FLAT_PAGE,
-    );
-    if (redirect)
-      return {
-        redirect,
-      };
+      await queryClient.prefetchQuery({
+        queryKey: ['activitySuggestions', ...activitySuggestionIds, id, locale],
+        queryFn: () => getActivitySuggestions(suggestions, locale, commonDictionaries),
+      });
+
+      const redirect = redirectIfWrongUrl(
+        id,
+        details.title,
+        { ...context, locale },
+        routes.FLAT_PAGE,
+      );
+      if (redirect)
+        return {
+          redirect,
+        };
+    }
 
     return {
       props: {
