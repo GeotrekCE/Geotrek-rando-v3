@@ -7,6 +7,7 @@ import { routes } from 'services/routes';
 import { redirectIfWrongUrl } from 'modules/utils/url';
 import { getCommonDictionaries } from 'modules/dictionaries/connector';
 import { isRessourceMissing } from 'services/routeUtils';
+import { TouristicEventDetails } from 'modules/touristicEvent/interface';
 import { getTouristicEventDetails } from '../../modules/touristicEvent/connector';
 import { isUrlString } from '../../modules/utils/string';
 import Custom404 from '../404';
@@ -32,22 +33,25 @@ export const getServerSideProps: GetServerSideProps = async context => {
       queryFn: () => getCommonDictionaries(locale),
     });
 
-    const details = await getTouristicEventDetails(id, locale, commonDictionaries);
     await queryClient.prefetchQuery({
       queryKey: ['touristicEventDetails', id, locale],
-      queryFn: () => details,
+      queryFn: () => getTouristicEventDetails(id, locale, commonDictionaries),
     });
+    
+    const details = queryClient.getQueryData<TouristicEventDetails>(['touristicEventDetails', id, locale]);
 
-    const redirect = redirectIfWrongUrl(
-      id,
-      details.name,
-      { ...context, locale },
-      routes.TOURISTIC_EVENT,
-    );
-    if (redirect)
-      return {
-        redirect,
-      };
+    if (details !== undefined) {
+      const redirect = redirectIfWrongUrl(
+        id,
+        details.name,
+        { ...context, locale },
+        routes.TOURISTIC_EVENT,
+      );
+      if (redirect)
+        return {
+      redirect,
+    };
+  }
 
     return {
       props: {

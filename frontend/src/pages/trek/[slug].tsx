@@ -9,7 +9,8 @@ import { getDefaultLanguage } from 'modules/header/utills';
 import { routes } from 'services/routes';
 import { getCommonDictionaries } from 'modules/dictionaries/connector';
 import { isRessourceMissing } from 'services/routeUtils';
-import { redirectIfWrongUrl } from '../../modules/utils/url';
+import { Details } from 'modules/details/interface';
+import { redirectIfWrongUrl } from 'modules/utils/url';
 import Custom404 from '../404';
 
 export const getServerSideProps: GetServerSideProps = async context => {
@@ -33,25 +34,29 @@ export const getServerSideProps: GetServerSideProps = async context => {
       queryFn: () => getCommonDictionaries(locale),
     });
 
-    const details = await getDetails(id, locale, commonDictionaries);
+    await queryClient.prefetchQuery({ queryKey: ['details', id, locale], queryFn: () => getDetails(id, locale, commonDictionaries) });
 
-    await queryClient.prefetchQuery({ queryKey: ['details', id, locale], queryFn: () => details });
+    const details = queryClient.getQueryData<Details>(['details', id, locale]);
+
     await queryClient.prefetchQuery({
       queryKey: ['trekFamily', parentIdString, locale],
       queryFn: () => getTrekFamily(parentIdString, locale),
     });
 
-    const redirect = redirectIfWrongUrl(
-      id,
-      details.title,
-      { ...context, locale },
-      routes.TREK,
-      Number(parentIdString),
-    );
-    if (redirect)
-      return {
-        redirect,
-      };
+    if (details !== undefined) {
+
+      const redirect = redirectIfWrongUrl(
+        id,
+        details.title,
+        { ...context, locale },
+        routes.TREK,
+        Number(parentIdString),
+      );
+      if (redirect)
+        return {
+      redirect,
+    };
+  }
 
     return {
       props: {

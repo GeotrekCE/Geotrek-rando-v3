@@ -6,9 +6,10 @@ import { dehydrate, QueryCache, QueryClient } from '@tanstack/react-query';
 import { routes } from 'services/routes';
 import { getCommonDictionaries } from 'modules/dictionaries/connector';
 import { isRessourceMissing } from 'services/routeUtils';
-import { getOutdoorSiteDetails } from '../../modules/outdoorSite/connector';
-import { isUrlString } from '../../modules/utils/string';
-import { redirectIfWrongUrl } from '../../modules/utils/url';
+import { OutdoorSiteDetails } from 'modules/outdoorSite/interface';
+import { getOutdoorSiteDetails } from 'modules/outdoorSite/connector';
+import { isUrlString } from 'modules/utils/string';
+import { redirectIfWrongUrl } from 'modules/utils/url';
 import Custom404 from '../404';
 
 export const getServerSideProps: GetServerSideProps = async context => {
@@ -31,22 +32,25 @@ export const getServerSideProps: GetServerSideProps = async context => {
       queryFn: () => getCommonDictionaries(locale),
     });
 
-    const details = await getOutdoorSiteDetails(id, locale, commonDictionaries);
     await queryClient.prefetchQuery({
       queryKey: ['outdoorSiteDetails', id, locale],
-      queryFn: () => details,
+      queryFn: () => getOutdoorSiteDetails(id, locale, commonDictionaries),
     });
+    
+    const details = queryClient.getQueryData<OutdoorSiteDetails>(['outdoorSiteDetails', id, locale]);
 
-    const redirect = redirectIfWrongUrl(
-      id,
-      details.name,
-      { ...context, locale },
-      routes.OUTDOOR_SITE,
-    );
-    if (redirect)
-      return {
+    if (details !== undefined) {
+      const redirect = redirectIfWrongUrl(
+          id,
+          details.name,
+          { ...context, locale },
+          routes.OUTDOOR_SITE,
+        );
+        if (redirect)
+          return {
         redirect,
       };
+    }
 
     return {
       props: {
