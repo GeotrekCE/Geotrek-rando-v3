@@ -1,6 +1,7 @@
 import { generatePageNumbersArray } from 'modules/utils/connector';
 import { getGlobalConfig } from 'modules/utils/api.config';
-import { adaptCities, adaptCitiesSinglePage } from './adapter';
+import { concatResults } from 'modules/utils/adapter';
+import { adaptCities } from './adapter';
 import { fetchCities } from './api';
 import { CityDictionnary } from './interface';
 
@@ -12,7 +13,7 @@ export const getCities = async (language: string): Promise<CityDictionnary> => {
     page_size: resultsNumber,
   });
   if (cities.count < resultsNumber) {
-    return adaptCitiesSinglePage(cities.results);
+    return adaptCities(cities.results);
   }
   // Second call with loop to load all the necessary pages to reach the count
   const citiesOtherPages = await Promise.all(
@@ -26,5 +27,6 @@ export const getCities = async (language: string): Promise<CityDictionnary> => {
         }),
       ),
   );
-  return adaptCities([cities, ...citiesOtherPages]);
+
+  return adaptCities(concatResults([cities, ...citiesOtherPages]));
 };
