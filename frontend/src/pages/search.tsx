@@ -96,7 +96,12 @@ export const getServerSideProps: GetServerSideProps = async context => {
           locale,
           commonDictionaries,
         ),
-      initialPageParam: page,
+      initialPageParam: {
+        treks: page,
+        touristicContents: page,
+        outdoorSites: getGlobalConfig().enableOutdoor ? page : null,
+        touristicEvents: getGlobalConfig().enableTouristicEvents ? page : null,
+      },
     });
   } catch (error) {
     return {
