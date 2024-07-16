@@ -9,17 +9,11 @@ export const adaptTouristicEventTypes = ({
 }: {
   rawTouristicEventTypes: RawTouristicEventType[];
 }): TouristicEventTypeChoices =>
-  rawTouristicEventTypes.reduce(
-    (items, { type, id, pictogram }) => ({
-      ...items,
-      [id]: {
-        id,
-        label: type,
-        pictogramUri: pictogram,
-      },
-    }),
-    {} as TouristicEventTypeChoices,
-  );
+  Object.fromEntries(rawTouristicEventTypes.map(({ type: label, id, pictogram: pictogramUri }) => [{
+    id,
+    label,
+    pictogramUri,
+  }]));
 
 export const adaptTouristicEventTypesForActivities = (
   rawTouristicEventTypes: RawTouristicEventType[],

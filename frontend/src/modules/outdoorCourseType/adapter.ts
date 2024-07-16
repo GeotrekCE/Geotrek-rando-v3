@@ -5,10 +5,4 @@ export const adaptOutdoorCourseType = ({
 }: {
   rawOutdoorCourseType: RawOutdoorCourseType[];
 }): OutdoorCourseTypeChoices =>
-  rawOutdoorCourseType.reduce(
-    (items, item) => ({
-      ...items,
-      [item.id]: item,
-    }),
-    {} as OutdoorCourseTypeChoices,
-  );
+  Object.fromEntries(rawOutdoorCourseType.map(item => [item.id, item]));

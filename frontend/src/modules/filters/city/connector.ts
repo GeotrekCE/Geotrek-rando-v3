@@ -1,9 +1,9 @@
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { generatePageNumbersArray } from 'modules/utils/connector';
+import { concatResults } from 'modules/utils/adapter';
 import { FilterWithoutType } from '../interface';
 import { adaptCityFilter } from './adapter';
 import { fetchCities } from './api';
-import { RawCity } from './interface';
 
 export const getCityFilter = async (language: string): Promise<FilterWithoutType> => {
   const resultsNumber = getGlobalConfig().mapResultsPageSize;
@@ -27,13 +27,6 @@ export const getCityFilter = async (language: string): Promise<FilterWithoutType
         }),
       ),
   );
-  const initialCities: RawCity[] = [];
-  const aggregatedCities = [cities, ...citiesOtherPages].reduce(
-    (currentlyAggregatedCities, currentCities) => [
-      ...currentlyAggregatedCities,
-      ...currentCities.results,
-    ],
-    initialCities,
-  );
+  const aggregatedCities = [...cities.results, ...concatResults(citiesOtherPages)];
   return adaptCityFilter(aggregatedCities);
 };

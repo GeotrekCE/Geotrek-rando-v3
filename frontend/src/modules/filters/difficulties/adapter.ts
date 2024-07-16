@@ -16,13 +16,7 @@ export const adaptDifficulty = (rawDifficulty: RawDifficulty): Difficulty => ({
 });
 
 export const adaptDifficulties = (rawDifficulties: Partial<RawDifficulty>[]): DifficultyChoices =>
-  rawDifficulties.filter(isRawDifficultyComplete).reduce<DifficultyChoices>(
-    (difficulties, currentRawDifficulty) => ({
-      ...difficulties,
-      [`${currentRawDifficulty.id}`]: adaptDifficulty(currentRawDifficulty),
-    }),
-    {},
-  );
+  Object.fromEntries(rawDifficulties.filter(isRawDifficultyComplete).map(({ id, label, pictogram:pictogramUri }) => [id, { id, label, pictogramUri }]))
 
 export const adaptDifficultyFilter = (
   rawDifficulties: Partial<RawDifficulty>[],
