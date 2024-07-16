@@ -1,6 +1,4 @@
 import { adaptInformationDeskType } from 'modules/informationDeskType/adapter';
-import { concatResults } from 'modules/utils/adapter';
-import { APIResponseForList } from 'services/api/interface';
 import { InformationDesk, InformationDeskDictionnary, RawInformationDesk } from './interface';
 
 const adaptInformationDesk = (rawInformationDesk: RawInformationDesk): InformationDesk => ({
@@ -19,26 +17,7 @@ const adaptInformationDesk = (rawInformationDesk: RawInformationDesk): Informati
   longitude: rawInformationDesk.longitude,
 });
 
-export const adaptInformationDeskList = (
-  rawInformationDesk: APIResponseForList<RawInformationDesk>[],
+export const adaptInformationDesks = (
+  rawInformationDesks: RawInformationDesk[]
 ): InformationDeskDictionnary =>
-  concatResults<RawInformationDesk>(rawInformationDesk).reduce(
-    (informationDesk, current) => ({
-      ...informationDesk,
-      [`${current.id}`]: adaptInformationDesk(current),
-    }),
-    {},
-  );
-
-export const adaptInformationDesks = ({
-  rawInformationDesks,
-}: {
-  rawInformationDesks: RawInformationDesk[];
-}): InformationDeskDictionnary =>
-  rawInformationDesks.reduce(
-    (InformationDesks, currentInformationDesk) => ({
-      ...InformationDesks,
-      [currentInformationDesk.id]: adaptInformationDesk(currentInformationDesk),
-    }),
-    {},
-  );
+  Object.fromEntries(rawInformationDesks.map(informationDesk => [informationDesk.id, adaptInformationDesk(informationDesk)]))

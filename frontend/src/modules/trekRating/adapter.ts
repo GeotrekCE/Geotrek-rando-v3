@@ -5,13 +5,7 @@ export const adaptTrekRating = ({
 }: {
   rawTrekRating: RawTrekRating[];
 }): TrekRatingChoices =>
-  rawTrekRating.reduce(
-    (items, item) => ({
-      ...items,
-      [item.id]: item,
-    }),
-    {} as TrekRatingChoices,
-  );
+  Object.fromEntries(rawTrekRating.map(item => [item.id, item]))
 
 export const adaptTrekRatingHashMap = (rawTrekRating: RawTrekRating[]): TrekRatingMapping => {
   const result: Record<string, TrekRating[]> = {};

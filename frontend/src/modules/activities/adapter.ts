@@ -32,19 +32,12 @@ export const adaptActivity = (rawActivity: RawListActivity): Activity => ({
 });
 
 export const adaptActivities = (rawActivities: Partial<RawListActivity>[]): ActivityChoices =>
-  rawActivities
+  Object.fromEntries(rawActivities
     .filter(isCompleteRawListActivity)
     .sort(sortedByOrder)
-    .reduce(
-      (activities, { name, pictogram, id }) => ({
-        ...activities,
-        [id]: {
-          label: name,
-          pictogramUri: pictogram,
-        },
-      }),
-      {} as ActivityChoices,
-    );
+    .map(
+      ({ name: label, pictogram: pictogramUri, id }) => [id, { id, label, pictogramUri }]
+    ))
 
 export const adaptActivitiesFilter = (
   rawActivities: Partial<RawListActivity>[],

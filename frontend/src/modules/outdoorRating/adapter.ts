@@ -12,13 +12,7 @@ export const adaptOutdoorRating = ({
 }: {
   rawOutdoorRating: RawOutdoorRating[];
 }): OutdoorRatingChoices =>
-  rawOutdoorRating.reduce(
-    (items, item) => ({
-      ...items,
-      [item.id]: item,
-    }),
-    {} as OutdoorRatingChoices,
-  );
+  Object.fromEntries(rawOutdoorRating.map(item => [item.id, item]));
 
 export const adaptOutdoorRatingFilter = (
   rawOutdoorRating: RawOutdoorRating[],

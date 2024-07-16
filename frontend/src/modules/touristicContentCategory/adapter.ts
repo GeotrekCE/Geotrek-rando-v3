@@ -59,13 +59,7 @@ export const adaptTouristicContentCategoryList = (
 export const adaptTouristicContentCategories = (
   rawCats: RawTouristicContentCategory[],
 ): TouristicContentCategoryDictionnary =>
-  rawCats.reduce(
-    (cats, currentCat) => ({
-      ...cats,
-      [`${currentCat.id}`]: adaptTouristicContentCategory(currentCat),
-    }),
-    {},
-  );
+  Object.fromEntries(rawCats.map(cat => [cat.id, adaptTouristicContentCategory(cat)]));
 
 export const adaptTouristicContentCategoryFilter = (
   rawTouristicContentCategories: RawTouristicContentCategory[],

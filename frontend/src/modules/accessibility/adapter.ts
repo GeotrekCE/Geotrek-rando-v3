@@ -9,10 +9,4 @@ const adaptAccessibility = (rawAccess: RawAccessibility): Accessibility => ({
 export const adaptAccessibilities = (
   rawAccessibilities: RawAccessibility[],
 ): AccessibilityDictionnary =>
-  rawAccessibilities.reduce(
-    (accesses, currentAccess) => ({
-      ...accesses,
-      [`${currentAccess.id}`]: adaptAccessibility(currentAccess),
-    }),
-    {},
-  );
+  Object.fromEntries(rawAccessibilities.map(access => [access.id, adaptAccessibility(access)]));
