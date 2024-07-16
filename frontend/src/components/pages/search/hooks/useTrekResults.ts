@@ -102,7 +102,12 @@ export const useTrekResults = (
         commonDictionaries,
       );
     },
-    initialPageParam: page,
+    initialPageParam: {
+      treks: page,
+      touristicContents: page,
+      outdoorSites: getGlobalConfig().enableOutdoor ? page : null,
+      touristicEvents: getGlobalConfig().enableTouristicEvents ? page : null,
+    },
     retry: false,
     // We already have a fallback component to allow the user to refetch
     // Leaving these on induced issues with our refetching only next page strategy
