@@ -1,5 +1,6 @@
 import { generatePageNumbersArray } from 'modules/utils/connector';
-import { adaptInformationDeskList, adaptInformationDesks } from './adapter';
+import { concatResults } from 'modules/utils/adapter';
+import { adaptInformationDesks } from './adapter';
 import { fetchInformationDesks } from './api';
 import { InformationDeskDictionnary } from './interface';
 
@@ -15,9 +16,9 @@ export const getInformationDesks = async (
       page_size: defaultPageSize,
     });
     if (rawInformationDesks.count <= defaultPageSize) {
-      return adaptInformationDesks({
-        rawInformationDesks: rawInformationDesks.results,
-      });
+      return adaptInformationDesks(
+        rawInformationDesks.results,
+      );
     }
 
     // Second call with loop to load all the necessary pages to reach the count
@@ -33,7 +34,7 @@ export const getInformationDesks = async (
         ),
     );
 
-    return adaptInformationDeskList([rawInformationDesks, ...rawInformationDesksOtherPages]);
+    return adaptInformationDesks(concatResults([rawInformationDesks, ...rawInformationDesksOtherPages]));
   } catch (e) {
     console.error('Error in informationDesk/connector', e);
     throw e;

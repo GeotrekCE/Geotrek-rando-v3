@@ -6,10 +6,4 @@ const adaptNetwork = (rawNetwork: RawNetwork): Network => ({
 });
 
 export const adaptNetworks = (rawNetworks: RawNetwork[]): NetworkDictionnary =>
-  rawNetworks.reduce(
-    (networks, currentNetwork) => ({
-      ...networks,
-      [`${currentNetwork.id}`]: adaptNetwork(currentNetwork),
-    }),
-    {},
-  );
+  Object.fromEntries(rawNetworks.map(network => [network.id, adaptNetwork(network)]));

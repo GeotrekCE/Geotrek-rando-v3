@@ -7,10 +7,4 @@ const adaptSource = (rawSource: RawSource): Source => ({
 });
 
 export const adaptSources = (rawSources: RawSource[]): SourceDictionnary =>
-  rawSources.reduce(
-    (sources, currentSource) => ({
-      ...sources,
-      [currentSource.id]: adaptSource(currentSource),
-    }),
-    {},
-  );
+  Object.fromEntries(rawSources.map(source => [source.id, adaptSource(source)]));

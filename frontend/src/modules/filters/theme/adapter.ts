@@ -20,10 +20,4 @@ export const adaptThemeFilter = (rawThemes: Partial<RawTheme>[]): FilterWithoutT
 });
 
 export const adaptThemes = (rawThemes: Partial<RawTheme>[]): Choices =>
-  rawThemes.filter(isRawThemeComplete).reduce(
-    (themes, currentRawTheme) => ({
-      ...themes,
-      [`${currentRawTheme.id}`]: { label: currentRawTheme.label },
-    }),
-    {},
-  );
+  Object.fromEntries(rawThemes.map(theme => [theme.id, { label: theme.label }]))

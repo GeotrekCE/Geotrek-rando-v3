@@ -25,14 +25,5 @@ export const adaptInfrastructures = ({
   if (rawInfrastructures.length === 0) {
     return null;
   }
-  return rawInfrastructures.reduce(
-    (Infrastructures, currentInfrastructure) => ({
-      ...Infrastructures,
-      [currentInfrastructure.id]: adaptInfrastructure(
-        currentInfrastructure,
-        infrastructureTypeDictionary,
-      ),
-    }),
-    {},
-  );
+  return Object.fromEntries(rawInfrastructures.map(infrastructure => [infrastructure.id, adaptInfrastructure(infrastructure,infrastructureTypeDictionary)]));
 };

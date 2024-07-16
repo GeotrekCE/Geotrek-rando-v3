@@ -11,13 +11,7 @@ const adaptLabel = (rawLabel: RawLabel): Label => ({
 });
 
 export const adaptLabels = (rawLabels: RawLabel[]): LabelDictionnary =>
-  rawLabels.reduce(
-    (Labels, currentLabel) => ({
-      ...Labels,
-      [`${currentLabel.id}`]: adaptLabel(currentLabel),
-    }),
-    {},
-  );
+  Object.fromEntries(rawLabels.map(label => [label.id, adaptLabel(label)]));
 
 export const adaptLabelsFilter = (
   rawLabels: RawLabel[],

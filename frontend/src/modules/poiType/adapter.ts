@@ -6,10 +6,4 @@ const adaptPoiType = (rawPoiType: RawPoiType): PoiType => ({
 });
 
 export const adaptPoiTypes = (rawPoiTypes: RawPoiType[]): PoiTypeDictionnary =>
-  rawPoiTypes.reduce(
-    (poiTypes, currentPoiType) => ({
-      ...poiTypes,
-      [`${currentPoiType.id}`]: adaptPoiType(currentPoiType),
-    }),
-    {},
-  );
+  Object.fromEntries(rawPoiTypes.map(poiTypes => [poiTypes.id, adaptPoiType(poiTypes)]));

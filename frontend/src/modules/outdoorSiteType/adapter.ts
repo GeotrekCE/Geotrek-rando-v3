@@ -5,10 +5,4 @@ export const adaptOutdoorSiteType = ({
 }: {
   rawOutdoorSiteType: RawOutdoorSiteType[];
 }): OutdoorSiteTypeChoices =>
-  rawOutdoorSiteType.reduce(
-    (items, item) => ({
-      ...items,
-      [item.id]: item,
-    }),
-    {} as OutdoorSiteTypeChoices,
-  );
+  Object.fromEntries(rawOutdoorSiteType.map(item => [item.id, item]));

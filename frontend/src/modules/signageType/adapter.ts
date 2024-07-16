@@ -1,10 +1,3 @@
 import { SignageType, SignageTypeDictionary } from './interface';
-export const adaptSignageType = (signageType: SignageType[]): SignageTypeDictionary => {
-  return signageType.reduce(
-    (list, item) => ({
-      ...list,
-      [item.id]: item,
-    }),
-    {},
-  );
-};
+export const adaptSignageType = (signageType: SignageType[]): SignageTypeDictionary => 
+  Object.fromEntries(signageType.map(item => [item.id, item]));

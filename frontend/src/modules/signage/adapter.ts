@@ -24,11 +24,5 @@ export const adaptSignages = ({
   if (rawSignages.length === 0) {
     return null;
   }
-  return rawSignages.reduce(
-    (Signages, currentSignage) => ({
-      ...Signages,
-      [currentSignage.id]: adaptSignage(currentSignage, signageTypeDictionary),
-    }),
-    {},
-  );
+  return Object.fromEntries(rawSignages.map(signage => [signage.id, adaptSignage(signage, signageTypeDictionary)]));
 };

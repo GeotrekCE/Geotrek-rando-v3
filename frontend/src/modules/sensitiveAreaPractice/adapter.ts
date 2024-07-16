@@ -13,10 +13,4 @@ const adaptSensitiveAreaPractice = (
 export const adaptSensitiveAreaPractices = (
   rawSensitiveAreaPractices: RawSensitiveAreaPractice[],
 ): SensitiveAreaPracticeDictionnary =>
-  rawSensitiveAreaPractices.reduce(
-    (sources, currentSensitiveAreaPractice) => ({
-      ...sources,
-      [currentSensitiveAreaPractice.id]: adaptSensitiveAreaPractice(currentSensitiveAreaPractice),
-    }),
-    {},
-  );
+  Object.fromEntries(rawSensitiveAreaPractices.map(sensitiveAreasPractice => [sensitiveAreasPractice.id, adaptSensitiveAreaPractice(sensitiveAreasPractice)]));
