@@ -28,7 +28,7 @@ export const useObjectGeometry = (
   };
 
   const { data: trekGeometry } = useQuery<GeometryObject, Error>({
-    queryKey: ['trekPopupResult', id, language],
+    queryKey: ['trekPopupResult', type, id, language],
     queryFn: () => func()(String(id), language),
   });
 

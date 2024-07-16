@@ -29,7 +29,7 @@ export const usePopupResult = (id: string, shouldFetch: boolean, type: ContentTy
   };
 
   const { data: trekPopupResult, isLoading } = useQuery<PopupResult, Error>({
-    queryKey: ['popupResult', id, language],
+    queryKey: ['popupResult', type, id, language],
     queryFn: fetchData,
     enabled: type !== null && shouldFetch && commonDictionaries !== undefined,
   });
