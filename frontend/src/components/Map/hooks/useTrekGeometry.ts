@@ -14,22 +14,17 @@ export const useObjectGeometry = (
 ) => {
   const language = useRouter().locale ?? getDefaultLanguage();
 
-  const func = () => {
-    if (type === 'TREK') {
-      return getTrekGeometryResult;
-    }
-    if (type === 'OUTDOOR_SITE') {
-      return getOutdoorSiteGeometryResult;
-    }
-    if (type === 'TOURISTIC_EVENT') {
-      return getTouristicEventGeometryResult;
-    }
-    return getTouristicContentGeometryResult;
+  const getterByType = {
+    TREK: getTrekGeometryResult,
+    OUTDOOR_SITE: getOutdoorSiteGeometryResult,
+    TOURISTIC_EVENT: getTouristicEventGeometryResult,
+    TOURISTIC_CONTENT: getTouristicContentGeometryResult,
   };
+  const getter = getterByType[type];
 
   const { data: trekGeometry } = useQuery<GeometryObject, Error>({
     queryKey: ['trekPopupResult', type, id, language],
-    queryFn: () => func()(String(id), language),
+    queryFn: () => getter?.(String(id), language),
   });
 
   return { trekGeometry };
