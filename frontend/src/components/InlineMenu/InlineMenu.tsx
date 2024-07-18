@@ -70,7 +70,7 @@ const InlineMenu: React.FC<InlineMenuProps> = ({
             }
             asHover
             className={cn(
-              'relative pt-3 pb-2 mr-4 text-white flex items-center border-b-4 border-solid border-transparent duration-500 transition-color',
+              'relative pt-3 pb-2 text-white flex items-center border-b-4 border-solid border-transparent duration-500 transition-color',
               "after:content-[''] after:absolute after:top-10 after:-left-5 after:-right-5 after:h-8",
             )}
             wrapperClassName="flex-row"
