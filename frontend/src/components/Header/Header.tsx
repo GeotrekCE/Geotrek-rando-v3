@@ -61,11 +61,11 @@ export const Header: React.FC = () => {
           </Link>
           <div
             ref={menuNode}
-            className={cn('items-center hidden desktop:flex', !isDesktopMenu && 'invisible')}
+            className={cn('items-center hidden desktop:flex gap-2', !isDesktopMenu && 'invisible')}
             aria-hidden={!isDesktopMenu}
           >
             <InlineMenu
-              className={cn('flex items-center justify-end flex-auto flex-wrap gap-4')}
+              className={cn('flex items-center justify-end flex-auto flex-wrap gap-4 mr-2')}
               menuItems={menuItems}
               config={config.menu}
             />
