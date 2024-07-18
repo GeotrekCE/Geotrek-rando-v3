@@ -23,7 +23,7 @@ export const useHome = (): UseHome => {
   const commonDictionaries = useQueryCommonDictionaries(language);
 
   const { data = [] } = useQuery<ActivitySuggestion[] | [], Error>({
-    queryKey: ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}`, language],
+    queryKey: ['activitySuggestions', activitySuggestionIds, language],
     queryFn: () => getActivitySuggestions(suggestions, language, commonDictionaries),
     enabled: suggestions.length > 0 && commonDictionaries !== undefined,
   });

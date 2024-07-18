@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     );
 
     await queryClient.prefetchQuery({
-      queryKey: ['activitySuggestions', `Suggestion-${activitySuggestionIds.join('-')}`, locale],
+      queryKey: ['activitySuggestions', activitySuggestionIds, locale],
       queryFn: () => getActivitySuggestions(suggestions, locale, commonDictionaries),
     });
   }
