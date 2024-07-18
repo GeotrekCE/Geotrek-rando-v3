@@ -35,7 +35,7 @@ export const useFlatPage = (flatPageUrl: string | undefined) => {
   );
 
   const { data: activitySuggestions = [] } = useQuery<ActivitySuggestion[] | [], Error>({
-    queryKey: ['activitySuggestions', ...activitySuggestionIds, id, language],
+    queryKey: ['activitySuggestions', activitySuggestionIds, language],
     queryFn: () => getActivitySuggestions(suggestions, language, commonDictionaries),
     enabled: suggestions.length > 0 && commonDictionaries !== undefined,
   });

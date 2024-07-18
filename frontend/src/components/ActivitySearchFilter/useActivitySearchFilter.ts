@@ -12,7 +12,6 @@ export const useActivitySearchFilter = () => {
   const language = useRouter().locale ?? getDefaultLanguage();
   const { data: activities } = useQuery<ActivityFilter[], Error>({
     queryKey: ['homeActivities', language],
-
     queryFn: () => getActivityBarContent(language, activityBar.links),
   });
 
