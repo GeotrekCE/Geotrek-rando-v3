@@ -1,10 +1,33 @@
 # Changelog
 
+## 3.21.0 (2024-07-18)
+
+**🚀 New features**
+
+- Create trek `networks` filter (#1043 #1193)
+
+**✨ Improvements**
+
+- Cleanup overhead of useless immutable pattern in loop for various adapters (#1197 #1198)
+
+**🔧 Maintenance**
+
+- Refacto of full screen management (#901 #1173)
+- Bump @tanstack/react-query from 4.10.3 to 5.51.1 (#1192)
+
+**🐛 Fixes**
+
+- Prevent homepage video from displaying full-screen on IOS devices (#1178 #1179)
+- Manage null value for some fields (#1170)
+- Fix hydration issue with ResultCardCarousel (#1186)
+- Fix aria-hidden position for detailsCard button (#1187)
+- Fix headermenu spacing when there is no language selector (#1200)
+
 ## 3.20.3 (2024-06-10)
 
 **🐛 Fixes**
 
--  Fix sitemap.xml for connected GTAs >= 2.104 (#1163)
+- Fix sitemap.xml for connected GTAs >= 2.104 (#1163)
 
 **📝 Documentation**
 
