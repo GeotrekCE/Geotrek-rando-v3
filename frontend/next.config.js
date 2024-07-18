@@ -59,9 +59,6 @@ const nextConfig = {
     disableClientWebpackPlugin: true, //process.env.SENTRY_DSN === undefined,
   },
   publicRuntimeConfig: getAllConfigs,
-  compiler: {
-    styledComponents: true,
-  },
   images: {
     remotePatterns: [
       {
@@ -71,6 +68,5 @@ const nextConfig = {
   },
 };
 
-module.exports = async (phase, { defaultConfig }) => (
-  withPlugins(plugins, nextConfig)(phase, { ...defaultConfig, ...nextConfig })
-);
+module.exports = async (phase, { defaultConfig }) =>
+  withPlugins(plugins, nextConfig)(phase, { ...defaultConfig, ...nextConfig });
