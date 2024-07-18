@@ -80,11 +80,11 @@ export const useTrekResults = (
   } = useInfiniteQuery<SearchResults, Error>({
     queryKey: [
       'trekResults',
-      JSON.stringify(parsedFiltersState),
+      parsedFiltersState,
       language,
       parseTextFilter(textFilterState),
       parseBboxFilter(bboxState),
-      JSON.stringify(dateFilter),
+      dateFilter,
       page,
     ],
     queryFn: ({

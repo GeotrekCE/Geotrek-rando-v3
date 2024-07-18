@@ -59,7 +59,7 @@ export const useDetails = (
   const parentIdString = isUrlString(parentId) ? parentId : '';
   const { data: trekFamily } = useQuery<TrekFamily | null, Error>({
     queryKey: ['trekFamily', parentIdString, language],
-    queryFn: () => getTrekFamily(isUrlString(parentId) ? parentId : '', language),
+    queryFn: () => getTrekFamily(parentIdString, language),
     enabled: isUrlString(parentId),
     staleTime: ONE_DAY,
   });
