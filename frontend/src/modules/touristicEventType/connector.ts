@@ -7,9 +7,9 @@ import { TouristicEventTypeChoices } from './interface';
 export const getTouristicEventTypes = async (
   language: string,
 ): Promise<TouristicEventTypeChoices> => {
-  const [rawTouristicEventTypes] = await Promise.all([
-    getGlobalConfig().enableTouristicEvents ? fetchTouristicEventTypes({ language }) : null,
-  ]);
+  const rawTouristicEventTypes = getGlobalConfig().enableTouristicEvents
+    ? await fetchTouristicEventTypes({ language })
+    : null;
 
   return adaptTouristicEventTypes({
     rawTouristicEventTypes: rawTouristicEventTypes ? rawTouristicEventTypes.results : [],
