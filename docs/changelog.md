@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.21.1 (2024-07-29)
+
+**🐛 Fixes**
+
+- Prevent app to crash in touristic event detail page - Regression since 3.21.0 (#1208 #1209)
+
 ## 3.21.0 (2024-07-18)
 
 **🚀 New features**
