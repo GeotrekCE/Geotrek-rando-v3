@@ -7,7 +7,7 @@ interface CarouselProps {
   children: React.ReactNode;
   nextArrow: JSX.Element;
   prevArrow: JSX.Element;
-  dots(dots: React.ReactNode): JSX.Element;
+  dots: (dots: JSX.Element) => JSX.Element;
 }
 
 interface LargeOrSmallCarouselProps {
