@@ -3,7 +3,7 @@
 import { ReactElement } from 'react';
 import { RenderOptions, RenderResult, render as rtlRender } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
-import { RouterContext } from 'next/dist/shared/lib/router-context';
+import { RouterContext } from 'next-server/dist/lib/router-context';
 import { NextRouter } from 'next/dist/shared/lib/router/router';
 
 import flattenMessages from 'services/i18n/intl';
