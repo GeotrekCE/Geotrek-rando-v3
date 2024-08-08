@@ -11,13 +11,14 @@ If you follow the [Install without Docker (not recommended)](#install-without-do
 ### Sentry
 
 To report application crashes and any errors encountered by users, you can use [Sentry](https://sentry.io/).
-In the Sentry backoffice, create your project and copy the DSN key which you can paste into the `SENTRY_DSN` environment variable. 
+In the Sentry backoffice, create your project and copy the DSN key which you can paste into the `SENTRY_DSN` environment variable.
 
 # Install with Docker (recommended)
 
 ## Global process
 
 Before starting the technical installation, here is an overview of the global process:
+
 - Developers are working on code source of this repository where you will also find the documentation, issues and releases
 - Once they have a new version of the application ready, they will release it, build a Docker image of this new version and push it in the [packages repository](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando)
 - If required, they will also make changes to the docker-compose file and customization template in the [installer dedicated repository](https://github.com/GeotrekCE/Geotrek-rando-v3-installer) and release a new version of it
@@ -103,6 +104,7 @@ sudo certbot --nginx
 ## Upgrade Geotrek-rando version
 
 To find out the current Geotrek-rando version of your running container, you can execute (by renaming `rando-nodeserver-1` with the name of your container):
+
 ```
 docker exec -t -i rando-nodeserver-1 node -p "require('./package.json').version"
 ```
@@ -147,7 +149,7 @@ Install nodejs:
 sudo apt update
 sudo apt -y upgrade
 sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
-curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt -y install nodejs
 ```
 
@@ -164,6 +166,7 @@ cd Geotrek-rando-v3/frontend/
 ```
 
 Install dependencies
+
 ```sh
 yarn
 ```
