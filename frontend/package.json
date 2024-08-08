@@ -94,7 +94,7 @@
   "devDependencies": {
     "@accessible/accordion": "^2.0.0",
     "@next/bundle-analyzer": "^12.2.5",
-    "@next/eslint-plugin-next": "^14.1.1",
+    "@next/eslint-plugin-next": "^14.2.10",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
@@ -111,7 +111,7 @@
     "@types/screenfull": "^4.1.0",
     "@types/store": "^2.0.2",
     "eslint": "^8.57.0",
-    "eslint-config-next": "^14.1.1",
+    "eslint-config-next": "^14.2.10",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jest-dom": "^5.1.0",
     "eslint-plugin-testing-library": "^6.2.0",
