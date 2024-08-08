@@ -11,6 +11,8 @@ import enMessages from 'translations/en.json';
 import frMessages from 'translations/fr.json';
 import { routerMock } from '../routerMock';
 
+jest.mock('next/router', () => jest.requireActual('next-router-mock'));
+
 interface WrapperOptions {
   locale?: 'en' | 'fr';
   router?: Partial<NextRouter>;
