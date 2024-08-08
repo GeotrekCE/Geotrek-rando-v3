@@ -24,8 +24,7 @@ const DumbControl = Control.extend({
   options: {
     className: '',
     onOff: '',
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    handleOff: function noop() {},
+    handleOff: () => {},
   },
 
   onAdd() {
