@@ -6,12 +6,26 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="slick-slider my-1.5 desktop:my-3 mx-7 desktop:mr-10 desktop:ml-8 slick-initialized"
+        class="slick-slider my-1.5 !flex items-center desktop:my-3 slick-initialized"
         dir="ltr"
       >
-        <div
-          class="sc-gswNZR sc-hLBbgP hFsuPU fdezyM slick-arrow slick-prev slick-disabled"
-        />
+        <button
+          class="flex justify-center items-center transition size-7 disabled:opacity-50"
+          disabled=""
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="text-primary3 text-2xl desktop:text-3xl -scale-x-100"
+          >
+            ➜
+          </span>
+          <span
+            class="sr-only"
+          >
+            Étape précédente
+          </span>
+        </button>
         <div
           class="slick-list"
         >
@@ -27,28 +41,14 @@ Object {
               tabindex="-1"
             >
               <div>
-                <div
-                  class="outline-none align-middle py-1"
-                  style="width: 100%; display: inline-block;"
-                  tabindex="-1"
+                <a
+                  class="hover:text-primary3 focus:text-primary3 transition-colors my-1 block truncate px-2 desktop:px-4 py-2 mx-2p desktop:mx-1.5 text-P3 desktop:text-P1 border border-solid rounded-full hover:shadow-sm focus:shadow-sm border-greySoft text-primary3 bg-white"
+                  href="/trek/596-Boucle-de-malade?parentId=501"
                 >
-                  <a
-                    class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
-                    href="/trek/596-Boucle-de-malade?parentId=501"
-                  >
-                    <div
-                      class="truncate px-2 desktop:px-4 py-2
-              mx-2p desktop:mx-1.5
-              text-P3 desktop:text-P1
-              outline-none border border-solid rounded-full
-              cursor-pointer hover:shadow-sm transition-all border-greySoft text-primary3 bg-white"
-                    >
-                      <span>
-                        1. Boucle de malade
-                      </span>
-                    </div>
-                  </a>
-                </div>
+                  1
+                  . 
+                  Boucle de malade
+                </a>
               </div>
             </div>
             <div
@@ -59,28 +59,14 @@ Object {
               tabindex="-1"
             >
               <div>
-                <div
-                  class="outline-none align-middle py-1"
-                  style="width: 100%; display: inline-block;"
-                  tabindex="-1"
+                <a
+                  class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors my-1 block truncate px-2 desktop:px-4 py-2 mx-2p desktop:mx-1.5 text-P3 desktop:text-P1 border border-solid rounded-full hover:shadow-sm focus:shadow-sm border-primary1 !text-white bg-primary1"
+                  href="/trek/604-Deuxieme-etape?parentId=501"
                 >
-                  <a
-                    class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
-                    href="/trek/604-Deuxieme-etape?parentId=501"
-                  >
-                    <div
-                      class="truncate px-2 desktop:px-4 py-2
-              mx-2p desktop:mx-1.5
-              text-P3 desktop:text-P1
-              outline-none border border-solid rounded-full
-              cursor-pointer hover:shadow-sm transition-all border-primary1 text-white bg-primary1"
-                    >
-                      <span>
-                        2. Deuxième étape
-                      </span>
-                    </div>
-                  </a>
-                </div>
+                  2
+                  . 
+                  Deuxième étape
+                </a>
               </div>
             </div>
             <div
@@ -91,28 +77,14 @@ Object {
               tabindex="-1"
             >
               <div>
-                <div
-                  class="outline-none align-middle py-1"
-                  style="width: 100%; display: inline-block;"
-                  tabindex="-1"
+                <a
+                  class="hover:text-primary3 focus:text-primary3 transition-colors my-1 block truncate px-2 desktop:px-4 py-2 mx-2p desktop:mx-1.5 text-P3 desktop:text-P1 border border-solid rounded-full hover:shadow-sm focus:shadow-sm border-greySoft text-primary3 bg-white"
+                  href="/trek/2-Troisieme-etape?parentId=501"
                 >
-                  <a
-                    class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
-                    href="/trek/2-Troisieme-etape?parentId=501"
-                  >
-                    <div
-                      class="truncate px-2 desktop:px-4 py-2
-              mx-2p desktop:mx-1.5
-              text-P3 desktop:text-P1
-              outline-none border border-solid rounded-full
-              cursor-pointer hover:shadow-sm transition-all border-greySoft text-primary3 bg-white"
-                    >
-                      <span>
-                        3. Troisième étape
-                      </span>
-                    </div>
-                  </a>
-                </div>
+                  3
+                  . 
+                  Troisième étape
+                </a>
               </div>
             </div>
             <div
@@ -123,28 +95,14 @@ Object {
               tabindex="-1"
             >
               <div>
-                <div
-                  class="outline-none align-middle py-1"
-                  style="width: 100%; display: inline-block;"
-                  tabindex="-1"
+                <a
+                  class="hover:text-primary3 focus:text-primary3 transition-colors my-1 block truncate px-2 desktop:px-4 py-2 mx-2p desktop:mx-1.5 text-P3 desktop:text-P1 border border-solid rounded-full hover:shadow-sm focus:shadow-sm border-greySoft text-primary3 bg-white"
+                  href="/trek/4-Quatrieme-etape?parentId=501"
                 >
-                  <a
-                    class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
-                    href="/trek/4-Quatrieme-etape?parentId=501"
-                  >
-                    <div
-                      class="truncate px-2 desktop:px-4 py-2
-              mx-2p desktop:mx-1.5
-              text-P3 desktop:text-P1
-              outline-none border border-solid rounded-full
-              cursor-pointer hover:shadow-sm transition-all border-greySoft text-primary3 bg-white"
-                    >
-                      <span>
-                        4. Quatrième étape
-                      </span>
-                    </div>
-                  </a>
-                </div>
+                  4
+                  . 
+                  Quatrième étape
+                </a>
               </div>
             </div>
             <div
@@ -155,28 +113,14 @@ Object {
               tabindex="-1"
             >
               <div>
-                <div
-                  class="outline-none align-middle py-1"
-                  style="width: 100%; display: inline-block;"
-                  tabindex="-1"
+                <a
+                  class="hover:text-primary3 focus:text-primary3 transition-colors my-1 block truncate px-2 desktop:px-4 py-2 mx-2p desktop:mx-1.5 text-P3 desktop:text-P1 border border-solid rounded-full hover:shadow-sm focus:shadow-sm border-greySoft text-primary3 bg-white"
+                  href="/trek/5-Encore-une-etape?parentId=501"
                 >
-                  <a
-                    class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
-                    href="/trek/5-Encore-une-etape?parentId=501"
-                  >
-                    <div
-                      class="truncate px-2 desktop:px-4 py-2
-              mx-2p desktop:mx-1.5
-              text-P3 desktop:text-P1
-              outline-none border border-solid rounded-full
-              cursor-pointer hover:shadow-sm transition-all border-greySoft text-primary3 bg-white"
-                    >
-                      <span>
-                        5. Encore une étape
-                      </span>
-                    </div>
-                  </a>
-                </div>
+                  5
+                  . 
+                  Encore une étape
+                </a>
               </div>
             </div>
             <div
@@ -187,46 +131,59 @@ Object {
               tabindex="-1"
             >
               <div>
-                <div
-                  class="outline-none align-middle py-1"
-                  style="width: 100%; display: inline-block;"
-                  tabindex="-1"
+                <a
+                  class="hover:text-primary3 focus:text-primary3 transition-colors my-1 block truncate px-2 desktop:px-4 py-2 mx-2p desktop:mx-1.5 text-P3 desktop:text-P1 border border-solid rounded-full hover:shadow-sm focus:shadow-sm border-greySoft text-primary3 bg-white"
+                  href="/trek/6-C-est-la-fin-!?parentId=501"
                 >
-                  <a
-                    class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
-                    href="/trek/6-C-est-la-fin-!?parentId=501"
-                  >
-                    <div
-                      class="truncate px-2 desktop:px-4 py-2
-              mx-2p desktop:mx-1.5
-              text-P3 desktop:text-P1
-              outline-none border border-solid rounded-full
-              cursor-pointer hover:shadow-sm transition-all border-greySoft text-primary3 bg-white"
-                    >
-                      <span>
-                        6. C'est la fin !
-                      </span>
-                    </div>
-                  </a>
-                </div>
+                  6
+                  . 
+                  C'est la fin !
+                </a>
               </div>
             </div>
           </div>
         </div>
-        <div
-          class="sc-gswNZR sc-dkrFOg hFsuPU cxlmBX slick-arrow slick-next"
-        />
+        <button
+          class="flex justify-center items-center transition size-7 disabled:opacity-50"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="text-primary3 text-2xl desktop:text-3xl"
+          >
+            ➜
+          </span>
+          <span
+            class="sr-only"
+          >
+            Étape suivante
+          </span>
+        </button>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="slick-slider my-1.5 desktop:my-3 mx-7 desktop:mr-10 desktop:ml-8 slick-initialized"
+      class="slick-slider my-1.5 !flex items-center desktop:my-3 slick-initialized"
       dir="ltr"
     >
-      <div
-        class="sc-gswNZR sc-hLBbgP hFsuPU fdezyM slick-arrow slick-prev slick-disabled"
-      />
+      <button
+        class="flex justify-center items-center transition size-7 disabled:opacity-50"
+        disabled=""
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="text-primary3 text-2xl desktop:text-3xl -scale-x-100"
+        >
+          ➜
+        </span>
+        <span
+          class="sr-only"
+        >
+          Étape précédente
+        </span>
+      </button>
       <div
         class="slick-list"
       >
@@ -242,28 +199,14 @@ Object {
             tabindex="-1"
           >
             <div>
-              <div
-                class="outline-none align-middle py-1"
-                style="width: 100%; display: inline-block;"
-                tabindex="-1"
+              <a
+                class="hover:text-primary3 focus:text-primary3 transition-colors my-1 block truncate px-2 desktop:px-4 py-2 mx-2p desktop:mx-1.5 text-P3 desktop:text-P1 border border-solid rounded-full hover:shadow-sm focus:shadow-sm border-greySoft text-primary3 bg-white"
+                href="/trek/596-Boucle-de-malade?parentId=501"
               >
-                <a
-                  class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
-                  href="/trek/596-Boucle-de-malade?parentId=501"
-                >
-                  <div
-                    class="truncate px-2 desktop:px-4 py-2
-              mx-2p desktop:mx-1.5
-              text-P3 desktop:text-P1
-              outline-none border border-solid rounded-full
-              cursor-pointer hover:shadow-sm transition-all border-greySoft text-primary3 bg-white"
-                  >
-                    <span>
-                      1. Boucle de malade
-                    </span>
-                  </div>
-                </a>
-              </div>
+                1
+                . 
+                Boucle de malade
+              </a>
             </div>
           </div>
           <div
@@ -274,28 +217,14 @@ Object {
             tabindex="-1"
           >
             <div>
-              <div
-                class="outline-none align-middle py-1"
-                style="width: 100%; display: inline-block;"
-                tabindex="-1"
+              <a
+                class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors my-1 block truncate px-2 desktop:px-4 py-2 mx-2p desktop:mx-1.5 text-P3 desktop:text-P1 border border-solid rounded-full hover:shadow-sm focus:shadow-sm border-primary1 !text-white bg-primary1"
+                href="/trek/604-Deuxieme-etape?parentId=501"
               >
-                <a
-                  class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
-                  href="/trek/604-Deuxieme-etape?parentId=501"
-                >
-                  <div
-                    class="truncate px-2 desktop:px-4 py-2
-              mx-2p desktop:mx-1.5
-              text-P3 desktop:text-P1
-              outline-none border border-solid rounded-full
-              cursor-pointer hover:shadow-sm transition-all border-primary1 text-white bg-primary1"
-                  >
-                    <span>
-                      2. Deuxième étape
-                    </span>
-                  </div>
-                </a>
-              </div>
+                2
+                . 
+                Deuxième étape
+              </a>
             </div>
           </div>
           <div
@@ -306,28 +235,14 @@ Object {
             tabindex="-1"
           >
             <div>
-              <div
-                class="outline-none align-middle py-1"
-                style="width: 100%; display: inline-block;"
-                tabindex="-1"
+              <a
+                class="hover:text-primary3 focus:text-primary3 transition-colors my-1 block truncate px-2 desktop:px-4 py-2 mx-2p desktop:mx-1.5 text-P3 desktop:text-P1 border border-solid rounded-full hover:shadow-sm focus:shadow-sm border-greySoft text-primary3 bg-white"
+                href="/trek/2-Troisieme-etape?parentId=501"
               >
-                <a
-                  class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
-                  href="/trek/2-Troisieme-etape?parentId=501"
-                >
-                  <div
-                    class="truncate px-2 desktop:px-4 py-2
-              mx-2p desktop:mx-1.5
-              text-P3 desktop:text-P1
-              outline-none border border-solid rounded-full
-              cursor-pointer hover:shadow-sm transition-all border-greySoft text-primary3 bg-white"
-                  >
-                    <span>
-                      3. Troisième étape
-                    </span>
-                  </div>
-                </a>
-              </div>
+                3
+                . 
+                Troisième étape
+              </a>
             </div>
           </div>
           <div
@@ -338,28 +253,14 @@ Object {
             tabindex="-1"
           >
             <div>
-              <div
-                class="outline-none align-middle py-1"
-                style="width: 100%; display: inline-block;"
-                tabindex="-1"
+              <a
+                class="hover:text-primary3 focus:text-primary3 transition-colors my-1 block truncate px-2 desktop:px-4 py-2 mx-2p desktop:mx-1.5 text-P3 desktop:text-P1 border border-solid rounded-full hover:shadow-sm focus:shadow-sm border-greySoft text-primary3 bg-white"
+                href="/trek/4-Quatrieme-etape?parentId=501"
               >
-                <a
-                  class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
-                  href="/trek/4-Quatrieme-etape?parentId=501"
-                >
-                  <div
-                    class="truncate px-2 desktop:px-4 py-2
-              mx-2p desktop:mx-1.5
-              text-P3 desktop:text-P1
-              outline-none border border-solid rounded-full
-              cursor-pointer hover:shadow-sm transition-all border-greySoft text-primary3 bg-white"
-                  >
-                    <span>
-                      4. Quatrième étape
-                    </span>
-                  </div>
-                </a>
-              </div>
+                4
+                . 
+                Quatrième étape
+              </a>
             </div>
           </div>
           <div
@@ -370,28 +271,14 @@ Object {
             tabindex="-1"
           >
             <div>
-              <div
-                class="outline-none align-middle py-1"
-                style="width: 100%; display: inline-block;"
-                tabindex="-1"
+              <a
+                class="hover:text-primary3 focus:text-primary3 transition-colors my-1 block truncate px-2 desktop:px-4 py-2 mx-2p desktop:mx-1.5 text-P3 desktop:text-P1 border border-solid rounded-full hover:shadow-sm focus:shadow-sm border-greySoft text-primary3 bg-white"
+                href="/trek/5-Encore-une-etape?parentId=501"
               >
-                <a
-                  class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
-                  href="/trek/5-Encore-une-etape?parentId=501"
-                >
-                  <div
-                    class="truncate px-2 desktop:px-4 py-2
-              mx-2p desktop:mx-1.5
-              text-P3 desktop:text-P1
-              outline-none border border-solid rounded-full
-              cursor-pointer hover:shadow-sm transition-all border-greySoft text-primary3 bg-white"
-                  >
-                    <span>
-                      5. Encore une étape
-                    </span>
-                  </div>
-                </a>
-              </div>
+                5
+                . 
+                Encore une étape
+              </a>
             </div>
           </div>
           <div
@@ -402,35 +289,34 @@ Object {
             tabindex="-1"
           >
             <div>
-              <div
-                class="outline-none align-middle py-1"
-                style="width: 100%; display: inline-block;"
-                tabindex="-1"
+              <a
+                class="hover:text-primary3 focus:text-primary3 transition-colors my-1 block truncate px-2 desktop:px-4 py-2 mx-2p desktop:mx-1.5 text-P3 desktop:text-P1 border border-solid rounded-full hover:shadow-sm focus:shadow-sm border-greySoft text-primary3 bg-white"
+                href="/trek/6-C-est-la-fin-!?parentId=501"
               >
-                <a
-                  class="text-primary1 hover:text-primary3 focus:text-primary3 transition-colors"
-                  href="/trek/6-C-est-la-fin-!?parentId=501"
-                >
-                  <div
-                    class="truncate px-2 desktop:px-4 py-2
-              mx-2p desktop:mx-1.5
-              text-P3 desktop:text-P1
-              outline-none border border-solid rounded-full
-              cursor-pointer hover:shadow-sm transition-all border-greySoft text-primary3 bg-white"
-                  >
-                    <span>
-                      6. C'est la fin !
-                    </span>
-                  </div>
-                </a>
-              </div>
+                6
+                . 
+                C'est la fin !
+              </a>
             </div>
           </div>
         </div>
       </div>
-      <div
-        class="sc-gswNZR sc-dkrFOg hFsuPU cxlmBX slick-arrow slick-next"
-      />
+      <button
+        class="flex justify-center items-center transition size-7 disabled:opacity-50"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="text-primary3 text-2xl desktop:text-3xl"
+        >
+          ➜
+        </span>
+        <span
+          class="sr-only"
+        >
+          Étape suivante
+        </span>
+      </button>
     </div>
   </div>,
   "debug": [Function],

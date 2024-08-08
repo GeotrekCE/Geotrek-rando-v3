@@ -16,7 +16,6 @@ import { useMemo, useRef } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Loader from 'components/Loader';
 import { useMediaPredicate } from 'react-media-hook';
-import { sizes } from 'stylesheet';
 import { DetailsMapDynamicComponent } from 'components/Map';
 import { PageHead } from 'components/PageHead';
 import { Footer } from 'components/Footer';
@@ -32,6 +31,7 @@ import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { useDetailsSections } from '../details/useDetailsSections';
 import { DetailsFiles } from '../details/components/DetailsFiles';
+import { theme } from '../../../../tailwind.config';
 
 interface Props {
   touristicEventUrl: string | string[] | undefined;
@@ -74,8 +74,8 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
     // relative to the relative parent.
     scrollOffset:
       (sectionsContainerRef.current?.offsetTop ?? 0) -
-      sizes.desktopHeader -
-      sizes.detailsHeaderDesktop,
+      parseInt(theme.spacing.desktopHeader, 10) -
+      parseInt(theme.spacing[14], 10),
   });
 
   return useMemo(

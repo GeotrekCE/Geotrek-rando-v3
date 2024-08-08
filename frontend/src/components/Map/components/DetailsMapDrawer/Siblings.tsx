@@ -1,9 +1,7 @@
 import Link from 'components/Link';
 import { generateChildrenDetailsUrl } from 'components/pages/details/utils';
 import { TrekFamily } from 'modules/details/interface';
-import { useIntl } from 'react-intl';
-import styled from 'styled-components';
-import { colorPalette } from 'stylesheet';
+import { FormattedMessage } from 'react-intl';
 import ArrowLeft from './ArrowLeft';
 import ArrowRight from './ArrowRight';
 
@@ -13,9 +11,7 @@ interface Props {
 }
 
 const Siblings: React.FC<Props> = ({ trekFamily, trekId }) => {
-  const intl = useIntl();
-
-  if (!trekFamily || trekId !== undefined || trekFamily.trekChildren.length < 2) {
+  if (!trekFamily || trekId === undefined || trekFamily.trekChildren.length < 2) {
     return null;
   }
 
@@ -25,46 +21,27 @@ const Siblings: React.FC<Props> = ({ trekFamily, trekId }) => {
     index < trekFamily.trekChildren.length - 1 ? trekFamily.trekChildren[index + 1] : null;
 
   return (
-    <Wrapper>
-      <Prev>
-        {prev && (
-          <Linkk href={generateChildrenDetailsUrl(prev.id, prev.name, trekFamily.parentId)}>
-            <ArrowLeft />
-            {intl.formatMessage({ id: 'map.drawer.prev' })}
-          </Linkk>
-        )}
-      </Prev>
-
-      <Next>
-        {next && (
-          <Linkk href={generateChildrenDetailsUrl(next.id, next.name, trekFamily.parentId)}>
-            {intl.formatMessage({ id: 'map.drawer.next' })}
-            <ArrowRight />
-          </Linkk>
-        )}
-      </Next>
-    </Wrapper>
+    <div className="flex items-center justify-center gap-8">
+      {prev && (
+        <Link
+          href={generateChildrenDetailsUrl(prev.id, prev.name, trekFamily.parentId)}
+          className="flex items-center !text-primary1  gap-2"
+        >
+          <ArrowLeft aria-hidden />
+          <FormattedMessage id="map.drawer.prev" />
+        </Link>
+      )}
+      {next && (
+        <Link
+          href={generateChildrenDetailsUrl(next.id, next.name, trekFamily.parentId)}
+          className="flex items-center !text-primary1 gap-2"
+        >
+          <FormattedMessage id="map.drawer.next" />
+          <ArrowRight aria-hidden />
+        </Link>
+      )}
+    </div>
   );
 };
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const Prev = styled.div`
-  margin-right: 20px;
-`;
-const Next = styled.div`
-  margin-left: 20px;
-`;
-const Linkk = styled(Link)`
-  color: ${colorPalette.primary1} !important;
-  display: flex;
-  align-items: center;
-
-  & > svg {
-    margin: 0 10px;
-  }
-`;
 export default Siblings;

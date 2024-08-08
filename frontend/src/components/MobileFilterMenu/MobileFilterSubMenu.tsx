@@ -1,13 +1,11 @@
 import MobileBottomClear from 'components/pages/search/components/FilterBar/MobileBottomClear';
 import ShowFilters from 'components/pages/search/components/FilterBar/ShowFilters';
 import { groupBy } from 'modules/utils/array';
-import styled from 'styled-components';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { DateFilter, FilterCategory, FilterState, Option } from 'modules/filters/interface';
 // @ts-expect-error Not official but useful to reduce bundle size
 import Slide from 'react-burger-menu/lib/menus/slide';
-import { colorPalette } from 'stylesheet';
 
 import { FormattedMessage } from 'react-intl';
 import { useFilterBar } from 'components/pages/search/components/FilterBar/useFilterBar';
@@ -104,7 +102,9 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
         ))}
         {subFiltersToDisplay.map((subFilter, index) => (
           <>
-            {Object.keys(subFilter).length > 0 && filtersToDisplay.length > 0 && <Separator />}
+            {Object.keys(subFilter).length > 0 && filtersToDisplay.length > 0 && (
+              <div className="w-10/12 h-1p mx-auto my-4 bg-greySoft" />
+            )}
             <div className="space-y-4" key={index}>
               {Object.keys(subFilter).map(key => {
                 return (
@@ -138,10 +138,3 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
     </Slide>
   );
 };
-
-const Separator = styled.div`
-  width: 80%;
-  height: 1px;
-  margin: 16px auto;
-  background-color: ${colorPalette.greySoft.DEFAULT};
-`;

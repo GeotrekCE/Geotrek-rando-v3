@@ -9,7 +9,6 @@ import { DetailsMapDynamicComponent } from 'components/Map';
 import { OpenMapButton } from 'components/OpenMapButton';
 import { useShowOnScrollPosition } from 'hooks/useShowOnScrollPosition';
 import { useMediaPredicate } from 'react-media-hook';
-import { sizes } from 'stylesheet';
 import { useCallback, useMemo, useRef } from 'react';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { cleanHTMLElementsFromString } from 'modules/utils/string';
@@ -32,11 +31,7 @@ import { DetailsCardSection } from './components/DetailsCardSection';
 import { useDetails } from './useDetails';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from './components/DetailsTopIcons';
-import {
-  generateTouristicContentUrl,
-  HtmlText,
-  templatesVariablesAreDefinedAndUsed,
-} from './utils';
+import { generateTouristicContentUrl, templatesVariablesAreDefinedAndUsed } from './utils';
 import { DetailsSource } from './components/DetailsSource';
 
 import { DetailsInformationDesk } from './components/DetailsInformationDesk';
@@ -53,6 +48,7 @@ import { DetailsGear } from './components/DetailsGear';
 import { useDetailsSections } from './useDetailsSections';
 import { DetailsViewPoints } from './components/DetailsViewPoints';
 import { DetailsFiles } from './components/DetailsFiles';
+import { theme } from '../../../../tailwind.config';
 
 interface Props {
   slug: string | string[] | undefined;
@@ -95,8 +91,8 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
     // relative to the relative parent.
     scrollOffset:
       (sectionsContainerRef.current?.offsetTop ?? 0) -
-      sizes.desktopHeader -
-      sizes.detailsHeaderDesktop,
+      parseInt(theme.spacing.desktopHeader, 10) -
+      parseInt(theme.spacing[14], 10),
   });
 
   const positiveElevation = parseInt(details?.informations.elevation ?? '0', 10);
@@ -411,7 +407,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               titleId="details.transport"
                               className={marginDetailsChild}
                             >
-                              <HtmlText>{parse(details.transport)}</HtmlText>
+                              <div className="content-WYSIWYG">{parse(details.transport)}</div>
                             </DetailsSection>
                           )}
 
@@ -422,14 +418,16 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               className={marginDetailsChild}
                             >
                               {details.access && (
-                                <HtmlText id="details_access">{parse(details.access)}</HtmlText>
+                                <div className="content-WYSIWYG" id="details_access">
+                                  {parse(details.access)}
+                                </div>
                               )}
                               {details.parking && (
                                 <div className="mt-4" id="details_parking">
                                   <p className="font-bold desktop:text-H4">
                                     {`${intl.formatMessage({ id: 'details.stationnement' })} :`}
                                   </p>
-                                  <HtmlText>{parse(details.parking)}</HtmlText>
+                                  <div className="content-WYSIWYG">{parse(details.parking)}</div>
                                 </div>
                               )}
                             </DetailsSection>
@@ -734,7 +732,7 @@ interface DetailsHeaderMobileProps {
 }
 
 export const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title: name }) => {
-  const displayState = useShowOnScrollPosition(sizes.mobileDetailsTitle);
+  const displayState = useShowOnScrollPosition(parseInt(theme.spacing.mobileDetailsTitle, 10));
   return (
     <div
       id="details_headerMobile"

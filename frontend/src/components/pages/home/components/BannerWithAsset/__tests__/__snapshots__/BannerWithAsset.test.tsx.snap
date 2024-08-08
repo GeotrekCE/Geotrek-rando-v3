@@ -18,9 +18,15 @@ Object {
             dir="ltr"
           >
             <button
-              class="sc-gswNZR sc-hLBbgP sc-pyfCe sc-kDvujY dQACwy iXwfzt eJVvAi jhFMyn slick-arrow slick-prev"
+              class="!py-20 !px-5 !h-full desktop:!py-40 desktop:!px-12 !flex justify-center items-end transition size-7 !opacity-100 z-10 desktop:before:!text-3xl textShadowOnImage slick-arrow slick-prev !left-0"
               type="button"
-            />
+            >
+              <span
+                class="sr-only"
+              >
+                Image précédente
+              </span>
+            </button>
             <div
               class="slick-list"
             >
@@ -121,16 +127,22 @@ Object {
               </div>
             </div>
             <button
-              class="sc-gswNZR sc-hLBbgP sc-pyfCe sc-jrcTuL dQACwy iXwfzt eJVvAi kakIFt slick-arrow slick-next"
+              class="!py-20 !px-5 !h-full desktop:!py-40 desktop:!px-12 !flex justify-center items-end transition size-7 !opacity-100 z-10 desktop:before:!text-3xl textShadowOnImage slick-arrow slick-next !right-0"
               type="button"
-            />
+            >
+              <span
+                class="sr-only"
+              >
+                Image suivante
+              </span>
+            </button>
           </div>
         </div>
         <div
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
         <h1
-          class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+          class="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full textShadowOnImage"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -152,9 +164,15 @@ Object {
           dir="ltr"
         >
           <button
-            class="sc-gswNZR sc-hLBbgP sc-pyfCe sc-kDvujY dQACwy iXwfzt eJVvAi jhFMyn slick-arrow slick-prev"
+            class="!py-20 !px-5 !h-full desktop:!py-40 desktop:!px-12 !flex justify-center items-end transition size-7 !opacity-100 z-10 desktop:before:!text-3xl textShadowOnImage slick-arrow slick-prev !left-0"
             type="button"
-          />
+          >
+            <span
+              class="sr-only"
+            >
+              Image précédente
+            </span>
+          </button>
           <div
             class="slick-list"
           >
@@ -255,16 +273,22 @@ Object {
             </div>
           </div>
           <button
-            class="sc-gswNZR sc-hLBbgP sc-pyfCe sc-jrcTuL dQACwy iXwfzt eJVvAi kakIFt slick-arrow slick-next"
+            class="!py-20 !px-5 !h-full desktop:!py-40 desktop:!px-12 !flex justify-center items-end transition size-7 !opacity-100 z-10 desktop:before:!text-3xl textShadowOnImage slick-arrow slick-next !right-0"
             type="button"
-          />
+          >
+            <span
+              class="sr-only"
+            >
+              Image suivante
+            </span>
+          </button>
         </div>
       </div>
       <div
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
       <h1
-        class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+        class="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full textShadowOnImage"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -345,7 +369,7 @@ Object {
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
         <h1
-          class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+          class="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full textShadowOnImage"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -369,7 +393,7 @@ Object {
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
       <h1
-        class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+        class="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full textShadowOnImage"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -452,7 +476,7 @@ Object {
           class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
         />
         <h1
-          class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+          class="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full textShadowOnImage"
           data-testid="text"
         >
           L’écoguide numérique et local qui présente mes découvertes du territoire !
@@ -478,7 +502,7 @@ Object {
         class="absolute bottom-0 w-full h-20 desktop:h-100 bg-gradient-to-t from-gradientOnImages to-transparent"
       />
       <h1
-        class="sc-ipEyDJ hkHyKq text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full"
+        class="text-white font-bold text-Mobile-H1 desktop:text-H1 text-center desktop:leading-tight absolute bottom-20 desktop:bottom-40 px-10 desktop:px-10vw w-full textShadowOnImage"
         data-testid="text"
       >
         L’écoguide numérique et local qui présente mes découvertes du territoire !

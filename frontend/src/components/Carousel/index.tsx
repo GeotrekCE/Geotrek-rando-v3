@@ -1,1 +1,1 @@
-export { SmallCarousel, LargeCarousel, LargeStyledArrow } from './Carousel';
+export { SmallCarousel, LargeCarousel } from './Carousel';

@@ -13,8 +13,7 @@ Object {
           id="details_sensitiveAreaTitle"
         >
           <div
-            class="sc-gswNZR kgVgmZ"
-            color="#AAAAA"
+            class="size-6 rounded-md border-2 border-greyDarkColored bg-#AAAAA"
           />
           <h3
             class="font-bold text-H4 space-y-2"
@@ -26,7 +25,7 @@ Object {
           class="mt-1 desktop:mt-2"
         >
           <div
-            class="sc-bcXHqe hwfUBG"
+            class="content-WYSIWYG"
           >
             <p>
               Cette zone est très sensible
@@ -80,7 +79,7 @@ Object {
           </dt>
           <dd>
             <div
-              class="sc-bcXHqe hwfUBG"
+              class="content-WYSIWYG"
             >
               <h2>
                 Une personne a contacter
@@ -110,8 +109,7 @@ Object {
         id="details_sensitiveAreaTitle"
       >
         <div
-          class="sc-gswNZR kgVgmZ"
-          color="#AAAAA"
+          class="size-6 rounded-md border-2 border-greyDarkColored bg-#AAAAA"
         />
         <h3
           class="font-bold text-H4 space-y-2"
@@ -123,7 +121,7 @@ Object {
         class="mt-1 desktop:mt-2"
       >
         <div
-          class="sc-bcXHqe hwfUBG"
+          class="content-WYSIWYG"
         >
           <p>
             Cette zone est très sensible
@@ -177,7 +175,7 @@ Object {
         </dt>
         <dd>
           <div
-            class="sc-bcXHqe hwfUBG"
+            class="content-WYSIWYG"
           >
             <h2>
               Une personne a contacter

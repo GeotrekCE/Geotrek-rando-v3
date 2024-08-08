@@ -19,7 +19,7 @@ import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsSource } from '../details/components/DetailsSource';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { DetailsHeaderMobile, marginDetailsChild } from '../details/Details';
-import { HtmlText, templatesVariablesAreDefinedAndUsed } from '../details/utils';
+import { templatesVariablesAreDefinedAndUsed } from '../details/utils';
 import { DetailsHeader } from '../details/components/DetailsHeader';
 import { useDetailsSections } from '../details/useDetailsSections';
 import { DetailsFiles } from '../details/components/DetailsFiles';
@@ -184,7 +184,9 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                           titleId="details.practicalInformations"
                           className={marginDetailsChild}
                         >
-                          <HtmlText>{parse(touristicContent.practicalInfo)}</HtmlText>
+                          <div className="content-WYSIWYG">
+                            {parse(touristicContent.practicalInfo)}
+                          </div>
                         </DetailsSection>
                       </section>
                     );
@@ -202,7 +204,9 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                           titleId="details.accessibility"
                           className={marginDetailsChild}
                         >
-                          <HtmlText>{parse(touristicContent.accessibility)}</HtmlText>
+                          <div className="content-WYSIWYG">
+                            {parse(touristicContent.accessibility)}
+                          </div>
                         </DetailsSection>
                       </section>
                     );
@@ -225,7 +229,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                           titleId="details.contact"
                           className={marginDetailsChild}
                         >
-                          <HtmlText>{parse(touristicContent.contact)}</HtmlText>
+                          <div className="content-WYSIWYG">{parse(touristicContent.contact)}</div>
                           {!!touristicContent.email?.length && (
                             <div className="mt-2 desktop:mt-4">
                               <span className="block">

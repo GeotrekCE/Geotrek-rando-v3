@@ -328,7 +328,7 @@ Object {
           class="text-greyDarkColored desktop:font-bold text-Mobile-C2 desktop:text-P1 my-auto"
         >
           <div
-            class="sc-bcXHqe hwfUBG"
+            class="content-WYSIWYG"
           >
             Pour d'autres informations, se reporter aux recommandations spécifiques de chaque étape.
           </div>
@@ -660,7 +660,7 @@ Object {
         class="text-greyDarkColored desktop:font-bold text-Mobile-C2 desktop:text-P1 my-auto"
       >
         <div
-          class="sc-bcXHqe hwfUBG"
+          class="content-WYSIWYG"
         >
           Pour d'autres informations, se reporter aux recommandations spécifiques de chaque étape.
         </div>

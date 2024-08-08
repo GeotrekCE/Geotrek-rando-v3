@@ -1,4 +1,5 @@
 const SPACING_UNIT = 4;
+const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
@@ -69,6 +70,7 @@ module.exports = {
       button: '48px',
       bannerSectionDesktop: '80vh',
       bannerSectionMobile: '244px',
+      mobileDetailsTitle: '230px',
     },
     zIndex: {
       content: 0,
@@ -152,4 +154,16 @@ module.exports = {
       },
     },
   },
+  plugins: [
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          'animation-delay': value => ({ 'animation-delay': value }),
+        },
+        {
+          values: theme('transitionDelay'),
+        },
+      );
+    }),
+  ],
 };
