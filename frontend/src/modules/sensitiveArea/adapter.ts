@@ -1,6 +1,6 @@
 import { SensitiveAreaPracticeDictionnary } from 'modules/sensitiveAreaPractice/interface';
 import { adaptMultiPolygonGeometry, adaptPolygonGeometry } from 'modules/utils/geometry';
-import { getListOfColorsInPalette } from 'stylesheet';
+import { listOfColorsInPalette } from 'stylesheet';
 import { RawSensitiveArea, SensitiveArea } from './interface';
 
 export const adaptSensitiveAreas = ({
@@ -23,5 +23,5 @@ export const adaptSensitiveAreas = ({
       rawSensitiveArea.geometry.type === 'MultiPolygon'
         ? adaptMultiPolygonGeometry(rawSensitiveArea.geometry)
         : adaptPolygonGeometry(rawSensitiveArea.geometry),
-    color: getListOfColorsInPalette[i % getListOfColorsInPalette.length],
+    color: listOfColorsInPalette[i % listOfColorsInPalette.length],
   }));
