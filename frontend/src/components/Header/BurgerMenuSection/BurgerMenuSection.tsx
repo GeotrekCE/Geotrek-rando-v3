@@ -37,7 +37,7 @@ export const BurgerMenuSection: React.FC<Props> = ({
   const closeIcon = <Minus size={24} aria-hidden />;
   const { openState, setOpenState } = useBurgerMenuSection();
   const updatePanelState = (openPanelIds: string[]) => {
-    openPanelIds.length > 0 ? setOpenState('OPENED') : setOpenState('CLOSED');
+    setOpenState(openPanelIds.length > 0 ? 'OPENED' : 'CLOSED');
   };
   if (!items && !languages) {
     return <a className={cn(classNameTitle, classNameBorder)}>{title}</a>;
