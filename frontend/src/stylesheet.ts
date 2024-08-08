@@ -1,9 +1,9 @@
 import { optimize } from 'svgo/lib/svgo';
 
-// This function collects in a list all the colors defined at the root of the color palette object. Duplicated colors are eliminated.
+// This constante collects all the colors defined at the root of the color palette object.
 // This list can then be used to attribute a different color to each member of a set
 // It is used in sensitiveAreas for example
-export const getListOfColorsInPalette = [
+export const listOfColorsInPalette = [
   'primary1',
   'primary2',
   'warning',
