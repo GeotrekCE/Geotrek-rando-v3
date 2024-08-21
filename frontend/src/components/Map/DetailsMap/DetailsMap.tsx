@@ -146,7 +146,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
 
   const mapToDisplay = props.viewPoints?.find(({ id }) => id === props.mapId) ?? 'default';
 
-  const { map, setMapInstance } = useTileLayer(props.trekId, bounds, mapToDisplay);
+  const { map, setMapInstance } = useTileLayer(props.trekId, bounds);
 
   useEffect(() => {
     if (map && center) {
