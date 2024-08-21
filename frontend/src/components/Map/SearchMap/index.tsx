@@ -13,6 +13,7 @@ import { FilterButton } from '../components/FilterButton';
 import { ResetView } from '../components/ResetView';
 import TileLayerManager from '../components/TileLayerManager';
 import FullscreenControl from '../components/FullScreenControl';
+import LocateControl from '../components/LocateControl';
 
 export type PropsType = {
   segments?: { x: number; y: number }[];
@@ -45,6 +46,7 @@ const SearchMap: React.FC<PropsType> = props => {
       {props.hasZoomControl === true && <FullscreenControl />}
       <ResetView />
       <ScaleControl />
+      <LocateControl />
       <SearchMapChildrens {...props} />
     </MapContainer>
   );
