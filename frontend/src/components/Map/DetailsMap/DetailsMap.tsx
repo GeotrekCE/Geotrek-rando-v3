@@ -47,6 +47,7 @@ import FullscreenControl from '../components/FullScreenControl';
 import ViewPointHD from '../components/ViewPointHD';
 import { CRSPixel } from '../components/ViewPointHD/CRSPixel';
 import { AnnotationList } from '../components/ViewPointHD/AnnotationList';
+import LocateControl from '../components/LocateControl';
 
 export interface GeometryListProps {
   geometry:
@@ -314,6 +315,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
               viewPointVisibility={viewPointVisibility}
               setMapId={props.setMapId}
             />
+            <LocateControl />
             {props.displayAltimetricProfile === true && props.trekGeoJSON && (
               <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
             )}
