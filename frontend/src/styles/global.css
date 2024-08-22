@@ -10,6 +10,7 @@
 
 html {
   font-family: theme('fontFamily.main');
+  color: theme('colors.greyDarkColored');
   height: 100vh;
 }
 
