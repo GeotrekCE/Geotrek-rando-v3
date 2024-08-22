@@ -22,9 +22,10 @@ const Icon: React.FC<IconProps> = ({ option, isSelected }) => {
   }
   return (
     <SVG
-      className={cn('size-6 mr-2', isSelected ? 'text-primary1' : 'text-greyDarkColored')}
+      className={cn('size-6', isSelected ? 'text-primary1' : 'text-greyDarkColored')}
       src={option.pictogramUrl}
       preProcessor={optimizeAndDefineColor()}
+      aria-hidden
     />
   );
 };
@@ -51,7 +52,7 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
   return (
     <div>
       {hideLabel !== true && (
-        <div className={'mb-1'}>{intl.formatMessage({ id: filterState?.label || 'Unknown' })}</div>
+        <div className="mb-1">{intl.formatMessage({ id: filterState?.label || 'Unknown' })}</div>
       )}
       <div className="-m-1 flex flex-wrap">
         {filterState.options.map(option => {
@@ -63,15 +64,18 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
               onClick={() => handleClick(option)}
               type="button"
               className={cn(
-                `p-1 m-1 inline-block width-auto border border-solid rounded-lg bg-white cursor-pointer ${
-                  selectedOption !== undefined
-                    ? 'text-primary1 font-bold bg-primary2 border-transparent'
-                    : 'border-black'
-                } ${selectedOption?.include === false ? 'line-through' : ''}`,
+                'p-1 m-1 border border-solid rounded-lg bg-white leading-5',
+                selectedOption !== undefined
+                  ? 'text-primary1 font-bold bg-primary2 border-transparent'
+                  : 'border-black',
+                selectedOption?.include === false && 'line-through',
               )}
             >
               <span
-                className={`flex items-center ${option.pictogramUrl !== undefined ? 'mr-1' : ''}`}
+                className={cn(
+                  'flex items-center gap-2',
+                  option.pictogramUrl !== undefined && 'mr-1',
+                )}
               >
                 <Icon option={option} isSelected={Boolean(selectedOption)} />
                 {
