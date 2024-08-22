@@ -36,6 +36,7 @@ export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSO
       marker: 'position-marker',
       followMarker: false,
       legend: false,
+      zooming: false,
     });
     elevationControl.addTo(map);
 
