@@ -23,7 +23,7 @@ const InputWithMagnifier: React.FC<InputWithMagnifierProps> = ({ onChange, value
         <FormattedMessage id="search.title" />
       </label>
       <input
-        className="input !w-30 desktop:!w-55 h-10 desktop:h-12 !rounded-r-none !rounded-l-lg"
+        className="input w-30 desktop:w-58 h-10 desktop:h-12 !rounded-r-none !rounded-l-lg"
         name="text"
         id={inputId}
         onChange={onChange}
