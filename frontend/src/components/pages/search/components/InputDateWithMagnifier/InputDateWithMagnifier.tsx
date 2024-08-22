@@ -24,7 +24,7 @@ const InputDateWithMagnifier: React.FC<InputDateWithMagnifierProps> = ({
       </label>
       <div className="flex flex-row">
         <input
-          className="input !w-30 desktop:!w-55 h-10 desktop:h-12 !mb-3 !rounded-r-none !rounded-l-lg"
+          className="input w-30 desktop:!w-58 h-10 desktop:h-12 !mb-3 !rounded-r-none !rounded-l-lg"
           onChange={onChange}
           id={inputId}
           ref={inputRef}
