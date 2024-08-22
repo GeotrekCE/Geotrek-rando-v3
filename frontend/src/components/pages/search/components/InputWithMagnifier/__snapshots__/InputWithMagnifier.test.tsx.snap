@@ -16,7 +16,7 @@ Object {
           Recherche
         </label>
         <input
-          class="input !w-30 desktop:!w-55 h-10 desktop:h-12 !rounded-r-none !rounded-l-lg"
+          class="input w-30 desktop:w-58 h-10 desktop:h-12 !rounded-r-none !rounded-l-lg"
           id=":r0:"
           name="text"
           placeholder="Rechercher..."
@@ -70,7 +70,7 @@ Object {
         Recherche
       </label>
       <input
-        class="input !w-30 desktop:!w-55 h-10 desktop:h-12 !rounded-r-none !rounded-l-lg"
+        class="input w-30 desktop:w-58 h-10 desktop:h-12 !rounded-r-none !rounded-l-lg"
         id=":r0:"
         name="text"
         placeholder="Rechercher..."
