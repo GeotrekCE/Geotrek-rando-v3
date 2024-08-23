@@ -329,6 +329,13 @@ export const DetailsMap: React.FC<PropsType> = props => {
                 />
               </div>
             )}
+            {Number(props.viewPoints?.length) > 0 && (
+              <BackToMapButton
+                displayMap={props.displayMap}
+                setMapId={props.setMapId}
+                mapId={props.viewPoints?.[0].id}
+              />
+            )}
           </>
         )}
       </MapContainer>

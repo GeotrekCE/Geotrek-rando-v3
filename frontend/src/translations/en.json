@@ -47,6 +47,7 @@
     "resultsFoundShort": "{count, plural, =0 {# result} one {# result} other {# results}}",
     "forThe": "For the",
     "seeMap": "Display Map",
+    "seeViewPoint": "Display in HD picture",
     "filter": "Filter",
     "closeFilters": "Close filters",
     "reload": "Reload",
