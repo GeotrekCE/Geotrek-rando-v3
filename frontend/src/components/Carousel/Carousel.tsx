@@ -74,7 +74,7 @@ const Arrow = (props: CustomArrowProps & { isPrev?: boolean; isLarge?: boolean }
     <button
       type="button"
       className={cn(
-        '!h-full !p-5 !flex justify-center items-end transition size-7 opacity-75 hover:opacity-100 focus:opacity-100 before:!opacity-100 z-[301] textShadowOnImage',
+        '!h-full !p-5 !flex justify-center items-end transition size-7 opacity-75 hover:opacity-100 focus:opacity-100 before:!opacity-100 z-10 textShadowOnImage',
         className,
         isPrev ? '!left-0' : '!right-0',
         isLarge && '!p-6 desktop:!p-8 desktop:before:!text-2xl',
@@ -95,6 +95,6 @@ const Arrow = (props: CustomArrowProps & { isPrev?: boolean; isLarge?: boolean }
 
 const appendDots = (dots: JSX.Element) => (
   <>
-    <ul className="slick-dots !bottom-5 z-[300] px-8 max-h-6 text-white">{dots}</ul>
+    <ul className="slick-dots !bottom-5 px-8 max-h-6 text-white">{dots}</ul>
   </>
 );
