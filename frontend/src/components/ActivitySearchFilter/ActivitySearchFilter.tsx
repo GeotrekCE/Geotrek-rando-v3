@@ -75,7 +75,7 @@ export const ActivitySearchFilter: React.FC<Props> = ({
           </button>
         )}
       </div>
-      <div className="block desktop:hidden">
+      <div className="block desktop:hidden relative z-20">
         <ActivitySearchFilterMobile activities={activities} getId={getId} />
       </div>
     </nav>
