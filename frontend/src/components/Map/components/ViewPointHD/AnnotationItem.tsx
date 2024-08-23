@@ -1,6 +1,7 @@
 import L from 'leaflet';
 import { GeoJsonProperties, Geometry } from 'geojson';
 import { Circle, CircleMarker, Polygon, Polyline, Tooltip, useMap } from 'react-leaflet';
+import Image from 'next/image';
 
 type Props = {
   geometry: Geometry;
@@ -14,7 +15,24 @@ const MetaData = ({ properties }: { properties: GeoJsonProperties }) => {
   }
   return (
     <Tooltip>
-      <span className="text-base">{properties.name}</span>
+      <span className="flex flex-wrap items-center gap-2">
+        {properties.category ? (
+          <>
+            {Boolean(properties.category.pictogramUri) && (
+              <Image
+                loading="lazy"
+                src={properties.category.pictogramUri}
+                width={16}
+                height={16}
+                alt=""
+              />
+            )}
+            <span>{properties.category.label}</span>
+          </>
+        ) : null}
+
+        <span>{properties.name}</span>
+      </span>
     </Tooltip>
   );
 };
