@@ -40,16 +40,13 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
   return (
     <nav
       id="details_headerDesktop"
-      className="hidden desktop:flex
+      className="hidden desktop:flex items-center
       sticky top-desktopHeader z-subHeader
       shadow-md bg-white h-14"
       role="navigation"
     >
       {sections.length > 0 && (
-        <ul
-          id="details_headerDesktop_inlineMenu"
-          className="flex flex-1 pb-2.5 pt-4 ml-3 text-center"
-        >
+        <ul id="details_headerDesktop_inlineMenu" className="flex flex-1 ml-3">
           {sections.map(sectionId => (
             <li key={sectionId}>
               <a
