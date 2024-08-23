@@ -14,6 +14,12 @@ export interface RawViewPoint {
   geometry?: RawPointGeometry2D;
 }
 
+export interface RawViewPointCategories {
+  id: string;
+  name: string;
+  pictogram: string;
+}
+
 export interface ViewPoint {
   annotations: FeatureCollection;
   id: string;
@@ -31,4 +37,13 @@ export interface ViewPoint {
   title: string | null;
   thumbnailUrl: string;
   geometry: RawPointGeometry2D | null;
+}
+
+export interface ViewPointCategory {
+  id: string;
+  name: string;
+  pictogramUri: string;
+}
+export interface ViewPointCategories {
+  [id: string]: ViewPointCategory;
 }

@@ -10,5 +10,5 @@ export const getPois = async (id: number, language: string, key = 'near_trek'): 
     fetchPois({ language, [key]: id, page_size: pageSize }),
     getPoiTypes(language),
   ]);
-  return adaptPoi({ rawPoisResults: rawPois.results, poiTypes });
+  return adaptPoi({ language, rawPoisResults: rawPois.results, poiTypes });
 };
