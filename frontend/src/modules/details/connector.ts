@@ -53,7 +53,7 @@ export const getDetails = async (
       getAccessibilities(language),
     ]);
 
-    const viewPoints = await adaptViewPoints(rawDetails.properties.view_points ?? []);
+    const viewPoints = await adaptViewPoints(language, rawDetails.properties.view_points ?? []);
 
     const [
       activity,

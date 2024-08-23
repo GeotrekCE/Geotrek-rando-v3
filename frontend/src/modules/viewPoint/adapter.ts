@@ -1,15 +1,40 @@
-import { getViewPointMetadata } from './connector';
-import { RawViewPoint, ViewPoint } from './interface';
+import { getViewPointCategories, getViewPointMetadata } from './connector';
+import { RawViewPoint, RawViewPointCategories, ViewPoint, ViewPointCategories } from './interface';
 
-export const adaptViewPoints = async (rawViewpoints: RawViewPoint[]): Promise<ViewPoint[]> => {
+export const adaptViewPointsCategories = (
+  viewPointsCategories: RawViewPointCategories[],
+): ViewPointCategories =>
+  Object.fromEntries(
+    viewPointsCategories.map(({ pictogram, ...item }) => [
+      item.id,
+      { ...item, pictogramUri: pictogram },
+    ]),
+  );
+
+export const adaptViewPoints = async (
+  language: string,
+  rawViewpoints: RawViewPoint[],
+): Promise<ViewPoint[]> => {
   if (rawViewpoints.length === 0) {
     return [];
   }
   const viewPoints = await Promise.all(
     rawViewpoints.map(async viewpoint => {
-      const metadata = await getViewPointMetadata(viewpoint.metadata_url);
+      const [metadata, categories] = await Promise.all([
+        getViewPointMetadata(viewpoint.metadata_url),
+        getViewPointCategories(language),
+      ]);
       return {
-        annotations: viewpoint.annotations,
+        annotations: {
+          ...viewpoint.annotations,
+          features: viewpoint.annotations.features.map(feature => ({
+            ...feature,
+            properties: {
+              ...feature.properties,
+              category: categories?.[feature.properties?.category] ?? null,
+            },
+          })),
+        },
         id: String(viewpoint.id),
         author: viewpoint.author,
         geometry: viewpoint.geometry ?? null,

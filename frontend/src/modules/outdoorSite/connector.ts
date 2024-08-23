@@ -115,7 +115,10 @@ export const getOutdoorSiteDetails = async (
         : [],
     ]);
 
-    const viewPoints = await adaptViewPoints(rawOutdoorSiteDetails.properties.view_points ?? []);
+    const viewPoints = await adaptViewPoints(
+      language,
+      rawOutdoorSiteDetails.properties.view_points ?? [],
+    );
 
     return adaptOutdoorSiteDetails({
       rawOutdoorSiteDetails,
