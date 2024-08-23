@@ -38,7 +38,7 @@ export const CardIcon: React.FC<Props> = ({ iconUri = '', iconName = '', type = 
   return (
     <div
       className={cn(
-        'absolute max-w-8 hover:max-w-[300%] top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden z-[100] transition-all duration-500',
+        'absolute max-w-8 hover:max-w-[300%] top-4 left-4 h-8 flex items-center rounded-full shadow-sm text-white border-2 border-white border-solid overflow-hidden z-10 transition-all duration-500',
         getActivityColorClassName(type, { withBackground: true }),
       )}
     >
