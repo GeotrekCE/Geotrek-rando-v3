@@ -1,5 +1,6 @@
 import { GeotrekAPI } from 'services/api/client';
-import { ViewPoint } from './interface';
+import { APIQuery, APIResponseForList } from 'services/api/interface';
+import { RawViewPointCategories, ViewPoint } from './interface';
 
 export const fetchViewPointMetadata = (url: string): Promise<ViewPoint['metadata']> => {
   try {
@@ -9,3 +10,10 @@ export const fetchViewPointMetadata = (url: string): Promise<ViewPoint['metadata
     throw e;
   }
 };
+
+export const fetchViewPointCategories = (
+  query: APIQuery,
+): Promise<APIResponseForList<RawViewPointCategories>> =>
+  GeotrekAPI.get('/annotation_category/', {
+    params: { ...query },
+  }).then(r => r.data);

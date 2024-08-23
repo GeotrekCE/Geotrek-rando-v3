@@ -7,16 +7,18 @@ import { adaptViewPoints } from 'modules/viewPoint/adapter';
 import { Poi, RawPoi } from './interface';
 
 export const adaptPoi = ({
+  language,
   rawPoisResults,
   poiTypes,
 }: {
+  language: string;
   rawPoisResults: RawPoi[];
   poiTypes: PoiTypeDictionnary;
 }): Promise<Poi[]> =>
   Promise.all(
     rawPoisResults.map(async rawPoi => {
       const viewPoints =
-        rawPoi.view_points?.length > 0 ? await adaptViewPoints(rawPoi.view_points) : [];
+        rawPoi.view_points?.length > 0 ? await adaptViewPoints(language, rawPoi.view_points) : [];
 
       return {
         id: `${rawPoi.id}`,
