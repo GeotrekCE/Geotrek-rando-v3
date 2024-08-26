@@ -31,7 +31,7 @@ export const adaptViewPoints = async (
             ...feature,
             properties: {
               ...feature.properties,
-              category: categories?.[feature.properties?.category] ?? null,
+              category: categories?.[feature.properties?.category] || null,
             },
           })),
         },
