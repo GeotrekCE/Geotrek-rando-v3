@@ -333,7 +333,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
               <BackToMapButton
                 displayMap={props.displayMap}
                 setMapId={props.setMapId}
-                mapId={props.viewPoints?.[0].id}
+                mapId={props.viewPoints?.[0]?.id}
               />
             )}
           </>

@@ -16,7 +16,7 @@ const MetaData = ({ properties }: { properties: GeoJsonProperties }) => {
   return (
     <Tooltip>
       <span className="flex flex-wrap items-center gap-2">
-        {properties.category ? (
+        {Boolean(properties.category?.label) && (
           <>
             {Boolean(properties.category.pictogramUri) && (
               <Image
@@ -27,9 +27,10 @@ const MetaData = ({ properties }: { properties: GeoJsonProperties }) => {
                 alt=""
               />
             )}
+
             <span>{properties.category.label}</span>
           </>
-        ) : null}
+        )}
 
         <span>{properties.name}</span>
       </span>

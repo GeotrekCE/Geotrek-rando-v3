@@ -16,6 +16,8 @@ export const BackToMapButton: React.FC<
     setMapId?.(mapId);
   }, [displayMap, mapId, setMapId]);
 
+  const isDefaultMap = mapId === 'default';
+
   return (
     <button
       id="backToMapButton"
@@ -29,8 +31,8 @@ export const BackToMapButton: React.FC<
       {...nativeButtonProps}
       onClick={handleClick}
     >
-      <FormattedMessage id={mapId === 'default' ? 'search.seeMap' : 'search.seeViewPoint'} />
-      {mapId === 'default' ? <Map size={24} aria-hidden /> : <ViewPoint size={24} aria-hidden />}
+      <FormattedMessage id={isDefaultMap ? 'search.seeMap' : 'search.seeViewPoint'} />
+      {isDefaultMap ? <Map size={24} aria-hidden /> : <ViewPoint size={24} aria-hidden />}
     </button>
   );
 };
