@@ -1,3 +1,4 @@
+import React from 'react';
 import L from 'leaflet';
 import SVG from 'react-inlinesvg';
 import { GeoJsonProperties, Geometry } from 'geojson';
@@ -12,16 +13,23 @@ type Props = {
   id: string;
 };
 
-const Icon = ({ pictogramUri }: { pictogramUri: string }) => {
+const Icon = React.memo(function Icon({ pictogramUri, ...props }: { pictogramUri: string }) {
   if (!pictogramUri) {
     return null;
   }
-  return pictogramUri.endsWith('.svg') ? (
-    <SVG src={pictogramUri} className="size-6" preProcessor={optimizeAndDefineColor()} />
-  ) : (
-    <Image loading="lazy" src={pictogramUri} width={16} height={16} alt="" />
-  );
-};
+
+  if (pictogramUri.endsWith('.svg')) {
+    return (
+      <SVG
+        src={pictogramUri}
+        className="size-6"
+        preProcessor={optimizeAndDefineColor()}
+        {...props}
+      />
+    );
+  }
+  return <Image loading="lazy" src={pictogramUri} width={16} height={16} alt="" {...props} />;
+});
 
 const MetaData = ({ properties }: { properties: GeoJsonProperties }) => {
   if (properties === null || !properties.name) {
@@ -34,7 +42,7 @@ const MetaData = ({ properties }: { properties: GeoJsonProperties }) => {
       <span className="flex flex-wrap items-center gap-2">
         {Boolean(properties.category?.label) && (
           <>
-            {Boolean(pictogramUri) && <Icon pictogramUri={pictogramUri} />}
+            <Icon pictogramUri={pictogramUri} />
             <span>{properties.category.label}</span>
           </>
         )}
