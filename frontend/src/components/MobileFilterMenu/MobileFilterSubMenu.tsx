@@ -91,7 +91,7 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
 
       <div className="mt-4" />
 
-      <div className="pb-10">
+      <div className="pb-20">
         {filtersToDisplay.map(state => (
           <ShowFilters
             key={state.id}
