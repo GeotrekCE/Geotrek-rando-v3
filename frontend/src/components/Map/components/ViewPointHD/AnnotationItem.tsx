@@ -1,7 +1,10 @@
 import L from 'leaflet';
+import SVG from 'react-inlinesvg';
 import { GeoJsonProperties, Geometry } from 'geojson';
-import { Circle, CircleMarker, Polygon, Polyline, Tooltip, useMap } from 'react-leaflet';
+import { Circle, CircleMarker, Marker, Polygon, Polyline, Tooltip, useMap } from 'react-leaflet';
 import Image from 'next/image';
+import { TrekMarker } from 'components/Map/Markers/TrekMarker';
+import { optimizeAndDefineColor } from 'stylesheet';
 
 type Props = {
   geometry: Geometry;
@@ -9,25 +12,29 @@ type Props = {
   id: string;
 };
 
+const Icon = ({ pictogramUri }: { pictogramUri: string }) => {
+  if (!pictogramUri) {
+    return null;
+  }
+  return pictogramUri.endsWith('.svg') ? (
+    <SVG src={pictogramUri} className="size-6" preProcessor={optimizeAndDefineColor()} />
+  ) : (
+    <Image loading="lazy" src={pictogramUri} width={16} height={16} alt="" />
+  );
+};
+
 const MetaData = ({ properties }: { properties: GeoJsonProperties }) => {
   if (properties === null || !properties.name) {
     return null;
   }
+  const pictogramUri = properties?.category?.pictogramUri;
+
   return (
     <Tooltip>
       <span className="flex flex-wrap items-center gap-2">
         {Boolean(properties.category?.label) && (
           <>
-            {Boolean(properties.category.pictogramUri) && (
-              <Image
-                loading="lazy"
-                src={properties.category.pictogramUri}
-                width={16}
-                height={16}
-                alt=""
-              />
-            )}
-
+            {Boolean(pictogramUri) && <Icon pictogramUri={pictogramUri} />}
             <span>{properties.category.label}</span>
           </>
         )}
@@ -58,10 +65,24 @@ export const AnnotationItem = ({ geometry, properties, id }: Props) => {
   if (geometry.type === 'Point' || geometry.type === 'MultiPoint') {
     const coordinatesAsMultiPoint =
       geometry.type === 'Point' ? [geometry.coordinates] : geometry.coordinates;
+
+    const pictogramUri = properties?.category?.pictogramUri;
+
     return (
       <>
         {coordinatesAsMultiPoint.map((coordinates, index) => {
           const [lat, lng] = coordinates;
+          if (pictogramUri) {
+            return (
+              <Marker
+                key={`point-${id}-${index}`}
+                position={[lng, lat]}
+                icon={TrekMarker(pictogramUri as string, 1)}
+              >
+                <MetaData properties={properties} />
+              </Marker>
+            );
+          }
           return (
             <CircleMarker
               className="annotation annotation-point"
