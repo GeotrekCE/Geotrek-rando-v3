@@ -4,11 +4,10 @@ import { groupBy } from 'modules/utils/array';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { DateFilter, FilterCategory, FilterState, Option } from 'modules/filters/interface';
-// @ts-expect-error Not official but useful to reduce bundle size
-import Slide from 'react-burger-menu/lib/menus/slide';
 
 import { FormattedMessage } from 'react-intl';
 import { useFilterBar } from 'components/pages/search/components/FilterBar/useFilterBar';
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from 'components/Sheet';
 import { CloseButton } from './CloseButton';
 
 interface Props {
@@ -20,9 +19,11 @@ interface Props {
   resetFilter: () => void;
   dateFilter: DateFilter;
   setDateFilter: (dFilter: DateFilter) => void;
+  isOpen: boolean;
 }
 
 export const MobileFilterSubMenu: React.FC<Props> = ({
+  isOpen,
   handleClose,
   filterId,
   filtersState,
@@ -36,14 +37,13 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
 
   const categories: FilterCategory | undefined = FILTERS_CATEGORIES.find(i => i.id === filterId);
 
-  if (!categories) return null;
+  const filters = categories?.filters;
+  const subFilters = categories?.subFilters;
 
-  const { filters, subFilters } = categories;
-
-  const name = Array.isArray(categories.name) ? (
+  const name = Array.isArray(categories?.name) ? (
     <FormattedMessage id={'search.filters.treksOutdoorGrouped'} />
   ) : (
-    categories.name
+    categories?.name
   );
 
   const nextSubFilters =
@@ -64,77 +64,71 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
 
   const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
 
-  /* * The library default behaviour is to have a fixed close icon which * made the icon overlap
-     with the menu content as we scrolled. * To fix this issue we use our own close button which
-     scrolls along * the content and imperatively closes the drawer. */
   return (
-    <Slide
-      isOpen={true}
-      onClose={handleClose}
-      right
-      customBurgerIcon={false}
-      customCrossIcon={false}
-      burgerBarClassName="bg-white"
-      menuClassName="bg-white p-4"
-      width={'80vw'}
-    >
-      <div className="relative text-center w-full pb-4 font-bold border-b border-solid border-greySoft outline-none">
-        <CloseButton
-          onClick={handleClose}
-          className="absolute left-0"
-          icon={<ArrowLeft size={24} />}
-        />
-        <span>{name}</span>
-      </div>
-
-      <div className="mt-4" />
-
-      <div className="pb-20">
-        {filtersToDisplay.map(state => (
-          <ShowFilters
-            key={state.id}
-            item={state}
-            setFilterSelectedOptions={setFilterSelectedOptions}
-            hideLabel
-            dateFilter={dateFilter}
-            setDateFilter={setDateFilter}
-          />
-        ))}
-        {subFiltersToDisplay.map((subFilter, index) => (
-          <>
-            {Object.keys(subFilter).length > 0 && filtersToDisplay.length > 0 && (
-              <div className="w-10/12 h-1p mx-auto my-4 bg-greySoft" />
-            )}
-            <div className="space-y-4" key={index}>
-              {Object.keys(subFilter).map(key => {
-                return (
-                  <div className={'m-1'} key={key}>
-                    <div className={'font-bold mb-2'}>
-                      {key !== 'undefined' && key !== 'event'
-                        ? key
-                        : filtersToDisplay[index]?.selectedOptions
-                            .map(({ label }) => label)
-                            .join('/')}
-                    </div>
-                    {subFilter[key].map(filterState => (
-                      <div className={'my-1'} key={filterState.id}>
-                        <ShowFilters
-                          item={filterState}
-                          setFilterSelectedOptions={setFilterSelectedOptions}
-                          dateFilter={dateFilter}
-                          setDateFilter={setDateFilter}
-                        />
+    <Sheet open={isOpen} onOpenChange={handleClose}>
+      <SheetContent className="z-sliderMenu w-[80vw]">
+        <SheetHeader>
+          <SheetTitle className="pb-4 font-bold text-center border-b border-solid border-greySoft outline-none">
+            <CloseButton
+              onClick={handleClose}
+              className="absolute left-0"
+              icon={<ArrowLeft size={24} aria-hidden />}
+            >
+              <span className="sr-only">
+                <FormattedMessage id="details.close" />
+              </span>
+            </CloseButton>
+            {name}
+          </SheetTitle>
+        </SheetHeader>
+        <div className="pb-20 h-full overflow-auto p-6 -mx-6">
+          {filtersToDisplay.map(state => (
+            <ShowFilters
+              key={state.id}
+              item={state}
+              setFilterSelectedOptions={setFilterSelectedOptions}
+              hideLabel
+              dateFilter={dateFilter}
+              setDateFilter={setDateFilter}
+            />
+          ))}
+          {subFiltersToDisplay.map((subFilter, index) => (
+            <>
+              {Object.keys(subFilter).length > 0 && filtersToDisplay.length > 0 && (
+                <div className="w-10/12 h-1p mx-auto my-4 bg-greySoft" />
+              )}
+              <div className="space-y-4" key={index}>
+                {Object.keys(subFilter).map(key => {
+                  return (
+                    <div className="m-1" key={key}>
+                      <div className="font-bold mb-2">
+                        {key !== 'undefined' && key !== 'event'
+                          ? key
+                          : filtersToDisplay[index]?.selectedOptions
+                              .map(({ label }) => label)
+                              .join('/')}
                       </div>
-                    ))}
-                  </div>
-                );
-              })}
-            </div>
-          </>
-        ))}
-      </div>
-
-      <MobileBottomClear resultsNumber={resultsNumber} resetFilter={resetFilter} />
-    </Slide>
+                      {subFilter[key].map(filterState => (
+                        <div className={'my-1'} key={filterState.id}>
+                          <ShowFilters
+                            item={filterState}
+                            setFilterSelectedOptions={setFilterSelectedOptions}
+                            dateFilter={dateFilter}
+                            setDateFilter={setDateFilter}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          ))}
+        </div>
+        <SheetFooter>
+          <MobileBottomClear resetFilter={resetFilter} resultsNumber={resultsNumber} />
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
   );
 };
