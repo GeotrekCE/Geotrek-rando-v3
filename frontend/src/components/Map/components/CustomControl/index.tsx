@@ -1,100 +1,51 @@
-// Get from https://github.com/PaulLeCam/react-leaflet/issues/876#issuecomment-980222405
+import { useEffect, useState } from 'react';
+import { useMap } from 'react-leaflet';
+import L, { ControlPosition } from 'leaflet';
+import ReactDOM from 'react-dom';
 
-import { forwardRef, ReactNode, Ref, useEffect, useImperativeHandle, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { Control, ControlOptions, DomEvent, DomUtil, Map } from 'leaflet';
-import {
-  createControlHook,
-  createElementHook,
-  ElementHook,
-  LeafletContextInterface,
-  LeafletElement,
-  LeafletProvider,
-  useLeafletContext,
-} from '@react-leaflet/core';
-
-interface PropsWithChildren {
-  children?: ReactNode;
-}
-interface ControlOptionsWithChildren extends ControlOptions {
-  children?: ReactNode;
+interface CustomControlProps {
+  children: React.ReactNode;
+  position?: ControlPosition;
+  name?: string;
 }
 
-const DumbControl = Control.extend({
-  options: {
-    className: '',
-    onOff: '',
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    handleOff: function noop() {},
-  },
+const CustomControl: React.FC<CustomControlProps> = ({
+  position = 'bottomright',
+  name = 'custom',
+  children,
+}) => {
+  const map = useMap();
+  const [controlContainer, setControlContainer] = useState<HTMLDivElement | null>(null);
 
-  onAdd() {
-    const controlDiv = DomUtil.create('div', this.options.className);
-
-    DomEvent.on(controlDiv, 'click', event => {
-      DomEvent.stopPropagation(event);
+  useEffect(() => {
+    if (!map) {
+      return;
+    }
+    const CustomLeafletControl = L.Control.extend({
+      onAdd: () => {
+        const container = L.DomUtil.create('div', `leaflet-control-${name}`);
+        setControlContainer(container);
+        return container;
+      },
     });
-    DomEvent.disableScrollPropagation(controlDiv);
-    DomEvent.disableClickPropagation(controlDiv);
 
-    return controlDiv;
-  },
+    const customControl = new CustomLeafletControl({ position });
+    customControl.addTo(map);
 
-  onRemove(map: Map) {
-    if (this.options.onOff) {
-      map.off(this.options.onOff, this.options.handleOff, this);
+    return () => {
+      map.removeControl(customControl);
+    };
+  }, [map, name, position]);
+
+  // We put custom control always in first position
+  useEffect(() => {
+    if (controlContainer && controlContainer.parentNode) {
+      const parentNode = controlContainer.parentNode;
+      parentNode.insertBefore(controlContainer, parentNode.firstChild);
     }
+  }, [controlContainer]);
 
-    return this;
-  },
-});
-
-const useForceUpdate = () => {
-  const [, setValue] = useState(0); // integer state
-  return () => setValue(value => value + 1); // update the state to force render
+  return controlContainer ? ReactDOM.createPortal(children, controlContainer) : null;
 };
-
-export function createContainerComponent<E extends Control, P extends PropsWithChildren>(
-  useElement: ElementHook<E, P>,
-) {
-  function ContainerComponent(props: P, ref: Ref<E>) {
-    const forceUpdate = useForceUpdate();
-    const context = useLeafletContext();
-    const elementRef = useElement(props, context);
-    const { instance } = elementRef.current;
-    const children = props.children;
-    const contentNode = instance.getContainer();
-
-    useImperativeHandle(ref, () => instance);
-    useEffect(() => {
-      forceUpdate();
-    }, [contentNode]);
-
-    if (!children || !contentNode) {
-      return <></>;
-    }
-
-    return createPortal(<LeafletProvider value={context}>{children}</LeafletProvider>, contentNode);
-  }
-
-  return forwardRef(ContainerComponent);
-}
-
-export function createControlComponent<E extends Control, P extends ControlOptionsWithChildren>(
-  createInstance: (props: P) => E,
-) {
-  function createElement(props: P, context: LeafletContextInterface): LeafletElement<E> {
-    return { instance: createInstance(props), context };
-  }
-  const useElement = createElementHook(createElement);
-  const useControl = createControlHook(useElement);
-  return createContainerComponent(useControl);
-}
-
-const CustomControl = createControlComponent<Control, ControlOptionsWithChildren>(
-  function createControlWithChildren(props) {
-    return new DumbControl(props);
-  },
-);
 
 export default CustomControl;
