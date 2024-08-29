@@ -1,22 +1,19 @@
 import MobileBottomClear from 'components/pages/search/components/FilterBar/MobileBottomClear';
-// @ts-expect-error Not official but useful to reduce bundle size
-import Slide from 'react-burger-menu/lib/menus/slide';
-
-import { Cross } from 'components/Icons/Cross';
 import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
 import useCounter from 'components/pages/search/hooks/useCounter';
 import { FormattedMessage } from 'react-intl';
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from 'components/Sheet';
 import { FilterCategory, FilterState } from '../../modules/filters/interface';
 import { countFiltersSelected } from '../../modules/filters/utils';
 
-import { CloseButton } from './CloseButton';
 import { MobileFilterMenuSection } from './MobileFilterMenuSection';
 
 interface Props {
-  handleClose: () => void;
+  handleChange: () => void;
   title: React.ReactNode;
   filtersState: FilterState[];
   filtersList: FilterCategory[];
+  isOpen: boolean;
   resetFilter: () => void;
   resultsNumber: number;
   language: string;
@@ -24,7 +21,8 @@ interface Props {
 
 export const MobileFilterMenu: React.FC<Props> = ({
   filtersState,
-  handleClose,
+  isOpen,
+  handleChange,
   title,
   resetFilter,
   resultsNumber,
@@ -35,61 +33,45 @@ export const MobileFilterMenu: React.FC<Props> = ({
     useCounter({ language });
 
   return (
-    /*
-     * The library default behaviour is to have a fixed close icon which
-     * made the icon overlap with the menu content as we scrolled.
-     * To fix this issue we use our own close button which scrolls along
-     * the content and imperatively closes the drawer.
-     */
-    <Slide
-      isOpen
-      onClose={handleClose}
-      right
-      customBurgerIcon={false}
-      customCrossIcon={false}
-      burgerBarClassName="bg-white"
-      menuClassName="bg-white p-4"
-      width="80vw"
-    >
-      <div className="flex flex-col relative text-center w-full pb-4 font-bold border-b border-solid border-greySoft outline-none">
-        <CloseButton
-          onClick={handleClose}
-          className="absolute left-0"
-          icon={<Cross size={24} aria-hidden />}
-        >
-          <span className="sr-only">
-            <FormattedMessage id={'search.closeFilters'} />
-          </span>
-        </CloseButton>
-        <span>{title}</span>
-      </div>
+    <Sheet open={isOpen} onOpenChange={handleChange}>
+      <SheetContent className="desktop:hidden z-sliderMenu w-[80vw]">
+        <SheetHeader>
+          <SheetTitle className="pb-4 font-bold text-center border-b border-solid border-greySoft outline-none">
+            {title}
+          </SheetTitle>
+        </SheetHeader>
+        <div className="pb-10 h-full overflow-auto p-6 -mt-6 -mx-6">
+          {filtersList.map(item => {
+            if (treksCount === 0 && item.id === PRACTICE_ID) return null;
+            if (touristicContentsCount === 0 && item.id === CATEGORY_ID) return null;
+            if (outdoorSitesCount === 0 && item.id === OUTDOOR_ID) return null;
+            if (touristicEventsCount === 0 && item.id === EVENT_ID) return null;
 
-      <div className="pb-20">
-        {filtersList.map(item => {
-          if (treksCount === 0 && item.id === PRACTICE_ID) return null;
-          if (touristicContentsCount === 0 && item.id === CATEGORY_ID) return null;
-          if (outdoorSitesCount === 0 && item.id === OUTDOOR_ID) return null;
-          if (touristicEventsCount === 0 && item.id === EVENT_ID) return null;
-
-          const numberSelected = countFiltersSelected(filtersState, item.filters, item.subFilters);
-          const name = Array.isArray(item.name) ? (
-            <FormattedMessage id={'search.filters.treksOutdoorGrouped'} />
-          ) : (
-            item.name
-          );
-          return (
-            <MobileFilterMenuSection
-              type={item.id}
-              title={name}
-              key={item.id}
-              onClick={item.onSelect}
-              numberSelected={numberSelected}
-            />
-          );
-        })}
-      </div>
-
-      <MobileBottomClear resetFilter={resetFilter} resultsNumber={resultsNumber} />
-    </Slide>
+            const numberSelected = countFiltersSelected(
+              filtersState,
+              item.filters,
+              item.subFilters,
+            );
+            const name = Array.isArray(item.name) ? (
+              <FormattedMessage id={'search.filters.treksOutdoorGrouped'} />
+            ) : (
+              item.name
+            );
+            return (
+              <MobileFilterMenuSection
+                type={item.id}
+                title={name}
+                key={item.id}
+                onClick={item.onSelect}
+                numberSelected={numberSelected}
+              />
+            );
+          })}
+        </div>
+        <SheetFooter>
+          <MobileBottomClear resetFilter={resetFilter} resultsNumber={resultsNumber} />
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
   );
 };

@@ -139,29 +139,27 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
 
       {isMobile && (
         <>
-          {menuState === 'DISPLAYED' && subMenuState !== 'DISPLAYED' && (
-            <MobileFilterMenu
-              handleClose={hideMenu}
-              title={<FormattedMessage id="search.filter" />}
-              filtersState={filtersStateWithExclude}
-              filtersList={filtersList}
-              resetFilter={onRemoveAllFiltersClick}
-              resultsNumber={searchResults?.resultsNumber ?? 0}
-              language={language}
-            />
-          )}
-          {subMenuState === 'DISPLAYED' && (
-            <MobileFilterSubMenu
-              handleClose={hideSubMenu}
-              filterId={currentFilterId}
-              filtersState={filtersStateWithExclude}
-              setFilterSelectedOptions={setFilterSelectedOptions}
-              resetFilter={onRemoveAllFiltersClick}
-              resultsNumber={searchResults?.resultsNumber ?? 0}
-              dateFilter={dateFilter}
-              setDateFilter={setDateFilter}
-            />
-          )}
+          <MobileFilterMenu
+            handleChange={menuState === 'DISPLAYED' ? hideMenu : displayMenu}
+            isOpen={menuState === 'DISPLAYED' && subMenuState !== 'DISPLAYED'}
+            title={<FormattedMessage id="search.filter" />}
+            filtersState={filtersStateWithExclude}
+            filtersList={filtersList}
+            resetFilter={onRemoveAllFiltersClick}
+            resultsNumber={searchResults?.resultsNumber ?? 0}
+            language={language}
+          />
+          <MobileFilterSubMenu
+            handleClose={hideSubMenu}
+            isOpen={subMenuState !== 'HIDDEN'}
+            filterId={currentFilterId}
+            filtersState={filtersStateWithExclude}
+            setFilterSelectedOptions={setFilterSelectedOptions}
+            resetFilter={onRemoveAllFiltersClick}
+            resultsNumber={searchResults?.resultsNumber ?? 0}
+            dateFilter={dateFilter}
+            setDateFilter={setDateFilter}
+          />
         </>
       )}
 
@@ -190,7 +188,10 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                 <div className="flex flex-col desktop:flex-row desktop:justify-between">
                   <div className="flex justify-between items-end" id="search_resultMapTitle">
                     <SearchResultsMeta textContent={resultsTitle} />
-                    <ToggleFilterButton onClick={displayMenu} numberSelected={numberSelected} />
+                    <ToggleFilterButton
+                      onClick={menuState === 'DISPLAYED' ? hideMenu : displayMenu}
+                      numberSelected={numberSelected}
+                    />
                   </div>
                   <div className="flex items-center mt-4 desktop:mt-0 desktop:ml-5">
                     <InputWithMagnifier
