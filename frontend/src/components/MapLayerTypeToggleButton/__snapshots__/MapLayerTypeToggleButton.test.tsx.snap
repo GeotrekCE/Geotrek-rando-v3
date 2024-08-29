@@ -46,7 +46,7 @@ Object {
             class="leaflet-bottom leaflet-left"
           >
             <div
-              class="leaflet-control"
+              class="leaflet-control-custom leaflet-control"
             >
               <button
                 class="leaflet-toggleLayer"
@@ -125,7 +125,7 @@ Object {
           class="leaflet-bottom leaflet-left"
         >
           <div
-            class="leaflet-control"
+            class="leaflet-control-custom leaflet-control"
           >
             <button
               class="leaflet-toggleLayer"
