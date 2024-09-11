@@ -2,38 +2,44 @@ import MobileBottomClear from 'components/pages/search/components/FilterBar/Mobi
 import { CATEGORY_ID, EVENT_ID, OUTDOOR_ID, PRACTICE_ID } from 'modules/filters/constant';
 import useCounter from 'components/pages/search/hooks/useCounter';
 import { FormattedMessage } from 'react-intl';
-import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from 'components/Sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from 'components/Sheet';
 import { FilterCategory, FilterState } from '../../modules/filters/interface';
 import { countFiltersSelected } from '../../modules/filters/utils';
 
 import { MobileFilterMenuSection } from './MobileFilterMenuSection';
 
 interface Props {
-  handleChange: () => void;
   title: React.ReactNode;
   filtersState: FilterState[];
   filtersList: FilterCategory[];
-  isOpen: boolean;
   resetFilter: () => void;
   resultsNumber: number;
   language: string;
+  children: React.ReactNode;
 }
 
 export const MobileFilterMenu: React.FC<Props> = ({
   filtersState,
-  isOpen,
-  handleChange,
   title,
   resetFilter,
   resultsNumber,
   filtersList,
   language,
+  children,
 }) => {
   const { treksCount, touristicContentsCount, outdoorSitesCount, touristicEventsCount } =
     useCounter({ language });
 
   return (
-    <Sheet open={isOpen} onOpenChange={handleChange}>
+    <Sheet>
+      <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent className="desktop:hidden z-sliderMenu w-[80vw]">
         <SheetHeader>
           <SheetTitle className="pb-4 font-bold text-center border-b border-solid border-greySoft outline-none">
