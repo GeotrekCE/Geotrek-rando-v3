@@ -93,36 +93,32 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
             />
           ))}
           {subFiltersToDisplay.map((subFilter, index) => (
-            <>
+            <div className="space-y-4" key={index}>
               {Object.keys(subFilter).length > 0 && filtersToDisplay.length > 0 && (
-                <div className="w-10/12 h-1p mx-auto my-4 bg-greySoft" />
+                <div className="w-10/12 h-1p mx-auto my-4 bg-greySoft" key="sep" />
               )}
-              <div className="space-y-4" key={index}>
-                {Object.keys(subFilter).map(key => {
-                  return (
-                    <div className="m-1" key={key}>
-                      <div className="font-bold mb-2">
-                        {key !== 'undefined' && key !== 'event'
-                          ? key
-                          : filtersToDisplay[index]?.selectedOptions
-                              .map(({ label }) => label)
-                              .join('/')}
+              {Object.keys(subFilter).map(key => {
+                const value =
+                  key !== 'undefined' && key !== 'event'
+                    ? key
+                    : filtersToDisplay[index]?.selectedOptions.map(({ label }) => label).join('/');
+                return (
+                  <div className="m-1" key={value}>
+                    <p className="font-bold mb-2">{value}</p>
+                    {subFilter[key].map(filterState => (
+                      <div className="my-1" key={value + filterState.id}>
+                        <ShowFilters
+                          item={filterState}
+                          setFilterSelectedOptions={setFilterSelectedOptions}
+                          dateFilter={dateFilter}
+                          setDateFilter={setDateFilter}
+                        />
                       </div>
-                      {subFilter[key].map(filterState => (
-                        <div className={'my-1'} key={filterState.id}>
-                          <ShowFilters
-                            item={filterState}
-                            setFilterSelectedOptions={setFilterSelectedOptions}
-                            dateFilter={dateFilter}
-                            setDateFilter={setDateFilter}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  );
-                })}
-              </div>
-            </>
+                    ))}
+                  </div>
+                );
+              })}
+            </div>
           ))}
         </div>
         <SheetFooter>

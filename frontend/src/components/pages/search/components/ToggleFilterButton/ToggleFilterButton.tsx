@@ -1,3 +1,5 @@
+import React from 'react';
+import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { ButtonHTMLAttributes } from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -8,9 +10,16 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   numberSelected: number;
 }
 
-export const ToggleFilterButton: React.FC<Props> = ({ numberSelected, ...nativeButtonProps }) => {
+export const ToggleFilterButton = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Root>,
+  Props
+>(({ numberSelected, ...nativeButtonProps }, ref) => {
   return (
-    <button className="flex items-center text-primary1 desktop:hidden" {...nativeButtonProps}>
+    <button
+      className="flex items-center text-primary1 desktop:hidden"
+      {...nativeButtonProps}
+      ref={ref}
+    >
       {numberSelected === 0 ? (
         <Filter size={16} className="mr-2" />
       ) : (
@@ -21,4 +30,6 @@ export const ToggleFilterButton: React.FC<Props> = ({ numberSelected, ...nativeB
       </span>
     </button>
   );
-};
+});
+
+ToggleFilterButton.displayName = 'ToggleFilterButton';
