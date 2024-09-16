@@ -1,5 +1,35 @@
 # Changelog
 
+## 3.22.0 (2024-09-17)
+
+**✨ Improvements**
+
+- Add annotation category (label and picto) to HD viewpoint map tooltip (#1229)
+- Add "Display in HD pictures" button at the map bottom if the details page contains at least one HD viewpoint (#1229)
+- Refacto to use the leaflet locate.control in a more “react” way (#1227 #1219)
+- Refacto Leaflet CustomControl wrapper (#1237 #1219)
+- Refacto sheet component (#1238 #1219)
+- Prevent map zooming when scrolling on the elevation profile (#1228)
+- Remove styled-component and handle styling only with tailwindCSS (#1147)
+
+**🔧 Maintenance**
+
+- Bump node from 18 to 20 (#1021)
+- Bump @types/node from 16.9.4 to 22.5.4 in /frontend (#1244)
+- Bump @next/eslint-plugin-next and eslint-config-next packages to 14.2.10 (#1217)
+- Bump @testing-libray packages(#1218)
+- Bump leaflet.locatecontrol from 0.74.0 to 0.81.1 (#1227)
+- Install @radix-ui/react-dialog package
+- Install class-variance-authority package
+- Install tailwindcss-animate package
+- Bump tailwind-merge from 2.2.2 to 2.5.2
+- Bump docker/build-push-action from 5 to 6
+- Remove react-burger-menu package
+
+**🐛 Fixes**
+
+- Fix display of mobile menu sub-filters (#1006 #1235)
+
 ## 3.21.1 (2024-07-29)
 
 **🐛 Fixes**
