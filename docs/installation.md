@@ -13,9 +13,9 @@ If you follow the [Install without Docker (not recommended)](#install-without-do
 To report application crashes and any errors encountered by users, you can use [Sentry](https://sentry.io/).
 In the Sentry backoffice, create your project and copy the DSN key which you can paste into the `SENTRY_DSN` environment variable.
 
-# Install with Docker (recommended)
+## Install with Docker (recommended)
 
-## Global process
+### Global process
 
 Before starting the technical installation, here is an overview of the global process:
 
@@ -27,14 +27,14 @@ Before starting the technical installation, here is an overview of the global pr
 - They will edit the customization files
 - They will download the Docker image, run the Docker container with Docker Compose and make it available with a web browser through NGINX
 
-## Install Docker
+### Install Docker
 
 You need to have Docker and Docker Compose installed on your own computer or server. Docker allows to easily install and update Geotrek-rando on several plateforms (Linux, Windows, macOS).
 
 - Docker installation documentation is [right here](https://docs.docker.com/engine/install/).
 - You will also need to follow the [post install process](https://docs.docker.com/engine/install/linux-postinstall/) as well to be able to download the Geotrek-rando container with your non-root Linux user.
 
-## Install Geotrek-rando
+### Install Geotrek-rando
 
 You will have to download the Installer of Geotrek-rando and its customization folder template to run the Docker container of Geotrek-rando on your own computer or server.
 
@@ -56,7 +56,7 @@ You can also create the optional `.env` file based on the example (`cp .env.exam
 
 If you want to run several Geotrek-rando on the same server, just download one Geotrek-rando-v3-installer for each portal with their own customization and set a different port for each. You should name each Geotrek-rando project with a different container name with adding `COMPOSE_PROJECT_NAME=name_of_geotrek_rando_project` variable in `.env` file. Otherwise the command `docker-compose down && docker-compose up -d` will overwrite the previous container.
 
-## An example with NGINX
+### An example with NGINX
 
 - Create a new site configuration in your `sites-available` folder (in `/etc/nginx`), `geotrekrando.conf` in this example
 - Here is its minimal configuration:
@@ -101,7 +101,7 @@ sudo apt install python3-certbot-nginx
 sudo certbot --nginx
 ```
 
-## Upgrade Geotrek-rando version
+### Upgrade Geotrek-rando version
 
 To find out the current Geotrek-rando version of your running container, you can execute (by renaming `rando-nodeserver-1` with the name of your container):
 
@@ -117,7 +117,7 @@ docker-compose pull && docker-compose down && docker-compose up -d
 
 It will download and install the latest version of Geotrek-rando. If you want to install a specific version of Geotrek-rando, you can specify it in your `.env` file, instead of `latest`.
 
-### Manage Docker images storage on disk
+#### Manage Docker images storage on disk
 
 The old images will stay on your system and use disk storage.
 
@@ -139,7 +139,7 @@ Docker supports subqueries like this one, let's understand it step by step:
   - `-q` (quiet) specifies that you only need to get the images IDs
 - `-f` (force) means you want to bypass docker security preventing you to delete used images
 
-# Install without Docker (not recommended)
+## Install without Docker (not recommended)
 
 If you can't install Docker for some reason, there is also a way to directly deploy the node server to your machines.
 
@@ -189,7 +189,7 @@ By default, the server will be served on the port 80, you should set the port yo
 PORT=82 && yarn start
 ```
 
-## Process manager
+### Process manager
 
 If you installed Geotrek-rando without Docker and in order to have a more robust solution to serve your node server, our advice is to use [pm2](https://pm2.keymetrics.io/).
 
