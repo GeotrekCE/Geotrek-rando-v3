@@ -10,7 +10,7 @@
 
 # :warning: **WARNING!** :warning:
 
-**Do not use - docker installation will not work. Please install version 3.22.1 instead**
+**Do not use - docker installation will not work. Please install version 3.22.1 (or higher) instead**
 
 **✨ Improvements**
 
