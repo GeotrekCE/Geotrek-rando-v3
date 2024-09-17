@@ -39,5 +39,3 @@ To get the proper settings of the rando site in your local environnement :
 
 - Copy/cut the `customization` folder from a rando repository in Geotrekrando-v3/frontend/customization
 - Copy/cut the `medias` folder from a rando repository in Geotrekrando-v3/frontend/src/public/medias
-
-@@include[server-side-rendering.md](knowledge/server-side-rendering.md)
