@@ -3,15 +3,14 @@ theme:
   name: readthedocs
 nav:
   - index.md
-  - Presentation: presentation-fr.md
-  - Installation: installation.md
-  - Customization: customization.md
+  - presentation-fr.md
+  - installation.md
+  - customization.md
   - customization-scripts-GDPR.md
   - icons.md
-  - Development: development.md
-  - Knowledge:
-    - knowledge/caching.md
-    - knowledge/debug.md
-    - knowledge/pages-and-navigation.md
-    - knowledge/server-side-rendering.md
-  - Changelog: changelog.md
+  - development.md
+  - knowledge/caching.md
+  - knowledge/debug.md
+  - knowledge/pages-and-navigation.md
+  - knowledge/server-side-rendering.md
+  - changelog.md
