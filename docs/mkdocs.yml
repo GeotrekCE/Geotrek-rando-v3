@@ -2,12 +2,12 @@ site_name: Geotrek-rando v3
 theme:
   name: readthedocs
 nav:
-  - docs/index.md
+  - index.md
   - presentation-fr.md
   - installation.md
-  - docs/customization.md
-  - docs/customization-scripts-GDPR.md
-  - docs/icons.md
-  - docs/development.md
-  - docs/changelog.md
-  - docs/knowledge/caching.md
+  - customization.md
+  - customization-scripts-GDPR.md
+  - icons.md
+  - development.md
+  - changelog.md
+  - knowledge/caching.md
