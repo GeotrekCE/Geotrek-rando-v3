@@ -1,4 +1,4 @@
-# Server side rendering
+## Server side rendering
 
 Using Next, we can query data during three lifecycles:
 
