@@ -1,4 +1,6 @@
 site_name: Geotrek-rando v3
+theme:
+  name: readthedocs
 nav:
   - docs/index.md
   - docs/presentation-fr.md
