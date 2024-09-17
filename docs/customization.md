@@ -64,6 +64,7 @@ In json files, you can just override the primary keys you need. You have to over
     - `shouldDisplay`: Boolean allowing this menu to be displayed or not. Its default value is `true`.
     - `numberOfItemsBeforeTruncation` The number of items displayed on the screen. To see the others, click on the "Show more" button. Its default value is `8`.
     - `links`: Allows you to customize the order and display of categories links. It's an array containing an object with 3 properties:
+
       ```typescript
       {
         "type" : 'trek' | 'outdoorSite' | 'touristicContent' | 'touristicEvent' ;
@@ -77,7 +78,7 @@ In json files, you can just override the primary keys you need. You have to over
   - `suggestions`: You can define blocks to display suggestions groups with treks ID, outdoor sites ID, services ID or events ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
     Each group has the following properties :
 
-    ```typescript
+    ```javascript
     {
       "titleTranslationId": string: // you can use locales keys with the files inside `translations` folder
       "iconUrl": string; // url to the icon file
