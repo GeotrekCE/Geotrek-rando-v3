@@ -78,7 +78,7 @@ In json files, you can just override the primary keys you need. You have to over
   - `suggestions`: You can define blocks to display suggestions groups with treks ID, outdoor sites ID, services ID or events ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
     Each group has the following properties :
 
-    ```javascript
+    ```
     {
       "titleTranslationId": string: // you can use locales keys with the files inside `translations` folder
       "iconUrl": string; // url to the icon file
