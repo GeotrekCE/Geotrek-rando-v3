@@ -9,8 +9,8 @@ nav:
   - customization-scripts-GDPR.md
   - icons.md
   - development.md
-    - knowledge/caching.md
-    - knowledge/debug.md
-    - knowledge/pages-and-navigation.md
-    - knowledge/server-side-rendering.md
+  - knowledge/caching.md
+  - knowledge/debug.md
+  - knowledge/pages-and-navigation.md
+  - knowledge/server-side-rendering.md
   - changelog.md
