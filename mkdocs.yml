@@ -3,8 +3,8 @@ theme:
   name: readthedocs
 nav:
   - docs/index.md
-  - docs/presentation-fr.md
-  - docs/installation.md
+  - presentation-fr.md
+  - installation.md
   - docs/customization.md
   - docs/customization-scripts-GDPR.md
   - docs/icons.md
