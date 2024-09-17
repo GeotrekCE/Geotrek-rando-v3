@@ -1,10 +1,11 @@
 site_name: Geotrek-rando v3
 nav:
-  - presentation-fr.md
-  - installation.md
-  - customization.md
-  - customization-scripts-GDPR.md
-  - icons.md
-  - development.md
-  - changelog.md
-  - knowledge/caching.md
+  - docs/index.md
+  - docs/presentation-fr.md
+  - docs/installation.md
+  - docs/customization.md
+  - docs/customization-scripts-GDPR.md
+  - docs/icons.md
+  - docs/development.md
+  - docs/changelog.md
+  - docs/knowledge/caching.md
