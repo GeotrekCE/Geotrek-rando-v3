@@ -44,7 +44,7 @@ In json files, you can just override the primary keys you need. You have to over
   - `maxLengthTrekAllowedFor3DRando`: Maximum length of meters allowed to enable 3D mode in the current trek. Adjust this setting carefully as too long a trek could freeze your browser. If this setting is defined to `0` (or `mapSatelliteLayers` from `map.json` is defined to `null`) the 3D mode feature is disabled for the whole application
   - `minAltitudeDifferenceToDisplayElevationProfile`: Minimum altitude difference in meters required to display the elevation profile in the current trek
   - `accessibilityCodeNumber`: emergency number. Default set to `114`.
-  - `displayObjectsRelatedToItinerantTreks`: An object containing many booleans to display/hide objects related to itinerant treks. The keys are `POIs`,`touristicContents`,`sensitiveAreas`,`infrastructures`,`signages`,`service` and are all set to `true` by default. Indeed multi-days treks can be long and have a lot a related objects which is very long to display and not really readable. That's why you can disable some related objects that will not be displayed on itinerant main detail page, but will be displayed on steps detail pages and any other treks detail pages.
+  - `> > > displayObjectsRelatedToItinerantTreks`: An object containing many booleans to display/hide objects related to itinerant treks. The keys are `POIs`,`touristicContents`,`sensitiveAreas`,`infrastructures`,`signages`,`service` and are all set to `true` by default. Indeed multi-days treks can be long and have a lot a related objects which is very long to display and not really readable. That's why you can disable some related objects that will not be displayed on itinerant main detail page, but will be displayed on steps detail pages and any other treks detail pages.
 
 - `header.json` to define :
 
@@ -257,10 +257,9 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
 
     You can find more examples and more details following this link : https://nextjs.org/docs/api-reference/next.config.js/redirects
 
-### _Warning:_
-
-- When setting up Google Analytics, you have to setup a flow. When setting up the flow, be careful to enter the corresponding url (the url of your website), otherwise the data will not be received.
-- By default Google analytics is disabled (`googleAnalyticsId` set to `null`), you will have to override it in the `global.json` file of your customization folder.
+> [!WARNING]
+> - When setting up Google Analytics, you have to setup a flow. When setting up the flow, be careful to enter the corresponding url (the url of your website), otherwise the data will not be received.
+> - By default Google analytics is disabled (`googleAnalyticsId` set to `null`), you will have to override it in the `global.json` file of your customization folder.
 
 ## Colors
 
@@ -291,7 +290,8 @@ It's also possible to change category colors :
 }
 ```
 
-NB: If global config `groupTreksAndOutdoorFilters` is set to `true`, the `outdoor` color is ignored in favor of the `trek` color.
+> [!NOTE]
+> If global config `groupTreksAndOutdoorFilters` is set to `true`, the `outdoor` color is ignored in favor of the `trek` color.
 
 ## CSS
 
@@ -320,7 +320,9 @@ You should at least override `home.title`, `home.description` and `home.welcome-
 
 You can include some HTML parts in different sections of the layout application.  
 These templates can be translated by using the language code as a suffix (e.g. `homeTop-en.html` will be rendered only for the English interface). The application tries to find the localized template first, otherwise it tries the non-localized template, otherwise it displays nothing.  
-NB: If you want to display a message common to all languages but not to a particular language (e.g. french), just create the template suffixed with its language code (e.g. `-fr.html`) and leave it empty, and voilà!
+
+> [!NOTE]
+> If you want to display a message common to all languages but not to a particular language (e.g. french), just create the template suffixed with its language code (e.g. `-fr.html`) and leave it empty, and voilà!
 
 See examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html.
 
