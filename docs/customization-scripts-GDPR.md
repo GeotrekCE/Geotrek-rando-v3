@@ -27,7 +27,8 @@ If you need to execute the script on every page change you need to attach an eve
 </script>
 ```
 
-NB: In Geotrek Rando prior to version 3.15.4, the `window.next` object is **not yet loaded** when scripts are run. You must therefore find a strategy to wait for it before attaching the event listener.
+> [!NOTE]
+> In Geotrek-rando prior to version 3.15.4, the `window.next` object is **not yet loaded** when scripts are run. You must therefore find a strategy to wait for it before attaching the event listener.
 
 ## GDPR
 
