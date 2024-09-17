@@ -1,6 +1,16 @@
 # Changelog
 
+## 3.22.1 (2024-09-17)
+
+**🐛 Fixes**
+
+- Install semver package
+
 ## 3.22.0 (2024-09-17)
+
+# :warning: **WARNING!** :warning:
+
+**Do not use - docker installation will not work. Please install version 3.22.1 instead**
 
 **✨ Improvements**
 
