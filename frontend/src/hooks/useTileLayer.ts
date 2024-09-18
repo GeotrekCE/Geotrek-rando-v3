@@ -5,7 +5,7 @@ import injectOfflineMode from 'services/offline/injectOfflineMode';
 
 export const useTileLayer = (
   id?: number,
-  center?: LatLngBoundsExpression | null,
+  bounds?: LatLngBoundsExpression | null,
 ): {
   map: Map | null;
   setMapInstance: (newMap: Map) => void;
@@ -15,8 +15,8 @@ export const useTileLayer = (
   const setMapInstance = (newMap: Map) => {
     setMap(newMap);
 
-    if (id !== undefined && center) {
-      injectOfflineMode(newMap, id, center);
+    if (id !== undefined && bounds) {
+      injectOfflineMode(newMap, id, bounds);
     }
   };
 

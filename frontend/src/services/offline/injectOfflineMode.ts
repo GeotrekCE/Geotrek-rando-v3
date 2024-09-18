@@ -15,7 +15,7 @@ type EventStorageSize = TileLayerOffline & {
   storagesize: ControlSaveTiles;
 };
 
-const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression) => {
+const injectOfflineMode = (map: Map, id: number, bounds: LatLngBoundsExpression) => {
   const mapConfig = getMapConfig();
 
   const { mapOfflineLayer, mapClassicLayers, zoomAvailableOffline } = mapConfig;
@@ -73,7 +73,7 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
   const recenter = () => {
     const minZoom = Math.min(...(zoomAvailableOffline ?? []));
     map.setZoom(minZoom);
-    map.fitBounds(center);
+    map.fitBounds(bounds);
   };
 
   // @ts-expect-error add method to access in the cache manager
