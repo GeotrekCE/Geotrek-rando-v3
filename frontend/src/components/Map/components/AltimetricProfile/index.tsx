@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
-import '@raruto/leaflet-elevation';
-import '@raruto/leaflet-elevation/dist/leaflet-elevation.min.css';
+import { useEffect } from 'react';
 import L from 'leaflet';
+import '@raruto/leaflet-elevation/src/index.js';
+import '@raruto/leaflet-elevation/src/index.css';
 import { useMap } from 'react-leaflet';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
-import useHasMounted from 'hooks/useHasMounted';
 
 interface AltimetricProfileProps {
   trekGeoJSON: string;
@@ -17,14 +16,11 @@ export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSO
   const map = useMap();
   const intl = useIntl();
   const language = useRouter().locale ?? getDefaultLanguage();
-  const isMounted = useHasMounted();
 
   useEffect(() => {
-    if (!isMounted) {
+    if (!map) {
       return;
     }
-    const div = document.getElementById(id);
-    if (div) div.innerHTML = '';
 
     // @ts-expect-error the lib is not typed
     const elevationControl = L.control.elevation({
@@ -56,7 +52,13 @@ export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSO
     L.setLocale(language);
 
     elevationControl.load(trekGeoJSON);
-  }, [id, intl, isMounted, language, map, trekGeoJSON]);
+
+    return () => {
+      elevationControl.clear();
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      map.removeControl(elevationControl);
+    };
+  }, [id, intl, language, map, trekGeoJSON]);
 
   return null;
 };
