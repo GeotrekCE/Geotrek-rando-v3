@@ -46,12 +46,12 @@ export type PropsType = {
 };
 
 export const TouristicContentMap: React.FC<PropsType> = props => {
-  const center: LatLngBoundsExpression = [
+  const bounds: LatLngBoundsExpression = [
     [props.bbox.corner1.y, props.bbox.corner1.x],
     [props.bbox.corner2.y, props.bbox.corner2.x],
   ];
 
-  const { setMapInstance } = useTileLayer(Number(props.touristicContentGeometry.id), center);
+  const { setMapInstance } = useTileLayer(Number(props.touristicContentGeometry.id), bounds);
 
   const hideMap = () => {
     if (props.hideMap) {
@@ -75,7 +75,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
         }
         whenCreated={setMapInstance}
         zoomControl={props.hasZoomControl}
-        bounds={center}
+        bounds={bounds}
         attributionControl={false}
       >
         <BackButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
