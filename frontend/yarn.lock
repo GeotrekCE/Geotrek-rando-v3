@@ -8516,10 +8516,10 @@ leaflet.markercluster@^1.4.1:
   resolved "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.4.1.tgz#b53f2c4f2ca7306ddab1dbb6f1861d5e8aa6c5e5"
   integrity sha512-ZSEpE/EFApR0bJ1w/dUGwTSUvWlpalKqIzkaYdYB7jaftQA/Y2Jav+eT4CMtEYFj+ZK4mswP13Q2acnPBnhGOw==
 
-leaflet.offline@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/leaflet.offline/-/leaflet.offline-3.0.1.tgz#3e3eb21315f0f1a295df9dd88ff565c0fc687e40"
-  integrity sha512-sxGKa0j44bcdytU23bnPMkAPzfCo4mxA7oQeprLbIvkI1TsHO02askIRHPzWupeHA5IK0uUbyf52Ppi7KaRW1w==
+leaflet.offline@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/leaflet.offline/-/leaflet.offline-3.1.0.tgz#00c93dd461cee64e3f7c43113a11268dddbba809"
+  integrity sha512-dl3mzTEl1SnmzvJtJ0hVFLvlFX2wut/srvRAZ3A3g7Ee/RQkOo5zQ6tfVNhKe8N+adGXqcdEqEY9kgUxXCnEAw==
   dependencies:
     idb "^7.1.1"
     leaflet "^1.6.0"
