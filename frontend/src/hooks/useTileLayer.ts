@@ -1,5 +1,4 @@
-import { LatLngBoundsExpression } from 'leaflet';
-import { Map } from 'leaflet';
+import { LatLngBoundsExpression, Map } from 'leaflet';
 import { useState } from 'react';
 
 import injectOfflineMode from 'services/offline/injectOfflineMode';
