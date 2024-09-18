@@ -72,7 +72,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
           : Math.max(...(mapConfig?.zoomAvailableOffline ?? []))
       }
       minZoom={navigator.onLine ? undefined : Math.min(...(mapConfig?.zoomAvailableOffline ?? []))}
-      whenCreated={setMapInstance}
+      ref={setMapInstance}
       zoomControl={props.hasZoomControl}
       bounds={bounds}
       attributionControl={false}

@@ -18,7 +18,7 @@ const MapContainer: React.FC<Props> = ({ children, whenCreated, hasZoomControl =
       center={mapConfig.searchMapCenter as [number, number]}
       zoom={mapConfig.searchMapZoom}
       maxZoom={mapConfig.maximumZoomLevel}
-      whenCreated={whenCreated}
+      ref={whenCreated}
       scrollWheelZoom
       zoomControl={hasZoomControl}
       id="search_map"

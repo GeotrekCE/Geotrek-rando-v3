@@ -190,7 +190,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           navigator.onLine ? undefined : Math.min(...(mapConfig?.zoomAvailableOffline ?? []))
         }
         zoomControl={props.hasZoomControl}
-        whenCreated={setMapInstance}
+        ref={setMapInstance}
         bounds={bounds}
         {...(mapToDisplay !== 'default' && { crs: CRSPixel(mapToDisplay) })}
       >
