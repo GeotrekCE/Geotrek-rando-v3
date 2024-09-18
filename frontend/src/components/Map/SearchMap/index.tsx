@@ -1,19 +1,18 @@
-import MapContainer from 'components/Map/SearchMap/MapContainer';
-import MoveHandler from 'components/Map/SearchMap/MoveHandler';
-import SearchMapChildrens from 'components/Map/SearchMap/SearchMapChildrens';
 import { LatLngBounds } from 'leaflet';
-import React from 'react';
 import { ScaleControl } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
+import MapContainer from 'components/Map/SearchMap/MapContainer';
+import MoveHandler from 'components/Map/SearchMap/MoveHandler';
+import SearchMapChildrens from 'components/Map/SearchMap/SearchMapChildrens';
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { useTileLayer } from 'hooks/useTileLayer';
-import { BackButton } from '../components/BackButton';
-import { FilterButton } from '../components/FilterButton';
-import { ResetView } from '../components/ResetView';
-import TileLayerManager from '../components/TileLayerManager';
-import FullscreenControl from '../components/FullScreenControl';
-import LocateControl from '../components/LocateControl';
+import { BackButton } from 'components/Map/components/BackButton';
+import { FilterButton } from 'components/Map/components/FilterButton';
+import { ResetView } from 'components/Map/components/ResetView';
+import TileLayerManager from 'components/Map/components/TileLayerManager';
+import FullscreenControl from 'components/Map/components/FullScreenControl';
+import LocateControl from 'components/Map/components/LocateControl';
 
 export type PropsType = {
   segments?: { x: number; y: number }[];
