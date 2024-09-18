@@ -78,7 +78,7 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
         bounds={bounds}
         attributionControl={false}
       >
-        <BackButton className="desktop:hidden" icon={<ArrowLeft size={24} />} onClick={hideMap} />
+        <BackButton icon={<ArrowLeft size={18} />} onClick={hideMap} />
         <ResetView />
         <TileLayerManager />
         <ScaleControl />

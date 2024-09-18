@@ -198,7 +198,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
             <FormattedMessage id="report.mapButton.validate" />
           </BackButton>
         ) : (
-          <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
+          <BackButton icon={<ArrowLeft size={18} />} onClick={hideMap} />
         )}
         {props.hasZoomControl && <FullscreenControl />}
         {mapToDisplay !== 'default' && (

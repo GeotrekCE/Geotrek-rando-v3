@@ -41,7 +41,7 @@ const SearchMap: React.FC<PropsType> = props => {
     <MapContainer whenCreated={setMapInstance} hasZoomControl={props.hasZoomControl}>
       {props.onMove && <MoveHandler onMove={props.onMove} />}
       <TileLayerManager />
-      <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
+      <BackButton icon={<ArrowLeft size={18} />} onClick={hideMap} />
       <FilterButton openFilterMenu={props.openFilterMenu} />
       {props.hasZoomControl === true && <FullscreenControl />}
       <ResetView />
