@@ -2536,10 +2536,10 @@
   resolved "https://registry.yarnpkg.com/@radix-ui/react-use-layout-effect/-/react-use-layout-effect-1.1.0.tgz#3c2c8ce04827b26a39e442ff4888d9212268bd27"
   integrity sha512-+FPE0rOdziWSrH9athwI1R0HDVbWlEhd+FR+aSDk4uWGmSJ9Z54sdZVDQPZAinJhJXwfT+qnj969mCsT2gfm5w==
 
-"@raruto/leaflet-elevation@1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@raruto/leaflet-elevation/-/leaflet-elevation-1.7.0.tgz#f013886b386ff916690c9c7121c826613a44833d"
-  integrity sha512-2dzUxrq6wuyev3d3fpLOZNPyq++jHmYinv8SIzt+g7bxbD1kVNprWKql63vMmoFcjO6K540IrBHhGOpQHiZq0A==
+"@raruto/leaflet-elevation@1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@raruto/leaflet-elevation/-/leaflet-elevation-1.9.0.tgz#19f77ab8cbfdcab7ecb1cf8ee44dd671137b2520"
+  integrity sha512-N8GyiOhZxZR6op8mcnKcGzIvfpcW24JnhEYvWoeVJxoXN11JNTv3GijLeySuo6r7oVoWNpLV9ktBPKsZ4le0mg==
   dependencies:
     leaflet-i18n "^0.3.1"
 
