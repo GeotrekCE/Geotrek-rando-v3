@@ -42,11 +42,12 @@ const injectOfflineMode = (map: Map, id: number, center: LatLngBoundsExpression)
 
   controlInstance.addTo(map);
 
-  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   let storageLayer: L.GeoJSON;
 
   const getGeoJsonData = () =>
-    getStorageInfo(mapOfflineLayer.url).then(data => getStoredTilesAsJson(tileLayerOffline, data));
+    getStorageInfo(mapOfflineLayer.url).then(data =>
+      getStoredTilesAsJson(tileLayerOffline.getTileSize(), data),
+    );
 
   const addStorageLayer = () => {
     void getGeoJsonData().then(geojson => {
