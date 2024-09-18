@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@20tab/react-leaflet-resetview@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@20tab/react-leaflet-resetview/-/react-leaflet-resetview-1.0.1.tgz#4e5a0fdd0eb3de9c29f13b6d83041980cae4b5c2"
-  integrity sha512-qPdoVMBCBjhrZ/w0aU9+4CuZkdapQvy3tctmk7mH372x236e5xsDMwALKIy9S3QwBpuQkzBSgHRggB1MDpILqA==
+"@20tab/react-leaflet-resetview@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@20tab/react-leaflet-resetview/-/react-leaflet-resetview-1.1.0.tgz#a2d1bbe7e678cfb91f75c795ff0d7e6824d7fef5"
+  integrity sha512-EcFm3YEjO3OCZ6QZiPJLSf7SI10zDR6HpNAUifNKI6uvx1Jbp5lYvc4t3OQei+b2m85C4S+HhSVP1ZkMzbXBcw==
 
 "@aashutoshrathi/word-wrap@^1.2.3":
   version "1.2.6"
