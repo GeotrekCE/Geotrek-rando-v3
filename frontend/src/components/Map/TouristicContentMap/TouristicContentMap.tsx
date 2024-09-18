@@ -3,7 +3,6 @@ import React from 'react';
 import { MapContainer, ScaleControl } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import { ArrowLeft } from 'components/Icons/ArrowLeft';
 import { Bbox } from 'modules/details/interface';
 import {
   GeometryCollection,
@@ -15,13 +14,16 @@ import {
   PolygonGeometry,
 } from 'modules/interface';
 import { useTileLayer } from 'hooks/useTileLayer';
-import { BackButton } from '../components/BackButton';
+import { ArrowLeft } from 'components/Icons/ArrowLeft';
+import { BackButton } from 'components/Map/components/BackButton';
 
-import { GeometryList } from '../DetailsMap/GeometryList';
-import { getMapConfig } from '../config';
-import { GeometryListProps } from '../DetailsMap/DetailsMap';
-import { ResetView } from '../components/ResetView';
-import TileLayerManager from '../components/TileLayerManager';
+import { GeometryList } from 'components/Map/DetailsMap/GeometryList';
+import { getMapConfig } from 'components/Map/config';
+import { GeometryListProps } from 'components/Map/DetailsMap/DetailsMap';
+import { ResetView } from 'components/Map/components/ResetView';
+import TileLayerManager from 'components/Map/components/TileLayerManager';
+import LocateControl from 'components/Map/components/LocateControl';
+import FullscreenControl from 'components/Map/components/FullScreenControl';
 
 interface TouristicContentGeometryNullable {
   geometry:
@@ -61,32 +63,30 @@ export const TouristicContentMap: React.FC<PropsType> = props => {
 
   const mapConfig = getMapConfig();
   return (
-    <>
-      <MapContainer
-        className="size-full"
-        scrollWheelZoom
-        maxZoom={
-          navigator.onLine
-            ? mapConfig.maximumZoomLevel
-            : Math.max(...(mapConfig?.zoomAvailableOffline ?? []))
-        }
-        minZoom={
-          navigator.onLine ? undefined : Math.min(...(mapConfig?.zoomAvailableOffline ?? []))
-        }
-        whenCreated={setMapInstance}
-        zoomControl={props.hasZoomControl}
-        bounds={bounds}
-        attributionControl={false}
-      >
-        <BackButton icon={<ArrowLeft size={18} />} onClick={hideMap} />
-        <ResetView />
-        <TileLayerManager />
-        <ScaleControl />
-        {props.touristicContentGeometry !== null && (
-          <GeometryList contents={[props.touristicContentGeometry as GeometryListProps]} />
-        )}
-      </MapContainer>
-    </>
+    <MapContainer
+      className="size-full"
+      scrollWheelZoom
+      maxZoom={
+        navigator.onLine
+          ? mapConfig.maximumZoomLevel
+          : Math.max(...(mapConfig?.zoomAvailableOffline ?? []))
+      }
+      minZoom={navigator.onLine ? undefined : Math.min(...(mapConfig?.zoomAvailableOffline ?? []))}
+      whenCreated={setMapInstance}
+      zoomControl={props.hasZoomControl}
+      bounds={bounds}
+      attributionControl={false}
+    >
+      <BackButton icon={<ArrowLeft size={18} />} onClick={hideMap} />
+      {props.hasZoomControl === true && <FullscreenControl />}
+      <ResetView />
+      <TileLayerManager />
+      <LocateControl />
+      <ScaleControl />
+      {props.touristicContentGeometry !== null && (
+        <GeometryList contents={[props.touristicContentGeometry as GeometryListProps]} />
+      )}
+    </MapContainer>
   );
 };
 
