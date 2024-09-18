@@ -8516,6 +8516,11 @@ leaflet.markercluster@^1.4.1:
   resolved "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.4.1.tgz#b53f2c4f2ca7306ddab1dbb6f1861d5e8aa6c5e5"
   integrity sha512-ZSEpE/EFApR0bJ1w/dUGwTSUvWlpalKqIzkaYdYB7jaftQA/Y2Jav+eT4CMtEYFj+ZK4mswP13Q2acnPBnhGOw==
 
+leaflet.markercluster@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.5.3.tgz#9cdb52a4eab92671832e1ef9899669e80efc4056"
+  integrity sha512-vPTw/Bndq7eQHjLBVlWpnGeLa3t+3zGiuM7fJwCkiMFq+nmRuG3RI3f7f4N4TDX7T4NpbAXpR2+NTRSEGfCSeA==
+
 leaflet.offline@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/leaflet.offline/-/leaflet.offline-3.1.0.tgz#00c93dd461cee64e3f7c43113a11268dddbba809"
@@ -9104,6 +9109,13 @@ next-compose-plugins@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/next-compose-plugins/-/next-compose-plugins-2.2.1.tgz#020fc53f275a7e719d62521bef4300fbb6fde5ab"
   integrity sha512-OjJ+fV15FXO2uQXQagLD4C0abYErBjyjE0I0FHpOEIB8upw0hg1ldFP6cqHTJBH1cZqy96OeR3u1dJ+Ez2D4Bg==
+
+next-leaflet-cluster@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/next-leaflet-cluster/-/next-leaflet-cluster-1.0.0.tgz#c2fb90e2e43a60739e21de70384b54cec999d067"
+  integrity sha512-1QHUkdr2YKDbHFEgxsnMjCaGgfETf0EdssM7YVoiQQnBm5pXewGSF5Wsj21CTUMnVWdkqBtu4BIl41iSLvpNjA==
+  dependencies:
+    leaflet.markercluster "^1.5.3"
 
 next-pwa@^5.6.0:
   version "5.6.0"
