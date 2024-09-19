@@ -55,7 +55,6 @@
     "dotenv-flow": "^3.2.0",
     "express": "^4.17.1",
     "html-react-parser": "^2.0.0",
-    "leaflet": "^1.7.1",
     "leaflet-boundary-canvas": "^1.0.0",
     "leaflet-rastercoords": "^1.0.5",
     "leaflet.locatecontrol": "^0.81.1",
