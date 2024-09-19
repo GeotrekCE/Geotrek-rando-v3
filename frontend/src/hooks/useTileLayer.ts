@@ -15,7 +15,7 @@ export const useTileLayer = (
   const setMapInstance = (newMap: Map) => {
     setMap(newMap);
 
-    if (id !== undefined && bounds) {
+    if (newMap && id !== undefined && bounds) {
       injectOfflineMode(newMap, id, bounds);
     }
   };
