@@ -1,6 +1,6 @@
-import React from 'react';
 import { MapContainer } from 'react-leaflet';
 import { render } from 'services/testing/reactTestingLibraryWrapper';
+import { CustomControlProps } from 'components/Map/components/CustomControl';
 import { MapLayerTypeToggleButton } from './MapLayerTypeToggleButton';
 
 jest.mock('components/Map/config', () => ({
@@ -8,6 +8,14 @@ jest.mock('components/Map/config', () => ({
     mapSatelliteLayerUrl: 'satelliteURL',
   }),
 }));
+
+jest.mock(
+  'components/Map/components/CustomControl',
+  () =>
+    function CustomControl(props: CustomControlProps) {
+      return <div className="leaflet-control-container" {...props} />;
+    },
+);
 
 describe('MapLayerTypeToggleButton', () => {
   it('renders correctly', () => {
