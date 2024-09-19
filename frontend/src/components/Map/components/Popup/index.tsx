@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { routes } from 'services/routes';
-import { Popup as LeafletPopup, Tooltip as LeafletTooltip } from 'react-leaflet';
+import { Popup as LeafletPopup, Tooltip as LeafletTooltip, useMapEvent } from 'react-leaflet';
 import { FormattedMessage } from 'react-intl';
 import Loader from 'components/Loader';
 
@@ -107,7 +107,22 @@ export const Popup: React.FC<Props> = ({
   type,
   content,
 }) => {
-  const [hideTooltip, setHideTooltip] = useState<boolean>(false);
+  const [hideTooltip, setHideTooltip] = useState(false);
+  const popupRef = useRef(null);
+
+  useMapEvent('popupopen', event => {
+    if (event.popup === popupRef.current) {
+      setHideTooltip(true);
+      handleOpen?.();
+    }
+  });
+
+  useMapEvent('popupclose', event => {
+    if (event.popup === popupRef.current) {
+      setHideTooltip(false);
+      handleClose?.();
+    }
+  });
 
   return (
     <>
@@ -116,19 +131,8 @@ export const Popup: React.FC<Props> = ({
           <PopupContent type={type} id={id} showButton={false} content={content} />
         </LeafletTooltip>
       )}
-      <LeafletPopup
-        closeButton={false}
-        onOpen={() => {
-          setHideTooltip(true);
-          handleOpen?.();
-        }}
-        onClose={() => {
-          setHideTooltip(false);
-          handleClose?.();
-        }}
-        offset={[0, -12]}
-      >
-        <PopupContent type={type} id={id} showButton={true} parentId={parentId} content={content} />
+      <LeafletPopup ref={popupRef} closeButton={false} offset={[0, -12]}>
+        <PopupContent type={type} id={id} showButton parentId={parentId} content={content} />
       </LeafletPopup>
     </>
   );
