@@ -6,6 +6,7 @@ import { Circle, CircleMarker, Marker, Polygon, Polyline, Tooltip, useMap } from
 import Image from 'next/image';
 import { TrekMarker } from 'components/Map/Markers/TrekMarker';
 import { optimizeAndDefineColor } from 'stylesheet';
+import { cn } from 'services/utils/cn';
 
 type Props = {
   geometry: Geometry;
@@ -39,12 +40,12 @@ const MetaData = ({ properties }: { properties: GeoJsonProperties }) => {
 
   return (
     <Tooltip>
-      <span className="flex flex-wrap items-center gap-2">
+      <span className="flex flex-wrap items-center gap-1 px-1">
         {Boolean(properties.category?.label) && (
-          <>
+          <span className="flex gap-2 font-bold">
             <Icon pictogramUri={pictogramUri} />
             <span>{properties.category.label}</span>
-          </>
+          </span>
         )}
 
         <span>{properties.name}</span>
@@ -70,6 +71,8 @@ export const AnnotationItem = ({ geometry, properties, id }: Props) => {
     );
   }
 
+  const annotationType = properties?.category?.id as string;
+
   if (geometry.type === 'Point' || geometry.type === 'MultiPoint') {
     const coordinatesAsMultiPoint =
       geometry.type === 'Point' ? [geometry.coordinates] : geometry.coordinates;
@@ -93,7 +96,10 @@ export const AnnotationItem = ({ geometry, properties, id }: Props) => {
           }
           return (
             <CircleMarker
-              className="annotation annotation-point"
+              className={cn(
+                'annotation annotation-point',
+                annotationType && `annotation-type-${annotationType}`,
+              )}
               key={`point-${id}-${index}`}
               center={[lng, lat]}
               radius={6}
@@ -116,7 +122,10 @@ export const AnnotationItem = ({ geometry, properties, id }: Props) => {
           return (
             <Polyline
               key={`linestring-${id}-${index}`}
-              className="annotation annotation-line"
+              className={cn(
+                'annotation annotation-line',
+                annotationType && `annotation-type-${annotationType}`,
+              )}
               positions={group.map(([lat, lng]) => [lng, lat])}
             >
               <MetaData properties={properties} />
@@ -140,7 +149,14 @@ export const AnnotationItem = ({ geometry, properties, id }: Props) => {
       const radius = Math.sqrt(Math.pow(diagonal, 2) / 2);
 
       return (
-        <Circle className="annotation annotation-circle" center={L.latLng(center)} radius={radius}>
+        <Circle
+          className={cn(
+            'annotation annotation-circle',
+            annotationType && `annotation-type-${annotationType}`,
+          )}
+          center={L.latLng(center)}
+          radius={radius}
+        >
           <MetaData properties={properties} />
         </Circle>
       );
@@ -152,7 +168,10 @@ export const AnnotationItem = ({ geometry, properties, id }: Props) => {
         {coordinatesAsMultiPolygon.map((group, index) => (
           <Polygon
             key={`polygon-${id}-${index}`}
-            className="annotation annotation-polygone"
+            className={cn(
+              'annotation annotation-polygon',
+              annotationType && `annotation-type-${annotationType}`,
+            )}
             positions={group.map(line => line.map<[number, number]>(([lat, lng]) => [lng, lat]))}
           >
             <MetaData properties={properties} />
