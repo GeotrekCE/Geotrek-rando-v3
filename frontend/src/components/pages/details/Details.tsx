@@ -654,10 +654,10 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                   trekFamily={trekFamily}
                   trekChildrenGeometries={details.children.reduce<TrekChildGeometry[]>(
                     (children, currentChild) => {
-                      if (currentChild.childGeometry) {
+                      if (currentChild.childrenGeometries) {
                         children.push({
-                          ...currentChild.childGeometry,
-                          id: `TREK-${currentChild.childGeometry.id}`,
+                          ...currentChild.childrenGeometries,
+                          id: `TREK-${currentChild.childrenGeometries.id}`,
                         });
                       }
                       return children;
