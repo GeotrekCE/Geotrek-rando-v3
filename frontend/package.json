@@ -81,6 +81,7 @@
     "react-slick": "^0.29.0",
     "screenfull": "^6.0.2",
     "semver": "^7.6.3",
+    "sharp": "^0.33.5",
     "slick-carousel": "^1.8.1",
     "store": "^2.0.12",
     "striptags": "^3.2.0",
