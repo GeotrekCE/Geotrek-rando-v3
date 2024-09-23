@@ -94,7 +94,7 @@
   },
   "devDependencies": {
     "@accessible/accordion": "^2.0.0",
-    "@next/bundle-analyzer": "^12.2.5",
+    "@next/bundle-analyzer": "^14.2.13",
     "@next/eslint-plugin-next": "^14.2.10",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.8",
