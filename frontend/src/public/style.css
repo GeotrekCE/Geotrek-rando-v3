@@ -207,7 +207,7 @@ details > summary.list-none::marker {
 }
 
 .content-WYSIWYG img,
-.custo-page-WYSIWYG img:not(.custo-suggestions img) {
+.custo-page-WYSIWYG img:not(.custo-suggestions img, .gallery-container img) {
   @apply mx-1;
 }
 
@@ -245,12 +245,12 @@ details > summary.list-none::marker {
 }
 
 .content-WYSIWYG ul,
-.custo-page-WYSIWYG ul:not(.custo-suggestions ul) {
+.custo-page-WYSIWYG ul:not(.custo-suggestions ul, .gallery-container) {
   @apply my-4;
 }
 
 .content-WYSIWYG ul > li,
-.custo-page-WYSIWYG ul:not(.custo-suggestions ul) > li {
+.custo-page-WYSIWYG ul:not(.custo-suggestions ul, .gallery-container) > li {
   @apply pl-4 list-inside list-disc desktop:mb-2;
 }
 
@@ -263,11 +263,11 @@ details > summary.list-none::marker {
 }
 
 .content-WYSIWYG .image,
-.custo-page-WYSIWYG .image {
+.custo-page-WYSIWYG .image:not(.gallery-container .image) {
   @apply clear-both overflow-hidden desktop:mb-8;
 }
 
-.custo-page-WYSIWYG .image:not(.align-left):not(.align-right) img {
+.custo-page-WYSIWYG .image:not(.align-left, .align-right) img {
   @apply w-full;
 }
 
@@ -301,4 +301,28 @@ details > summary.list-none::marker {
 .custo-page-WYSIWYG .button-link {
   @apply inline-flex mt-2 py-3 px-4 border border-solid border-white text-white bg-primary1 font-semibold transition-colors rounded-lg;
   @apply hover:bg-primary2 focus:bg-primary2 hover:border-primary1 hover:text-primary1 focus:border-primary1 focus:text-primary1;
+}
+
+.custo-page-WYSIWYG .gallery-container {
+  @apply grid desktop:grid-cols-2 gap-2 mb-8 desktop:-mx-14;
+}
+
+.custo-page-WYSIWYG .gallery-container figure {
+  @apply relative;
+}
+
+.custo-page-WYSIWYG .gallery-container li:last-child:nth-child(odd) {
+  @apply col-span-2;
+}
+
+.custo-page-WYSIWYG .gallery-container li *:not(button.rounded-full) {
+  @apply size-full;
+}
+
+.custo-page-WYSIWYG .gallery-container li > * {
+  @apply block w-full;
+}
+
+.custo-page-WYSIWYG .gallery-container figcaption {
+  @apply !mt-0 !h-12 desktop:h-40 absolute top-0 flex items-start justify-center pb-1 pt-3 px-2 bg-gradient-to-b from-blackSemiTransparent to-transparent text-white text-opacity-90 text-Mobile-C3 desktop:text-P2;
 }
