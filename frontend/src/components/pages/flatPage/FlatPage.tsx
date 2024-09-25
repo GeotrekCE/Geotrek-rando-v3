@@ -2,6 +2,7 @@ import { useId, useMemo } from 'react';
 import Loader from 'components/Loader';
 import Image from 'next/image';
 import parse, { DOMNode, Element } from 'html-react-parser';
+import StyleToJS from 'style-to-js';
 import { Footer } from 'components/Footer';
 import { Separator } from 'components/Separator';
 import { PageHead } from 'components/PageHead';
@@ -10,6 +11,8 @@ import { generateFlatPageUrl } from 'modules/header/utills';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { getSuggestionType } from 'modules/flatpage/utils';
 import { cn } from 'services/utils/cn';
+import { Modal } from 'components/Modal';
+import useHasMounted from 'hooks/useHasMounted';
 import { useFlatPage } from './useFlatPage';
 import { DetailsSection } from '../details/components/DetailsSection';
 import { ErrorFallback } from '../search/components/ErrorFallback';
@@ -25,6 +28,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
   const { flatPage, isLoading, refetch, activitySuggestions } = useFlatPage(flatPageUrl);
   const intl = useIntl();
   const idCaption = useId();
+  const isMounted = useHasMounted();
 
   const parsedFlatPage = useMemo(() => {
     if (!flatPage?.content || !flatPage.content.length) {
@@ -56,10 +60,46 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
             />
           );
         }
+        if (
+          domNode instanceof Element &&
+          domNode.name === 'img' &&
+          domNode.parent instanceof Element &&
+          domNode.parent.tagName !== 'a'
+        ) {
+          const { style, ...attribs } = domNode.attribs;
+          if (!isMounted) {
+            // eslint-disable-next-line @next/next/no-img-element
+            return <img loading="lazy" alt="" {...attribs} />;
+          }
+          return (
+            <Modal style={StyleToJS(style)}>
+              {({ isFullscreen, toggleFullscreen }) => {
+                return isFullscreen ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    loading="lazy"
+                    alt=""
+                    {...attribs}
+                    onClick={toggleFullscreen}
+                    className="object-center overflow-hidden size-full object-contain"
+                  />
+                ) : (
+                  <button type="button" aria-haspopup="dialog" onClick={toggleFullscreen}>
+                    <span className="sr-only">
+                      <FormattedMessage id="details.openPictureInFullScreen" />
+                    </span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img className="object-cover" loading="lazy" alt="" {...attribs} />
+                  </button>
+                );
+              }}
+            </Modal>
+          );
+        }
         return domNode;
       },
     });
-  }, [activitySuggestions, flatPage?.content]);
+  }, [activitySuggestions, flatPage?.content, isMounted]);
 
   const legendCoverImage = [flatPage?.image?.legend, flatPage?.image?.author]
     .filter(Boolean)
