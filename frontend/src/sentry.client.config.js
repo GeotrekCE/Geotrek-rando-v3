@@ -8,6 +8,7 @@ const sentryOptions = {
   environment: process.env.ENVIRONMENT,
   maxBreadcrumbs: 50,
   attachStacktrace: true,
+  integrations: [Sentry.replayIntegration()],
 };
 
 // Development & tests setup
