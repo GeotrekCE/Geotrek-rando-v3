@@ -1,16 +1,26 @@
 site_name: Geotrek-rando v3
 theme:
   name: readthedocs
+  logo : img/logo.svg
+  include_homepage_in_sidebar: false
+  hljs_languages:
+    - yaml
+    - markdown
 nav:
-  - index.md
-  - presentation-fr.md
-  - installation.md
-  - customization.md
-  - customization-scripts-GDPR.md
-  - icons.md
-  - development.md
-  - knowledge/caching.md
-  - knowledge/debug.md
-  - knowledge/pages-and-navigation.md
-  - knowledge/server-side-rendering.md
-  - changelog.md
+  - Home: index.md
+  - 💡 Introduction: 
+    - Presentation: presentation-fr.md
+  - 🚀 Customization: 
+    - Customization: customization.md
+    - Scripts and GDPR: customization-scripts-GDPR.md
+    - Icons : icons.md
+  - 🔧 Developer Guide: 
+    - Installation: installation.md
+    - Developement: development.md
+  - ✨ Knowledge: 
+      - Caching: knowledge/caching.md
+      - Debug: knowledge/debug.md
+      - Pages and navigation: knowledge/pages-and-navigation.md
+      - Server side rendering: knowledge/server-side-rendering.md
+  - 📝 Changelog: 
+    - Changelog: changelog.md
