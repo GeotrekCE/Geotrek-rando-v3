@@ -27,11 +27,18 @@ yarn
 
 ## Start the app
 
-Once your dependencies are installed, start your server in development mode by running:
+Once your dependencies are installed, start your server in development mode by running :
 
 ```bash
 yarn dev
 ```
+
+## Contributing documentation
+
+To launch the readthedocs documentation in your local environment, run the following commands in the project's root directory :
+
+- `pip3 install mkdocs`
+- `python3 -m mkdocs serve`
 
 ## Customization
 
