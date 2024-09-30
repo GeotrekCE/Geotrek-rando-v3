@@ -42,5 +42,6 @@ Read more in the [general presentation](./presentation-fr.md).
 - Follow the [development](./development.md) docs
 - Head to [localhost:3000](http://localhost:3000)
 
-<a href="https://territoires.makina-corpus.com/"><img src="https://geotrek.fr/assets/img/logo_makina.svg" alt="Logo MCT" width="115"></a>
-[![](https://geotrek.fr/assets/img/logo_autonomens-h120m.png)](https://datatheca.com/)
+:::warning
+This is a warning
+:::
