@@ -8,99 +8,99 @@ After each customization changes, you'll have to restart the Docker container by
 
 ## Settings
 
-Default configuration are defined in files from https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/config folder.
+Default configuration are defined in files from [config folder](https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/config).
 You can override all settings default values in files from your own `customization/config/` folder.
 
-Examples of customizations are available in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/config folder.
+Examples of customizations are available in [Geotrek-rando v3 config folder](https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/config).
 
 In json files, you can just override the primary keys you need. You have to override primary keys globally.
 
-- `global.json` (default value in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/global.json) to define :
+- `global.json` (default value in [global.json file](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/global.json)) to define :
 
-  - `searchResultsPageSize`, `mapResultsPageSize`: used to limit the sizes of results per page when fetching API
-  - `maxPoiPerPage`: max number of point of interest (POI) displayed on a single trek page
-  - `maxTouristicContentPerPage`: max number of touristic contents displayed on a single trek page
-  - `portalIds`: eventual portal filters (list of ids).
+    - `searchResultsPageSize`, `mapResultsPageSize`: used to limit the sizes of results per page when fetching API
+    - `maxPoiPerPage`: max number of point of interest (POI) displayed on a single trek page
+    - `maxTouristicContentPerPage`: max number of touristic contents displayed on a single trek page
+    - `portalIds`: eventual portal filters (list of ids).
 
-    - If no id has been set, Geotrek-rando retrieves all objets, whether or not they are associated with a portal in Geotrek-admin.
-    - If one or more ids have been set (example : [1,3]), Geotrek-rando only retrieves the objets of the configured portals. Therefore, if objects are not associated with any portal in Geotrek-admin, they will not be displayed in Geotrek-rando.
+        - If no id has been set, Geotrek-rando retrieves all objets, whether or not they are associated with a portal in Geotrek-admin.
+        - If one or more ids have been set (example : [1,3]), Geotrek-rando only retrieves the objets of the configured portals. Therefore, if objects are not associated with any portal in Geotrek-admin, they will not be displayed in Geotrek-rando.
 
-  - `enableSensitiveAreas`: boolean, default to false. Set it to true if sensitive areas are defined in your Geotrek-admin
-  - `enableOutdoor`: boolean, default to false. Set it to true to enable Outdoor sites and courses
-  - `groupTreksAndOutdoorFilters`: boolean, default to false. Groups treks and outdoor filters into a single tab. For this setting to work, `enableOutdoor` must be set to `true`.
-  - `apiUrl` : Geotrek-admin API URL
-  - `privacyPolicyLink`: link of the privacy policy (More information in [GDPR documentation](customization-scripts-GDPR.md#GDPR)).
-  - `googleAnalyticsId`: eventual Google Analytics Id (to activate it, you must set `privacyPolicyLink`)
-  - `googleSiteVerificationToken`: eventual code to enable Google Search Console and Google developer tools
-  - `enableIndexation`: set this parameter to `false` to disable search engine indexing (default `true`)
-  - `baseUrl`: base URL of your portal (for dynamic sitemap.xml)
-  - `fallbackImageUri`: this uri is used to generate a default image for a trek or a touristic content if none is defined
-  - `touristicContentLabelImageUri` : this uri is used to define the logo of the labeled touristic contents:
+    - `enableSensitiveAreas`: boolean, default to false. Set it to true if sensitive areas are defined in your Geotrek-admin
+    - `enableOutdoor`: boolean, default to false. Set it to true to enable Outdoor sites and courses
+    - `groupTreksAndOutdoorFilters`: boolean, default to false. Groups treks and outdoor filters into a single tab. For this setting to work, `enableOutdoor` must be set to `true`.
+    - `apiUrl` : Geotrek-admin API URL
+    - `privacyPolicyLink`: link of the privacy policy (More information in [GDPR documentation](customization-scripts-GDPR.md#GDPR)).
+    - `googleAnalyticsId`: eventual Google Analytics Id (to activate it, you must set `privacyPolicyLink`)
+    - `googleSiteVerificationToken`: eventual code to enable Google Search Console and Google developer tools
+    - `enableIndexation`: set this parameter to `false` to disable search engine indexing (default `true`)
+    - `baseUrl`: base URL of your portal (for dynamic sitemap.xml)
+    - `fallbackImageUri`: this uri is used to generate a default image for a trek or a touristic content if none is defined
+    - `touristicContentLabelImageUri` : this uri is used to define the logo of the labeled touristic contents:
     ![Activity Icon on filter list](assets/labeledTouristicContentExample.png)
-  - `applicationName`: application name appearing on PWA
-  - `enableReport`: to enable report form in trek detail pages
-  - `hCaptchaKey`: string key to enable Captcha validation in the report form. To create/define a key, see https://www.hcaptcha.com/
-  - `enableSearchByMap`: to enable searching by map displayed area (bbox)
-  - `maxLengthTrekAllowedFor3DRando`: Maximum length of meters allowed to enable 3D mode in the current trek. Adjust this setting carefully as too long a trek could freeze your browser. If this setting is defined to `0` (or `mapSatelliteLayers` from `map.json` is defined to `null`) the 3D mode feature is disabled for the whole application
-  - `minAltitudeDifferenceToDisplayElevationProfile`: Minimum altitude difference in meters required to display the elevation profile in the current trek
-  - `accessibilityCodeNumber`: emergency number. Default set to `114`.
-  - `> > > displayObjectsRelatedToItinerantTreks`: An object containing many booleans to display/hide objects related to itinerant treks. The keys are `POIs`,`touristicContents`,`sensitiveAreas`,`infrastructures`,`signages`,`service` and are all set to `true` by default. Indeed multi-days treks can be long and have a lot a related objects which is very long to display and not really readable. That's why you can disable some related objects that will not be displayed on itinerant main detail page, but will be displayed on steps detail pages and any other treks detail pages.
+    - `applicationName`: application name appearing on PWA
+    - `enableReport`: to enable report form in trek detail pages
+    - `hCaptchaKey`: string key to enable Captcha validation in the report form. To create/define a key, see [www.hcaptcha.com/](https://www.hcaptcha.com/).    
+    - `enableSearchByMap`: to enable searching by map displayed area (bbox)
+    - `maxLengthTrekAllowedFor3DRando`: Maximum length of meters allowed to enable 3D mode in the current trek. Adjust this setting carefully as too long a trek could freeze your browser. If this setting is defined to `0` (or `mapSatelliteLayers` from `map.json` is defined to `null`) the 3D mode feature is disabled for the whole application
+    - `minAltitudeDifferenceToDisplayElevationProfile`: Minimum altitude difference in meters required to display the elevation profile in the current trek
+    - `accessibilityCodeNumber`: emergency number. Default set to `114`.
+    - `displayObjectsRelatedToItinerantTreks`: An object containing many booleans to display/hide objects related to itinerant treks. The keys are `POIs`,`touristicContents`,`sensitiveAreas`,`infrastructures`,`signages`,`service` and are all set to `true` by default. Indeed multi-days treks can be long and have a lot a related objects which is very long to display and not really readable. That's why you can disable some related objects that will not be displayed on itinerant main detail page, but will be displayed on steps detail pages and any other treks detail pages.
 
-- `header.json` to define :
+- `header.json` (default value in [header.json file](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)) to define :
 
-  - `logo` : Path to your logo image
-  - `menu`: an object with 3 keys :
+    - `logo` : Path to your logo image
+    - `menu`: an object with 3 keys :
 
-    - `supportedLanguages`: Array of available languages: `'CA','DE','FR','EN','ES',IT` are availables.
-    - `defaultLanguage`: Your target audience's main language.
-    - `primaryItemsNumber`: Number of items before dividing the main menu with a "See more" button. _Deprecated_ since 3.19.0: Use the MenuItems feature from Geotrek admin.
+      - `supportedLanguages`: Array of available languages: `'CA','DE','FR','EN','ES',IT` are availables.
+      - `defaultLanguage`: Your target audience's main language.
+      - `primaryItemsNumber`: Number of items before dividing the main menu with a "See more" button. _Deprecated_ since 3.19.0: Use the MenuItems feature from Geotrek admin.
 
-(see default values in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)
 
-- `home.json` to define homepage settings.
+- `home.json` (default value in [home.json file](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/home.json)) to define homepage settings :
 
-  - `activityBar`: This is a menu showing all search types (hiking practices, outdoor practices, tourist content categories and tourist events categories).
+    - `activityBar`: This is a menu showing all search types (hiking practices, outdoor practices, tourist content categories and tourist events categories).
 
-    - `shouldDisplay`: Boolean allowing this menu to be displayed or not. Its default value is `true`.
-    - `numberOfItemsBeforeTruncation` The number of items displayed on the screen. To see the others, click on the "Show more" button. Its default value is `8`.
-    - `links`: Allows you to customize the order and display of categories links. It's an array containing an object with 3 properties:
+      - `shouldDisplay`: Boolean allowing this menu to be displayed or not. Its default value is `true`.
+      - `numberOfItemsBeforeTruncation` The number of items displayed on the screen. To see the others, click on the "Show more" button. Its default value is `8`.
+      - `links`: Allows you to customize the order and display of categories links. It's an array containing an object with 3 properties :
 
-      ```typescript
-      {
-        "type" : 'trek' | 'outdoorSite' | 'touristicContent' | 'touristicEvent' ;
-        "grouped" : boolean ; // If set to "true", all activities of the type are grouped under a single link.
-        "iconUrl" : string ; // Optional, url to replace default icon. Used only if "grouped" is set to "true",
-      }
-      ```
+```typescript
+{
+  "type" : 'trek' | 'outdoorSite' | 'touristicContent' | 'touristicEvent' ;
+  "grouped" : boolean ; // If set to "true", all activities of the type are grouped under a single link.
+  "iconUrl" : string ; // Optional, url to replace default icon. Used only if "grouped" is set to "true",
+}
+```
 
-    More explanations in this [comments](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/560#issuecomment-1858166341) (in French).
+More explanations in this [comments](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/560#issuecomment-1858166341) (in French).
 
-  - `suggestions`: You can define blocks to display suggestions groups with treks ID, outdoor sites ID, services ID or events ID to highlight on homepage (see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
+- 
+    - `suggestions`: You can define blocks to display suggestions groups with treks ID, outdoor sites ID, services ID or events ID to highlight on [homepage](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
     Each group has the following properties :
 
-    ```
-    {
-      "titleTranslationId": string: // you can use locales keys with the files inside `translations` folder
-      "iconUrl": string; // url to the icon file
-      "ids": string[]; // list of ids ,
+```typescript
+{
+  "titleTranslationId": string: // you can use locales keys with the files inside `translations` folder
+  "iconUrl": string; // url to the icon file
+  "ids": string[]; // list of ids ,
       "type": 'trek' | 'service' | 'outdoor' | 'events'; // if not set, default to `trek`
-    }
-    ```
+}
+```
 
-    Or you can define a suggestion block to display upcoming events, the structure is quite different:
+Or you can define a suggestion block to display upcoming events, the structure is quite different:
 
-    ```typescript
-    {
-      "titleTranslationId": string; // you can use locales keys with the files inside `translations` folder
-      "iconUrl": string; // url to the icon file
-      "numberOfItemsToDisplay": number; // Optional; If not defined all upcoming events will be displayed
-      "type": 'upcomingEvents';
-    }
-    ```
+```typescript
+{
+  "titleTranslationId": string; // you can use locales keys with the files inside `translations` folder
+  "iconUrl": string; // url to the icon file
+  "numberOfItemsToDisplay": number; // Optional; If not defined all upcoming events will be displayed
+  "type": 'upcomingEvents';
+}
+```
 
   To define suggestions groups you need to build an `object` with the languages code as keys. By this way you can differentiate the valorization of a territory according to the selected language. If you don't need this feature (or if you want the same configuration for several language), use `default` key instead of a language code. The configuration in the example below displays 2 groups of suggestions for all languages except the English version with one different:
 
-  ```json
+```json
   "suggestions": {
     "default": [
       {
@@ -125,11 +125,11 @@ In json files, you can just override the primary keys you need. You have to over
       },
     ]
   }
-  ```
+```
 
   PS: For backward compatibility you can still use an array, this is the same behavior that `object` with only a `default` key. For example:
 
-  ```json
+```json
   "suggestions": [
     {
       "titleTranslationId": "home.territoryTreks",
@@ -144,7 +144,7 @@ In json files, you can just override the primary keys you need. You have to over
       "type": "events"
     },
   ]
-  ```
+```
 
   - In `welcomeBanner`, you can personnalize the cover on the homepage. You can add an asset on the top of the page: it can either be a video, a single picture or a carousel of images:
 
@@ -158,7 +158,7 @@ In json files, you can just override the primary keys you need. You have to over
 
     - `shouldDisplayText`: `true` to display the text on above the asset, `false` to hide it.
 
-- `details.json` allows you to choose whether or not to display sections for each details pages ("trek", "touristicContent", "touristicEvent", "OutdoorSite" and "OutdoorCourse"). See the default configuration at https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/details.json.
+- `details.json` allows you to choose whether or not to display sections for each details pages ("trek", "touristicContent", "touristicEvent", "OutdoorSite" and "OutdoorCourse"). See the [default configuration](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/details.json) .
   There are 4 properties :
 
       - `name`: the name of the section
@@ -168,13 +168,13 @@ In json files, you can just override the primary keys you need. You have to over
 
 NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, anchor links are not displayed like other elements, but by a dedicated icon.
 
-- In the `footer.json` file, you can define social networks, informations about your organization, and some links (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/footer.json).
+- In the `footer.json` file, you can define social networks, informations about your organization, and some links (see [example](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/footer.json)).
 
   - Social networks: `facebook`, `twitter`, `youtube`, `instagram` or `fallback`.
   - Contact information such as your name, address, phone number and email.
   - Links based on the key pair `label`/`url` (can be based on translation labels for multilingual) and/or the key `informationID` whose value is equal to a flatpage identifier.
 
-- `filter.json` to define filters to hide, their order and values (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/filter.json). If you want to :
+- `filter.json` to define filters to hide, their order and values (see [example](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/filter.json). If you want to :
 
   - Hide some of filters, you have to override their properties with `"display": false`.
   - Change the label for some filters, you need to define `translatedKey`, and copy the values into the translation files.
@@ -182,7 +182,7 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
   - The trek `networks` filter only works if yout version of Geotrek Admin is equal to or higher than [2.108.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.108.0)
   - The event `organizer` filter only works if your version of Geotrek Admin is equal to or higher than [2.100.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.100.0)
 
-- `map.json` to define basemaps URL and attributions, center (y, x), default and max zoom level (see example in https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json).
+- `map.json` to define basemaps URL and attributions, center (y, x), default and max zoom level (see [example](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json)).
 
   - `searchMapCenter`: Array of two numbers `[latitude, longitude]` defining the map center point in the search view,
   - `searchMapZoom`: Default value is `10`. It defines the zoom level in the search view. **Warning**: It is important that the `searchMapZoom` value is included in the zoom value range of the basemap (`minZoom` and `maxZoom`), otherwise it may generate an error.
@@ -191,13 +191,13 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
 
   You can also update the map layers. Three types of map layers are available: classic, satellite and offline. Each of them is structured as follows:
 
-  ```ts
+```typescript
   interface LayerObject {
     url: string; // Url of the layer. It needs to be a valid tiles server url or a geoJSON file
     options: TileLayerOptions; // See https://leafletjs.com/reference.html#tilelayer-option
     bounds: string; // Url of a geoJSON polygon to display this layer inside.
-  }
-  ```
+}
+```
 
   The `url` prop should be a valid tiles server to use as base map.
 
@@ -224,7 +224,11 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
     - `'negativeElevation'`,
     - `'courseType'`,
     - `'networks'`,
-      Default value is `"informations": ["difficulty", "duration", "distance", "positiveElevation"]`. See https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/resultCard.json.
+
+Default value is 
+`
+"informations": ["difficulty", "duration", "distance", "positiveElevation"]
+`. See [example](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/resultCard.json).
 
 - `redirects.json` to define URL rewriting for your instance. For example, you can use this customization to redirect old URL style (Geotrek-rando V2) to the new URL style (Geotrek-rando V3) or to redirect old URL to a new URL after changing the name of a hike in the backend.
 
@@ -234,9 +238,9 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
     - `destination`: must match to the new URL. Use `:varname` to inject a variable captured in the old URL
     - `permanent`: Set to `true` if the redirection is permanent. Set to `false` if the redirection is temporally. Default to `false`
 
-    Examples :
+Examples :
 
-    ```json
+```json
     {
       "rules": [
         {
@@ -254,17 +258,19 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
         }
       ]
     }
-    ```
+```
 
-    You can find more examples and more details following this link : https://nextjs.org/docs/api-reference/next.config.js/redirects
+You can find more examples and more details following [this link](https://nextjs.org/docs/api-reference/next.config.js/redirects).
 
-> [!WARNING]
+## Simple alerts
+
+> [!WARNING]  
 > - When setting up Google Analytics, you have to setup a flow. When setting up the flow, be careful to enter the corresponding url (the url of your website), otherwise the data will not be received.
 > - By default Google analytics is disabled (`googleAnalyticsId` set to `null`), you will have to override it in the `global.json` file of your customization folder.
 
 ## Colors
 
-You can override colors in `customization/theme/colors.json` file to change the main colors, based on https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/tailwind.config.js default theme.
+You can override colors in `customization/theme/colors.json` file to change the main colors, based on [tailwing default theme](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/tailwind.config.js).
 
 Example for Cevennes national park orange colors:
 
@@ -307,11 +313,11 @@ You can override CSS in `customization/theme/style.css` file. To help overriding
 - `flatPage_container` to isolate static flatpages
 
 In addition, some classes prefixed with `custo-*` are gradually being added to facilitate style overrides for components.
-A dedicated [ticket](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/1079) shows explanations and differents styling for the main menu (available since 3.19.0).
+A dedicated [ticket](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/1079) shows explanations and differents styling for the main menu (available since [3.19.0](https://github.com/GeotrekCE/Geotrek-rando-v3/releases/tag/v3.19.0)).
 
 ## Translations
 
-You can override every texts in translations files, based on default ones (https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/src/translations).
+You can override every texts in [translations files](https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/src/translations), based on default ones .
 
 You should at least override `home.title`, `home.description` and `home.welcome-text`.
 
@@ -325,7 +331,7 @@ These templates can be translated by using the language code as a suffix (e.g. `
 > [!NOTE]
 > If you want to display a message common to all languages but not to a particular language (e.g. french), just create the template suffixed with its language code (e.g. `-fr.html`) and leave it empty, and voilà!
 
-See examples in https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html.
+See examples in [customization file](https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html).
 
 #### Templates available on all pages
 
@@ -345,9 +351,9 @@ You can create your own templates to display practical information or widgets in
 
 1. Create a new file suffixed with `.html` in `customization/html/details/` (e.g. `example.html`) and fill the the content with html tags
 
-   ```html
-   <div>The id of this {{ type }} is {{ id }}</div>
-   ```
+```html
+<div>The id of this {{ type }} is {{ id }}</div>
+```
 
 You can define variables in "mustache templates" (meaning between brackets `{{ variable }}`) that will be converted once rendered. For the moment, there are 4 variables available:
 
@@ -356,12 +362,13 @@ You can define variables in "mustache templates" (meaning between brackets `{{ v
 - The code of the (departure) city `{{ cityCode }}`: useful for widgets such as forecast.
 - The language code `{{ language }}` The current language of the page.
 
-When choosing a template name, care must be taken not to select a reserved name used by sections defined by the application (e.g `presentation`, see https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/details.json).  
+When choosing a template name, care must be taken not to select a reserved name used by sections defined by the application (e.g `presentation`, see [example](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/details.json)).  
  If you do, the customized template will not be displayed.
 
 2. Copy the template name without the `.html` suffix into the `customization/html/details.json` file.  
-   For example I want to display it in treks and outdoor sites details page:
-   ```json
+For example I want to display it in treks and outdoor sites details page:
+
+```json
    {
      "sections": {
        "trek": [
@@ -382,16 +389,19 @@ When choosing a template name, care must be taken not to select a reserved name 
        ]
      }
    }
-   ```
+```
+
 3. Copy the section title/anchor into the translations files.  
-    For example in `customization/translations/en.json`:
-   ```json
+For example in `customization/translations/en.json`:
+
+```json
    {
      "details": {
        "example": "My example"
      }
    }
-   ```
+
+```
 
 You can take a look at `customization/html/details/forecastWidget.html` which shows the implementation.
 By default the "forecast widget" is enabled for all content types; if you want to remove it, you need to write it explicitly in the `customization/html/details.json` file.
@@ -442,7 +452,7 @@ You can also include some scripts:
 
 The scripts templates are intended for third party scripts. Unlike the HTML parts, there is not possibility of translations. More information on how to write them can be found in the [Scripts and GDPR documentation](customization-scripts-GDPR.md).
 
-If you want to include an external JSON feed (for external latest news for example), you can check this [https://github.com/GeotrekCE/Geotrek-rando-v3/issues/1157](example documentation).
+If you want to include an external JSON feed (for external latest news for example), you can check this [example](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/1157).
 
 ## Icons
 
@@ -450,7 +460,7 @@ Icons are provided by Geotrek-admin API. See [icons documentation](icons.md) to 
 
 ## Manifest.json
 
-There is a default `manifest.json` generated using the `applicationName` parameters of `global.json` and icons/images detailed in the next section below (See: https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/src/pages/manifest.json.tsx#L20).
+There is a default `manifest.json` generated using the `applicationName` parameters of `global.json` and icons/images detailed in the next section below (See [example](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/src/pages/manifest.json.tsx#L20)).
 You can complete it by creating `manifest.json` file in the `customization/config/` folder and filling it with the props to add and/or override.
 
 ## About the cache
