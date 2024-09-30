@@ -11,18 +11,19 @@ Geotrek-rando v3 is directly connected to Geotrek-admin v2 API.
 
 ## 💡 Introduction
 
-Read more in the [general presentation](./docs/presentation-fr.md).
+Read more in the [general presentation](./presentation-fr.md).
 
-## 🚀 Doc for administrators
+## 🚀 Customization
 
 - [Customization](./customization.md)
 - [Scripts and GDPR](./customization.md)
 - [Customize icons](./icons.md)
 
-## 🔧 Doc for developers
+## 🔧 Developer guide
 
 - [Installation on a dev machine](./installation.md)
 - [Installation in development](./development.md)
+- [Deployment](./deployment.md)
 
 ## ✨ Knowledge 
 
@@ -30,6 +31,11 @@ Read more in the [general presentation](./docs/presentation-fr.md).
 - [Debug mode](./knowledge/debug.md)
 - [Pages and navigation](./knowledge/pages-and-navigation.md)
 - [Server side rendering](./knowledge/server-side-rendering.md)
+
+## 🧱 Architecture decision record 
+
+- [Main framework](./adrs/main_framework.md)
+- [Deployment solution](./adrs/deployment_solution.md)
 
 ## 🪄 Getting started
 

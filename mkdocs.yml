@@ -1,7 +1,15 @@
 site_name: Geotrek-rando v3
+site_url: https://geotrek-rando-v3.readthedocs.io/latest/
+site_description: Geotrek-rando v3's documentation
+site_author: Geotrek's team
+repo_url: https://github.com/GeotrekCE/Geotrek-rando-v3/
+edit_uri: blob/main/docs/
 theme:
   name: readthedocs
   logo : img/logo.svg
+  color_mode: auto
+  user_color_mode_toggle: true
+  locale: en
   include_homepage_in_sidebar: false
   hljs_languages:
     - yaml
@@ -17,10 +25,15 @@ nav:
   - 🔧 Developer Guide: 
     - Installation: installation.md
     - Developement: development.md
+    - Deployment: deployment.md
   - ✨ Knowledge: 
       - Caching: knowledge/caching.md
       - Debug: knowledge/debug.md
       - Pages and navigation: knowledge/pages-and-navigation.md
       - Server side rendering: knowledge/server-side-rendering.md
+  - 🧱 Architecture decision record:
+      - Main framework: adrs/main_framework.md
+      - Deployment solution: adrs/deployment_solution.md
   - 📝 Changelog: 
     - Changelog: changelog.md
+copyright: Copyright &copy; 2024-<script>document.write(new Date().getFullYear())</script> <a href="https://makina-corpus.com/territoires">Makina Corpus Territoires</a>, Maintained by the <a href="https://makina-corpus.com/geotrek">Geotrek's Team</a>.
