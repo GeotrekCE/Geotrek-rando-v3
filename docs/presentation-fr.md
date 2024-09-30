@@ -3,7 +3,7 @@
 Geotrek-rando v3 est une PWA (Progressive Web App) permettant de mettre en ligne un portail web adapté aux différentes tailles d'écran, dont ceux des appareils mobiles (responsive design).
 Une PWA est aussi installable sur un appareil mobile directement depuis le navigateur (sans passer par les magasins d'applications Android, Apple et autres) et permet alors une expérience mobile enrichie, avec notamment du contenu disponible hors-ligne.
 
-Voir https://fr.wikipedia.org/wiki/Progressive_web_app pour en savoir plus sur les PWA.
+Cliquer sur [ce lien](https://fr.wikipedia.org/wiki/Progressive_web_app) pour en savoir plus sur les PWA.
 
 ## Page d'accueil
 
@@ -151,10 +151,10 @@ Il est aussi possible d'afficher sa localisation GPS sur la carte.
 ## Données
 
 L'application interagit directement avec les données présentes dans une instance de Geotrek-admin, en interrogeant dynamiquement son API. 
-Exemple de l'API du serveur de démonstration : https://geotrekdemo.ecrins-parcnational.fr/api/v2/.
+Exemple de l'[API du serveur de démonstration](https://geotrekdemo.ecrins-parcnational.fr/api/v2/).
 
 Pour cela, elle interroge des routes de l'API qui renvoient les objets de la base de données de Geotrek-admin en fonction des paramètres et informations demandées.
-Exemple de la route renvoyant les 10 premières randonnées publiées en français de la pratique 4 (pédestre) pour la page de recherche : https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?language=fr&page_size=10&page=1&practices=4&fields=id%2Cdeparture%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cattachments%2Cpractice%2Cdeparture_city
+[Exemple de la route](https://geotrekdemo.ecrins-parcnational.fr/api/v2/trek/?language=fr&page_size=10&page=1&practices=4&fields=id%2Cdeparture%2Cname%2Cthemes%2Cduration%2Clength_2d%2Cascent%2Cdifficulty%2Creservation_system%2Cattachments%2Cpractice%2Cdeparture_city) renvoyant les 10 premières randonnées publiées en français de la pratique 4 (pédestre) pour la page de recherche.
 
 Cela permet d'optimiser les chargements de données au strict nécessaire et ainsi d'améliorer les performances.
 Les modifications de données réalisées sur Geotrek-admin sont aussi repercutées instantanément sur le portail Geotrek-rando.
