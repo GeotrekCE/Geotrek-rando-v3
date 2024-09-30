@@ -8,5 +8,5 @@ You can also use the "Link" component from next, in order to perform a "client s
 
 References:
 
-- https://nextjs.org/docs/api-reference/next/link
-- https://nextjs.org/learn/basics/navigate-between-pages
+- [https://nextjs.org/docs/api-reference/next/link](https://nextjs.org/docs/api-reference/next/link)
+- [https://nextjs.org/learn/basics/navigate-between-pages](https://nextjs.org/learn/basics/navigate-between-pages)
