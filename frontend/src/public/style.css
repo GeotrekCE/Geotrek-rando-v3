@@ -324,5 +324,5 @@ details > summary.list-none::marker {
 }
 
 .custo-page-WYSIWYG .gallery-container figcaption {
-  @apply !mt-0 !h-12 desktop:h-40 absolute top-0 flex items-start justify-center pb-1 pt-3 px-2 bg-gradient-to-b from-blackSemiTransparent to-transparent text-white text-opacity-90 text-Mobile-C3 desktop:text-P2;
+  @apply !mt-0 !h-12 desktop:h-40 absolute bottom-0 flex items-start justify-center pb-1 pt-3 px-2 bg-gradient-to-t from-blackSemiTransparent to-transparent text-white text-opacity-90 text-Mobile-C3 desktop:text-P2;
 }
