@@ -1,7 +1,7 @@
 import { useId, useMemo } from 'react';
 import Loader from 'components/Loader';
 import Image from 'next/image';
-import parse, { DOMNode, Element } from 'html-react-parser';
+import parse, { DOMNode, domToReact, Element } from 'html-react-parser';
 import StyleToJS from 'style-to-js';
 import { Footer } from 'components/Footer';
 import { Separator } from 'components/Separator';
@@ -74,15 +74,24 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
           return (
             <Modal style={StyleToJS(style)}>
               {({ isFullscreen, toggleFullscreen }) => {
+                const Tag =
+                  domNode.parent instanceof Element && domNode.parent.tagName === 'figure'
+                    ? 'figure'
+                    : 'div';
                 return isFullscreen ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    loading="lazy"
-                    alt=""
-                    {...attribs}
-                    onClick={toggleFullscreen}
-                    className="object-center overflow-hidden size-full object-contain"
-                  />
+                  <Tag>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      loading="lazy"
+                      alt=""
+                      {...attribs}
+                      onClick={toggleFullscreen}
+                      className="object-center overflow-hidden size-full object-contain"
+                    />
+                    {Tag === 'figure' && domNode.next?.next instanceof Element && (
+                      <figcaption>{domToReact(domNode.next.next.children as DOMNode[])}</figcaption>
+                    )}
+                  </Tag>
                 ) : (
                   <button type="button" aria-haspopup="dialog" onClick={toggleFullscreen}>
                     <span className="sr-only">
