@@ -36,13 +36,14 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
     }
     return parse(flatPage.content, {
       replace: (domNode: DOMNode) => {
-        if (
+        const suggestionsSection =
           domNode instanceof Element &&
           domNode.attribs &&
           'data-ids' in domNode.attribs &&
           'data-type' in domNode.attribs &&
-          domNode.attribs.class.includes('suggestions')
-        ) {
+          domNode.attribs.class.includes('suggestions');
+
+        if (suggestionsSection) {
           const suggestion = activitySuggestions.find(
             item =>
               item.results.some(({ id }) => domNode.attribs['data-ids'].split(',').includes(id)) &&
@@ -60,12 +61,13 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
             />
           );
         }
-        if (
+        const imgTagWithoutLink =
           domNode instanceof Element &&
-          domNode.name === 'img' &&
+          domNode.tagName === 'img' &&
           domNode.parent instanceof Element &&
-          domNode.parent.tagName !== 'a'
-        ) {
+          domNode.parent.tagName !== 'a';
+
+        if (imgTagWithoutLink) {
           const { style, ...attribs } = domNode.attribs;
           if (!isMounted) {
             // eslint-disable-next-line @next/next/no-img-element
