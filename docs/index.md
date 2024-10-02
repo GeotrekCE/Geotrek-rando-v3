@@ -27,6 +27,7 @@ Read more in the [general presentation](./presentation-fr.md).
 
 - [Development installation](./development.md)
 - [Deployment](./deployment.md)
+- [Contributing](./contributing.md)
 
 ## ✨ Knowledge 
 

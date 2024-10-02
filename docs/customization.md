@@ -29,7 +29,7 @@ In json files, you can just override the primary keys you need. You have to over
     - `enableOutdoor`: boolean, default to false. Set it to true to enable Outdoor sites and courses
     - `groupTreksAndOutdoorFilters`: boolean, default to false. Groups treks and outdoor filters into a single tab. For this setting to work, `enableOutdoor` must be set to `true`.
     - `apiUrl` : Geotrek-admin API URL
-    - `privacyPolicyLink`: link of the privacy policy (More information in [GDPR documentation](customization-scripts-GDPR.md#GDPR)).
+    - `privacyPolicyLink`: link of the privacy policy (More information in [GDPR section](customization-scripts-GDPR.md#GDPR)).
     - `googleAnalyticsId`: eventual Google Analytics Id (to activate it, you must set `privacyPolicyLink`)
     - `googleSiteVerificationToken`: eventual code to enable Google Search Console and Google developer tools
     - `enableIndexation`: set this parameter to `false` to disable search engine indexing (default `true`)
@@ -71,9 +71,35 @@ In json files, you can just override the primary keys you need. You have to over
         "iconUrl" : string ; // Optional, url to replace default icon. Used only if "grouped" is set to "true",
       }
       ```
+!!! note
 
-More explanations in this [comments](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/560#issuecomment-1858166341) (in French).
+    **Activity bar customization**
 
+    - **Default Configuration**: The `activityBar` is enabled by default with four types of content (`trek`, `outdoorSite`, `touristicContent`, `touristicEvent`). Example configuration:
+    ```json
+      "activityBar": {
+      "shouldDisplay": true,
+      "numberOfItemsBeforeTruncation": 8,
+      "links": [
+        { "type": "trek", "grouped": false },
+        { "type": "outdoorSite", "grouped": false }
+      ]
+      }
+    ```
+    - **Reordering or Hiding Categories**: Adjust the order or hide certain categories by modifying the `links` array. For example, to display only `touristicContent` and `outdoorSite`:
+    ```json
+      "links": [
+        { "type": "touristicContent", "grouped": false },
+        { "type": "outdoorSite", "grouped": false }
+      ]
+    ```
+    - **Group Categories**: To group content types under a single button, set `grouped` to `true`:
+    ```json
+      "links": [
+        { "type": "trek", "grouped": true },
+        { "type": "touristicEvent", "grouped": true }
+      ]
+    ```
 
   - `suggestions`: You can define blocks to display suggestions groups with treks ID, outdoor sites ID, services ID or events ID to highlight on [homepage](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
     Each group has the following properties :
@@ -315,7 +341,74 @@ You can override CSS in `customization/theme/style.css` file. To help overriding
 - `flatPage_container` to isolate static flatpages
 
 In addition, some classes prefixed with `custo-*` are gradually being added to facilitate style overrides for components.
-A dedicated [ticket](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/1079) shows explanations and differents styling for the main menu (available since [3.19.0](https://github.com/GeotrekCE/Geotrek-rando-v3/releases/tag/v3.19.0)).
+
+!!! note
+    
+    **Explanations and differents styling for the main menu**
+
+    - The default requirements to use this feature are :
+
+        - [**Geotrek Rando 3.19.0**](https://github.com/GeotrekCE/Geotrek-rando-v3/releases/tag/v3.19.0)
+        - connected to a [**Geotrek Admin 2.104.0**](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.104.0)
+
+    - Since Geotrek Admin 2.104.0, you can define complex menu items. 
+
+    - If a submenu contains **fewer than 5 items**, or if **none of the items** in a submenu **contains an image**, the drop-down menu takes on the appearance of a **"small" menu**, if not the **"large" menu**. 
+
+    **Small Menu**
+
+    It looks just like the old one (i.e. before version 3.19.0) and you shouldn't have to override the style. 
+    But you can always use the `.custo-menu-*` classes to do so. 
+
+    ![image](https://github.com/GeotrekCE/Geotrek-rando-v3/assets/1926041/d1c6ae17-a09e-43f6-b146-9fa6d9bc818f)
+
+    **Large Menu**
+
+    To manage this complex menu, styles and elements are added to play with customization.
+    Please note that links in submenus are sorted into 2 groups: links without images (`custo-menu-group--without-imgs`) and links with images (`.custo-menu-group--with-imgs`). 
+
+    <ins>Default style<ins>
+
+    ![image](https://github.com/GeotrekCE/Geotrek-rando-v3/assets/1926041/b1f6a4d1-eb48-4273-8ccb-27630d66b5dc)
+
+    <ins>Example to balance photos<ins>
+
+    If you have more photos to display and want to balance the structure, you can for example add these selectors to your `customization/theme/style.css`.
+
+    ![image](https://github.com/GeotrekCE/Geotrek-rando-v3/assets/1926041/18ff34f3-9383-4859-9f85-576a8f3807ca)
+
+    ```css
+    .custo-menu-sub-menu {
+      align-items: start;
+    }
+    .custo-menu-sub-menu .custo-menu-group--with-imgs {
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 430px;
+    }
+    .custo-menu-sub-menu .custo-menu-group--with-imgs a {
+      flex-basis: 200px;
+    }
+
+    ```
+
+    <ins>Example for submenus taking up the entire width of the screen<ins>
+
+    ![image](https://github.com/GeotrekCE/Geotrek-rando-v3/assets/1926041/375f1d26-bed3-4708-a992-99625ee4b291)
+
+    ```css
+    .custo-menu-item-wrapper {
+      position: static;
+    }
+    .custo-menu-sub-menu {
+      top: 100%;
+      padding: 1rem 2rem;
+    }
+    /* Display links as row */
+    .custo-menu-group {
+      flex-direction: row;
+    }
+    ```
 
 ## Translations
 
@@ -325,7 +418,7 @@ You should at least override `home.title`, `home.description` and `home.welcome-
 
 ## HTML / Scripts
 
-### HTML templates :
+### HTML templates
 
 You can include some HTML parts in different sections of the layout application.  
 These templates can be translated by using the language code as a suffix (e.g. `homeTop-en.html` will be rendered only for the English interface). The application tries to find the localized template first, otherwise it tries the non-localized template, otherwise it displays nothing.  
@@ -453,7 +546,215 @@ You can also include some scripts:
 
 The scripts templates are intended for third party scripts. Unlike the HTML parts, there is not possibility of translations. More information on how to write them can be found in the [Scripts and GDPR documentation](customization-scripts-GDPR.md).
 
-If you want to include an external JSON feed (for external latest news for example), you can check this [example](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/1157).
+!!! note
+
+    If you want to display articles from another website, you can do so using custom HTML templates.
+
+    **Demo Screenshot** 
+      
+    ![image](https://github.com/GeotrekCE/Geotrek-rando-v3/assets/1926041/f3e8518f-6a74-4647-b485-a8eefeca8796)
+
+    **JSON Feed**
+
+    To retrieve data from another website, the well-known feeds are RSS or Atom, but the best format for communicating remains JSON, so we decided to develop a script that uses them all: [JSON Feed](https://www.jsonfeed.org/).
+     
+    So, if you wish to copy/paste the following codes into your customization but with your own feed, it must be formatted in JSON Feed or you must edit the following script to adapt it.
+
+    **Template**
+     
+    <ins>Common<ins>
+     
+    Let's try the following code and copy it into a template file like `customization/html/homeTop.html`:
+     
+    ```html
+    <div
+      data-widget="feed"
+      data-url="https://www.ecrins-parcnational.fr/flux_actus.json"
+      data-limit="6"
+      data-title="Découvrir les dernières actualités"
+    ></div>
+    ``` 
+    - `data-widget="feed"` (mandatory): all HTML tags with this data attribute and the value “feed” will be parsed by the corresponding script.
+    - `data-url` (mandatory): this is the feed source. If left blank, nothing happens.
+    - `data-limit` (optional - default `Infinity`): is the number of elements to be displayed.
+    - `data-title` (optional): allows to add a title to the section 
+
+
+    <ins>Internationalization<ins>
+
+    If the feed is only available in one language, we suggest you paste it only in the suffixed template: `homeTop-en.html`.
+    If you have feeds available in different languages, you can duplicate the template with the language code as a suffix as above, or you can use the `{{ language }}` variable.
+    Using the HTML example above, let's assume that JSON feeds are available via these urls `https://www.ecrins-parcnational.fr/en/flux_actus.json` for the English version and `https://www.ecrins-parcnational.fr/fr/flux_actus.json` for the French version. You can therefore only define `homeTop.html` with the following content:
+
+    ```html
+    <div
+      data-widget="feed"
+      data-url="https://www.ecrins-parcnational.fr/{{ language }}/flux_actus.json"
+    ></div>
+    ``` 
+
+    <ins>Widget in details page<ins>
+
+    It works in the same way.
+    You can create the file `customization/html/details/feedWidget.html` and paste the following template:
+    ```html
+    <div
+      data-widget="feed"
+      data-url="https://www.ecrins-parcnational.fr/flux_actus.json"
+      data-limit="6"
+    ></div>
+
+    ```
+    Don't forget to call the `feedWidget` in the desired details page in `customization/config/details.json`. 
+    ```json
+    {
+      "sections": {
+        "trek": [
+          {
+            "name": "feedWidget",
+            "display": true,
+            "anchor": true,
+            "order": 200
+          }
+        ]
+      }
+    }
+    ```
+
+    The main difference with the common template is that you don't have to define the `data-title` attribute, as the title is automatically defined in translated files under the key `details.[file-widget-name]`.
+    With our example, we need to add these lines in `customization/translations/fr.json` :
+
+
+    ```diff
+    {
+    +  "details": {
+    +    "feedWidget": "Actualités"
+    +  }
+    }
+    ```
+
+    **Script**
+
+    All this won't work without the associated script. You can copy/paste the script below into `customization/html/scriptsHeader.html`:
+
+    ```js
+    <script type="module">
+      async function getFeedContent(url) {
+        const storageUrl = 'feedWidget:' + url;
+        if (window[storageUrl]) {
+          return window[storageUrl];
+        }
+        if (!url) return null;
+        try {
+          const feedContent = await fetch(url).then(response => response.json());
+          window[storageUrl] = feedContent;
+          return feedContent;
+        } catch {
+          return null;
+        }
+      }
+      async function generateFeedTemplate(Widget) {
+        const {
+          dataset: { url, limit = 'Infinity', title },
+        } = Widget;
+
+        Widget.classList.add('empty:hidden');
+
+        const rawfeed = await getFeedContent(url);
+
+        if (!rawfeed) return;
+
+        // JSONFeed format
+        const feed = Array.isArray(rawfeed) ? rawfeed : rawfeed.items;
+
+        if (feed.length === 0) return;
+
+        const Title =
+          title &&
+          Object.assign(document.createElement('h3'), {
+            className: 'mb-2 desktop:mb-6 text-H2 desktop:text-H2 font-bold',
+            textContent: title,
+          });
+
+        const List = Object.assign(document.createElement('ul'), {
+          className:
+            'flex items-start gap-4 desktop:gap-6 overflow-x-auto overflow-y-hidden scroll-smooth snap-x pb-5 mt-4 mb-2',
+        });
+        feed.slice(0, limit).forEach(item => {
+          const Item = Object.assign(document.createElement('li'), {
+            className:
+              'relative border border-solid border-greySoft rounded-lg flex-none mx-1 overflow-hidden hover:border-blackSemiTransparent transition duration-500 w-70',
+          });
+          const image = item.image ?? item.banner_image;
+          const ItemImg =
+            image &&
+            Object.assign(document.createElement('img'), {
+              loading: 'lazy',
+              src: item.image ?? item.banner_image,
+              className: 'overflow-hidden size-full object-cover object-center',
+              alt: '',
+            });
+          const ItemContent = Object.assign(document.createElement('div'), {
+            className: 'flex flex-col gap-2 p-4',
+          });
+          const ItemTitle = Object.assign(document.createElement('h4'), {
+            className: 'text-xl',
+          });
+          const ItemLink = Object.assign(document.createElement('a'), {
+            className:
+              "text-primary1 hover:text-primary3 focus:text-primary3 before:content-[''] before:absolute before:inset-0",
+            href: item.url,
+            target: '_blank',
+            rel: 'noopener noreferrer',
+            textContent: item.title,
+          });
+          const date = new Intl.DateTimeFormat(document.documentElement.lang).format(
+            new Date(item.date_published),
+          );
+          const summary = item.summary ?? item.content_text;
+          let ItemSummary = summary
+            ? Object.assign(document.createElement('p'), {
+                className: 'line-clamp-2 desktop:line-clamp-5',
+                textContent: date + ' - ' + (item.summary ?? item.content_text),
+              })
+            : Object.assign(document.createElement('div'), {
+                className: 'content-WYSIWYG line-clamp-2 desktop:line-clamp-5',
+                innerHTML: date + item.content_html,
+              });
+
+          ItemTitle.append(ItemLink);
+          ItemContent.append(ItemTitle, ItemSummary);
+          ItemImg && Item.append(ItemImg);
+          Item.append(ItemContent);
+          List.append(Item);
+        });
+        Title && Widget.append(Title);
+        Widget.append(List);
+      }
+
+      function initFeedWidget() {
+        window.setTimeout(() => {
+          Array.from(document.querySelectorAll('[data-widget="feed"]'), generateFeedTemplate);
+        }, 200);
+      }
+
+      // Wait for the load of next router
+      const routeChange = setInterval(async function () {
+        if (window.next && window.next.router) {
+          window.next.router.events.on('routeChangeComplete', initFeedWidget);
+          initFeedWidget();
+          clearInterval(routeChange);
+        }
+      }, 100);
+    </script>
+    ```
+
+    **A few explanations about the script :**
+
+    - The first action is to add a `className` to the template in order to hide it if it is empty.
+    - If there is no `data-url` defined, or if there is an error when retrieving the data, or if the data returns 0 elements, the script stops execution and nothing is displayed.
+    - The source URL must provide a JSON feed format, otherwise it will try to loop inside as if the response were the contents of the `items` key of the JSON feed. **No other checks are made**, so if your JSON is not properly formatted, errors may occur.
+    - For the card content, it tries to get the value of `summary`, if this key has no value, it tries the value of `content_text`. And if this key also has no value, it finally tries with `content_html`.  Be careful with the last property: you have to trust the source because it executes a `innerHTML`.
 
 ## Icons
 
