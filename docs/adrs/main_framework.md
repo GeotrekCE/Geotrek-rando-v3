@@ -6,7 +6,8 @@
 
 ## Context and Problem Statement
 
-In order to produce a scalable, performant and efficient front, we need to choose the right framework head start.
+This analysis has been done in 2020, when we started redesigning Geotrek-rando globally, to choose the right technology.  
+In order to produce a scalable, performant and efficient front, we needed to choose the right framework head start.
 
 ## Decision Drivers sorted by priority
 
