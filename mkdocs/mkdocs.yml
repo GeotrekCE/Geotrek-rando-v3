@@ -145,6 +145,7 @@ nav:
   - 🔧 Development: 
     - Development installation: development.md
     - Deployment: deployment.md
+    - Contributing: contributing.md
   - ✨ Knowledge: 
       - Caching: knowledge/caching.md
       - Debug: knowledge/debug.md
