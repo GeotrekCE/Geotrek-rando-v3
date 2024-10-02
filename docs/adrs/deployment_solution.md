@@ -6,7 +6,8 @@
 
 ## Context and Problem Statement
 
-We need to have an easy way to deploy this server for it to be runnable on the most various environments.
+This analysis has been done in 2020, when we started redesigning Geotrek-rando globally, to choose the right technology.  
+We needed to have an easy way to deploy this server for it to be runnable on the most various environments.
 
 ## Decision Drivers sorted by priority
 
