@@ -329,8 +329,9 @@ You should at least override `home.title`, `home.description` and `home.welcome-
 You can include some HTML parts in different sections of the layout application.  
 These templates can be translated by using the language code as a suffix (e.g. `homeTop-en.html` will be rendered only for the English interface). The application tries to find the localized template first, otherwise it tries the non-localized template, otherwise it displays nothing.  
 
-> [!NOTE]
-> If you want to display a message common to all languages but not to a particular language (e.g. french), just create the template suffixed with its language code (e.g. `-fr.html`) and leave it empty, and voilà!
+!!! note
+
+    If you want to display a message common to all languages but not to a particular language (e.g. french), just create the template suffixed with its language code (e.g. `-fr.html`) and leave it empty, and voilà!
 
 See examples in [customization file](https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/customization/html).
 
