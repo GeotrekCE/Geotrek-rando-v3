@@ -42,6 +42,3 @@ Read more in the [general presentation](./presentation-fr.md).
 - Follow the [development](./development.md) docs
 - Head to [localhost:3000](http://localhost:3000)
 
-:::warning
-This is a warning
-:::

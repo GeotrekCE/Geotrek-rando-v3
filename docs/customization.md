@@ -264,9 +264,10 @@ You can find more examples and more details following [this link](https://nextjs
 
 ## Simple alerts
 
-> [!WARNING]  
-> - When setting up Google Analytics, you have to setup a flow. When setting up the flow, be careful to enter the corresponding url (the url of your website), otherwise the data will not be received.
-> - By default Google analytics is disabled (`googleAnalyticsId` set to `null`), you will have to override it in the `global.json` file of your customization folder.
+!!! warning
+
+    - When setting up Google Analytics, you have to setup a flow. When setting up the flow, be careful to enter the corresponding url (the url of your website), otherwise the data will not be received.
+    - By default Google analytics is disabled (`googleAnalyticsId` set to `null`), you will have to override it in the `global.json` file of your customization folder.
 
 ## Colors
 
@@ -296,9 +297,9 @@ It's also possible to change category colors :
   }
 }
 ```
+!!! note
 
-> [!NOTE]
-> If global config `groupTreksAndOutdoorFilters` is set to `true`, the `outdoor` color is ignored in favor of the `trek` color.
+    If global config `groupTreksAndOutdoorFilters` is set to `true`, the `outdoor` color is ignored in favor of the `trek` color.
 
 ## CSS
 
