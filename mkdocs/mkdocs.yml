@@ -137,13 +137,13 @@ nav:
   - 💡 Présentation: 
     - Presentation générale: presentation-fr.md
   - 🚀 Installation: 
-    - Installation in production: installation.md
+    - Production installation: installation.md
   - 🎨 Customization: 
     - Customization: customization.md
     - Scripts and GDPR: customization-scripts-GDPR.md
     - Icons : icons.md
   - 🔧 Development: 
-    - Installation in development: development.md
+    - Development installation: development.md
     - Deployment: deployment.md
   - ✨ Knowledge: 
       - Caching: knowledge/caching.md

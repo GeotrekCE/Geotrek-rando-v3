@@ -15,7 +15,7 @@ Read more in the [general presentation](./presentation-fr.md).
 
 ## 🚀 Installation
 
-- [Installation in production](./installation.md)
+- [Production installation](./installation.md)
 
 ## 🎨 Customization
 
@@ -25,7 +25,7 @@ Read more in the [general presentation](./presentation-fr.md).
 
 ## 🔧 Development
 
-- [Installation in development](./development.md)
+- [Development installation](./development.md)
 - [Deployment](./deployment.md)
 
 ## ✨ Knowledge 
