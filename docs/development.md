@@ -33,15 +33,6 @@ Once your dependencies are installed, start your server in development mode by r
 yarn dev
 ```
 
-## Contributing documentation
-
-To launch the readthedocs documentation in your local environment, run the following commands in the project root directory:
-
-- `pip3 install mkdocs`
-- `python3 -m mkdocs serve`
-
-You can also edit documentation files directly in Github.
-
 ## Customization
 
 To get the proper settings of the Geotrek-rando site in your local environnement :
