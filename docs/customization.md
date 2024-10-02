@@ -64,43 +64,43 @@ In json files, you can just override the primary keys you need. You have to over
       - `numberOfItemsBeforeTruncation` The number of items displayed on the screen. To see the others, click on the "Show more" button. Its default value is `8`.
       - `links`: Allows you to customize the order and display of categories links. It's an array containing an object with 3 properties :
 
-```typescript
-{
-  "type" : 'trek' | 'outdoorSite' | 'touristicContent' | 'touristicEvent' ;
-  "grouped" : boolean ; // If set to "true", all activities of the type are grouped under a single link.
-  "iconUrl" : string ; // Optional, url to replace default icon. Used only if "grouped" is set to "true",
-}
-```
+      ```typescript
+      {
+        "type" : 'trek' | 'outdoorSite' | 'touristicContent' | 'touristicEvent' ;
+        "grouped" : boolean ; // If set to "true", all activities of the type are grouped under a single link.
+        "iconUrl" : string ; // Optional, url to replace default icon. Used only if "grouped" is set to "true",
+      }
+      ```
 
 More explanations in this [comments](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/560#issuecomment-1858166341) (in French).
 
-- 
-    - `suggestions`: You can define blocks to display suggestions groups with treks ID, outdoor sites ID, services ID or events ID to highlight on [homepage](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
+
+  - `suggestions`: You can define blocks to display suggestions groups with treks ID, outdoor sites ID, services ID or events ID to highlight on [homepage](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/home.json).
     Each group has the following properties :
 
-```typescript
-{
-  "titleTranslationId": string: // you can use locales keys with the files inside `translations` folder
-  "iconUrl": string; // url to the icon file
-  "ids": string[]; // list of ids ,
+    ```typescript
+    {
+      "titleTranslationId": string: // you can use locales keys with the files inside `translations` folder
+      "iconUrl": string; // url to the icon file
+      "ids": string[]; // list of ids ,
       "type": 'trek' | 'service' | 'outdoor' | 'events'; // if not set, default to `trek`
-}
-```
+    }
+    ```
 
-Or you can define a suggestion block to display upcoming events, the structure is quite different:
+    Or you can define a suggestion block to display upcoming events, the structure is quite different:
 
-```typescript
-{
-  "titleTranslationId": string; // you can use locales keys with the files inside `translations` folder
-  "iconUrl": string; // url to the icon file
-  "numberOfItemsToDisplay": number; // Optional; If not defined all upcoming events will be displayed
-  "type": 'upcomingEvents';
-}
-```
+    ```typescript
+    {
+      "titleTranslationId": string; // you can use locales keys with the files inside `translations` folder
+      "iconUrl": string; // url to the icon file
+      "numberOfItemsToDisplay": number; // Optional; If not defined all upcoming events will be displayed
+      "type": 'upcomingEvents';
+    }
+    ```
 
   To define suggestions groups you need to build an `object` with the languages code as keys. By this way you can differentiate the valorization of a territory according to the selected language. If you don't need this feature (or if you want the same configuration for several language), use `default` key instead of a language code. The configuration in the example below displays 2 groups of suggestions for all languages except the English version with one different:
 
-```json
+  ```json
   "suggestions": {
     "default": [
       {
@@ -125,11 +125,11 @@ Or you can define a suggestion block to display upcoming events, the structure i
       },
     ]
   }
-```
+  ```
 
   PS: For backward compatibility you can still use an array, this is the same behavior that `object` with only a `default` key. For example:
 
-```json
+  ```json
   "suggestions": [
     {
       "titleTranslationId": "home.territoryTreks",
@@ -144,7 +144,7 @@ Or you can define a suggestion block to display upcoming events, the structure i
       "type": "events"
     },
   ]
-```
+  ```
 
   - In `welcomeBanner`, you can personnalize the cover on the homepage. You can add an asset on the top of the page: it can either be a video, a single picture or a carousel of images:
 
@@ -191,13 +191,13 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
 
   You can also update the map layers. Three types of map layers are available: classic, satellite and offline. Each of them is structured as follows:
 
-```typescript
+  ```ts
   interface LayerObject {
     url: string; // Url of the layer. It needs to be a valid tiles server url or a geoJSON file
     options: TileLayerOptions; // See https://leafletjs.com/reference.html#tilelayer-option
     bounds: string; // Url of a geoJSON polygon to display this layer inside.
-}
-```
+  }
+  ```
 
   The `url` prop should be a valid tiles server to use as base map.
 
@@ -238,9 +238,9 @@ Default value is
     - `destination`: must match to the new URL. Use `:varname` to inject a variable captured in the old URL
     - `permanent`: Set to `true` if the redirection is permanent. Set to `false` if the redirection is temporally. Default to `false`
 
-Examples :
+    Examples :
 
-```json
+    ```json
     {
       "rules": [
         {
@@ -258,7 +258,8 @@ Examples :
         }
       ]
     }
-```
+    ```
+
 
 You can find more examples and more details following [this link](https://nextjs.org/docs/api-reference/next.config.js/redirects).
 
@@ -353,9 +354,9 @@ You can create your own templates to display practical information or widgets in
 
 1. Create a new file suffixed with `.html` in `customization/html/details/` (e.g. `example.html`) and fill the the content with html tags
 
-```html
-<div>The id of this {{ type }} is {{ id }}</div>
-```
+   ```html
+   <div>The id of this {{ type }} is {{ id }}</div>
+   ```
 
 You can define variables in "mustache templates" (meaning between brackets `{{ variable }}`) that will be converted once rendered. For the moment, there are 4 variables available:
 
@@ -368,9 +369,9 @@ When choosing a template name, care must be taken not to select a reserved name 
  If you do, the customized template will not be displayed.
 
 2. Copy the template name without the `.html` suffix into the `customization/html/details.json` file.  
-For example I want to display it in treks and outdoor sites details page:
+   For example I want to display it in treks and outdoor sites details page:
 
-```json
+   ```json
    {
      "sections": {
        "trek": [
@@ -391,19 +392,17 @@ For example I want to display it in treks and outdoor sites details page:
        ]
      }
    }
-```
+   ```
 
 3. Copy the section title/anchor into the translations files.  
-For example in `customization/translations/en.json`:
-
-```json
+    For example in `customization/translations/en.json`:
+   ```json
    {
      "details": {
        "example": "My example"
      }
    }
-
-```
+   ```
 
 You can take a look at `customization/html/details/forecastWidget.html` which shows the implementation.
 By default the "forecast widget" is enabled for all content types; if you want to remove it, you need to write it explicitly in the `customization/html/details.json` file.
