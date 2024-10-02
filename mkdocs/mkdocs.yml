@@ -8,6 +8,7 @@ edit_uri: blob/main/docs/
 # Repository
 repo_name: GeotrekCE/Geotrek-rando-v3/
 repo_url: https://github.com/GeotrekCE/Geotrek-rando-v3/
+docs_dir: ../docs 
 
 # Configuration
 theme:

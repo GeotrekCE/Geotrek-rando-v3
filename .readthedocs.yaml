@@ -9,6 +9,10 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.12"
-    
+
+python:
+  install:
+    - requirements: ./mkdocs/requirements.txt
+
 mkdocs:
-  configuration: mkdocs.yml
+  configuration: ./mkdocs/mkdocs.yml
