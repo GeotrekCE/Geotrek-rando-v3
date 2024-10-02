@@ -60,9 +60,10 @@
 
 - Install semver package
 
+
 ## 3.22.0 (2024-09-17)
 
-### :warning: **WARNING!** :warning:
+⚠️ Warning
 
 **Do not use - docker installation will not work. Please install version 3.22.1 (or higher) instead**
 
@@ -93,6 +94,7 @@
 **🐛 Fixes**
 
 - Fix display of mobile menu sub-filters (#1006 #1235)
+
 
 ## 3.21.1 (2024-07-29)
 

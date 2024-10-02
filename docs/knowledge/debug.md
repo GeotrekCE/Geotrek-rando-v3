@@ -1,5 +1,9 @@
 # Debug
 
+- Date created: 2020-12-31
+
+## Debug mode
+
 In order to launch your server in debug mode, you can execute
 
 ```bash
