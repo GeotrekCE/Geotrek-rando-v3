@@ -1,5 +1,9 @@
 # Pages and navigation
 
+- Date created: 2020-12-31
+
+## Context
+
 In Next, whenever a file is created into the `src/pages` folder, the server consider it as a "page" and will automatically handle routing.
 
 Therefore, you can navigate from a page to another by hreferencing its route, this will trigger "server side" navigation.

@@ -9,19 +9,22 @@ The third version is a full redesign and rewriting of Geotrek-rando with React, 
 
 Geotrek-rando v3 is directly connected to Geotrek-admin v2 API.
 
-## 💡 Introduction
+## 💡 Présentation
 
 Read more in the [general presentation](./presentation-fr.md).
 
-## 🚀 Customization
+## 🚀 Installation
+
+- [Installation in production](./installation.md)
+
+## 🎨 Customization
 
 - [Customization](./customization.md)
 - [Scripts and GDPR](./customization.md)
 - [Customize icons](./icons.md)
 
-## 🔧 Developer guide
+## 🔧 Development
 
-- [Installation on a dev machine](./installation.md)
 - [Installation in development](./development.md)
 - [Deployment](./deployment.md)
 

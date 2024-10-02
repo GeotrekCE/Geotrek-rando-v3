@@ -22,11 +22,11 @@ theme:
     - content.code.copy
     - content.tabs.link
     - content.tooltips
-    - header.autohide
-    - navigation.expand
+    # header.autohide
+    # navigation.expand
     - navigation.indexes
-    - navigation.sections
-    - navigation.tabs
+    # navigation.sections
+    # navigation.tabs
     - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
@@ -34,7 +34,7 @@ theme:
     - search.share
     - search.suggest
     - toc.follow
-    # - toc.integrate
+    # toc.integrate
   palette:
    # - Dark Mode
     - media: "(prefers-color-scheme: dark)"
@@ -134,15 +134,16 @@ markdown_extensions:
 # Page tree
 nav:
   - Home: index.md
-  - 💡 Introduction: 
-    - Presentation: presentation-fr.md
-  - 🚀 Customization: 
+  - 💡 Présentation: 
+    - Presentation générale: presentation-fr.md
+  - 🚀 Installation: 
+    - Installation in production: installation.md
+  - 🎨 Customization: 
     - Customization: customization.md
     - Scripts and GDPR: customization-scripts-GDPR.md
     - Icons : icons.md
-  - 🔧 Developer Guide: 
-    - Installation: installation.md
-    - Development: development.md
+  - 🔧 Development: 
+    - Installation in development: development.md
     - Deployment: deployment.md
   - ✨ Knowledge: 
       - Caching: knowledge/caching.md
@@ -153,4 +154,4 @@ nav:
       - Main framework: adrs/main_framework.md
       - Deployment solution: adrs/deployment_solution.md
   - 📝 Changelog: 
-    - Changelog: changelog.md
+    - Release notes: changelog.md

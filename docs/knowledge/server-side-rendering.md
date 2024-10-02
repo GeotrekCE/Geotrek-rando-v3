@@ -1,4 +1,8 @@
-## Server side rendering
+# Server side rendering
+
+- Date created: 2020-12-31
+
+## Context
 
 Using Next, we can query data during three lifecycles:
 

@@ -1,5 +1,9 @@
 # Caching
 
+- Date created: 2021-12-17
+
+## Context
+
 There are 2 caching strategies at work on this project.
 
 ## Service worker cache
