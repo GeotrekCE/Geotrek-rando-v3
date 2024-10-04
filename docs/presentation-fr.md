@@ -174,7 +174,7 @@ Différents éléments de l'aspect du portail et de son contenu peuvent être cu
 - Le contenu du pied de page (footer)
 - La carte, son centrage, les fonds utilisés.
 
-Voir la [documentation sur la customisation](customization.md) pour en savoir plus.
+Voir la [rubrique sur la customisation](./customization/customization-introduction.md) pour en savoir plus.
 
 ## Référencement
 
