@@ -1,34 +1,4 @@
-# Scripts and GDPR
-
-## Executing external scripts
-
-You can inject additional scripts into your app by creating the following files:
-
-- `customization/html/scriptsHeader.html`: scripts injected in the `<head>` of the document.
-- `customization/html/scriptsFooter.html`: scripts injected just before the `</body>` end tag.
-
-Within each of these templates you need you can write one or more `<script>` tags.
-
-```html
-<script>
-  console.log("hello");
-</script>
-```
-
-The above example will be executed once the page is loaded and each time the browser is hard reloaded. Due to the application's dynamic router, the script will not be executed on a **page change**.
-
-If you need to execute the script on every page change you need to attach an event listener.
-
-```html
-<script>
-  window.next.router.events.on("routeChangeComplete", function (url) {
-    console.log(`hello ${url}`);
-  });
-</script>
-```
-
-> [!NOTE]
-> In Geotrek-rando prior to version 3.15.4, the `window.next` object is **not yet loaded** when scripts are run. You must therefore find a strategy to wait for it before attaching the event listener.
+# GDPR
 
 ## GDPR
 
@@ -127,13 +97,21 @@ To avoid this, one solution is to check the user's acceptance in the cookies.
 </script>
 ```
 
+## Simple alerts
+
+!!! warning
+
+    - When setting up Google Analytics, you have to setup a flow. When setting up the flow, be careful to enter the corresponding url (the url of your website), otherwise the data will not be received.
+    - By default Google analytics is disabled (`googleAnalyticsId` set to `null`), you will have to override it in the `global.json` file of your customization folder.
+
+
 ### Modal consent
 
 On the user's first visit, if there are at least one `type="opt-in"` script and there is no saved cookie of the user's preferance, the consent modal is displayed.  
 Once the user has made his choice, it is no longer displayed.
 
 If the user wished to modify his consent, a "Change cookie preference" button is located in the footer's app. If there is no third-party script, this button is not displayed.  
-It's also possible te define a button anywhere in a [custom HTML template](customization.md#html--scripts). You need to define a `button` tag with `data-trigger-consent-modal` attribute.
+It's also possible te define a button anywhere in a [custom HTML template](./customization-htmlscripts.md). You need to define a `button` tag with `data-trigger-consent-modal` attribute.
 
 For example:
 
