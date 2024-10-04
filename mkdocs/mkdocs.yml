@@ -139,13 +139,18 @@ nav:
   - 🚀 Installation: 
     - Production installation: installation.md
   - 🎨 Customization: 
-    - Customization: customization.md
-    - Scripts and GDPR: customization-scripts-GDPR.md
-    - Icons : icons.md
+    - Introduction: customization/customization-introduction.md
+    - Settings: customization/customization-settings.md
+    - Theme and style: customization/customization-themestyles.md
+    - Icons : customization/customization-icons.md
+    - Translation: customization/customization-translation.md
+    - HTML and scripts: customization/customization-htmlscripts.md
+    - GDPR: customization/customization-gdpr.md
+    - Media management: customization/customization-mediamanagement.md
   - 🔧 Development: 
-    - Development installation: development.md
-    - Deployment: deployment.md
-    - Contributing: contributing.md
+    - Development installation: development/development.md
+    - Deployment: development/deployment.md
+    - Contributing: development/contributing.md
   - ✨ Knowledge: 
       - Caching: knowledge/caching.md
       - Debug: knowledge/debug.md

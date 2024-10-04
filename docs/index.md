@@ -19,15 +19,20 @@ Read more in the [general presentation](./presentation-fr.md).
 
 ## 🎨 Customization
 
-- [Customization](./customization.md)
-- [Scripts and GDPR](./customization.md)
-- [Customize icons](./icons.md)
+- [Introduction](customization/customization-introduction.md)
+- [Settings](customization/customization-settings.md)
+- [Theme and style](customization/customization-themestyles.md)
+- [Icons](customization/customization-icons.md)
+- [Translation](customization/customization-translation.md)
+- [HTML and scripts](customization/customization-htmlscripts.md)
+- [GDPR](customization/customization-gdpr.md)
+- [Media management](customization/customization-mediamanagement.md)
 
 ## 🔧 Development
 
-- [Development installation](./development.md)
-- [Deployment](./deployment.md)
-- [Contributing](./contributing.md)
+- [Development installation](./development/development.md)
+- [Deployment](./development/deployment.md)
+- [Contributing](./development/contributing.md)
 
 ## ✨ Knowledge 
 
@@ -43,6 +48,6 @@ Read more in the [general presentation](./presentation-fr.md).
 
 ## 🪄 Getting started
 
-- Follow the [development](./development.md) docs
+- Follow the [development](./development/development.md) docs
 - Head to [localhost:3000](http://localhost:3000)
 

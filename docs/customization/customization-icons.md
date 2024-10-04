@@ -16,13 +16,13 @@ Because of that, they have to be :
 
 **Default activity icons**, not modified, are visible in search filter list or on map 
 
-![Activity Icon on filter list](assets/iconFilterList.png)
+![Activity Icon on filter list](../assets/iconFilterList.png)
 
 Here the "Alpinisme" icon should have been white by default.
 
 **Modified activity icons** are visible on activity bar on home or details page:
 
-![Activity Icon modified on home](assets/iconHome.png)
+![Activity Icon modified on home](../assets/iconHome.png)
 
 - They are in grey instead of white.
 - If the initial icon has several colors, they will be lost here.
@@ -38,8 +38,8 @@ Another light color can be used, but the icon has to be visible on a background 
 
 **_Good icon example :_**
 
-![Icon good example](assets/iconGoodExample.png)
+![Icon good example](../assets/iconGoodExample.png)
 
 **_Bad icon example :_** jpg with no transparent background, "orange square" visible:
 
-![Icon wrong example](assets/iconWrongExample.png)
+![Icon wrong example](../assets/iconWrongExample.png)

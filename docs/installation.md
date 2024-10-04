@@ -40,7 +40,7 @@ You will have to download the Installer of Geotrek-rando and its customization f
 
 - Create a folder to install your Geotrek-rando (`/home/myuser/geotrekrando` for instance) and go in this folder
 - On your server, download the [Geotrek-rando-installer repository](https://github.com/GeotrekCE/Geotrek-rando-v3-installer) version you want: `wget https://github.com/GeotrekCE/Geotrek-rando-v3-installer/archive/vX.Y.Z.zip` (replace `X.Y.Z` with the version of Geotrek-rando-v3-installer that is compatible with the Geotrek-rando-v3 version you want to use) and unzip it. You can also git clone it (`git pull https://github.com/GeotrekCE/Geotrek-rando-v3-installer.git`)
-- Update the files in the `/customization` folder according to your structure (See [customization documentation](customization.md))
+- Update the files in the `/customization` folder according to your structure (See [customization documentation](./customization/customization-settings.md))
 - Go in the root folder of your Geotrek-rando-v3-installer and run the Docker container with launching `docker-compose up -d`
 - Your Geotrek-rando is now available at the address of your server on 8080 port (e.g. http://myserver:8080)
 

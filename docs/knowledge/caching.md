@@ -4,6 +4,11 @@
 
 ## Context
 
+When new types of content are added (example: activities, type of places information, label, etc.), the related hiking pages then appear in error on the Geotrek-Rando website. This issue only exists in case of new content categories being added, not with every content update.
+Simply restart the site to force the cache update or wait a few hours for the cache to reset.
+
+It is also possible to completely disable Geotrek-Rando's cache but this may impact performance when loading pages. 
+
 There are 2 caching strategies at work on this project.
 
 ## Service worker cache
