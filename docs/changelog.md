@@ -1,5 +1,31 @@
 # Changelog
 
+## 3.23.0 (2024-10-08)
+
+**✨ Improvements**
+
+- Style the new image gallery feature for Flatpage content (Available since Geotrek admin 2.109.2) (#1265)
+- Improve tooltip content style for annotation HDViewpoints (#1260)
+- Add className on annotation HDViewpoints pathes to CSS customization purpose (#1260)
+
+**🔧 Maintenance**
+
+- Bump react and react-dom from 18.2.0 to 18.3.1 (#1269)
+- Bump next from 13.1.6 to 13.2.4 (#1268)
+- Bump @sentry/nextjs from 7.12.1 to 8.32.0 (#1268)
+- Install sharp package (#1262)
+- Update caniuse-lite (#1261)
+- Bump react-leaflet from 3.1.0 to 4.2.1 (#1258)
+- Replace react-leaflet-markercluster by next-leaflet-cluster package (#1258)
+- Bump @types/leaflet from 1.7.5 to 1.9.12 (#1258)
+- Bump @raruto/leaflet-elevation from 1.7.0 to 1.9.0 (#1258)
+- Bump leaflet.offline from 3.0.1 to 3.1.0 (#1258)
+- Bump @20tab/react-leaflet-resetview from 1.0.1 to 1.1.0 (#1258)
+
+**🐛 Fixes**
+
+- Fix the itinerancyStep display on the map - regression since 3.20.0 (#1259)
+
 ## 3.22.1 (2024-09-17)
 
 **🐛 Fixes**
@@ -8,7 +34,7 @@
 
 ## 3.22.0 (2024-09-17)
 
-# :warning: **WARNING!** :warning:
+### :warning: **WARNING!** :warning:
 
 **Do not use - docker installation will not work. Please install version 3.22.1 (or higher) instead**
 
