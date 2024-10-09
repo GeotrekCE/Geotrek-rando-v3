@@ -135,7 +135,7 @@ markdown_extensions:
 nav:
   - Home: index.md
   - 💡 Présentation: 
-    - Presentation générale: presentation-fr.md
+    - Présentation générale: presentation-fr.md
   - 🚀 Installation: 
     - Production installation: installation.md
   - 🎨 Customization: 
