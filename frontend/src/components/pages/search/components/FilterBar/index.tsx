@@ -36,7 +36,7 @@ const FilterBar: React.FC<Props> = ({
   const { FILTERS_CATEGORIES } = useFilterBar();
 
   return (
-    <div className="flex items-center shadow-lg bg-white z-20 border-l border-gresySoft">
+    <div className="sticky top-desktopHeader flex items-center shadow-lg bg-white z-20 border-l border-gresySoft">
       <div className="inline-block ml-4 mr-4 flex items-center">
         <Filter size={24} className="text-primary1" aria-hidden />
         <span className="uppercase text-primary1 ml-2">

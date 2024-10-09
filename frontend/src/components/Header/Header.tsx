@@ -3,7 +3,6 @@ import { FormattedMessage } from 'react-intl';
 import { routes } from 'services/routes';
 
 import { Link } from 'components/Link';
-import { Display } from 'hooks/useHideOnScrollDown';
 
 import InlineMenu from 'components/InlineMenu';
 import { GoToSearchButton } from 'components/GoToSearchButton';
@@ -15,11 +14,6 @@ import { useHeader } from './useHeader';
 export const Header: React.FC = () => {
   const menuNode = useRef<HTMLDivElement | null>(null);
   const { config, menuItems, isDesktopMenu, intl } = useHeader(menuNode);
-  /**
-   * Disabled for now to handle the map on the search page
-   */
-  // const headerState = useHideOnScrollDown(sizes.desktopHeader);
-  const headerState: Display = 'DISPLAYED';
 
   const headerTop = config.headerTopHtml[intl.locale] ?? config.headerTopHtml.default;
   const headerBottom = config.headerBottomHtml[intl.locale] ?? config.headerBottomHtml.default;
@@ -31,14 +25,7 @@ export const Header: React.FC = () => {
           <HtmlParser template={headerTop} />
         </div>
       )}
-      <header
-        className={cn(
-          'sticky z-header bg-primary1',
-          headerState === 'DISPLAYED' ? 'top-0' : '-top-desktopHeader',
-        )}
-        role="banner"
-        id="header"
-      >
+      <header className="sticky z-header bg-primary1 top-0" role="banner" id="header">
         <div className="h-11 desktop:h-desktopHeader flex justify-between  items-center sticky z-header px-3 shadow-sm shrink-0 transition-all duration-300 delay-100">
           <Link href={routes.HOME} className="flex items-center">
             <div className="shrink-0" id="header_logo">
@@ -75,7 +62,7 @@ export const Header: React.FC = () => {
         <BurgerMenu
           className={cn(isDesktopMenu && 'hidden')}
           config={config.menu}
-          displayState={headerState}
+          displayState="DISPLAYED"
           menuItems={menuItems}
         />
       </header>
