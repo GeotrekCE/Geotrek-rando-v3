@@ -69,6 +69,7 @@ const nextConfig = {
   },
   experimental: {
     instrumentationHook: true,
+    scrollRestoration: true,
   },
 };
 
