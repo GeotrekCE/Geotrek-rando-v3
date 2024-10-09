@@ -98,7 +98,7 @@ const FilterField: React.FC<Props> = ({
       />
       <div
         className={cn(
-          'fixed left-0 right-0 bg-white p-8 shadow-inner z-[101]',
+          'fixed left-0 right-0 top-headerAndFilterBar bg-white p-8 shadow-inner z-[101]',
           expanded ? 'block' : 'hidden',
         )}
       >

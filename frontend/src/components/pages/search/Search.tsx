@@ -151,10 +151,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
         />
       )}
 
-      <div
-        className="flex flex-col h-[calc(100vh-theme(height.desktopHeader))]"
-        id="search_container"
-      >
+      <div className="flex flex-col" id="search_container">
         {!isMobile && (
           <FilterBarNew
             dateFilter={dateFilter}
@@ -166,11 +163,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
             language={language}
           />
         )}
-        <div className="flex flex-row flex-1 overflow-y-hidden">
-          <div
-            id="search_resultCardList"
-            className="flex flex-col w-full desktop:w-1/2 overflow-y-scroll"
-          >
+        <div className="flex flex-row flex-1">
+          <div id="search_resultCardList" className="flex flex-col w-full desktop:w-1/2">
             <div className="p-4 flex-1">
               <Loader loaded={!isLoading}>
                 <div className="flex flex-col desktop:flex-row desktop:justify-between">
