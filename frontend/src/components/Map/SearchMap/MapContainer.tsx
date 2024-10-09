@@ -1,6 +1,5 @@
 import { getMapConfig } from 'components/Map/config';
 import { MapContainer as LeafMapContainer } from 'react-leaflet';
-import React, { memo } from 'react';
 import { Map } from 'leaflet';
 
 interface Props {
@@ -28,4 +27,4 @@ const MapContainer: React.FC<Props> = ({ children, whenCreated, hasZoomControl =
   );
 };
 
-export default memo(MapContainer, () => true);
+export default MapContainer;
