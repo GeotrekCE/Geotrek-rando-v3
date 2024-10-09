@@ -1,5 +1,9 @@
 # Server side rendering
 
+- Date created: 2020-12-31
+
+## Context
+
 Using Next, we can query data during three lifecycles:
 
 - At build time to get static files
@@ -32,7 +36,7 @@ Keep in mind that everything returned by the getServerSideProps function will be
 
 References:
 
-- https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
-- https://github.com/kirill-konshin/next-redux-wrapper
-- https://github.com/kirill-konshin/next-redux-wrapper#usage-with-redux-saga
-- https://github.com/vercel/next.js/tree/canary/examples/with-redux-saga
+- [https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering)
+- [https://github.com/kirill-konshin/next-redux-wrapper](https://github.com/kirill-konshin/next-redux-wrapper)
+- [https://github.com/kirill-konshin/next-redux-wrapper#usage-with-redux-saga](https://github.com/kirill-konshin/next-redux-wrapper#usage-with-redux-saga)
+- [https://github.com/vercel/next.js/tree/canary/examples/with-redux-saga](https://github.com/vercel/next.js/tree/canary/examples/with-redux-saga)
