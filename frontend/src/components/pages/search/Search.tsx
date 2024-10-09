@@ -47,7 +47,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   const { subMenuState, selectFilter, hideSubMenu, currentFilterId } = useFilterSubMenu();
   const { menuState, displayMenu, hideMenu, filtersList } = useFilterMenu(selectFilter);
 
-  const { bboxState, handleMoveMap } = useBbox();
+  const { bounds, handleMoveMap } = useBbox();
 
   const isMobile = useMediaPredicate('(max-width: 1024px)');
 
@@ -76,7 +76,16 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-  } = useTrekResults({ filtersState, textFilterState, bboxState, dateFilter, page }, language);
+  } = useTrekResults(
+    {
+      filtersState,
+      textFilterState,
+      bboxState: bounds?.toBBoxString() ?? null,
+      dateFilter,
+      page,
+    },
+    language,
+  );
 
   const { pageTitle, resultsTitle } = useTitle(filtersState, searchResults?.resultsNumber);
 
