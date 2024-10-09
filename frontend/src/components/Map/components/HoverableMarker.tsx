@@ -2,6 +2,7 @@ import getActivityColor from 'components/pages/search/components/ResultCard/getA
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import React, { ReactNode, useMemo } from 'react';
 import { Marker } from 'react-leaflet';
+import { LatLngTuple } from 'leaflet';
 import { TrekChildMarker } from '../Markers/TrekChildMarker';
 import { TrekMarker } from '../Markers/TrekMarker';
 
@@ -9,7 +10,7 @@ const ZOOM_RATIO = 1.5;
 
 interface BaseProps {
   id: string;
-  position: [number, number];
+  position: LatLngTuple;
   children?: ReactNode;
   onMouseOver?: () => void;
   onMouseOut?: () => void;

@@ -131,7 +131,7 @@ export interface Bbox {
 }
 
 export interface TrekResultWithGeometryChild extends TrekResult {
-  childGeometry?: TrekChildGeometry;
+  childrenGeometries?: TrekChildGeometry;
 }
 export interface RawTrekChildGeometry {
   geometry: RawLineStringGeometry3D | RawMultiLineStringGeometry3D | RawPointGeometry3D;

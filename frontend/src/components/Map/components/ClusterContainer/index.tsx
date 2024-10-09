@@ -1,7 +1,6 @@
+import ClusterGroup from 'next-leaflet-cluster';
 import { getMapConfig } from 'components/Map/config';
-import React from 'react';
-import MarkerClusterGroup from 'react-leaflet-markercluster';
-import { ClusterMarker } from '../../Markers/Cluster';
+import { ClusterMarker } from 'components/Map/Markers/Cluster';
 
 interface ClusterContainerProps {
   children: React.ReactNode;
@@ -21,25 +20,18 @@ const clusteringMaxZoom = getMapConfig().maximumZoomLevel;
 /**
  * Wraps MarkerClusterGroup to enable/disable it easily
  */
-export const ClusterContainer: React.FC<ClusterContainerProps> = ({ children, enabled }) => {
-  // All MarkerClusterGroup props options are here: (the lib is not properly typed yet)
-  // https://github.com/Leaflet/Leaflet.markercluster#all-options
-
-  // The issue: https://github.com/yuzhva/react-leaflet-markercluster/issues
-
-  return (
-    <MarkerClusterGroup
-      iconCreateFunction={ClusterMarker}
-      maxClusterRadius={
-        enabled
-          ? (zoom: number) =>
-              zoom <= clusterRadiusThreshold ? lowZoomClusterRadius : highZoomClusterRadius
-          : 0
-      }
-      disableClusteringAtZoom={clusteringMaxZoom}
-      spiderfyOnMaxZoom={true}
-    >
-      {children}
-    </MarkerClusterGroup>
-  );
-};
+export const ClusterContainer: React.FC<ClusterContainerProps> = ({ children, enabled }) => (
+  <ClusterGroup
+    iconCreateFunction={ClusterMarker}
+    maxClusterRadius={
+      enabled
+        ? (zoom: number) =>
+            zoom <= clusterRadiusThreshold ? lowZoomClusterRadius : highZoomClusterRadius
+        : 0
+    }
+    disableClusteringAtZoom={clusteringMaxZoom}
+    spiderfyOnMaxZoom
+  >
+    {children}
+  </ClusterGroup>
+);

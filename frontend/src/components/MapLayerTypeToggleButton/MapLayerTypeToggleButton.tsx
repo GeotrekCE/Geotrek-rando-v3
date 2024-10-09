@@ -1,7 +1,7 @@
-import { SquaredButtonWithImage } from 'components/SquaredButtonWithImage/SquaredButtonWithImage';
-import { ControlPosition } from 'leaflet';
 import { useState } from 'react';
+import { ControlPosition } from 'leaflet';
 import Control from 'components/Map/components/CustomControl';
+import { SquaredButtonWithImage } from 'components/SquaredButtonWithImage/SquaredButtonWithImage';
 
 export type TileLayerType = 'classic' | 'satellite';
 

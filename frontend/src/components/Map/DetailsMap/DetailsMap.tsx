@@ -32,22 +32,23 @@ import { OutdoorSiteResult } from 'modules/outdoorSite/interface';
 import { OutdoorCourseResult } from 'modules/outdoorCourse/interface';
 import { cn } from 'services/utils/cn';
 import { BackToMapButton } from 'components/BackToMapButton';
-import { BackButton } from '../components/BackButton';
 
-import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
-import { getMapConfig } from '../config';
-import { AltimetricProfile } from '../components/AltimetricProfile';
-import { ControlSection } from '../components/ControlSection';
-import { useDetailsMap } from './useDetailsMap';
+import { BackButton } from 'components/Map/components/BackButton';
+import { AltimetricProfile } from 'components/Map/components/AltimetricProfile';
+import { ControlSection } from 'components/Map/components/ControlSection';
+import DetailsMapDrawer from 'components/Map/components/DetailsMapDrawer';
+import { ResetView } from 'components/Map/components/ResetView';
+import TileLayerManager from 'components/Map/components/TileLayerManager';
+import FullscreenControl from 'components/Map/components/FullScreenControl';
+import ViewPointHD from 'components/Map/components/ViewPointHD';
+import { CRSPixel } from 'components/Map/components/ViewPointHD/CRSPixel';
+import { AnnotationList } from 'components/Map/components/ViewPointHD/AnnotationList';
+import LocateControl from 'components/Map/components/LocateControl';
+
 import { MapChildren, PointWithIcon } from './MapChildren';
-import DetailsMapDrawer from '../components/DetailsMapDrawer';
-import { ResetView } from '../components/ResetView';
-import TileLayerManager from '../components/TileLayerManager';
-import FullscreenControl from '../components/FullScreenControl';
-import ViewPointHD from '../components/ViewPointHD';
-import { CRSPixel } from '../components/ViewPointHD/CRSPixel';
-import { AnnotationList } from '../components/ViewPointHD/AnnotationList';
-import LocateControl from '../components/LocateControl';
+import { useDetailsMap } from './useDetailsMap';
+import { getMapConfig } from '../config';
+import { TrekMarkersAndCourse } from './TrekMarkersAndCourse';
 
 export interface GeometryListProps {
   geometry:
@@ -189,7 +190,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
           navigator.onLine ? undefined : Math.min(...(mapConfig?.zoomAvailableOffline ?? []))
         }
         zoomControl={props.hasZoomControl}
-        whenCreated={setMapInstance}
+        ref={setMapInstance}
         bounds={bounds}
         {...(mapToDisplay !== 'default' && { crs: CRSPixel(mapToDisplay) })}
       >
@@ -198,7 +199,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
             <FormattedMessage id="report.mapButton.validate" />
           </BackButton>
         ) : (
-          <BackButton icon={<ArrowLeft size={24} />} onClick={hideMap} />
+          <BackButton icon={<ArrowLeft size={18} />} onClick={hideMap} />
         )}
         {props.hasZoomControl && <FullscreenControl />}
         {mapToDisplay !== 'default' && (

@@ -27,7 +27,7 @@ const option = ({ needsConsent, triggerConsentModal }: ParserOptionsProps) => ({
       const props = attributesToProps(domNode.attribs);
       return (
         <button {...props} onClick={triggerConsentModal}>
-          {domToReact(domNode.children)}
+          {domToReact(domNode.children as DOMNode[])}
         </button>
       );
     }

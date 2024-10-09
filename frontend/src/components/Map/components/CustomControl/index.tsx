@@ -3,7 +3,7 @@ import { useMap } from 'react-leaflet';
 import L, { ControlPosition } from 'leaflet';
 import ReactDOM from 'react-dom';
 
-interface CustomControlProps {
+export interface CustomControlProps {
   children: React.ReactNode;
   position?: ControlPosition;
   name?: string;

@@ -27,7 +27,13 @@ const plugins = [
   [withPWA],
   [withSourceMaps()],
   [withBundleAnalyzer],
-  nextConfig => withSentryConfig(nextConfig, { silent: true }),
+  nextConfig =>
+    withSentryConfig(nextConfig, {
+      hideSourceMaps: true,
+      disableServerWebpackPlugin: true,
+      disableClientWebpackPlugin: true,
+      silent: true,
+    }),
 ];
 
 const nextConfig = {
@@ -53,11 +59,6 @@ const nextConfig = {
     locales: mergedHeaderConfig.menu.supportedLanguages,
     defaultLocale: mergedHeaderConfig.menu.defaultLanguage,
   },
-  sentry: {
-    hideSourceMaps: true,
-    disableServerWebpackPlugin: true, //process.env.SENTRY_DSN === undefined,
-    disableClientWebpackPlugin: true, //process.env.SENTRY_DSN === undefined,
-  },
   publicRuntimeConfig: getAllConfigs,
   images: {
     remotePatterns: [
@@ -65,6 +66,9 @@ const nextConfig = {
         hostname: '*',
       },
     ],
+  },
+  experimental: {
+    instrumentationHook: true,
   },
 };
 
