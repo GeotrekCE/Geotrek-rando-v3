@@ -1,5 +1,4 @@
 import { Header } from 'components/Header';
-import ConditionallyRender from 'components/ConditionallyRender';
 import Loader from 'components/Loader';
 import Head from 'next/head';
 import { useNavigationLoader } from './useRedirection';
@@ -12,16 +11,10 @@ export const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <>
       <Head>{scriptsHeader && <>{scriptsHeader}</>}</Head>
-      <div className="flex flex-col min-h-full">
+      <div className="flex flex-col min-h-dvh">
         <Header />
-        <main className="relative grow">
-          <ConditionallyRender client>
-            <Loader loaded={!isNavigationLoading} className="z-loader absolute inset-0">
-              {children}
-            </Loader>
-          </ConditionallyRender>
-          <ConditionallyRender server>{children}</ConditionallyRender>
-        </main>
+        <main className="relative grow">{children}</main>
+        <Loader loaded={!isNavigationLoading} className="bg-white z-loader fixed inset-0"></Loader>
       </div>
       {scriptsFooter && <>{scriptsFooter}</>}
     </>
