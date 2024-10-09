@@ -1,7 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next';
 import router, { useRouter } from 'next/router';
 import { DetailsUI } from 'components/pages/details';
-import { useEffect } from 'react';
 import { dehydrate, QueryCache, QueryClient } from '@tanstack/react-query';
 import { getDetails, getTrekFamily } from 'modules/details/connector';
 import { isUrlString } from 'modules/utils/string';
@@ -34,7 +33,10 @@ export const getServerSideProps: GetServerSideProps = async context => {
       queryFn: () => getCommonDictionaries(locale),
     });
 
-    await queryClient.prefetchQuery({ queryKey: ['details', id, locale], queryFn: () => getDetails(id, locale, commonDictionaries) });
+    await queryClient.prefetchQuery({
+      queryKey: ['details', id, locale],
+      queryFn: () => getDetails(id, locale, commonDictionaries),
+    });
 
     const details = queryClient.getQueryData<Details>(['details', id, locale]);
 
@@ -44,7 +46,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
     });
 
     if (details !== undefined) {
-
       const redirect = redirectIfWrongUrl(
         id,
         details.title,
@@ -54,9 +55,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
       );
       if (redirect)
         return {
-      redirect,
-    };
-  }
+          redirect,
+        };
+    }
 
     return {
       props: {
@@ -80,11 +81,6 @@ const Trek: NextPage<Props> = ({ errorCode }) => {
   const { query, locale } = useRouter();
   const { slug, parentId } = query;
   const language = locale ?? getDefaultLanguage();
-
-  useEffect(() => {
-    // Force to scroll top on page refresh
-    window.history.scrollRestoration = 'manual';
-  }, []);
 
   if (errorCode === 404) return <Custom404 />;
 
