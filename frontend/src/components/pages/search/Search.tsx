@@ -93,11 +93,19 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     language,
   );
 
-  const { setPoints } = useListAndMapContext();
+  const { setPoints, setSearchBbox, isNavigatedByBrowser } = useListAndMapContext();
 
   useEffect(() => {
-    if (mapResults) setPoints(mapResults);
+    if (mapResults) {
+      setPoints(mapResults);
+    }
   }, [mapResults, setPoints]);
+
+  useEffect(() => {
+    if (bounds && !isNavigatedByBrowser) {
+      setSearchBbox(bounds);
+    }
+  }, [bounds, isNavigatedByBrowser, setSearchBbox]);
 
   const intl = useIntl();
 
