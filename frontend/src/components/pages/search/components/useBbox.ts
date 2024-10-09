@@ -3,19 +3,19 @@ import { getGlobalConfig } from 'modules/utils/api.config';
 import { useState } from 'react';
 
 interface ReturnType {
-  bboxState: string | null;
+  bounds: LatLngBounds | null;
   handleMoveMap: (bounds: LatLngBounds) => void;
 }
 
 const useBbox = (): ReturnType => {
-  const [bboxState, setBboxState] = useState<string | null>(null);
+  const [bounds, setBboxState] = useState<LatLngBounds | null>(null);
 
-  const handleMoveMap = (bounds: LatLngBounds) => {
-    if (getGlobalConfig().enableSearchByMap) setBboxState(bounds.toBBoxString());
+  const handleMoveMap = (nextBounds: LatLngBounds) => {
+    if (getGlobalConfig().enableSearchByMap) setBboxState(nextBounds);
   };
 
   return {
-    bboxState,
+    bounds,
     handleMoveMap,
   };
 };
