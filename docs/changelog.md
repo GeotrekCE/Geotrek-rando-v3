@@ -1,12 +1,5 @@
 # Changelog
 
-3.23.1 (XXXX-XX-XX)
-----------------------------
-
-**📝 Documentation**
-
-- Add Material for Mkdocs [documentation](https://geotrek-rando-v3.readthedocs.io/latest/)
-
 ## 3.23.0 (2024-10-08)
 
 **✨ Improvements**
