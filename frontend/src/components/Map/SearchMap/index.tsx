@@ -13,6 +13,8 @@ import { ResetView } from 'components/Map/components/ResetView';
 import TileLayerManager from 'components/Map/components/TileLayerManager';
 import FullscreenControl from 'components/Map/components/FullScreenControl';
 import LocateControl from 'components/Map/components/LocateControl';
+import { useListAndMapContext } from 'modules/map/ListAndMapContext';
+import BoundsHandler from './BoundsHandler';
 
 export type PropsType = {
   segments?: { x: number; y: number }[];
@@ -35,6 +37,7 @@ const SearchMap: React.FC<PropsType> = props => {
   };
 
   const { setMapInstance } = useTileLayer();
+  const { searchBbox, isNavigatedByBrowser } = useListAndMapContext();
 
   return (
     <MapContainer whenCreated={setMapInstance} hasZoomControl={props.hasZoomControl}>
@@ -44,6 +47,8 @@ const SearchMap: React.FC<PropsType> = props => {
       <FilterButton openFilterMenu={props.openFilterMenu} />
       {props.hasZoomControl === true && <FullscreenControl />}
       <ResetView />
+      {/* Must be below ResetView */}
+      {isNavigatedByBrowser && <BoundsHandler bounds={searchBbox} />}
       <ScaleControl />
       <LocateControl />
       <SearchMapChildrens {...props} />
