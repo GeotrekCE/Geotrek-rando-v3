@@ -27,13 +27,14 @@ export const adaptViewPoints = async (
       return {
         annotations: {
           ...viewpoint.annotations,
-          features: viewpoint.annotations.features.map(feature => ({
-            ...feature,
-            properties: {
-              ...feature.properties,
-              category: categories?.[feature.properties?.category] || null,
-            },
-          })),
+          features:
+            viewpoint.annotations.features?.map(feature => ({
+              ...feature,
+              properties: {
+                ...feature.properties,
+                category: categories?.[feature.properties?.category] || null,
+              },
+            })) ?? [],
         },
         id: String(viewpoint.id),
         author: viewpoint.author,
