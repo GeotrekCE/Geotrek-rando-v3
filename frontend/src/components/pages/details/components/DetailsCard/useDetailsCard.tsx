@@ -66,6 +66,7 @@ export const useDetailsCard = (hasMedia = false) => {
     debouncedResize();
     global.addEventListener('resize', handleResize);
     return () => {
+      debouncedResize.clear();
       global.removeEventListener('resize', handleResize);
     };
   }, [debouncedResize]);
