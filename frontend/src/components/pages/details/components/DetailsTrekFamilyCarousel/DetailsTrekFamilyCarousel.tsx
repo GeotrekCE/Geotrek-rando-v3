@@ -25,7 +25,7 @@ export const DetailsTrekFamilyCarousel: React.FC<DetailsTrekFamilyCarouselProps>
       prevArrow={<Arrow isPrev />}
       nextArrow={<Arrow />}
       swipe={false}
-      slidesToShow={3}
+      slidesToShow={trekChildren.length > 2 ? 3 : 2}
       slidesToScroll={2}
       initialSlide={initialSlideId}
       className="my-1.5 !flex items-center desktop:my-3"
