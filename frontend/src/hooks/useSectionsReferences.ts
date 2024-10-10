@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { DetailsSections, DetailsSectionsPosition } from 'components/pages/details/useDetails';
 import debounce from 'debounce';
 import { getDimensions } from 'components/pages/details/utils';
@@ -22,7 +22,7 @@ const useSectionsReferences = () => {
       [sectionName],
     );
 
-  const handleResize = useCallback(
+  const handleResize = useMemo(
     () =>
       debounce(
         () => {
@@ -49,6 +49,7 @@ const useSectionsReferences = () => {
     global.addEventListener('resize', handleResize);
     global.addEventListener('scroll', handleResize);
     return () => {
+      handleResize.clear();
       global.removeEventListener('resize', handleResize);
       global.removeEventListener('scroll', handleResize);
     };
