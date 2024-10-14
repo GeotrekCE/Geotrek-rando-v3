@@ -1,4 +1,4 @@
-# Geotrek-rando v3
+# Geotrek-rando
 
 ![Search](img/home_ecrins.png)
 
@@ -7,9 +7,9 @@ Demo available at [https://gtr3demo.ecrins-parcnational.fr](https://gtr3demo.ecr
 
 The third version is a full redesign and rewriting of Geotrek-rando with React, and NextJS for Server side rendering (SSR) and SEO.
 
-Geotrek-rando v3 is directly connected to Geotrek-admin v2 API.
+Geotrek-rando is directly connected to Geotrek-admin v2 API.
 
-## 💡 Présentation
+## 💡 Présentation (french)
 
 Read more in the [general presentation](./presentation-fr.md).
 
