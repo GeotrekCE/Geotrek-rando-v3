@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.23.1 (2024-10-14)
+
+**🔧 Maintenance**
+
+- Remove typesafe-actions package (#1278)
+
+**🐛 Fixes**
+
+- Fix annotations viewpoint with no features (#1275)
+- Display figcaption for flatpage single image (#1276)
+- Fix childrenTrek navigation if there are only 2 items (#1277)
+
 ## 3.23.0 (2024-10-08)
 
 **✨ Improvements**
