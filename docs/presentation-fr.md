@@ -1,6 +1,6 @@
 # Présentation
 
-Geotrek-rando v3 est une PWA (Progressive Web App) permettant de mettre en ligne un portail web adapté aux différentes tailles d'écran, dont ceux des appareils mobiles (responsive design).
+Geotrek-rando est une PWA (Progressive Web App) permettant de mettre en ligne un portail web adapté aux différentes tailles d'écran, dont ceux des appareils mobiles (responsive design).
 Une PWA est aussi installable sur un appareil mobile directement depuis le navigateur (sans passer par les magasins d'applications Android, Apple et autres) et permet alors une expérience mobile enrichie, avec notamment du contenu disponible hors-ligne.
 
 Cliquer sur [ce lien](https://fr.wikipedia.org/wiki/Progressive_web_app) pour en savoir plus sur les PWA.
