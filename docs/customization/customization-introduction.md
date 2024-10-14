@@ -2,7 +2,7 @@
 
 You can override default settings, colors, CSS, HTML and translations in your own `customization` folder.
 
-See the [general presentation](../presentation-fr.md) for an overview of the application.
+See the [general presentation](../presentation-fr.md) (french) for an overview of the application.
 
 After each customization changes, you'll have to restart the Docker container by running `docker-compose restart`.
 
