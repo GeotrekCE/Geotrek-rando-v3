@@ -1,9 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 import { cn } from 'services/utils/cn';
 
-type LoaderProps = {
-  className?: string;
-  children?: React.ReactNode;
+type LoaderProps = React.HTMLAttributes<HTMLDivElement> & {
   loaded?: boolean;
 };
 
@@ -47,13 +45,17 @@ const classNameAnimation = (index: number) => {
 };
 
 // Loader from https://loading.io/css/
-const Loader: React.FC<LoaderProps> = ({ className = '', loaded = false, children = '' }) => {
+const Loader: React.FC<LoaderProps> = ({ className, loaded = false, children = null }) => {
   if (loaded === true) {
-    return <>{children}</>;
+    return children;
   }
   return (
-    <div className={`flex size-full justify-center items-center text-primary1 ${className}`}>
-      <p className="sr-only" aria-live="polite">
+    <div
+      className={cn('flex size-full justify-center items-center text-primary1', className)}
+      role="status"
+      aria-live="polite"
+    >
+      <p className="sr-only">
         <FormattedMessage id="loading" />
       </p>
       <div className="relative inline-block size-15">
@@ -61,7 +63,7 @@ const Loader: React.FC<LoaderProps> = ({ className = '', loaded = false, childre
           <div
             key={index}
             className={cn(
-              'animate-[pulse_1.2s_linear_infinite] origin-[30px_30px]',
+              'animate-[pulse_1.2s_linear_infinite] origin-[30px_30px] will-change-transform',
               classNameAnimation(index),
               "after:content-[''] after:block after:absolute after:top-1 after:left-7 after:w-1 after:h-3 after:rounded-lg after:bg-current",
             )}
