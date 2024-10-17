@@ -15,7 +15,7 @@ Read more in the [general presentation](./presentation-fr.md).
 
 ## 🚀 Installation
 
-- [Production installation](./installation.md)
+- [Production setup](./installation.md)
 
 ## 🎨 Customization
 
@@ -30,7 +30,7 @@ Read more in the [general presentation](./presentation-fr.md).
 
 ## 🔧 Development
 
-- [Development installation](./development/development.md)
+- [Installation](./development/installation.md)
 - [Deployment](./development/deployment.md)
 - [Contributing](./development/contributing.md)
 
@@ -48,6 +48,6 @@ Read more in the [general presentation](./presentation-fr.md).
 
 ## 🪄 Getting started
 
-- Follow the [development](./development/development.md) docs
+- Follow the [development](./development/installation.md) docs
 - Head to [localhost:3000](http://localhost:3000)
 
