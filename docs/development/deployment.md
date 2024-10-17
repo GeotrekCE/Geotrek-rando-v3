@@ -69,4 +69,4 @@ docker push ghcr.io/geotrekce/geotrek-rando-v3/geotrek-rando-prebuild:latest && 
 
 ### Pull the container on your machine and run it
 
-Follow the steps described in [the install on your own machine documentation](./installation.md).
+Follow the steps described in [the install on your own machine documentation](./../installation.md).

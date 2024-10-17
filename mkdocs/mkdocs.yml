@@ -1,0 +1,163 @@
+# Project information
+site_name: Geotrek-rando v3 documentation
+site_url: https://geotrek-rando-v3.readthedocs.io/latest/
+site_description: Geotrek-rando v3 documentation
+site_author: Geotrek's community
+edit_uri: blob/main/docs/
+
+# Repository
+repo_name: GeotrekCE/Geotrek-rando-v3/
+repo_url: https://github.com/GeotrekCE/Geotrek-rando-v3/
+docs_dir: ../docs 
+
+# Configuration
+theme:
+  name: material
+  features:
+    - navigation.footer
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - content.tooltips
+    # header.autohide
+    # navigation.expand
+    - navigation.indexes
+    # navigation.sections
+    # navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    # toc.integrate
+  palette:
+   # - Dark Mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Dark mode
+      primary: green
+      accent: light green
+  # Light Mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Light mode
+      primary: green
+      accent: light green
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: img/favicon.ico
+  logo: img/logo.svg
+  icon:
+    icon:
+      admonition:
+        note: octicons/tag-16
+        abstract: octicons/checklist-16
+        info: octicons/info-16
+        tip: octicons/squirrel-16
+        success: octicons/check-16
+        question: octicons/question-16
+        warning: octicons/alert-16
+        failure: octicons/x-circle-16
+        danger: octicons/zap-16
+        bug: octicons/bug-16
+        example: octicons/beaker-16
+        quote: octicons/quote-16
+
+# Additional configuration
+extra:
+  status:
+    new: Recently added
+    deprecated: Deprecated
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/GeotrekCE/Geotrek-rando-v3/
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/geotrek-application
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      auto_append:
+        - includes/mkdocs.md
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: GeotrekCE
+      repo: Geotrek-rando-v3
+  # - pymdownx.arithmatex:
+  #     generic: true
+  # - pymdownx.betterem:
+  #     smart_enable: all
+  # - pymdownx.caret
+  # - pymdownx.keys
+  # - pymdownx.mark
+  # - pymdownx.smartsymbols
+  # - pymdownx.tasklist:
+  #     custom_checkbox: true
+  # - pymdownx.tilde
+
+# Page tree
+nav:
+  - Home: index.md
+  - 💡 Présentation: 
+    - Présentation générale: presentation-fr.md
+  - 🚀 Installation: 
+    - Production setup: installation.md
+  - 🎨 Customization: 
+    - Introduction: customization/customization-introduction.md
+    - Settings: customization/customization-settings.md
+    - Theme and style: customization/customization-themestyles.md
+    - Icons : customization/customization-icons.md
+    - Translation: customization/customization-translation.md
+    - HTML and scripts: customization/customization-htmlscripts.md
+    - GDPR: customization/customization-gdpr.md
+    - Media management: customization/customization-mediamanagement.md
+  - 🔧 Development: 
+    - Installation: development/installation.md
+    - Deployment: development/deployment.md
+    - Contributing: development/contributing.md
+  - ✨ Knowledge: 
+      - Caching: knowledge/caching.md
+      - Debug: knowledge/debug.md
+      - Pages and navigation: knowledge/pages-and-navigation.md
+      - Server side rendering: knowledge/server-side-rendering.md
+  - 🧱 Architecture decision record:
+      - Main framework: adrs/main_framework.md
+      - Deployment solution: adrs/deployment_solution.md
+  - 📝 Changelog: 
+    - Release notes: changelog.md
