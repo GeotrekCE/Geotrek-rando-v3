@@ -137,7 +137,7 @@ nav:
   - 💡 Présentation: 
     - Présentation générale: presentation-fr.md
   - 🚀 Installation: 
-    - Production installation: installation.md
+    - Production setup: installation.md
   - 🎨 Customization: 
     - Introduction: customization/customization-introduction.md
     - Settings: customization/customization-settings.md
@@ -148,7 +148,7 @@ nav:
     - GDPR: customization/customization-gdpr.md
     - Media management: customization/customization-mediamanagement.md
   - 🔧 Development: 
-    - Development installation: development/development.md
+    - Installation: development/installation.md
     - Deployment: development/deployment.md
     - Contributing: development/contributing.md
   - ✨ Knowledge: 
