@@ -28,7 +28,7 @@ If you have a little time to read the [translations files](https://github.com/Ge
 If your language doesn't appear in the list, please don't hesitate to [open an issue](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/new).
 
 ### Feature request
-- Make a fork of the projet and then install it following the [installation](/docs/development/installation.md) guide.
+- Make a fork of the projet and then install it following the [installation](./installation.md) guide.
 - During and after the developement process, you can check your code is correct by using:
 	- `yarn lint`
  	- `yarn tsc`
