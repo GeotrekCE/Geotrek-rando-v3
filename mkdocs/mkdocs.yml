@@ -114,17 +114,17 @@ markdown_extensions:
       slugify: !!python/object/apply:pymdownx.slugs.slugify
         kwds:
           case: lower
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: GeotrekCE
+      repo: Geotrek-rando-v3
   # - pymdownx.arithmatex:
   #     generic: true
   # - pymdownx.betterem:
   #     smart_enable: all
   # - pymdownx.caret
   # - pymdownx.keys
-  # - pymdownx.magiclink:
-  #     normalize_issue_symbols: true
-  #     repo_url_shorthand: true
-  #     user: squidfunk
-  #     repo: mkdocs-material
   # - pymdownx.mark
   # - pymdownx.smartsymbols
   # - pymdownx.tasklist:
