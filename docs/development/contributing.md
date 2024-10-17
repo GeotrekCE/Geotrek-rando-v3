@@ -1,6 +1,17 @@
 # Contributing
 
-Before contributing, look for a related [issue](https://github.com/GeotrekCE/Geotrek-rando-v3/issues) (or open a new one) and discuss it with the community (is it a bug or a feature? What's the best way to achieve the goal?)
+## Reporting bugs or requesting features
+
+If you encounter any bugs or have suggestions for new features, you can create a ticket in the GitHub issues section. Here's how to proceed:
+
+1. Visit the [issue creation page](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/new).
+2. Select the appropriate template for your issue (bug report, feature request, etc.).
+3. Provide a clear and detailed description of the issue or the new feature you'd like to see implemented :
+
+	- For bugs: Include steps to reproduce the problem, the expected behavior, and any relevant error messages or logs.
+	- For feature requests: Clearly describe the functionality you are proposing and why it would benefit the project.
+
+The development team will review the ticket and follow up with any questions or updates.
 
 ## Contributing to the Geotrek Rando product
 
@@ -48,16 +59,3 @@ To preview the documentation locally in your environment, follow these steps:
    ```
 4. The local instance of the documentation will be accessible on port 8000 at:  
    [http://127.0.0.1:8000/latest/](http://127.0.0.1:8000/latest/)
-
-## Reporting bugs or requesting features
-
-If you encounter any bugs or have suggestions for new features, you can create a ticket in the GitHub issues section. Here's how to proceed:
-
-1. Visit the [issue creation page](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/new).
-2. Select the appropriate template for your issue (bug report, feature request, etc.).
-3. Provide a clear and detailed description of the issue or the new feature you'd like to see implemented :
-
-	- For bugs: Include steps to reproduce the problem, the expected behavior, and any relevant error messages or logs.
-	- For feature requests: Clearly describe the functionality you are proposing and why it would benefit the project.
-
-The development team will review the ticket and follow up with any questions or updates.
