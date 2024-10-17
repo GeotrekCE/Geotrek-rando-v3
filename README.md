@@ -1,55 +1,53 @@
-# Geotrek-rando V3
+# Geotrek-rando
 
-![Search](https://geotrek.ecrins-parcnational.fr/images/gtr3-04-search.jpg)
+![Search](img/home_ecrins.png)
 
 Geotrek-rando is the public web application displaying the interface you can use to value your territory treks and tourism products! 
-Demo available at https://gtr3demo.ecrins-parcnational.fr.
+Demo available at [https://gtr3demo.ecrins-parcnational.fr](https://gtr3demo.ecrins-parcnational.fr).
 
 The third version is a full redesign and rewriting of Geotrek-rando with React, and NextJS for Server side rendering (SSR) and SEO.
 
-Geotrek-rando v3 is directly connected to Geotrek-admin v2 API.
+Geotrek-rando is directly connected to Geotrek-admin v2 API.
 
 ## 💡 Présentation (french)
 
-Read more in the [general presentation](https://geotrek-rando-v3.readthedocs.io/latest/presentation-fr/).
+Read more in the [general presentation](./presentation-fr.md).
 
 ## 🚀 Installation
 
-- [Production installation](https://geotrek-rando-v3.readthedocs.io/latest/installation/)
+- [Production setup](./installation.md)
 
 ## 🎨 Customization
 
-- [Introduction](https://geotrek-rando-v3.readthedocs.io/latest/customization/customization-introduction/)
-- [Settings](https://geotrek-rando-v3.readthedocs.io/latest/customization/customization-settings/)
-- [Theme and style](https://geotrek-rando-v3.readthedocs.io/latest/customization/customization-themestyles/)
-- [Icons](https://geotrek-rando-v3.readthedocs.io/latest/customization/customization-icons/)
-- [Translation](https://geotrek-rando-v3.readthedocs.io/latest/customization/customization-translation/)
-- [HTML and scripts](https://geotrek-rando-v3.readthedocs.io/latest/customization/customization-htmlscripts/)
-- [GDPR](https://geotrek-rando-v3.readthedocs.io/latest/customization/customization-gdpr/)
-- [Media management](https://geotrek-rando-v3.readthedocs.io/latest/customization/customization-mediamanagement/)
+- [Introduction](customization/customization-introduction.md)
+- [Settings](customization/customization-settings.md)
+- [Theme and style](customization/customization-themestyles.md)
+- [Icons](customization/customization-icons.md)
+- [Translation](customization/customization-translation.md)
+- [HTML and scripts](customization/customization-htmlscripts.md)
+- [GDPR](customization/customization-gdpr.md)
+- [Media management](customization/customization-mediamanagement.md)
 
 ## 🔧 Development
 
-- [Development installation](https://geotrek-rando-v3.readthedocs.io/latest/development/development/)
-- [Deployment](https://geotrek-rando-v3.readthedocs.io/latest/development/deployment/)
-- [Contributing](https://geotrek-rando-v3.readthedocs.io/latest/development/contributing/)
+- [Installation](./development/installation.md)
+- [Deployment](./development/deployment.md)
+- [Contributing](./development/contributing.md)
 
 ## ✨ Knowledge 
 
-- [Caching strategies](https://geotrek-rando-v3.readthedocs.io/latest/knowledge/caching/)
-- [Debug mode](https://geotrek-rando-v3.readthedocs.io/latest/knowledge/debug/)
-- [Pages and navigation](https://geotrek-rando-v3.readthedocs.io/latest/knowledge/pages-and-navigation/)
-- [Server side rendering](https://geotrek-rando-v3.readthedocs.io/latest/knowledge/server-side-rendering/)
+- [Caching strategies](./knowledge/caching.md)
+- [Debug mode](./knowledge/debug.md)
+- [Pages and navigation](./knowledge/pages-and-navigation.md)
+- [Server side rendering](./knowledge/server-side-rendering.md)
 
 ## 🧱 Architecture decision record 
 
-- [Main framework](https://geotrek-rando-v3.readthedocs.io/latest/adrs/main_framework/)
-- [Deployment solution](https://geotrek-rando-v3.readthedocs.io/latest/adrs/deployment_solution/)
+- [Main framework](./adrs/main_framework.md)
+- [Deployment solution](./adrs/deployment_solution.md)
 
 ## 🪄 Getting started
 
-- Follow the [development](https://geotrek-rando-v3.readthedocs.io/latest/development/development/) docs
+- Follow the [development](./development/installation.md) docs
 - Head to [localhost:3000](http://localhost:3000)
 
-<a href="https://territoires.makina-corpus.com/"><img src="https://geotrek.fr/assets/img/logo_makina.svg" alt="Logo MCT" width="115"></a>
-[![](https://geotrek.fr/assets/img/logo_autonomens-h120m.png)](https://datatheca.com/)
