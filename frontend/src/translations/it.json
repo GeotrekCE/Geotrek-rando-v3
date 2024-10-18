@@ -283,6 +283,7 @@
   },
   "dates": {
     "singleDate": "il {date}",
+    "rangeTime": "dalle {beginTime} alle {endTime}",
     "multipleDates": "dal {beginDate} al {endDate}"
   },
   "tooltip": {
