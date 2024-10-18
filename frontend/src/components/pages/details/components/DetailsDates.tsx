@@ -17,6 +17,22 @@ const DetailsDates: React.FC<DetailsDatesProps> = ({ dates }) => {
 
   const { beginDate, endDate, hasBeginTime, hasEndTime } = dates;
 
+  const dateFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  } as Intl.DateTimeFormatOptions;
+
+  const timeFormatOptions = {
+    hour: 'numeric',
+    minute: 'numeric',
+  } as Intl.DateTimeFormatOptions;
+
+  const dateTimeFormatOptions = {
+    ...dateFormatOptions,
+    ...timeFormatOptions,
+  };
+
   if (beginDate.split('T')[0] === endDate.split('T')[0]) {
     if (!hasEndTime) {
       // Output ex : "on November 13, 2024"
@@ -24,13 +40,10 @@ const DetailsDates: React.FC<DetailsDatesProps> = ({ dates }) => {
         <FormattedMessage
           id={'dates.singleDate'}
           values={{
-            date: new Intl.DateTimeFormat(intl.locale, {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              hour: hasBeginTime ? 'numeric' : undefined,
-              minute: hasBeginTime ? 'numeric' : undefined,
-            }).format(new Date(beginDate)),
+            date: new Intl.DateTimeFormat(
+              intl.locale,
+              hasBeginTime ? dateTimeFormatOptions : dateFormatOptions,
+            ).format(new Date(beginDate)),
           }}
         />
       );
@@ -47,14 +60,12 @@ const DetailsDates: React.FC<DetailsDatesProps> = ({ dates }) => {
         <FormattedMessage
           id={'dates.rangeTime'}
           values={{
-            beginTime: new Intl.DateTimeFormat(intl.locale, {
-              hour: 'numeric',
-              minute: 'numeric',
-            }).format(new Date(beginDate)),
-            endTime: new Intl.DateTimeFormat(intl.locale, {
-              hour: 'numeric',
-              minute: 'numeric',
-            }).format(new Date(endDate)),
+            beginTime: new Intl.DateTimeFormat(intl.locale, timeFormatOptions).format(
+              new Date(beginDate),
+            ),
+            endTime: new Intl.DateTimeFormat(intl.locale, timeFormatOptions).format(
+              new Date(endDate),
+            ),
           }}
         />
       </>
@@ -65,20 +76,14 @@ const DetailsDates: React.FC<DetailsDatesProps> = ({ dates }) => {
     <FormattedMessage
       id={'dates.multipleDates'}
       values={{
-        beginDate: new Intl.DateTimeFormat(intl.locale, {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: hasBeginTime ? 'numeric' : undefined,
-          minute: hasBeginTime ? 'numeric' : undefined,
-        }).format(new Date(beginDate)),
-        endDate: new Intl.DateTimeFormat(intl.locale, {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: hasEndTime ? 'numeric' : undefined,
-          minute: hasEndTime ? 'numeric' : undefined,
-        }).format(new Date(endDate)),
+        beginDate: new Intl.DateTimeFormat(
+          intl.locale,
+          hasBeginTime ? dateTimeFormatOptions : dateFormatOptions,
+        ).format(new Date(beginDate)),
+        endDate: new Intl.DateTimeFormat(
+          intl.locale,
+          hasEndTime ? dateTimeFormatOptions : dateFormatOptions,
+        ).format(new Date(endDate)),
       }}
     />
   );
