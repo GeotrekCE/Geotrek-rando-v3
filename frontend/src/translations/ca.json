@@ -273,7 +273,8 @@
   },
   "dates": {
     "singleDate": "el {date}",
-    "multipleDates": "del{beginDate} al {endDate}"
+    "rangeTime": "d'{beginTime} a {endTime}",
+    "multipleDates": "del {beginDate} al {endDate}"
   },
   "tooltip": {
     "print": "Imprimir",

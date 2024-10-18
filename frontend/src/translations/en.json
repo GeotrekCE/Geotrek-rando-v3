@@ -280,6 +280,7 @@
   },
   "dates": {
     "singleDate": "on {date}",
+    "rangeTime": "from {beginTime} to {endTime}",
     "multipleDates": "from {beginDate} to {endDate}"
   },
   "rando3D": {
