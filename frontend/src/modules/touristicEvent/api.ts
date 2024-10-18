@@ -5,7 +5,8 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawTouristicEvent, RawTouristicEventDetails } from './interface';
 
 const fieldsParams = {
-  fields: 'id,attachments,name,geometry,themes,cities,type,begin_date,end_date,approved',
+  fields:
+    'id,attachments,name,geometry,themes,cities,type,begin_date,end_date,approved,start_time,end_time',
 };
 
 export const fetchTouristicEvents = (
@@ -21,7 +22,7 @@ export const fetchTouristicEvents = (
 };
 
 const fieldsParamsDetails = {
-  fields: `${fieldsParams.fields},description,description_teaser,participant_number,pdf,meeting_point,duration,source,contact,email,website,accessibility,organizer,speaker,target_audience,practical_info,booking,meeting_time`,
+  fields: `${fieldsParams.fields},description,description_teaser,participant_number,pdf,meeting_point,duration,source,contact,email,website,accessibility,organizer,speaker,target_audience,practical_info,booking`,
   format: 'geojson',
 };
 
