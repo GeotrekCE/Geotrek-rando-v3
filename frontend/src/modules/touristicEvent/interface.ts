@@ -41,6 +41,8 @@ export interface RawTouristicEvent {
   begin_date: string;
   end_date: string;
   approved: boolean;
+  start_time: string;
+  end_time: string;
 }
 
 interface RawTouristicEventDetailsProperties extends RawTouristicEvent {
@@ -60,7 +62,6 @@ interface RawTouristicEventDetailsProperties extends RawTouristicEvent {
   target_audience: string;
   practical_info: string;
   booking: string;
-  meeting_time: string;
 }
 
 export interface RawTouristicEventDetails extends RawTouristicEvent {
@@ -87,14 +88,18 @@ export interface TouristicEvent {
     | PointGeometry
     | MultiPointGeometry
     | GeometryCollection;
-  themes: string[];
+  tags: string[];
   place: string;
   category: TouristicEventType;
   informations: {
-    beginDate: string;
-    endDate: string;
+    dates: {
+      beginDate: string;
+      endDate: string;
+      hasBeginTime: boolean;
+      hasEndTime: boolean;
+    };
+    logoUri: string | null;
   };
-  logoUri: string | null;
 }
 
 export interface TouristicEventDetails extends TouristicEvent {
@@ -104,10 +109,7 @@ export interface TouristicEventDetails extends TouristicEvent {
   cities: string[];
   cities_raw: string[];
   touristicContents: TouristicContent[];
-  participantNumber: number;
   pdfUri: string;
-  meetingPoint: string;
-  duration: string;
   sources: Source[];
   contact: string;
   email: string;
@@ -118,5 +120,9 @@ export interface TouristicEventDetails extends TouristicEvent {
   targetAudience: string;
   practicalInfo: string;
   booking: string;
-  meetingTime: string;
+  informations: TouristicEvent['informations'] & {
+    participantNumber: number;
+    meetingPoint: string;
+    duration: string;
+  };
 }

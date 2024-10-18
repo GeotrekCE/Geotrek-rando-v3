@@ -32,17 +32,20 @@ import { TouristicEventDetails } from 'modules/touristicEvent/interface';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { DetailsTrekParentButton } from '../DetailsTrekParentButton';
 import DetailsBreadcrumb from './DetailsBreadcrumb';
+import DetailsDates from '../DetailsDates';
 
 interface DetailsPreviewInformation extends DetailsInformation {
   types?: TouristicContentDetailsType[];
-  logoUri?: string;
+  logoUri?: string | null;
   period?: string | null;
   wind?: string[];
   orientation?: string[];
   maxElevation?: number;
   participantNumber?: number;
   meetingPoint?: string;
-  date?: {
+  dates?: {
+    hasEndTime: boolean;
+    hasBeginTime: boolean;
     beginDate: string;
     endDate: string;
   };
@@ -110,7 +113,7 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           />
         </div>
       )}
-      {informations.logoUri !== undefined && informations.logoUri.length > 0 && (
+      {informations.logoUri && informations.logoUri.length > 0 && (
         <Image
           id="details_logo"
           className="hidden desktop:block absolute top-0 right-0 size-30 object-contain object-center"
@@ -170,31 +173,10 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
             </LocalIconInformation>
           </ToolTip>
         )}
-        {informations.date && (
+        {informations.dates && (
           <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.date' })}>
             <LocalIconInformation icon={Calendar} className={classNameInformation}>
-              {informations.date.beginDate === informations.date.endDate ? (
-                <FormattedMessage
-                  id={'dates.singleDate'}
-                  values={{
-                    date: new Intl.DateTimeFormat(intl.locale).format(
-                      new Date(informations.date.beginDate),
-                    ),
-                  }}
-                />
-              ) : (
-                <FormattedMessage
-                  id={'dates.multipleDates'}
-                  values={{
-                    beginDate: new Intl.DateTimeFormat(intl.locale).format(
-                      new Date(informations.date.beginDate),
-                    ),
-                    endDate: new Intl.DateTimeFormat(intl.locale).format(
-                      new Date(informations.date.endDate),
-                    ),
-                  }}
-                />
-              )}
+              <DetailsDates dates={informations.dates} />
             </LocalIconInformation>
           </ToolTip>
         )}

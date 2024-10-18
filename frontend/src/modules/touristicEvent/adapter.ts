@@ -20,7 +20,8 @@ import {
   TouristicEventResult,
 } from './interface';
 
-const getISOdate = (date: string) => (date.includes('T') ? date : `${date}T00:00:00`);
+const getISOdate = (date: string, time: string) =>
+  date.includes('T') ? date : `${date}T${time ? time : '00:00:00'}`;
 
 export const adaptTouristicEvents = ({
   rawTouristicEvents,
@@ -40,14 +41,20 @@ export const adaptTouristicEvents = ({
       images: getLargeImagesOrThumbnailsFromAttachments(rawTouristicEvent.attachments, false),
       filesFromAttachments: geFilesFromAttachments(rawTouristicEvent.attachments),
       geometry: adaptGeometry(rawTouristicEvent.geometry),
-      themes: rawTouristicEvent?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
+      tags: rawTouristicEvent?.themes?.map(themeId => themeDictionnary[themeId]?.label) ?? [],
       place: cityDictionnary?.[rawTouristicEvent?.cities?.[0]]?.name ?? '',
       category: touristicEventType[Number(rawTouristicEvent?.type)],
       informations: {
-        beginDate: getISOdate(rawTouristicEvent.begin_date),
-        endDate: getISOdate(rawTouristicEvent.end_date),
+        logoUri: rawTouristicEvent.approved
+          ? getGlobalConfig().touristicContentLabelImageUri
+          : null,
+        dates: {
+          beginDate: getISOdate(rawTouristicEvent.begin_date, rawTouristicEvent.start_time),
+          hasBeginTime: Boolean(rawTouristicEvent.start_time),
+          endDate: getISOdate(rawTouristicEvent.end_date, rawTouristicEvent.end_time),
+          hasEndTime: Boolean(rawTouristicEvent.end_time),
+        },
       },
-      logoUri: rawTouristicEvent.approved ? getGlobalConfig().touristicContentLabelImageUri : null,
     };
   });
 };
@@ -76,7 +83,10 @@ export const adaptTouristicEventsResult = ({
       informations: [
         {
           label: 'date',
-          value: [getISOdate(rawTouristicEvent.begin_date), getISOdate(rawTouristicEvent.end_date)],
+          value: [
+            getISOdate(rawTouristicEvent.begin_date, rawTouristicEvent.start_time),
+            getISOdate(rawTouristicEvent.end_date, rawTouristicEvent.end_time),
+          ],
         },
       ],
       logoUri: rawTouristicEvent.approved ? getGlobalConfig().touristicContentLabelImageUri : null,
@@ -99,19 +109,20 @@ export const adaptTouristicEventDetails = ({
   sourcesDictionnary: SourceDictionnary;
   touristicEventType: TouristicEventTypeChoices;
 }): TouristicEventDetails => {
+  const touristicEvents = adaptTouristicEvents({
+    rawTouristicEvents: [
+      {
+        ...rawTouristicEventDetails.properties,
+        geometry: rawTouristicEventDetails.geometry,
+      },
+    ],
+    themeDictionnary,
+    cityDictionnary,
+    touristicEventType,
+  })[0];
   return {
     // We use the original adapter
-    ...adaptTouristicEvents({
-      rawTouristicEvents: [
-        {
-          ...rawTouristicEventDetails.properties,
-          geometry: rawTouristicEventDetails.geometry,
-        },
-      ],
-      themeDictionnary,
-      cityDictionnary,
-      touristicEventType,
-    })[0],
+    ...touristicEvents,
     // then we add missing fields
     description: rawTouristicEventDetails.properties.description,
     descriptionTeaser: rawTouristicEventDetails.properties.description_teaser ?? null,
@@ -123,10 +134,13 @@ export const adaptTouristicEventDetails = ({
     cities_raw: rawTouristicEventDetails.properties.cities,
     id: rawTouristicEventDetails.id,
     touristicContents,
-    participantNumber: rawTouristicEventDetails.properties.participant_number,
+    informations: {
+      ...touristicEvents.informations,
+      participantNumber: rawTouristicEventDetails.properties.participant_number,
+      meetingPoint: rawTouristicEventDetails.properties.meeting_point,
+      duration: rawTouristicEventDetails.properties.duration,
+    },
     pdfUri: rawTouristicEventDetails.properties.pdf,
-    meetingPoint: rawTouristicEventDetails.properties.meeting_point,
-    duration: rawTouristicEventDetails.properties.duration,
     sources:
       rawTouristicEventDetails?.properties?.source?.map(sourceId => sourcesDictionnary[sourceId]) ??
       [],
@@ -139,7 +153,6 @@ export const adaptTouristicEventDetails = ({
     targetAudience: rawTouristicEventDetails.properties.target_audience,
     practicalInfo: rawTouristicEventDetails.properties.practical_info,
     booking: rawTouristicEventDetails.properties.booking,
-    meetingTime: rawTouristicEventDetails.properties.meeting_time,
   };
 };
 

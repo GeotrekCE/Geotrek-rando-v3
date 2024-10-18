@@ -162,21 +162,9 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                         >
                           <DetailsPreview
                             className={marginDetailsChild}
-                            informations={{
-                              logoUri: touristicEventContent.logoUri ?? undefined,
-                              participantNumber: touristicEventContent.participantNumber,
-                              meetingPoint: touristicEventContent.meetingPoint,
-                              duration: [
-                                touristicEventContent.meetingTime,
-                                touristicEventContent.duration,
-                              ].join(' - '),
-                              date: {
-                                beginDate: touristicEventContent.informations.beginDate,
-                                endDate: touristicEventContent.informations.endDate,
-                              },
-                            }}
+                            informations={touristicEventContent.informations}
                             place={touristicEventContent.place}
-                            tags={touristicEventContent.themes}
+                            tags={touristicEventContent.tags}
                             title={touristicEventContent.name}
                             teaser={touristicEventContent.descriptionTeaser}
                             ambiance={''}
