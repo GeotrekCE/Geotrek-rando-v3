@@ -17,7 +17,10 @@ const SearchMapDynamicComponentWithoutMemo: React.FC<SearchMapProps> = props => 
   );
 };
 
-export const SearchMapDynamicComponent = memo(SearchMapDynamicComponentWithoutMemo, () => true);
+export const SearchMapDynamicComponent = memo(
+  SearchMapDynamicComponentWithoutMemo,
+  (oldProps, nextProps) => oldProps.hasZoomControl === nextProps.hasZoomControl,
+);
 
 const DetailsMapDynamicComponentWithoutMemo: React.FC<DetailsMapProps> = props => {
   const DetailsMap = dynamic(() => import('./DetailsMap/DetailsMap'), {
