@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.24.0 (2024-11-13)
+
+**✨ Improvements**
+
+- Keep user search results (scroll position and map fitbounds) when returning from a detail page (#1282)
+
+**🔧 Maintenance**
+
+- Bump next from 13.2.4 to 14.2.15 (#1284)
+
 ## 3.23.2 (2024-11-12)
 
 **📝 Documentation**
@@ -25,6 +35,7 @@
 **🔧 Maintenance**
 
 - Remove typesafe-actions package (#1278)
+- Bump @next/bundle-analyzer from 12.2.5 to 14.2.14 in /frontend (#1273)
 
 **🐛 Fixes**
 
