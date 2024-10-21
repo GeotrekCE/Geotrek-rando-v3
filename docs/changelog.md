@@ -1,10 +1,27 @@
 # Changelog
 
+## 3.24.0 (2024-10-21)
+
+**✨ Improvements**
+
+- Keep user search results (scroll position and map fitbounds) when returning from a detail page (#1282)
+- Adapt touristic event module to display dates correctly (#1288)
+- Optimize backpack icon (#1287)
+
+**🔧 Maintenance**
+
+- Bump next from 13.2.4 to 14.2.15 (#1284)
+
+**🐛 Fixes**
+
+- Clear debounces during cleanup useEffect (#1283)
+
 ## 3.23.1 (2024-10-14)
 
 **🔧 Maintenance**
 
 - Remove typesafe-actions package (#1278)
+- Bump @next/bundle-analyzer from 12.2.5 to 14.2.14 in /frontend (#1273)
 
 **🐛 Fixes**
 
