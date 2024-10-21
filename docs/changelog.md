@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.24.0 (2024-11-20)
+
+**✨ Improvements**
+
+- Keep user search results (scroll position and map fitbounds) when returning from a detail page (#1282)
+- Refacto details top icons (#1304)
+
+**🔧 Maintenance**
+
+- Bump next from 13.2.4 to 14.2.15 (#1284)
+
 ## 3.23.3 (2024-11-19)
 
 **🐛 Fixes**
