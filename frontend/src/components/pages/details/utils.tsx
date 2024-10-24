@@ -27,22 +27,22 @@ export const generateChildrenDetailsUrl = (
 
 export const generateTouristicContentUrl = (id: number | string, title: string): string => {
   const titleWithNoSpace = convertStringForSitemap(title);
-  return `${routes.TOURISTIC_CONTENT}/${id}-${encodeURI(titleWithNoSpace)}`;
+  return `${routes.TOURISTIC_CONTENT}/${id}-${encodeURIComponent(titleWithNoSpace)}`;
 };
 
 export const generateOutdoorSiteUrl = (id: number | string, title: string): string => {
   const titleWithNoSpace = convertStringForSitemap(title);
-  return `${routes.OUTDOOR_SITE}/${id}-${encodeURI(titleWithNoSpace)}`;
+  return `${routes.OUTDOOR_SITE}/${id}-${encodeURIComponent(titleWithNoSpace)}`;
 };
 
 export const generateOutdoorCourseUrl = (id: number | string, title: string): string => {
   const titleWithNoSpace = convertStringForSitemap(title);
-  return `${routes.OUTDOOR_COURSE}/${id}-${encodeURI(titleWithNoSpace)}`;
+  return `${routes.OUTDOOR_COURSE}/${id}-${encodeURIComponent(titleWithNoSpace)}`;
 };
 
 export const generateTouristicEventUrl = (id: number | string, title: string): string => {
   const titleWithNoSpace = convertStringForSitemap(title);
-  return `${routes.TOURISTIC_EVENT}/${id}-${encodeURI(titleWithNoSpace)}`;
+  return `${routes.TOURISTIC_EVENT}/${id}-${encodeURIComponent(titleWithNoSpace)}`;
 };
 
 export const generateDetailsUrlFromType = (
@@ -53,7 +53,7 @@ export const generateDetailsUrlFromType = (
 ): string => {
   const searchParams = params ? `?${new URLSearchParams(params).toString()}` : '';
   const titleWithNoSpace = convertStringForSitemap(title);
-  return `${routes[type]}/${id}-${encodeURI(titleWithNoSpace)}${searchParams}`;
+  return `${routes[type]}/${id}-${encodeURIComponent(titleWithNoSpace)}${searchParams}`;
 };
 
 export const templatesVariablesAreDefinedAndUsed = ({
