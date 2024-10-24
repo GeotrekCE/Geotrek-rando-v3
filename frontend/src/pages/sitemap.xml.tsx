@@ -80,7 +80,7 @@ const getApiContentForLanguage = async (language: string): Promise<string> => {
   const touristicContentUrls = touristicContents
     .map(({ id, name }) =>
       name && id
-        ? `<url><loc>${baseUrl}/service/${id}-${encodeURI(
+        ? `<url><loc>${baseUrl}/service/${id}-${encodeURIComponent(
             convertStringForSitemap(name),
           )}</loc></url>`
         : '',
@@ -93,7 +93,7 @@ const getApiContentForLanguage = async (language: string): Promise<string> => {
   const outdoorSitesUrls = outdoorSites
     .map(({ id, name }) =>
       name && id
-        ? `<url><loc>${baseUrl}/outdoor-site/${id}-${encodeURI(
+        ? `<url><loc>${baseUrl}/outdoor-site/${id}-${encodeURIComponent(
             convertStringForSitemap(name),
           )}</loc></url>`
         : '',
@@ -106,7 +106,7 @@ const getApiContentForLanguage = async (language: string): Promise<string> => {
   const outdoorCoursesUrls = outdoorCourses
     .map(({ id, name }) =>
       name && id
-        ? `<url><loc>${baseUrl}/outdoor-course/${id}-${encodeURI(
+        ? `<url><loc>${baseUrl}/outdoor-course/${id}-${encodeURIComponent(
             convertStringForSitemap(name),
           )}</loc></url>`
         : '',
@@ -119,7 +119,7 @@ const getApiContentForLanguage = async (language: string): Promise<string> => {
       external_url !== null && external_url.length > 0
         ? `<url><loc>${external_url}</loc></url>`
         : title && id
-          ? `<url><loc>${baseUrl}/information/${id}-${encodeURI(
+          ? `<url><loc>${baseUrl}/information/${id}-${encodeURIComponent(
               convertStringForSitemap(title),
             )}</loc></url>`
           : '',
