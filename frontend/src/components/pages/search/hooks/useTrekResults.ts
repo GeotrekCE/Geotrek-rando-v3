@@ -76,6 +76,7 @@ export const useTrekResults = (
     fetchNextPage,
     hasNextPage,
     hasPreviousPage,
+    isFetching,
     isFetchingNextPage,
   } = useInfiniteQuery<SearchResults, Error>({
     queryKey: [
@@ -145,6 +146,7 @@ export const useTrekResults = (
     isLoading,
     isError,
     refetch,
+    isFetching,
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
