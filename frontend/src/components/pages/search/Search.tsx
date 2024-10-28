@@ -68,6 +68,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     isLoading,
     isError,
     refetch,
+    isFetching,
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
@@ -205,14 +206,14 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
 
                 <InfiniteScroll
                   dataLength={searchResults?.results.length ?? 0}
-                  next={fetchNextPage}
+                  next={() => !isFetching && fetchNextPage()}
                   hasMore={Boolean(hasNextPage)}
                   loader={
                     <div className={`relative my-10 ${isFetchingNextPage ? 'h-10' : ''}`}>
                       <Loader loaded={!isFetchingNextPage} />
                     </div>
                   }
-                  scrollableTarget="search_resultCardList"
+                  scrollableTarget="body"
                 >
                   {searchResults?.results.map(searchResult => {
                     return (
