@@ -14,7 +14,6 @@ export const useTouristicEvent = (
   language: string,
 ) => {
   const id = isUrlString(touristicEventUrl) ? touristicEventUrl.split('-')[0] : '';
-  const path = isUrlString(touristicEventUrl) ? decodeURI(touristicEventUrl) : '';
 
   const commonDictionaries = useQueryCommonDictionaries(language);
 
@@ -49,7 +48,6 @@ export const useTouristicEvent = (
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-    path,
     sectionsReferences,
     sectionsPositions,
     sectionRef,

@@ -14,7 +14,6 @@ export const useOutdoorCourse = (
   language: string,
 ) => {
   const id = isUrlString(outdoorCourseUrl) ? outdoorCourseUrl.split('-')[0] : '';
-  const path = isUrlString(outdoorCourseUrl) ? decodeURI(outdoorCourseUrl) : '';
 
   const commonDictionaries = useQueryCommonDictionaries(language);
 
@@ -50,10 +49,8 @@ export const useOutdoorCourse = (
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-    path,
     sectionsReferences,
     sectionsPositions,
-
     sectionRef,
   };
 };

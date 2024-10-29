@@ -11,7 +11,6 @@ import { DetailsSections } from '../details/useDetails';
 
 export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, language: string) => {
   const id = isUrlString(outdoorSiteUrl) ? outdoorSiteUrl.split('-')[0] : '';
-  const path = isUrlString(outdoorSiteUrl) ? decodeURI(outdoorSiteUrl) : '';
 
   const commonDictionaries = useQueryCommonDictionaries(language);
 
@@ -51,7 +50,6 @@ export const useOutdoorSite = (outdoorSiteUrl: string | string[] | undefined, la
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-    path,
     sectionRef,
     mapId,
     setMapId,

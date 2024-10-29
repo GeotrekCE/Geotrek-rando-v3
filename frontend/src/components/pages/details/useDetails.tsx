@@ -39,7 +39,6 @@ export const useDetails = (
   language: string,
 ) => {
   const id = isUrlString(slug) ? slug.split('-')[0] : '';
-  const path = isUrlString(slug) ? decodeURI(slug) : '';
 
   const commonDictionaries = useQueryCommonDictionaries(language);
 
@@ -108,7 +107,6 @@ export const useDetails = (
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-    path,
     sectionRef,
     mapId,
     setMapId,
