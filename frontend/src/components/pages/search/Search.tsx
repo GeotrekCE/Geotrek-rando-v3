@@ -62,6 +62,9 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   } = useTextFilter();
 
   const { dateFilter, setDateFilter } = useDateFilter();
+  const { searchBbox, setPoints, setSearchBbox, isNavigatedByBrowser } = useListAndMapContext();
+
+  const bboxState = bounds ?? (isNavigatedByBrowser ? searchBbox : null);
 
   const {
     searchResults,
@@ -80,7 +83,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     {
       filtersState,
       textFilterState,
-      bboxState: bounds?.toBBoxString() ?? null,
+      bboxState: bboxState?.toBBoxString() ?? null,
       dateFilter,
       page,
     },
@@ -93,8 +96,6 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     { filtersState, textFilterState, dateFilter },
     language,
   );
-
-  const { setPoints, setSearchBbox, isNavigatedByBrowser } = useListAndMapContext();
 
   useEffect(() => {
     if (mapResults) {
