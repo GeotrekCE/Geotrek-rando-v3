@@ -16,7 +16,6 @@ export const useTouristicContent = (
   const isTouristicContentUrlString = isUrlString(touristicContentUrl);
 
   const id = isTouristicContentUrlString ? touristicContentUrl.split('-')[0] : '';
-  const path = isTouristicContentUrlString ? decodeURI(touristicContentUrl) : '';
 
   const commonDictionaries = useQueryCommonDictionaries(language);
 
@@ -52,7 +51,6 @@ export const useTouristicContent = (
     mobileMapState,
     displayMobileMap,
     hideMobileMap,
-    path,
     sectionsReferences,
     sectionsPositions,
     sectionRef,
