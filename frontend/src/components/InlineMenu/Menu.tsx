@@ -24,7 +24,10 @@ export const Menu: React.FC<MenuProps> = ({
 }) => {
   const intl = useIntl();
   const items = useMemo(() => {
-    if (menuItems.some(({ children = [] }) => children.length)) {
+    if (
+      menuItems.length < primaryItemsNumber ||
+      menuItems.some(({ children = [] }) => children.length)
+    ) {
       return menuItems;
     }
     // If there are no children, we use "primaryItemsNumber" to split menu with "See More" button
