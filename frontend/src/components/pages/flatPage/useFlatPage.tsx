@@ -12,7 +12,6 @@ import { getActivitySuggestions } from 'modules/activitySuggestions/connector';
 
 export const useFlatPage = (flatPageUrl: string | undefined) => {
   const language = useRouter().locale ?? getDefaultLanguage();
-  const path = isUrlString(flatPageUrl) ? decodeURI(flatPageUrl) : '';
   const id = isUrlString(flatPageUrl) ? flatPageUrl.split('-')[0] : '';
 
   const commonDictionaries = useQueryCommonDictionaries(language);
@@ -47,6 +46,5 @@ export const useFlatPage = (flatPageUrl: string | undefined) => {
     refetch,
     isLoading,
     error,
-    path,
   };
 };
