@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import { LatLngBounds } from 'leaflet';
 import useBrowserNavigationDetection from 'hooks/useBrowserNavigationDetection';
+import { NextRouter } from 'next/router';
 import { MapResults } from '../mapResults/interface';
 
 export interface ListAndMapContext {
@@ -11,6 +12,7 @@ export interface ListAndMapContext {
   setHoveredCardId: (hoveredCardId: string | null) => void;
   setSearchBbox: (bbox: LatLngBounds | null) => void;
   isNavigatedByBrowser: boolean;
+  previousRouter: NextRouter | null;
 }
 
 const listAndMapContext = createContext<ListAndMapContext>({
@@ -21,6 +23,7 @@ const listAndMapContext = createContext<ListAndMapContext>({
   setHoveredCardId: (_: string | null) => _,
   setSearchBbox: (_: LatLngBounds | null) => _,
   isNavigatedByBrowser: false,
+  previousRouter: null,
 });
 
 export const useListAndMapContext = () => useContext(listAndMapContext);
@@ -30,7 +33,7 @@ export const ListAndMapProvider: React.FC<React.PropsWithChildren> = ({ children
   const [points, setPoints] = useState<MapResults>([]);
   const [searchBbox, setSearchBbox] = useState<LatLngBounds | null>(null);
 
-  const isNavigatedByBrowser = useBrowserNavigationDetection();
+  const { isNavigatedByBrowser, previousRouter } = useBrowserNavigationDetection();
 
   return (
     <listAndMapContext.Provider
@@ -42,6 +45,7 @@ export const ListAndMapProvider: React.FC<React.PropsWithChildren> = ({ children
         searchBbox,
         setSearchBbox,
         isNavigatedByBrowser,
+        previousRouter,
       }}
     >
       {children}
