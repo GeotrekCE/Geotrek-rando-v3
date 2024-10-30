@@ -736,15 +736,17 @@ export const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title:
   return (
     <div
       id="details_headerMobile"
-      className={`py-3 px-4
-      text-P2 font-bold text-primary1
-      shadow-md bg-white
-      ${displayState === 'DISPLAYED' ? 'top-mobileHeader sticky' : '-top-mobileHeader'}
-      desktop:hidden z-headerDetails truncate
-      transition-all duration-500
-      `}
+      className={cn(
+        'flex gap-3 items-center py-3 px-4',
+        'text-P2 font-bold text-primary1',
+        'shadow-md bg-white',
+        '-top-4 right-0 left-0 z-headerDetails fixed',
+        displayState === 'DISPLAYED' && 'top-0 translate-y-mobileHeader',
+        'desktop:hidden',
+        'transition-transform duration-500 will-change-transform',
+      )}
     >
-      {name}
+      <span className="truncate">{name}</span>
     </div>
   );
 };
