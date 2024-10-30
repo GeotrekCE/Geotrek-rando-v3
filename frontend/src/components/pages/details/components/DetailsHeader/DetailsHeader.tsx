@@ -11,6 +11,7 @@ import { TouristicEventDetails } from 'modules/touristicEvent/interface';
 import { ContentType } from 'modules/interface';
 import { DetailsHeaderSection, DetailsSections } from '../../useDetails';
 import { useDetailsHeader } from './useDetailsHeader';
+import { DetailsBackButton } from '../DetailsPreview/DetailsBackButton';
 
 interface DetailsHeaderProps {
   anchors: Partial<DetailsSections>[];
@@ -42,16 +43,17 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
       id="details_headerDesktop"
       className="hidden desktop:flex items-center
       sticky top-desktopHeader z-subHeader
-      shadow-md bg-white h-14"
+      shadow-md bg-white h-14 pl-3"
       role="navigation"
     >
+      <DetailsBackButton className="border-r border-solid pr-5" />
       {sections.length > 0 && (
-        <ul id="details_headerDesktop_inlineMenu" className="flex flex-1 ml-3">
+        <ul id="details_headerDesktop_inlineMenu" className="pl-5 flex flex-1 gap-5">
           {sections.map(sectionId => (
             <li key={sectionId}>
               <a
                 className={cn(
-                  'mx-5 pb-1 border-b-2 border-transparent border-solid transition-all duration-300  hover:text-primary1 hover:border-primary1 focus:text-primary1 focus:border-primary1',
+                  'pb-1 border-b-2 border-transparent border-solid transition-all duration-300 hover:text-primary1 hover:border-primary1 focus:text-primary1 focus:border-primary1',
                   currentSectionId === sectionId && isMounted && 'text-primary1 border-primary1',
                 )}
                 href={`#details_${sectionId}`}
