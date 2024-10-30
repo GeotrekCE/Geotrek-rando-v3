@@ -49,6 +49,7 @@ import { useDetailsSections } from './useDetailsSections';
 import { DetailsViewPoints } from './components/DetailsViewPoints';
 import { DetailsFiles } from './components/DetailsFiles';
 import { theme } from '../../../../tailwind.config';
+import { DetailsBackButton } from './components/DetailsPreview/DetailsBackButton';
 
 interface Props {
   slug: string | string[] | undefined;
@@ -746,6 +747,7 @@ export const DetailsHeaderMobile: React.FC<DetailsHeaderMobileProps> = ({ title:
         'transition-transform duration-500 will-change-transform',
       )}
     >
+      <DetailsBackButton className="border-r border-solid pr-4" />
       <span className="truncate">{name}</span>
     </div>
   );
