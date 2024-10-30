@@ -182,7 +182,8 @@
     "centerOnMap": "Center on map",
     "openPictureInFullScreen": "View picture in full screen",
     "closeFullScreen": "Close full screen mode",
-    "contact": "Contatto"
+    "contact": "Contatto",
+    "goBack": "Torna indietro"
   },
   "touristicContent": {
     "email": "email",

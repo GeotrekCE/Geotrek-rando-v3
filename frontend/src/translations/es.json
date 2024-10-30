@@ -179,7 +179,8 @@
     "centerOnMap": "Center on map",
     "openPictureInFullScreen": "View picture in full screen",
     "closeFullScreen": "Close full screen mode",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "goBack": "Volver atrás"
   },
   "touristicContent": {
     "email": "Correo electrónico",

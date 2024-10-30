@@ -182,7 +182,8 @@
     "centerOnMap": "Centrer sur la carte",
     "openPictureInFullScreen": "Voir l'image en plein écran",
     "closeFullScreen": "Fermer le mode plein écran",
-    "contact": "Contact"
+    "contact": "Contact",
+    "goBack": "Retour"
   },
   "touristicContent": {
     "email": "Courriel",
