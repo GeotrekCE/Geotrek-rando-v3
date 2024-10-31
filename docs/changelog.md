@@ -60,10 +60,9 @@
 
 - Install semver package
 
-
 ## 3.22.0 (2024-09-17)
 
-⚠️ Warning
+### :warning: **WARNING!** :warning:
 
 **Do not use - docker installation will not work. Please install version 3.22.1 (or higher) instead**
 
@@ -94,7 +93,6 @@
 **🐛 Fixes**
 
 - Fix display of mobile menu sub-filters (#1006 #1235)
-
 
 ## 3.21.1 (2024-07-29)
 
@@ -735,8 +733,8 @@ Require Geotrek-admin 2.98.0 (March 2023) minimum.
 
 **⚠️ Version notes**
 
-* You have to edit your `map.json` customization file to apply the new layers settings organization. See `map.json` customization in [documentation](customization/customization-settings.md)
-* It is now possible to define home suggestions contents by language. See `home.json` customization in [documentation](customization/customization-settings.md)
+* You have to edit your `map.json` customization file to apply the new layers settings organization. See `map.json` customization in [documentation](customization.md#settings)
+* It is now possible to define home suggestions contents by language. See `home.json` customization in [documentation](customization.md#settings)
 
 3.9.0 (2022-06-22)
 ------------------
@@ -1040,7 +1038,7 @@ If you update Geotrek-rando v3, the global Docker process has been updated to av
 * Install Docker Compose. See its [official documentation](https://docs.docker.com/compose/install/)
 * Launch the application with ``docker-compose up -d``
 * No need anymore to build a Docker image on your server to install or update the configuration of your Geotrek-rando
-* Details in [installation documentation](./installation.md)
+* Details in [installation documentation](/docs/installation.md)
 * You can also remove your previous Docker containers and images with launching ``docker container prune`` and ``docker image prune -a``
 
 3.1.3 (2021-09-21)
