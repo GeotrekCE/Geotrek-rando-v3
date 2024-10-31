@@ -1,13 +1,19 @@
 <h1 align="center">Geotrek-rando</h1>
 
-<p align="center"><img alt="geotrek rando image" src="https://res.cloudinary.com/do0y4qr5g/image/upload/v1730274422/Geotrek/geotrek-rando_o0dx7o.png"></p>
+<p align="center"><img alt="geotrek rando image" src="/docs/img/geotrek-rando.png"></p>
 
 <p align="center">
-<a href="https://github.com/GeotrekCE/Geotrek-rando-v3/releases/latest" rel="nofollow"><img alt="Release" src="https://img.shields.io/github/release/GeotrekCE/Geotrek-rando-v3.svg" style="max-width:100%;"></a>
-<a href="https://geotrek-rando-v3.readthedocs.io/" rel="nofollow"><img alt="Doc material for mkdocs" src="https://img.shields.io/badge/Doc-material for mkdocs-purple.svg" style="max-width:100%;"></a>
-<a href="https://gtr3demo.ecrins-parcnational.fr/" rel="nofollow"><img alt="Démo gtr3" src="https://img.shields.io/badge/GTR3-demo-orange.svg" style="max-width:100%;"></a>
-<a href="https://matrix.to/#/%23geotrek:matrix.org" rel="nofollow"><img alt="Chat matrix" src="https://img.shields.io/badge/Chat-matrix-green.svg" style="max-width:100%;"></a>
+<a href="https://geotrek-rando-v3.readthedocs.io/" rel="nofollow"><img alt="Documentation" src="https://img.shields.io/badge/Read%20the%20Docs-8CA1AF?logo=readthedocs&logoColor=fff" style="max-width:100%;"></a>
+<a href="https://gtr3demo.ecrins-parcnational.fr/" rel="nofollow"><img alt="Démo gtr3 écrins" src="https://img.shields.io/badge/Demo-PN Ecrins-orange.svg" style="max-width:100%;"></a>
+<a href="https://gtr3demo.ecrins-parcnational.fr/" rel="nofollow"><img alt="Démo gtr3 geotrek.fr" src="https://img.shields.io/badge/Demo-Geotrek.svg" style="max-width:100%;"></a>
+<a href="https://matrix.to/#/%23geotrek:matrix.org" rel="nofollow"><img alt="Chat matrix" src="https://img.shields.io/badge/Matrix-000?logo=matrix&logoColor=fff" style="max-width:100%;"></a>
 <a href="https://groups.google.com/g/geotrek-fr" rel="nofollow"><img alt="Google group" src="https://img.shields.io/badge/Google-group-red.svg" style="max-width:100%;"></a>
+</p>
+<p align="center">
+<a href="https://github.com/GeotrekCE/Geotrek-rando-v3/releases/latest" rel="nofollow"><img alt="Release" src="https://img.shields.io/github/release/GeotrekCE/Geotrek-rando-v3.svg" style="max-width:100%;"></a>
+<a href="https://github.com/GeotrekCE/Geotrek-rando-v3/actions/workflows/e2e.yml" rel="nofollow"><img alt="Status Test E2E" src="https://github.com/geotrekce/Geotrek-rando-v3/actions/workflows/e2e.yml/badge.svg" style="max-width:100%;"></a>
+<a href="https://github.com/GeotrekCE/Geotrek-rando-v3/actions/workflows/e2e.yml" rel="nofollow"><img alt="Status Test E2E" src="https://github.com/geotrekce/Geotrek-rando-v3/actions/workflows/action-intall-and-test.yml/badge.svg" style="max-width:100%;"></a>
+<a href="https://github.com/GeotrekCE/Geotrek-rando-v3/actions/workflows/e2e.yml" rel="nofollow"><img alt="Status Test E2E" src="https://github.com/geotrekce/Geotrek-rando-v3/actions/workflows/release.yml/badge.svg" style="max-width:100%;"></a>
 </p>
 
 <p align="center">
@@ -15,7 +21,6 @@
     <a href="#features"><b>Features</b></a>  •  
     <a href="#admin-documentation"><b>Admin documentation</b></a>  •  
     <a href="#developer-documentation"><b>Developer documentation</b></a>  •  
-    <a href="#getting-started"><b>Getting started</b></a>
 </p>
 <p align="center">
     <a href="#architecture-decision-record"><b>Architecture decision record </b></a>  •  
@@ -30,13 +35,28 @@
 ## Website
 
 Geotrek-rando is the public web application displaying the interface you can use to value your territory treks and tourism products! 
-Demo available at [https://gtr3demo.ecrins-parcnational.fr](https://gtr3demo.ecrins-parcnational.fr).
+You can find two demonstration website at the following addresses : 
+- [https://gtr3demo.ecrins-parcnational.fr](https://gtr3demo.ecrins-parcnational.fr)
+- [https://demo-rando.geotrek.fr/](https://demo-rando.geotrek.fr)
+
+Discover more users close to your place by going onto the [user map](https://geotrek.fr/utilisateurs.html).
 
 The third version is a full redesign and rewriting of Geotrek-rando with React, and NextJS for Server side rendering (SSR) and SEO.
 
 Geotrek-rando is directly connected to Geotrek-admin v2 API.
 
 Read more in the [general presentation (french)](https://geotrek-rando-v3.readthedocs.io/latest/presentation-fr/).
+
+### Examples of Geotrek-rando portals
+
+- **Promoting outdoor activities:** [Escapade62](https://www.escapade62.fr/)
+- **Exploring the Écrins National Park:** [Destination Écrins](https://destination.ecrins-parcnational.fr/)
+- **Discover Mediterranean treks, throught land and sea:** [Destination Port-Cros](https://destination.portcros-parcnational.fr/)
+- **Walks and hikes in the PACA region:** [Chemins des Parcs](https://www.cheminsdesparcs.fr/)
+
+![Search](/docs/img/portails.jpg)
+
+For a full list of known rando-based applications, visit the [Geotrek Applications List](https://github.com/GeotrekCE/Geotrek-website/wiki/Liste-des-Geotrek-connus).
 
 ## Features
 
@@ -62,11 +82,6 @@ Discover Geotrek-Rando's top features, designed to elevate outdoor exploration w
 
 - [Development setup](https://geotrek-rando-v3.readthedocs.io/latest/development/installation/)
 - [Deployment](https://geotrek-rando-v3.readthedocs.io/latest/development/deployment/)
-
-## Getting started
-
-1. Follow the [Development setup](https://geotrek-rando-v3.readthedocs.io/latest/development/installation/) instructions
-2. Launch the app at [localhost:3000](http://localhost:3000)
 
 ## Architecture decision record 
 

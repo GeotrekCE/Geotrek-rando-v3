@@ -1,4 +1,4 @@
-# Themes and Styles
+# Themes and styles
 
 ## Colors
 

@@ -1,4 +1,4 @@
-# HTML Pages and Scripts Customization
+# HTML pages and scripts customization
 
 ## HTML templates
 
