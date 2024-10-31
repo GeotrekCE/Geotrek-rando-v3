@@ -1,4 +1,4 @@
-# Media and Manifest.json Management
+# Media and manifest.json management
 
 ## Images, favicon, mobile phone icons and splashscreens
 

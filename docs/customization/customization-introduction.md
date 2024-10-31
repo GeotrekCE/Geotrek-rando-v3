@@ -9,27 +9,27 @@ After each customization changes, you'll have to restart the Docker container by
 
 ## Main sections
 
-[**Introduction to Customization**](./customization-introduction.md)
+[**Introduction to customization**](./customization-introduction.md)
 
 General introduction with instructions to restart the Docker container after each customization change.
 
-[**Customization of Settings**](./customization-settings.md)
+[**Customization of settings**](./customization-settings.md)
 
 Detailed explanations for configuration files (`global.json`, `header.json`, `home.json`, etc.) with examples of overriding default values.
 
-[**Themes and Styles**](./customization-themestyles.md)
+[**Themes and styles**](./customization-themestyles.md)
 
 Detailed instructions on modifying colors, CSS, and menu structure, including specific classes (`custo-*`).
 
-[**Icons Customization**](./customization-icons.md)
+[**Icons customization**](./customization-icons.md)
 
 Detailed instructions on modifying icons.
 
-[**Translation Customization**](./customization-translation.md)
+[**Translation customization**](./customization-translation.md)
 
 Explanation of translation files, overriding texts, and managing languages.
 
-[**HTML Pages and Scripts Customization**](./customization-htmlscripts.md)
+[**HTML pages and scripts customization**](./customization-htmlscripts.md)
 
 Detailed instructions on using HTML templates and custom scripts.
 
@@ -37,7 +37,7 @@ Detailed instructions on using HTML templates and custom scripts.
 
 Specific documentation on setting up Google Analytics, including alerts and data privacy management.
 
-[**Media and Manifest.json Management**](./customization-mediamanagement.md)
+[**Media and manifest.json management**](./customization-mediamanagement.md)
 
 Explanation on managing images, favicons, splash screens, and configuring the `manifest.json` file.
 
