@@ -3,11 +3,11 @@
 <p align="center"><img alt="geotrek rando image" src="/docs/img/geotrek-rando.png"></p>
 
 <p align="center">
-<a href="https://geotrek-rando-v3.readthedocs.io/" rel="nofollow"><img alt="Documentation" src="https://img.shields.io/badge/Read%20the%20Docs-8CA1AF?logo=readthedocs&logoColor=fff" style="max-width:100%;"></a>
+<a href="https://geotrek-rando-v3.readthedocs.io/" rel="nofollow"><img alt="Documentation" src="https://img.shields.io/badge/Documentation-green.svg" style="max-width:100%;"></a>
 <a href="https://gtr3demo.ecrins-parcnational.fr/" rel="nofollow"><img alt="Geotrek Rando demo by Ecrins National Park" src="https://img.shields.io/badge/Demo-PN Ecrins-orange.svg" style="max-width:100%;"></a>
-<a href="https://demo-rando.geotrek.fr/" rel="nofollow"><img alt="Geotrek Rando demo" src="https://img.shields.io/badge/Demo-Geotrek.svg" style="max-width:100%;"></a>
-<a href="https://matrix.to/#/%23geotrek:matrix.org" rel="nofollow"><img alt="Chat matrix" src="https://img.shields.io/badge/Matrix-000?logo=matrix&logoColor=fff" style="max-width:100%;"></a>
-<a href="https://groups.google.com/g/geotrek-fr" rel="nofollow"><img alt="Google group" src="https://img.shields.io/badge/Google-group-red.svg" style="max-width:100%;"></a>
+<a href="https://demo-rando.geotrek.fr/" rel="nofollow"><img alt="Geotrek Rando demo" src="https://img.shields.io/badge/Demo-purple.svg" style="max-width:100%;"></a>
+<a href="https://matrix.to/#/%23geotrek:matrix.org" rel="nofollow"><img alt="Chat Matrix" src="https://img.shields.io/badge/Chat-blue.svg" style="max-width:100%;"></a>
+<a href="https://groups.google.com/g/geotrek-fr" rel="nofollow"><img alt="Forum Google Group" src="https://img.shields.io/badge/Forum-brightgreen.svg" style="max-width:100%;"></a>
 </p>
 <p align="center">
 <a href="https://github.com/GeotrekCE/Geotrek-rando-v3/releases/latest" rel="nofollow"><img alt="Release" src="https://img.shields.io/github/release/GeotrekCE/Geotrek-rando-v3.svg" style="max-width:100%;"></a>
@@ -39,8 +39,6 @@ You can find two demonstration websites at the following links:
 - [https://gtr3demo.ecrins-parcnational.fr](https://gtr3demo.ecrins-parcnational.fr)
 - [https://demo-rando.geotrek.fr/](https://demo-rando.geotrek.fr)
 
-Discover more users close to your place by going onto the [user map](https://geotrek.fr/utilisateurs.html).
-
 The third version is a full redesign and rewriting of Geotrek-rando with React, and NextJS for Server side rendering (SSR) and SEO.
 
 Geotrek-rando is directly connected to Geotrek-admin v2 API.
@@ -55,6 +53,8 @@ Read more in the [general presentation (french)](https://geotrek-rando-v3.readth
 - Walks and hikes in the PACA region: [Chemins des Parcs](https://www.cheminsdesparcs.fr/)
 
 ![Search](/docs/img/portails.jpg)
+
+Discover more users close to your place by going onto the [user map](https://geotrek.fr/utilisateurs.html).
 
 For a full list of known rando-based applications, visit the [Geotrek applications list](https://github.com/GeotrekCE/Geotrek-website/wiki/Liste-des-Geotrek-connus).
 
