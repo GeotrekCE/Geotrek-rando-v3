@@ -40,9 +40,9 @@ const MetaData = ({ properties }: { properties: GeoJsonProperties }) => {
 
   return (
     <Tooltip>
-      <span className="flex flex-wrap items-center gap-1 px-1">
+      <span className="flex flex-wrap items-center gap-1 p-2">
         {Boolean(properties.category?.label) && (
-          <span className="flex gap-2 font-bold">
+          <span className="flex gap-2 font-bold pr-6">
             <Icon pictogramUri={pictogramUri} />
             <span>{properties.category.label}</span>
           </span>
