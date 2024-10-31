@@ -18,7 +18,7 @@
     <a href="#getting-started"><b>Getting started</b></a>
 </p>
 <p align="center">
-    <a href="#getting-started"><b>Architecture decision record </b></a>  •  
+    <a href="#architecture-decision-record"><b>Architecture decision record </b></a>  •  
     <a href="#support"><b>Support</b></a>  •   
     <a href="#contribution"><b>Contribution</b></a>  •  
     <a href="#thanks-to-all-contributors-"><b>Contributors</b></a>  •  
@@ -36,7 +36,7 @@ The third version is a full redesign and rewriting of Geotrek-rando with React, 
 
 Geotrek-rando is directly connected to Geotrek-admin v2 API.
 
-Read more in the [general presentation (french)](./presentation-fr.md).
+Read more in the [general presentation (french)](https://geotrek-rando-v3.readthedocs.io/latest/presentation-fr/).
 
 ## Features
 
@@ -55,23 +55,23 @@ Discover Geotrek-Rando's top features, designed to elevate outdoor exploration w
 
 ## Admin documentation
 
-- [Production setup](./installation.md)
-- [Customization](customization/customization-introduction.md)
+- [Production setup](https://geotrek-rando-v3.readthedocs.io/latest/installation/)
+- [Customization](https://geotrek-rando-v3.readthedocs.io/latest/customization/customization-introduction/)
 
 ## Developer documentation
 
-- [Development setup](./development/installation.md)
-- [Deployment](./development/deployment.md)
+- [Development setup](https://geotrek-rando-v3.readthedocs.io/latest/development/installation/)
+- [Deployment](https://geotrek-rando-v3.readthedocs.io/latest/development/deployment/)
 
 ## Getting started
 
-1. Follow the [Development setup](./development/installation.md) instructions
+1. Follow the [Development setup](https://geotrek-rando-v3.readthedocs.io/latest/development/installation/) instructions
 2. Launch the app at [localhost:3000](http://localhost:3000)
 
 ## Architecture decision record 
 
-- [Main framework](./adrs/main_framework.md)
-- [Deployment solution](./adrs/deployment_solution.md)
+- [Main framework](https://geotrek-rando-v3.readthedocs.io/latest/adrs/main_framework/)
+- [Deployment solution](https://geotrek-rando-v3.readthedocs.io/latest/adrs/deployment_solution/)
 
 ## Support
 
@@ -80,7 +80,7 @@ Discover Geotrek-Rando's top features, designed to elevate outdoor exploration w
 
 ## Contribution
 
-Interested in contributing? See our [Contributing Guide](./development/contributing.md). You can help in many ways, the ability to code is not necessary.
+Interested in contributing? See our [Contributing Guide](https://geotrek-rando-v3.readthedocs.io/latest/development/contributing/). You can help in many ways, the ability to code is not necessary.
 
 ## Thanks to all contributors ❤
 
