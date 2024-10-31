@@ -1,4 +1,4 @@
-# Translation Customization
+# Translation customization
 
 You can override every texts in [translations files](https://github.com/GeotrekCE/Geotrek-rando-v3/tree/main/frontend/src/translations), based on default ones.
 
