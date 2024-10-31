@@ -1,14 +1,12 @@
 # GDPR
 
-## GDPR
-
-### Privacy policy link
+## Privacy policy link
 
 To be GDPR compliant, you must have a page describing the privacy policy.  
 It can be an internal or external page. And you can define its link in the `privacyPolicyLink` key in `global.json`.  
 Bear in mind that if this key is not defined, the consent modal will not be displayed and **no script will be executed**.
 
-### Third-party scripts
+## Third-party scripts
 
 Some scripts require the user's consent before being executed.  
 To control their execution, additional attributes must be added.
@@ -105,7 +103,7 @@ To avoid this, one solution is to check the user's acceptance in the cookies.
     - By default Google analytics is disabled (`googleAnalyticsId` set to `null`), you will have to override it in the `global.json` file of your customization folder.
 
 
-### Modal consent
+## Modal consent
 
 On the user's first visit, if there are at least one `type="opt-in"` script and there is no saved cookie of the user's preferance, the consent modal is displayed.  
 Once the user has made his choice, it is no longer displayed.
