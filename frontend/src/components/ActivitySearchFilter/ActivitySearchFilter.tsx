@@ -26,7 +26,7 @@ export const ActivitySearchFilter: React.FC<Props> = ({
     if (type === 'PRACTICE') return PRACTICE_ID;
     if (type === 'OUTDOOR_PRACTICE') return OUTDOOR_ID;
     if (type === 'TOURISTIC_EVENT_TYPE') return EVENT_ID;
-    if (type === 'CATEGORIES') return CATEGORY_ID;
+    if (type === 'CATEGORY') return CATEGORY_ID;
 
     return null;
   };
