@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.23.2 (2024-11-12)
+
+**✨ Improvements**
+
+- Optimize backpack icon (#1287)
+- Adapt touristic event module to display dates correctly (#1288)
+- Improve styling spacing HDviewpoint annotation (#1298)
+
+**🐛 Fixes**
+
+- Fix of URI encoding for paths containing specific characters (#1205 and #1077)
+- Fix map zoomControl displayed on mobile viewport (#1290)
+- Clear debounces during cleanup useEffect (#1283)
+- Build "Show More" menu items only if there are enough (#1296)
+- Fix touristicContents links for activityBar - regression since 3.22.0 (#1299)
+
 ## 3.23.1 (2024-10-14)
 
 **🔧 Maintenance**
