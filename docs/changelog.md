@@ -2,6 +2,10 @@
 
 ## 3.23.2 (2024-11-12)
 
+**📝 Documentation**
+
+- Redesign of the documentation (#1254) - New documentation website available at https://geotrek-rando-v3.readthedocs.io
+
 **✨ Improvements**
 
 - Optimize backpack icon (#1287)
