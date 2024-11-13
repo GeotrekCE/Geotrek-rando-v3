@@ -6,7 +6,7 @@ interface DetailsButtonDropdownProps {
     label: string;
     size: number;
   }[];
-  children: JSX.Element;
+  children: React.ReactNode;
 }
 
 export const DetailsButtonDropdown: React.FC<DetailsButtonDropdownProps> = ({
