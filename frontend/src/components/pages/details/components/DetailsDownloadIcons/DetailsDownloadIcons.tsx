@@ -5,7 +5,7 @@ import { Printer } from 'components/Icons/Printer';
 import { DetailsButton } from 'components/pages/details/components/DetailsButton';
 import { useState } from 'react';
 import ToolTip from 'components/ToolTip';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Download } from 'components/Icons/Download';
 import { Details } from 'modules/details/interface';
 import { ThreeD } from 'components/3D';
@@ -73,7 +73,7 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
   return (
     <div
       id="details_topDownloadIcons"
-      className="flex justify-between items-center mx-4 desktop:mr-12 desktop:ml-auto menu-download"
+      className="flex justify-between items-center gap-4 desktop:mr-12 desktop:ml-auto menu-download"
       data-testid={'download-button'}
     >
       {open3D && is3DfeatureEnabled && (
@@ -86,51 +86,54 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
         />
       )}
 
-      <div className="flex space-x-4">
-        {details.pdfUri && (
-          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.print' })} invertPosition>
-            <DetailsButton url={details.pdfUri}>
-              <Printer size={30} />
+      {details.pdfUri && (
+        <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.print' })} invertPosition>
+          <DetailsButton url={details.pdfUri}>
+            <Printer size={30} aria-hidden />
+            <span className="sr-only"><FormattedMessage id="tooltip.print" /></span>
+          </DetailsButton>
+        </ToolTip>
+      )}
+
+      {dropdownButtonOptions.length > 0 && (
+        <ToolTip toolTipText={intl.formatMessage({ id: 'details.download' })} invertPosition>
+          <DetailsButtonDropdown options={dropdownButtonOptions}>
+            <Download className="text-primary1" size={size} aria-hidden />
+            <span className="sr-only"><FormattedMessage id="details.download" /></span>
+          </DetailsButtonDropdown>
+        </ToolTip>
+      )}
+
+      {displayReport && Number(details.id) && getGlobalConfig().enableReport && (
+        <ToolTip toolTipText={intl.formatMessage({ id: 'report.title' })} invertPosition>
+          <DetailsButton url="#details_report" onClick={() => setReportVisibility(true)}>
+            <AlertTriangle size={size} aria-hidden />
+            <span className="sr-only"><FormattedMessage id="report.title" /></span>
+          </DetailsButton>
+        </ToolTip>
+      )}
+
+      {displayReservationWidget &&
+        (details as Details).reservation &&
+        (details as Details).reservation_id &&
+        getGlobalConfig().reservationPartner &&
+        getGlobalConfig().reservationProject && (
+          <ToolTip toolTipText={intl.formatMessage({ id: 'search.book' })} invertPosition>
+            <DetailsButton url="#details_reservationWidget">
+              <Reservation width={30} height={30} aria-hidden />
+              <span className="sr-only"><FormattedMessage id="search.book" /></span>
             </DetailsButton>
           </ToolTip>
         )}
 
-        {dropdownButtonOptions.length > 0 && (
-          <ToolTip toolTipText={intl.formatMessage({ id: 'details.download' })} invertPosition>
-            <DetailsButtonDropdown options={dropdownButtonOptions}>
-              <Download className="text-primary1" size={size} />
-            </DetailsButtonDropdown>
-          </ToolTip>
-        )}
-
-        {displayReport && Number(details.id) && getGlobalConfig().enableReport && (
-          <ToolTip toolTipText={intl.formatMessage({ id: 'report.title' })} invertPosition>
-            <DetailsButton url="#details_report" onClick={() => setReportVisibility(true)}>
-              <AlertTriangle size={size} />
-            </DetailsButton>
-          </ToolTip>
-        )}
-
-        {displayReservationWidget &&
-          (details as Details).reservation &&
-          (details as Details).reservation_id &&
-          getGlobalConfig().reservationPartner &&
-          getGlobalConfig().reservationProject && (
-            <ToolTip toolTipText={intl.formatMessage({ id: 'search.book' })} invertPosition>
-              <DetailsButton url="#details_reservationWidget">
-                <Reservation width={30} height={30} />
-              </DetailsButton>
-            </ToolTip>
-          )}
-
-        {is3DfeatureEnabled && (
-          <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.show3D' })} invertPosition>
-            <DetailsButton onClick={() => setOpen3D(true)}>
-              <ThreeDMap size={size} />
-            </DetailsButton>
-          </ToolTip>
-        )}
-      </div>
+      {is3DfeatureEnabled && (
+        <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.show3D' })} invertPosition>
+          <DetailsButton onClick={() => setOpen3D(true)}>
+            <ThreeDMap size={size} aria-hidden/>
+            <span className="sr-only"><FormattedMessage id="tooltip.show3D" /></span>
+          </DetailsButton>
+        </ToolTip>
+      )}
     </div>
   );
 };
