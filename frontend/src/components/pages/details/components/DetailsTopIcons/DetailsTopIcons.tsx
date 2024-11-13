@@ -25,18 +25,25 @@ interface DetailsTopIconsProps {
 }
 
 interface IconProps {
+  className?: string;
   height?: number;
   width?: number;
   src?: string;
 }
 
-const Icon: React.FC<IconProps> = ({ src = '', ...props }) => {
+const Icon: React.FC<IconProps> = ({ src, ...props }) => {
   if (!src) {
     return null;
   }
   if (RegExp(/(.*).svg/).test(src)) {
     return (
-      <SVG src={src} {...props} className="text-white" preProcessor={optimizeAndDefineColor()} />
+      <SVG
+        src={src}
+        {...props}
+        className={cn('text-white', props.className)}
+        preProcessor={optimizeAndDefineColor()}
+        aria-hidden
+      />
     );
   }
   return <Image loading="lazy" src={src} {...props} alt="" />;
@@ -49,30 +56,25 @@ export const DetailsTopIcons: React.FC<DetailsTopIconsProps> = ({
   displayReservationWidget = true,
 }) => {
   return (
-    <>
+    <div
+      id="details_topRoundIcons"
+      className="flex justify-between items-center min-w-0 mx-4 desktop:mx-12 menu-download"
+    >
+      {practice && <ActivityLogo type={type} src={practice.pictogramUri} />}
       <div
-        id="details_topRoundIcons"
-        className="flex justify-between items-center mx-4 desktop:mx-12 menu-download"
+        className={cn(
+          (type === 'TREK' || type === 'OUTDOOR_SITE' || type === 'TOURISTIC_EVENT') &&
+            'desktop:hidden',
+        )}
       >
-        {practice && <ActivityLogo type={type} src={practice.pictogramUri} />}
-        <div className="flex space-x-4">
-          <div
-            className={
-              type === 'TREK' || type === 'OUTDOOR_SITE' || type === 'TOURISTIC_EVENT'
-                ? 'desktop:hidden'
-                : undefined
-            }
-          >
-            <DetailsDownloadIcons
-              details={details}
-              size={30}
-              displayReport={type === 'TREK'}
-              displayReservationWidget={displayReservationWidget}
-            />
-          </div>
-        </div>
+        <DetailsDownloadIcons
+          details={details}
+          size={30}
+          displayReport={type === 'TREK'}
+          displayReservationWidget={displayReservationWidget}
+        />
       </div>
-    </>
+    </div>
   );
 };
 
@@ -82,18 +84,12 @@ const ActivityLogo: React.FC<{
 }> = ({ src, type = null }) => (
   <div
     className={cn(
-      `size-12 desktop:size-18 rounded-full
-      flex items-center justify-center
-      shadow-md
-    bg-primary1`,
+      'size-12 desktop:size-18 rounded-full',
+      'flex items-center justify-center',
+      'shadow-md bg-primary1',
       getActivityColorClassName(type, { withBackground: true }),
     )}
   >
-    <div className="desktop:hidden">
-      <Icon src={src} height={40} width={40} />
-    </div>
-    <div className="hidden desktop:block">
-      <Icon src={src} height={53} width={53} />
-    </div>
+    <Icon src={src} className="size-10 desktop:size-13" height={53} width={53} />
   </div>
 );
