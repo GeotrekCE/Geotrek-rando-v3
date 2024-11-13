@@ -3,12 +3,12 @@ import React from 'react';
 interface DetailsButtonProps {
   url?: string;
   onClick?: (event: React.MouseEvent) => void;
-  children: JSX.Element;
+  children: React.ReactNode;
 }
 
 export const DetailsButton: React.FC<DetailsButtonProps> = ({ url, onClick, children }) => {
   const className =
-    'h-12 w-12 grid place-items-center rounded-full shadow-lg text-primary1 bg-white cursor-pointer hover:text-primary1-light transition-all';
+    'size-12 grid place-items-center rounded-full shadow-lg text-primary1 bg-white hover:text-primary1-light transition';
 
   if (url === undefined) {
     return (
