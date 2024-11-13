@@ -29,8 +29,8 @@ const ToolTipGT: FC<Props> = ({
         className={cn(
           'tooltipSpan',
           'relative absolute left-1/2 -translate-x-1/2 p-1.5 text-center rounded-md z-1',
-          'w-0 invisible',
-          'group-hover:w-max group-hover:visible',
+          'w-0 hidden',
+          'group-hover:w-max group-hover:inline',
           "after:content-[''] after:block after:absolute after:left-1/2 after:-ml-1 after:border-4 after:border-transparent",
           invertPosition
             ? 'top-full after:bottom-full after:border-b-primary1'
