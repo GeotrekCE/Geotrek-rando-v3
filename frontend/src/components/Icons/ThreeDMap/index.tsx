@@ -3,9 +3,8 @@ import { GenericIconProps } from '../types';
 
 export const ThreeDMap: React.FC<GenericIconProps> = ({
   color = 'currentColor',
-  opacity,
-  className,
   size,
+  ...props
 }) => {
   return (
     <svg
@@ -14,8 +13,7 @@ export const ThreeDMap: React.FC<GenericIconProps> = ({
       viewBox="0 0 31 31"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      opacity={opacity}
+      {...props}
     >
       <path
         fillRule="evenodd"
