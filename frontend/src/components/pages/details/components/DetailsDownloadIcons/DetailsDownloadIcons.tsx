@@ -54,6 +54,16 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
     'elevationAreaUrl' in details &&
     !isTouchScreen;
 
+  const isReportFeatureEnabled =
+    displayReport && getGlobalConfig().enableReport && Boolean(details.id);
+
+  const isReservationWidgetFeatureEnabled =
+    displayReservationWidget &&
+    'reservation' in details &&
+    'reservation_id' in details &&
+    getGlobalConfig().reservationPartner &&
+    getGlobalConfig().reservationProject;
+
   const dropdownButtonOptions = [];
   if ('gpxUri' in details) {
     dropdownButtonOptions.push({
@@ -90,7 +100,9 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
         <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.print' })} invertPosition>
           <DetailsButton url={details.pdfUri}>
             <Printer size={30} aria-hidden />
-            <span className="sr-only"><FormattedMessage id="tooltip.print" /></span>
+            <span className="sr-only">
+              <FormattedMessage id="tooltip.print" />
+            </span>
           </DetailsButton>
         </ToolTip>
       )}
@@ -99,38 +111,42 @@ export const DetailsDownloadIcons: React.FC<DetailsTopIconsProps> = ({
         <ToolTip toolTipText={intl.formatMessage({ id: 'details.download' })} invertPosition>
           <DetailsButtonDropdown options={dropdownButtonOptions}>
             <Download className="text-primary1" size={size} aria-hidden />
-            <span className="sr-only"><FormattedMessage id="details.download" /></span>
+            <span className="sr-only">
+              <FormattedMessage id="details.download" />
+            </span>
           </DetailsButtonDropdown>
         </ToolTip>
       )}
 
-      {displayReport && Number(details.id) && getGlobalConfig().enableReport && (
+      {isReportFeatureEnabled && (
         <ToolTip toolTipText={intl.formatMessage({ id: 'report.title' })} invertPosition>
           <DetailsButton url="#details_report" onClick={() => setReportVisibility(true)}>
             <AlertTriangle size={size} aria-hidden />
-            <span className="sr-only"><FormattedMessage id="report.title" /></span>
+            <span className="sr-only">
+              <FormattedMessage id="report.title" />
+            </span>
           </DetailsButton>
         </ToolTip>
       )}
 
-      {displayReservationWidget &&
-        (details as Details).reservation &&
-        (details as Details).reservation_id &&
-        getGlobalConfig().reservationPartner &&
-        getGlobalConfig().reservationProject && (
-          <ToolTip toolTipText={intl.formatMessage({ id: 'search.book' })} invertPosition>
-            <DetailsButton url="#details_reservationWidget">
-              <Reservation width={30} height={30} aria-hidden />
-              <span className="sr-only"><FormattedMessage id="search.book" /></span>
-            </DetailsButton>
-          </ToolTip>
-        )}
+      {isReservationWidgetFeatureEnabled && (
+        <ToolTip toolTipText={intl.formatMessage({ id: 'search.book' })} invertPosition>
+          <DetailsButton url="#details_reservationWidget">
+            <Reservation width={30} height={30} aria-hidden />
+            <span className="sr-only">
+              <FormattedMessage id="search.book" />
+            </span>
+          </DetailsButton>
+        </ToolTip>
+      )}
 
       {is3DfeatureEnabled && (
         <ToolTip toolTipText={intl.formatMessage({ id: 'tooltip.show3D' })} invertPosition>
           <DetailsButton onClick={() => setOpen3D(true)}>
-            <ThreeDMap size={size} aria-hidden/>
-            <span className="sr-only"><FormattedMessage id="tooltip.show3D" /></span>
+            <ThreeDMap size={size} aria-hidden />
+            <span className="sr-only">
+              <FormattedMessage id="tooltip.show3D" />
+            </span>
           </DetailsButton>
         </ToolTip>
       )}
