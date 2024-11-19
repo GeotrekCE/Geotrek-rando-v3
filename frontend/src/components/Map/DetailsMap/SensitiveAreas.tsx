@@ -36,11 +36,13 @@ export const SensitiveAreas: React.FC<PropsType> = ({ contents }) => {
     return null;
   }
 
-  return (
-    <>
-      {polygons.map(({ positions, color }, i) => {
-        return <Polygon color={color} key={`sensitiveArea${i}`} positions={positions} weight={3} />;
-      })}
-    </>
-  );
+  return polygons.map(({ positions, color }) => (
+    <Polygon
+      className={`bg-${color}`}
+      color="currentColor"
+      key={color}
+      positions={positions}
+      weight={3}
+    />
+  ));
 };
