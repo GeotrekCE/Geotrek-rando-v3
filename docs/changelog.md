@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.23.3 (2024-11-19)
+
+**🐛 Fixes**
+
+- Fix geometry color of sensitiveAreas - regression since 3.22.0 (#1307)
+
 ## 3.23.2 (2024-11-12)
 
 **📝 Documentation**
