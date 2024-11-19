@@ -1,22 +1,23 @@
+import { useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { useMediaPredicate } from 'react-media-hook';
+
 import { AlertTriangle } from 'components/Icons/AlertTriangle';
 import { Reservation } from 'components/Icons/Reservation';
 import { ThreeDMap } from 'components/Icons/ThreeDMap';
 import { Printer } from 'components/Icons/Printer';
 import { DetailsButton } from 'components/pages/details/components/DetailsButton';
-import { useState } from 'react';
 import ToolTip from 'components/ToolTip';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { Download } from 'components/Icons/Download';
 import { Details } from 'modules/details/interface';
 import { ThreeD } from 'components/3D';
 import { getMapConfig } from 'components/Map/config';
-import { useMediaPredicate } from 'react-media-hook';
 import useHasMounted from 'hooks/useHasMounted';
-import { OutdoorCourseDetails } from '../../../../../modules/outdoorCourse/interface';
-import { OutdoorSiteDetails } from '../../../../../modules/outdoorSite/interface';
-import { TouristicContentDetails } from '../../../../../modules/touristicContent/interface';
-import { TouristicEventDetails } from '../../../../../modules/touristicEvent/interface';
-import { getGlobalConfig } from '../../../../../modules/utils/api.config';
+import { OutdoorCourseDetails } from 'modules/outdoorCourse/interface';
+import { OutdoorSiteDetails } from 'modules/outdoorSite/interface';
+import { TouristicContentDetails } from 'modules/touristicContent/interface';
+import { TouristicEventDetails } from 'modules/touristicEvent/interface';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { DetailsButtonDropdown } from '../DetailsButtonDropdown';
 import { useDetailsAndMapContext } from '../../DetailsAndMapContext';
 
