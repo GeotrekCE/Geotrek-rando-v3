@@ -269,14 +269,14 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
             id="search_resultMap"
             className={cn(
               'fixed inset-0 z-map left-full w-full transition-transform',
-              'desktop:flex desktop:z-content desktop:bottom-0 desktop:fixed desktop:left-auto desktop:right-0 desktop:w-1/2 desktop:top-headerAndFilterBar',
+              'desktop:z-content desktop:left-auto desktop:w-1/2 desktop:top-headerAndFilterBar',
               mobileMapState === 'DISPLAYED'
-                ? '-translate-x-full desktop:translate-x-0'
-                : 'translate-x-0',
+                ? '-translate-x-full desktop:translate-x-0 h-auto'
+                : 'translate-x-0 h-screen desktop:h-auto',
             )}
           >
-            {isMapLoading && <div className="absolute bg-primary2 opacity-40 inset-0 z-map" />}
-            <Loader loaded={!isMapLoading} className="absolute inset-0 z-map" />
+            <Loader loaded={!isMapLoading} className="fixed inset-0 z-map" />
+            {isMapLoading && <div className="fixed bg-primary2 opacity-40 inset-0 z-map" />}
             <SearchMapDynamicComponent
               hasZoomControl={!isMobile}
               onMove={handleMoveMap}
