@@ -304,7 +304,7 @@ details > summary.list-none::marker {
 }
 
 .custo-page-WYSIWYG .gallery-container {
-  @apply grid desktop:grid-cols-2 gap-2 mb-8 desktop:-mx-14;
+  @apply grid desktop:grid-cols-2 gap-2 mb-8 desktop:-mx-14 overflow-hidden;
 }
 
 .custo-page-WYSIWYG .gallery-container figure {
