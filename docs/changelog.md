@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.24.1 (2024-11-27)
+
+**🔧 Maintenance**
+
+- Bump tailwindcss from 3.4.1 to 3.4.15 (#1306)
+
+**🐛 Fixes**
+
+- Fix geometry color of sensitiveAreas - regression since 3.22.0 (#1310)
+- Fix search page reload when scrolling on android devices (#1313)
+- Fix undesired scrollbar with image gallery on chrome (#1315)
+
 ## 3.24.0 (2024-11-20)
 
 **✨ Improvements**
