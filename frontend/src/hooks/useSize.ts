@@ -1,5 +1,6 @@
 import { MutableRefObject, RefObject, useState } from 'react';
 import useResizeObserver from '@react-hook/resize-observer';
+import { ResizeObserver } from '@juggle/resize-observer';
 import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect';
 
 const useSize = (target: MutableRefObject<HTMLElement | null | undefined>) => {
@@ -9,7 +10,9 @@ const useSize = (target: MutableRefObject<HTMLElement | null | undefined>) => {
     setSize(target.current?.getBoundingClientRect() ?? null);
   }, [target]);
 
-  useResizeObserver(target as RefObject<HTMLElement>, entry => setSize(entry.contentRect ?? null));
+  useResizeObserver(target as RefObject<HTMLElement>, entry => setSize(entry.contentRect ?? null), {
+    polyfill: ResizeObserver,
+  });
   return size;
 };
 
