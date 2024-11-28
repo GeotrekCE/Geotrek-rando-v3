@@ -8,7 +8,8 @@ const sentryOptions = {
   environment: process.env.ENVIRONMENT,
   maxBreadcrumbs: 50,
   attachStacktrace: true,
-};
+  integrations: [Sentry.replayIntegration()],
+} as Sentry.BrowserOptions;
 
 // Development & tests setup
 if (process.env.NODE_ENV !== 'production') {
@@ -16,4 +17,6 @@ if (process.env.NODE_ENV !== 'production') {
   sentryOptions.beforeSend = () => null;
 }
 
-Sentry.init(sentryOptions);
+if (SENTRY_DSN) {
+  Sentry.init(sentryOptions);
+}
