@@ -1,5 +1,6 @@
 import getNextConfig from 'next/config';
 import Head from 'next/head';
+import { Assistant } from 'next/font/google';
 import { IntlProvider } from 'react-intl';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { getDefaultLanguage } from 'modules/header/utills';
@@ -15,6 +16,12 @@ interface Messages {
 const {
   publicRuntimeConfig: { locales },
 } = getNextConfig();
+
+const assistant = Assistant({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const Root: React.FC<React.PropsWithChildren> = props => {
   const router = useRouter();
@@ -54,6 +61,12 @@ export const Root: React.FC<React.PropsWithChildren> = props => {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
+
+        <style>{`
+          :root {
+            --font-assistant: ${assistant.style.fontFamily};
+          }
+        `}</style>
       </Head>
       {props.children}
     </IntlProvider>

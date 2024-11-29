@@ -5,7 +5,6 @@ import { HydrationBoundary, QueryClient, QueryClientProvider } from '@tanstack/r
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ONE_MINUTE } from 'services/constants/staleTime';
 import '../styles/global.css';
-import '../public/fonts.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'orejime/dist/orejime.css';

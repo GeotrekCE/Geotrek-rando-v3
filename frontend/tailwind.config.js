@@ -8,7 +8,17 @@ module.exports = {
       desktop: '1024px',
     },
     fontFamily: {
-      main: `'Assistant', 'Helvetica', 'Arial', sans-serif`,
+      main: [
+        'var(--font-assistant)',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        'Segoe UI',
+        'Roboto',
+        'Helvetica Neue',
+        'ubuntu',
+        'Arial',
+        'sans-serif',
+      ],
       code: 'Monospace',
     },
     boxShadow: {
