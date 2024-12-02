@@ -1,11 +1,11 @@
 import { NextPageContext } from 'next';
-import { default as getNextConfig } from 'next/config';
+import getNextConfig from 'next/config';
 
 const ManifestJson = (): null => {
   return null;
 };
 
-ManifestJson.getInitialProps = (props: NextPageContext) => {
+export const getServerSideProps = (props: NextPageContext) => {
   const {
     publicRuntimeConfig: { global, manifest = {} },
   } = getNextConfig();
@@ -43,9 +43,12 @@ ManifestJson.getInitialProps = (props: NextPageContext) => {
     ...defaultManifest,
     ...manifest,
   };
-  res.setHeader('Content-Type', 'text/plain');
+  res.setHeader('Content-Type', 'application/json');
   res.write(JSON.stringify(content, null, 2));
   res.end();
+  return {
+    props: {},
+  };
 };
 
 export default ManifestJson;
