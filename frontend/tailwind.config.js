@@ -9,7 +9,7 @@ module.exports = {
     },
     fontFamily: {
       main: [
-        'var(--font-assistant)',
+        'var(--font-main)',
         '-apple-system',
         'BlinkMacSystemFont',
         'Segoe UI',
