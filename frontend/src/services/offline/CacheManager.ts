@@ -34,8 +34,6 @@ const CacheManager = {
     type: ContentType;
     url: string[];
   }) => {
-    controlInstance.recenter();
-
     const cache = await caches.open('trek-pages');
 
     await Promise.all(url.map(_ => cache.add(_)));
