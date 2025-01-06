@@ -11,9 +11,9 @@
 
 **🐛 Fixes**
 
-- Avoid trying to launch sentry for instances without Sentry DSN key (#1319)
-- Render manifest.json as json file (#1321)
-- Define bounds instead of minZoom for tileLayerOffline (#1332 and #1333)
+- Avoid trying to launch Sentry for instances without Sentry DSN key (#1319)
+- Render `manifest.json` as JSON file (#1321)
+- Define bounds instead of minZoom for `tileLayerOffline` (#1332 and #1333)
 
 ## 3.24.1 (2024-11-27)
 
