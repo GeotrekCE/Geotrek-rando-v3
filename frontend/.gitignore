@@ -25,7 +25,8 @@ yarn-error.log*
 .env*.local
 
 # PWA artifacts
-**/public/sw.js*
+**/public/sw*
+**/public/swe-worker*
 **/public/fallback-*.js*
 **/public/workbox-*.js*
 **/public/worker-*.js*
@@ -33,3 +34,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+certificates

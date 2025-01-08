@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { Workbox } from 'workbox-window';
+// import { Workbox } from 'workbox-window';
 
 declare global {
   interface Window {
-    workbox: Workbox;
+    workbox: any;
   }
 }
 
@@ -31,13 +31,13 @@ const useCustomRegisterServiceWorker = () => {
     if (
       typeof window !== 'undefined' &&
       'serviceWorker' in navigator &&
-      window.workbox !== undefined &&
+      window?.workbox !== undefined &&
       isOnline
     ) {
       const pagesToCache = ['search', 'information'];
       pagesToCache.forEach(page => {
         if (router.route.startsWith(`/${page}`)) {
-          const wb = window.workbox;
+          const wb = window?.workbox;
           void wb.active.then(() => {
             void wb.messageSW({ action: `${page}-pages` });
           });
