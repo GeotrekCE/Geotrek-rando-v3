@@ -1,5 +1,4 @@
 import { renderToStaticMarkup } from 'react-dom/server';
-import 'leaflet/dist/leaflet.css';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { AlertCircle } from 'components/Icons/AlertCircle';
 import { Icon, LatLngLiteral } from 'leaflet';

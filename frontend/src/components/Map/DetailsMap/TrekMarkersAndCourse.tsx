@@ -1,6 +1,5 @@
 import React from 'react';
 import { Marker, Tooltip } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
 
 import { ArrivalMarker } from '../Markers/ArrivalMarker';
 import { DepartureMarker } from '../Markers/DepartureMarker';
