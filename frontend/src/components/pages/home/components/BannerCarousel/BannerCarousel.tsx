@@ -27,6 +27,7 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = ({ picturesUrl }) =
             key={i}
             className="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
             alt=""
+            crossOrigin="anonymous"
           />
         ))}
       </Slider>

@@ -31,6 +31,7 @@ Object {
                     <img
                       alt=""
                       class="object-cover object-center overflow-hidden size-full"
+                      crossorigin="anonymous"
                       id=":r1:"
                       loading="lazy"
                       src="/test.jpg"
@@ -244,6 +245,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-center overflow-hidden size-full"
+                    crossorigin="anonymous"
                     id=":r1:"
                     loading="lazy"
                     src="/test.jpg"
