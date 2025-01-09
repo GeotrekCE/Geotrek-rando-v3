@@ -71,7 +71,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
           const { style, ...attribs } = domNode.attribs;
           if (!isMounted) {
             // eslint-disable-next-line @next/next/no-img-element
-            return <img loading="lazy" alt="" {...attribs} />;
+            return <img loading="lazy" alt="" {...attribs} crossOrigin="anonymous" />;
           }
           return (
             <Modal style={StyleToJS(style)}>
@@ -89,6 +89,7 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                       {...attribs}
                       onClick={toggleFullscreen}
                       className="object-center overflow-hidden size-full object-contain"
+                      crossOrigin="anonymous"
                     />
                     {Tag === 'figure' && domNode.next?.next instanceof Element && (
                       <figcaption>{domToReact(domNode.next.next.children as DOMNode[])}</figcaption>
@@ -100,7 +101,13 @@ export const FlatPageUI: React.FC<FlatPageUIProps> = ({ flatPageUrl }) => {
                       <FormattedMessage id="details.openPictureInFullScreen" />
                     </span>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img className="object-cover" loading="lazy" alt="" {...attribs} />
+                    <img
+                      className="object-cover"
+                      loading="lazy"
+                      alt=""
+                      {...attribs}
+                      crossOrigin="anonymous"
+                    />
                   </button>
                 );
               }}
