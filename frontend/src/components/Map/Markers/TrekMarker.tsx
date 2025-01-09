@@ -53,6 +53,7 @@ const ActivityMarker: React.FC<{
           src={icon}
           width={markerWidth * zoomRatio}
           height={markerWidth * zoomRatio}
+          crossOrigin="anonymous"
         />
       )}
     </div>

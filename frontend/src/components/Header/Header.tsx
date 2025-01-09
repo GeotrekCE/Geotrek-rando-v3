@@ -33,6 +33,7 @@ export const Header: React.FC = () => {
                 id="header_logoImg"
                 className="h-9 w-auto desktop:h-18 mr-3"
                 alt=""
+                crossOrigin="anonymous"
                 src={config.logo}
               />
             </div>

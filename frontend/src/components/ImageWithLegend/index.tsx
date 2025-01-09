@@ -39,6 +39,7 @@ export const ImageWithLegend: React.FC<ImageWithLegendProps> = ({
         id={imageId}
         loading={loading ?? 'eager'}
         src={image.url || getGlobalConfig().fallbackImageUri}
+        crossOrigin="anonymous"
       />
       <Legend
         figureId={figureId}
