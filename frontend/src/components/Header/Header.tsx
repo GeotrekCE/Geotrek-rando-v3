@@ -34,6 +34,7 @@ export const Header: React.FC = () => {
                 className="h-9 w-auto desktop:h-18 mr-3"
                 alt=""
                 src={config.logo}
+                crossOrigin="anonymous"
               />
             </div>
             <p
