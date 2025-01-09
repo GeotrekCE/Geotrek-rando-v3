@@ -45,6 +45,7 @@ Object {
                     <img
                       alt=""
                       class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                      crossorigin="anonymous"
                       loading="lazy"
                       src="test2.jpg"
                       style="width: 100%; display: inline-block;"
@@ -63,6 +64,7 @@ Object {
                     <img
                       alt=""
                       class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                      crossorigin="anonymous"
                       loading="eager"
                       src="test1.jpg"
                       style="width: 100%; display: inline-block;"
@@ -81,6 +83,7 @@ Object {
                     <img
                       alt=""
                       class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                      crossorigin="anonymous"
                       loading="lazy"
                       src="test2.jpg"
                       style="width: 100%; display: inline-block;"
@@ -99,6 +102,7 @@ Object {
                     <img
                       alt=""
                       class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                      crossorigin="anonymous"
                       loading="eager"
                       src="test1.jpg"
                       style="width: 100%; display: inline-block;"
@@ -117,6 +121,7 @@ Object {
                     <img
                       alt=""
                       class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                      crossorigin="anonymous"
                       loading="lazy"
                       src="test2.jpg"
                       style="width: 100%; display: inline-block;"
@@ -191,6 +196,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    crossorigin="anonymous"
                     loading="lazy"
                     src="test2.jpg"
                     style="width: 100%; display: inline-block;"
@@ -209,6 +215,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    crossorigin="anonymous"
                     loading="eager"
                     src="test1.jpg"
                     style="width: 100%; display: inline-block;"
@@ -227,6 +234,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    crossorigin="anonymous"
                     loading="lazy"
                     src="test2.jpg"
                     style="width: 100%; display: inline-block;"
@@ -245,6 +253,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    crossorigin="anonymous"
                     loading="eager"
                     src="test1.jpg"
                     style="width: 100%; display: inline-block;"
@@ -263,6 +272,7 @@ Object {
                   <img
                     alt=""
                     class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+                    crossorigin="anonymous"
                     loading="lazy"
                     src="test2.jpg"
                     style="width: 100%; display: inline-block;"
@@ -361,6 +371,7 @@ Object {
         <img
           alt=""
           class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+          crossorigin="anonymous"
           data-testid="image"
           id="banner-image"
           src="test0.jpg"
@@ -385,6 +396,7 @@ Object {
       <img
         alt=""
         class="object-cover object-top overflow-hidden h-bannerSectionMobile desktop:h-bannerSectionDesktop w-full"
+        crossorigin="anonymous"
         data-testid="image"
         id="banner-image"
         src="test0.jpg"

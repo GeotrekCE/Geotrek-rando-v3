@@ -35,6 +35,7 @@ Object {
                       <img
                         alt="Lorem ipsum"
                         class="object-cover overflow-hidden size-full object-center"
+                        crossorigin="anonymous"
                         id=":r3:"
                         loading="eager"
                         src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -170,6 +171,7 @@ Object {
                                 <img
                                   alt="Lorem ipsum"
                                   class="overflow-hidden size-full object-cover object-center"
+                                  crossorigin="anonymous"
                                   id=":r9:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -229,6 +231,7 @@ Object {
                                 <img
                                   alt="Lorem ipsum"
                                   class="overflow-hidden size-full object-cover object-center"
+                                  crossorigin="anonymous"
                                   id=":rb:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -369,6 +372,7 @@ Object {
                     <img
                       alt="Lorem ipsum"
                       class="object-cover overflow-hidden size-full object-center"
+                      crossorigin="anonymous"
                       id=":r3:"
                       loading="eager"
                       src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -526,6 +530,7 @@ Object {
                       <img
                         alt="Lorem ipsum"
                         class="object-cover overflow-hidden size-full object-center"
+                        crossorigin="anonymous"
                         id=":r3:"
                         loading="eager"
                         src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -661,6 +666,7 @@ Object {
                                 <img
                                   alt="Lorem ipsum"
                                   class="overflow-hidden size-full object-cover object-center"
+                                  crossorigin="anonymous"
                                   id=":r9:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -720,6 +726,7 @@ Object {
                                 <img
                                   alt="Lorem ipsum"
                                   class="overflow-hidden size-full object-cover object-center"
+                                  crossorigin="anonymous"
                                   id=":rb:"
                                   loading="lazy"
                                   src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -896,6 +903,7 @@ Object {
                               <img
                                 alt="Lorem ipsum"
                                 class="overflow-hidden size-full object-cover object-center"
+                                crossorigin="anonymous"
                                 id=":r9:"
                                 loading="lazy"
                                 src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
@@ -955,6 +963,7 @@ Object {
                               <img
                                 alt="Lorem ipsum"
                                 class="overflow-hidden size-full object-cover object-center"
+                                crossorigin="anonymous"
                                 id=":rb:"
                                 loading="lazy"
                                 src="https://cdn.pixabay.com/photo/2017/06/29/18/40/background-2455710_400.jpg"
