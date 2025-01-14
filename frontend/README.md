@@ -1,6 +1,6 @@
 ## Prerequisites
 
-You need to have a node version installed >= 8.x or >= 10.x.
+You need to have a node version installed >= 22.x.
 If you have nvm installed, you can just type `nvm use` to use a working node version.
 
 ## Documentation

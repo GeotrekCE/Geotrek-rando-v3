@@ -6,7 +6,7 @@ This section explains how to set up the project for development purposes.
 
 Before starting the installation, ensure the following:
 
-- **Node.js**: You need to have **Node.js** version **20** or higher installed.
+- **Node.js**: You need to have **Node.js** version **22** or higher installed.
 - **NVM (Node Version Manager)**: It's recommended to use `nvm` to manage your Node.js versions.
 
 To ensure you're using the correct Node version, run:
@@ -62,6 +62,7 @@ This command will start the application in development mode, typically accessibl
 To apply the custom settings and media files for your local development environment, follow these steps:
 
 1. **Customization Settings**:
+
    - Copy the `customization` folder from an existing Geotrek-rando repository.
    - Paste it into the following directory in your project:  
      `Geotrek-rando-v3/frontend/customization`
@@ -72,4 +73,3 @@ To apply the custom settings and media files for your local development environm
      `Geotrek-rando-v3/frontend/src/public/medias`
 
 These folders contain custom configurations and media assets necessary for your local environment to match the production setup.
-
