@@ -1,6 +1,5 @@
 import React from 'react';
 import { Marker } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
 import { PointsReferenceMarker } from '../Markers/PointsReferenceMarker';
 
 export type PropsType = {

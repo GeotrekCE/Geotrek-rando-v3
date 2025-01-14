@@ -1,6 +1,5 @@
 import { Popup } from 'components/Map/components/Popup';
 import React from 'react';
-import 'leaflet/dist/leaflet.css';
 import { TrekChildGeometry } from 'modules/details/interface';
 import { HoverableMarker } from '../components/HoverableMarker';
 
