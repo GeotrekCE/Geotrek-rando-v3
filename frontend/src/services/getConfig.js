@@ -43,7 +43,7 @@ const getConfig = (file, parse = true, deepMerge = false) => {
   const overrideConfig = getContent(`./customization/config/${file}`, parse);
 
   const merge = (elem1, elem2) => {
-    if (Array.isArray(elem1)) {
+    if (Array.isArray(elem1) && Array.isArray(elem2)) {
       return [...elem2, ...elem1];
     }
     if (deepMerge) {
@@ -67,9 +67,11 @@ const getTemplates = (file, languages) => {
   );
 };
 
-const headers = getConfig('header.json', true);
+const headersConfig = getConfig('header.json', true);
 
-const configDetails = getConfig('details.json', true, true);
+const { supportedLanguages } = headersConfig.menu;
+
+const detailsConfig = getConfig('details.json', true, true);
 
 const filterAndOrderSectionsDetails = sections =>
   sections
@@ -77,14 +79,14 @@ const filterAndOrderSectionsDetails = sections =>
     .sort((a, b) => (a.order ?? Infinity) - (b.order ?? Infinity));
 
 const details = {
-  ...configDetails,
+  ...detailsConfig,
   sections: {
-    ...configDetails.sections,
-    trek: filterAndOrderSectionsDetails(configDetails.sections.trek),
-    touristicContent: filterAndOrderSectionsDetails(configDetails.sections.touristicContent),
-    touristicEvent: filterAndOrderSectionsDetails(configDetails.sections.touristicEvent),
-    outdoorSite: filterAndOrderSectionsDetails(configDetails.sections.outdoorSite),
-    outdoorCourse: filterAndOrderSectionsDetails(configDetails.sections.outdoorCourse),
+    ...detailsConfig.sections,
+    trek: filterAndOrderSectionsDetails(detailsConfig.sections.trek),
+    touristicContent: filterAndOrderSectionsDetails(detailsConfig.sections.touristicContent),
+    touristicEvent: filterAndOrderSectionsDetails(detailsConfig.sections.touristicEvent),
+    outdoorSite: filterAndOrderSectionsDetails(detailsConfig.sections.outdoorSite),
+    outdoorCourse: filterAndOrderSectionsDetails(detailsConfig.sections.outdoorCourse),
   },
 };
 
@@ -92,31 +94,31 @@ const detailsFiles = getFiles('./customization/html/details');
 const detailsSectionHtml = detailsFiles
   .map(item => item.replace('./customization', '../'))
   .reduce((list, file) => {
-    const [nameFile] = file.split('/').pop().split('.');
-    return { ...list, [nameFile]: getTemplates(file, headers.menu.supportedLanguages) };
+    const nameFile = file.split('/').pop()?.split('.')[0] || '';
+    return { ...list, [nameFile]: getTemplates(file, supportedLanguages) };
   }, {});
 
 const getAllConfigs = {
-  homeBottomHtml: getTemplates('../html/homeBottom.html', headers.menu.supportedLanguages),
-  homeTopHtml: getTemplates('../html/homeTop.html', headers.menu.supportedLanguages),
-  headerTopHtml: getTemplates('../html/headerTop.html', headers.menu.supportedLanguages),
-  headerBottomHtml: getTemplates('../html/headerBottom.html', headers.menu.supportedLanguages),
-  footerTopHtml: getTemplates('../html/footerTop.html', headers.menu.supportedLanguages),
-  footerBottomHtml: getTemplates('../html/footerBottom.html', headers.menu.supportedLanguages),
+  homeBottomHtml: getTemplates('../html/homeBottom.html', supportedLanguages),
+  homeTopHtml: getTemplates('../html/homeTop.html', supportedLanguages),
+  headerTopHtml: getTemplates('../html/headerTop.html', supportedLanguages),
+  headerBottomHtml: getTemplates('../html/headerBottom.html', supportedLanguages),
+  footerTopHtml: getTemplates('../html/footerTop.html', supportedLanguages),
+  footerBottomHtml: getTemplates('../html/footerBottom.html', supportedLanguages),
   detailsSectionHtml,
   scriptsHeaderHtml: getConfig('../html/scriptsHeader.html', false),
   scriptsFooterHtml: getConfig('../html/scriptsFooter.html', false),
   style: getConfig('../theme/style.css', false),
   colors: getConfig('../theme/colors.json', true),
   details,
-  header: getConfig('header.json', true),
+  header: headersConfig,
   global: getConfig('global.json', true),
   home: getConfig('home.json', true),
   map: getConfig('map.json', true),
   filter: getConfig('filter.json', true),
   footer: getConfig('footer.json', true),
   manifest: getConfig('manifest.json', true),
-  locales: getLocales(headers.menu.supportedLanguages),
+  locales: getLocales(supportedLanguages),
   resultCard: getConfig('resultCard.json', true),
 };
 
