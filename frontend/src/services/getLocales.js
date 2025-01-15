@@ -18,15 +18,10 @@ const getLocales = supportedLanguages => {
   const getMessagesFromLanguage = language => {
     const translationsFile = `./src/translations/${String(language)}.json`;
     const messages = JSON.parse(fs.readFileSync(translationsFile).toString());
-    const customTranslationsFile = `./customization/translations/${String(
-      language,
-    )}.json`;
-    let customMessages = {};
-    if (fs.existsSync(customTranslationsFile)) {
-      customMessages = JSON.parse(
-        fs.readFileSync(customTranslationsFile).toString(),
-      );
-    }
+    const customTranslationsFile = `./customization/translations/${String(language)}.json`;
+    const customMessages = fs.existsSync(customTranslationsFile)
+      ? JSON.parse(fs.readFileSync(customTranslationsFile).toString())
+      : {};
 
     return {
       ...flattenMessages(messages),
