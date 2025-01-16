@@ -2,15 +2,17 @@ import path from 'path';
 import withPlugins from 'next-compose-plugins';
 import withSourceMaps from '@zeit/next-source-maps';
 import dotenv from 'dotenv-flow';
-import runtimeCachingStrategy from './cache.js';
 import { runtimeConfig } from './src/services/getConfig.mjs';
 import { withSentryConfig } from '@sentry/nextjs';
-import withPWA from 'next-pwa';
+import withSerwistInit from '@serwist/next';
 
-withPWA({
+const withSerwist = withSerwistInit({
+  cacheOnNavigation: true,
+  swSrc: 'worker/sw.ts',
+  swDest: 'public/sw.js',
+  scope: '/',
   disable: process.env.NODE_ENV === 'development',
-  dest: 'public',
-  runtimeCaching: runtimeCachingStrategy,
+  additionalPrecacheEntries: [{ url: '/offline', revision: crypto.randomUUID() }],
 });
 
 const env = dotenv.config().parsed;
@@ -19,7 +21,6 @@ const withBundleAnalyzer =
   process.env.ANALYZE === 'true' ? (await import('@next/bundle-analyzer')).default() : x => x;
 
 const plugins = [
-  [withPWA],
   [withSourceMaps()],
   [withBundleAnalyzer],
   nextConfig =>
@@ -29,6 +30,7 @@ const plugins = [
       disableClientWebpackPlugin: true,
       silent: true,
     }),
+  nextConfig => withSerwist(nextConfig),
 ];
 
 /** @type {import('next').NextConfig} */

@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext", "webworker"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,50 +15,23 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "components/*": [
-        "components/*"
-      ],
-      "__fixtures__/*": [
-        "__fixtures__/*"
-      ],
-      "__mocks__/*": [
-        "__mocks__/*"
-      ],
-      "routes": [
-        "routes"
-      ],
-      "services/*": [
-        "services/*"
-      ],
-      "stylesheet": [
-        "stylesheet"
-      ],
-      "translations/*": [
-        "translations/*"
-      ],
-      "customization/*": [
-        "../customization/*"
-      ]
+      "components/*": ["components/*"],
+      "__fixtures__/*": ["__fixtures__/*"],
+      "__mocks__/*": ["__mocks__/*"],
+      "routes": ["routes"],
+      "services/*": ["services/*"],
+      "stylesheet": ["stylesheet"],
+      "translations/*": ["translations/*"],
+      "customization/*": ["../customization/*"]
     },
     "incremental": true,
-    "types": [
-      "@testing-library/jest-dom"
-    ],
+    "types": ["@testing-library/jest-dom", "@serwist/next/typings"],
     "plugins": [
       {
         "name": "next"
       }
     ]
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.mjs",
-    "cypress.config.ts",
-    ".next/types/**/*.ts"
-  ]
+  "exclude": ["node_modules", "public/sw.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.mjs", "cypress.config.ts", ".next/types/**/*.ts"]
 }
