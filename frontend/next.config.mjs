@@ -1,16 +1,15 @@
-const path = require('path');
-const withPlugins = require('next-compose-plugins');
-const withSourceMaps = require('@zeit/next-source-maps');
-// https://github.com/vercel/next.js/discussions/29697
-const withBundleAnalyzer =
-  process.env.ANALYZE === 'true' ? require('@next/bundle-analyzer')() : x => x;
-const dotenv = require('dotenv-flow');
-const runtimeCachingStrategy = require('./cache');
-const headerConfig = require('./config/header.json');
-const customHeaderConfig = require('./customization/config/header.json');
-const { getAllConfigs } = require('./src/services/getConfig');
-const { withSentryConfig } = require('@sentry/nextjs');
-const withPWA = require('next-pwa')({
+import path from 'path';
+import withPlugins from 'next-compose-plugins';
+import withSourceMaps from '@zeit/next-source-maps';
+import dotenv from 'dotenv-flow';
+import runtimeCachingStrategy from './cache.js';
+import headerConfig from './config/header.json' with { type: 'json' };
+import customHeaderConfig from './customization/config/header.json' with { type: 'json' };
+import { getAllConfigs } from './src/services/getConfig.js';
+import { withSentryConfig } from '@sentry/nextjs';
+import withPWA from 'next-pwa';
+
+withPWA({
   disable: process.env.NODE_ENV === 'development',
   dest: 'public',
   runtimeCaching: runtimeCachingStrategy,
@@ -22,6 +21,9 @@ const mergedHeaderConfig = {
 };
 
 const env = dotenv.config().parsed;
+
+const withBundleAnalyzer =
+  process.env.ANALYZE === 'true' ? (await import('@next/bundle-analyzer')).default() : x => x;
 
 const plugins = [
   [withPWA],
@@ -36,8 +38,9 @@ const plugins = [
     }),
 ];
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack(config) {
+  webpack(config, options) {
     config.resolve.modules.push(path.resolve('./src'));
 
     if (typeof config.webpack === 'function') {
@@ -73,5 +76,5 @@ const nextConfig = {
   },
 };
 
-module.exports = async (phase, { defaultConfig }) =>
+export default async (phase, { defaultConfig }) =>
   withPlugins(plugins, nextConfig)(phase, { ...defaultConfig, ...nextConfig });
