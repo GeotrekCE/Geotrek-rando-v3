@@ -29,8 +29,8 @@ ENV NODE_ENV production
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 
-# You only need to copy next.config.js if you are NOT using the default configuration
-COPY --from=builder /app/next.config.js ./
+# You only need to copy next.config.mjs if you are NOT using the default configuration
+COPY --from=builder /app/next.config.mjs ./
 COPY --from=builder /app/cache.js ./
 COPY --from=builder /app/config ./config
 COPY --chown=nextjs:nodejs --from=builder /app/src/ ./src
