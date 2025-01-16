@@ -24,11 +24,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
-# PWA artifacts
-**/public/sw.js*
-**/public/fallback-*.js*
-**/public/workbox-*.js*
-**/public/worker-*.js*
+# Serwist
+**/public/sw*
+**/public/swe-worker*
 
 # typescript
 *.tsbuildinfo

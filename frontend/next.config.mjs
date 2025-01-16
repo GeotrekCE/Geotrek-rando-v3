@@ -3,17 +3,19 @@ import withPlugins from 'next-compose-plugins';
 import withSourceMaps from '@zeit/next-source-maps';
 import bundleAnalyzer from '@next/bundle-analyzer';
 import dotenv from 'dotenv-flow';
-import runtimeCachingStrategy from './cache.js';
 import headerConfig from './config/header.json' with { type: 'json' };
 import customHeaderConfig from './customization/config/header.json' with { type: 'json' };
 import { getAllConfigs } from './src/services/getConfig.js';
 import { withSentryConfig } from '@sentry/nextjs';
-import withPWA from 'next-pwa';
+import withSerwistInit from '@serwist/next';
 
-withPWA({
+const withSerwist = withSerwistInit({
+  cacheOnNavigation: true,
+  swSrc: 'worker/sw.ts',
+  swDest: 'public/sw.js',
+  scope: '/',
   disable: process.env.NODE_ENV === 'development',
-  dest: 'public',
-  runtimeCaching: runtimeCachingStrategy,
+  additionalPrecacheEntries: [{ url: '/offline', revision: crypto.randomUUID() }],
 });
 
 const mergedHeaderConfig = {
@@ -24,7 +26,6 @@ const mergedHeaderConfig = {
 const env = dotenv.config().parsed;
 
 const plugins = [
-  [withPWA],
   [withSourceMaps()],
   process.env.ANALYZE === 'true' ? [bundleAnalyzer()] : x => x,
   nextConfig =>
@@ -34,6 +35,7 @@ const plugins = [
       disableClientWebpackPlugin: true,
       silent: true,
     }),
+  nextConfig => withSerwist(nextConfig),
 ];
 
 /** @type {import('next').NextConfig} */

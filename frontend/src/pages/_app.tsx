@@ -11,7 +11,6 @@ import 'orejime/dist/orejime.css';
 import '../public/style.css';
 
 import { ListAndMapProvider } from 'modules/map/ListAndMapContext';
-import useCustomRegisterServiceWorker from 'hooks/useCustomRegisterServiceWorker';
 import { Layout } from 'components/Layout/Layout';
 import { useState } from 'react';
 
@@ -26,8 +25,6 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         },
       }),
   );
-
-  useCustomRegisterServiceWorker();
 
   return (
     <QueryClientProvider client={queryClient}>
