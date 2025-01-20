@@ -1,6 +1,6 @@
 import getNextConfig from 'next/config';
 import Head from 'next/head';
-import { Assistant } from 'next/font/google';
+import { Source_Sans_3 } from 'next/font/google';
 import { IntlProvider } from 'react-intl';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { getDefaultLanguage } from 'modules/header/utills';
@@ -17,7 +17,7 @@ const {
   publicRuntimeConfig: { locales },
 } = getNextConfig();
 
-const assistant = Assistant({
+const font = Source_Sans_3({
   weight: ['400', '600', '700'],
   subsets: ['latin'],
   display: 'swap',
@@ -64,7 +64,7 @@ export const Root: React.FC<React.PropsWithChildren> = props => {
 
         <style>{`
           :root {
-            --font-assistant: ${assistant.style.fontFamily};
+            --font-main: ${font.style.fontFamily};
           }
         `}</style>
       </Head>
