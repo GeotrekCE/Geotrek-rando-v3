@@ -42,7 +42,7 @@
     "@raruto/leaflet-elevation": "1.9.0",
     "@react-hook/resize-observer": "^2.0.2",
     "@sentry/nextjs": "^8.32.0",
-    "@tanstack/react-query": "^5.51.1",
+    "@tanstack/react-query": "^5.64.2",
     "@tanstack/react-query-devtools": "^5.51.1",
     "@zeit/next-source-maps": "^0.0.4-canary.1",
     "autoprefixer": "^10.4.14",
