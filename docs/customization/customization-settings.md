@@ -263,7 +263,7 @@ Default value is
 "informations": ["difficulty", "duration", "distance", "positiveElevation"]
 `. See [example](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/resultCard.json).
 
-## redirect.json
+## redirects.json
 
 - `redirects.json` to define URL rewriting for your instance. For example, you can use this customization to redirect old URL style (Geotrek-rando V2) to the new URL style (Geotrek-rando V3) or to redirect old URL to a new URL after changing the name of a hike in the backend.
 
