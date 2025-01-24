@@ -3,8 +3,6 @@ import withPlugins from 'next-compose-plugins';
 import withSourceMaps from '@zeit/next-source-maps';
 import dotenv from 'dotenv-flow';
 import runtimeCachingStrategy from './cache.js';
-import headerConfig from './config/header.json' with { type: 'json' };
-import customHeaderConfig from './customization/config/header.json' with { type: 'json' };
 import { runtimeConfig } from './src/services/getConfig.mjs';
 import { withSentryConfig } from '@sentry/nextjs';
 import withPWA from 'next-pwa';
@@ -14,11 +12,6 @@ withPWA({
   dest: 'public',
   runtimeCaching: runtimeCachingStrategy,
 });
-
-const mergedHeaderConfig = {
-  ...headerConfig,
-  ...customHeaderConfig,
-};
 
 const env = dotenv.config().parsed;
 
@@ -59,8 +52,8 @@ const nextConfig = {
     VERSION: process.env.VERSION,
   },
   i18n: {
-    locales: mergedHeaderConfig.menu.supportedLanguages,
-    defaultLocale: mergedHeaderConfig.menu.defaultLanguage,
+    locales: runtimeConfig.header.menu.supportedLanguages,
+    defaultLocale: runtimeConfig.header.menu.defaultLanguage,
   },
   publicRuntimeConfig: runtimeConfig,
   images: {
