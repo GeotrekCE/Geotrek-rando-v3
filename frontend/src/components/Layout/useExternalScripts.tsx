@@ -5,7 +5,7 @@ import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { uniqBy } from 'modules/utils/array';
-import merge from 'deepmerge';
+import { merge } from 'ts-deepmerge';
 
 const {
   publicRuntimeConfig: { scriptsHeaderHtml = '', scriptsFooterHtml = '', locales },
@@ -38,7 +38,7 @@ const orejimeConfig = (
     privacyPolicy: privacyPolicyLink,
     lang: locale,
     translations: {
-      [locale]: merge.all(consentsTranslations),
+      [locale]: merge(consentsTranslations),
     },
     apps: consentList.flatMap(({ name, title, cookies, purposes }) => [
       {
