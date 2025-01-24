@@ -1,10 +1,10 @@
-const fs = require('fs');
-const deepmerge = require('deepmerge');
-const { getLocales } = require('./getLocales');
+import * as fs from 'fs';
+import { merge } from 'ts-deepmerge';
+import { getLocales } from './getLocales.mjs';
 
-function isPathExists(path) {
+function isPathExists(pathName) {
   try {
-    fs.accessSync(path, fs.R_OK);
+    fs.accessSync(String(pathName), fs.constants.R_OK);
     return true;
   } catch (err) {
     return false;
@@ -15,7 +15,7 @@ function getFiles(dir, files = []) {
   if (!isPathExists(dir)) {
     return files;
   }
-  const fileList = fs.readdirSync(dir);
+  const fileList = fs.readdirSync(String(dir));
   for (const file of fileList) {
     const name = `${dir}/${file}`;
     if (fs.statSync(name).isDirectory()) {
@@ -27,40 +27,40 @@ function getFiles(dir, files = []) {
   return files;
 }
 
-const getContent = (path, parse) => {
-  if (isPathExists(path)) {
-    const content = fs.readFileSync(path).toString();
+const getContent = (pathName, parse) => {
+  if (isPathExists(pathName)) {
+    const content = fs.readFileSync(String(pathName)).toString();
     return parse ? JSON.parse(content) : content;
   }
   parse ? {} : '';
 };
 
-const getConfig = (file, parse = true, deepMerge = false) => {
+export const getConfig = (file, parse = true, deepMerge = false) => {
   // Default configuration
   const defaultConfig = getContent(`./config/${file}`, parse);
 
   // Override configuration
   const overrideConfig = getContent(`./customization/config/${file}`, parse);
 
-  const merge = (elem1, elem2) => {
+  const mergeHandler = (elem1, elem2) => {
     if (Array.isArray(elem1) && Array.isArray(elem2)) {
       return [...elem2, ...elem1];
     }
     if (deepMerge) {
-      return deepmerge.all([elem2 ?? {}, elem1 ?? {}]);
+      return merge(elem2 ?? {}, elem1 ?? {});
     } else {
       return { ...elem1, ...elem2 };
     }
   };
 
-  return parse ? merge(defaultConfig, overrideConfig) : overrideConfig || defaultConfig;
+  return parse ? mergeHandler(defaultConfig, overrideConfig) : overrideConfig || defaultConfig;
 };
 
-const getTemplates = (file, languages) => {
-  const [path] = file.split('.html');
+export const getTemplates = (file, languages) => {
+  const [pathName] = file.split('.html');
   return languages.reduce(
     (list, language) => {
-      list[language] = getContent(`./customization/config/${path}-${language}.html`, false);
+      list[language] = getContent(`./customization/config/${pathName}-${language}.html`, false);
       return list;
     },
     { default: getContent(`./customization/config/${file}`, false) },
@@ -98,7 +98,7 @@ const detailsSectionHtml = detailsFiles
     return { ...list, [nameFile]: getTemplates(file, supportedLanguages) };
   }, {});
 
-const getAllConfigs = {
+export const getAllConfigs = {
   homeBottomHtml: getTemplates('../html/homeBottom.html', supportedLanguages),
   homeTopHtml: getTemplates('../html/homeTop.html', supportedLanguages),
   headerTopHtml: getTemplates('../html/headerTop.html', supportedLanguages),
@@ -122,8 +122,9 @@ const getAllConfigs = {
   resultCard: getConfig('resultCard.json', true),
 };
 
-module.exports = {
+const configService = {
   getConfig,
   getAllConfigs,
-  getTemplates,
 };
+
+export default configService;

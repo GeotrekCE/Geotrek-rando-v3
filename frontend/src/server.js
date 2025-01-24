@@ -6,7 +6,7 @@ const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev, dir: __dirname });
 const handle = app.getRequestHandler();
-const { getConfig } = require('./services/getConfig');
+const { getConfig } = require('./services/getConfig.mjs');
 
 app.prepare().then(() => {
   const server = express();
