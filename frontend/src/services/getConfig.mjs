@@ -98,7 +98,7 @@ const detailsSectionHtml = detailsFiles
     return { ...list, [nameFile]: getTemplates(file, supportedLanguages) };
   }, {});
 
-export const getAllConfigs = {
+export const runtimeConfig = {
   homeBottomHtml: getTemplates('../html/homeBottom.html', supportedLanguages),
   homeTopHtml: getTemplates('../html/homeTop.html', supportedLanguages),
   headerTopHtml: getTemplates('../html/headerTop.html', supportedLanguages),
@@ -124,7 +124,7 @@ export const getAllConfigs = {
 
 const configService = {
   getConfig,
-  getAllConfigs,
+  runtimeConfig,
 };
 
 export default configService;
