@@ -5,7 +5,7 @@ import dotenv from 'dotenv-flow';
 import runtimeCachingStrategy from './cache.js';
 import headerConfig from './config/header.json' with { type: 'json' };
 import customHeaderConfig from './customization/config/header.json' with { type: 'json' };
-import { getAllConfigs } from './src/services/getConfig.mjs';
+import { runtimeConfig } from './src/services/getConfig.mjs';
 import { withSentryConfig } from '@sentry/nextjs';
 import withPWA from 'next-pwa';
 
@@ -62,7 +62,7 @@ const nextConfig = {
     locales: mergedHeaderConfig.menu.supportedLanguages,
     defaultLocale: mergedHeaderConfig.menu.defaultLanguage,
   },
-  publicRuntimeConfig: getAllConfigs,
+  publicRuntimeConfig: runtimeConfig,
   images: {
     remotePatterns: [
       {

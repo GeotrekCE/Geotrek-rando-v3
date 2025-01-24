@@ -1,10 +1,10 @@
 //  The built files are updated with the customization just before starting the application.
 import fs from 'fs';
-import { getAllConfigs } from './getConfig.mjs';
+import { runtimeConfig } from './getConfig.mjs';
 
 /** @typedef {import('../modules/interface').ColorsConfig} ColorsConfig */
 /** @type {ColorsConfig} */
-const colors = getAllConfigs.colors;
+const colors = runtimeConfig.colors;
 
 const colorsAsString = Object.entries(colors).reduce(
   (list, [key, value]) => {
@@ -27,13 +27,13 @@ const colorsAsString = Object.entries(colors).reduce(
 const rewriteBuildedPages = () => {
   const pages = ['404', '_offline', 'offline'];
 
-  const logoUrl = getAllConfigs.header.logo;
+  const logoUrl = runtimeConfig.header.logo;
 
-  const nextRunTimeConfig = JSON.stringify(getAllConfigs)
+  const nextRunTimeConfig = JSON.stringify(runtimeConfig)
     // All HTML configuration will not be displayed. Scripts are removed to avoid breaking the page
     .replace(new RegExp('<script(.*?)</script>', 'g'), '');
 
-  getAllConfigs.header.menu.supportedLanguages.forEach(lang => {
+    runtimeConfig.header.menu.supportedLanguages.forEach(lang => {
     pages.forEach(page => {
       if (!fs.existsSync(`./src/.next/server/pages/${lang}/${page}.html`)) {
         return;
