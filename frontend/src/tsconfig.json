@@ -61,6 +61,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.mjs",
     "cypress.config.ts",
     ".next/types/**/*.ts"
   ]

@@ -1,8 +1,17 @@
-const fs = require('fs');
+import * as fs from 'fs';
 
-const getLocales = supportedLanguages => {
-  const flattenMessages = (nestedMessages, prefix = '') =>
-    Object.keys(nestedMessages).reduce((messages, key) => {
+/** @typedef {{[key: string]: string | Object}} nestedMessages */
+
+/**
+ * @param {string[]} supportedLanguages
+ */
+export const getLocales = supportedLanguages => {
+    /**
+   * @param {nestedMessages} nestedMessages
+   * @param {string} [prefix='']
+   */
+  const flattenMessages = (nestedMessages, prefix = '') => {
+    return Object.keys(nestedMessages).reduce((messages, key) => {
       const value = nestedMessages[key];
       const prefixedKey = prefix !== '' ? `${prefix}.${key}` : key;
 
@@ -14,11 +23,14 @@ const getLocales = supportedLanguages => {
 
       return messages;
     }, {});
+  }
 
   const getMessagesFromLanguage = language => {
     const translationsFile = `./src/translations/${String(language)}.json`;
+    /** @type {nestedMessages} */
     const messages = JSON.parse(fs.readFileSync(translationsFile).toString());
     const customTranslationsFile = `./customization/translations/${String(language)}.json`;
+    /** @type {nestedMessages} */
     const customMessages = fs.existsSync(customTranslationsFile)
       ? JSON.parse(fs.readFileSync(customTranslationsFile).toString())
       : {};
@@ -36,6 +48,8 @@ const getLocales = supportedLanguages => {
   return data;
 };
 
-module.exports = {
+const localesService = {
   getLocales,
 };
+
+export default localesService;

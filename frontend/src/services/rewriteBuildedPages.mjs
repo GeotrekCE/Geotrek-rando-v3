@@ -1,72 +1,70 @@
 //  The built files are updated with the customization just before starting the application.
-
 import fs from 'fs';
-import { getAllConfigs } from './getConfig.js';
+import { getAllConfigs } from './getConfig.mjs';
 
-const headerConfig = JSON.parse(fs.readFileSync('./config/header.json' , 'utf8'));
-const customHeaderConfig = JSON.parse(fs.readFileSync('./customization/config/header.json' , 'utf8'));
+/** @typedef {import('../modules/interface').ColorsConfig} ColorsConfig */
+/** @type {ColorsConfig} */
+const colors = getAllConfigs.colors;
 
-const mergedHeaderConfig = Object.assign(headerConfig, customHeaderConfig);
-
-const getColorsAsString = Object.entries(getAllConfigs.colors ?? []).reduce((list, [key, value]) => {
-  if (typeof value === "string") {
-    list.push(`--color-${key}: ${value}`.toLowerCase());
-  } else {
-    Object.entries(value).map(item => {
-      list.push(`--color-${key}-${item[0]}: ${item[1]}`.toLowerCase())
-    })
-  }
-  return list;
-}, []);
+const colorsAsString = Object.entries(colors).reduce(
+  (list, [key, value]) => {
+    if (!value) {
+      return list;
+    }
+    if (typeof value === 'string') {
+      list.push(`--color-${key}: ${value}`.toLowerCase());
+    } else if(typeof value === 'object' && !Array.isArray(value)) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      Object.entries(value).forEach(item => {
+        list.push(`--color-${key}-${item[0]}: ${item[1]}`.toLowerCase());
+      });
+    }
+    return list;
+  },
+  [],
+);
 
 const rewriteBuildedPages = () => {
   const pages = ['404', '_offline', 'offline'];
 
   const logoUrl = getAllConfigs.header.logo;
 
-
-  const runTimeConfig = JSON.stringify(getAllConfigs)
+  const nextRunTimeConfig = JSON.stringify(getAllConfigs)
     // All HTML configuration will not be displayed. Scripts are removed to avoid breaking the page
-    .replace(new RegExp("<script(.*?)</script>", "g"), "")
+    .replace(new RegExp('<script(.*?)</script>', 'g'), '');
 
-  mergedHeaderConfig.menu.supportedLanguages.forEach(lang => {
+  getAllConfigs.header.menu.supportedLanguages.forEach(lang => {
     pages.forEach(page => {
       if (!fs.existsSync(`./src/.next/server/pages/${lang}/${page}.html`)) {
         return;
       }
 
-      let file = fs.readFileSync(`./src/.next/server/pages/${lang}/${page}.html`);
+      let file = fs.readFileSync(`./src/.next/server/pages/${lang}/${page}.html`, 'utf-8');
 
       // Replace logo
       if (logoUrl) {
         file = `${file}`.replace(
-        new RegExp('<img id="header_logoImg"(.*?) src="(.*?)"/>'),
-        `<img id="header_logoImg"$1 src="${logoUrl}"/>`
-        )
+          new RegExp('<img id="header_logoImg"(.*?) src="(.*?)"/>'),
+          `<img id="header_logoImg"$1 src="${logoUrl}"/>`,
+        );
       }
 
       // Replace colors
-      getColorsAsString.forEach(item => {
-        const [key, value] = item.split(': ')
-        file = `${file}`.replace(
-          new RegExp(`${key}: (.*?);`),
-          `${key}: ${value};`
-        )
-      })
+      colorsAsString.forEach(item => {
+        const [key, value] = item.split(': ');
+        file = `${file}`.replace(new RegExp(`${key}: (.*?);`), `${key}: ${value};`);
+      });
 
       // Replace config
       file = `${file}`.replace(
         new RegExp('"runtimeConfig":(.*?)}}}'),
-        `"runtimeConfig":${runTimeConfig}`
-      )
+        `"runtimeConfig":${nextRunTimeConfig}`,
+      );
 
       // Rewrite file
-      fs.writeFileSync(
-        `./src/.next/server/pages/${lang}/${page}.html`,
-        file
-      );
-    })
-  })
+      fs.writeFileSync(`./src/.next/server/pages/${lang}/${page}.html`, file);
+    });
+  });
 };
 
 rewriteBuildedPages();
