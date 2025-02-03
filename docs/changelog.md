@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.24.3 (2025-02-03)
+
+**🔧 Maintenance**
+
+- Bump dotenv-flow from 3.2.0 to 4.1.0 (#1040)
+- Remove useless leaflet.css call (#1035)
+- Bump node from 20 to 22 (#1347)
+- Bump eslint-config-prettier from 9.1.0 to 10.0.1 (#1349)
+- Use ts-deepmerge package instead of deepmerge (#1352)
+- Convert JS scripts files to MJS (#1352)
+- Use serwist package instead of the worbox + next-pwa packages (#1355)
+
+**🐛 Fixes**
+
+- Fix Offline PWA - regression since 3.23.0 (#1355)
+- Do not try to import sentry server config if there is no SENTRY_DSN environnement key (#1346)
+
 ## 3.24.2 (2025-01-06)
 
 **🔧 Maintenance**
