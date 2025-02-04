@@ -60,7 +60,7 @@
     "leaflet-rastercoords": "^1.0.5",
     "leaflet.locatecontrol": "^0.81.1",
     "leaflet.offline": "^3.1.0",
-    "next": "^14.2.15",
+    "next": "^14.2.24",
     "next-compose-plugins": "^2.2.1",
     "next-leaflet-cluster": "^1.0.0",
     "orejime": "^2.3.0",
