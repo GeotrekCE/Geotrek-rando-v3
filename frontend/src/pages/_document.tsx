@@ -56,7 +56,9 @@ const MyDocument: React.FC = () => {
   --color-events: ${events};
 }
 `}</style>
-        {style !== undefined && <style dangerouslySetInnerHTML={{ __html: style }} />}
+        {style !== undefined && (
+          <style className="custo-style-file" dangerouslySetInnerHTML={{ __html: style }} />
+        )}
       </Head>
       <body>
         <Main />
