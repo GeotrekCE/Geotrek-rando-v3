@@ -46,6 +46,18 @@ You can override CSS in `customization/theme/style.css` file. To help overriding
 
 In addition, some classes prefixed with `custo-*` are gradually being added to facilitate style overrides for components.
 
+The font used is `Source sans 3`. If you wish to replace it, you must modify the
+dedicated `--font-main` variable in the custom properties.  
+For example, if you want to use the `arial` typeface, put the following code in
+`customization/theme/style.css`.
+
+```css
+:root {
+  --font-main: arial;
+  font-size-adjust: 0.5; /* Arial is bigger than Source sans 3 */
+}
+```
+
 !!! note
     
     **Explanations and differents styling for the main menu**
