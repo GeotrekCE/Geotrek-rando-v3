@@ -1,12 +1,13 @@
 # Installation
 
-Install Geotrek-rando on your own computer or server.
+!!! note "Install Geotrek-rando on your own computer or server."
 
 ## Environnements variables
 
-Whichever installation you choose below, you can set some environment variables related to your project.  
-If you follow the [Install with Docker (recommended)](#install-with-docker-recommended) section you can create the optional `.env` file based on the example (`cp .env.example .env`),
-If you follow the [Install without Docker (not recommended)](#install-without-docker-not-recommended) section you can modify `.env.production` file.
+Whichever installation you choose below, you can set some environment variables related to your project. 
+
+- If you follow the [Install with Docker (recommended)](#install-with-docker-recommended) section, you can create the optional `.env` file based on the example (`cp .env.example .env`).
+- If you follow the [Install without Docker (not recommended)](#install-without-docker-not-recommended) section, you can modify `.env.production` file.
 
 ### Sentry
 
