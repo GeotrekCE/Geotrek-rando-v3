@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.24.3+dev (XXXX-XX-XX)
+
+**Documentation**
+
+- Update theme color and improve customization section(#1364)
+
 ## 3.24.3 (2025-02-03)
 
 **🔧 Maintenance**
