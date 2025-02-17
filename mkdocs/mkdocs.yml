@@ -135,9 +135,6 @@ markdown_extensions:
   # - pymdownx.tilde
 
 plugins:
-  - git-committers:
-      repository: GeotrekCE/Geotrek-rando-v3
-      branch: main
   - git-revision-date-localized:
       enable_creation_date: true
 
