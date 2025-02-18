@@ -42,16 +42,16 @@ theme:
       toggle:
         icon: material/weather-sunny
         name: Dark mode
-      primary: green
-      accent: light green
+      primary: blue
+      accent: light blue
   # Light Mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
       toggle:
         icon: material/weather-night
         name: Light mode
-      primary: green
-      accent: light green
+      primary: blue
+      accent: light blue
   font:
     text: Roboto
     code: Roboto Mono
@@ -92,6 +92,9 @@ markdown_extensions:
   - def_list
   - footnotes
   - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - toc:
       permalink: true
   - pymdownx.highlight:
@@ -130,6 +133,10 @@ markdown_extensions:
   # - pymdownx.tasklist:
   #     custom_checkbox: true
   # - pymdownx.tilde
+
+plugins:
+  - git-revision-date-localized:
+      enable_creation_date: true
 
 # Page tree
 nav:

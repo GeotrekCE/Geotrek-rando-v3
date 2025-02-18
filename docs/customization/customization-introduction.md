@@ -9,37 +9,73 @@ After each customization changes, you'll have to restart the Docker container by
 
 ## Main sections
 
-[**Introduction to customization**](./customization-introduction.md)
+<div class="grid cards" markdown>
 
-General introduction with instructions to restart the Docker container after each customization change.
+-   :material-brush-outline:{ .lg .middle } __Introduction__
 
-[**Customization of settings**](./customization-settings.md)
+    ---
 
-Detailed explanations for configuration files (`global.json`, `header.json`, `home.json`, etc.) with examples of overriding default values.
+    General introduction with instructions to restart the Docker container after each customization change.
 
-[**Themes and styles**](./customization-themestyles.md)
+    [:octicons-arrow-right-24: Getting started](./customization-introduction.md)
 
-Detailed instructions on modifying colors, CSS, and menu structure, including specific classes (`custo-*`).
+-   :material-palette-swatch:{ .lg .middle } __Customization of settings__
 
-[**Icons customization**](./customization-icons.md)
+    ---
 
-Detailed instructions on modifying icons.
+    Detailed explanations for configuration files (`global.json`, `header.json`, `home.json`, etc.) with examples of overriding default values.
 
-[**Translation customization**](./customization-translation.md)
+    [:octicons-arrow-right-24: Customization of settings](./customization-settings.md)
 
-Explanation of translation files, overriding texts, and managing languages.
+-   :material-palette-outline:{ .lg .middle } __Themes and styles__
 
-[**HTML pages and scripts customization**](./customization-htmlscripts.md)
+    ---
 
-Detailed instructions on using HTML templates and custom scripts.
+    Detailed instructions on modifying colors, CSS, and menu structure, including specific classes (`custo-*`).
 
-[**GDPR**](./customization-gdpr.md)
+    [:octicons-arrow-right-24: Themes and styles](./customization-themestyles.md)
 
-Specific documentation on setting up Google Analytics, including alerts and data privacy management.
+-   :material-walk:{ .lg .middle } __Icons__
 
-[**Media and manifest.json management**](./customization-mediamanagement.md)
+    ---
 
-Explanation on managing images, favicons, splash screens, and configuring the `manifest.json` file.
+    Detailed instructions on modifying icons.
+
+    [:octicons-arrow-right-24: Icons](./customization-icons.md)
+
+-   :material-web:{ .lg .middle } __Translation__
+
+    ---
+
+    Explanation of translation files, overriding texts, and managing languages.
+
+    [:octicons-arrow-right-24: Translation](./customization-translation.md)
+
+-   :material-file-code-outline:{ .lg .middle } __HTML pages and scripts__
+
+    ---
+
+    Detailed instructions on using HTML templates and custom scripts.
+
+    [:octicons-arrow-right-24: HTML pages and scripts](./customization-htmlscripts.md)
+
+-   :material-google-analytics:{ .lg .middle } __GDPR__
+
+    ---
+
+    Specific documentation on setting up Google Analytics, including alerts and data privacy management.
+
+    [:octicons-arrow-right-24: GDPR](./customization-gdpr.md)
+
+-   :material-image:{ .lg .middle } __Media and manifest management__
+
+    ---
+
+    Explanation on managing images, favicons, splash screens, and configuring the `manifest.json` file.
+
+    [:octicons-arrow-right-24: Media and manifest management](./customization-mediamanagement.md)
+
+</div>
 
 ## Apply changes
 
