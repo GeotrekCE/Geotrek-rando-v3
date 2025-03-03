@@ -6,7 +6,7 @@ import * as fs from 'fs';
  * @param {string[]} supportedLanguages
  */
 export const getLocales = supportedLanguages => {
-    /**
+  /**
    * @param {nestedMessages} nestedMessages
    * @param {string} [prefix='']
    */
@@ -23,12 +23,14 @@ export const getLocales = supportedLanguages => {
 
       return messages;
     }, {});
-  }
+  };
 
   const getMessagesFromLanguage = language => {
     const translationsFile = `./src/translations/${String(language)}.json`;
     /** @type {nestedMessages} */
-    const messages = JSON.parse(fs.readFileSync(translationsFile).toString());
+    const messages = fs.existsSync(translationsFile)
+      ? JSON.parse(fs.readFileSync(translationsFile).toString())
+      : {};
     const customTranslationsFile = `./customization/translations/${String(language)}.json`;
     /** @type {nestedMessages} */
     const customMessages = fs.existsSync(customTranslationsFile)
