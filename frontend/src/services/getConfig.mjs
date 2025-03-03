@@ -69,7 +69,11 @@ export const getTemplates = (file, languages) => {
 
 const headersConfig = getConfig('header.json', true);
 
-const { supportedLanguages } = headersConfig.menu;
+const locales = getLocales(headersConfig.menu.supportedLanguages);
+
+const supportedLanguages = Object.entries(locales)
+  .filter(([, value]) => Object.keys(value).length)
+  .map(([languageCode]) => languageCode);
 
 const detailsConfig = getConfig('details.json', true, true);
 
@@ -111,7 +115,7 @@ export const runtimeConfig = {
   style: getConfig('../theme/style.css', false),
   colors: getConfig('../theme/colors.json', true),
   details,
-  header: headersConfig,
+  header: { ...headersConfig, menu: { ...headersConfig.menu, supportedLanguages } },
   global: getConfig('global.json', true),
   home: getConfig('home.json', true),
   map: getConfig('map.json', true),
