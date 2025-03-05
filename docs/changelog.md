@@ -1,10 +1,27 @@
 # Changelog
 
-## 3.24.3+dev (XXXX-XX-XX)
+## 3.25.0 (2025-03-05)
+
+**✨ Improvements**
+
+- Rewrite custom CSS for builded static pages - 404 and offline pages (#1360)
+- Define "Source Sans 3" as main font instead of "Assistant" - [see documentation
+  to change the main
+  font](https://geotrek-rando-v3.readthedocs.io/stable/customization/customization-themestyles/#css)
+  (#1327)
+- Implement non default languages (#1011)
 
 **Documentation**
 
-- Update theme color and improve customization section(#1364)
+- Update theme color and improve customization section (#1364)
+
+**🔧 Maintenance**
+
+- Bump next from 14.2.15 to 14.2.24 (#1361)
+
+**🐛 Fixes**
+
+- Fix incorrect display of some font characters (#406)
 
 ## 3.24.3 (2025-02-03)
 
