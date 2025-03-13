@@ -41,7 +41,7 @@ theme:
       scheme: slate
       toggle:
         icon: material/weather-sunny
-        name: Dark mode
+        name: Light mode
       primary: blue
       accent: light blue
   # Light Mode
@@ -49,7 +49,7 @@ theme:
       scheme: default
       toggle:
         icon: material/weather-night
-        name: Light mode
+        name: Dark mode
       primary: blue
       accent: light blue
   font:
@@ -137,6 +137,8 @@ markdown_extensions:
 plugins:
   - git-revision-date-localized:
       enable_creation_date: true
+  - search:
+      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
 
 # Page tree
 nav:
