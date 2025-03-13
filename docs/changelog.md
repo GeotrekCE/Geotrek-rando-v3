@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.25+dev (XXXX-XX-XX)
+
+**Documentation**
+
+- Fix search bar plugin (#1377)
+
 ## 3.25.0 (2025-03-05)
 
 **✨ Improvements**
