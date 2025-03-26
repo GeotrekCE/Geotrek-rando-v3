@@ -5,6 +5,7 @@
 **Documentation**
 
 - Fix search bar plugin (#1377)
+- Media size and weight recommandations (#1382)
 
 ## 3.25.0 (2025-03-05)
 
