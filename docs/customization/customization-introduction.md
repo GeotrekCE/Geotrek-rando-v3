@@ -74,6 +74,42 @@ See the [general presentation](../presentation-fr.md) (french) for an overview o
 
 </div>
 
+## Homepage
+
+Here is a list of elements that can be customized on the homepage:
+
+**Header**
+
+- site name
+- logo
+- primary colors
+- menus and static page hierarchy ([configurable in Geotrek-admin](https://geotrek.readthedocs.io/en/latest/user-manual/static-pages.html#pages-statiques-menus))
+- language selector
+
+**Carousel**
+
+- images displayed in a rotating carousel or videos 
+
+**Activity Bar**
+
+- default activity bar enabled
+
+**Hometop** (optional)
+
+- custom blocks (interactive map, image/text banners, etc.)
+
+**Homebottom** (optional)
+
+- custom blocks (image/text banners, partner logos, promotion of the mobile app, promotion of the Suricate app for issue reporting)
+
+**Footer**
+
+- social media links (Facebook, LinkedIn, YouTube, etc.)
+- organization contact information (name, postal address, email, phone number)
+- additional information (external links, links to static pages)
+
+![image](../img/pageaccueil.jpg)
+
 ## Server files overview
 
 The customization of the Rando application is done through the `customization` folder located on the server. This folder includes four main subdirectories:
