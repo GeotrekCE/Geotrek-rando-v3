@@ -7,7 +7,7 @@ Examples of customizations are available in [Geotrek-rando v3 config folder](htt
 
 In json files, you can just override the primary keys you need. You have to override primary keys globally.
 
-## global.json
+## `global.json`
 
 - `global.json` (default value in [global.json file](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/global.json)) to define :
 
@@ -40,7 +40,7 @@ In json files, you can just override the primary keys you need. You have to over
     - `accessibilityCodeNumber`: emergency number. Default set to `114`.
     - `displayObjectsRelatedToItinerantTreks`: An object containing many booleans to display/hide objects related to itinerant treks. The keys are `POIs`,`touristicContents`,`sensitiveAreas`,`infrastructures`,`signages`,`service` and are all set to `true` by default. Indeed multi-days treks can be long and have a lot a related objects which is very long to display and not really readable. That's why you can disable some related objects that will not be displayed on itinerant main detail page, but will be displayed on steps detail pages and any other treks detail pages.
 
-## header.json
+## `header.json`
 
 - `header.json` (default value in [header.json file](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/header.json)) to define :
 
@@ -51,7 +51,7 @@ In json files, you can just override the primary keys you need. You have to over
       - `defaultLanguage`: Your target audience's main language.
       - `primaryItemsNumber`: Number of items before dividing the main menu with a "See more" button. _Deprecated_ since 3.19.0: Use the MenuItems feature from Geotrek admin.
 
-## home.json
+## `home.json`
 
 - `home.json` (default value in [home.json file](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/home.json)) to define homepage settings :
 
@@ -181,7 +181,7 @@ In json files, you can just override the primary keys you need. You have to over
 
     - `shouldDisplayText`: `true` to display the text on above the asset, `false` to hide it.
 
-## details.json
+## `details.json`
 
 - `details.json` allows you to choose whether or not to display sections for each details pages ("trek", "touristicContent", "touristicEvent", "OutdoorSite" and "OutdoorCourse"). See the [default configuration](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/details.json) .
   There are 4 properties :
@@ -193,7 +193,7 @@ In json files, you can just override the primary keys you need. You have to over
 
 NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, anchor links are not displayed like other elements, but by a dedicated icon.
 
-## footer.json
+## `footer.json`
 
 - In the `footer.json` file, you can define social networks, informations about your organization, and some links (see [example](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/footer.json)).
 
@@ -201,7 +201,7 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
   - Contact information such as your name, address, phone number and email.
   - Links based on the key pair `label`/`url` (can be based on translation labels for multilingual) and/or the key `informationID` whose value is equal to a flatpage identifier.
 
-## filter.json 
+## `filter.json`
 
 - `filter.json` to define filters to hide, their order and values (see [example](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/filter.json). If you want to :
 
@@ -211,7 +211,7 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
   - The trek `networks` filter only works if yout version of Geotrek Admin is equal to or higher than [2.108.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.108.0)
   - The event `organizer` filter only works if your version of Geotrek Admin is equal to or higher than [2.100.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.100.0)
 
-## map.json
+## `map.json`
 
 - `map.json` to define basemaps URL and attributions, center (y, x), default and max zoom level (see [example](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/config/map.json)).
 
@@ -244,7 +244,7 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
 
   - `zoomAvailableOffline` allows you to define the zoom modes allowed in offline mode. This allows you to control the amount of disk space required when caching. Default `[13,14,15]`
 
-## resultCard.json
+## `resultCard.json`
 
 - `resultCard.json` to customize the elements to be displayed on featured cards that link to a details page (only trek cards for now).
 
@@ -263,7 +263,7 @@ Default value is
 "informations": ["difficulty", "duration", "distance", "positiveElevation"]
 `. See [example](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/resultCard.json).
 
-## redirects.json
+## `redirects.json`
 
 - `redirects.json` to define URL rewriting for your instance. For example, you can use this customization to redirect old URL style (Geotrek-rando V2) to the new URL style (Geotrek-rando V3) or to redirect old URL to a new URL after changing the name of a hike in the backend.
 
