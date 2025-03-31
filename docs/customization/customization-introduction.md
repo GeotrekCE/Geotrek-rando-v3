@@ -86,13 +86,13 @@ Here is a list of elements that can be customized on the homepage:
 - menus and static page hierarchy ([configurable in Geotrek-admin](https://geotrek.readthedocs.io/en/latest/user-manual/static-pages.html#pages-statiques-menus))
 - language selector
 
-**Carousel**
+**Welcome banner**
 
-- images displayed in a rotating carousel or videos 
+- images displayed in a rotating carousel or a single image or a video
 
 **Activity Bar**
 
-- default activity bar enabled
+- activity bar is enabled by default
 
 **Hometop** (optional)
 
