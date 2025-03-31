@@ -40,7 +40,7 @@ If your language doesn't appear in the list, please don't hesitate to [open an i
 - You can run `yarn bundle-analyzer` before and after your modification to ensure that the bundle file doesn't grow excessively.
 - And finally, you can open a pull request
 
-## Contributing to the Geotrek Rando documentation website
+## Contributing to Geotrek-rando documentation website
 
 This section explains how to contribute to **the documentation website** of the project. If you are interested in making changes to the codebase or contributing to other aspects of the project, please refer to the relevant sections of the contribution guide.
 To contribute to the documentation, it requires **Python 3**. The current version of the documentation has been built using `Python 3.10.12`.
