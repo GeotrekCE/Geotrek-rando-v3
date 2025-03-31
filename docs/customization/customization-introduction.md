@@ -95,6 +95,10 @@ Here is a list of elements that can be customized on the homepage:
 
 - activity bar is enabled by default
 
+**Suggestions group**
+
+- suggestions groups with treks ID, outdoor sites ID, services ID or events ID
+
 **Hometop** (optional)
 
 - custom blocks (interactive map, image/text banners, etc.)
