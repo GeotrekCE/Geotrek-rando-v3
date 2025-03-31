@@ -89,6 +89,7 @@ Here is a list of elements that can be customized on the homepage:
 **Welcome banner**
 
 - images displayed in a rotating carousel or a single image or a video
+- welcome text
 
 **Activity Bar**
 
@@ -134,7 +135,7 @@ Each `.json` file targets a specific part of the application:
     🔍 **Tip**: images, pictograms, and videos used should be stored in the `media` folder.
 
 - `header.json` : configures the header of the Geotrek-rando interface, including the logo, available languages and default language.
-- `home.json` : allows you to configure the homepage content, including highlighted or suggested items.
+- `home.json` : configures the homepage content, including highlighted or suggested items.
 - `details.json` : controls the display of sections on detail pages (like trek, touristic content, or outdoor sites), allowing you to define their name, visibility, anchor link presence, and display order.
 - `footer.json` : defines the content of the website footer, including social media links, organizational contact details, and custom links or flatpages.
 - `filter.json` : configures which filters are displayed in the search interface, their order, and labels.
