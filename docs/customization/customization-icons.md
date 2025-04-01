@@ -40,6 +40,6 @@ Another light color can be used, but the icon has to be visible on a background 
 
 ![Icon good example](../assets/iconGoodExample.png)
 
-**_Bad icon example_** (jpg with no transparent background, "orange square" visible):
+**_Bad icon example:_** (a `.jpg` file with  **no transparent background**, meaning  a visible "orange square"):
 
 ![Icon wrong example](../assets/iconWrongExample.png)
