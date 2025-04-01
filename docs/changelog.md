@@ -7,6 +7,7 @@
 - Fix search bar plugin (#1377)
 - Media size and weight recommandations (#1382)
 - Add infos about customization and homepage (#1383)
+- Fix typos and add homepage section (#1387)
 
 ## 3.25.0 (2025-03-05)
 
