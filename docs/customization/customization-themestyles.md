@@ -126,26 +126,3 @@ For example, if you want to use the `arial` typeface, put the following code in
     }
     ```
 
-## Media size and weight recommendations
-
-### Images
-
-Photos used in Geotrek-rando, especially in carousels, should follow a few best practices to ensure good display quality and optimized loading times:
-
-- **Resizing**: Prefer landscape images with a standard aspect ratio between **4:3 and 16:9** (ideally **16:9** for carousels to avoid cropping or distortion).
-
-- **File format**: It is recommended to convert **PNG** images to **JPG** to reduce file size, except when transparency is required.
-
-- **Maximum file size**: Each image should not exceed **500 KB**, while maintaining good visual quality (find the right balance depending on usage context).
-
-### Videos
-
-For the header video on the homepage:
-
-- **Dimensions**: Recommended width of approximately **1500 px**, with a **16:9** aspect ratio.
-
-- **Maximum file size**: The video should not exceed **6 MB** to prevent slow loading times.
-
-- **Optimization**: Use video compression tools with minimal visible quality loss, such as:
-  - [Handbrake](https://handbrake.fr/)
-  - [FFmpeg](https://ffmpeg.org/)

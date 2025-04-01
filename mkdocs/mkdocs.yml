@@ -149,6 +149,7 @@ nav:
     - Production setup: installation.md
   - 🎨 Customization: 
     - Introduction: customization/customization-introduction.md
+    - Homepage: customization/customization-homepage.md
     - Settings: customization/customization-settings.md
     - Theme and style: customization/customization-themestyles.md
     - Icons : customization/customization-icons.md

@@ -40,29 +40,29 @@ La page de recherche permet de rechercher des objets parmis les randonnées, les
 
 **Filtres :**
 
-- Il est possible de sélectionner une ou plusieurs pratiques de randonnée, une ou plusieurs pratiques Outdoor, une ou plusieurs catégories de service et une ou plusieurs catégories d'événements touristiques.
-- Si je ne sélectionne aucune pratique de randonnée, aucune pratique Outdoor, aucune catégorie de service et aucune catégorie d'événement, alors cela affiche tous les objets
-- Il est aussi possible d'utiliser les filtres communs à tous les objets (thèmes, communes, secteurs et structures)
-- Si je sélectionne des pratiques de randonnée, alors les filtres spécifiques aux randonnées sont affichés (difficulté, durée, longueur, dénivelé, type de parcours et accessibilité)
-- Si je sélectionne une catégories de service, alors les filtres spécifiques à cette catégorie sont affichés (type 1 et éventuel type 2)
-- La zone de la carte affichée est aussi utilisée pour filtrer les résultats (fonctionnalités désactivable)
-- Il est possible de customiser, masquer ou réordonner les filtres
+- il est possible de sélectionner une ou plusieurs pratiques de randonnée, une ou plusieurs pratiques Outdoor, une ou plusieurs catégories de service et une ou plusieurs catégories d'événements touristiques.
+- si je ne sélectionne aucune pratique de randonnée, aucune pratique Outdoor, aucune catégorie de service et aucune catégorie d'événement, alors cela affiche tous les objets
+- il est aussi possible d'utiliser les filtres communs à tous les objets (thèmes, communes, secteurs et structures)
+- si je sélectionne des pratiques de randonnée, alors les filtres spécifiques aux randonnées sont affichés (difficulté, durée, longueur, dénivelé, type de parcours et accessibilité)
+- si je sélectionne une catégories de service, alors les filtres spécifiques à cette catégorie sont affichés (type 1 et éventuel type 2)
+- la zone de la carte affichée est aussi utilisée pour filtrer les résultats (fonctionnalités désactivable)
+- il est possible de customiser, masquer ou réordonner les filtres
 
 **Résultats :**
 
-- Tous les résultats d'une recherche sont affichés sur la carte
-- Dans la liste, les résultats sont affichés 10 par 10 pour optimiser le temps de chargement des résultats
-- Les points proches sur la carte sont regroupés dans des clusters selon le niveau de zoom
-- Quand on clique sur un objet sur la carte, on en affiche le nom et l'image dans une tooltip
-- Si il s'agit d'une randonnée, on affiche aussi son tracé précis sur la carte quand on clique dessus
-- Au survol d'un résultat dans la liste, sa localisation est mise en avant sur la carte
-- Les résultats dans la liste et sur la carte permettent d'accéder à la fiche détail de chaque objet
+- tous les résultats d'une recherche sont affichés sur la carte
+- dans la liste, les résultats sont affichés 10 par 10 pour optimiser le temps de chargement des résultats
+- les points proches sur la carte sont regroupés dans des clusters selon le niveau de zoom
+- quand on clique sur un objet sur la carte, on en affiche le nom et l'image dans une tooltip
+- s'il s'agit d'une randonnée, on affiche aussi son tracé précis sur la carte quand on clique dessus
+- au survol d'un résultat dans la liste, sa localisation est mise en avant sur la carte
+- les résultats dans la liste et sur la carte permettent d'accéder à la fiche détail de chaque objet
 
 ## Page détail
 
 Chaque objet dispose d'une page de détail avec ses informations détaillées et sa carte.
 
-Les pages de détail sont composées d'un bloc d'information scrollable à droite et d'une carte fixe à gauche, ainsi que d'un bloc fixe vertical permettant de naviguer entre les sections de la page.
+Les pages de détail sont composées d'un bloc d'information défilant à droite et d'une carte fixe à gauche, ainsi que d'un bloc fixe vertical permettant de naviguer entre les sections de la page.
 
 ### Randonnées
 
@@ -107,10 +107,10 @@ Si des aménagements, signalétiques publiés ou "services" sont présents à pr
 
 ### Sites outdoor
 
-- On entre par le site principal de premier niveau
-- Si le site dispose d'un ou plusieurs sous-sites, alors ils sont listés dans la page
-- Les parcours du site ou de ses sous-sites sont aussi listés dans la page
-- Les randonnées à proximité du site sont aussi listés, pour identifier les accès au site
+- on entre par le site principal de premier niveau
+- si le site dispose d'un ou plusieurs sous-sites, alors ils sont listés dans la page
+- les parcours du site ou de ses sous-sites sont aussi listés dans la page
+- les randonnées à proximité du site sont aussi listés, pour identifier les accès au site
 
 ### Contenus touristiques
 
@@ -181,6 +181,6 @@ Voir la [rubrique sur la customisation](./customization/customization-introducti
 Un travail a été réalisé pour optimiser le référencement des contenus du portail. 
 Un rendu côté serveur (Server Side Rendering / SSR) des pages est réalisé pour optimiser et prégénérer les pages renvoyées aux moteurs de recherche (avec NextJS).
 
-Une liste de toutes les pages du portail est générée automatiquement pour faciliter leur indexation dans les moteurs de recherche. Elle est disponible à l'adresse "URL-DU-PORTAIL/sitemap.xml".
+Une liste de toutes les pages du portail est générée automatiquement pour faciliter leur indexation dans les moteurs de recherche. Elle est disponible à l'adresse `URL-DU-PORTAIL/sitemap.xml`.
 
 Il est aussi possible de définir des règles de redirection, notamment pour optimiser le passage de Geotrek-rando v2 à Geotrek-rando v3.

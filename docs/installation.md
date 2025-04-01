@@ -22,7 +22,7 @@ Before starting the technical installation, here is an overview of the global pr
 
 - Developers are working on code source of this repository where you will also find the documentation, issues and releases
 - Once they have a new version of the application ready, they will release it, build a Docker image of this new version and push it in the [packages repository](https://github.com/orgs/GeotrekCE/packages/container/package/geotrek-rando-v3%2Fgeotrek-rando)
-- If required, they will also make changes to the docker-compose file and customization template in the [installer dedicated repository](https://github.com/GeotrekCE/Geotrek-rando-v3-installer) and release a new version of it
+- If required, they will also make changes to the docker compose file and customization template in the [installer dedicated repository](https://github.com/GeotrekCE/Geotrek-rando-v3-installer) and release a new version of it
 - Administrators will log in on their host with SSH and install Docker and Docker Compose on it
 - They will download an archive of the latest version of the Installer repository and extract it on their host
 - They will edit the customization files
@@ -42,20 +42,20 @@ You will have to download the Installer of Geotrek-rando and its customization f
 - Create a folder to install your Geotrek-rando (`/home/myuser/geotrekrando` for instance) and go in this folder
 - On your server, download the [Geotrek-rando-installer repository](https://github.com/GeotrekCE/Geotrek-rando-v3-installer) version you want: `wget https://github.com/GeotrekCE/Geotrek-rando-v3-installer/archive/vX.Y.Z.zip` (replace `X.Y.Z` with the version of Geotrek-rando-v3-installer that is compatible with the Geotrek-rando-v3 version you want to use) and unzip it. You can also git clone it (`git pull https://github.com/GeotrekCE/Geotrek-rando-v3-installer.git`)
 - Update the files in the `/customization` folder according to your structure (See [customization documentation](./customization/customization-settings.md))
-- Go in the root folder of your Geotrek-rando-v3-installer and run the Docker container with launching `docker-compose up -d`
+- Go in the root folder of your Geotrek-rando-v3-installer and run the Docker container with launching `docker compose up -d`
 - Your Geotrek-rando is now available at the address of your server on 8080 port (e.g. http://myserver:8080)
 
 You can now serve what comes out of the default 8080 port. To configure NGINX, see below.
 
-If you want to have logs directly in terminal you can just run `docker-compose up`. `ctrl`+`c` will exit the command and stop the container. That's why `docker-compose up -d` is used in production to run the service in the background.
+If you want to have logs directly in terminal you can just run `docker compose up`. `ctrl`+`c` will exit the command and stop the container. That's why `docker compose up -d` is used in production to run the service in the background.
 
-You can also access Node.js server logs with `docker-compose logs -t`.
+You can also access Node.js server logs with `docker compose logs -t`.
 
-After updating customization, you just have to run `docker-compose restart` to apply changes.
+After updating customization, you just have to run `docker compose restart` to apply changes.
 
-You can also create the optional `.env` file based on the example (`cp .env.example .env`), if you want to change the Docker image URL (or run a specific version different from the latest one), the running port, or the `customization` and `medias` folders path. Run `docker-compose down && docker-compose up -d` to apply changes to `.env` file.
+You can also create the optional `.env` file based on the example (`cp .env.example .env`), if you want to change the Docker image URL (or run a specific version different from the latest one), the running port, or the `customization` and `medias` folders path. Run `docker compose down && docker compose up -d` to apply changes to `.env` file.
 
-If you want to run several Geotrek-rando on the same server, just download one Geotrek-rando-v3-installer for each portal with their own customization and set a different port for each. You should name each Geotrek-rando project with a different container name with adding `COMPOSE_PROJECT_NAME=name_of_geotrek_rando_project` variable in `.env` file. Otherwise the command `docker-compose down && docker-compose up -d` will overwrite the previous container.
+If you want to run several Geotrek-rando on the same server, just download one Geotrek-rando-v3-installer for each portal with their own customization and set a different port for each. You should name each Geotrek-rando project with a different container name with adding `COMPOSE_PROJECT_NAME=name_of_geotrek_rando_project` variable in `.env` file. Otherwise the command `docker compose down && docker compose up -d` will overwrite the previous container.
 
 ### An example with NGINX
 
@@ -113,7 +113,7 @@ docker exec -t -i rando-nodeserver-1 node -p "require('./package.json').version"
 To install a new version of Geotrek-rando, you have to pull the new image of Geotrek-rando, stop and remove the old container and run a new one with the new image:
 
 ```sh
-docker-compose pull && docker-compose down && docker-compose up -d
+docker-compose pull && docker compose down && docker compose up -d
 ```
 
 It will download and install the latest version of Geotrek-rando. If you want to install a specific version of Geotrek-rando, you can specify it in your `.env` file, instead of `latest`.
