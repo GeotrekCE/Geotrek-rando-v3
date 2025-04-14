@@ -43,7 +43,7 @@
     "@react-hook/resize-observer": "^2.0.2",
     "@sentry/nextjs": "^8.32.0",
     "@serwist/next": "^9.0.11",
-    "@tanstack/react-query": "^5.51.1",
+    "@tanstack/react-query": "^5.74.3",
     "@tanstack/react-query-devtools": "^5.51.1",
     "@zeit/next-source-maps": "^0.0.4-canary.1",
     "autoprefixer": "^10.4.14",
