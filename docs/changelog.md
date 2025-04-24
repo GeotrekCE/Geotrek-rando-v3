@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.25+dev (XXXX-XX-XX)
+## 3.25.1 (2025-04-24)
 
 **Documentation**
 
@@ -8,6 +8,10 @@
 - Media size and weight recommandations (#1382)
 - Add infos about customization and homepage (#1383)
 - Fix typos and add homepage section (#1387)
+
+**🔧 Maintenance**
+
+- Bump next from 14.2.24 to 14.2.26 (#1384)
 
 ## 3.25.0 (2025-03-05)
 
