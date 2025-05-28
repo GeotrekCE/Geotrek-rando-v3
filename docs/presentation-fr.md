@@ -64,6 +64,66 @@ Chaque objet dispose d'une page de détail avec ses informations détaillées et
 
 Les pages de détail sont composées d'un bloc d'information défilant à droite et d'une carte fixe à gauche, ainsi que d'un bloc fixe vertical permettant de naviguer entre les sections de la page.
 
+### Fichiers attachés
+
+Depuis la version **[3.20.0](https://github.com/GeotrekCE/Geotrek-rando-v3/releases/tag/v3.20.0)** de Geotrek-rando, il est désormais possible d'afficher des **documents associés** (aux POIs, itiénraires, contenus outdoor, contenus et évènements touristiques) dans les pages de détail des objets suivants :
+
+- Itinéraires
+- Contenus outdoor
+- Contenus touristiques
+- Événements touristiques
+
+Cette fonctionnalité permet d’exposer **tous les fichiers attachés** qui ne sont **ni des images, ni des vidéos**, tels que des fichiers PDF, Word, Excel, etc.
+
+[Exemple sur Rando Loire-Anjou-Touraine](https://rando-loireanjoutouraine.fr/trek/750-Au-coeur-du-Ridellois) :
+
+![image](../img/attachmentfile.jpg)
+
+#### Types de fichiers
+
+| Type renvoyé par l’API | Comportement actuel dans Geotrek-rando |Format |
+|------------------------|----------------------------------------|------|
+| `image`                | Géré – affiché sous forme d’image      | `.png`, `.jpg`, `.jpeg`, etc.|
+| `file`                 | Géré – affiché sous forme de lien      |`.pdf`, `.doc`, `.odt`, etc.|
+| `video`                | Ignoré (pas de player intégré)         | |
+| `audio`                | Ignoré (téléchargement uniquement)     ||
+
+#### Limitations actuelles
+
+- **Vidéos** : l’API renvoie un type `video`, mais aucun player n’est encore intégré côté frontend. Ces fichiers ne sont donc pas affichés.
+- **Audios** : les fichiers audio ne sont pas différenciés du type générique `file`. Ils sont téléchargeables, mais **aucun player n’est proposé**. 
+
+### Images HD 
+
+Depuis la version **[3.18](https://github.com/GeotrekCE/Geotrek-rando-v3/releases/tag/v3.18.0)** de Geotrek-rando, il est possible d’afficher des **photos haute définition** (HD Views) dans les fiches détaillées des objets suivants :
+
+- Itinéraires
+- Sites et parcours outdoor
+
+Cette fonctionnalité vise à **valoriser les points de vue remarquables** ou tout autre contenu visuel de haute qualité lié à un itinéraire ou un contenu outdoor. 
+
+[Exemple sur Grand Tour des Écrins](https://www.grand-tour-ecrins.fr/trek/995327-Meije-Orientale-(3891-m)) :
+
+![image](../img/hdview_detail.jpg)
+
+<table><tr>
+<td> <img src="../img/hdview1.jpg" alt="Carte avec bouton Image HD" style="width: 800px;"/> </td>
+<td> <img src="../img/hdview2.jpg" alt="Image HD" style="width: 800px;"/> </td>
+</tr></table>
+
+#### Fonctionnement
+
+- Si un objet contient au moins une image HD, un bouton **« Voir en image HD »** est proposé en bas de la carte de la fiche détaillée.
+- Lorsqu’on clique sur ce bouton :
+    - La carte est **remplacée par l’image HD** sélectionnée.
+    - L’utilisateur peut **naviguer dans l’image** avec des fonctionnalités similaires à celles de la carte (zoom, déplacement).
+  - Un bouton permet de **revenir à la carte** à tout moment.
+
+#### Détails techniques
+
+- Une **catégorie d’annotation** (libellé et pictogramme) peut être ajoutée aux images HD dans Geotre-admin.
+- Les **annotations** peuvent être consultées via une infobulle (tooltip) lors du survol.
+
 ### Randonnées
 
 Les pages de détail des randonnées commencent par la (ou les) photo(s) associées à la randonnée, ainsi que les boutons permettant de la télécharger au format PDF, KML ou GPX.

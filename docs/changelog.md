@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.25.1+dev (XXXX-XX-XX)
+
+**Documentation**
+
+- Add info about HDviews and attachment files (#1407)
+
 ## 3.25.1 (2025-04-24)
 
 **Documentation**
