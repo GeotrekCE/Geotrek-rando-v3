@@ -26,6 +26,7 @@ import { SignageDictionary } from 'modules/signage/interface';
 import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { RawViewPoint, ViewPoint } from 'modules/viewPoint/interface';
+import { City } from 'modules/city/interface';
 import { TrekRatingWithScale } from '../trekRating/interface';
 
 export interface RawDetails {
@@ -183,7 +184,7 @@ export interface Details extends DetailsHtml {
   sensitiveAreas: SensitiveArea[];
   departure?: string | null;
   arrival?: string | null;
-  cities: string[];
+  cities: City[];
   cities_raw: string[];
   webLinks: WebLink[];
   elevationAreaUrl: string;

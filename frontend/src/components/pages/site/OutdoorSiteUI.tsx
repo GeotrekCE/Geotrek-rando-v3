@@ -265,7 +265,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                           id={`details_${section.name}_ref`}
                         >
                           <DetailsDescription
-                            cities={outdoorSiteContent.cities}
+                            cities={outdoorSiteContent.cities.map(city => city.name)}
                             descriptionHtml={outdoorSiteContent.description}
                             className={marginDetailsChild}
                           />
@@ -525,11 +525,16 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     }
 
                     // Custom HTML templates
+                    const firstCity = outdoorSiteContent.cities.find(
+                      city => city.id === outdoorSiteContent.cities_raw?.[0],
+                    );
+                    const firstCityCode = firstCity?.code ?? firstCity?.id;
+
                     if (
                       templatesVariablesAreDefinedAndUsed({
                         template: section.template,
                         id: outdoorSiteContent.id.toString(),
-                        cityCode: outdoorSiteContent.cities_raw?.[0],
+                        cityCode: firstCityCode,
                       })
                     ) {
                       return (
@@ -547,7 +552,7 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                               template={section.template}
                               id={outdoorSiteContent.id.toString()}
                               type="trek"
-                              cityCode={outdoorSiteContent.cities_raw[0]}
+                              cityCode={firstCityCode}
                             />
                           </DetailsSection>
                         </section>

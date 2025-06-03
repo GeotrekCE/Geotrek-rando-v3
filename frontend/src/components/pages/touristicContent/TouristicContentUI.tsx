@@ -292,11 +292,16 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   }
 
                   // Custom HTML templates
+                  const firstCity = touristicContent.cities.find(
+                    city => city.id === touristicContent.cities_raw?.[0],
+                  );
+                  const firstCityCode = firstCity?.code ?? firstCity?.id;
+
                   if (
                     templatesVariablesAreDefinedAndUsed({
                       template: section.template,
                       id: touristicContent.id.toString(),
-                      cityCode: touristicContent.cities_raw?.[0],
+                      cityCode: firstCityCode,
                     })
                   ) {
                     return (
@@ -314,7 +319,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                             template={section.template}
                             id={touristicContent.id.toString()}
                             type="trek"
-                            cityCode={touristicContent.cities_raw[0]}
+                            cityCode={firstCityCode}
                           />
                         </DetailsSection>
                       </section>

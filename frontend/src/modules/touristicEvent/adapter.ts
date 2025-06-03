@@ -130,7 +130,7 @@ export const adaptTouristicEventDetails = ({
       corner1: { x: rawTouristicEventDetails.bbox[0], y: rawTouristicEventDetails.bbox[1] },
       corner2: { x: rawTouristicEventDetails.bbox[2], y: rawTouristicEventDetails.bbox[3] },
     },
-    cities: rawTouristicEventDetails.properties.cities?.map(id => cityDictionnary[id]?.name) ?? [],
+    cities: rawTouristicEventDetails.properties.cities?.map(id => cityDictionnary[id]) ?? [],
     cities_raw: rawTouristicEventDetails.properties.cities,
     id: rawTouristicEventDetails.id,
     touristicContents,
