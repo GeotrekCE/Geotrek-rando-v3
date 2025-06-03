@@ -126,6 +126,7 @@ export const adaptTouristicContentDetails = ({
   website: rawTCD.properties.website,
   place:
     rawTCD.properties.cities.length > 0 ? cityDictionnary[rawTCD.properties.cities[0]].name : '',
+  cities: rawTCD.properties.cities?.map(id => cityDictionnary[id]) ?? [],
   cities_raw: rawTCD.properties.cities,
   themes: Array.isArray(rawTCD.properties.themes)
     ? rawTCD.properties.themes

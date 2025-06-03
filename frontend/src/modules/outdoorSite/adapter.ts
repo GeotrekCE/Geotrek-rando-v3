@@ -169,7 +169,7 @@ export const adaptOutdoorSiteDetails = ({
   practice: outdoorPractice[String(rawOutdoorSiteDetails?.properties?.practice)] ?? null,
   cities:
     rawOutdoorSiteDetails.properties.cities
-      ?.map(id => cityDictionnary[id]?.name ?? null)
+      ?.map(id => cityDictionnary[id] ?? null)
       .filter(Boolean) ?? [],
   cities_raw: rawOutdoorSiteDetails.properties.cities,
   ratings:

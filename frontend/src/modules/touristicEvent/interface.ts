@@ -19,6 +19,7 @@ import {
   RawPolygonGeometry,
 } from 'modules/interface';
 import { ResultCard } from 'modules/results/interface';
+import { City } from 'modules/city/interface';
 import { Source } from '../source/interface';
 import { TouristicContent } from '../touristicContent/interface';
 import { TouristicEventType } from '../touristicEventType/interface';
@@ -106,7 +107,7 @@ export interface TouristicEventDetails extends TouristicEvent {
   description: string;
   descriptionTeaser: string | null;
   bbox: Bbox;
-  cities: string[];
+  cities: City[];
   cities_raw: string[];
   touristicContents: TouristicContent[];
   pdfUri: string;
