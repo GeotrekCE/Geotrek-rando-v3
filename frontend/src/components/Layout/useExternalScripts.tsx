@@ -38,7 +38,7 @@ const orejimeConfig = (
     privacyPolicy: privacyPolicyLink,
     lang: locale,
     translations: {
-      [locale]: merge(consentsTranslations),
+      [locale]: merge(...consentsTranslations),
     },
     apps: consentList.flatMap(({ name, title, cookies, purposes }) => [
       {
@@ -118,6 +118,7 @@ export const useExternalsScripts = (executeOnLoad = false) => {
         show();
       }
     } catch (e) {
+      console.error('Error occured while loading consent modal:', e);
       return;
     }
   }
