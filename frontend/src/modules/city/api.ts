@@ -3,7 +3,7 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawCity } from './interface';
 
 const fieldsParams = {
-  fields: 'id,name',
+  fields: 'id,name,code',
 };
 
 export const fetchCities = (query: APIQuery): Promise<APIResponseForList<RawCity>> =>
