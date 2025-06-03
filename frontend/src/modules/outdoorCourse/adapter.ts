@@ -155,7 +155,7 @@ export const adaptOutdoorCourseDetails = ({
     pdfUri: rawOutdoorCourseDetails.properties.pdf,
     cities:
       rawOutdoorCourseDetails.properties.cities
-        ?.map(id => cityDictionnary[id]?.name ?? null)
+        ?.map(id => cityDictionnary[id] ?? null)
         .filter(Boolean) ?? [],
     cities_raw: rawOutdoorCourseDetails.properties.cities,
     ratings:

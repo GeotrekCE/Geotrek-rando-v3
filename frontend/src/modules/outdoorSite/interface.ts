@@ -18,6 +18,7 @@ import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { Service } from 'modules/service/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { RawViewPoint, ViewPoint } from 'modules/viewPoint/interface';
+import { City } from 'modules/city/interface';
 import { Activity } from '../activities/interface';
 import { InformationDesk } from '../informationDesk/interface';
 import { Label } from '../label/interface';
@@ -117,7 +118,7 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   access: TrekResult[];
   pdfUri: string;
   practice: OutdoorPractice | null;
-  cities: string[];
+  cities: City[];
   cities_raw: string[];
   ratings: OutdoorRatingWithScale[];
   ratingsDescription: string | null;

@@ -136,9 +136,7 @@ export const adaptResults = ({
       trekArrival: adaptGeometry2D(coordinates[coordinates.length - 1]),
       departure: rawDetailsProperties.departure,
       arrival: rawDetailsProperties.arrival,
-      cities: rawDetailsProperties.cities
-        .map(id => cityDictionnary[id]?.name ?? null)
-        .filter(Boolean),
+      cities: rawDetailsProperties.cities.map(id => cityDictionnary[id]).filter(Boolean),
       cities_raw: rawDetailsProperties.cities,
       touristicContents,
       parkingLocation:

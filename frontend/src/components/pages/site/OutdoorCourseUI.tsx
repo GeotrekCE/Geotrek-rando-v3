@@ -193,7 +193,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                           <DetailsDescription
                             descriptionHtml={outdoorCourseContent.description}
                             className={marginDetailsChild}
-                            cities={outdoorCourseContent.cities}
+                            cities={outdoorCourseContent.cities.map(city => city.name)}
                           />
                         </section>
                       );
@@ -361,11 +361,16 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                     }
 
                     // Custom HTML templates
+                    const firstCity = outdoorCourseContent.cities.find(
+                      city => city.id === outdoorCourseContent.cities_raw?.[0],
+                    );
+                    const firstCityCode = firstCity?.code ?? firstCity?.id;
+
                     if (
                       templatesVariablesAreDefinedAndUsed({
                         template: section.template,
                         id: outdoorCourseContent.id.toString(),
-                        cityCode: outdoorCourseContent.cities_raw?.[0],
+                        cityCode: firstCityCode,
                       })
                     ) {
                       return (
@@ -383,7 +388,7 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                               template={section.template}
                               id={outdoorCourseContent.id.toString()}
                               type="trek"
-                              cityCode={outdoorCourseContent.cities_raw[0]}
+                              cityCode={firstCityCode}
                             />
                           </DetailsSection>
                         </section>
