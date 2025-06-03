@@ -295,7 +295,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                             descriptionHtml={details.description}
                             departure={details.departure}
                             arrival={details.arrival}
-                            cities={details.cities}
+                            cities={details.cities.map(city => city.name)}
                             className={marginDetailsChild}
                           />
                         </section>
@@ -586,11 +586,16 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                     }
 
                     // Custom HTML templates
+                    const firstCity = details.cities.find(
+                      city => city.id === details.cities_raw?.[0],
+                    );
+                    const firstCityCode = firstCity?.code ?? firstCity?.id;
+
                     if (
                       templatesVariablesAreDefinedAndUsed({
                         template: section.template,
                         id: details.id.toString(),
-                        cityCode: details.cities_raw?.[0],
+                        cityCode: firstCityCode,
                       })
                     ) {
                       return (
@@ -608,7 +613,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               template={section.template}
                               id={details.id.toString()}
                               type="trek"
-                              cityCode={details.cities_raw[0]}
+                              cityCode={firstCityCode}
                             />
                           </DetailsSection>
                         </section>

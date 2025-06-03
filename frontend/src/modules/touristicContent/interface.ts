@@ -1,3 +1,4 @@
+import { City } from 'modules/city/interface';
 import { Bbox } from 'modules/details/interface';
 import {
   FileFromAttachment,
@@ -104,6 +105,7 @@ export interface TouristicContentDetails extends TouristicContent {
   email: string;
   website: string;
   place: string;
+  cities: City[];
   cities_raw: string[];
   themes: string[];
   pdfUri: string;

@@ -203,7 +203,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                           <DetailsDescription
                             descriptionHtml={touristicEventContent.description}
                             className={marginDetailsChild}
-                            cities={touristicEventContent.cities}
+                            cities={touristicEventContent.cities.map(city => city.name)}
                           />
                         </section>
                       );
@@ -345,11 +345,16 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                     }
 
                     // Custom HTML templates
+                    const firstCity = touristicEventContent.cities.find(
+                      city => city.id === touristicEventContent.cities_raw?.[0],
+                    );
+                    const firstCityCode = firstCity?.code ?? firstCity?.id;
+
                     if (
                       templatesVariablesAreDefinedAndUsed({
                         template: section.template,
                         id: touristicEventContent.id.toString(),
-                        cityCode: touristicEventContent.cities_raw?.[0],
+                        cityCode: firstCityCode,
                       })
                     ) {
                       return (
@@ -367,7 +372,7 @@ export const TouristicEventUIWithoutContext: React.FC<Props> = ({
                               template={section.template}
                               id={touristicEventContent.id.toString()}
                               type="trek"
-                              cityCode={touristicEventContent.cities_raw[0]}
+                              cityCode={firstCityCode}
                             />
                           </DetailsSection>
                         </section>

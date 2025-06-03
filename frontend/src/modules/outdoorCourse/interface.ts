@@ -16,6 +16,7 @@ import { SignageDictionary } from 'modules/signage/interface';
 import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { ResultCard } from 'modules/results/interface';
+import { City } from 'modules/city/interface';
 import { OutdoorCourseType } from '../outdoorCourseType/interface';
 import { OutdoorRatingWithScale } from '../outdoorRating/interface';
 import { Poi } from '../poi/interface';
@@ -90,7 +91,7 @@ export interface OutdoorCourseDetails extends OutdoorCourse {
   gear: string;
   equipment: string;
   pdfUri: string;
-  cities: string[];
+  cities: City[];
   cities_raw: string[];
   ratings: OutdoorRatingWithScale[];
   ratingsDescription: string | null;
