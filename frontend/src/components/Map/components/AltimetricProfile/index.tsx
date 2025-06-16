@@ -6,6 +6,7 @@ import { useMap } from 'react-leaflet';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import { getDefaultLanguage } from 'modules/header/utills';
+import { FeatureCollection, LineString } from 'geojson';
 
 interface AltimetricProfileProps {
   trekGeoJSON: string;
@@ -22,6 +23,11 @@ export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSO
       return;
     }
 
+    const { features } = JSON.parse(trekGeoJSON) as FeatureCollection;
+    const elevationValues = (features[0].geometry as LineString).coordinates.map(coord => coord[2]);
+    const yAxisMin = Math.min(...elevationValues) * 0.75;
+    const yAxisMax = Math.max(...elevationValues) * 1.25;
+
     // @ts-expect-error the lib is not typed
     const elevationControl = L.control.elevation({
       theme: 'lightblue-theme',
@@ -33,6 +39,8 @@ export const AltimetricProfile: React.FC<AltimetricProfileProps> = ({ trekGeoJSO
       followMarker: false,
       legend: false,
       zooming: false,
+      yAxisMin,
+      yAxisMax,
     });
     elevationControl.addTo(map);
 
