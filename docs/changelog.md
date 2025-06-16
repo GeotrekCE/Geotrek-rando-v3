@@ -1,10 +1,18 @@
 # Changelog
 
-## 3.25.1+dev (XXXX-XX-XX)
+## 3.25.2 (2025-06-16)
+
+**✨ Improvements**
+
+- Use code property from city endpoint (#1409)
 
 **Documentation**
 
 - Add info about HDviews and attachment files (#1407)
+
+**🐛 Fixes**
+
+- Fix launching of consent modal - regression since 3.24.3 (#1408)
 
 ## 3.25.1 (2025-04-24)
 
