@@ -1,10 +1,11 @@
 # Changelog
 
-## 3.25.2 (2025-06-16)
+## 3.25.2 (2025-06-23)
 
 **✨ Improvements**
 
 - Use code property from city endpoint (#1409)
+- Use dynamic y axis min and max for elevation chart (#1411)
 
 **Documentation**
 
