@@ -1,0 +1,365 @@
+{
+  "header": {
+    "menu": "Menu",
+    "language": "Taal",
+    "seeMore": "Meer informatie",
+    "favorites": "Favorieten",
+    "goToSearch": "Zoeken",
+    "offline": "Offline gegevens",
+    "home": "Home"
+  },
+  "home": {
+    "title": "Geotrek-wandelen",
+    "description": "Ontdek de wandelingen in de regio met Geotrek-rando",
+    "selectPlaceholder": "Selecteer een activiteit",
+    "seeMore": "Meer bekijken",
+    "welcome-text": "De digitale en lokale ecogids die mijn ontdekkingen van de regio presenteert!",
+    "mailTo": "Stuur een e-mail",
+    "walking": "Wandeling",
+    "territoryTreks": "Wandelingen om te ontdekken",
+    "itinerantTreks": "Meerdaagse tochten om te ontdekken",
+    "services": "Diensten om te ontdekken",
+    "events": "Evenementen die u niet mag missen",
+    "outdoor": "Buitenlocaties om te ontdekken",
+    "activityBar": {
+      "practices": "Wandelen",
+      "outdoorPractices": "Openlucht",
+      "touristicContent": "Diensten",
+      "touristicEvent": "Evenementen"
+    }
+  },
+  "loading": "Opladen",
+  "page": {
+    "back": "Terug ",
+    "not-found": "Deze pagina is ontvindbaar",
+    "goToOffline": "Toon offline-inhoud",
+    "children": {
+      "title": "Om verder te gaan"
+    }
+  },
+  "search": {
+    "title": "Zoek",
+    "titleWithOneCategory": "{category}: {options}",
+    "titlePagination": "{count, plural, =0 {} one {} other { - Pagina #}}",
+    "description": "Ontdek wandelingen die bij uw wensen passen met onze zoekmachine",
+    "book": "Boeken",
+    "resultsFound": "{count, plural, =0 {# resultaat gevonden} one {# resultaat gevonden} other {# resultaten gevonden}}",
+    "resultsFoundShort": "{count, plural, =0 {# resultaat} one {# resultaat} other {# resultaten}}",
+    "forThe": "Voor de",
+    "seeMap": "Kaart zien",
+    "seeViewPoint": "HD afbeelding zien",
+    "filter": "Filter",
+    "closeFilters": "Filters sluiten",
+    "reload": "Opladen",
+    "anErrorOccured": "Er is een fout opgetreden",
+    "filters": {
+      "difficulty": "Moeilijkheidsgraad",
+      "practices": "Wandelen",
+      "outdoorPractice": "Openlucht",
+      "treksOutdoorGrouped": "Activiteiten",
+      "event": "Evenementen",
+      "categories": "Diensten",
+      "cities": "Gemeente",
+      "localization": "Locatie",
+      "duration": "Looptijd",
+      "durationOptions": {
+        "H:0-1": "0 - 1 uur",
+        "H:1-2": "1u - 2u",
+        "H:2-5": "2 uur - 5 uur",
+        "H:5-10": "05.00 - 10.00 uur"
+      },
+      "districts": "Sector",
+      "themes": "Thema's",
+      "routes": "Wandel mogelijkheden",
+      "accessibilities": "Toegankelijkheid",
+      "ascent": "Positieve hoogtewinst",
+      "ascentOptions": {
+        "M:0-500": "0 - 500m",
+        "M:500-1000": "500m - 1km"
+      },
+      "length": "Lengte",
+      "lengthOptions": {
+        "KM:0-5": "0 - 5 km",
+        "KM:5-10": "5 km - 10 km",
+        "KM:10-15": "10 km - 15 km",
+        "KM:15-50": "15 km - 50 km"
+      },
+      "structures": "Structuur",
+      "clearAll": "Alles wissen",
+      "filters": "Filters",
+      "labels": "Anderen",
+      "organizer": "Organisatie",
+      "networks": "Netwerktype"
+    },
+    "textFilter": "Zoeken",
+    "beginDateFilter": "Begindatum",
+    "endDateFilter": "Einddatum",
+    "map": {
+      "seeResult": "Details weergeven",
+      "seeMe": "Bekijk mijn positie",
+      "panel": {
+        "open": "Toon laagselector",
+        "close": "Verberg de laagselector",
+        "trekChildren": "Étappen",
+        "poi": "Erfgoed",
+        "referencePoints": "Oriëntatiepunten",
+        "touristicContent": "In de buurt van",
+        "informationDesks": "Informatiepunten",
+        "courses": "Cursus",
+        "experiences": "Praktijkplaatsen",
+        "signage": "Bewegwijzering",
+        "infrastructure": "Faciliteiten",
+        "service": "Overige informatie",
+        "annotations": "Aantekeningen"
+      },
+      "resetView": "De kaart opnieuw centreren"
+    },
+    "pagination": {
+      "previous": "Vorige pagina",
+      "next": "Volgende pagina",
+      "goto": "Ga naar pagina {count}"
+    }
+  },
+  "details": {
+    "presentation": "Presentatie",
+    "access": "Toegang",
+    "download": "Download",
+    "itinerancySteps": "Etappes",
+    "itinerancyStepsFullTitle": "{count, plural, =0 {Geen etappe} one {# stappen} other {# stappen}}",
+    "poi": "Erfgoed",
+    "poiFullTitle": "{count, plural, =0 {Geen erfgoed} one {# erfgoed om te ontdekken} other {Het # erfgoed om te ontdekken}}",
+    "source": "Bron",
+    "touristicContent": "In de buurt van",
+    "knowMore": "Meer informatie",
+    "moreInformation": "Meer informatie",
+    "lessInformation": "Minder informatie",
+    "close": "Sluiten",
+    "description": "Beschrijving",
+    "recommandations": "Aanbevelingen",
+    "informationDesks": "Informatiepunten",
+    "medias": "Media",
+    "practicalInformations": "Praktische informatie",
+    "forecastWidget": "Weerbericht",
+    "accessibility": "Toegankelijkheid",
+    "accessibility_level": "Toegankelijkheidsniveau",
+    "accessibility_covering": "Bekleding",
+    "accessibility_exposure": "Blootstelling",
+    "accessibility_advice": "Advies",
+    "accessibility_slope": "Helling",
+    "accessibility_width": "Breedte",
+    "accessibility_signage": "Bewegwijzering",
+    "emergency_number": "Spoednummer",
+    "toSee": "Zie ook",
+    "transport": "Vervoer",
+    "stationnement": "Parkeren",
+    "access_parking": "Toegang tot de weg en parkeren",
+    "reservationWidget": "Reservering",
+    "sensitiveAreas": "Gevoelige gebieden",
+    "sensitiveAreasTitle": "Milieugevoelige gebieden",
+    "sensitiveAreasIntro": "Onderweg passeert u gevoelige gebieden die verband houden met de aanwezigheid van een bepaalde soort of omgeving. In deze gebieden kan gepast gedrag bijdragen aan het behoud ervan. Voor meer gedetailleerde informatie zijn er specifieke informatiebladen per gebied beschikbaar.",
+    "sensitiveAreasPeriod": "Gevoelige periodes:",
+    "sensitiveAreasPractices": "Betrokken activiteitengebieden:",
+    "sensitiveAreasContact": "Contactpersoon:",
+    "altimetricProfile": "Hoogteprofiel",
+    "altimetricProfileTotalLength": "Totale lengte",
+    "altimetricProfileMinElevation": "Minimale hoogte",
+    "altimetricProfileMaxElevation": "Maximale hoogte",
+    "departure": "Vertrek",
+    "arrival": "Aankomst",
+    "cities": "Doorlopende gemeentes",
+    "more": "Meer informatie",
+    "courses": "Route",
+    "subsites": "Praktijkplaatsen",
+    "gear": "Materiaal",
+    "equipment": "Uitrusting",
+    "typeSite": "Type site",
+    "typeCourse": "Soort route",
+    "organizer": "Organisatie",
+    "speaker": "Spreker",
+    "targetAudience": "Doelgroep",
+    "practicalInfo": "Praktische informatie",
+    "booking": "Reservering",
+    "centerOnMap": "Centreren op kaart",
+    "openPictureInFullScreen": "Bekijk de afbeelding op volledig scherm",
+    "closeFullScreen": "Sluit de volledig schermmodus",
+    "contact": "Contact",
+    "goBack": "Terugweg"
+  },
+  "touristicContent": {
+    "email": "E-mail",
+    "website": "Website"
+  },
+  "map": {
+    "layerButton": {
+      "classic": "Plan",
+      "satellite": "Satelliet"
+    },
+    "drawer": {
+      "next": "Volgende etappe",
+      "prev": "Vorige etappe"
+    }
+  },
+  "footer": {
+    "linksSectionTitle": "Aanvullende informatie",
+    "links": "Linken",
+    "access": "Hoe kom je er?",
+    "legalMentions": "Juridische mededelingen",
+    "accessibility": "Toegankelijkheidsregels",
+    "geotrek": "Geotrek"
+  },
+  "report": {
+    "title": "Een probleem of fout melden",
+    "intro": "Als u een fout op deze pagina heeft opgemerkt of u bent een probleem tegen gekomen tijdens uw wandeling, kunt u dit hier aan ons melden: ",
+    "activity": "Activiteit",
+    "captcha": "Captcha",
+    "category": "Categorie",
+    "magnitude": "Omvang van het probleem",
+    "comment": "Reacties",
+    "email": "E-mail",
+    "name": "Uw naam",
+    "image": "Afbeelding",
+    "button": "Melden",
+    "cancel": "Annuleren",
+    "success": "Bedankt, de melding is verzonden",
+    "mapButton": {
+      "create": "Geef de positie van de melding aan op de kaart",
+      "edit": "Wijzig de positie van de melding",
+      "validate": "Bevestig de positie"
+    },
+    "GDPRDisclaimer": "Deze informatie is bestemd voor...die zich ertoe verbindt deze informatie niet aan het publiek te verspreiden. U heeft recht op toegang, wijzigingen, correcties en verweidering van uw gegevens....."
+  },
+  "form": {
+    "calendar": "Kalender",
+    "missingField": "Dit deel is verplicht",
+    "required": "(vereist)",
+    "selectPlaceholder": "Selecteer"
+  },
+  "offline": {
+    "number": "{count} inhoud toegankelijk zonder internetverbinding",
+    "presentation": "Geniet van uw inhoud zonder u zorgen te maken over het netwerk.",
+    "explain": "Download dit item om er offline toegang toe te hebben",
+    "explainAvailable": "Dit item is offline beschikbaar",
+    "title": "Offline-modus",
+    "download": "Downloaden",
+    "isInCache": "Dit item is offline beschikbaar.",
+    "downloadInProgress": "Even geduld alstublieft",
+    "not-available": "Deze inhoud is niet offline beschikbaar"
+  },
+  "actions": {
+    "cancel": "Annuleren",
+    "close": "Sluiten",
+    "remove": "Verwijderen",
+    "confirmRemove": "Weet u zeker dat u dit item wilt verwijderen?",
+    "openInANewWindow": "Een nieuwe pagina openen"
+  },
+  "outdoorSite": {
+    "accessFullTitle": "Toegang",
+    "coursesFullTitle": "De wandelroutes die te ontdekken zijn",
+    "sitesFullTitle": "De oefenlocaties om te ontdekken"
+  },
+  "viewPoint": {
+    "title": "HD-afbeeldingen",
+    "label": "HD-afbeelding",
+    "description": "Blader door verrijkte en interactieve afbeeldingen met 'zeer hoge definitie'",
+    "credit": "Beeldbron:",
+    "displayPicture": "Afbeelding weergeven"
+  },
+  "attachments": {
+    "title": "{count, plural, =0 {Gekoppeld document}} one {Gekoppeld document} other {Gekoppelde documenten}}",
+    "credit": "Krediet:",
+    "download": "Download"
+  },
+  "Wind": {
+    "N": "Noorden",
+    "S": "Zuiden",
+    "E": "Oost",
+    "W": "West",
+    "NW": "Noordwesten",
+    "SW": "Zuidwest",
+    "NE": "Noordoosten",
+    "SE": "Zuidoost"
+  },
+  "dates": {
+    "singleDate": "De {date}",
+    "rangeTime": "Van {beginTime} tot {endTime}",
+    "multipleDates": "Van {beginDate} tot {endDate}"
+  },
+  "rando3D": {
+    "poi": {
+      "no-descriptions": "Er is geen beschrijving met betrekking tot dit aandachtspunt."
+    },
+    "views": {
+      "examine": {
+        "title": "Mode onderzoekt",
+        "description": "Onderzoek het terrein door het te draaien zoals je wilt en er doorheen te navigeren.",
+        "cameraTitle": "Exam"
+      },
+      "bird": {
+        "title": "Vogelmodus",
+        "description": "Verken het terrein, draai uw hoofd, ga omhoog, omlaag en verplaatst uw zelf",
+        "cameraTitle": "Vogel"
+      },
+      "hiker": {
+        "title": "Wandelmodus",
+        "description": "Volg het routepad.",
+        "cameraTitle": "Wandelen"
+      }
+    },
+    "instructions": {
+      "zoom": "Zoom:",
+      "rotation": "Kantelen/Rotatie:",
+      "moveAround": "Verplaatsen",
+      "lookAround": "Kijk rondom",
+      "playPause": "Afspelen/Pauzeren:",
+      "stop": "Stop:"
+    },
+    "actions": {
+      "scrollMouse": "Muiswiel",
+      "leftClick": "Linkermuisklik",
+      "space": "Ruimte",
+      "enter": "Ingang"
+    },
+    "warning": {
+      "noWebGl": "De grafische webbibliotheek (WebGL) is uitgeschakeld of niet beschikbaar in uw browser, waardoor de 3D-module niet beschikbaar is."
+    }
+  },
+  "tooltip": {
+    "print": "Afdrukken",
+    "show3D": "Weergave in 3D",
+    "difficulty": "Moeilijkheidsgraad",
+    "period": "Periode",
+    "orientation": "Oriëntatie",
+    "wind": "Wind",
+    "date": "Datum",
+    "duration": "Tijdsduur",
+    "distance": "Afstand",
+    "elevation": "Hoogtewinst",
+    "negativeElevation": "Negatieve hoogte",
+    "altitude": "Hoogte",
+    "assemblyPoint": "Verzamelpunt",
+    "numberOfParticipants": "Aantal deelnemers",
+    "courseType": "Type route",
+    "network": "Netwerk"
+  },
+  "accordion": {
+    "open": "Openen",
+    "close": "Sluiten"
+  },
+  "breadcrumb": {
+    "title": "Kruimelpad"
+  },
+  "consents": {
+    "modal": {
+      "purposes": {
+        "ads": "Reclame",
+        "analytics": "Publieksmeting",
+        "security": "Beveiliging"
+      }
+    },
+    "changeCookiePreference": "Cookievoorkeuren wijzigen"
+  },
+  "carousel": {
+    "prevImage": "Vorige afbeelding",
+    "nextImage": "Volgende afbeelding"
+  }
+}
