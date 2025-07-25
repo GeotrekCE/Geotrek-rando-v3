@@ -49,8 +49,8 @@ In json files, you can just override the primary keys you need. You have to over
 
       - `supportedLanguages`: Array of available languages:
         `'CA','DE','FR','EN','ES',IT, NL` are availables. **Warning**: Before
-        activating languages in Geotrek Rando, make sure these languages are
-        available in the linked Geotrek admin.
+        activating languages in Geotrek-rando, make sure these languages are
+        available in the linked Geotrek-admin.
       - `defaultLanguage`: Your target audience's main language.
       - `primaryItemsNumber`: Number of items before dividing the main menu with a "See more" button. _Deprecated_ since 3.19.0: Use the MenuItems feature from Geotrek admin.
 
