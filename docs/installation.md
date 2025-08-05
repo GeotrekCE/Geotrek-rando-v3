@@ -45,7 +45,7 @@ You will have to download the Installer of Geotrek-rando and its customization f
 - Go in the root folder of your Geotrek-rando-v3-installer and run the Docker container with launching `docker compose up -d`
 - Your Geotrek-rando is now available at the address of your server on 8080 port (e.g. http://myserver:8080)
 
-You can now serve what comes out of the default 8080 port. To configure NGINX, see below.
+You can now serve what comes out of the default 8080 port. To configure , see below.
 
 If you want to have logs directly in terminal you can just run `docker compose up`. `ctrl`+`c` will exit the command and stop the container. That's why `docker compose up -d` is used in production to run the service in the background.
 
@@ -73,6 +73,7 @@ server {
         proxy_cache_bypass $http_upgrade;
         proxy_set_header        X-Real-IP       $remote_addr;
         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        add_header 'Access-Control-Allow-Origin' '*';
    }
     listen 80;
     listen [::]:80;
