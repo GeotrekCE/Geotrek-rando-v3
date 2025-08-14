@@ -119,6 +119,58 @@ By default the "forecast widget" is enabled for all content types; if you want t
 }
 ```
 
+#### Widgets
+
+You can embed third-party widgets into Geotrek-rando detail pages by adding their HTML code in the appropriate **`customization.html/details/`** subfolder.
+
+##### **Weather Forecast (Météo-France)**
+
+![Search](../img/widget-meteofrance.png)
+
+
+**File location:**
+`customization.html/details/forecastWidget.html`
+
+**Project page:** [Météo-France Widgets](https://meteofrance.com/widgets)
+
+**Example code:**
+
+```html
+<iframe
+  id="widget_autocomplete_preview"
+  loading="lazy"
+  class="w-full"
+  height="150"
+  src="https://meteofrance.com/widget/prevision/{{ cityCode }}0"
+  title="Météo-France Widget">
+</iframe>
+```
+
+##### **Air Quality (Atmo)**
+
+![Search](../img/widget-atmo.png)
+
+**File location:**
+`customization.html/details/atmos.html`
+
+**Project page:** [Atmo Widget](https://www.atmo-hdf.fr/widget)
+
+**Example code:**
+
+```html
+<div style="height:470px;">
+  <a href="https://www.atmo-hdf.fr/">
+    <iframe
+      id="widget_atmo"
+      loading="lazy"
+      src="https://www.atmo-hdf.fr/widget-mon-air/widget/commune/{{ cityCode }}"
+      class="w-full h-full b-0"
+      title="Atmo Widget">
+    </iframe>
+  </a>
+</div>
+```
+
 ## External scripts
 
 You can inject additional scripts into your app by creating the following files:
