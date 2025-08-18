@@ -2,8 +2,8 @@
 
 ## HTML templates
 
-You can include some HTML parts in different sections of the layout application.  
-These templates can be translated by using the language code as a suffix (e.g. `homeTop-en.html` will be rendered only for the English interface). The application tries to find the localized template first, otherwise it tries the non-localized template, otherwise it displays nothing.  
+You can include some HTML parts in different sections of the layout application.
+These templates can be translated by using the language code as a suffix (e.g. `homeTop-en.html` will be rendered only for the English interface). The application tries to find the localized template first, otherwise it tries the non-localized template, otherwise it displays nothing.
 
 !!! note
 
@@ -27,11 +27,11 @@ See examples in [customization file](https://github.com/GeotrekCE/Geotrek-rando-
 
 You can create your own templates to display practical information or widgets in different parts of the details page. There are 3 steps to follow:
 
-1. Create a new file suffixed with `.html` in `customization/html/details/` (e.g. `example.html`) and fill the the content with html tags
+**Step 1:** Create a new file suffixed with `.html` in `customization/html/details/` (e.g. `example.html`) and fill the the content with html tags
 
-   ```html
-   <div>The id of this {{ type }} is {{ id }}</div>
-   ```
+```html
+<div>The id of this {{ type }} is {{ id }}</div>
+```
 
 You can define variables in "mustache templates" (meaning between brackets `{{ variable }}`) that will be converted once rendered. For the moment, there are 4 variables available:
 
@@ -40,46 +40,67 @@ You can define variables in "mustache templates" (meaning between brackets `{{ v
 - The code of the (departure) city `{{ cityCode }}`: useful for widgets such as forecast.
 - The language code `{{ language }}` The current language of the page.
 
-When choosing a template name, care must be taken not to select a reserved name used by sections defined by the application (e.g `presentation`, see [example](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/details.json)).  
- If you do, the customized template will not be displayed.
+When choosing a template name, care must be taken not to select a reserved name used by sections defined by the application (e.g `presentation`, see [example](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/details.json)).
+If you do, the customized template will not be displayed.
 
-2. Copy the template name without the `.html` suffix into the `customization/html/details.json` file.  
-   For example I want to display it in treks and outdoor sites details page:
+**Step 2:** Copy the template name without the `.html` suffix into the `customization/html/details.json` file.
+For example I want to display it in treks and outdoor sites details page:
 
-   ```json
-   {
-     "sections": {
-       "trek": [
-         {
-           "name": "example",
-           "display": true,
-           "anchor": true,
-           "order": 11
-         }
-       ],
-       "outdoorSite": [
-         {
-           "name": "example",
-           "display": true,
-           "anchor": true,
-           "order": 11
-         }
-       ]
-     }
-   }
-   ```
+```json
+{
+  "sections": {
+    "trek": [
+      {
+        "name": "example",
+        "display": true,
+        "anchor": true,
+        "order": 11
+      }
+    ],
+    "outdoorSite": [
+      {
+        "name": "example",
+        "display": true,
+        "anchor": true,
+        "order": 11
+      }
+    ]
+  }
+}
+```
 
-3. Copy the section title/anchor into the translations files.  
-    For example in `customization/translations/en.json`:
-   ```json
-   {
-     "details": {
-       "example": "My example"
-     }
-   }
-   ```
+**Step 3:**. Copy the section title/anchor into the translations files.
+For example in `customization/translations/en.json`:
 
-You can take a look at `customization/html/details/forecastWidget.html` which shows the implementation.
+```json
+{
+  "details": {
+    "example": "My example"
+  }
+}
+```
+
+#### Widgets examples
+
+You can embed third-party widgets into Geotrek-rando detail pages by adding their HTML code in the appropriate **`customization.html/details/`** subfolder.
+
+The widget can exploit data from the geotrek page to customize the displayed information (departure city, trek geometry, trek name, etc.).
+
+Here is some examples but there is a lot more that can be done, your imagination is your limit !
+
+##### **Weather Forecast (Météo-France)**
+
+!!! tip "This widget exists by default in Geotrek-rando"
+
+![weather-widget](../img/widget-meteofrance.png)
+
+**File location:**
+`customization.html/details/forecastWidget.html` ([see code](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/customization/html/details/forecastWidget.html))
+
+**Widget page:** [Météo-France Widgets](https://meteofrance.com/widgets)
+
+??? note **How to disable this widget**
+
 By default the "forecast widget" is enabled for all content types; if you want to remove it, you need to write it explicitly in the `customization/html/details.json` file.
 
 ```json
@@ -119,57 +140,32 @@ By default the "forecast widget" is enabled for all content types; if you want t
 }
 ```
 
-#### Widgets
-
-You can embed third-party widgets into Geotrek-rando detail pages by adding their HTML code in the appropriate **`customization.html/details/`** subfolder.
-
-##### **Weather Forecast (Météo-France)**
-
-![Search](../img/widget-meteofrance.png)
-
-
-**File location:**
-`customization.html/details/forecastWidget.html`
-
-**Project page:** [Météo-France Widgets](https://meteofrance.com/widgets)
-
-**Example code:**
-
-```html
-<iframe
-  id="widget_autocomplete_preview"
-  loading="lazy"
-  class="w-full"
-  height="150"
-  src="https://meteofrance.com/widget/prevision/{{ cityCode }}0"
-  title="Météo-France Widget">
-</iframe>
-```
-
 ##### **Air Quality (Atmo)**
 
-![Search](../img/widget-atmo.png)
+![air-quality-widget](../img/widget-atmo.png)
 
-**File location:**
-`customization.html/details/atmos.html`
+**Configuration** [Check this comment](https://github.com/GeotrekCE/Geotrek-rando-v3/issues/914#issuecomment-1779758757)
 
-**Project page:** [Atmo Widget](https://www.atmo-hdf.fr/widget)
+##### **Sustainable transport route planner**
 
-**Example code:**
+Multiple widgets can be added to help citizens plan their trip using sustainable transports. Here is some examples but we advise you to look for local solutions, there is a good chance your country / state / city may have an existing widget that you can integrate on your website.
 
-```html
-<div style="height:470px;">
-  <a href="https://www.atmo-hdf.fr/">
-    <iframe
-      id="widget_atmo"
-      loading="lazy"
-      src="https://www.atmo-hdf.fr/widget-mon-air/widget/commune/{{ cityCode }}"
-      class="w-full h-full b-0"
-      title="Atmo Widget">
-    </iframe>
-  </a>
-</div>
-```
+- [SNCF Connect widget (train)](https://www.sncf-connect.com/outils/widget)
+- [Regional public transportation (Occitanie State)](https://www.lio-occitanie.fr/actualites/widget-lio/)
+- [Regional public transportation (Auvergne Rhône Alpes state)](https://sim.oura.com/fr/cobranding/demo/trip-planner)
+- [CarSharing platforms (example with blablacar)](https://blog.fr.blablacar.be/blablalife/lp/widgets)
+
+**Example with local public transportation route planner**
+
+![lio-widget](../img/widget-lio.png)
+
+##### **Meteorology risk prevention**
+
+A lot of data could be added. Some widgets already exists, other could be created and could help users get information about :
+
+- [Fire hazard level (example in Quebec)](https://www.sopfeu.qc.ca/widget/)
+- Avalanche risks
+- Flooding alerts
 
 ## External scripts
 
@@ -178,7 +174,7 @@ You can inject additional scripts into your app by creating the following files:
 - `customization/html/scriptsHeader.html`: scripts injected in the `<head>` of the document.
 - `customization/html/scriptsFooter.html`: scripts injected just before the `</body>` end tag.
 
-The scripts templates are intended for third party scripts. Unlike the HTML parts, there is not possibility of translations. 
+The scripts templates are intended for third party scripts. Unlike the HTML parts, there is not possibility of translations.
 
 Within each of these templates you need you can write one or more `<script>` tags.
 
@@ -210,22 +206,22 @@ If you need to execute the script on every page change you need to attach an eve
 
     If you want to display articles from another website, you can do so using custom HTML templates.
 
-    **Demo Screenshot** 
-      
+    **Demo Screenshot**
+
     ![image](https://github.com/GeotrekCE/Geotrek-rando-v3/assets/1926041/f3e8518f-6a74-4647-b485-a8eefeca8796)
 
     **JSON Feed**
 
     To retrieve data from another website, the well-known feeds are RSS or Atom, but the best format for communicating remains JSON, so we decided to develop a script that uses them all: [JSON Feed](https://www.jsonfeed.org/).
-     
+
     So, if you wish to copy/paste the following codes into your customization but with your own feed, it must be formatted in JSON Feed or you must edit the following script to adapt it.
 
     **Template**
-     
+
     <ins>Common<ins>
-     
+
     Let's try the following code and copy it into a template file like `customization/html/homeTop.html`:
-     
+
     ```html
     <div
       data-widget="feed"
@@ -233,11 +229,11 @@ If you need to execute the script on every page change you need to attach an eve
       data-limit="6"
       data-title="Découvrir les dernières actualités"
     ></div>
-    ``` 
+    ```
     - `data-widget="feed"` (mandatory): all HTML tags with this data attribute and the value “feed” will be parsed by the corresponding script.
     - `data-url` (mandatory): this is the feed source. If left blank, nothing happens.
     - `data-limit` (optional - default `Infinity`): is the number of elements to be displayed.
-    - `data-title` (optional): allows to add a title to the section 
+    - `data-title` (optional): allows to add a title to the section
 
 
     <ins>Internationalization<ins>
@@ -251,7 +247,7 @@ If you need to execute the script on every page change you need to attach an eve
       data-widget="feed"
       data-url="https://www.ecrins-parcnational.fr/{{ language }}/flux_actus.json"
     ></div>
-    ``` 
+    ```
 
     <ins>Widget in details page<ins>
 
@@ -265,7 +261,7 @@ If you need to execute the script on every page change you need to attach an eve
     ></div>
 
     ```
-    Don't forget to call the `feedWidget` in the desired details page in `customization/config/details.json`. 
+    Don't forget to call the `feedWidget` in the desired details page in `customization/config/details.json`.
     ```json
     {
       "sections": {
@@ -415,5 +411,3 @@ If you need to execute the script on every page change you need to attach an eve
     - If there is no `data-url` defined, or if there is an error when retrieving the data, or if the data returns 0 elements, the script stops execution and nothing is displayed.
     - The source URL must provide a JSON feed format, otherwise it will try to loop inside as if the response were the contents of the `items` key of the JSON feed. **No other checks are made**, so if your JSON is not properly formatted, errors may occur.
     - For the card content, it tries to get the value of `summary`, if this key has no value, it tries the value of `content_text`. And if this key also has no value, it finally tries with `content_html`.  Be careful with the last property: you have to trust the source because it executes a `innerHTML`.
-
-

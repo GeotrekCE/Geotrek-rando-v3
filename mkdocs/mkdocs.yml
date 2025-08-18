@@ -1,14 +1,14 @@
 # Project information
-site_name: Geotrek-rando v3 documentation
+site_name: Geotrek-rando documentation
 site_url: https://geotrek-rando-v3.readthedocs.io/latest/
-site_description: Geotrek-rando v3 documentation
+site_description: Geotrek-rando documentation
 site_author: Geotrek's community
 edit_uri: blob/main/docs/
 
 # Repository
 repo_name: GeotrekCE/Geotrek-rando-v3/
 repo_url: https://github.com/GeotrekCE/Geotrek-rando-v3/
-docs_dir: ../docs 
+docs_dir: ../docs
 
 # Configuration
 theme:
@@ -36,7 +36,7 @@ theme:
     - toc.follow
     # toc.integrate
   palette:
-   # - Dark Mode
+    # - Dark Mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       toggle:
@@ -44,7 +44,7 @@ theme:
         name: Light mode
       primary: blue
       accent: light blue
-  # Light Mode
+    # Light Mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
       toggle:
@@ -59,6 +59,7 @@ theme:
   logo: img/logo.svg
   icon:
     icon:
+      repo: fontawesome/brands/github
       admonition:
         note: octicons/tag-16
         abstract: octicons/checklist-16
@@ -137,31 +138,33 @@ markdown_extensions:
 plugins:
   - git-revision-date-localized:
       enable_creation_date: true
+      type: timeago
+  - git-committers:
+      repository: GeotrekCE/Geotrek-rando-v3
+      branch: main
   - search:
       separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
 
 # Page tree
 nav:
   - Home: index.md
-  - 💡 Présentation: 
-    - Présentation générale: presentation-fr.md
-  - 🚀 Installation: 
-    - Production setup: installation.md
-  - 🎨 Customization: 
+  - 💡 Presentation: presentation-fr.md
+  - 🚀 Installation: installation.md
+  - 🎨 Customization:
     - Introduction: customization/customization-introduction.md
     - Homepage: customization/customization-homepage.md
     - Settings: customization/customization-settings.md
     - Theme and style: customization/customization-themestyles.md
-    - Icons : customization/customization-icons.md
+    - Icons: customization/customization-icons.md
     - Translation: customization/customization-translation.md
     - HTML and scripts: customization/customization-htmlscripts.md
     - GDPR: customization/customization-gdpr.md
     - Media management: customization/customization-mediamanagement.md
-  - 🔧 Development: 
+  - 🔧 Development:
     - Installation: development/installation.md
     - Deployment: development/deployment.md
     - Contributing: development/contributing.md
-  - ✨ Knowledge: 
+  - ✨ Knowledge:
       - Caching: knowledge/caching.md
       - Debug: knowledge/debug.md
       - Pages and navigation: knowledge/pages-and-navigation.md
@@ -169,5 +172,4 @@ nav:
   - 🧱 Architecture decision record:
       - Main framework: adrs/main_framework.md
       - Deployment solution: adrs/deployment_solution.md
-  - 📝 Changelog: 
-    - Release notes: changelog.md
+  - 📝 Changelog: changelog.md
