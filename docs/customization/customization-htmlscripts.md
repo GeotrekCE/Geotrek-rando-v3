@@ -99,9 +99,9 @@ Here is some examples but there is a lot more that can be done, your imagination
 
 **Widget page:** [Météo-France Widgets](https://meteofrance.com/widgets)
 
-??? note **How to disable this widget**
+!!! note
 
-By default the "forecast widget" is enabled for all content types; if you want to remove it, you need to write it explicitly in the `customization/html/details.json` file.
+    By default the **forecast widget** is enabled for all content types; if you want to remove it, you need to write it explicitly in the `customization/html/details.json` file.
 
 ```json
 {
@@ -153,7 +153,7 @@ Multiple widgets can be added to help citizens plan their trip using sustainable
 - [SNCF Connect widget (train)](https://www.sncf-connect.com/outils/widget)
 - [Regional public transportation (Occitanie State)](https://www.lio-occitanie.fr/actualites/widget-lio/)
 - [Regional public transportation (Auvergne Rhône Alpes state)](https://sim.oura.com/fr/cobranding/demo/trip-planner)
-- [CarSharing platforms (example with blablacar)](https://blog.fr.blablacar.be/blablalife/lp/widgets)
+- [CarSharing platforms (example with Blablacar)](https://blog.fr.blablacar.be/blablalife/lp/widgets)
 
 **Example with local public transportation route planner**
 
