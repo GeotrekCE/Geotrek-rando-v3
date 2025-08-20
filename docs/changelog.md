@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.25.2+dev (XXXX-XX-XX)
+
+**Documentation**
+
+- Add main section blocks in homepage and widget examples (#1419)
+
 ## 3.25.2 (2025-06-23)
 
 **✨ Improvements**
