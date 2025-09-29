@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import { theme } from '../../../../../../tailwind.config';
 
 export interface SelectableDropdownProps {
+  inputId?: string;
   name: string;
   options: Option[];
   placeholder: string;

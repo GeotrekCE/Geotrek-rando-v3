@@ -18,11 +18,11 @@ const InputRow: React.FC<Props> = props => {
         {props.coordinates.map(({ label, ...field }, index) => (
           <div key={index}>
             {label !== undefined && (
-              <label className="block font-bold mb-1" htmlFor={inputId}>
+              <label className="block font-bold mb-1" htmlFor={`${inputId}-${index}`}>
                 {label}
               </label>
             )}
-            <input className="input" id={inputId} {...field} readOnly />
+            <input className="input" id={`${inputId}-${index}`} {...field} readOnly />
           </div>
         ))}
       </div>
