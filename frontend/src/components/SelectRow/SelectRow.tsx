@@ -20,7 +20,7 @@ const SelectRow: React.FC<Props> = props => {
   return (
     <div className="w-full mb-5">
       {label !== undefined && (
-        <label className="block font-bold mb-1" htmlFor={inputId}>
+        <label className="block font-bold mb-1" htmlFor={field.inputId ?? inputId}>
           {label}
           {field.required === true && (
             <>
@@ -33,6 +33,7 @@ const SelectRow: React.FC<Props> = props => {
         </label>
       )}
       <SelectableDropdown
+        inputId={field.inputId ?? inputId}
         {...field}
         {...(hasError && {
           ['aria-invalid']: true,
