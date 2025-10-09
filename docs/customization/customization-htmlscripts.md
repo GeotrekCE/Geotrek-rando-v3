@@ -43,7 +43,7 @@ You can define variables in "mustache templates" (meaning between brackets `{{ v
 When choosing a template name, care must be taken not to select a reserved name used by sections defined by the application (e.g `presentation`, see [example](https://github.com/GeotrekCE/Geotrek-rando-v3/blob/main/frontend/config/details.json)).
 If you do, the customized template will not be displayed.
 
-**Step 2:** Copy the template name without the `.html` suffix into the `customization/html/details.json` file.
+**Step 2:** Copy the template name without the `.html` suffix into the `customization/config/details.json` file.
 For example I want to display it in treks and outdoor sites details page:
 
 ```json
@@ -101,7 +101,7 @@ Here is some examples but there is a lot more that can be done, your imagination
 
 !!! note
 
-    By default the **forecast widget** is enabled for all content types; if you want to remove it, you need to write it explicitly in the `customization/html/details.json` file.
+    By default the **forecast widget** is enabled for all content types; if you want to remove it, you need to write it explicitly in the `customization/config/details.json` file.
 
 ```json
 {
