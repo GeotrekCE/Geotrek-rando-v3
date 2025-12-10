@@ -1,10 +1,21 @@
 # Changelog
 
-## 3.25.2+dev (XXXX-XX-XX)
+## 3.26.0 (2025-12-10)
+
+**✨ Improvements**
+
+- Add dutch (NL) translations (#1416)
 
 **Documentation**
 
-- Add main section blocks in homepage and widget examples (#1419)
+- Fix `details.json` path (#1425)
+- Add main section blocks in homepage and widget integrations examples (#1419)
+- Add 'Access-Control-Allow-Origin' header in NGINX conf example (#1418)
+- Update documentation about languages (#1417)
+
+**🐛 Fixes**
+
+- Fix the connection between labels and associated input for report form (#1421)
 
 ## 3.25.2 (2025-06-23)
 
