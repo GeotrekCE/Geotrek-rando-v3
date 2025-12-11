@@ -1,10 +1,10 @@
 # Changelog
 
-## 3.26.0 (2025-12-10)
+## 3.26.0 (2025-12-11)
 
 **✨ Improvements**
 
-- Add dutch (NL) translations (#1416)
+- Add dutch (NL) translations (#1416 by @MthsD)
 
 **Documentation**
 
