@@ -4,7 +4,7 @@
 
 **Documentation**
 
-- Add BAM widget examples to display biodiversity around the trek (#1427)
+- Add BAM widget examples to display biodiversity around treks (#1427)
 
 **🐛 Fixes**
 
