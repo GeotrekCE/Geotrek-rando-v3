@@ -1,10 +1,14 @@
 # Changelog
 
-## 3.26.0+dev (XXXX-XX-XX)
+## 3.26.1 (2025-02-20)
 
 **Documentation**
 
 - Add BAM widget examples to display biodiversity around the trek (#1427)
+
+**🐛 Fixes**
+
+- Fix `trek_network` filter not using Portal parameter (#1429)
 
 ## 3.26.0 (2025-12-11)
 
