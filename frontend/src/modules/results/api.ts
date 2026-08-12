@@ -5,7 +5,7 @@ import { RawTrekResult } from './interface';
 
 const fieldsParams = {
   fields:
-    'id,departure,name,themes,duration,length_2d,ascent,descent,difficulty,reservation_system,attachments,practice,departure_city,route,networks',
+    'id,departure,name,themes,duration,length_2d,ascent,descent,difficulty,reservation_system,attachments,practice,departure_city,route,networks,closed,published_vigilance_areas',
 };
 
 export const fetchTrekResults = (

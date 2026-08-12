@@ -9,7 +9,10 @@ import { cn } from 'services/utils/cn';
 import { DateFilter, FilterState, Option } from '../../../../../modules/filters/interface';
 import { countFiltersSelected } from '../../../../../modules/filters/utils';
 import { getActivityColorClassName } from '../ResultCard/getActivityColor';
+import { getGlobalConfig } from 'modules/utils/api.config';
+import { PRACTICE_ID } from 'modules/filters/constant';
 import SubFilterField from './SubFilterField';
+import VigilanceSection from './VigilanceSection';
 
 interface Props {
   id: string;
@@ -66,6 +69,9 @@ const FilterField: React.FC<Props> = ({
     ? filtersToDisplay
     : Array.from({ length: subFiltersToDisplay.length });
 
+  const practiceFilter = filtersState.find(f => f.id === PRACTICE_ID);
+  const hasSelectedPractice = (practiceFilter?.selectedOptions?.length ?? 0) > 0;
+
   return (
     <div>
       <button
@@ -98,7 +104,7 @@ const FilterField: React.FC<Props> = ({
       />
       <div
         className={cn(
-          'fixed left-0 right-0 top-headerAndFilterBar bg-white p-8 shadow-inner z-[101]',
+          'fixed left-0 right-0 top-headerAndFilterBar max-h-[calc(100vh-theme(spacing.headerAndFilterBar))] overflow-y-auto bg-white p-8 shadow-inner z-[101]',
           expanded ? 'block' : 'hidden',
         )}
       >
@@ -121,6 +127,14 @@ const FilterField: React.FC<Props> = ({
                 setDateFilter={setDateFilter}
               />
             </div>
+            {id === PRACTICE_ID && getGlobalConfig().enableVigilanceAreas && hasSelectedPractice && (
+              <VigilanceSection
+                filtersState={filtersState}
+                dateFilter={dateFilter}
+                setFilterSelectedOptions={setFilterSelectedOptions}
+                setDateFilter={setDateFilter}
+              />
+            )}
             <div className="grid grid-cols-3 gap-4">
               <SubFilterField
                 filters={subFiltersToDisplay[index]}

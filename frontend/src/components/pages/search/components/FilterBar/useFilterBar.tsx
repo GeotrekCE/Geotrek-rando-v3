@@ -8,6 +8,7 @@ import {
   DATE_FILTER,
   DISTRICT_ID,
   EVENT_ID,
+  HIDE_CLOSED_TREKS_ID,
   ORGANIZER_ID,
   OUTDOOR_ID,
   PRACTICE_ID,
@@ -19,7 +20,7 @@ import { getGlobalConfig } from 'modules/utils/api.config';
 import { FormattedMessage } from 'react-intl';
 
 export const useFilterBar = () => {
-  const { groupTreksAndOutdoorFilters, enableOutdoor } = getGlobalConfig();
+  const { groupTreksAndOutdoorFilters, enableOutdoor, enableVigilanceAreas } = getGlobalConfig();
 
   const { data: currentAPIVersion } = useQuery<APIVersion | undefined>({
     queryKey: ['APIVersion'],
@@ -31,6 +32,18 @@ export const useFilterBar = () => {
     currentAPIVersion,
   );
 
+  const trekSubFilters = [
+    'difficulty',
+    'duration',
+    'length',
+    'routes',
+    'ascent',
+    'accessibilities',
+    ...(is2_108LowerOrEqualCurrentAPIVersion ? ['networks'] : []),
+    'labels',
+    ...(enableVigilanceAreas ? ['vigilance_type', DATE_FILTER, HIDE_CLOSED_TREKS_ID] : []),
+  ];
+
   const treksAndOutdoorCategories =
     groupTreksAndOutdoorFilters === true && enableOutdoor === true
       ? [
@@ -41,19 +54,7 @@ export const useFilterBar = () => {
               <FormattedMessage key="outdoors" id={'search.filters.outdoorPractice'} />,
             ],
             filters: [PRACTICE_ID, OUTDOOR_ID],
-            subFilters: [
-              [
-                'difficulty',
-                'duration',
-                'length',
-                'routes',
-                'ascent',
-                'accessibilities',
-                is2_108LowerOrEqualCurrentAPIVersion ? 'networks' : '',
-                'labels',
-              ].filter(Boolean),
-              ['type-outdoorRating-.+'],
-            ],
+            subFilters: [trekSubFilters, ['type-outdoorRating-.+']],
           },
         ]
       : [
@@ -61,16 +62,7 @@ export const useFilterBar = () => {
             id: PRACTICE_ID,
             name: <FormattedMessage id={'search.filters.practices'} />,
             filters: [PRACTICE_ID],
-            subFilters: [
-              'difficulty',
-              'duration',
-              'length',
-              'routes',
-              'ascent',
-              'accessibilities',
-              is2_108LowerOrEqualCurrentAPIVersion ? 'networks' : '',
-              'labels',
-            ].filter(Boolean),
+            subFilters: trekSubFilters,
           },
           {
             id: OUTDOOR_ID,

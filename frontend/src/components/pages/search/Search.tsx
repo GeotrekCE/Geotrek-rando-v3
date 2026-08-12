@@ -35,6 +35,8 @@ import { useTextFilter } from './hooks/useTextFilter';
 import { useDateFilter } from './hooks/useDateFilter';
 import { useTitle } from './hooks/useTitle';
 import { Pagination } from './components/Pagination';
+import { PRACTICE_ID } from 'modules/filters/constant';
+import { getGlobalConfig } from 'modules/utils/api.config';
 
 interface Props {
   language: string;
@@ -65,6 +67,25 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   const { searchBbox, setPoints, setSearchBbox, isNavigatedByBrowser } = useListAndMapContext();
 
   const bboxState = bounds ?? (isNavigatedByBrowser ? searchBbox : null);
+
+  const practiceFilter = filtersState.find(f => f.id === PRACTICE_ID);
+  const hasSelectedPractice = (practiceFilter?.selectedOptions?.length ?? 0) > 0;
+
+  useEffect(() => {
+    if (getGlobalConfig().enableVigilanceAreas) {
+      if (hasSelectedPractice && !dateFilter.beginDate && !dateFilter.endDate) {
+        setDateFilter({
+          beginDate: new Date().toISOString().split('T')[0],
+          endDate: '',
+        });
+      } else if (!hasSelectedPractice && (dateFilter.beginDate || dateFilter.endDate)) {
+        setDateFilter({
+          beginDate: '',
+          endDate: '',
+        });
+      }
+    }
+  }, [hasSelectedPractice]);
 
   const {
     searchResults,
@@ -117,8 +138,9 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   };
 
   const filtersStateWithExclude = filtersState.reduce((list, item) => {
-    const [id, exclude] = item.id.split('_');
-    if (exclude !== undefined) {
+    const isExclude = item.id.endsWith('_exclude');
+    const id = isExclude ? item.id.replace('_exclude', '') : item.id;
+    if (isExclude) {
       const index = list?.findIndex(filter => filter?.id === id) ?? -1;
       if (index > -1) {
         list[index] = {
@@ -241,6 +263,13 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                         badgeIconUri={searchResult.category?.pictogramUri}
                         badgeName={searchResult.category?.label}
                         informations={searchResult.informations ?? []}
+                        isClosed={hasSelectedPractice && ('isClosed' in searchResult ? Boolean(searchResult.isClosed) : false)}
+                        isDateRange={Boolean(dateFilter.beginDate && dateFilter.endDate)}
+                        isTodayDate={
+                          !dateFilter.endDate &&
+                          (dateFilter.beginDate === new Date().toISOString().split('T')[0] ||
+                            !dateFilter.beginDate)
+                        }
                         redirectionUrl={generateDetailsUrlFromType(
                           searchResult.type,
                           searchResult.id,

@@ -1,5 +1,6 @@
 import MobileBottomClear from 'components/pages/search/components/FilterBar/MobileBottomClear';
 import ShowFilters from 'components/pages/search/components/FilterBar/ShowFilters';
+import VigilanceSection from 'components/pages/search/components/FilterBar/VigilanceSection';
 import { groupBy } from 'modules/utils/array';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
@@ -8,7 +9,16 @@ import { DateFilter, FilterCategory, FilterState, Option } from 'modules/filters
 import { FormattedMessage } from 'react-intl';
 import { useFilterBar } from 'components/pages/search/components/FilterBar/useFilterBar';
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from 'components/Sheet';
+import { DATE_FILTER, HIDE_CLOSED_TREKS_ID, PRACTICE_ID, VIGILANCE_TYPE_EXCLUDE_ID, VIGILANCE_TYPE_ID } from 'modules/filters/constant';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { CloseButton } from './CloseButton';
+
+const VIGILANCE_SECTION_IDS = [
+  DATE_FILTER,
+  HIDE_CLOSED_TREKS_ID,
+  VIGILANCE_TYPE_ID,
+  VIGILANCE_TYPE_EXCLUDE_ID,
+];
 
 interface Props {
   handleClose: () => void;
@@ -52,17 +62,24 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
       ? ([subFilters] as string[][])
       : (subFilters as string[][])) ?? [];
 
+  const isVigilanceEnabled = getGlobalConfig().enableVigilanceAreas;
+
   const subFiltersToDisplay = nextSubFilters.map(
     item =>
       groupBy(
-        filtersState.filter(({ id }) =>
-          item.some((subFilter: string) => new RegExp(subFilter).test(id)),
+        filtersState.filter(
+          ({ id }) =>
+            item.some((subFilter: string) => new RegExp(subFilter).test(id)) &&
+            (isVigilanceEnabled ? !VIGILANCE_SECTION_IDS.includes(id) : true),
         ),
         'category',
       ) ?? {},
   );
 
   const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
+
+  const practiceFilter = filtersState.find(f => f.id === PRACTICE_ID);
+  const hasSelectedPractice = (practiceFilter?.selectedOptions?.length ?? 0) > 0;
 
   return (
     <Sheet open={isOpen} onOpenChange={handleClose}>
@@ -92,11 +109,21 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
               setDateFilter={setDateFilter}
             />
           ))}
+          {filterId === PRACTICE_ID && isVigilanceEnabled && hasSelectedPractice && (
+            <VigilanceSection
+              filtersState={filtersState}
+              dateFilter={dateFilter}
+              setFilterSelectedOptions={setFilterSelectedOptions}
+              setDateFilter={setDateFilter}
+            />
+          )}
           {subFiltersToDisplay.map((subFilter, index) => (
             <div className="space-y-4" key={index}>
-              {Object.keys(subFilter).length > 0 && filtersToDisplay.length > 0 && (
-                <div className="w-10/12 h-1p mx-auto my-4 bg-greySoft" key="sep" />
-              )}
+              {Object.keys(subFilter).length > 0 &&
+                filtersToDisplay.length > 0 &&
+                !(filterId === PRACTICE_ID && isVigilanceEnabled && hasSelectedPractice) && (
+                  <div className="w-10/12 h-1p mx-auto my-4 bg-greySoft" key="sep" />
+                )}
               {Object.keys(subFilter).map(key => {
                 const value =
                   key !== 'undefined' && key !== 'event'

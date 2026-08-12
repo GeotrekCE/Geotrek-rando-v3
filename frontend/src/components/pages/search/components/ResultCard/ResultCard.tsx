@@ -1,3 +1,4 @@
+import { FormattedMessage } from 'react-intl';
 import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
 
@@ -26,6 +27,9 @@ interface ResultCardProps {
   informations?: InformationCard[];
   asColumn?: boolean;
   titleTag?: keyof JSX.IntrinsicElements;
+  isClosed?: boolean;
+  isDateRange?: boolean;
+  isTodayDate?: boolean;
 }
 
 export const ResultCard: React.FC<ResultCardProps> = props => {
@@ -44,6 +48,9 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
     title,
     titleTag: TitleTag = 'h3',
     type,
+    isClosed,
+    isDateRange,
+    isTodayDate,
   } = props;
   const { setHoveredCardId } = useListAndMapContext();
 
@@ -56,7 +63,8 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
         setHoveredCardId(null);
       }}
       className={cn(
-        'custo-result-card flex flex-auto flex-col items-stretch border border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden',
+        'custo-result-card flex flex-auto flex-col items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden',
+        isClosed && 'border-l-4 border-l-redMarker hover:border-l-redMarker',
         asColumn !== true && 'desktop:flex-row',
         className,
       )}
@@ -76,6 +84,7 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
                 iconUri={badgeIconUri}
                 iconName={badgeName as string}
                 redirect={redirectionUrl}
+                isClosed={isClosed}
               />
             )}
           </>
@@ -90,6 +99,27 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
             <TitleTag className="mt-1 text-ellipsis overflow-hidden whitespace-nowrap font-bold text-2xl color-primary1 desktop:text-clip desktop:whitespace-normal">
               {title}
             </TitleTag>
+
+            {isClosed === true && (
+              <div className="mt-1 text-redMarker font-bold text-sm">
+                <FormattedMessage
+                  id={
+                    isTodayDate
+                      ? 'search.filters.currentlyClosed'
+                      : isDateRange
+                      ? 'search.filters.closedPeriod'
+                      : 'search.filters.closedDate'
+                  }
+                  defaultMessage={
+                    isTodayDate
+                      ? 'Actuellement fermé'
+                      : isDateRange
+                      ? 'Fermeture à la période choisie'
+                      : 'Fermeture à la date choisie'
+                  }
+                />
+              </div>
+            )}
 
             {tags !== undefined && (
               <div className="mt-2 desktop:mt-4 flex flex-wrap gap-2 desktop:gap-4">

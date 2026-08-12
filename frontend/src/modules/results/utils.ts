@@ -5,10 +5,13 @@ import {
   CITY_ID,
   DISTRICT_ID,
   EVENT_ID,
+  HIDE_CLOSED_TREKS_ID,
   ORGANIZER_ID,
   OUTDOOR_ID,
   STRUCTURE_ID,
   THEME_ID,
+  VIGILANCE_TYPE_EXCLUDE_ID,
+  VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
 import { DateFilter, FilterConfig, FilterConfigWithOptions } from 'modules/filters/interface';
 
@@ -102,6 +105,15 @@ const formatFilter = (filterState: QueryFilterState) => {
   if (filterState.id === 'difficulty') {
     return getMinAndMaxDifficulty(filterState.selectedOptions);
   }
+  if (filterState.id === VIGILANCE_TYPE_ID) {
+    return { vigilance_area_types: formatSelectedFilter(filterState.selectedOptions) };
+  }
+  if (filterState.id === VIGILANCE_TYPE_EXCLUDE_ID) {
+    return { vigilance_area_types_exclude: formatSelectedFilter(filterState.selectedOptions) };
+  }
+  if (filterState.id === HIDE_CLOSED_TREKS_ID) {
+    return { opened: 'true' };
+  }
   return {
     [filterState.id]: formatSelectedFilter(filterState.selectedOptions),
   };
@@ -142,8 +154,21 @@ export const formatTextFilter = (textFilter: string | null): { q: string } | und
 
 export const formatDateFilter = (
   dateFilter: DateFilter | null,
-): { dates_before?: string; dates_after?: string } => {
-  return { dates_before: dateFilter?.endDate, dates_after: dateFilter?.beginDate };
+): {
+  dates_before?: string;
+  dates_after?: string;
+  opened_from?: string;
+  opened_to?: string;
+} => {
+  if (!dateFilter?.beginDate && !dateFilter?.endDate) {
+    return {};
+  }
+  return {
+    dates_before: dateFilter?.endDate || undefined,
+    dates_after: dateFilter?.beginDate || undefined,
+    opened_from: dateFilter?.beginDate || undefined,
+    opened_to: dateFilter?.endDate || undefined,
+  };
 };
 
 export const formatBboxFilter = (bbox: string | null): { in_bbox: string } | undefined =>

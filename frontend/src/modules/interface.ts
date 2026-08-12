@@ -93,6 +93,7 @@ export interface APICallsConfig {
   maxPoiPerPage: number;
   maxTouristicContentPerPage: number;
   enableSensitiveAreas: boolean;
+  enableVigilanceAreas?: boolean;
   enableOutdoor: boolean;
   enableTouristicEvents: boolean;
   portalIds: number[];

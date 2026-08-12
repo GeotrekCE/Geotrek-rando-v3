@@ -89,7 +89,20 @@
       "filters": "Filters",
       "labels": "Others",
       "organizer": "Organizer",
-      "networks": "Network type"
+      "networks": "Network type",
+      "vigilance_type": "Vigilance areas",
+      "hideClosedTreks": "Hide closed treks",
+      "hikeOnDate": "I hike on",
+      "dateFrom": "I hike from",
+      "dateTo": "To",
+      "addPeriod": "Add a date range",
+      "removePeriod": "Remove date range",
+      "currentlyClosed": "Currently closed",
+      "closedDate": "Closed on the selected date",
+      "closedPeriod": "Closed on the selected date range"
+    },
+    "resultCard": {
+      "closed": "Closed"
     },
     "textFilter": "Search...",
     "beginDateFilter": "Start date",

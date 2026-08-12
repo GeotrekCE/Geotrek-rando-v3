@@ -89,7 +89,20 @@
       "filters": "Filtres",
       "labels": "Autres",
       "organizer": "Organisateur",
-      "networks": "Type de réseau"
+      "networks": "Type de réseau",
+      "vigilance_type": "Zones de vigilance",
+      "hideClosedTreks": "Masquer les itinéraires fermés",
+      "hikeOnDate": "Je randonne le",
+      "dateFrom": "Je randonne du",
+      "dateTo": "Au",
+      "addPeriod": "Ajouter une période",
+      "removePeriod": "Retirer la période",
+      "currentlyClosed": "Actuellement fermé",
+      "closedDate": "Fermeture à la date choisie",
+      "closedPeriod": "Fermeture à la période choisie"
+    },
+    "resultCard": {
+      "closed": "Fermé"
     },
     "textFilter": "Rechercher...",
     "beginDateFilter": "Date de début",

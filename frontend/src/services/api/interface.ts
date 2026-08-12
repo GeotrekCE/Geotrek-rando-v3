@@ -16,4 +16,11 @@ export interface APIQuery {
   q?: string;
   dates_before?: string;
   dates_after?: string;
+  opened_from?: string;
+  opened_to?: string;
+  opened?: string;
+  types?: string;
+  types_exclude?: string;
+  vigilance_area_types?: string;
+  vigilance_area_types_exclude?: string;
 }

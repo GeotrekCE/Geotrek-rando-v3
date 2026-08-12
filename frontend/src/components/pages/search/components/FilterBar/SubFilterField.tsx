@@ -1,6 +1,15 @@
 import { DateFilter, FilterState, Option } from 'modules/filters/interface';
 import React, { Fragment } from 'react';
+import { DATE_FILTER, HIDE_CLOSED_TREKS_ID, VIGILANCE_TYPE_EXCLUDE_ID, VIGILANCE_TYPE_ID } from 'modules/filters/constant';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import ShowFilters from './ShowFilters';
+
+const VIGILANCE_SECTION_IDS = [
+  DATE_FILTER,
+  HIDE_CLOSED_TREKS_ID,
+  VIGILANCE_TYPE_ID,
+  VIGILANCE_TYPE_EXCLUDE_ID,
+];
 
 interface Props {
   filters?: {
@@ -21,7 +30,19 @@ const SubFilterField: React.FC<Props> = ({
     return null;
   }
 
-  const entriesFilters = Object.entries(filters);
+  const isVigilanceEnabled = getGlobalConfig().enableVigilanceAreas;
+
+  const filteredFilters = Object.entries(filters).reduce((acc, [key, list]) => {
+    const validList = list.filter(filter =>
+      isVigilanceEnabled ? !VIGILANCE_SECTION_IDS.includes(filter.id) : true,
+    );
+    if (validList.length > 0) {
+      acc[key] = validList;
+    }
+    return acc;
+  }, {} as { [key: string]: FilterState[] });
+
+  const entriesFilters = Object.entries(filteredFilters);
 
   if (entriesFilters.length === 0) {
     return null;

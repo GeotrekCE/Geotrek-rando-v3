@@ -65,6 +65,8 @@ export const adaptTrekResultList = ({
       displayThemes === true ? rawResult.themes.map(themeId => themes[themeId]?.label || '') : [],
     images: getLargeImagesOrThumbnailsFromAttachments(rawResult.attachments, true),
     category: activities[rawResult.practice] ?? null,
+    publishedVigilanceAreas: rawResult.published_vigilance_areas ?? null,
+    isClosed: rawResult.closed ?? false,
     informations: [
       {
         label: 'difficulty',

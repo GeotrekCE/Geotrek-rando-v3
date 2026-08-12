@@ -44,6 +44,8 @@ export interface ResultCard {
   place: string | null;
   informations?: InformationCard[];
   geometry?: GeometryObject;
+  publishedVigilanceAreas?: (number | { vigilance_area_type?: number; type?: any })[] | null;
+  isClosed?: boolean;
 }
 
 export interface SearchParams {
@@ -96,6 +98,8 @@ export interface RawTrekResult {
   networks: number[];
   route: number | null;
   courseType?: CourseType | null;
+  published_vigilance_areas?: number[];
+  closed?: boolean;
 }
 
 export interface Thumbnail {

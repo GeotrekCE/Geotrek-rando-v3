@@ -13,3 +13,6 @@ export const LABEL_EXCLUDE_ID = 'labels_exclude';
 export const DATE_FILTER = 'date-filter';
 export const ORGANIZER_ID = 'organizer';
 export const NETWORKS_ID = 'networks';
+export const VIGILANCE_TYPE_ID = 'vigilance_type';
+export const VIGILANCE_TYPE_EXCLUDE_ID = 'vigilance_type_exclude';
+export const HIDE_CLOSED_TREKS_ID = 'hide_closed_treks';

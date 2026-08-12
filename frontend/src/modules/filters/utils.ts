@@ -3,6 +3,7 @@ import { getTouristicContentCategoryFilter } from 'modules/touristicContentCateg
 import { getActivityFilter } from 'modules/activities/connector';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
 import { getLabelsFilter } from 'modules/label/connector';
+import { getVigilanceTypeFilter } from 'modules/vigilanceAreaType/connector';
 
 import { ParsedUrlQuery } from 'querystring';
 import { getOutdoorPracticesFilter } from '../outdoorPractice/connector';
@@ -26,6 +27,7 @@ import {
 } from './interface';
 import { getStructureFilter } from './structures/connector';
 import { getThemeFilter } from './theme/connector';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import {
   ACCESSIBILITY_ID,
   CATEGORY_ID,
@@ -33,6 +35,7 @@ import {
   DATE_FILTER,
   DISTRICT_ID,
   EVENT_ID,
+  HIDE_CLOSED_TREKS_ID,
   LABEL_EXCLUDE_ID,
   LABEL_ID,
   NETWORKS_ID,
@@ -42,6 +45,8 @@ import {
   ROUTE_ID,
   STRUCTURE_ID,
   THEME_ID,
+  VIGILANCE_TYPE_EXCLUDE_ID,
+  VIGILANCE_TYPE_ID,
 } from './constant';
 import { getOrganizerFilter } from './organizer/connector';
 import { getNetworksFilter } from './networks/connector';
@@ -93,6 +98,9 @@ const getFilterOptions = async (
       return getNetworksFilter(language);
     case ORGANIZER_ID:
       return getOrganizerFilter(language);
+    case VIGILANCE_TYPE_ID:
+    case VIGILANCE_TYPE_EXCLUDE_ID:
+      return getVigilanceTypeFilter(language, withExclude);
     default:
       return null;
   }
@@ -140,6 +148,9 @@ const trekSpecificFilters = [
   NETWORKS_ID,
   'labels',
   'labels_exclude',
+  VIGILANCE_TYPE_ID,
+  VIGILANCE_TYPE_EXCLUDE_ID,
+  HIDE_CLOSED_TREKS_ID,
 ];
 
 export const commonFilters = [
@@ -159,13 +170,25 @@ export const getTreksFiltersState = (initialFiltersState: FilterState[]): Filter
 export const getFiltersState = async (language: string): Promise<FilterState[]> => {
   const filters = await getFilters(language);
 
-  return [
+  const result: FilterState[] = [
     ...filters.map(filter => ({
       ...filter,
       label: `search.filters.${filter.id}`.replace('_exclude', ''),
       selectedOptions: [],
     })),
   ];
+
+  if (getGlobalConfig().enableVigilanceAreas) {
+    result.push({
+      id: HIDE_CLOSED_TREKS_ID,
+      label: 'search.filters.hideClosedTreks',
+      type: 'SINGLE',
+      options: [{ value: 'true', label: 'search.filters.hideClosedTreks' }],
+      selectedOptions: [],
+    });
+  }
+
+  return result;
 };
 
 const getTypesFiltersState = ({

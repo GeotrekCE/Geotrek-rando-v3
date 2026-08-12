@@ -89,7 +89,20 @@
       "filters": "Filtri",
       "labels": "Altri",
       "organizer": "Organizzatore",
-      "networks": "Tipo di rete"
+      "networks": "Tipo di rete",
+      "vigilance_type": "Zone di vigilanza",
+      "hideClosedTreks": "Nascondi itinerari chiusi",
+      "hikeOnDate": "Faccio un'escursione il",
+      "dateFrom": "Faccio un'escursione dal",
+      "dateTo": "Al",
+      "addPeriod": "Aggiungi un periodo",
+      "removePeriod": "Rimuovi periodo",
+      "currentlyClosed": "Attualmente chiuso",
+      "closedDate": "Chiusura alla data selezionata",
+      "closedPeriod": "Chiusura al periodo selezionato"
+    },
+    "resultCard": {
+      "closed": "Chiuso"
     },
     "textFilter": "Ricerca...",
     "beginDateFilter": "Data di inizio",
