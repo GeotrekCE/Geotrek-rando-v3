@@ -97,6 +97,8 @@ export interface RawDetailsProperties {
   ratings: number[];
   ratings_description: string;
   view_points: RawViewPoint[];
+  closed?: boolean;
+  published_vigilance_areas?: any[];
 }
 
 // Fields parsed with react-html-parser in page
@@ -196,6 +198,8 @@ export interface Details extends DetailsHtml {
   service: Service[] | null;
   infrastructure: InfrastructureDictionary | null;
   viewPoints: ViewPoint[];
+  isClosed?: boolean;
+  publishedVigilanceAreas?: any[];
 }
 
 export interface WebLink {

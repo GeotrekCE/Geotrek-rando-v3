@@ -78,6 +78,9 @@ export interface ColorsConfig {
   hardKO?: string;
   red?: string;
   redMarker?: string;
+  vigilanceClosed?: string;
+  vigilanceWarning?: string;
+  vigilanceOK?: string;
   categories?: {
     trek?: string;
     events?: string;

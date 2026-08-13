@@ -134,6 +134,21 @@
     }
   },
   "details": {
+    "vigilanceBanner": {
+      "closedTitle": "Questo itinerario è attualmente chiuso.",
+      "closedGeneric": "Consulta la sezione « Zone di vigilanza » per maggiori informazioni su date e motivi di chiusura.",
+      "closedSingle": "Questo itinerario è attualmente chiuso : {details}. Consulta la sezione « Zone di vigilanza » per maggiori informazioni su date e motivi di chiusura.",
+      "alertTitle": "Questo itinerario è interessato da una vigilanza elevata.",
+      "alertGeneric": "Consulta la sezione « Zone di vigilanza » per saperne di più sui rischi e condizioni di praticabilità.",
+      "alertSingle": "Questo itinerario è interessato da una vigilanza elevata : {details}. Consulta la sezione « Zone di vigilanza » per saperne di più sui rischi e condizioni di praticabilità.",
+      "vigilanceTitle": "Questo itinerario è interessato da almeno una zona di vigilanza.",
+      "vigilanceGeneric": "Consulta la sezione « Zone di vigilanza » per saperne di più sulle buone pratiche e conditions di praticabilità.",
+      "vigilanceSingle": "Questo itinerario è interessato da una zona di vigilanza : {details}. Consulta la sezione « Zone di vigilanza » pour en savoir plus sur les bons réflexes et conditions de praticabilité de vos activités.",
+      "moreInfoLink": "Maggiori informazioni sulle Zone di vigilanza →",
+      "levelClosed": "Chiusura",
+      "levelAlert": "Allerta",
+      "levelVigilance": "Vigilanza"
+    },
     "presentation": "Presentazione",
     "access": "Accesso",
     "download": "Scaricare",

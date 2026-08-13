@@ -197,6 +197,8 @@ export const adaptResults = ({
       service,
       infrastructure,
       viewPoints,
+      isClosed: rawDetailsProperties.closed ?? false,
+      publishedVigilanceAreas: rawDetailsProperties.published_vigilance_areas ?? [],
     };
   } catch (e) {
     console.error('Error in details/adapter', e);

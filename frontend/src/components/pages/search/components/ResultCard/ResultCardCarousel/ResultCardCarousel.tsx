@@ -47,9 +47,28 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
       </SmallCarousel>
 
       {isClosed && (
-        <div className="absolute inset-0 bg-black/60 z-10 flex flex-col items-center justify-center text-white pointer-events-none gap-1">
-          <span className="text-3xl">⛔</span>
-          <span className="font-bold text-white text-sm uppercase tracking-wider">
+        <div className="absolute inset-0 bg-black/60 z-10 flex flex-col items-center justify-center text-white pointer-events-none gap-2">
+          <svg
+            width="64"
+            height="64"
+            viewBox="0 0 36 36"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            className="shrink-0 size-12 desktop:size-16"
+          >
+            <circle cx="18" cy="18" r="17" fill="var(--color-vigilance-closed)"></circle>
+            <circle
+              cx="18"
+              cy="18"
+              r="14"
+              fill="var(--color-vigilance-closed)"
+              stroke="white"
+              strokeWidth="1.5"
+            ></circle>
+            <rect x="7" y="15" width="22" height="6" rx="3" fill="white"></rect>
+          </svg>
+          <span className="font-bold text-white text-xs desktop:text-sm uppercase tracking-wider">
             <FormattedMessage id="resultCard.closed" defaultMessage="Fermé" />
           </span>
         </div>

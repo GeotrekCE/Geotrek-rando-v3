@@ -64,7 +64,7 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
       }}
       className={cn(
         'custo-result-card flex flex-auto flex-col items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden',
-        isClosed && 'border-l-4 border-l-redMarker hover:border-l-redMarker',
+        isClosed && 'border-l-4 border-l-vigilanceClosed hover:border-l-vigilanceClosed',
         asColumn !== true && 'desktop:flex-row',
         className,
       )}
@@ -101,7 +101,7 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
             </TitleTag>
 
             {isClosed === true && (
-              <div className="mt-1 text-redMarker font-bold text-sm">
+              <div className="mt-1 text-vigilanceClosed font-bold text-sm">
                 <FormattedMessage
                   id={
                     isTodayDate

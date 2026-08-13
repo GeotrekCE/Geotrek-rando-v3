@@ -134,6 +134,21 @@
     }
   },
   "details": {
+    "vigilanceBanner": {
+      "closedTitle": "This trek is currently closed.",
+      "closedGeneric": "Please check the \"Vigilance areas\" section for dates and closure reasons.",
+      "closedSingle": "This trek is currently closed: {details}. Please check the \"Vigilance areas\" section for dates and closure reasons.",
+      "alertTitle": "This trek is affected by high vigilance.",
+      "alertGeneric": "Please check the \"Vigilance areas\" section to learn more about risks and activity conditions.",
+      "alertSingle": "This trek is affected by high vigilance: {details}. Please check the \"Vigilance areas\" section to learn more about risks and activity conditions.",
+      "vigilanceTitle": "This trek is affected by at least one vigilance area.",
+      "vigilanceGeneric": "Please check the \"Vigilance areas\" section for recommendations and activity conditions.",
+      "vigilanceSingle": "This trek is affected by a vigilance area: {details}. Please check the \"Vigilance areas\" section for recommendations and activity conditions.",
+      "moreInfoLink": "More information about Vigilance areas →",
+      "levelClosed": "Closure",
+      "levelAlert": "Alert",
+      "levelVigilance": "Vigilance"
+    },
     "presentation": "Preview",
     "access": "Access",
     "download": "Download",

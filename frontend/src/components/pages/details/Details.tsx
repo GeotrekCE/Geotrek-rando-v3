@@ -24,6 +24,7 @@ import { MapPin } from 'components/Icons/MapPin';
 import { ImageWithLegend } from 'components/ImageWithLegend';
 import { HtmlParser } from 'components/HtmlParser';
 import { DetailsPreview } from './components/DetailsPreview';
+import { DetailsVigilanceBanner } from './components/DetailsVigilanceBanner';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
 import { DetailsHeader } from './components/DetailsHeader';

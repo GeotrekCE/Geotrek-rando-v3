@@ -31,6 +31,7 @@ import { dataUnits } from 'modules/results/adapter';
 import { TouristicEventDetails } from 'modules/touristicEvent/interface';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { DetailsTrekParentButton } from '../DetailsTrekParentButton';
+import { DetailsVigilanceBanner } from '../DetailsVigilanceBanner';
 import DetailsBreadcrumb from './DetailsBreadcrumb';
 import DetailsDates from '../DetailsDates';
 
@@ -130,6 +131,12 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         id="details_title"
         className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold"
       >{`${trekRankLabel}${title}`}</h1>
+      {'isClosed' in details && (
+        <DetailsVigilanceBanner
+          isClosed={details.isClosed}
+          publishedVigilanceAreas={details.publishedVigilanceAreas}
+        />
+      )}
       <div id="details_tags" className="flex flex-wrap">
         {tags
           .filter(tag => tag?.length)

@@ -21,6 +21,9 @@ const MyDocument: React.FC = () => {
     hardKO = '#e25316',
     red = '#ff7373',
     redMarker = '#e83737',
+    vigilanceClosed = '#901A1A',
+    vigilanceWarning = '#955a02',
+    vigilanceOK = '#4fad79',
     categories: {
       trek = '#001B84',
       service = '#3B89A2',
@@ -50,12 +53,14 @@ const MyDocument: React.FC = () => {
   --color-hardKO: ${hardKO};
   --color-red: ${red};
   --color-redMarker: ${redMarker};
+  --color-vigilance-closed: ${vigilanceClosed};
+  --color-vigilance-warning: ${vigilanceWarning};
+  --color-vigilance-ok: ${vigilanceOK};
   --color-trek: ${trek};
   --color-service: ${service};
   --color-outdoor: ${outdoorColor};
   --color-events: ${events};
-}
-`}</style>
+}`}</style>
         {style !== undefined && (
           <style className="custo-style-file" dangerouslySetInnerHTML={{ __html: style }} />
         )}
