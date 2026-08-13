@@ -40,16 +40,16 @@ export const adaptVigilanceArea = ({
     geometry: adaptGeometry(rawVigilanceArea.geometry),
     type,
     practicability: rawVigilanceArea.practicability,
-    description,
-    practicalInfo,
-    externalInfoUrl: rawVigilanceArea.external_info_url,
-    startDate: rawVigilanceArea.start_date,
-    endDate: rawVigilanceArea.end_date,
+    description: description || null,
+    practicalInfo: practicalInfo || null,
+    externalInfoUrl: rawVigilanceArea.external_info_url ?? null,
+    startDate: rawVigilanceArea.start_date ?? null,
+    endDate: rawVigilanceArea.end_date ?? null,
     activeDays: rawVigilanceArea.active_days || [],
     activeMonths: rawVigilanceArea.active_months || [],
-    updateDatetime: rawVigilanceArea.update_datetime,
+    updateDatetime: rawVigilanceArea.update_datetime ?? rawVigilanceArea.date_update ?? null,
     attachments: geFilesFromAttachments(rawVigilanceArea.attachments || []),
-    criticality: rawVigilanceArea.criticality,
+    criticality: rawVigilanceArea.criticality ?? rawVigilanceArea.vigilance_level ?? null,
   };
 };
 

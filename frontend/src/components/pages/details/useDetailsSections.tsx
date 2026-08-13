@@ -1,13 +1,20 @@
 import { useIntl } from 'react-intl';
+import { Details } from 'modules/details/interface';
 import { getDetailsConfig } from './config';
 import { Sections, SectionsTypes } from './interface';
 
-export const useDetailsSections = (type: keyof Sections) => {
+export const useDetailsSections = (type: keyof Sections, details?: Details) => {
   const { locale } = useIntl();
   const { sections } = getDetailsConfig(locale);
 
   const sectionsFilteredByType = (sections[type] as SectionsTypes[]).filter(
-    ({ display }) => display,
+    ({ display, name }) => {
+      if (!display) return false;
+      if (name === 'vigilance') {
+        return Boolean(details?.publishedVigilanceAreas && details.publishedVigilanceAreas.length > 0);
+      }
+      return true;
+    },
   );
   const anchors = sectionsFilteredByType.filter(({ anchor }) => anchor).map(({ name }) => name);
 

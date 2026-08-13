@@ -44,6 +44,7 @@ import { DetailsReservationWidget } from './components/DetailsReservationWidget'
 import { VisibleSectionProvider } from './VisibleSectionContext';
 import { DetailsAndMapProvider } from './DetailsAndMapContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
+import { DetailsVigilanceAreas } from './components/DetailsVigilanceAreas';
 import { useOnScreenSection } from './hooks/useHighlightedSection';
 import { DetailsGear } from './components/DetailsGear';
 import { useDetailsSections } from './useDetailsSections';
@@ -82,7 +83,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
-  const { sections, anchors } = useDetailsSections('trek');
+  const { sections, anchors } = useDetailsSections('trek', details);
 
   useOnScreenSection({
     sectionsPositions,
@@ -344,6 +345,25 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               />
                             ))}
                           </DetailsSection>
+                        </section>
+                      );
+                    }
+
+                    if (
+                      section.name === 'vigilance' &&
+                      details.publishedVigilanceAreas &&
+                      details.publishedVigilanceAreas.length > 0
+                    ) {
+                      return (
+                        <section
+                          key={section.name}
+                          ref={sectionRef[section.name]}
+                          id={`details_${section.name}_ref`}
+                        >
+                          <DetailsVigilanceAreas
+                            publishedVigilanceAreas={details.publishedVigilanceAreas}
+                            className={marginDetailsChild}
+                          />
                         </section>
                       );
                     }

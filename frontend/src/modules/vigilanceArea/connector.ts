@@ -29,3 +29,35 @@ export const getVigilanceAreaDetails = async (
   if (!rawVigilanceArea) return null;
   return adaptVigilanceArea({ rawVigilanceArea, language, vigilanceAreaTypes });
 };
+
+export const getVigilanceAreasForTrek = async (
+  rawAreas: any[] = [],
+  language: string,
+): Promise<VigilanceArea[]> => {
+  if (!rawAreas || rawAreas.length === 0) return [];
+
+  const vigilanceAreaTypes = await getVigilanceAreaTypes(language);
+
+  const containsIds = rawAreas.some(item => typeof item === 'number' || typeof item === 'string');
+
+  if (!containsIds) {
+    return adaptVigilanceAreas({
+      rawVigilanceAreas: rawAreas,
+      language,
+      vigilanceAreaTypes,
+    });
+  }
+
+  const areas = await Promise.all(
+    rawAreas.map(async item => {
+      if (typeof item === 'number' || typeof item === 'string') {
+        const rawArea = await fetchVigilanceArea(Number(item), { language });
+        if (!rawArea) return null;
+        return adaptVigilanceArea({ rawVigilanceArea: rawArea, language, vigilanceAreaTypes });
+      }
+      return adaptVigilanceArea({ rawVigilanceArea: item, language, vigilanceAreaTypes });
+    }),
+  );
+
+  return areas.filter((area): area is VigilanceArea => area !== null);
+};

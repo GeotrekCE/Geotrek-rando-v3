@@ -28,7 +28,9 @@ export interface RawVigilanceArea {
   uuid: string;
   attachments: RawAttachment[];
   update_datetime?: string;
-  criticality?: 'alert' | 'vigilance' | 'info';
+  date_update?: string;
+  criticality?: 'alert' | 'vigilance' | 'info' | string;
+  vigilance_level?: 'alert' | 'vigilance' | 'info' | string;
 }
 
 export interface VigilanceArea {
@@ -37,14 +39,14 @@ export interface VigilanceArea {
   geometry: GeometryObject;
   type: VigilanceAreaType;
   practicability: Practicability;
-  description?: string;
-  practicalInfo?: string;
+  description?: string | null;
+  practicalInfo?: string | null;
   externalInfoUrl?: string | null;
-  startDate: string;
-  endDate: string;
+  startDate?: string | null;
+  endDate?: string | null;
   activeDays: number[];
   activeMonths: number[];
-  updateDatetime?: string;
+  updateDatetime?: string | null;
   attachments?: FileFromAttachment[];
-  criticality?: 'alert' | 'vigilance' | 'info';
+  criticality?: 'alert' | 'vigilance' | 'info' | string | null;
 }

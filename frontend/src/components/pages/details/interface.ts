@@ -7,6 +7,7 @@ export type DetailsSectionTrekNames =
   | 'forecastWidget'
   | 'altimetricProfile'
   | 'sensitiveAreas'
+  | 'vigilance'
   | 'practicalInformations'
   | 'accessibility'
   | 'more'

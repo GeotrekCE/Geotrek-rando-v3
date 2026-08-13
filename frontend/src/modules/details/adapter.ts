@@ -63,6 +63,7 @@ export const adaptResults = ({
   trekRating,
   trekRatingScale,
   viewPoints,
+  publishedVigilanceAreas = [],
 }: {
   accessbilityLevel: AccessibilityLevel | null;
   rawDetails: RawDetails;
@@ -88,8 +89,10 @@ export const adaptResults = ({
   trekRating: TrekRatingChoices;
   trekRatingScale: TrekRatingScale[];
   viewPoints: ViewPoint[];
+  publishedVigilanceAreas?: any[];
 }): Details => {
   try {
+    const isClosed = rawDetailsProperties.closed ?? false;
     const coordinates = getTrekGeometryAsLineStringCoordinates(geometry);
     return {
       accessbilityLevel,
@@ -197,13 +200,46 @@ export const adaptResults = ({
       service,
       infrastructure,
       viewPoints,
-      isClosed: rawDetailsProperties.closed ?? false,
-      publishedVigilanceAreas: rawDetailsProperties.published_vigilance_areas ?? [],
+      isClosed,
+      publishedVigilanceAreas: sortVigilanceAreas(
+        publishedVigilanceAreas.length > 0
+          ? publishedVigilanceAreas
+          : rawDetailsProperties.published_vigilance_areas ?? [],
+      ),
     };
   } catch (e) {
     console.error('Error in details/adapter', e);
     throw e;
   }
+};
+
+export const sortVigilanceAreas = (areas: any[] = []): any[] => {
+  return [...areas].sort((firstArea, secondArea) => {
+    // 1. Closures ('closed') come first
+    const isFirstClosed = firstArea.practicability === 'closed' || firstArea.closed === true;
+    const isSecondClosed = secondArea.practicability === 'closed' || secondArea.closed === true;
+    if (isFirstClosed && !isSecondClosed) return -1;
+    if (!isFirstClosed && isSecondClosed) return 1;
+
+    // 2. Alert ('alert' or 'high') comes before vigilance
+    const isFirstAlert =
+      firstArea.criticality === 'alert' ||
+      firstArea.level === 'alert' ||
+      firstArea.criticality === 'high';
+    const isSecondAlert =
+      secondArea.criticality === 'alert' ||
+      secondArea.level === 'alert' ||
+      secondArea.criticality === 'high';
+    if (isFirstAlert && !isSecondAlert) return -1;
+    if (!isFirstAlert && isSecondAlert) return 1;
+
+    // 3. Chronological sort by start_date / startDate
+    const dateFirstStr = firstArea.start_date ?? firstArea.startDate ?? '';
+    const dateSecondStr = secondArea.start_date ?? secondArea.startDate ?? '';
+    const firstStartDate = dateFirstStr ? new Date(dateFirstStr).getTime() : 0;
+    const secondStartDate = dateSecondStr ? new Date(dateSecondStr).getTime() : 0;
+    return firstStartDate - secondStartDate;
+  });
 };
 
 export const adaptChildren = ({
