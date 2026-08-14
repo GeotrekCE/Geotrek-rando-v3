@@ -184,6 +184,17 @@
     "reservationWidget": "Prenotazione",
     "sensitiveAreas": "Zone sensibili",
     "vigilance": "Zone di vigilanza",
+    "vigilanceLevelPrefix": {
+      "closed": "Chiusura percorso",
+      "alert": "Allerta elevata",
+      "vigilance": "Zona di vigilanza",
+      "info": "Informazione"
+    },
+    "vigilancePracticabilityClosed": "Chiuso / Accesso vietato",
+    "vigilancePracticabilityConditions": "Praticabile a condizioni",
+    "vigilancePracticabilityPracticable": "Praticabile",
+    "forThe": "Dal",
+    "toThe": "al",
     "sensitiveAreasTitle": "Zone di sensibilità ambientale",
     "sensitiveAreasIntro": "Lungo il percorso, attraverserai, legate alla presenza di una specie o di un ambiente particolare. In queste zone, un comportamento adeguato può contribuire alla loro conservazione. ",
     "sensitiveAreasPeriod": "Periodi di sensibilità :",

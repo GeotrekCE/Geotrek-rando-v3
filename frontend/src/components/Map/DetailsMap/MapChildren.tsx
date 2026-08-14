@@ -19,6 +19,8 @@ import { PointsInformationDesk } from './PointsInformationDesk';
 import { PointsReference } from './PointsReference';
 import { PointsSecondary } from './PointsSecondary';
 import { SensitiveAreas } from './SensitiveAreas';
+import { VigilanceAreas } from './VigilanceAreas';
+import { VigilanceAreaGeometry } from 'modules/vigilanceArea/adapter';
 import { GeometryList } from './GeometryList';
 import { TrekChildren } from './TrekChildren';
 import { Visibility } from './useDetailsMap';
@@ -39,6 +41,8 @@ type Props = {
   pointsReference?: Coordinate2D[] | null;
   trekChildrenGeometries?: TrekChildGeometry[];
   sensitiveAreasGeometry?: SensitiveAreaGeometry[];
+  vigilanceAreasGeometry?: VigilanceAreaGeometry[];
+  vigilanceVisibility?: Visibility;
   trekChildrenMobileVisibility: Visibility;
   referencePointsMobileVisibility: Visibility;
   poiMobileVisibility: Visibility;
@@ -115,6 +119,10 @@ export const MapChildren: React.FC<Props> = props => {
 
       {visibleSection === 'sensitiveAreas' && (
         <SensitiveAreas contents={props.sensitiveAreasGeometry} />
+      )}
+
+      {(visibleSection === 'vigilance' || props.vigilanceVisibility === 'DISPLAYED') && (
+        <VigilanceAreas contents={props.vigilanceAreasGeometry} />
       )}
 
       {(visibleSection === 'practicalInformations' ||

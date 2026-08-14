@@ -66,3 +66,30 @@ export const adaptVigilanceAreas = ({
     adaptVigilanceArea({ rawVigilanceArea, language, vigilanceAreaTypes }),
   );
 };
+
+export interface VigilanceAreaGeometry {
+  id: string;
+  name: string;
+  colorHex: string;
+  levelMode: 'closed' | 'alert' | 'vigilance' | 'info';
+  geometry: any;
+  typeName?: string;
+  pictogramUri?: string | null;
+}
+
+export const adaptVigilanceAreaGeometry = (area: VigilanceArea): VigilanceAreaGeometry => {
+  const isRedVariant =
+    area.practicability === 'closed' ||
+    area.criticality === 'alert' ||
+    area.criticality === 'high';
+
+  return {
+    id: area.id,
+    name: area.name,
+    colorHex: isRedVariant ? '#901A1A' : '#955a02',
+    levelMode: isRedVariant ? 'closed' : 'vigilance',
+    geometry: area.geometry,
+    typeName: area.type?.name ?? '',
+    pictogramUri: area.type?.pictogramUrl ?? null,
+  };
+};

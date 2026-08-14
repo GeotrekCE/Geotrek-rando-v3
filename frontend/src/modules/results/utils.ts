@@ -163,11 +163,14 @@ export const formatDateFilter = (
   if (!dateFilter?.beginDate && !dateFilter?.endDate) {
     return {};
   }
+  const begin = dateFilter?.beginDate || undefined;
+  const end = dateFilter?.endDate || dateFilter?.beginDate || undefined;
+
   return {
     dates_before: dateFilter?.endDate || undefined,
     dates_after: dateFilter?.beginDate || undefined,
-    opened_from: dateFilter?.beginDate || undefined,
-    opened_to: dateFilter?.endDate || undefined,
+    opened_from: begin,
+    opened_to: end,
   };
 };
 

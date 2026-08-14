@@ -83,7 +83,10 @@ export const getDetails = async (
       getGlobalConfig().enableSensitiveAreas && displayRelatedSensitiveAreas === true
         ? getSensitiveAreas('trek', rawDetails.properties.id, language)
         : [],
-      getVigilanceAreasForTrek(rawDetails.properties.published_vigilance_areas, language),
+      getGlobalConfig().enableVigilanceAreas &&
+      rawDetails.properties.published_vigilance_areas?.length
+        ? getVigilanceAreasForTrek(rawDetails.properties.published_vigilance_areas, language)
+        : [],
     ]);
     const childrenGeometry = await Promise.all(
       rawDetails.properties.children.map(childId => getChildGeometry(`${childId}`, language)),

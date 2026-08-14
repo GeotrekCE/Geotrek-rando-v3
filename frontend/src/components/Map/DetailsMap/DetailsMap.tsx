@@ -64,6 +64,8 @@ export interface GeometryListProps {
   id: string;
 }
 
+import { VigilanceAreaGeometry } from 'modules/vigilanceArea/adapter';
+
 export type PropsType = {
   mapId?: string;
   experiences?: OutdoorSiteResult[];
@@ -87,6 +89,7 @@ export type PropsType = {
   trekFamily?: TrekFamily | null;
   trekChildrenGeometries?: TrekChildGeometry[];
   sensitiveAreas?: SensitiveAreaGeometry[];
+  vigilanceAreas?: VigilanceAreaGeometry[];
   trekId: number;
   advisedParking?: string;
   title?: string;
@@ -133,6 +136,8 @@ export const DetailsMap: React.FC<PropsType> = props => {
     toggleInfrastructureVisibility,
     viewPointVisibility,
     toggleViewPointVisibility,
+    vigilanceVisibility,
+    toggleVigilanceVisibility,
     annotationViewpointVisibility,
     toggleAnnotationViewpointVisibility,
   } = useDetailsMap();
@@ -261,6 +266,11 @@ export const DetailsMap: React.FC<PropsType> = props => {
               }
               infrastructureVisibility={props.infrastructure ? infrastructureVisibility : null}
               viewPointVisibility={props.viewPoints?.length ? viewPointVisibility : null}
+              vigilanceVisibility={
+                props.vigilanceAreas && props.vigilanceAreas.length > 0
+                  ? vigilanceVisibility
+                  : null
+              }
               toggleTrekChildrenVisibility={toggleTrekChildrenVisibility}
               togglePoiVisibility={togglePoiVisibility}
               toggleReferencePointsVisibility={toggleReferencePointsVisibility}
@@ -272,6 +282,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
               toggleServiceVisibility={toggleServiceVisibility}
               toggleInfrastructureVisibility={toggleInfrastructureVisibility}
               toggleViewPointVisiblity={toggleViewPointVisibility}
+              toggleVigilanceVisibility={toggleVigilanceVisibility}
             />
             {props.trekGeometry && (
               <TrekMarkersAndCourse
@@ -297,6 +308,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
               pointsReference={props.pointsReference}
               trekChildrenGeometries={props.trekChildrenGeometries}
               sensitiveAreasGeometry={props.sensitiveAreas}
+              vigilanceAreasGeometry={props.vigilanceAreas}
               signage={props.signage}
               service={props.service}
               infrastructure={props.infrastructure}
@@ -312,6 +324,7 @@ export const DetailsMap: React.FC<PropsType> = props => {
               signageVisibility={signageVisibility}
               serviceVisibility={serviceVisibility}
               infrastructureVisibility={infrastructureVisibility}
+              vigilanceVisibility={vigilanceVisibility}
               viewPoints={props.viewPoints}
               viewPointVisibility={viewPointVisibility}
               setMapId={props.setMapId}

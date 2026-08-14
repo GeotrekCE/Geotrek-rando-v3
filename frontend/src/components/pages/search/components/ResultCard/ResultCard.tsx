@@ -9,6 +9,7 @@ import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { InformationCard } from 'modules/results/interface';
 import { cn } from 'services/utils/cn';
 import { ContentType, ImageFromAttachment } from 'modules/interface';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { ResultCardCarousel } from './ResultCardCarousel';
 import { InformationCardList } from './InformationCardList';
 
@@ -53,6 +54,7 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
     isTodayDate,
   } = props;
   const { setHoveredCardId } = useListAndMapContext();
+  const isClosedState = getGlobalConfig().enableVigilanceAreas && Boolean(isClosed);
 
   return (
     <div
@@ -64,7 +66,7 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
       }}
       className={cn(
         'custo-result-card flex flex-auto flex-col items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden',
-        isClosed && 'border-l-4 border-l-vigilanceClosed hover:border-l-vigilanceClosed',
+        isClosedState && 'border-l-4 border-l-vigilanceClosed hover:border-l-vigilanceClosed',
         asColumn !== true && 'desktop:flex-row',
         className,
       )}
@@ -84,7 +86,7 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
                 iconUri={badgeIconUri}
                 iconName={badgeName as string}
                 redirect={redirectionUrl}
-                isClosed={isClosed}
+                isClosed={isClosedState}
               />
             )}
           </>
@@ -100,7 +102,7 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
               {title}
             </TitleTag>
 
-            {isClosed === true && (
+            {isClosedState && (
               <div className="mt-1 text-vigilanceClosed font-bold text-sm">
                 <FormattedMessage
                   id={

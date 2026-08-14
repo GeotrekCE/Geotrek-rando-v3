@@ -1,5 +1,6 @@
 import {
   extractNextPageId,
+  formatDateFilter,
   formatDistance,
   formatSelectedFilter,
   formatTextFilter,
@@ -106,18 +107,28 @@ describe('extractNextPageId', () => {
     expect(() => extractNextPageId('')).toThrow();
   });
 
-  describe('formatTextFilter', () => {
-    test.each`
-      textfilter              | expectedFormattedTextFilter
-      ${'col de font froide'} | ${{ q: 'col de font froide' }}
-      ${null}                 | ${undefined}
-    `(
-      'formats the textfilter properly with $textfilter',
-      ({ textfilter, expectedFormattedTextFilter }) => {
-        const formattedText = formatTextFilter(textfilter as string | null);
+  describe('formatDateFilter', () => {
+    it('returns empty object when dateFilter is null or empty', () => {
+      expect(formatDateFilter(null)).toEqual({});
+      expect(formatDateFilter({ beginDate: '', endDate: '' })).toEqual({});
+    });
 
-        expect(formattedText).toEqual(expectedFormattedTextFilter);
-      },
-    );
+    it('formats single date correctly setting opened_to to beginDate', () => {
+      expect(formatDateFilter({ beginDate: '2026-10-01', endDate: '' })).toEqual({
+        dates_before: undefined,
+        dates_after: '2026-10-01',
+        opened_from: '2026-10-01',
+        opened_to: '2026-10-01',
+      });
+    });
+
+    it('formats date range / period correctly', () => {
+      expect(formatDateFilter({ beginDate: '2026-10-01', endDate: '2026-10-15' })).toEqual({
+        dates_before: '2026-10-15',
+        dates_after: '2026-10-01',
+        opened_from: '2026-10-01',
+        opened_to: '2026-10-15',
+      });
+    });
   });
 });

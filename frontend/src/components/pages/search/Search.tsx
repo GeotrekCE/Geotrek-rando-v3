@@ -263,7 +263,11 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                         badgeIconUri={searchResult.category?.pictogramUri}
                         badgeName={searchResult.category?.label}
                         informations={searchResult.informations ?? []}
-                        isClosed={hasSelectedPractice && ('isClosed' in searchResult ? Boolean(searchResult.isClosed) : false)}
+                        isClosed={
+                          getGlobalConfig().enableVigilanceAreas &&
+                          hasSelectedPractice &&
+                          ('isClosed' in searchResult ? Boolean(searchResult.isClosed) : false)
+                        }
                         isDateRange={Boolean(dateFilter.beginDate && dateFilter.endDate)}
                         isTodayDate={
                           !dateFilter.endDate &&

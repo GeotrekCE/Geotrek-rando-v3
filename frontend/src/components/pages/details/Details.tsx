@@ -23,6 +23,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { MapPin } from 'components/Icons/MapPin';
 import { ImageWithLegend } from 'components/ImageWithLegend';
 import { HtmlParser } from 'components/HtmlParser';
+import { adaptVigilanceAreaGeometry } from 'modules/vigilanceArea/adapter';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsVigilanceBanner } from './components/DetailsVigilanceBanner';
 import { DetailsSection } from './components/DetailsSection';
@@ -351,6 +352,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
 
                     if (
                       section.name === 'vigilance' &&
+                      getGlobalConfig().enableVigilanceAreas &&
                       details.publishedVigilanceAreas &&
                       details.publishedVigilanceAreas.length > 0
                     ) {
@@ -707,6 +709,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                       geometry,
                       color,
                     }))}
+                  vigilanceAreas={
+                    getGlobalConfig().enableVigilanceAreas
+                      ? details.publishedVigilanceAreas
+                          ?.filter(area => area.geometry !== null)
+                          .map(adaptVigilanceAreaGeometry)
+                      : []
+                  }
                   trekId={Number(id)}
                   displayAltimetricProfile={displayAltimetricProfile}
                   informationDesks={details.informationDesks}

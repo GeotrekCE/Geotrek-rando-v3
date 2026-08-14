@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import parse from 'html-react-parser';
 import { FormattedDate, FormattedMessage, useIntl } from 'react-intl';
+import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
+import { VigilanceAreaBadge } from './VigilanceAreaBadge';
 import { cn } from 'services/utils/cn';
 
 interface VigilanceAreaItemProps {
@@ -90,9 +92,13 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
         : 'Zone de vigilance',
   });
 
+  const { setHoveredVigilanceAreaId } = useDetailsAndMapContext();
+
   return (
     <div
       id={`details_vigilanceArea_${id}`}
+      onMouseEnter={() => setHoveredVigilanceAreaId(id)}
+      onMouseLeave={() => setHoveredVigilanceAreaId(null)}
       className={cn(
         'rounded-xl border-2 border-solid overflow-hidden transition-all duration-200',
         isRedVariant
@@ -116,64 +122,12 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
       >
         <div className="flex items-start gap-3 min-w-0 flex-1">
           {/* Pictogram or 32x32 SVG Badge */}
-          {pictogram ? (
-            <img src={pictogram} alt="" className="size-8 object-contain shrink-0" />
-          ) : isClosed ? (
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 36 36"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="shrink-0"
-              aria-hidden="true"
-            >
-              <circle cx="18" cy="18" r="17" fill="var(--color-vigilance-closed)"></circle>
-              <circle
-                cx="18"
-                cy="18"
-                r="14"
-                fill="var(--color-vigilance-closed)"
-                stroke="white"
-                strokeWidth="1.5"
-              ></circle>
-              <rect x="7" y="15" width="22" height="6" rx="3" fill="white"></rect>
-            </svg>
-          ) : levelMode === 'alert' ? (
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="var(--color-vigilance-closed)"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="shrink-0"
-              aria-hidden="true"
-            >
-              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
-              <line x1="12" y1="9" x2="12" y2="13"></line>
-              <line x1="12" y1="17" x2="12.01" y2="17"></line>
-            </svg>
-          ) : (
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="var(--color-vigilance-warning)"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="shrink-0"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="8" x2="12" y2="12"></line>
-              <line x1="12" y1="16" x2="12.01" y2="16"></line>
-            </svg>
-          )}
+          <VigilanceAreaBadge
+            pictogramUrl={pictogram}
+            levelMode={levelMode}
+            isClosed={isClosed}
+            size={32}
+          />
 
           {/* Vertical Text Stack */}
           <div className="min-w-0 flex flex-col gap-0.5">
@@ -212,14 +166,14 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
               <p className="text-xs text-greyDarkColored mt-0.5 m-0">
                 {startDate && (
                   <>
-                    <FormattedMessage id="search.filters.forThe" defaultMessage="Du" />{' '}
+                    <FormattedMessage id="details.forThe" defaultMessage="Du" />{' '}
                     <FormattedDate value={startDate} year="numeric" month="long" day="numeric" />
                   </>
                 )}
                 {startDate && endDate && ' '}
                 {endDate && (
                   <>
-                    <FormattedMessage id="search.filters.toThe" defaultMessage="au" />{' '}
+                    <FormattedMessage id="details.toThe" defaultMessage="au" />{' '}
                     <FormattedDate value={endDate} year="numeric" month="long" day="numeric" />
                   </>
                 )}

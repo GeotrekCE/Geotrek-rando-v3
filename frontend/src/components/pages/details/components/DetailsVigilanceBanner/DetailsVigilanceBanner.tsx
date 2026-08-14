@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { cn } from 'services/utils/cn';
+import { getGlobalConfig } from 'modules/utils/api.config';
 
 interface DetailsVigilanceBannerProps {
   isClosed?: boolean;
@@ -16,7 +17,7 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
   const intl = useIntl();
   const hasAreas = publishedVigilanceAreas.length > 0;
 
-  if (!isClosed && !hasAreas) {
+  if (!getGlobalConfig().enableVigilanceAreas || (!isClosed && !hasAreas)) {
     return null;
   }
 

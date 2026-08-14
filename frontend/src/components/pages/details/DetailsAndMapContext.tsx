@@ -7,10 +7,12 @@ interface DetailsAndMapProps {
   coordinatesReportTouched: boolean;
   mapCenter: LatLngExpression | null;
   reportVisibility: boolean;
+  hoveredVigilanceAreaId: string | null;
   setCoordinatesReport: React.Dispatch<React.SetStateAction<PointGeometry | null>>;
   setCoordinatesReportTouched: React.Dispatch<React.SetStateAction<boolean>>;
   setReportVisibility: React.Dispatch<React.SetStateAction<boolean>>;
   setMapCenter: React.Dispatch<React.SetStateAction<LatLngExpression | null>>;
+  setHoveredVigilanceAreaId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export const DetailsAndMapContext = createContext<DetailsAndMapProps>({
@@ -18,10 +20,12 @@ export const DetailsAndMapContext = createContext<DetailsAndMapProps>({
   coordinatesReportTouched: false,
   mapCenter: null,
   reportVisibility: false,
+  hoveredVigilanceAreaId: null,
   setCoordinatesReport: pointGeometry => pointGeometry,
   setCoordinatesReportTouched: boolean => boolean,
   setMapCenter: lnglat => lnglat,
   setReportVisibility: boolean => boolean,
+  setHoveredVigilanceAreaId: id => id,
 });
 
 export const useDetailsAndMapContext = () => useContext(DetailsAndMapContext);
@@ -31,6 +35,7 @@ export const DetailsAndMapProvider: React.FC<React.PropsWithChildren> = ({ child
   const [coordinatesReportTouched, setCoordinatesReportTouched] = useState<boolean>(false);
   const [reportVisibility, setReportVisibility] = useState<boolean>(false);
   const [mapCenter, setMapCenter] = useState<LatLngExpression | null>(null);
+  const [hoveredVigilanceAreaId, setHoveredVigilanceAreaId] = useState<string | null>(null);
   return (
     <DetailsAndMapContext.Provider
       value={{
@@ -38,10 +43,12 @@ export const DetailsAndMapProvider: React.FC<React.PropsWithChildren> = ({ child
         coordinatesReportTouched,
         mapCenter,
         reportVisibility,
+        hoveredVigilanceAreaId,
         setCoordinatesReport,
         setCoordinatesReportTouched,
         setMapCenter,
         setReportVisibility,
+        setHoveredVigilanceAreaId,
       }}
     >
       {children}

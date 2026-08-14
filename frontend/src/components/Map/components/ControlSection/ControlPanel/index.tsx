@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { VisibleSectionContext } from 'components/pages/details/VisibleSectionContext';
 import { Florist } from 'components/Icons/Florist';
 import { Signage } from 'components/Icons/Signage';
 import { Infrastructure } from 'components/Icons/Infrastructure';
@@ -10,6 +12,7 @@ import IconDrapeau from './IconDrapeau';
 import IconPatrimoine from './IconPatrimoine';
 import IconOutdoorSite from './IconOutdoorSite';
 import IconOutdoorRoute from './IconOutdoorRoute';
+import { AlertTriangle } from 'components/Icons/AlertTriangle';
 import { ControlSectionProps } from '../ControlSection';
 
 export const ControlPanel: React.FC<ControlSectionProps & { id: string }> = ({
@@ -38,9 +41,24 @@ export const ControlPanel: React.FC<ControlSectionProps & { id: string }> = ({
   toggleAnnotationViewpointVisibility,
   viewPointVisibility,
   toggleViewPointVisiblity,
+  vigilanceVisibility,
+  toggleVigilanceVisibility,
 }) => {
+  const { visibleSection } = useContext(VisibleSectionContext);
+  const isVigilanceActive =
+    vigilanceVisibility === 'DISPLAYED' ||
+    (vigilanceVisibility !== 'HIDDEN' && visibleSection === 'vigilance');
+
   return (
     <div className="flex flex-col bg-white shadow-lg p-4 rounded-2xl w-[230px] gap-4" id={id}>
+      {vigilanceVisibility && toggleVigilanceVisibility && (
+        <Line
+          icon={AlertTriangle}
+          active={isVigilanceActive}
+          toggle={toggleVigilanceVisibility}
+          transKey="details.vigilance"
+        />
+      )}
       {trekChildrenVisibility && toggleTrekChildrenVisibility && (
         <Line
           icon={IconLocation}
