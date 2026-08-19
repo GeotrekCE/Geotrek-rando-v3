@@ -1,6 +1,15 @@
 import { DateFilter, FilterState, Option } from 'modules/filters/interface';
 import React, { Fragment } from 'react';
-import { DATE_FILTER, HIDE_CLOSED_TREKS_ID, VIGILANCE_TYPE_EXCLUDE_ID, VIGILANCE_TYPE_ID } from 'modules/filters/constant';
+import {
+  DATE_FILTER,
+  DATE_FILTER_CONTENTS,
+  HIDE_CLOSED_CONTENTS_ID,
+  HIDE_CLOSED_TREKS_ID,
+  VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
+  VIGILANCE_TYPE_CONTENTS_ID,
+  VIGILANCE_TYPE_EXCLUDE_ID,
+  VIGILANCE_TYPE_ID,
+} from 'modules/filters/constant';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import ShowFilters from './ShowFilters';
 
@@ -9,6 +18,10 @@ const VIGILANCE_SECTION_IDS = [
   HIDE_CLOSED_TREKS_ID,
   VIGILANCE_TYPE_ID,
   VIGILANCE_TYPE_EXCLUDE_ID,
+  DATE_FILTER_CONTENTS,
+  HIDE_CLOSED_CONTENTS_ID,
+  VIGILANCE_TYPE_CONTENTS_ID,
+  VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
 ];
 
 interface Props {

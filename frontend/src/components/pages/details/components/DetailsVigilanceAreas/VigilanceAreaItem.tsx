@@ -30,7 +30,10 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
     typeof typeObj === 'object' && typeObj !== null
       ? typeObj.label ?? typeObj.name ?? ''
       : area?.type_name ?? (typeof typeObj === 'string' ? typeObj : '');
-  const pictogram = typeof typeObj === 'object' && typeObj !== null ? typeObj.pictogram : null;
+  const pictogram =
+    typeof typeObj === 'object' && typeObj !== null
+      ? typeObj.pictogramUrl ?? typeObj.pictogram ?? typeObj.pictogramUri ?? null
+      : area?.pictogramUrl ?? area?.pictogram ?? null;
 
   // Determine criticality / level
   const rawLevel = area?.criticality ?? area?.level;

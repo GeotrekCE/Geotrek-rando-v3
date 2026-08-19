@@ -10,7 +10,17 @@ import { DateFilter, FilterState, Option } from '../../../../../modules/filters/
 import { countFiltersSelected } from '../../../../../modules/filters/utils';
 import { getActivityColorClassName } from '../ResultCard/getActivityColor';
 import { getGlobalConfig } from 'modules/utils/api.config';
-import { PRACTICE_ID } from 'modules/filters/constant';
+import {
+  CATEGORY_ID,
+  DATE_FILTER,
+  HIDE_CLOSED_CONTENTS_ID,
+  HIDE_CLOSED_TREKS_ID,
+  PRACTICE_ID,
+  VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
+  VIGILANCE_TYPE_CONTENTS_ID,
+  VIGILANCE_TYPE_EXCLUDE_ID,
+  VIGILANCE_TYPE_ID,
+} from 'modules/filters/constant';
 import SubFilterField from './SubFilterField';
 import VigilanceSection from './VigilanceSection';
 
@@ -41,7 +51,32 @@ const FilterField: React.FC<Props> = ({
 }) => {
   const filtersToDisplay = filtersState.filter(filter => filters?.includes(filter.id));
 
-  const numberSelected = countFiltersSelected(filtersState, filters, subFilters);
+  const practiceFilter = filtersState.find(f => f.id === PRACTICE_ID);
+  const hasSelectedPractice = (practiceFilter?.selectedOptions?.length ?? 0) > 0;
+  const categoryFilter = filtersState.find(f => f.id === CATEGORY_ID);
+  const hasSelectedCategory = (categoryFilter?.selectedOptions?.length ?? 0) > 0;
+
+  const subFiltersToCount = Array.isArray(subFilters)
+    ? subFilters.flat().filter(subFilterId => {
+        if (
+          [
+            VIGILANCE_TYPE_ID,
+            VIGILANCE_TYPE_EXCLUDE_ID,
+            HIDE_CLOSED_TREKS_ID,
+            VIGILANCE_TYPE_CONTENTS_ID,
+            VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
+            HIDE_CLOSED_CONTENTS_ID,
+            DATE_FILTER,
+          ].includes(subFilterId)
+        ) {
+          if (id === PRACTICE_ID && !hasSelectedPractice) return false;
+          if (id === CATEGORY_ID && !hasSelectedCategory) return false;
+        }
+        return true;
+      })
+    : subFilters;
+
+  const numberSelected = countFiltersSelected(filtersState, filters, subFiltersToCount);
 
   const tabLabel = Array.isArray(name) ? (
     <FormattedMessage id={'search.filters.treksOutdoorGrouped'} />
@@ -69,8 +104,9 @@ const FilterField: React.FC<Props> = ({
     ? filtersToDisplay
     : Array.from({ length: subFiltersToDisplay.length });
 
-  const practiceFilter = filtersState.find(f => f.id === PRACTICE_ID);
-  const hasSelectedPractice = (practiceFilter?.selectedOptions?.length ?? 0) > 0;
+  const shouldShowVigilanceSection =
+    getGlobalConfig().enableVigilanceAreas &&
+    ((id === PRACTICE_ID && hasSelectedPractice) || (id === CATEGORY_ID && hasSelectedCategory));
 
   return (
     <div>
@@ -127,12 +163,13 @@ const FilterField: React.FC<Props> = ({
                 setDateFilter={setDateFilter}
               />
             </div>
-            {id === PRACTICE_ID && getGlobalConfig().enableVigilanceAreas && hasSelectedPractice && (
+            {shouldShowVigilanceSection && index === 0 && (
               <VigilanceSection
                 filtersState={filtersState}
                 dateFilter={dateFilter}
                 setFilterSelectedOptions={setFilterSelectedOptions}
                 setDateFilter={setDateFilter}
+                filterId={id}
               />
             )}
             <div className="grid grid-cols-3 gap-4">

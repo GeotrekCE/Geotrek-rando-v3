@@ -32,10 +32,11 @@ export const getMapResults = async (
     filtersState: QueryFilterState[];
     textFilterState: string | null;
     dateFilter: DateFilter | null;
+    contentDateFilter?: DateFilter | null;
   },
   language: string,
 ): Promise<MapResults> => {
-  const { filtersState, textFilterState, dateFilter } = filters;
+  const { filtersState, textFilterState, dateFilter, contentDateFilter } = filters;
 
   try {
     const practiceFilter = filtersState.find(({ id }) => id === PRACTICE_ID);
@@ -70,7 +71,8 @@ export const getMapResults = async (
     const touristicEventsFilter = formatTouristicEventsFiltersToUrlParams(filtersState);
 
     const textFilter = formatTextFilter(textFilterState);
-    const newDateFilter = formatDateFilter(dateFilter);
+    const newTrekDateFilter = formatDateFilter(dateFilter);
+    const newContentDateFilter = formatDateFilter(contentDateFilter ?? dateFilter);
 
     const resultsNumber = getGlobalConfig().mapResultsPageSize;
 
@@ -80,6 +82,8 @@ export const getMapResults = async (
       const rawMapResults = await fetchTrekMapResults({
         language,
         page_size: resultsNumber,
+        opened_from: newTrekDateFilter.opened_from,
+        opened_to: newTrekDateFilter.opened_to,
         ...trekFilters,
         ...textFilter,
       });
@@ -91,6 +95,8 @@ export const getMapResults = async (
               language,
               page_size: resultsNumber,
               page: pageNumber,
+              opened_from: newTrekDateFilter.opened_from,
+              opened_to: newTrekDateFilter.opened_to,
               ...trekFilters,
               ...textFilter,
             }),
@@ -106,6 +112,8 @@ export const getMapResults = async (
       const rawMapResults = await fetchTouristicContentMapResults({
         language,
         page_size: resultsNumber,
+        opened_from: newContentDateFilter.opened_from,
+        opened_to: newContentDateFilter.opened_to,
         ...touristicContentFilter,
         ...textFilter,
       });
@@ -117,6 +125,8 @@ export const getMapResults = async (
               language,
               page_size: resultsNumber,
               page: pageNumber,
+              opened_from: newContentDateFilter.opened_from,
+              opened_to: newContentDateFilter.opened_to,
               ...touristicContentFilter,
               ...textFilter,
             }),
@@ -164,8 +174,8 @@ export const getMapResults = async (
       const rawMapResults = await fetchTouristicEvents({
         language,
         page_size: resultsNumber,
-        dates_before: newDateFilter.dates_before,
-        dates_after: newDateFilter.dates_after,
+        dates_before: newTrekDateFilter.dates_before,
+        dates_after: newTrekDateFilter.dates_after,
         ...touristicEventsFilter,
         ...textFilter,
       });
@@ -177,8 +187,8 @@ export const getMapResults = async (
               language,
               page_size: resultsNumber,
               page: pageNumber,
-              dates_before: newDateFilter.dates_before,
-              dates_after: newDateFilter.dates_after,
+              dates_before: newTrekDateFilter.dates_before,
+              dates_after: newTrekDateFilter.dates_after,
               ...touristicEventsFilter,
               ...textFilter,
             }),

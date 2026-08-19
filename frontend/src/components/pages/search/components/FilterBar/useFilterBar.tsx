@@ -8,12 +8,15 @@ import {
   DATE_FILTER,
   DISTRICT_ID,
   EVENT_ID,
+  HIDE_CLOSED_CONTENTS_ID,
   HIDE_CLOSED_TREKS_ID,
   ORGANIZER_ID,
   OUTDOOR_ID,
   PRACTICE_ID,
   STRUCTURE_ID,
   THEME_ID,
+  VIGILANCE_TYPE_CONTENTS_ID,
+  VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
 import { FilterCategory } from 'modules/filters/interface';
 import { getGlobalConfig } from 'modules/utils/api.config';
@@ -32,6 +35,14 @@ export const useFilterBar = () => {
     currentAPIVersion,
   );
 
+  const trekVigilanceSubFilters = enableVigilanceAreas
+    ? [VIGILANCE_TYPE_ID, DATE_FILTER, HIDE_CLOSED_TREKS_ID]
+    : [];
+
+  const categoryVigilanceSubFilters = enableVigilanceAreas
+    ? [VIGILANCE_TYPE_CONTENTS_ID, DATE_FILTER, HIDE_CLOSED_CONTENTS_ID]
+    : [];
+
   const trekSubFilters = [
     'difficulty',
     'duration',
@@ -41,7 +52,7 @@ export const useFilterBar = () => {
     'accessibilities',
     ...(is2_108LowerOrEqualCurrentAPIVersion ? ['networks'] : []),
     'labels',
-    ...(enableVigilanceAreas ? ['vigilance_type', DATE_FILTER, HIDE_CLOSED_TREKS_ID] : []),
+    ...trekVigilanceSubFilters,
   ];
 
   const treksAndOutdoorCategories =
@@ -78,7 +89,7 @@ export const useFilterBar = () => {
       id: CATEGORY_ID,
       name: <FormattedMessage id={'search.filters.categories'} />,
       filters: [CATEGORY_ID],
-      subFilters: ['type-services-.+'],
+      subFilters: ['type-services-.+', ...categoryVigilanceSubFilters],
     },
     {
       id: EVENT_ID,

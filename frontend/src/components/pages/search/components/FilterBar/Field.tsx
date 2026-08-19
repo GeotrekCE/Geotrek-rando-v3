@@ -52,7 +52,11 @@ const Field: React.FC<Props> = ({ filterState, onSelect, hideLabel }) => {
   return (
     <div>
       {hideLabel !== true && (
-        <div className="mb-1">{intl.formatMessage({ id: filterState?.label || 'Unknown' })}</div>
+        <div className="mb-1">
+          {filterState?.label && intl.messages[filterState.label]
+            ? intl.formatMessage({ id: filterState.label })
+            : filterState?.label ?? 'Unknown'}
+        </div>
       )}
       <div className="-m-1 flex flex-wrap">
         {filterState.options.map(option => {

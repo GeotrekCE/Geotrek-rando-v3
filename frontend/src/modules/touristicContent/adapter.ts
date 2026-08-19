@@ -13,6 +13,8 @@ import {
 } from 'modules/utils/adapter';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptGeometry } from 'modules/utils/geometry';
+import { sortVigilanceAreas } from 'modules/details/adapter';
+import { VigilanceArea } from 'modules/vigilanceArea/interface';
 import {
   RawTouristicContent,
   RawTouristicContentDetails,
@@ -90,6 +92,7 @@ export const adaptTouristicContentResult = ({
         ),
       },
     ],
+    isClosed: rawTouristicObject.closed ?? false,
   }));
 
 export const adaptTouristicContentDetails = ({
@@ -98,12 +101,14 @@ export const adaptTouristicContentDetails = ({
   sourceDictionnary,
   cityDictionnary,
   themeDictionnary,
+  publishedVigilanceAreas = [],
 }: {
   rawTCD: RawTouristicContentDetails;
   touristicContentCategory: TouristicContentCategory;
   sourceDictionnary: SourceDictionnary;
   cityDictionnary: CityDictionnary;
   themeDictionnary: Choices;
+  publishedVigilanceAreas?: VigilanceArea[];
 }): TouristicContentDetails => ({
   accessibility: rawTCD.properties.accessibility ?? null,
   practicalInfo: rawTCD.properties.practical_info ?? null,
@@ -150,6 +155,8 @@ export const adaptTouristicContentDetails = ({
     corner1: { x: rawTCD.bbox[0], y: rawTCD.bbox[1] },
     corner2: { x: rawTCD.bbox[2], y: rawTCD.bbox[3] },
   },
+  isClosed: rawTCD.properties.closed ?? false,
+  publishedVigilanceAreas: sortVigilanceAreas(publishedVigilanceAreas),
 });
 
 const adaptTouristicType = (

@@ -3,19 +3,33 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 export const useDateFilter = (): {
-  dateFilter: DateFilter;
-  setDateFilter: (dFilter: DateFilter) => void;
+  trekDateFilter: DateFilter;
+  setTrekDateFilter: (dFilter: DateFilter) => void;
+  contentDateFilter: DateFilter;
+  setContentDateFilter: (dFilter: DateFilter) => void;
 } => {
   const initialOptions = useRouter().query;
-  const { beginDate = '', endDate = '' } = initialOptions;
+  const {
+    beginDate = '',
+    endDate = '',
+    beginDateContent = '',
+    endDateContent = '',
+  } = initialOptions;
 
-  const [dateFilter, setDateFilter] = useState<DateFilter>({
+  const [trekDateFilter, setTrekDateFilter] = useState<DateFilter>({
     beginDate: beginDate.toString(),
     endDate: endDate.toString(),
   });
 
+  const [contentDateFilter, setContentDateFilter] = useState<DateFilter>({
+    beginDate: beginDateContent.toString(),
+    endDate: endDateContent.toString(),
+  });
+
   return {
-    dateFilter,
-    setDateFilter,
+    trekDateFilter,
+    setTrekDateFilter,
+    contentDateFilter,
+    setContentDateFilter,
   };
 };

@@ -16,3 +16,7 @@ export const NETWORKS_ID = 'networks';
 export const VIGILANCE_TYPE_ID = 'vigilance_type';
 export const VIGILANCE_TYPE_EXCLUDE_ID = 'vigilance_type_exclude';
 export const HIDE_CLOSED_TREKS_ID = 'hide_closed_treks';
+export const VIGILANCE_TYPE_CONTENTS_ID = 'vigilance_type_contents';
+export const VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID = 'vigilance_type_contents_exclude';
+export const HIDE_CLOSED_CONTENTS_ID = 'hide_closed_contents';
+export const DATE_FILTER_CONTENTS = 'date-filter-contents';

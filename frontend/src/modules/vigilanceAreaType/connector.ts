@@ -15,6 +15,7 @@ export const getVigilanceAreaTypes = async (
 export const getVigilanceTypeFilter = async (
   language: string,
   withExclude = false,
+  customId?: string,
 ): Promise<FilterWithoutType | null> => {
   if (!getGlobalConfig().enableVigilanceAreas) {
     return null;
@@ -30,8 +31,10 @@ export const getVigilanceTypeFilter = async (
     return null;
   }
 
+  const defaultId = withExclude ? VIGILANCE_TYPE_EXCLUDE_ID : VIGILANCE_TYPE_ID;
+
   return {
-    id: withExclude ? VIGILANCE_TYPE_EXCLUDE_ID : VIGILANCE_TYPE_ID,
+    id: customId ?? defaultId,
     options,
   };
 };

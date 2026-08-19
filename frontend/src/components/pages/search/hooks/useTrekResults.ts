@@ -26,12 +26,15 @@ const computeUrl = (
   filtersState: FilterState[],
   textFilter: string | null,
   dateFilter: DateFilter | null,
+  contentDateFilter?: DateFilter | null,
 ) => {
   const urlParams = formatFiltersUrl(filtersState);
 
   textFilter && urlParams.push(`text=${textFilter}`);
   dateFilter?.beginDate && urlParams.push(`beginDate=${dateFilter.beginDate}`);
   dateFilter?.endDate && urlParams.push(`endDate=${dateFilter.endDate}`);
+  contentDateFilter?.beginDate && urlParams.push(`beginDateContent=${contentDateFilter.beginDate}`);
+  contentDateFilter?.endDate && urlParams.push(`endDateContent=${contentDateFilter.endDate}`);
 
   const params = urlParams.join('&');
   const formattedUrl = params ? `search?${params}` : 'search';
@@ -45,11 +48,12 @@ export const useTrekResults = (
     textFilterState: string | null;
     bboxState: string | null;
     dateFilter: DateFilter;
+    contentDateFilter?: DateFilter;
     page: number;
   },
   language: string,
 ) => {
-  const { filtersState, textFilterState, bboxState, dateFilter, page } = filters;
+  const { filtersState, textFilterState, bboxState, dateFilter, contentDateFilter, page } = filters;
 
   const [mobileMapState, setMobileMapState] = useState<'DISPLAYED' | 'HIDDEN'>('HIDDEN');
   const displayMobileMap = () => {
@@ -62,7 +66,7 @@ export const useTrekResults = (
 
   const parsedFiltersState = parseFilters(filtersState);
 
-  const filterUrl = useRef(computeUrl(filtersState, textFilterState, dateFilter));
+  const filterUrl = useRef(computeUrl(filtersState, textFilterState, dateFilter, contentDateFilter));
 
   const router = useRouter();
 
@@ -86,6 +90,7 @@ export const useTrekResults = (
       parseTextFilter(textFilterState),
       parseBboxFilter(bboxState),
       dateFilter,
+      contentDateFilter,
       page,
     ],
     queryFn: ({
@@ -97,7 +102,7 @@ export const useTrekResults = (
       },
     }) => {
       return getSearchResults(
-        { filtersState: parsedFiltersState, textFilterState, bboxState, dateFilter },
+        { filtersState: parsedFiltersState, textFilterState, bboxState, dateFilter, contentDateFilter },
         pageParam as SearchParams,
         language,
         commonDictionaries,
@@ -133,13 +138,13 @@ export const useTrekResults = (
   });
 
   useEffect(() => {
-    const url = computeUrl(filtersState, textFilterState, dateFilter);
+    const url = computeUrl(filtersState, textFilterState, dateFilter, contentDateFilter);
     if (url !== filterUrl.current) {
       filterUrl.current = url;
       void router.push(url, undefined, { shallow: true });
       void refetch();
     }
-  }, [filtersState, textFilterState, dateFilter, refetch, router]);
+  }, [filtersState, textFilterState, dateFilter, contentDateFilter, refetch, router]);
 
   return {
     searchResults: formatInfiniteQuery(data),

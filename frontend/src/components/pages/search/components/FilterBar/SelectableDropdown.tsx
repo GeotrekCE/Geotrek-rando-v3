@@ -102,7 +102,11 @@ export const SelectableDropdown = (props: SelectableDropdownProps) => {
       {...props}
       isClearable={props.filterType === 'SINGLE'}
       isSearchable={false}
-      placeholder={intl.formatMessage({ id: placeholderText })}
+      placeholder={
+        placeholderText && intl.messages[placeholderText]
+          ? intl.formatMessage({ id: placeholderText })
+          : placeholderText
+      }
       classNamePrefix="select"
       isMulti={props.filterType === 'MULTIPLE' ? true : undefined}
       instanceId={props.name}

@@ -2,6 +2,7 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { cn } from 'services/utils/cn';
 import { getGlobalConfig } from 'modules/utils/api.config';
+import { VigilanceAreaBadge } from '../DetailsVigilanceAreas/VigilanceAreaBadge';
 
 interface DetailsVigilanceBannerProps {
   isClosed?: boolean;
@@ -62,6 +63,13 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
   const isRedVariant = mode === 'closed' || mode === 'alert';
   const encartLevel = mode === 'closed' ? 'fermeture' : mode;
 
+  const primaryArea = singleArea || publishedVigilanceAreas[0];
+  const primaryAreaType = primaryArea?.type ?? primaryArea?.vigilance_area_type;
+  const singleAreaPicto =
+    typeof primaryAreaType === 'object' && primaryAreaType !== null
+      ? primaryAreaType.pictogramUrl ?? primaryAreaType.pictogram ?? primaryAreaType.pictogramUri
+      : primaryArea?.pictogramUrl ?? primaryArea?.pictogram;
+
   return (
     <div
       id="details_vigilanceBanner"
@@ -75,62 +83,12 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
       )}
     >
       <div className="flex items-center gap-[10px] mb-3">
-        {mode === 'closed' ? (
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 36 36"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            className="shrink-0"
-          >
-            <circle cx="18" cy="18" r="17" fill="var(--color-vigilance-closed)"></circle>
-            <circle
-              cx="18"
-              cy="18"
-              r="14"
-              fill="var(--color-vigilance-closed)"
-              stroke="white"
-              strokeWidth="1.5"
-            ></circle>
-            <rect x="7" y="15" width="22" height="6" rx="3" fill="white"></rect>
-          </svg>
-        ) : mode === 'alert' ? (
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="var(--color-vigilance-closed)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-            className="shrink-0"
-          >
-            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
-            <line x1="12" y1="9" x2="12" y2="13"></line>
-            <line x1="12" y1="17" x2="12.01" y2="17"></line>
-          </svg>
-        ) : (
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="var(--color-vigilance-warning)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-            className="shrink-0"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="8" x2="12" y2="12"></line>
-            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-          </svg>
-        )}
+        <VigilanceAreaBadge
+          pictogramUrl={singleAreaPicto}
+          levelMode={mode}
+          isClosed={isClosed}
+          size={24}
+        />
 
         <p className="text-[14px] leading-[1.5] m-0 text-greyDarkColored">
           <strong>

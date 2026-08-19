@@ -15,10 +15,11 @@ export const useMapResults = (
     filtersState: FilterState[];
     textFilterState: string | null;
     dateFilter: DateFilter | null;
+    contentDateFilter?: DateFilter | null;
   },
   language: string,
 ): ReturnType => {
-  const { filtersState, textFilterState, dateFilter } = filters;
+  const { filtersState, textFilterState, dateFilter, contentDateFilter } = filters;
 
   const parsedFiltersState = parseFilters(filtersState);
 
@@ -29,9 +30,13 @@ export const useMapResults = (
       language,
       parseTextFilter(textFilterState),
       dateFilter,
+      contentDateFilter,
     ],
     queryFn: () =>
-      getMapResults({ filtersState: parsedFiltersState, textFilterState, dateFilter }, language),
+      getMapResults(
+        { filtersState: parsedFiltersState, textFilterState, dateFilter, contentDateFilter },
+        language,
+      ),
   });
 
   return {

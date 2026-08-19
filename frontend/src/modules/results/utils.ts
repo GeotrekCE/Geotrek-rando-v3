@@ -5,11 +5,14 @@ import {
   CITY_ID,
   DISTRICT_ID,
   EVENT_ID,
+  HIDE_CLOSED_CONTENTS_ID,
   HIDE_CLOSED_TREKS_ID,
   ORGANIZER_ID,
   OUTDOOR_ID,
   STRUCTURE_ID,
   THEME_ID,
+  VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
+  VIGILANCE_TYPE_CONTENTS_ID,
   VIGILANCE_TYPE_EXCLUDE_ID,
   VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
@@ -129,6 +132,33 @@ export const formatTrekFiltersToUrlParams = (
   filtersState.reduce<{ [key: string]: string }>((queryParameters, currentFilterState) => {
     if (currentFilterState.id === CATEGORY_ID || /type-services-.+/.test(currentFilterState.id))
       return queryParameters;
+    if (
+      currentFilterState.id === VIGILANCE_TYPE_ID &&
+      currentFilterState.selectedOptions.length > 0
+    ) {
+      return {
+        ...queryParameters,
+        vigilance_area_types: currentFilterState.selectedOptions.join(','),
+      };
+    }
+    if (
+      currentFilterState.id === VIGILANCE_TYPE_EXCLUDE_ID &&
+      currentFilterState.selectedOptions.length > 0
+    ) {
+      return {
+        ...queryParameters,
+        vigilance_area_types_exclude: currentFilterState.selectedOptions.join(','),
+      };
+    }
+    if (
+      currentFilterState.id === HIDE_CLOSED_TREKS_ID &&
+      currentFilterState.selectedOptions.length > 0
+    ) {
+      return {
+        ...queryParameters,
+        opened: 'true',
+      };
+    }
     if (currentFilterState.selectedOptions.length > 0) {
       const filter = formatFilter(currentFilterState);
       return {
@@ -193,6 +223,36 @@ export const formatTouristicContentFiltersToUrlParams = (
             ],
           };
         }
+      }
+      if (
+        (currentFilterState.id === VIGILANCE_TYPE_ID ||
+          currentFilterState.id === VIGILANCE_TYPE_CONTENTS_ID) &&
+        currentFilterState.selectedOptions.length > 0
+      ) {
+        return {
+          ...currentFilters,
+          vigilance_area_types: currentFilterState.selectedOptions,
+        };
+      }
+      if (
+        (currentFilterState.id === VIGILANCE_TYPE_EXCLUDE_ID ||
+          currentFilterState.id === VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID) &&
+        currentFilterState.selectedOptions.length > 0
+      ) {
+        return {
+          ...currentFilters,
+          vigilance_area_types_exclude: currentFilterState.selectedOptions,
+        };
+      }
+      if (
+        (currentFilterState.id === HIDE_CLOSED_TREKS_ID ||
+          currentFilterState.id === HIDE_CLOSED_CONTENTS_ID) &&
+        currentFilterState.selectedOptions.length > 0
+      ) {
+        return {
+          ...currentFilters,
+          opened: ['true'],
+        };
       }
       if (
         commonFiltersWithoutTrekSelector.includes(currentFilterState.id) &&

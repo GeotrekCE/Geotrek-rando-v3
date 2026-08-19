@@ -47,6 +47,49 @@ const createBadgeIcon = (
   });
 };
 
+const VigilanceAreaPolygonItem: React.FC<{
+  id: number;
+  name?: string;
+  colorHex: string;
+  levelMode: 'closed' | 'alert' | 'vigilance' | 'info';
+  typeName?: string;
+  pictogramUri?: string | null;
+  positions: RawCoordinate2D[];
+  centroid: RawCoordinate2D;
+  isHovered: boolean;
+}> = ({ id, name, colorHex, levelMode, typeName, pictogramUri, positions, centroid, isHovered }) => {
+  const icon = useMemo(
+    () => createBadgeIcon(pictogramUri, levelMode, isHovered),
+    [pictogramUri, levelMode, isHovered],
+  );
+
+  return (
+    <>
+      <Polygon
+        positions={positions}
+        pathOptions={{
+          color: colorHex,
+          fillColor: colorHex,
+          fillOpacity: isHovered ? 0.6 : 0.25,
+          weight: isHovered ? 6 : 3,
+        }}
+      />
+      <Marker position={centroid} icon={icon}>
+        {name && (
+          <Popup>
+            <div className="p-1 text-xs">
+              {typeName && <p className="font-bold text-greyDarkColored m-0">{typeName}</p>}
+              <p className="font-bold m-0 mt-0.5" style={{ color: colorHex }}>
+                {name}
+              </p>
+            </div>
+          </Popup>
+        )}
+      </Marker>
+    </>
+  );
+};
+
 export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
   const { hoveredVigilanceAreaId } = useDetailsAndMapContext();
 
@@ -110,41 +153,13 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
 
   return (
     <>
-      {polygons.map(
-        ({ key, id, name, colorHex, levelMode, typeName, pictogramUri, positions, centroid }) => {
-          const isHovered = String(id) === String(hoveredVigilanceAreaId);
-          return (
-            <React.Fragment key={key}>
-              <Polygon
-                positions={positions}
-                pathOptions={{
-                  color: colorHex,
-                  fillColor: colorHex,
-                  fillOpacity: isHovered ? 0.6 : 0.25,
-                  weight: isHovered ? 6 : 3,
-                }}
-              />
-              <Marker
-                position={centroid}
-                icon={createBadgeIcon(pictogramUri, levelMode, isHovered)}
-              >
-                {name && (
-                  <Popup>
-                    <div className="p-1 text-xs">
-                      {typeName && (
-                        <p className="font-bold text-greyDarkColored m-0">{typeName}</p>
-                      )}
-                      <p className="font-bold m-0 mt-0.5" style={{ color: colorHex }}>
-                        {name}
-                      </p>
-                    </div>
-                  </Popup>
-                )}
-              </Marker>
-            </React.Fragment>
-          );
-        },
-      )}
+      {polygons.map(({ key, ...polygonProps }) => (
+        <VigilanceAreaPolygonItem
+          key={key}
+          {...polygonProps}
+          isHovered={String(polygonProps.id) === String(hoveredVigilanceAreaId)}
+        />
+      ))}
     </>
   );
 };

@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { cn } from 'services/utils/cn';
-import { HIDE_CLOSED_TREKS_ID, VIGILANCE_TYPE_ID } from 'modules/filters/constant';
+import {
+  CATEGORY_ID,
+  HIDE_CLOSED_CONTENTS_ID,
+  HIDE_CLOSED_TREKS_ID,
+  VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
+  VIGILANCE_TYPE_CONTENTS_ID,
+  VIGILANCE_TYPE_EXCLUDE_ID,
+  VIGILANCE_TYPE_ID,
+} from 'modules/filters/constant';
 import { DateFilter, FilterState, Option } from 'modules/filters/interface';
 import Field from './Field';
 import InputDateWithMagnifier from '../InputDateWithMagnifier';
@@ -11,6 +19,7 @@ interface Props {
   dateFilter: DateFilter;
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
   setDateFilter: (dFilter: DateFilter) => void;
+  filterId?: string;
 }
 
 export const VigilanceSection: React.FC<Props> = ({
@@ -18,6 +27,7 @@ export const VigilanceSection: React.FC<Props> = ({
   dateFilter,
   setFilterSelectedOptions,
   setDateFilter,
+  filterId,
 }) => {
   const intl = useIntl();
   const [showPeriod, setShowPeriod] = useState<boolean>(Boolean(dateFilter.endDate));
@@ -25,10 +35,44 @@ export const VigilanceSection: React.FC<Props> = ({
   const today = new Date().toISOString().split('T')[0];
   const effectiveBeginDate = dateFilter.beginDate || today;
 
-  const vigilanceTypeFilter = filtersState.find(f => f.id === VIGILANCE_TYPE_ID);
-  const hideClosedTreksFilter = filtersState.find(f => f.id === HIDE_CLOSED_TREKS_ID);
+  const isTouristicContent = filterId === CATEGORY_ID;
+  const targetHideClosedId = isTouristicContent ? HIDE_CLOSED_CONTENTS_ID : HIDE_CLOSED_TREKS_ID;
+  const targetVigilanceTypeId = isTouristicContent ? VIGILANCE_TYPE_CONTENTS_ID : VIGILANCE_TYPE_ID;
+
+  const vigilanceTypeFilter = filtersState.find(f => f.id === targetVigilanceTypeId);
+  const hideClosedTreksFilter = filtersState.find(f => f.id === targetHideClosedId);
 
   const isClosedChecked = (hideClosedTreksFilter?.selectedOptions.length ?? 0) > 0;
+
+  const dateSingleLabel =
+    isTouristicContent && intl.messages['search.filters.searchOnDate']
+      ? intl.formatMessage({ id: 'search.filters.searchOnDate' })
+      : isTouristicContent
+      ? 'À la date du'
+      : intl.formatMessage({
+          id: 'search.filters.hikeOnDate',
+          defaultMessage: 'Je randonne le',
+        });
+
+  const dateFromLabel =
+    isTouristicContent && intl.messages['search.filters.searchDateFrom']
+      ? intl.formatMessage({ id: 'search.filters.searchDateFrom' })
+      : isTouristicContent
+      ? 'Du'
+      : intl.formatMessage({
+          id: 'search.filters.dateFrom',
+          defaultMessage: 'Je randonne du',
+        });
+
+  const toggleText =
+    isTouristicContent && intl.messages['search.filters.hideClosedContents']
+      ? intl.formatMessage({ id: 'search.filters.hideClosedContents' })
+      : isTouristicContent
+      ? 'Masquer les contenus touristiques fermés'
+      : intl.formatMessage({
+          id: 'search.filters.hideClosedTreks',
+          defaultMessage: 'Masquer les itinéraires fermés',
+        });
 
   return (
     <div className="my-6 py-5 border-t border-b border-greySoft">
@@ -46,10 +90,7 @@ export const VigilanceSection: React.FC<Props> = ({
                       endDate: '',
                     })
                   }
-                  label={intl.formatMessage({
-                    id: 'search.filters.hikeOnDate',
-                    defaultMessage: 'Je randonne le',
-                  })}
+                  label={dateSingleLabel}
                 />
                 <div className="h-auto sm:h-10 desktop:h-12 mb-2 sm:mb-3 flex items-center">
                   <button
@@ -76,10 +117,7 @@ export const VigilanceSection: React.FC<Props> = ({
                         endDate: dateFilter.endDate,
                       })
                     }
-                    label={intl.formatMessage({
-                      id: 'search.filters.dateFrom',
-                      defaultMessage: 'Je randonne du',
-                    })}
+                    label={dateFromLabel}
                   />
                   <InputDateWithMagnifier
                     value={dateFilter.endDate}
@@ -120,9 +158,9 @@ export const VigilanceSection: React.FC<Props> = ({
               aria-checked={isClosedChecked}
               onClick={() => {
                 if (isClosedChecked) {
-                  setFilterSelectedOptions(HIDE_CLOSED_TREKS_ID, []);
+                  setFilterSelectedOptions(targetHideClosedId, []);
                 } else {
-                  setFilterSelectedOptions(HIDE_CLOSED_TREKS_ID, [{ value: 'true', label: 'true' }]);
+                  setFilterSelectedOptions(targetHideClosedId, [{ value: 'true', label: 'true' }]);
                 }
               }}
               className={cn(
@@ -141,13 +179,13 @@ export const VigilanceSection: React.FC<Props> = ({
               className="font-medium text-greyDarkColored select-none cursor-pointer"
               onClick={() => {
                 if (isClosedChecked) {
-                  setFilterSelectedOptions(HIDE_CLOSED_TREKS_ID, []);
+                  setFilterSelectedOptions(targetHideClosedId, []);
                 } else {
-                  setFilterSelectedOptions(HIDE_CLOSED_TREKS_ID, [{ value: 'true', label: 'true' }]);
+                  setFilterSelectedOptions(targetHideClosedId, [{ value: 'true', label: 'true' }]);
                 }
               }}
             >
-              {intl.formatMessage({ id: 'search.filters.hideClosedTreks' })}
+              {toggleText}
             </span>
           </div>
         </div>

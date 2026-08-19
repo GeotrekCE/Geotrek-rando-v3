@@ -5,6 +5,7 @@ import {
   formatSelectedFilter,
   formatTextFilter,
   formatTrekFiltersToUrlParams,
+  formatTouristicContentFiltersToUrlParams,
 } from '../utils';
 
 describe('formatDistance', () => {
@@ -128,6 +129,22 @@ describe('extractNextPageId', () => {
         dates_after: '2026-10-01',
         opened_from: '2026-10-01',
         opened_to: '2026-10-15',
+      });
+    });
+  });
+
+  describe('formatTouristicContentFiltersToUrlParams', () => {
+    it('formats vigilance area filters and hide closed toggle for touristic contents', () => {
+      const input = [
+        { id: 'vigilance_type', selectedOptions: ['1', '2'] },
+        { id: 'vigilance_type_exclude', selectedOptions: ['3'] },
+        { id: 'hide_closed_treks', selectedOptions: ['true'] },
+      ];
+      const output = formatTouristicContentFiltersToUrlParams(input);
+      expect(output).toEqual({
+        vigilance_area_types: '1,2',
+        vigilance_area_types_exclude: '3',
+        opened: 'true',
       });
     });
   });

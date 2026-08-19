@@ -12,9 +12,11 @@ import { useFilterBar } from './useFilterBar';
 
 interface Props {
   filtersState: FilterState[];
-  dateFilter: DateFilter;
+  trekDateFilter: DateFilter;
+  setTrekDateFilter: (dFilter: DateFilter) => void;
+  contentDateFilter: DateFilter;
+  setContentDateFilter: (dFilter: DateFilter) => void;
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
-  setDateFilter: (dFilter: DateFilter) => void;
   resetFilters: () => void;
   resultsNumber: number;
   language: string;
@@ -22,9 +24,11 @@ interface Props {
 
 const FilterBar: React.FC<Props> = ({
   filtersState,
-  dateFilter,
+  trekDateFilter,
+  setTrekDateFilter,
+  contentDateFilter,
+  setContentDateFilter,
   setFilterSelectedOptions,
-  setDateFilter,
   resetFilters,
   resultsNumber,
   language,
@@ -52,6 +56,9 @@ const FilterBar: React.FC<Props> = ({
         if (outdoorSitesCount === 0 && filterField.id === OUTDOOR_ID) return null;
         if (touristicEventsCount === 0 && filterField.id === EVENT_ID) return null;
 
+        const fieldDateFilter = filterField.id === CATEGORY_ID ? contentDateFilter : trekDateFilter;
+        const fieldSetDateFilter = filterField.id === CATEGORY_ID ? setContentDateFilter : setTrekDateFilter;
+
         return (
           <FilterField
             key={filterField.id}
@@ -60,11 +67,11 @@ const FilterBar: React.FC<Props> = ({
             filters={filterField.filters}
             subFilters={filterField.subFilters}
             filtersState={filtersState}
-            dateFilter={dateFilter}
+            dateFilter={fieldDateFilter}
             expanded={expanded === filterField.id}
             onClick={handleClick}
             setFilterSelectedOptions={setFilterSelectedOptions}
-            setDateFilter={setDateFilter}
+            setDateFilter={fieldSetDateFilter}
           />
         );
       })}

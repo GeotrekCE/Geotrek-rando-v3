@@ -7,6 +7,7 @@ import { PopupResult } from 'modules/trekResult/interface';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
+import { getVigilanceAreasForTrek } from 'modules/vigilanceArea/connector';
 import {
   adaptTouristicContent,
   adaptTouristicContentDetails,
@@ -59,12 +60,19 @@ export const getTouristicContentDetails = async (
       rawTouristicContentDetails.properties.category,
       language,
     );
+    const publishedVigilanceAreas = getGlobalConfig().enableVigilanceAreas
+      ? await getVigilanceAreasForTrek(
+          rawTouristicContentDetails.properties.published_vigilance_areas,
+          language,
+        )
+      : [];
     return adaptTouristicContentDetails({
       rawTCD: rawTouristicContentDetails,
       touristicContentCategory,
       sourceDictionnary: sources,
       cityDictionnary: cities,
       themeDictionnary: themes,
+      publishedVigilanceAreas,
     });
   } catch (e) {
     console.error('Error in touristicContent connector', e);

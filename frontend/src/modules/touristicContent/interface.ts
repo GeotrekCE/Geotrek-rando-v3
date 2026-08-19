@@ -18,6 +18,7 @@ import {
 import { ResultCard } from 'modules/results/interface';
 import { Source } from 'modules/source/interface';
 import { TouristicContentCategory } from 'modules/touristicContentCategory/interface';
+import { VigilanceArea } from 'modules/vigilanceArea/interface';
 
 export interface RawTouristicContent {
   id: string;
@@ -38,6 +39,7 @@ export interface RawTouristicContentResult {
   themes: number[];
   types: Record<number, number[]>;
   cities: string[];
+  closed?: boolean;
 }
 
 export interface RawTouristicContentPopupResult {
@@ -60,6 +62,8 @@ export interface RawTouristicContentDetailsProperties extends RawTouristicConten
   types: Record<number, number[]>;
   pdf: string;
   bbox: number[];
+  closed?: boolean;
+  published_vigilance_areas?: number[];
 }
 
 export interface RawTouristicContentDetails {
@@ -112,6 +116,8 @@ export interface TouristicContentDetails extends TouristicContent {
   types: TouristicContentDetailsType[];
   bbox: Bbox;
   type: 'TOURISTIC_CONTENT';
+  isClosed?: boolean;
+  publishedVigilanceAreas?: VigilanceArea[];
 }
 
 export interface TouristicContentDetailsType {

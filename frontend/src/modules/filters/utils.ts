@@ -35,6 +35,7 @@ import {
   DATE_FILTER,
   DISTRICT_ID,
   EVENT_ID,
+  HIDE_CLOSED_CONTENTS_ID,
   HIDE_CLOSED_TREKS_ID,
   LABEL_EXCLUDE_ID,
   LABEL_ID,
@@ -45,6 +46,8 @@ import {
   ROUTE_ID,
   STRUCTURE_ID,
   THEME_ID,
+  VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
+  VIGILANCE_TYPE_CONTENTS_ID,
   VIGILANCE_TYPE_EXCLUDE_ID,
   VIGILANCE_TYPE_ID,
 } from './constant';
@@ -101,6 +104,10 @@ const getFilterOptions = async (
     case VIGILANCE_TYPE_ID:
     case VIGILANCE_TYPE_EXCLUDE_ID:
       return getVigilanceTypeFilter(language, withExclude);
+    case VIGILANCE_TYPE_CONTENTS_ID:
+      return getVigilanceTypeFilter(language, false, VIGILANCE_TYPE_CONTENTS_ID);
+    case VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID:
+      return getVigilanceTypeFilter(language, true, VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID);
     default:
       return null;
   }
@@ -167,6 +174,16 @@ export const commonFilters = [
 export const getTreksFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
   initialFiltersState.filter(({ id }) => trekSpecificFilters.includes(id));
 
+export const getTrekVigilanceFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
+  initialFiltersState.filter(({ id }) =>
+    [VIGILANCE_TYPE_ID, VIGILANCE_TYPE_EXCLUDE_ID, HIDE_CLOSED_TREKS_ID].includes(id),
+  );
+
+export const getContentVigilanceFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
+  initialFiltersState.filter(({ id }) =>
+    [VIGILANCE_TYPE_CONTENTS_ID, VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID, HIDE_CLOSED_CONTENTS_ID].includes(id),
+  );
+
 export const getFiltersState = async (language: string): Promise<FilterState[]> => {
   const filters = await getFilters(language);
 
@@ -179,13 +196,42 @@ export const getFiltersState = async (language: string): Promise<FilterState[]> 
   ];
 
   if (getGlobalConfig().enableVigilanceAreas) {
-    result.push({
-      id: HIDE_CLOSED_TREKS_ID,
-      label: 'search.filters.hideClosedTreks',
-      type: 'SINGLE',
-      options: [{ value: 'true', label: 'search.filters.hideClosedTreks' }],
-      selectedOptions: [],
-    });
+    const vigilanceContentFilter = await getVigilanceTypeFilter(language, false, VIGILANCE_TYPE_CONTENTS_ID);
+    const vigilanceContentExcludeFilter = await getVigilanceTypeFilter(language, true, VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID);
+
+    if (vigilanceContentFilter) {
+      result.push({
+        ...vigilanceContentFilter,
+        label: `search.filters.${VIGILANCE_TYPE_ID}`,
+        type: 'MULTIPLE',
+        selectedOptions: [],
+      });
+    }
+    if (vigilanceContentExcludeFilter) {
+      result.push({
+        ...vigilanceContentExcludeFilter,
+        label: `search.filters.${VIGILANCE_TYPE_ID}`,
+        type: 'MULTIPLE',
+        selectedOptions: [],
+      });
+    }
+
+    result.push(
+      {
+        id: HIDE_CLOSED_TREKS_ID,
+        label: 'search.filters.hideClosedTreks',
+        type: 'SINGLE',
+        options: [{ value: 'true', label: 'search.filters.hideClosedTreks' }],
+        selectedOptions: [],
+      },
+      {
+        id: HIDE_CLOSED_CONTENTS_ID,
+        label: 'search.filters.hideClosedContents',
+        type: 'SINGLE',
+        options: [{ value: 'true', label: 'search.filters.hideClosedContents' }],
+        selectedOptions: [],
+      },
+    );
   }
 
   return result;
@@ -324,6 +370,15 @@ export const computeFiltersToDisplay = ({
       );
     });
   }
+  // Vigilance filters for Treks and Touristic Contents
+  if (getGlobalConfig().enableVigilanceAreas) {
+    if (currentNumberOfPracticeOptionsSelected > 0 || selectedFilterId === PRACTICE_ID) {
+      filtersToAdd.push(getTrekVigilanceFiltersState(initialFiltersState));
+    }
+    if (currentNumberOfTouristicContentOptionsSelected > 0 || selectedFilterId === CATEGORY_ID) {
+      filtersToAdd.push(getContentVigilanceFiltersState(initialFiltersState));
+    }
+  }
   // Outdoor filters
   if (currentNumberOfOutdoorPraticeOptionsSelected > 0 || selectedFilterId === OUTDOOR_ID) {
     outdoorPracticeFilter?.selectedOptions.forEach(selectedOptions => {
@@ -385,6 +440,15 @@ const getInitialFiltersStateWithRelevantFilters = ({
 
   if (Number(practices?.length) > 0) {
     result.push(...getTreksFiltersState(initialFiltersState));
+  }
+
+  if (getGlobalConfig().enableVigilanceAreas) {
+    if (Number(practices?.length) > 0) {
+      result.push(...getTrekVigilanceFiltersState(initialFiltersState));
+    }
+    if (Number(services?.length) > 0) {
+      result.push(...getContentVigilanceFiltersState(initialFiltersState));
+    }
   }
 
   if (Number(services?.length) > 0) {
