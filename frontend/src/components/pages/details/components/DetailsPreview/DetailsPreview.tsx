@@ -131,12 +131,22 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         id="details_title"
         className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold"
       >{`${trekRankLabel}${title}`}</h1>
-      {'isClosed' in details && (
-        <DetailsVigilanceBanner
-          isClosed={details.isClosed}
-          publishedVigilanceAreas={details.publishedVigilanceAreas}
-        />
-      )}
+      {(() => {
+        const publishedVigilanceAreas =
+          'publishedVigilanceAreas' in details && Array.isArray(details.publishedVigilanceAreas)
+            ? details.publishedVigilanceAreas
+            : [];
+        const isClosed = 'isClosed' in details ? details.isClosed : false;
+
+        if (!isClosed && publishedVigilanceAreas.length === 0) return null;
+
+        return (
+          <DetailsVigilanceBanner
+            isClosed={isClosed}
+            publishedVigilanceAreas={publishedVigilanceAreas}
+          />
+        );
+      })()}
       <div id="details_tags" className="flex flex-wrap">
         {tags
           .filter(tag => tag?.length)
