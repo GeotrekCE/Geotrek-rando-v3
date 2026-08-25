@@ -49,7 +49,8 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
           stroke="white"
           strokeWidth="1.5"
         />
-        <rect x="7" y="15" width="22" height="6" rx="3" fill="white" />
+        <path d="M18 10v10" stroke="white" strokeWidth="3" strokeLinecap="round" />
+        <circle cx="18" cy="25" r="1.75" fill="white" />
       </svg>
     );
   }

@@ -100,12 +100,12 @@
       "dateTo": "Au",
       "addPeriod": "Ajouter une période",
       "removePeriod": "Retirer la période",
-      "currentlyClosed": "Actuellement fermé",
-      "closedDate": "Fermeture à la date choisie",
-      "closedPeriod": "Fermeture à la période choisie"
+      "currentlyClosed": "Actuellement impraticable",
+      "closedDate": "Impraticable à la date choisie",
+      "closedPeriod": "Impraticable à la période choisie"
     },
     "resultCard": {
-      "closed": "Fermé"
+      "closed": "Impraticable"
     },
     "textFilter": "Rechercher...",
     "beginDateFilter": "Date de début",
@@ -138,17 +138,17 @@
   },
   "details": {
     "vigilanceBanner": {
-      "closedTitle": "Cet itinéraire est actuellement fermé.",
+      "closedTitle": "Cet itinéraire est actuellement impraticable.",
       "closedGeneric": "Consultez la section « Zones de vigilance » pour en savoir plus sur les dates et motifs de fermeture.",
-      "closedSingle": "Cet itinéraire est actuellement fermé : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les dates et motifs de fermeture.",
-      "alertTitle": "Cet itinéraire est concerné par une vigilance élevée.",
+      "closedSingle": "Cet itinéraire est actuellement impraticable : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les dates et motifs de fermeture.",
+      "alertTitle": "Cet itinéraire est concerné par au moins une Zone de vigilance élevée.",
       "alertGeneric": "Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.",
-      "alertSingle": "Cet itinéraire est concerné par une vigilance élevée : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.",
+      "alertSingle": "Cet itinéraire est concerné par une Zone de vigilance élevée : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.",
       "vigilanceTitle": "Cet itinéraire est concerné par au moins une zone de vigilance.",
       "vigilanceGeneric": "Consultez la section « Zones de vigilance » pour en savoir plus sur les bons réflexes et conditions de praticabilité de vos activités.",
       "vigilanceSingle": "Cet itinéraire est concerné par une zone de vigilance : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les bons réflexes et conditions de praticabilité de vos activités.",
       "moreInfoLink": "Plus d’informations sur les Zones de vigilance →",
-      "levelClosed": "Fermeture",
+      "levelClosed": "Impraticable",
       "levelAlert": "Alerte",
       "levelVigilance": "Vigilance"
     },
@@ -188,12 +188,12 @@
     "sensitiveAreas": "Zones sensibles",
     "vigilance": "Zones de vigilance",
     "vigilanceLevelPrefix": {
-      "closed": "Fermeture d’itinéraire",
+      "closed": "Impraticable",
       "alert": "Vigilance élevée",
       "vigilance": "Zone de vigilance",
       "info": "Information"
     },
-    "vigilancePracticabilityClosed": "Fermé / Interdit d’accès",
+    "vigilancePracticabilityClosed": "Impraticable / Interdit d’accès",
     "vigilancePracticabilityConditions": "Praticable sous conditions",
     "vigilancePracticabilityPracticable": "Praticable",
     "forThe": "Du",

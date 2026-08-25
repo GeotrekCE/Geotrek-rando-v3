@@ -66,10 +66,11 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
               stroke="white"
               strokeWidth="1.5"
             ></circle>
-            <rect x="7" y="15" width="22" height="6" rx="3" fill="white"></rect>
+            <path d="M18 10v10" stroke="white" strokeWidth="3" strokeLinecap="round" />
+            <circle cx="18" cy="25" r="1.75" fill="white" />
           </svg>
           <span className="font-bold text-white text-xs desktop:text-sm uppercase tracking-wider">
-            <FormattedMessage id="resultCard.closed" defaultMessage="Fermé" />
+            <FormattedMessage id="resultCard.closed" defaultMessage="Impraticable" />
           </span>
         </div>
       )}

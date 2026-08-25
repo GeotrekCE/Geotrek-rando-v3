@@ -96,9 +96,9 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
               id={`details.vigilanceBanner.${mode}Title`}
               defaultMessage={
                 mode === 'closed'
-                  ? 'Cet itinéraire est actuellement fermé.'
+                  ? 'Cet itinéraire est actuellement impraticable.'
                   : mode === 'alert'
-                  ? 'Cet itinéraire est concerné par une vigilance élevée.'
+                  ? 'Cet itinéraire est concerné par au moins une Zone de vigilance élevée.'
                   : 'Cet itinéraire est concerné par au moins une zone de vigilance.'
               }
             />
@@ -108,9 +108,9 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
               id={`details.vigilanceBanner.${mode}Single`}
               defaultMessage={
                 mode === 'closed'
-                  ? 'Cet itinéraire est actuellement fermé : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les dates et motifs de fermeture.'
+                  ? 'Cet itinéraire est actuellement impraticable : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les dates et motifs de fermeture.'
                   : mode === 'alert'
-                  ? 'Cet itinéraire est concerné par une vigilance élevée : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.'
+                  ? 'Cet itinéraire est concerné par une Zone de vigilance élevée : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.'
                   : 'Cet itinéraire est concerné par une zone de vigilance : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les bons réflexes et conditions de praticabilité de vos activités.'
               }
               values={{ details: singleZoneDetails }}

@@ -68,7 +68,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
   if (isClosed) {
     practicabilityText = intl.formatMessage({
       id: 'details.vigilancePracticabilityClosed',
-      defaultMessage: 'Fermé / Interdit d’accès',
+      defaultMessage: 'Impraticable / Interdit d’accès',
     });
   } else if (area?.practicability === 'conditions') {
     practicabilityText = intl.formatMessage({
@@ -87,7 +87,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
     id: `details.vigilanceLevelPrefix.${levelMode}`,
     defaultMessage:
       levelMode === 'closed'
-        ? 'Fermeture d’itinéraire'
+        ? 'Impraticable'
         : levelMode === 'alert'
         ? 'Vigilance élevée'
         : levelMode === 'info'

@@ -105,7 +105,7 @@
       "closedPeriod": "Closed on the selected date range"
     },
     "resultCard": {
-      "closed": "Closed"
+      "closed": "Impracticable"
     },
     "textFilter": "Search...",
     "beginDateFilter": "Start date",
@@ -138,9 +138,9 @@
   },
   "details": {
     "vigilanceBanner": {
-      "closedTitle": "This trek is currently closed.",
+      "closedTitle": "This trek is currently impracticable.",
       "closedGeneric": "Please check the \"Vigilance areas\" section for dates and closure reasons.",
-      "closedSingle": "This trek is currently closed: {details}. Please check the \"Vigilance areas\" section for dates and closure reasons.",
+      "closedSingle": "This trek is currently impracticable: {details}. Please check the \"Vigilance areas\" section for dates and closure reasons.",
       "alertTitle": "This trek is affected by high vigilance.",
       "alertGeneric": "Please check the \"Vigilance areas\" section to learn more about risks and activity conditions.",
       "alertSingle": "This trek is affected by high vigilance: {details}. Please check the \"Vigilance areas\" section to learn more about risks and activity conditions.",
@@ -148,7 +148,7 @@
       "vigilanceGeneric": "Please check the \"Vigilance areas\" section for recommendations and activity conditions.",
       "vigilanceSingle": "This trek is affected by a vigilance area: {details}. Please check the \"Vigilance areas\" section for recommendations and activity conditions.",
       "moreInfoLink": "More information about Vigilance areas →",
-      "levelClosed": "Closure",
+      "levelClosed": "Impracticable",
       "levelAlert": "Alert",
       "levelVigilance": "Vigilance"
     },
@@ -188,12 +188,12 @@
     "sensitiveAreas": "Sensitive areas",
     "vigilance": "Vigilance areas",
     "vigilanceLevelPrefix": {
-      "closed": "Trek closure",
+      "closed": "Impracticable",
       "alert": "High alert",
       "vigilance": "Vigilance area",
       "info": "Information"
     },
-    "vigilancePracticabilityClosed": "Closed / Access forbidden",
+    "vigilancePracticabilityClosed": "Impracticable / Access forbidden",
     "vigilancePracticabilityConditions": "Practicable under conditions",
     "vigilancePracticabilityPracticable": "Practicable",
     "forThe": "From",
