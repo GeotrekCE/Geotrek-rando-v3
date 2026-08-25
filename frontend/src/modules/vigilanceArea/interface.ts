@@ -1,7 +1,14 @@
 import { FileFromAttachment, GeometryObject, RawAttachment, RawGeometryObject } from 'modules/interface';
 import { VigilanceAreaType } from 'modules/vigilanceAreaType/interface';
+import { VigilanceAreaLevel } from 'modules/vigilanceAreaLevel/interface';
+import { Source } from 'modules/source/interface';
 
-export type Practicability = 'closed' | 'conditions' | 'practicable';
+export type Practicability =
+  | 'closed'
+  | 'not_practicable'
+  | 'conditions'
+  | 'under_condition_practicable'
+  | 'practicable';
 
 export interface RawVigilanceArea {
   id: number;
@@ -30,7 +37,7 @@ export interface RawVigilanceArea {
   update_datetime?: string;
   date_update?: string;
   criticality?: 'alert' | 'vigilance' | 'info' | string;
-  vigilance_level?: 'alert' | 'vigilance' | 'info' | string;
+  vigilance_level?: number | string | null;
 }
 
 export interface VigilanceArea {
@@ -38,6 +45,8 @@ export interface VigilanceArea {
   name: string;
   geometry: GeometryObject;
   type: VigilanceAreaType;
+  level?: VigilanceAreaLevel | null;
+  color?: string | null;
   practicability: Practicability;
   description?: string | null;
   practicalInfo?: string | null;
@@ -49,4 +58,5 @@ export interface VigilanceArea {
   updateDatetime?: string | null;
   attachments?: FileFromAttachment[];
   criticality?: 'alert' | 'vigilance' | 'info' | string | null;
+  sources?: Source[];
 }

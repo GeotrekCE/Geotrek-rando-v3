@@ -17,7 +17,9 @@ export const fetchVigilanceArea = (id: number, query: APIQuery): Promise<RawVigi
   return GeotrekAPI.get(`/vigilancearea/${id}/`, { params: query })
     .then(r => r.data)
     .catch(error => {
-      console.warn(`Failed to fetch vigilancearea ${id}:`, error);
+      if (error?.status !== 404 && error?.response?.status !== 404) {
+        console.warn(`Failed to fetch vigilancearea ${id}:`, error);
+      }
       return null;
     });
 };

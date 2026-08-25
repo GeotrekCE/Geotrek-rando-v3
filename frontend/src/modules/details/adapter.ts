@@ -215,9 +215,15 @@ export const adaptResults = ({
 
 export const sortVigilanceAreas = (areas: any[] = []): any[] => {
   return [...areas].sort((firstArea, secondArea) => {
-    // 1. Closures ('closed') come first
-    const isFirstClosed = firstArea.practicability === 'closed' || firstArea.closed === true;
-    const isSecondClosed = secondArea.practicability === 'closed' || secondArea.closed === true;
+    // 1. Closures ('closed' or 'not_practicable') come first
+    const isFirstClosed =
+      firstArea.practicability === 'closed' ||
+      firstArea.practicability === 'not_practicable' ||
+      firstArea.closed === true;
+    const isSecondClosed =
+      secondArea.practicability === 'closed' ||
+      secondArea.practicability === 'not_practicable' ||
+      secondArea.closed === true;
     if (isFirstClosed && !isSecondClosed) return -1;
     if (!isFirstClosed && isSecondClosed) return 1;
 

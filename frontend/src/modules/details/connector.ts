@@ -13,7 +13,7 @@ import { getInfrastructure } from 'modules/infrastructure/connector';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { getTouristicContentsNearTarget } from 'modules/touristicContent/connector';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
-import { getVigilanceAreasForTrek } from 'modules/vigilanceArea/connector';
+import { getVigilanceAreas, getVigilanceAreasForTrek } from 'modules/vigilanceArea/connector';
 import { adaptViewPoints } from 'modules/viewPoint/adapter';
 import { getTrekRating } from '../trekRating/connector';
 import { getTrekRatingScale } from '../trekRatingScale/connector';
@@ -83,9 +83,11 @@ export const getDetails = async (
       getGlobalConfig().enableSensitiveAreas && displayRelatedSensitiveAreas === true
         ? getSensitiveAreas('trek', rawDetails.properties.id, language)
         : [],
-      getGlobalConfig().enableVigilanceAreas &&
-      rawDetails.properties.published_vigilance_areas?.length
-        ? getVigilanceAreasForTrek(rawDetails.properties.published_vigilance_areas, language)
+      getGlobalConfig().enableVigilanceAreas
+        ? rawDetails.properties.published_vigilance_areas &&
+          rawDetails.properties.published_vigilance_areas.length > 0
+          ? getVigilanceAreasForTrek(rawDetails.properties.published_vigilance_areas, language)
+          : getVigilanceAreas(language, { trek: id })
         : [],
     ]);
     const childrenGeometry = await Promise.all(

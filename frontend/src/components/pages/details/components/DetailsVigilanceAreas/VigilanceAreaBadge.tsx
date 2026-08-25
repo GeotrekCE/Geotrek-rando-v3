@@ -1,6 +1,8 @@
 import React from 'react';
 
 export interface VigilanceAreaBadgeProps {
+  typePictogramUrl?: string | null;
+  levelPictogramUrl?: string | null;
   pictogramUrl?: string | null;
   levelMode?: 'closed' | 'alert' | 'vigilance' | 'info';
   size?: number;
@@ -9,6 +11,8 @@ export interface VigilanceAreaBadgeProps {
 }
 
 export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
+  typePictogramUrl,
+  levelPictogramUrl,
   pictogramUrl,
   levelMode,
   size = 32,
@@ -17,17 +21,7 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
 }) => {
   const isClosedState = isClosed || levelMode === 'closed';
 
-  if (pictogramUrl) {
-    return (
-      <img
-        src={pictogramUrl}
-        alt=""
-        style={{ width: `${size}px`, height: `${size}px` }}
-        className={`object-contain shrink-0 bg-white rounded-full p-0.5 ${className}`}
-      />
-    );
-  }
-
+  // Priority 1: Closed / Impraticable icon (Red circle with white exclamation mark)
   if (isClosedState) {
     return (
       <svg
@@ -55,6 +49,31 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
     );
   }
 
+  // Priority 2: Area TYPE pictogram from API
+  const typePicto = typePictogramUrl ?? pictogramUrl;
+  if (typePicto) {
+    return (
+      <img
+        src={typePicto}
+        alt=""
+        style={{ width: `${size}px`, height: `${size}px` }}
+        className={`object-contain shrink-0 bg-white rounded-full p-0.5 ${className}`}
+      />
+    );
+  }
+
+  // Priority 3: Area LEVEL pictogram from API
+  if (levelPictogramUrl) {
+    return (
+      <img
+        src={levelPictogramUrl}
+        alt=""
+        style={{ width: `${size}px`, height: `${size}px` }}
+        className={`object-contain shrink-0 bg-white rounded-full p-0.5 ${className}`}
+      />
+    );
+  }
+
   if (levelMode === 'alert') {
     return (
       <svg
@@ -75,6 +94,27 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
         />
         <line x1="12" y1="9" x2="12" y2="13" />
         <line x1="12" y1="17" x2="12.01" y2="17" />
+      </svg>
+    );
+  }
+
+  if (levelMode === 'info') {
+    return (
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#1257A8"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={`shrink-0 ${className}`}
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="10" fill="white" />
+        <line x1="12" y1="8" x2="12" y2="12" />
+        <line x1="12" y1="16" x2="12.01" y2="16" />
       </svg>
     );
   }

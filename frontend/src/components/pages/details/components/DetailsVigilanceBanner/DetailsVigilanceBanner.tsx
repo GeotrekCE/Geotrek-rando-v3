@@ -22,18 +22,40 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
     return null;
   }
 
-  // Check if any area has high criticality / alert
+  const hasClosedArea =
+    isClosed ||
+    publishedVigilanceAreas.some(
+      (area: any) =>
+        area?.practicability === 'closed' ||
+        area?.practicability === 'not_practicable' ||
+        area?.closed === true,
+    );
+
   const hasAlertArea = publishedVigilanceAreas.some((area: any) => {
-    const level = area?.level ?? area?.criticality;
-    return level === 'alert' || level === 'high' || level === '3';
+    const levelNum =
+      typeof area?.level === 'object' && area?.level !== null ? area.level.level : area?.level;
+    return (
+      area?.criticality === 'alert' ||
+      area?.criticality === 'high' ||
+      levelNum === 1 ||
+      levelNum === '1'
+    );
   });
 
-  // Determine banner mode: 'closed' | 'alert' | 'vigilance'
-  let mode: 'closed' | 'alert' | 'vigilance' = 'vigilance';
-  if (isClosed) {
+  const hasVigilanceArea = publishedVigilanceAreas.some((area: any) => {
+    const levelNum =
+      typeof area?.level === 'object' && area?.level !== null ? area.level.level : area?.level;
+    return area?.criticality === 'vigilance' || levelNum === 2 || levelNum === '2';
+  });
+
+  // Determine banner mode: 'closed' | 'alert' | 'vigilance' | 'info'
+  let mode: 'closed' | 'alert' | 'vigilance' | 'info' = 'info';
+  if (hasClosedArea) {
     mode = 'closed';
   } else if (hasAlertArea) {
     mode = 'alert';
+  } else if (hasVigilanceArea) {
+    mode = 'vigilance';
   }
 
   // Single zone citation model
@@ -47,7 +69,13 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
         ? singleArea.level
         : intl.formatMessage({
             id: `details.vigilanceBanner.level${
-              mode === 'closed' ? 'Closed' : mode === 'alert' ? 'Alert' : 'Vigilance'
+              mode === 'closed'
+                ? 'Closed'
+                : mode === 'alert'
+                  ? 'Alert'
+                  : mode === 'info'
+                    ? 'Info'
+                    : 'Vigilance'
             }`,
           });
     const typeName =
@@ -65,44 +93,49 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
 
   const primaryArea = singleArea || publishedVigilanceAreas[0];
   const primaryAreaType = primaryArea?.type ?? primaryArea?.vigilance_area_type;
-  const singleAreaPicto =
+  const typePicto =
     typeof primaryAreaType === 'object' && primaryAreaType !== null
       ? primaryAreaType.pictogramUrl ?? primaryAreaType.pictogram ?? primaryAreaType.pictogramUri
-      : primaryArea?.pictogramUrl ?? primaryArea?.pictogram;
+      : primaryArea?.typePictogramUrl ?? primaryArea?.pictogramUrl;
+
+  const levelPicto =
+    primaryArea?.level?.pictogramUrl ??
+    primaryArea?.level?.pictogram ??
+    primaryArea?.levelPictogramUrl;
+
+  const primaryAreaColor = primaryArea?.color || primaryArea?.level?.color;
+  const bannerColor =
+    primaryAreaColor ??
+    (mode === 'closed'
+      ? 'var(--color-vigilance-closed)'
+      : mode === 'alert'
+        ? 'var(--color-vigilance-closed)'
+        : mode === 'info'
+          ? '#1257A8'
+          : 'var(--color-vigilance-warning)');
 
   return (
     <div
       id="details_vigilanceBanner"
       data-encart-level={encartLevel}
+      style={{
+        borderLeftColor: bannerColor,
+        backgroundColor: `color-mix(in srgb, ${bannerColor} 10%, white)`,
+      }}
       className={cn(
-        'my-4 p-4 desktop:px-5 desktop:py-4 rounded-[12px] border-l-[4px] border-solid transition-all',
-        isRedVariant
-          ? 'bg-[color-mix(in_srgb,var(--color-vigilance-closed)_10%,white)] border-l-vigilanceClosed text-greyDarkColored'
-          : 'bg-[color-mix(in_srgb,var(--color-vigilance-warning)_10%,white)] border-l-vigilanceWarning text-greyDarkColored',
+        'my-4 p-4 desktop:px-5 desktop:py-4 rounded-[12px] border-l-[4px] border-solid transition-all text-greyDarkColored',
         className,
       )}
     >
       <div className="flex items-center gap-[10px] mb-3">
         <VigilanceAreaBadge
-          pictogramUrl={singleAreaPicto}
+          levelPictogramUrl={levelPicto}
           levelMode={mode}
-          isClosed={isClosed}
+          isClosed={hasClosedArea}
           size={24}
         />
 
         <p className="text-[14px] leading-[1.5] m-0 text-greyDarkColored">
-          <strong>
-            <FormattedMessage
-              id={`details.vigilanceBanner.${mode}Title`}
-              defaultMessage={
-                mode === 'closed'
-                  ? 'Cet itinéraire est actuellement impraticable.'
-                  : mode === 'alert'
-                  ? 'Cet itinéraire est concerné par au moins une Zone de vigilance élevée.'
-                  : 'Cet itinéraire est concerné par au moins une zone de vigilance.'
-              }
-            />
-          </strong>{' '}
           {isSingleZone && singleZoneDetails ? (
             <FormattedMessage
               id={`details.vigilanceBanner.${mode}Single`}
@@ -110,22 +143,42 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
                 mode === 'closed'
                   ? 'Cet itinéraire est actuellement impraticable : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les dates et motifs de fermeture.'
                   : mode === 'alert'
-                  ? 'Cet itinéraire est concerné par une Zone de vigilance élevée : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.'
-                  : 'Cet itinéraire est concerné par une zone de vigilance : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les bons réflexes et conditions de praticabilité de vos activités.'
+                    ? 'Cet itinéraire est concerné par une Zone de vigilance élevée : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.'
+                    : mode === 'info'
+                      ? 'Cet itinéraire est concerné par une zone d’information : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les bons réflexes.'
+                      : 'Cet itinéraire est concerné par une zone de vigilance : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les bons réflexes et conditions de praticabilité de vos activités.'
               }
               values={{ details: singleZoneDetails }}
             />
           ) : (
-            <FormattedMessage
-              id={`details.vigilanceBanner.${mode}Generic`}
-              defaultMessage={
-                mode === 'closed'
-                  ? 'Consultez la section « Zones de vigilance » pour en savoir plus sur les dates et motifs de fermeture.'
-                  : mode === 'alert'
-                  ? 'Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.'
-                  : 'Consultez la section « Zones de vigilance » pour en savoir plus sur les bons réflexes et conditions de praticabilité de vos activités.'
-              }
-            />
+            <>
+              <strong>
+                <FormattedMessage
+                  id={`details.vigilanceBanner.${mode}Title`}
+                  defaultMessage={
+                    mode === 'closed'
+                      ? 'Cet itinéraire est actuellement impraticable.'
+                      : mode === 'alert'
+                        ? 'Cet itinéraire est concerné par au moins une Zone de vigilance élevée.'
+                        : mode === 'info'
+                          ? 'Cet itinéraire est concerné par au moins une zone d’information.'
+                          : 'Cet itinéraire est concerné par au moins une zone de vigilance.'
+                  }
+                />
+              </strong>{' '}
+              <FormattedMessage
+                id={`details.vigilanceBanner.${mode}Generic`}
+                defaultMessage={
+                  mode === 'closed'
+                    ? 'Consultez la section « Zones de vigilance » pour en savoir plus sur les dates et motifs de fermeture.'
+                    : mode === 'alert'
+                      ? 'Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.'
+                      : mode === 'info'
+                        ? 'Consultez la section « Zones de vigilance » pour en savoir plus sur les bons réflexes et conseils.'
+                        : 'Consultez la section « Zones de vigilance » pour en savoir plus sur les bons réflexes et conditions de praticabilité de vos activités.'
+                }
+              />
+            </>
           )}
         </p>
       </div>

@@ -14,6 +14,8 @@ export type PropsType = {
 };
 
 const createBadgeIcon = (
+  typePictogramUri: string | null | undefined,
+  levelPictogramUri: string | null | undefined,
   pictogramUri: string | null | undefined,
   levelMode: 'closed' | 'alert' | 'vigilance' | 'info',
   isHovered: boolean,
@@ -35,7 +37,13 @@ const createBadgeIcon = (
         transition: 'transform 0.2s ease, filter 0.2s ease',
       }}
     >
-      <VigilanceAreaBadge pictogramUrl={pictogramUri} levelMode={levelMode} size={size} />
+      <VigilanceAreaBadge
+        typePictogramUrl={typePictogramUri}
+        levelPictogramUrl={levelPictogramUri}
+        pictogramUrl={pictogramUri}
+        levelMode={levelMode}
+        size={size}
+      />
     </div>,
   );
 
@@ -53,14 +61,28 @@ const VigilanceAreaPolygonItem: React.FC<{
   colorHex: string;
   levelMode: 'closed' | 'alert' | 'vigilance' | 'info';
   typeName?: string;
+  typePictogramUri?: string | null;
+  levelPictogramUri?: string | null;
   pictogramUri?: string | null;
   positions: RawCoordinate2D[];
   centroid: RawCoordinate2D;
   isHovered: boolean;
-}> = ({ id, name, colorHex, levelMode, typeName, pictogramUri, positions, centroid, isHovered }) => {
+}> = ({
+  id,
+  name,
+  colorHex,
+  levelMode,
+  typeName,
+  typePictogramUri,
+  levelPictogramUri,
+  pictogramUri,
+  positions,
+  centroid,
+  isHovered,
+}) => {
   const icon = useMemo(
-    () => createBadgeIcon(pictogramUri, levelMode, isHovered),
-    [pictogramUri, levelMode, isHovered],
+    () => createBadgeIcon(typePictogramUri, levelPictogramUri, pictogramUri, levelMode, isHovered),
+    [typePictogramUri, levelPictogramUri, pictogramUri, levelMode, isHovered],
   );
 
   return (
@@ -98,52 +120,68 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
       return null;
     }
     return contents
-      .map(({ id, name, colorHex, levelMode, typeName, geometry, pictogramUri }) => {
-        if (!geometry || !geometry.type || !geometry.coordinates) {
-          return [];
-        }
-        if (geometry.type === 'MultiPolygon') {
-          return geometry.coordinates.flatMap((polygon: any, polygonIdx: number) =>
-            polygon.map((line: any, lineIdx: number) => {
+      .map(
+        ({
+          id,
+          name,
+          colorHex,
+          levelMode,
+          typeName,
+          geometry,
+          typePictogramUri,
+          levelPictogramUri,
+          pictogramUri,
+        }) => {
+          if (!geometry || !geometry.type || !geometry.coordinates) {
+            return [];
+          }
+          if (geometry.type === 'MultiPolygon') {
+            return geometry.coordinates.flatMap((polygon: any, polygonIdx: number) =>
+              polygon.map((line: any, lineIdx: number) => {
+                const positions: RawCoordinate2D[] = line.map((point: any): RawCoordinate2D => [
+                  typeof point.y === 'number' ? point.y : point[1],
+                  typeof point.x === 'number' ? point.x : point[0],
+                ]);
+                return {
+                  key: `${id}-${polygonIdx}-${lineIdx}`,
+                  id,
+                  name,
+                  colorHex,
+                  levelMode,
+                  typeName,
+                  typePictogramUri,
+                  levelPictogramUri,
+                  pictogramUri,
+                  positions,
+                  centroid: getPolygonCentroid(positions),
+                };
+              }),
+            );
+          }
+          if (geometry.type === 'Polygon') {
+            return geometry.coordinates.map((line: any, lineIdx: number) => {
               const positions: RawCoordinate2D[] = line.map((point: any): RawCoordinate2D => [
                 typeof point.y === 'number' ? point.y : point[1],
                 typeof point.x === 'number' ? point.x : point[0],
               ]);
               return {
-                key: `${id}-${polygonIdx}-${lineIdx}`,
+                key: `${id}-${lineIdx}`,
                 id,
                 name,
                 colorHex,
                 levelMode,
                 typeName,
+                typePictogramUri,
+                levelPictogramUri,
                 pictogramUri,
                 positions,
                 centroid: getPolygonCentroid(positions),
               };
-            }),
-          );
-        }
-        if (geometry.type === 'Polygon') {
-          return geometry.coordinates.map((line: any, lineIdx: number) => {
-            const positions: RawCoordinate2D[] = line.map((point: any): RawCoordinate2D => [
-              typeof point.y === 'number' ? point.y : point[1],
-              typeof point.x === 'number' ? point.x : point[0],
-            ]);
-            return {
-              key: `${id}-${lineIdx}`,
-              id,
-              name,
-              colorHex,
-              levelMode,
-              typeName,
-              pictogramUri,
-              positions,
-              centroid: getPolygonCentroid(positions),
-            };
-          });
-        }
-        return [];
-      })
+            });
+          }
+          return [];
+        },
+      )
       .flat();
   }, [contents]);
 
