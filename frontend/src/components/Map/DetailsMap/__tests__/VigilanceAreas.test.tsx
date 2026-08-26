@@ -15,7 +15,7 @@ jest.mock('react-leaflet', () => ({
 describe('VigilanceAreas Leaflet Map Component', () => {
   it('renders nothing when contents is undefined or empty', () => {
     const { container } = render(<VigilanceAreas contents={[]} />);
-    expect(container.firstChild).toBeNull();
+    expect(container).toBeEmptyDOMElement();
   });
 
   it('renders Polygon and Popup for VigilanceAreaGeometry contents', () => {
@@ -44,7 +44,7 @@ describe('VigilanceAreas Leaflet Map Component', () => {
 
     const polygon = getByTestId('leaflet-polygon');
     expect(polygon).toBeInTheDocument();
-    expect(polygon.getAttribute('data-color')).toBe('#901A1A');
+    expect(polygon).toHaveAttribute('data-color', '#901A1A');
 
     expect(getByText('Faune')).toBeInTheDocument();
     expect(getByText('Nidification Cigogne')).toBeInTheDocument();

@@ -29,7 +29,6 @@ import { DetailsAndMapProvider } from '../details/DetailsAndMapContext';
 import { VisibleSectionProvider } from '../details/VisibleSectionContext';
 import { useOnScreenSection } from '../details/hooks/useHighlightedSection';
 import { theme } from '../../../../tailwind.config';
-import { getGlobalConfig } from 'modules/utils/api.config';
 
 interface TouristicContentUIProps {
   touristicContentUrl: string | string[] | undefined;

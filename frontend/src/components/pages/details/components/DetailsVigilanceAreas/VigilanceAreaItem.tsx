@@ -5,12 +5,12 @@ import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapC
 import { FileFromAttachment } from 'modules/interface';
 import { Source } from 'modules/source/interface';
 import { formatVigilancePeriod } from 'modules/vigilanceArea/utils';
+import { cn } from 'services/utils/cn';
 import { Paperclip } from 'components/Icons/Paperclip';
 import { VigilanceAreaBadge } from './VigilanceAreaBadge';
-import { cn } from 'services/utils/cn';
 
 interface VigilanceAreaItemProps {
-  area: any;
+  area: Record<string, any>;
   index?: number;
   defaultOpen?: boolean;
   className?: string;
@@ -62,15 +62,16 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
   // Dates
   const startDateStr = area?.startDate ?? area?.start_date;
   const endDateStr = area?.endDate ?? area?.end_date;
-  const startDate = startDateStr ? new Date(startDateStr) : null;
-  const endDate = endDateStr ? new Date(endDateStr) : null;
 
   // Description & Info
   const description = area?.description ?? '';
   const practicalInfo = area?.practicalInfo ?? area?.practical_info ?? '';
   const externalUrl = area?.externalInfoUrl ?? area?.external_info_url ?? null;
   const updateDatetimeStr = area?.updateDatetime ?? area?.update_datetime ?? null;
-  const updateDatetime = updateDatetimeStr ? new Date(updateDatetimeStr) : null;
+  const updateDatetime =
+    typeof updateDatetimeStr === 'string' || typeof updateDatetimeStr === 'number' || updateDatetimeStr instanceof Date
+      ? new Date(updateDatetimeStr)
+      : null;
   const sources = area?.sources || [];
   const files: FileFromAttachment[] = area?.attachments || [];
   const activeDays = area?.activeDays || area?.active_days || [];
@@ -133,7 +134,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
   return (
     <div
       id={`details_vigilanceArea_${id}`}
-      onMouseEnter={() => setHoveredVigilanceAreaId(id)}
+      onMouseEnter={() => setHoveredVigilanceAreaId(String(id))}
       onMouseLeave={() => setHoveredVigilanceAreaId(null)}
       style={{ borderColor: itemColor }}
       className={cn(
@@ -147,15 +148,10 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
         aria-controls={`vigilance-body-${id}`}
-        style={{
-          backgroundColor: `color-mix(in srgb, ${itemColor} 10%, white)`,
-        }}
-        className={cn(
-          'w-full p-4 desktop:p-5 flex items-start justify-between gap-3 text-left transition-colors focus:outline-none hover:opacity-90',
-        )}
+        className="w-full p-4 desktop:px-5 flex items-start justify-between gap-3 text-left bg-white hover:bg-neutral-50 transition-colors cursor-pointer"
       >
-        <div className="flex items-start gap-3 min-w-0 flex-1">
-          {/* Pictogram or 32x32 SVG Badge */}
+        <div className="flex items-start gap-3 min-w-0">
+          {/* Badge */}
           <VigilanceAreaBadge
             typePictogramUrl={typePicto}
             levelPictogramUrl={levelPicto}
@@ -231,17 +227,19 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
           className="p-4 desktop:px-5 desktop:pb-5 bg-white space-y-4 text-sm text-greyDarkColored"
         >
           {/* 1. Description */}
-          {description && (
+          {Boolean(description) && (
             <div>
               <h4 className="font-bold mb-1 text-greyDarkColored">
                 <FormattedMessage id="details.description" defaultMessage="Description" />
               </h4>
-              <div className="content-WYSIWYG">{parse(description)}</div>
+              <div className="content-WYSIWYG">
+                {typeof description === 'string' ? parse(description) : null}
+              </div>
             </div>
           )}
 
           {/* 2. Recommandations */}
-          {practicalInfo && (
+          {Boolean(practicalInfo) && (
             <div>
               <h4 className="font-bold mb-1 text-greyDarkColored">
                 <FormattedMessage
@@ -249,7 +247,9 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
                   defaultMessage="Recommandations :"
                 />
               </h4>
-              <div className="content-WYSIWYG">{parse(practicalInfo)}</div>
+              <div className="content-WYSIWYG">
+                {typeof practicalInfo === 'string' ? parse(practicalInfo) : null}
+              </div>
             </div>
           )}
 

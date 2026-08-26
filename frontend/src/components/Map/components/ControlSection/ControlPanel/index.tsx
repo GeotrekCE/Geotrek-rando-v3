@@ -5,6 +5,7 @@ import { Signage } from 'components/Icons/Signage';
 import { Infrastructure } from 'components/Icons/Infrastructure';
 import { MapPin } from 'components/Icons/MapPin';
 import { ViewPoint } from 'components/Icons/ViewPoint';
+import { AlertTriangle } from 'components/Icons/AlertTriangle';
 import { Line } from './Line';
 import IconLocation from './IconLocation';
 import IconInfo from './IconInfo';
@@ -12,7 +13,6 @@ import IconDrapeau from './IconDrapeau';
 import IconPatrimoine from './IconPatrimoine';
 import IconOutdoorSite from './IconOutdoorSite';
 import IconOutdoorRoute from './IconOutdoorRoute';
-import { AlertTriangle } from 'components/Icons/AlertTriangle';
 import { ControlSectionProps } from '../ControlSection';
 
 export const ControlPanel: React.FC<ControlSectionProps & { id: string }> = ({

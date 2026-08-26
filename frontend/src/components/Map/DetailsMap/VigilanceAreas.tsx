@@ -68,7 +68,6 @@ const VigilanceAreaPolygonItem: React.FC<{
   centroid: RawCoordinate2D;
   isHovered: boolean;
 }> = ({
-  id,
   name,
   colorHex,
   levelMode,

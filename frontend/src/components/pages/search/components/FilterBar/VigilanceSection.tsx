@@ -5,9 +5,7 @@ import {
   CATEGORY_ID,
   HIDE_CLOSED_CONTENTS_ID,
   HIDE_CLOSED_TREKS_ID,
-  VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
   VIGILANCE_TYPE_CONTENTS_ID,
-  VIGILANCE_TYPE_EXCLUDE_ID,
   VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
 import { DateFilter, FilterState, Option } from 'modules/filters/interface';

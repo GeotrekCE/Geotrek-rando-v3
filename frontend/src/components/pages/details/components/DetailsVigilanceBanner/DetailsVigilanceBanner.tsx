@@ -88,15 +88,9 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
     singleZoneDetails = parts.join(' - ');
   }
 
-  const isRedVariant = mode === 'closed' || mode === 'alert';
   const encartLevel = mode === 'closed' ? 'fermeture' : mode;
 
   const primaryArea = singleArea || publishedVigilanceAreas[0];
-  const primaryAreaType = primaryArea?.type ?? primaryArea?.vigilance_area_type;
-  const typePicto =
-    typeof primaryAreaType === 'object' && primaryAreaType !== null
-      ? primaryAreaType.pictogramUrl ?? primaryAreaType.pictogram ?? primaryAreaType.pictogramUri
-      : primaryArea?.typePictogramUrl ?? primaryArea?.pictogramUrl;
 
   const levelPicto =
     primaryArea?.level?.pictogramUrl ??

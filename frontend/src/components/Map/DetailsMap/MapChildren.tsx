@@ -11,8 +11,8 @@ import { useContext } from 'react';
 import { useMediaPredicate } from 'react-media-hook';
 import { Infrastructure } from 'components/Icons/Infrastructure';
 import { ViewPoint } from 'modules/viewPoint/interface';
+import { VigilanceAreaGeometry } from 'modules/vigilanceArea/adapter';
 import { GeometryListProps } from './DetailsMap';
-
 import { MarkersWithIcon } from './MarkersWithIcon';
 import { PointReport } from './PointReport';
 import { PointsInformationDesk } from './PointsInformationDesk';
@@ -20,7 +20,6 @@ import { PointsReference } from './PointsReference';
 import { PointsSecondary } from './PointsSecondary';
 import { SensitiveAreas } from './SensitiveAreas';
 import { VigilanceAreas } from './VigilanceAreas';
-import { VigilanceAreaGeometry } from 'modules/vigilanceArea/adapter';
 import { GeometryList } from './GeometryList';
 import { TrekChildren } from './TrekChildren';
 import { Visibility } from './useDetailsMap';

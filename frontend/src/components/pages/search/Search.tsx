@@ -13,20 +13,22 @@ import {
   useFilterMenu,
   useFilterSubMenu,
 } from 'components/MobileFilterMenu';
-
 import { PageHead } from 'components/PageHead';
 import { FilterState } from 'modules/filters/interface';
 import { SearchMapDynamicComponent } from 'components/Map';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { useRouter } from 'next/router';
 import { cn } from 'services/utils/cn';
-import { countFiltersSelected } from '../../../modules/filters/utils';
+import { countFiltersSelected } from 'modules/filters/utils';
+import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
 import { ToggleFilterButton } from './components/ToggleFilterButton';
 import { useFilter } from './components/useFilters';
 import { useTrekResults } from './hooks/useTrekResults';
 import { useMapResults } from './hooks/useMapResults';
+
 import { ErrorFallback } from './components/ErrorFallback';
 import { getHoverId } from './utils';
 import { generateDetailsUrlFromType } from '../details/utils';
@@ -35,8 +37,6 @@ import { useTextFilter } from './hooks/useTextFilter';
 import { useDateFilter } from './hooks/useDateFilter';
 import { useTitle } from './hooks/useTitle';
 import { Pagination } from './components/Pagination';
-import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
-import { getGlobalConfig } from 'modules/utils/api.config';
 
 interface Props {
   language: string;

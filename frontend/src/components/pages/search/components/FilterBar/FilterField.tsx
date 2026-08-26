@@ -6,9 +6,6 @@ import { groupBy } from 'modules/utils/array';
 
 import { FormattedMessage } from 'react-intl';
 import { cn } from 'services/utils/cn';
-import { DateFilter, FilterState, Option } from '../../../../../modules/filters/interface';
-import { countFiltersSelected } from '../../../../../modules/filters/utils';
-import { getActivityColorClassName } from '../ResultCard/getActivityColor';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import {
   CATEGORY_ID,
@@ -21,6 +18,10 @@ import {
   VIGILANCE_TYPE_EXCLUDE_ID,
   VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
+
+import { DateFilter, FilterState, Option } from '../../../../../modules/filters/interface';
+import { countFiltersSelected } from '../../../../../modules/filters/utils';
+import { getActivityColorClassName } from '../ResultCard/getActivityColor';
 import SubFilterField from './SubFilterField';
 import VigilanceSection from './VigilanceSection';
 

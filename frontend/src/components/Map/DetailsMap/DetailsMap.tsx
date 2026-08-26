@@ -20,6 +20,7 @@ import {
 import { useTileLayer } from 'hooks/useTileLayer';
 import { TrekChildGeometry, TrekFamily } from 'modules/details/interface';
 import { SensitiveAreaGeometry } from 'modules/sensitiveArea/interface';
+import { VigilanceAreaGeometry } from 'modules/vigilanceArea/adapter';
 import { VisibleSectionContext } from 'components/pages/details/VisibleSectionContext';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { Check } from 'components/Icons/Check';
@@ -64,7 +65,7 @@ export interface GeometryListProps {
   id: string;
 }
 
-import { VigilanceAreaGeometry } from 'modules/vigilanceArea/adapter';
+
 
 export type PropsType = {
   mapId?: string;

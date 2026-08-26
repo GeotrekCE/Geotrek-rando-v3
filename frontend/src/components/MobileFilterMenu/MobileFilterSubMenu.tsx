@@ -4,7 +4,7 @@ import VigilanceSection from 'components/pages/search/components/FilterBar/Vigil
 import { groupBy } from 'modules/utils/array';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
-import { DateFilter, FilterCategory, FilterState, Option } from 'modules/filters/interface';
+import { DateFilter, FilterState, Option } from 'modules/filters/interface';
 
 import { FormattedMessage } from 'react-intl';
 import { useFilterBar } from 'components/pages/search/components/FilterBar/useFilterBar';
