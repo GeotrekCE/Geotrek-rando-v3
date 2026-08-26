@@ -2,13 +2,26 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { cn } from 'services/utils/cn';
 import { getGlobalConfig } from 'modules/utils/api.config';
+import { VigilanceArea } from 'modules/vigilanceArea/interface';
 import { VigilanceAreaBadge } from '../DetailsVigilanceAreas/VigilanceAreaBadge';
 
 interface DetailsVigilanceBannerProps {
   isClosed?: boolean;
-  publishedVigilanceAreas?: any[];
+  publishedVigilanceAreas?: VigilanceArea[];
   className?: string;
 }
+
+/**
+ * Safely accesses a raw or dynamic property on a VigilanceArea object
+ * without triggering ESLint no-explicit-any or TypeScript unsafe type assertions.
+ */
+const getVigilanceAreaProperty = (
+  area: unknown,
+  propertyName: string,
+): unknown => {
+  if (!area || typeof area !== 'object') return undefined;
+  return (area as Record<string, unknown>)[propertyName];
+};
 
 export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
   isClosed,
@@ -16,39 +29,43 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
   className,
 }) => {
   const intl = useIntl();
-  const hasAreas = publishedVigilanceAreas.length > 0;
+  const hasVigilanceAreas = publishedVigilanceAreas.length > 0;
 
-  if (!getGlobalConfig().enableVigilanceAreas || (!isClosed && !hasAreas)) {
+  if (!getGlobalConfig().enableVigilanceAreas || (!isClosed && !hasVigilanceAreas)) {
     return null;
   }
 
   const hasClosedArea =
     isClosed ||
-    publishedVigilanceAreas.some(
-      (area: any) =>
-        area?.practicability === 'closed' ||
-        area?.practicability === 'not_practicable' ||
-        area?.closed === true,
-    );
+    publishedVigilanceAreas.some((area: VigilanceArea) => {
+      const practicability = area.practicability ?? getVigilanceAreaProperty(area, 'practicability');
+      const closed = getVigilanceAreaProperty(area, 'closed');
+      return (
+        practicability === 'closed' ||
+        practicability === 'not_practicable' ||
+        closed === true
+      );
+    });
 
-  const hasAlertArea = publishedVigilanceAreas.some((area: any) => {
-    const levelNum =
-      typeof area?.level === 'object' && area?.level !== null ? area.level.level : area?.level;
+  const hasAlertArea = publishedVigilanceAreas.some((area: VigilanceArea) => {
+    const criticality = area.criticality ?? getVigilanceAreaProperty(area, 'criticality');
+    const levelObject = area.level ?? getVigilanceAreaProperty(area, 'level');
+    const levelNumber = typeof levelObject === 'object' && levelObject !== null ? (levelObject as Record<string, unknown>).level : levelObject;
     return (
-      area?.criticality === 'alert' ||
-      area?.criticality === 'high' ||
-      levelNum === 1 ||
-      levelNum === '1'
+      criticality === 'alert' ||
+      criticality === 'high' ||
+      String(levelNumber) === '1'
     );
   });
 
-  const hasVigilanceArea = publishedVigilanceAreas.some((area: any) => {
-    const levelNum =
-      typeof area?.level === 'object' && area?.level !== null ? area.level.level : area?.level;
-    return area?.criticality === 'vigilance' || levelNum === 2 || levelNum === '2';
+  const hasVigilanceArea = publishedVigilanceAreas.some((area: VigilanceArea) => {
+    const criticality = area.criticality ?? getVigilanceAreaProperty(area, 'criticality');
+    const levelObject = area.level ?? getVigilanceAreaProperty(area, 'level');
+    const levelNumber = typeof levelObject === 'object' && levelObject !== null ? (levelObject as Record<string, unknown>).level : levelObject;
+    return criticality === 'vigilance' || String(levelNumber) === '2';
   });
 
-  // Determine banner mode: 'closed' | 'alert' | 'vigilance' | 'info'
+  // Determine overall banner severity mode: 'closed' | 'alert' | 'vigilance' | 'info'
   let mode: 'closed' | 'alert' | 'vigilance' | 'info' = 'info';
   if (hasClosedArea) {
     mode = 'closed';
@@ -60,13 +77,13 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
 
   // Single zone citation model
   const isSingleZone = publishedVigilanceAreas.length === 1;
-  const singleArea = isSingleZone ? publishedVigilanceAreas[0] : null;
+  const singleVigilanceArea = isSingleZone ? publishedVigilanceAreas[0] : null;
 
-  let singleZoneDetails = '';
-  if (singleArea) {
+  let singleZoneSummary = '';
+  if (singleVigilanceArea) {
     const levelName =
-      typeof singleArea.level === 'string'
-        ? singleArea.level
+      typeof singleVigilanceArea.level === 'string'
+        ? singleVigilanceArea.level
         : intl.formatMessage({
             id: `details.vigilanceBanner.level${
               mode === 'closed'
@@ -78,28 +95,48 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
                     : 'Vigilance'
             }`,
           });
-    const typeName =
-      typeof singleArea.type === 'object' && singleArea.type !== null
-        ? singleArea.type.label ?? singleArea.type.name
-        : singleArea.type_name ?? singleArea.type ?? '';
-    const title = singleArea.title ?? singleArea.name ?? '';
 
-    const parts = [levelName, typeName, title].filter(Boolean);
-    singleZoneDetails = parts.join(' - ');
+    const typeObject = singleVigilanceArea.type ?? getVigilanceAreaProperty(singleVigilanceArea, 'type');
+    const typeName =
+      typeof typeObject === 'object' && typeObject !== null
+        ? String(
+            ((typeObject as unknown) as Record<string, unknown>).label ??
+              ((typeObject as unknown) as Record<string, unknown>).name ??
+              '',
+          )
+        : String(
+            getVigilanceAreaProperty(singleVigilanceArea, 'type_name') ??
+              getVigilanceAreaProperty(singleVigilanceArea, 'type') ??
+              '',
+          );
+    const title = String(
+      singleVigilanceArea.name ??
+        getVigilanceAreaProperty(singleVigilanceArea, 'title') ??
+        '',
+    );
+
+    const summaryParts = [levelName, typeName, title].filter(Boolean);
+    singleZoneSummary = summaryParts.join(' - ');
   }
 
-  const encartLevel = mode === 'closed' ? 'fermeture' : mode;
+  const bannerCssLevel = mode === 'closed' ? 'fermeture' : mode;
 
-  const primaryArea = singleArea || publishedVigilanceAreas[0];
+  const representativeArea = singleVigilanceArea || publishedVigilanceAreas[0];
+  const representativeLevel = representativeArea?.level ?? getVigilanceAreaProperty(representativeArea, 'level');
 
-  const levelPicto =
-    primaryArea?.level?.pictogramUrl ??
-    primaryArea?.level?.pictogram ??
-    primaryArea?.levelPictogramUrl;
+  const representativeLevelPictogram = (
+    representativeArea?.level?.pictogramUrl ??
+    getVigilanceAreaProperty(representativeLevel, 'pictogram') ??
+    getVigilanceAreaProperty(representativeArea, 'levelPictogramUrl') ??
+    null
+  ) as string | null;
 
-  const primaryAreaColor = primaryArea?.color || primaryArea?.level?.color;
-  const bannerColor =
-    primaryAreaColor ??
+  const representativeAreaColor = (representativeArea?.color ??
+    representativeArea?.level?.color ??
+    getVigilanceAreaProperty(representativeLevel, 'color') ??
+    null) as string | null;
+  const bannerBorderColor =
+    representativeAreaColor ??
     (mode === 'closed'
       ? 'var(--color-vigilance-closed)'
       : mode === 'alert'
@@ -111,10 +148,10 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
   return (
     <div
       id="details_vigilanceBanner"
-      data-encart-level={encartLevel}
+      data-encart-level={bannerCssLevel}
       style={{
-        borderLeftColor: bannerColor,
-        backgroundColor: `color-mix(in srgb, ${bannerColor} 10%, white)`,
+        borderLeftColor: bannerBorderColor,
+        backgroundColor: `color-mix(in srgb, ${bannerBorderColor} 10%, white)`,
       }}
       className={cn(
         'my-4 p-4 desktop:px-5 desktop:py-4 rounded-[12px] border-l-[4px] border-solid transition-all text-greyDarkColored',
@@ -123,14 +160,14 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
     >
       <div className="flex items-center gap-[10px] mb-3">
         <VigilanceAreaBadge
-          levelPictogramUrl={levelPicto}
+          levelPictogramUrl={representativeLevelPictogram}
           levelMode={mode}
           isClosed={hasClosedArea}
           size={24}
         />
 
         <p className="text-[14px] leading-[1.5] m-0 text-greyDarkColored">
-          {isSingleZone && singleZoneDetails ? (
+          {isSingleZone && singleZoneSummary ? (
             <FormattedMessage
               id={`details.vigilanceBanner.${mode}Single`}
               defaultMessage={
@@ -142,7 +179,7 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
                       ? 'Cet itinéraire est concerné par une zone d’information : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les bons réflexes.'
                       : 'Cet itinéraire est concerné par une zone de vigilance : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les bons réflexes et conditions de praticabilité de vos activités.'
               }
-              values={{ details: singleZoneDetails }}
+              values={{ details: singleZoneSummary }}
             />
           ) : (
             <>

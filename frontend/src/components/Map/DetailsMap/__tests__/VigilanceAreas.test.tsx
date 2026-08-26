@@ -3,13 +3,13 @@ import { render } from '@testing-library/react';
 import { VigilanceAreas } from '../VigilanceAreas';
 
 jest.mock('react-leaflet', () => ({
-  Polygon: ({ children, pathOptions }: any) => (
+  Polygon: ({ children, pathOptions }: { children?: React.ReactNode; pathOptions: { color: string } }) => (
     <div data-testid="leaflet-polygon" data-color={pathOptions.color}>
       {children}
     </div>
   ),
-  Marker: ({ children }: any) => <div data-testid="leaflet-marker">{children}</div>,
-  Popup: ({ children }: any) => <div data-testid="leaflet-popup">{children}</div>,
+  Marker: ({ children }: { children?: React.ReactNode }) => <div data-testid="leaflet-marker">{children}</div>,
+  Popup: ({ children }: { children?: React.ReactNode }) => <div data-testid="leaflet-popup">{children}</div>,
 }));
 
 describe('VigilanceAreas Leaflet Map Component', () => {

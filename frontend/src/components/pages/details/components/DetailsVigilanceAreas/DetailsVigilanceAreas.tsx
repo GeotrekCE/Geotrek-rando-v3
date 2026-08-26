@@ -1,9 +1,10 @@
 import React from 'react';
+import { VigilanceArea } from 'modules/vigilanceArea/interface';
 import { DetailsSection } from '../DetailsSection';
 import { VigilanceAreaItem } from './VigilanceAreaItem';
 
 interface DetailsVigilanceAreasProps {
-  publishedVigilanceAreas?: any[];
+  publishedVigilanceAreas?: VigilanceArea[];
   className?: string;
 }
 

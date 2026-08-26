@@ -4,13 +4,14 @@ import { FormattedDate, FormattedMessage, useIntl } from 'react-intl';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { FileFromAttachment } from 'modules/interface';
 import { Source } from 'modules/source/interface';
+import { VigilanceArea } from 'modules/vigilanceArea/interface';
 import { formatVigilancePeriod } from 'modules/vigilanceArea/utils';
 import { cn } from 'services/utils/cn';
 import { Paperclip } from 'components/Icons/Paperclip';
 import { VigilanceAreaBadge } from './VigilanceAreaBadge';
 
 interface VigilanceAreaItemProps {
-  area: Record<string, any>;
+  area: VigilanceArea | Record<string, unknown>;
   index?: number;
   defaultOpen?: boolean;
   className?: string;
@@ -25,57 +26,62 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const intl = useIntl();
 
-  const id = area?.id ?? `area-${index}`;
-  const title = area?.title ?? area?.name ?? '';
+  const rawArea = (area as unknown) as Record<string, unknown>;
+
+  const id = (rawArea?.id ?? `area-${index}`) as string | number;
+  const title = (rawArea?.title ?? rawArea?.name ?? '') as string;
 
   // Extract type label and pictogram
-  const typeObj = area?.type ?? area?.vigilance_area_type;
-  const typeName =
+  const typeObj = (rawArea?.type ?? rawArea?.vigilance_area_type) as Record<string, unknown> | null;
+  const typeName = (
     typeof typeObj === 'object' && typeObj !== null
       ? typeObj.label ?? typeObj.name ?? ''
-      : area?.type_name ?? (typeof typeObj === 'string' ? typeObj : '');
-  const typePicto =
+      : rawArea?.type_name ?? (typeof typeObj === 'string' ? typeObj : '')
+  ) as string;
+  const typePicto = (
     typeof typeObj === 'object' && typeObj !== null
       ? typeObj.pictogramUrl ?? typeObj.pictogram ?? typeObj.pictogramUri ?? null
-      : area?.typePictogramUrl ?? area?.pictogramUrl ?? area?.pictogram ?? null;
+      : rawArea?.typePictogramUrl ?? rawArea?.pictogramUrl ?? rawArea?.pictogram ?? null
+  ) as string | null;
 
-  const levelPicto = area?.level?.pictogramUrl ?? area?.level?.pictogram ?? area?.levelPictogramUrl ?? null;
+  const levelObj = rawArea?.level as Record<string, unknown> | null;
+  const levelPicto = (levelObj?.pictogramUrl ?? levelObj?.pictogram ?? rawArea?.levelPictogramUrl ?? null) as string | null;
 
   // Determine criticality / level
   const isClosed =
-    area?.practicability === 'closed' ||
-    area?.practicability === 'not_practicable' ||
-    area?.closed === true;
-  const levelNum = typeof area?.level === 'object' && area?.level !== null ? area.level.level : area?.level;
+    rawArea?.practicability === 'closed' ||
+    rawArea?.practicability === 'not_practicable' ||
+    rawArea?.closed === true;
+  const levelNum = typeof levelObj === 'object' && levelObj !== null ? levelObj.level : rawArea?.level;
 
   let levelMode: 'closed' | 'alert' | 'vigilance' | 'info' = 'vigilance';
   if (isClosed) {
     levelMode = 'closed';
-  } else if (area?.criticality === 'alert' || area?.criticality === 'high' || levelNum === 1 || levelNum === '1') {
+  } else if (rawArea?.criticality === 'alert' || rawArea?.criticality === 'high' || levelNum === 1 || levelNum === '1') {
     levelMode = 'alert';
-  } else if (area?.criticality === 'info' || levelNum === 3 || levelNum === '3') {
+  } else if (rawArea?.criticality === 'info' || levelNum === 3 || levelNum === '3') {
     levelMode = 'info';
   }
 
   const isRedVariant = levelMode === 'closed' || levelMode === 'alert';
 
   // Dates
-  const startDateStr = area?.startDate ?? area?.start_date;
-  const endDateStr = area?.endDate ?? area?.end_date;
+  const startDateStr = (rawArea?.startDate ?? rawArea?.start_date) as string | null;
+  const endDateStr = (rawArea?.endDate ?? rawArea?.end_date) as string | null;
 
   // Description & Info
-  const description = area?.description ?? '';
-  const practicalInfo = area?.practicalInfo ?? area?.practical_info ?? '';
-  const externalUrl = area?.externalInfoUrl ?? area?.external_info_url ?? null;
-  const updateDatetimeStr = area?.updateDatetime ?? area?.update_datetime ?? null;
+  const description = (rawArea?.description ?? '') as string;
+  const practicalInfo = (rawArea?.practicalInfo ?? rawArea?.practical_info ?? '') as string;
+  const externalUrl = (rawArea?.externalInfoUrl ?? rawArea?.external_info_url ?? null) as string | null;
+  const updateDatetimeStr = rawArea?.updateDatetime ?? rawArea?.update_datetime;
   const updateDatetime =
     typeof updateDatetimeStr === 'string' || typeof updateDatetimeStr === 'number' || updateDatetimeStr instanceof Date
       ? new Date(updateDatetimeStr)
       : null;
-  const sources = area?.sources || [];
-  const files: FileFromAttachment[] = area?.attachments || [];
-  const activeDays = area?.activeDays || area?.active_days || [];
-  const activeMonths = area?.activeMonths || area?.active_months || [];
+  const sources = (rawArea?.sources as Source[]) || [];
+  const files = (rawArea?.attachments as FileFromAttachment[]) || [];
+  const activeDays = (rawArea?.activeDays || rawArea?.active_days || []) as (number | string)[];
+  const activeMonths = (rawArea?.activeMonths || rawArea?.active_months || []) as (number | string)[];
   const headerPeriodText = formatVigilancePeriod({
     startDate: startDateStr,
     endDate: endDateStr,
@@ -127,8 +133,8 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
   const { setHoveredVigilanceAreaId } = useDetailsAndMapContext();
 
   const itemColor =
-    area?.color ||
-    area?.level?.color ||
+    (rawArea?.color as string) ||
+    ((rawArea?.level as Record<string, unknown> | null)?.color as string) ||
     (isRedVariant ? 'var(--color-vigilance-closed)' : 'var(--color-vigilance-warning)');
 
   return (
@@ -291,6 +297,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
                 {sources.map((src: Source, i: number) => (
                   <div key={i} className="flex items-center gap-2">
                     {src.pictogramUri && (
+                      // eslint-disable-next-line @next/next/no-img-element
                       <img src={src.pictogramUri} alt="" className="w-4 h-4 object-contain shrink-0" />
                     )}
                     {src.website ? (

@@ -92,7 +92,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
         });
       }
     }
-  }, [hasSelectedPractice]);
+  }, [hasSelectedPractice, setTrekDateFilter, trekDateFilter.beginDate, trekDateFilter.endDate]);
 
   useEffect(() => {
     if (getGlobalConfig().enableVigilanceAreas) {
@@ -108,7 +108,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
         });
       }
     }
-  }, [hasSelectedCategory]);
+  }, [hasSelectedCategory, setContentDateFilter, contentDateFilter.beginDate, contentDateFilter.endDate]);
 
   const {
     searchResults,

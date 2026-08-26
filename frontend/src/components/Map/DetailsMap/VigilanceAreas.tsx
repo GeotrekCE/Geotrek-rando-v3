@@ -56,7 +56,7 @@ const createBadgeIcon = (
 };
 
 const VigilanceAreaPolygonItem: React.FC<{
-  id: number;
+  id: string | number;
   name?: string;
   colorHex: string;
   levelMode: 'closed' | 'alert' | 'vigilance' | 'info';
@@ -135,11 +135,11 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
             return [];
           }
           if (geometry.type === 'MultiPolygon') {
-            return geometry.coordinates.flatMap((polygon: any, polygonIdx: number) =>
-              polygon.map((line: any, lineIdx: number) => {
-                const positions: RawCoordinate2D[] = line.map((point: any): RawCoordinate2D => [
-                  typeof point.y === 'number' ? point.y : point[1],
-                  typeof point.x === 'number' ? point.x : point[0],
+            return (geometry.coordinates as unknown as Array<Array<Array<[number, number] | { x: number; y: number }>>>).flatMap((polygon, polygonIdx: number) =>
+              polygon.map((line, lineIdx: number) => {
+                const positions: RawCoordinate2D[] = line.map((point): RawCoordinate2D => [
+                  typeof point === 'object' && 'y' in point ? point.y : point[1],
+                  typeof point === 'object' && 'x' in point ? point.x : point[0],
                 ]);
                 return {
                   key: `${id}-${polygonIdx}-${lineIdx}`,
@@ -158,10 +158,10 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
             );
           }
           if (geometry.type === 'Polygon') {
-            return geometry.coordinates.map((line: any, lineIdx: number) => {
-              const positions: RawCoordinate2D[] = line.map((point: any): RawCoordinate2D => [
-                typeof point.y === 'number' ? point.y : point[1],
-                typeof point.x === 'number' ? point.x : point[0],
+            return (geometry.coordinates as unknown as Array<Array<[number, number] | { x: number; y: number }>>).map((line, lineIdx: number) => {
+              const positions: RawCoordinate2D[] = line.map((point): RawCoordinate2D => [
+                typeof point === 'object' && 'y' in point ? point.y : point[0],
+                typeof point === 'object' && 'x' in point ? point.x : point[1],
               ]);
               return {
                 key: `${id}-${lineIdx}`,

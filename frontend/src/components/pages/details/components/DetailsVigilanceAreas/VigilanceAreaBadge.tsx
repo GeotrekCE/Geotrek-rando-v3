@@ -53,6 +53,7 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
   const typePicto = typePictogramUrl ?? pictogramUrl;
   if (typePicto) {
     return (
+      // eslint-disable-next-line @next/next/no-img-element
       <img
         src={typePicto}
         alt=""
@@ -65,6 +66,7 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
   // Priority 3: Area LEVEL pictogram from API
   if (levelPictogramUrl) {
     return (
+      // eslint-disable-next-line @next/next/no-img-element
       <img
         src={levelPictogramUrl}
         alt=""
