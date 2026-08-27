@@ -1,5 +1,6 @@
 import { mockRoute } from 'services/testing/utils';
 import { APIResponseForList } from 'services/api/interface';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { RawSource } from '../interface';
 
 export const mockSourcesResponse = (): APIResponseForList<RawSource> => ({
@@ -32,6 +33,8 @@ export const mockSourceRoute = (times: number): void =>
   mockRoute({
     route: '/source/',
     mockData: mockSourcesResponse(),
-    additionalQueries: {},
+    additionalQueries: {
+      page_size: getGlobalConfig().searchResultsPageSize,
+    },
     times,
   });
