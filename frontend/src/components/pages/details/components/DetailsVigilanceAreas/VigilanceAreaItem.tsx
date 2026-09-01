@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import parse from 'html-react-parser';
 import { FormattedDate, FormattedMessage, useIntl } from 'react-intl';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
@@ -23,7 +23,6 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
   defaultOpen = false,
   className,
 }) => {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
   const intl = useIntl();
 
   const rawArea = (area as unknown) as Record<string, unknown>;
@@ -130,26 +129,21 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
         : 'Zone de vigilance',
   });
 
-  const { setHoveredVigilanceAreaId } = useDetailsAndMapContext();
+  const { selectedVigilanceAreaId, setSelectedVigilanceAreaId, setHoveredVigilanceAreaId } =
+    useDetailsAndMapContext();
+
+  const isOpen = String(selectedVigilanceAreaId) === String(id);
+
+  const toggleOpen = () => {
+    setSelectedVigilanceAreaId(isOpen ? null : String(id));
+  };
 
   const itemColor =
     (rawArea?.color as string) ||
     ((rawArea?.level as Record<string, unknown> | null)?.color as string) ||
     (isRedVariant ? 'var(--color-vigilance-closed)' : 'var(--color-vigilance-warning)');
 
-  const getBgColorWithOpacity = (colorStr: string, alphaHex = '3B'): string => {
-    if (!colorStr) return 'transparent';
-    if (colorStr.startsWith('#')) {
-      if (colorStr.length === 7) return `${colorStr}${alphaHex}`;
-      if (colorStr.length === 4) {
-        const r = colorStr[1], g = colorStr[2], b = colorStr[3];
-        return `#${r}${r}${g}${g}${b}${b}${alphaHex}`;
-      }
-    }
-    return `color-mix(in srgb, ${colorStr} 23%, transparent)`;
-  };
-
-  const itemBgColor = getBgColorWithOpacity(itemColor, '3B');
+  const itemBgColor = `color-mix(in srgb, ${itemColor} 10%, white)`;
 
   return (
     <div
@@ -165,7 +159,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
       {/* Accordion Header */}
       <button
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleOpen}
         aria-expanded={isOpen}
         aria-controls={`vigilance-body-${id}`}
         style={{ backgroundColor: itemBgColor }}
@@ -257,39 +251,14 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
 
           {/* 2. Recommandations */}
           {Boolean(practicalInfo) && (
-            <div
-              className="p-4 desktop:p-5 rounded-xl space-y-2"
-              style={{ backgroundColor: itemBgColor }}
-            >
-              <div
-                className="flex items-center gap-2 font-bold"
-                style={{ color: itemColor }}
-              >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="shrink-0"
-                  aria-hidden="true"
-                >
-                  <rect width="18" height="18" x="3" y="3" rx="2" />
-                  <path d="M7 8h10" />
-                  <path d="M7 12h10" />
-                  <path d="M7 16h6" />
-                </svg>
-                <span>
-                  <FormattedMessage
-                    id="details.vigilanceRecommendations"
-                    defaultMessage="Recommandations"
-                  />
-                </span>
-              </div>
-              <div className="content-WYSIWYG text-greyDarkColored leading-relaxed">
+            <div>
+              <h4 className="font-bold mb-1 text-greyDarkColored">
+                <FormattedMessage
+                  id="details.vigilanceRecommendations"
+                  defaultMessage="Recommandations :"
+                />
+              </h4>
+              <div className="content-WYSIWYG leading-relaxed">
                 {typeof practicalInfo === 'string' ? parse(practicalInfo) : null}
               </div>
             </div>
@@ -373,41 +342,38 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
             </div>
           )}
 
-          {/* 7. Footer : Sources & Mis à jour le : */}
-          {(Boolean(sources && sources.length > 0) || Boolean(updateDatetime)) && (
-            <div className="text-xs text-greyDarkColored/70 pt-2 border-t border-solid border-greySoft/30 space-y-1">
-              {sources && sources.length > 0 && (
-                <div>
-                  <span className="font-semibold">
-                    <FormattedMessage id="details.vigilanceSources" defaultMessage="Source :" />
-                  </span>{' '}
-                  {sources.map((src: Source, i: number) => (
-                    <React.Fragment key={i}>
-                      {i > 0 && ' — '}
-                      {src.website ? (
-                        <a
-                          href={src.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="underline text-primary1 hover:text-primary1-light font-medium"
-                        >
-                          {src.name}
-                        </a>
-                      ) : (
-                        <span>{src.name}</span>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </div>
-              )}
+          {/* 7. Source(s) */}
+          {sources && sources.length > 0 && (
+            <p className="m-0">
+              <span className="font-bold">
+                <FormattedMessage id="details.vigilanceSources" defaultMessage="Source :" />
+              </span>{' '}
+              {sources.map((src: Source, i: number) => (
+                <React.Fragment key={i}>
+                  {i > 0 && ' — '}
+                  {src.website ? (
+                    <a
+                      href={src.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline text-primary1 hover:text-primary1-light font-medium"
+                    >
+                      {src.name}
+                    </a>
+                  ) : (
+                    <span>{src.name}</span>
+                  )}
+                </React.Fragment>
+              ))}
+            </p>
+          )}
 
-              {updateDatetime && (
-                <div>
-                  <FormattedMessage id="details.vigilanceUpdated" defaultMessage="Mis à jour le :" />{' '}
-                  <FormattedDate value={updateDatetime} year="numeric" month="long" day="numeric" />
-                </div>
-              )}
-            </div>
+          {/* 8. Date de mise à jour */}
+          {updateDatetime && (
+            <p className="text-xs italic text-greyDarkColored/70 pt-2 m-0">
+              <FormattedMessage id="details.vigilanceUpdated" defaultMessage="Mis à jour le" />{' '}
+              <FormattedDate value={updateDatetime} year="numeric" month="long" day="numeric" />
+            </p>
           )}
         </div>
       )}

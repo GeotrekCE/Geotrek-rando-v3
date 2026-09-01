@@ -8,7 +8,9 @@ jest.mock('react-leaflet', () => ({
       {children}
     </div>
   ),
-  Marker: ({ children }: { children?: React.ReactNode }) => <div data-testid="leaflet-marker">{children}</div>,
+  Marker: React.forwardRef(({ children }: { children?: React.ReactNode }, ref) => (
+    <div data-testid="leaflet-marker">{children}</div>
+  )),
   Popup: ({ children }: { children?: React.ReactNode }) => <div data-testid="leaflet-popup">{children}</div>,
 }));
 
@@ -48,5 +50,35 @@ describe('VigilanceAreas Leaflet Map Component', () => {
 
     expect(getByText(/Faune/)).toBeInTheDocument();
     expect(getByText('Nidification Cigogne')).toBeInTheDocument();
+  });
+
+  it('correctly handles adapted { x, y } coordinates without NaN error', () => {
+    const mockContents = [
+      {
+        id: '10',
+        name: 'Chasse en battue',
+        colorHex: '#C56600',
+        levelMode: 'vigilance' as const,
+        typeName: 'Chasse',
+        geometry: {
+          type: 'Polygon',
+          coordinates: [
+            [
+              { x: 1.32, y: 43.61 },
+              { x: 1.39, y: 43.58 },
+              { x: 1.38, y: 43.56 },
+              { x: 1.32, y: 43.61 },
+            ],
+          ],
+        },
+      },
+    ];
+
+    const { getByTestId, getByText } = render(<VigilanceAreas contents={mockContents as any} />);
+
+    const polygon = getByTestId('leaflet-polygon');
+    expect(polygon).toBeInTheDocument();
+    expect(polygon).toHaveAttribute('data-color', '#C56600');
+    expect(getByText('Chasse en battue')).toBeInTheDocument();
   });
 });

@@ -19,12 +19,12 @@ export const VigilanceAreaIcon: React.FC<GenericIconProps> = ({
       {...props}
     >
       <circle cx="18" cy="18" r="18" fill="white" />
-      <circle cx="18" cy="18" r="17" fill={color === 'currentColor' ? '#000000' : color} />
+      <circle cx="18" cy="18" r="17" fill={color} />
       <circle
         cx="18"
         cy="18"
         r="14"
-        fill={color === 'currentColor' ? '#000000' : color}
+        fill={color}
         stroke="white"
         strokeWidth="1.5"
       />

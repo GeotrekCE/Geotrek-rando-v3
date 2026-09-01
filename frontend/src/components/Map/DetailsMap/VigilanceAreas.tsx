@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { Marker, Polygon, Popup } from 'react-leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { DivIcon } from 'leaflet';
+import { DivIcon, Marker as LeafletMarker } from 'leaflet';
 import { FormattedMessage, useIntl } from 'react-intl';
 import parse from 'html-react-parser';
 import { VigilanceAreaGeometry } from 'modules/vigilanceArea/adapter';
@@ -15,6 +15,12 @@ import { getPolygonCentroid } from 'modules/utils/geometry';
 export type PropsType = {
   contents?: VigilanceAreaGeometry[];
 };
+
+const extractPositions = (coordinates: unknown[]): RawCoordinate2D[] =>
+  coordinates.map((point: any): RawCoordinate2D => [
+    typeof point === 'object' && 'y' in point ? point.y : point[1],
+    typeof point === 'object' && 'x' in point ? point.x : point[0],
+  ]);
 
 const createBadgeIcon = (
   typePictogramUri: string | null | undefined,
@@ -76,6 +82,7 @@ const VigilanceAreaPolygonItem: React.FC<{
   positions: RawCoordinate2D[];
   centroid: RawCoordinate2D;
   isHovered: boolean;
+  isSelected?: boolean;
 }> = ({
   id,
   name,
@@ -94,12 +101,14 @@ const VigilanceAreaPolygonItem: React.FC<{
   positions,
   centroid,
   isHovered,
+  isSelected = false,
 }) => {
   const intl = useIntl();
+  const isHighlighted = isHovered || isSelected;
 
   const icon = useMemo(
-    () => createBadgeIcon(typePictogramUri, levelPictogramUri, pictogramUri, levelMode, isHovered),
-    [typePictogramUri, levelPictogramUri, pictogramUri, levelMode, isHovered],
+    () => createBadgeIcon(typePictogramUri, levelPictogramUri, pictogramUri, levelMode, isHighlighted),
+    [typePictogramUri, levelPictogramUri, pictogramUri, levelMode, isHighlighted],
   );
 
   const isClosed =
@@ -144,6 +153,19 @@ const VigilanceAreaPolygonItem: React.FC<{
     isHeader: false,
   });
 
+  const { selectedVigilanceAreaId, setSelectedVigilanceAreaId } = useDetailsAndMapContext();
+  const markerRef = useRef<LeafletMarker | null>(null);
+
+  useEffect(() => {
+    if (
+      selectedVigilanceAreaId !== null &&
+      String(selectedVigilanceAreaId) !== String(id) &&
+      markerRef.current?.isPopupOpen()
+    ) {
+      markerRef.current.closePopup();
+    }
+  }, [selectedVigilanceAreaId, id]);
+
   const headerTitle = `${levelText}${typeName ? ` – ${typeName}` : ''}`;
 
   const getBgColorWithOpacity = (colorStr: string, alphaHex = '23'): string => {
@@ -162,98 +184,109 @@ const VigilanceAreaPolygonItem: React.FC<{
 
   const handleMoreInfoClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    setSelectedVigilanceAreaId(String(id));
     const element = document.getElementById(`details_vigilanceArea_${id}`);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
+  const isValidCentroid =
+    Array.isArray(centroid) &&
+    centroid.length >= 2 &&
+    typeof centroid[0] === 'number' &&
+    typeof centroid[1] === 'number' &&
+    !isNaN(centroid[0]) &&
+    !isNaN(centroid[1]);
+
   return (
     <>
-      <Polygon
-        positions={positions}
-        pathOptions={{
-          color: colorHex,
-          fillColor: colorHex,
-          fillOpacity: isHovered ? 0.6 : 0.25,
-          weight: isHovered ? 6 : 3,
-        }}
-      />
-      <Marker position={centroid} icon={icon}>
-        {name && (
-          <Popup className="vigilance-popup">
-            <div className="w-64 max-w-full overflow-hidden text-greyDarkColored font-sans">
-              {/* Header */}
-              <div
-                className="p-3 pr-7 flex items-center gap-2 font-bold text-sm"
-                style={{ backgroundColor: headerBgColor, color: colorHex }}
-              >
-                <VigilanceAreaBadge
-                  typePictogramUrl={typePictogramUri}
-                  levelPictogramUrl={levelPictogramUri}
-                  pictogramUrl={pictogramUri}
-                  levelMode={levelMode}
-                  size={20}
-                />
-                <span className="truncate">{headerTitle}</span>
-              </div>
+      {positions.length >= 3 && (
+        <Polygon
+          positions={positions}
+          pathOptions={{
+            color: colorHex,
+            fillColor: colorHex,
+            fillOpacity: isHighlighted ? 0.6 : 0.25,
+            weight: isHighlighted ? 6 : 3,
+          }}
+        />
+      )}
+      {isValidCentroid && (
+        <Marker ref={markerRef} position={centroid} icon={icon}>
+          {name && (
+            <Popup className="vigilance-popup">
+              <div className="w-64 max-w-full overflow-hidden text-greyDarkColored font-sans">
+                {/* Header */}
+                <div
+                  className="p-3 pr-7 flex items-center gap-2 font-bold text-sm"
+                  style={{ backgroundColor: headerBgColor, color: colorHex }}
+                >
+                  <VigilanceAreaBadge
+                    typePictogramUrl={typePictogramUri}
+                    levelPictogramUrl={levelPictogramUri}
+                    pictogramUrl={pictogramUri}
+                    levelMode={levelMode}
+                    size={20}
+                  />
+                  <span className="truncate">{headerTitle}</span>
+                </div>
 
-              {/* Body */}
-              <div className="p-3 bg-white space-y-2 text-xs">
-                {/* Title */}
-                <h4 className="font-bold text-greyDarkColored text-sm m-0 leading-snug">
-                  {name}
-                </h4>
+                {/* Body */}
+                <div className="p-3 bg-white space-y-2 text-xs">
+                  {/* Title */}
+                  <h4 className="font-bold text-greyDarkColored text-sm m-0 leading-snug">
+                    {name}
+                  </h4>
 
-                {/* Practicability */}
-                {practicabilityText && (
-                  <p className="font-bold m-0" style={{ color: colorHex }}>
-                    {practicabilityText}
-                  </p>
-                )}
+                  {/* Practicability */}
+                  {practicabilityText && (
+                    <p className="font-bold m-0" style={{ color: colorHex }}>
+                      {practicabilityText}
+                    </p>
+                  )}
 
-                {/* Period */}
-                {periodText && (
-                  <p className="m-0 text-greyDarkColored/80">
-                    <FormattedMessage id="details.vigilancePeriod" defaultMessage="Période concernée :" />{' '}
-                    {periodText}
-                  </p>
-                )}
+                  {/* Period */}
+                  {periodText && (
+                    <p className="m-0 text-greyDarkColored/80">
+                      <FormattedMessage id="details.vigilancePeriod" defaultMessage="Période concernée :" />{' '}
+                      {periodText}
+                    </p>
+                  )}
 
-                {/* Description */}
-                {Boolean(description) && (
-                  <div className="m-0 text-greyDarkColored/90 line-clamp-3 leading-snug [&>p]:m-0 [&>p]:inline">
-                    {typeof description === 'string' ? parse(description) : null}
+                  {/* Description */}
+                  {Boolean(description) && (
+                    <div className="m-0 text-greyDarkColored/90 line-clamp-3 leading-snug [&>p]:m-0 [&>p]:inline">
+                      {typeof description === 'string' ? parse(description) : null}
+                    </div>
+                  )}
+
+                  {/* Action Link */}
+                  <div className="pt-1">
+                    <a
+                      href={`#details_vigilanceArea_${id}`}
+                      onClick={handleMoreInfoClick}
+                      className="inline-flex items-center gap-1 font-bold text-primary1 hover:underline cursor-pointer"
+                    >
+                      <FormattedMessage id="details.knowMore" defaultMessage="Plus d'informations" />
+                      <span>→</span>
+                    </a>
                   </div>
-                )}
-
-                {/* Action Link */}
-                <div className="pt-1">
-                  <a
-                    href={`#details_vigilanceArea_${id}`}
-                    onClick={handleMoreInfoClick}
-                    className="inline-flex items-center gap-1 font-bold text-primary1 hover:underline cursor-pointer"
-                  >
-                    <FormattedMessage id="details.knowMore" defaultMessage="Plus d'informations" />
-                    <span>→</span>
-                  </a>
                 </div>
               </div>
-            </div>
-          </Popup>
-        )}
-      </Marker>
+            </Popup>
+          )}
+        </Marker>
+      )}
     </>
   );
 };
 
 export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
-  const { hoveredVigilanceAreaId } = useDetailsAndMapContext();
+  const { hoveredVigilanceAreaId, selectedVigilanceAreaId } = useDetailsAndMapContext();
 
   const polygons = useMemo(() => {
-    if (!contents || contents.length === 0) {
-      return null;
-    }
+    if (!contents || contents.length === 0) return null;
     return contents
       .map(
         ({
@@ -262,7 +295,6 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
           colorHex,
           levelMode,
           typeName,
-          geometry,
           typePictogramUri,
           levelPictogramUri,
           pictogramUri,
@@ -272,47 +304,18 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
           activeMonths,
           description,
           practicability,
+          geometry,
         }) => {
           if (!geometry || !geometry.type || !geometry.coordinates) {
             return [];
           }
-          if (geometry.type === 'MultiPolygon') {
-            return (geometry.coordinates as unknown as Array<Array<Array<[number, number] | { x: number; y: number }>>>).flatMap((polygon, polygonIdx: number) =>
-              polygon.map((line, lineIdx: number) => {
-                const positions: RawCoordinate2D[] = line.map((point): RawCoordinate2D => [
-                  typeof point === 'object' && 'y' in point ? point.y : point[1],
-                  typeof point === 'object' && 'x' in point ? point.x : point[0],
-                ]);
-                return {
-                  key: `${id}-${polygonIdx}-${lineIdx}`,
-                  id,
-                  name,
-                  colorHex,
-                  levelMode,
-                  typeName,
-                  typePictogramUri,
-                  levelPictogramUri,
-                  pictogramUri,
-                  startDate,
-                  endDate,
-                  activeDays,
-                  activeMonths,
-                  description,
-                  practicability,
-                  positions,
-                  centroid: getPolygonCentroid(positions),
-                };
-              }),
-            );
-          }
           if (geometry.type === 'Polygon') {
-            return (geometry.coordinates as unknown as Array<Array<[number, number] | { x: number; y: number }>>).map((line, lineIdx: number) => {
-              const positions: RawCoordinate2D[] = line.map((point): RawCoordinate2D => [
-                typeof point === 'object' && 'y' in point ? point.y : point[0],
-                typeof point === 'object' && 'x' in point ? point.x : point[1],
-              ]);
-              return {
-                key: `${id}-${lineIdx}`,
+            const rawRing = (geometry.coordinates as unknown[][])[0];
+            const positions = extractPositions(rawRing);
+            if (positions.length < 3) return [];
+            return [
+              {
+                key: id,
                 id,
                 name,
                 colorHex,
@@ -329,8 +332,38 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
                 practicability,
                 positions,
                 centroid: getPolygonCentroid(positions),
-              };
-            });
+              },
+            ];
+          }
+          if (geometry.type === 'MultiPolygon') {
+            return (geometry.coordinates as unknown[][][]).flatMap(
+              (polygonCoordinates, index) => {
+                const rawRing = polygonCoordinates[0];
+                const positions = extractPositions(rawRing);
+                if (positions.length < 3) return [];
+                return [
+                  {
+                    key: `${id}-${index}`,
+                    id,
+                    name,
+                    colorHex,
+                    levelMode,
+                    typeName,
+                    typePictogramUri,
+                    levelPictogramUri,
+                    pictogramUri,
+                    startDate,
+                    endDate,
+                    activeDays,
+                    activeMonths,
+                    description,
+                    practicability,
+                    positions,
+                    centroid: getPolygonCentroid(positions),
+                  },
+                ];
+              },
+            );
           }
           return [];
         },
@@ -349,6 +382,7 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
           key={key}
           {...polygonProps}
           isHovered={String(polygonProps.id) === String(hoveredVigilanceAreaId)}
+          isSelected={String(polygonProps.id) === String(selectedVigilanceAreaId)}
         />
       ))}
     </>
