@@ -29,7 +29,6 @@ export const DetailsVigilanceAreas: React.FC<DetailsVigilanceAreasProps> = ({
               key={area?.id ?? index}
               index={index}
               area={area}
-              defaultOpen={false}
             />
           ))}
         </div>

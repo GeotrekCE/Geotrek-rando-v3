@@ -16,10 +16,24 @@ export type PropsType = {
   contents?: VigilanceAreaGeometry[];
 };
 
+type CoordinatePoint =
+  | [number, number]
+  | { x: number; y: number }
+  | { lat: number; lng: number }
+  | Record<string, unknown>;
+
 const extractPositions = (coordinates: unknown[]): RawCoordinate2D[] =>
-  coordinates.map((point: any): RawCoordinate2D => [
-    typeof point === 'object' && 'y' in point ? point.y : point[1],
-    typeof point === 'object' && 'x' in point ? point.x : point[0],
+  (coordinates as CoordinatePoint[]).map((point): RawCoordinate2D => [
+    typeof point === 'object' && point !== null && 'y' in point && typeof point.y === 'number'
+      ? point.y
+      : Array.isArray(point) && typeof point[1] === 'number'
+      ? point[1]
+      : 0,
+    typeof point === 'object' && point !== null && 'x' in point && typeof point.x === 'number'
+      ? point.x
+      : Array.isArray(point) && typeof point[0] === 'number'
+      ? point[0]
+      : 0,
   ]);
 
 const createBadgeIcon = (

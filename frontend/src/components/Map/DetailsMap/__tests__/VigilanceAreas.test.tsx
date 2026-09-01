@@ -1,18 +1,28 @@
 import React from 'react';
 import { render } from 'services/testing/reactTestingLibraryWrapper';
+import { VigilanceAreaGeometry } from 'modules/vigilanceArea/adapter';
 import { VigilanceAreas } from '../VigilanceAreas';
 
-jest.mock('react-leaflet', () => ({
-  Polygon: ({ children, pathOptions }: { children?: React.ReactNode; pathOptions: { color: string } }) => (
-    <div data-testid="leaflet-polygon" data-color={pathOptions.color}>
-      {children}
-    </div>
-  ),
-  Marker: React.forwardRef(({ children }: { children?: React.ReactNode }, ref) => (
-    <div data-testid="leaflet-marker">{children}</div>
-  )),
-  Popup: ({ children }: { children?: React.ReactNode }) => <div data-testid="leaflet-popup">{children}</div>,
-}));
+jest.mock('react-leaflet', () => {
+  const ReactActual = jest.requireActual('react');
+  const MockMarker = ReactActual.forwardRef(function MockMarker(
+    props: { children?: React.ReactNode },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _ref: unknown,
+  ) {
+    return <div data-testid="leaflet-marker">{props.children}</div>;
+  });
+
+  return {
+    Polygon: ({ children, pathOptions }: { children?: React.ReactNode; pathOptions: { color: string } }) => (
+      <div data-testid="leaflet-polygon" data-color={pathOptions.color}>
+        {children}
+      </div>
+    ),
+    Marker: MockMarker,
+    Popup: ({ children }: { children?: React.ReactNode }) => <div data-testid="leaflet-popup">{children}</div>,
+  };
+});
 
 describe('VigilanceAreas Leaflet Map Component', () => {
   it('renders nothing when contents is undefined or empty', () => {
@@ -74,7 +84,9 @@ describe('VigilanceAreas Leaflet Map Component', () => {
       },
     ];
 
-    const { getByTestId, getByText } = render(<VigilanceAreas contents={mockContents as any} />);
+    const { getByTestId, getByText } = render(
+      <VigilanceAreas contents={(mockContents as unknown) as VigilanceAreaGeometry[]} />,
+    );
 
     const polygon = getByTestId('leaflet-polygon');
     expect(polygon).toBeInTheDocument();

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import parse from 'html-react-parser';
 import { FormattedDate, FormattedMessage, useIntl } from 'react-intl';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
@@ -13,14 +13,12 @@ import { VigilanceAreaBadge } from './VigilanceAreaBadge';
 interface VigilanceAreaItemProps {
   area: VigilanceArea | Record<string, unknown>;
   index?: number;
-  defaultOpen?: boolean;
   className?: string;
 }
 
 export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
   area,
   index = 0,
-  defaultOpen = false,
   className,
 }) => {
   const intl = useIntl();
