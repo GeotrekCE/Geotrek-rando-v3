@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from 'services/testing/reactTestingLibraryWrapper';
 import { VigilanceAreas } from '../VigilanceAreas';
 
 jest.mock('react-leaflet', () => ({
@@ -46,7 +46,7 @@ describe('VigilanceAreas Leaflet Map Component', () => {
     expect(polygon).toBeInTheDocument();
     expect(polygon).toHaveAttribute('data-color', '#901A1A');
 
-    expect(getByText('Faune')).toBeInTheDocument();
+    expect(getByText(/Faune/)).toBeInTheDocument();
     expect(getByText('Nidification Cigogne')).toBeInTheDocument();
   });
 });

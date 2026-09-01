@@ -3,6 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { cn } from 'services/utils/cn';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { VigilanceArea } from 'modules/vigilanceArea/interface';
+import { isVigilanceAreaActive, isVigilancePeriodOngoing } from 'modules/vigilanceArea/utils';
 import { VigilanceAreaBadge } from '../DetailsVigilanceAreas/VigilanceAreaBadge';
 
 interface DetailsVigilanceBannerProps {
@@ -40,29 +41,30 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
     publishedVigilanceAreas.some((area: VigilanceArea) => {
       const practicability = area.practicability ?? getVigilanceAreaProperty(area, 'practicability');
       const closed = getVigilanceAreaProperty(area, 'closed');
-      return (
+      const isImpracticable =
         practicability === 'closed' ||
         practicability === 'not_practicable' ||
-        closed === true
-      );
+        closed === true;
+      return isImpracticable && isVigilanceAreaActive(area);
     });
 
   const hasAlertArea = publishedVigilanceAreas.some((area: VigilanceArea) => {
     const criticality = area.criticality ?? getVigilanceAreaProperty(area, 'criticality');
     const levelObject = area.level ?? getVigilanceAreaProperty(area, 'level');
     const levelNumber = typeof levelObject === 'object' && levelObject !== null ? (levelObject as Record<string, unknown>).level : levelObject;
-    return (
+    const isAlert =
       criticality === 'alert' ||
       criticality === 'high' ||
-      String(levelNumber) === '1'
-    );
+      String(levelNumber) === '1';
+    return isAlert && isVigilancePeriodOngoing(area);
   });
 
   const hasVigilanceArea = publishedVigilanceAreas.some((area: VigilanceArea) => {
     const criticality = area.criticality ?? getVigilanceAreaProperty(area, 'criticality');
     const levelObject = area.level ?? getVigilanceAreaProperty(area, 'level');
     const levelNumber = typeof levelObject === 'object' && levelObject !== null ? (levelObject as Record<string, unknown>).level : levelObject;
-    return criticality === 'vigilance' || String(levelNumber) === '2';
+    const isVigilance = criticality === 'vigilance' || String(levelNumber) === '2';
+    return isVigilance && isVigilancePeriodOngoing(area);
   });
 
   // Determine overall banner severity mode: 'closed' | 'alert' | 'vigilance' | 'info'

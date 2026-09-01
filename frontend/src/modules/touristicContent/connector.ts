@@ -61,13 +61,10 @@ export const getTouristicContentDetails = async (
       language,
     );
     const publishedVigilanceAreas = getGlobalConfig().enableVigilanceAreas
-      ? rawTouristicContentDetails.properties.published_vigilance_areas &&
-        rawTouristicContentDetails.properties.published_vigilance_areas.length > 0
-        ? await getVigilanceAreasForTrek(
-            rawTouristicContentDetails.properties.published_vigilance_areas,
-            language,
-          )
-        : await getVigilanceAreas(language, { touristic_content: id })
+      ? await getVigilanceAreasForTrek(
+          rawTouristicContentDetails.properties.published_vigilance_areas ?? [],
+          language,
+        )
       : [];
     return adaptTouristicContentDetails({
       rawTCD: rawTouristicContentDetails,

@@ -137,6 +137,20 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
     ((rawArea?.level as Record<string, unknown> | null)?.color as string) ||
     (isRedVariant ? 'var(--color-vigilance-closed)' : 'var(--color-vigilance-warning)');
 
+  const getBgColorWithOpacity = (colorStr: string, alphaHex = '3B'): string => {
+    if (!colorStr) return 'transparent';
+    if (colorStr.startsWith('#')) {
+      if (colorStr.length === 7) return `${colorStr}${alphaHex}`;
+      if (colorStr.length === 4) {
+        const r = colorStr[1], g = colorStr[2], b = colorStr[3];
+        return `#${r}${r}${g}${g}${b}${b}${alphaHex}`;
+      }
+    }
+    return `color-mix(in srgb, ${colorStr} 23%, transparent)`;
+  };
+
+  const itemBgColor = getBgColorWithOpacity(itemColor, '3B');
+
   return (
     <div
       id={`details_vigilanceArea_${id}`}
@@ -154,7 +168,8 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
         aria-controls={`vigilance-body-${id}`}
-        className="w-full p-4 desktop:px-5 flex items-start justify-between gap-3 text-left bg-white hover:bg-neutral-50 transition-colors cursor-pointer"
+        style={{ backgroundColor: itemBgColor }}
+        className="w-full p-4 desktop:px-5 flex items-start justify-between gap-3 text-left hover:brightness-95 transition-all cursor-pointer"
       >
         <div className="flex items-start gap-3 min-w-0">
           {/* Badge */}
@@ -230,95 +245,83 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
       {isOpen && (
         <div
           id={`vigilance-body-${id}`}
-          className="p-4 desktop:px-5 desktop:pb-5 bg-white space-y-4 text-sm text-greyDarkColored"
+          className="p-4 desktop:px-5 desktop:pb-5 bg-white space-y-4 text-sm text-greyDarkColored border-t border-solid"
+          style={{ borderColor: itemBgColor }}
         >
           {/* 1. Description */}
           {Boolean(description) && (
-            <div>
-              <h4 className="font-bold mb-1 text-greyDarkColored">
-                <FormattedMessage id="details.description" defaultMessage="Description" />
-              </h4>
-              <div className="content-WYSIWYG">
-                {typeof description === 'string' ? parse(description) : null}
-              </div>
+            <div className="content-WYSIWYG leading-relaxed">
+              {typeof description === 'string' ? parse(description) : null}
             </div>
           )}
 
           {/* 2. Recommandations */}
           {Boolean(practicalInfo) && (
-            <div>
-              <h4 className="font-bold mb-1 text-greyDarkColored">
-                <FormattedMessage
-                  id="details.vigilanceRecommendations"
-                  defaultMessage="Recommandations :"
-                />
-              </h4>
-              <div className="content-WYSIWYG">
+            <div
+              className="p-4 desktop:p-5 rounded-xl space-y-2"
+              style={{ backgroundColor: itemBgColor }}
+            >
+              <div
+                className="flex items-center gap-2 font-bold"
+                style={{ color: itemColor }}
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="shrink-0"
+                  aria-hidden="true"
+                >
+                  <rect width="18" height="18" x="3" y="3" rx="2" />
+                  <path d="M7 8h10" />
+                  <path d="M7 12h10" />
+                  <path d="M7 16h6" />
+                </svg>
+                <span>
+                  <FormattedMessage
+                    id="details.vigilanceRecommendations"
+                    defaultMessage="Recommandations"
+                  />
+                </span>
+              </div>
+              <div className="content-WYSIWYG text-greyDarkColored leading-relaxed">
                 {typeof practicalInfo === 'string' ? parse(practicalInfo) : null}
               </div>
             </div>
           )}
 
-          {/* 3. Praticabilité (displayed only if not practicable) */}
+          {/* 3. Praticabilité */}
           {practicabilityText && (
-            <div>
-              <h4 className="font-bold mb-1 text-greyDarkColored">
+            <p className="m-0">
+              <span className="font-bold">
                 <FormattedMessage
                   id="details.vigilancePracticabilityTitle"
                   defaultMessage="Praticabilité :"
                 />
-              </h4>
-              <p className="m-0 font-semibold" style={{ color: itemColor }}>
-                {practicabilityText}
-              </p>
-            </div>
+              </span>{' '}
+              {practicabilityText}
+            </p>
           )}
 
           {/* 4. Période(s) concernée(s) : */}
           {detailPeriodText && (
-            <div>
-              <h4 className="font-bold mb-1 text-greyDarkColored">
+            <p className="m-0">
+              <span className="font-bold">
                 <FormattedMessage
                   id="details.vigilancePeriod"
                   defaultMessage="Période(s) concernée(s) :"
                 />
-              </h4>
-              <p className="m-0">{detailPeriodText}</p>
-            </div>
+              </span>{' '}
+              {detailPeriodText}
+            </p>
           )}
 
-          {/* 5. Source : */}
-          {sources && sources.length > 0 && (
-            <div>
-              <h4 className="font-bold mb-1 text-greyDarkColored">
-                <FormattedMessage id="details.vigilanceSources" defaultMessage="Source :" />
-              </h4>
-              <div className="flex flex-col gap-1 text-xs text-greyDarkColored">
-                {sources.map((src: Source, i: number) => (
-                  <div key={i} className="flex items-center gap-2">
-                    {src.pictogramUri && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={src.pictogramUri} alt="" className="w-4 h-4 object-contain shrink-0" />
-                    )}
-                    {src.website ? (
-                      <a
-                        href={src.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline text-primary1 hover:text-primary1-light"
-                      >
-                        {src.name}
-                      </a>
-                    ) : (
-                      <span>{src.name}</span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* 6. Plus d'informations sur le sujet : */}
+          {/* 5. Plus d'informations sur le sujet : */}
           {files && files.length > 0 && (
             <div>
               <h4 className="font-bold mb-1 text-greyDarkColored">
@@ -355,7 +358,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
             </div>
           )}
 
-          {/* 7. En savoir plus */}
+          {/* 6. En savoir plus */}
           {externalUrl && (
             <div>
               <a
@@ -370,11 +373,40 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
             </div>
           )}
 
-          {/* 8. Mis à jour le : */}
-          {updateDatetime && (
-            <div className="text-xs text-greyDarkColored/60 pt-2 border-t border-solid border-greySoft/30">
-              <FormattedMessage id="details.vigilanceUpdated" defaultMessage="Mis à jour le :" />{' '}
-              <FormattedDate value={updateDatetime} year="numeric" month="long" day="numeric" />
+          {/* 7. Footer : Sources & Mis à jour le : */}
+          {(Boolean(sources && sources.length > 0) || Boolean(updateDatetime)) && (
+            <div className="text-xs text-greyDarkColored/70 pt-2 border-t border-solid border-greySoft/30 space-y-1">
+              {sources && sources.length > 0 && (
+                <div>
+                  <span className="font-semibold">
+                    <FormattedMessage id="details.vigilanceSources" defaultMessage="Source :" />
+                  </span>{' '}
+                  {sources.map((src: Source, i: number) => (
+                    <React.Fragment key={i}>
+                      {i > 0 && ' — '}
+                      {src.website ? (
+                        <a
+                          href={src.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline text-primary1 hover:text-primary1-light font-medium"
+                        >
+                          {src.name}
+                        </a>
+                      ) : (
+                        <span>{src.name}</span>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </div>
+              )}
+
+              {updateDatetime && (
+                <div>
+                  <FormattedMessage id="details.vigilanceUpdated" defaultMessage="Mis à jour le :" />{' '}
+                  <FormattedDate value={updateDatetime} year="numeric" month="long" day="numeric" />
+                </div>
+              )}
             </div>
           )}
         </div>

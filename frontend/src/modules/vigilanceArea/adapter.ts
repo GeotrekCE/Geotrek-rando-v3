@@ -144,6 +144,12 @@ export interface VigilanceAreaGeometry {
   typePictogramUri?: string | null;
   levelPictogramUri?: string | null;
   pictogramUri?: string | null;
+  startDate?: string | null;
+  endDate?: string | null;
+  activeDays?: (number | string)[];
+  activeMonths?: (number | string)[];
+  description?: string | null;
+  practicability?: Practicability;
 }
 
 export const adaptVigilanceAreaGeometry = (area: VigilanceArea): VigilanceAreaGeometry => {
@@ -183,5 +189,11 @@ export const adaptVigilanceAreaGeometry = (area: VigilanceArea): VigilanceAreaGe
     typePictogramUri: area.type?.pictogramUrl ?? null,
     levelPictogramUri: area.level?.pictogramUrl ?? null,
     pictogramUri: area.type?.pictogramUrl ?? area.level?.pictogramUrl ?? null,
+    startDate: area.startDate ?? null,
+    endDate: area.endDate ?? null,
+    activeDays: area.activeDays || [],
+    activeMonths: area.activeMonths || [],
+    description: area.description ?? null,
+    practicability: area.practicability,
   };
 };

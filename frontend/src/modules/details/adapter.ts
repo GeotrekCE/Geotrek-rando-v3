@@ -201,11 +201,7 @@ export const adaptResults = ({
       infrastructure,
       viewPoints,
       isClosed,
-      publishedVigilanceAreas: sortVigilanceAreas(
-        publishedVigilanceAreas.length > 0
-          ? publishedVigilanceAreas
-          : rawDetailsProperties.published_vigilance_areas ?? [],
-      ),
+      publishedVigilanceAreas: sortVigilanceAreas(publishedVigilanceAreas),
     };
   } catch (e) {
     console.error('Error in details/adapter', e);

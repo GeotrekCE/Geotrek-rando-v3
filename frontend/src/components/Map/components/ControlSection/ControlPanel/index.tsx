@@ -5,7 +5,7 @@ import { Signage } from 'components/Icons/Signage';
 import { Infrastructure } from 'components/Icons/Infrastructure';
 import { MapPin } from 'components/Icons/MapPin';
 import { ViewPoint } from 'components/Icons/ViewPoint';
-import { AlertTriangle } from 'components/Icons/AlertTriangle';
+import { VigilanceAreaIcon } from 'components/Icons/VigilanceArea';
 import { Line } from './Line';
 import IconLocation from './IconLocation';
 import IconInfo from './IconInfo';
@@ -53,7 +53,7 @@ export const ControlPanel: React.FC<ControlSectionProps & { id: string }> = ({
     <div className="flex flex-col bg-white shadow-lg p-4 rounded-2xl w-[230px] gap-4" id={id}>
       {vigilanceVisibility && toggleVigilanceVisibility && (
         <Line
-          icon={AlertTriangle}
+          icon={VigilanceAreaIcon}
           active={isVigilanceActive}
           toggle={toggleVigilanceVisibility}
           transKey="details.vigilance"
