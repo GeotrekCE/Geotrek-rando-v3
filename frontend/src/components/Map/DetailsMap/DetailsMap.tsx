@@ -320,11 +320,11 @@ export const DetailsMap: React.FC<PropsType> = props => {
             {props.displayAltimetricProfile === true && props.trekGeoJSON && (
               <AltimetricProfile id="altimetric-profile" trekGeoJSON={props.trekGeoJSON} />
             )}
-            {props.title !== undefined && (
+            {props.title !== undefined && props.trekGeoJSON && (
               <div className="desktop:hidden z-10">
                 <DetailsMapDrawer
                   title={props.title}
-                  trekGeoJSON={props.displayAltimetricProfile === true ? props.trekGeoJSON : ''}
+                  trekGeoJSON={props.displayAltimetricProfile === true ? props.trekGeoJSON : undefined}
                   trekFamily={props.trekFamily}
                   trekId={props.trekId}
                 />
