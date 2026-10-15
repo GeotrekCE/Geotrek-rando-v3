@@ -1,4 +1,4 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Modal } from 'components/Modal';
 import { DetailsCoverCarousel } from 'components/pages/details/components/DetailsCoverCarousel';
 
@@ -28,9 +28,10 @@ interface ResultCardProps {
   informations?: InformationCard[];
   asColumn?: boolean;
   titleTag?: keyof JSX.IntrinsicElements;
-  isClosed?: boolean;
+  isImpracticable?: boolean;
   isDateRange?: boolean;
   isTodayDate?: boolean;
+  endDate?: string | null;
 }
 
 export const ResultCard: React.FC<ResultCardProps> = props => {
@@ -49,12 +50,55 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
     title,
     titleTag: TitleTag = 'h3',
     type,
-    isClosed,
-    isDateRange,
+    isImpracticable,
     isTodayDate,
+    endDate,
   } = props;
+  const intl = useIntl();
   const { setHoveredCardId } = useListAndMapContext();
-  const isClosedState = getGlobalConfig().enableVigilanceAreas && Boolean(isClosed);
+  const isImpracticableState =
+    getGlobalConfig().enableVigilanceAreas && Boolean(isImpracticable);
+
+  const formattedEndDate = endDate
+    ? new Date(endDate).toLocaleDateString(intl.locale || 'fr', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })
+    : null;
+
+  const isTouristicContent = type === 'TOURISTIC_CONTENT';
+  const closedMessageId = isTouristicContent
+    ? isTodayDate
+      ? formattedEndDate
+        ? 'search.filters.contentClosedTodayWithEndDate'
+        : 'search.filters.contentClosedToday'
+      : formattedEndDate
+      ? 'search.filters.contentClosedFilteredWithEndDate'
+      : 'search.filters.contentClosedFiltered'
+    : isTodayDate
+    ? formattedEndDate
+      ? 'search.filters.trekClosedTodayWithEndDate'
+      : 'search.filters.trekClosedToday'
+    : formattedEndDate
+    ? 'search.filters.trekClosedFilteredWithEndDate'
+    : 'search.filters.trekClosedFiltered';
+
+  const closedDefaultMessage = isTouristicContent
+    ? isTodayDate
+      ? formattedEndDate
+        ? "Cette zone est impraticable jusqu'au {endDate}"
+        : "Cette zone est impraticable jusqu'à nouvel ordre"
+      : formattedEndDate
+      ? "Cette zone est impraticable à la date ou période choisie, et jusqu'au {endDate}"
+      : "Cette zone est impraticable à la date ou période choisie, jusqu'à nouvel ordre"
+    : isTodayDate
+    ? formattedEndDate
+      ? "Cet itinéraire est impraticable jusqu'au {endDate}"
+      : "Cet itinéraire est impraticable jusqu'à nouvel ordre"
+    : formattedEndDate
+    ? "Cet itinéraire est impraticable à la date ou période choisie, et jusqu'au {endDate}"
+    : "Cet itinéraire est impraticable à la date ou période choisie, jusqu'à nouvel ordre";
 
   return (
     <div
@@ -66,7 +110,7 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
       }}
       className={cn(
         'custo-result-card flex flex-auto flex-col items-stretch border border-solid border-greySoft hover:border-blackSemiTransparent transition rounded-xl overflow-hidden',
-        isClosedState && 'border-l-4 border-l-vigilanceClosed hover:border-l-vigilanceClosed',
+        isImpracticableState && 'border-l-4 border-l-vigilanceClosed hover:border-l-vigilanceClosed',
         asColumn !== true && 'desktop:flex-row',
         className,
       )}
@@ -86,7 +130,7 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
                 iconUri={badgeIconUri}
                 iconName={badgeName as string}
                 redirect={redirectionUrl}
-                isClosed={isClosedState}
+                isImpracticable={isImpracticableState}
               />
             )}
           </>
@@ -102,23 +146,12 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
               {title}
             </TitleTag>
 
-            {isClosedState && (
+            {isImpracticableState && (
               <div className="mt-1 text-vigilanceClosed font-bold text-sm">
                 <FormattedMessage
-                  id={
-                    isTodayDate
-                      ? 'search.filters.currentlyClosed'
-                      : isDateRange
-                      ? 'search.filters.closedPeriod'
-                      : 'search.filters.closedDate'
-                  }
-                  defaultMessage={
-                    isTodayDate
-                      ? 'Actuellement fermé'
-                      : isDateRange
-                      ? 'Fermeture à la période choisie'
-                      : 'Fermeture à la date choisie'
-                  }
+                  id={closedMessageId}
+                  defaultMessage={closedDefaultMessage}
+                  values={{ endDate: formattedEndDate ?? '' }}
                 />
               </div>
             )}

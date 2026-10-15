@@ -97,7 +97,7 @@ export interface RawDetailsProperties {
   ratings: number[];
   ratings_description: string;
   view_points: RawViewPoint[];
-  closed?: boolean;
+  impracticable?: boolean;
   published_vigilance_areas?: any[];
 }
 
@@ -198,7 +198,7 @@ export interface Details extends DetailsHtml {
   service: Service[] | null;
   infrastructure: InfrastructureDictionary | null;
   viewPoints: ViewPoint[];
-  isClosed?: boolean;
+  isImpracticable?: boolean;
   publishedVigilanceAreas?: any[];
 }
 

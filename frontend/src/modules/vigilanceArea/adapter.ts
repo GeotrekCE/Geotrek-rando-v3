@@ -1,9 +1,9 @@
-import { SourceDictionnary, Source } from 'modules/source/interface';
+import { Source, SourceDictionnary } from 'modules/source/interface';
 import { geFilesFromAttachments } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { VigilanceAreaType } from 'modules/vigilanceAreaType/interface';
 import { VigilanceAreaLevel } from 'modules/vigilanceAreaLevel/interface';
-import { Practicability, RawVigilanceArea, VigilanceArea } from './interface';
+import { RawVigilanceArea, VigilanceArea, VigilancePeriod } from './interface';
 
 export const adaptVigilanceArea = ({
   rawVigilanceArea,
@@ -45,9 +45,7 @@ export const adaptVigilanceArea = ({
       ? rawVigilanceArea.practical_info
       : rawVigilanceArea.practical_info?.[language] || rawVigilanceArea.practical_info?.fr || '';
 
-  // Determine criticality based on levelObj.level or raw criticality string
-  // Note: level = null or missing is treated as lowest level (level 3 / info)
-  let criticality: 'alert' | 'vigilance' | 'info' | string = 'info';
+  let criticality = 'info';
   if (levelObj) {
     if (levelObj.level === 1) {
       criticality = 'alert';
@@ -58,35 +56,23 @@ export const adaptVigilanceArea = ({
     }
   } else if (typeof rawVigilanceArea.vigilance_level === 'string') {
     criticality = rawVigilanceArea.vigilance_level;
-  } else if (rawVigilanceArea.criticality) {
-    criticality = rawVigilanceArea.criticality;
   }
 
-  const practicability: Practicability =
-    rawVigilanceArea.practicability === 'not_practicable'
-      ? 'closed'
-      : rawVigilanceArea.practicability === 'under_condition_practicable'
-      ? 'conditions'
-      : rawVigilanceArea.practicability;
-
-  // Fallback color if no color is provided by API
-  const isRedVariant =
-    practicability === 'closed' ||
-    criticality === 'alert' ||
-    criticality === 'high';
-
-  const defaultFallbackColor = isRedVariant
-    ? '#901A1A'
-    : criticality === 'info'
-    ? '#1257A8'
-    : '#955a02';
-
-  const color = levelObj?.color ?? defaultFallbackColor;
+  const isImpracticable = Boolean(rawVigilanceArea.impracticable);
+  const color = isImpracticable ? '#901A1A' : levelObj?.color ?? '#d17a00';
 
   const sources =
     rawVigilanceArea.sources
       ?.map(sourceId => sourcesDictionnary[sourceId])
       .filter((source): source is Source => Boolean(source)) ?? [];
+
+  const periods: VigilancePeriod[] = (rawVigilanceArea.periods || []).map(rawPeriod => ({
+    id: rawPeriod.id,
+    startDate: rawPeriod.start_date ?? null,
+    endDate: rawPeriod.end_date ?? null,
+    activeDays: rawPeriod.active_days ?? [],
+    annual: Boolean(rawPeriod.annual),
+  }));
 
   return {
     id: String(rawVigilanceArea.id),
@@ -95,15 +81,12 @@ export const adaptVigilanceArea = ({
     type,
     level: levelObj,
     color,
-    practicability,
+    isImpracticable,
     description: description || null,
     practicalInfo: practicalInfo || null,
     externalInfoUrl: rawVigilanceArea.external_info_url ?? null,
-    startDate: rawVigilanceArea.start_date ?? null,
-    endDate: rawVigilanceArea.end_date ?? null,
-    activeDays: rawVigilanceArea.active_days || [],
-    activeMonths: rawVigilanceArea.active_months || [],
-    updateDatetime: rawVigilanceArea.update_datetime ?? rawVigilanceArea.date_update ?? null,
+    periods,
+    updateDatetime: rawVigilanceArea.update_datetime ?? null,
     attachments: geFilesFromAttachments(rawVigilanceArea.attachments || []),
     criticality,
     sources,
@@ -138,44 +121,31 @@ export interface VigilanceAreaGeometry {
   id: string;
   name: string;
   colorHex: string;
+  isImpracticable: boolean;
   levelMode: 'closed' | 'alert' | 'vigilance' | 'info';
   geometry: any;
   typeName?: string;
+  levelName?: string;
   typePictogramUri?: string | null;
   levelPictogramUri?: string | null;
   pictogramUri?: string | null;
-  startDate?: string | null;
-  endDate?: string | null;
-  activeDays?: (number | string)[];
-  activeMonths?: (number | string)[];
+  periods: VigilancePeriod[];
   description?: string | null;
-  practicability?: Practicability;
 }
 
 export const adaptVigilanceAreaGeometry = (area: VigilanceArea): VigilanceAreaGeometry => {
-  const isClosed =
-    area.practicability === 'closed' ||
-    area.practicability === 'not_practicable';
+  const isImpracticable = area.isImpracticable;
 
-  const isRedVariant =
-    isClosed ||
-    area.criticality === 'alert' ||
-    area.criticality === 'high';
-
-  const defaultFallbackColor = isRedVariant
+  const colorHex = isImpracticable
     ? '#901A1A'
-    : area.criticality === 'info'
-    ? '#1257A8'
-    : '#955a02';
-
-  const colorHex = area.color || area.level?.color || defaultFallbackColor;
+    : area.color || area.level?.color || '#d17a00';
 
   const levelMode: 'closed' | 'alert' | 'vigilance' | 'info' =
-    isClosed
+    isImpracticable
       ? 'closed'
-      : area.criticality === 'alert' || area.criticality === 'high'
+      : area.criticality === 'alert' || area.criticality === 'high' || area.level?.level === 1
       ? 'alert'
-      : area.criticality === 'info'
+      : area.criticality === 'info' || area.level?.level === 3
       ? 'info'
       : 'vigilance';
 
@@ -183,17 +153,15 @@ export const adaptVigilanceAreaGeometry = (area: VigilanceArea): VigilanceAreaGe
     id: area.id,
     name: area.name,
     colorHex,
+    isImpracticable,
     levelMode,
     geometry: area.geometry,
     typeName: area.type?.name ?? '',
+    levelName: area.level?.name ?? '',
     typePictogramUri: area.type?.pictogramUrl ?? null,
     levelPictogramUri: area.level?.pictogramUrl ?? null,
     pictogramUri: area.type?.pictogramUrl ?? area.level?.pictogramUrl ?? null,
-    startDate: area.startDate ?? null,
-    endDate: area.endDate ?? null,
-    activeDays: area.activeDays || [],
-    activeMonths: area.activeMonths || [],
+    periods: area.periods || [],
     description: area.description ?? null,
-    practicability: area.practicability,
   };
 };

@@ -66,7 +66,7 @@ export const adaptTrekResultList = ({
     images: getLargeImagesOrThumbnailsFromAttachments(rawResult.attachments, true),
     category: activities[rawResult.practice] ?? null,
     publishedVigilanceAreas: rawResult.published_vigilance_areas ?? null,
-    isClosed: rawResult.closed ?? false,
+    isImpracticable: Boolean(rawResult.impracticable),
     informations: [
       {
         label: 'difficulty',

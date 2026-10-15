@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { cn } from 'services/utils/cn';
 import {
   CATEGORY_ID,
-  HIDE_CLOSED_CONTENTS_ID,
-  HIDE_CLOSED_TREKS_ID,
   VIGILANCE_TYPE_CONTENTS_ID,
   VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
@@ -34,13 +31,9 @@ export const VigilanceSection: React.FC<Props> = ({
   const effectiveBeginDate = dateFilter.beginDate || today;
 
   const isTouristicContent = filterId === CATEGORY_ID;
-  const targetHideClosedId = isTouristicContent ? HIDE_CLOSED_CONTENTS_ID : HIDE_CLOSED_TREKS_ID;
   const targetVigilanceTypeId = isTouristicContent ? VIGILANCE_TYPE_CONTENTS_ID : VIGILANCE_TYPE_ID;
 
-  const vigilanceTypeFilter = filtersState.find(f => f.id === targetVigilanceTypeId);
-  const hideClosedTreksFilter = filtersState.find(f => f.id === targetHideClosedId);
-
-  const isClosedChecked = (hideClosedTreksFilter?.selectedOptions.length ?? 0) > 0;
+  const vigilanceTypeFilter = filtersState.find(filter => filter.id === targetVigilanceTypeId);
 
   const dateSingleLabel =
     isTouristicContent && intl.messages['search.filters.searchOnDate']
@@ -62,20 +55,10 @@ export const VigilanceSection: React.FC<Props> = ({
           defaultMessage: 'Je randonne du',
         });
 
-  const toggleText =
-    isTouristicContent && intl.messages['search.filters.hideClosedContents']
-      ? intl.formatMessage({ id: 'search.filters.hideClosedContents' })
-      : isTouristicContent
-      ? 'Masquer les contenus touristiques fermés'
-      : intl.formatMessage({
-          id: 'search.filters.hideClosedTreks',
-          defaultMessage: 'Masquer les itinéraires fermés',
-        });
-
   return (
     <div className="my-6 py-5 border-t border-b border-greySoft">
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-8 items-start">
-        {/* Left Column: Date Selection + Closed Treks Switch */}
+        {/* Left Column: Date Selection */}
         <div className="flex flex-col gap-4">
           <div>
             {!showPeriod ? (
@@ -147,44 +130,6 @@ export const VigilanceSection: React.FC<Props> = ({
                 </button>
               </div>
             )}
-          </div>
-
-          <div className="flex items-center gap-3 justify-start">
-            <button
-              type="button"
-              role="switch"
-              aria-checked={isClosedChecked}
-              onClick={() => {
-                if (isClosedChecked) {
-                  setFilterSelectedOptions(targetHideClosedId, []);
-                } else {
-                  setFilterSelectedOptions(targetHideClosedId, [{ value: 'true', label: 'true' }]);
-                }
-              }}
-              className={cn(
-                'relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none',
-                isClosedChecked ? 'bg-primary1' : 'bg-greySoft',
-              )}
-            >
-              <span
-                className={cn(
-                  'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
-                  isClosedChecked ? 'translate-x-5' : 'translate-x-0',
-                )}
-              />
-            </button>
-            <span
-              className="font-medium text-greyDarkColored select-none cursor-pointer"
-              onClick={() => {
-                if (isClosedChecked) {
-                  setFilterSelectedOptions(targetHideClosedId, []);
-                } else {
-                  setFilterSelectedOptions(targetHideClosedId, [{ value: 'true', label: 'true' }]);
-                }
-              }}
-            >
-              {toggleText}
-            </span>
           </div>
         </div>
 

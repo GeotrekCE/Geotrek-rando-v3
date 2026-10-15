@@ -6,6 +6,7 @@ import { getLabelsFilter } from 'modules/label/connector';
 import { getVigilanceTypeFilter } from 'modules/vigilanceAreaType/connector';
 
 import { ParsedUrlQuery } from 'querystring';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { getOutdoorPracticesFilter } from '../outdoorPractice/connector';
 import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { OutdoorRatingMapping } from '../outdoorRating/interface';
@@ -27,7 +28,6 @@ import {
 } from './interface';
 import { getStructureFilter } from './structures/connector';
 import { getThemeFilter } from './theme/connector';
-import { getGlobalConfig } from 'modules/utils/api.config';
 import {
   ACCESSIBILITY_ID,
   CATEGORY_ID,
@@ -35,8 +35,6 @@ import {
   DATE_FILTER,
   DISTRICT_ID,
   EVENT_ID,
-  HIDE_CLOSED_CONTENTS_ID,
-  HIDE_CLOSED_TREKS_ID,
   LABEL_EXCLUDE_ID,
   LABEL_ID,
   NETWORKS_ID,
@@ -157,7 +155,6 @@ const trekSpecificFilters = [
   'labels_exclude',
   VIGILANCE_TYPE_ID,
   VIGILANCE_TYPE_EXCLUDE_ID,
-  HIDE_CLOSED_TREKS_ID,
 ];
 
 export const commonFilters = [
@@ -176,12 +173,12 @@ export const getTreksFiltersState = (initialFiltersState: FilterState[]): Filter
 
 export const getTrekVigilanceFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
   initialFiltersState.filter(({ id }) =>
-    [VIGILANCE_TYPE_ID, VIGILANCE_TYPE_EXCLUDE_ID, HIDE_CLOSED_TREKS_ID].includes(id),
+    [VIGILANCE_TYPE_ID, VIGILANCE_TYPE_EXCLUDE_ID].includes(id),
   );
 
 export const getContentVigilanceFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
   initialFiltersState.filter(({ id }) =>
-    [VIGILANCE_TYPE_CONTENTS_ID, VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID, HIDE_CLOSED_CONTENTS_ID].includes(id),
+    [VIGILANCE_TYPE_CONTENTS_ID, VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID].includes(id),
   );
 
 export const getFiltersState = async (language: string): Promise<FilterState[]> => {
@@ -215,23 +212,6 @@ export const getFiltersState = async (language: string): Promise<FilterState[]> 
         selectedOptions: [],
       });
     }
-
-    result.push(
-      {
-        id: HIDE_CLOSED_TREKS_ID,
-        label: 'search.filters.hideClosedTreks',
-        type: 'SINGLE',
-        options: [{ value: 'true', label: 'search.filters.hideClosedTreks' }],
-        selectedOptions: [],
-      },
-      {
-        id: HIDE_CLOSED_CONTENTS_ID,
-        label: 'search.filters.hideClosedContents',
-        type: 'SINGLE',
-        options: [{ value: 'true', label: 'search.filters.hideClosedContents' }],
-        selectedOptions: [],
-      },
-    );
   }
 
   return result;

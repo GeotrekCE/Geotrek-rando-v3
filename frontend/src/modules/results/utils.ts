@@ -5,8 +5,6 @@ import {
   CITY_ID,
   DISTRICT_ID,
   EVENT_ID,
-  HIDE_CLOSED_CONTENTS_ID,
-  HIDE_CLOSED_TREKS_ID,
   ORGANIZER_ID,
   OUTDOOR_ID,
   STRUCTURE_ID,
@@ -114,9 +112,6 @@ const formatFilter = (filterState: QueryFilterState) => {
   if (filterState.id === VIGILANCE_TYPE_EXCLUDE_ID) {
     return { vigilance_area_types_exclude: formatSelectedFilter(filterState.selectedOptions) };
   }
-  if (filterState.id === HIDE_CLOSED_TREKS_ID) {
-    return { opened: 'true' };
-  }
   return {
     [filterState.id]: formatSelectedFilter(filterState.selectedOptions),
   };
@@ -150,15 +145,6 @@ export const formatTrekFiltersToUrlParams = (
         vigilance_area_types_exclude: currentFilterState.selectedOptions.join(','),
       };
     }
-    if (
-      currentFilterState.id === HIDE_CLOSED_TREKS_ID &&
-      currentFilterState.selectedOptions.length > 0
-    ) {
-      return {
-        ...queryParameters,
-        opened: 'true',
-      };
-    }
     if (currentFilterState.selectedOptions.length > 0) {
       const filter = formatFilter(currentFilterState);
       return {
@@ -187,6 +173,8 @@ export const formatDateFilter = (
 ): {
   dates_before?: string;
   dates_after?: string;
+  practicable_from?: string;
+  practicable_to?: string;
   opened_from?: string;
   opened_to?: string;
 } => {
@@ -199,6 +187,8 @@ export const formatDateFilter = (
   return {
     dates_before: dateFilter?.endDate || undefined,
     dates_after: dateFilter?.beginDate || undefined,
+    practicable_from: begin,
+    practicable_to: end,
     opened_from: begin,
     opened_to: end,
   };
@@ -242,16 +232,6 @@ export const formatTouristicContentFiltersToUrlParams = (
         return {
           ...currentFilters,
           vigilance_area_types_exclude: currentFilterState.selectedOptions,
-        };
-      }
-      if (
-        (currentFilterState.id === HIDE_CLOSED_TREKS_ID ||
-          currentFilterState.id === HIDE_CLOSED_CONTENTS_ID) &&
-        currentFilterState.selectedOptions.length > 0
-      ) {
-        return {
-          ...currentFilters,
-          opened: ['true'],
         };
       }
       if (

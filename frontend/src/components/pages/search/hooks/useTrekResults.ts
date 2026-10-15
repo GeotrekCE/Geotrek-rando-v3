@@ -31,10 +31,31 @@ const computeUrl = (
   const urlParams = formatFiltersUrl(filtersState);
 
   textFilter && urlParams.push(`text=${textFilter}`);
-  dateFilter?.beginDate && urlParams.push(`beginDate=${dateFilter.beginDate}`);
-  dateFilter?.endDate && urlParams.push(`endDate=${dateFilter.endDate}`);
-  contentDateFilter?.beginDate && urlParams.push(`beginDateContent=${contentDateFilter.beginDate}`);
-  contentDateFilter?.endDate && urlParams.push(`endDateContent=${contentDateFilter.endDate}`);
+
+  const todayIso = new Date().toISOString().split('T')[0];
+  const isDefaultTrekToday =
+    getGlobalConfig().enableVigilanceAreas &&
+    dateFilter?.beginDate === todayIso &&
+    !dateFilter?.endDate;
+
+  if (dateFilter?.beginDate && !isDefaultTrekToday) {
+    urlParams.push(`beginDate=${dateFilter.beginDate}`);
+  }
+  if (dateFilter?.endDate) {
+    urlParams.push(`endDate=${dateFilter.endDate}`);
+  }
+
+  const isDefaultContentToday =
+    getGlobalConfig().enableVigilanceAreas &&
+    contentDateFilter?.beginDate === todayIso &&
+    !contentDateFilter?.endDate;
+
+  if (contentDateFilter?.beginDate && !isDefaultContentToday) {
+    urlParams.push(`beginDateContent=${contentDateFilter.beginDate}`);
+  }
+  if (contentDateFilter?.endDate) {
+    urlParams.push(`endDateContent=${contentDateFilter.endDate}`);
+  }
 
   const params = urlParams.join('&');
   const formattedUrl = params ? `search?${params}` : 'search';

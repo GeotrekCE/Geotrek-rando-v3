@@ -4,8 +4,8 @@ import {
   formatDistance,
   formatSelectedFilter,
   formatTextFilter,
-  formatTrekFiltersToUrlParams,
   formatTouristicContentFiltersToUrlParams,
+  formatTrekFiltersToUrlParams,
 } from '../utils';
 
 describe('formatDistance', () => {
@@ -108,6 +108,21 @@ describe('extractNextPageId', () => {
     expect(() => extractNextPageId('')).toThrow();
   });
 
+  describe('formatTextFilter', () => {
+    test.each`
+      textfilter              | expectedFormattedTextFilter
+      ${'col de font froide'} | ${{ q: 'col de font froide' }}
+      ${null}                 | ${undefined}
+    `(
+      'formats the textfilter properly with $textfilter',
+      ({ textfilter, expectedFormattedTextFilter }) => {
+        const formattedText = formatTextFilter(textfilter as string | null);
+
+        expect(formattedText).toEqual(expectedFormattedTextFilter);
+      },
+    );
+  });
+
   describe('formatDateFilter', () => {
     it('returns empty object when dateFilter is null or empty', () => {
       expect(formatDateFilter(null)).toEqual({});
@@ -118,6 +133,8 @@ describe('extractNextPageId', () => {
       expect(formatDateFilter({ beginDate: '2026-10-01', endDate: '' })).toEqual({
         dates_before: undefined,
         dates_after: '2026-10-01',
+        practicable_from: '2026-10-01',
+        practicable_to: '2026-10-01',
         opened_from: '2026-10-01',
         opened_to: '2026-10-01',
       });
@@ -127,6 +144,8 @@ describe('extractNextPageId', () => {
       expect(formatDateFilter({ beginDate: '2026-10-01', endDate: '2026-10-15' })).toEqual({
         dates_before: '2026-10-15',
         dates_after: '2026-10-01',
+        practicable_from: '2026-10-01',
+        practicable_to: '2026-10-15',
         opened_from: '2026-10-01',
         opened_to: '2026-10-15',
       });
@@ -134,17 +153,15 @@ describe('extractNextPageId', () => {
   });
 
   describe('formatTouristicContentFiltersToUrlParams', () => {
-    it('formats vigilance area filters and hide closed toggle for touristic contents', () => {
+    it('formats vigilance area filters for touristic contents', () => {
       const input = [
         { id: 'vigilance_type', selectedOptions: ['1', '2'] },
         { id: 'vigilance_type_exclude', selectedOptions: ['3'] },
-        { id: 'hide_closed_treks', selectedOptions: ['true'] },
       ];
       const output = formatTouristicContentFiltersToUrlParams(input);
       expect(output).toEqual({
         vigilance_area_types: '1,2',
         vigilance_area_types_exclude: '3',
-        opened: 'true',
       });
     });
   });

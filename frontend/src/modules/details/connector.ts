@@ -13,7 +13,7 @@ import { getInfrastructure } from 'modules/infrastructure/connector';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { getTouristicContentsNearTarget } from 'modules/touristicContent/connector';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
-import { getVigilanceAreas, getVigilanceAreasForTrek } from 'modules/vigilanceArea/connector';
+import { getVigilanceAreasForTrek } from 'modules/vigilanceArea/connector';
 import { adaptViewPoints } from 'modules/viewPoint/adapter';
 import { getTrekRating } from '../trekRating/connector';
 import { getTrekRatingScale } from '../trekRatingScale/connector';

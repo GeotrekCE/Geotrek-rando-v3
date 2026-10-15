@@ -9,14 +9,7 @@ import { cn } from 'services/utils/cn';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import {
   CATEGORY_ID,
-  DATE_FILTER,
-  HIDE_CLOSED_CONTENTS_ID,
-  HIDE_CLOSED_TREKS_ID,
   PRACTICE_ID,
-  VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
-  VIGILANCE_TYPE_CONTENTS_ID,
-  VIGILANCE_TYPE_EXCLUDE_ID,
-  VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
 
 import { DateFilter, FilterState, Option } from '../../../../../modules/filters/interface';
@@ -52,30 +45,7 @@ const FilterField: React.FC<Props> = ({
 }) => {
   const filtersToDisplay = filtersState.filter(filter => filters?.includes(filter.id));
 
-  const practiceFilter = filtersState.find(f => f.id === PRACTICE_ID);
-  const hasSelectedPractice = (practiceFilter?.selectedOptions?.length ?? 0) > 0;
-  const categoryFilter = filtersState.find(f => f.id === CATEGORY_ID);
-  const hasSelectedCategory = (categoryFilter?.selectedOptions?.length ?? 0) > 0;
-
-  const subFiltersToCount = Array.isArray(subFilters)
-    ? subFilters.flat().filter(subFilterId => {
-        if (
-          [
-            VIGILANCE_TYPE_ID,
-            VIGILANCE_TYPE_EXCLUDE_ID,
-            HIDE_CLOSED_TREKS_ID,
-            VIGILANCE_TYPE_CONTENTS_ID,
-            VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
-            HIDE_CLOSED_CONTENTS_ID,
-            DATE_FILTER,
-          ].includes(subFilterId)
-        ) {
-          if (id === PRACTICE_ID && !hasSelectedPractice) return false;
-          if (id === CATEGORY_ID && !hasSelectedCategory) return false;
-        }
-        return true;
-      })
-    : subFilters;
+  const subFiltersToCount = subFilters;
 
   const numberSelected = countFiltersSelected(filtersState, filters, subFiltersToCount);
 
@@ -107,7 +77,7 @@ const FilterField: React.FC<Props> = ({
 
   const shouldShowVigilanceSection =
     getGlobalConfig().enableVigilanceAreas &&
-    ((id === PRACTICE_ID && hasSelectedPractice) || (id === CATEGORY_ID && hasSelectedCategory));
+    (id === PRACTICE_ID || id === CATEGORY_ID);
 
   return (
     <div>

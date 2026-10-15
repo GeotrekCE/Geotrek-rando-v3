@@ -45,7 +45,7 @@ export interface ResultCard {
   informations?: InformationCard[];
   geometry?: GeometryObject;
   publishedVigilanceAreas?: (number | { vigilance_area_type?: number; type?: any })[] | null;
-  isClosed?: boolean;
+  isImpracticable?: boolean;
 }
 
 export interface SearchParams {
@@ -99,7 +99,7 @@ export interface RawTrekResult {
   route: number | null;
   courseType?: CourseType | null;
   published_vigilance_areas?: number[];
-  closed?: boolean;
+  impracticable?: boolean;
 }
 
 export interface Thumbnail {

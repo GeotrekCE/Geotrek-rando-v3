@@ -7,7 +7,7 @@ import { PopupResult } from 'modules/trekResult/interface';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
-import { getVigilanceAreas, getVigilanceAreasForTrek } from 'modules/vigilanceArea/connector';
+import { getVigilanceAreasForTrek } from 'modules/vigilanceArea/connector';
 import {
   adaptTouristicContent,
   adaptTouristicContentDetails,

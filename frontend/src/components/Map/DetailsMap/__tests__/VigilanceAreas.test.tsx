@@ -37,6 +37,8 @@ describe('VigilanceAreas Leaflet Map Component', () => {
         name: 'Nidification Cigogne',
         colorHex: '#901A1A',
         levelMode: 'closed' as const,
+        isImpracticable: true,
+        periods: [],
         typeName: 'Faune',
         geometry: {
           type: 'Polygon',

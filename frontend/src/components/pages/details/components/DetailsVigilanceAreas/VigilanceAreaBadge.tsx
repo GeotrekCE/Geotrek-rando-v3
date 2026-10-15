@@ -1,4 +1,5 @@
 import React from 'react';
+import { AlertTriangle } from 'components/Icons/AlertTriangle';
 
 export interface VigilanceAreaBadgeProps {
   typePictogramUrl?: string | null;
@@ -7,7 +8,7 @@ export interface VigilanceAreaBadgeProps {
   levelMode?: 'closed' | 'alert' | 'vigilance' | 'info';
   size?: number;
   className?: string;
-  isClosed?: boolean;
+  isImpracticable?: boolean;
 }
 
 export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
@@ -17,39 +18,9 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
   levelMode,
   size = 32,
   className = '',
-  isClosed,
+  isImpracticable,
 }) => {
-  const isClosedState = isClosed || levelMode === 'closed';
-
-  // Priority 1: Closed / Impraticable icon (Red circle with white exclamation mark)
-  if (isClosedState) {
-    return (
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 36 36"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className={`shrink-0 ${className}`}
-        aria-hidden="true"
-      >
-        <circle cx="18" cy="18" r="18" fill="white" />
-        <circle cx="18" cy="18" r="17" fill="var(--color-vigilance-closed, #901A1A)" />
-        <circle
-          cx="18"
-          cy="18"
-          r="14"
-          fill="var(--color-vigilance-closed, #901A1A)"
-          stroke="white"
-          strokeWidth="1.5"
-        />
-        <path d="M18 10v10" stroke="white" strokeWidth="3" strokeLinecap="round" />
-        <circle cx="18" cy="25" r="1.75" fill="white" />
-      </svg>
-    );
-  }
-
-  // Priority 2: Area TYPE pictogram from API
+  // Priority 1: Type pictogram from API
   const typePicto = typePictogramUrl ?? pictogramUrl;
   if (typePicto) {
     return (
@@ -63,7 +34,7 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
     );
   }
 
-  // Priority 3: Area LEVEL pictogram from API
+  // Priority 2: Level pictogram from API
   if (levelPictogramUrl) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
@@ -76,58 +47,27 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
     );
   }
 
-  if (levelMode === 'alert') {
+  // Priority 3: Default icon
+  const isImpracticableState = Boolean(isImpracticable || levelMode === 'closed');
+  if (isImpracticableState) {
     return (
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="var(--color-vigilance-closed, #901A1A)"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+      <AlertTriangle
+        color="var(--color-vigilance-closed, #901A1A)"
+        size={size}
         className={`shrink-0 ${className}`}
-        aria-hidden="true"
-      >
-        <path
-          d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
-          fill="white"
-        />
-        <line x1="12" y1="9" x2="12" y2="13" />
-        <line x1="12" y1="17" x2="12.01" y2="17" />
-      </svg>
+        aria-hidden
+      />
     );
   }
 
-  if (levelMode === 'info') {
-    return (
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#1257A8"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className={`shrink-0 ${className}`}
-        aria-hidden="true"
-      >
-        <circle cx="12" cy="12" r="10" fill="white" />
-        <line x1="12" y1="8" x2="12" y2="12" />
-        <line x1="12" y1="16" x2="12.01" y2="16" />
-      </svg>
-    );
-  }
-
+  // Default for practicable: exclamation icon in orange #d17a00
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      stroke="var(--color-vigilance-warning, #955a02)"
+      stroke="#d17a00"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"

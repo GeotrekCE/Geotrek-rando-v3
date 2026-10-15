@@ -37,10 +37,20 @@ export const getServerSideProps: GetServerSideProps = async context => {
       queryFn: () => getInitialFilters(locale, context.query),
     });
 
+    const defaultDate = getGlobalConfig().enableVigilanceAreas
+      ? new Date().toISOString().split('T')[0]
+      : '';
+
     const bboxFilter = undefined;
     const dateFilter = {
-      beginDate: context.query.beginDate ?? '',
-      endDate: context.query.endDate ?? '',
+      beginDate: context.query.beginDate ? context.query.beginDate.toString() : defaultDate,
+      endDate: context.query.endDate ? context.query.endDate.toString() : '',
+    };
+    const contentDateFilter = {
+      beginDate: context.query.beginDateContent
+        ? context.query.beginDateContent.toString()
+        : defaultDate,
+      endDate: context.query.endDateContent ? context.query.endDateContent.toString() : '',
     };
 
     const commonDictionaries = await queryClient.fetchQuery({
@@ -77,6 +87,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
         initialTextFilter,
         bboxFilter,
         dateFilter,
+        contentDateFilter,
         page,
       ],
       queryFn: () =>
@@ -85,7 +96,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
             filtersState: parsedInitialFiltersState,
             textFilterState: initialTextFilter,
             bboxState: null,
-            dateFilter: null,
+            dateFilter,
+            contentDateFilter,
           },
           {
             treks: page,

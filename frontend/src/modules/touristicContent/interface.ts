@@ -39,7 +39,8 @@ export interface RawTouristicContentResult {
   themes: number[];
   types: Record<number, number[]>;
   cities: string[];
-  closed?: boolean;
+  impracticable?: boolean;
+  published_vigilance_areas?: number[];
 }
 
 export interface RawTouristicContentPopupResult {
@@ -62,7 +63,7 @@ export interface RawTouristicContentDetailsProperties extends RawTouristicConten
   types: Record<number, number[]>;
   pdf: string;
   bbox: number[];
-  closed?: boolean;
+  impracticable?: boolean;
   published_vigilance_areas?: number[];
 }
 
@@ -116,7 +117,7 @@ export interface TouristicContentDetails extends TouristicContent {
   types: TouristicContentDetailsType[];
   bbox: Bbox;
   type: 'TOURISTIC_CONTENT';
-  isClosed?: boolean;
+  isImpracticable?: boolean;
   publishedVigilanceAreas?: VigilanceArea[];
 }
 

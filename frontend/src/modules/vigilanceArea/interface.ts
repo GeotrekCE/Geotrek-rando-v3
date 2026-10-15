@@ -3,12 +3,21 @@ import { VigilanceAreaType } from 'modules/vigilanceAreaType/interface';
 import { VigilanceAreaLevel } from 'modules/vigilanceAreaLevel/interface';
 import { Source } from 'modules/source/interface';
 
-export type Practicability =
-  | 'closed'
-  | 'not_practicable'
-  | 'conditions'
-  | 'under_condition_practicable'
-  | 'practicable';
+export interface RawVigilancePeriod {
+  id?: number;
+  start_date?: string | null;
+  end_date?: string | null;
+  active_days?: number[];
+  annual?: boolean;
+}
+
+export interface VigilancePeriod {
+  id?: number;
+  startDate?: string | null;
+  endDate?: string | null;
+  activeDays: number[];
+  annual: boolean;
+}
 
 export interface RawVigilanceArea {
   id: number;
@@ -18,7 +27,7 @@ export interface RawVigilanceArea {
   geometry: RawGeometryObject;
   structure: number;
   vigilance_area_type: number;
-  practicability: Practicability;
+  impracticable: boolean;
   description: {
     [key: string]: string;
   } | string;
@@ -27,16 +36,11 @@ export interface RawVigilanceArea {
   } | string;
   external_info_url: string | null;
   sources: number[];
-  start_date: string;
-  end_date: string;
-  active_days: number[];
-  active_months: number[];
+  periods: RawVigilancePeriod[];
   published: boolean;
   uuid: string;
   attachments: RawAttachment[];
   update_datetime?: string;
-  date_update?: string;
-  criticality?: 'alert' | 'vigilance' | 'info' | string;
   vigilance_level?: number | string | null;
 }
 
@@ -47,16 +51,13 @@ export interface VigilanceArea {
   type: VigilanceAreaType;
   level?: VigilanceAreaLevel | null;
   color?: string | null;
-  practicability: Practicability;
+  isImpracticable: boolean;
   description?: string | null;
   practicalInfo?: string | null;
   externalInfoUrl?: string | null;
-  startDate?: string | null;
-  endDate?: string | null;
-  activeDays: number[];
-  activeMonths: number[];
+  periods: VigilancePeriod[];
   updateDatetime?: string | null;
   attachments?: FileFromAttachment[];
-  criticality?: 'alert' | 'vigilance' | 'info' | string | null;
+  criticality?: string | null;
   sources?: Source[];
 }

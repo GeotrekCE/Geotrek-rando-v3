@@ -92,7 +92,8 @@ export const adaptTouristicContentResult = ({
         ),
       },
     ],
-    isClosed: rawTouristicObject.closed ?? false,
+    publishedVigilanceAreas: rawTouristicObject.published_vigilance_areas ?? null,
+    isImpracticable: Boolean(rawTouristicObject.impracticable),
   }));
 
 export const adaptTouristicContentDetails = ({
@@ -155,7 +156,7 @@ export const adaptTouristicContentDetails = ({
     corner1: { x: rawTCD.bbox[0], y: rawTCD.bbox[1] },
     corner2: { x: rawTCD.bbox[2], y: rawTCD.bbox[3] },
   },
-  isClosed: rawTCD.properties.closed ?? false,
+  isImpracticable: Boolean(rawTCD.properties.impracticable),
   publishedVigilanceAreas: sortVigilanceAreas(publishedVigilanceAreas),
 });
 

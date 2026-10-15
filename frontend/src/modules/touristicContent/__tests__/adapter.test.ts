@@ -1,6 +1,6 @@
-import { adaptTouristicContentDetails } from '../adapter';
-import { RawTouristicContentDetails } from '../interface';
 import { VigilanceArea } from 'modules/vigilanceArea/interface';
+import { adaptTouristicContentDetails, adaptTouristicContentResult } from '../adapter';
+import { RawTouristicContentDetails, RawTouristicContentResult } from '../interface';
 
 describe('touristicContent adapter', () => {
   it('should correctly adapt closed status and vigilance areas in adaptTouristicContentDetails', () => {
@@ -29,7 +29,7 @@ describe('touristicContent adapter', () => {
         geometry: { type: 'Point', coordinates: [6.0, 45.0] },
         attachments: [],
         approved: false,
-        closed: true,
+        impracticable: true,
         published_vigilance_areas: [9, 4],
       },
     };
@@ -46,24 +46,32 @@ describe('touristicContent adapter', () => {
         id: '9',
         name: 'Area 9',
         type: { id: '1', name: 'Type 1', pictogramUrl: 'icon.svg' },
-        startDate: '2026-08-01',
-        endDate: '2026-08-31',
         criticality: 'info',
-        practicability: 'practicable',
-        activeDays: [],
-        activeMonths: [],
+        isImpracticable: false,
+        periods: [
+          {
+            startDate: '2026-08-01',
+            endDate: '2026-08-31',
+            activeDays: [],
+            annual: false,
+          },
+        ],
         geometry: { type: 'Polygon', coordinates: [] },
       },
       {
         id: '4',
         name: 'Area 4 Closed',
         type: { id: '2', name: 'Type 2', pictogramUrl: 'icon2.svg' },
-        startDate: '2026-08-01',
-        endDate: '2026-08-31',
         criticality: 'closed',
-        practicability: 'closed',
-        activeDays: [],
-        activeMonths: [],
+        isImpracticable: true,
+        periods: [
+          {
+            startDate: '2026-08-01',
+            endDate: '2026-08-31',
+            activeDays: [],
+            annual: false,
+          },
+        ],
         geometry: { type: 'Polygon', coordinates: [] },
       },
     ];
@@ -77,10 +85,42 @@ describe('touristicContent adapter', () => {
       publishedVigilanceAreas: mockVigilanceAreas,
     });
 
-    expect(result.isClosed).toBe(true);
+    expect(result.isImpracticable).toBe(true);
     expect(result.publishedVigilanceAreas).toHaveLength(2);
     // Closed vigilance area should be sorted first by sortVigilanceAreas
     expect(result.publishedVigilanceAreas?.[0].id).toBe('4');
     expect(result.publishedVigilanceAreas?.[1].id).toBe('9');
+  });
+
+  it('should correctly adapt impracticable and published vigilance areas in adaptTouristicContentResult', () => {
+    const rawTouristicContentResults: RawTouristicContentResult[] = [
+      {
+        id: '123',
+        attachments: [],
+        name: 'Gîte d’étape',
+        category: 1,
+        description_teaser: 'Bel hébergement',
+        themes: [],
+        types: {},
+        cities: ['05045'],
+        impracticable: true,
+        published_vigilance_areas: [42],
+      },
+    ];
+
+    const results = adaptTouristicContentResult({
+      rawTouristicContent: rawTouristicContentResults,
+      touristicContentCategories: {
+        1: { id: 1, label: 'Hébergement', pictogramUri: 'category.svg', types: [] },
+      },
+      themeDictionnary: {},
+      cityDictionnary: {
+        '05045': { id: '05045', name: 'Molines-en-Champsaur', code: '05045' },
+      },
+    });
+
+    expect(results).toHaveLength(1);
+    expect(results[0].isImpracticable).toBe(true);
+    expect(results[0].publishedVigilanceAreas).toEqual([42]);
   });
 });

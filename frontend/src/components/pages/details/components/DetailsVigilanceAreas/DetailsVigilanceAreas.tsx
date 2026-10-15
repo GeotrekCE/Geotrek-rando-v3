@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { VigilanceArea } from 'modules/vigilanceArea/interface';
+import { sortVigilanceAreas } from 'modules/vigilanceArea/utils';
 import { DetailsSection } from '../DetailsSection';
 import { VigilanceAreaItem } from './VigilanceAreaItem';
 
@@ -12,7 +13,12 @@ export const DetailsVigilanceAreas: React.FC<DetailsVigilanceAreasProps> = ({
   publishedVigilanceAreas = [],
   className,
 }) => {
-  if (!publishedVigilanceAreas || publishedVigilanceAreas.length === 0) {
+  const sortedVigilanceAreas = useMemo(
+    () => sortVigilanceAreas(publishedVigilanceAreas),
+    [publishedVigilanceAreas],
+  );
+
+  if (!sortedVigilanceAreas || sortedVigilanceAreas.length === 0) {
     return null;
   }
 
@@ -24,11 +30,11 @@ export const DetailsVigilanceAreas: React.FC<DetailsVigilanceAreasProps> = ({
         className={className}
       >
         <div className="flex flex-col gap-3 desktop:gap-4 mt-4">
-          {publishedVigilanceAreas.map((area, index) => (
+          {sortedVigilanceAreas.map((publishedVigilanceArea, index) => (
             <VigilanceAreaItem
-              key={area?.id ?? index}
+              key={publishedVigilanceArea?.id ?? index}
               index={index}
-              area={area}
+              area={publishedVigilanceArea}
             />
           ))}
         </div>

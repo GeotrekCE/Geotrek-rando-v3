@@ -19,15 +19,19 @@ describe('adaptVigilanceArea', () => {
       },
       structure: 1,
       vigilance_area_type: 1,
-      practicability: 'closed',
+      impracticable: true,
       description: { fr: 'Passage interdit pour travaux', en: 'No access' },
       practical_info: { fr: 'Déviation par le vallon', en: 'Detour' },
       external_info_url: 'https://example.com',
       sources: [],
-      start_date: '2026-06-01T00:00:00Z',
-      end_date: '2026-09-30T00:00:00Z',
-      active_days: [1, 2, 3, 4, 5],
-      active_months: [6, 7, 8, 9],
+      periods: [
+        {
+          start_date: '2026-06-01T00:00:00Z',
+          end_date: '2026-09-30T00:00:00Z',
+          active_days: [1, 2, 3, 4, 5],
+          annual: false,
+        },
+      ],
       published: true,
       uuid: 'abc-123',
       attachments: [],
@@ -41,7 +45,8 @@ describe('adaptVigilanceArea', () => {
 
     expect(adapted.id).toBe('2');
     expect(adapted.name).toBe('Zone de travaux col de la Fayolle');
-    expect(adapted.practicability).toBe('closed');
+    expect(adapted.isImpracticable).toBe(true);
+    expect(adapted.periods).toHaveLength(1);
     expect(adapted.type.name).toBe('Travaux');
     expect(adapted.description).toBe('Passage interdit pour travaux');
   });

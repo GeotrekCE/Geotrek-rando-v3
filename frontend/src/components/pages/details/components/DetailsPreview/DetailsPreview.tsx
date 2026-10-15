@@ -136,14 +136,18 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
           'publishedVigilanceAreas' in details && Array.isArray(details.publishedVigilanceAreas)
             ? details.publishedVigilanceAreas
             : [];
-        const isClosed = 'isClosed' in details ? details.isClosed : false;
+        const isImpracticable =
+          'isImpracticable' in details
+            ? Boolean(details.isImpracticable)
+            : false;
 
-        if (!isClosed && publishedVigilanceAreas.length === 0) return null;
+        if (!isImpracticable && publishedVigilanceAreas.length === 0) return null;
 
         return (
           <DetailsVigilanceBanner
-            isClosed={isClosed}
+            isImpracticable={isImpracticable}
             publishedVigilanceAreas={publishedVigilanceAreas}
+            contentType={type}
           />
         );
       })()}

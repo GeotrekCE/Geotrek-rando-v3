@@ -2,6 +2,7 @@ import { FormattedMessage } from 'react-intl';
 import { CardIcon } from 'components/CardIcon';
 import { SmallCarousel } from 'components/Carousel';
 import { ImageWithLegend } from 'components/ImageWithLegend';
+import { AlertTriangle } from 'components/Icons/AlertTriangle';
 import useHasMounted from 'hooks/useHasMounted';
 import { ContentType, ImageFromAttachment } from 'modules/interface';
 import { cn } from 'services/utils/cn';
@@ -14,7 +15,7 @@ interface ResultCardCarouselProps {
   onClickImage?: () => void;
   asColumn?: boolean;
   redirect?: string;
-  isClosed?: boolean;
+  isImpracticable?: boolean;
 }
 
 export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
@@ -25,8 +26,9 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
   onClickImage,
   redirect,
   asColumn,
-  isClosed,
+  isImpracticable,
 }) => {
+  const isImpracticableState = Boolean(isImpracticable);
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
   const files = hasNavigator ? images : images.slice(0, 1);
 
@@ -46,31 +48,16 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
         ))}
       </SmallCarousel>
 
-      {isClosed && (
+      {isImpracticableState && (
         <div className="absolute inset-0 bg-black/60 z-10 flex flex-col items-center justify-center text-white pointer-events-none gap-2">
-          <svg
-            width="64"
-            height="64"
-            viewBox="0 0 36 36"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
+          <AlertTriangle
+            color="var(--color-vigilance-closed)"
+            size={48}
             className="shrink-0 size-12 desktop:size-16"
-          >
-            <circle cx="18" cy="18" r="17" fill="var(--color-vigilance-closed)"></circle>
-            <circle
-              cx="18"
-              cy="18"
-              r="14"
-              fill="var(--color-vigilance-closed)"
-              stroke="white"
-              strokeWidth="1.5"
-            ></circle>
-            <path d="M18 10v10" stroke="white" strokeWidth="3" strokeLinecap="round" />
-            <circle cx="18" cy="25" r="1.75" fill="white" />
-          </svg>
+            aria-hidden
+          />
           <span className="font-bold text-white text-xs desktop:text-sm uppercase tracking-wider">
-            <FormattedMessage id="resultCard.closed" defaultMessage="Impraticable" />
+            <FormattedMessage id="search.resultCard.closed" defaultMessage="Impraticable" />
           </span>
         </div>
       )}

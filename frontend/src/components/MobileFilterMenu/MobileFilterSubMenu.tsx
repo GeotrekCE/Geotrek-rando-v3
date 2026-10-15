@@ -13,8 +13,6 @@ import {
   CATEGORY_ID,
   DATE_FILTER,
   DATE_FILTER_CONTENTS,
-  HIDE_CLOSED_CONTENTS_ID,
-  HIDE_CLOSED_TREKS_ID,
   PRACTICE_ID,
   VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
   VIGILANCE_TYPE_CONTENTS_ID,
@@ -26,11 +24,9 @@ import { CloseButton } from './CloseButton';
 
 const VIGILANCE_SECTION_IDS = [
   DATE_FILTER,
-  HIDE_CLOSED_TREKS_ID,
   VIGILANCE_TYPE_ID,
   VIGILANCE_TYPE_EXCLUDE_ID,
   DATE_FILTER_CONTENTS,
-  HIDE_CLOSED_CONTENTS_ID,
   VIGILANCE_TYPE_CONTENTS_ID,
   VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
 ];
@@ -84,15 +80,9 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
 
   const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
 
-  const practiceFilter = filtersState.find(f => f.id === PRACTICE_ID);
-  const hasSelectedPractice = (practiceFilter?.selectedOptions?.length ?? 0) > 0;
-  const categoryFilter = filtersState.find(f => f.id === CATEGORY_ID);
-  const hasSelectedCategory = (categoryFilter?.selectedOptions?.length ?? 0) > 0;
-
   const shouldShowVigilanceSection =
     isVigilanceEnabled &&
-    ((filterId === PRACTICE_ID && hasSelectedPractice) ||
-      (filterId === CATEGORY_ID && hasSelectedCategory));
+    (filterId === PRACTICE_ID || filterId === CATEGORY_ID);
 
   return (
     <Sheet open={isOpen} onOpenChange={handleClose}>

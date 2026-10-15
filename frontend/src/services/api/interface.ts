@@ -16,6 +16,9 @@ export interface APIQuery {
   q?: string;
   dates_before?: string;
   dates_after?: string;
+  practicable_from?: string;
+  practicable_to?: string;
+  practicable?: string;
   opened_from?: string;
   opened_to?: string;
   opened?: string;

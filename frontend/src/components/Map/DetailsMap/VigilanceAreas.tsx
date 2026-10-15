@@ -5,8 +5,9 @@ import { DivIcon, Marker as LeafletMarker } from 'leaflet';
 import { FormattedMessage, useIntl } from 'react-intl';
 import parse from 'html-react-parser';
 import { VigilanceAreaGeometry } from 'modules/vigilanceArea/adapter';
+import { VigilancePeriod } from 'modules/vigilanceArea/interface';
 import { RawCoordinate2D } from 'modules/interface';
-import { formatVigilancePeriod } from 'modules/vigilanceArea/utils';
+import { formatSinglePeriod } from 'modules/vigilanceArea/utils';
 
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { VigilanceAreaBadge } from 'components/pages/details/components/DetailsVigilanceAreas/VigilanceAreaBadge';
@@ -41,6 +42,7 @@ const createBadgeIcon = (
   levelPictogramUri: string | null | undefined,
   pictogramUri: string | null | undefined,
   levelMode: 'closed' | 'alert' | 'vigilance' | 'info',
+  isImpracticable: boolean,
   isHovered: boolean,
 ): DivIcon => {
   const baseSize = 32;
@@ -65,6 +67,7 @@ const createBadgeIcon = (
         levelPictogramUrl={levelPictogramUri}
         pictogramUrl={pictogramUri}
         levelMode={levelMode}
+        isImpracticable={isImpracticable}
         size={size}
       />
     </div>,
@@ -78,21 +81,31 @@ const createBadgeIcon = (
   });
 };
 
+const getBgColorWithOpacity = (colorStr: string, alphaHex = '23'): string => {
+  if (!colorStr) return 'transparent';
+  if (colorStr.startsWith('#')) {
+    if (colorStr.length === 7) return `${colorStr}${alphaHex}`;
+    if (colorStr.length === 4) {
+      const redChar = colorStr[1], greenChar = colorStr[2], blueChar = colorStr[3];
+      return `#${redChar}${redChar}${greenChar}${greenChar}${blueChar}${blueChar}${alphaHex}`;
+    }
+  }
+  return `color-mix(in srgb, ${colorStr} 23%, transparent)`;
+};
+
 const VigilanceAreaPolygonItem: React.FC<{
   id: string | number;
   name?: string;
   colorHex: string;
+  isImpracticable?: boolean;
   levelMode: 'closed' | 'alert' | 'vigilance' | 'info';
   typeName?: string;
+  levelName?: string;
   typePictogramUri?: string | null;
   levelPictogramUri?: string | null;
   pictogramUri?: string | null;
-  startDate?: string | null;
-  endDate?: string | null;
-  activeDays?: (number | string)[];
-  activeMonths?: (number | string)[];
+  periods?: VigilancePeriod[];
   description?: string | null;
-  practicability?: string;
   positions: RawCoordinate2D[];
   centroid: RawCoordinate2D;
   isHovered: boolean;
@@ -101,17 +114,15 @@ const VigilanceAreaPolygonItem: React.FC<{
   id,
   name,
   colorHex,
+  isImpracticable = false,
   levelMode,
   typeName,
+  levelName,
   typePictogramUri,
   levelPictogramUri,
   pictogramUri,
-  startDate,
-  endDate,
-  activeDays = [],
-  activeMonths = [],
+  periods = [],
   description,
-  practicability,
   positions,
   centroid,
   isHovered,
@@ -121,51 +132,39 @@ const VigilanceAreaPolygonItem: React.FC<{
   const isHighlighted = isHovered || isSelected;
 
   const icon = useMemo(
-    () => createBadgeIcon(typePictogramUri, levelPictogramUri, pictogramUri, levelMode, isHighlighted),
-    [typePictogramUri, levelPictogramUri, pictogramUri, levelMode, isHighlighted],
+    () =>
+      createBadgeIcon(
+        typePictogramUri,
+        levelPictogramUri,
+        pictogramUri,
+        levelMode,
+        isImpracticable,
+        isHighlighted,
+      ),
+    [typePictogramUri, levelPictogramUri, pictogramUri, levelMode, isImpracticable, isHighlighted],
   );
 
-  const isClosed =
-    practicability === 'closed' ||
-    practicability === 'not_practicable' ||
-    levelMode === 'closed';
+  const levelText = isImpracticable
+    ? intl.formatMessage({
+        id: 'details.vigilancePracticabilityClosed',
+        defaultMessage: 'Impraticable',
+      })
+    : levelName ||
+      intl.formatMessage({
+        id: 'details.vigilanceDefaultLevel',
+        defaultMessage: 'Zone de vigilance',
+      });
 
-  let practicabilityText = '';
-  if (isClosed) {
-    practicabilityText = intl.formatMessage({
-      id: 'details.vigilancePracticabilityClosed',
-      defaultMessage: 'Itinéraire fermé / Interdit d’accès',
-    });
-  } else if (
-    practicability === 'conditions' ||
-    practicability === 'under_condition_practicable'
-  ) {
-    practicabilityText = intl.formatMessage({
-      id: 'details.vigilancePracticabilityConditions',
-      defaultMessage: 'Praticable sous conditions',
-    });
-  }
-
-  const levelText = intl.formatMessage({
-    id: `details.vigilanceLevelPrefix.${levelMode}`,
-    defaultMessage:
-      levelMode === 'closed'
-        ? 'Impraticable'
-        : levelMode === 'alert'
-        ? 'Vigilance élevée'
-        : levelMode === 'info'
-        ? 'Conseil'
-        : 'Zone de vigilance',
-  });
-
-  const periodText = formatVigilancePeriod({
-    startDate,
-    endDate,
-    activeDays,
-    activeMonths,
-    intl,
-    isHeader: false,
-  });
+  const singlePeriodText =
+    periods.length === 1
+      ? formatSinglePeriod({
+          startDate: periods[0].startDate,
+          endDate: periods[0].endDate,
+          activeDays: periods[0].activeDays,
+          annual: periods[0].annual,
+          intl,
+        })
+      : null;
 
   const { selectedVigilanceAreaId, setSelectedVigilanceAreaId } = useDetailsAndMapContext();
   const markerRef = useRef<LeafletMarker | null>(null);
@@ -181,23 +180,12 @@ const VigilanceAreaPolygonItem: React.FC<{
   }, [selectedVigilanceAreaId, id]);
 
   const headerTitle = `${levelText}${typeName ? ` – ${typeName}` : ''}`;
+  const headerBgColor = isImpracticable
+    ? 'color-mix(in srgb, #901A1A 12%, transparent)'
+    : getBgColorWithOpacity(colorHex, '23');
 
-  const getBgColorWithOpacity = (colorStr: string, alphaHex = '23'): string => {
-    if (!colorStr) return 'transparent';
-    if (colorStr.startsWith('#')) {
-      if (colorStr.length === 7) return `${colorStr}${alphaHex}`;
-      if (colorStr.length === 4) {
-        const r = colorStr[1], g = colorStr[2], b = colorStr[3];
-        return `#${r}${r}${g}${g}${b}${b}${alphaHex}`;
-      }
-    }
-    return `color-mix(in srgb, ${colorStr} 23%, transparent)`;
-  };
-
-  const headerBgColor = getBgColorWithOpacity(colorHex, '23');
-
-  const handleMoreInfoClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const handleMoreInfoClick = (clickEvent: React.MouseEvent) => {
+    clickEvent.preventDefault();
     setSelectedVigilanceAreaId(String(id));
     const element = document.getElementById(`details_vigilanceArea_${id}`);
     if (element) {
@@ -241,6 +229,7 @@ const VigilanceAreaPolygonItem: React.FC<{
                     levelPictogramUrl={levelPictogramUri}
                     pictogramUrl={pictogramUri}
                     levelMode={levelMode}
+                    isImpracticable={isImpracticable}
                     size={20}
                   />
                   <span className="truncate">{headerTitle}</span>
@@ -254,19 +243,49 @@ const VigilanceAreaPolygonItem: React.FC<{
                   </h4>
 
                   {/* Practicability */}
-                  {practicabilityText && (
-                    <p className="font-bold m-0" style={{ color: colorHex }}>
-                      {practicabilityText}
-                    </p>
-                  )}
+                  <p className="font-bold m-0" style={{ color: colorHex }}>
+                    <FormattedMessage
+                      id="details.vigilancePracticabilityTitle"
+                      defaultMessage="Praticabilité :"
+                    />{' '}
+                    {isImpracticable
+                      ? intl.formatMessage({
+                          id: 'details.vigilancePracticabilityClosed',
+                          defaultMessage: 'Impraticable',
+                        })
+                      : intl.formatMessage({
+                          id: 'details.vigilancePracticabilityPracticable',
+                          defaultMessage: 'Praticable',
+                        })}
+                  </p>
 
                   {/* Period */}
-                  {periodText && (
+                  {periods.length > 1 ? (
+                    <div>
+                      <p className="m-0 text-greyDarkColored/80 font-bold">
+                        <FormattedMessage id="details.vigilancePeriod" defaultMessage="Période(s) concernée(s) :" />
+                      </p>
+                      <ul className="list-disc pl-4 mt-1 space-y-0.5 text-greyDarkColored/80">
+                        {periods.map((vigilancePeriod, periodIndex) => {
+                          const formattedPeriod = formatSinglePeriod({
+                            startDate: vigilancePeriod.startDate,
+                            endDate: vigilancePeriod.endDate,
+                            activeDays: vigilancePeriod.activeDays,
+                            annual: vigilancePeriod.annual,
+                            intl,
+                          });
+                          return formattedPeriod ? <li key={periodIndex}>{formattedPeriod}</li> : null;
+                        })}
+                      </ul>
+                    </div>
+                  ) : singlePeriodText ? (
                     <p className="m-0 text-greyDarkColored/80">
-                      <FormattedMessage id="details.vigilancePeriod" defaultMessage="Période concernée :" />{' '}
-                      {periodText}
+                      <span className="font-bold">
+                        <FormattedMessage id="details.vigilancePeriod" defaultMessage="Période(s) concernée(s) :" />{' '}
+                      </span>
+                      {singlePeriodText}
                     </p>
-                  )}
+                  ) : null}
 
                   {/* Description */}
                   {Boolean(description) && (
@@ -307,17 +326,15 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
           id,
           name,
           colorHex,
+          isImpracticable,
           levelMode,
           typeName,
+          levelName,
           typePictogramUri,
           levelPictogramUri,
           pictogramUri,
-          startDate,
-          endDate,
-          activeDays,
-          activeMonths,
+          periods,
           description,
-          practicability,
           geometry,
         }) => {
           if (!geometry || !geometry.type || !geometry.coordinates) {
@@ -333,17 +350,15 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
                 id,
                 name,
                 colorHex,
+                isImpracticable,
                 levelMode,
                 typeName,
+                levelName,
                 typePictogramUri,
                 levelPictogramUri,
                 pictogramUri,
-                startDate,
-                endDate,
-                activeDays,
-                activeMonths,
+                periods,
                 description,
-                practicability,
                 positions,
                 centroid: getPolygonCentroid(positions),
               },
@@ -351,27 +366,25 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
           }
           if (geometry.type === 'MultiPolygon') {
             return (geometry.coordinates as unknown[][][]).flatMap(
-              (polygonCoordinates, index) => {
+              (polygonCoordinates, polygonIndex) => {
                 const rawRing = polygonCoordinates[0];
                 const positions = extractPositions(rawRing);
                 if (positions.length < 3) return [];
                 return [
                   {
-                    key: `${id}-${index}`,
+                    key: `${id}-${polygonIndex}`,
                     id,
                     name,
                     colorHex,
+                    isImpracticable,
                     levelMode,
                     typeName,
+                    levelName,
                     typePictogramUri,
                     levelPictogramUri,
                     pictogramUri,
-                    startDate,
-                    endDate,
-                    activeDays,
-                    activeMonths,
+                    periods,
                     description,
-                    practicability,
                     positions,
                     centroid: getPolygonCentroid(positions),
                   },

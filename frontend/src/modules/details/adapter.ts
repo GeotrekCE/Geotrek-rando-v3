@@ -34,6 +34,7 @@ import {
 } from 'modules/utils/geometry';
 import { formatHours } from 'modules/utils/time';
 import { ViewPoint } from 'modules/viewPoint/interface';
+import { sortVigilanceAreas } from 'modules/vigilanceArea/utils';
 import { TrekRatingScale } from '../trekRatingScale/interface';
 import { TrekRatingChoices } from '../trekRating/interface';
 import { Details, RawDetails, Reservation, TrekChildGeometry, TrekFamily } from './interface';
@@ -92,7 +93,7 @@ export const adaptResults = ({
   publishedVigilanceAreas?: any[];
 }): Details => {
   try {
-    const isClosed = rawDetailsProperties.closed ?? false;
+    const isImpracticable = Boolean(rawDetailsProperties.impracticable);
     const coordinates = getTrekGeometryAsLineStringCoordinates(geometry);
     return {
       accessbilityLevel,
@@ -200,7 +201,7 @@ export const adaptResults = ({
       service,
       infrastructure,
       viewPoints,
-      isClosed,
+      isImpracticable,
       publishedVigilanceAreas: sortVigilanceAreas(publishedVigilanceAreas),
     };
   } catch (e) {
@@ -209,40 +210,7 @@ export const adaptResults = ({
   }
 };
 
-export const sortVigilanceAreas = (areas: any[] = []): any[] => {
-  return [...areas].sort((firstArea, secondArea) => {
-    // 1. Closures ('closed' or 'not_practicable') come first
-    const isFirstClosed =
-      firstArea.practicability === 'closed' ||
-      firstArea.practicability === 'not_practicable' ||
-      firstArea.closed === true;
-    const isSecondClosed =
-      secondArea.practicability === 'closed' ||
-      secondArea.practicability === 'not_practicable' ||
-      secondArea.closed === true;
-    if (isFirstClosed && !isSecondClosed) return -1;
-    if (!isFirstClosed && isSecondClosed) return 1;
-
-    // 2. Alert ('alert' or 'high') comes before vigilance
-    const isFirstAlert =
-      firstArea.criticality === 'alert' ||
-      firstArea.level === 'alert' ||
-      firstArea.criticality === 'high';
-    const isSecondAlert =
-      secondArea.criticality === 'alert' ||
-      secondArea.level === 'alert' ||
-      secondArea.criticality === 'high';
-    if (isFirstAlert && !isSecondAlert) return -1;
-    if (!isFirstAlert && isSecondAlert) return 1;
-
-    // 3. Chronological sort by start_date / startDate
-    const dateFirstStr = firstArea.start_date ?? firstArea.startDate ?? '';
-    const dateSecondStr = secondArea.start_date ?? secondArea.startDate ?? '';
-    const firstStartDate = dateFirstStr ? new Date(dateFirstStr).getTime() : 0;
-    const secondStartDate = dateSecondStr ? new Date(dateSecondStr).getTime() : 0;
-    return firstStartDate - secondStartDate;
-  });
-};
+export { sortVigilanceAreas } from 'modules/vigilanceArea/utils';
 
 export const adaptChildren = ({
   childrenIds,

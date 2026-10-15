@@ -1,14 +1,16 @@
 import { DateFilter } from 'modules/filters/interface';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 export const useDateFilter = (): {
   trekDateFilter: DateFilter;
-  setTrekDateFilter: (dFilter: DateFilter) => void;
+  setTrekDateFilter: (dateFilter: DateFilter) => void;
   contentDateFilter: DateFilter;
-  setContentDateFilter: (dFilter: DateFilter) => void;
+  setContentDateFilter: (dateFilter: DateFilter) => void;
 } => {
-  const initialOptions = useRouter().query;
+  const router = useRouter();
+  const initialOptions = router?.query ?? {};
   const {
     beginDate = '',
     endDate = '',
@@ -16,13 +18,17 @@ export const useDateFilter = (): {
     endDateContent = '',
   } = initialOptions;
 
+  const defaultDate = getGlobalConfig().enableVigilanceAreas
+    ? new Date().toISOString().split('T')[0]
+    : '';
+
   const [trekDateFilter, setTrekDateFilter] = useState<DateFilter>({
-    beginDate: beginDate.toString(),
+    beginDate: beginDate ? beginDate.toString() : defaultDate,
     endDate: endDate.toString(),
   });
 
   const [contentDateFilter, setContentDateFilter] = useState<DateFilter>({
-    beginDate: beginDateContent.toString(),
+    beginDate: beginDateContent ? beginDateContent.toString() : defaultDate,
     endDate: endDateContent.toString(),
   });
 

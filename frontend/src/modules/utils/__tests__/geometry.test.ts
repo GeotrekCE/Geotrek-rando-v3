@@ -1,5 +1,5 @@
-import { getPolygonCentroid } from '../geometry';
 import { RawCoordinate2D } from 'modules/interface';
+import { getPolygonCentroid } from '../geometry';
 
 describe('geometry utils', () => {
   describe('getPolygonCentroid', () => {

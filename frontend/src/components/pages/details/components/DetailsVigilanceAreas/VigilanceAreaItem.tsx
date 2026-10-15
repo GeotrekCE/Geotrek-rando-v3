@@ -4,8 +4,8 @@ import { FormattedDate, FormattedMessage, useIntl } from 'react-intl';
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
 import { FileFromAttachment } from 'modules/interface';
 import { Source } from 'modules/source/interface';
-import { VigilanceArea } from 'modules/vigilanceArea/interface';
-import { formatVigilancePeriod } from 'modules/vigilanceArea/utils';
+import { VigilanceArea, VigilancePeriod } from 'modules/vigilanceArea/interface';
+import { formatSinglePeriod, formatVigilancePeriod } from 'modules/vigilanceArea/utils';
 import { cn } from 'services/utils/cn';
 import { Paperclip } from 'components/Icons/Paperclip';
 import { VigilanceAreaBadge } from './VigilanceAreaBadge';
@@ -44,27 +44,50 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
   const levelObj = rawArea?.level as Record<string, unknown> | null;
   const levelPicto = (levelObj?.pictogramUrl ?? levelObj?.pictogram ?? rawArea?.levelPictogramUrl ?? null) as string | null;
 
-  // Determine criticality / level
-  const isClosed =
-    rawArea?.practicability === 'closed' ||
-    rawArea?.practicability === 'not_practicable' ||
-    rawArea?.closed === true;
-  const levelNum = typeof levelObj === 'object' && levelObj !== null ? levelObj.level : rawArea?.level;
+  // Determine impracticability
+  const isImpracticable = Boolean(rawArea?.isImpracticable ?? rawArea?.impracticable);
 
-  let levelMode: 'closed' | 'alert' | 'vigilance' | 'info' = 'vigilance';
-  if (isClosed) {
-    levelMode = 'closed';
-  } else if (rawArea?.criticality === 'alert' || rawArea?.criticality === 'high' || levelNum === 1 || levelNum === '1') {
-    levelMode = 'alert';
-  } else if (rawArea?.criticality === 'info' || levelNum === 3 || levelNum === '3') {
-    levelMode = 'info';
-  }
+  // Level text: API level name or "Impraticable" or default
+  const levelText = isImpracticable
+    ? intl.formatMessage({
+        id: 'details.vigilancePracticabilityClosed',
+        defaultMessage: 'Impraticable',
+      })
+    : (levelObj?.name as string) ||
+      (rawArea?.levelName as string) ||
+      intl.formatMessage({
+        id: 'details.vigilanceDefaultLevel',
+        defaultMessage: 'Zone de vigilance',
+      });
 
-  const isRedVariant = levelMode === 'closed' || levelMode === 'alert';
+  // Strict colors: red #901A1A if impracticable, otherwise level color or fallback #d17a00
+  const itemColor = isImpracticable
+    ? '#901A1A'
+    : (levelObj?.color as string) || (rawArea?.color as string) || '#d17a00';
 
-  // Dates
-  const startDateStr = (rawArea?.startDate ?? rawArea?.start_date) as string | null;
-  const endDateStr = (rawArea?.endDate ?? rawArea?.end_date) as string | null;
+  const itemBgColor = isImpracticable
+    ? 'color-mix(in srgb, #901A1A 8%, white)'
+    : `color-mix(in srgb, ${itemColor} 10%, white)`;
+
+  // Periods extraction
+  const periods: VigilancePeriod[] = (rawArea?.periods as VigilancePeriod[]) || [];
+
+  const headerPeriodText = formatVigilancePeriod({
+    periods,
+    intl,
+    isHeader: true,
+  });
+
+  const detailSinglePeriodText =
+    periods.length === 1
+      ? formatSinglePeriod({
+          startDate: periods[0].startDate,
+          endDate: periods[0].endDate,
+          activeDays: periods[0].activeDays,
+          annual: periods[0].annual,
+          intl,
+        })
+      : null;
 
   // Description & Info
   const description = (rawArea?.description ?? '') as string;
@@ -77,55 +100,6 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
       : null;
   const sources = (rawArea?.sources as Source[]) || [];
   const files = (rawArea?.attachments as FileFromAttachment[]) || [];
-  const activeDays = (rawArea?.activeDays || rawArea?.active_days || []) as (number | string)[];
-  const activeMonths = (rawArea?.activeMonths || rawArea?.active_months || []) as (number | string)[];
-  const headerPeriodText = formatVigilancePeriod({
-    startDate: startDateStr,
-    endDate: endDateStr,
-    activeDays,
-    activeMonths,
-    intl,
-    isHeader: true,
-  });
-
-  const detailPeriodText = formatVigilancePeriod({
-    startDate: startDateStr,
-    endDate: endDateStr,
-    activeDays,
-    activeMonths,
-    intl,
-    isHeader: false,
-  });
-
-  // Practicability label (Only display restrictions: Impraticable or Praticable sous conditions)
-  let practicabilityText = '';
-  if (isClosed) {
-    practicabilityText = intl.formatMessage({
-      id: 'details.vigilancePracticabilityClosed',
-      defaultMessage: 'Impraticable / Interdit d’accès',
-    });
-  } else if (
-    area?.practicability === 'conditions' ||
-    area?.practicability === 'under_condition_practicable'
-  ) {
-    practicabilityText = intl.formatMessage({
-      id: 'details.vigilancePracticabilityConditions',
-      defaultMessage: 'Praticable sous conditions',
-    });
-  }
-
-  // Level prefix
-  const levelText = intl.formatMessage({
-    id: `details.vigilanceLevelPrefix.${levelMode}`,
-    defaultMessage:
-      levelMode === 'closed'
-        ? 'Impraticable'
-        : levelMode === 'alert'
-        ? 'Vigilance élevée'
-        : levelMode === 'info'
-        ? 'Information'
-        : 'Zone de vigilance',
-  });
 
   const { selectedVigilanceAreaId, setSelectedVigilanceAreaId, setHoveredVigilanceAreaId } =
     useDetailsAndMapContext();
@@ -135,13 +109,6 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
   const toggleOpen = () => {
     setSelectedVigilanceAreaId(isOpen ? null : String(id));
   };
-
-  const itemColor =
-    (rawArea?.color as string) ||
-    ((rawArea?.level as Record<string, unknown> | null)?.color as string) ||
-    (isRedVariant ? 'var(--color-vigilance-closed)' : 'var(--color-vigilance-warning)');
-
-  const itemBgColor = `color-mix(in srgb, ${itemColor} 10%, white)`;
 
   return (
     <div
@@ -168,8 +135,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
           <VigilanceAreaBadge
             typePictogramUrl={typePicto}
             levelPictogramUrl={levelPicto}
-            levelMode={levelMode}
-            isClosed={isClosed}
+            isImpracticable={isImpracticable}
             size={32}
           />
 
@@ -191,17 +157,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
               </h3>
             )}
 
-            {/* Line 3: Practicability */}
-            {practicabilityText && (
-              <p
-                style={{ color: itemColor }}
-                className={cn('text-xs font-bold mt-0.5 m-0')}
-              >
-                {practicabilityText}
-              </p>
-            )}
-
-            {/* Line 4: Dates / Period */}
+            {/* Line 3: Dates / Period summary */}
             {headerPeriodText && (
               <p className="text-xs text-greyDarkColored mt-0.5 m-0">
                 {headerPeriodText}
@@ -263,20 +219,47 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
           )}
 
           {/* 3. Praticabilité */}
-          {practicabilityText && (
-            <p className="m-0">
-              <span className="font-bold">
-                <FormattedMessage
-                  id="details.vigilancePracticabilityTitle"
-                  defaultMessage="Praticabilité :"
-                />
-              </span>{' '}
-              {practicabilityText}
-            </p>
-          )}
+          <p className="m-0">
+            <span className="font-bold">
+              <FormattedMessage
+                id="details.vigilancePracticabilityTitle"
+                defaultMessage="Praticabilité :"
+              />
+            </span>{' '}
+            {isImpracticable
+              ? intl.formatMessage({
+                  id: 'details.vigilancePracticabilityClosed',
+                  defaultMessage: 'Impraticable',
+                })
+              : intl.formatMessage({
+                  id: 'details.vigilancePracticabilityPracticable',
+                  defaultMessage: 'Praticable',
+                })}
+          </p>
 
-          {/* 4. Période(s) concernée(s) : */}
-          {detailPeriodText && (
+          {/* 4. Période(s) concernée(s) */}
+          {periods.length > 1 ? (
+            <div>
+              <p className="font-bold m-0">
+                <FormattedMessage
+                  id="details.vigilancePeriod"
+                  defaultMessage="Période(s) concernée(s) :"
+                />
+              </p>
+              <ul className="list-disc pl-5 mt-1 space-y-1">
+                {periods.map((vigilancePeriod, periodIndex) => {
+                  const formattedPeriod = formatSinglePeriod({
+                    startDate: vigilancePeriod.startDate,
+                    endDate: vigilancePeriod.endDate,
+                    activeDays: vigilancePeriod.activeDays,
+                    annual: vigilancePeriod.annual,
+                    intl,
+                  });
+                  return formattedPeriod ? <li key={periodIndex}>{formattedPeriod}</li> : null;
+                })}
+              </ul>
+            </div>
+          ) : detailSinglePeriodText ? (
             <p className="m-0">
               <span className="font-bold">
                 <FormattedMessage
@@ -284,9 +267,9 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
                   defaultMessage="Période(s) concernée(s) :"
                 />
               </span>{' '}
-              {detailPeriodText}
+              {detailSinglePeriodText}
             </p>
-          )}
+          ) : null}
 
           {/* 5. Plus d'informations sur le sujet : */}
           {files && files.length > 0 && (
@@ -298,11 +281,11 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
                 />
               </h4>
               <div className="flex flex-col gap-1 text-xs text-greyDarkColored">
-                {files.map((file: FileFromAttachment, i: number) => {
+                {files.map((file: FileFromAttachment, fileIndex: number) => {
                   const fileExtension = file.url.split('.').pop()?.toUpperCase();
-                  const fileName = file.fileName || file.legend || `Document ${i + 1}`;
+                  const fileName = file.fileName || file.legend || `Document ${fileIndex + 1}`;
                   return (
-                    <div key={i} className="flex items-center gap-2">
+                    <div key={fileIndex} className="flex items-center gap-2">
                       <Paperclip size={14} className="shrink-0 text-greyDarkColored" aria-hidden />
                       <a
                         href={file.url}
@@ -346,20 +329,20 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
               <span className="font-bold">
                 <FormattedMessage id="details.vigilanceSources" defaultMessage="Source :" />
               </span>{' '}
-              {sources.map((src: Source, i: number) => (
-                <React.Fragment key={i}>
-                  {i > 0 && ' — '}
-                  {src.website ? (
+              {sources.map((source: Source, sourceIndex: number) => (
+                <React.Fragment key={sourceIndex}>
+                  {sourceIndex > 0 && ' — '}
+                  {source.website ? (
                     <a
-                      href={src.website}
+                      href={source.website}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="underline text-primary1 hover:text-primary1-light font-medium"
                     >
-                      {src.name}
+                      {source.name}
                     </a>
                   ) : (
-                    <span>{src.name}</span>
+                    <span>{source.name}</span>
                   )}
                 </React.Fragment>
               ))}
@@ -369,7 +352,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
           {/* 8. Date de mise à jour */}
           {updateDatetime && (
             <p className="text-xs italic text-greyDarkColored/70 pt-2 m-0">
-              <FormattedMessage id="details.vigilanceUpdated" defaultMessage="Mis à jour le" />{' '}
+              <FormattedMessage id="details.vigilanceUpdated" defaultMessage="Dernière mise à jour le" />{' '}
               <FormattedDate value={updateDatetime} year="numeric" month="long" day="numeric" />
             </p>
           )}

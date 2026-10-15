@@ -8,8 +8,6 @@ import {
   DATE_FILTER,
   DISTRICT_ID,
   EVENT_ID,
-  HIDE_CLOSED_CONTENTS_ID,
-  HIDE_CLOSED_TREKS_ID,
   ORGANIZER_ID,
   OUTDOOR_ID,
   PRACTICE_ID,
@@ -36,11 +34,11 @@ export const useFilterBar = () => {
   );
 
   const trekVigilanceSubFilters = enableVigilanceAreas
-    ? [VIGILANCE_TYPE_ID, DATE_FILTER, HIDE_CLOSED_TREKS_ID]
+    ? [VIGILANCE_TYPE_ID, DATE_FILTER]
     : [];
 
   const categoryVigilanceSubFilters = enableVigilanceAreas
-    ? [VIGILANCE_TYPE_CONTENTS_ID, DATE_FILTER, HIDE_CLOSED_CONTENTS_ID]
+    ? [VIGILANCE_TYPE_CONTENTS_ID, DATE_FILTER]
     : [];
 
   const trekSubFilters = [

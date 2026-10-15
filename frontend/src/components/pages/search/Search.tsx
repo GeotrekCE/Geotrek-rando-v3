@@ -18,9 +18,9 @@ import { FilterState } from 'modules/filters/interface';
 import { SearchMapDynamicComponent } from 'components/Map';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { useRouter } from 'next/router';
-import { cn } from 'services/utils/cn';
 import { countFiltersSelected } from 'modules/filters/utils';
-import { CATEGORY_ID, PRACTICE_ID } from 'modules/filters/constant';
+import { CATEGORY_ID } from 'modules/filters/constant';
+import { cn } from 'services/utils/cn';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
@@ -73,42 +73,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
 
   const bboxState = bounds ?? (isNavigatedByBrowser ? searchBbox : null);
 
-  const practiceFilter = filtersState.find(f => f.id === PRACTICE_ID);
-  const hasSelectedPractice = (practiceFilter?.selectedOptions?.length ?? 0) > 0;
-  const categoryFilter = filtersState.find(f => f.id === CATEGORY_ID);
-  const hasSelectedCategory = (categoryFilter?.selectedOptions?.length ?? 0) > 0;
 
-  useEffect(() => {
-    if (getGlobalConfig().enableVigilanceAreas) {
-      if (hasSelectedPractice && !trekDateFilter.beginDate && !trekDateFilter.endDate) {
-        setTrekDateFilter({
-          beginDate: new Date().toISOString().split('T')[0],
-          endDate: '',
-        });
-      } else if (!hasSelectedPractice && (trekDateFilter.beginDate || trekDateFilter.endDate)) {
-        setTrekDateFilter({
-          beginDate: '',
-          endDate: '',
-        });
-      }
-    }
-  }, [hasSelectedPractice, setTrekDateFilter, trekDateFilter.beginDate, trekDateFilter.endDate]);
-
-  useEffect(() => {
-    if (getGlobalConfig().enableVigilanceAreas) {
-      if (hasSelectedCategory && !contentDateFilter.beginDate && !contentDateFilter.endDate) {
-        setContentDateFilter({
-          beginDate: new Date().toISOString().split('T')[0],
-          endDate: '',
-        });
-      } else if (!hasSelectedCategory && (contentDateFilter.beginDate || contentDateFilter.endDate)) {
-        setContentDateFilter({
-          beginDate: '',
-          endDate: '',
-        });
-      }
-    }
-  }, [hasSelectedCategory, setContentDateFilter, contentDateFilter.beginDate, contentDateFilter.endDate]);
 
   const {
     searchResults,
@@ -159,6 +124,11 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   const onRemoveAllFiltersClick = () => {
     resetFilters();
     resetTextFilter();
+    const defaultDate = getGlobalConfig().enableVigilanceAreas
+      ? new Date().toISOString().split('T')[0]
+      : '';
+    setTrekDateFilter({ beginDate: defaultDate, endDate: '' });
+    setContentDateFilter({ beginDate: defaultDate, endDate: '' });
   };
 
   const filtersStateWithExclude = filtersState.reduce((list, item) => {
@@ -280,10 +250,6 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                       searchResult.type === 'TOURISTIC_CONTENT'
                         ? contentDateFilter
                         : trekDateFilter;
-                    const hasItemTarget =
-                      searchResult.type === 'TOURISTIC_CONTENT'
-                        ? hasSelectedCategory
-                        : hasSelectedPractice;
 
                     return (
                       <ResultCard
@@ -298,10 +264,11 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                         badgeIconUri={searchResult.category?.pictogramUri}
                         badgeName={searchResult.category?.label}
                         informations={searchResult.informations ?? []}
-                        isClosed={
+                        isImpracticable={
                           getGlobalConfig().enableVigilanceAreas &&
-                          hasItemTarget &&
-                          ('isClosed' in searchResult ? Boolean(searchResult.isClosed) : false)
+                          ('isImpracticable' in searchResult
+                            ? Boolean(searchResult.isImpracticable)
+                            : false)
                         }
                         isDateRange={Boolean(itemDateFilter.beginDate && itemDateFilter.endDate)}
                         isTodayDate={
@@ -309,6 +276,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                           (itemDateFilter.beginDate === new Date().toISOString().split('T')[0] ||
                             !itemDateFilter.beginDate)
                         }
+                        endDate={'endDate' in searchResult ? (searchResult.endDate as string) : undefined}
                         redirectionUrl={generateDetailsUrlFromType(
                           searchResult.type,
                           searchResult.id,
