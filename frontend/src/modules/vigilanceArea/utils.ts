@@ -1,5 +1,10 @@
 import { IntlShape } from 'react-intl';
-import { VigilanceArea, VigilancePeriod } from './interface';
+import {
+  VigilanceArea,
+  VigilanceAreaPeriodItem,
+  VigilanceAreasPeriodsMap,
+  VigilancePeriod,
+} from './interface';
 
 export const isDayActive = (
   activeDays: (number | string)[],
@@ -392,4 +397,87 @@ export const sortVigilanceAreas = <T extends Record<string, any>>(
       getChronologicalScore(secondArea, referenceDate);
     return chronoDiff;
   });
+};
+
+export const getImpracticableEndDate = (
+  publishedAreaIds: (number | { id?: number; vigilance_area_type?: number; type?: any })[] | null | undefined,
+  vigilanceAreasMap: VigilanceAreasPeriodsMap,
+  targetDate: Date = new Date(),
+): string | null => {
+  if (!publishedAreaIds || publishedAreaIds.length === 0) {
+    return null;
+  }
+
+  const normalizedAreaIds = publishedAreaIds
+    .map(areaItem => (typeof areaItem === 'number' ? areaItem : areaItem?.id))
+    .filter((areaId): areaId is number => typeof areaId === 'number');
+
+  if (normalizedAreaIds.length === 0) {
+    return null;
+  }
+
+  const impracticableAreas = normalizedAreaIds
+    .map(areaId => vigilanceAreasMap[areaId])
+    .filter((area): area is VigilanceAreaPeriodItem => Boolean(area && area.impracticable));
+
+  if (impracticableAreas.length === 0) {
+    return null;
+  }
+
+  let maxEndDate: string | null = null;
+  let hasActiveImpracticableArea = false;
+
+  for (const impracticableArea of impracticableAreas) {
+    const { periods } = impracticableArea;
+    if (!periods || periods.length === 0) {
+      hasActiveImpracticableArea = true;
+      continue;
+    }
+
+    const activePeriods = periods.filter(period => isPeriodActive(period, targetDate));
+
+    if (activePeriods.length === 0) {
+      continue;
+    }
+
+    hasActiveImpracticableArea = true;
+
+    for (const activePeriod of activePeriods) {
+      if (!activePeriod.endDate) {
+        continue;
+      }
+
+      let periodEndDateString: string;
+      if (activePeriod.annual) {
+        const targetYear = targetDate.getFullYear();
+        const endMonthDay = String(activePeriod.endDate).slice(5, 10);
+        periodEndDateString = `${targetYear}-${endMonthDay}`;
+      } else {
+        periodEndDateString = String(activePeriod.endDate).slice(0, 10);
+      }
+
+      if (!maxEndDate || periodEndDateString > maxEndDate) {
+        maxEndDate = periodEndDateString;
+      }
+    }
+  }
+
+  if (!hasActiveImpracticableArea) {
+    for (const impracticableArea of impracticableAreas) {
+      const { periods } = impracticableArea;
+      if (!periods || periods.length === 0) {
+        return null;
+      }
+      for (const period of periods) {
+        if (period.endDate) {
+          const endDateString = String(period.endDate).slice(0, 10);
+          if (!maxEndDate || endDateString > maxEndDate) {
+            maxEndDate = endDateString;
+          }
+        }
+      }
+    }
+  }
+
+  return maxEndDate || null;
 };

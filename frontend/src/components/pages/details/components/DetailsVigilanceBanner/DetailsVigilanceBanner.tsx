@@ -1,9 +1,10 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { cn } from 'services/utils/cn';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { ContentType } from 'modules/interface';
 import { VigilanceArea } from 'modules/vigilanceArea/interface';
+import { VigilanceAreaLevel } from 'modules/vigilanceAreaLevel/interface';
 import { isVigilanceAreaActive } from 'modules/vigilanceArea/utils';
 import { VigilanceAreaBadge } from '../DetailsVigilanceAreas/VigilanceAreaBadge';
 
@@ -78,7 +79,6 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
   contentType,
   className,
 }) => {
-  const intl = useIntl();
   const hasVigilanceAreas = publishedVigilanceAreas.length > 0;
   const isContentImpracticable = Boolean(isImpracticable);
 
@@ -138,12 +138,14 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
     const typeName =
       typeof typeObject === 'object' && typeObject !== null
         ? String(
-            ((typeObject as unknown) as Record<string, unknown>).label ??
+            ((typeObject as unknown) as Record<string, unknown>).rawName ??
               ((typeObject as unknown) as Record<string, unknown>).name ??
+              ((typeObject as unknown) as Record<string, unknown>).label ??
               '',
           )
         : String(
-            getVigilanceAreaProperty(singleVigilanceArea, 'type_name') ??
+            getVigilanceAreaProperty(singleVigilanceArea, 'type_raw_name') ??
+              getVigilanceAreaProperty(singleVigilanceArea, 'type_name') ??
               getVigilanceAreaProperty(singleVigilanceArea, 'type') ??
               '',
           );
@@ -155,15 +157,7 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
         ? String(((levelObject as unknown) as Record<string, unknown>).name ?? '')
         : typeof singleVigilanceArea.level === 'string'
           ? singleVigilanceArea.level
-          : intl.formatMessage({
-              id: `details.vigilanceBanner.level${
-                bannerPriority === 'p1'
-                  ? 'Closed'
-                  : bannerPriority === 'p2' || bannerPriority === 'p4'
-                    ? 'Alert'
-                    : 'Vigilance'
-              }`,
-            });
+          : '';
 
     const title = String(
       singleVigilanceArea.name ??
@@ -171,7 +165,7 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
         '',
     );
 
-    const summaryParts = [typeName, levelName, title].filter(Boolean);
+    const summaryParts = [levelName, typeName, title].filter(Boolean);
     singleZoneSummary = summaryParts.join(' - ');
   }
 
@@ -199,6 +193,28 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
   const relevantLevel =
     relevantArea?.level ?? getVigilanceAreaProperty(relevantArea, 'level');
 
+  const relevantLevelNumber =
+    typeof relevantArea?.level?.level === 'number'
+      ? relevantArea.level.level
+      : typeof (relevantLevel as VigilanceAreaLevel | null)?.level === 'number'
+        ? ((relevantLevel as VigilanceAreaLevel).level as number)
+        : typeof getVigilanceAreaProperty(relevantArea, 'levelNumber') === 'number'
+          ? (getVigilanceAreaProperty(relevantArea, 'levelNumber') as number)
+          : null;
+
+  const relevantCriticality: 'alert' | 'vigilance' | 'info' | null =
+    relevantArea?.criticality === 'alert' ||
+    relevantArea?.criticality === 'vigilance' ||
+    relevantArea?.criticality === 'info'
+      ? relevantArea.criticality
+      : relevantLevelNumber === 1
+        ? 'alert'
+        : relevantLevelNumber === 2
+          ? 'vigilance'
+          : relevantLevelNumber === 3
+            ? 'info'
+            : null;
+
   const representativeLevelPictogram = (
     relevantArea?.level?.pictogramUrl ??
     getVigilanceAreaProperty(relevantLevel, 'pictogram') ??
@@ -221,7 +237,7 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
     getVigilanceAreaProperty(relevantLevel, 'color') ??
     null) as string | null;
 
-  let badgeMode: 'closed' | 'alert' | 'vigilance' | 'info' = 'info';
+  let badgeMode: 'closed' | 'alert' | 'vigilance' | 'info' | undefined = relevantCriticality ?? undefined;
   let bannerBorderColor = 'var(--color-vigilance-warning, #d17a00)';
   let bannerCssLevel = 'vigilance';
 
@@ -230,19 +246,19 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
     bannerBorderColor = 'var(--color-vigilance-closed, #901A1A)';
     bannerCssLevel = 'fermeture';
   } else if (bannerPriority === 'p2') {
-    badgeMode = 'alert';
+    badgeMode = relevantCriticality ?? 'alert';
     bannerBorderColor = representativeAreaColor ?? 'var(--color-vigilance-closed, #901A1A)';
     bannerCssLevel = 'alert';
   } else if (bannerPriority === 'p3') {
-    badgeMode = 'vigilance';
+    badgeMode = relevantCriticality ?? 'vigilance';
     bannerBorderColor = 'var(--color-vigilance-warning, #d17a00)';
     bannerCssLevel = 'vigilance';
   } else if (bannerPriority === 'p4') {
-    badgeMode = 'vigilance';
+    badgeMode = relevantCriticality ?? 'vigilance';
     bannerBorderColor = representativeAreaColor ?? 'var(--color-vigilance-warning, #d17a00)';
     bannerCssLevel = 'vigilance';
   } else {
-    badgeMode = 'info';
+    badgeMode = relevantCriticality ?? undefined;
     bannerBorderColor = representativeAreaColor ?? '#1257A8';
     bannerCssLevel = 'info';
   }
@@ -426,6 +442,7 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
           typePictogramUrl={representativeTypePictogram}
           levelPictogramUrl={representativeLevelPictogram}
           levelMode={badgeMode}
+          levelNumber={relevantLevelNumber}
           isImpracticable={bannerPriority === 'p1'}
           size={24}
         />

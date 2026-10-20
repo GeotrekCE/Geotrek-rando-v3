@@ -46,6 +46,7 @@ export interface ResultCard {
   geometry?: GeometryObject;
   publishedVigilanceAreas?: (number | { vigilance_area_type?: number; type?: any })[] | null;
   isImpracticable?: boolean;
+  endDate?: string | null;
 }
 
 export interface SearchParams {

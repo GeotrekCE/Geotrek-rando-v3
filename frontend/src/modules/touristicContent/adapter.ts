@@ -14,7 +14,8 @@ import {
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { sortVigilanceAreas } from 'modules/details/adapter';
-import { VigilanceArea } from 'modules/vigilanceArea/interface';
+import { getImpracticableEndDate } from 'modules/vigilanceArea/utils';
+import { VigilanceArea, VigilanceAreasPeriodsMap } from 'modules/vigilanceArea/interface';
 import {
   RawTouristicContent,
   RawTouristicContentDetails,
@@ -53,11 +54,15 @@ export const adaptTouristicContentResult = ({
   touristicContentCategories,
   themeDictionnary,
   cityDictionnary,
+  vigilanceAreasPeriods,
+  targetDate,
 }: {
   rawTouristicContent: RawTouristicContentResult[];
   touristicContentCategories: TouristicContentCategoryDictionnary;
   themeDictionnary: Choices;
   cityDictionnary: CityDictionnary;
+  vigilanceAreasPeriods?: VigilanceAreasPeriodsMap;
+  targetDate?: Date;
 }): TouristicContentResult[] =>
   rawTouristicContent.map(rawTouristicObject => ({
     id: `${rawTouristicObject.id}`,
@@ -94,6 +99,13 @@ export const adaptTouristicContentResult = ({
     ],
     publishedVigilanceAreas: rawTouristicObject.published_vigilance_areas ?? null,
     isImpracticable: Boolean(rawTouristicObject.impracticable),
+    endDate: rawTouristicObject.impracticable
+      ? getImpracticableEndDate(
+          rawTouristicObject.published_vigilance_areas,
+          vigilanceAreasPeriods ?? {},
+          targetDate,
+        )
+      : null,
   }));
 
 export const adaptTouristicContentDetails = ({

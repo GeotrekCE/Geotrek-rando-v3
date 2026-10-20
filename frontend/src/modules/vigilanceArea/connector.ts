@@ -1,9 +1,9 @@
 import { getVigilanceAreaTypes } from 'modules/vigilanceAreaType/connector';
 import { getVigilanceAreaLevels } from 'modules/vigilanceAreaLevel/connector';
 import { getSources } from 'modules/source/connector';
-import { adaptVigilanceArea, adaptVigilanceAreas } from './adapter';
-import { fetchVigilanceArea } from './api';
-import { VigilanceArea } from './interface';
+import { adaptVigilanceArea, adaptVigilanceAreas, adaptVigilancePeriods } from './adapter';
+import { fetchVigilanceArea, fetchVigilanceAreasPeriods } from './api';
+import { VigilanceArea, VigilanceAreasPeriodsMap } from './interface';
 
 export const getVigilanceAreasForTrek = async (
   rawAreas: any[] = [],
@@ -57,4 +57,24 @@ export const getVigilanceAreasForTrek = async (
   );
 
   return areas.filter((area): area is VigilanceArea => area !== null);
+};
+
+export const getVigilanceAreasPeriods = async (
+  language: string,
+): Promise<VigilanceAreasPeriodsMap> => {
+  try {
+    const response = await fetchVigilanceAreasPeriods({ language, page_size: 999 });
+    const periodsMap: VigilanceAreasPeriodsMap = {};
+    for (const rawArea of response.results) {
+      periodsMap[rawArea.id] = {
+        id: rawArea.id,
+        impracticable: Boolean(rawArea.impracticable),
+        periods: adaptVigilancePeriods(rawArea.periods),
+      };
+    }
+    return periodsMap;
+  } catch (error) {
+    console.warn('Failed to fetch vigilance areas periods:', error);
+    return {};
+  }
 };

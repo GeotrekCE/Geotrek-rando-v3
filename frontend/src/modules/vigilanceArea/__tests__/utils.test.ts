@@ -2,6 +2,7 @@ import { IntlShape } from 'react-intl';
 import {
   formatSinglePeriod,
   formatVigilancePeriod,
+  getImpracticableEndDate,
   isVigilanceAreaActive,
   sortVigilanceAreas,
 } from '../utils';
@@ -290,5 +291,132 @@ describe('sortVigilanceAreas', () => {
     const sortedAreas = sortVigilanceAreas(vigilanceAreas, referenceDate);
     const sortedIds = sortedAreas.map(vigilanceArea => vigilanceArea.id);
     expect(sortedIds).toEqual(['active-today', 'future-near', 'future-far', 'past']);
+  });
+});
+
+describe('getImpracticableEndDate', () => {
+  const targetDate = new Date('2026-10-22T12:00:00');
+
+  it('returns null when publishedAreaIds is empty or vigilanceAreasMap has no matching areas', () => {
+    expect(getImpracticableEndDate([], {}, targetDate)).toBeNull();
+    expect(getImpracticableEndDate([1], {}, targetDate)).toBeNull();
+  });
+
+  it('returns null when matching areas are not impracticable', () => {
+    const vigilanceAreasMap = {
+      1: {
+        id: 1,
+        impracticable: false,
+        periods: [{ startDate: '2026-06-01', endDate: '2026-11-18', activeDays: [], annual: false }],
+      },
+    };
+    expect(getImpracticableEndDate([1], vigilanceAreasMap, targetDate)).toBeNull();
+  });
+
+  it('returns null when an active impracticable area has no periods (indefinite)', () => {
+    const vigilanceAreasMap = {
+      1: {
+        id: 1,
+        impracticable: true,
+        periods: [],
+      },
+    };
+    expect(getImpracticableEndDate([1], vigilanceAreasMap, targetDate)).toBeNull();
+  });
+
+  it('returns the end date for Trek 1 scenario (period active at targetDate ending 2026-11-18)', () => {
+    const vigilanceAreasMap = {
+      1: {
+        id: 1,
+        impracticable: false,
+        periods: [],
+      },
+      2: {
+        id: 2,
+        impracticable: true,
+        periods: [
+          {
+            id: 201,
+            startDate: '2026-06-01',
+            endDate: '2026-11-18',
+            activeDays: [],
+            annual: false,
+          },
+        ],
+      },
+    };
+    const endDate = getImpracticableEndDate([1, 2], vigilanceAreasMap, targetDate);
+    expect(endDate).toBe('2026-11-18');
+  });
+
+  it('retains the explicit end date when an impracticable area with endDate is combined with an indefinite impracticable area (Trek 1 case)', () => {
+    const vigilanceAreasMap = {
+      1: {
+        id: 1,
+        impracticable: true,
+        periods: [], // indefinite
+      },
+      2: {
+        id: 2,
+        impracticable: true,
+        periods: [
+          {
+            startDate: '2026-06-01',
+            endDate: '2026-11-18',
+            activeDays: [],
+            annual: false,
+          },
+        ],
+      },
+    };
+    expect(getImpracticableEndDate([1, 2], vigilanceAreasMap, targetDate)).toBe('2026-11-18');
+  });
+
+  it('returns the maximum end date when multiple active impracticable areas have end dates', () => {
+    const vigilanceAreasMap = {
+      1: {
+        id: 1,
+        impracticable: true,
+        periods: [
+          {
+            startDate: '2026-06-01',
+            endDate: '2026-11-18',
+            activeDays: [],
+            annual: false,
+          },
+        ],
+      },
+      2: {
+        id: 2,
+        impracticable: true,
+        periods: [
+          {
+            startDate: '2026-07-01',
+            endDate: '2026-12-15',
+            activeDays: [],
+            annual: false,
+          },
+        ],
+      },
+    };
+    expect(getImpracticableEndDate([1, 2], vigilanceAreasMap, targetDate)).toBe('2026-12-15');
+  });
+
+  it('correctly handles annual period endDate calculation', () => {
+    const vigilanceAreasMap = {
+      1: {
+        id: 1,
+        impracticable: true,
+        periods: [
+          {
+            startDate: '2026-06-01',
+            endDate: '2026-11-20',
+            activeDays: [],
+            annual: true,
+          },
+        ],
+      },
+    };
+    expect(getImpracticableEndDate([1], vigilanceAreasMap, targetDate)).toBe('2026-11-20');
   });
 });

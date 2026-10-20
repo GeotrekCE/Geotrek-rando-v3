@@ -6,6 +6,8 @@ import { Choices } from 'modules/filters/interface';
 import { getLargeImagesOrThumbnailsFromAttachments } from 'modules/utils/adapter';
 import { formatHours } from 'modules/utils/time';
 import { NetworkDictionnary } from 'modules/networks/interface';
+import { getImpracticableEndDate } from 'modules/vigilanceArea/utils';
+import { VigilanceAreasPeriodsMap } from 'modules/vigilanceArea/interface';
 import { InformationCardArray, RawTrekResult, TrekResult } from './interface';
 import { formatDistance } from './utils';
 
@@ -48,6 +50,8 @@ export const adaptTrekResultList = ({
   activities,
   cityDictionnary,
   networks,
+  vigilanceAreasPeriods,
+  targetDate,
 }: {
   resultsList: Partial<RawTrekResult>[];
   difficulties: DifficultyChoices;
@@ -55,6 +59,8 @@ export const adaptTrekResultList = ({
   activities: ActivityChoices;
   cityDictionnary: CityDictionnary;
   networks: NetworkDictionnary;
+  vigilanceAreasPeriods?: VigilanceAreasPeriodsMap;
+  targetDate?: Date;
 }): TrekResult[] =>
   resultsList.filter(isRawTrekResultComplete).map(rawResult => ({
     type: 'TREK',
@@ -67,6 +73,13 @@ export const adaptTrekResultList = ({
     category: activities[rawResult.practice] ?? null,
     publishedVigilanceAreas: rawResult.published_vigilance_areas ?? null,
     isImpracticable: Boolean(rawResult.impracticable),
+    endDate: rawResult.impracticable
+      ? getImpracticableEndDate(
+          rawResult.published_vigilance_areas,
+          vigilanceAreasPeriods ?? {},
+          targetDate,
+        )
+      : null,
     informations: [
       {
         label: 'difficulty',

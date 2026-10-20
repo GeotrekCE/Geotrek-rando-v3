@@ -72,7 +72,28 @@ describe('DetailsVigilanceBanner', () => {
       expect(bannerElement).toHaveAttribute('data-priority', 'p2');
       expect(bannerElement).toHaveAttribute('data-encart-level', 'alert');
       expect(
-        component.getByText(/Attention : cet itinéraire est concerné par une zone de vigilance élevée : Chasse - Danger - Battue aux sangliers/i),
+        component.getByText(/Attention : cet itinéraire est concerné par une zone de vigilance élevée : Danger - Chasse - Battue aux sangliers/i),
+      ).toBeInTheDocument();
+    });
+
+    it('renders single zone variant with raw leaf type without parent path (Danger - Type - Title)', () => {
+      const areaWithSubtype: VigilanceArea = {
+        ...baseVigilanceArea,
+        name: '[Test] Montastruc en feu',
+        type: {
+          id: 'type-13',
+          name: 'Risque naturel > Incendie',
+          rawName: 'Incendie',
+          pictogramUrl: null,
+        },
+      };
+      const component = render(
+        <DetailsVigilanceBanner publishedVigilanceAreas={[areaWithSubtype]} />,
+      );
+      expect(
+        component.getByText(
+          /Attention : cet itinéraire est concerné par une zone de vigilance élevée : Danger - Incendie - \[Test\] Montastruc en feu/i,
+        ),
       ).toBeInTheDocument();
     });
 
@@ -84,7 +105,7 @@ describe('DetailsVigilanceBanner', () => {
         />,
       );
       expect(
-        component.getByText(/Attention : cette zone est concernée par une zone de vigilance élevée : Chasse - Danger - Battue aux sangliers/i),
+        component.getByText(/Attention : cette zone est concernée par une zone de vigilance élevée : Danger - Chasse - Battue aux sangliers/i),
       ).toBeInTheDocument();
     });
 
@@ -184,7 +205,7 @@ describe('DetailsVigilanceBanner', () => {
       expect(bannerElement).toHaveAttribute('data-priority', 'p4');
       expect(bannerElement).toHaveAttribute('data-encart-level', 'vigilance');
       expect(
-        component.getByText(/Attention : cet itinéraire est concerné par une zone de vigilance élevée : Chasse - Danger - Battue aux sangliers/i),
+        component.getByText(/Attention : cet itinéraire est concerné par une zone de vigilance élevée : Danger - Chasse - Battue aux sangliers/i),
       ).toBeInTheDocument();
     });
   });

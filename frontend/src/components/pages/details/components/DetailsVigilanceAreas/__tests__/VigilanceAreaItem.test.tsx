@@ -99,48 +99,112 @@ describe('VigilanceAreaItem', () => {
     expect(component.getByText(/Chaque année/)).toBeInTheDocument();
     expect(component.getByText(/Dernière mise à jour le/)).toBeInTheDocument();
   });
+  it('harmonizes colors when area has no level: header uses orange fallback and badge uses default orange icon', () => {
+    const areaWithoutLevel: VigilanceArea = {
+      ...baseVigilanceArea,
+      type: { id: 'type-1', name: 'Travaux forestiers', pictogramUrl: null },
+      level: null,
+      criticality: null,
+      isImpracticable: false,
+    };
+
+    const component = render(
+      <DetailsAndMapProvider>
+        <VigilanceAreaItem area={areaWithoutLevel} />
+      </DetailsAndMapProvider>,
+    );
+
+    const headerButton = component.getByRole('button');
+    expect(headerButton).toHaveStyle({
+      backgroundColor: 'color-mix(in srgb, #d17a00 10%, white)',
+    });
+
+    const svgElement = headerButton.querySelector('svg');
+    expect(svgElement).toHaveAttribute('stroke', '#d17a00');
+  });
 });
 
 describe('VigilanceAreaBadge', () => {
-  it('renders type pictogram when provided (Priority 1)', () => {
+  it('renders WarningImpracticable when impracticable, even if type or level pictogram is provided (Priority 1)', () => {
     const component = render(
       <VigilanceAreaBadge
         typePictogramUrl="/custom-type.svg"
-        levelPictogramUrl="/level.svg"
-        isImpracticable
-      />,
-    );
-    const imageElement = component.container.querySelector('img');
-    expect(imageElement).toHaveAttribute('src', '/custom-type.svg');
-  });
-
-  it('renders level pictogram when type pictogram is not provided (Priority 2)', () => {
-    const component = render(
-      <VigilanceAreaBadge
-        typePictogramUrl={null}
         levelPictogramUrl="/custom-level.svg"
-        isImpracticable
-      />,
-    );
-    const imageElement = component.container.querySelector('img');
-    expect(imageElement).toHaveAttribute('src', '/custom-level.svg');
-  });
-
-  it('renders AlertTriangle in red when impracticable and no pictograms provided (Priority 3)', () => {
-    const component = render(
-      <VigilanceAreaBadge
-        typePictogramUrl={null}
-        levelPictogramUrl={null}
         isImpracticable
       />,
     );
     const svgElement = component.container.querySelector('svg');
     expect(svgElement).toBeInTheDocument();
     const pathElement = component.container.querySelector('path');
-    expect(pathElement).toHaveAttribute('fill', 'var(--color-vigilance-closed, #901A1A)');
+    expect(pathElement).toHaveAttribute('fill', '#c21d26');
   });
 
-  it('renders orange exclamation mark when practicable and no pictograms provided (Priority 3)', () => {
+  it('renders type pictogram when provided and not impracticable (Priority 2)', () => {
+    const component = render(
+      <VigilanceAreaBadge
+        typePictogramUrl="/custom-type.svg"
+        levelPictogramUrl="/custom-level.svg"
+        isImpracticable={false}
+      />,
+    );
+    const imageElement = component.container.querySelector('img');
+    expect(imageElement).toHaveAttribute('src', '/custom-type.svg');
+  });
+
+  it('renders level pictogram when type pictogram is not provided and not impracticable (Priority 3)', () => {
+    const component = render(
+      <VigilanceAreaBadge
+        typePictogramUrl={null}
+        levelPictogramUrl="/custom-level.svg"
+        isImpracticable={false}
+      />,
+    );
+    const imageElement = component.container.querySelector('img');
+    expect(imageElement).toHaveAttribute('src', '/custom-level.svg');
+  });
+
+  it('renders solid red filled disc for Danger level 1 only (Priority 3.5)', () => {
+    const dangerComponent = render(
+      <VigilanceAreaBadge
+        typePictogramUrl={null}
+        levelPictogramUrl={null}
+        levelNumber={1}
+        isImpracticable={false}
+      />,
+    );
+    const dangerCircles = dangerComponent.container.querySelectorAll('circle');
+    expect(dangerCircles[1]).toHaveAttribute('fill', '#901A1A');
+  });
+
+  it('renders outline circle with white background for level 2 and level 3 (Priority 3.5 & 4)', () => {
+    const warningComponent = render(
+      <VigilanceAreaBadge
+        typePictogramUrl={null}
+        levelPictogramUrl={null}
+        levelNumber={2}
+        isImpracticable={false}
+      />,
+    );
+    const warningSvg = warningComponent.container.querySelector('svg');
+    expect(warningSvg).toHaveAttribute('stroke', '#d17a00');
+    const warningCircle = warningComponent.container.querySelector('circle');
+    expect(warningCircle).toHaveAttribute('fill', 'white');
+
+    const infoComponent = render(
+      <VigilanceAreaBadge
+        typePictogramUrl={null}
+        levelPictogramUrl={null}
+        levelNumber={3}
+        isImpracticable={false}
+      />,
+    );
+    const infoSvg = infoComponent.container.querySelector('svg');
+    expect(infoSvg).toHaveAttribute('stroke', '#1257A8');
+    const infoCircle = infoComponent.container.querySelector('circle');
+    expect(infoCircle).toHaveAttribute('fill', 'white');
+  });
+
+  it('renders orange outline exclamation mark when practicable and no level/pictograms provided (Priority 4)', () => {
     const component = render(
       <VigilanceAreaBadge
         typePictogramUrl={null}
@@ -151,5 +215,7 @@ describe('VigilanceAreaBadge', () => {
     const svgElement = component.container.querySelector('svg');
     expect(svgElement).toBeInTheDocument();
     expect(svgElement).toHaveAttribute('stroke', '#d17a00');
+    const circleElement = component.container.querySelector('circle');
+    expect(circleElement).toHaveAttribute('fill', 'white');
   });
 });

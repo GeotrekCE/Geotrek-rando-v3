@@ -13,6 +13,7 @@ import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { getNetworks } from 'modules/networks/connector';
 import { NetworkDictionnary } from 'modules/networks/interface';
 import { getCourseType } from 'modules/filters/courseType/connector';
+import { getVigilanceAreasPeriods } from 'modules/vigilanceArea/connector';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { adaptoutdoorSitesResult } from '../outdoorSite/adapter';
 import { fetchOutdoorSites } from '../outdoorSite/api';
@@ -271,6 +272,7 @@ export const getSearchResults = async (
       rawTouristicEvents,
       touristicContentCategories,
       outdoorPracticeDictionnary,
+      vigilanceAreasPeriods,
     ] = await Promise.all([
       shouldFetchTreks ? getTreksResultsPromise : emptyResultPromise,
       getDifficulties(language), // Todo: Find a way to store this hashmap to avoid calling this every time
@@ -280,10 +282,34 @@ export const getSearchResults = async (
       shouldFetchTouristicEvents ? getTouristicEventsPromise : emptyResultPromise,
       getTouristicContentCategories(language), // Todo: Find a way to store this hashmap to avoid calling this every time
       getOutdoorPractices(language),
+      getGlobalConfig().enableVigilanceAreas
+        ? getVigilanceAreasPeriods(language)
+        : Promise.resolve({}),
     ]);
 
     const touristicEventType = await getTouristicEventTypes(language);
     const networks = await getNetworks(language);
+
+    const trekTargetDate = dateFilter?.endDate
+      ? new Date(dateFilter.endDate.includes('T') ? dateFilter.endDate : `${dateFilter.endDate}T12:00:00`)
+      : dateFilter?.beginDate
+      ? new Date(dateFilter.beginDate.includes('T') ? dateFilter.beginDate : `${dateFilter.beginDate}T12:00:00`)
+      : new Date();
+
+    const effectiveContentFilter = contentDateFilter ?? dateFilter;
+    const contentTargetDate = effectiveContentFilter?.endDate
+      ? new Date(
+          effectiveContentFilter.endDate.includes('T')
+            ? effectiveContentFilter.endDate
+            : `${effectiveContentFilter.endDate}T12:00:00`,
+        )
+      : effectiveContentFilter?.beginDate
+      ? new Date(
+          effectiveContentFilter.beginDate.includes('T')
+            ? effectiveContentFilter.beginDate
+            : `${effectiveContentFilter.beginDate}T12:00:00`,
+        )
+      : new Date();
 
     const trekResultWithCourseType =
       rawTrekResults.results.length > 0
@@ -305,6 +331,8 @@ export const getSearchResults = async (
       activities,
       cityDictionnary: cities,
       networks,
+      vigilanceAreasPeriods,
+      targetDate: trekTargetDate,
     });
 
     const adaptedTouristicContentsList: TouristicContentResult[] = adaptTouristicContentResult({
@@ -312,6 +340,8 @@ export const getSearchResults = async (
       touristicContentCategories,
       themeDictionnary: themes,
       cityDictionnary: cities,
+      vigilanceAreasPeriods,
+      targetDate: contentTargetDate,
     });
 
     const adaptedOutdoorSitesList: OutdoorSiteResult[] = adaptoutdoorSitesResult({

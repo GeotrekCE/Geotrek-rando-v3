@@ -122,5 +122,53 @@ describe('touristicContent adapter', () => {
     expect(results).toHaveLength(1);
     expect(results[0].isImpracticable).toBe(true);
     expect(results[0].publishedVigilanceAreas).toEqual([42]);
+    expect(results[0].endDate).toBeNull();
+  });
+
+  it('should compute endDate for touristic content when vigilanceAreasPeriods and targetDate are provided', () => {
+    const rawTouristicContentResults: RawTouristicContentResult[] = [
+      {
+        id: '123',
+        attachments: [],
+        name: 'Gîte d’étape',
+        category: 1,
+        description_teaser: 'Bel hébergement',
+        themes: [],
+        types: {},
+        cities: ['05045'],
+        impracticable: true,
+        published_vigilance_areas: [42],
+      },
+    ];
+
+    const vigilanceAreasPeriods = {
+      42: {
+        id: 42,
+        impracticable: true,
+        periods: [
+          {
+            startDate: '2026-06-01',
+            endDate: '2026-11-18',
+            activeDays: [],
+            annual: false,
+          },
+        ],
+      },
+    };
+
+    const results = adaptTouristicContentResult({
+      rawTouristicContent: rawTouristicContentResults,
+      touristicContentCategories: {
+        1: { id: 1, label: 'Hébergement', pictogramUri: 'category.svg', types: [] },
+      },
+      themeDictionnary: {},
+      cityDictionnary: {
+        '05045': { id: '05045', name: 'Molines-en-Champsaur', code: '05045' },
+      },
+      vigilanceAreasPeriods,
+      targetDate: new Date('2026-10-22T12:00:00'),
+    });
+
+    expect(results[0].endDate).toBe('2026-11-18');
   });
 });

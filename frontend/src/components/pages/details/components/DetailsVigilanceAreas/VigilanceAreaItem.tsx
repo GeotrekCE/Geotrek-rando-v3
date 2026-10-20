@@ -43,11 +43,23 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
 
   const levelObj = rawArea?.level as Record<string, unknown> | null;
   const levelPicto = (levelObj?.pictogramUrl ?? levelObj?.pictogram ?? rawArea?.levelPictogramUrl ?? null) as string | null;
+  const levelNumber = typeof levelObj?.level === 'number' ? levelObj.level : typeof rawArea?.levelNumber === 'number' ? rawArea.levelNumber : null;
+  const rawCriticality = rawArea?.criticality;
+  const criticality: 'closed' | 'alert' | 'vigilance' | 'info' | undefined =
+    rawCriticality === 'closed' || rawCriticality === 'alert' || rawCriticality === 'vigilance' || rawCriticality === 'info'
+      ? rawCriticality
+      : levelNumber === 1
+        ? 'alert'
+        : levelNumber === 2
+          ? 'vigilance'
+          : levelNumber === 3
+            ? 'info'
+            : undefined;
 
   // Determine impracticability
   const isImpracticable = Boolean(rawArea?.isImpracticable ?? rawArea?.impracticable);
 
-  // Level text: API level name or "Impraticable" or default
+  // Level text: API level name or "Impraticable" or empty
   const levelText = isImpracticable
     ? intl.formatMessage({
         id: 'details.vigilancePracticabilityClosed',
@@ -55,15 +67,21 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
       })
     : (levelObj?.name as string) ||
       (rawArea?.levelName as string) ||
-      intl.formatMessage({
-        id: 'details.vigilanceDefaultLevel',
-        defaultMessage: 'Zone de vigilance',
-      });
+      '';
+
+  const defaultLevelColor =
+    levelNumber === 1
+      ? '#901A1A'
+      : levelNumber === 2
+      ? '#955a02'
+      : levelNumber === 3
+      ? '#1257A8'
+      : '#d17a00';
 
   // Strict colors: red #901A1A if impracticable, otherwise level color or fallback #d17a00
   const itemColor = isImpracticable
     ? '#901A1A'
-    : (levelObj?.color as string) || (rawArea?.color as string) || '#d17a00';
+    : (levelObj?.color as string) || (rawArea?.color as string) || defaultLevelColor;
 
   const itemBgColor = isImpracticable
     ? 'color-mix(in srgb, #901A1A 8%, white)'
@@ -135,6 +153,8 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
           <VigilanceAreaBadge
             typePictogramUrl={typePicto}
             levelPictogramUrl={levelPicto}
+            levelMode={criticality}
+            levelNumber={levelNumber}
             isImpracticable={isImpracticable}
             size={32}
           />
@@ -142,13 +162,14 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
           {/* Vertical Text Stack */}
           <div className="min-w-0 flex flex-col gap-0.5">
             {/* Line 1: Level — Type */}
-            <p
-              style={{ color: itemColor }}
-              className={cn('text-xs font-bold m-0')}
-            >
-              {levelText}
-              {typeName ? ` — ${typeName}` : ''}
-            </p>
+            {(levelText || typeName) && (
+              <p
+                style={{ color: itemColor }}
+                className={cn('text-xs font-bold m-0')}
+              >
+                {levelText && typeName ? `${levelText} — ${typeName}` : levelText || typeName}
+              </p>
+            )}
 
             {/* Line 2: Title */}
             {title && (

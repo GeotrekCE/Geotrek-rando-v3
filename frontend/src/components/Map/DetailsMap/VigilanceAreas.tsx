@@ -44,6 +44,7 @@ const createBadgeIcon = (
   levelMode: 'closed' | 'alert' | 'vigilance' | 'info',
   isImpracticable: boolean,
   isHovered: boolean,
+  levelNumber?: number | null,
 ): DivIcon => {
   const baseSize = 32;
   const size = isHovered ? 42 : baseSize;
@@ -67,6 +68,7 @@ const createBadgeIcon = (
         levelPictogramUrl={levelPictogramUri}
         pictogramUrl={pictogramUri}
         levelMode={levelMode}
+        levelNumber={levelNumber}
         isImpracticable={isImpracticable}
         size={size}
       />
@@ -99,6 +101,7 @@ const VigilanceAreaPolygonItem: React.FC<{
   colorHex: string;
   isImpracticable?: boolean;
   levelMode: 'closed' | 'alert' | 'vigilance' | 'info';
+  levelNumber?: number | null;
   typeName?: string;
   levelName?: string;
   typePictogramUri?: string | null;
@@ -116,6 +119,7 @@ const VigilanceAreaPolygonItem: React.FC<{
   colorHex,
   isImpracticable = false,
   levelMode,
+  levelNumber,
   typeName,
   levelName,
   typePictogramUri,
@@ -140,8 +144,17 @@ const VigilanceAreaPolygonItem: React.FC<{
         levelMode,
         isImpracticable,
         isHighlighted,
+        levelNumber,
       ),
-    [typePictogramUri, levelPictogramUri, pictogramUri, levelMode, isImpracticable, isHighlighted],
+    [
+      typePictogramUri,
+      levelPictogramUri,
+      pictogramUri,
+      levelMode,
+      isImpracticable,
+      isHighlighted,
+      levelNumber,
+    ],
   );
 
   const levelText = isImpracticable
@@ -149,11 +162,7 @@ const VigilanceAreaPolygonItem: React.FC<{
         id: 'details.vigilancePracticabilityClosed',
         defaultMessage: 'Impraticable',
       })
-    : levelName ||
-      intl.formatMessage({
-        id: 'details.vigilanceDefaultLevel',
-        defaultMessage: 'Zone de vigilance',
-      });
+    : levelName || '';
 
   const singlePeriodText =
     periods.length === 1
@@ -179,7 +188,8 @@ const VigilanceAreaPolygonItem: React.FC<{
     }
   }, [selectedVigilanceAreaId, id]);
 
-  const headerTitle = `${levelText}${typeName ? ` – ${typeName}` : ''}`;
+  const headerTitle =
+    levelText && typeName ? `${levelText} – ${typeName}` : levelText || typeName || '';
   const headerBgColor = isImpracticable
     ? 'color-mix(in srgb, #901A1A 12%, transparent)'
     : getBgColorWithOpacity(colorHex, '23');
@@ -229,6 +239,7 @@ const VigilanceAreaPolygonItem: React.FC<{
                     levelPictogramUrl={levelPictogramUri}
                     pictogramUrl={pictogramUri}
                     levelMode={levelMode}
+                    levelNumber={levelNumber}
                     isImpracticable={isImpracticable}
                     size={20}
                   />
@@ -328,6 +339,7 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
           colorHex,
           isImpracticable,
           levelMode,
+          levelNumber,
           typeName,
           levelName,
           typePictogramUri,
@@ -352,6 +364,7 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
                 colorHex,
                 isImpracticable,
                 levelMode,
+                levelNumber,
                 typeName,
                 levelName,
                 typePictogramUri,
@@ -378,6 +391,7 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
                     colorHex,
                     isImpracticable,
                     levelMode,
+                    levelNumber,
                     typeName,
                     levelName,
                     typePictogramUri,

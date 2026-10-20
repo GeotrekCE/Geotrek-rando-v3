@@ -2,7 +2,7 @@ import { FormattedMessage } from 'react-intl';
 import { CardIcon } from 'components/CardIcon';
 import { SmallCarousel } from 'components/Carousel';
 import { ImageWithLegend } from 'components/ImageWithLegend';
-import { AlertTriangle } from 'components/Icons/AlertTriangle';
+import { WarningImpracticable } from 'components/Icons/WarningImpracticable';
 import useHasMounted from 'hooks/useHasMounted';
 import { ContentType, ImageFromAttachment } from 'modules/interface';
 import { cn } from 'services/utils/cn';
@@ -50,8 +50,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
 
       {isImpracticableState && (
         <div className="absolute inset-0 bg-black/60 z-10 flex flex-col items-center justify-center text-white pointer-events-none gap-2">
-          <AlertTriangle
-            color="var(--color-vigilance-closed)"
+          <WarningImpracticable
             size={48}
             className="shrink-0 size-12 desktop:size-16"
             aria-hidden

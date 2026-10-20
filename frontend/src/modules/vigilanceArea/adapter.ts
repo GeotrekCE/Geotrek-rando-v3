@@ -3,7 +3,16 @@ import { geFilesFromAttachments } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { VigilanceAreaType } from 'modules/vigilanceAreaType/interface';
 import { VigilanceAreaLevel } from 'modules/vigilanceAreaLevel/interface';
-import { RawVigilanceArea, VigilanceArea, VigilancePeriod } from './interface';
+import { RawVigilanceArea, RawVigilancePeriod, VigilanceArea, VigilancePeriod } from './interface';
+
+export const adaptVigilancePeriods = (rawPeriods: RawVigilancePeriod[] = []): VigilancePeriod[] =>
+  rawPeriods.map(rawPeriod => ({
+    id: rawPeriod.id,
+    startDate: rawPeriod.start_date ?? null,
+    endDate: rawPeriod.end_date ?? null,
+    activeDays: rawPeriod.active_days ?? [],
+    annual: Boolean(rawPeriod.annual),
+  }));
 
 export const adaptVigilanceArea = ({
   rawVigilanceArea,
@@ -45,34 +54,36 @@ export const adaptVigilanceArea = ({
       ? rawVigilanceArea.practical_info
       : rawVigilanceArea.practical_info?.[language] || rawVigilanceArea.practical_info?.fr || '';
 
-  let criticality = 'info';
+  let criticality: 'alert' | 'vigilance' | 'info' | null = null;
   if (levelObj) {
     if (levelObj.level === 1) {
       criticality = 'alert';
     } else if (levelObj.level === 2) {
       criticality = 'vigilance';
-    } else {
+    } else if (levelObj.level === 3) {
       criticality = 'info';
     }
   } else if (typeof rawVigilanceArea.vigilance_level === 'string') {
-    criticality = rawVigilanceArea.vigilance_level;
+    criticality = rawVigilanceArea.vigilance_level as 'alert' | 'vigilance' | 'info';
   }
 
   const isImpracticable = Boolean(rawVigilanceArea.impracticable);
-  const color = isImpracticable ? '#901A1A' : levelObj?.color ?? '#d17a00';
+  const defaultLevelColor =
+    levelObj?.level === 1
+      ? '#901A1A'
+      : levelObj?.level === 2
+      ? '#955a02'
+      : levelObj?.level === 3
+      ? '#1257A8'
+      : '#d17a00';
+  const color = isImpracticable ? '#901A1A' : levelObj?.color ?? defaultLevelColor;
 
   const sources =
     rawVigilanceArea.sources
       ?.map(sourceId => sourcesDictionnary[sourceId])
       .filter((source): source is Source => Boolean(source)) ?? [];
 
-  const periods: VigilancePeriod[] = (rawVigilanceArea.periods || []).map(rawPeriod => ({
-    id: rawPeriod.id,
-    startDate: rawPeriod.start_date ?? null,
-    endDate: rawPeriod.end_date ?? null,
-    activeDays: rawPeriod.active_days ?? [],
-    annual: Boolean(rawPeriod.annual),
-  }));
+  const periods: VigilancePeriod[] = adaptVigilancePeriods(rawVigilanceArea.periods);
 
   return {
     id: String(rawVigilanceArea.id),
@@ -86,7 +97,7 @@ export const adaptVigilanceArea = ({
     practicalInfo: practicalInfo || null,
     externalInfoUrl: rawVigilanceArea.external_info_url ?? null,
     periods,
-    updateDatetime: rawVigilanceArea.update_datetime ?? null,
+    updateDatetime: rawVigilanceArea.date_update ?? rawVigilanceArea.update_datetime ?? null,
     attachments: geFilesFromAttachments(rawVigilanceArea.attachments || []),
     criticality,
     sources,
@@ -123,6 +134,7 @@ export interface VigilanceAreaGeometry {
   colorHex: string;
   isImpracticable: boolean;
   levelMode: 'closed' | 'alert' | 'vigilance' | 'info';
+  levelNumber?: number | null;
   geometry: any;
   typeName?: string;
   levelName?: string;
@@ -155,6 +167,7 @@ export const adaptVigilanceAreaGeometry = (area: VigilanceArea): VigilanceAreaGe
     colorHex,
     isImpracticable,
     levelMode,
+    levelNumber: area.level?.level ?? null,
     geometry: area.geometry,
     typeName: area.type?.name ?? '',
     levelName: area.level?.name ?? '',

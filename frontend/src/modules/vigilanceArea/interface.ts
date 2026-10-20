@@ -19,6 +19,14 @@ export interface VigilancePeriod {
   annual: boolean;
 }
 
+export interface VigilanceAreaPeriodItem {
+  id: number;
+  impracticable: boolean;
+  periods: VigilancePeriod[];
+}
+
+export type VigilanceAreasPeriodsMap = Record<number, VigilanceAreaPeriodItem>;
+
 export interface RawVigilanceArea {
   id: number;
   name: {
@@ -40,6 +48,7 @@ export interface RawVigilanceArea {
   published: boolean;
   uuid: string;
   attachments: RawAttachment[];
+  date_update?: string;
   update_datetime?: string;
   vigilance_level?: number | string | null;
 }
