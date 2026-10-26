@@ -4,7 +4,7 @@ FROM node:22-alpine AS deps
 RUN apk add --no-cache libc6-compat g++ gcc libgcc libstdc++ linux-headers make python3
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install --immutable
 
 # Rebuild the source code only when needed
 FROM node:22-alpine AS builder
