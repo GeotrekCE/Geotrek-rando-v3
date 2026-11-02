@@ -22,7 +22,7 @@ jobs:
 
       - name: Setup node
         id: cache-node-modules
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version-file: ./frontend/.nvmrc
           cache: "yarn"
