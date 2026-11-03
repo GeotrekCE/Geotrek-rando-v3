@@ -253,22 +253,19 @@ const VigilanceAreaPolygonItem: React.FC<{
                     {name}
                   </h4>
 
-                  {/* Practicability */}
-                  <p className="font-bold m-0" style={{ color: colorHex }}>
-                    <FormattedMessage
-                      id="details.vigilancePracticabilityTitle"
-                      defaultMessage="Praticabilité :"
-                    />{' '}
-                    {isImpracticable
-                      ? intl.formatMessage({
-                          id: 'details.vigilancePracticabilityClosed',
-                          defaultMessage: 'Impraticable',
-                        })
-                      : intl.formatMessage({
-                          id: 'details.vigilancePracticabilityPracticable',
-                          defaultMessage: 'Praticable',
-                        })}
-                  </p>
+                  {/* Practicability (displayed only if impracticable) */}
+                  {isImpracticable && (
+                    <p className="font-bold m-0" style={{ color: colorHex }}>
+                      <FormattedMessage
+                        id="details.vigilancePracticabilityTitle"
+                        defaultMessage="Praticabilité de la zone :"
+                      />{' '}
+                      {intl.formatMessage({
+                        id: 'details.vigilancePracticabilityClosed',
+                        defaultMessage: 'Impraticable',
+                      })}
+                    </p>
+                  )}
 
                   {/* Period */}
                   {periods.length > 1 ? (

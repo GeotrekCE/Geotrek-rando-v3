@@ -75,7 +75,7 @@ describe('VigilanceAreaItem', () => {
     ).toBeInTheDocument();
   });
 
-  it('expands accordion and displays detail section with practicability, periods list and update date', () => {
+  it('expands accordion and displays detail section without practicability when isImpracticable is false', () => {
     const multiPeriodAnnualArea: VigilanceArea = {
       ...baseVigilanceArea,
       isImpracticable: false,
@@ -94,10 +94,29 @@ describe('VigilanceAreaItem', () => {
     const headerButton = component.getByRole('button');
     fireEvent.click(headerButton);
 
-    expect(component.getByText('Praticabilité :')).toBeInTheDocument();
-    expect(component.getByText('Praticable')).toBeInTheDocument();
+    expect(component.queryByText(/Praticabilité/)).not.toBeInTheDocument();
+    expect(component.queryByText('Praticable')).not.toBeInTheDocument();
     expect(component.getByText(/Chaque année/)).toBeInTheDocument();
     expect(component.getByText(/Dernière mise à jour le/)).toBeInTheDocument();
+  });
+
+  it('displays "Praticabilité de la zone : Impraticable" when isImpracticable is true', () => {
+    const impracticableArea: VigilanceArea = {
+      ...baseVigilanceArea,
+      isImpracticable: true,
+    };
+
+    const component = render(
+      <DetailsAndMapProvider>
+        <VigilanceAreaItem area={impracticableArea} />
+      </DetailsAndMapProvider>,
+    );
+
+    const headerButton = component.getByRole('button');
+    fireEvent.click(headerButton);
+
+    expect(component.getByText('Praticabilité de la zone :')).toBeInTheDocument();
+    expect(component.getByText('Impraticable')).toBeInTheDocument();
   });
   it('harmonizes colors when area has no level: header uses orange fallback and badge uses default orange icon', () => {
     const areaWithoutLevel: VigilanceArea = {

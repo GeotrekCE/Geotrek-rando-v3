@@ -62,6 +62,7 @@ describe('VigilanceAreas Leaflet Map Component', () => {
 
     expect(getByText(/Faune/)).toBeInTheDocument();
     expect(getByText('Nidification Cigogne')).toBeInTheDocument();
+    expect(getByText(/Praticabilité de la zone :/)).toBeInTheDocument();
   });
 
   it('correctly handles adapted { x, y } coordinates without NaN error', () => {
@@ -86,7 +87,7 @@ describe('VigilanceAreas Leaflet Map Component', () => {
       },
     ];
 
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByText, queryByText } = render(
       <VigilanceAreas contents={(mockContents as unknown) as VigilanceAreaGeometry[]} />,
     );
 
@@ -94,5 +95,6 @@ describe('VigilanceAreas Leaflet Map Component', () => {
     expect(polygon).toBeInTheDocument();
     expect(polygon).toHaveAttribute('data-color', '#C56600');
     expect(getByText('Chasse en battue')).toBeInTheDocument();
+    expect(queryByText(/Praticabilité/)).not.toBeInTheDocument();
   });
 });

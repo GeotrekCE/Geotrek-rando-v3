@@ -239,24 +239,21 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
             </div>
           )}
 
-          {/* 3. Praticabilité */}
-          <p className="m-0">
-            <span className="font-bold">
-              <FormattedMessage
-                id="details.vigilancePracticabilityTitle"
-                defaultMessage="Praticabilité :"
-              />
-            </span>{' '}
-            {isImpracticable
-              ? intl.formatMessage({
-                  id: 'details.vigilancePracticabilityClosed',
-                  defaultMessage: 'Impraticable',
-                })
-              : intl.formatMessage({
-                  id: 'details.vigilancePracticabilityPracticable',
-                  defaultMessage: 'Praticable',
-                })}
-          </p>
+          {/* 3. Praticabilité de la zone (affiché uniquement si impraticable) */}
+          {isImpracticable && (
+            <p className="m-0">
+              <span className="font-bold">
+                <FormattedMessage
+                  id="details.vigilancePracticabilityTitle"
+                  defaultMessage="Praticabilité de la zone :"
+                />
+              </span>{' '}
+              {intl.formatMessage({
+                id: 'details.vigilancePracticabilityClosed',
+                defaultMessage: 'Impraticable',
+              })}
+            </p>
+          )}
 
           {/* 4. Période(s) concernée(s) */}
           {periods.length > 1 ? (
