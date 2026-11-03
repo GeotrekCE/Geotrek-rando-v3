@@ -22,7 +22,7 @@ import { getGlobalConfig } from 'modules/utils/api.config';
 import { FormattedMessage } from 'react-intl';
 
 export const useFilterBar = () => {
-  const { groupTreksAndOutdoorFilters, enableOutdoor, enableVigilanceAreas } = getGlobalConfig();
+  const { groupTreksAndOutdoorFilters, enableOutdoor } = getGlobalConfig();
 
   const { data: currentAPIVersion } = useQuery<APIVersion | undefined>({
     queryKey: ['APIVersion'],

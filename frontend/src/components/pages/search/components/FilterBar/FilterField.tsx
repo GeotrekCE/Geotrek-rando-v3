@@ -6,7 +6,6 @@ import { groupBy } from 'modules/utils/array';
 
 import { FormattedMessage } from 'react-intl';
 import { cn } from 'services/utils/cn';
-import { getGlobalConfig } from 'modules/utils/api.config';
 import { isVigilanceFilterEnabled } from 'modules/filters/config';
 import {
   CATEGORY_ID,
