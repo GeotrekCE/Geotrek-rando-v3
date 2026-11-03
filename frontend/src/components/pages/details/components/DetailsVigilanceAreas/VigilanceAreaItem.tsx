@@ -109,7 +109,6 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
 
   // Description & Info
   const description = (rawArea?.description ?? '') as string;
-  const practicalInfo = (rawArea?.practicalInfo ?? rawArea?.practical_info ?? '') as string;
   const externalUrl = (rawArea?.externalInfoUrl ?? rawArea?.external_info_url ?? null) as string | null;
   const updateDatetimeStr = rawArea?.updateDatetime ?? rawArea?.update_datetime;
   const updateDatetime =
@@ -224,22 +223,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
             </div>
           )}
 
-          {/* 2. Recommandations */}
-          {Boolean(practicalInfo) && (
-            <div>
-              <h4 className="font-bold mb-1 text-greyDarkColored">
-                <FormattedMessage
-                  id="details.vigilanceRecommendations"
-                  defaultMessage="Recommandations :"
-                />
-              </h4>
-              <div className="content-WYSIWYG leading-relaxed">
-                {typeof practicalInfo === 'string' ? parse(practicalInfo) : null}
-              </div>
-            </div>
-          )}
-
-          {/* 3. Praticabilité de la zone (affiché uniquement si impraticable) */}
+          {/* 2. Praticabilité de la zone (affiché uniquement si impraticable) */}
           {isImpracticable && (
             <p className="m-0">
               <span className="font-bold">
