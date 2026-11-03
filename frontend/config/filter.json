@@ -144,7 +144,7 @@
   {
     "id": "vigilance_type",
     "type": "MULTIPLE",
-    "display": false,
+    "display": true,
     "withExclude": true
   }
 ]

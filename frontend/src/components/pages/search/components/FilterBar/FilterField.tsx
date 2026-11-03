@@ -7,6 +7,7 @@ import { groupBy } from 'modules/utils/array';
 import { FormattedMessage } from 'react-intl';
 import { cn } from 'services/utils/cn';
 import { getGlobalConfig } from 'modules/utils/api.config';
+import { isVigilanceFilterEnabled } from 'modules/filters/config';
 import {
   CATEGORY_ID,
   PRACTICE_ID,
@@ -76,7 +77,7 @@ const FilterField: React.FC<Props> = ({
     : Array.from({ length: subFiltersToDisplay.length });
 
   const shouldShowVigilanceSection =
-    getGlobalConfig().enableVigilanceAreas &&
+    isVigilanceFilterEnabled() &&
     (id === PRACTICE_ID || id === CATEGORY_ID);
 
   return (

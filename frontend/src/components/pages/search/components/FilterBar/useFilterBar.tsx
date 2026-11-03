@@ -17,6 +17,7 @@ import {
   VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
 import { FilterCategory } from 'modules/filters/interface';
+import { isVigilanceFilterEnabled } from 'modules/filters/config';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { FormattedMessage } from 'react-intl';
 
@@ -33,11 +34,13 @@ export const useFilterBar = () => {
     currentAPIVersion,
   );
 
-  const trekVigilanceSubFilters = enableVigilanceAreas
+  const isVigilanceActive = isVigilanceFilterEnabled();
+
+  const trekVigilanceSubFilters = isVigilanceActive
     ? [VIGILANCE_TYPE_ID, DATE_FILTER]
     : [];
 
-  const categoryVigilanceSubFilters = enableVigilanceAreas
+  const categoryVigilanceSubFilters = isVigilanceActive
     ? [VIGILANCE_TYPE_CONTENTS_ID, DATE_FILTER]
     : [];
 

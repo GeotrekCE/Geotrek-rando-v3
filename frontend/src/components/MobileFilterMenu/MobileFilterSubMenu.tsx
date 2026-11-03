@@ -20,6 +20,7 @@ import {
   VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
 import { getGlobalConfig } from 'modules/utils/api.config';
+import { isVigilanceFilterEnabled } from 'modules/filters/config';
 import { CloseButton } from './CloseButton';
 
 const VIGILANCE_SECTION_IDS = [
@@ -81,7 +82,7 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
 
   const shouldShowVigilanceSection =
-    isVigilanceEnabled &&
+    isVigilanceFilterEnabled() &&
     (filterId === PRACTICE_ID || filterId === CATEGORY_ID);
 
   return (
