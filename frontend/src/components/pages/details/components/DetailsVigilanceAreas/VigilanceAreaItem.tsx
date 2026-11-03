@@ -109,6 +109,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
 
   // Description & Info
   const description = (rawArea?.description ?? '') as string;
+  const practicalInfo = (rawArea?.practicalInfo ?? rawArea?.practical_info ?? '') as string;
   const externalUrl = (rawArea?.externalInfoUrl ?? rawArea?.external_info_url ?? null) as string | null;
   const updateDatetimeStr = rawArea?.updateDatetime ?? rawArea?.update_datetime;
   const updateDatetime =
@@ -273,8 +274,8 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
             </p>
           ) : null}
 
-          {/* 5. Plus d'informations sur le sujet : */}
-          {files && files.length > 0 && (
+          {/* 4. Plus d'informations sur le sujet : */}
+          {(Boolean(practicalInfo) || (files && files.length > 0)) && (
             <div>
               <h4 className="font-bold mb-1 text-greyDarkColored">
                 <FormattedMessage
@@ -282,31 +283,38 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
                   defaultMessage="Plus d’informations sur le sujet :"
                 />
               </h4>
-              <div className="flex flex-col gap-1 text-xs text-greyDarkColored">
-                {files.map((file: FileFromAttachment, fileIndex: number) => {
-                  const fileExtension = file.url.split('.').pop()?.toUpperCase();
-                  const fileName = file.fileName || file.legend || `Document ${fileIndex + 1}`;
-                  return (
-                    <div key={fileIndex} className="flex items-center gap-2">
-                      <Paperclip size={14} className="shrink-0 text-greyDarkColored" aria-hidden />
-                      <a
-                        href={file.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        download
-                        className="underline text-primary1 hover:text-primary1-light break-all"
-                      >
-                        {fileName}
-                      </a>
-                      {fileExtension && (
-                        <span className="py-0.5 px-1.5 rounded-full bg-greyDarkColored text-white text-[10px] uppercase shrink-0">
-                          {fileExtension}
-                        </span>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
+              {Boolean(practicalInfo) && (
+                <div className="content-WYSIWYG leading-relaxed">
+                  {typeof practicalInfo === 'string' ? parse(practicalInfo) : null}
+                </div>
+              )}
+              {files && files.length > 0 && (
+                <div className={cn('flex flex-col gap-1 text-xs text-greyDarkColored', Boolean(practicalInfo) && 'mt-2')}>
+                  {files.map((file: FileFromAttachment, fileIndex: number) => {
+                    const fileExtension = file.url.split('.').pop()?.toUpperCase();
+                    const fileName = file.fileName || file.legend || `Document ${fileIndex + 1}`;
+                    return (
+                      <div key={fileIndex} className="flex items-center gap-2">
+                        <Paperclip size={14} className="shrink-0 text-greyDarkColored" aria-hidden />
+                        <a
+                          href={file.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          download
+                          className="underline text-primary1 hover:text-primary1-light break-all"
+                        >
+                          {fileName}
+                        </a>
+                        {fileExtension && (
+                          <span className="py-0.5 px-1.5 rounded-full bg-greyDarkColored text-white text-[10px] uppercase shrink-0">
+                            {fileExtension}
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           )}
 
