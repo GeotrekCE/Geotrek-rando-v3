@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.26.3 (2026-11-03)
+
+**🐛 Fixes**
+
+- Fix displayAltimetric in drawer component (#1442)
+- Define googleSiteVerificationToken settings to null in default config (#1431)
+
+**🔧 Maintenance**
+
+- Update Node.js version in .nvmrc to v22.23.4 (#1443)
+- Bump next from 14.2.26 to 14.2.35 (#1449)
+- Bump cypress-io/github-action from 6 to 7 by @dependabot[bot] in https://github.com/GeotrekCE/Geotrek-rando-v3/pull/1448
+- Bump actions/checkout from 4 to 7 by @dependabot[bot] in https://github.com/GeotrekCE/Geotrek-rando-v3/pull/1446
+- Bump docker/build-push-action from 6 to 7 by @dependabot[bot] in https://github.com/GeotrekCE/Geotrek-rando-v3/pull/1445
+- Bump actions/upload-artifact from 4 to 7 by @dependabot[bot] in https://github.com/GeotrekCE/Geotrek-rando-v3/pull/1444
 
 ## 3.26.2 (2026-08-27)
 
