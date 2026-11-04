@@ -1,9 +1,11 @@
 import { Source, SourceDictionnary } from 'modules/source/interface';
 import { geFilesFromAttachments } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
+import { GeometryObject, RawGeometryObject } from 'modules/interface';
 import { VigilanceAreaType } from 'modules/vigilanceAreaType/interface';
 import { VigilanceAreaLevel } from 'modules/vigilanceAreaLevel/interface';
 import { RawVigilanceArea, RawVigilancePeriod, VigilanceArea, VigilancePeriod } from './interface';
+import { getLevelMode } from './utils';
 
 export const adaptVigilancePeriods = (rawPeriods: RawVigilancePeriod[] = []): VigilancePeriod[] =>
   rawPeriods.map(rawPeriod => ({
@@ -135,7 +137,7 @@ export interface VigilanceAreaGeometry {
   isImpracticable: boolean;
   levelMode: 'closed' | 'alert' | 'vigilance' | 'info';
   levelNumber?: number | null;
-  geometry: any;
+  geometry: GeometryObject | RawGeometryObject;
   typeName?: string;
   levelName?: string;
   typePictogramUri?: string | null;
@@ -152,14 +154,9 @@ export const adaptVigilanceAreaGeometry = (area: VigilanceArea): VigilanceAreaGe
     ? '#901A1A'
     : area.color || area.level?.color || '#d17a00';
 
-  const levelMode: 'closed' | 'alert' | 'vigilance' | 'info' =
-    isImpracticable
-      ? 'closed'
-      : area.criticality === 'alert' || area.criticality === 'high' || area.level?.level === 1
-      ? 'alert'
-      : area.criticality === 'info' || area.level?.level === 3
-      ? 'info'
-      : 'vigilance';
+  const levelMode: 'closed' | 'alert' | 'vigilance' | 'info' = isImpracticable
+    ? 'closed'
+    : getLevelMode(area.level?.level, area.criticality) ?? 'vigilance';
 
   return {
     id: area.id,

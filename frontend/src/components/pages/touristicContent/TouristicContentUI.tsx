@@ -65,7 +65,7 @@ export const TouristicContentUIWithoutContext: React.FC<TouristicContentUIProps>
       parseInt(theme.spacing[14], 10),
   });
 
-  const { sections, anchors } = useDetailsSections('touristicContent', touristicContent);
+  const { sections, anchors } = useDetailsSections('touristicContent');
 
   return (
     <>

@@ -5,13 +5,13 @@ import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapC
 import { FileFromAttachment } from 'modules/interface';
 import { Source } from 'modules/source/interface';
 import { VigilanceArea, VigilancePeriod } from 'modules/vigilanceArea/interface';
-import { formatSinglePeriod, formatVigilancePeriod } from 'modules/vigilanceArea/utils';
+import { formatSinglePeriod, formatVigilancePeriod, getLevelMode } from 'modules/vigilanceArea/utils';
 import { cn } from 'services/utils/cn';
 import { Paperclip } from 'components/Icons/Paperclip';
 import { VigilanceAreaBadge } from './VigilanceAreaBadge';
 
 interface VigilanceAreaItemProps {
-  area: VigilanceArea | Record<string, unknown>;
+  area: VigilanceArea;
   index?: number;
   className?: string;
 }
@@ -23,41 +23,20 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
 }) => {
   const intl = useIntl();
 
-  const rawArea = (area as unknown) as Record<string, unknown>;
-
-  const id = (rawArea?.id ?? `area-${index}`) as string | number;
-  const title = (rawArea?.title ?? rawArea?.name ?? '') as string;
+  const id = area.id ?? `area-${index}`;
+  const title = area.name ?? '';
 
   // Extract type label and pictogram
-  const typeObj = (rawArea?.type ?? rawArea?.vigilance_area_type) as Record<string, unknown> | null;
-  const typeName = (
-    typeof typeObj === 'object' && typeObj !== null
-      ? typeObj.label ?? typeObj.name ?? ''
-      : rawArea?.type_name ?? (typeof typeObj === 'string' ? typeObj : '')
-  ) as string;
-  const typePicto = (
-    typeof typeObj === 'object' && typeObj !== null
-      ? typeObj.pictogramUrl ?? typeObj.pictogram ?? typeObj.pictogramUri ?? null
-      : rawArea?.typePictogramUrl ?? rawArea?.pictogramUrl ?? rawArea?.pictogram ?? null
-  ) as string | null;
+  const typeName = area.type?.name ?? '';
+  const typePicto = area.type?.pictogramUrl ?? null;
 
-  const levelObj = rawArea?.level as Record<string, unknown> | null;
-  const levelPicto = (levelObj?.pictogramUrl ?? levelObj?.pictogram ?? rawArea?.levelPictogramUrl ?? null) as string | null;
-  const levelNumber = typeof levelObj?.level === 'number' ? levelObj.level : typeof rawArea?.levelNumber === 'number' ? rawArea.levelNumber : null;
-  const rawCriticality = rawArea?.criticality;
-  const criticality: 'closed' | 'alert' | 'vigilance' | 'info' | undefined =
-    rawCriticality === 'closed' || rawCriticality === 'alert' || rawCriticality === 'vigilance' || rawCriticality === 'info'
-      ? rawCriticality
-      : levelNumber === 1
-        ? 'alert'
-        : levelNumber === 2
-          ? 'vigilance'
-          : levelNumber === 3
-            ? 'info'
-            : undefined;
+  const levelObj = area.level ?? null;
+  const levelPicto = levelObj?.pictogramUrl ?? null;
+  const levelNumber = levelObj?.level ?? null;
+  const criticality = getLevelMode(levelNumber, area.criticality);
 
   // Determine impracticability
-  const isImpracticable = Boolean(rawArea?.isImpracticable ?? rawArea?.impracticable);
+  const isImpracticable = Boolean(area.isImpracticable);
 
   // Level text: API level name or "Impraticable" or empty
   const levelText = isImpracticable
@@ -65,9 +44,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
         id: 'details.vigilancePracticabilityClosed',
         defaultMessage: 'Impraticable',
       })
-    : (levelObj?.name as string) ||
-      (rawArea?.levelName as string) ||
-      '';
+    : levelObj?.name ?? '';
 
   const defaultLevelColor =
     levelNumber === 1
@@ -81,14 +58,14 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
   // Strict colors: red #901A1A if impracticable, otherwise level color or fallback #d17a00
   const itemColor = isImpracticable
     ? '#901A1A'
-    : (levelObj?.color as string) || (rawArea?.color as string) || defaultLevelColor;
+    : area.color || levelObj?.color || defaultLevelColor;
 
   const itemBgColor = isImpracticable
     ? 'color-mix(in srgb, #901A1A 8%, white)'
     : `color-mix(in srgb, ${itemColor} 10%, white)`;
 
   // Periods extraction
-  const periods: VigilancePeriod[] = (rawArea?.periods as VigilancePeriod[]) || [];
+  const periods: VigilancePeriod[] = area.periods ?? [];
 
   const headerPeriodText = formatVigilancePeriod({
     periods,
@@ -108,16 +85,12 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
       : null;
 
   // Description & Info
-  const description = (rawArea?.description ?? '') as string;
-  const practicalInfo = (rawArea?.practicalInfo ?? rawArea?.practical_info ?? '') as string;
-  const externalUrl = (rawArea?.externalInfoUrl ?? rawArea?.external_info_url ?? null) as string | null;
-  const updateDatetimeStr = rawArea?.updateDatetime ?? rawArea?.update_datetime;
-  const updateDatetime =
-    typeof updateDatetimeStr === 'string' || typeof updateDatetimeStr === 'number' || updateDatetimeStr instanceof Date
-      ? new Date(updateDatetimeStr)
-      : null;
-  const sources = (rawArea?.sources as Source[]) || [];
-  const files = (rawArea?.attachments as FileFromAttachment[]) || [];
+  const description = area.description ?? '';
+  const practicalInfo = area.practicalInfo ?? '';
+  const externalUrl = area.externalInfoUrl ?? null;
+  const updateDatetime = area.updateDatetime ? new Date(area.updateDatetime) : null;
+  const sources = area.sources ?? [];
+  const files = area.attachments ?? [];
 
   const { selectedVigilanceAreaId, setSelectedVigilanceAreaId, setHoveredVigilanceAreaId } =
     useDetailsAndMapContext();

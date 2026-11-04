@@ -15,15 +15,7 @@ export const getDetailsConfig = (language: string): DetailsConfig => {
   } = getNextConfig();
 
   const destailsSection = (sections: SectionsTypes[]) => {
-    const hasVigilance = sections.some(item => item.name === 'vigilance');
-    const fullSections = hasVigilance
-      ? sections
-      : ([
-          ...sections,
-          { name: 'vigilance', display: true, anchor: true, order: 75 },
-        ] as SectionsTypes[]);
-
-    return fullSections.map(item => {
+    return sections.map(item => {
       if (detailsSectionHtml[item.name]) {
         return {
           ...item,

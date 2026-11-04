@@ -4,8 +4,7 @@ import { cn } from 'services/utils/cn';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { ContentType } from 'modules/interface';
 import { VigilanceArea } from 'modules/vigilanceArea/interface';
-import { VigilanceAreaLevel } from 'modules/vigilanceAreaLevel/interface';
-import { isVigilanceAreaActive } from 'modules/vigilanceArea/utils';
+import { getLevelMode, isVigilanceAreaActive } from 'modules/vigilanceArea/utils';
 import { VigilanceAreaBadge } from '../DetailsVigilanceAreas/VigilanceAreaBadge';
 
 interface DetailsVigilanceBannerProps {
@@ -15,42 +14,20 @@ interface DetailsVigilanceBannerProps {
   className?: string;
 }
 
-/**
- * Safely accesses a raw or dynamic property on a VigilanceArea object
- * without triggering ESLint no-explicit-any or TypeScript unsafe type assertions.
- */
-const getVigilanceAreaProperty = (
-  vigilanceArea: unknown,
-  propertyName: string,
-): unknown => {
-  if (!vigilanceArea || typeof vigilanceArea !== 'object') return undefined;
-  return (vigilanceArea as Record<string, unknown>)[propertyName];
-};
-
 const isAreaImpracticable = (vigilanceArea: VigilanceArea): boolean => {
   return Boolean(vigilanceArea.isImpracticable);
 };
 
 const isAreaLevelHigh = (vigilanceArea: VigilanceArea): boolean => {
-  const criticality =
-    vigilanceArea.criticality ?? getVigilanceAreaProperty(vigilanceArea, 'criticality');
-  const levelObject = vigilanceArea.level ?? getVigilanceAreaProperty(vigilanceArea, 'level');
-  const levelNumber =
-    typeof levelObject === 'object' && levelObject !== null
-      ? (levelObject as Record<string, unknown>).level
-      : levelObject;
-  return criticality === 'alert' || criticality === 'high' || String(levelNumber) === '1';
+  const levelNumber = vigilanceArea.level?.level ?? null;
+  const levelMode = getLevelMode(levelNumber, vigilanceArea.criticality);
+  return levelMode === 'alert';
 };
 
 const isAreaLevelMedium = (vigilanceArea: VigilanceArea): boolean => {
-  const criticality =
-    vigilanceArea.criticality ?? getVigilanceAreaProperty(vigilanceArea, 'criticality');
-  const levelObject = vigilanceArea.level ?? getVigilanceAreaProperty(vigilanceArea, 'level');
-  const levelNumber =
-    typeof levelObject === 'object' && levelObject !== null
-      ? (levelObject as Record<string, unknown>).level
-      : levelObject;
-  return criticality === 'vigilance' || String(levelNumber) === '2';
+  const levelNumber = vigilanceArea.level?.level ?? null;
+  const levelMode = getLevelMode(levelNumber, vigilanceArea.criticality);
+  return levelMode === 'vigilance';
 };
 
 const isAreaFuture = (
@@ -133,38 +110,9 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
 
   let singleZoneSummary = '';
   if (singleVigilanceArea) {
-    const typeObject =
-      singleVigilanceArea.type ?? getVigilanceAreaProperty(singleVigilanceArea, 'type');
-    const typeName =
-      typeof typeObject === 'object' && typeObject !== null
-        ? String(
-            ((typeObject as unknown) as Record<string, unknown>).rawName ??
-              ((typeObject as unknown) as Record<string, unknown>).name ??
-              ((typeObject as unknown) as Record<string, unknown>).label ??
-              '',
-          )
-        : String(
-            getVigilanceAreaProperty(singleVigilanceArea, 'type_raw_name') ??
-              getVigilanceAreaProperty(singleVigilanceArea, 'type_name') ??
-              getVigilanceAreaProperty(singleVigilanceArea, 'type') ??
-              '',
-          );
-
-    const levelObject =
-      singleVigilanceArea.level ?? getVigilanceAreaProperty(singleVigilanceArea, 'level');
-    const levelName =
-      typeof levelObject === 'object' && levelObject !== null
-        ? String(((levelObject as unknown) as Record<string, unknown>).name ?? '')
-        : typeof singleVigilanceArea.level === 'string'
-          ? singleVigilanceArea.level
-          : '';
-
-    const title = String(
-      singleVigilanceArea.name ??
-        getVigilanceAreaProperty(singleVigilanceArea, 'title') ??
-        '',
-    );
-
+    const typeName = singleVigilanceArea.type?.rawName ?? singleVigilanceArea.type?.name ?? '';
+    const levelName = singleVigilanceArea.level?.name ?? '';
+    const title = singleVigilanceArea.name ?? '';
     const summaryParts = [levelName, typeName, title].filter(Boolean);
     singleZoneSummary = summaryParts.join(' - ');
   }
@@ -190,52 +138,11 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
               )
             : publishedVigilanceAreas[0]) ?? publishedVigilanceAreas[0];
 
-  const relevantLevel =
-    relevantArea?.level ?? getVigilanceAreaProperty(relevantArea, 'level');
-
-  const relevantLevelNumber =
-    typeof relevantArea?.level?.level === 'number'
-      ? relevantArea.level.level
-      : typeof (relevantLevel as VigilanceAreaLevel | null)?.level === 'number'
-        ? ((relevantLevel as VigilanceAreaLevel).level as number)
-        : typeof getVigilanceAreaProperty(relevantArea, 'levelNumber') === 'number'
-          ? (getVigilanceAreaProperty(relevantArea, 'levelNumber') as number)
-          : null;
-
-  const relevantCriticality: 'alert' | 'vigilance' | 'info' | null =
-    relevantArea?.criticality === 'alert' ||
-    relevantArea?.criticality === 'vigilance' ||
-    relevantArea?.criticality === 'info'
-      ? relevantArea.criticality
-      : relevantLevelNumber === 1
-        ? 'alert'
-        : relevantLevelNumber === 2
-          ? 'vigilance'
-          : relevantLevelNumber === 3
-            ? 'info'
-            : null;
-
-  const representativeLevelPictogram = (
-    relevantArea?.level?.pictogramUrl ??
-    getVigilanceAreaProperty(relevantLevel, 'pictogram') ??
-    getVigilanceAreaProperty(relevantArea, 'levelPictogramUrl') ??
-    null
-  ) as string | null;
-
-  const representativeType =
-    relevantArea?.type ?? getVigilanceAreaProperty(relevantArea, 'type');
-
-  const representativeTypePictogram = (
-    relevantArea?.type?.pictogramUrl ??
-    getVigilanceAreaProperty(representativeType, 'pictogram') ??
-    getVigilanceAreaProperty(relevantArea, 'typePictogramUrl') ??
-    null
-  ) as string | null;
-
-  const representativeAreaColor = (relevantArea?.color ??
-    relevantArea?.level?.color ??
-    getVigilanceAreaProperty(relevantLevel, 'color') ??
-    null) as string | null;
+  const relevantLevelNumber = relevantArea?.level?.level ?? null;
+  const relevantCriticality = getLevelMode(relevantLevelNumber, relevantArea?.criticality) ?? null;
+  const representativeLevelPictogram = relevantArea?.level?.pictogramUrl ?? null;
+  const representativeTypePictogram = relevantArea?.type?.pictogramUrl ?? null;
+  const representativeAreaColor = relevantArea?.color ?? relevantArea?.level?.color ?? null;
 
   let badgeMode: 'closed' | 'alert' | 'vigilance' | 'info' | undefined = relevantCriticality ?? undefined;
   let bannerBorderColor = 'var(--color-vigilance-warning, #d17a00)';

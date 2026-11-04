@@ -27,6 +27,7 @@ import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { RawViewPoint, ViewPoint } from 'modules/viewPoint/interface';
 import { City } from 'modules/city/interface';
+import { RawVigilanceArea, VigilanceArea } from 'modules/vigilanceArea/interface';
 import { TrekRatingWithScale } from '../trekRating/interface';
 
 export interface RawDetails {
@@ -98,7 +99,7 @@ export interface RawDetailsProperties {
   ratings_description: string;
   view_points: RawViewPoint[];
   impracticable?: boolean;
-  published_vigilance_areas?: any[];
+  published_vigilance_areas?: RawVigilanceArea[];
 }
 
 // Fields parsed with react-html-parser in page
@@ -199,7 +200,7 @@ export interface Details extends DetailsHtml {
   infrastructure: InfrastructureDictionary | null;
   viewPoints: ViewPoint[];
   isImpracticable?: boolean;
-  publishedVigilanceAreas?: any[];
+  publishedVigilanceAreas?: VigilanceArea[];
 }
 
 export interface WebLink {

@@ -41,7 +41,7 @@ describe('VigilanceAreas Leaflet Map Component', () => {
         periods: [],
         typeName: 'Faune',
         geometry: {
-          type: 'Polygon',
+          type: 'Polygon' as const,
           coordinates: [
             [
               [1.32, 43.61],
@@ -54,7 +54,9 @@ describe('VigilanceAreas Leaflet Map Component', () => {
       },
     ];
 
-    const { getByTestId, getByText } = render(<VigilanceAreas contents={mockContents} />);
+    const { getByTestId, getByText } = render(
+      <VigilanceAreas contents={(mockContents as unknown) as VigilanceAreaGeometry[]} />,
+    );
 
     const polygon = getByTestId('leaflet-polygon');
     expect(polygon).toBeInTheDocument();

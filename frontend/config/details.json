@@ -162,6 +162,12 @@
         "order": 20
       },
       {
+        "name": "vigilance",
+        "display": true,
+        "anchor": true,
+        "order": 25
+      },
+      {
         "name": "practicalInformations",
         "display": true,
         "anchor": true,

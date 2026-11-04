@@ -83,7 +83,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
   const sectionsContainerRef = useRef<HTMLDivElement>(null);
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
 
-  const { sections, anchors } = useDetailsSections('trek', details);
+  const { sections, anchors } = useDetailsSections('trek');
 
   useOnScreenSection({
     sectionsPositions,

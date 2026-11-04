@@ -34,6 +34,7 @@ import {
 } from 'modules/utils/geometry';
 import { formatHours } from 'modules/utils/time';
 import { ViewPoint } from 'modules/viewPoint/interface';
+import { VigilanceArea } from 'modules/vigilanceArea/interface';
 import { sortVigilanceAreas } from 'modules/vigilanceArea/utils';
 import { TrekRatingScale } from '../trekRatingScale/interface';
 import { TrekRatingChoices } from '../trekRating/interface';
@@ -90,7 +91,7 @@ export const adaptResults = ({
   trekRating: TrekRatingChoices;
   trekRatingScale: TrekRatingScale[];
   viewPoints: ViewPoint[];
-  publishedVigilanceAreas?: any[];
+  publishedVigilanceAreas?: VigilanceArea[];
 }): Details => {
   try {
     const isImpracticable = Boolean(rawDetailsProperties.impracticable);

@@ -18,6 +18,7 @@ export type DetailsSectionTrekNames =
 
 export type DetailsSectionTouristicContentNames =
   | 'presentation'
+  | 'vigilance'
   | 'practicalInformations'
   | 'accessibility'
   | 'contact'

@@ -58,10 +58,7 @@ export const DetailsHeader: React.FC<DetailsHeaderProps> = ({
                 )}
                 href={`#details_${sectionId}`}
               >
-                <FormattedMessage
-                  id={`details.${sectionId}`}
-                  defaultMessage={sectionId === 'vigilance' ? 'Zones de vigilance' : undefined}
-                />
+                <FormattedMessage id={`details.${sectionId}`} />
               </a>
             </li>
           ))}

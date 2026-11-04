@@ -1,12 +1,15 @@
 import { getVigilanceAreaTypes } from 'modules/vigilanceAreaType/connector';
 import { getVigilanceAreaLevels } from 'modules/vigilanceAreaLevel/connector';
 import { getSources } from 'modules/source/connector';
+import { generatePageNumbersArray } from 'modules/utils/connector';
+import { concatResults } from 'modules/utils/adapter';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptVigilanceArea, adaptVigilanceAreas, adaptVigilancePeriods } from './adapter';
 import { fetchVigilanceArea, fetchVigilanceAreasPeriods } from './api';
-import { VigilanceArea, VigilanceAreasPeriodsMap } from './interface';
+import { RawVigilanceArea, VigilanceArea, VigilanceAreasPeriodsMap } from './interface';
 
 export const getVigilanceAreasForTrek = async (
-  rawAreas: any[] = [],
+  rawAreas: (number | string | RawVigilanceArea)[] = [],
   language: string,
 ): Promise<VigilanceArea[]> => {
   if (!rawAreas || rawAreas.length === 0) return [];
@@ -21,7 +24,7 @@ export const getVigilanceAreasForTrek = async (
 
   if (!containsIds) {
     return adaptVigilanceAreas({
-      rawVigilanceAreas: rawAreas,
+      rawVigilanceAreas: rawAreas as RawVigilanceArea[],
       language,
       vigilanceAreaTypes,
       vigilanceAreaLevels,
@@ -63,13 +66,34 @@ export const getVigilanceAreasPeriods = async (
   language: string,
 ): Promise<VigilanceAreasPeriodsMap> => {
   try {
-    const response = await fetchVigilanceAreasPeriods({ language, page_size: 999 });
+    const resultsNumber = getGlobalConfig().mapResultsPageSize ?? 50;
+    const firstPageResponse = await fetchVigilanceAreasPeriods({
+      language,
+      page_size: resultsNumber,
+    });
+    let rawVigilanceAreas = firstPageResponse.results;
+
+    if (firstPageResponse.count > resultsNumber) {
+      const otherPages = await Promise.all(
+        generatePageNumbersArray(resultsNumber, firstPageResponse.count)
+          .slice(1)
+          .map(pageNumber =>
+            fetchVigilanceAreasPeriods({
+              language,
+              page_size: resultsNumber,
+              page: pageNumber,
+            }),
+          ),
+      );
+      rawVigilanceAreas = concatResults([firstPageResponse, ...otherPages]);
+    }
+
     const periodsMap: VigilanceAreasPeriodsMap = {};
-    for (const rawArea of response.results) {
-      periodsMap[rawArea.id] = {
-        id: rawArea.id,
-        impracticable: Boolean(rawArea.impracticable),
-        periods: adaptVigilancePeriods(rawArea.periods),
+    for (const rawVigilanceArea of rawVigilanceAreas) {
+      periodsMap[rawVigilanceArea.id] = {
+        id: rawVigilanceArea.id,
+        impracticable: Boolean(rawVigilanceArea.impracticable),
+        periods: adaptVigilancePeriods(rawVigilanceArea.periods),
       };
     }
     return periodsMap;

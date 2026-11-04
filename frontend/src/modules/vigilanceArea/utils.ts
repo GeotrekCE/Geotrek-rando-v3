@@ -12,10 +12,11 @@ export const isDayActive = (
 ): boolean => {
   if (!activeDays || activeDays.length === 0) return true;
   const dayOfWeek = targetDate.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
-  const geotrekDay = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // 0 = Mon, ..., 6 = Sun
+  // Geotrek backend (Python/Django) uses 0 = Monday, ..., 6 = Sunday (datetime.weekday())
+  const pythonWeekday = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // 0 = Mon, ..., 6 = Sun
   const isoDay = dayOfWeek === 0 ? 7 : dayOfWeek; // 1 = Mon, ..., 7 = Sun
-  const activeNums = activeDays.map(Number);
-  return activeNums.includes(geotrekDay) || activeNums.includes(isoDay);
+  const activeNumbers = activeDays.map(Number);
+  return activeNumbers.includes(pythonWeekday) || activeNumbers.includes(isoDay);
 };
 
 export const isPeriodActive = (
@@ -480,4 +481,25 @@ export const getImpracticableEndDate = (
   }
 
   return maxEndDate || null;
+};
+
+/**
+ * Maps a vigilance area's criticality string or level number to a unified levelMode.
+ */
+export const getLevelMode = (
+  levelNumber?: number | null,
+  criticality?: string | null,
+): 'closed' | 'alert' | 'vigilance' | 'info' | undefined => {
+  if (
+    criticality === 'closed' ||
+    criticality === 'alert' ||
+    criticality === 'vigilance' ||
+    criticality === 'info'
+  ) {
+    return criticality;
+  }
+  if (levelNumber === 1) return 'alert';
+  if (levelNumber === 2) return 'vigilance';
+  if (levelNumber === 3) return 'info';
+  return undefined;
 };

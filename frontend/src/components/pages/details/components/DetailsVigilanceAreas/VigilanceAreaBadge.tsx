@@ -1,5 +1,6 @@
 import React from 'react';
 import { WarningImpracticable } from 'components/Icons/WarningImpracticable';
+import { cn } from 'services/utils/cn';
 
 export interface VigilanceAreaBadgeProps {
   typePictogramUrl?: string | null;
@@ -28,7 +29,7 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
     return (
       <WarningImpracticable
         size={size}
-        className={`shrink-0 drop-shadow-sm ${className}`}
+        className={cn('shrink-0 drop-shadow-sm', className)}
         aria-hidden="true"
       />
     );
@@ -43,7 +44,7 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
         src={typePicto}
         alt=""
         style={{ width: `${size}px`, height: `${size}px` }}
-        className={`object-contain shrink-0 bg-white rounded-full p-0.5 ${className}`}
+        className={cn('object-contain shrink-0 bg-white rounded-full p-0.5', className)}
       />
     );
   }
@@ -56,7 +57,7 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
         src={levelPictogramUrl}
         alt=""
         style={{ width: `${size}px`, height: `${size}px` }}
-        className={`object-contain shrink-0 bg-white rounded-full p-0.5 ${className}`}
+        className={cn('object-contain shrink-0 bg-white rounded-full p-0.5', className)}
       />
     );
   }
@@ -72,7 +73,7 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
         viewBox="0 0 36 36"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className={`shrink-0 drop-shadow-sm ${className}`}
+        className={cn('shrink-0 drop-shadow-sm', className)}
         aria-hidden="true"
       >
         <circle cx="18" cy="18" r="18" fill="white" />
@@ -95,7 +96,7 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={`shrink-0 ${className}`}
+        className={cn('shrink-0', className)}
         aria-hidden="true"
       >
         <circle cx="12" cy="12" r="10" fill="white" />
@@ -116,7 +117,7 @@ export const VigilanceAreaBadge: React.FC<VigilanceAreaBadgeProps> = ({
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={`shrink-0 ${className}`}
+      className={cn('shrink-0', className)}
       aria-hidden="true"
     >
       <circle cx="12" cy="12" r="10" fill="white" />

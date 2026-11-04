@@ -6,7 +6,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import parse from 'html-react-parser';
 import { VigilanceAreaGeometry } from 'modules/vigilanceArea/adapter';
 import { VigilancePeriod } from 'modules/vigilanceArea/interface';
-import { RawCoordinate2D } from 'modules/interface';
+import { Coordinate2D, RawCoordinate2D } from 'modules/interface';
 import { formatSinglePeriod } from 'modules/vigilanceArea/utils';
 
 import { useDetailsAndMapContext } from 'components/pages/details/DetailsAndMapContext';
@@ -17,24 +17,10 @@ export type PropsType = {
   contents?: VigilanceAreaGeometry[];
 };
 
-type CoordinatePoint =
-  | [number, number]
-  | { x: number; y: number }
-  | { lat: number; lng: number }
-  | Record<string, unknown>;
-
-const extractPositions = (coordinates: unknown[]): RawCoordinate2D[] =>
-  (coordinates as CoordinatePoint[]).map((point): RawCoordinate2D => [
-    typeof point === 'object' && point !== null && 'y' in point && typeof point.y === 'number'
-      ? point.y
-      : Array.isArray(point) && typeof point[1] === 'number'
-      ? point[1]
-      : 0,
-    typeof point === 'object' && point !== null && 'x' in point && typeof point.x === 'number'
-      ? point.x
-      : Array.isArray(point) && typeof point[0] === 'number'
-      ? point[0]
-      : 0,
+const extractPositions = (coordinates: (Coordinate2D | RawCoordinate2D)[]): RawCoordinate2D[] =>
+  coordinates.map((point): RawCoordinate2D => [
+    'y' in point ? point.y : point[1],
+    'x' in point ? point.x : point[0],
   ]);
 
 const createBadgeIcon = (
@@ -260,10 +246,10 @@ const VigilanceAreaPolygonItem: React.FC<{
                         id="details.vigilancePracticabilityTitle"
                         defaultMessage="Praticabilité de la zone :"
                       />{' '}
-                      {intl.formatMessage({
-                        id: 'details.vigilancePracticabilityClosed',
-                        defaultMessage: 'Impraticable',
-                      })}
+                      <FormattedMessage
+                        id="details.vigilancePracticabilityClosed"
+                        defaultMessage="Impraticable"
+                      />
                     </p>
                   )}
 
@@ -296,9 +282,9 @@ const VigilanceAreaPolygonItem: React.FC<{
                   ) : null}
 
                   {/* Description */}
-                  {Boolean(description) && (
+                  {typeof description === 'string' && description.length > 0 && (
                     <div className="m-0 text-greyDarkColored/90 line-clamp-3 leading-snug [&>p]:m-0 [&>p]:inline">
-                      {typeof description === 'string' ? parse(description) : null}
+                      {parse(description)}
                     </div>
                   )}
 
@@ -307,10 +293,10 @@ const VigilanceAreaPolygonItem: React.FC<{
                     <a
                       href={`#details_vigilanceArea_${id}`}
                       onClick={handleMoreInfoClick}
-                      className="inline-flex items-center gap-1 font-bold text-primary1 hover:underline cursor-pointer"
+                      className="inline-flex items-center gap-1 font-bold text-primary1 hover:underline"
                     >
                       <FormattedMessage id="details.knowMore" defaultMessage="Plus d'informations" />
-                      <span>→</span>
+                      {' →'}
                     </a>
                   </div>
                 </div>
@@ -346,12 +332,13 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
           description,
           geometry,
         }) => {
-          if (!geometry || !geometry.type || !geometry.coordinates) {
+          if (!geometry || !geometry.type || !('coordinates' in geometry)) {
             return [];
           }
           if (geometry.type === 'Polygon') {
-            const rawRing = (geometry.coordinates as unknown[][])[0];
-            const positions = extractPositions(rawRing);
+            const polygonGeometry = geometry;
+            const primaryRing = polygonGeometry.coordinates[0];
+            const positions = extractPositions(primaryRing);
             if (positions.length < 3) return [];
             return [
               {
@@ -375,10 +362,11 @@ export const VigilanceAreas: React.FC<PropsType> = ({ contents }) => {
             ];
           }
           if (geometry.type === 'MultiPolygon') {
-            return (geometry.coordinates as unknown[][][]).flatMap(
-              (polygonCoordinates, polygonIndex) => {
-                const rawRing = polygonCoordinates[0];
-                const positions = extractPositions(rawRing);
+            const multiPolygonGeometry = geometry;
+            return multiPolygonGeometry.coordinates.flatMap(
+              (polygonCoordinatesList, polygonIndex) => {
+                const primaryRing = polygonCoordinatesList[0];
+                const positions = extractPositions(primaryRing);
                 if (positions.length < 3) return [];
                 return [
                   {

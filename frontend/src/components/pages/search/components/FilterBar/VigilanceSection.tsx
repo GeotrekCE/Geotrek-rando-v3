@@ -27,7 +27,7 @@ export const VigilanceSection: React.FC<Props> = ({
   const intl = useIntl();
   const [showPeriod, setShowPeriod] = useState<boolean>(Boolean(dateFilter.endDate));
 
-  const today = new Date().toISOString().split('T')[0];
+  const [today] = useState<string>(() => new Date().toISOString().split('T')[0]);
   const effectiveBeginDate = dateFilter.beginDate || today;
 
   const isTouristicContent = filterId === CATEGORY_ID;

@@ -4,7 +4,6 @@ import { cn } from 'services/utils/cn';
 
 export interface DetailsSectionProps {
   titleId?: string;
-  title?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
   htmlId?: string;
@@ -12,7 +11,6 @@ export interface DetailsSectionProps {
 
 export const DetailsSection: React.FC<DetailsSectionProps> = ({
   titleId,
-  title,
   children,
   className,
   htmlId,
@@ -29,14 +27,9 @@ export const DetailsSection: React.FC<DetailsSectionProps> = ({
           max-w-full overflow-x-auto
           `)}
       >
-        {(title !== undefined || titleId !== undefined) && (
+        {titleId !== undefined && (
           <h2 className="text-Mobile-H1 desktop:text-H2 font-bold" id="details_sectionTitle">
-            {title ?? (
-              <FormattedMessage
-                id={titleId}
-                defaultMessage={titleId === 'details.vigilance' ? 'Zones de vigilance' : undefined}
-              />
-            )}
+            <FormattedMessage id={titleId} />
           </h2>
         )}
         <div
