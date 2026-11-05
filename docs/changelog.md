@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.27.0 (2026-11-05)
+
+**🚀 New features**
+
+- Display active vigilance areas on treks (#1451)
+
 ## 3.26.3 (2026-11-03)
 
 **🐛 Fixes**
