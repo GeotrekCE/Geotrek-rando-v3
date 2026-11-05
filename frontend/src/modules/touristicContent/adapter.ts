@@ -13,8 +13,7 @@ import {
 } from 'modules/utils/adapter';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptGeometry } from 'modules/utils/geometry';
-import { sortVigilanceAreas } from 'modules/details/adapter';
-import { getImpracticableEndDate } from 'modules/vigilanceArea/utils';
+import { getImpracticableEndDate, sortVigilanceAreas } from 'modules/vigilanceArea/utils';
 import { VigilanceArea, VigilanceAreasPeriodsMap } from 'modules/vigilanceArea/interface';
 import {
   RawTouristicContent,

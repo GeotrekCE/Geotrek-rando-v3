@@ -12,11 +12,10 @@ export const isDayActive = (
 ): boolean => {
   if (!activeDays || activeDays.length === 0) return true;
   const dayOfWeek = targetDate.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
-  // Geotrek backend (Python/Django) uses 0 = Monday, ..., 6 = Sunday (datetime.weekday())
-  const pythonWeekday = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // 0 = Mon, ..., 6 = Sun
-  const isoDay = dayOfWeek === 0 ? 7 : dayOfWeek; // 1 = Mon, ..., 7 = Sun
+  const dayIndex = (dayOfWeek + 6) % 7; // 0 = Mon, ..., 6 = Sun
+  const isoDayNumber = dayIndex + 1; // 1 = Mon, ..., 7 = Sun
   const activeNumbers = activeDays.map(Number);
-  return activeNumbers.includes(pythonWeekday) || activeNumbers.includes(isoDay);
+  return activeNumbers.includes(dayIndex) || activeNumbers.includes(isoDayNumber);
 };
 
 export const isPeriodActive = (

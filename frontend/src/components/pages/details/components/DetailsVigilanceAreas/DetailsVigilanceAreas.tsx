@@ -32,7 +32,7 @@ export const DetailsVigilanceAreas: React.FC<DetailsVigilanceAreasProps> = ({
         <div className="flex flex-col gap-3 desktop:gap-4 mt-4">
           {sortedVigilanceAreas.map((publishedVigilanceArea, index) => (
             <VigilanceAreaItem
-              key={publishedVigilanceArea?.id ?? index}
+              key={publishedVigilanceArea.id}
               index={index}
               area={publishedVigilanceArea}
             />

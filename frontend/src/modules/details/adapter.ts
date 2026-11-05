@@ -211,8 +211,6 @@ export const adaptResults = ({
   }
 };
 
-export { sortVigilanceAreas } from 'modules/vigilanceArea/utils';
-
 export const adaptChildren = ({
   childrenIds,
   childrenNames,
