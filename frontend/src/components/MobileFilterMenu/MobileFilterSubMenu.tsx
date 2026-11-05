@@ -1,14 +1,36 @@
 import MobileBottomClear from 'components/pages/search/components/FilterBar/MobileBottomClear';
 import ShowFilters from 'components/pages/search/components/FilterBar/ShowFilters';
+import VigilanceSection from 'components/pages/search/components/FilterBar/VigilanceSection';
 import { groupBy } from 'modules/utils/array';
 
 import { ArrowLeft } from 'components/Icons/ArrowLeft';
-import { DateFilter, FilterCategory, FilterState, Option } from 'modules/filters/interface';
+import { DateFilter, FilterState, Option } from 'modules/filters/interface';
 
 import { FormattedMessage } from 'react-intl';
 import { useFilterBar } from 'components/pages/search/components/FilterBar/useFilterBar';
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from 'components/Sheet';
+import {
+  CATEGORY_ID,
+  DATE_FILTER,
+  DATE_FILTER_CONTENTS,
+  PRACTICE_ID,
+  VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
+  VIGILANCE_TYPE_CONTENTS_ID,
+  VIGILANCE_TYPE_EXCLUDE_ID,
+  VIGILANCE_TYPE_ID,
+} from 'modules/filters/constant';
+import { getGlobalConfig } from 'modules/utils/api.config';
+import { isVigilanceFilterEnabled } from 'modules/filters/config';
 import { CloseButton } from './CloseButton';
+
+const VIGILANCE_SECTION_IDS = [
+  DATE_FILTER,
+  VIGILANCE_TYPE_ID,
+  VIGILANCE_TYPE_EXCLUDE_ID,
+  DATE_FILTER_CONTENTS,
+  VIGILANCE_TYPE_CONTENTS_ID,
+  VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
+];
 
 interface Props {
   handleClose: () => void;
@@ -23,7 +45,6 @@ interface Props {
 }
 
 export const MobileFilterSubMenu: React.FC<Props> = ({
-  isOpen,
   handleClose,
   filterId,
   filtersState,
@@ -32,19 +53,15 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   resetFilter,
   dateFilter,
   setDateFilter,
+  isOpen,
 }) => {
+  const isVigilanceEnabled = getGlobalConfig().enableVigilanceAreas;
+
   const { FILTERS_CATEGORIES } = useFilterBar();
-
-  const categories: FilterCategory | undefined = FILTERS_CATEGORIES.find(i => i.id === filterId);
-
+  const categories = FILTERS_CATEGORIES.find(i => i.id === filterId);
   const filters = categories?.filters;
   const subFilters = categories?.subFilters;
-
-  const name = Array.isArray(categories?.name) ? (
-    <FormattedMessage id={'search.filters.treksOutdoorGrouped'} />
-  ) : (
-    categories?.name
-  );
+  const name = categories?.name;
 
   const nextSubFilters =
     (Array.isArray(subFilters) &&
@@ -55,14 +72,18 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   const subFiltersToDisplay = nextSubFilters.map(
     item =>
       groupBy(
-        filtersState.filter(({ id }) =>
-          item.some((subFilter: string) => new RegExp(subFilter).test(id)),
+        filtersState.filter(filter =>
+          item.some((subFilter: string) => new RegExp(subFilter).test(filter.id)),
         ),
         'category',
       ) ?? {},
   );
 
   const filtersToDisplay = filtersState.filter(({ id }) => filters?.includes(id));
+
+  const shouldShowVigilanceSection =
+    isVigilanceFilterEnabled() &&
+    (filterId === PRACTICE_ID || filterId === CATEGORY_ID);
 
   return (
     <Sheet open={isOpen} onOpenChange={handleClose}>
@@ -78,7 +99,11 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
                 <FormattedMessage id="details.close" />
               </span>
             </CloseButton>
-            {name}
+            {Array.isArray(name) ? (
+              <FormattedMessage id={'search.filters.treksOutdoorGrouped'} />
+            ) : (
+              name
+            )}
           </SheetTitle>
         </SheetHeader>
         <div className="pb-20 h-full overflow-auto p-6 -mx-6">
@@ -92,20 +117,35 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
               setDateFilter={setDateFilter}
             />
           ))}
+          {shouldShowVigilanceSection && (
+            <VigilanceSection
+              filtersState={filtersState}
+              dateFilter={dateFilter}
+              setFilterSelectedOptions={setFilterSelectedOptions}
+              setDateFilter={setDateFilter}
+              filterId={filterId}
+            />
+          )}
           {subFiltersToDisplay.map((subFilter, index) => (
             <div className="space-y-4" key={index}>
-              {Object.keys(subFilter).length > 0 && filtersToDisplay.length > 0 && (
-                <div className="w-10/12 h-1p mx-auto my-4 bg-greySoft" key="sep" />
-              )}
+              {Object.keys(subFilter).length > 0 &&
+                filtersToDisplay.length > 0 &&
+                !shouldShowVigilanceSection && (
+                  <div className="w-10/12 h-1p mx-auto my-4 bg-greySoft" key="sep" />
+                )}
               {Object.keys(subFilter).map(key => {
                 const value =
                   key !== 'undefined' && key !== 'event'
                     ? key
                     : filtersToDisplay[index]?.selectedOptions.map(({ label }) => label).join('/');
+                const validList = subFilter[key].filter(filter =>
+                  isVigilanceEnabled ? !VIGILANCE_SECTION_IDS.includes(filter.id) : true,
+                );
+                if (validList.length === 0) return null;
                 return (
                   <div className="m-1" key={value}>
                     <p className="font-bold mb-2">{value}</p>
-                    {subFilter[key].map(filterState => (
+                    {validList.map(filterState => (
                       <div className="my-1" key={value + filterState.id}>
                         <ShowFilters
                           item={filterState}

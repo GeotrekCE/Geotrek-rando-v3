@@ -39,13 +39,13 @@ export const geFilesFromAttachments = (rawAttachments: RawAttachment[]) => {
       const lastPartOfUrl = rawAttachment.url?.split('/').pop();
       // Files without extensions are false positive images (GTA version < 2.97.0)
       const hasExtension = lastPartOfUrl?.includes('.');
-      return rawAttachment.type === 'file' && hasExtension;
+      return (rawAttachment.type === 'file' || rawAttachment.type === 'image') && hasExtension;
     })
     .map(rawAttachment => ({
       url: rawAttachment.url,
       legend: rawAttachment.legend,
       author: rawAttachment.author,
-      fileName: rawAttachment.title,
+      fileName: rawAttachment.title || rawAttachment.legend || '',
       fileType: rawAttachment.filetype?.type ?? null,
     }));
   return attachments;

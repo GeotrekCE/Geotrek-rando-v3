@@ -78,6 +78,9 @@ export interface ColorsConfig {
   hardKO?: string;
   red?: string;
   redMarker?: string;
+  vigilanceClosed?: string;
+  vigilanceWarning?: string;
+  vigilanceOK?: string;
   categories?: {
     trek?: string;
     events?: string;
@@ -93,6 +96,7 @@ export interface APICallsConfig {
   maxPoiPerPage: number;
   maxTouristicContentPerPage: number;
   enableSensitiveAreas: boolean;
+  enableVigilanceAreas?: boolean;
   enableOutdoor: boolean;
   enableTouristicEvents: boolean;
   portalIds: number[];

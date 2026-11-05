@@ -140,5 +140,11 @@
     "id": "networks",
     "type": "MULTIPLE",
     "display": true
+  },
+  {
+    "id": "vigilance_type",
+    "type": "MULTIPLE",
+    "display": true,
+    "withExclude": true
   }
 ]

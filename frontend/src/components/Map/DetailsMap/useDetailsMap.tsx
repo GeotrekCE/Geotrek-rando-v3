@@ -27,6 +27,7 @@ export const useDetailsMap = () => {
   const [infrastructureVisibility, setInfrastructureVisibility] =
     useState<Visibility>(displaySecondaryLayers);
   const [viewPointVisibility, setViewPointVisibility] = useState<Visibility>('HIDDEN');
+  const [vigilanceVisibility, setVigilanceVisibility] = useState<Visibility>('HIDDEN');
   const [annotationViewpointVisibility, setAnnotationViewpointVisibility] =
     useState<Visibility>('DISPLAYED');
 
@@ -46,6 +47,7 @@ export const useDetailsMap = () => {
   const toggleServiceVisibility = () => setServiceVisibility(toggleVisibility);
   const toggleInfrastructureVisibility = () => setInfrastructureVisibility(toggleVisibility);
   const toggleViewPointVisibility = () => setViewPointVisibility(toggleVisibility);
+  const toggleVigilanceVisibility = () => setVigilanceVisibility(toggleVisibility);
   const toggleAnnotationViewpointVisibility = () =>
     setAnnotationViewpointVisibility(toggleVisibility);
 
@@ -72,6 +74,8 @@ export const useDetailsMap = () => {
     toggleInfrastructureVisibility,
     viewPointVisibility,
     toggleViewPointVisibility,
+    vigilanceVisibility,
+    toggleVigilanceVisibility,
     annotationViewpointVisibility,
     toggleAnnotationViewpointVisibility,
   };

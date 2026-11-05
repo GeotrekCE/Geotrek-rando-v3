@@ -13,6 +13,7 @@ import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { getNetworks } from 'modules/networks/connector';
 import { NetworkDictionnary } from 'modules/networks/interface';
 import { getCourseType } from 'modules/filters/courseType/connector';
+import { getVigilanceAreasPeriods } from 'modules/vigilanceArea/connector';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { adaptoutdoorSitesResult } from '../outdoorSite/adapter';
 import { fetchOutdoorSites } from '../outdoorSite/api';
@@ -63,6 +64,7 @@ export const getSearchResults = async (
     textFilterState: string | null;
     bboxState: string | null;
     dateFilter: DateFilter | null;
+    contentDateFilter?: DateFilter | null;
   },
   pages: {
     treks: number | null;
@@ -73,7 +75,7 @@ export const getSearchResults = async (
   language: string,
   commonDictionaries?: CommonDictionaries,
 ): Promise<SearchResults> => {
-  const { filtersState, textFilterState, bboxState, dateFilter } = filters;
+  const { filtersState, textFilterState, bboxState, dateFilter, contentDateFilter } = filters;
   const { themes = {}, cities = {} } = commonDictionaries ?? {};
 
   try {
@@ -109,7 +111,8 @@ export const getSearchResults = async (
     const touristicEventsFilter = formatTouristicEventsFiltersToUrlParams(filtersState);
 
     const textFilter = formatTextFilter(textFilterState);
-    const newDateFilter = formatDateFilter(dateFilter);
+    const newTrekDateFilter = formatDateFilter(dateFilter);
+    const newContentDateFilter = formatDateFilter(contentDateFilter ?? dateFilter);
 
     const bboxFilter = formatBboxFilter(bboxState);
 
@@ -120,6 +123,10 @@ export const getSearchResults = async (
           language,
           page_size: 1,
           page: 1,
+          practicable_from: newTrekDateFilter.practicable_from,
+          practicable_to: newTrekDateFilter.practicable_to,
+          opened_from: newTrekDateFilter.opened_from,
+          opened_to: newTrekDateFilter.opened_to,
           ...trekFilters,
           ...textFilter,
           ...bboxFilter,
@@ -130,6 +137,10 @@ export const getSearchResults = async (
           language,
           page_size: 1,
           page: 1,
+          practicable_from: newContentDateFilter.practicable_from,
+          practicable_to: newContentDateFilter.practicable_to,
+          opened_from: newContentDateFilter.opened_from,
+          opened_to: newContentDateFilter.opened_to,
           ...touristicContentFilter,
           ...textFilter,
           ...bboxFilter,
@@ -150,8 +161,8 @@ export const getSearchResults = async (
           language,
           page_size: 1,
           page: 1,
-          dates_before: newDateFilter.dates_before,
-          dates_after: newDateFilter.dates_after,
+          dates_before: newTrekDateFilter.dates_before,
+          dates_after: newTrekDateFilter.dates_after,
           ...touristicEventsFilter,
           ...textFilter,
           ...bboxFilter,
@@ -178,6 +189,10 @@ export const getSearchResults = async (
             language,
             page_size: getGlobalConfig().searchResultsPageSize,
             page: pages.treks ?? undefined,
+            practicable_from: newTrekDateFilter.practicable_from,
+            practicable_to: newTrekDateFilter.practicable_to,
+            opened_from: newTrekDateFilter.opened_from,
+            opened_to: newTrekDateFilter.opened_to,
             ...trekFilters,
             ...textFilter,
             ...bboxFilter,
@@ -195,6 +210,10 @@ export const getSearchResults = async (
             language,
             page_size: getGlobalConfig().searchResultsPageSize,
             page: pages.touristicContents ?? undefined,
+            practicable_from: newContentDateFilter.practicable_from,
+            practicable_to: newContentDateFilter.practicable_to,
+            opened_from: newContentDateFilter.opened_from,
+            opened_to: newContentDateFilter.opened_to,
             ...touristicContentFilter,
             ...textFilter,
             ...bboxFilter,
@@ -229,8 +248,8 @@ export const getSearchResults = async (
             language,
             page_size: getGlobalConfig().searchResultsPageSize,
             page: pages.touristicEvents ?? undefined,
-            dates_before: newDateFilter.dates_before,
-            dates_after: newDateFilter.dates_after,
+            dates_before: newTrekDateFilter.dates_before,
+            dates_after: newTrekDateFilter.dates_after,
             ...touristicEventsFilter,
             ...textFilter,
             ...bboxFilter,
@@ -253,6 +272,7 @@ export const getSearchResults = async (
       rawTouristicEvents,
       touristicContentCategories,
       outdoorPracticeDictionnary,
+      vigilanceAreasPeriods,
     ] = await Promise.all([
       shouldFetchTreks ? getTreksResultsPromise : emptyResultPromise,
       getDifficulties(language), // Todo: Find a way to store this hashmap to avoid calling this every time
@@ -262,10 +282,34 @@ export const getSearchResults = async (
       shouldFetchTouristicEvents ? getTouristicEventsPromise : emptyResultPromise,
       getTouristicContentCategories(language), // Todo: Find a way to store this hashmap to avoid calling this every time
       getOutdoorPractices(language),
+      getGlobalConfig().enableVigilanceAreas
+        ? getVigilanceAreasPeriods(language)
+        : Promise.resolve({}),
     ]);
 
     const touristicEventType = await getTouristicEventTypes(language);
     const networks = await getNetworks(language);
+
+    const trekTargetDate = dateFilter?.endDate
+      ? new Date(dateFilter.endDate.includes('T') ? dateFilter.endDate : `${dateFilter.endDate}T12:00:00`)
+      : dateFilter?.beginDate
+      ? new Date(dateFilter.beginDate.includes('T') ? dateFilter.beginDate : `${dateFilter.beginDate}T12:00:00`)
+      : new Date();
+
+    const effectiveContentFilter = contentDateFilter ?? dateFilter;
+    const contentTargetDate = effectiveContentFilter?.endDate
+      ? new Date(
+          effectiveContentFilter.endDate.includes('T')
+            ? effectiveContentFilter.endDate
+            : `${effectiveContentFilter.endDate}T12:00:00`,
+        )
+      : effectiveContentFilter?.beginDate
+      ? new Date(
+          effectiveContentFilter.beginDate.includes('T')
+            ? effectiveContentFilter.beginDate
+            : `${effectiveContentFilter.beginDate}T12:00:00`,
+        )
+      : new Date();
 
     const trekResultWithCourseType =
       rawTrekResults.results.length > 0
@@ -287,6 +331,8 @@ export const getSearchResults = async (
       activities,
       cityDictionnary: cities,
       networks,
+      vigilanceAreasPeriods,
+      targetDate: trekTargetDate,
     });
 
     const adaptedTouristicContentsList: TouristicContentResult[] = adaptTouristicContentResult({
@@ -294,6 +340,8 @@ export const getSearchResults = async (
       touristicContentCategories,
       themeDictionnary: themes,
       cityDictionnary: cities,
+      vigilanceAreasPeriods,
+      targetDate: contentTargetDate,
     });
 
     const adaptedOutdoorSitesList: OutdoorSiteResult[] = adaptoutdoorSitesResult({

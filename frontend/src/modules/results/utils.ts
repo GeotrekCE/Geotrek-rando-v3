@@ -9,6 +9,10 @@ import {
   OUTDOOR_ID,
   STRUCTURE_ID,
   THEME_ID,
+  VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
+  VIGILANCE_TYPE_CONTENTS_ID,
+  VIGILANCE_TYPE_EXCLUDE_ID,
+  VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
 import { DateFilter, FilterConfig, FilterConfigWithOptions } from 'modules/filters/interface';
 
@@ -102,6 +106,12 @@ const formatFilter = (filterState: QueryFilterState) => {
   if (filterState.id === 'difficulty') {
     return getMinAndMaxDifficulty(filterState.selectedOptions);
   }
+  if (filterState.id === VIGILANCE_TYPE_ID) {
+    return { vigilance_area_types: formatSelectedFilter(filterState.selectedOptions) };
+  }
+  if (filterState.id === VIGILANCE_TYPE_EXCLUDE_ID) {
+    return { vigilance_area_types_exclude: formatSelectedFilter(filterState.selectedOptions) };
+  }
   return {
     [filterState.id]: formatSelectedFilter(filterState.selectedOptions),
   };
@@ -117,6 +127,24 @@ export const formatTrekFiltersToUrlParams = (
   filtersState.reduce<{ [key: string]: string }>((queryParameters, currentFilterState) => {
     if (currentFilterState.id === CATEGORY_ID || /type-services-.+/.test(currentFilterState.id))
       return queryParameters;
+    if (
+      currentFilterState.id === VIGILANCE_TYPE_ID &&
+      currentFilterState.selectedOptions.length > 0
+    ) {
+      return {
+        ...queryParameters,
+        vigilance_area_types: currentFilterState.selectedOptions.join(','),
+      };
+    }
+    if (
+      currentFilterState.id === VIGILANCE_TYPE_EXCLUDE_ID &&
+      currentFilterState.selectedOptions.length > 0
+    ) {
+      return {
+        ...queryParameters,
+        vigilance_area_types_exclude: currentFilterState.selectedOptions.join(','),
+      };
+    }
     if (currentFilterState.selectedOptions.length > 0) {
       const filter = formatFilter(currentFilterState);
       return {
@@ -142,8 +170,28 @@ export const formatTextFilter = (textFilter: string | null): { q: string } | und
 
 export const formatDateFilter = (
   dateFilter: DateFilter | null,
-): { dates_before?: string; dates_after?: string } => {
-  return { dates_before: dateFilter?.endDate, dates_after: dateFilter?.beginDate };
+): {
+  dates_before?: string;
+  dates_after?: string;
+  practicable_from?: string;
+  practicable_to?: string;
+  opened_from?: string;
+  opened_to?: string;
+} => {
+  if (!dateFilter?.beginDate && !dateFilter?.endDate) {
+    return {};
+  }
+  const begin = dateFilter?.beginDate || undefined;
+  const end = dateFilter?.endDate || dateFilter?.beginDate || undefined;
+
+  return {
+    dates_before: dateFilter?.endDate || undefined,
+    dates_after: dateFilter?.beginDate || undefined,
+    practicable_from: begin,
+    practicable_to: end,
+    opened_from: begin,
+    opened_to: end,
+  };
 };
 
 export const formatBboxFilter = (bbox: string | null): { in_bbox: string } | undefined =>
@@ -165,6 +213,26 @@ export const formatTouristicContentFiltersToUrlParams = (
             ],
           };
         }
+      }
+      if (
+        (currentFilterState.id === VIGILANCE_TYPE_ID ||
+          currentFilterState.id === VIGILANCE_TYPE_CONTENTS_ID) &&
+        currentFilterState.selectedOptions.length > 0
+      ) {
+        return {
+          ...currentFilters,
+          vigilance_area_types: currentFilterState.selectedOptions,
+        };
+      }
+      if (
+        (currentFilterState.id === VIGILANCE_TYPE_EXCLUDE_ID ||
+          currentFilterState.id === VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID) &&
+        currentFilterState.selectedOptions.length > 0
+      ) {
+        return {
+          ...currentFilters,
+          vigilance_area_types_exclude: currentFilterState.selectedOptions,
+        };
       }
       if (
         commonFiltersWithoutTrekSelector.includes(currentFilterState.id) &&

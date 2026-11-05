@@ -11,6 +11,7 @@ import useHasMounted from 'hooks/useHasMounted';
 import { ImageWithLegend } from 'components/ImageWithLegend';
 import { cn } from 'services/utils/cn';
 import { HtmlParser } from 'components/HtmlParser';
+import { useRef } from 'react';
 import { useTouristicContent } from './useTouristicContent';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { DetailsSection } from '../details/components/DetailsSection';
@@ -23,13 +24,18 @@ import { templatesVariablesAreDefinedAndUsed } from '../details/utils';
 import { DetailsHeader } from '../details/components/DetailsHeader';
 import { useDetailsSections } from '../details/useDetailsSections';
 import { DetailsFiles } from '../details/components/DetailsFiles';
+import { DetailsVigilanceAreas } from '../details/components/DetailsVigilanceAreas';
+import { DetailsAndMapProvider } from '../details/DetailsAndMapContext';
+import { VisibleSectionProvider } from '../details/VisibleSectionContext';
+import { useOnScreenSection } from '../details/hooks/useHighlightedSection';
+import { theme } from '../../../../tailwind.config';
 
 interface TouristicContentUIProps {
   touristicContentUrl: string | string[] | undefined;
   language: string;
 }
 
-export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
+export const TouristicContentUIWithoutContext: React.FC<TouristicContentUIProps> = ({
   touristicContentUrl,
   language,
 }) => {
@@ -42,11 +48,22 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
     displayMobileMap,
     hideMobileMap,
     sectionsReferences,
+    sectionsPositions,
     sectionRef,
   } = useTouristicContent(touristicContentUrl, language);
 
   const isMobile = useMediaPredicate('(max-width: 1024px)');
   const hasNavigator = useHasMounted(typeof navigator !== 'undefined' && navigator.onLine);
+
+  const sectionsContainerRef = useRef<HTMLDivElement>(null);
+
+  useOnScreenSection({
+    sectionsPositions,
+    scrollOffset:
+      (sectionsContainerRef.current?.offsetTop ?? 0) -
+      parseInt(theme.spacing.desktopHeader, 10) -
+      parseInt(theme.spacing[14], 10),
+  });
 
   const { sections, anchors } = useDetailsSections('touristicContent');
 
@@ -291,6 +308,25 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                     );
                   }
 
+                  if (
+                    section.name === 'vigilance' &&
+                    touristicContent.publishedVigilanceAreas &&
+                    touristicContent.publishedVigilanceAreas.length > 0
+                  ) {
+                    return (
+                      <section
+                        key={section.name}
+                        ref={sectionRef[section.name]}
+                        id={`details_${section.name}_ref`}
+                      >
+                        <DetailsVigilanceAreas
+                          publishedVigilanceAreas={touristicContent.publishedVigilanceAreas}
+                          className={marginDetailsChild}
+                        />
+                      </section>
+                    );
+                  }
+
                   // Custom HTML templates
                   const firstCity = touristicContent.cities.find(
                     city => city.id === touristicContent.cities_raw?.[0],
@@ -350,6 +386,7 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
                   name: touristicContent.name,
                   id: touristicContent.id,
                 }}
+                vigilanceAreas={touristicContent.publishedVigilanceAreas}
                 hideMap={hideMobileMap}
               />
             </div>
@@ -357,5 +394,15 @@ export const TouristicContentUI: React.FC<TouristicContentUIProps> = ({
         </div>
       )}
     </>
+  );
+};
+
+export const TouristicContentUI: React.FC<TouristicContentUIProps> = props => {
+  return (
+    <DetailsAndMapProvider>
+      <VisibleSectionProvider>
+        <TouristicContentUIWithoutContext {...props} />
+      </VisibleSectionProvider>
+    </DetailsAndMapProvider>
   );
 };

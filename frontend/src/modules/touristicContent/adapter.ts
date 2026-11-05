@@ -13,6 +13,8 @@ import {
 } from 'modules/utils/adapter';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptGeometry } from 'modules/utils/geometry';
+import { getImpracticableEndDate, sortVigilanceAreas } from 'modules/vigilanceArea/utils';
+import { VigilanceArea, VigilanceAreasPeriodsMap } from 'modules/vigilanceArea/interface';
 import {
   RawTouristicContent,
   RawTouristicContentDetails,
@@ -51,11 +53,15 @@ export const adaptTouristicContentResult = ({
   touristicContentCategories,
   themeDictionnary,
   cityDictionnary,
+  vigilanceAreasPeriods,
+  targetDate,
 }: {
   rawTouristicContent: RawTouristicContentResult[];
   touristicContentCategories: TouristicContentCategoryDictionnary;
   themeDictionnary: Choices;
   cityDictionnary: CityDictionnary;
+  vigilanceAreasPeriods?: VigilanceAreasPeriodsMap;
+  targetDate?: Date;
 }): TouristicContentResult[] =>
   rawTouristicContent.map(rawTouristicObject => ({
     id: `${rawTouristicObject.id}`,
@@ -90,6 +96,15 @@ export const adaptTouristicContentResult = ({
         ),
       },
     ],
+    publishedVigilanceAreas: rawTouristicObject.published_vigilance_areas ?? null,
+    isImpracticable: Boolean(rawTouristicObject.impracticable),
+    endDate: rawTouristicObject.impracticable
+      ? getImpracticableEndDate(
+          rawTouristicObject.published_vigilance_areas,
+          vigilanceAreasPeriods ?? {},
+          targetDate,
+        )
+      : null,
   }));
 
 export const adaptTouristicContentDetails = ({
@@ -98,12 +113,14 @@ export const adaptTouristicContentDetails = ({
   sourceDictionnary,
   cityDictionnary,
   themeDictionnary,
+  publishedVigilanceAreas = [],
 }: {
   rawTCD: RawTouristicContentDetails;
   touristicContentCategory: TouristicContentCategory;
   sourceDictionnary: SourceDictionnary;
   cityDictionnary: CityDictionnary;
   themeDictionnary: Choices;
+  publishedVigilanceAreas?: VigilanceArea[];
 }): TouristicContentDetails => ({
   accessibility: rawTCD.properties.accessibility ?? null,
   practicalInfo: rawTCD.properties.practical_info ?? null,
@@ -150,6 +167,8 @@ export const adaptTouristicContentDetails = ({
     corner1: { x: rawTCD.bbox[0], y: rawTCD.bbox[1] },
     corner2: { x: rawTCD.bbox[2], y: rawTCD.bbox[3] },
   },
+  isImpracticable: Boolean(rawTCD.properties.impracticable),
+  publishedVigilanceAreas: sortVigilanceAreas(publishedVigilanceAreas),
 });
 
 const adaptTouristicType = (

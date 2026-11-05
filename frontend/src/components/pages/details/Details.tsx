@@ -23,6 +23,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { MapPin } from 'components/Icons/MapPin';
 import { ImageWithLegend } from 'components/ImageWithLegend';
 import { HtmlParser } from 'components/HtmlParser';
+import { adaptVigilanceAreaGeometry } from 'modules/vigilanceArea/adapter';
 import { DetailsPreview } from './components/DetailsPreview';
 import { DetailsSection } from './components/DetailsSection';
 import { DetailsDescription } from './components/DetailsDescription';
@@ -43,6 +44,7 @@ import { DetailsReservationWidget } from './components/DetailsReservationWidget'
 import { VisibleSectionProvider } from './VisibleSectionContext';
 import { DetailsAndMapProvider } from './DetailsAndMapContext';
 import { DetailsSensitiveArea } from './components/DetailsSensitiveArea';
+import { DetailsVigilanceAreas } from './components/DetailsVigilanceAreas';
 import { useOnScreenSection } from './hooks/useHighlightedSection';
 import { DetailsGear } from './components/DetailsGear';
 import { useDetailsSections } from './useDetailsSections';
@@ -343,6 +345,26 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                               />
                             ))}
                           </DetailsSection>
+                        </section>
+                      );
+                    }
+
+                    if (
+                      section.name === 'vigilance' &&
+                      getGlobalConfig().enableVigilanceAreas &&
+                      details.publishedVigilanceAreas &&
+                      details.publishedVigilanceAreas.length > 0
+                    ) {
+                      return (
+                        <section
+                          key={section.name}
+                          ref={sectionRef[section.name]}
+                          id={`details_${section.name}_ref`}
+                        >
+                          <DetailsVigilanceAreas
+                            publishedVigilanceAreas={details.publishedVigilanceAreas}
+                            className={marginDetailsChild}
+                          />
                         </section>
                       );
                     }
@@ -686,6 +708,13 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                       geometry,
                       color,
                     }))}
+                  vigilanceAreas={
+                    getGlobalConfig().enableVigilanceAreas
+                      ? details.publishedVigilanceAreas
+                          ?.filter(area => area.geometry !== null)
+                          .map(adaptVigilanceAreaGeometry)
+                      : []
+                  }
                   trekId={Number(id)}
                   displayAltimetricProfile={displayAltimetricProfile}
                   informationDesks={details.informationDesks}

@@ -161,3 +161,60 @@ export function getTrekGeometryAsLineStringCoordinates(
   }
   return geometry.coordinates;
 }
+
+/**
+ * Calculates the exact area-weighted geometric center of mass (centroid) [lat, lng] of a 2D polygon.
+ *
+ * Algorithm: Green's Theorem / Shoelace Polygon Area-Weighted Centroid Formula.
+ * Deduplicates GeoJSON closed ring start/end vertices to avoid centroid bias.
+ *
+ * @see https://en.wikipedia.org/wiki/Centroid#Centroid_of_a_polygon
+ * @see src/modules/utils/__tests__/geometry.test.ts
+ */
+export const getPolygonCentroid = (positions: RawCoordinate2D[]): RawCoordinate2D => {
+  if (!positions || positions.length === 0) return [0, 0];
+  if (positions.length === 1) return positions[0];
+  if (positions.length === 2) {
+    return [(positions[0][0] + positions[1][0]) / 2, (positions[0][1] + positions[1][1]) / 2];
+  }
+
+  // Remove duplicated closing point if GeoJSON closed ring
+  let pts = positions;
+  const first = positions[0];
+  const last = positions[positions.length - 1];
+  if (positions.length > 2 && first[0] === last[0] && first[1] === last[1]) {
+    pts = positions.slice(0, -1);
+  }
+
+  let area = 0;
+  let latSum = 0;
+  let lngSum = 0;
+  const numPoints = pts.length;
+
+  for (let i = 0; i < numPoints; i++) {
+    const p1 = pts[i];
+    const p2 = pts[(i + 1) % numPoints];
+
+    // Cross product factor (Shoelace formula)
+    const factor = p1[0] * p2[1] - p2[0] * p1[1];
+    area += factor;
+    latSum += (p1[0] + p2[0]) * factor;
+    lngSum += (p1[1] + p2[1]) * factor;
+  }
+
+  area /= 2;
+
+  // Fallback to vertex mean if area is near 0 (collinear points or degenerate polygon)
+  if (Math.abs(area) < 1e-9) {
+    let sumLat = 0;
+    let sumLng = 0;
+    pts.forEach(([lat, lng]) => {
+      sumLat += lat;
+      sumLng += lng;
+    });
+    return [sumLat / pts.length, sumLng / pts.length];
+  }
+
+  const factor = 6 * area;
+  return [latSum / factor, lngSum / factor];
+};

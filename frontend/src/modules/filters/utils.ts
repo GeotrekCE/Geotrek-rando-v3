@@ -3,8 +3,10 @@ import { getTouristicContentCategoryFilter } from 'modules/touristicContentCateg
 import { getActivityFilter } from 'modules/activities/connector';
 import { TouristicContentCategoryMapping } from 'modules/touristicContentCategory/interface';
 import { getLabelsFilter } from 'modules/label/connector';
+import { getVigilanceTypeFilter } from 'modules/vigilanceAreaType/connector';
 
 import { ParsedUrlQuery } from 'querystring';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { getOutdoorPracticesFilter } from '../outdoorPractice/connector';
 import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { OutdoorRatingMapping } from '../outdoorRating/interface';
@@ -42,6 +44,10 @@ import {
   ROUTE_ID,
   STRUCTURE_ID,
   THEME_ID,
+  VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
+  VIGILANCE_TYPE_CONTENTS_ID,
+  VIGILANCE_TYPE_EXCLUDE_ID,
+  VIGILANCE_TYPE_ID,
 } from './constant';
 import { getOrganizerFilter } from './organizer/connector';
 import { getNetworksFilter } from './networks/connector';
@@ -93,6 +99,13 @@ const getFilterOptions = async (
       return getNetworksFilter(language);
     case ORGANIZER_ID:
       return getOrganizerFilter(language);
+    case VIGILANCE_TYPE_ID:
+    case VIGILANCE_TYPE_EXCLUDE_ID:
+      return getVigilanceTypeFilter(language, withExclude);
+    case VIGILANCE_TYPE_CONTENTS_ID:
+      return getVigilanceTypeFilter(language, false, VIGILANCE_TYPE_CONTENTS_ID);
+    case VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID:
+      return getVigilanceTypeFilter(language, true, VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID);
     default:
       return null;
   }
@@ -140,6 +153,8 @@ const trekSpecificFilters = [
   NETWORKS_ID,
   'labels',
   'labels_exclude',
+  VIGILANCE_TYPE_ID,
+  VIGILANCE_TYPE_EXCLUDE_ID,
 ];
 
 export const commonFilters = [
@@ -156,16 +171,50 @@ export const commonFilters = [
 export const getTreksFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
   initialFiltersState.filter(({ id }) => trekSpecificFilters.includes(id));
 
+export const getTrekVigilanceFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
+  initialFiltersState.filter(({ id }) =>
+    [VIGILANCE_TYPE_ID, VIGILANCE_TYPE_EXCLUDE_ID].includes(id),
+  );
+
+export const getContentVigilanceFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
+  initialFiltersState.filter(({ id }) =>
+    [VIGILANCE_TYPE_CONTENTS_ID, VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID].includes(id),
+  );
+
 export const getFiltersState = async (language: string): Promise<FilterState[]> => {
   const filters = await getFilters(language);
 
-  return [
+  const result: FilterState[] = [
     ...filters.map(filter => ({
       ...filter,
       label: `search.filters.${filter.id}`.replace('_exclude', ''),
       selectedOptions: [],
     })),
   ];
+
+  if (getGlobalConfig().enableVigilanceAreas) {
+    const vigilanceContentFilter = await getVigilanceTypeFilter(language, false, VIGILANCE_TYPE_CONTENTS_ID);
+    const vigilanceContentExcludeFilter = await getVigilanceTypeFilter(language, true, VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID);
+
+    if (vigilanceContentFilter) {
+      result.push({
+        ...vigilanceContentFilter,
+        label: `search.filters.${VIGILANCE_TYPE_ID}`,
+        type: 'MULTIPLE',
+        selectedOptions: [],
+      });
+    }
+    if (vigilanceContentExcludeFilter) {
+      result.push({
+        ...vigilanceContentExcludeFilter,
+        label: `search.filters.${VIGILANCE_TYPE_ID}`,
+        type: 'MULTIPLE',
+        selectedOptions: [],
+      });
+    }
+  }
+
+  return result;
 };
 
 const getTypesFiltersState = ({
@@ -301,6 +350,15 @@ export const computeFiltersToDisplay = ({
       );
     });
   }
+  // Vigilance filters for Treks and Touristic Contents
+  if (getGlobalConfig().enableVigilanceAreas) {
+    if (currentNumberOfPracticeOptionsSelected > 0 || selectedFilterId === PRACTICE_ID) {
+      filtersToAdd.push(getTrekVigilanceFiltersState(initialFiltersState));
+    }
+    if (currentNumberOfTouristicContentOptionsSelected > 0 || selectedFilterId === CATEGORY_ID) {
+      filtersToAdd.push(getContentVigilanceFiltersState(initialFiltersState));
+    }
+  }
   // Outdoor filters
   if (currentNumberOfOutdoorPraticeOptionsSelected > 0 || selectedFilterId === OUTDOOR_ID) {
     outdoorPracticeFilter?.selectedOptions.forEach(selectedOptions => {
@@ -362,6 +420,15 @@ const getInitialFiltersStateWithRelevantFilters = ({
 
   if (Number(practices?.length) > 0) {
     result.push(...getTreksFiltersState(initialFiltersState));
+  }
+
+  if (getGlobalConfig().enableVigilanceAreas) {
+    if (Number(practices?.length) > 0) {
+      result.push(...getTrekVigilanceFiltersState(initialFiltersState));
+    }
+    if (Number(services?.length) > 0) {
+      result.push(...getContentVigilanceFiltersState(initialFiltersState));
+    }
   }
 
   if (Number(services?.length) > 0) {

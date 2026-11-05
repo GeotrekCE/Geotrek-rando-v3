@@ -13,20 +13,22 @@ import {
   useFilterMenu,
   useFilterSubMenu,
 } from 'components/MobileFilterMenu';
-
 import { PageHead } from 'components/PageHead';
 import { FilterState } from 'modules/filters/interface';
 import { SearchMapDynamicComponent } from 'components/Map';
 import { useListAndMapContext } from 'modules/map/ListAndMapContext';
 import { useRouter } from 'next/router';
+import { countFiltersSelected } from 'modules/filters/utils';
+import { CATEGORY_ID } from 'modules/filters/constant';
 import { cn } from 'services/utils/cn';
-import { countFiltersSelected } from '../../../modules/filters/utils';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { ResultCard } from './components/ResultCard';
 import { SearchResultsMeta } from './components/SearchResultsMeta';
 import { ToggleFilterButton } from './components/ToggleFilterButton';
 import { useFilter } from './components/useFilters';
 import { useTrekResults } from './hooks/useTrekResults';
 import { useMapResults } from './hooks/useMapResults';
+
 import { ErrorFallback } from './components/ErrorFallback';
 import { getHoverId } from './utils';
 import { generateDetailsUrlFromType } from '../details/utils';
@@ -61,10 +63,17 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
     resetTextFilter,
   } = useTextFilter();
 
-  const { dateFilter, setDateFilter } = useDateFilter();
+  const {
+    trekDateFilter,
+    setTrekDateFilter,
+    contentDateFilter,
+    setContentDateFilter,
+  } = useDateFilter();
   const { searchBbox, setPoints, setSearchBbox, isNavigatedByBrowser } = useListAndMapContext();
 
   const bboxState = bounds ?? (isNavigatedByBrowser ? searchBbox : null);
+
+
 
   const {
     searchResults,
@@ -84,7 +93,8 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
       filtersState,
       textFilterState,
       bboxState: bboxState?.toBBoxString() ?? null,
-      dateFilter,
+      dateFilter: trekDateFilter,
+      contentDateFilter,
       page,
     },
     language,
@@ -93,7 +103,7 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   const { pageTitle, resultsTitle } = useTitle(filtersState, searchResults?.resultsNumber);
 
   const { isMapLoading, mapResults } = useMapResults(
-    { filtersState, textFilterState, dateFilter },
+    { filtersState, textFilterState, dateFilter: trekDateFilter, contentDateFilter },
     language,
   );
 
@@ -114,11 +124,17 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
   const onRemoveAllFiltersClick = () => {
     resetFilters();
     resetTextFilter();
+    const defaultDate = getGlobalConfig().enableVigilanceAreas
+      ? new Date().toISOString().split('T')[0]
+      : '';
+    setTrekDateFilter({ beginDate: defaultDate, endDate: '' });
+    setContentDateFilter({ beginDate: defaultDate, endDate: '' });
   };
 
   const filtersStateWithExclude = filtersState.reduce((list, item) => {
-    const [id, exclude] = item.id.split('_');
-    if (exclude !== undefined) {
+    const isExclude = item.id.endsWith('_exclude');
+    const id = isExclude ? item.id.replace('_exclude', '') : item.id;
+    if (isExclude) {
       const index = list?.findIndex(filter => filter?.id === id) ?? -1;
       if (index > -1) {
         list[index] = {
@@ -165,18 +181,20 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
           setFilterSelectedOptions={setFilterSelectedOptions}
           resetFilter={onRemoveAllFiltersClick}
           resultsNumber={searchResults?.resultsNumber ?? 0}
-          dateFilter={dateFilter}
-          setDateFilter={setDateFilter}
+          dateFilter={currentFilterId === CATEGORY_ID ? contentDateFilter : trekDateFilter}
+          setDateFilter={currentFilterId === CATEGORY_ID ? setContentDateFilter : setTrekDateFilter}
         />
       )}
 
       <div className="flex flex-col" id="search_container">
         {!isMobile && (
           <FilterBarNew
-            dateFilter={dateFilter}
+            trekDateFilter={trekDateFilter}
+            setTrekDateFilter={setTrekDateFilter}
+            contentDateFilter={contentDateFilter}
+            setContentDateFilter={setContentDateFilter}
             filtersState={filtersStateWithExclude}
             setFilterSelectedOptions={setFilterSelectedOptions}
-            setDateFilter={setDateFilter}
             resetFilters={onRemoveAllFiltersClick}
             resultsNumber={searchResults?.resultsNumber ?? 0}
             language={language}
@@ -228,6 +246,11 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                   scrollableTarget="body"
                 >
                   {searchResults?.results.map(searchResult => {
+                    const itemDateFilter =
+                      searchResult.type === 'TOURISTIC_CONTENT'
+                        ? contentDateFilter
+                        : trekDateFilter;
+
                     return (
                       <ResultCard
                         type={searchResult.type}
@@ -241,6 +264,19 @@ export const SearchUI: React.FC<Props> = ({ language }) => {
                         badgeIconUri={searchResult.category?.pictogramUri}
                         badgeName={searchResult.category?.label}
                         informations={searchResult.informations ?? []}
+                        isImpracticable={
+                          getGlobalConfig().enableVigilanceAreas &&
+                          ('isImpracticable' in searchResult
+                            ? Boolean(searchResult.isImpracticable)
+                            : false)
+                        }
+                        isDateRange={Boolean(itemDateFilter.beginDate && itemDateFilter.endDate)}
+                        isTodayDate={
+                          !itemDateFilter.endDate &&
+                          (itemDateFilter.beginDate === new Date().toISOString().split('T')[0] ||
+                            !itemDateFilter.beginDate)
+                        }
+                        endDate={'endDate' in searchResult ? (searchResult.endDate as string) : undefined}
                         redirectionUrl={generateDetailsUrlFromType(
                           searchResult.type,
                           searchResult.id,

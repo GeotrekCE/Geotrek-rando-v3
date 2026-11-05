@@ -34,6 +34,8 @@ import {
 } from 'modules/utils/geometry';
 import { formatHours } from 'modules/utils/time';
 import { ViewPoint } from 'modules/viewPoint/interface';
+import { VigilanceArea } from 'modules/vigilanceArea/interface';
+import { sortVigilanceAreas } from 'modules/vigilanceArea/utils';
 import { TrekRatingScale } from '../trekRatingScale/interface';
 import { TrekRatingChoices } from '../trekRating/interface';
 import { Details, RawDetails, Reservation, TrekChildGeometry, TrekFamily } from './interface';
@@ -63,6 +65,7 @@ export const adaptResults = ({
   trekRating,
   trekRatingScale,
   viewPoints,
+  publishedVigilanceAreas = [],
 }: {
   accessbilityLevel: AccessibilityLevel | null;
   rawDetails: RawDetails;
@@ -88,8 +91,10 @@ export const adaptResults = ({
   trekRating: TrekRatingChoices;
   trekRatingScale: TrekRatingScale[];
   viewPoints: ViewPoint[];
+  publishedVigilanceAreas?: VigilanceArea[];
 }): Details => {
   try {
+    const isImpracticable = Boolean(rawDetailsProperties.impracticable);
     const coordinates = getTrekGeometryAsLineStringCoordinates(geometry);
     return {
       accessbilityLevel,
@@ -197,6 +202,8 @@ export const adaptResults = ({
       service,
       infrastructure,
       viewPoints,
+      isImpracticable,
+      publishedVigilanceAreas: sortVigilanceAreas(publishedVigilanceAreas),
     };
   } catch (e) {
     console.error('Error in details/adapter', e);

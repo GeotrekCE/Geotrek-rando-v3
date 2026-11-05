@@ -28,6 +28,7 @@ jest.mock('./src/modules/utils/api.config.ts', () => ({
     portalIds: [1],
     apiUrl: 'https://geotrekdemo.ecrins-parcnational.fr/api/v2',
     googleAnalyticsId: 'G-8FSV2N4FXN',
+    enableVigilanceAreas: true,
   }),
 }));
 

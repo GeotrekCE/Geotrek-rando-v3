@@ -14,8 +14,8 @@ export const getDetailsConfig = (language: string): DetailsConfig => {
     publicRuntimeConfig: { details, detailsSectionHtml },
   } = getNextConfig();
 
-  const destailsSection = (sections: SectionsTypes[]) =>
-    sections.map(item => {
+  const destailsSection = (sections: SectionsTypes[]) => {
+    return sections.map(item => {
       if (detailsSectionHtml[item.name]) {
         return {
           ...item,
@@ -25,6 +25,7 @@ export const getDetailsConfig = (language: string): DetailsConfig => {
       }
       return item;
     });
+  };
 
   return {
     ...details,

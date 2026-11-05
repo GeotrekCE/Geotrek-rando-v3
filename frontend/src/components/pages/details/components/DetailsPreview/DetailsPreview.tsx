@@ -31,6 +31,7 @@ import { dataUnits } from 'modules/results/adapter';
 import { TouristicEventDetails } from 'modules/touristicEvent/interface';
 import { DetailsTrekFamilyCarousel } from '../DetailsTrekFamilyCarousel';
 import { DetailsTrekParentButton } from '../DetailsTrekParentButton';
+import { DetailsVigilanceBanner } from '../DetailsVigilanceBanner';
 import DetailsBreadcrumb from './DetailsBreadcrumb';
 import DetailsDates from '../DetailsDates';
 
@@ -130,6 +131,26 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         id="details_title"
         className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold"
       >{`${trekRankLabel}${title}`}</h1>
+      {(() => {
+        const publishedVigilanceAreas =
+          'publishedVigilanceAreas' in details && Array.isArray(details.publishedVigilanceAreas)
+            ? details.publishedVigilanceAreas
+            : [];
+        const isImpracticable =
+          'isImpracticable' in details
+            ? Boolean(details.isImpracticable)
+            : false;
+
+        if (!isImpracticable && publishedVigilanceAreas.length === 0) return null;
+
+        return (
+          <DetailsVigilanceBanner
+            isImpracticable={isImpracticable}
+            publishedVigilanceAreas={publishedVigilanceAreas}
+            contentType={type}
+          />
+        );
+      })()}
       <div id="details_tags" className="flex flex-wrap">
         {tags
           .filter(tag => tag?.length)
