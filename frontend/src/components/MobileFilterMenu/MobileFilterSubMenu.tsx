@@ -13,6 +13,7 @@ import {
   CATEGORY_ID,
   DATE_FILTER,
   DATE_FILTER_CONTENTS,
+  OUTDOOR_ID,
   PRACTICE_ID,
   VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
   VIGILANCE_TYPE_CONTENTS_ID,
@@ -83,7 +84,7 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
 
   const shouldShowVigilanceSection =
     isVigilanceFilterEnabled() &&
-    (filterId === PRACTICE_ID || filterId === CATEGORY_ID);
+    (filterId === PRACTICE_ID || filterId === CATEGORY_ID || filterId === OUTDOOR_ID);
 
   return (
     <Sheet open={isOpen} onOpenChange={handleClose}>

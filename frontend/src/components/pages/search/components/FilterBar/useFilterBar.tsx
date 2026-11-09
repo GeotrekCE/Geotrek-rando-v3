@@ -56,6 +56,11 @@ export const useFilterBar = () => {
     ...trekVigilanceSubFilters,
   ];
 
+  const outdoorSubFilters = [
+    'type-outdoorRating-.+',
+    ...trekVigilanceSubFilters,
+  ];
+
   const treksAndOutdoorCategories =
     groupTreksAndOutdoorFilters === true && enableOutdoor === true
       ? [
@@ -66,7 +71,7 @@ export const useFilterBar = () => {
               <FormattedMessage key="outdoors" id={'search.filters.outdoorPractice'} />,
             ],
             filters: [PRACTICE_ID, OUTDOOR_ID],
-            subFilters: [trekSubFilters, ['type-outdoorRating-.+']],
+            subFilters: [trekSubFilters, outdoorSubFilters],
           },
         ]
       : [
@@ -80,7 +85,7 @@ export const useFilterBar = () => {
             id: OUTDOOR_ID,
             name: <FormattedMessage id={'search.filters.outdoorPractice'} />,
             filters: [OUTDOOR_ID],
-            subFilters: ['type-outdoorRating-.+'],
+            subFilters: outdoorSubFilters,
           },
         ];
 

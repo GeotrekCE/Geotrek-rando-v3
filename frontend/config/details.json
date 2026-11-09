@@ -236,6 +236,12 @@
         "order": 60
       },
       {
+        "name": "vigilance",
+        "display": true,
+        "anchor": true,
+        "order": 65
+      },
+      {
         "name": "practicalInformations",
         "display": true,
         "anchor": true,
@@ -308,6 +314,12 @@
         "display": true,
         "anchor": false,
         "order": 60
+      },
+      {
+        "name": "vigilance",
+        "display": true,
+        "anchor": true,
+        "order": 65
       },
       {
         "name": "practicalInformations",

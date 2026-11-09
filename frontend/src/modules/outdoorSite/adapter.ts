@@ -9,6 +9,8 @@ import {
 } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { ViewPoint } from 'modules/viewPoint/interface';
+import { VigilanceArea, VigilanceAreasPeriodsMap } from 'modules/vigilanceArea/interface';
+import { getImpracticableEndDate, sortVigilanceAreas } from 'modules/vigilanceArea/utils';
 import { CityDictionnary } from '../city/interface';
 import { Choices } from '../filters/interface';
 import { InformationDeskDictionnary } from '../informationDesk/interface';
@@ -65,11 +67,15 @@ export const adaptoutdoorSitesResult = ({
   themeDictionnary,
   outdoorPracticeDictionnary,
   cityDictionnary,
+  vigilanceAreasPeriods,
+  targetDate,
 }: {
   rawOutdoorSites: RawOutdoorSite[];
   themeDictionnary: Choices;
   outdoorPracticeDictionnary: OutdoorPracticeChoices;
   cityDictionnary: CityDictionnary;
+  vigilanceAreasPeriods?: VigilanceAreasPeriodsMap;
+  targetDate?: Date;
 }): OutdoorSiteResult[] =>
   rawOutdoorSites.map(rawOutdoorSite => {
     return {
@@ -83,6 +89,15 @@ export const adaptoutdoorSitesResult = ({
       category: outdoorPracticeDictionnary[rawOutdoorSite.practice] ?? null,
       place:
         rawOutdoorSite?.cities?.map(city => cityDictionnary?.[city]?.name ?? '').join(', ') ?? '',
+      vigilanceAreas: rawOutdoorSite.vigilance_areas ?? null,
+      isImpracticable: Boolean(rawOutdoorSite.impracticable),
+      endDate: rawOutdoorSite.impracticable
+        ? getImpracticableEndDate(
+            rawOutdoorSite.vigilance_areas,
+            vigilanceAreasPeriods ?? {},
+            targetDate,
+          )
+        : null,
     };
   });
 
@@ -103,6 +118,7 @@ export const adaptOutdoorSiteDetails = ({
   outdoorRatingScale,
   outdoorSiteType,
   sensitiveAreas,
+  vigilanceAreas,
   signage,
   service,
   infrastructure,
@@ -124,6 +140,7 @@ export const adaptOutdoorSiteDetails = ({
   outdoorRatingScale: OutdoorRatingScale[];
   outdoorSiteType: OutdoorSiteTypeChoices;
   sensitiveAreas: SensitiveArea[];
+  vigilanceAreas?: VigilanceArea[];
   signage: SignageDictionary | null;
   service: Service[] | null;
   infrastructure: InfrastructureDictionary | null;
@@ -182,6 +199,8 @@ export const adaptOutdoorSiteDetails = ({
   ratingsDescription: rawOutdoorSiteDetails.properties.ratings_description ?? null,
   typeSite: outdoorSiteType[Number(rawOutdoorSiteDetails?.properties?.type)] ?? null,
   sensitiveAreas,
+  vigilanceAreas: sortVigilanceAreas(vigilanceAreas ?? []),
+  isImpracticable: Boolean(rawOutdoorSiteDetails.properties.impracticable),
   signage,
   service,
   infrastructure,

@@ -58,6 +58,8 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
   }
 
   const isTouristicContent = contentType === 'TOURISTIC_CONTENT';
+  const isOutdoorSite = contentType === 'OUTDOOR_SITE';
+  const isOutdoorCourse = contentType === 'OUTDOOR_COURSE';
 
   // 1. Priority 1 — Impraticabilité en cours
   const hasClosedOngoing =
@@ -144,22 +146,94 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
     bannerCssLevel = relevantCriticality === 'vigilance' ? 'vigilance' : 'info';
   }
 
+  const p1ClosedTitleId = isTouristicContent
+    ? 'details.vigilanceBanner.p1ClosedTitleContent'
+    : isOutdoorSite
+    ? 'details.vigilanceBanner.p1ClosedTitleSite'
+    : isOutdoorCourse
+    ? 'details.vigilanceBanner.p1ClosedTitleCourse'
+    : 'details.vigilanceBanner.p1ClosedTitle';
+
+  const p1ClosedDefaultMessage = isTouristicContent
+    ? 'Cette zone est actuellement impraticable.'
+    : isOutdoorSite
+    ? 'Ce site est actuellement impraticable.'
+    : isOutdoorCourse
+    ? 'Ce parcours est actuellement impraticable.'
+    : 'Cet itinéraire est actuellement impraticable.';
+
+  const p2AlertSingleId = isTouristicContent
+    ? 'details.vigilanceBanner.p2AlertSingleContent'
+    : isOutdoorSite
+    ? 'details.vigilanceBanner.p2AlertSingleSite'
+    : isOutdoorCourse
+    ? 'details.vigilanceBanner.p2AlertSingleCourse'
+    : 'details.vigilanceBanner.p2AlertSingle';
+
+  const p2AlertSingleDefaultMessage = isTouristicContent
+    ? 'Attention : cette zone est concernée par une zone de vigilance élevée : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.'
+    : isOutdoorSite
+    ? 'Attention : ce site est concerné par une zone de vigilance élevée : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.'
+    : isOutdoorCourse
+    ? 'Attention : ce parcours est concerné par une zone de vigilance élevée : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.'
+    : 'Attention : cet itinéraire est concerné par une zone de vigilance élevée : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.';
+
+  const p2AlertTitleId = isTouristicContent
+    ? 'details.vigilanceBanner.p2AlertTitleContent'
+    : isOutdoorSite
+    ? 'details.vigilanceBanner.p2AlertTitleSite'
+    : isOutdoorCourse
+    ? 'details.vigilanceBanner.p2AlertTitleCourse'
+    : 'details.vigilanceBanner.p2AlertTitle';
+
+  const p2AlertTitleDefaultMessage = isTouristicContent
+    ? 'Attention : cette zone est concernée par au moins une zone de vigilance élevée.'
+    : isOutdoorSite
+    ? 'Attention : ce site est concerné par au moins une zone de vigilance élevée.'
+    : isOutdoorCourse
+    ? 'Attention : ce parcours est concerné par au moins une zone de vigilance élevée.'
+    : 'Attention : cet itinéraire est concerné par au moins une zone de vigilance élevée.';
+
+  const p3FutureClosedTitleId = isTouristicContent
+    ? 'details.vigilanceBanner.p3FutureClosedTitleContent'
+    : isOutdoorSite
+    ? 'details.vigilanceBanner.p3FutureClosedTitleSite'
+    : isOutdoorCourse
+    ? 'details.vigilanceBanner.p3FutureClosedTitleCourse'
+    : 'details.vigilanceBanner.p3FutureClosedTitle';
+
+  const p3FutureClosedDefaultMessage = isTouristicContent
+    ? "Cette zone peut être impraticable à certaines périodes de l'année."
+    : isOutdoorSite
+    ? "Ce site peut être impraticable à certaines périodes de l'année."
+    : isOutdoorCourse
+    ? "Ce parcours peut être impraticable à certaines périodes de l'année."
+    : "Cet itinéraire peut être impraticable à certaines périodes de l'année.";
+
+  const p4DefaultTitleId = isTouristicContent
+    ? 'details.vigilanceBanner.p5DefaultTitleContent'
+    : isOutdoorSite
+    ? 'details.vigilanceBanner.p5DefaultTitleSite'
+    : isOutdoorCourse
+    ? 'details.vigilanceBanner.p5DefaultTitleCourse'
+    : 'details.vigilanceBanner.p5DefaultTitle';
+
+  const p4DefaultTitleDefaultMessage = isTouristicContent
+    ? 'Cette zone peut comporter des zones de vigilance.'
+    : isOutdoorSite
+    ? 'Ce site peut comporter des zones de vigilance.'
+    : isOutdoorCourse
+    ? 'Ce parcours peut comporter des zones de vigilance.'
+    : 'Cet itinéraire peut comporter des zones de vigilance.';
+
   const renderBannerContent = () => {
     if (bannerPriority === 'p1') {
       return (
         <>
           <strong>
             <FormattedMessage
-              id={
-                isTouristicContent
-                  ? 'details.vigilanceBanner.p1ClosedTitleContent'
-                  : 'details.vigilanceBanner.p1ClosedTitle'
-              }
-              defaultMessage={
-                isTouristicContent
-                  ? 'Cette zone est actuellement impraticable.'
-                  : 'Cet itinéraire est actuellement impraticable.'
-              }
+              id={p1ClosedTitleId}
+              defaultMessage={p1ClosedDefaultMessage}
             />
           </strong>{' '}
           <FormattedMessage
@@ -174,16 +248,8 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
       if (isSingleZone && singleZoneSummary) {
         return (
           <FormattedMessage
-            id={
-              isTouristicContent
-                ? 'details.vigilanceBanner.p2AlertSingleContent'
-                : 'details.vigilanceBanner.p2AlertSingle'
-            }
-            defaultMessage={
-              isTouristicContent
-                ? 'Attention : cette zone est concernée par une zone de vigilance élevée : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.'
-                : 'Attention : cet itinéraire est concerné par une zone de vigilance élevée : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.'
-            }
+            id={p2AlertSingleId}
+            defaultMessage={p2AlertSingleDefaultMessage}
             values={{ details: singleZoneSummary }}
           />
         );
@@ -192,16 +258,8 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
         <>
           <strong>
             <FormattedMessage
-              id={
-                isTouristicContent
-                  ? 'details.vigilanceBanner.p2AlertTitleContent'
-                  : 'details.vigilanceBanner.p2AlertTitle'
-              }
-              defaultMessage={
-                isTouristicContent
-                  ? 'Attention : cette zone est concernée par au moins une zone de vigilance élevée.'
-                  : 'Attention : cet itinéraire est concerné par au moins une zone de vigilance élevée.'
-              }
+              id={p2AlertTitleId}
+              defaultMessage={p2AlertTitleDefaultMessage}
             />
           </strong>{' '}
           <FormattedMessage
@@ -217,16 +275,8 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
         <>
           <strong>
             <FormattedMessage
-              id={
-                isTouristicContent
-                  ? 'details.vigilanceBanner.p3FutureClosedTitleContent'
-                  : 'details.vigilanceBanner.p3FutureClosedTitle'
-              }
-              defaultMessage={
-                isTouristicContent
-                  ? "Cette zone peut être impraticable à certaines périodes de l'année."
-                  : "Cet itinéraire peut être impraticable à certaines périodes de l'année."
-              }
+              id={p3FutureClosedTitleId}
+              defaultMessage={p3FutureClosedDefaultMessage}
             />
           </strong>{' '}
           <FormattedMessage
@@ -242,16 +292,8 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
       <>
         <strong>
           <FormattedMessage
-            id={
-              isTouristicContent
-                ? 'details.vigilanceBanner.p5DefaultTitleContent'
-                : 'details.vigilanceBanner.p5DefaultTitle'
-            }
-            defaultMessage={
-              isTouristicContent
-                ? 'Cette zone peut comporter des zones de vigilance.'
-                : 'Cet itinéraire peut comporter des zones de vigilance.'
-            }
+            id={p4DefaultTitleId}
+            defaultMessage={p4DefaultTitleDefaultMessage}
           />
         </strong>{' '}
         <FormattedMessage

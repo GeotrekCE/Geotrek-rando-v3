@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import {
   CATEGORY_ID,
+  OUTDOOR_ID,
   VIGILANCE_TYPE_CONTENTS_ID,
   VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
@@ -31,14 +32,16 @@ export const VigilanceSection: React.FC<Props> = ({
   const effectiveBeginDate = dateFilter.beginDate || today;
 
   const isTouristicContent = filterId === CATEGORY_ID;
+  const isOutdoor = filterId === OUTDOOR_ID;
+  const isGenericDate = isTouristicContent || isOutdoor;
   const targetVigilanceTypeId = isTouristicContent ? VIGILANCE_TYPE_CONTENTS_ID : VIGILANCE_TYPE_ID;
 
   const vigilanceTypeFilter = filtersState.find(filter => filter.id === targetVigilanceTypeId);
 
   const dateSingleLabel =
-    isTouristicContent && intl.messages['search.filters.searchOnDate']
+    isGenericDate && intl.messages['search.filters.searchOnDate']
       ? intl.formatMessage({ id: 'search.filters.searchOnDate' })
-      : isTouristicContent
+      : isGenericDate
       ? 'À la date du'
       : intl.formatMessage({
           id: 'search.filters.hikeOnDate',
@@ -46,9 +49,9 @@ export const VigilanceSection: React.FC<Props> = ({
         });
 
   const dateFromLabel =
-    isTouristicContent && intl.messages['search.filters.searchDateFrom']
+    isGenericDate && intl.messages['search.filters.searchDateFrom']
       ? intl.formatMessage({ id: 'search.filters.searchDateFrom' })
-      : isTouristicContent
+      : isGenericDate
       ? 'Du'
       : intl.formatMessage({
           id: 'search.filters.dateFrom',

@@ -68,37 +68,40 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
     : null;
 
   const isTouristicContent = type === 'TOURISTIC_CONTENT';
-  const closedMessageId = isTouristicContent
-    ? isTodayDate
-      ? formattedEndDate
-        ? 'search.filters.contentClosedTodayWithEndDate'
-        : 'search.filters.contentClosedToday'
-      : formattedEndDate
-      ? 'search.filters.contentClosedFilteredWithEndDate'
-      : 'search.filters.contentClosedFiltered'
-    : isTodayDate
-    ? formattedEndDate
-      ? 'search.filters.trekClosedTodayWithEndDate'
-      : 'search.filters.trekClosedToday'
-    : formattedEndDate
-    ? 'search.filters.trekClosedFilteredWithEndDate'
-    : 'search.filters.trekClosedFiltered';
+  const isOutdoorSite = type === 'OUTDOOR_SITE';
+  const isOutdoorCourse = type === 'OUTDOOR_COURSE';
 
-  const closedDefaultMessage = isTouristicContent
-    ? isTodayDate
-      ? formattedEndDate
-        ? "Cette zone est impraticable jusqu'au {endDate}"
-        : "Cette zone est impraticable jusqu'à nouvel ordre"
-      : formattedEndDate
-      ? "Cette zone est impraticable à la date ou période choisie, et jusqu'au {endDate}"
-      : "Cette zone est impraticable à la date ou période choisie, jusqu'à nouvel ordre"
-    : isTodayDate
+  const typePrefix = isTouristicContent
+    ? 'content'
+    : isOutdoorSite
+    ? 'site'
+    : isOutdoorCourse
+    ? 'course'
+    : 'trek';
+
+  const closedMessageId = isTodayDate
     ? formattedEndDate
-      ? "Cet itinéraire est impraticable jusqu'au {endDate}"
-      : "Cet itinéraire est impraticable jusqu'à nouvel ordre"
+      ? `search.filters.${typePrefix}ClosedTodayWithEndDate`
+      : `search.filters.${typePrefix}ClosedToday`
     : formattedEndDate
-    ? "Cet itinéraire est impraticable à la date ou période choisie, et jusqu'au {endDate}"
-    : "Cet itinéraire est impraticable à la date ou période choisie, jusqu'à nouvel ordre";
+    ? `search.filters.${typePrefix}ClosedFilteredWithEndDate`
+    : `search.filters.${typePrefix}ClosedFiltered`;
+
+  const subject = isTouristicContent
+    ? 'Cette zone'
+    : isOutdoorSite
+    ? 'Ce site'
+    : isOutdoorCourse
+    ? 'Ce parcours'
+    : 'Cet itinéraire';
+
+  const closedDefaultMessage = isTodayDate
+    ? formattedEndDate
+      ? `${subject} est impraticable jusqu'au {endDate}`
+      : `${subject} est impraticable jusqu'à nouvel ordre`
+    : formattedEndDate
+    ? `${subject} est impraticable à la date ou période choisie, et jusqu'au {endDate}`
+    : `${subject} est impraticable à la date ou période choisie, jusqu'à nouvel ordre`;
 
   return (
     <div
