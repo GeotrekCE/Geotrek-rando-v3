@@ -24,12 +24,6 @@ const isAreaLevelHigh = (vigilanceArea: VigilanceArea): boolean => {
   return levelMode === 'alert';
 };
 
-const isAreaLevelMedium = (vigilanceArea: VigilanceArea): boolean => {
-  const levelNumber = vigilanceArea.level?.level ?? null;
-  const levelMode = getLevelMode(levelNumber, vigilanceArea.criticality);
-  return levelMode === 'vigilance';
-};
-
 const isAreaFuture = (
   vigilanceArea: VigilanceArea,
   targetDate: Date = new Date(),
@@ -82,29 +76,19 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
     return isAreaImpracticable(vigilanceArea) && isAreaFuture(vigilanceArea);
   });
 
-  // 4. Priority 4 — Vigilance haute ou moyenne à venir
-  const hasAlertFuture = publishedVigilanceAreas.some((vigilanceArea: VigilanceArea) => {
-    return (
-      (isAreaLevelHigh(vigilanceArea) || isAreaLevelMedium(vigilanceArea)) &&
-      isAreaFuture(vigilanceArea)
-    );
-  });
-
-  // Determine priority cascade: 'p1' | 'p2' | 'p3' | 'p4' | 'p5'
-  let bannerPriority: 'p1' | 'p2' | 'p3' | 'p4' | 'p5' = 'p5';
+  // Determine priority cascade: 'p1' | 'p2' | 'p3' | 'p4'
+  let bannerPriority: 'p1' | 'p2' | 'p3' | 'p4' = 'p4';
   if (hasClosedOngoing) {
     bannerPriority = 'p1';
   } else if (hasAlertOngoing) {
     bannerPriority = 'p2';
   } else if (hasClosedFuture) {
     bannerPriority = 'p3';
-  } else if (hasAlertFuture) {
-    bannerPriority = 'p4';
   } else {
-    bannerPriority = 'p5';
+    bannerPriority = 'p4';
   }
 
-  // Single zone citation model (applicable to P2 and P4)
+  // Single zone citation model (applicable to P2)
   const isSingleZone = publishedVigilanceAreas.length === 1;
   const singleVigilanceArea = isSingleZone ? publishedVigilanceAreas[0] : null;
 
@@ -130,13 +114,7 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
           ? publishedVigilanceAreas.find(
               vigilanceArea => isAreaImpracticable(vigilanceArea) && isAreaFuture(vigilanceArea),
             )
-          : bannerPriority === 'p4'
-            ? publishedVigilanceAreas.find(
-                vigilanceArea =>
-                  (isAreaLevelHigh(vigilanceArea) || isAreaLevelMedium(vigilanceArea)) &&
-                  isAreaFuture(vigilanceArea),
-              )
-            : publishedVigilanceAreas[0]) ?? publishedVigilanceAreas[0];
+          : publishedVigilanceAreas[0]) ?? publishedVigilanceAreas[0];
 
   const relevantLevelNumber = relevantArea?.level?.level ?? null;
   const relevantCriticality = getLevelMode(relevantLevelNumber, relevantArea?.criticality) ?? null;
@@ -160,14 +138,10 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
     badgeMode = relevantCriticality ?? 'vigilance';
     bannerBorderColor = 'var(--color-vigilance-warning, #d17a00)';
     bannerCssLevel = 'vigilance';
-  } else if (bannerPriority === 'p4') {
-    badgeMode = relevantCriticality ?? 'vigilance';
-    bannerBorderColor = representativeAreaColor ?? 'var(--color-vigilance-warning, #d17a00)';
-    bannerCssLevel = 'vigilance';
   } else {
     badgeMode = relevantCriticality ?? undefined;
     bannerBorderColor = representativeAreaColor ?? '#1257A8';
-    bannerCssLevel = 'info';
+    bannerCssLevel = relevantCriticality === 'vigilance' ? 'vigilance' : 'info';
   }
 
   const renderBannerContent = () => {
@@ -263,49 +237,7 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
       );
     }
 
-    if (bannerPriority === 'p4') {
-      if (isSingleZone && singleZoneSummary) {
-        return (
-          <FormattedMessage
-            id={
-              isTouristicContent
-                ? 'details.vigilanceBanner.p4FutureAlertSingleContent'
-                : 'details.vigilanceBanner.p4FutureAlertSingle'
-            }
-            defaultMessage={
-              isTouristicContent
-                ? 'Attention : cette zone est concernée par une zone de vigilance élevée : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.'
-                : 'Attention : cet itinéraire est concerné par une zone de vigilance élevée : {details}. Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités.'
-            }
-            values={{ details: singleZoneSummary }}
-          />
-        );
-      }
-      return (
-        <>
-          <strong>
-            <FormattedMessage
-              id={
-                isTouristicContent
-                  ? 'details.vigilanceBanner.p4FutureAlertTitleContent'
-                  : 'details.vigilanceBanner.p4FutureAlertTitle'
-              }
-              defaultMessage={
-                isTouristicContent
-                  ? 'Attention : cette zone est concernée par au moins une zone de vigilance élevée.'
-                  : 'Attention : cet itinéraire est concerné par au moins une zone de vigilance élevée.'
-              }
-            />
-          </strong>{' '}
-          <FormattedMessage
-            id="details.vigilanceBanner.p4FutureAlertGeneric"
-            defaultMessage="Consultez la section « Zones de vigilance » pour en savoir plus sur les risques et conditions de praticabilité de vos activités."
-          />
-        </>
-      );
-    }
-
-    // Default Priority 5
+    // Default Priority 4
     return (
       <>
         <strong>
@@ -371,4 +303,3 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
     </div>
   );
 };
-
