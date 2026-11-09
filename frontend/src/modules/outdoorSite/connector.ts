@@ -6,6 +6,7 @@ import { adaptGeometry } from 'modules/utils/geometry';
 import { GeometryObject } from 'modules/interface';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
 import { adaptViewPoints } from 'modules/viewPoint/adapter';
+import { getVigilanceAreas } from 'modules/vigilanceArea/connector';
 import { getOutdoorCoursesResult } from '../outdoorCourse/connector';
 import { getOutdoorPractices } from '../outdoorPractice/connector';
 import { getOutdoorRating } from '../outdoorRating/connector';
@@ -92,6 +93,7 @@ export const getOutdoorSiteDetails = async (
       service,
       infrastructure,
       sensitiveAreas,
+      publishedVigilanceAreas,
     ] = await Promise.all([
       getTrekResults(
         language,
@@ -112,6 +114,12 @@ export const getOutdoorSiteDetails = async (
       getInfrastructure(language, id, 'OUTDOOR_SITE'),
       getGlobalConfig().enableSensitiveAreas
         ? getSensitiveAreas('outdoorSite', Number(id), language)
+        : [],
+      getGlobalConfig().enableVigilanceAreas
+        ? getVigilanceAreas(
+            rawOutdoorSiteDetails.properties.published_vigilance_areas ?? [],
+            language,
+          )
         : [],
     ]);
 
@@ -137,6 +145,7 @@ export const getOutdoorSiteDetails = async (
       outdoorRatingScale,
       outdoorSiteType,
       sensitiveAreas,
+      publishedVigilanceAreas,
       signage,
       service,
       infrastructure,

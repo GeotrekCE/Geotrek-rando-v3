@@ -27,12 +27,16 @@ import useHasMounted from 'hooks/useHasMounted';
 import { ImageWithLegend } from 'components/ImageWithLegend';
 import { cn } from 'services/utils/cn';
 import { HtmlParser } from 'components/HtmlParser';
+import { adaptVigilanceAreaGeometry } from 'modules/vigilanceArea/adapter';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { DetailsPreview } from '../details/components/DetailsPreview';
 import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
+import { DetailsVigilanceAreas } from '../details/components/DetailsVigilanceAreas';
+import { DetailsAndMapProvider } from '../details/DetailsAndMapContext';
 import { useDetailsSections } from '../details/useDetailsSections';
 import { theme } from '../../../../tailwind.config';
 
@@ -291,6 +295,26 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                     }
 
                     if (
+                      section.name === 'vigilance' &&
+                      getGlobalConfig().enableVigilanceAreas &&
+                      outdoorCourseContent.publishedVigilanceAreas &&
+                      outdoorCourseContent.publishedVigilanceAreas.length > 0
+                    ) {
+                      return (
+                        <section
+                          key={section.name}
+                          ref={sectionRef[section.name]}
+                          id={`details_${section.name}_ref`}
+                        >
+                          <DetailsVigilanceAreas
+                            publishedVigilanceAreas={outdoorCourseContent.publishedVigilanceAreas}
+                            className={marginDetailsChild}
+                          />
+                        </section>
+                      );
+                    }
+
+                    if (
                       section.name === 'practicalInformations' &&
                       (outdoorCourseContent.advice || outdoorCourseContent.accessibility)
                     ) {
@@ -439,6 +463,13 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
                       geometry,
                       color,
                     }))}
+                  vigilanceAreas={
+                    getGlobalConfig().enableVigilanceAreas
+                      ? outdoorCourseContent.publishedVigilanceAreas
+                          ?.filter(area => area.geometry !== null)
+                          .map(adaptVigilanceAreaGeometry)
+                      : []
+                  }
                   trekId={Number(id)}
                   title={outdoorCourseContent.name}
                   signage={outdoorCourseContent.signage}
@@ -465,11 +496,13 @@ export const OutdoorCourseUIWithoutContext: React.FC<Props> = ({ outdoorCourseUr
 
 export const OutdoorCourseUI: React.FC<Props> = props => {
   return (
-    <VisibleSectionProvider>
-      <OutdoorCourseUIWithoutContext
-        outdoorCourseUrl={props.outdoorCourseUrl}
-        language={props.language}
-      />
-    </VisibleSectionProvider>
+    <DetailsAndMapProvider>
+      <VisibleSectionProvider>
+        <OutdoorCourseUIWithoutContext
+          outdoorCourseUrl={props.outdoorCourseUrl}
+          language={props.language}
+        />
+      </VisibleSectionProvider>
+    </DetailsAndMapProvider>
   );
 };

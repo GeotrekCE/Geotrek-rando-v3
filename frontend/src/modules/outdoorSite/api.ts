@@ -5,7 +5,8 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawOutdoorSite, RawOutdoorSiteDetails } from './interface';
 
 const fieldsParams = {
-  fields: 'id,attachments,name,geometry,themes,practice,period,wind,orientation,cities',
+  fields:
+    'id,attachments,name,geometry,themes,practice,period,wind,orientation,cities,impracticable,published_vigilance_areas',
 };
 
 export const fetchOutdoorSites = (query: APIQuery): Promise<APIResponseForList<RawOutdoorSite>> => {

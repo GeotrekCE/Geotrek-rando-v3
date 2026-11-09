@@ -4,6 +4,8 @@ import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
 import { getLargeImagesOrThumbnailsFromAttachments, getThumbnail } from 'modules/utils/adapter';
 import { adaptGeometry } from 'modules/utils/geometry';
+import { VigilanceArea } from 'modules/vigilanceArea/interface';
+import { sortVigilanceAreas } from 'modules/vigilanceArea/utils';
 import { PopupResult } from 'modules/trekResult/interface';
 import { fallbackImgUri } from 'modules/trekResult/adapter';
 import { CityDictionnary } from '../city/interface';
@@ -100,6 +102,7 @@ export const adaptOutdoorCoursesResult = ({
         },
       ].filter(item => item.value.length > 0),
       place: cityDictionnary?.[rawOutdoorCourse?.cities?.[0]]?.name ?? '',
+      isImpracticable: Boolean(rawOutdoorCourse.impracticable),
     };
   });
 };
@@ -113,6 +116,7 @@ export const adaptOutdoorCourseDetails = ({
   outdoorRatingScale,
   outdoorCourseType,
   sensitiveAreas,
+  publishedVigilanceAreas,
   signage,
   service,
   infrastructure,
@@ -125,6 +129,7 @@ export const adaptOutdoorCourseDetails = ({
   outdoorRatingScale: OutdoorRatingScale[];
   outdoorCourseType: OutdoorSiteTypeChoices;
   sensitiveAreas: SensitiveArea[];
+  publishedVigilanceAreas?: VigilanceArea[];
   signage: SignageDictionary | null;
   service: Service[] | null;
   infrastructure: InfrastructureDictionary | null;
@@ -169,6 +174,8 @@ export const adaptOutdoorCourseDetails = ({
     typeCourse: outdoorCourseType[Number(rawOutdoorCourseDetails?.properties?.type)] ?? null,
     id: rawOutdoorCourseDetails.id,
     sensitiveAreas,
+    publishedVigilanceAreas: sortVigilanceAreas(publishedVigilanceAreas ?? []),
+    isImpracticable: Boolean(rawOutdoorCourseDetails.properties.impracticable),
     signage,
     service,
     infrastructure,

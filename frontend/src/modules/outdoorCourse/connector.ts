@@ -1,4 +1,5 @@
 import { getSensitiveAreas } from 'modules/sensitiveArea/connector';
+import { getVigilanceAreas } from 'modules/vigilanceArea/connector';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { getSignage } from 'modules/signage/connector';
 import { getService } from 'modules/service/connector';
@@ -50,17 +51,17 @@ export const getOutdoorCourseDetails = async (
   try {
     const { cities = {} } = commonDictionaries ?? {};
 
-    // Typescript limit for Promise.all is for 10 promises
+    const rawOutdoorCourseDetails = await fetchOutdoorCourseDetails({ language }, id);
+
     const [
-      rawOutdoorCourseDetails,
       pois,
       touristicContents,
       outdoorRating,
       outdoorRatingScale,
       outdoorCourseType,
       sensitiveAreas,
+      publishedVigilanceAreas,
     ] = await Promise.all([
-      fetchOutdoorCourseDetails({ language }, id),
       getPois(Number(id), language, 'courses'),
       getTouristicContentsNearTarget(Number(id), language, 'near_outdoorcourse'),
       getOutdoorRating(language),
@@ -68,6 +69,12 @@ export const getOutdoorCourseDetails = async (
       getOutdoorCourseType(language),
       getGlobalConfig().enableSensitiveAreas
         ? getSensitiveAreas('outdoorCourse', Number(id), language)
+        : [],
+      getGlobalConfig().enableVigilanceAreas
+        ? getVigilanceAreas(
+            rawOutdoorCourseDetails.properties.published_vigilance_areas ?? [],
+            language,
+          )
         : [],
     ]);
 
@@ -86,6 +93,7 @@ export const getOutdoorCourseDetails = async (
       outdoorRatingScale,
       outdoorCourseType,
       sensitiveAreas,
+      publishedVigilanceAreas,
       signage,
       service,
       infrastructure,

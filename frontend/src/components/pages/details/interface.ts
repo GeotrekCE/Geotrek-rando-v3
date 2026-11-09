@@ -41,6 +41,7 @@ export type DetailsSectionOutdoorSiteNames =
   | 'subsites'
   | 'courses'
   | 'sensitiveAreas'
+  | 'vigilance'
   | 'practicalInformations'
   | 'access'
   | 'forecastWidget'
@@ -55,6 +56,7 @@ export type DetailsSectionOutdoorCourseNames =
   | 'equipment'
   | 'poi'
   | 'sensitiveAreas'
+  | 'vigilance'
   | 'practicalInformations'
   | 'touristicContent'
   | 'forecastWidget';

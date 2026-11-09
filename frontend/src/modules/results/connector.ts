@@ -349,6 +349,8 @@ export const getSearchResults = async (
       themeDictionnary: themes,
       outdoorPracticeDictionnary,
       cityDictionnary: cities,
+      vigilanceAreasPeriods,
+      targetDate: trekTargetDate,
     });
 
     const adaptedTouristicEventsList: TouristicEventResult[] = adaptTouristicEventsResult({

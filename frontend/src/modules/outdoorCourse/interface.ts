@@ -12,6 +12,7 @@ import {
   RawAttachment,
   RawGeometryCollection,
 } from 'modules/interface';
+import { RawVigilanceArea, VigilanceArea } from 'modules/vigilanceArea/interface';
 import { SignageDictionary } from 'modules/signage/interface';
 import { Service } from 'modules/service/interface';
 import { InfrastructureDictionary } from 'modules/infrastructure/interface';
@@ -32,6 +33,8 @@ export interface RawOutdoorCourse {
   height?: number | null;
   length?: number;
   cities: string[];
+  impracticable?: boolean;
+  published_vigilance_areas?: (number | RawVigilanceArea)[];
 }
 
 export interface RawOutdoorCourseDetailsProperties extends RawOutdoorCourse {
@@ -100,4 +103,6 @@ export interface OutdoorCourseDetails extends OutdoorCourse {
   signage: SignageDictionary | null;
   service: Service[] | null;
   infrastructure: InfrastructureDictionary | null;
+  isImpracticable?: boolean;
+  publishedVigilanceAreas?: VigilanceArea[];
 }

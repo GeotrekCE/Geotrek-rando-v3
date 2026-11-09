@@ -14,6 +14,7 @@ import {
   RawGeometryCollection,
   RawWebLink,
 } from 'modules/interface';
+import { RawVigilanceArea, VigilanceArea } from 'modules/vigilanceArea/interface';
 import { SensitiveArea } from 'modules/sensitiveArea/interface';
 import { Service } from 'modules/service/interface';
 import { SignageDictionary } from 'modules/signage/interface';
@@ -42,6 +43,8 @@ export interface RawOutdoorSite {
   wind?: string[];
   orientation?: string[];
   cities: string[];
+  impracticable?: boolean;
+  published_vigilance_areas?: (number | RawVigilanceArea)[];
 }
 
 interface RawOutdoorSiteDetailsProperties extends RawOutdoorSite {
@@ -128,4 +131,6 @@ export interface OutdoorSiteDetails extends OutdoorSite {
   typeSite: OutdoorSiteType | null;
   sensitiveAreas: SensitiveArea[];
   viewPoints: ViewPoint[];
+  isImpracticable?: boolean;
+  publishedVigilanceAreas?: VigilanceArea[];
 }

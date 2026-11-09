@@ -31,6 +31,8 @@ import useHasMounted from 'hooks/useHasMounted';
 import { ImageWithLegend } from 'components/ImageWithLegend';
 import { cn } from 'services/utils/cn';
 import { HtmlParser } from 'components/HtmlParser';
+import { adaptVigilanceAreaGeometry } from 'modules/vigilanceArea/adapter';
+import { getGlobalConfig } from 'modules/utils/api.config';
 import { cleanHTMLElementsFromString } from '../../../modules/utils/string';
 import { useOutdoorSite } from './useOutdoorSite';
 import { DetailsPreview } from '../details/components/DetailsPreview';
@@ -38,6 +40,7 @@ import { ErrorFallback } from '../search/components/ErrorFallback';
 import { DetailsTopIcons } from '../details/components/DetailsTopIcons';
 import { DetailsCoverCarousel } from '../details/components/DetailsCoverCarousel';
 import { DetailsSensitiveArea } from '../details/components/DetailsSensitiveArea';
+import { DetailsVigilanceAreas } from '../details/components/DetailsVigilanceAreas';
 import { DetailsAndMapProvider } from '../details/DetailsAndMapContext';
 import { useDetailsSections } from '../details/useDetailsSections';
 import { DetailsViewPoints } from '../details/components/DetailsViewPoints';
@@ -350,6 +353,26 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                     }
 
                     if (
+                      section.name === 'vigilance' &&
+                      getGlobalConfig().enableVigilanceAreas &&
+                      outdoorSiteContent.publishedVigilanceAreas &&
+                      outdoorSiteContent.publishedVigilanceAreas.length > 0
+                    ) {
+                      return (
+                        <section
+                          key={section.name}
+                          ref={sectionRef[section.name]}
+                          id={`details_${section.name}_ref`}
+                        >
+                          <DetailsVigilanceAreas
+                            publishedVigilanceAreas={outdoorSiteContent.publishedVigilanceAreas}
+                            className={marginDetailsChild}
+                          />
+                        </section>
+                      );
+                    }
+
+                    if (
                       section.name === 'practicalInformations' &&
                       (Number(outdoorSiteContent?.informationDesks?.length) > 0 ||
                         outdoorSiteContent.advice ||
@@ -609,6 +632,13 @@ const OutdoorSiteUIWithoutContext: React.FC<Props> = ({ outdoorSiteUrl, language
                       geometry,
                       color,
                     }))}
+                  vigilanceAreas={
+                    getGlobalConfig().enableVigilanceAreas
+                      ? outdoorSiteContent.publishedVigilanceAreas
+                          ?.filter(area => area.geometry !== null)
+                          .map(adaptVigilanceAreaGeometry)
+                      : []
+                  }
                   trekId={Number(id)}
                   informationDesks={outdoorSiteContent?.informationDesks}
                   signage={outdoorSiteContent.signage}

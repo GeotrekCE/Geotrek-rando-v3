@@ -114,4 +114,82 @@ describe('Results Card', () => {
       component.getByText(/Cette zone est impraticable à la date ou période choisie, et jusqu'au/i),
     ).toBeInTheDocument();
   });
+
+  it('displays impracticable message for outdoor site on today date without end date', () => {
+    const component = render(
+      <ResultCard
+        id="14"
+        hoverId="test-14"
+        type="OUTDOOR_SITE"
+        place="Sisteron"
+        title="Site Escalade Impraticable"
+        images={[]}
+        redirectionUrl="/details-14"
+        isImpracticable
+        isTodayDate
+      />,
+    );
+    expect(
+      component.getByText(/Ce site est impraticable jusqu'à nouvel ordre/i),
+    ).toBeInTheDocument();
+  });
+
+  it('displays impracticable message for outdoor site with end date on today date', () => {
+    const component = render(
+      <ResultCard
+        id="15"
+        hoverId="test-15"
+        type="OUTDOOR_SITE"
+        place="Sisteron"
+        title="Site Escalade Impraticable Date Fin"
+        images={[]}
+        redirectionUrl="/details-15"
+        isImpracticable
+        isTodayDate
+        endDate="2026-12-31"
+      />,
+    );
+    expect(
+      component.getByText(/Ce site est impraticable jusqu'au/i),
+    ).toBeInTheDocument();
+  });
+
+  it('displays impracticable message for outdoor course on today date without end date', () => {
+    const component = render(
+      <ResultCard
+        id="16"
+        hoverId="test-16"
+        type="OUTDOOR_COURSE"
+        place="Sisteron"
+        title="Parcours Impraticable"
+        images={[]}
+        redirectionUrl="/details-16"
+        isImpracticable
+        isTodayDate
+      />,
+    );
+    expect(
+      component.getByText(/Ce parcours est impraticable jusqu'à nouvel ordre/i),
+    ).toBeInTheDocument();
+  });
+
+  it('displays impracticable message for outdoor course on filtered period with end date', () => {
+    const component = render(
+      <ResultCard
+        id="17"
+        hoverId="test-17"
+        type="OUTDOOR_COURSE"
+        place="Sisteron"
+        title="Parcours Impraticable Période"
+        images={[]}
+        redirectionUrl="/details-17"
+        isImpracticable
+        isTodayDate={false}
+        endDate="2026-12-31"
+      />,
+    );
+    expect(
+      component.getByText(/Ce parcours est impraticable à la date ou période choisie, et jusqu'au/i),
+    ).toBeInTheDocument();
+  });
 });

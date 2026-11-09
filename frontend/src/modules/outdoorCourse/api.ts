@@ -4,7 +4,8 @@ import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawOutdoorCourse, RawOutdoorCourseDetails } from './interface';
 
 const fieldsParams = {
-  fields: 'id,attachments,name,geometry,duration,max_elevation,length,height,cities',
+  fields:
+    'id,attachments,name,geometry,duration,max_elevation,length,height,cities,impracticable,published_vigilance_areas',
 };
 
 export const fetchOutdoorCourses = (

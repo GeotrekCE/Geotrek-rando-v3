@@ -49,6 +49,20 @@ describe('DetailsVigilanceBanner', () => {
       expect(component.getByText('Cette zone est actuellement impraticable.')).toBeInTheDocument();
     });
 
+    it('renders Priority 1 banner with "Ce site" for outdoor site', () => {
+      const component = render(
+        <DetailsVigilanceBanner isImpracticable contentType="OUTDOOR_SITE" />,
+      );
+      expect(component.getByText('Ce site est actuellement impraticable.')).toBeInTheDocument();
+    });
+
+    it('renders Priority 1 banner with "Ce parcours" for outdoor course', () => {
+      const component = render(
+        <DetailsVigilanceBanner isImpracticable contentType="OUTDOOR_COURSE" />,
+      );
+      expect(component.getByText('Ce parcours est actuellement impraticable.')).toBeInTheDocument();
+    });
+
     it('renders Priority 1 banner when a vigilance area is isImpracticable=true and active today', () => {
       const closedActiveArea: VigilanceArea = {
         ...baseVigilanceArea,
@@ -106,6 +120,30 @@ describe('DetailsVigilanceBanner', () => {
       );
       expect(
         component.getByText(/Attention : cette zone est concernée par une zone de vigilance élevée : Danger - Chasse - Battue aux sangliers/i),
+      ).toBeInTheDocument();
+    });
+
+    it('renders single zone variant with "Ce site" for outdoor site', () => {
+      const component = render(
+        <DetailsVigilanceBanner
+          publishedVigilanceAreas={[baseVigilanceArea]}
+          contentType="OUTDOOR_SITE"
+        />,
+      );
+      expect(
+        component.getByText(/Attention : ce site est concerné par une zone de vigilance élevée : Danger - Chasse - Battue aux sangliers/i),
+      ).toBeInTheDocument();
+    });
+
+    it('renders single zone variant with "Ce parcours" for outdoor course', () => {
+      const component = render(
+        <DetailsVigilanceBanner
+          publishedVigilanceAreas={[baseVigilanceArea]}
+          contentType="OUTDOOR_COURSE"
+        />,
+      );
+      expect(
+        component.getByText(/Attention : ce parcours est concerné par une zone de vigilance élevée : Danger - Chasse - Battue aux sangliers/i),
       ).toBeInTheDocument();
     });
 
@@ -179,6 +217,54 @@ describe('DetailsVigilanceBanner', () => {
       );
       expect(
         component.getByText("Cette zone peut être impraticable à certaines périodes de l'année."),
+      ).toBeInTheDocument();
+    });
+
+    it('renders Priority 3 banner with "Ce site" for outdoor site', () => {
+      const futureClosedArea: VigilanceArea = {
+        ...baseVigilanceArea,
+        isImpracticable: true,
+        periods: [
+          {
+            startDate: '2099-01-01',
+            endDate: '2099-12-31',
+            activeDays: [],
+            annual: false,
+          },
+        ],
+      };
+      const component = render(
+        <DetailsVigilanceBanner
+          publishedVigilanceAreas={[futureClosedArea]}
+          contentType="OUTDOOR_SITE"
+        />,
+      );
+      expect(
+        component.getByText("Ce site peut être impraticable à certaines périodes de l'année."),
+      ).toBeInTheDocument();
+    });
+
+    it('renders Priority 3 banner with "Ce parcours" for outdoor course', () => {
+      const futureClosedArea: VigilanceArea = {
+        ...baseVigilanceArea,
+        isImpracticable: true,
+        periods: [
+          {
+            startDate: '2099-01-01',
+            endDate: '2099-12-31',
+            activeDays: [],
+            annual: false,
+          },
+        ],
+      };
+      const component = render(
+        <DetailsVigilanceBanner
+          publishedVigilanceAreas={[futureClosedArea]}
+          contentType="OUTDOOR_COURSE"
+        />,
+      );
+      expect(
+        component.getByText("Ce parcours peut être impraticable à certaines périodes de l'année."),
       ).toBeInTheDocument();
     });
   });
@@ -302,6 +388,42 @@ describe('DetailsVigilanceBanner', () => {
       );
       expect(
         component.getByText('Cette zone peut comporter des zones de vigilance.'),
+      ).toBeInTheDocument();
+    });
+
+    it('renders Priority 4 banner with "Ce site" for outdoor site', () => {
+      const infoArea: VigilanceArea = {
+        ...baseVigilanceArea,
+        level: null,
+        criticality: 'info',
+        isImpracticable: false,
+      };
+      const component = render(
+        <DetailsVigilanceBanner
+          publishedVigilanceAreas={[infoArea]}
+          contentType="OUTDOOR_SITE"
+        />,
+      );
+      expect(
+        component.getByText('Ce site peut comporter des zones de vigilance.'),
+      ).toBeInTheDocument();
+    });
+
+    it('renders Priority 4 banner with "Ce parcours" for outdoor course', () => {
+      const infoArea: VigilanceArea = {
+        ...baseVigilanceArea,
+        level: null,
+        criticality: 'info',
+        isImpracticable: false,
+      };
+      const component = render(
+        <DetailsVigilanceBanner
+          publishedVigilanceAreas={[infoArea]}
+          contentType="OUTDOOR_COURSE"
+        />,
+      );
+      expect(
+        component.getByText('Ce parcours peut comporter des zones de vigilance.'),
       ).toBeInTheDocument();
     });
   });

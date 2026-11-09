@@ -280,6 +280,26 @@ export const formatOutdoorSiteFiltersToUrlParams = (
           practices_in_hierarchy: currentFilterState.selectedOptions,
         };
       if (
+        (currentFilterState.id === VIGILANCE_TYPE_ID ||
+          currentFilterState.id === VIGILANCE_TYPE_CONTENTS_ID) &&
+        currentFilterState.selectedOptions.length > 0
+      ) {
+        return {
+          ...currentFilters,
+          vigilance_area_types: currentFilterState.selectedOptions,
+        };
+      }
+      if (
+        (currentFilterState.id === VIGILANCE_TYPE_EXCLUDE_ID ||
+          currentFilterState.id === VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID) &&
+        currentFilterState.selectedOptions.length > 0
+      ) {
+        return {
+          ...currentFilters,
+          vigilance_area_types_exclude: currentFilterState.selectedOptions,
+        };
+      }
+      if (
         commonFiltersWithoutTrekSelector.includes(currentFilterState.id) &&
         currentFilterState.selectedOptions.length > 0
       ) {
