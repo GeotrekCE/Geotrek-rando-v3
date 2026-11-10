@@ -153,8 +153,6 @@ const trekSpecificFilters = [
   NETWORKS_ID,
   'labels',
   'labels_exclude',
-  VIGILANCE_TYPE_ID,
-  VIGILANCE_TYPE_EXCLUDE_ID,
 ];
 
 export const commonFilters = [
@@ -171,14 +169,14 @@ export const commonFilters = [
 export const getTreksFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
   initialFiltersState.filter(({ id }) => trekSpecificFilters.includes(id));
 
-export const getTrekVigilanceFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
+export const getVigilanceTypeFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
   initialFiltersState.filter(({ id }) =>
-    [VIGILANCE_TYPE_ID, VIGILANCE_TYPE_EXCLUDE_ID].includes(id),
-  );
-
-export const getContentVigilanceFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
-  initialFiltersState.filter(({ id }) =>
-    [VIGILANCE_TYPE_CONTENTS_ID, VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID].includes(id),
+    [
+      VIGILANCE_TYPE_ID,
+      VIGILANCE_TYPE_EXCLUDE_ID,
+      VIGILANCE_TYPE_CONTENTS_ID,
+      VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
+    ].includes(id),
   );
 
 export const getFiltersState = async (language: string): Promise<FilterState[]> => {
@@ -350,14 +348,9 @@ export const computeFiltersToDisplay = ({
       );
     });
   }
-  // Vigilance filters for Treks and Touristic Contents
+  // Vigilance filters for Treks, Outdoor and Touristic Contents
   if (getGlobalConfig().enableVigilanceAreas) {
-    if (currentNumberOfPracticeOptionsSelected > 0 || selectedFilterId === PRACTICE_ID) {
-      filtersToAdd.push(getTrekVigilanceFiltersState(initialFiltersState));
-    }
-    if (currentNumberOfTouristicContentOptionsSelected > 0 || selectedFilterId === CATEGORY_ID) {
-      filtersToAdd.push(getContentVigilanceFiltersState(initialFiltersState));
-    }
+    filtersToAdd.push(getVigilanceTypeFiltersState(initialFiltersState));
   }
   // Outdoor filters
   if (currentNumberOfOutdoorPraticeOptionsSelected > 0 || selectedFilterId === OUTDOOR_ID) {
@@ -423,12 +416,7 @@ const getInitialFiltersStateWithRelevantFilters = ({
   }
 
   if (getGlobalConfig().enableVigilanceAreas) {
-    if (Number(practices?.length) > 0) {
-      result.push(...getTrekVigilanceFiltersState(initialFiltersState));
-    }
-    if (Number(services?.length) > 0) {
-      result.push(...getContentVigilanceFiltersState(initialFiltersState));
-    }
+    result.push(...getVigilanceTypeFiltersState(initialFiltersState));
   }
 
   if (Number(services?.length) > 0) {

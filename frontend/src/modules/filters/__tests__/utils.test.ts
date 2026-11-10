@@ -375,4 +375,39 @@ describe.only('computeFiltersToDisplay', () => {
     data.forEach(id => expect(displayedIds.includes(id)));
     expect(displayedIds.length).toEqual(data.length);
   });
+
+  it('should include vigilance filters for treks, outdoor and contents when enableVigilanceAreas is true', () => {
+    const vigilanceFiltersState: FilterState[] = [
+      {
+        id: 'vigilance_type',
+        options: [{ value: '1', label: 'Pastoralisme' }],
+        type: 'MULTIPLE',
+        label: 'search.filters.vigilance_type',
+        selectedOptions: [],
+      },
+      {
+        id: 'vigilance_type_contents',
+        options: [{ value: '1', label: 'Pastoralisme' }],
+        type: 'MULTIPLE',
+        label: 'search.filters.vigilance_type',
+        selectedOptions: [],
+      },
+    ];
+
+    const initialFiltersWithVigilance = [...initialFiltersState, ...vigilanceFiltersState];
+
+    const displayedFilterIds = computeFiltersToDisplay({
+      currentFiltersState: initialFiltersState,
+      initialFiltersState: initialFiltersWithVigilance,
+      selectedFilterId: 'outdoorPractice',
+      touristicContentCategoryMapping,
+      outdoorRatingScale,
+      outdoorRatingMapping,
+      outdoorPractice,
+      organizerEvent: null,
+    }).map(({ id }) => id);
+
+    expect(displayedFilterIds).toContain('vigilance_type');
+    expect(displayedFilterIds).toContain('vigilance_type_contents');
+  });
 });
