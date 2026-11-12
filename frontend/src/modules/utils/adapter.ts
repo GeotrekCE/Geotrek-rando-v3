@@ -33,13 +33,13 @@ export const getLargeImagesOrThumbnailsFromAttachments = (
   return attachments.length > 0 ? attachments : [fallbackAttachment];
 };
 
-export const geFilesFromAttachments = (rawAttachments: RawAttachment[]) => {
+export const geFilesFromAttachments = (rawAttachments: RawAttachment[], allowedTypes: string[] = ['file']) => {
   const attachments = rawAttachments
     .filter(rawAttachment => {
       const lastPartOfUrl = rawAttachment.url?.split('/').pop();
       // Files without extensions are false positive images (GTA version < 2.97.0)
       const hasExtension = lastPartOfUrl?.includes('.');
-      return (rawAttachment.type === 'file' || rawAttachment.type === 'image') && hasExtension;
+      return allowedTypes.includes(rawAttachment.type) && hasExtension;
     })
     .map(rawAttachment => ({
       url: rawAttachment.url,
