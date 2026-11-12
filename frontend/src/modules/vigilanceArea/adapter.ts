@@ -100,7 +100,7 @@ export const adaptVigilanceArea = ({
     externalInfoUrl: rawVigilanceArea.external_info_url ?? null,
     periods,
     updateDatetime: rawVigilanceArea.date_update ?? rawVigilanceArea.update_datetime ?? null,
-    attachments: geFilesFromAttachments(rawVigilanceArea.attachments || []),
+    attachments: geFilesFromAttachments(rawVigilanceArea.attachments || [], ['file', 'image']),
     criticality,
     sources,
   };
