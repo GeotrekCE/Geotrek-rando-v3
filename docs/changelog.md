@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.27.1 (2026-11-12)
+
+**🐛 Fixes**
+
+- Do not include images in filesFromAttachments by default (#1455)
+
+**🔧 Maintenance**
+
+- Update Node.js version in .nvmrc to v22.23.5 (#1456)
+
 ## 3.27.0 (2026-11-05)
 
 **🚀 New features**
