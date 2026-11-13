@@ -114,7 +114,7 @@ docker exec -t -i rando-nodeserver-1 node -p "require('./package.json').version"
 To install a new version of Geotrek-rando, you have to pull the new image of Geotrek-rando, stop and remove the old container and run a new one with the new image:
 
 ```sh
-docker-compose pull && docker compose down && docker compose up -d
+docker compose pull && docker compose down && docker compose up -d
 ```
 
 It will download and install the latest version of Geotrek-rando. If you want to install a specific version of Geotrek-rando, you can specify it in your `.env` file, instead of `latest`.
