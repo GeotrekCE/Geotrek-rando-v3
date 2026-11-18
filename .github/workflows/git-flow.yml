@@ -1,0 +1,24 @@
+name: Git flow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-develop:
+    name: Merge main into develop on every change
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.PAT }}
+      - name: merge
+        uses: mtanzi/action-automerge@v1
+        id: merge
+        with:
+          github_token: ${{ secrets.PAT }}
+          source: 'main'
+          target: 'develop'
+          webhook_url: ''
