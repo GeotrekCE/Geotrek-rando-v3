@@ -10,7 +10,6 @@
 
 - Prevent PDF, KML and GPX to be indexed by search engines (#1461)
 
-
 ## 3.27.1 (2026-11-12)
 
 **🐛 Fixes**
