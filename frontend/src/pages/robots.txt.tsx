@@ -5,6 +5,9 @@ import React from 'react';
 const getRobots = () => `User-agent: *
 ${getGlobalConfig().enableIndexation ? 'Allow: /' : 'Disallow: /'}
 Disallow: /offline
+Disallow: /*.pdf$
+Disallow: /*.kml$
+Disallow: /*.gpx$
 Sitemap: ${getGlobalConfig().baseUrl}/sitemap.xml
 `;
 
