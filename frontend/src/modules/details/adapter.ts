@@ -65,7 +65,7 @@ export const adaptResults = ({
   trekRating,
   trekRatingScale,
   viewPoints,
-  publishedVigilanceAreas = [],
+  vigilanceAreas = [],
 }: {
   accessbilityLevel: AccessibilityLevel | null;
   rawDetails: RawDetails;
@@ -91,7 +91,7 @@ export const adaptResults = ({
   trekRating: TrekRatingChoices;
   trekRatingScale: TrekRatingScale[];
   viewPoints: ViewPoint[];
-  publishedVigilanceAreas?: VigilanceArea[];
+  vigilanceAreas?: VigilanceArea[];
 }): Details => {
   try {
     const isImpracticable = Boolean(rawDetailsProperties.impracticable);
@@ -203,7 +203,7 @@ export const adaptResults = ({
       infrastructure,
       viewPoints,
       isImpracticable,
-      publishedVigilanceAreas: sortVigilanceAreas(publishedVigilanceAreas),
+      vigilanceAreas: sortVigilanceAreas(vigilanceAreas),
     };
   } catch (e) {
     console.error('Error in details/adapter', e);

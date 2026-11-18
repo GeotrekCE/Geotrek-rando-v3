@@ -132,21 +132,21 @@ export const DetailsPreview: React.FC<DetailsPreviewProps> = ({
         className="text-primary1 text-Mobile-H1 desktop:text-H1 font-bold"
       >{`${trekRankLabel}${title}`}</h1>
       {(() => {
-        const publishedVigilanceAreas =
-          'publishedVigilanceAreas' in details && Array.isArray(details.publishedVigilanceAreas)
-            ? details.publishedVigilanceAreas
+        const vigilanceAreas =
+          'vigilanceAreas' in details && Array.isArray(details.vigilanceAreas)
+            ? details.vigilanceAreas
             : [];
         const isImpracticable =
           'isImpracticable' in details
             ? Boolean(details.isImpracticable)
             : false;
 
-        if (!isImpracticable && publishedVigilanceAreas.length === 0) return null;
+        if (!isImpracticable && vigilanceAreas.length === 0) return null;
 
         return (
           <DetailsVigilanceBanner
             isImpracticable={isImpracticable}
-            publishedVigilanceAreas={publishedVigilanceAreas}
+            vigilanceAreas={vigilanceAreas}
             contentType={type}
           />
         );

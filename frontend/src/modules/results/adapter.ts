@@ -71,11 +71,11 @@ export const adaptTrekResultList = ({
       displayThemes === true ? rawResult.themes.map(themeId => themes[themeId]?.label || '') : [],
     images: getLargeImagesOrThumbnailsFromAttachments(rawResult.attachments, true),
     category: activities[rawResult.practice] ?? null,
-    publishedVigilanceAreas: rawResult.published_vigilance_areas ?? null,
+    vigilanceAreas: rawResult.vigilance_areas ?? null,
     isImpracticable: Boolean(rawResult.impracticable),
     endDate: rawResult.impracticable
       ? getImpracticableEndDate(
-          rawResult.published_vigilance_areas,
+          rawResult.vigilance_areas,
           vigilanceAreasPeriods ?? {},
           targetDate,
         )
