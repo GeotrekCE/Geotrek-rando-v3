@@ -6,6 +6,7 @@ const getRobots = () => `User-agent: *
 ${getGlobalConfig().enableIndexation ? 'Allow: /' : 'Disallow: /'}
 Disallow: /offline
 Disallow: /*.pdf$
+Disallow /*.pdf?portal=*
 Disallow: /*.kml$
 Disallow: /*.gpx$
 Sitemap: ${getGlobalConfig().baseUrl}/sitemap.xml
