@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.28.0 (2026-11-18)
+
+**💥 Breaking changes**
+
+- Published vigilance areas have been renamed vigilance areas in Geotrek-admin API. This versions should be used with Geotrek-admin 2.127.1. (#1460)
+
+**✨ Improvements**
+
+- Prevent PDF, KML and GPX to be indexed by search engines (#1461)
+
+
 ## 3.27.1 (2026-11-12)
 
 **🐛 Fixes**
