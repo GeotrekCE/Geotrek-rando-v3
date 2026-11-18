@@ -40,7 +40,7 @@ export interface RawTouristicContentResult {
   types: Record<number, number[]>;
   cities: string[];
   impracticable?: boolean;
-  published_vigilance_areas?: number[];
+  vigilance_areas?: number[];
 }
 
 export interface RawTouristicContentPopupResult {
@@ -64,7 +64,7 @@ export interface RawTouristicContentDetailsProperties extends RawTouristicConten
   pdf: string;
   bbox: number[];
   impracticable?: boolean;
-  published_vigilance_areas?: number[];
+  vigilance_areas?: number[];
 }
 
 export interface RawTouristicContentDetails {
@@ -118,7 +118,7 @@ export interface TouristicContentDetails extends TouristicContent {
   bbox: Bbox;
   type: 'TOURISTIC_CONTENT';
   isImpracticable?: boolean;
-  publishedVigilanceAreas?: VigilanceArea[];
+  vigilanceAreas?: VigilanceArea[];
 }
 
 export interface TouristicContentDetailsType {

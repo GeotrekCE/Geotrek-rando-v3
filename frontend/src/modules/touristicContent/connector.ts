@@ -60,9 +60,9 @@ export const getTouristicContentDetails = async (
       rawTouristicContentDetails.properties.category,
       language,
     );
-    const publishedVigilanceAreas = getGlobalConfig().enableVigilanceAreas
+    const vigilanceAreas = getGlobalConfig().enableVigilanceAreas
       ? await getVigilanceAreasForTrek(
-          rawTouristicContentDetails.properties.published_vigilance_areas ?? [],
+          rawTouristicContentDetails.properties.vigilance_areas ?? [],
           language,
         )
       : [];
@@ -72,7 +72,7 @@ export const getTouristicContentDetails = async (
       sourceDictionnary: sources,
       cityDictionnary: cities,
       themeDictionnary: themes,
-      publishedVigilanceAreas,
+      vigilanceAreas,
     });
   } catch (e) {
     console.error('Error in touristicContent connector', e);

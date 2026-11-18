@@ -96,11 +96,11 @@ export const adaptTouristicContentResult = ({
         ),
       },
     ],
-    publishedVigilanceAreas: rawTouristicObject.published_vigilance_areas ?? null,
+    vigilanceAreas: rawTouristicObject.vigilance_areas ?? null,
     isImpracticable: Boolean(rawTouristicObject.impracticable),
     endDate: rawTouristicObject.impracticable
       ? getImpracticableEndDate(
-          rawTouristicObject.published_vigilance_areas,
+          rawTouristicObject.vigilance_areas,
           vigilanceAreasPeriods ?? {},
           targetDate,
         )
@@ -113,14 +113,14 @@ export const adaptTouristicContentDetails = ({
   sourceDictionnary,
   cityDictionnary,
   themeDictionnary,
-  publishedVigilanceAreas = [],
+  vigilanceAreas = [],
 }: {
   rawTCD: RawTouristicContentDetails;
   touristicContentCategory: TouristicContentCategory;
   sourceDictionnary: SourceDictionnary;
   cityDictionnary: CityDictionnary;
   themeDictionnary: Choices;
-  publishedVigilanceAreas?: VigilanceArea[];
+  vigilanceAreas?: VigilanceArea[];
 }): TouristicContentDetails => ({
   accessibility: rawTCD.properties.accessibility ?? null,
   practicalInfo: rawTCD.properties.practical_info ?? null,
@@ -168,7 +168,7 @@ export const adaptTouristicContentDetails = ({
     corner2: { x: rawTCD.bbox[2], y: rawTCD.bbox[3] },
   },
   isImpracticable: Boolean(rawTCD.properties.impracticable),
-  publishedVigilanceAreas: sortVigilanceAreas(publishedVigilanceAreas),
+  vigilanceAreas: sortVigilanceAreas(vigilanceAreas),
 });
 
 const adaptTouristicType = (

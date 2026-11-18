@@ -67,7 +67,7 @@ export const getDetails = async (
       infrastructure,
       children,
       sensitiveAreas,
-      publishedVigilanceAreas,
+      vigilanceAreas,
     ] = await Promise.all([
       getActivity(rawDetails.properties.practice, language),
       getDifficulty(rawDetails.properties.difficulty, language),
@@ -84,7 +84,7 @@ export const getDetails = async (
         ? getSensitiveAreas('trek', rawDetails.properties.id, language)
         : [],
       getGlobalConfig().enableVigilanceAreas
-        ? getVigilanceAreasForTrek(rawDetails.properties.published_vigilance_areas ?? [], language)
+        ? getVigilanceAreasForTrek(rawDetails.properties.vigilance_areas ?? [], language)
         : [],
     ]);
     const childrenGeometry = await Promise.all(
@@ -114,7 +114,7 @@ export const getDetails = async (
       children,
       childrenGeometry,
       sensitiveAreas,
-      publishedVigilanceAreas,
+      vigilanceAreas,
       trekRating,
       trekRatingScale,
       signage,

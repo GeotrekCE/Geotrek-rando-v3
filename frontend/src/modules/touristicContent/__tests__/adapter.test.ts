@@ -30,7 +30,7 @@ describe('touristicContent adapter', () => {
         attachments: [],
         approved: false,
         impracticable: true,
-        published_vigilance_areas: [9, 4],
+        vigilance_areas: [9, 4],
       },
     };
 
@@ -82,14 +82,14 @@ describe('touristicContent adapter', () => {
       sourceDictionnary: {},
       cityDictionnary: {},
       themeDictionnary: {},
-      publishedVigilanceAreas: mockVigilanceAreas,
+      vigilanceAreas: mockVigilanceAreas,
     });
 
     expect(result.isImpracticable).toBe(true);
-    expect(result.publishedVigilanceAreas).toHaveLength(2);
+    expect(result.vigilanceAreas).toHaveLength(2);
     // Closed vigilance area should be sorted first by sortVigilanceAreas
-    expect(result.publishedVigilanceAreas?.[0].id).toBe('4');
-    expect(result.publishedVigilanceAreas?.[1].id).toBe('9');
+    expect(result.vigilanceAreas?.[0].id).toBe('4');
+    expect(result.vigilanceAreas?.[1].id).toBe('9');
   });
 
   it('should correctly adapt impracticable and published vigilance areas in adaptTouristicContentResult', () => {
@@ -104,7 +104,7 @@ describe('touristicContent adapter', () => {
         types: {},
         cities: ['05045'],
         impracticable: true,
-        published_vigilance_areas: [42],
+        vigilance_areas: [42],
       },
     ];
 
@@ -121,7 +121,7 @@ describe('touristicContent adapter', () => {
 
     expect(results).toHaveLength(1);
     expect(results[0].isImpracticable).toBe(true);
-    expect(results[0].publishedVigilanceAreas).toEqual([42]);
+    expect(results[0].vigilanceAreas).toEqual([42]);
     expect(results[0].endDate).toBeNull();
   });
 
@@ -137,7 +137,7 @@ describe('touristicContent adapter', () => {
         types: {},
         cities: ['05045'],
         impracticable: true,
-        published_vigilance_areas: [42],
+        vigilance_areas: [42],
       },
     ];
 
