@@ -21,7 +21,7 @@ describe('results adapter', () => {
         networks: [],
         route: null,
         impracticable: true,
-        published_vigilance_areas: [101, 102],
+        vigilance_areas: [101, 102],
       },
     ];
 
@@ -37,7 +37,7 @@ describe('results adapter', () => {
     expect(results).toHaveLength(1);
     expect(results[0].id).toBe('36239');
     expect(results[0].isImpracticable).toBe(true);
-    expect(results[0].publishedVigilanceAreas).toEqual([101, 102]);
+    expect(results[0].vigilanceAreas).toEqual([101, 102]);
     expect(results[0].endDate).toBeNull();
   });
 
@@ -60,7 +60,7 @@ describe('results adapter', () => {
         networks: [],
         route: null,
         impracticable: true,
-        published_vigilance_areas: [101, 102],
+        vigilance_areas: [101, 102],
       },
     ];
 

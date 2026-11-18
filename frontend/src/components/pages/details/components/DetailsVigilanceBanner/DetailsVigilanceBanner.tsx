@@ -9,7 +9,7 @@ import { VigilanceAreaBadge } from '../DetailsVigilanceAreas/VigilanceAreaBadge'
 
 interface DetailsVigilanceBannerProps {
   isImpracticable?: boolean;
-  publishedVigilanceAreas?: VigilanceArea[];
+  vigilanceAreas?: VigilanceArea[];
   contentType?: ContentType;
   className?: string;
 }
@@ -52,11 +52,11 @@ const isAreaFuture = (
 
 export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
   isImpracticable,
-  publishedVigilanceAreas = [],
+  vigilanceAreas = [],
   contentType,
   className,
 }) => {
-  const hasVigilanceAreas = publishedVigilanceAreas.length > 0;
+  const hasVigilanceAreas = vigilanceAreas.length > 0;
   const isContentImpracticable = Boolean(isImpracticable);
 
   if (!getGlobalConfig().enableVigilanceAreas || (!isContentImpracticable && !hasVigilanceAreas)) {
@@ -68,22 +68,22 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
   // 1. Priority 1 — Impraticabilité en cours
   const hasClosedOngoing =
     isContentImpracticable ||
-    publishedVigilanceAreas.some((vigilanceArea: VigilanceArea) => {
+    vigilanceAreas.some((vigilanceArea: VigilanceArea) => {
       return isAreaImpracticable(vigilanceArea) && isVigilanceAreaActive(vigilanceArea);
     });
 
   // 2. Priority 2 — Vigilance haute en cours
-  const hasAlertOngoing = publishedVigilanceAreas.some((vigilanceArea: VigilanceArea) => {
+  const hasAlertOngoing = vigilanceAreas.some((vigilanceArea: VigilanceArea) => {
     return isAreaLevelHigh(vigilanceArea) && isVigilanceAreaActive(vigilanceArea);
   });
 
   // 3. Priority 3 — Impraticabilité à venir
-  const hasClosedFuture = publishedVigilanceAreas.some((vigilanceArea: VigilanceArea) => {
+  const hasClosedFuture = vigilanceAreas.some((vigilanceArea: VigilanceArea) => {
     return isAreaImpracticable(vigilanceArea) && isAreaFuture(vigilanceArea);
   });
 
   // 4. Priority 4 — Vigilance haute ou moyenne à venir
-  const hasAlertFuture = publishedVigilanceAreas.some((vigilanceArea: VigilanceArea) => {
+  const hasAlertFuture = vigilanceAreas.some((vigilanceArea: VigilanceArea) => {
     return (
       (isAreaLevelHigh(vigilanceArea) || isAreaLevelMedium(vigilanceArea)) &&
       isAreaFuture(vigilanceArea)
@@ -105,8 +105,8 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
   }
 
   // Single zone citation model (applicable to P2 and P4)
-  const isSingleZone = publishedVigilanceAreas.length === 1;
-  const singleVigilanceArea = isSingleZone ? publishedVigilanceAreas[0] : null;
+  const isSingleZone = vigilanceAreas.length === 1;
+  const singleVigilanceArea = isSingleZone ? vigilanceAreas[0] : null;
 
   let singleZoneSummary = '';
   if (singleVigilanceArea) {
@@ -119,24 +119,24 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
 
   const relevantArea =
     (bannerPriority === 'p1'
-      ? publishedVigilanceAreas.find(
+      ? vigilanceAreas.find(
           vigilanceArea => isAreaImpracticable(vigilanceArea) && isVigilanceAreaActive(vigilanceArea),
         )
       : bannerPriority === 'p2'
-        ? publishedVigilanceAreas.find(
+        ? vigilanceAreas.find(
             vigilanceArea => isAreaLevelHigh(vigilanceArea) && isVigilanceAreaActive(vigilanceArea),
           )
         : bannerPriority === 'p3'
-          ? publishedVigilanceAreas.find(
+          ? vigilanceAreas.find(
               vigilanceArea => isAreaImpracticable(vigilanceArea) && isAreaFuture(vigilanceArea),
             )
           : bannerPriority === 'p4'
-            ? publishedVigilanceAreas.find(
+            ? vigilanceAreas.find(
                 vigilanceArea =>
                   (isAreaLevelHigh(vigilanceArea) || isAreaLevelMedium(vigilanceArea)) &&
                   isAreaFuture(vigilanceArea),
               )
-            : publishedVigilanceAreas[0]) ?? publishedVigilanceAreas[0];
+            : vigilanceAreas[0]) ?? vigilanceAreas[0];
 
   const relevantLevelNumber = relevantArea?.level?.level ?? null;
   const relevantCriticality = getLevelMode(relevantLevelNumber, relevantArea?.criticality) ?? null;

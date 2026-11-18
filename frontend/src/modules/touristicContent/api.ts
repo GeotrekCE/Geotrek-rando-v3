@@ -21,7 +21,7 @@ export const fetchTouristicContent = (
   }).then(r => r.data);
 
 const fieldsParamsDetails = {
-  fields: `${fieldsParams.fields},description,source,contact,email,website,cities,themes,types,pdf,approved,accessibility,practical_info,impracticable,published_vigilance_areas`,
+  fields: `${fieldsParams.fields},description,source,contact,email,website,cities,themes,types,pdf,approved,accessibility,practical_info,impracticable,vigilance_areas`,
   format: 'geojson',
 };
 
@@ -35,7 +35,7 @@ export const fetchTouristicContentDetails = (
 
 const fieldsParamsResult = {
   fields:
-    'id,attachments,name,category,description_teaser,themes,types,cities,impracticable,published_vigilance_areas',
+    'id,attachments,name,category,description_teaser,themes,types,cities,impracticable,vigilance_areas',
 };
 
 export const fetchTouristicContentResult = (

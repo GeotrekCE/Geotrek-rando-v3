@@ -99,7 +99,7 @@ export interface RawDetailsProperties {
   ratings_description: string;
   view_points: RawViewPoint[];
   impracticable?: boolean;
-  published_vigilance_areas?: RawVigilanceArea[];
+  vigilance_areas?: RawVigilanceArea[];
 }
 
 // Fields parsed with react-html-parser in page
@@ -200,7 +200,7 @@ export interface Details extends DetailsHtml {
   infrastructure: InfrastructureDictionary | null;
   viewPoints: ViewPoint[];
   isImpracticable?: boolean;
-  publishedVigilanceAreas?: VigilanceArea[];
+  vigilanceAreas?: VigilanceArea[];
 }
 
 export interface WebLink {

@@ -22,7 +22,7 @@ describe('DetailsVigilanceBanner', () => {
 
   it('renders nothing when there are no vigilance areas and not impracticable', () => {
     const { container } = render(
-      <DetailsVigilanceBanner publishedVigilanceAreas={[]} isImpracticable={false} />,
+      <DetailsVigilanceBanner vigilanceAreas={[]} isImpracticable={false} />,
     );
     expect(container).toBeEmptyDOMElement();
   });
@@ -55,7 +55,7 @@ describe('DetailsVigilanceBanner', () => {
         isImpracticable: true,
       };
       const component = render(
-        <DetailsVigilanceBanner publishedVigilanceAreas={[closedActiveArea]} />,
+        <DetailsVigilanceBanner vigilanceAreas={[closedActiveArea]} />,
       );
       const bannerElement = component.container.querySelector('#details_vigilanceBanner');
       expect(bannerElement).toHaveAttribute('data-priority', 'p1');
@@ -65,7 +65,7 @@ describe('DetailsVigilanceBanner', () => {
   describe('Priority 2 — Vigilance haute en cours', () => {
     it('renders single zone variant when only 1 active high vigilance area is present', () => {
       const component = render(
-        <DetailsVigilanceBanner publishedVigilanceAreas={[baseVigilanceArea]} />,
+        <DetailsVigilanceBanner vigilanceAreas={[baseVigilanceArea]} />,
       );
       const bannerElement = component.container.querySelector('#details_vigilanceBanner');
 
@@ -88,7 +88,7 @@ describe('DetailsVigilanceBanner', () => {
         },
       };
       const component = render(
-        <DetailsVigilanceBanner publishedVigilanceAreas={[areaWithSubtype]} />,
+        <DetailsVigilanceBanner vigilanceAreas={[areaWithSubtype]} />,
       );
       expect(
         component.getByText(
@@ -100,7 +100,7 @@ describe('DetailsVigilanceBanner', () => {
     it('renders single zone variant with "Cette zone" for touristic content', () => {
       const component = render(
         <DetailsVigilanceBanner
-          publishedVigilanceAreas={[baseVigilanceArea]}
+          vigilanceAreas={[baseVigilanceArea]}
           contentType="TOURISTIC_CONTENT"
         />,
       );
@@ -116,7 +116,7 @@ describe('DetailsVigilanceBanner', () => {
         name: 'Zone 2',
       };
       const component = render(
-        <DetailsVigilanceBanner publishedVigilanceAreas={[baseVigilanceArea, secondArea]} />,
+        <DetailsVigilanceBanner vigilanceAreas={[baseVigilanceArea, secondArea]} />,
       );
       const bannerElement = component.container.querySelector('#details_vigilanceBanner');
 
@@ -142,7 +142,7 @@ describe('DetailsVigilanceBanner', () => {
         ],
       };
       const component = render(
-        <DetailsVigilanceBanner publishedVigilanceAreas={[futureClosedArea]} />,
+        <DetailsVigilanceBanner vigilanceAreas={[futureClosedArea]} />,
       );
       const bannerElement = component.container.querySelector('#details_vigilanceBanner');
 
@@ -173,7 +173,7 @@ describe('DetailsVigilanceBanner', () => {
       };
       const component = render(
         <DetailsVigilanceBanner
-          publishedVigilanceAreas={[futureClosedArea]}
+          vigilanceAreas={[futureClosedArea]}
           contentType="TOURISTIC_CONTENT"
         />,
       );
@@ -198,7 +198,7 @@ describe('DetailsVigilanceBanner', () => {
         ],
       };
       const component = render(
-        <DetailsVigilanceBanner publishedVigilanceAreas={[futureAlertArea]} />,
+        <DetailsVigilanceBanner vigilanceAreas={[futureAlertArea]} />,
       );
       const bannerElement = component.container.querySelector('#details_vigilanceBanner');
 
@@ -219,7 +219,7 @@ describe('DetailsVigilanceBanner', () => {
         isImpracticable: false,
       };
       const component = render(
-        <DetailsVigilanceBanner publishedVigilanceAreas={[infoArea]} />,
+        <DetailsVigilanceBanner vigilanceAreas={[infoArea]} />,
       );
       const bannerElement = component.container.querySelector('#details_vigilanceBanner');
 
@@ -243,7 +243,7 @@ describe('DetailsVigilanceBanner', () => {
       };
       const component = render(
         <DetailsVigilanceBanner
-          publishedVigilanceAreas={[infoArea]}
+          vigilanceAreas={[infoArea]}
           contentType="TOURISTIC_CONTENT"
         />,
       );
@@ -262,7 +262,7 @@ describe('DetailsVigilanceBanner', () => {
         isImpracticable: false,
       };
       const component = render(
-        <DetailsVigilanceBanner publishedVigilanceAreas={[areaWithoutLevel]} />,
+        <DetailsVigilanceBanner vigilanceAreas={[areaWithoutLevel]} />,
       );
       const bannerElement = component.container.querySelector('#details_vigilanceBanner');
       expect(bannerElement).toHaveAttribute('data-priority', 'p5');
@@ -283,7 +283,7 @@ describe('DetailsVigilanceBanner', () => {
       };
       const component = render(
         <DetailsVigilanceBanner
-          publishedVigilanceAreas={[activeDangerArea, activeClosedArea]}
+          vigilanceAreas={[activeDangerArea, activeClosedArea]}
         />,
       );
       const bannerElement = component.container.querySelector('#details_vigilanceBanner');

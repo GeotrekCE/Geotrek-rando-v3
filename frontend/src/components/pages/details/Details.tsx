@@ -352,8 +352,8 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                     if (
                       section.name === 'vigilance' &&
                       getGlobalConfig().enableVigilanceAreas &&
-                      details.publishedVigilanceAreas &&
-                      details.publishedVigilanceAreas.length > 0
+                      details.vigilanceAreas &&
+                      details.vigilanceAreas.length > 0
                     ) {
                       return (
                         <section
@@ -362,7 +362,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                           id={`details_${section.name}_ref`}
                         >
                           <DetailsVigilanceAreas
-                            publishedVigilanceAreas={details.publishedVigilanceAreas}
+                            vigilanceAreas={details.vigilanceAreas}
                             className={marginDetailsChild}
                           />
                         </section>
@@ -710,7 +710,7 @@ export const DetailsUIWithoutContext: React.FC<Props> = ({ slug, parentId, langu
                     }))}
                   vigilanceAreas={
                     getGlobalConfig().enableVigilanceAreas
-                      ? details.publishedVigilanceAreas
+                      ? details.vigilanceAreas
                           ?.filter(area => area.geometry !== null)
                           .map(adaptVigilanceAreaGeometry)
                       : []

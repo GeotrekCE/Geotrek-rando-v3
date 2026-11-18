@@ -310,8 +310,8 @@ export const TouristicContentUIWithoutContext: React.FC<TouristicContentUIProps>
 
                   if (
                     section.name === 'vigilance' &&
-                    touristicContent.publishedVigilanceAreas &&
-                    touristicContent.publishedVigilanceAreas.length > 0
+                    touristicContent.vigilanceAreas &&
+                    touristicContent.vigilanceAreas.length > 0
                   ) {
                     return (
                       <section
@@ -320,7 +320,7 @@ export const TouristicContentUIWithoutContext: React.FC<TouristicContentUIProps>
                         id={`details_${section.name}_ref`}
                       >
                         <DetailsVigilanceAreas
-                          publishedVigilanceAreas={touristicContent.publishedVigilanceAreas}
+                          vigilanceAreas={touristicContent.vigilanceAreas}
                           className={marginDetailsChild}
                         />
                       </section>
@@ -386,7 +386,7 @@ export const TouristicContentUIWithoutContext: React.FC<TouristicContentUIProps>
                   name: touristicContent.name,
                   id: touristicContent.id,
                 }}
-                vigilanceAreas={touristicContent.publishedVigilanceAreas}
+                vigilanceAreas={touristicContent.vigilanceAreas}
                 hideMap={hideMobileMap}
               />
             </div>
