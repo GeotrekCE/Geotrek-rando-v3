@@ -1,4 +1,6 @@
-import { IntlShape } from 'react-intl';
+import { createIntl, createIntlCache } from 'react-intl';
+import flattenMessages from 'services/i18n/intl';
+import frMessages from 'translations/fr.json';
 import {
   formatSinglePeriod,
   formatVigilancePeriod,
@@ -94,33 +96,13 @@ describe('isVigilanceAreaActive', () => {
 });
 
 describe('formatVigilancePeriod rules', () => {
-  const mockIntl = {
-    locale: 'fr',
-    formatMessage: ({ id }: { id: string }, values?: Record<string, unknown>) => {
-      if (id === 'details.vigilancePeriodAllYear') return "Toute l'année";
-      if (id === 'details.vigilancePeriodFromNoEnd')
-        return `À partir du ${String(values?.startDate ?? '')} et jusqu’à nouvel ordre`;
-      if (id === 'details.vigilancePeriodFromTo')
-        return `De ${String(values?.start ?? '')} à ${String(values?.end ?? '')}`;
-      if (id === 'details.vigilancePeriodDays')
-        return `Aux jours suivants : ${String(values?.days ?? '')}`;
-      if (id === 'details.vigilancePeriodDaysRange')
-        return `du ${String(values?.start ?? '')} au ${String(values?.end ?? '')}`;
-      if (id === 'details.vigilancePeriodDaysRangeAllYear')
-        return `Toute l'année, ${String(values?.start ?? '')}`;
-      if (id === 'details.vigilancePeriodRange')
-        return `Du ${String(values?.startDate ?? '')} au ${String(values?.endDate ?? '')}`;
-      if (id === 'details.vigilancePeriodRangeWithDays')
-        return `Du ${String(values?.startDate ?? '')} au ${String(values?.endDate ?? '')}, les ${String(values?.days ?? '')}`;
-      if (id === 'details.vigilancePeriodUntil')
-        return `Jusqu’au ${String(values?.endDate ?? '')}`;
-      if (id === 'details.vigilanceMultiplePeriods')
-        return "Plusieurs périodes concernées au cours de l'année, consulter le détail pour plus de précisions";
-      if (id === 'details.vigilanceAnnual')
-        return `Chaque année : ${String(values?.period ?? '')}`;
-      return id;
+  const mockIntl = createIntl(
+    {
+      locale: 'fr',
+      messages: flattenMessages(frMessages),
     },
-  } as unknown as IntlShape;
+    createIntlCache(),
+  );
 
   it('Rule 1: Jan 1 startDate and no endDate -> Toute l\'année', () => {
     const formattedResult = formatVigilancePeriod({

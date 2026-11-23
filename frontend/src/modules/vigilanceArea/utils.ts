@@ -95,6 +95,8 @@ export interface FormattedActiveDays {
   text: string;
   rawList: string;
   isRange: boolean;
+  firstDay?: string;
+  lastDay?: string;
 }
 
 export const formatActiveDaysInfo = (
@@ -117,7 +119,7 @@ export const formatActiveDaysInfo = (
       { id: 'details.vigilancePeriodDaysRange' },
       { start: firstDay, end: lastDay },
     );
-    return { text: rangeText, rawList, isRange: true };
+    return { text: rangeText, rawList, isRange: true, firstDay, lastDay };
   }
 
   return { text: rawList, rawList, isRange: false };
@@ -176,7 +178,7 @@ export const formatSinglePeriod = ({
         if (!hasStart || (!annual && isJanFirstDate(startDate))) {
           periodText = intl.formatMessage(
             { id: 'details.vigilancePeriodDaysRangeAllYear' },
-            { start: daysInfo.text },
+            { start: daysInfo.firstDay, end: daysInfo.lastDay },
           );
         } else {
           periodText = intl.formatMessage(
