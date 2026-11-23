@@ -144,10 +144,7 @@ const VigilanceAreaPolygonItem: React.FC<{
   );
 
   const levelText = isImpracticable
-    ? intl.formatMessage({
-        id: 'details.vigilancePracticabilityClosed',
-        defaultMessage: 'Impraticable',
-      })
+    ? intl.formatMessage({ id: 'details.vigilancePracticabilityClosed' })
     : levelName || '';
 
   const singlePeriodText =
@@ -242,14 +239,8 @@ const VigilanceAreaPolygonItem: React.FC<{
                   {/* Practicability (displayed only if impracticable) */}
                   {isImpracticable && (
                     <p className="font-bold m-0" style={{ color: colorHex }}>
-                      <FormattedMessage
-                        id="details.vigilancePracticabilityTitle"
-                        defaultMessage="Praticabilité de la zone :"
-                      />{' '}
-                      <FormattedMessage
-                        id="details.vigilancePracticabilityClosed"
-                        defaultMessage="Impraticable"
-                      />
+                      <FormattedMessage id="details.vigilancePracticabilityTitle" />{' '}
+                      <FormattedMessage id="details.vigilancePracticabilityClosed" />
                     </p>
                   )}
 
@@ -257,7 +248,7 @@ const VigilanceAreaPolygonItem: React.FC<{
                   {periods.length > 1 ? (
                     <div>
                       <p className="m-0 text-greyDarkColored/80 font-bold">
-                        <FormattedMessage id="details.vigilancePeriod" defaultMessage="Période(s) concernée(s) :" />
+                        <FormattedMessage id="details.vigilancePeriod" />
                       </p>
                       <ul className="list-disc pl-4 mt-1 space-y-0.5 text-greyDarkColored/80">
                         {periods.map((vigilancePeriod, periodIndex) => {
@@ -275,7 +266,7 @@ const VigilanceAreaPolygonItem: React.FC<{
                   ) : singlePeriodText ? (
                     <p className="m-0 text-greyDarkColored/80">
                       <span className="font-bold">
-                        <FormattedMessage id="details.vigilancePeriod" defaultMessage="Période(s) concernée(s) :" />{' '}
+                        <FormattedMessage id="details.vigilancePeriod" />{' '}
                       </span>
                       {singlePeriodText}
                     </p>
@@ -295,7 +286,7 @@ const VigilanceAreaPolygonItem: React.FC<{
                       onClick={handleMoreInfoClick}
                       className="inline-flex items-center gap-1 font-bold text-primary1 hover:underline"
                     >
-                      <FormattedMessage id="details.knowMore" defaultMessage="Plus d'informations" />
+                      <FormattedMessage id="details.knowMore" />
                       {' →'}
                     </a>
                   </div>

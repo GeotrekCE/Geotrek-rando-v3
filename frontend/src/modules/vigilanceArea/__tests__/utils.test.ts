@@ -96,10 +96,7 @@ describe('isVigilanceAreaActive', () => {
 describe('formatVigilancePeriod rules', () => {
   const mockIntl = {
     locale: 'fr',
-    formatMessage: (
-      { id, defaultMessage }: { id: string; defaultMessage?: string },
-      values?: Record<string, unknown>,
-    ) => {
+    formatMessage: ({ id }: { id: string }, values?: Record<string, unknown>) => {
       if (id === 'details.vigilancePeriodAllYear') return "Toute l'année";
       if (id === 'details.vigilancePeriodFromNoEnd')
         return `À partir du ${String(values?.startDate ?? '')} et jusqu’à nouvel ordre`;
@@ -121,7 +118,7 @@ describe('formatVigilancePeriod rules', () => {
         return "Plusieurs périodes concernées au cours de l'année, consulter le détail pour plus de précisions";
       if (id === 'details.vigilanceAnnual')
         return `Chaque année : ${String(values?.period ?? '')}`;
-      return defaultMessage || id;
+      return id;
     },
   } as unknown as IntlShape;
 

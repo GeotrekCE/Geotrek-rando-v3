@@ -114,7 +114,7 @@ export const formatActiveDaysInfo = (
     const firstDay = getDayName(sorted[0], language);
     const lastDay = getDayName(sorted[sorted.length - 1], language);
     const rangeText = intl.formatMessage(
-      { id: 'details.vigilancePeriodDaysRange', defaultMessage: 'du {start} au {end}' },
+      { id: 'details.vigilancePeriodDaysRange' },
       { start: firstDay, end: lastDay },
     );
     return { text: rangeText, rawList, isRange: true };
@@ -161,54 +161,39 @@ export const formatSinglePeriod = ({
     if (!hasDays) {
       if (hasStart) {
         if (!annual && isJanFirstDate(startDate)) {
-          periodText = intl.formatMessage({
-            id: 'details.vigilancePeriodAllYear',
-            defaultMessage: "Toute l'année",
-          });
+          periodText = intl.formatMessage({ id: 'details.vigilancePeriodAllYear' });
         } else {
           periodText = intl.formatMessage(
-            {
-              id: 'details.vigilancePeriodFromNoEnd',
-              defaultMessage: 'À partir du {startDate} et jusqu’à nouvel ordre',
-            },
+            { id: 'details.vigilancePeriodFromNoEnd' },
             { startDate: formattedStart },
           );
         }
       } else {
-        periodText = intl.formatMessage({
-          id: 'details.vigilancePeriodAllYear',
-          defaultMessage: "Toute l'année",
-        });
+        periodText = intl.formatMessage({ id: 'details.vigilancePeriodAllYear' });
       }
     } else {
       if (daysInfo.isRange) {
         if (!hasStart || (!annual && isJanFirstDate(startDate))) {
           periodText = intl.formatMessage(
-            { id: 'details.vigilancePeriodDaysRangeAllYear', defaultMessage: "Toute l'année, {start}" },
+            { id: 'details.vigilancePeriodDaysRangeAllYear' },
             { start: daysInfo.text },
           );
         } else {
           periodText = intl.formatMessage(
-            {
-              id: 'details.vigilancePeriodFromNoEnd',
-              defaultMessage: 'À partir du {startDate} et jusqu’à nouvel ordre',
-            },
+            { id: 'details.vigilancePeriodFromNoEnd' },
             { startDate: `${formattedStart} (${daysInfo.text})` },
           );
         }
       } else {
         const daysFormatted = intl.formatMessage(
-          { id: 'details.vigilancePeriodDays', defaultMessage: 'Aux jours suivants : {days}' },
+          { id: 'details.vigilancePeriodDays' },
           { days: daysInfo.text },
         );
         if (!hasStart || (!annual && isJanFirstDate(startDate))) {
           periodText = daysFormatted;
         } else {
           periodText = intl.formatMessage(
-            {
-              id: 'details.vigilancePeriodFromNoEnd',
-              defaultMessage: 'À partir du {startDate} et jusqu’à nouvel ordre',
-            },
+            { id: 'details.vigilancePeriodFromNoEnd' },
             { startDate: `${formattedStart} (${daysFormatted})` },
           );
         }
@@ -217,21 +202,18 @@ export const formatSinglePeriod = ({
   } else if (hasStart && hasEnd) {
     if (hasDays) {
       periodText = intl.formatMessage(
-        {
-          id: 'details.vigilancePeriodRangeWithDays',
-          defaultMessage: 'Du {startDate} au {endDate}, les {days}',
-        },
+        { id: 'details.vigilancePeriodRangeWithDays' },
         { startDate: formattedStart, endDate: formattedEnd, days: daysInfo.rawList },
       );
     } else {
       periodText = intl.formatMessage(
-        { id: 'details.vigilancePeriodRange', defaultMessage: 'Du {startDate} au {endDate}' },
+        { id: 'details.vigilancePeriodRange' },
         { startDate: formattedStart, endDate: formattedEnd },
       );
     }
   } else if (!hasStart && hasEnd) {
     periodText = intl.formatMessage(
-      { id: 'details.vigilancePeriodUntil', defaultMessage: 'Jusqu’au {endDate}' },
+      { id: 'details.vigilancePeriodUntil' },
       { endDate: formattedEnd },
     );
   }
@@ -239,10 +221,7 @@ export const formatSinglePeriod = ({
   if (!periodText) return null;
 
   if (annual) {
-    return intl.formatMessage(
-      { id: 'details.vigilanceAnnual', defaultMessage: 'Chaque année : {period}' },
-      { period: periodText },
-    );
+    return intl.formatMessage({ id: 'details.vigilanceAnnual' }, { period: periodText });
   }
 
   return periodText;
@@ -260,18 +239,11 @@ export const formatVigilancePeriod = ({
   isHeader = false,
 }: FormatVigilancePeriodParams): string | null => {
   if (periods.length === 0) {
-    return intl.formatMessage({
-      id: 'details.vigilancePeriodAllYear',
-      defaultMessage: "Toute l'année",
-    });
+    return intl.formatMessage({ id: 'details.vigilancePeriodAllYear' });
   }
 
   if (isHeader && periods.length > 1) {
-    return intl.formatMessage({
-      id: 'details.vigilanceMultiplePeriods',
-      defaultMessage:
-        "Plusieurs périodes concernées au cours de l'année, consulter le détail pour plus de précisions",
-    });
+    return intl.formatMessage({ id: 'details.vigilanceMultiplePeriods' });
   }
 
   if (periods.length === 1) {
@@ -285,11 +257,7 @@ export const formatVigilancePeriod = ({
     });
   }
 
-  return intl.formatMessage({
-    id: 'details.vigilanceMultiplePeriods',
-    defaultMessage:
-      "Plusieurs périodes concernées au cours de l'année, consulter le détail pour plus de précisions",
-  });
+  return intl.formatMessage({ id: 'details.vigilanceMultiplePeriods' });
 };
 
 export const getVigilanceSeverityRank = (area: Record<string, any>): number => {

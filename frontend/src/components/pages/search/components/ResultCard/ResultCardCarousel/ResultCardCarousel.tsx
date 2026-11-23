@@ -56,7 +56,7 @@ export const ResultCardCarousel: React.FC<ResultCardCarouselProps> = ({
             aria-hidden
           />
           <span className="font-bold text-white text-xs desktop:text-sm uppercase tracking-wider">
-            <FormattedMessage id="search.resultCard.closed" defaultMessage="Impraticable" />
+            <FormattedMessage id="search.resultCard.closed" />
           </span>
         </div>
       )}

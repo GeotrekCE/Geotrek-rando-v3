@@ -38,25 +38,13 @@ export const VigilanceSection: React.FC<Props> = ({
 
   const vigilanceTypeFilter = filtersState.find(filter => filter.id === targetVigilanceTypeId);
 
-  const dateSingleLabel =
-    isGenericDate && intl.messages['search.filters.searchOnDate']
-      ? intl.formatMessage({ id: 'search.filters.searchOnDate' })
-      : isGenericDate
-      ? 'À la date du'
-      : intl.formatMessage({
-          id: 'search.filters.hikeOnDate',
-          defaultMessage: 'Je randonne le',
-        });
+  const dateSingleLabel = intl.formatMessage({
+    id: isGenericDate ? 'search.filters.searchOnDate' : 'search.filters.hikeOnDate',
+  });
 
-  const dateFromLabel =
-    isGenericDate && intl.messages['search.filters.searchDateFrom']
-      ? intl.formatMessage({ id: 'search.filters.searchDateFrom' })
-      : isGenericDate
-      ? 'Du'
-      : intl.formatMessage({
-          id: 'search.filters.dateFrom',
-          defaultMessage: 'Je randonne du',
-        });
+  const dateFromLabel = intl.formatMessage({
+    id: isGenericDate ? 'search.filters.searchDateFrom' : 'search.filters.dateFrom',
+  });
 
   return (
     <div className="my-6 py-5 border-t border-b border-greySoft">
@@ -82,11 +70,7 @@ export const VigilanceSection: React.FC<Props> = ({
                     onClick={() => setShowPeriod(true)}
                     className="text-primary1 font-medium hover:underline text-sm whitespace-nowrap cursor-pointer"
                   >
-                    +{' '}
-                    {intl.formatMessage({
-                      id: 'search.filters.addPeriod',
-                      defaultMessage: 'Ajouter une période',
-                    })}
+                    + {intl.formatMessage({ id: 'search.filters.addPeriod' })}
                   </button>
                 </div>
               </div>
@@ -111,10 +95,7 @@ export const VigilanceSection: React.FC<Props> = ({
                         endDate: event.target.value,
                       })
                     }
-                    label={intl.formatMessage({
-                      id: 'search.filters.dateTo',
-                      defaultMessage: 'Au',
-                    })}
+                    label={intl.formatMessage({ id: 'search.filters.dateTo' })}
                   />
                 </div>
                 <button
@@ -125,11 +106,7 @@ export const VigilanceSection: React.FC<Props> = ({
                   }}
                   className="text-greyDarkColored text-xs hover:underline cursor-pointer"
                 >
-                  -{' '}
-                  {intl.formatMessage({
-                    id: 'search.filters.removePeriod',
-                    defaultMessage: 'Retirer la période',
-                  })}
+                  - {intl.formatMessage({ id: 'search.filters.removePeriod' })}
                 </button>
               </div>
             )}

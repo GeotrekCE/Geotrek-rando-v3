@@ -40,10 +40,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
 
   // Level text: API level name or "Impraticable" or empty
   const levelText = isImpracticable
-    ? intl.formatMessage({
-        id: 'details.vigilancePracticabilityClosed',
-        defaultMessage: 'Impraticable',
-      })
+    ? intl.formatMessage({ id: 'details.vigilancePracticabilityClosed' })
     : levelObj?.name ?? '';
 
   const defaultLevelColor =
@@ -201,15 +198,9 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
           {isImpracticable && (
             <p className="m-0">
               <span className="font-bold">
-                <FormattedMessage
-                  id="details.vigilancePracticabilityTitle"
-                  defaultMessage="Praticabilité de la zone :"
-                />
+                <FormattedMessage id="details.vigilancePracticabilityTitle" />
               </span>{' '}
-              {intl.formatMessage({
-                id: 'details.vigilancePracticabilityClosed',
-                defaultMessage: 'Impraticable',
-              })}
+              {intl.formatMessage({ id: 'details.vigilancePracticabilityClosed' })}
             </p>
           )}
 
@@ -217,10 +208,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
           {periods.length > 1 ? (
             <div>
               <p className="font-bold m-0">
-                <FormattedMessage
-                  id="details.vigilancePeriod"
-                  defaultMessage="Période(s) concernée(s) :"
-                />
+                <FormattedMessage id="details.vigilancePeriod" />
               </p>
               <ul className="list-disc pl-5 mt-1 space-y-1">
                 {periods.map((vigilancePeriod, periodIndex) => {
@@ -238,10 +226,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
           ) : detailSinglePeriodText ? (
             <p className="m-0">
               <span className="font-bold">
-                <FormattedMessage
-                  id="details.vigilancePeriod"
-                  defaultMessage="Période(s) concernée(s) :"
-                />
+                <FormattedMessage id="details.vigilancePeriod" />
               </span>{' '}
               {detailSinglePeriodText}
             </p>
@@ -251,10 +236,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
           {(Boolean(practicalInfo) || (files && files.length > 0)) && (
             <div>
               <h4 className="font-bold mb-1 text-greyDarkColored">
-                <FormattedMessage
-                  id="details.vigilanceMoreInfo"
-                  defaultMessage="Plus d’informations sur le sujet :"
-                />
+                <FormattedMessage id="details.vigilanceMoreInfo" />
               </h4>
               {Boolean(practicalInfo) && (
                 <div className="content-WYSIWYG leading-relaxed">
@@ -300,7 +282,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-primary1 font-semibold underline hover:opacity-80 transition-opacity"
               >
-                <FormattedMessage id="details.knowMore" defaultMessage="En savoir plus" />
+                <FormattedMessage id="details.knowMore" />
                 <span>→</span>
               </a>
             </div>
@@ -310,7 +292,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
           {sources && sources.length > 0 && (
             <p className="m-0">
               <span className="font-bold">
-                <FormattedMessage id="details.vigilanceSources" defaultMessage="Source :" />
+                <FormattedMessage id="details.vigilanceSources" />
               </span>{' '}
               {sources.map((source: Source, sourceIndex: number) => (
                 <React.Fragment key={sourceIndex}>
@@ -335,7 +317,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
           {/* 8. Date de mise à jour */}
           {updateDatetime && (
             <p className="text-xs italic text-greyDarkColored/70 pt-2 m-0">
-              <FormattedMessage id="details.vigilanceUpdated" defaultMessage="Dernière mise à jour le" />{' '}
+              <FormattedMessage id="details.vigilanceUpdated" />{' '}
               <FormattedDate value={updateDatetime} year="numeric" month="long" day="numeric" />
             </p>
           )}

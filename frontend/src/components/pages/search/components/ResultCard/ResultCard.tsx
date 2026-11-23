@@ -87,22 +87,6 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
     ? `search.filters.${typePrefix}ClosedFilteredWithEndDate`
     : `search.filters.${typePrefix}ClosedFiltered`;
 
-  const subject = isTouristicContent
-    ? 'Cette zone'
-    : isOutdoorSite
-    ? 'Ce site'
-    : isOutdoorCourse
-    ? 'Ce parcours'
-    : 'Cet itinéraire';
-
-  const closedDefaultMessage = isTodayDate
-    ? formattedEndDate
-      ? `${subject} est impraticable jusqu'au {endDate}`
-      : `${subject} est impraticable jusqu'à nouvel ordre`
-    : formattedEndDate
-    ? `${subject} est impraticable à la date ou période choisie, et jusqu'au {endDate}`
-    : `${subject} est impraticable à la date ou période choisie, jusqu'à nouvel ordre`;
-
   return (
     <div
       onMouseEnter={() => {
@@ -153,7 +137,6 @@ export const ResultCard: React.FC<ResultCardProps> = props => {
               <div className="mt-1 text-vigilanceClosed font-bold text-sm">
                 <FormattedMessage
                   id={closedMessageId}
-                  defaultMessage={closedDefaultMessage}
                   values={{ endDate: formattedEndDate ?? '' }}
                 />
               </div>
