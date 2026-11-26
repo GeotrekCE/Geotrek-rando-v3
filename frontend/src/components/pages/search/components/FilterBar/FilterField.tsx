@@ -133,6 +133,7 @@ const FilterField: React.FC<Props> = ({
                 hideLabel
                 dateFilter={dateFilter}
                 setDateFilter={setDateFilter}
+                menuPosition="fixed"
               />
             </div>
             {shouldShowVigilanceSection && index === 0 && (
@@ -150,6 +151,8 @@ const FilterField: React.FC<Props> = ({
                 dateFilter={dateFilter}
                 setFilterSelectedOptions={setFilterSelectedOptions}
                 setDateFilter={setDateFilter}
+                hideVigilanceSectionFilters={shouldShowVigilanceSection}
+                menuPosition="fixed"
               />
             </div>
           </Fragment>

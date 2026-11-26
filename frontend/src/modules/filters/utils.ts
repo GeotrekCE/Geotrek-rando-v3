@@ -13,7 +13,7 @@ import { OutdoorRatingScale } from '../outdoorRatingScale/interface';
 import { getTouristicEventTypesFilter } from '../touristicEventType/connector';
 import { getAccessibilityFilter } from './accessibility/connector';
 import { getCityFilter } from './city/connector';
-import { getFiltersConfig, isVigilanceFilterEnabled } from './config';
+import { getFiltersConfig, isVigilanceTypeFilterEnabled } from './config';
 import { getDifficultyFilter } from './difficulties/connector';
 import { getCourseTypeFilter } from './courseType/connector';
 import { getDistrictFilter } from './district/connector';
@@ -189,7 +189,7 @@ export const getFiltersState = async (language: string): Promise<FilterState[]> 
     })),
   ];
 
-  if (isVigilanceFilterEnabled()) {
+  if (isVigilanceTypeFilterEnabled()) {
     const vigilanceContentFilter = await getVigilanceTypeFilter(language, false, VIGILANCE_TYPE_CONTENTS_ID);
     const vigilanceContentExcludeFilter = await getVigilanceTypeFilter(language, true, VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID);
 
@@ -348,7 +348,7 @@ export const computeFiltersToDisplay = ({
     });
   }
   // Vigilance filters for Treks, Outdoor and Touristic Contents
-  if (isVigilanceFilterEnabled()) {
+  if (isVigilanceTypeFilterEnabled()) {
     filtersToAdd.push(getVigilanceTypeFiltersState(initialFiltersState));
   }
   // Outdoor filters
@@ -414,7 +414,7 @@ const getInitialFiltersStateWithRelevantFilters = ({
     result.push(...getTreksFiltersState(initialFiltersState));
   }
 
-  if (isVigilanceFilterEnabled()) {
+  if (isVigilanceTypeFilterEnabled()) {
     result.push(...getVigilanceTypeFiltersState(initialFiltersState));
   }
 

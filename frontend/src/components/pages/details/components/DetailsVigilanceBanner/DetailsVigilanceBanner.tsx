@@ -263,14 +263,14 @@ export const DetailsVigilanceBanner: React.FC<DetailsVigilanceBannerProps> = ({
           size={24}
         />
 
-        <p className="text-[14px] leading-[1.5] m-0 text-greyDarkColored">
+        <p className="text-base leading-[1.5] m-0 text-greyDarkColored">
           {renderBannerContent()}
         </p>
       </div>
 
       <a
         href="#details_vigilance"
-        className="text-[14px] font-semibold text-primary1 underline hover:opacity-80 transition-opacity"
+        className="text-base font-semibold text-primary1 underline hover:opacity-80 transition-opacity"
       >
         <FormattedMessage id="details.vigilanceBanner.moreInfoLink" />
       </a>

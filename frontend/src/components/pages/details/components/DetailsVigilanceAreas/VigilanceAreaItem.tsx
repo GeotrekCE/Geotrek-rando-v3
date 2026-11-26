@@ -38,7 +38,7 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
   // Determine impracticability
   const isImpracticable = Boolean(area.isImpracticable);
 
-  // Level text: API level name or "Impraticable" or empty
+  // Level text: API level name or "Zone impraticable" or empty
   const levelText = isImpracticable
     ? intl.formatMessage({ id: 'details.vigilancePracticabilityClosed' })
     : levelObj?.name ?? '';
@@ -194,13 +194,10 @@ export const VigilanceAreaItem: React.FC<VigilanceAreaItemProps> = ({
             </div>
           )}
 
-          {/* 2. Praticabilité de la zone (affiché uniquement si impraticable) */}
+          {/* 2. Zone impraticable (affiché uniquement si impraticable) */}
           {isImpracticable && (
-            <p className="m-0">
-              <span className="font-bold">
-                <FormattedMessage id="details.vigilancePracticabilityTitle" />
-              </span>{' '}
-              {intl.formatMessage({ id: 'details.vigilancePracticabilityClosed' })}
+            <p className="font-bold m-0">
+              <FormattedMessage id="details.vigilancePracticabilityClosed" />
             </p>
           )}
 

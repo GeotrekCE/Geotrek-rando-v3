@@ -62,9 +62,9 @@ describe('VigilanceAreas Leaflet Map Component', () => {
     expect(polygon).toBeInTheDocument();
     expect(polygon).toHaveAttribute('data-color', '#901A1A');
 
-    expect(getByText(/Faune/)).toBeInTheDocument();
+    expect(getByText('Zone impraticable – Faune')).toBeInTheDocument();
     expect(getByText('Nidification Cigogne')).toBeInTheDocument();
-    expect(getByText(/Praticabilité de la zone :/)).toBeInTheDocument();
+    expect(getByText('Zone impraticable')).toBeInTheDocument();
   });
 
   it('correctly handles adapted { x, y } coordinates without NaN error', () => {
@@ -97,6 +97,6 @@ describe('VigilanceAreas Leaflet Map Component', () => {
     expect(polygon).toBeInTheDocument();
     expect(polygon).toHaveAttribute('data-color', '#C56600');
     expect(getByText('Chasse en battue')).toBeInTheDocument();
-    expect(queryByText(/Praticabilité/)).not.toBeInTheDocument();
+    expect(queryByText('Zone impraticable')).not.toBeInTheDocument();
   });
 });

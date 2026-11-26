@@ -236,10 +236,9 @@ const VigilanceAreaPolygonItem: React.FC<{
                     {name}
                   </h4>
 
-                  {/* Practicability (displayed only if impracticable) */}
+                  {/* Impracticable notice (displayed only if impracticable) */}
                   {isImpracticable && (
                     <p className="font-bold m-0" style={{ color: colorHex }}>
-                      <FormattedMessage id="details.vigilancePracticabilityTitle" />{' '}
                       <FormattedMessage id="details.vigilancePracticabilityClosed" />
                     </p>
                   )}

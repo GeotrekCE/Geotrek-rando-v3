@@ -189,7 +189,7 @@ describe('formatVigilancePeriod rules', () => {
     expect(formattedResult).toBe('Chaque année : Du 1 juin au 30 septembre');
   });
 
-  it('Rule 7: startDate and endDate with activeDays -> Du [startDate] au [endDate], les [jours]', () => {
+  it('Rule 7: startDate and endDate with consecutive activeDays -> Du [startDate] au [endDate], du [jour début] au [jour fin]', () => {
     const formattedResult = formatVigilancePeriod({
       periods: [
         {
@@ -201,9 +201,7 @@ describe('formatVigilancePeriod rules', () => {
       ],
       intl: mockIntl,
     });
-    expect(formattedResult).toBe(
-      'Du 29 août 2026 au 30 octobre 2026, les lundi, mardi, mercredi, jeudi, vendredi',
-    );
+    expect(formattedResult).toBe('Du 29 août 2026 au 30 octobre 2026, du lundi au vendredi');
   });
 });
 

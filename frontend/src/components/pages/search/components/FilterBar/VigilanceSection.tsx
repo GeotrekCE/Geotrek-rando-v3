@@ -6,7 +6,12 @@ import {
   VIGILANCE_TYPE_CONTENTS_ID,
   VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
+import {
+  isVigilanceDateFilterEnabled,
+  isVigilanceTypeFilterEnabled,
+} from 'modules/filters/config';
 import { DateFilter, FilterState, Option } from 'modules/filters/interface';
+import { cn } from 'services/utils/cn';
 import Field from './Field';
 import InputDateWithMagnifier from '../InputDateWithMagnifier';
 
@@ -37,6 +42,14 @@ export const VigilanceSection: React.FC<Props> = ({
   const targetVigilanceTypeId = isTouristicContent ? VIGILANCE_TYPE_CONTENTS_ID : VIGILANCE_TYPE_ID;
 
   const vigilanceTypeFilter = filtersState.find(filter => filter.id === targetVigilanceTypeId);
+  const showDateFilter = isVigilanceDateFilterEnabled();
+  const showTypeFilter =
+    isVigilanceTypeFilterEnabled() &&
+    Boolean(vigilanceTypeFilter && vigilanceTypeFilter.options.length > 0);
+
+  if (!showDateFilter && !showTypeFilter) {
+    return null;
+  }
 
   const dateSingleLabel = intl.formatMessage({
     id: isGenericDate ? 'search.filters.searchOnDate' : 'search.filters.hikeOnDate',
@@ -48,73 +61,80 @@ export const VigilanceSection: React.FC<Props> = ({
 
   return (
     <div className="my-6 py-5 border-t border-b border-greySoft">
-      <div className="grid grid-cols-1 desktop:grid-cols-2 gap-8 items-start">
+      <div
+        className={cn(
+          'grid grid-cols-1 gap-8 items-start',
+          showDateFilter && showTypeFilter && 'desktop:grid-cols-2',
+        )}
+      >
         {/* Left Column: Date Selection */}
-        <div className="flex flex-col gap-4">
-          <div>
-            {!showPeriod ? (
-              <div className="flex flex-col sm:flex-row sm:items-end justify-start gap-2 sm:gap-4">
-                <InputDateWithMagnifier
-                  value={effectiveBeginDate}
-                  onChange={event =>
-                    setDateFilter({
-                      beginDate: event.target.value,
-                      endDate: '',
-                    })
-                  }
-                  label={dateSingleLabel}
-                />
-                <div className="h-auto sm:h-10 desktop:h-12 mb-2 sm:mb-3 flex items-center">
-                  <button
-                    type="button"
-                    onClick={() => setShowPeriod(true)}
-                    className="text-primary1 font-medium hover:underline text-sm whitespace-nowrap cursor-pointer"
-                  >
-                    + {intl.formatMessage({ id: 'search.filters.addPeriod' })}
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className="flex flex-col gap-2 items-start">
-                <div className="flex flex-row flex-wrap items-end justify-start gap-3">
+        {showDateFilter && (
+          <div className="flex flex-col gap-4">
+            <div>
+              {!showPeriod ? (
+                <div className="flex flex-col sm:flex-row sm:items-end justify-start gap-2 sm:gap-4">
                   <InputDateWithMagnifier
                     value={effectiveBeginDate}
                     onChange={event =>
                       setDateFilter({
                         beginDate: event.target.value,
-                        endDate: dateFilter.endDate,
+                        endDate: '',
                       })
                     }
-                    label={dateFromLabel}
+                    label={dateSingleLabel}
                   />
-                  <InputDateWithMagnifier
-                    value={dateFilter.endDate}
-                    onChange={event =>
-                      setDateFilter({
-                        beginDate: effectiveBeginDate,
-                        endDate: event.target.value,
-                      })
-                    }
-                    label={intl.formatMessage({ id: 'search.filters.dateTo' })}
-                  />
+                  <div className="h-auto sm:h-10 desktop:h-12 mb-2 sm:mb-3 flex items-center">
+                    <button
+                      type="button"
+                      onClick={() => setShowPeriod(true)}
+                      className="text-primary1 font-medium hover:underline text-sm whitespace-nowrap cursor-pointer"
+                    >
+                      + {intl.formatMessage({ id: 'search.filters.addPeriod' })}
+                    </button>
+                  </div>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowPeriod(false);
-                    setDateFilter({ beginDate: effectiveBeginDate, endDate: '' });
-                  }}
-                  className="text-greyDarkColored text-xs hover:underline cursor-pointer"
-                >
-                  - {intl.formatMessage({ id: 'search.filters.removePeriod' })}
-                </button>
-              </div>
-            )}
+              ) : (
+                <div className="flex flex-col gap-2 items-start">
+                  <div className="flex flex-row flex-wrap items-end justify-start gap-3">
+                    <InputDateWithMagnifier
+                      value={effectiveBeginDate}
+                      onChange={event =>
+                        setDateFilter({
+                          beginDate: event.target.value,
+                          endDate: dateFilter.endDate,
+                        })
+                      }
+                      label={dateFromLabel}
+                    />
+                    <InputDateWithMagnifier
+                      value={dateFilter.endDate}
+                      onChange={event =>
+                        setDateFilter({
+                          beginDate: effectiveBeginDate,
+                          endDate: event.target.value,
+                        })
+                      }
+                      label={intl.formatMessage({ id: 'search.filters.dateTo' })}
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowPeriod(false);
+                      setDateFilter({ beginDate: effectiveBeginDate, endDate: '' });
+                    }}
+                    className="text-greyDarkColored text-xs hover:underline cursor-pointer"
+                  >
+                    - {intl.formatMessage({ id: 'search.filters.removePeriod' })}
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Right Column: Vigilance Area Types */}
-        {vigilanceTypeFilter && (
+        {showTypeFilter && vigilanceTypeFilter && (
           <div>
             <div className="font-bold text-lg mb-3">
               {intl.formatMessage({ id: 'search.filters.vigilance_type' })}

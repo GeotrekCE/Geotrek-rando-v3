@@ -1,3 +1,4 @@
+import { portalsFilter } from 'modules/utils/api.config';
 import { GeotrekAPI } from 'services/api/client';
 import { APIQuery, APIResponseForList } from 'services/api/interface';
 import { RawVigilanceArea, RawVigilancePeriod } from './interface';
@@ -23,7 +24,7 @@ export const fetchVigilanceAreasPeriods = (
   query: APIQuery,
 ): Promise<APIResponseForList<RawVigilanceAreaPeriodResponse>> => {
   return GeotrekAPI.get('/vigilancearea/', {
-    params: { ...query, fields: 'id,impracticable,periods' },
+    params: { ...query, fields: 'id,impracticable,periods', ...portalsFilter },
   })
     .then(response => response.data)
     .catch(error => {
