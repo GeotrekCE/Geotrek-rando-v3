@@ -49,6 +49,20 @@ describe('DetailsVigilanceBanner', () => {
       expect(component.getByText('Cette zone est actuellement impraticable.')).toBeInTheDocument();
     });
 
+    it('renders Priority 1 banner with "Ce site" for outdoor site', () => {
+      const component = render(
+        <DetailsVigilanceBanner isImpracticable contentType="OUTDOOR_SITE" />,
+      );
+      expect(component.getByText('Ce site est actuellement impraticable.')).toBeInTheDocument();
+    });
+
+    it('renders Priority 1 banner with "Ce parcours" for outdoor course', () => {
+      const component = render(
+        <DetailsVigilanceBanner isImpracticable contentType="OUTDOOR_COURSE" />,
+      );
+      expect(component.getByText('Ce parcours est actuellement impraticable.')).toBeInTheDocument();
+    });
+
     it('renders Priority 1 banner when a vigilance area is isImpracticable=true and active today', () => {
       const closedActiveArea: VigilanceArea = {
         ...baseVigilanceArea,
@@ -106,6 +120,30 @@ describe('DetailsVigilanceBanner', () => {
       );
       expect(
         component.getByText(/Attention : cette zone est concernée par une zone de vigilance élevée : Danger - Chasse - Battue aux sangliers/i),
+      ).toBeInTheDocument();
+    });
+
+    it('renders single zone variant with "Ce site" for outdoor site', () => {
+      const component = render(
+        <DetailsVigilanceBanner
+          vigilanceAreas={[baseVigilanceArea]}
+          contentType="OUTDOOR_SITE"
+        />,
+      );
+      expect(
+        component.getByText(/Attention : ce site est concerné par une zone de vigilance élevée : Danger - Chasse - Battue aux sangliers/i),
+      ).toBeInTheDocument();
+    });
+
+    it('renders single zone variant with "Ce parcours" for outdoor course', () => {
+      const component = render(
+        <DetailsVigilanceBanner
+          vigilanceAreas={[baseVigilanceArea]}
+          contentType="OUTDOOR_COURSE"
+        />,
+      );
+      expect(
+        component.getByText(/Attention : ce parcours est concerné par une zone de vigilance élevée : Danger - Chasse - Battue aux sangliers/i),
       ).toBeInTheDocument();
     });
 
@@ -181,11 +219,115 @@ describe('DetailsVigilanceBanner', () => {
         component.getByText("Cette zone peut être impraticable à certaines périodes de l'année."),
       ).toBeInTheDocument();
     });
+
+    it('renders Priority 3 banner with "Ce site" for outdoor site', () => {
+      const futureClosedArea: VigilanceArea = {
+        ...baseVigilanceArea,
+        isImpracticable: true,
+        periods: [
+          {
+            startDate: '2099-01-01',
+            endDate: '2099-12-31',
+            activeDays: [],
+            annual: false,
+          },
+        ],
+      };
+      const component = render(
+        <DetailsVigilanceBanner
+          vigilanceAreas={[futureClosedArea]}
+          contentType="OUTDOOR_SITE"
+        />,
+      );
+      expect(
+        component.getByText("Ce site peut être impraticable à certaines périodes de l'année."),
+      ).toBeInTheDocument();
+    });
+
+    it('renders Priority 3 banner with "Ce parcours" for outdoor course', () => {
+      const futureClosedArea: VigilanceArea = {
+        ...baseVigilanceArea,
+        isImpracticable: true,
+        periods: [
+          {
+            startDate: '2099-01-01',
+            endDate: '2099-12-31',
+            activeDays: [],
+            annual: false,
+          },
+        ],
+      };
+      const component = render(
+        <DetailsVigilanceBanner
+          vigilanceAreas={[futureClosedArea]}
+          contentType="OUTDOOR_COURSE"
+        />,
+      );
+      expect(
+        component.getByText("Ce parcours peut être impraticable à certaines périodes de l'année."),
+      ).toBeInTheDocument();
+    });
   });
 
-  describe('Priority 4 — Vigilance haute ou moyenne à venir', () => {
-    it('renders Priority 4 banner when high/medium vigilance area is only in the future', () => {
-      const futureAlertArea: VigilanceArea = {
+  describe('Priority 4 — Encart par défaut', () => {
+    it('renders Priority 4 default banner when medium vigilance area (Mise en garde) is in the future (fixing bug)', () => {
+      const futureWarningArea: VigilanceArea = {
+        ...baseVigilanceArea,
+        level: { id: 'level-2', level: 2, name: 'Mise en garde', color: '#955a02', pictogramUrl: null },
+        criticality: 'vigilance',
+        isImpracticable: false,
+        periods: [
+          {
+            startDate: '2099-01-01',
+            endDate: '2099-12-31',
+            activeDays: [],
+            annual: false,
+          },
+        ],
+      };
+      const component = render(
+        <DetailsVigilanceBanner vigilanceAreas={[futureWarningArea]} />,
+      );
+      const bannerElement = component.container.querySelector('#details_vigilanceBanner');
+
+      expect(bannerElement).toHaveAttribute('data-priority', 'p4');
+      expect(bannerElement).toHaveAttribute('data-encart-level', 'vigilance');
+      expect(
+        component.getByText('Cet itinéraire peut comporter des zones de vigilance.'),
+      ).toBeInTheDocument();
+      expect(
+        component.getByText(
+          "Consultez la section « Zones de vigilance » pour en savoir plus sur les conditions d'accès et bons comportements à adopter dans vos activités.",
+        ),
+      ).toBeInTheDocument();
+      expect(
+        component.queryByText(/Attention : cet itinéraire est concerné par au moins une zone de vigilance élevée/i),
+      ).not.toBeInTheDocument();
+    });
+
+    it('renders Priority 4 default banner when medium vigilance area (Mise en garde) is active today', () => {
+      const activeWarningArea: VigilanceArea = {
+        ...baseVigilanceArea,
+        level: { id: 'level-2', level: 2, name: 'Mise en garde', color: '#955a02', pictogramUrl: null },
+        criticality: 'vigilance',
+        isImpracticable: false,
+      };
+      const component = render(
+        <DetailsVigilanceBanner vigilanceAreas={[activeWarningArea]} />,
+      );
+      const bannerElement = component.container.querySelector('#details_vigilanceBanner');
+
+      expect(bannerElement).toHaveAttribute('data-priority', 'p4');
+      expect(
+        component.getByText('Cet itinéraire peut comporter des zones de vigilance.'),
+      ).toBeInTheDocument();
+      expect(
+        component.queryByText(/Attention : cet itinéraire est concerné par au moins une zone de vigilance élevée/i),
+      ).not.toBeInTheDocument();
+    });
+
+    it('renders Priority 4 default banner when high vigilance area (Danger) is only in the future', () => {
+      const futureHighArea: VigilanceArea = {
         ...baseVigilanceArea,
         isImpracticable: false,
         periods: [
@@ -198,20 +340,17 @@ describe('DetailsVigilanceBanner', () => {
         ],
       };
       const component = render(
-        <DetailsVigilanceBanner vigilanceAreas={[futureAlertArea]} />,
+        <DetailsVigilanceBanner vigilanceAreas={[futureHighArea]} />,
       );
       const bannerElement = component.container.querySelector('#details_vigilanceBanner');
 
       expect(bannerElement).toHaveAttribute('data-priority', 'p4');
-      expect(bannerElement).toHaveAttribute('data-encart-level', 'vigilance');
       expect(
-        component.getByText(/Attention : cet itinéraire est concerné par une zone de vigilance élevée : Danger - Chasse - Battue aux sangliers/i),
+        component.getByText('Cet itinéraire peut comporter des zones de vigilance.'),
       ).toBeInTheDocument();
     });
-  });
 
-  describe('Priority 5 — Texte par défaut', () => {
-    it('renders default Priority 5 banner when area has low/info level or no critical level', () => {
+    it('renders default Priority 4 banner when area has low/info level or no critical level', () => {
       const infoArea: VigilanceArea = {
         ...baseVigilanceArea,
         level: { id: 'level-3', level: 3, name: 'Conseil', color: '#1257A8', pictogramUrl: null },
@@ -223,7 +362,7 @@ describe('DetailsVigilanceBanner', () => {
       );
       const bannerElement = component.container.querySelector('#details_vigilanceBanner');
 
-      expect(bannerElement).toHaveAttribute('data-priority', 'p5');
+      expect(bannerElement).toHaveAttribute('data-priority', 'p4');
       expect(
         component.getByText('Cet itinéraire peut comporter des zones de vigilance.'),
       ).toBeInTheDocument();
@@ -234,7 +373,7 @@ describe('DetailsVigilanceBanner', () => {
       ).toBeInTheDocument();
     });
 
-    it('renders Priority 5 banner with "Cette zone" for touristic content', () => {
+    it('renders Priority 4 banner with "Cette zone" for touristic content', () => {
       const infoArea: VigilanceArea = {
         ...baseVigilanceArea,
         level: null,
@@ -251,10 +390,46 @@ describe('DetailsVigilanceBanner', () => {
         component.getByText('Cette zone peut comporter des zones de vigilance.'),
       ).toBeInTheDocument();
     });
+
+    it('renders Priority 4 banner with "Ce site" for outdoor site', () => {
+      const infoArea: VigilanceArea = {
+        ...baseVigilanceArea,
+        level: null,
+        criticality: 'info',
+        isImpracticable: false,
+      };
+      const component = render(
+        <DetailsVigilanceBanner
+          vigilanceAreas={[infoArea]}
+          contentType="OUTDOOR_SITE"
+        />,
+      );
+      expect(
+        component.getByText('Ce site peut comporter des zones de vigilance.'),
+      ).toBeInTheDocument();
+    });
+
+    it('renders Priority 4 banner with "Ce parcours" for outdoor course', () => {
+      const infoArea: VigilanceArea = {
+        ...baseVigilanceArea,
+        level: null,
+        criticality: 'info',
+        isImpracticable: false,
+      };
+      const component = render(
+        <DetailsVigilanceBanner
+          vigilanceAreas={[infoArea]}
+          contentType="OUTDOOR_COURSE"
+        />,
+      );
+      expect(
+        component.getByText('Ce parcours peut comporter des zones de vigilance.'),
+      ).toBeInTheDocument();
+    });
   });
 
   describe('Fallback without level information', () => {
-    it('skips P2 and P4 to evaluate P1 -> P3 -> P5 directly', () => {
+    it('skips P2 and evaluates P1 -> P3 -> P4 directly', () => {
       const areaWithoutLevel: VigilanceArea = {
         ...baseVigilanceArea,
         level: null,
@@ -265,7 +440,7 @@ describe('DetailsVigilanceBanner', () => {
         <DetailsVigilanceBanner vigilanceAreas={[areaWithoutLevel]} />,
       );
       const bannerElement = component.container.querySelector('#details_vigilanceBanner');
-      expect(bannerElement).toHaveAttribute('data-priority', 'p5');
+      expect(bannerElement).toHaveAttribute('data-priority', 'p4');
     });
   });
 

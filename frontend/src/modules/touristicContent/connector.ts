@@ -7,7 +7,7 @@ import { PopupResult } from 'modules/trekResult/interface';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { adaptGeometry } from 'modules/utils/geometry';
 import { CommonDictionaries } from 'modules/dictionaries/interface';
-import { getVigilanceAreasForTrek } from 'modules/vigilanceArea/connector';
+import { getVigilanceAreas } from 'modules/vigilanceArea/connector';
 import {
   adaptTouristicContent,
   adaptTouristicContentDetails,
@@ -61,7 +61,7 @@ export const getTouristicContentDetails = async (
       language,
     );
     const vigilanceAreas = getGlobalConfig().enableVigilanceAreas
-      ? await getVigilanceAreasForTrek(
+      ? await getVigilanceAreas(
           rawTouristicContentDetails.properties.vigilance_areas ?? [],
           language,
         )

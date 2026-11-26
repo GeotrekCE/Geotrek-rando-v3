@@ -142,9 +142,14 @@
     "display": true
   },
   {
+    "id": "vigilance_date",
+    "type": "SINGLE",
+    "display": false
+  },
+  {
     "id": "vigilance_type",
     "type": "MULTIPLE",
-    "display": true,
+    "display": false,
     "withExclude": true
   }
 ]

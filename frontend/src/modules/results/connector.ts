@@ -151,6 +151,10 @@ export const getSearchResults = async (
           language,
           page_size: 1,
           page: 1,
+          practicable_from: newTrekDateFilter.practicable_from,
+          practicable_to: newTrekDateFilter.practicable_to,
+          opened_from: newTrekDateFilter.opened_from,
+          opened_to: newTrekDateFilter.opened_to,
           ...outdoorSiteFilter,
           ...textFilter,
           ...bboxFilter,
@@ -231,6 +235,10 @@ export const getSearchResults = async (
             language,
             page_size: getGlobalConfig().searchResultsPageSize,
             page: pages.outdoorSites ?? undefined,
+            practicable_from: newTrekDateFilter.practicable_from,
+            practicable_to: newTrekDateFilter.practicable_to,
+            opened_from: newTrekDateFilter.opened_from,
+            opened_to: newTrekDateFilter.opened_to,
             ...outdoorSiteFilter,
             ...textFilter,
             ...bboxFilter,
@@ -349,6 +357,8 @@ export const getSearchResults = async (
       themeDictionnary: themes,
       outdoorPracticeDictionnary,
       cityDictionnary: cities,
+      vigilanceAreasPeriods,
+      targetDate: trekTargetDate,
     });
 
     const adaptedTouristicEventsList: TouristicEventResult[] = adaptTouristicEventsResult({

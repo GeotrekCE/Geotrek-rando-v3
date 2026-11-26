@@ -1,5 +1,14 @@
 import { RawVigilanceAreaType, VigilanceAreaType } from './interface';
 
+const extractLocalizedText = (
+  field: { [key: string]: string } | string | undefined,
+  language: string,
+): string => {
+  if (!field) return '';
+  if (typeof field === 'string') return field;
+  return field[language] || field.fr || '';
+};
+
 export const adaptVigilanceAreaType = ({
   rawVigilanceAreaType,
   language,
@@ -7,15 +16,13 @@ export const adaptVigilanceAreaType = ({
   rawVigilanceAreaType: RawVigilanceAreaType;
   language: string;
 }): VigilanceAreaType => {
-  const name =
-    typeof rawVigilanceAreaType.name === 'string'
-      ? rawVigilanceAreaType.name
-      : rawVigilanceAreaType.name?.[language] || rawVigilanceAreaType.name?.fr || '';
+  const rawName = extractLocalizedText(rawVigilanceAreaType.name, language);
+  const fullName = extractLocalizedText(rawVigilanceAreaType.full_name, language);
 
   return {
     id: String(rawVigilanceAreaType.id),
-    name,
-    rawName: name,
+    name: fullName || rawName,
+    rawName,
     parent: rawVigilanceAreaType.parent ?? null,
     pictogramUrl: rawVigilanceAreaType.pictogram,
   };
@@ -30,32 +37,35 @@ export const adaptVigilanceAreaTypes = ({
 }): Record<string, VigilanceAreaType> => {
   const bareTypesById: Record<
     number,
-    { id: string; rawName: string; parent: number | null; pictogram: string | null }
+    {
+      id: string;
+      rawName: string;
+      fullName: string;
+      parent: number | null;
+      pictogram: string | null;
+    }
   > = {};
 
-  for (const rawType of rawVigilanceAreaTypes) {
-    const rawName =
-      typeof rawType.name === 'string'
-        ? rawType.name
-        : rawType.name?.[language] || rawType.name?.fr || '';
-    bareTypesById[rawType.id] = {
-      id: String(rawType.id),
-      rawName,
-      parent: rawType.parent ?? null,
-      pictogram: rawType.pictogram ?? null,
+  for (const rawVigilanceAreaType of rawVigilanceAreaTypes) {
+    bareTypesById[rawVigilanceAreaType.id] = {
+      id: String(rawVigilanceAreaType.id),
+      rawName: extractLocalizedText(rawVigilanceAreaType.name, language),
+      fullName: extractLocalizedText(rawVigilanceAreaType.full_name, language),
+      parent: rawVigilanceAreaType.parent ?? null,
+      pictogram: rawVigilanceAreaType.pictogram ?? null,
     };
   }
 
   const adaptedTypes: Record<string, VigilanceAreaType> = {};
 
-  for (const rawType of rawVigilanceAreaTypes) {
-    const currentType = bareTypesById[rawType.id];
-    let hierarchicalName = currentType.rawName;
+  for (const rawVigilanceAreaType of rawVigilanceAreaTypes) {
+    const currentType = bareTypesById[rawVigilanceAreaType.id];
+    let hierarchicalName = currentType.fullName || currentType.rawName;
 
-    if (currentType.parent !== null && bareTypesById[currentType.parent]) {
+    if (!currentType.fullName && currentType.parent !== null && bareTypesById[currentType.parent]) {
       const lineage: string[] = [];
       let currentParentId: number | null = currentType.parent;
-      const visitedIds = new Set<number>([rawType.id]);
+      const visitedIds = new Set<number>([rawVigilanceAreaType.id]);
 
       while (
         currentParentId !== null &&
@@ -72,7 +82,7 @@ export const adaptVigilanceAreaTypes = ({
       hierarchicalName = `${rootName} > ${level2Name}`;
     }
 
-    adaptedTypes[String(rawType.id)] = {
+    adaptedTypes[String(rawVigilanceAreaType.id)] = {
       id: currentType.id,
       name: hierarchicalName,
       rawName: currentType.rawName,

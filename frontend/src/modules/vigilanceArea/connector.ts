@@ -8,7 +8,7 @@ import { adaptVigilanceArea, adaptVigilanceAreas, adaptVigilancePeriods } from '
 import { fetchVigilanceArea, fetchVigilanceAreasPeriods } from './api';
 import { RawVigilanceArea, VigilanceArea, VigilanceAreasPeriodsMap } from './interface';
 
-export const getVigilanceAreasForTrek = async (
+export const getVigilanceAreas = async (
   rawAreas: (number | string | RawVigilanceArea)[] = [],
   language: string,
 ): Promise<VigilanceArea[]> => {

@@ -5,6 +5,12 @@ export interface RawVigilanceAreaType {
         [key: string]: string;
       }
     | string;
+  full_name?:
+    | {
+        [key: string]: string;
+      }
+    | string;
+  code?: string;
   parent?: number | null;
   pictogram: string | null;
 }

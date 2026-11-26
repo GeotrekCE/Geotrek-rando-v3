@@ -1,4 +1,6 @@
-import { IntlShape } from 'react-intl';
+import { createIntl, createIntlCache } from 'react-intl';
+import flattenMessages from 'services/i18n/intl';
+import frMessages from 'translations/fr.json';
 import {
   formatSinglePeriod,
   formatVigilancePeriod,
@@ -94,36 +96,13 @@ describe('isVigilanceAreaActive', () => {
 });
 
 describe('formatVigilancePeriod rules', () => {
-  const mockIntl = {
-    locale: 'fr',
-    formatMessage: (
-      { id, defaultMessage }: { id: string; defaultMessage?: string },
-      values?: Record<string, unknown>,
-    ) => {
-      if (id === 'details.vigilancePeriodAllYear') return "Toute l'année";
-      if (id === 'details.vigilancePeriodFromNoEnd')
-        return `À partir du ${String(values?.startDate ?? '')} et jusqu’à nouvel ordre`;
-      if (id === 'details.vigilancePeriodFromTo')
-        return `De ${String(values?.start ?? '')} à ${String(values?.end ?? '')}`;
-      if (id === 'details.vigilancePeriodDays')
-        return `Aux jours suivants : ${String(values?.days ?? '')}`;
-      if (id === 'details.vigilancePeriodDaysRange')
-        return `du ${String(values?.start ?? '')} au ${String(values?.end ?? '')}`;
-      if (id === 'details.vigilancePeriodDaysRangeAllYear')
-        return `Toute l'année, ${String(values?.start ?? '')}`;
-      if (id === 'details.vigilancePeriodRange')
-        return `Du ${String(values?.startDate ?? '')} au ${String(values?.endDate ?? '')}`;
-      if (id === 'details.vigilancePeriodRangeWithDays')
-        return `Du ${String(values?.startDate ?? '')} au ${String(values?.endDate ?? '')}, les ${String(values?.days ?? '')}`;
-      if (id === 'details.vigilancePeriodUntil')
-        return `Jusqu’au ${String(values?.endDate ?? '')}`;
-      if (id === 'details.vigilanceMultiplePeriods')
-        return "Plusieurs périodes concernées au cours de l'année, consulter le détail pour plus de précisions";
-      if (id === 'details.vigilanceAnnual')
-        return `Chaque année : ${String(values?.period ?? '')}`;
-      return defaultMessage || id;
+  const mockIntl = createIntl(
+    {
+      locale: 'fr',
+      messages: flattenMessages(frMessages),
     },
-  } as unknown as IntlShape;
+    createIntlCache(),
+  );
 
   it('Rule 1: Jan 1 startDate and no endDate -> Toute l\'année', () => {
     const formattedResult = formatVigilancePeriod({
@@ -210,7 +189,7 @@ describe('formatVigilancePeriod rules', () => {
     expect(formattedResult).toBe('Chaque année : Du 1 juin au 30 septembre');
   });
 
-  it('Rule 7: startDate and endDate with activeDays -> Du [startDate] au [endDate], les [jours]', () => {
+  it('Rule 7: startDate and endDate with consecutive activeDays -> Du [startDate] au [endDate], du [jour début] au [jour fin]', () => {
     const formattedResult = formatVigilancePeriod({
       periods: [
         {
@@ -222,9 +201,7 @@ describe('formatVigilancePeriod rules', () => {
       ],
       intl: mockIntl,
     });
-    expect(formattedResult).toBe(
-      'Du 29 août 2026 au 30 octobre 2026, les lundi, mardi, mercredi, jeudi, vendredi',
-    );
+    expect(formattedResult).toBe('Du 29 août 2026 au 30 octobre 2026, du lundi au vendredi');
   });
 });
 

@@ -14,6 +14,8 @@ export interface SelectableDropdownProps {
   closeMenuOnSelect?: boolean;
   required?: boolean;
   onBlur?: () => void;
+  menuPosition?: 'absolute' | 'fixed';
+  menuPlacement?: 'auto' | 'bottom' | 'top';
 }
 
 const colourStyles = {
@@ -83,6 +85,10 @@ const colourStyles = {
   placeholder: (styles: CSSObjectWithLabel) => ({
     ...styles,
     color: theme.extend.colors.greyDarkColored,
+  }),
+  menuPortal: (styles: CSSObjectWithLabel) => ({
+    ...styles,
+    zIndex: 200,
   }),
 };
 

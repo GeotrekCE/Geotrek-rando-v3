@@ -35,7 +35,7 @@ describe('VigilanceAreaItem', () => {
     expect(component.getByText('Zone Test Alpha')).toBeInTheDocument();
   });
 
-  it('renders "Impraticable" in strict red #901A1A when impracticable, ignoring level color', () => {
+  it('renders "Zone impraticable" in strict red #901A1A when impracticable, ignoring level color', () => {
     const impracticableArea: VigilanceArea = {
       ...baseVigilanceArea,
       isImpracticable: true,
@@ -48,7 +48,7 @@ describe('VigilanceAreaItem', () => {
       </DetailsAndMapProvider>,
     );
 
-    const headerLevelElement = component.getByText('Impraticable — Travaux forestiers');
+    const headerLevelElement = component.getByText('Zone impraticable — Travaux forestiers');
     expect(headerLevelElement).toBeInTheDocument();
     expect(headerLevelElement).toHaveStyle({ color: '#901A1A' });
   });
@@ -100,7 +100,7 @@ describe('VigilanceAreaItem', () => {
     expect(component.getByText(/Dernière mise à jour le/)).toBeInTheDocument();
   });
 
-  it('displays "Praticabilité de la zone : Impraticable" when isImpracticable is true', () => {
+  it('displays "Zone impraticable" without practicability label when isImpracticable is true', () => {
     const impracticableArea: VigilanceArea = {
       ...baseVigilanceArea,
       isImpracticable: true,
@@ -115,8 +115,8 @@ describe('VigilanceAreaItem', () => {
     const headerButton = component.getByRole('button');
     fireEvent.click(headerButton);
 
-    expect(component.getByText('Praticabilité de la zone :')).toBeInTheDocument();
-    expect(component.getByText('Impraticable')).toBeInTheDocument();
+    expect(component.queryByText(/Praticabilité/)).not.toBeInTheDocument();
+    expect(component.getByText('Zone impraticable')).toBeInTheDocument();
   });
   it('harmonizes colors when area has no level: header uses orange fallback and badge uses default orange icon', () => {
     const areaWithoutLevel: VigilanceArea = {

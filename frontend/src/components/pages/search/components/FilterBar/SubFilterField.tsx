@@ -8,7 +8,6 @@ import {
   VIGILANCE_TYPE_EXCLUDE_ID,
   VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
-import { getGlobalConfig } from 'modules/utils/api.config';
 import ShowFilters from './ShowFilters';
 
 const VIGILANCE_SECTION_IDS = [
@@ -27,6 +26,8 @@ interface Props {
   dateFilter: DateFilter;
   setFilterSelectedOptions: (filterId: string, options: Option[]) => void;
   setDateFilter: (dFilter: DateFilter) => void;
+  hideVigilanceSectionFilters?: boolean;
+  menuPosition?: 'absolute' | 'fixed';
 }
 
 const SubFilterField: React.FC<Props> = ({
@@ -34,16 +35,16 @@ const SubFilterField: React.FC<Props> = ({
   dateFilter,
   setFilterSelectedOptions,
   setDateFilter,
+  hideVigilanceSectionFilters = false,
+  menuPosition,
 }) => {
   if (filters === undefined) {
     return null;
   }
 
-  const isVigilanceEnabled = getGlobalConfig().enableVigilanceAreas;
-
   const filteredFilters = Object.entries(filters).reduce((acc, [key, list]) => {
     const validList = list.filter(filter =>
-      isVigilanceEnabled ? !VIGILANCE_SECTION_IDS.includes(filter.id) : true,
+      hideVigilanceSectionFilters ? !VIGILANCE_SECTION_IDS.includes(filter.id) : true,
     );
     if (validList.length > 0) {
       acc[key] = validList;
@@ -70,6 +71,7 @@ const SubFilterField: React.FC<Props> = ({
                   setFilterSelectedOptions={setFilterSelectedOptions}
                   dateFilter={dateFilter}
                   setDateFilter={setDateFilter}
+                  menuPosition={menuPosition}
                 />
               </div>
             ))}
@@ -92,6 +94,7 @@ const SubFilterField: React.FC<Props> = ({
               setFilterSelectedOptions={setFilterSelectedOptions}
               dateFilter={dateFilter}
               setDateFilter={setDateFilter}
+              menuPosition={menuPosition}
             />
           ))}
         </div>

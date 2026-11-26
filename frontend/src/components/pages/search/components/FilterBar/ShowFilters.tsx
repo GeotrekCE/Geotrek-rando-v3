@@ -11,6 +11,7 @@ interface Props {
   hideLabel?: boolean;
   dateFilter: DateFilter;
   setDateFilter: (dFilter: DateFilter) => void;
+  menuPosition?: 'absolute' | 'fixed';
 }
 
 const ShowFilters: React.FC<Props> = ({
@@ -19,6 +20,7 @@ const ShowFilters: React.FC<Props> = ({
   hideLabel = false,
   dateFilter,
   setDateFilter,
+  menuPosition,
 }) => {
   const intl = useIntl();
 
@@ -69,6 +71,8 @@ const ShowFilters: React.FC<Props> = ({
         setFilterSelectedOptions(item.id, options);
       }}
       filterType={item.type}
+      menuPosition={menuPosition}
+      menuPlacement={menuPosition === 'fixed' ? 'auto' : undefined}
     />
   ) : (
     <Field

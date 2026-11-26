@@ -9,6 +9,7 @@ import { cn } from 'services/utils/cn';
 import { isVigilanceFilterEnabled } from 'modules/filters/config';
 import {
   CATEGORY_ID,
+  OUTDOOR_ID,
   PRACTICE_ID,
 } from 'modules/filters/constant';
 
@@ -77,7 +78,7 @@ const FilterField: React.FC<Props> = ({
 
   const shouldShowVigilanceSection =
     isVigilanceFilterEnabled() &&
-    (id === PRACTICE_ID || id === CATEGORY_ID);
+    (id === PRACTICE_ID || id === CATEGORY_ID || id === OUTDOOR_ID);
 
   return (
     <div>
@@ -132,6 +133,7 @@ const FilterField: React.FC<Props> = ({
                 hideLabel
                 dateFilter={dateFilter}
                 setDateFilter={setDateFilter}
+                menuPosition="fixed"
               />
             </div>
             {shouldShowVigilanceSection && index === 0 && (
@@ -149,6 +151,8 @@ const FilterField: React.FC<Props> = ({
                 dateFilter={dateFilter}
                 setFilterSelectedOptions={setFilterSelectedOptions}
                 setDateFilter={setDateFilter}
+                hideVigilanceSectionFilters={shouldShowVigilanceSection}
+                menuPosition="fixed"
               />
             </div>
           </Fragment>

@@ -112,6 +112,12 @@
         "order": 15
       },
       {
+        "name": "vigilance",
+        "display": true,
+        "anchor": true,
+        "order": 18
+      },
+      {
         "name": "practicalInformations",
         "display": true,
         "anchor": true,
@@ -160,12 +166,6 @@
         "display": true,
         "anchor": true,
         "order": 20
-      },
-      {
-        "name": "vigilance",
-        "display": true,
-        "anchor": true,
-        "order": 25
       },
       {
         "name": "practicalInformations",
@@ -234,6 +234,12 @@
         "display": true,
         "anchor": false,
         "order": 60
+      },
+      {
+        "name": "vigilance",
+        "display": true,
+        "anchor": true,
+        "order": 65
       },
       {
         "name": "practicalInformations",
@@ -308,6 +314,12 @@
         "display": true,
         "anchor": false,
         "order": 60
+      },
+      {
+        "name": "vigilance",
+        "display": true,
+        "anchor": true,
+        "order": 65
       },
       {
         "name": "practicalInformations",

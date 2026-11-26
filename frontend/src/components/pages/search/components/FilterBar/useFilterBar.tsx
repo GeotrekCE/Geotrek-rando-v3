@@ -17,7 +17,7 @@ import {
   VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
 import { FilterCategory } from 'modules/filters/interface';
-import { isVigilanceFilterEnabled } from 'modules/filters/config';
+import { isVigilanceDateFilterEnabled, isVigilanceTypeFilterEnabled } from 'modules/filters/config';
 import { getGlobalConfig } from 'modules/utils/api.config';
 import { FormattedMessage } from 'react-intl';
 
@@ -34,15 +34,18 @@ export const useFilterBar = () => {
     currentAPIVersion,
   );
 
-  const isVigilanceActive = isVigilanceFilterEnabled();
+  const isVigilanceDateActive = isVigilanceDateFilterEnabled();
+  const isVigilanceTypeActive = isVigilanceTypeFilterEnabled();
 
-  const trekVigilanceSubFilters = isVigilanceActive
-    ? [VIGILANCE_TYPE_ID, DATE_FILTER]
-    : [];
+  const trekVigilanceSubFilters = [
+    ...(isVigilanceTypeActive ? [VIGILANCE_TYPE_ID] : []),
+    ...(isVigilanceDateActive ? [DATE_FILTER] : []),
+  ];
 
-  const categoryVigilanceSubFilters = isVigilanceActive
-    ? [VIGILANCE_TYPE_CONTENTS_ID, DATE_FILTER]
-    : [];
+  const categoryVigilanceSubFilters = [
+    ...(isVigilanceTypeActive ? [VIGILANCE_TYPE_CONTENTS_ID] : []),
+    ...(isVigilanceDateActive ? [DATE_FILTER] : []),
+  ];
 
   const trekSubFilters = [
     'difficulty',
@@ -56,6 +59,11 @@ export const useFilterBar = () => {
     ...trekVigilanceSubFilters,
   ];
 
+  const outdoorSubFilters = [
+    'type-outdoorRating-.+',
+    ...trekVigilanceSubFilters,
+  ];
+
   const treksAndOutdoorCategories =
     groupTreksAndOutdoorFilters === true && enableOutdoor === true
       ? [
@@ -66,7 +74,7 @@ export const useFilterBar = () => {
               <FormattedMessage key="outdoors" id={'search.filters.outdoorPractice'} />,
             ],
             filters: [PRACTICE_ID, OUTDOOR_ID],
-            subFilters: [trekSubFilters, ['type-outdoorRating-.+']],
+            subFilters: [trekSubFilters, outdoorSubFilters],
           },
         ]
       : [
@@ -80,7 +88,7 @@ export const useFilterBar = () => {
             id: OUTDOOR_ID,
             name: <FormattedMessage id={'search.filters.outdoorPractice'} />,
             filters: [OUTDOOR_ID],
-            subFilters: ['type-outdoorRating-.+'],
+            subFilters: outdoorSubFilters,
           },
         ];
 

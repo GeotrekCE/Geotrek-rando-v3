@@ -4,7 +4,7 @@
   "maxPoiPerPage": 50,
   "maxTouristicContentPerPage": 50,
   "enableSensitiveAreas": false,
-  "enableVigilanceAreas": false,
+  "enableVigilanceAreas": true,
   "enableOutdoor": false,
   "enableTouristicEvents": true,
   "portalIds": [],

@@ -20,6 +20,7 @@ In json files, you can just override the primary keys you need. You have to over
         - If one or more ids have been set (example : [1,3]), Geotrek-rando only retrieves the objets of the configured portals. Therefore, if objects are not associated with any portal in Geotrek-admin, they will not be displayed in Geotrek-rando.
 
     - `enableSensitiveAreas`: boolean, default to false. Set it to true if sensitive areas are defined in your Geotrek-admin
+    - `enableVigilanceAreas`: boolean, default to true. Set it to false to disable vigilance areas (available for treks, touristic contents, and outdoor sites/courses when `enableOutdoor` is `true`)
     - `enableOutdoor`: boolean, default to false. Set it to true to enable Outdoor sites and courses
     - `groupTreksAndOutdoorFilters`: boolean, default to false. Groups treks and outdoor filters into a single tab. For this setting to work, `enableOutdoor` must be set to `true`.
     - `apiUrl` : Geotrek-admin API URL
@@ -213,6 +214,9 @@ NB: For "report" and "reservationWidget" sections with `anchors` set to `true`, 
   - The `labels` filter contains an additional `withExclude` parameter. Its default value is `true`. By setting it to `true`, the user can filter the search by excluding a label (`withExclude` only works if your version of Geotrek Admin is equal to or higher than [2.77.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.77.0); please set it to `false` if this is not the case)
   - The trek `networks` filter only works if yout version of Geotrek Admin is equal to or higher than [2.108.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.108.0)
   - The event `organizer` filter only works if your version of Geotrek Admin is equal to or higher than [2.100.0](https://github.com/GeotrekCE/Geotrek-admin/releases/tag/2.100.0)
+  - The `vigilance_date` filter allows users to filter by date or date range for vigilance areas. It is hidden by default (`"display": false`); set `"display": true` in `filter.json` to display it.
+  - The `vigilance_type` filter allows users to filter by vigilance area types, with exclusion support (`withExclude: true`). It is hidden by default (`"display": false`); set `"display": true` in `filter.json` to display it.
+  - Both `vigilance_date` and `vigilance_type` can be enabled independently or together; they apply to treks, touristic contents, and outdoor sites/courses (when `enableOutdoor` is `true`) once `enableVigilanceAreas` is enabled in `global.json`.
 
 ## `map.json`
 

@@ -6,7 +6,6 @@ import { getLabelsFilter } from 'modules/label/connector';
 import { getVigilanceTypeFilter } from 'modules/vigilanceAreaType/connector';
 
 import { ParsedUrlQuery } from 'querystring';
-import { getGlobalConfig } from 'modules/utils/api.config';
 import { getOutdoorPracticesFilter } from '../outdoorPractice/connector';
 import { OutdoorPracticeChoices } from '../outdoorPractice/interface';
 import { OutdoorRatingMapping } from '../outdoorRating/interface';
@@ -14,7 +13,7 @@ import { OutdoorRatingScale } from '../outdoorRatingScale/interface';
 import { getTouristicEventTypesFilter } from '../touristicEventType/connector';
 import { getAccessibilityFilter } from './accessibility/connector';
 import { getCityFilter } from './city/connector';
-import { getFiltersConfig } from './config';
+import { getFiltersConfig, isVigilanceTypeFilterEnabled } from './config';
 import { getDifficultyFilter } from './difficulties/connector';
 import { getCourseTypeFilter } from './courseType/connector';
 import { getDistrictFilter } from './district/connector';
@@ -153,8 +152,6 @@ const trekSpecificFilters = [
   NETWORKS_ID,
   'labels',
   'labels_exclude',
-  VIGILANCE_TYPE_ID,
-  VIGILANCE_TYPE_EXCLUDE_ID,
 ];
 
 export const commonFilters = [
@@ -171,14 +168,14 @@ export const commonFilters = [
 export const getTreksFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
   initialFiltersState.filter(({ id }) => trekSpecificFilters.includes(id));
 
-export const getTrekVigilanceFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
+export const getVigilanceTypeFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
   initialFiltersState.filter(({ id }) =>
-    [VIGILANCE_TYPE_ID, VIGILANCE_TYPE_EXCLUDE_ID].includes(id),
-  );
-
-export const getContentVigilanceFiltersState = (initialFiltersState: FilterState[]): FilterState[] =>
-  initialFiltersState.filter(({ id }) =>
-    [VIGILANCE_TYPE_CONTENTS_ID, VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID].includes(id),
+    [
+      VIGILANCE_TYPE_ID,
+      VIGILANCE_TYPE_EXCLUDE_ID,
+      VIGILANCE_TYPE_CONTENTS_ID,
+      VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
+    ].includes(id),
   );
 
 export const getFiltersState = async (language: string): Promise<FilterState[]> => {
@@ -192,7 +189,7 @@ export const getFiltersState = async (language: string): Promise<FilterState[]> 
     })),
   ];
 
-  if (getGlobalConfig().enableVigilanceAreas) {
+  if (isVigilanceTypeFilterEnabled()) {
     const vigilanceContentFilter = await getVigilanceTypeFilter(language, false, VIGILANCE_TYPE_CONTENTS_ID);
     const vigilanceContentExcludeFilter = await getVigilanceTypeFilter(language, true, VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID);
 
@@ -350,14 +347,9 @@ export const computeFiltersToDisplay = ({
       );
     });
   }
-  // Vigilance filters for Treks and Touristic Contents
-  if (getGlobalConfig().enableVigilanceAreas) {
-    if (currentNumberOfPracticeOptionsSelected > 0 || selectedFilterId === PRACTICE_ID) {
-      filtersToAdd.push(getTrekVigilanceFiltersState(initialFiltersState));
-    }
-    if (currentNumberOfTouristicContentOptionsSelected > 0 || selectedFilterId === CATEGORY_ID) {
-      filtersToAdd.push(getContentVigilanceFiltersState(initialFiltersState));
-    }
+  // Vigilance filters for Treks, Outdoor and Touristic Contents
+  if (isVigilanceTypeFilterEnabled()) {
+    filtersToAdd.push(getVigilanceTypeFiltersState(initialFiltersState));
   }
   // Outdoor filters
   if (currentNumberOfOutdoorPraticeOptionsSelected > 0 || selectedFilterId === OUTDOOR_ID) {
@@ -422,13 +414,8 @@ const getInitialFiltersStateWithRelevantFilters = ({
     result.push(...getTreksFiltersState(initialFiltersState));
   }
 
-  if (getGlobalConfig().enableVigilanceAreas) {
-    if (Number(practices?.length) > 0) {
-      result.push(...getTrekVigilanceFiltersState(initialFiltersState));
-    }
-    if (Number(services?.length) > 0) {
-      result.push(...getContentVigilanceFiltersState(initialFiltersState));
-    }
+  if (isVigilanceTypeFilterEnabled()) {
+    result.push(...getVigilanceTypeFiltersState(initialFiltersState));
   }
 
   if (Number(services?.length) > 0) {

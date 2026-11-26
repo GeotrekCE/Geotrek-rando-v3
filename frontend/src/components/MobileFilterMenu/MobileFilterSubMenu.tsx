@@ -13,13 +13,13 @@ import {
   CATEGORY_ID,
   DATE_FILTER,
   DATE_FILTER_CONTENTS,
+  OUTDOOR_ID,
   PRACTICE_ID,
   VIGILANCE_TYPE_CONTENTS_EXCLUDE_ID,
   VIGILANCE_TYPE_CONTENTS_ID,
   VIGILANCE_TYPE_EXCLUDE_ID,
   VIGILANCE_TYPE_ID,
 } from 'modules/filters/constant';
-import { getGlobalConfig } from 'modules/utils/api.config';
 import { isVigilanceFilterEnabled } from 'modules/filters/config';
 import { CloseButton } from './CloseButton';
 
@@ -55,8 +55,6 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
   setDateFilter,
   isOpen,
 }) => {
-  const isVigilanceEnabled = getGlobalConfig().enableVigilanceAreas;
-
   const { FILTERS_CATEGORIES } = useFilterBar();
   const categories = FILTERS_CATEGORIES.find(i => i.id === filterId);
   const filters = categories?.filters;
@@ -83,7 +81,7 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
 
   const shouldShowVigilanceSection =
     isVigilanceFilterEnabled() &&
-    (filterId === PRACTICE_ID || filterId === CATEGORY_ID);
+    (filterId === PRACTICE_ID || filterId === CATEGORY_ID || filterId === OUTDOOR_ID);
 
   return (
     <Sheet open={isOpen} onOpenChange={handleClose}>
@@ -139,7 +137,7 @@ export const MobileFilterSubMenu: React.FC<Props> = ({
                     ? key
                     : filtersToDisplay[index]?.selectedOptions.map(({ label }) => label).join('/');
                 const validList = subFilter[key].filter(filter =>
-                  isVigilanceEnabled ? !VIGILANCE_SECTION_IDS.includes(filter.id) : true,
+                  shouldShowVigilanceSection ? !VIGILANCE_SECTION_IDS.includes(filter.id) : true,
                 );
                 if (validList.length === 0) return null;
                 return (
